@@ -1,0 +1,25 @@
+
+
+
+<div class="label-field-pair"><label> Select course: </label></div>
+<div id="list_content">
+  <div id="list">
+    <div class="sel-list">
+      Select: <%= link_to_function 'All', "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
+      <%= link_to_function 'None', "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
+    </div>
+    <% form_for :employee,:url=>{:action=>'update_department_leave_reset'} do |form| %>
+      <% @employees.each do |b| %>
+        <div class="name_list<%=cycle('odd', 'even')%>"><li>
+           <label> <%= check_box_tag "employee_id[]", b.id,true,:class=>'batches_box' %> <div class="att_list_names"><%= b.full_name %></div></label>
+          </li></div>
+      <% end %>
+
+
+      <div class="user_submit_button1">
+        <%= form.submit  "asd", :name => "commit", :value => "► Reset" %>
+      </div>
+    <%  end %>
+  </div>
+</div>
+

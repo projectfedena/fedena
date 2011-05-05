@@ -1,0 +1,2 @@
+module ExamAjaxHelper
+end

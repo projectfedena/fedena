@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/app/models/fedena_mailer.rb -- 3 warnings:
+  FedenaMailer has no descriptive comment (IrresponsibleModule)
+  FedenaMailer#email has 4 parameters (LongParameterList)
+  FedenaMailer#email has approx 6 statements (LongMethod)

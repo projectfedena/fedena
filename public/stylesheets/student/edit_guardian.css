@@ -1,0 +1,78 @@
+/*
+    Document   : newCascadeStyleSheet
+    Created on : Jul 4, 2009, 11:18:19 AM
+    Author     : Fedena
+    Description: Style for admission pages
+*/
+
+#admission1_form {padding-left:50px;}
+#autofill_area .label_field_pair {padding-right:65px;}
+
+#admission1_form_vertical_block_left {}
+  .label_field_pair {width:285px;float:left;}
+  .label_field_pair label {font-weight:bold;display:block;color:#444;margin-bottom:10px;}
+  .label_field_pair label.label_for_gender {font-weight:normal;display:inline;}
+
+#admission1_form_vertical_block_right {}
+  .label_field_pair {width:285px;float:left;}
+  .label_field_pair label {font-weight:bold;display:block;color:#444;margin-bottom:10px;}
+  .label_field_pair label.label_for_gender {font-weight:normal;display:inline;}
+
+  #name_field_block {clear:both;padding-bottom:20px;}
+  #name_field_block .text_input_bg {float:left;width:190px;height:28px;background:#fff url(../../images/master_student/admission1/text_input_190px.png) no-repeat;margin-right:5px;margin-bottom:10px;}
+  #name_field_block label {font-weight:bold;display:block;margin-bottom:10px;}
+  #name_field_block input {width:170px;height:28px;background:transparent;border:0;padding-left:10px;padding-top:5px;}
+
+
+
+
+.label_field_pair select {width:230px;height:28px;}
+.label_field_pair .label_for_gender {margin:0;display:block;float:left;padding-top:5px;padding-right:10px;padding-left:10px;}
+#master_student_gender_true, #master_student_gender_false {margin:0;padding:0;width:20px;display:inline;margin-bottom:10px;display:block;float:left;}
+
+#create_user {width:20px;display:inline;}
+#address_text_area {width:232px;height:162px;background:#fff url(../../images/admission/address_area_bg.jpg) no-repeat;margin-bottom:40px;}
+#master_student_address, #parent_detail_office_address {padding-left:10px;padding-top:5px;width:222px;height:162px;border:none;background:transparent;color:#b00;font-weight:bold;}
+#create_user_option {display:inline;margin:0px;padding:0px;}
+
+
+.submit_button3{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:30px 0 0 270px;
+    width:100px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+.submit_button3:hover{
+   background:  #373B3F;
+}
+.text_display {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#EEEEEE none repeat scroll 0 0;
+    border:1px solid #C6C6C6;
+    height:17px;
+    float:left;
+    margin:5px 0 0 10px;
+    padding:5px;
+    width:205px;
+}
+.sub-heading{
+    background:#9E0F15;
+    height: 1px;
+    border: none;
+    margin-bottom: 15px;
+}
+.span-sub-heading{
+    font-weight: bold;
+    padding-top:10px;
+}
+
+

@@ -1,0 +1,24 @@
+
+<% string = @to_users.inject('') { |arr, u| arr + u.to_s + ',' }.chomp(',') %>
+<% add = "<span> #{t('layouts.default.add')} </span>" %>
+<div class="label-field-pair">
+  <label for="student_grade"><%= "#{t('index.select_recipient')}" %></label>
+  <div class ="scrolable" >
+    <div class="scroll-inside">
+      <div class="hover"><%= link_to "#{t('layouts.default.select_all')} <span> #{t('layouts.default.add')} </span>", '#', :onClick => "add_all_recipient('#{string}')", :class=> 'all' %>
+
+      </div>
+      <% @to_users.each do |t| %>
+        <% user = User.find(t) %>
+        <div class="hover"><%= link_to user.first_name+add  , '#', :onClick => "add_recipient(#{t})", :class=>'individual',
+    :before => "Element.show('loader')",
+      :success => "Element.hide('loader')" %>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+

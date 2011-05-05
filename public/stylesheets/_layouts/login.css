@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+body {
+    font-family:sans-serif;
+    margin: 0;
+}
+
+#top_logo {
+    margin:0 auto;
+    padding-top:15px;
+    height:107px; width:155px;
+    /*background:#fff url(../../images/login/fedena_logo.jpg) no-repeat;*/
+}
+#top_logo h1 {
+    text-indent:-9999px;
+}
+#help_top {
+    margin:0px auto;
+    width:614px;height:1.5em;
+}
+#help_top #help_link {float:right;}
+#help_top #help_link a {color:#b00;padding-right:10px;}
+
+#login_area_bg {background:#fff url(../../images/login/form_bg.jpg) repeat-x;height:362px;}
+#login_area {height:362px;width:614px;background:#fff url(../../images/login/login_box.jpg) no-repeat;margin:0px auto;}
+#login_area label {display:block;width:200px;margin-left:50px;padding-top:30px;font-weight:bold;color:#888;padding-bottom:5px;font-size:110%;}
+
+#username_textbox_bg, #password_textbox_bg {width:507px;height:58px;margin:0px auto;background:#fff url(../../images/login/text_box.jpg) no-repeat;}
+#username_textbox_bg input, #password_textbox_bg input {width:490px;height:54px;margin:2px 0 0 5px;float:left;border:none;background:transparent;font-size:40px;color:#666;}
+
+#submit_area input {
+    background:#312d2a;
+    width:85px;
+    height:38px;
+    float:right;
+    margin-right:58px;
+    margin-top:55px;
+    border:none;
+    color:#fff;
+    font-size: 20px;
+    font-weight: bold;
+    cursor:pointer;
+    -moz-border-radius:12px;
+    -webkit-border-radius:12px;
+
+}
+#submit_area input:hover{
+    background: #0F0E0D;
+
+}
+#resetpw_area input {width:85px;height:38px;float:right;margin-right:58px;margin-top:55px;}
+
+#checkbox_area {width:300px;float:left;}
+#checkbox_area label {margin:0;display:inline;padding-left:5px;}
+#checkbox_area input {margin:25px 5px 0 50px;padding:0;}
+
+#notice {
+    padding:0;
+    width:350px;
+    float:right;
+    margin-top:20px;
+    margin-right:60px;
+    padding:2px;
+    border:1px solid #999;
+    background-color:#fff1ab;
+    text-align:center;
+    font-size:14px;
+}
+#wrapper  #help_forgot_pw {margin:50px auto;text-align:center;width:614px;}
+#wrapper  #help_forgot_pw a {text-decoration:none;font-weight:bold;color:#b00;}
+#wrapper  #help_forgot_pw a:hover {text-decoration:underline;font-weight:bold;color:#b00;}
+
+#username_texbox_bg input{border:none;margin:0px; padding:0px;text-align:center;}
+
+input[type="text"], input[type="password"], textarea, select {outline: none;}
+
+#footer {
+    /* position : relative;
+    margin-top : -33px; */
+    height : 66px;
+    clear : both;
+    background: url(/images/foot.png) repeat-x;
+    width:100%;
+}
+#footer_logo {
+    height:66px;
+    position:relative;
+     width:980px;
+     margin:0 auto;
+}
+
+#footer_logo a.footer-logo{
+    display:block;
+    float:right;
+    height:66px;
+    margin-top:-55px;
+    width:210px;
+    background: url(/images/footer-logo.png) no-repeat 0 0 transparent;
+}
+
+#footer_logo a.footer-logo:hover {
+    background: url(/images/footer-logo.png) no-repeat -210px 0 transparent;
+
+}
+
+#powered_by {
+    height:20px;
+    padding:35px 0 0 0;
+    width:980px;
+    margin:0 auto;
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+}
+#powered_by a {
+    color:#fff;
+    font-size:14px;
+    text-decoration:none;
+}
+#powered_by a:hover {
+    color:#fff;
+    font-size:14px;
+    text-decoration:underline;
+}
+
+#wrapper {
+    min-height: 100%;
+    margin-bottom:-66px;
+    position:relative;
+}
+.clearfooter {
+height: 66px;
+clear: both;
+}

@@ -1,0 +1,8 @@
+D:/nithin/rails/fedena3/fedena2/app/models/finance/finance_fee_structure_element.rb -- 7 warnings:
+  FinanceFeeStructureElement has no descriptive comment (IrresponsibleModule)
+  FinanceFeeStructureElement#self.get_all_fee_components has approx 6 statements (LongMethod)
+  FinanceFeeStructureElement#self.get_course_fee_components calls course.id twice (Duplication)
+  FinanceFeeStructureElement#self.get_course_fee_components has approx 7 statements (LongMethod)
+  FinanceFeeStructureElement#self.get_student_fee_components calls student.id twice (Duplication)
+  FinanceFeeStructureElement#self.get_student_fee_components calls student.student_category_id twice (Duplication)
+  FinanceFeeStructureElement#self.get_student_fee_components has approx 8 statements (LongMethod)

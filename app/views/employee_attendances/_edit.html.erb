@@ -1,0 +1,25 @@
+<label class="head_label">Edit attendance for <span><%= @employee.first_name %></span></label>
+
+<div id="ajax-edit">
+  <% form_remote_for @attendance do |f| %>
+  <br/>
+    <div class="label-field-pair">
+      <label for="leave_type"> Leave type</label>
+      <div class="text-input-bg"><%= f.select :employee_leave_type_id, @leave_types.map {|c| [c.name, c.id]} %></div>
+    </div>
+    <div class="label-field-pair">
+      <label for="leave_type"> Reason for absence</label>
+      <div class="text-input-bg"><%= f.text_field :reason %></div>
+    </div>
+    <div class="label-checkbox-pair">
+      <label><%= f.check_box :is_half_day %>is half day?</label>
+    </div>
+    <div class="extender"></div>
+    <%= f.submit 'Submit', :class => 'submit-button', :confirm => 'Are you sure?' %>
+  <% end %>
+    <div id="delete-button"><%= link_to_remote('Delete',
+          :url => employee_attendance_path(@attendance),
+          :method =>'delete',
+          :confirm => 'Are you sure?') %></div>
+<div id="form-errors"></div>
+</div>

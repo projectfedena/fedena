@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090622102004_create_configurations.rb -- 2 warnings:
+  CreateConfigurations has no descriptive comment (IrresponsibleModule)
+  CreateConfigurations#self.up has the variable name 't' (UncommunicativeName)

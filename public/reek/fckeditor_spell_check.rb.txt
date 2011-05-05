@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/fckeditor/lib/fckeditor_spell_check.rb -- 4 warnings:
+  FckeditorSpellCheck declares the class variable @@language (ClassVariable)
+  FckeditorSpellCheck#self.check_spelling has approx 9 statements (LongMethod)
+  FckeditorSpellCheck#self.escape has the parameter name 'x' (UncommunicativeName)
+  FckeditorSpellCheck#self.get_suggestions has the variable name 'x' (UncommunicativeName)

@@ -1,0 +1,23 @@
+
+
+<% week =[] %>
+<% @weekdays.each do |dr| %>
+  <% week.push dr.weekday %>
+
+<% end %>
+<% form_for(:weekday, :url => {:action=> 'create'}) do |f| %>
+  <ul id="category-list">
+    <% batch_id = (@b.nil? ? nil : @b.id) %>
+    <%= f.hidden_field :batch_id, :value => batch_id %>
+    <% @days.each do |w| %>
+      <li class="list<%=cycle('odd','even') %>">
+        <% q = w.to_i %>
+        <div class="category-name"><%= @day[q] %></div>
+        <div class="category-edit"><%= check_box_tag "weekdays[]", w,  week.include?(w)%></div>
+      </li>
+    <% end %>
+
+  </ul>
+  <%= submit_tag "► #{t('layouts.default.save')}", :confirm=>"#{t('index.alter_message')}",:class=>'submit_button' %>
+<% end %>
+

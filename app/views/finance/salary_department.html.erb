@@ -1,0 +1,39 @@
+
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="Finance" />
+  <h1>Department-wise Salary Report</h1>
+  <h3>Finance Transactions</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% total=0 %>
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td>Sl no.</td>
+      <td>Particulars</td>
+      <td>Amount ( <%= currency %> )</td>
+    </tr>
+    <tr class="tr-blank"></tr>
+    <% department_total_amount=0 %>
+    <%@departments.each_with_index do |d,i|%>
+      <tr class="tr-<%= cycle("even","odd") %>">
+        <td class ="col-1"><%=i+1%></td>
+
+        <td class="col-2"><%=link_to d.name,:action => 'salary_employee',:start => @start_date,:end => @end_date,:id => d.id %></td>
+        <% department_total_amount += d.department_total_salary(@start_date,@end_date) %>
+        <td class="col-3" align="right"><%=  department_total_amount  %> </td>
+        <% total += department_total_amount %>
+        <% department_total_amount=0 %>
+      </tr>
+    <% end %>
+    <tr class="tr-blank"></tr>
+    <tr class="tr-head">
+      <td>Total </td>
+      <td></td>
+      <td align="right"><%=total%></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20091207085849_create_finance_fees.rb -- 2 warnings:
+  CreateFinanceFees has no descriptive comment (IrresponsibleModule)
+  CreateFinanceFees#self.up has the variable name 't' (UncommunicativeName)

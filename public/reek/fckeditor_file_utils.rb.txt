@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/fckeditor/lib/fckeditor_file_utils.rb -- 4 warnings:
+  FckeditorFileUtils#FckeditorFileUtils.recursive_copy calls File.join(dest, entry) 4 times (Duplication)
+  FckeditorFileUtils#FckeditorFileUtils.recursive_copy calls File.join(source, entry) 3 times (Duplication)
+  FckeditorFileUtils#FckeditorFileUtils.recursive_copy calls options[:logging] twice (Duplication)
+  FckeditorFileUtils#FckeditorFileUtils.recursive_copy has approx 11 statements (LongMethod)

@@ -1,0 +1,31 @@
+<script src="/javascripts/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery-ui.min.js" type="text/javascript"></script>
+
+<script>
+$jq = jQuery.noConflict();
+$jq(document).ready(function() {
+  $jq("#salary_date").datepicker({dateFormat: 'yy-mm-dd'});
+});
+</script>
+
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+  <h1>Payslip</h1>
+  <h3>Approve Payslip</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <div class="box">
+    <div class="label-field-pair">
+    <label for="salary_date">Salary Month</label>
+    <div class="text-input-bg"><%= select :one_click_payslip, :salary_date, @salary_dates.map {|c| [c.salary_date.strftime("%B %Y"),c.salary_date.strftime("%Y-%m-%d")]},
+                                              {:prompt => 'Select a month'},
+                                              {:onChange => "#{remote_function(:url => {:action=> "one_click_approve"},
+                                              :with => "'salary_date='+value")}"} %></div>
+    </div>
+
+<div id ="approve"> </div>
+</div>
+  </div>

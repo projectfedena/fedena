@@ -1,0 +1,120 @@
+<div id="content-header">
+  <img src="/images/student_details/student_details_logo.jpg" />
+  <h1>Student</h1>
+  <h3>Previous marks overview</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <h4><%= @student.full_name %></h4>
+  <div class="box">
+    <% @all_batches.each do |b| %>
+      <%  @type = params[:type] %>
+      <%   if @type == 'grouped' %>
+       <%   @grouped_exams = GroupedExam.find_all_by_batch_id(b.id) %>
+       <%   @exam_groups = [] %>
+       <%   @grouped_exams.each do |x| %>
+       <%   @exam_groups.push ExamGroup.find(x.exam_group_id) %>
+       <%   end %>
+      <% else %>
+        <%   @exam_groups = ExamGroup.find_all_by_batch_id(b.id) %>
+      <%  end %>
+      <%  general_subjects = Subject.find_all_by_batch_id(b.id, :conditions=>"elective_group_id IS NULL AND is_deleted=false") %>
+      <%  student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{b.id}") %>
+      <%  elective_subjects = [] %>
+      <%  student_electives.each do |elect| %>
+        <%    elective_subjects.push Subject.find(elect.subject_id) %>
+      <%  end %>
+      <%  @subjects = general_subjects + elective_subjects %>
+      <div id="register">
+        <div class="header">
+
+          <div class="month">
+            <% exam = ArchivedExamScore.new() %>
+            <% aggr = exam.batch_wise_aggregate(@student,b) %>
+            <%= b.name %> | Aggregate : <%="%.2f" %aggr.to_f unless aggr=="nil" %>
+          </div>
+
+          <div class="extender"></div>
+        </div>
+      </div>
+      <table id="listing" width="100%">
+        <tr class="tr-head">
+          <td>Subject</td>
+          <% @exam_groups.each do |exam_group| %>
+            <td><%= exam_group.name %></td>
+          <% end %>
+          <td>Total</td>
+        </tr>
+
+        <% @subjects.each do |subject| %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-2" ><%= subject.name %></td>
+            <% @mmg = 1;@g = 1 %>
+
+            <% @exam_groups.each do |exam_group| %>
+
+              <% @exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id) %>
+              <% exam_score = ArchivedExamScore.find_by_student_id(@student.id, :conditions=>{:exam_id=>@exam.id})unless @exam.nil? %>
+              <% unless exam_score.nil?  %>
+                <% if exam_group.exam_type == "MarksAndGrades" %>
+                  <td class="col-3"><% unless @exam.nil?  %>
+                      <%= exam_score.marks %> | <%= @exam.maximum_marks %> | <%= exam_score.grading_level.name %></td>
+                  <% end  %>
+                <% elsif exam_group.exam_type == "Marks" %>
+                  <td class="col-3"><%= exam_score.marks unless @exam.nil? %> | <%= @exam.maximum_marks unless @exam.nil?%></td>
+                <% else %>
+                  <td class="col-3"><%= exam_score.grading_level.name unless exam_score.nil?%></td>
+                  <% @g = 0 %>
+                <% end %>
+              <% else %>
+                <td></td>
+              <% end %>
+            <% end %>
+            <% total_score = ArchivedExamScore.new() %>
+            <% if @mmg == @g %>
+              <td class="col-1"><%= total_score.grouped_exam_subject_total(subject,@student,@type,b) %></td>
+            <% else %>
+              <td class="col-1">-</td>
+            <% end %>
+          </tr>
+
+        <% end %>
+        <tr class="tr-head">
+          <td>Total</td>
+          <% @max_total = 0 %>
+          <% @marks_total = 0 %>
+
+          <% @exam_groups.each do |exam_group| %>
+            <% if exam_group.exam_type == "MarksAndGrades" %>
+              <td><%= exam_group.archived_total_marks(@student)[0] %></td>
+            <% elsif exam_group.exam_type == "Marks" %>
+              <td><%= exam_group.archived_total_marks(@student)[0] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% unless exam_group.exam_type == "Grades" %>
+              <% @max_total = @max_total + exam_group.archived_total_marks(@student)[1] %>
+              <% @marks_total = @marks_total + exam_group.archived_total_marks(@student)[0] %>
+            <% end %>
+          <% end %>
+          <td></td>
+        </tr>
+        <tr></tr>
+      </table>
+      <br />
+
+    <% end %>
+
+    <br />
+    <br />
+    <script type="text/javascript" src="/javascripts/swfobject.js"></script>
+    <%= @graph %>
+
+
+
+    <div class="extender"></div>
+  </div></div>

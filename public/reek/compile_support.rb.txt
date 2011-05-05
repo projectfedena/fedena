@@ -1,0 +1,8 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/prawnto/lib/prawnto/template_handler/compile_support.rb -- 7 warnings:
+  Prawnto::TemplateHandler::CompileSupport has no descriptive comment (IrresponsibleModule)
+  Prawnto::TemplateHandler::CompileSupport#set_cache_control calls @controller.headers twice (Duplication)
+  Prawnto::TemplateHandler::CompileSupport#set_cache_control calls ie_request? twice (Duplication)
+  Prawnto::TemplateHandler::CompileSupport#set_disposition calls options 3 times (Duplication)
+  Prawnto::TemplateHandler::CompileSupport#set_disposition calls options[:filename] twice (Duplication)
+  Prawnto::TemplateHandler::CompileSupport#set_pragma calls @controller.headers twice (Duplication)
+  Prawnto::TemplateHandler::CompileSupport#set_pragma calls ie_request? twice (Duplication)

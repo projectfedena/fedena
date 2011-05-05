@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/spec/rails/example/helper_example_group_spec.rb -- 3 warnings:
+  Bug11223 has the name 'Bug11223' (UncommunicativeName)
+  Bug719 has the name 'Bug719' (UncommunicativeName)
+  Bug719::ImagesHelper#hide_images_button contains iterators nested 2 deep (NestedIterators)

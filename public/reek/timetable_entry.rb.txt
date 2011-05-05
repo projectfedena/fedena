@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/timetable_entry.rb -- 1 warning:
+  TimetableEntry has no descriptive comment (IrresponsibleModule)

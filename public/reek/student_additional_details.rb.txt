@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/student_additional_details.rb -- 1 warning:
+  StudentAdditionalDetails has no descriptive comment (IrresponsibleModule)

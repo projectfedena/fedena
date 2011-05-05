@@ -1,0 +1,134 @@
+#content_header {
+    padding-left:20px;
+    height:137px;
+    background:#fff url(../../images/fedena_user/dashboard/content_header_img.jpg) bottom no-repeat;
+}
+#content_header h1 {
+    margin:0px;
+    padding:0px;
+    padding-top:65px;
+    color:#999;
+}
+#content_header h3 {
+    margin:0px;
+    padding:0px;
+    color:#b00;
+}
+
+#user_options {
+    padding:0px;
+    margin:0px;
+    margin-top:15px;
+    height:400px;
+}
+#user_options .option_buttons {
+    display:block;
+    float:left;
+    height:175px;width:175px;
+    margin-left:10px;
+    margin-top:20px;
+    outline:none;
+    text-align: center;
+}
+
+#admission_button {background:#fff url(../../images/dashboard_buttons/button_admission.png) 0 0 no-repeat;}
+#admission_button:hover {background:#fff url(../../images/dashboard_buttons/button_admission.png) -175px 0 no-repeat;}
+
+#student_details_button {background:#fff url(../../images/dashboard_buttons/button_student_details.png) 0 0 no-repeat;}
+#student_details_button:hover {background:#fff url(../../images/dashboard_buttons/button_student_details.png) -175px 0 no-repeat;}
+
+#manage_users_button {background:#fff url(../../images/dashboard_buttons/button_manage_users.png) 0 0 no-repeat;}
+#manage_users_button:hover {background:#fff url(../../images/dashboard_buttons/button_manage_users.png) -175px 0 no-repeat;}
+
+#manage_news_button {background:#fff url(../../images/dashboard_buttons/button_manage_news.png) 0 0 no-repeat;}
+#manage_news_button:hover {background:#fff url(../../images/dashboard_buttons/button_manage_news.png) -175px 0 no-repeat;}
+
+#examinations_button {background:#fff url(../../images/dashboard_buttons/button_examinations.png) 0 0 no-repeat;}
+#examinations_button:hover {background:#fff url(../../images/dashboard_buttons/button_examinations.png) -175px 0 no-repeat;}
+
+#timetable_button {background:#fff url(../../images/dashboard_buttons/button_timetable.png) 0 0 no-repeat;}
+#timetable_button:hover {background:#fff url(../../images/dashboard_buttons/button_timetable.png) -175px 0 no-repeat;}
+
+#student_attendance_button {background:#fff url(../../images/dashboard_buttons/attendance.png) 0 0 no-repeat;}
+#student_attendance_button:hover {background:#fff url(../../images/dashboard_buttons/attendance.png) -175px 0 no-repeat;}
+
+#settings_button {background:#fff url(../../images/dashboard_buttons/settings.png) 0 0 no-repeat;}
+#settings_button:hover {background:#fff url(../../images/dashboard_buttons/settings.png) -175px 0 no-repeat;}
+
+#hr_button {background:#fff url(../../images/dashboard_buttons/button_Human.png) 0 0 no-repeat;}
+#hr_button:hover {background:#fff url(../../images/dashboard_buttons/button_Human.png) -175px 0 no-repeat;}
+
+#finance_button {background:#fff url(../../images/dashboard_buttons/button_finance.png) 0 0 no-repeat;}
+#finance_button:hover {background:#fff url(../../images/dashboard_buttons/button_finance.png) -175px 0 no-repeat;}
+
+#academic_button {background:#fff url(../../images/dashboard_buttons/button_academics.png) 0 0 no-repeat;}
+#academic_button:hover {background:#fff url(../../images/dashboard_buttons/button_academics.png) -175px 0 no-repeat;}
+
+#campus_news_button {background:#fff url(../../images/dashboard_buttons/button_campus_news.png) 0 0 no-repeat;}
+#campus_news_button:hover {background:#fff url(../../images/dashboard_buttons/button_campus_news.png) -175px 0 no-repeat;}
+
+#my_profile_button {background:#fff url(../../images/dashboard_buttons/button_my_profile.png) 0 0 no-repeat;}
+#my_profile_button:hover {background:#fff url(../../images/dashboard_buttons/button_my_profile.png) -175px 0 no-repeat;}
+
+#leaves_button {background:#fff url(../../images/dashboard_buttons/button_leaves.png) 0 0 no-repeat;}
+#leaves_button:hover {background:#fff url(../../images/dashboard_buttons/button_leaves.png) -175px 0 no-repeat;}
+
+#reminders_button {background:#fff url(../../images/dashboard_buttons/button_reminders.png) 0 0 no-repeat;}
+#reminders_button:hover {background:#fff url(../../images/dashboard_buttons/button_reminders.png) -175px 0 no-repeat;}
+
+#reminders_button_unread {background:#fff url(../../images/dashboard_buttons/button_reminders_unread.png) 0 0 no-repeat;}
+#reminders_button:hover_unread {background:#fff url(../../images/dashboard_buttons/button_reminders_unread.png) -175px 0 no-repeat;}
+
+.reminder1{
+    position: relative;
+    overflow: hidden;
+    float:left;
+    width: 190px;
+}
+.count{
+    position:absolute;
+    top: 66px;
+    left: 66px;
+    background:none repeat scroll 0 0 #9d0e00;
+    -moz-border-radius:10px;
+      -webkit-border-radius:10px;
+    font-size: 11px;
+    text-align: center;
+    color:#fff;
+    height:15px;
+    width:15px;
+}
+
+/* 'nicetitle' styles for tooltip. */
+
+div.nicetitle { position: absolute; padding: 4px; top: 0px; left: 0px; color: white; font-size: 13px; font-family: Verdana, Helvetica, Arial, sans-serif; width: 25em; font-weight: bold; text-align: center; background: url(/images/ntbg.png); margin-top: 140px; margin-left: -80px; -moz-border-radius: 12px; -webkit-border-radius: 12px; }
+div.nicetitle p { margin: 0; padding: 0 3px; }
+.button-label {
+    -moz-border-radius: 10px 10px 10px 10px;
+    color: #404040;
+    font-size: 17px;
+    height: 15px;
+    font-weight:bold;
+    position: absolute;
+    text-align: center;
+    top: 135px;
+    width: 190px;
+}
+
+.button-box{
+    position: relative;
+    overflow: hidden;
+    float:left;
+    width: 190px;
+}
+
+.button-label p {
+ text-align: center;
+ margin-left: -20px;
+ text-decoration: none;
+}
+
+.button-box a {
+
+ text-decoration: none;
+}

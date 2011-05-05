@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/app/controllers/xml_controller.rb -- 4 warnings:
+  XmlController has no descriptive comment (IrresponsibleModule)
+  XmlController#create_xml calls @currency.config_value 4 times (Duplication)
+  XmlController#create_xml has approx 45 statements (LongMethod)
+  XmlController#create_xml refers to currency more than self (LowCohesion)

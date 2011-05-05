@@ -1,0 +1,51 @@
+ <div id="content-header">
+    <img src="/images/show_settings.png" />
+  <h1>Batch Transfer</h1>
+  <h3>Graduation</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+<div id="page-yield">
+   <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  <% unless @id_lists.nil?  %>
+<%= link_to "Generate TC for ALL",
+        {:controller => "student", :action => "generate_all_tc_pdf", :stud => @id_lists},:target => '_blank',:class=>'user_button' %>
+<br />
+<br />
+<% end %>
+<h4>Graduating batch: <%= @batch.full_name %></h4>
+<% form_for :graduate do |f| %>
+  These students will now be trasferred to former students database. Add the
+    status description for the students. e.g. 'Graduated 10th grade, 2010.
+     <div class="label-field-pair">
+          <label for="subject_id">Status description : </label>
+          <div class="text-input-bg"><%= f.text_field 'status_description' %></div>
+        </div>
+
+
+<p>Uncheck the students not eligible for graduation .</p>
+<ul id="category-list">
+  <li class="listheading">
+      <div class="heading-no">Admn. No.</div>
+    <div class="category-name">Name</div>
+  </li>
+  <% @batch.students.each do |student| %>
+  <li class="list<%=cycle('odd', 'even')%>">
+  <div class="category-delete"><%= student.admission_no %></div>
+    <div class="category-name"><%= student.full_name %></div>
+    <div class="category-edit"><%= check_box_tag 'graduate[students][]', student.id, true %></div>
+</li>
+  <% end %>
+</ul>
+
+  <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+
+<% end %>
+
+   <div class="extender"></div>
+  </div>

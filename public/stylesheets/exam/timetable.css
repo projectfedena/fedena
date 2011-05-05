@@ -1,0 +1,78 @@
+
+.text-input-bg {
+    float : left;
+    margin : 0 0 0 40px;
+}
+#submit_view {
+    margin : 40px 0 0 100px;
+}
+#submit_pdf {
+    margin : 40px 0 0 0;
+}
+#submit_view, #submit_pdf {
+    width : 150px;
+    padding : 5px 0 0 30px;
+    height : 50px;
+    float : left;
+}
+#res_table {
+    margin:0 auto;
+    margin-top:50px;
+    width:500px;
+}
+.res_trodd {
+    overflow-y:auto;
+    list-style-type : none;
+    padding : 0.5em 0 10px 40px;
+    background : #E4EBFE;
+    border-top:1px solid #C2CEEF;
+    font-size:13px;
+    font-weight: bold;
+}
+.res_treven {
+    background : #DAE6FF;
+    overflow-y:auto;
+    list-style-type : none;
+    padding : 0.5em 0 10px 40px;
+    border-top:1px solid #C2CEEF;
+    font-size:13px;
+    font-weight: bold;
+}
+.res_tr-head {
+    background : #DAE6FF;
+    height : 30px;
+    color:#27649F;
+    list-style-type : none;
+    padding : 0.5em 0 0 40px;
+    border-top:1px solid #C2CEEF;
+    font-size:15px;
+    font-weight: bold;
+}
+.res_td_name {
+    float:left;
+    width:350px;
+    padding-top:5px;
+}
+.res_td_name a {
+    text-decoration:none;
+    color:#000;
+}
+.res_td {
+    float:left;
+width:80px;
+    padding-top:5px;
+}
+#result-info {
+    color : #999999;
+    text-align : left;
+    margin : 10px 0 20px 0;
+    font-weight:bold;
+}
+form{
+    width:580px;
+    margin:0px auto;
+}
+#loader{
+    padding-top:10px;
+}
+

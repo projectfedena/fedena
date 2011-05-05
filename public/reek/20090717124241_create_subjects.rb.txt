@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090717124241_create_subjects.rb -- 3 warnings:
+  CreateSubjects has no descriptive comment (IrresponsibleModule)
+  CreateSubjects#self.up has approx 8 statements (LongMethod)
+  CreateSubjects#self.up has the variable name 't' (UncommunicativeName)

@@ -1,0 +1,2 @@
+page.replace_html 'modal-box', :partial => 'new'
+page << "Modalbox.show($('modal-box'), {title: '#{t('grading_levels.index.add_new_grading_levels')}', width: 500});"

@@ -1,0 +1,39 @@
+
+<div id="content-header">
+<img src="/images/show_finance.png" alt="Finance" />
+  <h1>Finance Academic Year Report</h1>
+  <h3>Employee Salary</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% total=0 %>
+
+  <div id="fees-table">
+    <div class="fees-th">
+      <div class="fees-table-description">Employee</div>
+      <div class="fees-table-salary">Salary</div>
+    </div>
+    <% amount=0 %>
+    <% @employees.each do |e| %>
+      <div class="fees-tr">
+        <div class="fees-table-description"><%= e.full_name %></div>
+        <%  amount = e.employee_salary(@start_date,@last_date)%>
+
+        <div class="fees-table-salary"> <%=  amount  %> </div>
+        <% total+=amount %>
+        <% amount=0 %>
+      </div>
+    <% end %>
+    <br/>
+    <div class="fees-th">
+      <div class="fees-table-description">Total Salary</div>
+      <div class="fees-table-salary"><%=total  %></div>
+    </div>
+    
+
+
+  </div>
+</div>

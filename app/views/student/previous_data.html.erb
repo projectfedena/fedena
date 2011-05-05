@@ -1,0 +1,76 @@
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+ <h1><%= t('layouts.default.admission') %></h1>
+  <h3><%= t('h3') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+     <%= error_messages_for 'previous_data' %>
+
+
+  <% form_for :student_previous_details do |a| %>
+  <%#= error_messages_for 'employee_bank_details' %>
+
+   <span class="span-sub-heading"><%= t('sub_title') %></span>
+    <hr class="sub-heading"></hr>
+    <div id="form-contents">
+      <%= a.hidden_field :student_id, :value => @student.id %>
+      <div class="label-field-pair">
+        <label><%= t('institution_name') %></label>
+        <div class="text-input-bg"><%= a.text_field :institution %></div>
+        <div class="extender"></div>
+      </div>
+      <div class="label-field-pair">
+        <label><%= t('layouts.default.course') %></label>
+        <div class="text-input-bg"><%= a.text_field :course %></div>
+        <div class="extender"></div>
+      </div>
+      <div class="label-field-pair">
+        <label><%= t('layouts.default.year') %></label>
+        <div class="text-input-bg"><%= a.text_field :year %></div>
+        <div class="extender"></div>
+      </div>
+      <div class="label-field-pair">
+        <label><%= t('layouts.default.total_mark') %></label>
+        <div class="text-input-bg"><%= a.text_field :total_mark %></div>
+        <div class="extender"></div>
+      </div>
+      <div class="save-proceed-button">
+        <%= link_to "► #{t('skip')}", {:controller => "student", :action => "admission4", :id => @student.id },:class=>'skip' %>
+
+        <%= submit_tag "► #{t('layouts.default.save_and_proceed')}" %>
+
+      </div>
+    </div>
+  <% end %>
+  <div class="ajax-subject">
+    <ul id="added-subjects">
+<%  unless @previous_subject.nil? %>
+<% @previous_subject.each  do |p| %>
+
+<li><div class="name"><%= p.subject %></div>
+  <div class="val"><span>:</span><%= p.mark %></div>
+  <div class="delete"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
+                :url => {:action => "delete_previous_subject", :id => p.id},
+
+                :update => "added_subjects"%></div>
+</li>
+
+<% end %>
+  <% end %>
+    </ul>
+    <%= link_to_remote "#{t('add_subject')}", :url=>{:controller=>"student",:action=>"previous_subject", :id=>@student.id}%>
+    <div id="subject">
+
+    </div>
+  </div>
+</div>
+
+

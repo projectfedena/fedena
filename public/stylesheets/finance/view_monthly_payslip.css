@@ -1,0 +1,92 @@
+#view_all {
+    margin-left:50px;
+}
+#view_all a {
+    font-weight:bold;
+    color:#000;
+}
+
+#search_box_bg{
+    background:#fff url(../../images/student_details/search_box_bg.jpg) no-repeat;
+    height:163px;
+    width:614px;
+    margin:35px 0 0 50px;
+    padding-left:0px;
+    padding-top:15px
+}
+#search_box_bg label{
+    padding-top:0px;
+    color:#555;
+    font-size:25px;
+    margin-left:50px;
+}
+
+#search_textbox{
+    width:500px;
+    height:45px;
+    padding-top:10px;
+    margin-left:50px;
+
+}
+
+#search_textbox input{
+    padding-top:10px;
+    width:500px;
+    height:45px;
+    margin:0px 0 0 5px;
+    float:left;
+    border:none;
+    background:transparent;
+    font-size:30px;
+    color:#666;
+}
+
+#information{
+    height:100px;
+    width:614px;
+    margin-left:0px;
+    padding-left:50px
+}
+
+#no_result{
+    font-weight:bold;
+    color:#b00
+}
+#ajax_result {
+    padding:10px 0 10px 0;
+    text-decoration:none;
+    width:204px;
+    float:left;
+    background:#fff url(../../images/student_details/ajax_result_underline.jpg) bottom left no-repeat
+}
+#ajax_result a{
+    color:#000;
+    font-weight:bold
+}
+
+.advanced_options{
+    margin-left:7px;
+    margin-top:20px;
+}
+
+
+
+.advanced_options select {
+    background : transparent;
+    border : 0;
+    margin : 5px 0 0 10px;
+    width : 135px;
+}
+
+
+.advanced-options-select {
+    background : #fff url(../../images/form_bg/smalltextbox.jpg) no-repeat;
+    height : 28px;
+    width : 150px;
+    float:left;
+}
+
+.box{
+    width:800px;
+    margin:0px auto;
+}

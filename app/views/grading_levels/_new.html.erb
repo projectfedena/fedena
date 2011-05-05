@@ -1,0 +1,28 @@
+
+<div id="grading-levels-form">
+  <h4><%= @batch.full_name unless @batch.nil? %></h4>
+
+    <% form_remote_for @grading_level do |f| %>
+
+      <div id="form-errors"></div>
+
+    <% batch_id = (@batch.nil? ? nil : @batch.id) %>
+    <%= f.hidden_field :batch_id, :value => batch_id %>
+
+    <div class="label-field-pair">
+      <%= f.label :"#{t('layouts.default.name')}"%>
+      <div class="input-field"><%= f.text_field :name  %></div>
+    </div>
+
+    <div class="label-field-pair">
+      <%= f.label :min_score, t('grading_levels.index.min_score') %>
+      <div class="input-field"><%= f.text_field :min_score %></div>
+    </div>
+
+  <%= f.submit "► #{t('layouts.default.save')}", :class => 'submit_button' %>
+
+
+
+
+  <% end %>
+</div>

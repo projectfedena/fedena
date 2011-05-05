@@ -1,0 +1,2 @@
+# TODO Operate on the page object
+page.replace_html 'sms-box', :partial=>'all_sms_box'

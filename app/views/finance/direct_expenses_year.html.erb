@@ -1,0 +1,36 @@
+<div id="content-header">
+  <img src="/images/examination/index/page_logo.jpg" alt="" />
+  <h1>Finance Monthly Report</h1>
+  <h3>Finance Academic Year Report</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <%expenses_total = 0%>
+  <div id="fees-table">
+    <div class="fees-th">
+      <div class="fees-table-description">Description</div>
+      <div class="fees-table-expenses">Amount</div>
+    </div>
+
+    <% @transactions_not_fees.each do |t| %>
+
+      <% unless t.category.is_income? %>
+        <div class="fees-tr">
+          <div class="fees-table-description"><%=t.title %></div>
+          <div class="fees-table-expenses"><%=t.amount %></div>
+          <%expenses_total +=t.amount%>
+        </div>
+      <% end %>
+    <%end%>
+    <br/>
+    <div class="fees-th">
+      <div class="fees-table-description">Total Expenses</div>
+      <div class="fees-table-expenses"><%=expenses_total%></div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,98 @@
+
+.news_search_add {
+    float:left;
+    margin-left:45px
+}
+.news_search_add a {
+    display:block;
+    height:175px;
+    width:175px;
+}
+.news_search_add img {
+    margin-top:15px;
+}
+
+#news_bg input {
+    background : #eee;
+    float:left;
+    border : 1px solid #c6c6c6;
+    margin : 8px 0 0 10px;
+    width : 180px;
+    height:22px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 4px 0 0 5px;
+}
+#news_bg h2 {
+    color:#555;
+    font-size:16px;
+    width:110px;
+    padding:10px 0 0 0;
+    margin:0;
+    float:left;
+}
+#news_result {
+    margin:0px;
+    padding:0px;
+    height:300px;
+    width:960px;
+    margin:20px auto;
+}
+#news_no_result {
+    font-weight:bold;
+    color:#b00;
+}
+#news_search_result {
+    padding:20px 20px 10px 0;
+    text-decoration:none;
+    width:300px;
+    float:left;
+    background:#fff url(../../images/student_details/ajax_result_underline.jpg) bottom left no-repeat;
+    
+}
+#news_search_result a {
+    text-decoration:none;
+    color:#000;
+    font-weight:bold;
+}
+#news_search_result a:hover {
+    text-decoration:underline;
+    color:#d00;
+    font-weight:bold;
+}
+#go {
+    float:left;
+    margin:0;
+    padding:0;
+    margin-top:2px;
+   
+}
+#go input {
+    height:28px;
+    width:28px;
+    margin:6px 0 0 10px;
+    padding:0 0 2px 0;
+    background: #313236;
+    color:#fff;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+}
+#go input:hover{
+    background: #53555F;
+}
+#news_bg input:focus{
+    border: 1px solid #9E0F15;
+    background: none;
+}
+#go input:focus{
+    background: #313236;
+    color:#fff;
+    font-weight: bold;
+    border:none;
+}
+#news_show_flash {
+    padding:10px 0 10px 20px;
+    background-color:#ddd;
+    color:#787777;
+}

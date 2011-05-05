@@ -1,0 +1,34 @@
+
+<% unless flash[:warn_notice].nil? %>
+    <div id="errorExplanation" class="errorExplanation"><%= flash[:warn_notice] %> </div>
+  <% end %>
+<ul id="department-list">
+  <% unless @assigned_employee.empty? %>
+    <li class="heading"> Currently assigned: </li>
+    <% @assigned_employee.each do |e| %>
+      <% @employee = Employee.find(e.employee_id) %>
+      <li class="list<%=cycle('even', 'odd')%>">
+        <div class="department-name"><%= @employee.first_name %> <%= @employee.last_name %>
+          <%= "(#{EmployeeDepartment.find(@employee.employee_department_id).name})" %></div>
+        <div class="remove"><%= link_to_remote "Remove", :url => {:action => "remove_employee", :id => e.employee_id, :id1=>e.subject_id}, :update => "department-select" %></div>
+      </li>
+    <% end %>
+  <% else %>
+    <p class="flash-msg"> No employee assigned yet.</p>
+  <% end %>
+</ul>
+
+<div class="label-field-pair">
+  <label for="department_name">Department</label>
+  <div class="text-input-bg"><%= select :subject_assignment, :department_id, @departments.map { |s| [s.name, s.id] },
+                                        {:prompt => "Select department"},
+                                        {:onChange => "#{remote_function(:url => {:action => "update_employees"},
+                                        :with => "'department_id='+value+'&subject_id=#{@subject.id}'")}"} %>
+  </div>
+</div>
+<div id="employee-list"></div>
+<div class="extender"></div>
+
+
+
+

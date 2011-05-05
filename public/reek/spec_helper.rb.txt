@@ -1,0 +1,1 @@
+D:/nithin/rails/fedena3/fedena2/spec/spec_helper.rb -- 0 warnings

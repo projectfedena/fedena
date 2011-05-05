@@ -1,0 +1,52 @@
+td div, td {
+    width: 100px;
+    text-align:center;
+    margin:0px auto;
+}
+#res-table{
+    width:965px;
+    margin:0px auto;
+    overflow-x:auto;
+    margin-bottom:50px;
+}
+.tr-odd {
+    padding-left:35px;
+    font-size:13px;
+    font-weight:bold;
+    height:30px;
+    clear:both;
+    background:#E4EBFE;
+}
+.tr-even {
+    padding-left:35px;
+    font-size:13px;
+    font-weight:bold;
+    height:30px;
+    clear:both;
+    background:#DAE6FF;
+}
+.graph-1, .graph-2{
+    width:965px;
+    margin:0px auto;
+}
+span.sub-heading{
+    font-size:18px;
+    color:#444444;
+    font-weight:bold;
+    padding:20px;
+    display:block;
+}
+.prev-next-links {
+    float: right;
+    width: 30px;
+}
+.prev-next-links a {
+    background-color: #E7EEFF;
+    color: #000;
+    display: block;
+    margin: 0 0 0 5px;
+    text-decoration:none;
+    font-weight: bolder;
+    width: 10px;
+    float: left;
+}

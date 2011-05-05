@@ -1,0 +1,202 @@
+#current-changed-manager{
+    border-bottom:3px solid #eeeeee;
+    margin:0 0 25px 50px;
+}
+
+#current-manager-outer{
+    margin:10px 0 10px 0;
+}
+
+#current-manager{
+    width:250px;
+    float:left;
+    font-weight:bold;
+}
+
+#current-manager-name{
+    float:left;
+    font-weight:bold;
+    color:#BB0000;
+}
+
+#changed-manager-outer{
+    margin:10px 0 10px 0;
+}
+
+#changed-manager{
+    width:250px;
+    float:left;
+    font-weight:bold;
+    margin-top:7px;
+
+}
+
+#changed-manager-name{
+
+    float:left;
+    font-weight:bold;
+    color:#BB0000;
+    margin-top:7px;
+}
+
+#changed-manager-name .not-selected{
+    color:#9d9d9d;
+}
+
+#update-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:30px;
+    margin-top:0px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+
+#search-options{
+    margin:0 0 25px 50px;
+    border-bottom:3px solid #eeeeee;
+    padding-bottom:25px;
+}
+
+#search-outer{
+    margin:10px 0 10px 0;
+}
+
+#search-label{
+    width:250px;
+    float:left;
+    font-weight:bold;
+    margin:12px 0 0 0;
+}
+
+#search-text-box{
+    float:left;
+    background : #fff url(../../images/form_bg/text-input-bg.png) no-repeat;
+    height : 28px;
+    width : 230px;
+    margin:10px 0 25px 0;
+}
+
+#search-text-box input {
+    background : transparent;
+    border : 0;
+    margin : 5px 0 0 10px;
+    width : 210px;
+}
+
+.employee-search-options{
+    float:left;
+    background : #fff url(../../images/form_bg/smalltextbox.jpg) no-repeat;
+    height : 28px;
+    width : 150px;
+    margin:0 20px 0 0;
+}
+
+.employee-search-options select {
+    background : transparent;
+    border : 0;
+    margin : 5px 0 0 10px;
+    width : 135px;
+}
+
+
+/**
+#reporting-manager-name {
+    background : #fff url(../../images/form_bg/text-input-bg.png) no-repeat;
+    height : 25px;
+    width : 220px;
+    display:block;
+    float:left;
+    margin:15px 18px 0 0;
+    padding:3px 0 0 10px;
+}
+
+#current-manager{
+    font-weight:normal;
+    padding:18px;
+}
+
+#current-manager-name{
+    font-weight:bold;
+}
+
+#form-content{
+
+
+}
+
+#new-manager-label{
+    float:left;
+    font-weight:bold;
+    margin:18px 18px 0 18px;
+}
+
+#submit-button1 {
+    float:left;
+    height:35px;
+    width:150px;
+    margin:10px 0 0 0;
+
+}
+
+
+#search_box_bg{
+    background:#fff url(../../images/student_details/search_box_bg.jpg) no-repeat;
+    height:163px;
+    width:614px;
+    margin:35px 0 0 50px;
+    padding-left:50px;
+    padding-top:15px
+}
+#search_box_bg label{
+    padding-top:0px;
+    color:#555;
+    font-size:25px;
+}
+
+#search_textbox input{
+    padding-top:10px;
+    width:500px;
+    height:45px;
+    margin:0px 0 0 5px;
+    float:left;
+    border:none;
+    background:transparent;
+    font-size:30px;
+    color:#666;
+    margin-bottom:18px;
+}
+**/
+#information{
+    height:100px;
+    width:614px;
+    margin-left:0px;
+    padding-left:50px
+}
+
+#no_result{
+    font-weight:bold;
+    color:#b00
+}
+
+#ajax_result {
+    padding:10px 0 10px 0;
+    text-decoration:none;
+    width:204px;
+    float:left;
+    background:#fff url(../../images/student_details/ajax_result_underline.jpg) bottom left no-repeat
+}
+#ajax_result a{
+    color:#000;
+    font-weight:bold
+}
+
+
+
+

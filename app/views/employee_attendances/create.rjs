@@ -1,0 +1,9 @@
+# page.replace_html 'register', :partial => 'register'
+if @error.nil?
+page.replace_html 'form-errors', :text => ''
+page.replace_html "attendance-employee-#{@employee.id}-day-#{@date}", :partial => 'attendance_cell'
+page << "Modalbox.hide();"
+else
+page.replace_html 'form-errors', :partial => 'errors', :object => @attendance
+page.visual_effect(:highlight, 'form-errors')
+end

@@ -1,0 +1,187 @@
+.small{
+    font-size: 11px;
+    float:right;
+    width:35px;
+}
+.small-strike {
+    text-decoration:  line-through;
+    font-size: 11px;
+    float:right;
+    width:35px;
+}
+
+.submit_button {
+    margin-top:15px;
+    margin-left:180px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.item-list {
+    clear : both;
+}
+
+.item-list .listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 200px;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+}
+
+.item-list .listodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 200px;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+}
+
+.item-list li.heading {
+    background : none;
+    font-weight : bold;
+    list-style-type : none;
+    color : #444;
+    height : 1.5em; width : 30em;
+    padding : 0.5em 0 0 5em;
+}
+.item-list li div {
+    float : left;
+}
+.item-list li div.item-name {
+    width : 100px;
+}
+.item-list li div.item-edit,
+.item-list li div.item-delete {
+    font-size : 0.9em;
+    width : 100px;
+    text-align:right;
+}
+.item-list li div a {
+    color : #000;
+}
+
+#MB_frame .label-field-pair select {
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px;
+    background:none repeat scroll 0 0 #EEEEEE;
+    border:1px solid #C6C6C6;
+    margin:5px 10px 0 5px;
+    padding:5px;
+    width:150px;
+}
+
+
+.name{
+    color: #999999;
+    float: left;
+    width: 160px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.val {
+    color: #bb0000;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.val span{
+    margin-right:12px;
+    color: black;
+}
+
+
+.linker a {
+    color:black;
+    text-decoration:underline;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.linker a:hover{
+    color:#bb0000;
+    text-decoration: none;
+}
+
+.linker{
+    margin-bottom: 5px;
+}
+
+.user_button {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin: 10px auto;
+    text-decoration: none;
+    margin-left: 400px;
+    float: left;
+}
+.user_button:hover{
+    background:  #373B3F;
+}
+
+
+.label-field-pair2 {
+    height : 80px;
+    width : 400px;
+    padding-top: 3px;
+}
+
+.label-field-pair2 label {
+    color : #444;
+    display : block;
+    font-size: 14px;
+    margin : 0 0 10px 0;
+    float:left;
+    width:200px;
+    padding-top: 10px;
+    font-weight: 600;
+}
+
+.label-field-pair input {
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px;
+    background:none repeat scroll 0 0 #EEEEEE;
+    border:1px solid #C6C6C6;
+    height:17px;
+    margin:5px 0 0 5px;
+    padding:5px;
+    width:205px;
+}
+
+.label-field-pair2 input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 0 0 10px;
+    width : 50px;
+    height:17px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+}
+
+.opt{
+    margin-left:200px;
+    width:199px;
+}

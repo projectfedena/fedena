@@ -1,0 +1,42 @@
+
+#student-details {
+    background-color:#FFF1AB;
+    border:1px solid #EFDF95;
+    clear:both;
+    height:20px;
+    margin:0 0 40px;
+    padding:5px 0 0 100px;
+
+
+}
+#student-details h3 {
+    display : inline;
+    float : left;
+    font-size:14px;
+    margin : 0 0 20px 0;
+     padding-right: 10px;
+     min-width:200px;
+}
+#student-details h4 {
+    display : inline;
+    float : left;
+    margin : 0 0 10px 0;
+    font-size:14px;
+  padding-right: 10px;
+      min-width:200px;
+}
+.link-box {
+    margin: 40px 40px 40px 100px;
+    width: 300px;
+    float:left;
+    height:80px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+.link-descr {
+    margin-top:5px;
+    color:#666;
+    text-align:justify;
+}

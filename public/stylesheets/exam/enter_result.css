@@ -1,0 +1,31 @@
+.box{
+
+    width:750px;
+    margin:0px auto;
+}
+
+.link-box {
+    margin:10px 40px;
+    height:15px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+
+
+.label-field-pair label {
+    width:160px;
+}
+
+.text-input-bg{
+    width:100px;
+
+}
+
+#update_batch{
+    float:left;
+    width:800px
+
+
+}

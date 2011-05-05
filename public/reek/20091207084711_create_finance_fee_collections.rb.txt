@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20091207084711_create_finance_fee_collections.rb -- 3 warnings:
+  CreateFinanceFeeCollections has no descriptive comment (IrresponsibleModule)
+  CreateFinanceFeeCollections#self.up has approx 6 statements (LongMethod)
+  CreateFinanceFeeCollections#self.up has the variable name 't' (UncommunicativeName)

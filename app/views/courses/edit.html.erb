@@ -1,0 +1,47 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Courses</h1>
+  <h3>Edit</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+    <div class="bread_crumb">
+        <%= link_to 'Courses', courses_path %> &raquo;
+        Edit
+        </div>
+
+
+    <% form_for setup_course(@course) do |f| %>
+
+      <%= error_messages_for :course %>
+
+      <div class="label-field-pair">
+        <div class="label-container"><%= f.label :course_name %></div>
+        <div class="input-container"><%= f.text_field :course_name %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <div class="label-container"><%= f.label :section_name %></div>
+        <div class="input-container"><%= f.text_field :section_name %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <div class="label-container"><%= f.label :code %></div>
+        <div class="input-container"><%= f.text_field :code %></div>
+      </div>
+
+      <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+
+    <% end %>
+    <div class="extender"></div>
+  </div>
+</div>

@@ -1,0 +1,1 @@
+page.replace_html "tr-extra-class-#{@period_id}", :partial => 'extra_class_edit'

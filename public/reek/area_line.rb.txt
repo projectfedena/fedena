@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/area_line.rb -- 1 warning:
+  OpenFlashChart::AreaLine has no descriptive comment (IrresponsibleModule)

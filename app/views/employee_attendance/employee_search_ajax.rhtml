@@ -1,0 +1,13 @@
+
+
+<% if @employee.nil? %>
+  <div id="no_result">No Employee found</div>
+<% else %>
+  <% @employee.each do |r| %>
+    <div id="ajax_result">
+      <% link_value = r.full_name %>
+      <%= link_to link_value, :controller => "employee_attendance", :action => "employee_leave_details", :id => r.id %><br/>
+      <small>Emp ID.<%= r.employee_number %></small>
+    </div>
+  <% end %>
+<% end %>

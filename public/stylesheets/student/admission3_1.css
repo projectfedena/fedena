@@ -1,0 +1,39 @@
+
+ul#parents-list {
+    height : auto; width : 500px;
+    margin : auto;
+    padding : 0;
+}
+ul#parents-list li.listodd {
+    background : #E4EBFE;
+    border:1px solid #BECFFB;
+    height : 1.5em; width : 450px;
+    list-style-type : none;
+    padding : 0.5em 0 0 50px;
+}
+ul#parents-list li.listeven {
+    background :#EEF2FD;
+    border:1px solid #BECFFB;
+    height : 1.5em; width : 450px;
+    list-style-type : none;
+    padding : 0.5em 0 0 50px;
+}
+#submit-button{
+    width:150px;
+    margin:0px auto;
+    padding: 20px 0 0 50px;
+}
+#finish-button {
+    padding-top: 20px;
+    margin :auto;
+    -moz-border-radius:12px;
+    -webkit-border-radius:12px;
+    background:none repeat scroll 0 0 #27292B;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:7px 12px 7px 10px;
+    border:none;
+    cursor:pointer;
+}

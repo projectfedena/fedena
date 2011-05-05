@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/spec/rails/example/shared_routing_example_group_examples.rb -- 2 warnings:
+  CustomRouteSpecController has no descriptive comment (IrresponsibleModule)
+  RspecOnRailsSpecsController has no descriptive comment (IrresponsibleModule)

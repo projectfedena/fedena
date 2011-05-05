@@ -1,0 +1,26 @@
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Employee's Subject</h1>
+  <h3>Associate</h3>
+  <div id="app-back-button">
+ <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <div id="form-content">
+    <div class="label-field-pair">
+      <label for="course_name">Course</label>
+        <div class="text-input-bg">
+          <%= select :subject_assignment, :batch_id, @batches.map {|b| [b.full_name, b.id]},
+                      {:prompt => "Select batch"},
+                      {:onChange => "#{remote_function(:url => {:action => "update_subjects"}, :with => "'batch_id='+value")}"} %>
+        </div>
+    </div>
+
+    <div id="subjects1"> <%= render :partial => 'subjects', :object => @subjects %></div>
+  </div>
+   <div id="department-select"></div>
+
+</div>

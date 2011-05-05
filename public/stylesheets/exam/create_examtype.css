@@ -1,0 +1,85 @@
+
+#form-content {
+    width:700px;
+    height:100px;
+    padding-left:80px;
+}
+.submit-area input {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:0px;
+    margin-top:25px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+#examtypes-list ul {
+    padding : 0;
+    width : 500px;
+}
+#examtypes-list ul li.odd {
+    background : #E4EBFE;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 40px;
+    border-top:1px solid #C2CEEF;
+}
+#examtypes-list ul li.even {
+    background : #DAE6FF;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 40px;
+    border-top:1px solid #C2CEEF;
+}
+#examtypes-list ul li .examtype-name,
+#examtypes-list ul li .examtype-edit-link,
+#examtypes-list ul li .examtype-delete-link {
+    float : left;
+    margin : 0 10px 0 0;
+}
+#examtypes-list ul li .examtype-name {
+    width : 350px;
+    font-weight:bold;
+    font-size:13px;
+}
+#examtypes-list ul li .examtype-edit-link a,
+#examtypes-list ul li .examtype-delete-link a {
+    color : #000;
+    font-size:14px;
+    text-decoration : none;
+}
+#examtypes-list ul li .examtype-edit-link a:hover,
+#examtypes-list ul li .examtype-delete-link a:hover {
+    color :#d00;
+    text-decoration : underline;
+}
+form{
+    width:450px;
+    margin:0px auto;
+    margin-bottom:40px;
+}
+#examtypes-list{
+    width:500px;
+    margin:0px auto;
+
+}
+.label-field-pair {
+    height:40px;
+    padding-top:3px;
+    width:600px;
+}
+.label-field-pair label {
+    color:#444444;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:10px;
+    width:150px;
+}

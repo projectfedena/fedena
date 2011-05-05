@@ -1,0 +1,103 @@
+#reminder-body{
+    margin:0 0 0 50px;
+}
+
+#reminder-from{
+    margin:0 0 15px 0;
+    font-size:18px;
+    font-weight:bold;
+}
+
+#reminder-date{
+    float:right;
+    color:#c9c9c9;
+    font-weight:bold;
+    font-size:16px;
+}
+
+#reminder-subject{
+    margin:0 0 20px 0;
+    font-weight:bold;
+    color:#9e0f15;
+    font-size:16px;
+}
+
+#reminder-message{
+    background:#eeeeee;
+    padding:20px;
+    text-align:justify;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-size:15px;
+}
+
+#inner-tab-menu ul li {
+    background-color : #9d0e00;
+    color : #fff;
+    float : left;
+    font-size : 0.9em;
+    height : 1.5em;
+    list-style-type : none;
+    margin : 0 0 0 10px;
+    padding : 0;
+    text-align : center;
+    width : 125px;
+}
+.text-area-bg {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    background:transparent none repeat scroll 0 0;
+    float:left;
+    width:250px;
+}
+.label-field-pair textarea {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    -moz-border-radius-bottomleft:10px;
+    -moz-border-radius-bottomright:10px;
+    -moz-border-radius-topleft:10px;
+    -moz-border-radius-topright:10px;
+    -webkit-border-radius:10px;
+    background:#EEEEEE none repeat scroll 0 0;
+    border:1px solid #C6C6C6;
+    margin:5px 0 0px 10px;
+    padding:5px;
+    width:205px;
+}
+.button {
+    -moz-background-clip:border;
+    -moz-background-inline-policy:continuous;
+    -moz-background-origin:padding;
+    -moz-border-radius-bottomleft:10px;
+    -moz-border-radius-bottomright:10px;
+    -moz-border-radius-topleft:10px;
+    -moz-border-radius-topright:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:30px 0 0 360px;
+    padding:7px 12px;
+    text-align:center;
+    width:70px;
+    text-decoration:none;
+}
+#reminder-reply{
+    margin:20px 0 20px 8px;
+}
+.label-field-pair textarea:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+.label-field-pair label{
+    width:200px;
+}
+.label-field-pair input, .label-field-pair textarea{
+    width:350px;
+}

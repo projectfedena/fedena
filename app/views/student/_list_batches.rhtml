@@ -1,0 +1,4 @@
+<label for="student_batch"><%= t('layouts.default.batch') %></label>
+      <div class="text-input-bg" >
+ <%= select :search, :batch_id_equals, @batches.map{|c| [c.name+"["+c.start_date.strftime("%b %Y")+"-"+c.end_date.strftime("%b %Y")+"]", c.id]},{:prompt=>"#{t('layouts.default.select_a_batch')}"} %>
+      </div>

@@ -1,0 +1,8 @@
+if @error.nil?
+	page.replace_html 'form-errors', :text => ''
+  page.replace_html 'grading-levels', :partial => 'grading_levels'
+  page << "Modalbox.hide();"
+else
+	page.replace_html 'form-errors', :partial => 'errors', :object => @grading_level
+  page.visual_effect(:highlight, 'form-errors')
+end

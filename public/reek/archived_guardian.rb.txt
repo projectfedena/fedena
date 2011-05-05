@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/archived_guardian.rb -- 1 warning:
+  ArchivedGuardian has no descriptive comment (IrresponsibleModule)

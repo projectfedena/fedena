@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/test/unit/user_test.rb -- 1 warning:
+  UserTest has no descriptive comment (IrresponsibleModule)

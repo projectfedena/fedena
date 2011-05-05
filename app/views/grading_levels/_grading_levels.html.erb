@@ -1,0 +1,30 @@
+<div class="add_grade">
+<%= link_to_remote "#{t('grading_levels.index.add_grades')}", :url => { :action => 'new', :id => @batch }%>
+
+</div>
+<%  unless @grading_levels.empty? %>
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td><%= t('layouts.default.name') %></td>
+      <td><%= t('grading_levels.index.min_score') %></td>
+      <td></td>
+    </tr>
+    <% @grading_levels.each do |grade| %>
+      <tr id="grading-level-<%= grade.id %>" class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-2"><%= grade.name %></td>
+        <td class="col-2"><%= grade.min_score %></td>
+        <td class="col-1"><small><%= link_to_remote(t('layouts.default.edit'),
+              :url => edit_grading_level_path(grade), :method => 'get' ) %>
+            | <%= link_to_remote(t('layouts.default.delete'),
+              :url => grading_level_path(grade),
+              :method => 'delete',
+              :confirm => t('layouts.default.delete_confirm_msg'),
+              :update => "grading-level-#{grade.id}") %></small></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+
+  <h4><%= t('class_timings.index.set_in_common') %></h4>
+
+<% end %>

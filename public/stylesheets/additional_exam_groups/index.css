@@ -1,0 +1,142 @@
+
+.link-box {
+    margin:10px 40px;
+    width:270px;
+    float:left;
+    height:80px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+.link-descr {
+    margin-top:5px;
+    color:#666;
+    text-align:justify;
+    font-size:14px;
+}
+
+#list {
+    margin:20px auto;
+    width:400px;
+}
+#list li {
+    padding:6px 0 0 50px;
+    list-style-type:none;
+}
+#list li label input {
+    margin-right:10px;
+}
+
+.name_listodd{
+    background:#E4EBFE;
+    height:30px;
+    width:400px;
+    border-top:1px solid #C2CEEF;
+}
+.name_listeven{
+    background:#DAE6FF;
+    height:30px;
+    width:400px;
+    border-top:1px solid #C2CEEF;
+}
+
+
+.link-box {
+    margin:10px 40px;
+    width:270px;
+    float:left;
+    height:80px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+.link-descr {
+    margin-top:5px;
+    color:#666;
+    text-align:justify;
+    font-size:14px;
+}
+
+ .submit_button {
+    margin-top:0px;
+    margin-left:286px;
+     padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.name_listodd{
+    background:#E4EBFE;
+    height:30px;
+    width:400px;
+    border-top:1px solid #C2CEEF;
+}
+.name_listeven{
+    background:#DAE6FF;
+    height:30px;
+    width:400px;
+    border-top:1px solid #C2CEEF;
+}
+.att_list_names {
+    display:inline;
+    font-weight: 600;
+    font-size: 13px;
+}
+label {display:inline;}
+
+#list {
+    margin:20px auto;
+    width:400px;
+}
+#list li {
+    padding:6px 0 0 50px;
+    list-style-type:none;
+}
+#list li label input {
+    margin-right:10px;
+}
+
+.text-input-bg  {
+background:none repeat scroll 0 0 transparent;
+float:left;
+height:65px;
+width:250px;
+}
+
+.text-input-bg textarea  {
+-moz-border-radius:10px 10px 10px 10px;
+-webkit-border-radius:10px;
+background-color:#EEEEEE;
+border:1px solid #C6C6C6;
+height:60px;
+margin:5px 0 0 203px;
+padding:3px 6px;
+width:250px;
+}
+
+.text-input-bg textarea:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+
+
+.label-field-pair {
+height:30px;
+padding-top:3px;
+width:600px;
+}
+span{
+    float:right;
+}

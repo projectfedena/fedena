@@ -1,0 +1,30 @@
+
+.exams-list {
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0;
+}
+.exams-list li {
+    background-color: #e7eeff;
+    border-bottom: 1px solid #c4d2fe;
+    height: 1.5em;
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0.5em 0 0 3em;
+}
+.list-header {
+    border-top: 1px solid #c4d2fe;
+    font-weight: bold;
+}
+.exam-name {
+    float: left;
+    width: 300px;
+}
+.exam-subject {
+    float: left;
+    width: 200px;
+}
+.exam-date {
+    float: left;
+    width: 150px;
+}

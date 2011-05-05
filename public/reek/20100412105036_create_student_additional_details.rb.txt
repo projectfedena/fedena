@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20100412105036_create_student_additional_details.rb -- 2 warnings:
+  CreateStudentAdditionalDetails has no descriptive comment (IrresponsibleModule)
+  CreateStudentAdditionalDetails#self.up has the variable name 't' (UncommunicativeName)

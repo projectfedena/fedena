@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/bar_base.rb -- 1 warning:
+  OpenFlashChart::BarBase has no descriptive comment (IrresponsibleModule)

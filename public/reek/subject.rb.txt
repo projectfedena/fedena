@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/app/models/subject.rb -- 2 warnings:
+  Subject has no descriptive comment (IrresponsibleModule)
+  Subject has the variable name 'b' (UncommunicativeName)

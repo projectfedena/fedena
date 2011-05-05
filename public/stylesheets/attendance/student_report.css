@@ -1,0 +1,36 @@
+
+#dates-list {
+    height : auto; width : 400px;
+    margin : 20px 0 0 50px;
+}
+#dates-list ul {
+    margin : 0;
+    padding : 0;
+}
+#dates-list ul li {
+    height : 1.5em; width : auto;
+    background : #fff url(../../images/_global/list-bg-repeat.jpg) repeat-x;
+    list-style-type : none;
+    padding : 0.5em 0 0 30px;
+}
+#dates-list ul li.heading {
+    background : none;
+    font-weight : bold;
+    height : 2em;
+}
+#info {
+    height : 5em; width : 400px;
+    margin : 0 0 0 50px;
+}
+.info-label-top {
+    font-weight : bold;
+    height : 2em; width : 100px;
+    float:left;
+    padding : 5px 0 0 0;
+}
+.info-text-top {
+    font-weight : bold;
+    height : 2em; width : 250px;
+    float : left;
+    padding : 5px 0 0 0;
+}

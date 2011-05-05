@@ -1,0 +1,69 @@
+<div id="wrapper">
+  <div id="top_logo">
+    <% if FileTest.exists?("#{RAILS_ROOT}/public/uploads/image/institute_logo.jpg") %>
+      <%= image_tag  "/uploads/image/institute_logo.jpg" ,:width => "155",  :height=>"107" %>
+    <% else %>
+
+      <img src="/images/application/app_fedena_logo.jpg"/>
+    <% end %>
+  </div>
+
+  <div id="help_top">
+    <div id="help_link"><a href="http://www.projectfedena.org/forum/" target="_blank"><%= t('help') %>!</a></div>
+  </div>
+
+  <div id="login_area_bg">
+
+    <% form_for :user do |form| %>
+
+      <div id="login_area">
+        <label for="username"><%= t('layouts.default.username') %></label>
+        <div id="username_textbox_bg">
+          <%= form.text_field :username,
+            :maxlength => 40%>
+        </div>
+
+          <label for="password"><%= t('password') %></label>
+        <div id="password_textbox_bg">
+          <%= form.password_field :password %>
+        </div>
+
+        <div id="checkbox_area">
+          <input type="checkbox" id="remember" />
+          <label for="remember"><%= t('remember_me') %></label>
+        </div>
+
+        <div id="submit_area">
+          <%= submit_tag t('login'), :class => "submit" %>
+        </div>
+
+
+        <% if !flash.empty? %>
+          <div id="notice"><%= flash[:notice] %></div>
+        <% end %>
+
+      </div>
+    </div>
+  <% end %>
+  <div id="help_forgot_pw">
+    <%= link_to t('forgot_password'),
+      :controller => "user",
+      :action => "forgot_password" %>
+
+</div>
+<div class="clearfooter"></div>
+</div>
+
+    <div id="footer">
+      <div id="footer_logo">
+            <div id="powered_by">
+          <%= t('layouts.application.powered_by') %> <a href="http://www.foradian.com/" target="_blank">Foradian</a>
+        </div>
+          <a href="http://www.projectfedena.org/" target="_blank" class="footer-logo"></a>
+
+      </div>
+    </div>
+
+<script type="text/javascript">
+document.getElementById('user_username').focus();
+ </script>

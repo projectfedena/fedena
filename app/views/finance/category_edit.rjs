@@ -1,0 +1,2 @@
+page.replace_html 'modal-box', :partial => 'category_edit_form'
+page << "Modalbox.show($('modal-box'), {title: 'Edit Category', width: 500});"

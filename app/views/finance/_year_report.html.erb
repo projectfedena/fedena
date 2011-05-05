@@ -1,0 +1,97 @@
+
+<div id="fees-table">
+  <div class="fees-th">
+    <div class="fees-table-description">Description</div>
+    <div class="fees-table-expenses">Expenses</div>
+    <div class="fees-table-income">Income</div>
+  </div>
+
+  <%income_total = 0%>
+  <%expenses_total = 0%>
+  <%direct_income=0%>
+  <%direct_expenses=0%>
+  <%donations_total=0%>
+  <%donations_income=0%>
+  <%donations_expenses=0%>
+
+  <%fees_total=0 %>
+  <%amount = 0%>
+  <%flag=0%>
+
+  <%# @monthly_payslips.each do |m| %>
+    <%# expenses_total += m.amount.to_i %>
+  <%# end %>
+
+  <% @employees.each do |e| %>
+    <% expenses_total += e.employee_salary(@start_date,@last_date) %>
+  <% end %>
+
+  <div class="fees-tr">
+    <div class="fees-table-description"><%= link_to "Salary Account" , :action => 'salary_department_year' , :date => @academic_year%> </div>
+    <div class="fees-table-expenses"> <%=expenses_total%> </div>
+  </div>
+
+  <% @transactions_not_fees.each do |t| %>
+    <% if t.category.is_income? %>
+      <%income_total +=t.amount%>
+      <%direct_income+=t.amount%>
+    <%else%>
+      <%expenses_total +=t.amount%>
+      <%direct_expenses+=t.amount%>
+    <%end%>
+  <%end%>
+
+  <div class="fees-tr">
+    <div class="fees-table-description"><%= link_to "Direct Expenses" , :action => 'direct_expenses_year',:date => @academic_year%> </div>
+    <div class="fees-table-expenses"> <%=direct_expenses%> </div>
+  </div>
+
+  <div class="fees-tr">
+    <div class="fees-table-description"><%= link_to "Direct Income" , :action => 'direct_income_year',:date => @academic_year%> </div>
+    <div class="fees-table-income"> <%=direct_income%> </div>
+  </div>
+
+  <% @donations.each do |d| %>
+    <% if d.category.is_income? %>
+      <%income_total +=d.amount%>
+      <% donations_income+=d.amount %>
+    <%else%>
+      <%expenses_total +=d.amount%>
+      <% donations_expenses+=d.amount %>
+    <%end%>
+    <% @trigger.each do |trigger|   %>
+      <%unless trigger.finance_category.id.nil? %>
+        <% if d.category_id == trigger.finance_category.id %>
+          <%expenses_total += (d.amount * (trigger.percentage / 100))%>
+          <%donations_expenses += (d.amount * (trigger.percentage / 100))%>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <%donations_total=donations_income-donations_expenses %>
+
+  <div class="fees-tr">
+    <div class="fees-table-description"><%= link_to "Donations" , :action => 'donations_report_year',:date => @academic_year%> </div>
+    <div class="fees-table-income"> <%=donations_total%></div>
+  </div>
+
+  <% @transactions_fees.each do |t| %>
+    <%income_total +=t.amount%>
+    <%fees_total += t.amount%>
+  <%end%>
+
+  <div class="fees-tr">
+    <div class="fees-table-description"><%= link_to "Fees" , :action => 'fees_report_year' , :date => @academic_year%> </div>
+    <div class="fees-table-income"> <%=fees_total%> </div>
+  </div>
+
+  <div class="fees-th">
+    <div class="fees-table-description">Total</div>
+    <div class="fees-table-expenses"><%=expenses_total%></div>
+    <div class="fees-table-income"><%=income_total%></div>
+  </div>
+  <div class ="fees-th-grandtotal">
+    <div class="fees-table-description">Grand Total</div>
+    <div class="fees-table-total"><%=income_total-expenses_total%></div>
+  </div>
+</div>

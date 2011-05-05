@@ -1,0 +1,67 @@
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1><%= t('employee.hr.payroll') %></h1>
+  <h3><%= t('edit_category') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+
+
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <% form_for :category do |c| %>
+    <%= error_messages_for 'category' %>
+    <div id="form-content">
+      <div class="label-field-pair">
+        <label for="category_name"><%= t('add_category.category_name') %></label>
+        <div class="text-input-bg"><%= c.text_field :name %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="percentage"><%= t('add_category.percentage') %></label>
+        <div class="text-input-bg"><%= c.text_field :percentage %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="percentage_of"><%= t('add_category.percentage_of') %></label>
+        <div class="text-input-bg">
+          <%= select :category, :payroll_category_id, @categories.map {|cat| [cat.name, cat.id]}, :prompt =>"#{t('layouts.default.select')}" %>
+        </div>
+      </div>
+      <div class="label-radio-pair">
+        <label class="status" for="status"><%= t('layouts.default.status') %></label>
+        <div id="radio-buttons">
+          <%= c.radio_button  "status", "true", :checked => "checked" %>
+          <label class="label_for_status" for="add_grade_status_true"><%= t('layouts.default.active') %></label>
+
+          <%= c.radio_button  "status", "false" %>
+          <label class="label_for_status" for="add_grade_status_false"><%= t('layouts.default.inactive') %></label>
+        </div>
+      </div>
+
+      <div class="label-checkbox">
+        <%= c.check_box :is_deduction %> <%= t('add_category.is_deduction') %>
+      </div>
+      <div class="extender"></div>
+
+
+
+      <div id="submit-button">
+        <%=submit_tag("► #{t('layouts.default.update')}") %>
+      </div>
+
+
+    </div>
+  <% end %>
+
+
+
+</div>

@@ -1,0 +1,10 @@
+<div class="label-field-pair"><label>
+  <%= t('student.select_month_and_year') %> :
+</label>
+<div class="text-input-bg2">
+<%= select :advance_search, :month,
+  [["#{t('layouts.default.jan')}",'01'], ["#{t('layouts.default.feb')}",'02'], ["#{t('layouts.default.mar')}",'03'], ["#{t('layouts.default.apr')}",'04'], ["#{t('layouts.default.may')}",'05'], ["#{t('layouts.default.jun')}",'06'], ["#{t('layouts.default.jul')}",'07'], ["#{t('layouts.default.aug')}",'08'], ["#{t('layouts.default.sep')}",'09'], ["#{t('layouts.default.oct')}",'10'], ["#{t('layouts.default.nov')}",'11'], ["#{t('layouts.default.dec')}",'12']],
+  {:prompt => "#{t('student.month')}"} %>
+</div>
+<div id="year"><%= render :partial => 'year' %></div>
+</div>

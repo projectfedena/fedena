@@ -1,0 +1,94 @@
+
+#profile_view{
+    margin:25px auto;
+    width:700px;
+}
+
+.profile_info_label {
+    padding-top:15px;
+    padding-bottom:5px;
+    height:25px;
+    width:150px;
+    text-align:right;
+    padding-right:20px;
+    float:left;
+    font-weight:bold;
+    color:#548ab2;
+    background: #eff3fe;
+    border-top:1px solid #bdcfff;
+    margin-right:5px;
+}
+.profile_info_label2 {
+    padding-top:15px;
+    padding-bottom:5px;
+    height:25px;
+    width:150px;
+    text-align:right;
+    padding-right:20px;
+    float:left;
+    font-weight:bold;
+    color:#548ab2;
+    background: #dae6ff;
+    border-top:1px solid #bdcfff;
+    margin-right:5px;
+}
+.profile_info_text {
+    padding-top:15px;
+    padding-bottom:5px;
+    padding-left:20px;
+    height:25px;
+    width:500px;
+    float:left;
+    font-weight:bold;
+    color:#000;
+    background: #eff3fe;
+    border-top:1px solid #bdcfff;
+}
+.profile_info_text2 {
+    padding-top:15px;
+    padding-bottom:5px;
+    padding-left:20px;
+    height:25px;
+    width:500px;
+    float:left;
+    font-weight:bold;
+    color:#000;
+    background:#dae6ff;
+    border-top:1px solid #bdcfff;
+}
+.submit-buttons {
+    margin:10px auto;
+    margin-left:320px;
+}
+a.user_button{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:30px auto;
+    margin-right:20px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    text-decoration: none;
+    width:70px;
+    cursor:pointer;
+}
+a.user_button:hover{
+    background: #373B3F;
+}
+
+#inner-tab-menu ul li {
+    background-color:#9D0E00;
+    color:#FFFFFF;
+    float:left;
+    font-size:0.9em;
+    height:1.5em;
+    list-style-type:none;
+    margin:0 0 0 10px;
+    text-align:center;
+    width:130px;
+}

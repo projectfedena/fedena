@@ -1,0 +1,92 @@
+#student-details {
+    background-color:#FFF1AB;
+    border:1px solid #EFDF95;
+    clear:both;
+    height:20px;
+    margin:0 0 40px;
+    padding:5px 0 0 90px;
+}
+#student-details h3 {
+    display : inline;
+    float : left;
+    font-size:14px;
+    margin : 0 0 20px 0;
+    width : 350px;
+    text-align:center;
+}
+#student-details h4 {
+    display:inline;
+    float:left;
+    font-size:14px;
+    margin:0 0 10px;
+    min-width:200px;
+    padding-right:10px;
+}
+#remove-student {
+    float : left;
+    padding : 20px 0 0 340px;
+    width : 500px;
+    margin:0px auto;
+}
+#remove-student p {
+    font-size : 95%;
+    text-align : justify;
+    width : 385px;
+    margin : 5px 0 15px 0;
+}
+#remove-student h4 {
+    color : #b00;
+    margin : 0;
+    padding : 0;
+}
+.submit-button {
+    float : left;
+}
+#submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    margin-top:30px;
+    margin-left:100px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    cursor:pointer;
+}
+.label-field-pair label{
+    color:#444444;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:10px;
+    width:160px;
+}
+#submit-button input:hover{
+    background:#373b3f;
+}
+
+
+.user_button  {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin: 0 auto;
+    text-decoration: none;
+}
+.user_button:hover{
+    background:  #373B3F;
+}

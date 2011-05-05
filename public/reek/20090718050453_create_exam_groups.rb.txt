@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090718050453_create_exam_groups.rb -- 2 warnings:
+  CreateExamGroups has no descriptive comment (IrresponsibleModule)
+  CreateExamGroups#self.up has the variable name 't' (UncommunicativeName)

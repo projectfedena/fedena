@@ -1,0 +1,20 @@
+
+
+<% @categories.each do |cat| %>
+  <div class="container<%= cycle('odd', 'even')%> ">
+    <div class="title"> <%= cat.name %></div>
+    <%unless (cat.id == 1 or cat.id ==2 or cat.id ==3) %>
+      <div class="edit"><%= link_to_remote t('layouts.default.edit'), :url => { :action => 'category_edit', :id => cat.id } %></div>
+      <div class="edit">
+        <% transaction = FinanceTransaction.find(:all, :conditions=>{:category_id=>cat.id}) %>
+        <% if transaction.blank? %>
+        <%= link_to_remote t('layouts.default.edit'), :url => { :action => 'category_delete', :id => cat.id } %>
+        <% else %>
+        
+        <%= link_to_remote "<s>#{t('layouts.default.delete')}</s>", :url => { :action => '', :id => "" } %>
+          <% end %>
+      </div>
+    <%end %>
+  </div>
+<% end %>
+<div id="modal-box" style="display:none;"></div>

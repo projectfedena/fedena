@@ -1,0 +1,5 @@
+<% @recipient_list.each do |x| %>
+
+  <%= Employee.find_by_employee_id(x).first_name %><br/>
+
+  <% end %>

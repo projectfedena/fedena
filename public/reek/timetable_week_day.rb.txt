@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/timetable_week_day.rb -- 1 warning:
+  TimetableWeekDay has no descriptive comment (IrresponsibleModule)

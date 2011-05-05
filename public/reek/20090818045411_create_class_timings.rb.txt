@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090818045411_create_class_timings.rb -- 4 warnings:
+  CreateClassTimings has no descriptive comment (IrresponsibleModule)
+  CreateClassTimings#self.create_defaults has approx 9 statements (LongMethod)
+  CreateClassTimings#self.up has approx 7 statements (LongMethod)
+  CreateClassTimings#self.up has the variable name 't' (UncommunicativeName)

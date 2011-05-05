@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/spec/rails/mocks/ar_classes.rb -- 3 warnings:
+  AssociatedModel has no descriptive comment (IrresponsibleModule)
+  MockableModel has no descriptive comment (IrresponsibleModule)
+  SubMockableModel has no descriptive comment (IrresponsibleModule)

@@ -1,0 +1,7 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/spec/rails/matchers/assert_select_spec.rb -- 6 warnings:
+  AssertSelectMailer has no descriptive comment (IrresponsibleModule)
+  AssertSelectSpecHelpers#first_non_rspec_line_in_backtrace_of doesn't depend on instance state (LowCohesion)
+  AssertSelectSpecHelpers#first_non_rspec_line_in_backtrace_of refers to error more than self (LowCohesion)
+  HTML::Document has no descriptive comment (IrresponsibleModule)
+  HTML::Document#initialize_with_strict_error_checking has boolean parameter 'strict' (ControlCouple)
+  HTML::Document#initialize_with_strict_error_checking has boolean parameter 'xml' (ControlCouple)

@@ -1,0 +1,23 @@
+<% unless @additional_details.empty? %>
+
+  <% @additional_details.each do |b| %>
+    <%  code = cycle('', '2') %>
+
+    <div class="new_profile_info_area1">
+      <div class="profile_info_label_top<%= code %>"><%= b.additional_field.name %></div>
+      <div class="profile_info_text_top<%= code %>"> <%= b.additional_info %> </div>
+    </div>
+  <% end %>
+  <div class="extender"></div>
+  <div class="edit-pdf-group">
+    <div class="pdf">
+      <%= link_to " ► PDF Report",
+        {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
+    </div>
+  </div>
+<% else %>
+  <p class="flash-msg">No additional details entered for <%= @employee.first_name%>.</p>
+<% end %>
+
+
+

@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20091224063502_create_finance_transaction_triggers.rb -- 2 warnings:
+  CreateFinanceTransactionTriggers has no descriptive comment (IrresponsibleModule)
+  CreateFinanceTransactionTriggers#self.up has the variable name 't' (UncommunicativeName)

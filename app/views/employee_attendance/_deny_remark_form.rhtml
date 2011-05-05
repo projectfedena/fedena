@@ -1,0 +1,23 @@
+<div class="approval-form">
+
+<% form_for :deny_leave,  :url => {:action => 'deny_leave'} do %>
+
+
+    <div class="label-field-pair">
+      <label for="course_grade">Deny remarks</label>
+      <div class="text-input-bg"> <%= text_field_tag :manager_remark %> </div>
+    </div>
+    <%= hidden_field_tag :applied_leave, @applied_leave.id %>
+
+
+
+    <div class="submit-button">
+    <%=submit_tag "OK",:class=>'submit_button' %>
+      
+    </div>
+
+      <div class="extender"></div>
+
+
+<% end %>
+</div>

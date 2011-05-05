@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20091217191652_create_privileges.rb -- 3 warnings:
+  CreatePrivileges has no descriptive comment (IrresponsibleModule)
+  CreatePrivileges#self.up has approx 22 statements (LongMethod)
+  CreatePrivileges#self.up has the variable name 't' (UncommunicativeName)

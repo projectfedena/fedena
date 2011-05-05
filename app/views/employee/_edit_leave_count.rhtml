@@ -1,0 +1,26 @@
+<div class="box">
+  <% remote_form_for :leave_count,:url=>{:action=>'employee_leave_count_update', :id=>@leave_count.id} do |c| %>
+    <div id="form-content">
+      <div class="label-field-pair">
+        <label for="category_name">Leave name</label>
+        <div class="text-bg"><%= @leave_type.name %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="category_name">Available leave</label>
+        <div class="text-input-bg"><%= c.text_field :leave_count %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="category_name">Leave taken</label>
+        <div class="text-bg"><%= @leave_count.leave_taken %></div>
+      </div>
+        
+      <div id="submit-button">
+          <%=submit_tag("► Save") %>
+      </div>
+
+
+    </div>
+  <%end%>
+  </div>

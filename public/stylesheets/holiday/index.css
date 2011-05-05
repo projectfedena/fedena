@@ -1,0 +1,70 @@
+
+.label-field-pair {
+    margin-left : 50px;
+}
+#submit-button input {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    margin-left:200px;
+    margin-top:30px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    width:90px;
+    cursor:pointer;
+}
+#holiday-list ul {
+    height : auto; width : 650px;
+    margin : 20px auto;
+    padding : 0;
+}
+#holiday-list ul li.odd {
+    background : #E4EBFE;
+    border-top:1px solid #BECFFB;
+    height : 1.5em;
+    width : auto;
+    list-style-type : none;
+    padding : 0.5em 0 0 50px;
+}
+#holiday-list ul li.even {
+    background :#EEF2FD;
+    border-top:1px solid #BECFFB;
+    height : 1.5em;
+    width : auto;
+    list-style-type : none;
+    padding : 0.5em 0 0 50px;
+}
+#holiday-list ul li.heading {
+    background : none;
+    font-weight : bold;
+    list-style-type : none;
+    height : 2.5em; width : auto;
+    padding : 1em 0 0 50px;
+}
+#holiday-list ul li div {
+    float : left;
+}
+#holiday-list ul li div.holiday-name {
+    height : auto; width : 225px;
+}
+#holiday-list ul li div.holiday-start-date,
+#holiday-list ul li div.holiday-end-date {
+    height : auto; width : 130px;
+}
+#holiday-list ul li div.holiday-edit {
+    height : auto; width : 50px;
+}
+#holiday-list ul li div a {
+    color : #000;
+    text-decoration : none;
+}
+#form-content{
+    width:600px;
+    margin:0px auto;
+}

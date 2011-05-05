@@ -1,0 +1,47 @@
+.item-list {
+    clear : both;
+    padding : 10px 0 0 130px;
+    margin:0px;
+}
+
+.item-list .listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+}
+
+.item-list .listodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+}
+
+.item-list li.heading {
+    background : none;
+    font-weight : bold;
+    list-style-type : none;
+    color : #444;
+    height : 1.5em; width : 30em;
+    padding : 0.5em 0 0 5em;
+}
+.item-list li div {
+    float : left;
+}
+.item-list li div.item-name {
+    width : 350px;
+}
+.item-list li div.item-edit,
+.item-list li div.item-delete {
+    font-size : 0.9em;
+    width : 100px;
+    text-align:right;
+}
+.item-list li div a {
+    color : #000;
+}

@@ -1,0 +1,5 @@
+page.replace_html "subject", :text=>""
+#page.replace_html "added-subjects", :partial=>"previous_subject_added"
+page.replace_html"added-subjects", render(:partial=>'previous_subject_added_new')
+page.visual_effect(:highlight, 'added-subjects')
+

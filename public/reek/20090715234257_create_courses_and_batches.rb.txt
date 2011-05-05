@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090715234257_create_courses_and_batches.rb -- 4 warnings:
+  CreateCoursesAndBatches has no descriptive comment (IrresponsibleModule)
+  CreateCoursesAndBatches#self.up calls t.boolean(:is_deleted, :default => (false)) twice (Duplication)
+  CreateCoursesAndBatches#self.up has approx 13 statements (LongMethod)
+  CreateCoursesAndBatches#self.up has the variable name 't' (UncommunicativeName)

@@ -1,0 +1,35 @@
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Employee</h1>
+  <h3>Department wise payslip</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+
+  <% form_remote_for :payslip,
+    :url => { :action => 'update_employee_payslip'} do |f| %>
+    <div id="box">
+       <div class="label-field-pair">
+   <label for="student_course">Select a department:</label>
+      <div class="text-input-bg"> <%= f.select :department_id, @departments.map { |c| [c.name, c.id] },
+          {:prompt => "Select department"}
+      %>
+      </div></div>
+      <div class="label-field-pair">
+   <label for="student_course">Select a month:</label>
+      <div class="text-input-bg">
+        <%= f.select :salary_date, @salary_dates.map {|c| [c.salary_date.strftime("%B %Y"),c.salary_date.strftime("%Y-%m-%d")]},
+          {:prompt => 'Select a month'} %>
+      </div></div>
+    <%= submit_tag "► View",:class=>'submit_button' %>
+    </div>
+  
+
+
+  <% end %>
+  <div id="payslip"> </div>
+
+
+</div>

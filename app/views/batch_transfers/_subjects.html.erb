@@ -1,0 +1,30 @@
+<% unless @normal_subjects.nil? %>
+<h4>Normal subjects</h4>
+  <ul id="category-list">
+  <% @normal_subjects.each do |sub| %>
+    <li id="subject-<%=sub.id%>" class="list<%=cycle('odd', 'even')%>">
+      <div class="category-name"> <%= sub.name %></div>
+       <div class="category-code"><%= sub.code %></div>
+    </li>
+  <% end %>
+    </ul>
+<% end %>
+
+
+<% unless @elective_groups.nil? %>
+  <% @elective_groups.each do |eg| %>
+    <h4><%= eg.name %>:</h4>
+    <% unless @elective_subjects.nil? %>
+    <ul id="category-list">
+      <% @elective_subjects.each do |elect| %>
+        <% if elect.elective_group_id == eg.id %>
+          <li id="elect-<%=elect.id%>" class="list<%=cycle('odd', 'even')%>">
+          <div class="category-name"> <%= elect.name %></div>
+           <div class="category-code"><%= elect.code %></div>
+          </li>
+        <% end %>
+      <% end %>
+          </ul>
+    <% end %>
+  <% end %>
+<% end %>

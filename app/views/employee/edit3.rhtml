@@ -1,0 +1,39 @@
+<div id="content-header">
+   <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Edit employee information</h1>
+  <h3>Bank details</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+  <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+
+  <% form_for :employee_bank_details do |a| %>
+  <%= error_messages_for 'employee_bank_details' %>
+
+      <span class="span-sub-heading">Bank Info</span>
+      <hr class="sub-heading"></hr>
+          <% @bank_fields.each do |bd| %>
+            <% @employee_bank_detail = EmployeeBankDetail.find_by_employee_id_and_bank_field_id(@employee.id,bd.id) %>
+          <div class="label-field-pair">
+            <label><%= bd.name %></label>
+            <div class="text-input-bg"><%= a.text_field :bank_info,:index => bd.id,:value=>(@employee_bank_detail.nil? ? "" : @employee_bank_detail.bank_info) %></div>
+            <div class="extender"></div>
+          </div>
+      <hr class="label-underline"></hr>
+        <% end %>
+
+
+    <div class="save-proceed-button">
+      <%= submit_tag "► Save & Proceed" %>
+    </div>
+  <% end %>
+
+
+</div>

@@ -1,0 +1,10 @@
+<li id="comment-item-<%= @cmnt.id %>">
+  <div class="comment-details">
+    <div class="commenter"><%= @cmnt.author.first_name %></div>
+    <% if permitted_to? :delete_comment , :news %>
+    <div class="delete-comment"><%= link_to_remote  "#{t('layouts.default.delete')}", :url => { :controller => 'news', :action => 'delete_comment', :id => @cmnt } %></div>
+    <%end%>
+    <div class="comment-posted-at"><%= t('all.posted') %> <%= time_ago_in_words(@cmnt.created_at) + ' ' + t('layouts.application.ago') %></div>
+  </div>
+  <div class="comment-content"><%= sanitize   @cmnt.content.strip.gsub("\n", "<br/>"),:tags => %w[b i a ], :attributes => %w[href] %></div>
+</li>

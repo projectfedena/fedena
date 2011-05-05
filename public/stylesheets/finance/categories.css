@@ -1,0 +1,95 @@
+
+#category-list{
+    margin:40px auto;
+width:400px;
+}
+
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+.link-descr {
+    margin-top:5px;
+    color:#666;
+    text-align:justify;
+}
+
+
+.containereven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 10px;
+    
+    width:345px;
+}
+.containereven a{
+    color:black;
+}
+
+.containerodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 10px;
+    
+    width:345px;
+}
+.containerodd a{
+    color:black;
+}
+
+.title{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:270px;
+    /*background-color:#e4ebfe;*/
+    /*padding:10px 0 10px 0;*/
+    font-weight:bold;
+    font-size: 14px;
+    height:20px;
+}
+
+.title a{
+    text-decoration:none;
+    /*color:black;*/
+}
+
+.edit{
+    float:left;
+    font-weight: bold;
+
+}
+.edit a{
+    text-decoration: none;
+      /* color: black;*/
+   font-size:11px;
+   padding-right: 8px;
+}
+.box{
+    width:750px;
+    margin:0px auto;
+}
+.submit_button {
+    margin-top:15px;
+    margin-left:180px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+

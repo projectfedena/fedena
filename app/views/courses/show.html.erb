@@ -1,0 +1,43 @@
+<div id="content-header">
+    <img src="/images/show_settings.png" />
+  <h1>Courses</h1>
+  <h3>Show</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to 'New', new_course_batch_path(@course) %> </li>
+        <% if permitted_to? :edit, :course %>
+    <li><%= link_to 'Edit', edit_course_path(@course) if permitted_to? :edit, :course %></li>
+        <%  end %>
+    <% if permitted_to? :destroy, :course %>
+      <li><%= link_to('Delete', course_path(@course), :method => 'delete', :confirm => 'Are you sure?') %></li>
+    <%  end %>
+  </ul>
+</div>
+<div id="page-yield">
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  <div class="box">
+        <div class="bread_crumb">
+        <%= link_to 'Courses', courses_path %> &raquo;
+        <%= @course.full_name %>
+        </div>
+
+
+    <ul id="category-list">
+
+      <% @batches.each do |batch| %>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <div class="category-name"><%= link_to batch.full_name, [@course, batch] %></div> <div class="category-edit"> <%= link_to 'Edit', edit_course_batch_path(@course, batch) if permitted_to? :edit, :batches %></div><div class="category-delete">   <%= link_to('Delete', [@course, batch], :method => 'delete', :confirm => 'Are you sure?')  if permitted_to? :destroy, :batches %></div>
+        </li>
+      <% end %>
+
+    </ul>
+
+    <div class="extender"></div>
+  </div>
+</div>

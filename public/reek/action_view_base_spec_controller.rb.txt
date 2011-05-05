@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/resources/controllers/action_view_base_spec_controller.rb -- 1 warning:
+  ActionViewBaseSpecController has no descriptive comment (IrresponsibleModule)

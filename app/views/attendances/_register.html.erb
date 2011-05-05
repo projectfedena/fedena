@@ -1,0 +1,72 @@
+<div class="header">
+  <% if @config.config_value == 'Daily' %>
+    <div class="prev">
+      <%= link_to_remote "◄", :url=>{:controller=>"attendances", :action=>"show",:batch_id=>@batch.id, :next=>(@today-1.month)} %>
+    </div>
+    <div class="month">
+      <%= @today.strftime("%B %Y") %>
+    </div>
+    <div class="next">
+      <%= link_to_remote "►", :url=>{:controller=>"attendances", :action=>"show",:batch_id=>@batch.id, :next=>(@today+1.month)} %>
+    </div>
+  <% else %>
+    <div class="prev">
+      <%= link_to_remote "◄", :url=>{:controller=>"attendances", :action=>"show",:subject_id=>@sub.id, :next=>(@today-1.month)} %>
+    </div>
+    <div class="month">
+      <%= @today.strftime("%B %Y") %>
+    </div>
+    <div class="next">
+      <%= link_to_remote "►", :url=>{:controller=>"attendances", :action=>"show",:subject_id=>@sub.id, :next=>(@today+1.month)} %>
+    </div>
+  <% end %>
+<div class="extender"></div>
+</div>
+<div class="box-1">
+<table class="" align="center" width="100%">
+  <tr class="tr-head">
+    <td class="head-td-name">Name</td>
+    <% current_day = Date.today  %>
+    <% @dates.each do |date| %>
+      <% if current_day.strftime("%a %d %y") == date.month_date.strftime("%a %d %y") %>
+      <td class="head-td-date active" ><div class="day"><%= date.month_date.strftime("%a") %></div> <div class="date"> <%= date.month_date.strftime("%d") %></div></td>
+      <% else %>
+      <td class="head-td-date"><div class="day"><%= date.month_date.strftime("%a") %></div> <div class="date"> <%= date.month_date.strftime("%d") %></div></td>
+      <% end %>
+    <% end %>
+
+  </tr>
+
+
+
+  <% @students.each do |student| %>
+    <tr class="tr-<%= cycle('odd', 'even')  %>">
+      <td class="td-name">
+        <%= student.first_name %>
+        <div class="date">
+          <span><div><%= student.full_name %></div></span>
+        </div>
+        
+      </td>
+      <% @dates.each do |date| %>
+        <% @absent = Attendance.find_by_student_id_and_period_table_entry_id(student.id, date.id) %>
+      <% if current_day.strftime("%a %d %y") == date.month_date.strftime("%a %d %y") %>
+        <td id="attendance-student-<%= student.id %>-class-hour-<%= date.id %>" class="td-mark active">
+          <% else %>
+        <td id="attendance-student-<%= student.id %>-class-hour-<%= date.id %>" class="td-mark">
+            <% end %>
+          
+          <% unless @absent.nil? %>
+            <%= link_to_remote('X', {:url => edit_attendance_path(@absent), :method => 'get'}, :class =>'absent')  %>
+          <% else %>
+            <%= link_to_remote( 'O',
+              {:url => {:controller =>'attendances', :action => 'new', :id=> date.id, :id2 =>student.id}}, :class=>'present' ) %>
+          <% end %>
+          <div class="date"><span><%=  date.month_date.strftime("%a %d")%> <div> <%= student.full_name %></div></span>
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+  </div>

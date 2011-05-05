@@ -1,0 +1,6 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/example/cookies_proxy.rb -- 5 warnings:
+  Spec::Rails::Example::CookiesProxy has no descriptive comment (IrresponsibleModule)
+  Spec::Rails::Example::CookiesProxy#[]= calls @example.request twice (Duplication)
+  Spec::Rails::Example::CookiesProxy#[]= calls @example.request.cookies twice (Duplication)
+  Spec::Rails::Example::CookiesProxy#[]= calls name.to_s 3 times (Duplication)
+  Spec::Rails::Example::CookiesProxy#[]= refers to name more than self (LowCohesion)

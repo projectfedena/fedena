@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/prawnto/lib/prawnto/template_handlers/raw.rb -- 3 warnings:
+  Prawnto::TemplateHandlers::Raw has no descriptive comment (IrresponsibleModule)
+  Prawnto::TemplateHandlers::Raw#massage_template_source has approx 16 statements (LongMethod)
+  Prawnto::TemplateHandlers::Raw#massage_template_source refers to source more than self (LowCohesion)

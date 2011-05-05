@@ -1,0 +1,46 @@
+<div id="content-header">
+  <img src="/images/user_profile/user_profile_logo.jpg" />
+  <h1><%= t('employee.edit_privilege.user_privilege') %></h1>
+  <h3><%= t('edit_privilege') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+
+<div class="label_field_pair"><label><%= t('set_privilege') %> <%= @user.full_name.capitalize %></label></div>
+<div id="list_content">
+  <div id="list">
+
+    <div class="sel-list">
+      <%=  t('layouts.default.select') %>: <%= link_to_function "#{t('layouts.default.all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+      <%= link_to_function "#{t('layouts.default.none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+    </div>
+
+
+    <% form_for :user do |form| %>
+      <% for privilege in Privilege.find(:all) %>
+        <%    hr = Configuration.find_by_config_value("HR") %>
+        <%  finance = Configuration.find_by_config_value("Finance") %>
+        <%  if hr.nil?  %>
+          <% if privilege.id ==9 or  privilege.id ==17 or privilege.id ==18 or privilege.id ==19 %>
+            <% next %>
+          <% end %>
+        <% end %>
+        <%  if finance.nil?  %>
+          <% if privilege.id ==14  %>
+            <% next %>
+          <% end %>
+        <% end %>
+        <div class="name_list<%=cycle('odd', 'even')%>"><li>
+            <label><%= check_box_tag "user[privilege_ids][]", privilege.id, @user.privileges.include?(privilege),:class=>'right'%>
+              <div class="att_list_names"> <%= t(privilege.name) %> </div> </label>
+          </li></div>
+      <% end %>
+      <div class="user_submit_button1">
+        <%= submit_tag "", :name => "commit", :value => "► #{t('layouts.default.update')}" %>
+      </div>
+    <% end %>
+  </div>
+</div>

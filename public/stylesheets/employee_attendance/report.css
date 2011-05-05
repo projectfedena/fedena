@@ -1,0 +1,64 @@
+.label-field-pair{
+    margin:0 0 0 230px;
+}
+
+
+
+
+
+
+
+
+
+#attendance {
+    height : auto; width:900px;
+    margin : 50px 0 0 0;
+}
+.attendance_tr {
+    clear:both;
+    height:42px;
+    background : #fff url(../../images/_global/list-bg-repeat.jpg) repeat;
+}
+.attendance_td {
+    float:left;
+    width:60px;height:30px;
+    border-right:1px solid #becffb;
+    padding-top:12px;
+    font-size:small;
+    text-align:center;
+}
+.attendance_td_top {
+    float:left;
+    width:60px;
+    height:32px;
+    border-right:1px solid #becffb;
+    padding-top:10px;
+    text-align:center;
+
+
+    font-weight:bold;
+}
+.attendance_td_left {
+    float:left;
+    width:125px;height:32px;
+    border-right:1px solid #becffb;
+    padding-top:10px;
+    text-align:center;
+
+
+    font-weight:bold;
+}
+
+
+
+.attendance_td_left a{
+    text-decoration:none;
+    color:black;
+}
+
+.attendance_td_tl {
+    float:left;
+    width:125px;height:42px;
+    border-right:1px solid #becffb;
+
+}

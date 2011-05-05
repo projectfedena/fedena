@@ -1,0 +1,9 @@
+D:/nithin/rails/fedena3/fedena2/app/models/user.rb -- 8 warnings:
+  User has no descriptive comment (IrresponsibleModule)
+  User#before_save calls self.password twice (Duplication)
+  User#before_save calls self.role 3 times (Duplication)
+  User#before_save calls self.salt twice (Duplication)
+  User#before_save has approx 6 statements (LongMethod)
+  User#random_string refers to chars more than self (LowCohesion)
+  User#role_symbols has approx 6 statements (LongMethod)
+  User#self.authenticate? has the variable name 'u' (UncommunicativeName)

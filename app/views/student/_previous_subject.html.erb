@@ -1,0 +1,20 @@
+
+<span class="span-sub-heading"><%= t('subject_details') %></span>
+<% remote_form_for :student_previous_subject_details, :url =>{:action =>'save_previous_subject'} do |s| %>
+<%= s.hidden_field :student_id, :value => @student.id %>
+<div class="label-field-pair">
+  <label><%= t('subject') %></label>
+  <div class="text-input-bg"><%= s.text_field :subject %></div>
+  <div class="extender"></div>
+</div>
+<div class="label-field-pair">
+  <label><%= t('previous_subject.mark') %></label>
+  <div class="text-input-bg"><%= s.text_field :mark %></div>
+  <div class="extender"></div>
+</div>
+<div class="save-proceed-button" id="save-proceed-button">
+      <%= s.submit "► #{t('layouts.default.save')}"%>
+    </div>
+
+<% end %>
+

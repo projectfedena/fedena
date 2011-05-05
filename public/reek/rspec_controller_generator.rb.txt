@@ -1,0 +1,8 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/generators/rspec_controller/rspec_controller_generator.rb -- 7 warnings:
+  RspecControllerGenerator has no descriptive comment (IrresponsibleModule)
+  RspecControllerGenerator#manifest calls class_name twice (Duplication)
+  RspecControllerGenerator#manifest calls class_path 13 times (Duplication)
+  RspecControllerGenerator#manifest calls file_name 9 times (Duplication)
+  RspecControllerGenerator#manifest contains iterators nested 2 deep (NestedIterators)
+  RspecControllerGenerator#manifest has approx 17 statements (LongMethod)
+  RspecControllerGenerator#manifest has the variable name 'm' (UncommunicativeName)

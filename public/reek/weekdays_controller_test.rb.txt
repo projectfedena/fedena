@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/test/functional/weekdays_controller_test.rb -- 1 warning:
+  WeekdaysControllerTest has no descriptive comment (IrresponsibleModule)

@@ -1,0 +1,23 @@
+<% unless @common_event_array.empty? %>
+Common Event:<br/>
+<% @common_event_array.each do |h| %>
+  <%= h.title %><br/>
+<% end %>
+<% end %>
+
+
+  <% if @user.student == true %>
+<% unless @student_course_not_common_event_array.empty? %>
+My course event:<br/>
+<% @student_course_not_common_event_array.each do |h| %>
+  <%= h.title %><br/>
+<% end %>
+<% end %>
+<% else %>
+<% unless @employee_dept_not_common_event_array.empty? %>
+My department event:<br/>
+<% @employee_dept_not_common_event_array.each do |h| %>
+  <%= h.title %><br/>
+<% end %>
+<% end %>
+<% end %>

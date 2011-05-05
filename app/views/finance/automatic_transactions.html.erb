@@ -1,0 +1,26 @@
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+  <h1>Finance </h1>
+  <h3>Automatic Transactions</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <div class="box">
+  <div class="link-heading">
+    <%= link_to_function("Create") { |page|
+      page.replace_html 'modal-box', :partial => 'transaction_trigger_create_form'
+      page << "Modalbox.show($('modal-box'), {title: '', width: 500});"
+    } %>
+    <div class="link-descr"> Creates an auto transaction</div>
+  </div>
+  <div class="link-descr"></div>
+  <div id="transaction-triggers-list">
+    <%= render :partial => "transaction_triggers_list" %>
+  </div>
+
+  <div id="modal-box" style="display:none;"></div>
+</div>
+</div>

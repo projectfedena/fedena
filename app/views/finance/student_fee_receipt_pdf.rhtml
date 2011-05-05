@@ -1,0 +1,63 @@
+
+
+<div id="page-yield">
+
+  <div class="hor_line"></div>
+  <h2>Fee Receipt</h2>
+  <div class="hor_line"></div>
+
+
+  <div class="extender"> </div>
+  <div class="report">
+    <% total_fees = 0 %>
+    <div id ="main_info">
+      <h4> <%= "Name : #{@student.full_name}" %></h4>
+      <h4> <%= "Admission no : #{@student.admission_no}" %></h4>
+    </div>
+    <div id="pdf-info">
+      <table id="pdf-table" width="100%" cellspacing="0">
+        <tr class="table-header"><td class="col-pdf">Sl no.</td><td class="col-pdf"> Particulars </td><td class="col-pdf"> Amount </td></tr>
+        <% c= 'odd' %>
+        <% @fee_particulars.each_with_index do |fee,i| %>
+          <% c =cycle('even','odd') %>
+            <tr class="<%= "#{c}" %>">
+              <td class="col-pdf"><%= i+1 %></td>
+              <td class="col-pdf"><%= shorten_string(fee.name,20) %></td>
+              <td class="col-pdf">&nbsp;<%= @currency_type.to_s + " " +fee.amount.to_s %></td>
+            </tr>
+            <% total_fees += fee.amount %>
+          <% end %>
+          <% unless @financefee.transaction_id.nil? %>
+            <% @trans = FinanceTransaction.find(@financefee.transaction_id) %>
+            <% if @trans.fine_included %>
+           <tr class="<%= cycle((["odd","even"]-[c]).first,c) %>">
+              <td class="col-pdf"><%= @fee_particulars.size+1 %></td>
+              <td class="col-pdf">Fine</td>
+              <td class="col-pdf">&nbsp;<%= @currency_type.to_s + " " +(@trans.amount.to_f-total_fees).to_s %></td>
+            </tr>
+                <%  total_fees = @trans.amount.to_f %>
+                <% end %>
+                <% unless @paid_fees.nil? %>
+                  <% paid = 0 %>
+                  <% @paid_fees.each_with_index do |p,i| %>
+                    <% paid += p.amount.to_f %>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= @fee_particulars.size+1+i %></td>
+              <td class="col-pdf"><%= "Partial Payment done on " + p.transaction_date.to_s %></td>
+              <td class="col-pdf"><%= "-"+@currency_type.to_s + " " +(p.amount.to_s) %></td>
+            </tr>
+
+                  <% end %>
+                  <% total_fees -= paid %>
+                  <% end %>
+                <% end %>
+              <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+               <td colspan="2" class="col-pdf"> Amount to Pay </td>
+               <td class="col-pdf">&nbsp;<%= @currency_type.to_s + " " + total_fees.to_s  %></td>
+            </tr>
+      </table>
+    </div>
+
+  </div>
+
+</div>

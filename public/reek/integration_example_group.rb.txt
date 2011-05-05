@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/example/integration_example_group.rb -- 2 warnings:
+  ActionController::IntegrationTest has no descriptive comment (IrresponsibleModule)
+  Spec::Rails::Example::IntegrationExampleGroup has no descriptive comment (IrresponsibleModule)

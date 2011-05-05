@@ -1,0 +1,12 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/mocks.rb -- 11 warnings:
+  Spec::Rails::IllegalDataAccessException has no descriptive comment (IrresponsibleModule)
+  Spec::Rails::Mocks declares the class variable @@model_id (ClassVariable)
+  Spec::Rails::Mocks#add_stubs doesn't depend on instance state (LowCohesion)
+  Spec::Rails::Mocks#add_stubs refers to object more than self (LowCohesion)
+  Spec::Rails::Mocks#mock_model has approx 6 statements (LongMethod)
+  Spec::Rails::Mocks#mock_model has the variable name 'm' (UncommunicativeName)
+  Spec::Rails::Mocks#stub_model contains iterators nested 2 deep (NestedIterators)
+  Spec::Rails::Mocks#stub_model has approx 7 statements (LongMethod)
+  Spec::Rails::Mocks#stub_model has the variable name 'k' (UncommunicativeName)
+  Spec::Rails::Mocks#stub_model has the variable name 'v' (UncommunicativeName)
+  Spec::Rails::Mocks#stub_model refers to model more than self (LowCohesion)

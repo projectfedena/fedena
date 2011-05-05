@@ -1,0 +1,93 @@
+<ul class="item-list">
+  <!-- <li class="heading"><%= @employee.full_name %></li> -->
+  <li class="heading">Payslip generated on: <%= @salary_date %></li>
+</ul>
+<div class="prev-next-links">
+     <div id="register">
+      <div class="header">
+        <div class="prev">
+         <%= link_to_remote '◄',:url => {:action => 'update_employee_payslip', :department_id => @department.id, :employee => @prev_employee.id, :salary_date=> @salary_date }%>
+        </div>
+        <div class="month">
+          <%=  @employee.full_name %>
+        </div>
+        <div class="next">
+            <%= link_to_remote '►',:url => {:action => 'update_employee_payslip', :department_id => @department.id, :employee => @next_employee.id, :salary_date=> @salary_date }%>
+        </div>
+        <div class="extender"></div>
+      </div>
+    </div>
+  </div>
+
+<ul class="item-list">
+    <li class="heading1">Salary</li>
+  <% @monthly_payslips.each do |mp| %>
+    <% category = PayrollCategory.find(mp.payroll_category_id) %>
+    <% @emp = Employee.find(mp.employee_id) %>
+    <% unless category.is_deduction == true %>
+    <li class="list<%=cycle('odd', 'even')%>">
+      <div class="item-name"><%= category.name  %> </div>
+      <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= mp.amount %></div>
+    </li>
+    <% end %>
+  <% end %>
+      <% unless @individual_payslip_category.empty? %>
+
+    <% @individual_payslip_category.each do |pc| %>
+      <%if  pc.is_deduction == false %>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="item-name"><%= pc.name %></div>
+               <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= pc.amount %></div>
+      </li>
+      <% end %>
+    <% end %>
+  <% end %>
+      <li class="list<%=cycle('odd', 'even')%>">
+    <div class="item-name"><b>Total Salary </b></div>
+    <div class="item-edit"><b><span class="currency-type"><%= @currency_type %></span> <%=@net_non_deductionable_amount  %></b></div>
+  </li>
+</ul>
+
+<ul class="item-list">
+  <li class="heading1">Deductions</li>
+  <% @monthly_payslips.each do |mp| %>
+    <% category = PayrollCategory.find(mp.payroll_category_id) %>
+    <% @emp = Employee.find(mp.employee_id) %>
+    <% unless category.is_deduction == false %>
+    <li class="list<%=cycle('odd', 'even')%>">
+      <div class="item-name"><%= category.name  %></div>
+      <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= mp.amount %></div>
+    </li>
+    <% end %>
+  <% end %>
+      <% unless @individual_payslip_category.empty? %>
+
+    <% @individual_payslip_category.each do |pc| %>
+      <%if  pc.is_deduction == true %>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="item-name"><%= pc.name %></div>
+               <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= pc.amount %></div>
+      </li>
+      <% end %>
+    <% end %>
+  <% end %>
+       <li class="list<%=cycle('odd', 'even')%>">
+      <div class="item-name"><b>Total Deductions </b></div>
+      <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span> <b><%=@net_deductionable_amount %></b></div>
+    </li>
+</ul>
+
+<ul class="item-list">
+  <li class="heading1">Total</li>
+  <li class="listeven">
+    <div class="item-name"><b>Net Salary </b></div>
+    <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span> <b><%=@net_amount%></b></div>
+  </li>
+</ul>
+<div class="pdf_button"><%= link_to "► PDF report",   {:action => "department_payslip_pdf", :department=>@department.id,:salary_date=> @salary_date, :format => 'pdf'}, :target => '_blank' %>
+</div>
+<% if permitted_to? :delete_payslip, :payroll %>
+<div class="edit-delete-link">
+  <%= link_to "delete",{:controller => "employee", :action => "delete_payslip", :id=> @emp.id, :id2=>@salary_date}, :confirm=>"Are you sure?" %>
+</div>
+<% end %>

@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/hr/apply_leave.rb -- 1 warning:
+  ApplyLeave has no descriptive comment (IrresponsibleModule)

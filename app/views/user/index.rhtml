@@ -1,0 +1,47 @@
+<div id="content-header">
+  <img src="/images/user_profile/user_profile_logo.jpg" />
+  <h1><%= t('manage_user') %></h1>
+  <h3><%= t('details_about_user') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "#{t('student.index.view_all')}", :action => "all" %></li>
+    <li><%= link_to "#{t('add_new')}", :action => "create" %></li>
+  </ul>
+</div>
+<div id="search-area">
+  <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
+    <div id="searchbox">
+      <form name="search-form" id="search-form">
+        <label for="query"><%= t('search_user') %>
+          <%= image_tag("loader.gif",
+              :align => "absmiddle",
+              :border => 0,
+              :id => "loader",
+              :style =>"display: none;" ) %>
+        </label>
+        <%= text_field_tag "query", params[:query], :autocomplete => 'off' %>
+      </form>
+    </div>
+  </div>
+<div id="page-yield">
+
+
+
+
+  <%= observe_field 'query', :frequency => 0.5,
+                             :update => 'user_information',
+                             :url => { :action => 'search_user_ajax' },
+                             :before => "Element.show('loader')",
+                             :success => "Element.hide('loader')",
+                             :with => 'query' %>
+
+  <div id="user_information"> </div>
+
+  <div class="extender"> </div>
+
+</div>

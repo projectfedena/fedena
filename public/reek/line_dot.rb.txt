@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/line_dot.rb -- 2 warnings:
+  OpenFlashChart::DotValue has no descriptive comment (IrresponsibleModule)
+  OpenFlashChart::LineDot has no descriptive comment (IrresponsibleModule)

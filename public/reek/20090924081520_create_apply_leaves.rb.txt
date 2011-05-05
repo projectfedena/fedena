@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090924081520_create_apply_leaves.rb -- 3 warnings:
+  CreateApplyLeaves has no descriptive comment (IrresponsibleModule)
+  CreateApplyLeaves#self.up has approx 10 statements (LongMethod)
+  CreateApplyLeaves#self.up has the variable name 't' (UncommunicativeName)

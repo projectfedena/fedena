@@ -1,0 +1,2 @@
+# TODO Operate on the page object
+page.replace_html 'employee-list', :partial=>'list_employees'

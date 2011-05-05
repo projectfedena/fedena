@@ -1,0 +1,66 @@
+
+.submit-area input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    margin-left:200px;
+    margin-top:30px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    width:80px;
+    cursor:pointer;
+}
+#course-list {
+    clear : both;
+    padding : 10px 0 40px 40px;
+    width:650px;
+    margin:0px auto;
+}
+#course-list li.even {
+    background :#EEF2FD;
+    border-top:1px solid #BECFFB;
+    height : 1.5em;
+    width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 50px;
+}
+#course-list li.odd {
+    background : #E4EBFE;
+    border-top:1px solid #BECFFB;
+    height : 1.5em;
+    width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 50px;
+}
+#course-list li.heading {
+    color : #444;
+    height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+    background : none;
+    font-weight : bold;
+}
+#course-list li div {
+    float : left;
+}
+#course-list li div.course-name {
+    width : 350px;
+}
+#course-list li div.course-edit,
+#course-list li div.course-delete {
+    font-size : 0.9em;
+    width : 50px;
+}
+#course-list li div a {
+    color : #000;
+}
+form{
+    width:450px;
+    margin:0px auto;
+}

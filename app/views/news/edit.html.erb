@@ -1,0 +1,33 @@
+<div id="content-header">
+  <img src="/images/show_news/show_news_logo.png" />
+  <h1><%= t('index.news') %></h1>
+  <h3><%= t('view.read_news') %></h3>
+  <div id="app-back-button">
+  <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %><p class="flash-msg"> <%= flash[:notice] %> </p><% end %>
+
+  <% form_for :news do |f| %>
+
+    <%= error_messages_for :news %>
+
+    <div id="add_news_form">
+      <div class="news_label_field">
+        <label for="news_title"><%= t('all.title') %></label>
+        <div id="news_title_text_field_bg"><%= f.text_field :title, :value => @news.title %></div>
+      </div>
+
+      <div class="news_label_field">
+        <label for="news_content"><%= t('add.content') %></label>
+        <div id="news_content_text_field_bg"><%= fckeditor_textarea :news, :content, :value => @news.content %></div>
+      </div>
+    </div>
+
+    <%= submit_tag "", :value => "► #{t('layouts.default.update')}", :class => "news_publish_button" %>
+  <% end %>
+
+</div>

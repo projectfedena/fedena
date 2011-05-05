@@ -1,0 +1,35 @@
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+  <h1>Tally</h1>
+  <h3><%= t('layouts.application.setting') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  <div class="box">
+  <% form_for :xml_settings do |f| %>
+    <div class="label-field-pair">
+      <label for="student_grade"><%= t('ledger_name_correspond_salary') %></label>
+      <div class="text-input-bg"> <%= text_field :xml_settings, :salary, :value => @xml[:salary] %>
+    </div>
+      </div>
+  <div class="label-field-pair">
+    <label for="student_grade"><%= t('ledger_name_correspond_fees') %></label>
+    <div class="text-input-bg"><%= text_field :xml_settings, :fee, :value => @xml[:fee]%>
+    </div>
+  </div>
+    <div class="label-field-pair">
+      <label for="student_grade"><%= t('ledger_name_correspond_donation') %></label>
+      <div class="text-input-bg"> <%= text_field :xml_settings, :donation, :value => @xml[:donation] %>
+      </div>
+    </div>
+
+  <%= submit_tag "► #{t('save_changes')}",:class=>'submit_button' %>
+<% end %>
+</div>
+</div>

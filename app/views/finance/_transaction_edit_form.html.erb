@@ -1,0 +1,29 @@
+  <% form_for :transaction, :url => { :id => @transaction.id } do |form| %>
+  <div id="create_user_form">
+
+    <div class="label-field-pair">
+      <label for="title">Title </label>
+      <div class="text-field-bg"><%= form.text_field :title %> </div>
+    </div>
+    <div class="label-field-pair">
+      <label for="description">Description </label>
+      <div class="text-field-bg"><%= form.text_field :description %> </div>
+    </div>
+
+
+    <div class="label-field-pair">
+      <label for="amount">Amount</label>
+      <div class="text-field-bg"><%= form.text_field :amount %> </div>
+    </div>
+    <div class="label-field-pair">
+      <label for="amount">Date</label>
+      <div class="text-field-bg"><%= calendar_date_select_tag 'transaction[transaction_date]', Date.today, :year_range => 5.years.ago..0.years.ago %></div>
+    </div>
+    <div class="label-field-pair">
+      <label for="category">Category</label>
+      <div class="text-input-bg"><%= select :transaction, :category_id,@categories.map { |c| [c.name, c.id] }, :selected => @transaction.category_id %></div>
+    </div>
+
+    <%=  submit_tag "► Save",:class=>'submit_button' %>
+  </div>
+<% end %>

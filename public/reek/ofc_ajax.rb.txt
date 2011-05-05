@@ -1,0 +1,7 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/ofc_ajax.rb -- 6 warnings:
+  OpenFlashChart::View#js_open_flash_chart_object has 4 parameters (LongParameterList)
+  OpenFlashChart::View#link_to_remote_ofc_load doesn't depend on instance state (LowCohesion)
+  OpenFlashChart::View#link_to_remote_ofc_load refers to div_name more than self (LowCohesion)
+  OpenFlashChart::View#link_to_remote_ofc_load refers to link_text more than self (LowCohesion)
+  OpenFlashChart::View#periodically_call_function doesn't depend on instance state (LowCohesion)
+  OpenFlashChart::View#periodically_call_function refers to options more than self (LowCohesion)

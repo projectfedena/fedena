@@ -1,0 +1,40 @@
+<div id="content-header">
+  <img src="/images/user_profile/user_profile_logo.jpg" />
+  <h1><%= t('all.all_user')  %></h1>
+  <h3><%= t('index.details_about_user') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %><p class="flash-msg"> <%= flash[:notice] %> </p><% end %>
+  <div class="all-user">
+  <div class="label-field-pair">
+  <div class="text-input-bg"><%= select :user_type, :type, ["#{t('layouts.default.admin')}", "#{t('layouts.default.employee')}", "#{t('layouts.default.student')}"],
+      {:prompt => "#{t('select_a_role')}"},
+      {:onChange => "#{remote_function(:url => {:action => "list_user"},
+        :with => "'user_type='+value",
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')"
+        )}"} %>
+  </div>
+    <%= image_tag("loader.gif",
+              :align => "absmiddle",
+              :border => 0,
+              :id => "loader",
+              :style =>"display: none;" ) %>
+
+ </div>
+<div id="student_user">
+
+</div>
+<div id="employee_user">
+
+</div>
+  </div>
+<div id="users">
+  </div>
+
+  </div>

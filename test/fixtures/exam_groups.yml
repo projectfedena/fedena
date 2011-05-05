@@ -1,0 +1,7 @@
+--- 
+exam_groups_001: 
+  name: Annual Exam
+  batch_id: "1"
+  id: "1"
+  exam_date: "2010-05-11"
+  exam_type: "Marks"

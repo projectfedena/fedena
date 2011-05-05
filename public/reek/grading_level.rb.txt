@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/app/models/grading_level.rb -- 2 warnings:
+  GradingLevel has no descriptive comment (IrresponsibleModule)
+  GradingLevel has the variable name 'b' (UncommunicativeName)

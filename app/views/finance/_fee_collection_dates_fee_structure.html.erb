@@ -1,0 +1,4 @@
+
+ <%=   select :element, :fee_collection_id, @dates.map{|c| [c.start_date, c.id]},
+   :prompt => "#{t('finance.index.Select_fee_collection_date')}" %>
+

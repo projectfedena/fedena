@@ -1,0 +1,24 @@
+
+<div id="content-header">
+    <img src="/images/show_settings.png" />
+    <h1><%= t('layouts.default.student') %></h1>
+  <h3><%= t('layouts.default.category') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+ <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  <div id="student-category-form">
+    <%= render :partial => "student_category_create_form" %>
+  </div>
+  <br/><br/>
+
+  <div id="student-category-list">
+    <%= render :partial => "student_category_list" %>
+  </div>
+
+</div>

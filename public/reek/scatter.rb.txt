@@ -1,0 +1,7 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/scatter.rb -- 6 warnings:
+  OpenFlashChart::Scatter has no descriptive comment (IrresponsibleModule)
+  OpenFlashChart::ScatterValue has no descriptive comment (IrresponsibleModule)
+  OpenFlashChart::ScatterValue has the variable name '@x' (UncommunicativeName)
+  OpenFlashChart::ScatterValue has the variable name '@y' (UncommunicativeName)
+  OpenFlashChart::ScatterValue#initialize has the parameter name 'x' (UncommunicativeName)
+  OpenFlashChart::ScatterValue#initialize has the parameter name 'y' (UncommunicativeName)

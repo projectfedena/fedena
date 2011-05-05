@@ -1,0 +1,22 @@
+<% unless @defaulters.empty? %>
+<div id="application-list">
+  <div class="container-head">
+    <div class="sl_no"><%= t('student_attendance.student.admission_no') %></div>
+    <div class="name"><%= t('student_attendance.student.student_name') %></div>
+    <div class="extender"></div>
+  </div>
+  <%@defaulters.each_with_index do |s,i|%>
+    <%if s.check_fees_paid(@date) == false %>
+      <div class="container<%= cycle('odd', 'even')%> ">
+        <div class="sl_no "><%= s.admission_no %></div>
+        <div class="name"> <%=s.full_name%></div>
+        <div class="small"> <%= link_to t('fees_defaulters.pay_fees'),:action => "pay_fees_defaulters",:id => s.id,:date => @date.id %> </div>
+      </div>
+    <%end%>
+  <%end%>
+<%= link_to " ► #{t('layouts.default.pdf_report')}",
+        {:controller => "finance", :action => "fee_defaulters_pdf", :batch_id => @batch.id, :date => @date.id},:target => '_blank', :class=> 'user_button' %>
+</div>
+<% else %>
+  <h4><%= t('fees_submission_index.no_fee_defaulters') %></h4>
+<% end %>

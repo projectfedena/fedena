@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/hr/employee_salary_structure.rb -- 1 warning:
+  EmployeeSalaryStructure has no descriptive comment (IrresponsibleModule)

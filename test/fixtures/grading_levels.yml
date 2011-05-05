@@ -1,0 +1,56 @@
+
+
+grading_default_A:
+  name: A
+  min_score: 85
+
+grading_default_B:
+  name: B
+  min_score: 85
+
+grading_default_C:
+  name: C
+  min_score: 85
+
+grading_default_D:
+  name: D
+  min_score: 85
+
+grading_default_E:
+  name: E
+  min_score: 85
+
+grading_default_F:
+  name: F
+  min_score: 85
+
+
+grading_1A_A:
+  name: A
+  min_score: 80
+  batch_id: 1
+
+grading_1A_B:
+  name: B
+  min_score: 65
+  batch_id: 1
+
+grading_1A_C:
+  name: C
+  min_score: 55
+  batch_id: 1
+
+grading_1A_D:
+  name: D
+  min_score: 45
+  batch_id: 1
+
+grading_1A_E:
+  name: E
+  min_score: 30
+  batch_id: 1
+
+grading_1A_F:
+  name: F
+  min_score: 0
+  batch_id: 1

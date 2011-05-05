@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090904071905_create_employee_grades.rb -- 3 warnings:
+  CreateEmployeeGrades has no descriptive comment (IrresponsibleModule)
+  CreateEmployeeGrades#self.up has approx 7 statements (LongMethod)
+  CreateEmployeeGrades#self.up has the variable name 't' (UncommunicativeName)

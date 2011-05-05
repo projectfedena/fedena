@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090718050113_create_grading_levels.rb -- 3 warnings:
+  CreateGradingLevels has no descriptive comment (IrresponsibleModule)
+  CreateGradingLevels#self.up has approx 7 statements (LongMethod)
+  CreateGradingLevels#self.up has the variable name 't' (UncommunicativeName)

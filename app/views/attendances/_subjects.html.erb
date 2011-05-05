@@ -1,0 +1,14 @@
+
+<div class="label-field-pair">
+  <label>Select a subject </label>
+  <div class="text-input-bg">
+    <%= select :subject, :id,
+      @subjects.map {|b| [b.name, b.id] },
+      {:prompt => 'Select a subject'},
+      {:onchange => "#{remote_function(
+      :url => { :action => 'show' },
+      :with => "'subject_id='+value",
+      :before => "Element.show('loader')",
+      :success => "Element.hide('loader')"  )}"} %>
+  </div>
+</div>

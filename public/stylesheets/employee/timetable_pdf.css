@@ -1,0 +1,122 @@
+
+#page-yield {
+    width:800px;
+    margin: 0 auto;
+    float: left;
+    overflow: hidden;
+}
+
+.hor_line{
+    width:800px;
+    background: #333333;
+    height: 1px;
+}
+
+h2.heading{
+    text-align: center;
+    margin:5px;
+}
+
+#main_info h4{
+    color: #555555;
+    margin-top: 18px;
+    font-weight: normal;
+}
+
+#main_info h2{
+    margin-bottom: 2px;
+    font-weight: normal;
+
+}
+
+table#even{
+    
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-collapse: collapse;
+    border: 1px solid #ADACAB;
+    border-left: 0px solid;
+
+}
+
+table#odd{
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-collapse: collapse;
+    border: 1px solid #ADACAB;
+    border-left: 0px solid;
+    background: #fff;
+}
+
+
+td .top{
+    font-size:12px;
+    padding:5px;
+    padding-bottom:5px;
+    text-align:center;
+    color: #990A10;
+}
+td .bottom{
+    height:50px;
+   
+}
+td.td-blank{
+    width:10px;
+}
+td.td-blankfill{
+    width:auto;
+}
+tr{
+   
+}
+
+td .bottom .subject{
+    height: 23px;
+    padding-top: 10px;
+    text-align:center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+}
+td .bottom .employee{
+    height: 15px;
+    font-size:11px;
+    text-align:center;
+}
+.course{
+    text-align:center;
+    padding: 15px 5px 5px 5px;
+    font-weight: bold;
+    font-size:13px;
+}
+td.head{
+    width:80px;
+    border-left: 1px solid #ADACAB;
+    border-right: 1px solid #ADACAB;
+}
+
+td.pdf-td{
+    border-left: 1px solid #ADACAB;
+}
+
+
+.month{
+    width:400px;
+    background: #fff;
+    padding:6px 0;
+    text-align:center;
+    float:left;
+    font-size:16px;
+    color:#121212;
+    font-weight:bold;
+    margin:0 5px;
+}
+#register{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.header{
+    width:520px;
+    margin:0px auto;
+    padding:4px 0 1px;
+}
+
+

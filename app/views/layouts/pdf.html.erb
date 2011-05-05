@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+
+    <%= stylesheet_link_tag(['application', '_styles/ui.all'])%>
+    <%= stylesheet_link_tag(*get_stylesheets) %>
+     <%= stylesheet_link_tag  "_layouts/pdf" %>
+    <link rel="stylesheet" type="text/css" href="<%="#{RAILS_ROOT}/public/stylesheets/_layouts/pdf.css" %>" media="all" />
+    <link rel="stylesheet" type="text/css" href="<%="#{RAILS_ROOT}//public/stylesheets/#{get_stylesheets}.css"%>" media="all" />
+    <link rel="stylesheet" type="text/css" href="<%= "#{RAILS_ROOT}/public/stylesheets/_styles/ui.all.css"%>" media="all" />
+    <link rel="stylesheet" type="text/css" href="<%= "#{RAILS_ROOT}/public/stylesheets/application.css"%>" media="all" />
+
+  </head>
+  <body>
+    <div id="pdf-header">
+      <div class="logo">
+        <% if FileTest.exists?("#{RAILS_ROOT}/public/uploads/image/institute_logo.jpg") %>
+            <%= image_tag  "#{RAILS_ROOT}/public/uploads/image/institute_logo.jpg" ,:width => "90",  :height=>"85" %>
+          <% else %>
+
+          <div class="fed_logo">
+            <%= image_tag  "#{RAILS_ROOT}/public/images/application/app_fedena_logo.jpg" ,:width => "90",  :height=>"85" %>
+          </div>
+          <% end %>
+      </div>
+      <div class="header-content">
+        <p><%=Configuration.get_config_value('InstitutionName'); %></p>
+        <p><%=Configuration.get_config_value('InstitutionAddress'); %></p>
+      </div>
+
+
+    </div>
+    <%= yield %>
+
+    <div id="pdf-footer">
+      Signature
+    </div>
+  </body>
+</html>

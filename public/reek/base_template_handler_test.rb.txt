@@ -1,0 +1,1 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/prawnto/test/base_template_handler_test.rb -- 0 warnings

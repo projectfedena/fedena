@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20091207090412_create_finance_fee_structure_elements.rb -- 3 warnings:
+  CreateFinanceFeeStructureElements has no descriptive comment (IrresponsibleModule)
+  CreateFinanceFeeStructureElements#self.up has approx 9 statements (LongMethod)
+  CreateFinanceFeeStructureElements#self.up has the variable name 't' (UncommunicativeName)

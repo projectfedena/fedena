@@ -1,0 +1,70 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Additional Exams</h1>
+  <h3>Result Entry</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+    <div class="box">
+       <div class="bread_crumb">
+       <%=  'Courses'%> &raquo;
+        <%= @additional_exam_group.batch.course.full_name%> &raquo;
+        <%=@additional_exam_group.batch.name %> &raquo;
+        <%= link_to 'Additional Exams', batch_additional_exam_groups_path(@batch) %> &raquo;
+        <%= link_to @additional_exam_group.name, [@additional_exam_group.batch, @additional_exam_group] %> &raquo;
+        <%= @additional_exam.subject.name %>
+        </div>
+
+
+    <% form_for :exams, :url =>save_additional_scores_additional_exam_group_additional_exam_url do |f| %>
+
+      <table id="listing" width="100%">
+        <tr class="tr-head">
+          <td>Name</td>
+          <% unless @additional_exam_group.exam_type == 'Grades' %>
+            <td>Marks</td>
+          <% else %>
+            <td>Grades</td>
+          <% end %>
+          <td>Remarks(absent/disqualified etc)</td>
+          <% unless @additional_exam_group.exam_type == 'Marks' %>
+            <td>Grade</td>
+          <% end %>
+        </tr>
+        <% @students.each do |student| %>
+                   <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-2"><%= student.full_name %> </td>
+            <% @additional_exam_score = @additional_exam.score_for(student) %>
+            <% unless @additional_exam_group.exam_type == 'Grades' %>
+              <td class="col-1"><div class="label-field-pair">
+                  <div class="text-input-bg">
+                    <%= text_field_tag "additional_exam[#{student.id}][marks]", @additional_exam_score.marks, :size => '4' %></div></div></td>
+            <% else %>
+              <td class="col-2"><%= select "additional_exam[#{student.id}]", "grading_level_id", @grades.map {|g| [g.name, g.id] },
+                  { :prompt =>"Select Grade", :selected => @additional_exam_score.grading_level_id } %></td>
+            <% end %>
+
+            <td class="col-2"><div class="label-field-pair2">
+                <div class="text-input-bg2">
+                  <%= text_field_tag "additional_exam[#{student.id}][remarks]", @additional_exam_score.remarks, :size => '40' %></div></div></td>
+            <% unless @additional_exam_group.exam_type == 'Marks' %>
+              <td class="col-1"><%= @additional_exam_score.grading_level %></td>
+            <% end %>
+          </tr>
+
+        <% end %>
+
+      </table>
+      <div id="sub-button"><%= submit_tag "", :value => "► Save", :class => "submit_button" %></div>
+    <% end %>
+
+    <div class="extender"></div>
+  </div>
+</div>

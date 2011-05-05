@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/in_place_editing/lib/in_place_editing.rb -- 1 warning:
+  InPlaceEditing::ClassMethods#in_place_edit_for calls params twice (Duplication)

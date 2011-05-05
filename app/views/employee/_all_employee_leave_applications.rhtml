@@ -1,0 +1,17 @@
+
+
+
+
+    <div class="label-field-pair">
+      <label for="leave_type">Select department</label>
+      <div class="text-input-bg"><%= select :leave_management_all, :department_id, @departments.map { |s| [s.name, s.id] },
+          {:prompt => "Select department"},
+          {:onChange => "#{remote_function(:url => {:action => "update_employees_select"},
+                                           :with => "'department_id='+value+ '&emp_id=#{@employee.id}'")}"} %></div>
+    </div>
+
+<div id="employees_select"> <%= render :partial => 'employee_select' %></div>
+<div class="extender"></div>
+
+
+

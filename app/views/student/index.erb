@@ -1,0 +1,58 @@
+<script type="text/javascript"> function setOption(optn) {document.getElementById("option").value = optn;} </script>
+
+<div id="content-header">
+  <img src="/images/student_details/student_details_logo.jpg" />
+  <h1><%= t('h1') %></h1>
+  <h3><%= t('h3') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to t('view_all'), :controller=>"student", :action=>"view_all" %></li>
+    <li><%= link_to t('advanced'), :controller=>"student", :action=>"advanced_search" %></li>
+  </ul>
+</div>
+
+<div id="page-yield">
+  <div id="search_box_bg">
+    <form name="search_form" action="" style="display:inline;">
+      <%= hidden_field_tag("option", params['option'], :value => "active") %>
+      <label for="user_name"><%= t('search') %>
+        <%= image_tag("loader.gif",
+          :align => "absmiddle",
+          :border => 0,
+          :id => "loader",
+          :style =>"display: none;" ) %>
+      </label>
+      <div id="search_textbox">
+        <%= text_field_tag("query", params['query'], :autocomplete => 'off') %>
+
+      </div>
+      <div class="radio_button">
+          <input type="radio" name="setopt" id="search_present_students_radio" checked="checked" onclick="setOption('active')" /><%= t('present_student') %>
+          <input type="radio" name="setopt" id ="search_former_students_radio"onclick="setOption('former')" /><%= t('former_student') %>
+        </div>
+      <div class="extender"></div>
+    </form>
+  </div>
+  <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
+
+  <div id="view_all">
+
+  </div>
+
+
+
+  <%= observe_fields ['query', 'option'],
+    :frequency => 0.5,
+    :update => 'information',
+    :before => "Element.show('loader')",
+    :success => "Element.hide('loader')",
+    :url => {:action => 'search_ajax'} %>
+
+  <div id="information"></div>
+
+</div>

@@ -1,0 +1,56 @@
+<div class="header">
+  <div class="prev">
+    <%= link_to_remote "◄", :url=>{:controller=>"employee_attendances", :action=>"show",:dept_id=>@dept.id, :next=>(@today-1.month)} %>
+  </div>
+  <div class="month">
+    <%= @today.strftime("%B %Y") %>
+  </div>
+  <div class="next">
+    <%= link_to_remote "►", :url=>{:controller=>"employee_attendances", :action=>"show",:dept_id=>@dept.id, :next=>(@today+1.month)} %>
+  </div>
+  <div class="extender"></div>
+</div>
+<div class="box-1">
+<table class="" align="center" width="100%">
+  <tr class="tr-head">
+    <td class="head-td-name">Name</td>
+    <% current_day = Date.today  %>
+    <% (@start_date..@end_date).each do |date| %>
+      <% if current_day.strftime("%a %d %y") == date.strftime("%a %d %y") %>
+        <td class="head-td-date active" ><div class="day"><%= date.strftime("%a") %></div> <div class="date"> <%= date.strftime("%d") %></div></td>
+      <% else %>
+        <td class="head-td-date"><div class="day"><%= date.strftime("%a") %></div> <div class="date"> <%= date.strftime("%d") %></div></td>
+      <% end %>
+
+    <% end %>
+
+  </tr>
+  <% @employees.each do |employee| %>
+    <tr class="tr-<%= cycle('odd', 'even')  %>">
+      <td class="td-name">
+        <%= employee.first_name %>
+        <div class="date">
+          <span><div><%= employee.full_name %></div></span>
+        </div>
+
+      </td>
+      <% (@start_date..@end_date).each do |date| %>
+        <% @absent = EmployeeAttendance.find_by_employee_id_and_attendance_date(employee.id, date) %>
+      <% if current_day.strftime("%a %d %y") == date.strftime("%a %d %y") %>
+        <td id="attendance-employee-<%= employee.id %>-day-<%= date %>" class="td-mark active">
+          <% else %>
+        <td id="attendance-employee-<%= employee.id %>-day-<%= date %>" class="td-mark">
+            <% end %>
+          <% unless @absent.nil? %>
+            <%= link_to_remote('X', {:url => edit_employee_attendance_path(@absent), :method => 'get'}, :class=> 'absent') %>
+          <% else %>
+            <%= link_to_remote('O', { :url => {:controller =>'employee_attendances', :action => 'new', :id=> date, :id2 =>employee.id}}, :class => 'present') %>
+          <% end %>
+          <div class="date"><span><%=  date.strftime("%a %d")%> <div> <%= employee.full_name %></div></span>
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+</div>

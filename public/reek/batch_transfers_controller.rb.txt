@@ -1,0 +1,13 @@
+D:/nithin/rails/fedena3/fedena2/app/controllers/batch_transfers_controller.rb -- 12 warnings:
+  BatchTransfersController has no descriptive comment (IrresponsibleModule)
+  BatchTransfersController#graduation calls params 4 times (Duplication)
+  BatchTransfersController#graduation calls params[:graduate] twice (Duplication)
+  BatchTransfersController#graduation calls params[:id] twice (Duplication)
+  BatchTransfersController#graduation has approx 7 statements (LongMethod)
+  BatchTransfersController#graduation has the variable name 's' (UncommunicativeName)
+  BatchTransfersController#transfer calls params 4 times (Duplication)
+  BatchTransfersController#transfer calls params[:transfer] 4 times (Duplication)
+  BatchTransfersController#transfer calls params[:transfer][:students] twice (Duplication)
+  BatchTransfersController#transfer calls params[:transfer][:to] twice (Duplication)
+  BatchTransfersController#transfer has approx 8 statements (LongMethod)
+  BatchTransfersController#transfer has the variable name 's' (UncommunicativeName)

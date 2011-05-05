@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20100403073735_create_events.rb -- 3 warnings:
+  CreateEvents has no descriptive comment (IrresponsibleModule)
+  CreateEvents#self.up has approx 8 statements (LongMethod)
+  CreateEvents#self.up has the variable name 't' (UncommunicativeName)

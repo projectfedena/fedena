@@ -1,0 +1,18 @@
+<%# unless @new_payslip_category == nil %>
+
+  <div id="list-payslip-category">
+    <%= render :partial=>"list_payslip_category" %>
+  </div>
+
+<%# end %>
+<div class="extender"></div>
+<div id="add-payslip-category-link">
+  
+  <%= link_to_remote "► Add new category",
+           :update => "payslip-category-form",
+           :url => {:action => "add_payslip_category"},
+            :with=>"'emp_id=#{emp_id}&salary_date=#{salary_date}'" ,:class=>'submit_button'%>
+</div>
+
+
+<div id="payslip-category-form"> </div>

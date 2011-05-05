@@ -1,0 +1,48 @@
+#form-contents{
+    padding:0 0 0 100px;
+}
+
+#personal-edit{
+    width:400px;
+}
+
+#personal-edit-label{
+    color:#BB0000;
+    font-weight:bold;
+    margin-bottom:20px;
+    text-decoration:underline;
+}
+.save-proceed-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:270px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+.text_input_bg input{
+    height:30px;
+}
+.sub-heading{
+    background:#9E0F15;
+    height: 1px;
+    border: none;
+    margin-bottom: 15px;
+}
+.span-sub-heading{
+    font-weight: bold;
+    padding-top:10px;
+}
+.label-underline{
+    background:  #eeeeee;
+    height: 1px;
+    border: none;
+}
+/*gjfihf*/
+

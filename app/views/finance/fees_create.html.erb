@@ -1,0 +1,26 @@
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="" />
+  <h1>Fees Create</h1>
+  <h3>Master Fees and Additional Fees</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
+
+    <div class="box">
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Master Fees", :action => "master_fees" %></div>
+    <div class="link-descr">Creates Master Fees</div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Additional Fees", :action => "additional_fees" %></div>
+    <div class="link-descr">Creates Additional Fees</div>
+  </div>
+  
+  
+</div>
+</div>

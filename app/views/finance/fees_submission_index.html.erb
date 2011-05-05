@@ -1,0 +1,23 @@
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+  <h1>Fees Submission</h1>
+  <h3>Student fees submission</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <div class="box">
+  <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Fees submission by course", :action => "fees_submission_batch" %> </div>
+    <div class="link-descr">Fees submission by selecting each course </div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Fees submission for each student", :action => "fees_student_search" %> </div>
+    <div class="link-descr">Submitting fees by searching each students </div>
+  </div>
+
+</div>
+</div>

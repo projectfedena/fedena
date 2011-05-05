@@ -1,0 +1,6 @@
+D:/nithin/rails/fedena3/fedena2/app/models/configuration.rb -- 5 warnings:
+  Configuration has no descriptive comment (IrresponsibleModule)
+  Configuration#save doesn't depend on instance state (LowCohesion)
+  Configuration#save has the variable name 'f' (UncommunicativeName)
+  Configuration#save refers to f more than self (LowCohesion)
+  Configuration#save refers to upload more than self (LowCohesion)

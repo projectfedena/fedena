@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/hr/bank_field.rb -- 1 warning:
+  BankField has no descriptive comment (IrresponsibleModule)

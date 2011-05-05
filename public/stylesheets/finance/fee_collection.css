@@ -1,0 +1,94 @@
+
+.link-box {
+    margin:10px 40px;
+    width:270px;
+    float:left;
+    height:80px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+.link-descr {
+    margin-top:5px;
+    color:#666;
+    text-align:justify;
+}
+#fee-collections-list ul {
+    padding-top : 50px;
+    padding-left: 0px;
+    width : 500px;
+}
+#fee-collections-list ul li {
+    background : #fff url(../../images/_global/list-bg-repeat.jpg) repeat;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 40px;
+}
+#fee-collections-list ul li .fee-name,
+#fee-collections-list ul li .fee-edit-link,
+#fee-collections-list ul li .fee-delete-link {
+    float : left;
+    margin : 0 10px 0 0;
+
+}
+#fee-collections-list ul li .fee-name {
+    width : 350px;
+}
+
+#fee-collections-list ul li .fee-edit-link a,
+#fee-collections-list ul li .fee-delete-link a {
+    color : #000;
+    text-decoration : none;
+}
+
+#MB_frame .label-field-pair select {
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px;
+    background:none repeat scroll 0 0 #EEEEEE;
+    border:1px solid #C6C6C6;
+    margin:5px 10px 0 5px;
+    padding:5px;
+    width:150px;
+}
+.submit_button {
+    margin-top:15px;
+    margin-left:180px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.box{
+    width:750px;
+    margin:0px auto;
+}
+
+.each_batch{
+    font-size: 12px;
+    overflow:auto;
+    width:260px;
+}
+
+.fee_category_scroll {
+    height:76px;
+    margin-left:200px;
+    margin-top:-53px;
+    overflow:auto;
+    width:280px;
+}
+
+.sel-list {
+    margin-bottom: 2px;
+    width: 257px;
+}

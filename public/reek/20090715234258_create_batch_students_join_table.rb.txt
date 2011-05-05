@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090715234258_create_batch_students_join_table.rb -- 2 warnings:
+  CreateBatchStudentsJoinTable has no descriptive comment (IrresponsibleModule)
+  CreateBatchStudentsJoinTable#self.up has the variable name 't' (UncommunicativeName)

@@ -1,0 +1,12 @@
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+  <h1>Asset-Liability Management</h1>
+  <h3>Liability View</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <div id="liability_list"><%= render :partial => "liability_list" %> </div>
+  <div id="modal-box" style="display:none;"></div>
+</div>

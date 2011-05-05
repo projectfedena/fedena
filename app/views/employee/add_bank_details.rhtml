@@ -1,0 +1,48 @@
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Employee Settings</h1>
+  <h3>Add Bank Details</h3>
+  <div id="app-back-button">
+      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+    <%- form_for :bank_field do |c| -%>
+
+      <%= error_messages_for 'bank_field' %>
+      <div id="form-content">
+        <div class="label-field-pair">
+          <label for="category_name">Name</label>
+          <div class="text-input-bg"> <%= c.text_field :name %> </div>
+        </div>
+
+        <div class="label-checkbox-pair">
+          <label class="status" for="status">Status</label>
+          <div id="radio-buttons">
+            <%= c.radio_button  "status", "true", :checked => "checked" %>
+            <label class="label_for_status" for="add_grade_status_true">Active</label>
+
+            <%= c.radio_button  "status", "false" %>
+            <label class="label_for_status" for="add_grade_status_false">Inactive</label>
+          </div>
+        </div>
+
+        <div id="submit-button">
+          <%=submit_tag("► Create") %>
+        </div>
+      </div>
+
+
+    <%- end -%>
+
+    <div id="category-list">
+      <%= render :partial => "bank_fields" %>
+    </div>
+
+</div>

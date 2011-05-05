@@ -1,0 +1,120 @@
+
+#admission1-form {
+    padding-left:50px;
+}
+#necessary-field-notification {
+    font-weight : bold;
+    padding : 10px 0 30px 0;
+}
+.necessary-field {
+    color : #f00;
+    font-size : 1.1em;
+}
+
+
+#edit_form img {
+    width:22px;
+    height:27px;
+    float:left;
+    margin:0;
+    border:0;
+    padding:8px 0 0 0;
+}
+#edit_form h4 {
+    margin : 0;
+    padding : 10px 0 0 40px;
+}
+
+
+.submit_button3 {
+    margin-top:30px;
+    margin-left:50px;
+    float:left;
+}
+
+input#student_image_file{
+    height: 25px;
+}
+.label-gender-edit{
+    color:#444444;
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:10px;
+    width:220px;
+    float:left;
+    
+}
+.edit_student_gender{
+    float:left;
+    padding-top:5px;
+    width:300px;
+    
+}
+.submit_button{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:270px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+.submit_button:hover{
+   background:  #373B3F;
+}
+.label-field-pair-edit{
+    float:left;
+    height:80px;
+    width:450px;
+}
+.label-field-pair-edit label{
+    color:#444444;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:10px;
+}
+.label-field-pair-edit input{
+    -moz-background-clip:border;
+-moz-background-inline-policy:continuous;
+-moz-background-origin:padding;
+-moz-border-radius-bottomleft:10px;
+-moz-border-radius-bottomright:10px;
+-moz-border-radius-topleft:10px;
+-moz-border-radius-topright:10px;
+-webkit-border-radius:10px;
+background:#EEEEEE none repeat scroll 0 0;
+border:1px solid #C6C6C6;
+height:17px;
+margin:5px 0 0 10px;
+padding:5px;
+width:205px;
+}
+.sub-heading{
+    background:#9E0F15;
+    height: 1px;
+    border: none;
+    margin-bottom: 15px;
+}
+.span-sub-heading{
+    font-weight: bold;
+    padding-top:10px;
+}
+.label-field-pair-edit input:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+.label-underline{
+    background:  #eeeeee;
+    height: 1px;
+    border: none;
+}

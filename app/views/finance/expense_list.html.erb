@@ -1,0 +1,33 @@
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="" />
+  <h1>Expenses</h1>
+  <h3>Expenses List</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <div class="box">
+    <% unless flash[:notice].nil? %>
+    <p class="flash-msg"><%= flash[:notice] %></p>
+  <% end %>
+    <% unless flash[:warn_notice].nil? %>
+    <div id="errorExplanation" class="errorExplanation"><p><%= flash[:warn_notice] %></p> </div>
+  <% end %>
+    <% form_for :report, :url => {:action => 'expense_list_update'} do |form| %>
+      <div class="label-field-pair">
+        <label>Select start date:</label>
+        <div class="input-container"><%= calendar_date_select_tag 'start_date', Date.today %></div>
+      </div>
+      <div class="label-field-pair">
+        <label>Select End date: </label>
+        <div class="input-container"><%= calendar_date_select_tag 'end_date', Date.today %></div>
+      </div>
+
+      <%=  submit_tag "► OK",:class=>'submit_button' %>
+    <%end%>
+    <div id="expense_list">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+  <h1>Finance transactions</h1>
+  <h3>Expences and income</h3>
+  <div id="app-back-button">
+     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+<% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
+
+<div class="box">
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Add expense", :action => "expense_create" %></div>
+    <div class="link-descr">Creates new expenses </div>
+  </div>
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Add income", :action => "income_create" %></div>
+    <div class="link-descr">Create new income</div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Report", :action => "monthly_report" %></div>
+    <div class="link-descr">Shows transactions</div>
+  </div>
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Compare Transaction", :action => "compare_report" %></div>
+    <div class="link-descr">Compare Transactions</div>
+  </div>
+
+</div>
+</div>

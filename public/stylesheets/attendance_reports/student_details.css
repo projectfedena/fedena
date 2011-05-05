@@ -1,0 +1,10 @@
+.label-field-pair label {
+    color:#444444;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:600;
+    margin:0 100px 10px;
+    padding-top:10px;
+    width:500px;
+}

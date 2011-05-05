@@ -1,0 +1,204 @@
+
+#page-yield {
+    margin-top : 20px;
+}
+#student_profile_heading {
+    background-color:#FFF1AB;
+    border:1px solid #EFDF95;
+    clear:both;
+    height:25px;
+    margin:0 0 40px;
+    padding:2px 0 0 190px;
+}
+#profile_picture_display {
+    float:left;
+    width:125px;
+    height:125px;
+    margin-left:50px;
+    border:8px solid #EFEFD1;
+}
+#profile_picture_display img {
+    width:125px;
+    height:125px;
+}
+#student_main_info {
+    float:left;
+    text-align:center;
+}
+#student_main_info span.name {
+    margin:0;
+    color:#000;
+    font-size:14px;
+    font-weight: 600;
+    letter-spacing:.5px;
+    padding-right:20px;
+    margin-top:30px;
+}
+#student_main_info span.course {
+    margin : 0;
+    font-size:14px;
+    padding-right:20px;
+    font-weight: 600;
+    color : #000;
+    margin-top : 10px;
+}
+#student_main_info span.adm {
+    font-size:14px;
+    margin : 0;
+    font-weight: 600;
+    padding : 0;
+    color : #000;
+    margin-top : 5px;
+}
+#guardians-links {
+    margin : 20px 0 20px 100px;
+}
+#guardians-links ul li {
+    font-weight : bold;
+    margin-left:30px;
+}
+#guardians-links ul li a {
+    text-decoration : none;
+    color:#548AB2;
+}
+#guardians-links ul li a:hover {
+    text-decoration : underline;
+    color:#b00;
+}
+#parent-list {
+    height : auto;
+    width : 760px;
+    margin:0px auto;
+}
+#new_profile_info_top {
+    margin:30px auto;
+    width:697px;
+
+}
+.new_profile_info_area1 {
+
+}
+.profile_info_label_top {
+    padding-top:25px;
+    height:30px;
+    width:120px;
+    text-align:right;
+    padding-right:20px;
+    float:left;
+    font-weight:bold;
+    color:#548ab2;
+}
+.profile_info_label {
+    padding-top:15px;
+    padding-bottom:5px;
+    height:25px;
+    width:150px;
+    text-align:right;
+    padding-right:20px;
+    float:left;
+    font-weight:bold;
+    color:#548ab2;
+    background: #eff3fe;
+    border-top:1px solid #bdcfff;
+    margin-right:5px;
+}
+.profile_info_label2 {
+    padding-top:15px;
+    padding-bottom:5px;
+    height:25px;
+    width:150px;
+    text-align:right;
+    padding-right:20px;
+    float:left;
+    font-weight:bold;
+    color:#548ab2;
+    background: #dae6ff;
+    border-top:1px solid #bdcfff;
+    margin-right:5px;
+}
+.profile_info_text {
+    padding-top:15px;
+    padding-bottom:5px;
+    padding-left:20px;
+    height:25px;
+    width:500px;
+    float:left;
+    font-weight:bold;
+    color:#000;
+    background: #eff3fe;
+    border-top:1px solid #bdcfff;
+}
+.profile_info_text2 {
+    padding-top:15px;
+    padding-bottom:5px;
+    padding-left:20px;
+    height:25px;
+    width:500px;
+    float:left;
+    font-weight:bold;
+    color:#000;
+    background:#dae6ff;
+    border-top:1px solid #bdcfff;
+}
+.user_button {
+    margin-top:40px;
+    margin-left:270px;
+}
+
+.parent-del-button {
+    margin : 20px 0 40px 600px;
+}
+.profile_top_banner{
+    position:absolute;
+    float:right;
+    padding-left:525px;
+    margin-top:-12px;
+
+}
+.parent-edit-button{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    margin-left:10px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    width:70px;
+    cursor:pointer;
+    float:left;
+}
+.parent-edit-button:hover{
+    background: #373B3F;
+}
+.parent-edit-button a{
+    color:#fff;
+    text-decoration: none;
+}
+#guardians-links span{
+    font-weight:600;
+    color:#444444;
+    margin-bottom: 10px;
+    display:block;
+    text-decoration: underline;
+}
+.button-pair{
+    width:220px;
+    margin:20px auto;
+}
+#inner-tab-menu ul li {
+    background-color:#9D0E00;
+    color:#FFFFFF;
+    float:left;
+    font-size:0.9em;
+    height:1.5em;
+    list-style-type:none;
+    margin:0 0 0 10px;
+    padding:0 5px;
+    text-align:center;
+    width:100px;
+}

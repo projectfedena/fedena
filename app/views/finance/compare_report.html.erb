@@ -1,0 +1,52 @@
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+  <h1>Transactions</h1>
+  <h3>Monthly Transactions</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <div class="box">
+  <div id="report">
+    <% form_for :report, :url => {:action => 'report_compare'} do |form| %>
+      <div class="label-field-pair">
+        <label>
+          Select start date:
+        </label>
+        <div class="text-input-bg">
+          <%= calendar_date_select_tag 'start_date', Date.today %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label>
+          Select end date:
+        </label>
+        <div class="text-input-bg">
+          <%= calendar_date_select_tag 'end_date', Date.today %>
+        </div>
+      </div>
+    <h4>Compare With </h4>
+      <div class="label-field-pair">
+        <label>
+          Select start date:
+        </label>
+        <div class="text-input-bg">
+          <%= calendar_date_select_tag 'start_date2', Date.today %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label>
+          Select end date:
+        </label>
+        <div class="text-input-bg">
+          <%= calendar_date_select_tag 'end_date2', Date.today %>
+        </div>
+      </div>
+          <%=  submit_tag "► Get Report",:class=>'submit_button' %>
+    <%end%>
+  </div>
+</div>
+</div>
+

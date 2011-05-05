@@ -1,0 +1,176 @@
+<div id="content-header">
+  <img src="/images/student_details/student_details_logo.jpg" />
+  <h1>Students</h1>
+  <h3>Previous marks overview</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <li>
+      <%= link_to '► PDF ',{:controller => "exam",:action=> 'previous_years_marks_overview_pdf',:student => @student.id},:target=> '_blank' %>
+    </li>
+  </ul>
+</div>
+
+<div id="page-yield">
+
+  <div class="box">
+    <div id="register">
+      <%  @type = params[:type] %>
+      <% this_user = User.find(session[:user_id]) if session[:user_id] %>
+      <% unless this_user.student? %>
+        <div class="header">
+          <div class="prev">
+            <%= link_to '◄',:action=>'previous_years_marks_overview',:student=>@student.previous_student,:type=>@type  %>
+          </div>
+          <div class="month">
+            <%= @student.full_name %>
+          </div>
+
+          <div class="next">
+            <%= link_to '►',:action=>'previous_years_marks_overview',:student=>@student.next_student,:type=>@type  %>
+          </div>
+          <div class="extender"></div>
+        </div>
+      <% end %>
+    </div>
+    <% @all_batches.each do |b| %>
+      <%   if @type == 'grouped' %>
+        <%   @grouped_exams = GroupedExam.find_all_by_batch_id(b.id) %>
+        <%   @exam_groups = [] %>
+        <%   @grouped_exams.each do |x| %>
+          <%   @exam_groups.push ExamGroup.find(x.exam_group_id) %>
+        <%   end %>
+      <% else %>
+        <%   @exam_groups = ExamGroup.find_all_by_batch_id(b.id) %>
+      <%  end %>
+      <%  general_subjects = Subject.find_all_by_batch_id(b.id, :conditions=>"elective_group_id IS NULL AND is_deleted=false") %>
+      <%  student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{b.id}") %>
+      <%  elective_subjects = [] %>
+      <%  student_electives.each do |elect| %>
+        <%    elective_subjects.push Subject.find(elect.subject_id) %>
+      <%  end %>
+      <%  @subjects = general_subjects + elective_subjects %>
+      <div id="register">
+        <div class="header2">
+          <div class="month">
+            <% exam = ExamScore.new() %>
+            <% @aggr =  exam.batch_wise_aggregate(@student,b)  %>
+            <%= b.name %> | Aggregate : <%="%.2f" %@aggr.to_f unless @aggr== 'nil' or @aggr.nil? %>
+          </div>
+          <div class="extender"></div>
+        </div>
+      </div>
+    <div id="score-table">
+      <table id="listing" width="100%">
+        <tr class="tr-head">
+          <td>Subject</td>
+          <% @exam_groups.each do |exam_group| %>
+            <td><%= exam_group.name %></td>
+          <% end %>
+          <td>Total</td>
+        </tr>
+
+        <% @subjects.each do |subject| %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-2" ><%= subject.name %></td>
+            <% @mmg = 1;@g = 1 %>
+
+            <% @exam_groups.each do |exam_group| %>
+
+              <% @exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id) %>
+              <% exam_score = ExamScore.find_by_student_id(@student.id, :conditions=>{:exam_id=>@exam.id})unless @exam.nil? %>
+              <% unless exam_score.nil?  %>
+                <% if exam_group.exam_type == "MarksAndGrades" %>
+                  <td class="col-3"><% unless @exam.nil?  %>
+                      <%= exam_score.marks || "-" %>/<%= @exam.maximum_marks %>|<%= exam_score.grading_level || "-" %></td>
+                  <% end  %>
+                <% elsif exam_group.exam_type == "Marks" %>
+                  <td class="col-3"><%= exam_score.marks || "-" unless @exam.nil? %>/<%= @exam.maximum_marks unless @exam.nil?%></td>
+                <% else %>
+                  <td class="col-3"><%= exam_score.grading_level || "-" unless exam_score.nil? %></td>
+                  <% @g = 0 %>
+                <% end %>
+              <% else %>
+                <td></td>
+              <% end %>
+            <% end %>
+            <% total_score = ExamScore.new() %>
+            <% if @mmg == @g %>
+              <td class="col-1"><%= total_score.grouped_exam_subject_total(subject,@student,@type,b) %></td>
+            <% else %>
+              <td class="col-1">-</td>
+            <% end %>
+          </tr>
+
+        <% end %>
+        <tr class="tr-head">
+          <td>Total</td>
+          <% @max_total = 0 %>
+          <% @marks_total = 0 %>
+
+          <% @exam_groups.each do |exam_group| %>
+            <% if exam_group.exam_type == "MarksAndGrades" %>
+              <td><%= exam_group.total_marks(@student)[0] %></td>
+            <% elsif exam_group.exam_type == "Marks" %>
+              <td><%= exam_group.total_marks(@student)[0] %></td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+            <% unless exam_group.exam_type == "Grades" %>
+              <% @max_total = @max_total + exam_group.total_marks(@student)[1] %>
+              <% @marks_total = @marks_total + exam_group.total_marks(@student)[0] %>
+            <% end %>
+          <% end %>
+          <td></td>
+        </tr>
+        <tr></tr>
+      </table>
+       </div>
+      <br />
+      <% @additional_exam_groups = AdditionalExamGroup.find_all_by_batch_id(b) %>
+      <% @additional_exam_groups.each do |additional_exam_group| %>
+        <% if additional_exam_group.students.include?(@student) %>
+          <div id="additional_register">
+            <div class="header2">
+              <div class="month">
+                <%= b.name+" | "+ additional_exam_group.name%>
+              </div>
+
+              <div class="extender"></div>
+            </div>
+          </div>
+          <% @additional_exams = AdditionalExam.find_all_by_additional_exam_group_id(additional_exam_group) %>
+          <table id="additional_listing" width="100%">
+            <tr class="tr-head">
+              <td>Subject</td>
+              <% unless additional_exam_group.exam_type == "Grades" %>      <td>Marks</td> <% end %>
+              <% unless additional_exam_group.exam_type == "Marks" %> <td> Grades </td><% end %>
+            </tr>
+            <% @additional_exams.each do |exam| %>
+              <% unless (exam.score_for(@student).marks.nil? &&  exam.score_for(@student).grading_level_id.nil?)   %>
+                <tr  class="tr-<%= cycle('odd', 'even') %>">
+                  <td class="col-3" ><%= exam.subject.name %></td>
+                  <% unless additional_exam_group.exam_type == "Grades" %>  <td class="col-3"><%= exam.score_for(@student).marks || "-"  %> </td> <% end %>
+                  <% unless additional_exam_group.exam_type == "Marks" %> <td class="col-3"><%= exam.score_for(@student).grading_level || "-" %> </td> <% end %>
+                </tr>
+              <% end %>
+            <% end %>
+          </table>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <br />
+    <br />
+    <%  unless @aggr == 'nil'  %>
+      <script type="text/javascript" src="/javascripts/swfobject.js"></script>
+      <%= @graph %>
+    <% end  %>
+
+
+
+    <div class="extender"></div>
+  </div></div>

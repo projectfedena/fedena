@@ -1,0 +1,76 @@
+
+#add_news_form {
+    padding-left:50px;
+}
+.news_label_field {
+    width:285px;
+}
+.news_label_field label {
+    font-weight:bold;
+    display:block;
+    color:#444;
+    margin-bottom:10px;
+}
+#news_title_text_field_bg {
+    background-color: #eee;
+    height:46px;
+    border: 1px solid #c6c6c6;
+    margin-bottom:20px;
+    width:652px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+#news_title_text_field_bg input {
+    width:615px;
+    height:33px;
+    background:transparent;
+    border:none;
+    padding-left:10px;
+    padding-top:5px;
+    font-weight:bold;
+    font-size:25px;
+}
+#news_content_text_field_bg {
+    background-color: #eee;
+    border: 1px solid #c6c6c6;
+    height: 273px;
+    margin: 0 0 20px 0;
+    padding: 10px;
+    width:632px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+#news_content_text_field_bg textarea {
+    background:transparent;
+    border:2px solid #ddd;
+}
+#announcement_content {
+    width:615px;
+    height:260px;
+    background:transparent;
+    padding: 5px 0 0 10px;
+    font-size:18px;
+}
+.news_publish_button {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:270px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+.news_publish_button:hover{
+   background:  #373B3F;
+}
+.fieldWithErrors {
+    height: 42px;
+    width: 648px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}

@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/prawnto/lib/prawnto/action_view.rb -- 1 warning:
+  Prawnto::ActionView#_prawnto_compile_setup has boolean parameter 'dsl_setup' (ControlCouple)

@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/app/models/finance/finance_fee.rb -- 4 warnings:
+  FinanceFee has no descriptive comment (IrresponsibleModule)
+  FinanceFee#defaulters doesn't depend on instance state (LowCohesion)
+  FinanceFee#defaulters has the variable name 'f' (UncommunicativeName)
+  FinanceFee#defaulters refers to f more than self (LowCohesion)

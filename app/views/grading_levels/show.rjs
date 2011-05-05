@@ -1,0 +1,1 @@
+page.replace_html 'grading-levels', :partial => 'grading_levels'

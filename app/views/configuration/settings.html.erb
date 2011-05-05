@@ -1,0 +1,114 @@
+<%=  @file_size %>
+<div id="content-header">
+  <img src="/images/show_settings.png" />
+  <h1>Configuration</h1>
+  <h3>General Settings</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <% form_for(:configuration,:html=> {:multipart=>true}) do |c| %>
+    <div class="box">
+      <div class="label-field-pair">
+        <label for="configuration_currency_type">School/College Name</label>
+        <div class="text-input-bg">
+          <%= text_field :configuration, :institution_name, :value => @config[:institution_name] %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="configuration_currency_type">School/College Address</label>
+        <div class="text-input-bg">
+          <%= text_field :configuration, :institution_address, :value => @config[:institution_address] %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="configuration_currency_type">School/College Phone</label>
+        <div class="text-input-bg">
+          <%= text_field :configuration, :institution_phone_no, :value => @config[:institution_phone_no] %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="configuration_student_attendance_type">Student Attendance Type</label>
+        <div class="text-input-bg">
+          <%= select :configuration, :student_attendance_type, Configuration::STUDENT_ATTENDANCE_TYPE_OPTIONS,
+            :selected => @config[:student_attendance_type] %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="configuration_currency_type">Financial year start date</label>
+        <div class="text-input-bg">
+          <%= calendar_date_select_tag 'configuration[financial_year_start_date]', @config[:financial_year_start_date],
+            :year_range => 15.years.ago..5.years.from_now %>
+        </div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="configuration_currency_type">Financial year end date</label>
+        <div class="text-input-bg">
+          <%= calendar_date_select_tag 'configuration[financial_year_end_date]', @config[:financial_year_end_date],
+            :year_range => 15.years.ago..5.years.from_now %>
+        </div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="configuration_currency_type">Currency Type</label>
+        <div class="text-input-bg">
+          <%= text_field :configuration, :currency_type, :value => @config[:currency_type] %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="configuration_currency_type">Upload Logo</label>
+        <div class="text-input-bg">
+          <%= file_field 'upload', 'datafile' %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="configuration_currency_type">Network State</label>
+        <div class="text-input-bg">
+          <%= select :configuration, :network_state, ['Online','Offline'],:selected =>@config[:network_state] %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">Enable Automatic Reset</label>
+        <% if @config[:automatic_leave_reset] == '1' %>
+          <div class="check_box"><%= check_box :configuration, :automatic_leave_reset, :checked => true %></div>
+        <% else %>
+          <div class="check_box"><%= check_box :configuration, :automatic_leave_reset, :checked => false %></div>
+        <% end %>
+      </div>
+      <div class="label-field-pair">
+        <label for="configuration_currency_type">Leave Reset Period(months)</label>
+        <div class="text-input-bg">
+          <%= text_field :configuration, :leave_reset_period, :value => @config[:leave_reset_period] %>
+        </div>
+      </div>
+      <div class="extender"></div>
+      <br/>
+      <% if @config[:admission_number_auto_increment] == '1' %>
+        <%= check_box :configuration, :admission_number_auto_increment, :checked => true %> Enable Auto increment Student admission no.
+      <% else %>
+        <%= check_box :configuration, :admission_number_auto_increment, :checked => false %> Enable Auto increment Student admission no.
+      <% end %>
+      <br/>
+      <% if Configuration.available_modules.include?('HR') %>
+        <% if @config[:employee_number_auto_increment] == '1' %>
+          <%= check_box :configuration, :employee_number_auto_increment, :checked => true %> Enable Auto increment Employee no.
+        <% else %>
+          <%= check_box :configuration, :employee_number_auto_increment, :checked => false %> Enable Auto increment Employee no.
+        <% end %>
+      <% end %>
+      <div id="submit-button">
+        <%= submit_tag "► Update" %>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>

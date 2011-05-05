@@ -1,0 +1,1 @@
+D:/nithin/rails/fedena3/fedena2/app/helpers/weekdays_controller_helper.rb -- 0 warnings

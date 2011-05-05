@@ -1,0 +1,27 @@
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="" />
+  <h1><%= t('finance.index.finance') %></h1>
+  <h3><%= t('export_to_tally') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <div class="box">
+<div class="label-field-pair">
+  <% form_for :tally do |f| %>
+    <label for="student_grade"><%= t('layouts.default.start_date') %></label>
+    <div class="text-input-bg"><%= calendar_date_select_tag 'xml[start_date]', I18n.localize(Date.today, :format=>:default),
+        :year_range => 1.years.ago..1.years.from_now %>
+    </div>
+  </div>
+  <div class="label-field-pair">
+    <label for="student_grade"><%= t('layouts.default.end_date') %></label>
+    <div class="text-input-bg"><%= calendar_date_select_tag 'xml[end_date]', I18n.localize(Date.today, :format=>:default),
+        :year_range => 1.years.ago..1.years.from_now %>
+    </div>
+  </div>
+<%= submit_tag "► #{t('settings.save_changes')}",:class=>'submit_button' %>
+<% end %>
+  </div>
+</div>

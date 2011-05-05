@@ -1,0 +1,6 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/prawnto/test/action_controller_test.rb -- 5 warnings:
+  ActionControllerTest has no descriptive comment (IrresponsibleModule)
+  ActionControllerTest#test_process doesn't depend on instance state (LowCohesion)
+  ActionControllerTest#test_process refers to controller more than self (LowCohesion)
+  ActionControllerTest#test_process refers to request more than self (LowCohesion)
+  ActionControllerTest::PrawntoController has no descriptive comment (IrresponsibleModule)

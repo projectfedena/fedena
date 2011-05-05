@@ -1,0 +1,211 @@
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+  <h1>Transactions</h1>
+  <h3>Transactions comparison</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<br/>
+<% unless @salary == 0 and @donations_total == 0 and @transactions_fees and @other_transactions.empty? %>
+    <script type="text/javascript" src="/javascripts/swfobject.js"></script>
+    <%= @graph %>
+  <% end %>
+
+
+<br/>
+<br/>
+<br/>
+<h4>Report for the period from <%= @start_date.strftime("%d-%m-%Y") %> to <%= @end_date.strftime("%d-%m-%Y") %></h4>
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    
+      <tr class="tr-head">
+        <td>Sl no.</td>
+        <td>Particulars</td>
+        <td>Expenses(<%= currency %>)</td>
+        <td>Income(<%= currency %>)</td>
+
+        <td>Date</td>
+      </tr>
+      <tr class="tr-blank"></tr>
+      <% index = 0  %>
+      <%income_total = 0%>
+      <%expenses_total = 0%>
+
+      <% unless @hr.nil? %>
+
+        <tr class="tr-odd">
+          <td class="col-1"><%= index+=1 %></td>
+          <% unless @salary == 0 %>
+            <td class="col-2"><%= link_to "Salary Account" , :action => 'salary_department' , :start => @start_date,:end => @end_date%> </td>
+          <% else %>
+            <td class="col-2">Salary Account</td>
+          <% end %>
+          <td class="col-3" align="right"><%= @salary%></td>
+          <td> </td>
+          <td class="col-3"> - </td>
+        </tr>
+
+      <% end %>
+
+      <tr class="tr-even">
+      <td class="col-1"><%= index+=1 %></td>
+        <% unless @donations_total == 0 %>
+          <td class="col-2"><%= link_to "Donations" , :action => 'donations_report',:start => @start_date,:end => @end_date%></td>
+        <% else %>
+          <td class="col-2">Donations</td>
+        <% end %>
+        <td></td>
+        <td class="col-3" align="right"><%=@donations_total%></td>
+        <td class="col-3"> - </td>
+      </tr>
+
+
+      <tr class="tr-odd">
+        <td class="col-1"><%= index+=1 %></td>
+        <% unless @transactions_fees == 0 %>
+          <td class="col-2"><%= link_to "Fees Account" , :action => 'fees_report' , :start => @start_date,:end => @end_date%> </td>
+        <% else %>
+          <td class="col-2">Fees Account</td>
+        <% end %>
+        <td></td>
+        <td class="col-3" align="right"><%=@transactions_fees%></td>
+        <td class="col-3"> - </td>
+      </tr>
+ 
+      <% @other_transactions.each_with_index do |t,i| %>
+        <tr class="tr-<%= cycle("even","odd") %>">
+          <td class ="col-1"><%=i+index+1%></td>
+          <% if t.category.is_income? %>
+            <td class="col-2"><%= t.title %> </td>
+            <td></td>
+            <td class="col-3" align="right"><%=  t.amount%></td>
+            <td class="col-3"><%=t.transaction_date.strftime("%m-%d-%Y")%></td>
+            <%income_total +=t.amount%>
+
+          <%else%>
+            <td class="col-2"><%= t.title %> </td>
+            <td class="col-3" align="right"><%=  t.amount%></td>
+            <td></td>
+            <td class="col-3"><%=t.transaction_date.strftime("%m-%d-%Y")%></td>
+
+            <%expenses_total +=t.amount%>
+          <%end%>
+        </tr>
+      <%end%>
+      <tr class="tr-blank"></tr>
+      <tr class="tr-odd">
+        <td class="col-1"> </td>
+        <td class="col-2">Grand Total</td>
+        <% if @grand_total >= 0 %>
+          <td></td>
+          <td class="col-3" align="right"><%= @grand_total%></td>
+        <% else %>
+          <td class="col-3" align="right"><%= @grand_total%></td>
+          <td></td>
+        <% end %>
+        <td class="col-3">  </td>
+      </tr>
+   
+  </table>
+<%#= will_paginate@other_transactions,:params => {:start_date => @start_date , :end_date => @end_date}%>
+<br/>
+<h4>Report for the period from <%= @start_date2.strftime("%d-%m-%Y") %> to <%= @end_date2.strftime("%d-%m-%Y") %></h4>
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    
+      <tr class="tr-head">
+        <td>Sl no.</td>
+        <td>Particulars</td>
+        <td>Expenses ( <%= currency %> )</td>
+        <td>Income ( <%= currency %> )</td>
+
+        <td>Date</td>
+      </tr>
+      <tr class="tr-blank"></tr>
+      <% index = 0  %>
+      <%income_total = 0%>
+      <%expenses_total = 0%>
+
+      <% unless @hr.nil? %>
+
+        <tr class="tr-odd">
+          <td class="col-1"><%= index+=1 %></td>
+          <% unless @salary2 == 0 %>
+            <td class="col-2"><%= link_to "Salary Account" , :action => 'salary_department' , :start => @start_date2,:end => @end_date2%> </td>
+          <% else %>
+            <td class="col-2">Salary Account</td>
+          <% end %>
+          <td class="col-3" align="right"><%= @salary2%></td>
+          <td> </td>
+          <td class="col-3"> - </td>
+        </tr>
+
+      <% end %>
+
+      <tr class="tr-even">
+      <td class="col-1"><%= index+=1 %></td>
+        <% unless @donations_total2 == 0 %>
+          <td class="col-2"><%= link_to "Donations" , :action => 'donations_report',:start => @start_date2,:end => @end_date2%></td>
+        <% else %>
+          <td class="col-2">Donations</td>
+        <% end %>
+        <td></td>
+        <td class="col-3" align="right"><%=@donations_total2%></td>
+        <td class="col-3"> - </td>
+      </tr>
+
+
+      <tr class="tr-odd">
+        <td class="col-1"><%= index+=1 %></td>
+        <% unless @transactions_fees2 == 0 %>
+          <td class="col-2"><%= link_to "Fees Account" , :action => 'fees_report' , :start => @start_date2,:end => @end_date2%> </td>
+        <% else %>
+          <td class="col-2">Fees Account</td>
+        <% end %>
+        <td></td>
+        <td class="col-3" align="right"><%=@transactions_fees2%></td>
+        <td class="col-3"> - </td>
+      </tr>
+
+      <% @other_transactions2.each_with_index do |t,i| %>
+        <tr class="tr-<%= cycle("even","odd") %>">
+          <td class ="col-1"><%=i+index+1%></td>
+          <% if t.category.is_income? %>
+            <td class="col-2"><%= t.title %> </td>
+            <td></td>
+            <td class="col-3" align="right"><%=  t.amount%></td>
+            <td class="col-3"><%=t.transaction_date.strftime("%m-%d-%Y")%></td>
+            <%income_total +=t.amount%>
+
+          <%else%>
+            <td class="col-2"><%= t.title %> </td>
+            <td class="col-3" align="right"><%=  t.amount%></td>
+            <td></td>
+            <td class="col-3"><%=t.transaction_date.strftime("%m-%d-%Y")%></td>
+
+            <%expenses_total +=t.amount%>
+          <%end%>
+        </tr>
+      <%end%>
+      <tr class="tr-blank"></tr>
+      <tr class="tr-odd">
+        <td class="col-1"> </td>
+        <td class="col-2">Grand Total</td>
+        <% if @grand_total2 >= 0 %>
+          <td></td>
+          <td class="col-3" align="right"><%= @grand_total2%></td>
+        <% else %>
+          <td class="col-3" align="right"><%= @grand_total2%></td>
+          <td></td>
+        <% end %>
+        <td class="col-3">  </td>
+      </tr>
+    
+  </table>
+  
+  <%#= will_paginate@other_transactions2,:params => {:start_date => @start_date2 , :end_date => @end_date2}%>
+  <br/>
+  <br/>
+ 
+
+

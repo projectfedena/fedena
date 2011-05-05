@@ -1,0 +1,13 @@
+
+
+<% if @employee.nil? %>
+  <div id="no_result">No Employee found</div>
+<% else %>
+<p class="flash-msg">Select the manager by clicking on it and then update !</p>
+  <% @employee.each do |r| %>
+    <div id="ajax_result">
+      <a href="#" onclick="update_reporting_manager(<%= r.id %>)"><%= r.full_name %></a><br/>
+      <small>Emp ID.<%= r.employee_number %></small>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,26 @@
+<% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+<table id="listing" width="100%">
+  <tr class="tr-head">
+    <td>Leave type</td>
+    <td>Available Leave</td>
+    <td>Leave taken</td>
+    <td>Last reset date </td>
+  </tr>
+  <% @leave_count.each do |e| %>
+    <%  leave_type =EmployeeLeaveType.find_by_id(e.employee_leave_type_id)%>
+    <%  if leave_type.status %>
+      <tr class="tr-<%= cycle('odd','even') %>">
+        <td class="col-3"><%=leave_type.name %></td>
+        <td class="col-3"><%=e.leave_count %></td>
+        <td class="col-3"><%=e.leave_taken %></td>
+        <%unless e.reset_date.nil? %>
+          <td class="col-3"><%=e.reset_date.strftime("%d / %m / %Y") %></td>
+        <%else%>
+          <td class="col-3">-</td>
+        <%end%>
+      </tr>
+    <%end%>
+  <% end %>
+  </table>

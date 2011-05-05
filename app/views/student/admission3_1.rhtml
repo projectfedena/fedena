@@ -1,0 +1,28 @@
+
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+  <h1><%= t('layouts.default.admission') %></h1>
+  <h3><%= t('admission3.h3') %></h3>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
+
+  <p class="flash-msg"><%= t('admission3.message') %></p>
+
+  <% form_for :immediate_contact do |f| %>
+    <ul id="parents-list">
+      <%- @parents.each do |p| -%>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <% if p.is_immediate_contact? %>
+            <%= f.radio_button "contact", p.id, {:checked => 'checked'} %> <%= p.full_name %>
+          <% else %>
+            <%= f.radio_button "contact",p.id, :checked => 'checked'%> <%= p.full_name %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <div id="submit-button"><%= submit_tag "" , :value => "► #{t('layouts.default.finish')}", :id => 'finish-button' %></div>
+  <% end %>
+</div>

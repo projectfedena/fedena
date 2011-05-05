@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/example/routing_example_group.rb -- 1 warning:
+  Spec::Rails::Example::RoutingExampleGroup has no descriptive comment (IrresponsibleModule)

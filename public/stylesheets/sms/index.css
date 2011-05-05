@@ -1,0 +1,68 @@
+
+.link-box {
+    margin:10px 40px;
+    width:270px;
+    float:left;
+    height:80px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+.link-descr {
+    margin-top:5px;
+    color:#666;
+    text-align:justify;
+    font-size:14px;
+}
+
+.box{
+    margin: 0 auto;
+    width: 750px;
+
+}
+
+.submit_button {
+    margin-top:25px;
+    margin-left:110px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    float: left;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.text-input-bg  {
+    background:none repeat scroll 0 0 transparent;
+    float:left;
+    height:65px;
+    width:600px;
+}
+
+.text-input-bg textarea  {
+    -moz-border-radius:10px 10px 10px 10px;
+    background-color:#EEEEEE;
+    border:1px solid #C6C6C6;
+    height:60px;
+    margin:5px 0 0 40px;
+    padding:3px 6px;
+    width:215px;
+}
+
+.text-input-bg textarea:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+
+#sms-box{
+    width:500px;
+}

@@ -1,0 +1,313 @@
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Employee</h1>
+  <h3>Advanced search</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+
+  <div id="search-form">
+    <% form_for @search do |f| %>
+      <div class="label-field-pair">
+        <label for="name">Name</label>
+        <div class="text-input-bg">
+          <%= f.text_field :first_name_or_middle_name_or_last_name_like %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_admission_no">Employee no</label>
+        <div class="text-input-bg">
+          <%= f.text_field :employee_number_equals %>
+        </div>
+      </div>
+      <div class="label_field_pair">
+        <label class="label_for_student" >Gender</label>
+        <div class="student_gender_value">
+          <label class="label_for_gender" >All</label>
+          <%= f.radio_button  :gender_equals, "" %>
+          <label class="label_for_gender" >Male</label>
+          <%= f.radio_button  :gender_equals, "m"%>
+          <label class="label_for_gender" >Female</label>
+          <%= f.radio_button  :gender_equals, "f" %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_admission_no">Blood group</label>
+        <div class="text-input-bg">
+          <%= select :search, :blood_group_like, ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],{:prompt=>"Select"}%>
+        </div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="student_admission_no">Marital status</label>
+        <div class="text-input-bg">
+          <%= select :search, :marital_status_like, ["Single", "Married", "Divorced"],{:prompt=>"Select"}%>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_admission_no">Country</label>
+        <div class="text-input-bg">
+          <%= f.collection_select :nationality_id_equals, Country.all,:id,:name,{:prompt=>"Select"}%>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_admission_no">Category</label>
+        <div class="text-input-bg">
+          <%= f.collection_select :employee_category_id_equals, EmployeeCategory.all, :id, :name, {:prompt=>"Select"} %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_admission_no">Department</label>
+        <div class="text-input-bg">
+          <%= f.collection_select :employee_department_id_equals, EmployeeDepartment.all, :id, :name, {:prompt=>"Select"} %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_admission_no">Position</label>
+        <div class="text-input-bg">
+          <%= f.collection_select :employee_position_id_equals, EmployeePosition.all, :id, :name, {:prompt=>"Select"}%>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_admission_no">Grade</label>
+        <div class="text-input-bg">
+          <%= f.collection_select :employee_grade_id_equals, EmployeeGrade.all, :id, :name,{:prompt=>"Select"} %>
+        </div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="student_admission_no">Date of joining
+          <%= image_tag("loader.gif",
+            :align => "absmiddle",
+            :border => 0,
+            :id => "loader",
+            :style =>"display: none;" ) %>
+        </label>
+        <div class="text-input-bg">
+          <%= select :adv_search,:doj_option,["equal to","less than","greater than"],{:prompt=>"choose your option"},
+            {:onChange => "#{remote_function(:url => {:action => "list_doj_year"},
+            :with=>"'doj_option='+value",
+            :before => "Element.show('loader')",
+            :success => "Element.hide('loader')"
+            )}"}
+        %>
+          <div id="doj_year">
+            <%= select :adv_search,:doj_year,[],{:prompt=>"Select"} %>
+          </div>
+          <div id="doj_year_hidden"></div>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_admission_no">Birth date
+          <%= image_tag("loader.gif",
+            :align => "absmiddle",
+            :border => 0,
+            :id => "loader",
+            :style =>"display: none;" ) %>
+        </label>
+        <div class="text-input-bg">
+          <%= select :adv_search,:dob_option,["equal to","less than","greater than"],{:prompt=>"choose your option"},
+            {:onChange => "#{remote_function(:url => {:action => "list_dob_year"},
+            :with=>"'dob_option='+value",
+            :before => "Element.show('loader')",
+            :success => "Element.hide('loader')"
+            )}"}
+        %>
+          <div id="dob_year">
+            <%= select :adv_search,:dob_year,[],{:prompt=>"Select"} %>
+          </div>
+          <div id="dob_year_hidden"></div>
+        </div>
+      </div>
+      <div class="label_field_pair">
+        <label class="label_for_student" for="student_gender">Status</label>
+        <div class="student_gender_value">
+          <label class="label_for_gender" for="student_gender_true">Present</label>
+          <%= f.radio_button  :status_equals, "true", {:checked => false } %>
+          <label class="label_for_gender" for="student_gender_false">Former</label>
+          <%= f.radio_button  :status_equals, "false" %>
+          <label class="label_for_gender" for="student_gender_false">All</label>
+          <%= f.radio_button  :status_equals, "", {:checked => 'checked'} %>
+        </div>
+      </div>
+
+
+      <%= f.submit "Search", :class=>'submit' %>
+    <% end %>
+  </div>
+
+
+
+  <% unless @employees1.nil? %>
+  <% @employees1= @employees1.to_a.sort_by{|s| s.first_name} %>
+    <script type="text/javascript">
+      Event.observe(window, 'load', function() { $('search-form').hide(); });
+    </script>
+    <div id="search-result">
+
+      <p>You have searched for:</p>
+      <div class="search-again">
+  <%#= link_to_function '► Search again' do |page|
+  page.visual_effect :toggle_slide, "search-form"
+  page.hide "search-result"
+  end %>
+        <% searched_for = 'Listed by ' %>
+
+        <% searched_for += 'Name: ' + params[:search][:first_name_or_middle_name_or_last_name_like].to_s unless params[:search][:first_name_or_middle_name_or_last_name_like].empty? %>
+        <% searched_for += ' Employee number: ' + params[:search][:employee_number_equals].to_s unless params[:search][:employee_number_equals].empty? %>
+        <% searched_for += ' Employee department: ' + EmployeeDepartment.find(params[:search][:employee_department_id_equals]).name.to_s unless params[:search][:employee_department_id_equals].empty? %>
+        <% searched_for += ' Employee category: ' + EmployeeCategory.find(params[:search][:employee_category_id_equals]).name.to_s unless params[:search][:employee_category_id_equals].empty? %>
+        <% searched_for += ' Employee position: ' + EmployeePosition.find(params[:search][:employee_position_id_equals]).name.to_s unless params[:search][:employee_position_id_equals].empty? %>
+        <% searched_for += ' Employee grade: ' + EmployeeGrade.find(params[:search][:employee_grade_id_equals]).name.to_s unless params[:search][:employee_grade_id_equals].empty? %>
+        <% unless  params[:search][:gender_equals].empty? %>
+          <% if  params[:search][:gender_equals] == 'm' %>
+            <% searched_for += " Gender: male" %>
+          <% elsif  params[:search][:gender_equals] == 'f' %>
+            <% searched_for += " Gender: female" %>
+          <% else %>
+            <% searched_for += " Gender: all" %>
+          <% end %>
+        <% end %>
+        <% searched_for += ' Blood group: ' + params[:search][:blood_group_like].to_s unless params[:search][:blood_group_like].empty? %>
+        <% searched_for += ' Marital status: ' + params[:search][:marital_status_like].to_s unless params[:search][:marital_status_like].empty? %>
+        <% searched_for += ' Nationality: ' + Country.find(params[:search][:nationality_id_equals]).name.to_s unless params[:search][:nationality_id_equals].empty? %>
+        <% searched_for += ' Year of join: ' +  params[:adv_search][:doj_option].to_s + params[:adv_search][:joining_date_year].to_s unless  params[:adv_search][:doj_option].empty? %>
+        <% searched_for += ' Year of birth: ' +  params[:adv_search][:dob_option].to_s + params[:adv_search][:birth_date_year].to_s unless  params[:adv_search][:dob_option].empty? %>
+        <% if params[:search][:status_equals]=="true" %>
+          <% searched_for += " Present employees" %>
+        <% elsif params[:search][:status_equals]=="false" %>
+          <% searched_for += " Former employees" %>
+        <% else %>
+          <% searched_for += " All employees" %>
+        <% end %>
+
+
+        <%= link_to "► Search again", {:action=>"advanced_search"}%>
+        <% unless @employees1.empty? %>
+          <%= link_to "► View PDF report",   {:action => "advanced_search_pdf",:for =>searched_for, :result2=>@employees2 , :result =>@employees1,:status=>params[:search][:status_equals], :format => 'pdf'}, :target => '_blank' , :class=> 'submit_button' %>
+        <% end %>
+      </div>
+      <div class="extender"></div>
+
+      <div class="searched_for">
+        <% unless params[:search][:first_name_or_middle_name_or_last_name_like].empty? %>
+          <% searched_for = params[:search][:first_name_or_middle_name_or_last_name_like] %>
+          <span>Name:</span> <%= params[:search][:first_name_or_middle_name_or_last_name_like] %>
+        <% end %>
+        <% unless  params[:search][:employee_number_equals].empty? %>
+          <span>Employee no:</span> <%= params[:search][:employee_number_equals] %>
+        <% end %>
+        <% unless params[:search][:employee_department_id_equals].empty? %>
+          <% dept = EmployeeDepartment.find(params[:search][:employee_department_id_equals]) %>
+          <span>Department:</span> <%= dept.name %>
+        <% end %>
+        <% unless  params[:search][:employee_category_id_equals].empty? %>
+          <% category = EmployeeCategory.find(params[:search][:employee_category_id_equals]) %>
+          <span> Category: </span> <%= category.name %>
+        <% end %>
+        <% unless  params[:search][:employee_position_id_equals].empty? %>
+          <% position = EmployeePosition.find(params[:search][:employee_position_id_equals]) %>
+          <span> Employee position: </span> <%= position.name %>
+        <% end %>
+        <% unless  params[:search][:employee_grade_id_equals].empty? %>
+          <% grade = EmployeeGrade.find(params[:search][:employee_grade_id_equals]) %>
+          <span> Employee grade: </span> <%= grade.name %>
+        <% end %>
+        <% unless  params[:search][:gender_equals].empty? %>
+          <% if  params[:search][:gender_equals] == 'm' %>
+            <span> Gender: </span> male
+          <% elsif  params[:search][:gender_equals] == 'f' %>
+            <span> Gender: </span> female
+          <% else %>
+            <span> Gender: </span> All
+          <% end %>
+        <% end %>
+        <% unless  params[:search][:blood_group_like].empty? %>
+          <span> Blood group:</span> <%= params[:search][:blood_group_like] %>
+        <% end %>
+        <% unless  params[:search][:marital_status_like].empty? %>
+          <span> Marital status:</span> <%= params[:search][:marital_status_like] %>
+        <% end %>
+        <% unless  params[:search][:nationality_id_equals].empty? %>
+          <% nationality = Country.find(params[:search][:nationality_id_equals]) %>
+          <span> Nationality: </span> <%= nationality.name %>
+        <% end %>
+        <% unless  params[:adv_search][:doj_option].empty? %>
+          <span> Year of joining: </span> <%= params[:adv_search][:doj_option] %>
+
+          <%= params[:adv_search][:joining_date_year] %>
+        <% end %>
+        <% unless  params[:adv_search][:dob_option].empty? %>
+          <span>Year of birth: </span> <%= params[:adv_search][:dob_option] %>
+
+          <%= params[:adv_search][:birth_date_year] %>
+        <% end %>
+        <% if params[:search][:status_equals]=="true" %>
+          <span> Present employees </span>
+        <% elsif params[:search][:status_equals]=="false" %>
+          <span> Former employees </span>
+        <% else %>
+          <span> All </span>
+        <% end %>
+
+      </div>
+
+
+      <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+        <% unless @employees1.empty? %>
+        <tr class="tr-head">
+          <td>
+            Sl no.
+          </td>
+          <td>
+            <%= order @search, :by => :first_name %>
+          </td>
+          <td>
+            Employee ID
+          </td>
+          <td>
+            Employee dept
+          </td>
+        </tr>
+        <tr class="tr-blank"></tr>
+
+        <% @employees1.each_with_index do |emp1, i| %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-1"><%= i+1 %></td>
+            <% if params[:search][:status_equals]=="false" %>
+              <td class="col-4"><%=  link_to emp1.first_name + ' ' + emp1.last_name, :controller => 'archived_employee', :action => 'profile', :id => emp1.id%></td>
+            <% else %>
+              <td class="col-4"><%=  link_to emp1.first_name + ' ' + emp1.last_name, :controller => 'employee', :action => 'profile', :id => emp1.id%></td>
+            <% end %>
+            <td class="col-3"><%= emp1.employee_number %></td>
+            <td class="col-4"><%= emp1.employee_department.name %></td>
+
+          <% end %>
+          <% unless @employees2.nil? %>
+            <% k = @employees1.size %>
+            <% @employees2.each do |emp2| %>
+            <tr class="tr-<%= cycle('odd', 'even') %>">
+              <td class="col-1"><%= k+1 %></td>
+              <td class="col-4"><%=  link_to emp2.first_name + ' ' + emp2.last_name, :controller => 'archived_employee', :action => 'profile', :id => emp2.id%></td>
+              <td class="col-3"><%= emp2.employee_number %></td>
+              <td class="col-4"><%= emp2.employee_department.name %></td>
+            <% end %>
+          <% end  %>
+        </tr>
+      <% else %>
+        <tr class="tr-<%= cycle('odd', 'even') %>">
+          <td class="col-2">No employee found</td>
+        </tr>
+      <% end %>
+    </table>
+    <div class="extender">
+
+
+
+
+    </div>
+  </div>
+<% end %>
+</div>

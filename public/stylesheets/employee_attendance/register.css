@@ -1,0 +1,63 @@
+#form-content{
+    width:500px;
+    float:left;
+    margin:0px auto;
+}
+
+.attendance-field-pair {
+    float : left;
+    height : 40px;
+    width : 400px;
+    margin:0 0 0 50px;
+    background : #E4EBFE;
+    border-top:1px solid #BECFFB;
+}
+.attendance-input-bg {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    height : 28px;
+    width : 230px;
+    float:right;
+    margin:5px 5px 0 0;
+}
+.attendance-field-pair label {
+    color : #444;
+    display : block;
+    font-weight : bold;
+    margin : 10px 0 0 5px;
+    float:left;
+}
+.attendance-field-pair input {
+    background : transparent;
+    border : 0;
+    margin : 5px 0 0 10px;
+    width : 210px;
+}
+
+.attendance-input-bg select {
+    background-color : #eee;
+    border : 0;
+    margin : 5px 0 0 10px;
+    width : 210px;
+}
+
+#submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:170px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+#attendance_form{
+    width:500px;
+    margin-left:170px;
+}

@@ -1,0 +1,46 @@
+ <div id="content-header">
+    <img src="/images/show_settings.png" />
+  <h1>Batch Transfer</h1>
+  <h3>Transfer</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+<div id="page-yield">
+   <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+<p>Transferring batch: <%= @batch.full_name %></p>
+
+<% form_for :transfer, :url => { :controller => 'batch_transfers', :action => 'transfer', :id => @batch.id } do |f| %>
+
+<div class="label-field-pair">
+          <label for="subject_id">Transfer to batch </label>
+          <div class="text-input-bg"><%= select :transfer, :to, @batches.map{ |b| [b.full_name, b.id] } %></div>
+        </div>
+
+  <p>Uncheck the students not eligible to be transferred.</p>
+
+    <ul id="category-list">
+        <li class="listheading">
+      <div class="heading-no">Admn. No.</div>
+    <div class="category-name">Name</div>
+  </li>
+  <% @batch.students.each do |student| %>
+  <li class="list<%=cycle('odd', 'even')%>">
+     <div class="category-number"><%= student.admission_no %></div>
+    <div class="category-name"><%= student.full_name %></div>
+    <div class="category-edit"><%= check_box_tag 'transfer[students][]', student.id, true %></div>
+</li>
+  <% end %>
+</ul>
+
+ <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+
+<% end %>
+
+   <div class="extender"></div>
+  </div>

@@ -1,0 +1,63 @@
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Edit employee information</h1>
+  <h3>Contact</h3>
+  <div id="app-back-button">
+  <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+  <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+
+  <% form_for :employee do |a| %>
+    <%= error_messages_for 'employee' %>
+      <span class="span-sub-heading">Contact Details</span>
+      <hr class="sub-heading"></hr>
+          <div class="label-field-pair">
+            <label>Office phone1</label>
+            <div class="text-input-bg"><%= a.text_field :office_phone1 %></div>
+            <div class="extender"></div>
+          </div>
+      <hr class="label-underline"></hr>
+          <div class="label-field-pair">
+            <label>Office phone2</label>
+            <div class="text-input-bg"><%= a.text_field :office_phone2 %></div>
+            <div class="extender"></div>
+          </div>
+      <hr class="label-underline"></hr>
+          <div class="label-field-pair">
+            <label>Mobile</label>
+            <div class="text-input-bg"><%= a.text_field :mobile_phone %></div>
+            <div class="extender"></div>
+          </div>
+      <hr class="label-underline"></hr>
+          <div class="label-field-pair">
+            <label>Home phone</label>
+            <div class="text-input-bg"><%= a.text_field :home_phone %></div>
+            <div class="extender"></div>
+          </div>
+      <hr class="label-underline"></hr>
+          <div class="label-field-pair">
+            <label>Email</label>
+            <div class="text-input-bg"><%= a.text_field :email %></div>
+            <div class="extender"></div>
+          </div>
+      <hr class="label-underline"></hr>
+          <div class="label-field-pair">
+            <label>FAX</label>
+            <div class="text-input-bg"><%= a.text_field :fax %></div>
+            <div class="extender"></div>
+          </div>
+      
+
+    <div class="save-proceed-button">
+      <%= submit_tag "► Update" %>
+    </div>
+  <% end %>
+
+</div>

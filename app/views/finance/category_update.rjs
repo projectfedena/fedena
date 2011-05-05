@@ -1,0 +1,1 @@
+page.replace_html 'category-list', :partial => 'category_list'

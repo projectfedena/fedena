@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20100422110336_create_liabilities.rb -- 3 warnings:
+  CreateLiabilities has no descriptive comment (IrresponsibleModule)
+  CreateLiabilities#self.up has approx 7 statements (LongMethod)
+  CreateLiabilities#self.up has the variable name 't' (UncommunicativeName)

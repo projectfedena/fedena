@@ -1,0 +1,32 @@
+<div id="content-header">
+  <img src="/images/attendence/attendence.png" alt="" />
+  <h1>Attendance</h1>
+  <h3>Attendance register</h3>
+  <div id="app-back-button">
+   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+<div id="page-yield">
+
+  <div class="label-field-pair">
+          <label for="employee_department_select">Select the department</label>
+ <%= image_tag("loader.gif", :align => "absmiddle", :border => 0, :id => "loader", :style =>"display: none;" ) %>
+    <div class="text-input-bg">
+      <%= select :batch, :id,
+        @departments.map {|b| [b.name, b.id] },
+        {:prompt => 'Select a department'},
+        {:onchange => "#{remote_function(
+        :url => { :action => 'show' },
+        :with => "'dept_id='+value",
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')"  )}"} %>
+    </div>
+  </div>
+
+ 
+
+  <div id="register"></div>
+  <div id="modal-box" style="display:none;"></div>
+</div>

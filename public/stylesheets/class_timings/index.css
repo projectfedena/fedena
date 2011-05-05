@@ -1,0 +1,168 @@
+
+#form-content {
+    border : 1px solid #becffb;
+    background-color : #f8f8f8;
+    height : auto; width : 600px;
+    margin : auto;
+    padding : 30px 0 20px 40px;
+}
+.label-field-pair {
+    margin-top : 0px;
+    margin-left : 30px;
+}
+.label-checkbox-pair {
+    height : 50px;
+    margin-left : 30px;
+}
+.submit-button{
+    width:100px;
+    margin:0px auto;
+}
+#MB_frame .submit-button {
+    -moz-border-radius:8px 8px 8px 8px;
+    background:none repeat scroll 0 0 #27292B;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    float:left;
+    font-size:14px;
+    font-weight:bold;
+    margin:0 0 0 170px;
+    padding:5px;
+}
+
+.submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:0px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+table#class-timings-list{
+    background: #c3d9ff;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding:20px;
+}
+
+table#class-timings-list tr.tr-head{
+    background: #fff;
+    color:#990a10;
+    font-weight:bold;
+    text-align:left;
+}
+
+table#class-timings-list .tr-head td{
+    padding:5px;
+    padding-left:10px;
+}
+
+table#class-timings-list .tr-odd{
+    background: #fff;
+    text-align:left;
+    padding:50px;
+    color:#27292b;
+    font-weight:600;
+    font-size:14px;
+}
+
+table#class-timings-list .tr-even{
+    background: #f1f6ff;
+    text-align:left;
+    padding:50px;
+    color:#27292b;
+    font-weight:600;
+    font-size:14px;
+
+}
+
+table#class-timings-list .tr-read-odd{
+    background: #fff;
+    text-align:left;
+    padding:50px;
+    color:#27292b;
+    font-weight:normal;
+    font-size:14px;
+}
+
+table#class-timings-list .tr-read-even{
+    background: #f1f6ff;
+    text-align:left;
+    padding:50px;
+    color:#27292b;
+    font-weight:normal;
+    font-size:14px;
+}
+
+table#class-timings-list td.col-1{
+    width:10%;
+    padding: 5px;
+    padding-left:10px;
+}
+
+table#class-timings-list td.col-2{
+    width:40%;
+    text-align:left;
+    padding: 5px;
+    padding-left:10px;
+}
+
+table#class-timings-list td a{
+    text-decoration:none;
+    color:#27292b;
+}
+
+table#class-timings-list td a:hover{
+    color:#990a10;
+    text-decoration:underline;
+}
+
+table#class-timings-list td.col-3{
+    width:13%;
+    padding: 5px;
+    padding-left:10px;
+}
+
+table#class-timings-list td.col-4{
+    width:30%;
+    padding: 5px;
+    padding-left:10px;
+}
+
+table#class-timings-list td.col-5{
+    width:5%;
+    padding: 5px;
+    padding-left:10px;
+}
+
+table#class-timings-list td.col-6{
+    text-align: right;
+    width:13%;
+    padding: 5px;
+    padding-left:10px;
+
+}
+
+.linker a {
+    color:black;
+    text-decoration:underline;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+.linker a:hover{
+    color:#bb0000;
+    text-decoration: none;
+}
+
+.linker{
+    margin-bottom: 5px;
+}

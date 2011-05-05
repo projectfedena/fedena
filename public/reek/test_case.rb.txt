@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/extensions/action_controller/test_case.rb -- 1 warning:
+  ActionController::TestCase has no descriptive comment (IrresponsibleModule)

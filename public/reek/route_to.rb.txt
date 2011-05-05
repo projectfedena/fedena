@@ -1,0 +1,9 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/matchers/route_to.rb -- 8 warnings:
+  Spec::Rails::Matchers::BeRoutable has no descriptive comment (IrresponsibleModule)
+  Spec::Rails::Matchers::BeRoutable#matches? has approx 7 statements (LongMethod)
+  Spec::Rails::Matchers::BeRoutable#matches? has the variable name 'e' (UncommunicativeName)
+  Spec::Rails::Matchers::PathDecomposer has no descriptive comment (IrresponsibleModule)
+  Spec::Rails::Matchers::RouteTo has no descriptive comment (IrresponsibleModule)
+  Spec::Rails::Matchers::RouteTo#matches? calls e.class twice (Duplication)
+  Spec::Rails::Matchers::RouteTo#matches? has approx 8 statements (LongMethod)
+  Spec::Rails::Matchers::RouteTo#matches? has the variable name 'e' (UncommunicativeName)

@@ -1,0 +1,55 @@
+
+#form_content {
+    margin : 0px auto;
+    width:550px;
+}
+.label-field-pair {
+    margin : 0 0 0 50px;
+}
+#submit_area input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:220px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+#exams-list {
+    margin : 50px auto;
+    width:650px;
+}
+#exams-list ul {
+    margin : 0 0 0 50px;
+    padding : 0;
+    width : 550px;
+}
+#exams-list ul li.odd {
+    background : #E4EBFE;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 40px;
+    border-top:1px solid #C2CEEF;
+}
+#exams-list ul li.even {
+    background : #DAE6FF;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 40px;
+    border-top:1px solid #C2CEEF;
+}
+#exams-list ul li div {
+    float : left;
+    margin : 0 10px 0 0;
+}
+#exams-list ul li .exam-name {
+    width : 400px;
+}
+#exams-list ul li .exam-manage-links a {
+    color : #000;
+}

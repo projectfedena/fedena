@@ -1,0 +1,53 @@
+OpenFlashChart  Version 2.0.0  11/14/2008 
+==============
+
+1) rails ofc2_test_app
+2) cd ofc2_test_app
+3) script/plugin install git://github.com/pullmonkey/open_flash_chart.git
+4) script/generate controller test_it
+
+5) Add the following to the test_it_controller.rb in RAILS_ROOT/app/controllers:
+class TestItController < ApplicationController
+  
+  def index
+    respond_to do |wants|
+      wants.html {
+        @graph = open_flash_chart_object( 600, 300, url_for( :action => 'index', :format => :json ) )
+      }
+      wants.json { 
+        chart = OpenFlashChart.new( "MY TITLE" ) do |c|
+          c << BarGlass.new( :values => (1..10).sort_by{rand} )
+        end
+        render :text => chart, :layout => false
+      }
+    end
+  end
+
+end
+
+6) Add the following to index.html.erb in RAILS_ROOT/app/views/test_it/:
+<html>
+<head>
+  <script type="text/javascript" src="/javascripts/swfobject.js"></script>
+</head>
+<body>
+<%= @graph %>
+</body>
+</html>
+
+7) script/server
+8) Let me know how it goes, thanks.
+
+
+Example
+=======
+
+Example above and more to follow here - http://www.pullmonkey.com/projects/open_flash_chart
+
+Notes
+======
+The plugin breaks if the json gem is included, because of the way that the gem generates json vs the rails native json generator.
+
+Not tested, but klochner claims to have implemented a fix for it here - http://github.com/klochner/open_flash_chart/commit/00cf531387880af8c49ed5118737f0492b437f75
+
+Copyright (c) 2008 PullMonkey, released under the MIT license

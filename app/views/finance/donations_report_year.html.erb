@@ -1,0 +1,57 @@
+<div id="content-header">
+  <img src="/images/examination/index/page_logo.jpg" alt="" />
+  <h1>Finance Monthly Report</h1>
+  <h3>Donations</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <%donations_total=0%>
+  <%donations_income=0%>
+  <%donations_expenses=0%>
+  <div id="fees-table">
+    <div class="fees-th">
+      <div class="fees-table-description">Description</div>
+      <div class="fees-table-expenses">Credit</div>
+      <div class="fees-table-income">Debit</div>
+    </div>
+
+    <% @donations.each do |d| %>
+      <% if d.category.is_income? %>
+        <% donations_income+=d.amount %>
+        <div class="fees-tr">
+          <div class="fees-table-description"><%=d.title %></div>
+          <div class="fees-table-income"><%=d.amount %></div>
+        </div>
+      <%else%>
+        <% donations_expenses+=d.amount %>
+        <div class="fees-tr">
+          <div class="fees-table-description"><%=d.title %></div>
+          <div class="fees-table-expenses"><%=d.amount %></div>
+        </div>
+      <%end%>
+      <% @trigger.each do |trigger|   %>
+        <%unless trigger.finance_category.id.nil? %>
+
+          <% if d.category_id == trigger.finance_category.id %>
+            <%donations_expenses += (d.amount * (trigger.percentage / 100))%>
+            <div class="fees-tr">
+              <div class="fees-table-description"><%=trigger.title+"("+trigger.description+")" %></div>
+              <div class="fees-table-expenses"><%=(d.amount * (trigger.percentage / 100)) %></div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%donations_total=donations_income-donations_expenses %>
+    <br/>
+    <div class="fees-th">
+      <div class="fees-table-description">Total</div>
+      <div class="fees-table-total"><%=donations_total%></div>
+    </div>
+
+  </div>
+</div>

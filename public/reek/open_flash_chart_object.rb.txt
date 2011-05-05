@@ -1,0 +1,9 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/open_flash_chart_object.rb -- 8 warnings:
+  OpenFlashChart::Controller takes parameters [base, height, swf_file_name, url, width] to 3 methods (DataClump)
+  OpenFlashChart::Controller#get_html has 8 parameters (LongParameterList)
+  OpenFlashChart::Controller#get_object_values has approx 6 statements (LongMethod)
+  OpenFlashChart::Controller#open_flash_chart_object has 6 parameters (LongParameterList)
+  OpenFlashChart::Controller#open_flash_chart_object has boolean parameter 'use_swfobject' (ControlCouple)
+  OpenFlashChart::Controller#open_flash_chart_object_and_div_name has 6 parameters (LongParameterList)
+  OpenFlashChart::Controller#open_flash_chart_object_and_div_name has boolean parameter 'use_swfobject' (ControlCouple)
+  OpenFlashChart::Controller#open_flash_chart_object_from_hash refers to options more than self (LowCohesion)

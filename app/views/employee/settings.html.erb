@@ -1,0 +1,54 @@
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Settings</h1>
+  <h3>HR Settings</h3>
+  <div id="app-back-button">
+     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <div id="box">
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Add employee category", :controller=>"employee", :action=>"add_category" %></div>
+      <div class="link-descr">Add and edit employee category.</div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Add employee position", :controller=>"employee", :action=>"add_position"%></div>
+      <div class="link-descr">Add and edit employee position.</div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Add employee department", :controller=>"employee", :action=>"add_department"%></div>
+      <div class="link-descr">Add and edit employee department.</div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Add employee grade", :controller=>"employee", :action=>"add_grade"%></div>
+      <div class="link-descr">Add and edit employee grade.</div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Add payroll category", :controller=>"payroll", :action=>"add_category"%></div>
+      <div class="link-descr">Add and edit employee payroll category.</div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Add bank details", :controller=>"employee", :action=>"add_bank_details"%></div>
+      <div class="link-descr">Add and edit bank details.</div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Add additional details", :controller=>"employee", :action=>"add_additional_details"%></div>
+      <div class="link-descr">Add and edit additional details for employee admission forms.</div>
+    </div>
+
+   <!-- <div class="link-box">
+      <div class="link-heading"><%= link_to "Payslip Settings", :controller=>"employee", :action=>""%></div>
+      <div class="link-descr">Creates payslip approve power for finance manager.</div>
+    </div>
+  </div> -->
+   <div class="extender"></div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<ul id="category-list">
+<% unless @additional_details.empty? %>
+  <li class="listheading"><div class="category-name"> Active Fields </div></li>
+    <%- @additional_details.each do |c| -%>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="category-name"><%= c.name %></div>
+        <div class="category-edit"><%= link_to "Edit", {:action => "edit_additional_details", :id=>c.id} %></div>
+        <div class="category-edit"><%= link_to "Delete", {:action => "delete_additional_details", :id=>c.id}, :confirm => "Are you sure?" %></div>
+      </li>
+     <% end %>
+    <% unless @inactive_additional_details.empty? %>
+      <li class="listheading"><div class="category-name"> Inactive Fields </div></li>
+      <%- @inactive_additional_details.each do |c| -%>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <div class="category-name"><%= c.name %></div>
+          <div class="category-edit"><%= link_to "Edit", {:action => "edit_additional_details", :id=>c.id} %></div>
+          <div class="category-edit"><%= link_to "Delete", {:action => "delete_additional_details", :id=>c.id},:confirm=>"Are you sure?" %></div>
+        </li>
+      <% end %>
+    <% end %>
+  <% else %>
+<p class="flash-msg">No additional details record found</p>
+  <% end %>
+</ul>
+

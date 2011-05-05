@@ -1,0 +1,46 @@
+
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>User Privileges</h1>
+  <h3>Set Privilege</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+
+<div class="label_field_pair"><label>Set privileges for <%= @user.full_name.capitalize %></label></div>
+<div id="list_content">
+  <div id="list">
+    <div class="sel-list">
+      Select: <%= link_to_function 'All', "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+      <%= link_to_function 'None', "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+    </div>
+
+
+    <% form_for :user do |form| %>
+      <% for privilege in Privilege.find(:all) %>
+        <%    hr = Configuration.find_by_config_value("HR") %>
+        <%  finance = Configuration.find_by_config_value("Finance") %>
+        <%  if hr.nil?  %>
+          <% if privilege.id ==9 or  privilege.id ==17 or privilege.id ==19 %>
+            <% next %>
+          <% end %>
+        <% end %>
+        <%  if finance.nil?  %>
+          <% if privilege.id ==14 or  privilege.id ==18 %>
+            <% next %>
+          <% end %>
+        <% end %>
+        <div class="name_list<%=cycle('odd', 'even')%>"><li>
+            <label><%= check_box_tag "user[privilege_ids][]", privilege.id, @user.privileges.include?(privilege),:class=>'right'%>
+              <div class="att_list_names"> <%= privilege.name.underscore.gsub(/_/, ' ').capitalize %> </div> </label>
+          </li></div>
+      <% end %>
+      <div class="user_submit_button1">
+        <%= submit_tag "", :name => "commit", :value => "► Update" %>
+      </div>
+    <% end %>
+  </div>
+</div>

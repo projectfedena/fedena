@@ -1,0 +1,234 @@
+
+
+.heading{
+    font-weight:bold;color:#900;
+    padding-bottom:20px;
+}
+
+#application-list{
+    width:960px;
+    margin:10px auto;
+}
+
+#to_employees{
+
+    margin-top:30px;
+}
+
+.label-field-to {
+    float : left;
+    height : 80px;
+    width : 250px;
+}
+
+.label-field-to label {
+    color : #444;
+    display : block;
+    font-weight : bold;
+    margin : 0 0 10px 0;
+}
+.label-field-to input {
+    background : transparent;
+    border : 0;
+    margin : 5px 0 0 10px;
+    width : 210px;
+}
+
+.label-field-message {
+    margin-left:125px;
+    width:223px;
+}
+
+.label-field-message textarea{
+    border:2px solid gray;
+    height:100px;
+}
+
+.label-field-message label {
+    color : #444;
+    display : block;
+    font-weight : bold;
+    margin : 0 0 10px 0;
+}
+
+#submit-button{
+
+    margin-left:165px;
+    margin-top:10px;
+    width:140px;
+}
+
+
+#sent-list {
+    clear : both;
+    padding : 10px 0 40px 40px;
+}
+
+#sent-list li {
+    background : #fff url(../../images/_global/list-bg-repeat.jpg) repeat;
+    color : #444;
+    height : 1.5em; width : 300px;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+}
+
+#sent-list li.heading {
+    background : none;
+    font-weight : bold;
+    padding-left:15px;
+}
+#sent-list li div {
+    float : left;
+}
+#sent-list li div.sent-name {
+    width : 350px;
+}
+
+#sent-list li div a {
+    color : #000;
+}
+
+.container{
+
+}
+
+.container-head{
+
+}
+
+
+.containereven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 0;
+    width:700px;
+}
+
+.containerodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 0;
+    width:700px;
+}
+
+
+#from-label{
+    border-bottom:2px solid;
+    float:left;
+    width:185px;
+    padding:10px 0 10px 15px;
+    font-weight:bold;
+    background-color : #ffffff;
+}
+
+#subject-label{
+    border-bottom:2px solid;
+    float:left;
+    width:300px;
+    padding:10px 0 10px 0;
+    font-weight:bold;
+    background-color : #ffffff;
+}
+
+#date-label{
+    border-bottom:2px solid;
+    float:left;
+    width:100px;
+    padding:10px 0 10px 100px;
+    font-weight:bold;
+    background-color : #ffffff;
+}
+
+.unread_from_name{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:185px;
+    /*background-color:#e4ebfe;*/
+    padding:0 0 0 15px;
+    font-weight:bold;
+    height:20px;
+}
+
+.unread_from_name a{
+    text-decoration:none;
+    color:black;
+}
+
+.unread_subject{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:300px;
+    /*background-color:#e4ebfe;*/
+    /*padding:10px 0 10px 0;*/
+    font-weight:bold;
+    height:20px;
+}
+
+.unread_subject a{
+    text-decoration:none;
+    color:black;
+}
+
+.unread_sent_date{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:100px;
+    /*background-color:#e4ebfe;*/
+    padding:0 0 0 100px;
+    font-weight:bold;
+    height:20px;
+}
+
+.unread_sent_date a{
+    text-decoration:none;
+    color:black;
+}
+
+.from_name{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:185px;
+    /*background-color:#e4ebfe;*/
+    padding:0 0 0 15px;
+    height:20px;
+}
+
+.from_name a{
+    text-decoration:none;
+    color:black;
+}
+
+.subject{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:300px;
+    /*background-color:#e4ebfe;*/
+    /*padding:10px 0 10px 0;*/
+    height:20px;
+}
+
+.subject a{
+    text-decoration:none;
+    color:black;
+}
+
+.sent_date{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:100px;
+    /*background-color:#e4ebfe;*/
+    padding:0 0 0 100px;
+    height:20px;
+}
+
+.sent_date a{
+    text-decoration:none;
+    color:black;
+}
+

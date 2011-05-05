@@ -1,0 +1,62 @@
+#list {
+    margin:20px auto;
+    width:400px;
+}
+#list li {
+    padding:6px 0 0 50px;
+    list-style-type:none;
+}
+#list li label input {
+    margin-right:10px;
+}
+.name_listodd{
+    background:#E4EBFE;
+    height:30px;
+    width:400px;
+    border-top:1px solid #C2CEEF;
+}
+.name_listeven{
+    background:#DAE6FF;
+    height:30px;
+    width:400px;
+    border-top:1px solid #C2CEEF;
+}
+.att_list_names {
+    display:inline;
+    font-weight: 600;
+    font-size: 13px;
+}
+label {display:inline;}
+.user_submit_button1{
+    width:100px;
+    margin:0px auto;
+}
+.user_submit_button1 input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:30px auto;
+    margin-right:20px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    text-decoration: none;
+    width:100px;
+    cursor:pointer;
+}
+.label_field_pair { 
+    width:450px;
+    margin:0px auto;
+    text-align:center;
+}
+.label_field_pair label {
+    font-weight:bold;
+    display:block;
+    color:#444;
+    margin-top:50px;
+    margin-bottom:10px;
+}

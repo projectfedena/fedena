@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/fckeditor/test/fckeditor_test.rb -- 1 warning:
+  FckeditorTest has no descriptive comment (IrresponsibleModule)

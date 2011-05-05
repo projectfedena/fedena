@@ -1,0 +1,60 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Exams</h1>
+  <h3>Edit Exam</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+
+    <div class="bread_crumb">
+      <%= link_to 'Courses', courses_path %> &raquo;
+      <%= link_to @course.full_name, @course %> &raquo;
+      <%= link_to "Batch #{@batch.name}", [@course, @batch] %> &raquo;
+      <%= link_to 'Exams', batch_exam_groups_path(@batch) %> &raquo;
+      <%= link_to @exam_group.name, [@batch, @exam_group] %> &raquo;
+      Edit
+    </div>
+
+    <h4>For exam group - <%= @exam_group.name %></h4>
+
+    <% form_for [@exam_group, @exam] do |f| %>
+      <%= error_messages_for :exam %>
+      <div class="label-field-pair">
+        <%= f.label :subject_id %>
+        <div class="text-input-bg"><%= f.select :subject_id, @subjects.map { |s| [s.name, s.id]} %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <%= f.label :start_time %>
+        <div class="text-input-bg">  <%= f.calendar_date_select :start_time %></div>
+      </div>
+      <div class="label-field-pair">
+        <%= f.label :end_time %>
+        <div class="text-input-bg"><%= f.calendar_date_select :end_time %></div>
+      </div>
+      <div class="label-field-pair">
+        <%= f.label :maximum_marks %>
+        <div class="text-input-bg"><%= f.text_field :maximum_marks %></div>
+      </div>
+      <div class="label-field-pair">
+        <%= f.label :minimum_marks %>
+        <div class="text-input-bg"><%= f.text_field :minimum_marks %></div>
+      </div>
+
+
+      <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+
+    <% end %>
+
+    <div class="extender"></div>
+  </div>
+</div>

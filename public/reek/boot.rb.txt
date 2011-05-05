@@ -1,0 +1,8 @@
+D:/nithin/rails/fedena3/fedena2/config/boot.rb -- 7 warnings:
+  Rails#preinitialize calls preinitializer_path twice (Duplication)
+  Rails::Boot has no descriptive comment (IrresponsibleModule)
+  Rails::GemBoot has no descriptive comment (IrresponsibleModule)
+  Rails::GemBoot#load_rubygems calls exit(1) twice (Duplication)
+  Rails::GemBoot#load_rubygems calls rubygems_version twice (Duplication)
+  Rails::GemBoot#load_rubygems has approx 6 statements (LongMethod)
+  Rails::VendorBoot has no descriptive comment (IrresponsibleModule)

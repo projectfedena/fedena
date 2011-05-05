@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/spec/rails/example/cookies_proxy_spec.rb -- 2 warnings:
+  CookiesProxyExamplesController has no descriptive comment (IrresponsibleModule)
+  CookiesProxyExamplesController#index calls cookies twice (Duplication)

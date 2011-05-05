@@ -1,0 +1,31 @@
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+  <h1>Donations</h1>
+  <h3>Donors</h3>
+  <div id="app-back-button">
+   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+<h4> List of Donors </h4>
+  <table id="listing">
+    <tr class="tr-head">
+      <td>Name</td>
+      <td>Description</td>
+      <td>Amount</td>
+      <td>Created At</td>
+      <td></td>
+    </tr>
+<% @donations.each do |d| %>
+  <tr class="tr-<%= cycle('odd','even') %>">
+  <td class="col-3"><%= link_to d.donor,:action=>'donation_receipt',:id=>d.id %></td>
+  <td class="col-3"><%= d.description %></td>
+  <td class="col-3"><%= d.amount %></td>
+  <td class="col-3"><%= d.transaction_date.strftime("%d-%m-%y") unless d.transaction_date.nil?%></td>
+  <td class="col-3 links_class"><%= link_to 'Edit', :action => 'donation_edit', :id => d.id %>  <%= link_to 'Delete', :action => 'donation_delete',  :id=> d.id , :confirm => 'Are you sure?' %></td>
+    </tr>
+<% end %>
+
+  </table>
+</div>

@@ -1,0 +1,51 @@
+
+#user_create_form {
+    height:30px;
+    margin-bottom:20px;
+    margin-top:20px;
+    padding:0;
+   
+}
+#user_create_form img {
+    width:22px;
+    height:27px;
+    float:left;
+    margin:0;
+    border:0;
+    padding:0px 0 0 0;
+}
+#user_create_form h4 {
+    margin:0;
+    padding:0px 0 0 40px;
+    color:#b00;
+}
+#create_user_form {
+    width:600px;
+    margin: 0px auto;
+}
+
+.user_submit_button {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:30px auto;
+    margin-left: 150px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    text-decoration: none;
+    width:100px;
+    cursor:pointer;
+}
+.necessary-field {
+    color : #f00;
+    font-size : 1.1em;
+}
+#necessary-field-notification {
+    font-weight : bold;
+    padding : 10px 0 10px 0;
+}

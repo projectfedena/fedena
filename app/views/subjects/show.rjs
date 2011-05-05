@@ -1,0 +1,5 @@
+if @subjects.empty?
+  page.replace_html 'subjects', :partial => 'subjects'
+else
+  page.replace_html 'subjects', :partial => 'subjects'
+end

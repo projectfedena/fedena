@@ -1,0 +1,29 @@
+
+
+
+
+<ul class="leave-type-list">
+<% unless @leave_types.empty? %>
+  <li class="listheading"><div class="leave-type-name"> Active Leave types </div></li>
+    <%- @leave_types.each do |c| -%>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="leave-type-name"><%= c.name %>-<%= c.code %></div>
+        <div class="leave-type-edit"><%= link_to "Edit", {:action => "edit_leave_types", :id=>c.id} %></div>
+        <div class="leave-type-edit"><%= link_to "Delete", {:action => "delete_leave_types", :id=>c.id},:confirm=>"Are you sure?"  %></div>
+        <div class="leave-type-edit"><%= "(Inactive)" unless c.status == true %></div>
+        </li>
+     <% end %>
+<% unless @inactive_leave_types.empty? %>
+      <li class="listheading"><div class="leave-type-name"> Inactive  Leave types </div></li>
+      <%- @inactive_leave_types.each do |c| -%>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <div class="leave-type-name"><%= c.name %>-<%= c.code %> </div>
+          <div class="leave-type-edit"><%= link_to "Edit", {:action => "edit_leave_types", :id=>c.id} %></div>
+          <div class="leave-type-edit"><%= link_to "Delete", {:action => "delete_leave_types", :id=>c.id},:confirm=>"Are you sure?" %></div>
+        </li>
+      <% end %>
+    <% end %>
+  <% else %>
+<p class="flash-msg">Employee leave types records not found</p>
+  <% end %>
+</ul>

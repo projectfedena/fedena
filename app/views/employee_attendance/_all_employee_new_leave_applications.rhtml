@@ -1,0 +1,28 @@
+<div class="heading">New applications from employees</div>
+
+<div class="container-head">
+<div id="name-label">Name</div>
+<div id="startdate-label">Start date</div>
+<div id="enddate-label">End date</div>
+<div class="extender"></div>
+</div>
+
+
+        <% @all_employees.each do |e| %>
+            <% @applied_leaves = ApplyLeave.find_all_by_employee_id(e.id, :order=>"start_date DESC") %>
+            <% unless @applied_leaves == [] %>
+              <% @applied_leaves.each do |l| %>
+                <% if l.viewed_by_manager == false %>
+                  <div class="container<%=cycle('odd','even') %>">
+                  <div class="name"><%= link_to "#{Employee.find(l.employee_id).first_name}",:controller => "employee_attendance", :action=>"leave_app", :id=>l.id, :id2=>@employee.id %></div>
+                  <div class="start-date"><%= link_to "#{l.start_date.strftime("%d-%m-%Y")}",:controller => "employee_attendance", :action=>"leave_app", :id=>l.id, :id2=>@employee.id %></div>
+                  <div class="end-date"><%= link_to "#{l.end_date.strftime("%d-%m-%Y")}", :controller => "employee_attendance", :action=>"leave_app", :id=>l.id, :id2=>@employee.id %></div>
+                  <div class="extender"></div>
+                  </div>
+              <% end %><!-- if -->
+              <% end %><!-- |l| -->
+              <% else %>
+            <% end %><!-- unless -->
+        <% end %><!-- |e| -->
+
+

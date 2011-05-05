@@ -1,0 +1,5 @@
+<%= select :adv_search, :joining_date_year, (1990..2011),{:prompt=>"Select"},
+{:onChange => "#{remote_function(:url => {:action => "doj_greater_than_update"},
+        :with => "'year='+value"
+        )}"}
+%>

@@ -1,0 +1,77 @@
+.fees-th {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    border-top: 1px solid #C4D2FE;
+    font-size: 0.9em;
+    height: 1.5em;
+    font-variant:small-caps;
+    font-weight: bold;
+    padding: 0.5em 0 0 0;
+    width:600px;
+}
+.fees-tr {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    font-size:0.9em;
+    height: 1.5em;
+    padding: 0.5em 0 0 0;
+    width:600px;
+}
+.fees-table-particulars {
+    float:left;
+    padding: 0 0 0 60px;
+    width: 180px;
+}
+.fees-table-amount {
+    float:left;
+    width: 80px;
+    padding: 0 0 0 140px;
+    text-align:right;
+}
+
+.user_button {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin: 10px auto;
+    text-decoration: none;
+    float: left;
+    margin-left: 400px;
+}
+.user_button:hover{
+    background:  #373B3F;
+}
+
+
+.name{
+    color: #999999;
+    float: left;
+    width: 160px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.val {
+    width: 400px;
+    color: #bb0000;
+    font-weight: bold;
+     font-size: 13px;
+}
+
+.val span{
+    margin-right:12px;
+    color: black;
+}
+
+#listing{
+    margin-top: 10px;
+
+}
+

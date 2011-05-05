@@ -1,0 +1,17 @@
+CHANGELOG
+
+* June 2, 2008 *
+
+Update xss_terminate to support ActiveRecordStore in Rails 2.1. Fixes issue #2.
+
+* May 31, 2008 *
+
+Fix issue #1: HTML5Lib sanitization failed with nil values.
+
+* January 27, 2008 * 
+
+First release.
+
+* Pre-history *
+
+This code was originally born as acts_as_sanitized by Alex Payne.

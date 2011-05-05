@@ -1,0 +1,29 @@
+<% unless @payroll_details.empty? %>
+  <ul class="item-list">
+    <li class="heading1">Basic payroll details</li>
+    <% total = 0 %>
+    <% @payroll_details.each do |p| %>
+
+      <% @payroll_category=PayrollCategory.find(p.payroll_category_id)  %>
+      <%  unless @payroll_category.status == false %>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <div class="item-name"><%= @payroll_category.name    %></div>
+          <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= p.amount %></div>
+          <% if p.payroll_category.is_deduction %>
+          <% total -= p.amount.to_i %>
+          <% else %>
+          <% total += p.amount.to_i %>
+          <% end %>
+        </li>
+      <% end %>
+    <% end %>
+    <li class="list<%=cycle('odd', 'even')%>"><div class="item-name">Total :</div><div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= total %></div></li>
+    </ul>
+<% if permitted_to? :edit_payroll_details, :payroll %>
+    <div class="edit-delete-link">
+    <%= link_to "Edit", :controller => "payroll", :action => "edit_payroll_details", :id => @employee.id  %>
+    </div>
+<% end %>
+<% else %>
+  <p class="flash-msg">No payroll details entered for <%= @employee.first_name%>. <%= link_to "ADD", :controller => "payroll", :action => "manage_payroll", :id => @employee.id %></p>
+<% end %>

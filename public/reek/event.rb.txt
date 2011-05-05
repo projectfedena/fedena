@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/app/models/event.rb -- 2 warnings:
+  Event has no descriptive comment (IrresponsibleModule)
+  Event#is_a_holiday? doesn't depend on instance state (LowCohesion)

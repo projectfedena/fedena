@@ -1,0 +1,28 @@
+#events_description{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#EEEEEE none repeat scroll 0 0;
+    border:1px solid #C6C6C6;
+    font-family:Arial;
+    height:190px;
+    padding:5px;
+    width:520px;
+}
+#events_submit{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:30px 0 0 210px;
+    padding:7px 10px;
+    width:130px;
+}
+form{
+    width:600px;
+    margin:auto;
+}

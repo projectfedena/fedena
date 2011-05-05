@@ -1,0 +1,44 @@
+<label class="head_label">Edit class timing for
+  <span>
+    <% if @batch.nil?%>
+      <%= "common" %>
+    <% else %>
+      <%=  @batch.full_name %>
+    <% end %>
+  </span></label>
+
+<div id="ajax-edit">
+
+  <% form_remote_for @class_timing do |f| %>
+    <div id="form-errors"></div>
+
+    <div class="label-field-pair">
+      <label for="name"> Name</label>
+      <div class="text-input-bg"><%= f.text_field :name %></div>
+    </div>
+
+    
+
+    <div class="label-field-pair">
+      <label for="name"> Start time </label>
+    <div class="time-select-field"><%= time_select :class_timing, :start_time, {:minute_step => 5} %></div>
+    </div>
+
+    <div class="label-field-pair">
+      <label for="name"> End time </label>
+    <div class="time-select-field"><%= time_select :class_timing, :end_time, {:minute_step => 5} %></div>
+    </div>
+
+    <div class="label-checkbox-pair">
+      <% if @class_timing.is_break %>
+      <label><%= f.check_box :is_break, :checked => true %> Is a break</label>
+      <% else %>
+      <label><%= f.check_box :is_break, :checked => false %> Is a break</label>
+      <% end %>
+    </div>
+
+    <%= submit_tag '► Save', :class => 'submit-button' %>
+
+
+  <% end %>
+</div>

@@ -1,0 +1,51 @@
+
+.label-field-pair {
+    height : auto; width : 250px;
+    float : left;
+    margin-left : 50px;
+}
+.label-field-pair label {
+    font-weight:bold;
+    display:block;
+    color:#444;
+    margin-bottom:10px;
+}
+.text-input-bg {
+    width:230px;
+    height:28px;
+    background:#fff url(../../images/master_student/admission1/text_input.png) no-repeat;
+    margin-bottom:20px;
+}
+.label-field-pair input {
+    width:210px;
+    height:28px;
+    background:transparent;
+    border:none;
+    padding-left:10px;
+    padding-top:5px;
+}
+#submit-button {
+    clear : both;
+    margin : 0 0 0 250px;
+    padding : 20px 0 30px 0;
+}
+.fieldWithErrors{
+    border : 2px solid #b00;
+    height : 25px; width : 225px;
+}
+.errorExplanation {
+    background-color : #ffb1b1;
+    border : 1px solid #b00;
+    height : auto; width : 510px;
+    margin : 20px 0 40px 50px;
+    padding : 10px 0 20px 20px;
+}
+.errorExplanation h2 {
+    margin : 0;
+    font-size : 1em;
+    font-weight : normal;
+    padding : 0;
+}
+.errorExplanation p {
+    margin : 5px 0 0 0;
+}

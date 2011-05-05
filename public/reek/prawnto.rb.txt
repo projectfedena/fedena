@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/prawnto/lib/prawnto.rb -- 1 warning:
+  ActionView::Base has no descriptive comment (IrresponsibleModule)

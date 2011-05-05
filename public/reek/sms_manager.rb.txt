@@ -1,0 +1,7 @@
+D:/nithin/rails/fedena3/fedena2/lib/sms_manager.rb -- 6 warnings:
+  SmsManager has no descriptive comment (IrresponsibleModule)
+  SmsManager#send_sms calls Net::HTTP.get_response(URI.parse(cur_request)) twice (Duplication)
+  SmsManager#send_sms calls URI.parse(cur_request) twice (Duplication)
+  SmsManager#send_sms calls cur_request.length twice (Duplication)
+  SmsManager#send_sms has approx 8 statements (LongMethod)
+  SmsManager#send_sms refers to cur_request more than self (LowCohesion)

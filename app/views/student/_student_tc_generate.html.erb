@@ -1,0 +1,5 @@
+<h4><%= t('student.index.student_deleted_successfully') %>!</h4>
+<br/>
+<br/>
+<%= link_to " ► #{t('student.index.generate_tc')}",
+        {:controller => "student", :action => "generate_tc_pdf", :id => @student.admission_no},:target => '_blank', :class=> 'user_button' %>

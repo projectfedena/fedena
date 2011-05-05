@@ -1,0 +1,95 @@
+<%if @financefee.transaction_id.nil?%>
+  <%= render :partial => "student_fine_submission" %>
+<% end %>
+
+<div class="extender"></div>
+<% total_fees =0 %>
+<% form_for :fees, :url => {:action => 'fees_submission_save', :student => @student.id,:date => @date.id, :fine=>@fine} do |form| %>
+
+  <% unless @fee_particulars.nil? %>
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+      <tr class="tr-head">
+        <td>Sl no.</td>
+        <td><%= t('master_fees.particulars') %></td>
+        <td><%= t('layouts.default.amount') %> (<%= currency %>  )</td>
+      </tr>
+      <tr class="tr-blank"></tr>
+      <% @fee_particulars.each_with_index do |fee,i| %>
+        <tr class="tr-<%= cycle("odd","even") %>">
+          <td class="col-1"><%= i+1 %></td>
+          <td class="col-2"><%= shorten_string(fee.name,20) %></td>
+          <td class="col-6"><%= fee.amount%></td>
+        </tr>
+        <% total_fees += fee.amount %>
+      <% end %>
+
+      <% unless @fine.nil? %>
+        <tr class="tr-<%= cycle("odd","even") %>">
+          <td class="col-1"><%= @fee_particulars.size+1 %></td>
+          <td class="col-2"><%= t('fees_submission_index.fine') %></td>
+          <td class="col-6"><%= @fine.to_f %></td>
+        </tr>
+        <% total_fees += @fine.to_f %>
+      <% end %>
+      <% unless @paid_fees.nil? %>
+        <% paid = 0 %>
+        <% @paid_fees.each_with_index do |p,i| %>
+          <% paid += p.amount.to_f %>
+          <tr class="tr-<%= cycle("odd","even") %>">
+            <td class="col-1"><%= @fee_particulars.size+1+i %></td>
+            <td class="col-2"><%= t('fees_submission_index.partial_payment_on') %> <%= p.transaction_date %></td>
+            <td class="col-6">-<%= p.amount.to_f %></td>
+          </tr>
+        <% end %>
+        <% total_fees -= paid %>
+      <% end %>
+      <% unless @financefee.transaction_id.nil? %>
+
+        <% @trans = FinanceTransaction.find(@financefee.transaction_id) %>
+        <% unless @trans.nil? %>
+          <% if @trans.fine_included %>
+            <tr class="tr-<%= cycle("odd","even") %>">
+              <td class="col-1"><%= @fee_particulars.size+@paid_fees.size+1 %></td>
+              <td class="col-2"><%= t('fees_submission_index.fine') %></td>
+              <td class="col-6"><%= @trans.fine_amount %></td>
+            </tr>
+          <% end %>
+          <% total_fees += @trans.fine_amount.to_f %>
+        <% end %>
+      <% end %>
+      <tr class="tr-blank"></tr>
+      <tr class="tr-blank"></tr>
+      <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
+        <td class="col-1" ><%= t('fees_submission_index.total_fees') %></td>
+        <td class="col-1" ></td>
+        <td class="col-6" ><%= total_fees%></td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <div class="pay_fees">
+            <%unless total_fees.to_f ==0 %>
+              <div class="label-field-pair2">
+                <label><%= t('layouts.default.amount') %> :</label>
+                <div class="text-input-bg2"><%= form.text_field :fees_paid, :value=>total_fees %>
+                </div>
+              </div>
+              <%= submit_tag "► #{t('fees_submission_index.pay_fees')}",:class=>'submit_button' %>
+            <% else %>
+              <h4><%= t('fees_submission_index.fees_paid') %></h4>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <% unless @paid_fees.nil? or not total_fees.to_f == 0 %>
+            <%= link_to "► #{t('fees_submission_index.print_receipt')}",
+              {:controller => "finance", :action => "student_fee_receipt_pdf", :id => @student.id, :id2=>@date.id},:target => '_blank', :class=> 'user_button' %>
+          <% end %>
+        </td>
+      </tr>
+
+    <%end%>
+  </table>
+<% end %>
+

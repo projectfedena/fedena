@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/test/functional/exam_groups_controller_test.rb -- 1 warning:
+  ExamGroupsControllerTest has no descriptive comment (IrresponsibleModule)

@@ -1,0 +1,11 @@
+<% remote_form_for :send_sms,:url=>{:action=>'sms_all'},
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')" do |sms| %>
+<div class="label-field-pair">
+<div class="text-input-bg"><%= text_area :send_sms,:message, :rows=>5,:cols=>30 %>
+</div>
+</div>
+<%= submit_tag "#{t('sms_settings.index.send_sms')}",:class=>'submit_button' %>
+<% end %>
+
+

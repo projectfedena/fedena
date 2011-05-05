@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/matchers/ar_be_valid.rb -- 4 warnings:
+  Spec::Rails::Matchers#be_valid calls actual.errors twice (Duplication)
+  Spec::Rails::Matchers#be_valid calls actual.inspect twice (Duplication)
+  Spec::Rails::Matchers#be_valid contains iterators nested 2 deep (NestedIterators)
+  Spec::Rails::Matchers#be_valid refers to actual more than self (LowCohesion)

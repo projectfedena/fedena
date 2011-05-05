@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/example/routing_helpers.rb -- 4 warnings:
+  Spec::Rails::Example::RoutingHelpers#ensure_that_routes_are_loaded doesn't depend on instance state (LowCohesion)
+  Spec::Rails::Example::RoutingHelpers::RouteFor has no descriptive comment (IrresponsibleModule)
+  Spec::Rails::Example::RoutingHelpers::RouteFor#== has approx 11 statements (LongMethod)
+  Spec::Rails::Example::RoutingHelpers::RouteFor#== has the variable name 'e' (UncommunicativeName)

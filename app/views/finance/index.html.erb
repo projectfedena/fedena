@@ -1,0 +1,56 @@
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="" />
+  <h1>Finance</h1>
+  <h3>Manage Finance</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
+  
+  <div class="box">
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Fees", :action => "fees_index" %> </div>
+    <div class="link-descr">Manages Fees</div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Category", :action => "categories" %> </div>
+    <div class="link-descr">Manages Category </div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Transactions", :action => "transactions" %> </div>
+    <div class="link-descr">Manages expense and income </div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Donations", :action => "donation" %></div>
+    <div class="link-descr">Creates new donations</div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Auto transactions", :action => "automatic_transactions" %></div>
+    <div class="link-descr">Add automatic transactions</div>
+  </div>
+  <% unless @hr.nil? %>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Payslip", :action => "payslip_index" %></div>
+      <div class="link-descr">Employee Payslips </div>
+    </div>
+  <% end %>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to " Asset liability management", :action => "asset_liability" %></div>
+    <div class="link-descr"> Asset liability management</div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to " Export",:controller => 'xml', :action => "index" %></div>
+    <div class="link-descr"> Creates xml import file</div>
+  </div>
+
+  </div>
+</div>

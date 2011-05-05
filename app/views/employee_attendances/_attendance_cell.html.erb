@@ -1,0 +1,11 @@
+
+<% @absent = EmployeeAttendance.find_by_employee_id_and_attendance_date(@employee.id, @date) %>
+
+<% unless @absent.nil? %>
+  <%= link_to_remote('X', {:url => edit_employee_attendance_path(@absent), :method => 'get'}, :class=>'absent') %>
+<% else %>
+  <%= link_to_remote('O',
+    {:url => {:controller =>'employee_attendances', :action => 'new', :id=> @date, :id2 => @employee.id}}, :class=> 'present') %>
+<% end %>
+<div class="date"><span><%=  @date%> <div> <%= @employee.full_name %></div></span>
+</div>

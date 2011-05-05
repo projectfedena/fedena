@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090914114212_create_employee_salary_structures.rb -- 2 warnings:
+  CreateEmployeeSalaryStructures has no descriptive comment (IrresponsibleModule)
+  CreateEmployeeSalaryStructures#self.up has the variable name 't' (UncommunicativeName)

@@ -1,0 +1,121 @@
+<div class="name"><%= t('fees_submission_index.fees_receipt_no') %></div><div class="val"><span>:</span>F<%= @financefee.id %></div>
+<% unless @fee_category.nil? %>
+  <div class="name"><%= t('fees_submission_index.fee_category_name') %></div><div class="val"><span>:</span><%= @fee_category.name %></div>
+<% end %>
+<% unless @student.student_category.nil? %>
+  <div class="name"><%= t('fees_submission_index.student_category') %></div><div class="val"><span>:</span><%= @student.student_category.name %></div>
+<% else %>
+  <div class="name"><%= t('fees_submission_index.student_category') %></div><div class="val"><span>:</span>N.A</div>
+<% end %>
+
+<br />
+
+<%if @financefee.transaction_id.nil?%>
+  <%= render :partial => "fine_submission" %>
+<% end %>
+<div id="register">
+  <div class="header">
+    <div class="prev">
+      <%= link_to_remote '◄',:url => {:action => 'load_fees_submission_batch', :batch_id => @batch.id, :student => @prev_student.id, :date=> @date.id }%>
+    </div>
+    <div class="month">
+      <%= @student.full_name %>
+    </div>
+    <div class="next">
+      <%= link_to_remote '►',:url => {:action => 'load_fees_submission_batch', :batch_id => @batch.id, :student => @next_student.id, :date=> @date.id }%>
+    </div>
+    <div class="extender"></div>
+  </div>
+</div>
+
+<% total_fees =0 %>
+<% form_remote_for :fees, :url => {:action => 'update_ajax',:student => @student.id,:batch_id => @batch.id,:date => @date.id, :fine=>@fine} do |form| %>
+  <% unless @fee_particulars.nil? %>
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+      <tr class="tr-head">
+        <td>Sl no.</td>
+        <td><%= t('master_fees.particulars') %></td>
+        <td><%= t('layouts.default.amount') %> (<%= currency %>  )</td>
+      </tr>
+      <tr class="tr-blank"></tr>
+      <% @fee_particulars.each_with_index do |fee,i| %>
+        <tr class="tr-<%= cycle("odd","even") %>">
+          <td class="col-1"><%= i+1 %></td>
+          <td class="col-2"><%= shorten_string(fee.name,20) %></td>
+          <td class="col-6"><%= fee.amount%></td>
+        </tr>
+        <% total_fees += fee.amount %>
+      <% end %>
+      <% unless @fine.nil? %>
+        <tr class="tr-<%= cycle("odd","even") %>">
+          <td class="col-1"><%= @fee_particulars.size+1 %></td>
+          <td class="col-2"><%= t('fees_submission_index.fine') %></td>
+          <td class="col-6"><%= @fine.to_f %></td>
+        </tr>
+        <% total_fees += @fine.to_f %>
+      <% end %>
+      <% unless @paid_fees.nil? %>
+        <% paid = 0 %>
+        <% @paid_fees.each_with_index do |p,i| %>
+          <% paid += p.amount.to_f %>
+          <tr class="tr-<%= cycle("odd","even") %>">
+            <td class="col-1"><%= @fee_particulars.size+1+i %></td>
+            <td class="col-2"><%= t('fees_submission_index.partial_payment_on') %> <%= p.transaction_date %></td>
+            <td class="col-6">-<%= p.amount.to_f %></td>
+          </tr>
+        <% end %>
+        <% total_fees -= paid %>
+      <% end %>
+
+      <% unless @financefee.transaction_id.nil? %>
+
+        <% @trans = FinanceTransaction.find_by_id(@financefee.transaction_id) %>
+        <% unless @trans.nil? %>
+          <% if @trans.fine_included %>
+            <tr class="tr-<%= cycle("odd","even") %>">
+              <td class="col-1"><%= @fee_particulars.size+@paid_fees.size+1 %></td>
+              <td class="col-2"><%= t('fees_submission_index.fine') %></td>
+              <td class="col-6"><%= @trans.fine_amount %></td>
+            </tr>
+            <% total_fees += @trans.fine_amount.to_f %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <tr class="tr-blank"></tr>
+      <tr class="tr-blank"></tr>
+      <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
+        <td class="col-1" ><%= t('fees_submission_index.amount_to_pay') %>:</td>
+        <td class="col-1" ></td>
+        <td class="col-6" ><%= total_fees%></td>
+      </tr>
+
+      <tr>
+        <td colspan="3">
+          <div class="pay_fees">
+            <%unless total_fees.to_f ==0 %>
+              <div class="label-field-pair2">
+                <label><%= t('layouts.default.amount') %> :</label>
+                <div class="text-input-bg2"><%= form.text_field :fees_paid, :value=>total_fees %>
+                </div>
+              </div>
+              <%= submit_tag "► #{t('fees_submission_index.pay_fees')}",:class=>'submit_button' %>
+            <% else %>
+              <h4><%= t('fees_submission_index.fees_paid') %></h4>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <% unless @paid_fees.nil? or not total_fees.to_f == 0 %>
+            <%= link_to "► #{t('fees_submission_index.print_receipt')}",
+              {:controller => "finance", :action => "student_fee_receipt_pdf", :id => @student.id, :id2=>@date.id},:target => '_blank', :class=> 'user_button' %>
+          <% end %>
+        </td>
+      </tr>
+
+    </table>
+  <%end%>
+<%end%>
+
+

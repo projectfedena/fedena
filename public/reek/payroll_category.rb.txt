@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/hr/payroll_category.rb -- 1 warning:
+  PayrollCategory has no descriptive comment (IrresponsibleModule)

@@ -1,0 +1,224 @@
+.text-input-bg {
+    float : left;
+    margin : 0 0 0 40px;
+}
+#fees-table{
+    padding-top:30px;
+}
+
+.fees_paid{
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px 10px 10px 10px;
+    background:none repeat scroll 0 0 #27292B;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    height:16px;
+    margin-left:270px;
+    margin-top:30px;
+    padding:7px 10px;
+    width:135px;
+}
+.fees_paid:hover{
+    background:  #373B3F;
+}
+.fees-th {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    border-top: 1px solid #C4D2FE;
+    font-size: 0.9em;
+    height: 1.5em;
+    font-variant:small-caps;
+    font-weight: bold;
+    padding: 0.5em 0 0 0;
+    width:600px;
+}
+.fees-tr {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    font-size:0.9em;
+    height: 1.5em;
+    padding: 0.5em 0 0 0;
+    width:600px;
+}
+.fees-table-particulars {
+    float:left;
+    padding: 0 0 0 60px;
+    width: 180px;
+}
+.fees-table-amount {
+    float:left;
+    width: 80px;
+    padding: 0 0 0 140px;
+    text-align:right;
+}
+.edit-link{
+
+    float : left;
+    font-size : 0.9em;
+    margin : 0 0 0 10px;
+}
+.delete-link {
+    float : left;
+    font-size : 0.9em;
+    margin : 0 0 0 10px;
+}
+.edit-link a,
+.delete-link a {
+    color : #000;
+}
+
+.submit_button {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin-top:4px;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.submit_button2 {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin-left:10px;
+    margin-top:10px;
+
+}
+.submit_button2:hover{
+    background:  #373B3F;
+}
+
+
+
+#fee-defaulters{
+    float: right;
+    width:600px;
+}
+
+.label-field-pair {
+    height : 40px;
+    width : 100px;
+    padding-top: 3px;
+    float:left;
+
+}
+
+.text-input-bg {
+    background : transparent;
+    height : 28px;
+    width : 100px;
+    float:left;
+    margin: 0 auto;
+}
+
+.label-field-pair label {
+    color : #444;
+    display : block;
+    font-size: 14px;
+    margin : 0 0 10px 0;
+    float:left;
+    width:70px;
+    padding-top: 10px;
+    font-weight: 600;
+}
+
+.label-field-pair input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 10px 0 0 10px;
+    width : 70px;
+    height:17px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+    float:left;
+}
+
+
+h5{
+    width:380px;
+    float: left;
+}
+
+
+.name{
+    color: #999999;
+    float: left;
+    width: 160px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.val {
+    width: 400px;
+    color: #bb0000;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.val span{
+    margin-right:12px;
+    color: black;
+}
+
+#listing{
+    margin-top:50px;
+}
+
+
+.label-field-pair2 label {
+    color : #444;
+    display : block;
+    font-size: 14px;
+    float:left;
+    width:700px;
+    padding-top: 10px;
+    font-weight: 600;
+
+}
+label-field-pair2 {
+    float: right;
+}
+
+.text-input-bg2 {
+    float:left;
+    background:none repeat scroll 0 0 transparent;
+    float:left;
+    height:28px;
+    width:130px;
+}
+.label-field-pair2 input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 0 0 10px;
+    width : 100px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+    float: left;
+}
+.label-field-pair2 input:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+.pay_fees{
+    text-align: right;
+    margin-top:10px;
+}

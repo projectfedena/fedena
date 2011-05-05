@@ -1,0 +1,75 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Exams</h1>
+  <h3>Result Entry</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  <% unless flash[:warn_notice].nil? %>
+    <div id="errorExplanation" class="errorExplanation"><p><%= flash[:warn_notice] %></p> </div>
+  <% end %>
+
+  <div class="box">
+    <div class="bread_crumb">
+      <%= link_to 'Courses', courses_path %> &raquo;
+      <%= link_to @exam_group.batch.course.full_name, @exam_group.batch.course %> &raquo;
+      <%= link_to  "Batch " + @exam_group.batch.name, [@exam_group.batch.course, @exam_group.batch] %> &raquo;
+      <%= link_to 'Exams', batch_exam_groups_path(@batch) %> &raquo;
+      <%= link_to @exam_group.name, [@exam_group.batch, @exam_group] %> &raquo;
+      <%= @exam.subject.name %>
+    </div>
+
+
+    <% form_for :exams, :url => save_scores_exam_group_exam_url do |f| %>
+
+      <table id="listing" width="100%">
+        <tr class="tr-head">
+          <td>Name</td>
+          <% unless @exam_group.exam_type == 'Grades' %>
+            <td>Marks</td>
+          <% else %>
+            <td>Grades</td>
+          <% end %>
+          <td>Remarks(absent/disqualified etc)</td>
+          <% unless @exam_group.exam_type == 'Marks' %>
+            <td>Grade</td>
+          <% end %>
+        </tr>
+        <% @students.each do |student| %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-2"><%= student.full_name %> </td>
+            <% @exam_score = @exam.score_for(student) %>
+            <% unless @exam_group.exam_type == 'Grades' %>
+              <td class="col-1"><div class="label-field-pair">
+                  <div class="text-input-bg">
+                    <%= text_field_tag "exam[#{student.id}][marks]", @exam_score.marks, :size => '4' %></div></div></td>
+            <% else %>
+              <td class="col-2"><div class="label-field-pair">
+                  <div class="text-input-bg"><%= select "exam[#{student.id}]", "grading_level_id", @grades.map {|g| [g.name, g.id] },
+                      { :prompt =>"Select Grade", :selected => @exam_score.grading_level_id } %></div></div></td>
+            <% end %>
+
+            <td class="col-2"><div class="label-field-pair2">
+                <div class="text-input-bg2">
+                  <%= text_field_tag "exam[#{student.id}][remarks]", @exam_score.remarks, :size => '40' %></div></div></td>
+            <% unless @exam_group.exam_type == 'Marks' %>
+                <td class="col-1"><%= @exam_score.grading_level %></td>
+                <% end %>
+          </tr>
+
+        <% end %>
+
+      </table>
+      <div id="sub-button"><%= submit_tag "", :value => "► Save", :class => "submit_button" %></div>
+    <% end %>
+
+    <div class="extender"></div>
+  </div>
+</div>

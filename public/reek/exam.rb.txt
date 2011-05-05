@@ -1,0 +1,7 @@
+D:/nithin/rails/fedena3/fedena2/app/models/exam.rb -- 6 warnings:
+  Exam has no descriptive comment (IrresponsibleModule)
+  Exam#update_exam_group_date calls group.exam_date twice (Duplication)
+  Exam#update_exam_group_date calls self.start_time twice (Duplication)
+  Exam#update_exam_group_date calls self.start_time.to_date twice (Duplication)
+  Exam#validate calls maximum_marks twice (Duplication)
+  Exam#validate calls minimum_marks twice (Duplication)

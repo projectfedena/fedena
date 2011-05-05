@@ -1,0 +1,16 @@
+<div class="label-field-pair">
+  <label for="student_grade"><%= t('layouts.default.recipient') %></label>
+  <div class ="scrolable" >
+    <% x = '<span> x </span>' %>
+    <div class="scroll-inside">
+<% @recipients.each do |r|  %>
+  <div class="hover">
+    <%=  %> <%= link_to r.first_name + x, "#", :onClick => "remove_recipient(#{r.id})", :class=> 'individual',
+    :before => "Element.show('loader')",
+      :success => "Element.hide('loader')" %>
+    </div>
+<% end %>
+    </div>
+  </div>
+</div>
+<div class="extender"></div>

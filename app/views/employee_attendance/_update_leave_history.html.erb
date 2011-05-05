@@ -1,0 +1,17 @@
+<% @employee_attendances.each do |leave_type,leave| %>
+  <div class="type_name-<%= cycle('odd', 'even') %> "><%= leave_type  %>:</div>
+  <% if leave == [] %>
+    <div class="date-<%= cycle('odd', 'even') %>">
+      No leaves taken
+    </div>
+  <% else %>
+    <% leave.each do |l| %>
+      <div class="date-<%= cycle('odd', 'even') %>">
+        <%= l.attendance_date.strftime("%B %d, %Y") %>
+        <% if l.is_half_day==true %>
+          (Half Day)
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,0 +1,6 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/linear_regression.rb -- 5 warnings:
+  LinearRegression#initialize has the variable name 'x' (UncommunicativeName)
+  LinearRegression#initialize has the variable name 'y' (UncommunicativeName)
+  LinearRegression#initialize is controlled by argument dy (ControlCouple)
+  LinearRegression#predict has the parameter name 'x' (UncommunicativeName)
+  LinearRegression#predict has the variable name 'y' (UncommunicativeName)

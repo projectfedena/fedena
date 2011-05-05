@@ -1,0 +1,42 @@
+
+.link-box {margin:10px 40px;width:270px;float:left; height:80px;}
+.link-heading a {font-weight:bold;color:#900;}
+.link-descr {margin-top:5px;color:#666;text-align:justify;}
+
+#message-div{
+    width:270px;
+    float:left;
+    margin-left:200px;
+    padding : 5px;
+}
+
+#message-div p{
+    background-color : #fff1ab;
+    border:1px solid;
+    padding:10px;
+}
+
+#submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:170px;
+    margin-top:10px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+
+.loader-image{
+    height:25px;
+    width:150px;
+    margin-left:210px;
+}
+#box{
+    width:700px;
+    margin:auto;
+}

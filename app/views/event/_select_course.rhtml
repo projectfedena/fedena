@@ -1,0 +1,17 @@
+<% form_for :select_options, :url=>{:controller=>"event",:action=>"course_event", :id=>@event_id} do |m| %>
+<ul id="category-list">
+      <% @batches.each do |batch| %>
+  <li class="list<%= cycle('odd','even') %>">
+    <div class="category-box">
+<%= check_box_tag "select_options[batch_id][]", batch.id%>
+      </div>
+    <div class="category-name">
+       <%= batch.full_name %>
+    </div>
+  </li>
+  <% end %>
+</ul>
+      <%= submit_tag "Create", :class=>"create" %>
+<% end %>
+
+

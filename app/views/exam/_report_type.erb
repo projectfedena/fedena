@@ -1,0 +1,5 @@
+<% if @grouped_exams.empty? %>
+  <%= hidden_field_tag :type , '',:value=>'general' %>
+<% else %>
+  <%= hidden_field_tag :type , '',:value=>'grouped' %>
+<% end %>

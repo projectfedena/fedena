@@ -1,0 +1,21 @@
+<% form_for :element , :url => {:action => 'fees_student_specific', :id => @student.id,:date =>@date.id } do |f| %>
+  <div id="create_user_form">
+    <div class="label_field">
+      <label for="label"><%= t('fees_index.label') %></label>
+      <div class="text_field_bg"><%= f.text_field :label %></div>
+      <div class ="comment"><%= t('leave_field_blank') %>.</div>
+    </div>
+    <div class="label_field">
+      <label for="amount"><%= t('fees_index.layouts.default.amount') %></label>
+      <div class="text_field_bg"><%= f.text_field :amount %></div>
+    </div>
+    <div class="label_field">
+      <label for="amount"><%= t('fees_index.select_fee_category') %></label>
+      <div class="text_field_bg"><%= select :element, :parent_id, @components.map{|c| [c.label, c.id]}, :prompt => t('layouts.default.select_a_category') %></div>
+    </div>
+
+    <div class="label_field">
+     <%= image_submit_tag "", :value => t('xml.settings.save_changes'), :class => "submit_button" %>
+    </div>
+  </div>
+  <% end %>

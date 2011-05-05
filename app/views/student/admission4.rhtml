@@ -1,0 +1,34 @@
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+  <h1><%= t('layouts.default.admission') %></h1>
+  <h3><%= t('h3') %></h3>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+  <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+
+  <% form_for :student_additional_details do |a| %>
+  <%#= error_messages_for 'employee_bank_details' %>
+
+      <div id="form-contents">
+        <span class="span-sub-heading"><%= t('additional_detail') %></span>
+      <hr class="sub-heading"></hr>
+          <% @additional_fields.each do |additional| %>
+          <div class="label-field-pair">
+            <label><%= additional.name %></label>
+            <div class="text-input-bg"><%= a.text_field :additional_info,:index => additional.id %></div>
+            <div class="extender"></div>
+          </div>
+          <% end %>
+      </div>
+
+    <div class="save-proceed-button">
+      <%= submit_tag "► #{t('layouts.default.save_and_proceed')}" %>
+    </div>
+  <% end %>
+
+</div>

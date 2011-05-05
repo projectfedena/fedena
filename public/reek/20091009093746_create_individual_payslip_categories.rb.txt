@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20091009093746_create_individual_payslip_categories.rb -- 3 warnings:
+  CreateIndividualPayslipCategories has no descriptive comment (IrresponsibleModule)
+  CreateIndividualPayslipCategories#self.up has approx 7 statements (LongMethod)
+  CreateIndividualPayslipCategories#self.up has the variable name 't' (UncommunicativeName)

@@ -1,0 +1,1 @@
+page.hide "grading-level-#{@grading_level.id}"

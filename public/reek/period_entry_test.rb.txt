@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/test/unit/period_entry_test.rb -- 1 warning:
+  PeriodEntryTest has no descriptive comment (IrresponsibleModule)

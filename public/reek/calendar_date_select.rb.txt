@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/timcharper-calendar_date_select/lib/calendar_date_select/calendar_date_select.rb -- 3 warnings:
+  CalendarDateSelect#self.date_format_string calls format twice (Duplication)
+  CalendarDateSelect#self.date_format_string has boolean parameter 'time' (ControlCouple)
+  CalendarDateSelect#self.date_format_string is controlled by argument time (ControlCouple)

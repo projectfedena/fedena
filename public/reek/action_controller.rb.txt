@@ -1,0 +1,8 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/prawnto/lib/prawnto/action_controller.rb -- 7 warnings:
+  Prawnto::ActionController#compute_prawnto_options calls self.class twice (Duplication)
+  Prawnto::ActionController#compute_prawnto_options has the variable name 'k' (UncommunicativeName)
+  Prawnto::ActionController#compute_prawnto_options has the variable name 'n' (UncommunicativeName)
+  Prawnto::ActionController#compute_prawnto_options has the variable name 'o' (UncommunicativeName)
+  Prawnto::ActionController::ClassMethods#breakdown_prawnto_options doesn't depend on instance state (LowCohesion)
+  Prawnto::ActionController::ClassMethods#breakdown_prawnto_options refers to options more than self (LowCohesion)
+  Prawnto::ActionController::ClassMethods#breakdown_prawnto_options refers to prawnto_options more than self (LowCohesion)

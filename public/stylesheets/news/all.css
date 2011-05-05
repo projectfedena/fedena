@@ -1,0 +1,69 @@
+
+#all_news {
+    padding:0px;
+    height:auto;
+    width:960px;
+    margin:20px auto;
+}
+#news_titles {
+    padding:10px 20px 10px 0;
+    text-decoration:none;
+    width:300px;
+    float:left;
+    background:#fff url(../../images/student_details/ajax_result_underline.jpg) bottom left no-repeat;
+}
+#news_titles a {
+    text-decoration:none;
+    color:#000;
+    font-weight:bold;
+}
+#news_titles a:hover {
+    text-decoration:underline;
+    color:#d00;
+    font-weight:bold;
+}
+.pagination{
+    float:right;
+    position: relative;
+    margin-top:-30px;
+    margin-right:100px;
+}
+table#listing{
+    background: #c3d9ff;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding:20px;
+    padding-bottom:40px;
+}
+.pagination a.prev_page,.pagination a.next_page{
+    color:#27292b;
+    font-weight:bold;
+    text-transform: lowercase;
+    background: none;
+    text-decoration:underline;
+    border:none;
+}
+.pagination a{
+    background: #fff;
+    color:#27292b;
+    border:1px solid #a6c7ff;
+    font-weight:bold;
+    padding:3px;
+    font-size:14px;
+    text-decoration:none;
+}
+.pagination .disabled{
+    color:#27292b;
+    font-size:14px;
+    font-weight:normal;
+    text-transform: lowercase;
+    background: none;
+    text-decoration:none;
+    border:none;
+}
+.pagination .current{
+    color:#990a10;
+    font-weight:bold;
+    padding:3px;
+    font-size:14px;
+}

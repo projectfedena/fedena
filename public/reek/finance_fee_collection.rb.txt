@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/finance/finance_fee_collection.rb -- 1 warning:
+  FinanceFeeCollection has no descriptive comment (IrresponsibleModule)

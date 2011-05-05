@@ -1,0 +1,21 @@
+
+<div class="course-select">
+<% unless @batch_events.empty? %>
+    <span class="title">Courses Associated:</span>
+    <div>
+      <ul id="category-list">
+        <% @batch_events.each do |c| %>
+          <li class="list<%= cycle('odd','even') %>">
+            <div class="category-name"><%=  Batch.find(c.batch_id).full_name %></div>
+            <div class="category-edit"><%= link_to "Remove", :controller=>"event",:action=>"remove_batch", :id=>c %></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <%= link_to_remote "Select more Courses", :url=>{:controller=>"event", :action=>"select_course", :id=>params[:id]} %><br/>
+  <% else %>
+    <span class="title">No Course selected for this event yet :</span>
+    <%= link_to_remote "Select Courses", :url=>{:controller=>"event", :action=>"select_course", :id=>params[:id]} %>
+  <% end %>
+  </div>
+

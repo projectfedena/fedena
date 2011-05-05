@@ -1,0 +1,18 @@
+.delete-button{
+-moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    margin-left:10px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    width:70px;
+    cursor:pointer;
+    float:left;
+    text-decoration:none;
+}

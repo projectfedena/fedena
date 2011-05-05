@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090703074822_create_countries.rb -- 4 warnings:
+  CreateCountries has no descriptive comment (IrresponsibleModule)
+  CreateCountries has the variable name '@c1' (UncommunicativeName)
+  CreateCountries#self.create_default has the variable name 'c' (UncommunicativeName)
+  CreateCountries#self.up has the variable name 't' (UncommunicativeName)

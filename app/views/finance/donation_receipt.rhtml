@@ -1,0 +1,28 @@
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="" />
+  <h1>Donations</h1>
+  <h3>Donation receipt</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
+  <div class="box">
+
+    <div class="field1">Donor:</div>
+    <div class="val"> <%= @donation.donor %></div>
+
+    <div class="field1">Description: </div>
+    <div class="val"><%= @donation.description %></div>
+
+    <div class="field1">Amount: </div>
+    <div class="val"><%= @donation.amount %></div>
+    <div class="field1">Transaction ID: </div>
+    <div class="val"><%= @donation.transaction_id unless @donation.transaction_id.nil? %></div>
+    <div class="submit_button">
+      <%= link_to "► Print Receipt", {:action => 'donation_receipt_pdf', :id => @donation.id}, :format => 'pdf', :target => '_blank' %>
+    </div>
+  </div>
+</div>

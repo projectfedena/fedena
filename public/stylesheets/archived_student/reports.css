@@ -1,0 +1,55 @@
+
+#exam-results-dashboard {
+    border-right: 1px solid #aaa;
+    float: left;
+    margin-left:150px;
+    width: 450px;
+}
+#exam-results-dashboard h4 {
+    margin: 15px 0 15px 0;
+    padding: 0;
+    color: #9D0E14;
+}
+#exam-results-dashboard h3 {
+    color: #999999;
+    margin: 0;
+    padding: 10px 0 20px 0;
+}
+.exam-results-reports-col {
+    float:left;
+    width: 49%;
+}
+.exam-results-reports-col ul,
+#attendance-reports-dashboard ul {
+    margin: 0;
+    padding: 0;
+}
+.exam-results-reports-col ul li,
+#attendance-reports-dashboard ul li {
+    list-style-type: none;
+}
+.exam-results-reports-col ul li a,
+#attendance-reports-dashboard ul li a {
+    color: #444;
+    text-decoration: none;
+}
+.exam-results-reports-col ul li a:hover,
+#attendance-reports-dashboard ul li a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+#attendance-reports-dashboard {
+    color: #999999;
+    float: left;
+    padding: 0 0 0 40px;
+}
+#attendance-reports-dashboard h3 {
+    color: #999999;
+    margin: 0;
+    padding: 10px 0 20px 0;
+}
+#attendance-reports-dashboard h4 {
+    margin: 15px 0 15px 0;
+    padding: 0;
+    color: #9D0E14;
+}

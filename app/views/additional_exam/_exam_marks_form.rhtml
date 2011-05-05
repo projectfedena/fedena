@@ -1,0 +1,85 @@
+<% form_for [@batch, @additional_exam_group] do |f| %>
+
+  <%= f.error_messages %>
+
+  <div class="label-field-pair">
+    <%= f.label :name %>
+    <div class="text-input-bg"><%= f.text_field :name, :value=>@name %></div>
+  </div>
+  <div class="label-field-pair">
+    <%= f.label :exam_type %>
+    <%= f.hidden_field :exam_type,:value=>@type %>
+    <%= f.hidden_field :students_list,:value=>@students_list %>
+    <div class="text-input-bg"><%= f.text_field :exam_type, :value=>@type,:disabled=>true %>
+    </div><%= link_to "Change Type", new_batch_additional_exam_group_path(@batch,:ename=>@name),:class=>"type_link" %>
+  </div>
+  <div class="label-field-pair">
+    <%= f.label :maximum_marks %>
+    <div class="text-input-bg"><%= f.text_field :maximum_marks %></div>
+  </div>
+  <div class="label-field-pair">
+    <%= f.label :minimum_marks %>
+    <div class="text-input-bg"> <%= f.text_field :minimum_marks %></div>
+  </div>
+
+<h4>Enter exam related details here:</h4>
+
+  <table width="100%" id="listing">
+    <tr class="tr-head">
+      <td>Subject name</td>
+      <td>Max Marks</td>
+      <td>Min Marks</td>
+      <td>Start time</td>
+      <td>End time</td>
+      <td>Do not create</td>
+    </tr>
+
+    <% f.fields_for :additional_exams do |exam_form| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-2"><%= exam_form.object.subject.name %><%= exam_form.hidden_field :subject_id %>
+        </td>
+        <td class="col-1"><div class="label-field-pair2">
+        <div class="text-input-bg2">
+        <%= exam_form.text_field :maximum_marks, :size => 4, :class => 'max_marks' %>
+        </div>
+        </div>
+        </td>
+        <td class="col-1">
+        <div class="label-field-pair2">
+        <div class="text-input-bg2">
+        <%= exam_form.text_field :minimum_marks, :size => 4, :class => 'min_marks' %>
+        </div>
+        </div>
+        </td>
+        <td class="col-1">
+         <div class="label-field-pair3">
+        <div class="text-input-bg3">
+        <%= exam_form.calendar_date_select :start_time %>
+        </div>
+        </div>
+        </td>
+        <td class="col-1">
+         <div class="label-field-pair3">
+        <div class="text-input-bg3">
+        <%= exam_form.calendar_date_select :end_time %>
+        </div>
+        </div></td>
+        <td class="col-1">
+         <div class="label-field-pair2">
+        <div class="text-input-bg2">
+        <%= exam_form.check_box :_delete %>
+        </div>
+        </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= submit_tag "", :value => "► Save Changes", :class => "submit_button2" %>
+
+
+<% end %>
+<script>
+  $('additional_exam_group_maximum_marks').observe('blur', function() { $$('.max_marks')      .each(function(max_marks_obj){ max_marks_obj.value = $F('additional_exam_group_maximum_marks'); }); });
+  $('additional_exam_group_minimum_marks').observe('blur', function() { $$('.min_marks')      .each(function(min_marks_obj){ min_marks_obj.value = $F('additional_exam_group_minimum_marks'); }); });
+</script>

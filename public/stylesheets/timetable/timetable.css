@@ -1,0 +1,127 @@
+.table{
+    background: #c3d9ff;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    padding:20px;
+    overflow: auto;
+}
+td .top{
+    background: #a6c7ff;
+    color:#fff;
+    font-size:12px;
+    padding:5px;
+    padding-top:6px;
+    padding-bottom:5px;
+    text-align:center;
+    width: 100px;
+}
+td .bottom{
+    background: #fff;
+    height:50px;
+}
+td.td-blank{
+    background: #c3d9ff;
+    width:10px;
+}
+tr{
+    border:1px solid #000;
+}
+table#timing{
+    background: #a6c7ff;
+    margin-bottom: 20px;
+    overflow: auto;
+}
+td .bottom .subject{
+    height: 23px;
+    padding-top: 10px;
+    text-align:center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+}
+td .bottom .employee{
+    height: 15px;
+    font-size:11px;
+    text-align:center;
+    background: #eaf2ff;
+    color:#898989;
+    border-top:2px solid #b2cfff;
+    border-bottom:2px solid #b2cfff;
+}
+.course{
+    color:#990a10;
+    text-align:center;
+    padding: 15px 5px 5px 5px;
+    font-weight: bold;
+    font-size:13px;
+}
+td.head{
+    width:80px;
+}
+
+
+.next a{
+    float:left;
+    -moz-border-radius:40px;
+    -webkit-border-radius:15px;
+    width:25px;
+    height:25px;
+    padding:5px;
+    background: #fff;
+    text-align:right;
+    color:#121212;
+    font-size:22px;
+    text-decoration:none;
+    outline:none;
+    display:block;
+}
+.prev a{
+    float:left;
+    -moz-border-radius:40px;
+    -webkit-border-radius: 15px;
+    width:25px;
+    height:25px;
+    padding:5px;
+    background: #fff;
+    text-align:left;
+    color:#121212;
+    font-size:22px;
+    text-decoration:none;
+    outline:none;
+    display:block;
+}
+.next a:hover, .prev a:hover{
+    color: #9B0C12;
+}
+.month{
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    width:400px;
+    background: #fff;
+    padding:6px 0;
+    text-align:center;
+    float:left;
+    font-size:16px;
+    color:#121212;
+    font-weight:bold;
+    margin:0 5px;
+}
+#register{
+    background: #C3D9FF;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+.header{
+    width:520px;
+    margin:0px auto;
+    padding:4px 0 1px;
+}
+.no-tt-entry{
+    text-align: center;
+    font-weight: bold;
+    padding: 5px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}

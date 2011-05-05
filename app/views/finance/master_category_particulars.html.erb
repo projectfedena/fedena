@@ -1,0 +1,33 @@
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="" />
+  <h1>Master Category</h1>
+  <h3>Finance Management</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+
+  <div id="message"></div>
+
+  <div class="box">
+  <div class="link-box">
+    <div class="link-heading">
+     <%= link_to_remote 'Create Category', :url => { :action => 'master_category_new'} %>
+    </div>
+    <div class="link-descr"> Creates Master Category</div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading">
+      <%= link_to_remote 'Create Particulars', :url => { :action => 'fees_particulars_new',:category_id=>params[:id]} %>
+    </div>
+    <div class="link-descr"> Create particulars</div>
+  </div>
+
+  <div id="modal-box" style="display:none;"></div>
+  <%= @a %>
+  
+  <div id="categories"><%= render :partial => "master_particulars_list" %></div>
+</div>
+  </div>

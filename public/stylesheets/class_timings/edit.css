@@ -1,0 +1,92 @@
+
+#form-content {
+    border : 1px solid #becffb;
+    background-color : #f8f8f8;
+    height : auto; width : 600px;
+    margin : 0px auto;
+    padding : 30px 0 20px 40px;
+}
+.label-field-pair {
+    margin-top : 0px;
+    margin-left : 30px;
+}
+.label-checkbox-pair {
+    height : 50px;
+    margin-left : 30px;
+}
+.submit-button{
+    width:200px;
+    margin:0px auto;
+}
+
+#MB_frame .submit-button {
+    -moz-border-radius:8px 8px 8px 8px;
+    background:none repeat scroll 0 0 #27292B;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    float:left;
+    font-size:14px;
+    font-weight:bold;
+    margin:0 0 0 170px;
+    padding:5px;
+}
+
+.submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:0px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+#class-timing-list {
+    width:530px;
+    margin:50px auto;
+}
+#class-timing-list a {
+    color : #000;
+}
+.class-timing-th {
+    width:500px;
+    height:40px;
+    clear:both;
+    padding-left:50px;
+}
+.class-timing-trodd {
+    width:500px;height:25px;
+    padding-left:50px;
+    padding-top:5px;
+    clear:both;
+    background : #E4EBFE;
+    border-top:1px solid #C2CEEF;
+}
+.class-timing-treven {
+    width:500px;height:25px;
+    padding-left:50px;
+    padding-top:5px;
+    clear:both;
+    background : #DAE6FF;
+    border-top:1px solid #C2CEEF;
+}
+.class-timing-td1 {
+    float:left;
+    width:100px;
+}
+.class-timing-td2 {
+    float:left;
+    width:130px;
+}
+.class-timing-td3 {
+    float:left;
+    width:130px;
+}
+.class-timing-td4 {
+    float:left;
+}

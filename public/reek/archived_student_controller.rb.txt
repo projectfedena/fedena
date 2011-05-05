@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/app/controllers/archived_student_controller.rb -- 3 warnings:
+  ArchivedStudentController has no descriptive comment (IrresponsibleModule)
+  ArchivedStudentController#destroy calls params twice (Duplication)
+  ArchivedStudentController#destroy calls params[:id] twice (Duplication)

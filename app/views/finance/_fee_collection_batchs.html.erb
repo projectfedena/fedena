@@ -1,0 +1,12 @@
+<div class="label-field-pair"><label> <%= t('fee_collection.select_batch') %>: </label></div>
+<div class="fee_category_scroll">
+  <div class="sel-list">
+    Select: <%= link_to_function t('layouts.default.all'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
+    <%= link_to_function t('layouts.default.none'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
+  </div>
+  <% @fee_category.each do |f| %>
+    <div class="each_batch">
+      <%= check_box_tag "fee_collection[category_ids][]", f.id,true,:class=>'batches_box' %> <%= f.batch.full_name %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,35 @@
+#liability-body{
+    margin:0 0 0 50px;
+}
+#liability-created_at{
+    margin:0 0 25px 0;
+    color:#c9c9c9;
+    font-weight:bold;
+}
+
+#liability-date{
+    margin:0 0 20px 0;
+    font-weight:bold;
+    color:#9e0f15;
+    font-size:14px;
+}
+
+#liability-amt{
+    margin:0 0 20px 0;
+    font-weight:bold;
+    color:#9e0f15;
+    font-size:18px;
+}
+
+#liability-description{
+    background:#eeeeee;
+    padding:18px;
+    text-align:justify;
+}
+
+
+#liability-title{
+    margin:0 0 15px 0;
+    font-size:20px;
+    font-weight:bold;
+}

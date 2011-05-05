@@ -1,0 +1,16 @@
+<% unless @employees_subject.empty? %>
+  <% unless  @employees_subject[0].subject.elective_group_id.nil?  %>
+
+    <%  @employees_subject[0].employee.first_name  = @employees_subject[0].subject.elective_group.name + " Employees" %>
+    <div class="employees_subject" id="emp_sub_<%= @employees_subject[0].id %>"> <%=  @employees_subject[0].employee.first_name.to_s %> </div>
+    <%= draggable_element("emp_sub_#{@employees_subject[0].id}", :revert => true) %>
+  <%  else %>
+
+    <% @employees_subject.each do |e| %>
+        <div class="employees_subject" id="emp_sub_<%= e.id %>"> <%= e.employee.first_name %> </div>
+        <%= draggable_element("emp_sub_#{e.id}", :revert => true) %>
+    <% end %>
+  <% end %>
+<% else %>
+  <h5><%= t('edit2.no_teacher_associated') %></h5>
+<% end %>

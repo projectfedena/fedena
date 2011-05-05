@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090914095002_create_payroll_categories.rb -- 3 warnings:
+  CreatePayrollCategories has no descriptive comment (IrresponsibleModule)
+  CreatePayrollCategories#self.up has approx 6 statements (LongMethod)
+  CreatePayrollCategories#self.up has the variable name 't' (UncommunicativeName)

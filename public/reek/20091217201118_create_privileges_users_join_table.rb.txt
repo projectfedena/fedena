@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20091217201118_create_privileges_users_join_table.rb -- 2 warnings:
+  CreatePrivilegesUsersJoinTable has no descriptive comment (IrresponsibleModule)
+  CreatePrivilegesUsersJoinTable#self.up has the variable name 't' (UncommunicativeName)

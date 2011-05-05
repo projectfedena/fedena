@@ -1,0 +1,5 @@
+<div class="text_field_bg">
+  <div id="particulars">
+    <%= select :element, :parent_id,@fee_particulars.map{|item| [item.name ,item.id]} ,
+      :prompt => "Select Fees Particulars" %></div>
+</div>

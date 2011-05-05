@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/generators/integration_spec/integration_spec_generator.rb -- 4 warnings:
+  IntegrationSpecGenerator has no descriptive comment (IrresponsibleModule)
+  IntegrationSpecGenerator#manifest calls class_name twice (Duplication)
+  IntegrationSpecGenerator#manifest calls class_path twice (Duplication)
+  IntegrationSpecGenerator#manifest has the variable name 'm' (UncommunicativeName)

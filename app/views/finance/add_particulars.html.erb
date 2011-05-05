@@ -1,0 +1,41 @@
+<div id="content-header">
+    <img src="/images/show_finance.png" alt="" />
+  <h1>Additional Fees</h1>
+  <h3>Create Additional Fees </h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
+  <div id="message"></div>
+  <br/>
+ <div class="name">Category Name</div><div class="val"><span>:</span><%= @additional_category.name %></div>
+ <div class="name">Description</div><div class="val"><span>:</span><%= @additional_category.description %></div>
+
+
+  <% unless @additional_category.batch.nil? %>
+ <div class="name">Course</div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
+  <% else %>
+  <div class="name">Course</div><div class="val"><span>:</span>ALL</div>
+  <% end %>
+<div class="name">Start Date</div><div class="val"><span>:</span><%= @collection_date.start_date %></div>
+<div class="name">End Date</div><div class="val"><span>:</span><%= @collection_date.end_date%></div>
+<div class="name">Due Date</div><div class="val"><span>:</span><%= @collection_date.due_date%></div>
+
+<br />
+<br />
+    <div class="linker"><%= link_to_remote 'Add Particular', :url => { :action => 'add_particulars_new',:id => @collection_date.id} %>
+    </div>
+  
+  <br/>
+  <br/>
+  
+  <div id="particulars"><%= render :partial => 'fees_particulars_list' %></div>
+  
+
+  <div id="modal-box" style="display:none;"></div>
+  
+  
+
+</div>

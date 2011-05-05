@@ -1,0 +1,395 @@
+<div id="calendar-legend">
+  <div id="legend-entry">
+    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#000000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-text">Events</div>
+  </div>
+  <div id="legend-entry">
+    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#0C6C92; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-text">Examinations</div>
+  </div>
+  <div id="legend-entry">
+    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#00b400; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-text">Holidays</div>
+  </div>
+  <div id="legend-entry">
+    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#b40000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-text">Dues</div>
+  </div>
+</div>
+<br/>
+<div id="head-month">
+  <div class="header">
+    <div class="prev">
+      <%= link_to_remote "◄",
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')",
+        :url=>{:controller=>"calendar", :action=>"new_calendar"},
+        :with   => "'new_month=#{@show_month.month-1}'+ '&passed_date=#{@show_month}'"%>
+    </div>
+    <div class="month">
+      <%= @show_month.strftime('%B %Y') %>
+    </div>
+    <div class="next">
+      <%= link_to_remote "►",
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')",
+        :url=>{:controller=>"calendar", :action=>"new_calendar"},
+        :with   => "'new_month=#{@show_month.month+1}'+ '&passed_date=#{@show_month}'"%>
+    </div>
+    <div class="extender"></div>
+  </div>
+</div>
+
+
+<table id="calendar-table" align="center" width="100%">
+  <tbody>
+    <tr class="week">
+      <% @days_of_week= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"] %>
+      <% @days_of_week.each do |d| %>
+        <td><span><%= d %></span></td>
+      <% end %>
+    </tr>
+    <tr class="blank"></tr>
+    <% (1..6).each do |r|%>
+      <tr class="day">
+        <% (1..7).each do |c|%>
+          <% dt = c - @start_date_day + (r-1)*7 %>
+          <% day_style = (dt==@show_month.day&&Date.today==@show_month)? "today" : nil %>
+          <td class="<%= day_style.to_s  %>">
+            <% unless (r == 1 and c <= @start_date_day) %>
+              <% unless dt > @last_day.day %>
+                <%  if permitted_to? :index,:event %>
+                  <div class="link"><%= link_to 'Add', :controller=>"event",:action=>"index",:id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") %>
+                  <% end  %>
+                  <span><%= dt  %></span></div>
+
+                <% date = "#{@show_month.year}-#{@show_month.month}-#{dt}".to_date
+                first_day = date.beginning_of_month
+                last_day = date.end_of_month
+              %>
+                <div class="link-group">
+                  <% common_event = Event.find_all_by_is_common_and_is_holiday(true,false, :conditions => ["(start_date >= ? and start_date <= ?) or (end_date >= ? and end_date <= ?)", first_day, last_day, first_day,last_day])
+                  @common_event_array = []
+                  common_event.each do |h|
+                    if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                        @common_event_array.push h
+                      end
+                    else
+                      ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                        if d == date
+                          @common_event_array.push h
+                        end
+                      end
+                    end
+                  end %>
+                  <% common_holiday_event = Event.find_all_by_is_common_and_is_holiday(true,true, :conditions => ["(start_date >= ? and start_date <= ?) or (end_date >= ? and end_date <= ?)", first_day, last_day, first_day,last_day])
+                  @common_holiday_event_array = []
+                  common_holiday_event.each do |h|
+                    if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                        @common_holiday_event_array.push h
+                      end
+                    else
+                      ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                        if d == date
+                          @common_holiday_event_array.push h
+                        end
+                      end
+                    end
+                  end %>
+                  <% finance_due_check = Event.find_all_by_is_due(true,true, :conditions => ["(start_date >= ? and start_date <= ?) or (end_date >= ? and end_date <= ?)", first_day, last_day, first_day,last_day])
+                  @finance_due = []
+                  finance_due_check.each do |h|
+                    if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                        @finance_due.push h
+                      end
+                    else
+                      ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                        if d == date
+                          @finance_due.push h
+                        end
+                      end
+                    end
+                  end %>
+
+                  <% not_common_event = Event.find_all_by_is_common_and_is_holiday_and_is_exam(false,false,false, :conditions => ["(start_date >= ? and start_date <= ?) or (end_date >= ? and end_date <= ?)", first_day, last_day, first_day,last_day]) %>
+                  <% not_common_holiday_event = Event.find_all_by_is_common_and_is_holiday(false,true, :conditions => ["(start_date >= ? and start_date <= ?) or (end_date >= ? and end_date <= ?)", first_day, last_day, first_day,last_day]) %>
+                  <% not_common_exam_event = Event.find_all_by_is_common_and_is_holiday_and_is_exam(false,false,true, :conditions => ["(start_date >= ? and start_date <= ?) or (end_date >= ? and end_date <= ?)", first_day, last_day, first_day,last_day]) %>
+                  <% not_common_exam_due_event = Event.find_all_by_is_common_and_is_holiday_and_is_due_and_is_exam(false,false,false,false, :conditions => ["(start_date >= ? and start_date <= ?) or (end_date >= ? and end_date <= ?)", first_day, last_day, first_day,last_day]) %>
+                  <%
+                  if @user.student == true
+                    user_student = Student.find_by_admission_no(@user.username)
+                    batch = user_student.batch
+                    @student_batch_not_common_event_array = []
+                    @student_batch_not_common_holiday_event_array = []
+                    @student_batch_exam_event_array = []
+                    not_common_event.each do |h|
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                        if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                          student_batch_event = BatchEvent.find_by_batch_id(batch.id, :conditions=>"event_id = #{h.id}")
+                          unless student_batch_event.nil?
+                            @student_batch_not_common_event_array.push h
+                          end
+                        end
+                      else
+                        ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                          if d == date
+                            student_batch_event = BatchEvent.find_by_batch_id(batch.id, :conditions=>"event_id = #{h.id}")
+                            unless student_batch_event.nil?
+                              @student_batch_not_common_event_array.push h
+                            end
+                          end
+                        end
+                      end
+                    end
+                    not_common_holiday_event.each do |h|
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                        if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                          student_batch_holiday_event = BatchEvent.find_by_batch_id(batch.id, :conditions=>"event_id = #{h.id}")
+                          unless student_batch_holiday_event.nil?
+                            @student_batch_not_common_holiday_event_array.push h
+                          end
+                        end
+                      else
+                        ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                          if d == date
+                            student_batch_holiday_event = BatchEvent.find_by_batch_id(batch.id, :conditions=>"event_id = #{h.id}")
+                            unless student_batch_holiday_event.nil?
+                              @student_batch_not_common_holiday_event_array.push h
+                            end
+                          end
+                        end
+                      end
+                    end
+                    not_common_exam_event.each do |h|
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                        if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                          student_batch_exam_event = BatchEvent.find_by_batch_id(batch.id, :conditions=>"event_id = #{h.id}")
+                          unless student_batch_exam_event.nil?
+                            @student_batch_exam_event_array.push h
+                          end
+                        end
+                      else
+                        ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                          if d == date
+                            student_batch_exam_event = BatchEvent.find_by_batch_id(batch.id, :conditions=>"event_id = #{h.id}")
+                            unless student_batch_exam_event.nil?
+                              @student_batch_exam_event_array.push h
+                            end
+                          end
+                        end
+                      end
+                    end
+                  %>
+                    <% @event = @common_event_array.to_a + @student_batch_not_common_event_array.to_a %>
+                    <% @holiday_event = @common_holiday_event_array.to_a + @student_batch_not_common_holiday_event_array.to_a %>
+                    <% unless @event.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#000000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                            :url => { :action => :show_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+                    <% unless @holiday_event.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#00b400; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                            :url => { :action => :show_holiday_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+                    <% unless @student_batch_exam_event_array.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#0C6C92; -moz-border-radius:2px;  -webkit-border-radius:2px; margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                            :url => { :action => :show_exam_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+                    <% unless @finance_due.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#b40000; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                            :url => { :action => :show_due_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+
+                  <%
+                  elsif @user.employee == true
+                    user_employee = Employee.find_by_employee_number(@user.username)
+                    department = user_employee.employee_department unless user_employee.nil?
+                    @employee_dept_not_common_event_array = []
+                    @employee_dept_not_common_holiday_event_array = []
+                    @student_batch_exam_event_array = []
+                    not_common_event.each do |h|
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                        if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                          employee_dept_event = EmployeeDepartmentEvent.find_by_employee_department_id(department.id, :conditions=>"event_id = #{h.id}") unless department.nil?
+                          unless employee_dept_event.nil?
+                            @employee_dept_not_common_event_array.push h
+                          end
+                        end
+                      else
+                        ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                          if d == date
+                            employee_dept_event = EmployeeDepartmentEvent.find_by_employee_department_id(department.id, :conditions=>"event_id = #{h.id}")
+                            unless employee_dept_event.nil?
+                              @employee_dept_not_common_event_array.push h
+                            end
+                          end
+                        end
+                      end
+                    end
+                    not_common_holiday_event.each do |h|
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                        if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                          employee_dept_holiday_event = EmployeeDepartmentEvent.find_by_employee_department_id(department.id, :conditions=>"event_id = #{h.id}") unless department.nil?
+                          unless employee_dept_holiday_event.nil?
+                            @employee_dept_not_common_holiday_event_array.push h
+                          end
+                        end
+                      else
+                        ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                          if d == date
+                            employee_dept_event = EmployeeDepartmentEvent.find_by_employee_department_id(department.id, :conditions=>"event_id = #{h.id}")
+                            unless employee_dept_event.nil?
+                              @employee_dept_not_common_holiday_event_array.push h
+                            end
+                          end
+                        end
+                      end
+                    end
+                    not_common_exam_event.each do |h|
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                        if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                          #student_batch_exam_event = BatchEvent.find_by_batch_id(batch.id, :conditions=>"event_id = #{h.id}")
+                          #unless student_batch_exam_event.nil?
+                          @student_batch_exam_event_array.push h
+                          #end
+                        end
+                      else
+                        ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                          if d == date
+                            #student_batch_exam_event = BatchEvent.find_by_batch_id(batch.id, :conditions=>"event_id = #{h.id}")
+                            #unless student_batch_exam_event.nil?
+                            @student_batch_exam_event_array.push h
+                            #end
+                          end
+                        end
+                      end
+                    end %>
+                    <% @event = @common_event_array + @employee_dept_not_common_event_array %>
+                    <% @holiday_event = @common_holiday_event_array + @employee_dept_not_common_holiday_event_array %>
+                    <% unless @event.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#000000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                            :url => { :action => :show_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+                    <% unless @holiday_event.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#00b400; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                            :url => { :action => :show_holiday_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+                    <% unless @student_batch_exam_event_array.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#0C6C92; -moz-border-radius:2px;  -webkit-border-radius:2px; margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                            :url => { :action => :show_exam_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+                    <% unless @finance_due.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#b40000; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                            :url => { :action => :show_due_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+                  <%  elsif @user.admin == true
+                    @employee_dept_not_common_event_array = []
+                    @employee_dept_not_common_holiday_event_array = []
+                    @student_batch_exam_event_array = []
+
+                    not_common_exam_due_event.each do |h|
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                        if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                          employee_dept_event = EmployeeDepartmentEvent.find(:all, :conditions=>"event_id = #{h.id}")
+                          unless employee_dept_event.nil?
+                            @employee_dept_not_common_event_array.push h
+                          end
+                        end
+                      else
+                        ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                          if d == date
+                            employee_dept_event = EmployeeDepartmentEvent.find(:all, :conditions=>"event_id = #{h.id}")
+                            unless employee_dept_event.nil?
+                              @employee_dept_not_common_event_array.push h
+                            end
+                          end
+                        end
+                      end
+                    end
+                    not_common_holiday_event.each do |h|
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                        if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                          employee_dept_holiday_event = EmployeeDepartmentEvent.find(:all, :conditions=>"event_id = #{h.id}")
+                          unless employee_dept_holiday_event.nil?
+                            @employee_dept_not_common_holiday_event_array.push h
+                          end
+                        end
+                      else
+                        ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                          if d == date
+                            employee_dept_event = EmployeeDepartmentEvent.find(:all, :conditions=>"event_id = #{h.id}")
+                            unless employee_dept_event.nil?
+                              @employee_dept_not_common_holiday_event_array.push h
+                            end
+                          end
+                        end
+                      end
+                    end
+                    not_common_exam_event.each do |h|
+                      if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date
+                        if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == date
+                          student_batch_exam_event = BatchEvent.find(:all, :conditions=>"event_id = #{h.id}")
+                          unless student_batch_exam_event.nil?
+                            @student_batch_exam_event_array.push h
+                          end
+                        end
+                      else
+                        ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d|
+                          if d == date
+                            student_batch_exam_event = BatchEvent.find(:all, :conditions=>"event_id = #{h.id}")
+                            unless student_batch_exam_event.nil?
+                              @student_batch_exam_event_array.push h
+                            end
+                          end
+                        end
+                      end
+                    end
+                  %>
+                    <% @event = @common_event_array + @employee_dept_not_common_event_array  %>
+                    <% @holiday_event = @common_holiday_event_array + @employee_dept_not_common_holiday_event_array %>
+                    <% unless @event.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#000000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:2px;'></div>", {:url => {:action => "#"}}, {:onmouseover =>remote_function(
+                            :url => { :action => :show_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+                    <% unless @holiday_event.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#00b400; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}}, {:onmouseover =>remote_function(
+                            :url => { :action => :show_holiday_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+                    <% unless @student_batch_exam_event_array.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#0C6C92; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                            :url => { :action => :show_exam_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+                    <% unless @finance_due.empty? %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#b40000; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                            :url => { :action => :show_due_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+
+                  <%  end %>
+                </div>
+
+
+              <% end %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<div id="modal-box" style="display:none;"></div>

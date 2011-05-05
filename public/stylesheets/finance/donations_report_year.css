@@ -1,0 +1,46 @@
+#fees-table{
+    padding-top:54px;
+}
+.fees-th {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    border-top: 1px solid #C4D2FE;
+    font-size: 0.9em;
+    height: 1.5em;
+    font-variant:small-caps;
+    font-weight: bold;
+    padding: 0.5em 0 0 0;
+    width:730px;
+}
+.fees-tr {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    font-size:0.9em;
+    height: 1.5em;
+    padding: 0.5em 0 0 0;
+    width:730px;
+}
+.fees-table-description {
+    float:left;
+    padding: 0 0 0 60px;
+    width: 254px;
+}
+.fees-table-expenses {
+    float:left;
+    width: 80px;
+    padding: 0 0 0 140px;
+    text-align:right;
+}
+.fees-table-income {
+    float:right;
+    width: 80px;
+    padding: 0 0 0 56px;
+    text-align:right;
+    margin:0 40px 0 0;
+}
+
+.fees-table-total {
+    float:left;
+    padding: 0 0 0 250px;
+    text-align:right;
+}

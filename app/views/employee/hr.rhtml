@@ -1,0 +1,66 @@
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>HR Management</h1>
+  <h3>Human Resource</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+<div id="page-yield">
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  <div id="box">
+    <% if permitted_to? :settings, :employee %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Settings", :controller=>"employee", :action=>"settings"%></div>
+        <div class="link-descr">HR settings.</div>
+      </div>
+    <%end%>
+
+    <% if permitted_to? :employee_management, :employee %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Employee Management", :controller=>"employee", :action=>"employee_management"%></div>
+        <div class="link-descr">Manage all employees </div>
+      </div>
+    <%end%>
+
+    <% if permitted_to? :employee_attendance, :employee %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Employee Leave Management ", :controller=>"employee", :action=>"employee_attendance" %></div>
+        <div class="link-descr">Manage all employee attendance and leaves</div>
+      </div>
+    <%end%>
+
+    <% if permitted_to? :payslip, :employee %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Create Payslip", :controller=>"employee", :action=>"payslip" %></div>
+        <div class="link-descr">Create employee monthly payslips</div>
+      </div>
+    <%end%>
+
+    <% if permitted_to? :search, :employee %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Employee search", :controller=>"employee", :action=>"search" %></div>
+        <div class="link-descr">Search for employees</div>
+      </div>
+    <%end%>
+    <% if permitted_to? :department_payslip, :employee %>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Employee payslip", :controller=>"employee", :action=>"department_payslip" %></div>
+      <div class="link-descr">View department wise payslip</div>
+    </div>
+    <% end %>
+    <% finance = Configuration.available_modules %>
+    <% unless finance.include?("Finance") %>
+      <% if permitted_to? :payslip_approve, :employee %>
+        <div class="link-box">
+          <div class="link-heading"><%= link_to "One click approve payslip", :controller=>"employee", :action=>"payslip_approve" %></div>
+          <div class="link-descr">Approve monthly payslip </div>
+        </div>
+      <%end%>
+    <%end%>
+  </div>
+</div>

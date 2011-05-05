@@ -1,0 +1,30 @@
+<div class="heading">New applications from reporting employees</div>
+<table id="listing" width="100%">
+  <tr class="tr-head">
+    <td>Name</td>
+  <td>Start date</td>
+  <td>End date</td>
+  </tr>
+
+  <% @reporting_employees.each do |e| %>
+  <% @applied_leaves = ApplyLeave.find_all_by_employee_id(e.id, :order=>"start_date DESC") %>
+  <% unless @applied_leaves == [] %>
+    <% @applied_leaves.each do |l| %>
+      <% if l.viewed_by_manager == false %>
+        <tr class="tr-<%=cycle('odd', 'even')%>">
+          <td class="col-2"><%= link_to "#{Employee.find(l.employee_id).first_name}",:controller => "employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+          <td class="col-2"><%= link_to "#{l.start_date.strftime("%d/%m/%Y")}",:controller => "employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+          <td class="col-2"><%= link_to "#{l.end_date.strftime("%d/%m/%Y")}",  :controller => "employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+        </tr>
+      <% end %><!-- if -->
+    <% end %><!-- |l| -->
+  <% else %>
+  <% end %><!-- unless -->
+<% end %>
+
+
+</table>
+
+
+
+

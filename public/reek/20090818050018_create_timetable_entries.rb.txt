@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090818050018_create_timetable_entries.rb -- 3 warnings:
+  CreateTimetableEntries has no descriptive comment (IrresponsibleModule)
+  CreateTimetableEntries#self.up has approx 6 statements (LongMethod)
+  CreateTimetableEntries#self.up has the variable name 't' (UncommunicativeName)

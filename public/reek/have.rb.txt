@@ -1,0 +1,8 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/extensions/spec/matchers/have.rb -- 7 warnings:
+  Spec::Matchers::Have has no descriptive comment (IrresponsibleModule)
+  Spec::Matchers::Have#description_with_errors_on_extensions calls @args[0] twice (Duplication)
+  Spec::Matchers::Have#description_with_errors_on_extensions calls relativities twice (Duplication)
+  Spec::Matchers::Have#description_with_errors_on_extensions calls relativities[@relativity] twice (Duplication)
+  Spec::Matchers::Have#failure_message_for_should_with_errors_on_extensions calls @args[0] twice (Duplication)
+  Spec::Matchers::Have#failure_message_for_should_with_errors_on_extensions calls relativities twice (Duplication)
+  Spec::Matchers::Have#failure_message_for_should_with_errors_on_extensions calls relativities[@relativity] twice (Duplication)

@@ -1,0 +1,6 @@
+D:/nithin/rails/fedena3/fedena2/app/controllers/exams_controller.rb -- 5 warnings:
+  ExamsController has no descriptive comment (IrresponsibleModule)
+  ExamsController#create calls @exam_group.batch 3 times (Duplication)
+  ExamsController#create has approx 6 statements (LongMethod)
+  ExamsController#destroy calls @exam.exam_group twice (Duplication)
+  ExamsController#update calls params twice (Duplication)

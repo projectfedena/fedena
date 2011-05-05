@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/resources/controllers/redirect_spec_controller.rb -- 4 warnings:
+  RedirectSpecController has no descriptive comment (IrresponsibleModule)
+  RedirectSpecController#action_with_redirect_in_respond_to contains iterators nested 2 deep (NestedIterators)
+  RedirectSpecController#action_with_redirect_with_query_string_order1 has the name 'action_with_redirect_with_query_string_order1' (UncommunicativeName)
+  RedirectSpecController#action_with_redirect_with_query_string_order2 has the name 'action_with_redirect_with_query_string_order2' (UncommunicativeName)

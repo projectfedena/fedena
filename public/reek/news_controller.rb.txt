@@ -1,0 +1,9 @@
+D:/nithin/rails/fedena3/fedena2/app/controllers/news_controller.rb -- 8 warnings:
+  NewsController has no descriptive comment (IrresponsibleModule)
+  NewsController#delete_comment calls params twice (Duplication)
+  NewsController#delete_comment calls params[:id] twice (Duplication)
+  NewsController#edit calls params twice (Duplication)
+  NewsController#index calls params twice (Duplication)
+  NewsController#index calls params[:query] twice (Duplication)
+  NewsController#search_news_ajax calls params twice (Duplication)
+  NewsController#search_news_ajax calls params[:query] twice (Duplication)

@@ -1,0 +1,27 @@
+<table width="700">
+<% unless @bank_details.empty? %>
+  <% @bank_details.each do |b| %>
+    <%  code = cycle('even', 'odd') %>
+  <tr class="<%= code %> left"><td><%= b.bank_field.name %></td><td class="right"><%= b.bank_info %></td></tr>
+  <% end %>
+  </table>
+  <div class="edit-pdf-group">
+    <% if permitted_to? :edit3, :employee %>
+      <div class="edit">
+        <%= link_to "► Edit",   :controller => "employee", :action => "edit3", :id =>@employee.id %>
+      </div>
+    <%end%>
+    <% if permitted_to?  :profile_pdf , :employee %>
+  <div class="pdf">
+    <%= link_to " ► PDF Report",
+      {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
+  </div>
+  <% end %>
+  </div>
+<% else %>
+  <% if permitted_to? :edit3, :employee %>
+    <p class="flash-msg">No bank details entered for <%= @employee.first_name%>. <%= link_to "ADD", :controller => "employee", :action => "edit3", :id => @employee.id %></p>
+  <% else %>  
+    <p class="flash-msg">No bank details entered for <%= @employee.first_name%>. <%#= link_to "ADD", :controller => "employee", :action => "edit3", :id => @employee.id %></p>
+  <%end%>
+<% end %>

@@ -1,0 +1,22 @@
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+  <h1>Payslip</h1>
+  <h3>Employee Payslips</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <div class="box">
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "View Payslip", :action => "view_monthly_payslip" %></div>
+    <div class="link-descr">View employee monthly payslip </div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "One click approve payslip", :action => "approve_monthly_payslip" %></div>
+    <div class="link-descr">Approve monthly payslip </div>
+  </div>
+
+</div>
+</div>

@@ -1,0 +1,41 @@
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="" />
+  <h1>Finance Transactions</h1>
+  <h3><%=@batch.full_name%> Fees Report</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% total =0 %>
+
+  <b style="margin-left:200px;"><%= @batch.full_name%>  TRANSACTION REPORT </b>
+  <div id="fees-table">
+    <div class="fees-th">
+      <div class="fees-table-description">Student Name</div>
+      <div class="fees-table-expenses">Amount</div>
+      <div class="fees-table-date">Date</div>
+    </div>
+    <% @fees.each do |f| %>
+      <% unless f.transaction.nil? %>
+        <% trans = FinanceTransaction.find(:all, :conditions => ["FIND_IN_SET(id,\"#{f.transaction_id}\") and created_at >= '#{@start_date}' and created_at <= '#{@end_date}'and category_id ='#{3}'"]) %>
+        <% unless trans.nil? %>
+            <% trans.each do |t| %>
+          <div class="fees-tr">
+              <div class="fees-table-description"><%= "#{f.student.full_name}- (#{f.student.batch.full_name})" %></div>
+              <div class="fees-table-income"> <%= t.amount %> </div>
+              <div class="fees-table-date"> <%= t.created_at.strftime("%m-%d-%Y") %> </div>
+            </div>
+            <% total += t.amount %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <br/>
+    <div class="fees-th">
+      <div class="fees-table-description">Total Fees</div>
+      <div class="fees-table-expenses"><%=total %></div>
+    </div>
+  </div>
+</div>

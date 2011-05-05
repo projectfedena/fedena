@@ -1,0 +1,58 @@
+<div id="content-header">
+  <img src="/images/show_news/show_news_logo.png" />
+  <h1><%= t('index.news') %></h1>
+  <h3><%= t('read_news') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
+
+    <div id="news_title">
+      <%= @news.title %>
+    </div>
+    <div id="create_date">
+      <%= t('all.posted') %> <%= @news.created_at.strftime("%A, %d %B, %Y") %>
+    </div>
+    <div id="news_content">
+      <%= sanitize @news.content , :tags => %w[b i a h1 h2 h3 u strike p img font span], :attributes => %w[href src style]%>
+    </div>
+
+  <% if @current_user.admin? %>
+
+      <%= link_to "►#{t('layouts.default.edit')+ ' ' + t('index.news')}",
+        {:controller => "news",  :action => "edit", :id => @news.id }, :class => "edit_button"%>
+
+  <div id="">
+      <%= link_to "► #{t('layouts.default.delete') + ' ' + t('index.news') }",
+        { :controller => "news", :action => "delete", :id => @news.id },
+        :confirm => 'Are you sure you want to delete this news item?', :class => "delete_button" %>
+
+    </div>
+  <div class="extender"></div>
+  <% end %>
+
+  <h3 id="comments-heading"><%= t('all.comments') %></h3>
+
+
+  <span id="comments-count"><% if @comments.empty? %><%= t('no_comments') %><% end %></span>
+
+
+  <ul id="comments-list">
+    <% @comments.each do |@cmnt| %>
+      <%= render :partial => "comment" %>
+    <% end %>
+  </ul>
+
+  <h4 id="leave-a-comment"><%= t('leave_comment') %></h4>
+
+  <% form_remote_for :comment, :id => 'comments-form', :url => { :action => 'add_comment' } do |f| %>
+  <div class="comment-content"> <%= f.text_area :content %> </div>
+    <%= f.hidden_field :news_id, :value => @news.id %>
+    <div id="submit-button"><%= submit_tag '', :value =>"► #{t('layouts.default.submit')}" %></div>
+  <% end %>
+
+</div>

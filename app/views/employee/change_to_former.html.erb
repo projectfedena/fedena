@@ -1,0 +1,34 @@
+<div id="content-header">
+    <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Students</h1>
+  <h3>Leaving school</h3>
+  <div id="app-back-button">
+   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <div id="student-details">
+<h4> <%= @employee.first_name %> | Employee no : <%= @employee.employee_number %> | Department : <%= @employee.employee_department.name %> </h4>
+  </div>
+
+  <div class="extender"> </div>
+
+  <div id="remove-student">
+    <p>For employees leaving the school, use this option to remove them from the list of active employees and place them in the former employees list.</p>
+
+    <% form_for :remove do |f| %>
+      <div class="label-field-pair">
+        <label for="remove_descr">Reason for leaving</label>
+        <div class="text-input-bg"><%= f.text_field :status_description %></div>
+      </div>
+
+      <div id="submit-button">
+        <%= submit_tag '► Remove',:class=>'submit_button' %>
+      </div>
+
+    <% end %>
+  </div>
+
+</div>

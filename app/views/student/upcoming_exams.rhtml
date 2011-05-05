@@ -1,0 +1,20 @@
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+  <h1><%= t('exam.index.class') %> : <%= @course.name%></h1>
+  <h3><%= t('edit.upcoming_exams') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% @upcoming_exams.each do |exam| %>
+    <li>
+      <%= exam.name %>
+      (<%= exam.subject.name %>) -
+      <%= exam.date.strftime("%d %B, %Y") %>
+    </li>
+  <% end %>
+
+</div>

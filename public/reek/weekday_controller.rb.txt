@@ -1,0 +1,10 @@
+D:/nithin/rails/fedena3/fedena2/app/controllers/weekday_controller.rb -- 9 warnings:
+  WeekdayController has no descriptive comment (IrresponsibleModule)
+  WeekdayController has the variable name '@b' (UncommunicativeName)
+  WeekdayController#create calls params twice (Duplication)
+  WeekdayController#create has approx 7 statements (LongMethod)
+  WeekdayController#create has the variable name 'w' (UncommunicativeName)
+  WeekdayController#create has the variable name 'x' (UncommunicativeName)
+  WeekdayController#week calls params 3 times (Duplication)
+  WeekdayController#week calls params[:batch_id] 3 times (Duplication)
+  WeekdayController#week has approx 7 statements (LongMethod)

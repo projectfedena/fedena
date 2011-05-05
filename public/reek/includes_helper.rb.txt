@@ -1,0 +1,9 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/timcharper-calendar_date_select/lib/calendar_date_select/includes_helper.rb -- 8 warnings:
+  CalendarDateSelect::IncludesHelper#calendar_date_select_includes has approx 7 statements (LongMethod)
+  CalendarDateSelect::IncludesHelper#calendar_date_select_javascripts calls CalendarDateSelect.format twice (Duplication)
+  CalendarDateSelect::IncludesHelper#calendar_date_select_javascripts calls CalendarDateSelect.format[:javascript_include] twice (Duplication)
+  CalendarDateSelect::IncludesHelper#calendar_date_select_javascripts calls options[:locale] twice (Duplication)
+  CalendarDateSelect::IncludesHelper#calendar_date_select_javascripts doesn't depend on instance state (LowCohesion)
+  CalendarDateSelect::IncludesHelper#calendar_date_select_javascripts refers to options more than self (LowCohesion)
+  CalendarDateSelect::IncludesHelper#calendar_date_select_stylesheets doesn't depend on instance state (LowCohesion)
+  CalendarDateSelect::IncludesHelper#calendar_date_select_stylesheets refers to options more than self (LowCohesion)

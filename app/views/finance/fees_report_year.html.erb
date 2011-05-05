@@ -1,0 +1,47 @@
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+  <h1>Finance Academic Year Report</h1>
+  <h3>Fees Report</h3>
+  <div id="app-back-button">
+    <%= link_to image_tag("/images/buttons/back.png", :border => 0),:back %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% total =0 %>
+  <%amount=0%>
+
+  <div id="fees-table">
+    <div class="fees-th">
+      <div class="fees-table-description">Description</div>
+      <div class="fees-table-expenses">Amount</div>
+    </div>
+
+    <% @batchs.each do |c| %>
+
+      <% sids = c.students(&:id) %>
+      <% s = FinanceTransaction.find_all_by_student_id(sids, :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@last_date}'and category_id ='#{3}'"]) %>
+
+      <% s.each do |t| %>
+        <% amount += t.amount %>
+      <% end %>
+
+      <%  title = c.name%>
+
+      <% unless amount==0 %>
+        <div class="fees-tr">
+          <div class="fees-table-description"><%=  title  %></div>
+          <div class="fees-table-income"> <%= amount %> </div>
+        </div>
+      <% end %>
+      <% total += amount %>
+      <%amount =0 %>
+    <%end%>
+    <br/>
+     <div class="fees-th">
+      <div class="fees-table-description">Total Fees </div>
+      <div class="fees-table-expenses"><%= total %></div>
+    </div>
+
+  </div>
+</div>

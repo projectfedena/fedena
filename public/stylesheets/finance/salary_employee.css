@@ -1,0 +1,39 @@
+#fees-table{
+    padding-top:10px;
+}
+.fees-th {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    border-top: 1px solid #C4D2FE;
+    font-size: 0.9em;
+    height: 1.5em;
+    font-variant:small-caps;
+    font-weight: bold;
+    padding: 0.5em 0 0 0;
+    width:700px;
+}
+.fees-tr {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    font-size:0.9em;
+    height: 1.5em;
+    padding: 0.5em 0 0 0;
+    width:700px;
+}
+.fees-table-description {
+    float:left;
+    padding: 0 0 0 60px;
+    width: 254px;
+}
+.fees-table-salary {
+    float:left;
+    width: 80px;
+    padding: 0 0 0 140px;
+    text-align:right;
+}
+.fees-table-date {
+    float:right;
+    width: 80px;
+    text-align:center;
+    margin-right: 40px;
+}

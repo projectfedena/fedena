@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090731092833_create_attendances.rb -- 3 warnings:
+  CreateAttendances has no descriptive comment (IrresponsibleModule)
+  CreateAttendances#self.up has approx 6 statements (LongMethod)
+  CreateAttendances#self.up has the variable name 't' (UncommunicativeName)

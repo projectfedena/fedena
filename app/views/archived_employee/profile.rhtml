@@ -1,0 +1,89 @@
+<% current_username = @current_user.username %>
+<% profile_employee_no = @employee.employee_number %>
+
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Employee Profile</h1>
+  <h3>Details</h3>
+  <div id="app-back-button">
+   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+<div id="nav">
+  <ul>
+    <li>
+      <a href="#" class="drops" id="link_one">Profile &#9660;</a>
+      <ul id="box_one" class="scriptaculously" style="display:none;">
+        <li><%= link_to_remote "General", :url => {:action => "profile_general", :id => @employee.id}, :update => "profile-infos" %></li>
+        <li><%= link_to_remote "Personal", :url => {:action => "profile_personal", :id => @employee.id}, :update => "profile-infos" %></li>
+        <li><%= link_to_remote "Address", :url => {:action => "profile_address", :id => @employee.id}, :update => "profile-infos" %></li>
+        <li><%= link_to_remote "Contact", :url => {:action => "profile_contact", :id => @employee.id}, :update => "profile-infos" %></li>
+        <li><%= link_to_remote "Bank Info", :url => {:action => "profile_bank_details", :id => @employee.id}, :update => "profile-infos" %></li>
+        <li><%= link_to_remote "Additional Info", :url => {:action => "profile_additional_details", :id => @employee.id}, :update => "profile-infos" %></li>
+      </ul>
+    </li>
+
+    <% if current_username == profile_employee_no %>
+      <li>
+        <a href="#" class="drops" id="link_two">Salary &#9660;</a>
+        <ul id="box_two" class="scriptaculously" style="display:none;">
+          <li><%= link_to_remote "Payroll", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
+         </ul>
+      </li>
+    <%else%>
+      <% if permitted_to? :payslip, :employee %>
+        <li>
+          <a href="#" class="drops" id="link_two">Salary &#9660;</a>
+          <ul id="box_two" class="scriptaculously" style="display:none;">
+            <li><%= link_to_remote "Payroll", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
+          </ul>
+        </li>
+      <%end%>
+    <%end%>
+  </ul>
+
+</div>
+
+
+
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div id="employee_profile_heading">
+
+    <div id="profile_picture_display">
+      <% unless @employee.photo_data.blank? %>
+        <img src="<%= url_for(:controller=>"archived_employee", :action => "show", :id => @employee.id) %>"  />
+      <% else %>
+        <%= image_tag "HR/default_employee.png" %>
+      <% end %>
+    </div>
+
+    <div id ="employee_main_info">
+      <h3> <%= @employee.first_name %> <%= @employee.middle_name %> <%= @employee.last_name %>  </h3>
+      <h4> Employee ID. : <%= @employee.employee_number %> </h4>
+    </div>
+
+    <div id="profile-general-info">
+
+
+    </div>
+    <div class="extender"></div>
+
+  </div>
+  
+
+
+
+  <div id="profile-infos">
+    <%=   render :partial => "general" %>
+
+  </div>
+    <div class="extender"> </div>
+</div>

@@ -1,0 +1,1 @@
+<%= select :exam_report, :exam_group_id, @exam_groups.map{|exam| [exam.name,exam.id]},:prompt=>'Select exam group' %>

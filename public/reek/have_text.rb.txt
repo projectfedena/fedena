@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/matchers/have_text.rb -- 4 warnings:
+  Spec::Rails::Matchers::HaveText has no descriptive comment (IrresponsibleModule)
+  Spec::Rails::Matchers::HaveText#matches? calls Regexp.===(expected) twice (Duplication)
+  Spec::Rails::Matchers::HaveText#matches? calls actual twice (Duplication)
+  Spec::Rails::Matchers::HaveText#matches? calls expected 4 times (Duplication)

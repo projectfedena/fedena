@@ -1,0 +1,34 @@
+
+
+<script>
+  $jq = jQuery.noConflict();
+  $jq(document).ready(function() {
+    $jq("#salary_date").datepicker({dateFormat: 'yy-mm-dd'});
+  });
+</script>
+
+
+<% form_remote_for :one_click_payslip,
+  :update=>"message-div",
+  :before => "Element.show('loader')",
+  :success => "Element.hide('loader')",
+  :url => {:action => 'one_click_payslip_generation'} do %>
+
+
+  <div class="label-field-pair">
+    <label for="salary_date">Salary date</label>
+    <div class="text-input-bg"><%= calendar_date_select_tag 'salary_date', Date.today,
+            :year_range => 2.years.ago..0.years.from_now %></div>
+  </div>
+  <div class="extender"></div>
+
+    <div id="submit-button">
+     <%=submit_tag("► Go") %>
+    </div>
+
+
+
+<% end %>
+
+
+

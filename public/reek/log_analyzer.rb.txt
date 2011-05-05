@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/script/log_analyzer.rb -- 4 warnings:
+  calculate_time doesn't depend on instance state (LowCohesion)
+  calculate_time refers to time more than self (LowCohesion)
+  calculate_time refers to time_string more than self (LowCohesion)
+  calculate_time refers to unit_string more than self (LowCohesion)

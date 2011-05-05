@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/controllers/examination_result_controller.rb -- 1 warning:
+  ExaminationResultController has no descriptive comment (IrresponsibleModule)

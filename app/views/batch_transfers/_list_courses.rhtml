@@ -1,0 +1,8 @@
+<ul id="category-list">
+  <% @batches.each do |batch| %>
+    <li class="list<%=cycle('odd', 'even')%>">
+      <div class="category-name"><%= link_to batch.full_name, :controller => 'batch_transfers', :action => 'show', :id => batch %></div>
+      <div class="category-edit"><%= link_to 'Graduation', :controller => 'batch_transfers', :action => 'graduation', :id => batch %></div>
+    </li>
+  <% end %>
+</ul>

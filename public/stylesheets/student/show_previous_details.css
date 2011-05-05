@@ -1,0 +1,261 @@
+
+#page-yield {
+    margin-top : 20px;
+}
+#profile_picture_display {
+    float:left;
+    width:125px;
+    height:125px;
+    margin-left:50px;
+    border:8px solid #EFEFD1;
+}
+#profile_picture_display img {
+    width:125px;
+    height:125px;
+    /*padding-top:25px;
+    padding-left:32px;*/
+}
+#student_main_info {
+    float:left;
+    margin-left:50px;
+    width:400px;
+}
+#student_main_info h3 {
+    margin:0;
+    padding:0;
+    margin-top:25px;
+}
+#student_main_info h4 {
+    margin:0;
+    padding:0;
+    color:#b00;
+    margin-top:10px;
+}
+#student_main_info h6 {
+    margin:0;
+    padding:0;
+    color:#b00;
+    margin-top:5px;
+}
+#student_main_info h5 {
+    background-color:#eee;
+}
+#edit_student_profile {
+    clear:both;
+    margin:0 auto;
+    padding-left:170px;
+}
+#new_profile_info_top {
+    margin:30px auto;
+    width:697px;
+   
+}
+/*
+.new_profile_info_area1 {
+    height:87px;
+    width:682px;
+   
+}*/
+.profile_info_label_top {
+    padding-top:15px;
+    padding-bottom:5px;
+    height:25px;
+    width:150px;
+    text-align:right;
+    padding-right:20px;
+    float:left;
+    font-weight:bold;
+    color:#548ab2;
+    background: #eff3fe;
+    border-top:1px solid #bdcfff;
+    margin-right:5px;
+}
+.profile_info_text_top a{
+    color:#000;
+}
+.profile_info_text_top a:hover{
+    color:#BB0000;
+}
+.profile_info_label_top2 {
+    padding-top:15px;
+    padding-bottom:5px;
+    height:25px;
+    width:150px;
+    text-align:right;
+    padding-right:20px;
+    float:left;
+    font-weight:bold;
+    color:#548ab2;
+    background: #dae6ff;
+    border-top:1px solid #bdcfff;
+    margin-right:5px;
+}
+.profile_info_label1 {
+    padding-top:15px;
+    height:25px;
+    width:120px;
+    text-align:right;
+    padding-right:20px;
+    float:left;
+    font-weight:bold;
+    color:#548ab2;
+}
+.profile_info_text_top {
+    padding-top:15px;
+    padding-bottom:5px;
+    padding-left:20px;
+    height:25px;
+    width:500px;
+    float:left;
+    font-weight:bold;
+    color:#000;
+    background: #eff3fe;
+    border-top:1px solid #bdcfff;
+    }
+.profile_info_text_top2 {
+    padding-top:15px;
+    padding-bottom:5px;
+    padding-left:20px;
+    height:25px;
+    width:500px;
+    float:left;
+    font-weight:bold;
+    color:#000;
+    background: #dae6ff;
+    border-top:1px solid #bdcfff;
+    }
+.profile_info_text {
+    padding-top:15px;
+    padding-left:20px;
+    height:25px;
+    width:500px;
+    float:left;
+    font-weight:bold;
+    color:#000;
+}
+.profile_info_text span {
+    font-weight : normal;
+    font-size : 0.9em;
+}
+.profile_info_text a {
+    color : #95060C;
+}
+.user_button {
+    margin-top:40px;
+    margin-left:270px;
+}
+.profile_top_banner{
+    position:absolute;
+    float:right;
+    padding-left:525px;
+    margin-top:-12px;
+    
+}
+#student_profile_heading{
+    width:800px;
+    margin:0px auto;
+}
+a.user_button{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    margin-top:30px;
+    padding:7px 12px;
+    border:none;
+    margin-left:20px;
+    text-align:center;
+    cursor:pointer;
+    text-decoration: none;
+    float:left;
+}
+.buttons{
+    width:232px;
+    margin:0px auto;
+}
+
+a.user_button:hover{
+   background:  #373B3F;
+}
+
+
+.user_button  {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin: 0 auto;
+    text-decoration: none;
+}
+.user_button:hover{
+    background:  #373B3F;
+}
+
+.profile_info_label_top_1 {
+    padding-top:15px;
+    padding-bottom:5px;
+    height:25px;
+    width:500px;
+    text-align:right;
+    padding-right:20px;
+    float:left;
+    font-weight:bold;
+    color:#548ab2;
+    background: #eff3fe;
+    border-top:1px solid #bdcfff;
+    margin-right:5px;
+}
+
+.profile_info_label_top_12 {
+    padding-top:15px;
+    padding-bottom:5px;
+    height:25px;
+    width:500px;
+    text-align:right;
+    padding-right:20px;
+    float:left;
+    font-weight:bold;
+    color:#548ab2;
+    background: #dae6ff;
+    border-top:1px solid #bdcfff;
+    margin-right:5px;
+}
+.profile_info_text_top_1 {
+    padding-top:15px;
+    padding-bottom:5px;
+    padding-left:20px;
+    height:25px;
+    width:150px;
+    float:left;
+    font-weight:bold;
+    color:#000;
+    background: #eff3fe;
+    border-top:1px solid #bdcfff;
+    }
+.profile_info_text_top_12 {
+    padding-top:15px;
+    padding-bottom:5px;
+    padding-left:20px;
+    height:25px;
+    width:150px;
+    float:left;
+    font-weight:bold;
+    color:#000;
+    background: #dae6ff;
+    border-top:1px solid #bdcfff;
+    }
+
+    .prev_subject_box{
+        border: 2px;
+        border-color: #000;
+}

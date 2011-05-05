@@ -1,0 +1,37 @@
+
+<div class="linker">
+  <%= link_to_remote 'Add', :url => { :action => 'new', :id => @batch } %>
+</div>
+
+<% unless @class_timings.empty? %>
+<table id="class-timings-list" width="100%">
+  <tr class="tr-head">
+    <td>Name</td>
+    <td>Start time</td>
+    <td>End time</td>
+    <td>Operations</td>
+  </tr>
+  <% @class_timings.each do |class_timing| %>
+    
+    <tr id="class-timing-<%= class_timing.id %>" class="tr-<%= cycle('odd','even')   %>">
+      <td class="col-1"><%= class_timing.name %></td>
+      <td class="col-3"><%= class_timing.start_time.strftime("%I:%M %p") unless class_timing.start_time.nil? %></td>
+      <td class="col-3"><%= class_timing.end_time.strftime("%I:%M %p") unless class_timing.end_time.nil? %></td>
+      <td class="col-3"><small><%= link_to_remote('Edit',
+          :url => edit_class_timing_path(class_timing), :method => 'get' ) %> |
+    <% @tt = PeriodEntry.find_all_by_class_timing_id(class_timing.id ) %>
+  <% if @tt.empty? %>
+    <%= link_to_remote('Delete',
+                :url => class_timing_path(class_timing),
+                :method => 'delete',
+                :confirm => 'This will delete all timetable entried assosciated with this class timing , proceed with deletion?',
+                :update => "class-timing-#{class_timing.id}") %>
+              <% else %>
+          <s>Delete</s>
+        <% end %></small></td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+<h4>Set in common</h4>
+<% end %>

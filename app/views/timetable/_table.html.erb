@@ -1,0 +1,61 @@
+<div id="register">
+      <div class="header">
+        <div class="prev">
+          <%= link_to_remote "◄", :url=>{:controller=>"timetable", :action=>"timetable",:next=>(@today-1.day)} %>
+        </div>
+        <div class="month">
+          <%= @today.strftime(" %d %B %Y") %>
+        </div>
+        <div class="next">
+        <%= link_to_remote "►", :url=>{:controller=>"timetable", :action=>"timetable",:next=>(@today+1.day)} %>
+        </div>
+        <div class="extender"></div>
+      </div>
+    </div>
+
+<div class="table">
+  <% @batches.each do |b| %>
+      <% @timetable = TimetableEntry.find_all_by_batch_id_and_weekday_id(b.id, @today.wday) %>
+      <% unless @timetable.empty? %>
+    <table border="0" align="center" width="100%" id="timing"  cellspacing="0">
+      <tr>
+        <td class="head">
+          <div class="top">
+            <%= t('timetable.time') %>
+          </div>
+          <div class="bottom">
+            <div class="course">
+              <%= b.course.code + ' - ' + b.name %>
+            </div>
+          </div>
+        </td>
+        <td class="td-blank"> </td>
+        <% @timetable.each do |t| %>
+          <% @timing = ClassTiming.find(t.class_timing_id) %>
+          <td>
+            <div class="top">
+              <%= @timing.start_time.strftime("%I:%M%p") unless @timing.start_time.nil? %>-<%= @timing.end_time.strftime("%I:%M%p") unless @timing.end_time.nil? %>
+            </div>
+            <div class="bottom">
+              <div class="subject">
+                <%= t.subject.code unless t.subject_id.nil? %>
+              </div>
+              <% if @config.include?('HR') %>
+                <% unless t.employee.nil? %>
+                <div class="employee">
+                  <%= t.employee.first_name unless t.employee_id.nil? %>
+                </div>
+              <% end %>
+              <% end %>
+            </div>
+          </td>
+        <% end %>
+
+      </tr>
+    </table>
+      <% else %>
+        <div class="no-tt-entry"><%= t('timetable.no_timetable_entry_for_batch') %> : <%= b.full_name %> </div>
+    <% end %>
+  <% end %>
+
+</div>

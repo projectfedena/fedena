@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/resources/models/animal.rb -- 1 warning:
+  Animal has no descriptive comment (IrresponsibleModule)

@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/y_legend.rb -- 1 warning:
+  OpenFlashChart::YLegend has no descriptive comment (IrresponsibleModule)

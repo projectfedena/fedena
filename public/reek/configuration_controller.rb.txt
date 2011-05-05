@@ -1,0 +1,6 @@
+D:/nithin/rails/fedena3/fedena2/app/controllers/configuration_controller.rb -- 5 warnings:
+  ConfigurationController has no descriptive comment (IrresponsibleModule)
+  ConfigurationController#settings calls params 5 times (Duplication)
+  ConfigurationController#settings calls params[:configuration] 3 times (Duplication)
+  ConfigurationController#settings calls params[:upload] twice (Duplication)
+  ConfigurationController#settings has approx 9 statements (LongMethod)

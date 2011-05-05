@@ -1,0 +1,87 @@
+
+#student_profile_heading {
+    background-color:#FFF1AB;
+    border:1px solid #EFDF95;
+    clear:both;
+    height:25px;
+    margin:0 0 40px;
+    padding:2px 0 0 190px;
+}
+#student_main_info {
+    float:left;
+    text-align:center;
+}
+#student_main_info span.name {
+    margin:0;
+    color:#000;
+    font-size:14px;
+    font-weight: 600;
+    letter-spacing:.5px;
+    padding-right:20px;
+    margin-top:30px;
+}
+#student_main_info span.course {
+    margin : 0;
+    font-size:14px;
+    padding-right:20px;
+    font-weight: 600;
+    color : #000;
+    margin-top : 10px;
+}
+#student_main_info span.adm {
+    font-size:14px;
+    margin : 0;
+    font-weight: 600;
+    padding : 0;
+    color : #000;
+    margin-top : 5px;
+}
+.label-field-pair {
+    margin-left : 50px;
+}
+.message-area {
+    margin-left : 50px;
+    clear : both;
+}
+.message-area label {
+    clear : both;
+    color : #444;
+    display : block;
+    font-weight : bold;
+    margin : 0 0 10px 0;
+}
+#email_message {
+    background : #eee;
+    -moz-border-radius:10px;
+    -weblit-border-radius:10px;
+    border : 1px solid #c6c6c6;
+    font-family : Arial;
+    height : 190px;
+    padding : 5px;
+    width : 520px;
+}
+textarea#email_message:focus{
+    border:1px solid #d00;
+    background: transparent;
+}
+.submit-area input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:30px 0 0 270px;
+    width:100px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+.submit-area input:hover{
+   background:  #373B3F;
+}
+form{
+    width:650px;
+    margin:0px auto;
+}

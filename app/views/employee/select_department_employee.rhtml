@@ -1,0 +1,22 @@
+<div id="content-header">
+   <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Payslip generation</h1>
+  <h3>Individual Employees</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+<div id="page-yield">
+
+    <div class="drop-down-box">
+      <label for="category_prefix">Select a department</label>
+      <div class="text-input-bg"> <%= select :individual_payslip, :department_id, @departments.map { |s| [s.name, s.id] },
+          {:prompt => "Select department"},
+          {:onChange => "#{remote_function(:url => {:action => "update_employee_select_list"},
+                                           :with => "'department_id='+value")}"} %> </div>
+    </div>
+    <div class="extender"></div>
+    <div id="employees_select_list"></div>
+</div>

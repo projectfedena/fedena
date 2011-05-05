@@ -1,0 +1,41 @@
+<div id="new_profile_info_top">
+  <div class="profile_info_label_top">DOB</div>
+  <div class="profile_info_text_top">
+    <%= @employee.date_of_birth%>
+  </div>
+
+  <div class="profile_info_label_top2">Marital status</div>
+  <div class="profile_info_text_top2"><%= @employee.marital_status %></div>
+
+  <div class="profile_info_label_top">No. of children</div>
+  <div class="profile_info_text_top"> <%= @employee.children_count %> </div>
+</div>
+
+
+<div class="new_profile_info_area1">
+  <div class="profile_info_label_top2">Father's name</div>
+  <div class="profile_info_text_top2"> <%= @employee.father_name %> </div>
+
+  <div class="profile_info_label_top">Mother's name</div>
+  <div class="profile_info_text_top"> <%= @employee.mother_name %> </div>
+</div>
+
+<div class="new_profile_info_area1">
+  <div class="profile_info_label_top2">Spouse name</div>
+  <div class="profile_info_text_top2"><%=  @employee.husband_name %></div>
+
+  <div class="profile_info_label_top">Blood group</div>
+  <div class="profile_info_text_top"> <%= @employee.blood_group %> </div>
+</div>
+
+<div class="new_profile_info_area1">
+  <div class="profile_info_label_top2"  >Nationality</div>
+  <div class="profile_info_text_top2"><%= @employee.nationality.name %></div>
+</div>
+<div class="extender"></div>
+<div class="edit-pdf-group">
+  <div class="pdf">
+    <%= link_to " ► PDF Report",
+      {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
+  </div>
+</div>

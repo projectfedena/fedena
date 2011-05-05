@@ -1,0 +1,64 @@
+ <div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Subjects</h1>
+  <h3>Assign Subjects</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+<div id="page-yield">
+   <% unless flash[:notice].nil? %>
+    <p  class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+    <div id="errors"></div>
+<div id="msg"></div>
+<div class="linker">
+<%= link_to_remote 'Add Normal Subject', :url => { :action => 'new_subject', :id => @batch} %> |
+<%= link_to 'Add Electives', batch_elective_groups_path(@batch) %> |
+<%= link_to_remote 'Assign old batch subjects', :url => { :controller=>'batch_transfers',:action => 'get_previous_batch_subjects', :id => @batch} %>
+</div>
+    <div id="previous-batch-subjects"></div>
+
+<div id="subjects">
+<% unless @normal_subjects.empty? %>
+
+  <ul id="category-list">
+    <h4>Normal subjects</h4>
+  <% @normal_subjects.each do |sub| %>
+    <li id="subject-<%=sub.id%>" class="list<%=cycle('odd', 'even')%>">
+      <div class="category-name"> <%= sub.name %></div>
+       <div class="category-code"><%= sub.code %></div>
+    </li>
+  <% end %>
+    </ul>
+<% end %>
+
+
+<% unless @elective_groups.empty? %>
+  <% @elective_groups.each do |eg| %>
+    <% unless @elective_subjects.empty? %>
+    <ul id="category-list">
+      <h4><%= eg.name %>:</h4>
+      <% @elective_subjects.each do |elect| %>
+        <% if elect.elective_group_id == eg.id %>
+          <li id="elect-<%=elect.id%>" class="list<%=cycle('odd', 'even')%>">
+          <div class="category-name"> <%= elect.name %></div>
+           <div class="category-code"><%= elect.code %></div>
+          </li>
+        <% end %>
+      <% end %>
+          </ul>
+    <% end %>
+  <% end %>
+<% end %>
+    </div>
+
+
+
+
+ <div id="modal-box" style="display:none;"></div>
+
+   <div class="extender"></div>
+  </div>

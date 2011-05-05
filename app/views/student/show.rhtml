@@ -1,0 +1,5 @@
+
+<% unless @student.photo_data.blank? %>
+  <%= image_tag(url_for({:controller => 'student', :action =>
+      'show', :id => @student.id}))%>
+<% end %>

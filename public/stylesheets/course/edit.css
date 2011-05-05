@@ -1,0 +1,82 @@
+
+.label-field-pair {
+    height : 80px; width:250px;
+    float:left;
+    margin : 0 0 0 20px;
+}
+
+.label-field-pair label {
+    color : #444444;
+    font-weight : bold;
+    margin : 0 0 10px 5px;;
+}
+.submit-area input {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    margin-left:200px;
+    margin-top:30px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    width:90px;
+    cursor:pointer;
+}
+.fieldWithErrors{
+    border : 2px solid #b00;
+    height : 25px; width : 225px;
+}
+.errorExplanation {
+    background-color : #ffb1b1;
+    border : 1px solid #b00;
+    height : auto; width : 510px;
+    margin : 20px 0 40px 50px;
+    padding : 10px 0 20px 20px;
+}
+.errorExplanation h2 {
+    margin : 0;
+    font-size : 1em;
+    font-weight : normal;
+    padding : 0;
+}
+.errorExplanation p {
+    margin : 5px 0 0 0;
+}
+#course-list {
+    clear : both;
+    padding : 10px 0 40px 40px;
+}
+#course-list li {
+    background : #fff url(../../images/_global/list-bg-repeat.jpg) repeat;
+    color : #444;
+    height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+}
+#course-list li.heading {
+    background : none;
+    font-weight : bold;
+}
+#course-list li div {
+    float : left;
+}
+#course-list li div.course-name {
+    width : 350px;
+}
+#course-list li div.course-edit,
+#course-list li div.course-delete {
+    font-size : 0.9em;
+    width : 50px;
+}
+#course-list li div a {
+    color : #000;
+}
+form{
+    width:600px;
+    margin:0px auto;
+}

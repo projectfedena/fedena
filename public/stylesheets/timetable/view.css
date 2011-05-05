@@ -1,0 +1,196 @@
+
+.label-field-pair {
+    margin : 0 0 0 250px;
+}
+.submit-button {
+    float : left;
+    height : 60px; width: 285px;
+    margin : 0 0 0 30px;
+    padding : 30px 0 0 20px;
+}
+#timetable {
+    height : auto; 
+    width:700px;
+    margin : 50px auto;
+}
+.timetable_tr {
+    clear:both;
+    height:52px;
+}
+.timetable_td {
+    float:left;
+    width:80px;height:50px;
+    border:1px dotted #b00;
+    background-color:#f2d5b2;
+    font-size:small;
+}
+.timetable_td_top {
+    float:left;
+    width:80px;
+    height:35px;
+    border:1px dotted #800;
+    padding-top:15px;
+    text-align:center;
+    background-color:#900;
+    color:#fff;
+    font-weight:bold;
+}
+.timetable_td_left {
+    float:left;
+    width:50px;height:35px;
+    border:1px dotted #800;
+    padding-top:15px;
+    text-align:center;
+    background-color:#900;
+    color:#fff;
+    font-weight:bold;
+}
+.timetable_td_tl {
+    float:left;
+    width:52px;height:35px;
+    padding-top:15px;
+}
+.sub_emp {
+    float:left;
+    width:200px;
+    background-color:gray
+}
+
+.tt-subject {
+    text-align:center;
+}
+
+.selected_div {
+    background-color:#800;
+}
+
+.subjects {
+    margin-left:10px;
+    margin-bottom:10px;
+    float:left;
+    border:1px solid #b00;
+    width:78px;height:38px;
+    font-size:small;
+    padding-top:10px;
+    text-align:center;
+    background-color:#f2d5b2;
+}
+
+#box{
+    background: #c3d9ff;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    padding:10px;
+    margin: 0px auto;
+    width:950px;
+}
+td{
+    color: #9f191f;
+    font-weight: bold;
+    font-size: 13px;
+}
+td.td-blank, td.loader, tr.tr-blank{
+    width: 10px;
+    background: #c3d9ff;
+}
+table#table{
+    background: #a6c7ff;
+}
+tr.blank td{
+    height:  10px;
+    background: #c3d9ff;
+}
+td .name{
+    background: #fff;
+    height: 35px;
+    text-align: center;
+    padding:15px 10px 0 10px;
+}
+td .top{
+    background: #fff;
+    padding:5px 10px 5px 10px;
+    text-align: center;
+    color: #9f191f;
+    font-weight: bold;
+    font-size: 10px;
+
+}
+td .tt-subject .subject{
+    height: 23px;
+    padding-top: 10px;
+    text-align:center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    cursor: pointer;
+}
+td .tt-subject .employee{
+    height: 15px;
+    font-size:11px;
+    text-align:center;
+    background: #eaf2ff;
+    color:#898989;
+    border-top:2px solid #b2cfff;
+    border-bottom:2px solid #b2cfff;
+}
+td.td{
+    width:100px;
+}
+
+.drop {
+    background:none repeat scroll 0 0 #FFFFFF;
+    height:50px;
+    text-transform:uppercase;
+    width:100%;
+}
+
+a.user_button{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    margin-top:30px;
+    padding:7px 12px;
+    border:none;
+    margin-left:44%;
+    text-align:center;
+    cursor:pointer;
+    text-decoration: none;
+    float:left;
+}
+
+
+.subject span{
+    display:none;
+    color: #bb0000;
+    margin-left: 90px;
+    min-width: 100px;
+}
+
+.subject:hover span {
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    border:4px solid #c3d9ff;
+    color: #FFFFFF;
+    padding: 5px;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    padding-top:10px;
+    color:#990A10;
+    font-weight:bold;
+    z-index: 2000;
+    font-size: 12px;
+    font-variant: small-caps;
+}
+
+.subject:hover span .emp-name {
+    cursor: pointer;
+    color:#000;
+    font-size: 10px;
+    font-variant: small-caps;
+}

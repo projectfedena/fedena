@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090718050921_create_exams.rb -- 3 warnings:
+  CreateExams has no descriptive comment (IrresponsibleModule)
+  CreateExams#self.up has approx 9 statements (LongMethod)
+  CreateExams#self.up has the variable name 't' (UncommunicativeName)

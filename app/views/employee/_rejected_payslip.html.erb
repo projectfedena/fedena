@@ -1,0 +1,83 @@
+<ul class="item-list">
+  <!-- <li class="heading"><%= @employee.full_name %></li> -->
+  <li class="heading">Payslip generated on <%= @salary_date %></li>
+</ul>
+<ul class="item-list">
+  <li class="heading1">Salary</li>
+  <% @monthly_payslips.each do |mp| %>
+    <% category = PayrollCategory.find(mp.payroll_category_id) %>
+    <% @emp = Employee.find(mp.employee_id) %>
+    <% unless category.is_deduction == true %>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="item-name"><%= category.name  %> </div>
+        <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= mp.amount %></div>
+      </li>
+    <% end %>
+
+
+  <% end %>
+  <% unless @individual_payslip_category.empty? %>
+
+    <% @individual_payslip_category.each do |pc| %>
+      <%if  pc.is_deduction == false %>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <div class="item-name"><%= pc.name %></div>
+          <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= pc.amount %></div>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+  <li class="list<%=cycle('odd', 'even')%>">
+    <div class="item-name"><b>Total Salary </b></div>
+    <div class="item-edit"><b><span class="currency-type"><%= @currency_type %></span> <%=@net_non_deductionable_amount  %></b></div>
+  </li>
+</ul>
+
+<ul class="item-list">
+  <li class="heading1">Deductions</li>
+  <% @monthly_payslips.each do |mp| %>
+    <% category = PayrollCategory.find(mp.payroll_category_id) %>
+    <% @emp = Employee.find(mp.employee_id) %>
+    <% @reason = mp.reason  %>
+    <% unless category.is_deduction == false %>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="item-name"><%= category.name  %></div>
+        <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= mp.amount %></div>
+      </li>
+    <% end %>
+  <% end %>
+  <% unless @individual_payslip_category.empty? %>
+
+    <% @individual_payslip_category.each do |pc| %>
+      <%if  pc.is_deduction == true %>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <div class="item-name"><%= pc.name %></div>
+          <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= pc.amount %></div>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+  <li class="list<%=cycle('odd', 'even')%>">
+    <div class="item-name"><b>Total Deductions </b></div>
+    <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span> <b><%=@net_deductionable_amount %></b></div>
+  </li>
+</ul>
+
+<ul class="item-list">
+  <li class="heading1">Total</li>
+  <li class="listeven">
+    <div class="item-name"><b>Net Salary </b></div>
+    <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span><b> <%=@net_amount%></b></div>
+  </li>
+</ul>
+<ul class="item-list">
+  <li class="heading1">Reason</li>
+  <li class="listeven">
+    <div class="item-name"><%= @reason %></div>
+    <div class="item-edit"></div>
+  </li>
+</ul>
+
+<div id="submit-button" class ="approve">
+    <%= link_to "Edit", {:controller=>"employee", :action=>"edit_rejected_payslip",:id =>@employee.id,:id2 => @salary_date } %>
+  </div>

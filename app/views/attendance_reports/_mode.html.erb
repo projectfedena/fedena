@@ -1,0 +1,13 @@
+<div class="label-field-pair">
+  <label>Select a mode: </label>
+ 
+<div class="text-input-bg">
+<%= select :mode, :id,
+  ["Monthly", "Overall"],
+  {:prompt => 'Select a mode'},
+  {:onchange => "#{remote_function(
+  :url => { :action => 'show' },
+  :with => "'mode='+value+'&batch_id='+#{@batch.id}+'&subject_id='+#{@subject}",
+  :before => "Element.show('loader')",
+  :success => "Element.hide('loader')"  )}"} %>
+</div> </div>

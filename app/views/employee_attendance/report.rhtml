@@ -1,0 +1,28 @@
+<div id="content-header">
+  <img src="/images/attendence/attendence.png" alt="" />
+  <h1>Employee Attendance</h1>
+  <h3>Report</h3>
+  <div id="app-back-button">
+   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <% form_for :employee_department do |s| %>
+    <div class="label-field-pair">
+      <label for="employee_department_select">Select the department</label>
+      <div class="text-input-bg"><%= select :employee_department, :department_id, @departments.map {|c| [c.name, c.id]},
+                                              {:prompt => 'Select a department'},
+                                              {:onChange => "#{remote_function(:url => {:action => "update_attendance_report"},
+                                              :with => "'department_id='+value")}"} %></div>
+    </div>
+  <% end %>
+
+<div id="attendance_report"> </div>
+
+</div>

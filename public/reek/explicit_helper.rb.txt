@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/resources/helpers/explicit_helper.rb -- 3 warnings:
+  ExplicitHelper#method_using_template has the variable name 'p' (UncommunicativeName)
+  ExplicitHelper#prepend calls block.call twice (Duplication)
+  ExplicitHelper#prepend refers to block more than self (LowCohesion)

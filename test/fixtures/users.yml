@@ -1,0 +1,11 @@
+## YAML Template.
+#
+admin:
+  id: 1
+  username: admin
+  first_name: Fedena
+  last_name: Admin
+  email: admin@foradian.com
+  admin: true
+  hashed_password: 83ac7819d7bde27e5e7e4e15b9d6478eb337e12a
+  salt: Kkid60Y1

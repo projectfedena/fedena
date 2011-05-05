@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/finance/finance_transaction.rb -- 1 warning:
+  FinanceTransaction has no descriptive comment (IrresponsibleModule)

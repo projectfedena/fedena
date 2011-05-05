@@ -1,0 +1,53 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Exams</h1>
+  <h3>Acadamic report</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+    <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  <div class="box">
+<h4><%= @batch.name %> | <%= @batch.course.full_name %> | <%= @student.full_name %> | <%= @subject.name %></h4>
+
+<table id="listing" width="100%">
+  <tr class="tr-head">
+    <td>Exam</td>
+    <td>Marks</td>
+    <td>Max Marks</td>
+    <td>Grade</td>
+  </tr>
+  <% @exam_groups.each do |exam_group| %>
+  <tr class="tr-<%= cycle('odd','even') %>">
+    <td class="col-3">
+      <%= exam_group.name %>
+    </td
+<% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
+<% exam_score = ArchivedExamScore.find_by_student_id(@student.id,:conditions=>{:exam_id=>exam.id}) unless exam.nil? %>
+<% if exam_group.exam_type == 'Marks' %>
+<td class="col-2"><%= exam_score.nil? ? '-' : exam_score.marks %></td>
+<td class="col-2"><%= exam_score.nil? ? '-' : exam.maximum_marks %></td>
+<td class="col-2">-</td>
+<% elsif exam_group.exam_type == 'Grades'%>
+<td class="col-2">-</td><td>-</td>
+<td class="col-2"><%= exam_score.nil? ? '-' : exam_score.grading_level.name %></td>
+<% else %>
+<td class="col-2"><%= exam_score.nil? ? '-' : exam_score.marks %></td>
+<td class="col-2"><%= exam_score.nil? ? '-' : exam.maximum_marks %></td>
+<td class="col-2"><%= exam_score.nil? ? '-' : exam_score.grading_level.name %></td>
+<% end %>
+  </tr>
+  <% end %>
+</table>
+<br />
+
+
+    <script type="text/javascript" src="/javascripts/swfobject.js"></script>
+    <%= @graph %>
+
+
+    <div class="extender"></div>
+ </div></div>

@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20100311113513_create_employee_additional_details.rb -- 2 warnings:
+  CreateEmployeeAdditionalDetails has no descriptive comment (IrresponsibleModule)
+  CreateEmployeeAdditionalDetails#self.up has the variable name 't' (UncommunicativeName)

@@ -1,0 +1,73 @@
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="Finance" />
+  <h1>Employee Salary Report</h1>
+  <h3>Payslip for <%= @employee.full_name %> on <%= @salary_date %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  
+
+
+
+
+<ul class="item-list">
+  <li class="heading">Payslip generated for <%= @employee.full_name %></li>
+</ul>
+<ul class="item-list">
+  <% @monthly_payslips.each do |mp| %>
+    <% category = PayrollCategory.find(mp.payroll_category_id) %>
+    <% @emp = Employee.find(mp.employee_id) %>
+    <% unless category.is_deduction == true %>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="item-name"><%= category.name  %> :</div>
+        <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= mp.amount %></div>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<ul class="item-list">
+  <li class="heading">Deductions:</li>
+  <% @monthly_payslips.each do |mp| %>
+    <% category = PayrollCategory.find(mp.payroll_category_id) %>
+    <% @emp = Employee.find(mp.employee_id) %>
+    <% unless category.is_deduction == false %>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="item-name"><%= category.name  %></div>
+        <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= mp.amount %></div>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<% unless @individual_payslip_category.empty? %>
+  <ul class="item-list">
+    <li class="heading">Additional :</li>
+    <% @individual_payslip_category.each do |pc| %>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="item-name"><%= pc.name %></div>
+        <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= pc.amount %></div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<ul class="item-list">
+  <li class="heading">Total:</li>
+  <li class="listodd">
+    <div class="item-name">Deductions :</div>
+    <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%=@net_deductionable_amount %></div>
+  </li>
+  <li class="listeven">
+    <div class="item-name">Salary :</div>
+    <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%=@net_amount%></div>
+  </li>
+</ul>
+
+
+
+  
+</div>

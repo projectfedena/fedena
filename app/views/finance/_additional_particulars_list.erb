@@ -1,0 +1,70 @@
+<div class="name"><%= t('payroll.add_category.category_name') %></div><div class="val"><span>:</span><%= @additional_category.name %></div>
+<div class="name"><%= t('layouts.default.description') %></div><div class="val"><span>:</span><%= @additional_category.description %></div>
+
+<% unless @additional_category.batch.nil? %>
+  <div class="name"><%= t('student.profile.course') %></div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
+<% else %>
+  <div class="name"><%= t('student.profile.course') %></div><div class="val"><span>:</span>NIL</div>
+<% end %>
+<div class="name"><%= t('layouts.default.start_date') %></div><div class="val"><span>:</span><%= @collection_date.start_date %></div>
+<div class="name"><%= t('layouts.default.end_date') %></div><div class="val"><span>:</span><%= @collection_date.end_date%></div>
+<div class="name"><%= t('layouts.default.due_date') %></div><div class="val"><span>:</span><%= @collection_date.due_date%></div>
+<br/>
+
+<div class="linker"><%= link_to_remote 'Add Particular', :url => { :action => 'add_particulars_new',:id => @collection_date} %>
+</div>
+
+<br/>
+<br/>
+
+<% unless @particulars.empty? %>
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td><%= t('layouts.default.sl_no') %></td>
+      <td><%= t('master_fees.particulars') %></td>
+      <td><%= t('fees_submission_index.student_category') %></td>
+      <td><%= t('student_attendance.student.admission_no') %></td>
+      <td><%= t('layouts.default.amount') %> (<%= currency %>)</td>
+      <td><%= t('fees_defaulters.created_date') %></td>
+      <td></td>
+    </tr>
+    <tr class="tr-blank"></tr>
+
+    <% @particulars.each_with_index do |fees,i| %>
+      <tr class="tr-<%= cycle("odd","even") %>">
+        <td class="col-1"><%= i+1 %></td>
+        <td class="col-3"><%= shorten_string(fees.name,20) %></td>
+        <td class="col-3"><%= StudentCategory.find(fees.student_category_id).name unless fees.student_category_id.nil? %></td>
+        <td class="col-3">
+          <%unless fees.admission_no.nil?%>
+            <%  student =  Student.find_by_admission_no(fees.admission_no)%>
+            <%= student.nil? ? "N.A." : student.full_name %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+        <td class="col-1" align="right"><%= fees.amount%></td>
+        <td class="col-3"><%= fees.created_at.strftime("%m-%d-%Y") %></td>
+        <td class="col-1">
+          <%  unless @additional_category.check_fee_collection_for_additional_fees == false %>
+            <span class="small"> <%= link_to_remote t('layouts.default.delete'), :confirm=>t('fees_defaulters.delete_this_particular'),:url => { :action => 'add_particulars_delete',:id => fees.id} %></span>
+          <% else %>
+            <span class="small-strike"><%= t('fees_defaulters.delete') %></span>
+          <% end %>
+          <span class="small"> <%= link_to_remote t('layouts.default.edit'), :url => { :action => 'add_particulars_edit',:id => fees.id} %></span>
+        </td>
+      </tr>
+    <% end %>
+
+
+  </table>
+
+<% else %>
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td><%= t('additional_fees.no_categories_to_display') %></td>
+    </tr>
+  </table>
+
+<% end%>
+<%= link_to t('layouts.default.back'),{:action => 'additional_fees_list'},:class=>'user_button' %>

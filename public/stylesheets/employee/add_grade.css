@@ -1,0 +1,115 @@
+
+#form-content{
+    height:150px;
+    width:500px;
+    margin:0px auto;
+}
+
+
+#radio-buttons{
+    margin:0;
+}
+
+#submit-button input {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    float:left;
+    margin-top:10px;
+    margin-left: 160px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    width:90px;
+    cursor:pointer;
+}
+
+#grade-list {
+    clear : both;
+    padding : 10px 0 40px 0px;
+    width:650px;
+    margin:0px auto;
+}
+
+#grade-list .listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    min-height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+    overflow: hidden;
+}
+
+#grade-list .listodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    min-height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+    overflow: hidden;
+}
+
+#grade-list li.heading {
+    background : none;
+    font-weight : bold;
+    list-style-type : none;
+    color : #444;
+    height : 1.5em; width : 30em;
+    padding : 0.5em 0 0 5em;
+}
+
+#grade-list li div {
+    float : left;
+}
+#grade-list li div.grade-name {
+    width : 350px;
+    font-size:13px;
+    font-weight:bold;
+}
+#grade-list li div.grade-edit,
+#grade-list li div.grade-delete {
+    font-size : 0.9em;
+    width : 50px;
+}
+#grade-list li div a {
+    color : #000;
+    text-decoration:none;
+    font-size:14px;
+}
+#grade-list li div a:hover {
+    color : #d00;
+    text-decoration:underline;
+}
+
+#grade-list .listheading {
+    background:none repeat scroll 0 0 #BECFFB;
+    border-bottom:2px solid #BECFFB;
+    color:#444444;
+    height:1.5em;
+    list-style-type:none;
+    padding:0.5em 0 0 1em;
+    width:34em;
+}
+.label-checkbox-pair  {
+    height:40px;
+    padding-top:3px;
+    padding:10px 0 0 0px;
+    width:600px;
+}
+.status{
+    color:#444444;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:3px;
+    width:206px;
+}

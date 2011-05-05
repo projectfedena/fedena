@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/resources/controllers/rjs_spec_controller.rb -- 2 warnings:
+  RjsSpecController has no descriptive comment (IrresponsibleModule)
+  RjsSpecController#render_replace_html refers to page more than self (LowCohesion)

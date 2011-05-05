@@ -1,0 +1,6 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/prawnto/test/template_handler_test_mocks.rb -- 5 warnings:
+  TemplateHandlerTestMocks::ActionController has no descriptive comment (IrresponsibleModule)
+  TemplateHandlerTestMocks::ActionView has no descriptive comment (IrresponsibleModule)
+  TemplateHandlerTestMocks::Request has no descriptive comment (IrresponsibleModule)
+  TemplateHandlerTestMocks::Response has no descriptive comment (IrresponsibleModule)
+  TemplateHandlerTestMocks::Template has no descriptive comment (IrresponsibleModule)

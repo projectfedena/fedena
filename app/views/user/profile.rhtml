@@ -1,0 +1,64 @@
+<div id="content-header">
+  <img src="/images/user_profile/user_profile_logo.jpg" />
+  <h1><%= t('user_profile') %></h1>
+  <h3><%= t('user_information') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<% if @current_user.id == @user.id %>
+  <div id="inner-tab-menu">
+    <ul><li><%= link_to "#{t('change_password')}", :controller => "user", :action => "change_password" %></li></ul>
+  </div>
+<% end %>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %><p class="flash-msg"> <%= flash[:notice] %> </p><% end %>
+
+  <div id="profile_view">
+
+    <div class="profile_info_label"><%= t('layouts.default.username') %></div>
+    <div class="profile_info_text"> <%= @user.username %> </div>
+
+    <div class="profile_info_label2"><%= t('layouts.default.name') %></div>
+    <div class="profile_info_text2"> <%= @user.full_name %> </div>
+
+
+    <div class="profile_info_label"><%= t('index.role') %></div>
+    <div class="profile_info_text"> <%= @user.role_name %> </div>
+
+    <div class="profile_info_label2"><%= t('student.profile.email') %></div>
+    <div class="profile_info_text2"> <%= @user.email %> </div>
+    <div class="extender"></div>
+  </div>
+
+  <% if @current_user.admin? %>
+    <div class="submit-buttons">
+
+      <% if @user.role_name == 'Employee' %>
+        <% if @config.include?('HR') %>
+          <%= link_to "► #{t('layouts.default.view_profile')}",{:controller => "employee", :action => "profile", :id => @employee.id }, :class => "user_button" unless @employee.nil?%>
+        <% end %>
+      <% elsif @user.role_name == 'Student' %>
+        <%= link_to "► #{t('layouts.default.view_profile')}",{:controller => "student", :action => "profile", :id => @student.id }, :class => "user_button"%>
+      <% else %>
+        <% if @config.include?('HR') %>
+          <%= link_to "► #{t('layouts.default.view_profile')}",{:controller => "employee", :action => "profile", :id => @employee.id }, :class => "user_button" unless @employee.nil?%>
+        <% end %>
+      <% end %>
+      <%#= link_to "► Edit",{:controller => "user", :action => "edit", :id => @user.username }, :class => "user_button"%>
+      <%= link_to "Change Password", {:controller => "user", :action => "user_change_password", :id =>@user.username}, :class => "user_button" %>
+      <%# unless @current_user.id == @user.id %>
+        <%#= link_to "► #{t('layouts.default.delete')}", { :controller => "user", :action => "delete", :id => @user.username}, :class => "user_button", :confirm=>"Are you sure you want to delete this USER?" %>
+      <%# end %>
+      <% unless @user.admin %>
+        <% unless @user.role_name == 'Student' %>
+          <%= link_to "► #{t('layouts.default.edit') + ' ' + t('privilege')}", {:controller => "user", :action => "edit_privilege", :id => @user.username } ,:class => "user_button" %>
+      
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,13 @@
+
+<% if @news.nil? %>
+  <div id="news_no_result"><%= t('no_news') %></div>
+<% else %>
+  <% @news.each do |r| %>
+
+      <div id="news_ajax_result">
+    <% link_value = r.id %>
+    <%=  link_to link_value, :controller => "news", :action => 'view', :id => r.id%><br/>
+    <small><%= r.created_at %></small>
+  </div>
+  <% end %>
+<% end %>

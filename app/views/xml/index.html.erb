@@ -1,0 +1,24 @@
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+   <h1><%= t('finance.index.finance') %></h1>
+   <h3><%= t('tally') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <div class="box">
+
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to t('tally_settings'), :action => "settings" %></div>
+    <div class="link-descr"><%= t('change_ledger_settings_for_tally') %></div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to t('export_for_tally'),:controller => 'xml', :action => "create_xml" %></div>
+    <div class="link-descr"> <%= t('creates_xml_import') %></div>
+  </div>
+</div>
+</div>

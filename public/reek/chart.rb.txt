@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/chart.rb -- 3 warnings:
+  OpenFlashChart::Chart has no descriptive comment (IrresponsibleModule)
+  OpenFlashChart::Chart#initialize is controlled by argument title (ControlCouple)
+  OpenFlashChart::OpenFlashChart has no descriptive comment (IrresponsibleModule)

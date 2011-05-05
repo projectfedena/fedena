@@ -1,0 +1,35 @@
+<div id="content-header">
+  <img src="/images/show_settings.png" alt="Subjects"/>
+  <h1><%= t('subject') %></h1>
+  <h3><%= t('timetable.index.home') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+<div class="box">
+
+  <div class="label-field-pair">
+    <label for="student_course"><%= t('layouts.default.select_a_batch') %>:
+<%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader", :style =>"display: none;" ) %>
+   </label>
+   <div class="text-input-bg">
+  <%= select :batch, :id,
+  @batches.map {|b| [b.full_name, b.id] },
+  {:prompt => t('layouts.default.select_a_batch')},
+  {:onchange => "#{remote_function(
+  :url => { :action => 'show' },
+  :with => "'batch_id='+value",
+  :before => "Element.show('loader')",
+  :success => "Element.hide('loader')"  )}"} %>
+</div></div>
+
+<div id="subjects"></div>
+<div id="modal-box" style="display:none;"></div>
+
+<div class="extender"></div>
+ </div></div>

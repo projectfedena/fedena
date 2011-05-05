@@ -1,0 +1,46 @@
+
+#report_index_content{
+    width:500px;
+    margin:0px auto;
+}
+.label_field_pair {width:300px;float:left;}
+.label_field_pair label {font-weight:bold;display:block;color:#444;margin-bottom:10px;}
+.label_field_pair input {width:210px;height:28px;background:transparent;border:none;padding-left:10px;padding-top:5px;}
+.label_field_pair select {color:#000;width:230px;height:28px;}
+
+.user_submit_button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    margin-left:200px;
+    margin-top:30px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    width:70px;
+    cursor:pointer;
+}
+
+#att-report-table {width:400px;margin:0 auto;margin-top:50px;}
+.att-report-tr-even {
+    background :#EEF2FD;
+    border-top:1px solid #BECFFB;
+    height : 1.5em; 
+    list-style-type : none;
+    padding : 0.5em 0 0 50px;
+}
+.att-report-tr-odd {
+    background : #E4EBFE;
+    border-top:1px solid #BECFFB;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 50px;
+}
+.att-report-td1 {float:left;width:250px;}
+.att-report-td2 {float:left;width:100px;}
+.att-report-td1 a {text-decoration:none;color:#000;}

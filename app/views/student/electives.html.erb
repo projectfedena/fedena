@@ -1,0 +1,38 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" />
+  <h1><%= t('layouts.default.student') %></h1>
+  <h3><%= t('timetable.edit2.elective') %></h3>
+    <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% unless flash[:notice].nil? %>
+  <p class="flash-msg"> <%= flash[:notice] %> </p>
+<% end %>
+
+<div class="name"><%= t('layouts.default.batch') %></div><div class="val"><span>:</span><%= @batch.name %></div>
+<div class="name"><%=t('elective_groups.index.elective_group') %></div><div class="val"><span>:</span><%= @elective_group.name %></div>
+<div class="name"><%= t('subjects.index.subject') %></div><div class="val"><span>:</span><%= @elective_subject.name %></div>
+<br />
+<ul id="category-list">
+<div class="linker">
+<%= link_to_remote "#{t('layouts.default.assign_all')}",:url=>{:controller=>"student",:action=>"assign_all_students",:id=>@batch.id,:id2=>@elective_subject.id}%>
+  <%= link_to_remote "#{t('layouts.default.remove_all')}",:url=>{:controller=>"student",:action=>"unassign_all_students",:id=>@batch.id,:id2=>@elective_subject.id} %></div>
+  <% @students.each do |s| %>
+  <li id="stud_<%=s.id%>" class="list<%=cycle('odd', 'even')%>">
+    <% stud_assigned = StudentsSubject.new() %>
+    <% assigned = stud_assigned.student_assigned(s.id,@elective_subject.id) %>
+   <div class="category-name"> <%= s.full_name %></div>
+    <% unless assigned.nil? %>
+   <div class="category-edit"><%= link_to_remote "#{t('layouts.default.remove')}",:url=>{:controller=>"student",:action=>"unassign_students",:id=>s.id,:id2=>@elective_subject.id} %></div>
+      <% else %>
+   <div class="category-edit"><%= link_to_remote "#{t('layouts.default.assign')}", :url=>{:controller=>"student",:action=>"assign_students",:id=>s.id,:id2=>@elective_subject.id} %></div>
+        <% end %>
+  </li>
+<% end %><%= t('timetable.index.view') %>
+</ul>
+
+<div class="extender"></div>
+ </div>

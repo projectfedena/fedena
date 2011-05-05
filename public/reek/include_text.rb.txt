@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/matchers/include_text.rb -- 1 warning:
+  Spec::Rails::Matchers::IncludeText has no descriptive comment (IrresponsibleModule)

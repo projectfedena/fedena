@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/spec/rails/example/assigns_hash_proxy_spec.rb -- 1 warning:
+  Foo has no descriptive comment (IrresponsibleModule)

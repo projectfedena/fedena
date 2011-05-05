@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20091026065251_create_reminders.rb -- 3 warnings:
+  CreateReminders has no descriptive comment (IrresponsibleModule)
+  CreateReminders#self.up has approx 9 statements (LongMethod)
+  CreateReminders#self.up has the variable name 't' (UncommunicativeName)

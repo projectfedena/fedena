@@ -1,0 +1,60 @@
+.box{
+    width:750px;
+    margin-left: 200px;
+}
+#submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:263px;
+    margin-top:10px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+
+#attendance-report{
+    width:705px;
+    margin-left:135px;
+    padding-top: 50px;
+}
+
+.type_name-odd{
+    width:680px;
+    background : #DAE6FF;
+    font-weight:bold;
+    padding-left:25px;
+    height:28px;
+    padding-top:12px;
+    font-size:14px;
+}
+.type_name-even{
+    width:680px;
+    background : #EFF3FE;
+    font-weight:bold;
+    padding-left:25px;
+    height:28px;
+    padding-top:12px;
+    font-size:14px;
+}
+
+.date-odd{
+    width:505px;
+    background : #DAE6FF;
+    padding-left:200px;
+
+    height:28px;
+    padding-top:12px;
+}
+.date-even{
+    width:505px;
+    background : #EFF3FE;
+    padding-left:200px;
+
+    height:28px;
+    padding-top:12px;
+}

@@ -1,0 +1,98 @@
+<div id="content-header">
+  <img src="/images/attendence/attendence.png" />
+  <h1>Attendance Report</h1>
+  <h3>Filtered Report</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <% working_days = @report.size %>
+  <div class="label-field-pair">
+    <label>
+      <%= "Total no. of working days : " + working_days.to_s %><br/>
+      Filtered: <%=  @range %> <%= @value %>
+    </label>
+  </div>
+  <table id="listing" align="center" width="80%">
+    <tr class="tr-head">
+      <td>
+        Name
+      </td>
+      <td>
+        Total
+      </td>
+      <td>
+        Percentage(%)
+      </td>
+    </tr>
+    <tr class="blank"></tr>
+    <% @students.each do |student| %>
+
+      <% leaves =0 %>
+      <% @report.each do |report| %>
+        <% @attendance = Attendance.find_by_student_id_and_period_table_entry_id(student.id, report.id) %>
+        <% unless @attendance.nil? %>
+          <% if @config.config_value == 'Daily' %>
+            <% leaves += 0.5 if @attendance.forenoon %>
+            <% leaves += 0.5 if @attendance.afternoon %>
+          <% else %>
+            <% leaves += 1 %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% total = (working_days - leaves).to_f %>
+      <% percentage =  ((total/working_days)*100) unless working_days == 0 %>
+      <% if @range == 'Below' %>
+        <% if percentage.round(2) < @value.to_f %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-2"><%= link_to student.full_name, {:controller => "attendance_reports", :action => "student_details", :id => student.id } %></td>
+            <td class="col-3"> <%= total %></td>
+            <td class="col-3"><%= percentage.round(2) %></td>
+          </tr>
+        <% end %>
+      <% elsif @range == 'Above' %>
+        <% if percentage.round(2) > @value.to_f %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-2"><%= link_to student.full_name, {:controller => "attendance_reports", :action => "student_details", :id => student.id } %></td>
+            <td class="col-3"> <%= total %></td>
+            <td class="col-3"><%= percentage.round(2) %></td>
+          </tr>
+        <% end %>
+      <% elsif @range == 'Equals' %>
+        <% if percentage.round(2) == @value.to_f %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-2"><%= link_to student.full_name, {:controller => "attendance_reports", :action => "student_details", :id => student.id } %></td>
+            <td class="col-3"> <%= total %></td>
+            <td class="col-3"><%= percentage.round(2) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+
+    <% end %>
+  </table>
+<%# form_for :filter, :url => {:action=> 'sample'} do |f| %>
+<%#= f.text_field :batch , :value=> @batch.id %>
+<%#= f.text_field :start_date , :value=> @start_date %>
+<%#= f.text_field :end_date , :value=> @end_date %>
+<%# unless @subject.nil? %>
+<%#= f.text_field :subject , :value=> @subject.id %>
+<%# end %>
+<%#= f.submit  %>
+<%#*hsdfjh%>
+<%# end %>
+
+  <% form_for :filter, :url => {:action=> 'filter_report_pdf'} do |f| %>
+    <%= f.hidden_field :batch , :value=> @batch.id %>
+    <%= f.hidden_field :start_date , :value=> @start_date %>
+    <%= f.hidden_field :end_date , :value=> @end_date %>
+    <% unless @subject.nil? %>
+      <%= f.hidden_field :subject , :value=>@subject.id %>
+    <% end %>
+    <%= f.hidden_field :range, :value=>params[:filter][:range] %>
+    <%= f.hidden_field :value, :value=>params[:filter][:value] %>
+    <%= submit_tag '► PDF Report',:class=>'submit_button'  %>
+  <% end %>
+
+  <div class="extender"></div>
+</div>

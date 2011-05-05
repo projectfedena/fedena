@@ -1,0 +1,41 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Exams</h1>
+  <h3>Subject wise Reports</h3>
+  <div id="app-back-button">
+  <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %></div>
+</div>
+<div id="page-yield">
+    <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+<div class="box">
+
+<% form_for :exam_report, :url=>{:action=>'generated_report2'} do |x| %>
+
+<div class="text-input-bg">
+<%= select :exam_report, :batch_id,
+        @batches.map {|b| [b.full_name, b.id]},
+        {:prompt => 'Select a batch'},
+        {:onChange => "#{remote_function(:url => {:action => "list_subjects"},
+        :with => "'batch_id='+value",
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')"
+        )}"} %>
+</div>
+  <div>
+   <div id="subject-select" class="text-input-bg">
+    <%= select :exam_report, :subject_id, @subjects.map{|subject| [subject.name,subject.id]},:prompt=>'Select subject' %>
+  </div> <%= image_tag("loader.gif",
+      :align => "absmiddle",
+      :border => 0,
+      :id => "loader",
+      :style =>"display: none;" ) %>
+    </div>
+  <%= submit_tag "", :value => "► View", :class => "submit_button" %>
+
+
+<% end %>
+<div class="extender"></div>
+</div>
+</div>

@@ -1,0 +1,65 @@
+
+<div id="content-header">
+  <img src="/images/show_settings.png" />
+  <h1>Configuration</h1>
+  <h3>Configuration home</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div id="box">
+
+    <% if permitted_to? :create, :courses %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Manage Courses / Batches", courses_path %></div>
+        <div class="link-descr">Add a new Course or Batch for this academic year.</div>
+      </div>
+    <% end %>
+
+    <% if permitted_to? :settings, :configuration %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Manage student categories", :controller => "student", :action => "categories" %></div>
+        <div class="link-descr">Add student category.</div>
+      </div>
+    <% end %>
+    <% if permitted_to? :index, :subjects %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Manage subjects", subjects_path %></div>
+        <div class="link-descr">Manage subjects corresponding to different courses.</div>
+      </div>
+    <% end %>
+
+    <% if permitted_to? :settings, :configuration %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "General settings", :action => "settings" %></div>
+        <div class="link-descr">Set some general configurations related to institution,attendance, etc.</div>
+      </div>
+    <% end %>
+
+    <% if permitted_to? :settings, :configuration %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Add admission additional details", :controller=>"student", :action => "add_additional_details" %></div>
+        <div class="link-descr">Set some additional details for admission.</div>
+      </div>
+    <% end %>
+
+    <% if permitted_to? :index, :sms %>
+      <% @config = Configuration.available_modules %>
+      <% if @config.include?('SMS') %>
+        <div class="link-box">
+          <div class="link-heading"><%= link_to "SMS Module", :controller=>"sms", :action => "index" %></div>
+          <div class="link-descr">Enable/Disable SMS settings</div>
+        </div>
+      <% end %>
+    <% end %>
+    </div>
+
+
+  </div>

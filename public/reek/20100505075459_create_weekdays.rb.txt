@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20100505075459_create_weekdays.rb -- 2 warnings:
+  CreateWeekdays has no descriptive comment (IrresponsibleModule)
+  CreateWeekdays#self.up has the variable name 't' (UncommunicativeName)

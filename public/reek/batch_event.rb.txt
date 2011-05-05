@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/batch_event.rb -- 1 warning:
+  BatchEvent has no descriptive comment (IrresponsibleModule)

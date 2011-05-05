@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090622104054_create_archived_students.rb -- 3 warnings:
+  CreateArchivedStudents has no descriptive comment (IrresponsibleModule)
+  CreateArchivedStudents#self.up has approx 33 statements (LongMethod)
+  CreateArchivedStudents#self.up has the variable name 't' (UncommunicativeName)

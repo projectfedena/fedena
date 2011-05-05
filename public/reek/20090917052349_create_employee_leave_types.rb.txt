@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090917052349_create_employee_leave_types.rb -- 2 warnings:
+  CreateEmployeeLeaveTypes has no descriptive comment (IrresponsibleModule)
+  CreateEmployeeLeaveTypes#self.up has the variable name 't' (UncommunicativeName)

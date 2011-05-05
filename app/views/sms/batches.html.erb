@@ -1,0 +1,46 @@
+<div id="content-header">
+  <img src="/images/sms_icon.png" alt="" />
+  <h1>SMS</h1>
+  <h3><%= t('layouts.default.batches') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <div class="box">
+
+<% remote_form_for :send_sms,
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')" do |sms| %>
+<div id="list">
+   <div class="sel-list">
+  <%= t('sms_settings.index.select') %> : <%= link_to_function "#{t('layouts.default.all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+<%= link_to_function "#{t('layouts.default.none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+  </div>
+<% @batches.each do |batch| %>
+<div class="name_list<%=cycle('odd', 'even')%>"><li>
+  <label><%= check_box_tag "send_sms[batch_ids][]", batch.id,false,:class=>'right' %>
+  <div class="att_list_names"> <%= batch.full_name %></div> </label>
+  </li>  </div>
+<% end %>
+<div class="label-field-pair">
+<div class="text-input-bg">
+<%= text_area :send_sms,:message, :rows=>5,:cols=>30 %>
+</div>
+</div>
+<%= submit_tag "#{t('sms_settings.index.send_sms')}",:class=>'submit_button' %>
+<% end %>
+  </div>
+<div id="status-message">
+
+</div>
+    <%= image_tag("loader2.gif",
+      :align => "absmiddle",
+      :border => 0,
+      :id => "loader",
+      :style =>"display: none;" ) %>
+
+
+ </div>
+</div>

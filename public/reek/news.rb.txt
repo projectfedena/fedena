@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/news.rb -- 1 warning:
+  News has no descriptive comment (IrresponsibleModule)

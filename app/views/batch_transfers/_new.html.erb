@@ -1,0 +1,37 @@
+
+<div id="grading-levels-form">
+  <h4><%= @batch.full_name unless @batch.nil? %></h4>
+
+  <% form_remote_for @subject,:url=>{:action=>'create_subject'} do |f| %>
+
+    <% batch_id = (@batch.nil? ? nil : @batch.id) %>
+    <% elective_group_id = (@elective_group.nil? ? nil : @elective_group.id) %>
+    <%= f.hidden_field :batch_id, :value => batch_id %>
+    <%= f.hidden_field :elective_group_id, :value => elective_group_id %>
+
+      <div id="form-errors"></div>
+
+  <div class="label-field-pair">
+    <div class="label-container"><%= f.label :name %></div>
+    <div class="input-container"> <%= f.text_field :name %></div>
+  </div>
+
+    <div class="label-field-pair">
+    <div class="label-container">  <%= f.label :code %></div>
+    <div class="input-container"><%= f.text_field :code %></div>
+  </div>
+
+    <div class="label-field-pair">
+    <div class="label-container"><%= f.label :max_weekly_classes %></div>
+    <div class="input-container"> <%= f.text_field :max_weekly_classes %></div>
+    </div>
+
+  <div class="label-field-pair">
+    <div class="label-container"><%= f.label :no_exam %></div>
+    <div class="input-container"><%= f.check_box :no_exams %></div>
+  </div>
+
+   <%= f.submit  "", :value => "► Save", :class => "submit_button" %>
+
+  <% end %>
+</div>

@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/test/open_flash_chart_test.rb -- 1 warning:
+  OpenFlashChartTest has no descriptive comment (IrresponsibleModule)

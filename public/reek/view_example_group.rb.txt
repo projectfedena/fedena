@@ -1,0 +1,10 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/example/view_example_group.rb -- 9 warnings:
+  Spec::Rails::Example::ViewExampleGroup#add_helpers calls options[:helper] twice (Duplication)
+  Spec::Rails::Example::ViewExampleGroup#add_helpers calls options[:helpers] twice (Duplication)
+  Spec::Rails::Example::ViewExampleGroup#render calls args.empty? twice (Duplication)
+  Spec::Rails::Example::ViewExampleGroup#render calls derived_controller_name(options) 3 times (Duplication)
+  Spec::Rails::Example::ViewExampleGroup#render has approx 15 statements (LongMethod)
+  Spec::Rails::Example::ViewExampleGroup#render has the variable name 'k' (UncommunicativeName)
+  Spec::Rails::Example::ViewExampleGroup#subject_of_render doesn't depend on instance state (LowCohesion)
+  Spec::Rails::Example::ViewExampleGroup#subject_of_render refers to options more than self (LowCohesion)
+  Spec::Rails::Example::ViewExampleGroupController has no descriptive comment (IrresponsibleModule)

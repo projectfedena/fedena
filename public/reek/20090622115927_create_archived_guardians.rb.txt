@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090622115927_create_archived_guardians.rb -- 3 warnings:
+  CreateArchivedGuardians has no descriptive comment (IrresponsibleModule)
+  CreateArchivedGuardians#self.up has approx 19 statements (LongMethod)
+  CreateArchivedGuardians#self.up has the variable name 't' (UncommunicativeName)

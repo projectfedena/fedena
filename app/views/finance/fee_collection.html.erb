@@ -1,0 +1,25 @@
+<div id="content-header">
+    <img src="/images/show_finance.png" alt="" />
+  <h1>Finance</h1>
+  <h3>Fee collection dates</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <div class="box">
+  <div id ="message"></div>
+  <div class ="link-box">
+    <div class="link-heading"> 
+      <%= link_to_remote 'Create Fee Collection', :url => { :action => 'fee_collection_new'} %>
+    </div>
+    <div class="link-descr">Creates new fee collecting dates </div>
+  </div>
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "View",:action => "fee_collection_view" %></div>
+    <div class="link-descr">Displays fee collection dates</div>
+  </div>
+
+  <div id="modal-box" style="display:none;"></div>
+</div>
+</div>

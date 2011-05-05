@@ -1,0 +1,19 @@
+
+c1:
+  id: 1
+  course_name: 1
+  section_name: A
+  code: 1A
+
+c2:
+  id: 2
+  course_name: 2
+  section_name: A
+  code: 2A
+
+c3:
+  id: 3
+  course_name: 3
+  section_name: A
+  code: 3A
+  

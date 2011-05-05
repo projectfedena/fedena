@@ -1,0 +1,50 @@
+
+#form-content{
+    height:150px;
+    width:500px;
+    margin:0px auto;
+}
+
+.status{
+    color : #444444;
+    font-weight : bold;
+    margin : 0 0 10px 5px;
+}
+
+#radio-buttons{
+    margin:0;
+}
+
+#submit-button input{
+    float:left;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px 150px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    width:90px;
+    cursor:pointer;
+}
+
+.label-checkbox-pair  {
+    height:40px;
+    padding-top:3px;
+    padding:10px 0 0 0px;
+    width:600px;
+}
+.status{
+    color:#444444;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:3px;
+    width:206px;
+}

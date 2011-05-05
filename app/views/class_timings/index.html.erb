@@ -1,0 +1,104 @@
+<div id="content-header">
+  <img src="/images/show_timetable.png" />
+  <h1>Timetable</h1>
+  <h3>Set class timings</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png", :border => 0), "history.back()"  %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+    
+    <div class="label-field-pair">
+   <label >Select a batch:</label>
+ <div class="text-input-bg">
+  <%= select :batch, :id,
+    @batches.map {|b| [b.full_name, b.id] },
+    {:prompt => 'Common'},
+    {:onchange => "#{remote_function(
+    :url => { :action => 'show' },
+    :with => "'batch_id='+value",
+    :before => "Element.show('loader')",
+    :success => "Element.hide('loader')"
+    )}"} %>
+  <%= image_tag("loader.gif", :align => "absmiddle", :border => 0, :id => "loader", :style =>"display: none;" ) %>
+</div></div>
+
+<div id="class-timings-list"><%= render :partial => "show_batch_timing" %></div>
+<div id="modal-box" style="display:none;"></div>
+
+<div class="extender"></div>
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+<%#*<div id="form-content">%>
+
+<%# form_for :class_timing do |f| %>
+
+<%#*<div class="label-field-pair">%>
+<%#*<label for="period_timing_name">Name</label>%>
+<%#*<div class="text-input-bg"><%= f.text_field :name </div>%>
+<%#*</div>%>
+
+<%#*<div class="label-checkbox-pair">%>
+<%#= f.check_box :break, :checked => false % Check if this is a break
+<%#*</div>%>
+
+<%#*<div class="label-field-pair">%>
+<%#*<label for="period_timing_start_time">Start time</label>%>
+<%#= time_select :class_timing, :start_time, {:minute_step => 5} %>
+<%#*</div>%>
+
+<%#*<div class="label-field-pair">%>
+<%#*<label for="period_timing_end_time">End time</label>%>
+<%#= time_select :class_timing, :end_time, {:minute_step => 5} %>
+<%#*</div>%>
+
+<%#*<div class="submit-button">%>
+<%#= submit_tag "", :value => "► Create" %>
+<%#*</div>%>
+
+<%# end %>
+
+<%#*<div class="extender"></div>%>
+
+<%#*</div>%>
+
+<%#*<div id="class-timing-list">%>
+<%#*<div class="class-timing-th">%>
+<%#*<div class="class-timing-td1"><b>Name</b></div>%>
+<%#*<div class="class-timing-td2"><b>Start Time</b></div>%>
+<%#*<div class="class-timing-td3"><b>End Time</b></div>%>
+<%#*<div class="class-timing-td4"> </div>%>
+<%#*</div>%>
+
+<%# @information.each do |x| %>
+
+<%#*<div class="class-timing-tr<%=cycle('odd', 'even')%">%>
+<%#*<div class="class-timing-td1"> <%= x.name  </div>%>
+<%#*<div class="class-timing-td2"> <%= x.start_time.strftime("%I:%M %p") unless x.start_time.nil?  &nbsp; </div>%>
+<%#*<div class="class-timing-td3"> <%= x.end_time.strftime("%I:%M %p") unless x.end_time.nil? % &nbsp; </div>%>
+<%#*<div class="class-timing-td4">%>
+<%#= link_to "Edit", :controller => "class_timing", :action=>"edit", :id => x.id %> &nbsp;
+<%#= link_to "Delete", :controller => "class_timing", :action => "delete", :id => x.id %> &nbsp;
+<%#*</div>%>
+<%#*</div>%>
+
+<%# end %>
+
+<%#*</div>%>
+

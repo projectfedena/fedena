@@ -1,0 +1,6 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/in_place_editing/test/in_place_editing_test.rb -- 5 warnings:
+  InPlaceEditingTest has no descriptive comment (IrresponsibleModule)
+  InPlaceEditingTest#setup calls options[:action] twice (Duplication)
+  InPlaceEditingTest#setup#url_for calls options[:action] twice (Duplication)
+  InPlaceEditingTest#setup#url_for doesn't depend on instance state (LowCohesion)
+  InPlaceEditingTest#setup#url_for refers to options more than self (LowCohesion)

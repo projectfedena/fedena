@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/app/models/class_timing.rb -- 4 warnings:
+  ClassTiming has no descriptive comment (IrresponsibleModule)
+  ClassTiming has the variable name 'b' (UncommunicativeName)
+  ClassTiming#validate calls self.end_time twice (Duplication)
+  ClassTiming#validate calls self.start_time twice (Duplication)

@@ -1,0 +1,91 @@
+<%  unless @batch.nil? %>
+  <div class="add_sub">
+    <%= link_to_remote "#{t('subjects.index.add_normal_subject')}", :url => { :action => 'new', :id => @batch } unless defined? @elective_group %>
+  </div>
+<%  end %>
+<% unless @subjects.empty? %>
+  <ul id="category-list">
+    <% unless params[:subject].nil? %>
+      <% if params[:subject][:elective_group_id]=="" %>
+        <div class="add_sub">
+          <%= link_to_remote t('index.add_subject_to_elective_group'), :url => { :controller=>"subjects",:action => 'new', :id => @batch,:id2=> params[:subject][:elective_group_id]} if defined? @elective_group%>
+        </div>
+      <% end %>
+    <% end %>
+    <% @subjects.each do |subject| %>
+      <li id="subject-<%= subject.id %>" class="list<%= cycle('even','odd')%>" >
+        <div class="category-name"><%= subject.name %></div>
+        <div class="opt">
+          <div class="category-code"><%= subject.code %></div>
+          <div class="category-edit"><%= link_to_remote(t('layouts.default.edit'),
+              :url => { :controller=>"subjects",:action => 'edit', :id =>subject,:id2=>@elective_group},
+              :method => 'get' ) %> </div>
+          <div class="category-delete">
+            <% @subject_exams= Exam.find_by_subject_id(subject.id) %>
+            <% @subject_timetable = TimetableEntry.find_all_by_subject_id(subject.id) %>
+            <% if @subject_exams.blank? and @subject_timetable.blank?%>
+             <%= link_to_remote(t('layouts.default.delete'),
+                :url => subject_path(subject),
+                :method => 'delete',
+                :confirm => t('batches.show.are_you_sure'),
+                :update => "subject-#{subject.id}") %>
+            <% else %>
+              <s><%= t('layouts.default.delete') %></s>
+            <% end %>
+          </div>
+          <% unless subject.elective_group_id.nil? %>
+            <div class="category-assign"><%= link_to "#{ t('elective_groups.index.assign_student')}", :controller=>"student", :action=>"electives",:id=>@batch,:id2=>subject.id%>
+            </div>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%  unless @batch.nil? %>
+  <div class="add_sub">
+    <%= link_to "#{t('subjects.index.new_elective_group')}", new_batch_elective_group_path(@batch) unless defined? @elective_group  %>
+  </div>
+<%  end %>
+
+<% unless @elective_groups.nil? %>
+  <% @elective_groups.each do |e| %>
+    <% @esubjects = @batch.elective_batch_subject(e.id)  %>
+    <h5><%=  e.name %></h5>
+    <div class="add_sub">
+      <%= link_to_remote t('index.add_subject_to_elective_group'), :url => { :controller=>"subjects",:action => 'new', :id => @batch,:id2=>e} %>
+    </div>
+    <ul id="category-list">
+      <% @esubjects.each do |subject| %>
+        <li id="subject-<%= subject.id %>" class="list<%= cycle('even','odd')%>" >
+          <div class="category-name"><%= subject.name %></div>
+          <div class="opt">
+            <div class="category-code"><%= subject.code %></div>
+            <div class="category-edit"><%= link_to_remote( t('layouts.default.edit'),
+                :url => { :controller=>"subjects",:action => 'edit', :id =>subject,:id2=>@elective_group},
+                :method => 'get' ) %> </div>
+            <div class="category-delete">
+              <% @subject_exams= Exam.find_by_subject_id(subject.id) %>
+              <% @subject_timetable = TimetableEntry.find_by_subject_id(subject.id) %>
+              <% if @subject_exams.nil? and @subject_timetable.nil?%>
+               <%= link_to_remote( t('layouts.default.delete'),
+                  :url => subject_path(subject),
+                  :method => 'delete',
+                  :confirm =>  t('batches.show.are_you_sure'),
+                  :update => "subject-#{subject.id}") %>
+              <% else %>
+                <s><%= t('layouts.default.delete') %></s>
+              <% end %>
+            </div>
+            <% unless subject.elective_group_id.nil? %>
+              <div class="category-assign"><%= link_to "#{ t('elective_groups.index.assign_student')}", :controller=>"student", :action=>"electives",:id=>@batch,:id2=>subject.id%>
+              </div>
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+
+    </ul>
+  <% end %>
+<% end %>

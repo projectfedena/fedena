@@ -1,0 +1,7 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/matchers/redirect_to.rb -- 6 warnings:
+  Spec::Rails::Matchers::RedirectTo has no descriptive comment (IrresponsibleModule)
+  Spec::Rails::Matchers::RedirectTo tests @redirected at least 3 times (SimulatedPolymorphism)
+  Spec::Rails::Matchers::RedirectTo#failure_message_for_should calls @expected.inspect 3 times (Duplication)
+  Spec::Rails::Matchers::RedirectTo#matches? has approx 12 statements (LongMethod)
+  Spec::Rails::Matchers::RedirectTo#query_hash doesn't depend on instance state (LowCohesion)
+  Spec::Rails::Matchers::RedirectTo#query_hash refers to url more than self (LowCohesion)

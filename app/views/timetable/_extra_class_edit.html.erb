@@ -1,0 +1,20 @@
+<% form_remote_for @period_entry, :url=>{:action =>'save_extra_class'} do |t| %>
+ <div class="category-num"> <%= @period_entry.class_timing.name %></div>
+ <% if @config.include?('HR') %>
+  <div class="category-name"><div class="text-input-bg2"> <%= t.select :subject_id, @subjects.map {|s| [s.name, s.id]},{:prompt => "#{t('select_a_class')}"},
+    {:onChange => "#{remote_function(:url => {:action => "list_employee_by_subject"},
+    :with => "'subject_id='+value+'&period_id='+#{@period_id}"
+    )}"} %></div></div>
+  <div id="employee-update-<%= @period_id %>"><div class="category-emp"> <div class="text-input-bg3"><%= t.select :employee_id, @employee.map {|e| [e.employee.first_name, e.employee_id]} %></div></div></div>
+  <% else %>
+  <div class="category-name">
+<div class="text-input-bg2">
+<%= t.select :subject_id, @subjects.map {|s| [s.name, s.id]},{:prompt => "#{t('select_a_subject')}"} %></div>
+  </div>
+  <% end %>
+
+
+  <%= t.hidden_field :period_id, :value=> @period_id %>
+
+ <%= submit_tag "", :value => "► #{t('select_class2.go')}",:class=>"submit-button2" %>
+<% end %>

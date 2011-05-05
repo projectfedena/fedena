@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/generators/rspec_default_values.rb -- 3 warnings:
+  Rails::Generator::GeneratedAttribute has no descriptive comment (IrresponsibleModule)
+  Rails::Generator::GeneratedAttribute#default_value has approx 8 statements (LongMethod)
+  Rails::Generator::GeneratedAttribute#name_or_reference calls name 3 times (Duplication)

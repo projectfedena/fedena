@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20100429093616_create_period_entries.rb -- 3 warnings:
+  CreatePeriodEntries has no descriptive comment (IrresponsibleModule)
+  CreatePeriodEntries#self.up has approx 6 statements (LongMethod)
+  CreatePeriodEntries#self.up has the variable name 't' (UncommunicativeName)

@@ -1,0 +1,143 @@
+<div id="content-header">
+ <img src="/images/HR/show_hr.png" alt="" />
+<h1>Employee Admission</h1>
+<h3>Step-2</h3>
+<div id="app-back-button">
+<%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+</div>
+</div>
+
+<div id="page-yield">
+
+<% unless flash[:notice].nil? %>
+<p class="flash-msg"> <%= flash[:notice] %> </p>
+<% end %>
+
+
+<% form_for :employee do |a| %>
+  <%= error_messages_for 'employee' %>
+    <div id="form-contents">
+        <span class="span-sub-heading">Home Address</span>
+    <hr class="sub-heading"></hr>
+
+        <div class="label-field-pair">
+          <label>Line 1</label>
+          <div class="text-input-bg"><%= a.text_field :home_address_line1 %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>Line 2</label>
+          <div class="text-input-bg"><%= a.text_field :home_address_line2 %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>City</label>
+          <div class="text-input-bg"><%= a.text_field :home_city %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>State</label>
+          <div class="text-input-bg"><%= a.text_field :home_state %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>Country</label>
+          <div class="text-input-bg"><%= select :employee, :home_country_id, @countries.map {|c| [c.name, c.id]}, :selected => 76 %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>PIN</label>
+          <div class="text-input-bg"><%= a.text_field :home_pin_code %></div>
+          <div class="extender"></div>
+        </div>
+      <br/>
+        <span class="span-sub-heading">Office Address</span>
+      <hr class="sub-heading"></hr>
+
+        <div class="label-field-pair">
+          <label>Line 1</label>
+          <div class="text-input-bg"><%= a.text_field :office_address_line1 %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>Line 2</label>
+          <div class="text-input-bg"><%= a.text_field :office_address_line2 %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>City</label>
+          <div class="text-input-bg"><%= a.text_field :office_city %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>State</label>
+          <div class="text-input-bg"><%= a.text_field :office_state %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>Country</label>
+          <div class="text-input-bg"><%= select :employee, :office_country_id, @countries.map {|c| [c.name, c.id]}, :selected => 76 %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>PIN</label>
+          <div class="text-input-bg"><%= a.text_field :office_pin_code %></div>
+          <div class="extender"></div>
+        </div>
+      <br/>
+        <span class="span-sub-heading">Contact Details</span>
+    <hr class="sub-heading"></hr>
+
+        <div class="label-field-pair">
+          <label>Office phone1</label>
+          <div class="text-input-bg"><%= a.text_field :office_phone1 %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>Office phone2</label>
+          <div class="text-input-bg"><%= a.text_field :office_phone2 %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>Mobile</label>
+          <div class="text-input-bg"><%= a.text_field :mobile_phone %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>Home phone</label>
+          <div class="text-input-bg"><%= a.text_field :home_phone %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>Email</label>
+          <div class="text-input-bg"><%= a.text_field :email %></div>
+          <div class="extender"></div>
+        </div>
+        <hr class="label-underline"></hr>
+        <div class="label-field-pair">
+          <label>FAX</label>
+          <div class="text-input-bg"><%= a.text_field :fax %></div>
+          <div class="extender"></div>
+        </div>
+    </div>
+
+  <div class="save-proceed-button">
+    <%= submit_tag "► Save & Proceed" %>
+  </div>
+<% end %>
+
+</div>

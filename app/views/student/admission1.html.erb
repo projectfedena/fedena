@@ -1,0 +1,236 @@
+
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+  <h1><%= t('layouts.default.admission') %></h1>
+  <h3><%=  t('h3') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% if @config.config_value == '0' %>
+    <% if @last_admitted_student.nil? %>
+      <p class="flash-msg"><%= t('no_admission_notice') %></p>
+    <% else %>
+      <p class="flash-msg"><%= t('advanced_search.notice') %> <%= @last_admitted_student.admission_no %> </p>
+    <% end %>
+  <% end %>
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <% form_for(@student, :url => {:action=> 'admission1'}, :html=> {:multipart=>true}) do |s| %>
+    <%= error_messages_for 'student', :header_message => nil %>
+
+    <div id="admission1_form">
+
+      <div id="necessary-field-notification"> <%= t('legend1') %> <span class="necessary-field">*</span> <%= t('legend2') %></div>
+
+      <div id="autofill-area">
+
+        <div class="student_admission_date">
+          <label for="student_admission_no"><%= t('admission_number') %> <span class="necessary-field">*</span> </label>
+          <div class="text-input-bg-admission">
+            <% unless @config.config_value == '0' or @last_admitted_student.nil? %>
+              <%= s.text_field :admission_no , :value=> @last_admitted_student.admission_no.next%>
+            <% else %>
+              <%= s.text_field :admission_no %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="student_admission_date">
+          <label for="student_admission_date"><%= t('admission_date') %> <span class="necessary-field">*</span> </label>
+          <div class="text-input-bg-admission">
+            <%= calendar_date_select_tag 'student[admission_date]', I18n.localize(Date.today, :format=>:default),
+              :year_range => 15.years.ago..5.years.from_now %>
+          </div>
+        </div>
+
+      </div>
+
+      <span class="span-sub-heading"><%= t('personal_details') %></span>
+      <hr class="sub-heading"></hr>
+
+      <div class="label-field-pair">
+        <label for="student_grade"><%= t('first_name') %><span class="necessary-field">*</span> </label>
+        <div class="text-input-bg"><%= s.text_field :first_name %></div>
+      </div>
+
+      <hr class="label-underline"></hr>
+
+      <div class="label-field-pair">
+        <label for="student_grade"><%= t('middle_name') %></label>
+        <div class="text-input-bg"><%= s.text_field :middle_name %></div>
+      </div>
+
+      <hr class="label-underline"></hr>
+
+      <div class="label-field-pair">
+        <label for="student_grade"><%= t('last_name') %><span class="necessary-field">*</span> </label>
+        <div class="text-input-bg"><%= s.text_field :last_name %></div>
+      </div>
+
+      <hr class="label-underline"></hr>
+
+      <div id="admission1_form_vertical_block_left">
+
+        <div class="label-field-pair">
+          <label for="student_grade"><%= t('layouts.default.course_and_batch') %></label>
+          <div class="text-input-bg"><%= select :student, :batch_id, Batch.active.map {|b| [b.full_name, b.id]} %></div>
+        </div>
+
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_date_of_birth"><%= t('date_of_birth') %> <span class="necessary-field">*</span> </label>
+          <div class="text-input-bg">
+            <%= calendar_date_select_tag 'student[date_of_birth]',
+              I18n.localize(Date.today-5.years, :format=>:default) , :year_range => 40.years.ago..0.years.ago %>
+          </div>
+        </div>
+
+        <hr class="label-underline"></hr>
+
+        <div class="label_field_pair">
+          <label class="label_for_student_gender" for="student_gender"><%= t('gender') %></label>
+          <div class="student_gender_value">
+            <label class="label_for_gender" for="student_gender_true"> <%= t('male') %></label>
+            <%= s.radio_button  "gender", "m", :checked => "checked" %>
+            <label class="label_for_gender" for="student_gender_false"><%= t('female') %></label>
+            <%= s.radio_button  "gender", "f" %>
+          </div>
+        </div>
+
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_blood_group"><%= t('blood_group') %></label>
+          <div class="text-input-bg"><%= select :student, :blood_group, ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],{:prompt=> "#{t('unknown')}"} %></div>
+        </div>
+
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_birth_place"><%= t('birth_place') %></label>
+          <div class="text-input-bg"><%= s.text_field :birth_place %></div>
+        </div>
+
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_nationality"><%= t("nationality") %></label>
+          <div class="text-input-bg">
+            <%= select :student, :nationality_id, Country.all.map {|c| [c.name, c.id]}, :selected => 76 %>
+          </div>
+        </div>
+
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_birth_place"><%= t('language') %></label>
+          <div class="text-input-bg"><%= s.text_field :language %></div>
+        </div>
+
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_category"><%= t('layouts.default.category') %></label>
+          <div class="text-input-bg"><%= s.select :student_category_id, StudentCategory.all.map {|c| [c.name, c.id]}, { :prompt => "#{t('layouts.default.select_a_category')}" } %></div>
+        </div>
+
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_religion"><%= t('religion') %></label>
+          <div class="text-input-bg"><%= s.text_field :religion %></div>
+        </div>
+
+      </div>
+
+      <div id="admission1_form_vertical_block_right">
+        <span class="span-sub-heading"><%= t('contact_details') %></span>
+        <hr class="sub-heading"></hr>
+        <div class="label-field-pair">
+          <label for="student_city"><%= t('address_line') %>1</label>
+          <div class="text-input-bg"><%= s.text_field :address_line1 %></div>
+        </div>
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_city"><%= t('address_line') %>2</label>
+          <div class="text-input-bg"><%= s.text_field :address_line2 %></div>
+        </div>
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_city"><%= t('city') %></label>
+          <div class="text-input-bg"><%= s.text_field :city %></div>
+        </div>
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_state"><%= t('state') %></label>
+          <div class="text-input-bg"><%= s.text_field :state %></div>
+        </div>
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_pin_code"><%= t('zip') %></label>
+          <div class="text-input-bg"><%= s.text_field :pin_code %></div>
+        </div>
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_country"><%= t('country') %></label>
+          <div class="text-input-bg"> <%= select :student, :country_id, Country.all.map {|c| [c.name, c.id]}, :selected=> 76 %> </div>
+        </div>
+
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_phone1"><%= t('phone') %></label>
+          <div class="text-input-bg"><%= s.text_field :phone1 %></div>
+        </div>
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_phone2"><%= t('mobile') %></label>
+          <div class="text-input-bg"><%= s.text_field :phone2 %></div>
+        </div>
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="student_email"><%= t('email') %></label>
+          <div class="text-input-bg"><%= s.text_field :email %></div>
+        </div>
+        <% if @application_sms_enabled.is_enabled == true %>
+          <hr class="label-underline"></hr>
+          <div class="label-field-pair">
+            <label for="student_sms"><%= t('enable_sms_feature') %></label>
+            <div class="text-input-bg"><%= s.check_box :is_sms_enabled %></div>
+          </div>
+        <% end %>
+        <br/>
+        <script>
+          (function($){$.fn.filestyle=function(options){var settings={width:250};if(options){$.extend(settings,options);};return this.each(function(){var self=this;var wrapper=$("<div>").css({"width":settings.imagewidth+"px","height":settings.imageheight+"px","background":"url("+settings.image+") 0 0 no-repeat","background-position":"right","display":"inline","position":"absolute","overflow":"hidden"});var filename=$('<input class="file">').addClass($(self).attr("class")).css({"display":"inline","width":settings.width+"px"});$(self).before(filename);$(self).wrap(wrapper);$(self).css({"position":"relative","height":settings.imageheight+"px","width":settings.width+"px","display":"inline","cursor":"pointer","opacity":"0.0"});if($.browser.mozilla){if(/Win/.test(navigator.platform)){$(self).css("margin-left","-142px");}else{$(self).css("margin-left","-168px");};}else{$(self).css("margin-left",settings.imagewidth-settings.width+"px");};$(self).bind("change",function(){filename.val($(self).val());});});};})(jQuery);
+        </script>
+        <span class="span-sub-heading"><%= t('upload_photo') %></span>
+        <hr class="sub-heading"></hr>
+        <div class="label-field-pair">
+          <label for="student_image_file"><%= t('upload_photo') %> (<%= t('max') %>)</label>
+          <div class="text-input-bg"><%= s.file_field :image_file %></div>
+
+        </div>
+      </div>
+      <div class="extender">
+
+      </div>
+    </div>
+
+    <%= submit_tag "", :value => "► #{t('layouts.default.save_and_proceed')}", :class => "submit_button" %>
+  <% end %>
+
+</div>

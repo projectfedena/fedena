@@ -1,0 +1,15 @@
+
+<% if @students_result.nil? %>
+  <div id="no_result">No users found</div>
+<%else%>
+  <% @students_result.each do |t| %>
+    <div id="ajax_result">
+      <% link_value = t.full_name %>
+      <%= link_to link_value, :controller => "finance", :action => "fees_structure_dates", :id => t.id %><br/>
+      <small>Batch: <%= t.batch.full_name%></small>
+      <small><br/>Adm No.<%= t.admission_no %></small> <%= @st.to_s %>
+    </div>
+  <%end%>
+<%end%>
+
+  

@@ -1,0 +1,58 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Batches</h1>
+  <h3>Show Electives</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to_remote 'Add', :url => { :controller=>"subjects",:action => 'new', :id => @batch,:id2=>@elective_group} %></li>
+  </ul>
+</div>
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+     <div class="bread_crumb">
+        <%= link_to 'Courses', courses_path %> &raquo;
+        <%= link_to @course.full_name, @course %> &raquo;
+        <%= link_to "Batch #{@batch.name}", [@course, @batch] %> &raquo;
+        <%= link_to 'Electives ', batch_elective_groups_path(@batch) %> &raquo;
+        <%= @elective_group.name %>
+        </div>
+
+    
+  <div class="box">
+
+
+    <div id="subjects">
+
+ <ul id="category-list">
+           <% @electives.each do |subject| %>
+          <li id="subject-<%= subject.id %>" class="list<%= cycle('even','odd')%>" >
+            <div class="category-name"><%= subject.name %></div>
+            <div class="category-code"><%= subject.code %></div>
+            <div class="category-edit"><%= link_to_remote('Edit',
+                  :url => { :controller=>"subjects",:action => 'edit', :id =>subject,:id2=>@elective_group},
+                  :method => 'get' ) %> </div>
+            <div class="category-delete"><%= link_to_remote('Delete',
+                  :url => subject_path(subject),
+                  :method => 'delete',
+                  :confirm => 'Are you sure?',
+                  :update => "subject-#{subject.id}") %> </div>
+            <div class="category-assign"><%= link_to "Assign Students", :controller=>"student", :action=>"electives",:id=>@batch,:id2=>subject.id%>
+            </div>
+            </li>
+        <% end %>
+      </ul>
+
+    </div>
+    <div id="modal-box" style="display:none;"></div>
+
+
+    <div class="extender"></div>
+  </div>
+</div>

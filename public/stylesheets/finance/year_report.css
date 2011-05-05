@@ -1,0 +1,97 @@
+#fees-table{
+  margin-top:-45px
+}
+.fees-th {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    border-top: 1px solid #C4D2FE;
+    font-size: 0.9em;
+    height: 1.5em;
+    font-variant:small-caps;
+    font-weight: bold;
+    padding: 0.5em 0 0 0;
+    width:730px;
+}
+.fees-tr {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    font-size:0.9em;
+    height: 1.5em;
+    padding: 0.5em 0 0 0;
+    width:730px;
+}
+.fees-table-description {
+    float:left;
+    padding: 0 0 0 60px;
+    width: 254px;
+}
+.fees-table-expenses {
+    float:left;
+    width: 80px;
+    padding: 0 0 0 140px;
+    text-align:right;
+}
+.fees-table-income {
+    float:left;
+    width: 80px;
+    padding: 0 0 0 56px;
+    text-align:right;
+}
+
+.fees-tr .fees-table-income{
+    float:left;
+    width: 80px;
+    padding: 0 0 0 276px;
+    text-align:right;
+}
+.edit-link-income{
+
+    float : left;
+    font-size : 0.9em;
+    margin : 0 0 0 10px;
+}
+
+.edit-link-expenses{
+
+    float : left;
+    font-size : 0.9em;
+    margin : 0 0 0 176px;
+}
+
+.fees-table-total {
+    float:left;
+    width: 80px;
+    padding: 0 0 0 210px;
+    text-align:right;
+}
+.fees-th-grandtotal {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    border-top: 1px solid #C4D2FE;
+    font-size: 0.9em;
+    height: 1.5em;
+    font-variant:small-caps;
+    font-weight: bold;
+    padding: 0.5em 0 0 0;
+    width:730px;
+    margin-top:25px;
+}
+
+.edit-link-income,.edit-link-expenses a{
+    color : #000;
+}
+
+.selectyear{
+    color:#444444;
+    display:block;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+#year{
+    margin-top: 90px;
+}
+
+.label-field-pair label {
+    width:111px;
+}

@@ -1,0 +1,32 @@
+
+sub1:
+  id: 1
+  name: English
+  code: ENG
+  batch_id: 1
+  no_exams: false
+  max_weekly_classes: 8
+
+sub2:
+  id: 2
+  name: Science
+  code: SCI
+  batch_id: 1
+  no_exams: false
+  max_weekly_classes: 8
+
+sub3:
+  id: 3
+  name: Maths
+  code: MAT1
+  batch_id: 2
+  no_exams: false
+  max_weekly_classes: 8
+
+s4:
+  id: 4
+  name: Physical Education
+  code: PT
+  batch_id: 2
+  no_exams: true
+  max_weekly_classes: 4

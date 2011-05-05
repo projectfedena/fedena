@@ -1,0 +1,30 @@
+<label class="head_label">Create Automatic Transaction<span></span></label>
+
+<% form_remote_for :transaction_trigger,
+    :url => {:action => 'transaction_trigger_create'} do |form| %>
+
+   <div id="form-errors"></div>
+   <div class="label-field-pair">
+    <div class="label-container"><%= form.label :category_id %></div>
+    <div class="input-container"><%= form.select :finance_category_id, @categories.map { |c| [c.name, c.id] } %></div>
+   </div>
+
+<div class="label-field-pair">
+    <div class="label-container"><%= form.label :percentage %></div>
+    <div class="input-container"><%= form.text_field :percentage %></div>
+   </div>
+
+<div class="label-field-pair">
+     <div class="label-container"><%= form.label :title %></div>
+    <div class="input-container"><%= form.text_field :title %></div>
+   </div>
+
+<div class="label-field-pair">
+    <div class="label-container"> <%= form.label :description %></div>
+    <div class="input-container"> <%= form.text_field :description %></div>
+   </div>
+
+ <div id="modelbox-submit">
+          <%=  submit_tag "► Save",:class=>'submit_button' %>
+  </div>
+<% end %>

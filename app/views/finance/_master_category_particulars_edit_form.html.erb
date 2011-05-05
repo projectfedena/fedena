@@ -1,0 +1,43 @@
+<label class="head_label"><%= t('layouts.default.edit') %> <%= t('master_fees.particulars') %> <%= t('layouts.default.for') %> <%= t('create_fees.master') %> <%= t('index.fees') %> <%= t('layouts.default.category') %><span></span></label>
+
+
+<div id="grading-levels-form">
+
+  <% form_remote_for  @finance_fee_particulars,:url=>{:action=>'master_category_particulars_update',:id => @finance_fee_particulars.id}  do |f| %>
+
+    <div id="form-errors"></div>
+
+    <div class="label-field-pair">
+      <div class="label-container"> <%= f.label :"#{t('layouts.default.name')}" %></div>
+      <div class="input-container"><%= f.text_field :name %></div>
+    </div>
+
+    <div class="label-field-pair">
+      <div class="label-container"><%= f.label :"#{t('layouts.default.description')}" %></div>
+      <div class="input-container"><%= f.text_field :description %></div>
+    </div>
+    <div class="label-field-pair2">
+      <div class="label-container2"><label><%= t('master_fees.create_using') %></label></div>
+      <div class="input-container2">
+        <%= radio_button("particulars","select","all",:checked => true) %><%= t('layouts.default.all') %><br />
+        <%= radio_button("particulars","select","category",
+          {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
+            :with => "'select_value='+value")}"}) %> <%= t('layouts.default.student') %> <%= t('layouts.default.category') %>
+
+      </div>
+    </div>
+
+
+    <div id="student"></div>
+
+    <div class="label-field-pair">
+      <div class="label-container"><%= f.label :"#{t('layouts.default.amount')}" %></div>
+      <div class="input-container"> <%= f.text_field :amount %></div>
+    </div>
+
+
+    <%=  submit_tag "► #{t('layouts.default.update')}",:class=>'submit_button' %>
+
+
+  <% end %>
+</div>

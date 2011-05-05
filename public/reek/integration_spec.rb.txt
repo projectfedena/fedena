@@ -1,0 +1,1 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/generators/integration_spec/templates/integration_spec.rb -- 0 warnings

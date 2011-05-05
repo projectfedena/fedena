@@ -1,0 +1,49 @@
+<div id="content-header">
+  <img src="/images/HR/leave-new.png" alt="" />
+  <h1>Leave types</h1>
+  <h3>Add new leave types</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+
+
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  <div class="box">
+
+    <% form_for :configuration do |c| %>
+    <div class="label-field-pair">
+        <label for="category_name">Enable Automatic Reset</label>
+          <% if @auto_reset.config_value == '1' %>
+          <div class="check_box"><%= c.check_box :automatic_leave_reset, :checked=>true %></div>
+        <% else %>
+          <div class="check_box"><%= c.check_box :automatic_leave_reset, :checked=>false %></div>
+        <% end %>
+      </div>
+      <div class="label-field-pair">
+        <label for="configuration_currency_type">Leave Reset Period(months)</label>
+        <div class="text-input-bg">
+          <%= c.text_field :leave_reset_period, :value => @reset_period.config_value %>
+        </div>
+      </div>
+    <div class="label-field-pair">
+        <label for="configuration_currency_type">Count Begin Date</label>
+        <div class="text-input-bg">
+          <%= calendar_date_select_tag 'configuration[financial_year_start_date]', @last_reset.config_value || @fin_start_date.config_value %>
+        </div>
+      </div>
+      <div id="submit-button">
+        <%= submit_tag "► Update" %>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>

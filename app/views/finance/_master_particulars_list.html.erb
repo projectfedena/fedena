@@ -1,0 +1,54 @@
+<% unless @particulars.empty? %>
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td><%= t('layouts.default.sl_no') %></td>
+      <td><%= t('layouts.default.category') %></td>
+      <td><%= t('fees_submission_index.student_category')%></td>
+      <td><%= t('layouts.default.admission_number') %></td>
+      <td><%= t('layouts.default.amount') %><br/> ( <%=currency  %> )</td>
+      <td><%= t('index.created_date') %></td>
+      <td></td>
+    </tr>
+    <tr class="tr-blank"></tr>
+
+    <% @particulars.each_with_index do |fees,i| %>
+      <tr class="tr-<%= cycle("odd","even") %>">
+        <td class="col-1"><%= i+1 %></td>
+        <td class="col-3"><%= shorten_string(fees.name,20) %></td>
+        <td class="col-3">
+          <%unless fees.student_category_id.nil?%>
+            <%= StudentCategory.find(fees.student_category_id).name%>
+          <% else %> - <% end %>
+        </td>
+        <td class="col-3">
+          <%unless fees.admission_no.nil?%>
+            <%  student =  Student.find_by_admission_no(fees.admission_no)%>
+            <%= student.nil? ? "N.A." : student.full_name %>
+          <% else %> - <% end %>
+        </td>
+        <td class="col-1"><%= fees.amount%></td>
+        <td class="col-3"><%= fees.created_at.strftime("%m-%d-%Y") %></td>
+        <td class="col-1">
+          <span class="small"> <%= link_to_remote 'Edit', :url => { :action => 'master_category_particulars_edit',:id => fees.id} %></span>
+          <%  unless @finance_fee_category.check_fee_collection == false %>
+            <span class="small"> <%= link_to_remote t('layouts.default.delete'),:confirm=>"#{t('master_category_particulars.delete_msg')}", :url => { :action => 'master_category_particulars_delete',:id => fees.id} %></span>
+          <% else %>
+            <span class="small-strike"><%= t('layouts.default.delete') %></span>
+          <% end %>
+          <span class="small"> <%= link_to_remote t('layouts.default.edit'), :url => { :action => 'master_category_particulars_edit',:id => fees.id} %></span>
+        </td>
+      </tr>
+    <% end %>
+
+
+  </table>
+  <%= will_paginate @particulars %>
+<% else %>
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td><%= t('master_category_particulars.no_particulars_to_display') %>!</td>
+    </tr>
+  </table>
+
+<% end%>
+<%= link_to t('layouts.default.back'),{:action => 'master_fees'},:class=>'user_button' %>

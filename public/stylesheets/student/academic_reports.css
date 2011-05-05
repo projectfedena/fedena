@@ -1,0 +1,84 @@
+
+#student-report-table-x {
+    margin : 0;
+}
+#student-report-table-x .subjects-row {
+    height : 50px; width : auto;
+    padding : 0 0 0 40px;
+}
+#student-report-table-x .subjects-row .subjects-td-first {
+    height : 50px; width : 200px;
+    float : left;
+}
+#student-report-table-x .subjects-row .subjects-td {
+    height : 30px; width : 100px;
+    float : left;
+    padding : 20px 0 0 0;
+}
+#student-report-table-x .subjects-row .subjects-td a {
+    color : #000;
+}
+#student-report-table-x .results-row {
+    background : #fff url(/images/_global/list-bg-repeat.jpg) repeat-x;
+    height : 2em; width : auto;
+    padding : 0 0 0 40px;
+}
+#student-report-table-x .results-row .results-row-header {
+    float : left;
+    height : 1.5em; width : 200px;
+    padding : 0.5em  0 0 0;
+}
+#student-report-table-x .results-row .results-row-data {
+    float : left;
+    height : 1.5em; width : 100px;
+    padding : 0.5em 0 0 0;
+}
+#student-report-table-x .weighted-score-row {
+    background : #fff url(/images/_global/list-bg-repeat.jpg) repeat-x;
+    height : 2em; width : auto;
+}
+#student-report-table-x .weighted-score-row .weighted-score-header {
+    float :left;
+    height : 1.5em; width : 200px;
+    padding : 0.5em 0 0 40px;
+}
+#student-report-table-x .weighted-score-row .weighted-score-info {
+    float :left;
+    height : 1.5em; width : 100px;
+    padding : 0.5em 0 0 0;
+}
+#student-report-table-y {
+    margin : 0;
+}
+#student-report-table-y .examtype-names-row {
+    height : 3em;
+}
+#student-report-table-y .examtype-names-row .row-header {
+    float : left;
+    height : 1.5em; width : 100px;
+    font-weight : bold;
+    padding : 0.5em 0 0 40px;
+}
+#student-report-table-y .examtype-names-row .examtype-names-data {
+    float : left;
+    font-size : 0.9em;
+    font-weight : bold;
+    height : auto; width : 100px;
+}
+#student-report-table-y .subjects-row {
+    background : #fff url(../../images/_global/list-bg-repeat.jpg) repeat-x;
+    height : 2em;
+}
+#student-report-table-y .subjects-row .row-header {
+    float : left;
+    height : 1.5em; width : 100px;
+    padding : 0.5em 0 0 40px;
+}
+#student-report-table-y .subjects-row .exam-result-data {
+    height : 1.5em; width : 100px;
+    float : left;
+    padding : 0.5em 0 0 0;
+}
+#pdf-view-button {
+    margin : 40px 0 0 50px;
+}

@@ -1,0 +1,82 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Additional Exams</h1>
+  <h3>Additional Exam groups</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <% if permitted_to? :new, :additional_exam_groups %>
+    <li><%= link_to "New", new_batch_additional_exam_group_path(@batch) %></li>
+    <% end %>
+  </ul>
+</div>
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+    <div class="bread_crumb">
+      <%= 'Courses' %> &raquo;
+      <%= @course.full_name %> &raquo;
+      <%="Batch #{@batch.name}"%> &raquo;
+     Additional Exams
+    </div>
+
+
+    <table id="listing" width="100%">
+      <tr class="tr-head">
+        <td>Exam name</td>
+        <td>Action</td>
+      </tr>
+       <% @config = Configuration.available_modules %>
+      <% @additional_exam_groups.each do |exam_group| %>
+        <tr class="tr-<%= cycle('odd', 'even') %>">
+          <td class="col-2">
+            <%= link_to exam_group.name, [@batch, exam_group] %>
+          <span><small>
+                <%= link_to('Delete', [@batch, exam_group], :method => 'delete', :confirm => 'Are you sure?') if exam_group.removable? %>
+                <s><%= 'Delete' unless exam_group.removable? %></s>
+              </small></span>
+          </td>
+          <td class="col-2"><small>
+              <% unless exam_group.is_published %>
+                <%= link_to_remote("Publish Exam Schedule",:url=>{:controller=>'additional_exam',:action=>'publish',:id=>exam_group.id,:status=>"schedule"},
+                  :before => "Element.show('loader')",
+                  :success => "Element.hide('loader')")  %>
+                  <% else  %>
+                    <%  unless  exam_group.result_published  %>
+                 Schedule published.  <% if @config.include?('SMS') %>
+                    <%= link_to_remote "Resend",:url=>{:controller=>'additional_exam',:action=>'publish',:id=>exam_group.id,:status=>"schedule"},
+                      :before => "Element.show('loader')",
+                      :success => "Element.hide('loader')"  %> SMS notification.<br />
+                      <% end %>
+                                <%= link_to_remote("Publish Exam Result",:url=>{:controller=>'additional_exam',:action=>'publish',:id=>exam_group.id,:status=>"result"},
+                                          :before => "Element.show('loader')",
+                                          :success => "Element.hide('loader')")  %>
+                                <% else %>
+                               Result published. <% if @config.include?('SMS') %>
+                               <%= link_to_remote "Resend  SMS notification",:url=>{:controller=>'additional_exam',:action=>'publish',:id=>exam_group.id,:status=>"result"},
+                      :before => "Element.show('loader')",
+                      :success => "Element.hide('loader')"  %>
+                       <% end  %>
+                         <% end  %>
+              <% end  %>
+
+                <span id="publish-notice-<%=exam_group.id%>"></span>
+                <%= image_tag("loader.gif",
+                  :align => "absmiddle",
+                  :border => 0,
+                  :id => "loader",
+                  :style =>"display: none;" ) %>
+              </small> </td>
+          </tr>
+        <% end %>
+      </table>
+      <div class="extender"></div>
+    </div>
+  </div>

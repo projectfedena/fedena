@@ -1,0 +1,6 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/example/assigns_hash_proxy.rb -- 5 warnings:
+  Spec::Rails::Example::AssignsHashProxy has no descriptive comment (IrresponsibleModule)
+  Spec::Rails::Example::AssignsHashProxy#[] calls assigns 4 times (Duplication)
+  Spec::Rails::Example::AssignsHashProxy#[] calls assigns[key.to_s] twice (Duplication)
+  Spec::Rails::Example::AssignsHashProxy#[] calls assigns[key] twice (Duplication)
+  Spec::Rails::Example::AssignsHashProxy#[] calls key.to_s twice (Duplication)

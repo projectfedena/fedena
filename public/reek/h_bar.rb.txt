@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/h_bar.rb -- 3 warnings:
+  OpenFlashChart::HBar has no descriptive comment (IrresponsibleModule)
+  OpenFlashChart::HBar#set_values has the parameter name 'v' (UncommunicativeName)
+  OpenFlashChart::HBarValue has no descriptive comment (IrresponsibleModule)

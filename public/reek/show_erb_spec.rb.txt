@@ -1,0 +1,1 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/generators/rspec_scaffold/templates/show_erb_spec.rb -- 0 warnings

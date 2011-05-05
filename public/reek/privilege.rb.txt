@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/privilege.rb -- 1 warning:
+  Privilege has no descriptive comment (IrresponsibleModule)

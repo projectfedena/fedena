@@ -1,0 +1,56 @@
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="" />
+  <h1>Finance Monthly Report</h1>
+  <h3>Donations</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <%donations_total=0%>
+  <%donations_income=0%>
+  <%donations_expenses=0%>
+  <table id="listing">
+    <tr class="tr-head">
+      <td>Description</td>
+      <td>Expense</td>
+      <td>Income</td>
+      <td>Date</td>
+    </tr>
+    <% @donations.each do |d| %>
+      <tr class="tr-<%= cycle('even','odd') %>">
+        <td class="col-2"><%=d.title %></td>
+        <% if d.master_transaction_id == 0  %>
+          <td></td>
+          <% donations_income+=d.amount %>
+          <td class="col-7"><%=d.amount %></td>
+        <% else %>
+          <% donations_expenses+=d.amount %>
+          <td class="col-7"><%=d.amount.to_f %></td>
+          <td></td>
+        <% end %>
+        <td class="col-4"><%=d.transaction_date.strftime("%m-%d-%Y") %></td>
+      </tr>
+      <!-- <%# unless @trigger.nil? %>
+  <%# @trigger.each do |trigger|   %>
+  <%#donations_expenses += trigger.amount.to_f %>
+  <%#*<div class="fees-tr<%= cycle('','-odd') %>">%>
+  <%#*<div class="fees-table-description"><%=trigger.title+"("+trigger.description.to_s+")"  %></div>%>
+  <%#*<div class="fees-table-expenses"><%=trigger.amount.to_f %></div>%>
+  <%#*</div>%>
+
+  <%# end %>
+  <%# end %> -->
+    <% end %>
+    <%donations_total=donations_income-donations_expenses %>
+    <tr class="tr-head">
+      <td>Total</td>
+      <%= '<td></td>' if donations_income > donations_expenses %>
+      <td <%='colspan="2"' if donations_income<donations_expenses%> ><%=donations_total%></td>
+      <td></td>
+    </tr>
+
+  </table>
+</div>

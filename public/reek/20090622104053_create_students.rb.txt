@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090622104053_create_students.rb -- 3 warnings:
+  CreateStudents has no descriptive comment (IrresponsibleModule)
+  CreateStudents#self.up has approx 36 statements (LongMethod)
+  CreateStudents#self.up has the variable name 't' (UncommunicativeName)

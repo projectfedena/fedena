@@ -1,0 +1,19 @@
+
+<div id="list">
+  <div class="sel-list">
+    <%= t('sms_settings.index.select') %> : <%= link_to_function "#{t('layouts.default.all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+<%= link_to_function "#{t('layouts.default.none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+  </div>
+<% @employees.each do |employee| %>
+ <div class="name_list<%=cycle('odd', 'even')%>"><li>
+  <label><%= check_box_tag "send_sms[employee_ids][]", employee.id, false,:class=>'right' %>
+  <div class="att_list_names"><%= employee.first_name %></div> </label>
+  </li>  </div>
+<% end %>
+  </div>
+<div class="label-field-pair">
+<div class="text-input-bg">
+<%= text_area :send_sms,:message, :rows=>5,:cols=>30 %><br/>
+</div>
+</div>
+<%= submit_tag "#{t('sms_settings.index.send_sms')}",:class=>'submit_button' %>

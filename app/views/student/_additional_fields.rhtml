@@ -1,0 +1,20 @@
+<ul id="category-list">
+<% unless @additional_details.empty? %>
+  <li class="heading"><%= t('add_additional_details.field_name') %></li>
+    <%- @additional_details.each do |c| -%>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="category-name"><%= c.name %></div>
+         <% if(c.status == true) %>
+           <div class="category-status"><%= t('layouts.default.active')%> </div>
+        <% else %>
+          <div class="category-status"><%= t('layouts.default.in_active')%> </div>
+        <% end %>
+        <div class="category-edit"><%= link_to "#{t('layouts.default.edit')}", {:action => "edit_additional_details", :id=>c.id} %></div>
+        <div class="category-edit"><%= link_to "#{t('layouts.default.delete')}", {:action => "delete_additional_details", :id=>c.id}, :confirm => "Are you sure?" %></div>
+      </li>
+     <% end %>
+
+  <% else %>
+<p class="flash-msg"><%= t('add_additional_details.notice') %></p>
+  <% end %>
+</ul>

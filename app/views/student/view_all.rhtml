@@ -1,0 +1,34 @@
+<div id="content-header">
+  <img src="/images/student_details/student_details_logo.jpg" />
+  <h1><%= t('h1') %></h1>
+  <h3><%= t('h3') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="label-field-pair-select-class">
+    <label for="student-detail-select-class"><%= t('layouts.default.select_a_batch') %></label>
+    <div class="text-input-bg"><%= select :course, :course_id,
+        @batches.map {|b| [b.full_name, b.id]},
+        {:prompt => "#{t('layouts.default.select_a_batch')}"},
+        {:onChange => "#{remote_function(:url => {:action => "list_students_by_course"},
+        :with => "'batch_id='+value",
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')"
+        )}"} %></div>
+    <%= image_tag("loader.gif",
+      :align => "absmiddle",
+      :border => 0,
+      :id => "loader",
+      :style =>"display: none;" ) %>
+  </div>
+  <div id="students"> </div>
+
+</div>

@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20100426094532_create_assets.rb -- 3 warnings:
+  CreateAssets has no descriptive comment (IrresponsibleModule)
+  CreateAssets#self.up has approx 7 statements (LongMethod)
+  CreateAssets#self.up has the variable name 't' (UncommunicativeName)

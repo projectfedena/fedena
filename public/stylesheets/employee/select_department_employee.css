@@ -1,0 +1,65 @@
+.drop-down-box{
+    margin:50px 0 0 200px;
+    height:80px;
+    width:300px;
+}
+
+
+.drop-down-box label {
+    color : #444;
+    display : block;
+    font-weight : bold;
+    margin : 0 0 10px 0;
+}
+.drop-down-box input {
+    background : transparent;
+    border : 0;
+    margin : 5px 0 0 10px;
+    width : 210px;
+}
+
+
+#employee-list {
+    clear : both;
+    padding : 10px 0 40px 180px;
+    font-size:14px;
+}
+
+#employee-list .listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    min-height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+    overflow: hidden;
+}
+
+#employee-list .listodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    min-height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+    overflow: hidden;
+}
+
+#employee-list li.heading {
+    background : none;
+    font-weight : bold;
+    list-style-type : none;
+    color : #444;
+    height : 1.5em; width : 30em;
+    padding : 0.5em 0 0 5em;
+}
+#employee-list li div {
+    float : left;
+}
+#employee-list li div.employee-name {
+    width : 350px;
+}
+
+#employee-list li div a {
+    color : #000;
+}

@@ -1,0 +1,46 @@
+
+
+<div class="heading">All leave records</div>
+
+<div class="container-head">
+  <div id="startdate-label">Start date</div>
+  <div id="enddate-label">End date</div>
+  <div id="status-label">Status</div>
+  <div class="extender"></div>
+</div>
+<% unless @pending_applied_leaves == [] %>
+
+  <% @pending_applied_leaves.each do |l| %>
+    <div class="container<%= cycle('odd','even')%>">
+      <div class="pending-start-date"><%= link_to "#{l.start_date.strftime("%d-%m-%Y")}",:controller=>"employee_attendance", :action=>"leave_app", :id=>l.id, :id2=>@employee %></div>
+      <div class="pending-end-date"><%= link_to "#{l.end_date.strftime("%d-%m-%Y")}",  :controller=>"employee_attendance", :action=>"leave_app", :id=>l.id, :id2=>@employee %></div>
+      <div class="pending-status"><%= link_to "pending",  :controller=>"employee_attendance", :action=>"leave_app", :id=>l.id, :id2=>@employee %></div>
+      <div class="extender"></div>
+    </div>
+  <% end %>
+<% else %>
+
+<% end %>
+
+<% unless @applied_leaves == [] %>
+
+  <% @applied_leaves.each do |l| %>
+    <% if l.approved == true %>
+      <div class="container<%= cycle('odd','even')%>">
+        <div class="start-date"><%= link_to "#{l.start_date.strftime("%d-%m-%Y")}", :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></div>
+        <div class="end-date"><%= link_to "#{l.end_date.strftime("%d-%m-%Y")}",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></div>
+        <div class="status"><%= link_to "approved",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></div>
+        <div class="extender"></div>
+      </div>
+    <% else %>
+      <div class="container<%= cycle('odd','even')%>">
+        <div class="start-date"><%= link_to "#{l.start_date.strftime("%d-%m-%Y")}", :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></div>
+        <div class="end-date"><%= link_to "#{l.end_date.strftime("%d-%m-%Y")}",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></div>
+        <div class="status"><%= link_to "denied",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></div>
+        <div class="extender"></div>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+
+<% end %>

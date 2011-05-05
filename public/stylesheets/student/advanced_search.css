@@ -1,0 +1,131 @@
+.label_field_pair {
+    width:600px;
+    height: 40px;
+    padding-top: 3px;
+}
+.label_field_pair label {
+    padding-top: 10px;
+    display:block;
+    color:#444;
+    margin-bottom:10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.student_gender_value{
+    width:300px;
+    float:left;
+    padding-top: 5px;
+    padding-left: 14px;
+}
+.label_field_pair label.label_for_gender {
+    font-weight:normal;
+    display:inline;
+}
+.label_for_student{
+    display:block;
+    color:#444;
+    margin-bottom:10px;
+    width:200px;
+    float:left;
+}
+select#advv_search_doa_option, select#advv_search_dob_option{
+    width:80px;
+    float:left;
+}
+select#advv_search_doa_year, select#advv_search_dob_year, select#advv_search_admission_date_year,select#adv_search_admission_date_year, select#adv_search_birth_date_year{
+    width:125px;
+    float: left;
+}
+.submit_button {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:7px 10px;
+    text-decoration:none;
+}
+.submit {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    margin-left:170px;
+    margin-top:30px;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:7px 10px;
+    text-decoration:none;
+}
+.search-again{
+    height:30px;
+    margin-top:20px;
+    margin-bottom:5px;
+    float:right;
+}
+.search-again a {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:7px 10px;
+    text-decoration:none;
+}
+.span-sub-heading{
+    font-weight: bold;
+    padding-top:10px;
+}
+.sub-heading{
+    background:#9E0F15;
+    height: 1px;
+    border: none;
+    margin-bottom: 15px;
+}
+p{
+    color:#5f5f5f;
+    font-style:italic;
+    width:600px;
+    float: left;
+}
+.searched_for{
+    background: #eeeeee;
+    padding:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    color:#5f5f5f;
+    margin-bottom: 15px;
+}
+.searched_for span{
+    color:#a4272d;
+    font-weight: bold;
+    margin-left:10px;
+}
+
+.flash-msg {
+    background-color:#FFF1AB;
+    border:1px solid #EFDC86;
+    font-size:13px;
+    font-weight:600;
+    padding:5px;
+    text-align:center;
+    color:#5F5F5F;
+    float:left;
+    font-style:normal;
+    width: 960px;
+}
+
+.show-msg{
+    height: 30px;
+}

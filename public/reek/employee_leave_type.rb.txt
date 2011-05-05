@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/hr/employee_leave_type.rb -- 1 warning:
+  EmployeeLeaveType has no descriptive comment (IrresponsibleModule)

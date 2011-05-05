@@ -1,0 +1,15 @@
+
+<div class="heading">View all employee leave applications</div>
+<div class="label-field">      
+  <div class="text-input-bg"><%= select :leave_applications, :employee_id, @reporting_employees.map {|c| [c.full_name, c.id]},
+      {:prompt => "Select an employee"},
+      {:onChange => "#{remote_function(:url => {:action => "update_all_application_view"}, :with => "'employee_id='+value")}"} %>
+  </div>
+</div>
+
+
+<div class="extender"></div>
+<div id="all-application-view">
+
+</div>
+

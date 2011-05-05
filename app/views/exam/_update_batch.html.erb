@@ -1,0 +1,6 @@
+
+<% @batch.each do |batch| %>
+  <div class="link-box">
+      <div class="link-heading"><%= link_to batch.course.full_name, batch_exam_groups_path(batch) %> : <%= batch.full_name %> </div>
+    </div>
+<% end %>

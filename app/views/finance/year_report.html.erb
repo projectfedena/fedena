@@ -1,0 +1,24 @@
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+  <h1>Transactions</h1>
+  <h3>Finance Academic Year Report</h3>
+  <div id="app-back-button">
+   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <div class="label-field-pair">
+    <label for="monthly_payslip_salary_date">Select Year</label>
+    <div class="text-input-bg">
+
+
+      <%= select_year Date.today,{:prompt=> "Select Year",:end_year => 2050},
+        {:onChange => "#{remote_function(:url => {:action => "update_year_report"},
+        :with => "'date='+value")}"}%>
+    </div>
+  </div>
+
+</div>
+<div id ="year"></div>

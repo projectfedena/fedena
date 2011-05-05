@@ -1,0 +1,10 @@
+<div class="text-input-bg3">
+<%= select :year, :id,
+  [["Year",""],[@year-1,@year-1],[@year,@year], [@year+1,@year+1]],
+  {:prompt => 'Year'},
+  {:onchange => "#{remote_function(
+  :url => { :action => 'report' },
+  :with => "'year='+value+'&batch_id='+#{@batch.id}+'&month='+#{@month}+'&subject_id='+#{@subject}",
+  :before => "Element.show('loader')",
+  :success => "Element.hide('loader')"  )}"} %>
+</div>

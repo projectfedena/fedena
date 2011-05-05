@@ -1,0 +1,3 @@
+page.insert_html :bottom, 'comments-list', :partial => 'comment'
+page.select('form').each { |f| f.reset }
+page.replace_html 'comments-count', :text => ''

@@ -1,0 +1,13 @@
+
+<%unless @dates.empty? %>
+  <div id="submit-button" class ="approve">
+      <%= link_to "► Approve", {:controller=>"employee", :action=>"one_click_approve_submit",:date => @salary_date } %>
+  </div>
+<% else%>
+  <div id="submit-button" class ="approved">
+     Already approved!
+  </div>
+<% end %>
+
+
+

@@ -1,0 +1,1 @@
+page.replace_html 'fee-collections-list', :partial => 'fee_collection_list'

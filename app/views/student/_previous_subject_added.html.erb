@@ -1,0 +1,8 @@
+<li><div class="name"><%= @previous_subject.subject %></div>
+  <div class="val"><span>:</span><%= @previous_subject.mark %></div>
+  <div class="delete"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
+                :url => {:action => "delete_previous_subject", :id => @previous_subject.id},
+                
+                :update => "added_subjects"%></div>
+</li>
+

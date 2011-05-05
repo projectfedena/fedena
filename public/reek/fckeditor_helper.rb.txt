@@ -1,0 +1,1 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/fckeditor/app/helpers/fckeditor_helper.rb -- 0 warnings

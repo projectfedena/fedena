@@ -1,0 +1,15 @@
+
+
+
+
+<% @employees.each do |e| %>
+      <div class="attendance-field-pair">
+        <label for="employee"><%= e.first_name %></label>
+        <div class="attendance-input-bg"><%= select :employee_attendance,e.id, @leave_types.map {|c| [c.name, c.id]},:prompt => "Present" %></div>
+      </div>
+<% end %>
+    <div id="submit-button">
+      <%=submit_tag("► Update") %>
+    </div>
+
+

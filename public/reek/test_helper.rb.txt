@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/test/test_helper.rb -- 2 warnings:
+  ActiveSupport::TestCase has no descriptive comment (IrresponsibleModule)
+  ActiveSupport::TestCase#assert_invalid refers to object more than self (LowCohesion)

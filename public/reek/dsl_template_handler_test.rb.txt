@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/prawnto/test/dsl_template_handler_test.rb -- 4 warnings:
+  DslTemplateHandlerTest has the variable name '@x' (UncommunicativeName)
+  DslTemplateHandlerTest has the variable name '@y' (UncommunicativeName)
+  DslTemplateHandlerTest#test_prawnto_options_dsl_array has approx 7 statements (LongMethod)
+  DslTemplateHandlerTest#test_prawnto_options_dsl_hash has approx 7 statements (LongMethod)

@@ -1,0 +1,18 @@
+<div class="class">
+  <ul id="category-list">
+<% @period_entry.each do |p| %>
+
+    <li class="list<%= cycle('odd','even')  %>"<div id="tr-extra-class-<%= p.id %>">
+         <% timing = ClassTiming.find(p.class_timing_id) %>
+         <% subject = Subject.find(p.subject_id) unless p.subject.nil? %>
+     <div class="category-num"> <%= timing.name %></div>
+
+     <div class="category-name"> <%= subject.name unless subject.nil? %> </div>
+     <% if @config.include?('HR') %>
+        <div class="category-emp"> <%= p.employee.first_name unless p.employee_id.nil? %></div>
+        <% end %>
+      <div class="category-edit"><%= link_to_remote("#{t('layouts.default.edit')}", :url => {:action=>'extra_class_edit', :id=>p.id})  %></div>
+    </div></li>
+  <% end %>
+  </ul>
+</div>

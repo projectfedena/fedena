@@ -1,0 +1,15 @@
+
+  <% unless @finance_due.empty? %>
+    <div class="current-date"> <%= @date.strftime('%B %Y') %> </div>
+    <% @finance_due.each do |h| %>
+      <div class="events">
+        <div class="title">
+          <div style='width:12px;height:12px;background:#b40000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div>
+          <%= h.title %></div>
+        <div class="extender"></div>
+        <div class="desc"><%= h.description %><br />Start time :<%= h.start_date.strftime("%I:%M %p") %><br />End time :<%= h.end_date.strftime("%I:%M %p") %></div>
+        <div class="extender"></div>
+      </div>
+    <% end %>
+  <% end %>
+

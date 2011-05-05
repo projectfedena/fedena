@@ -1,0 +1,27 @@
+<div id="content-header">
+   <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Personal Leave Management</h1>
+  <h3><%=  @employee.first_name %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+ </div>
+
+
+ <div id="page-yield">
+
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Apply", :controller=>"employee_attendance", :action=>"apply_leave", :id=> @employee.id %></div>
+    <div class="link-descr">Apply for a leave.</div>
+  </div>
+
+      <div id="individual-application-links">
+        <%= link_to_remote "My leave applications",
+        :update => "application-list",
+        :url => {:controller=>"employee_attendance",:action => "individual_leave_applications", :id=>@employee.id} %>
+      </div>
+ </div>
+
+
+ <div id="application-list"> </div>

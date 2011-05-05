@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20100403092229_create_batch_events.rb -- 2 warnings:
+  CreateBatchEvents has no descriptive comment (IrresponsibleModule)
+  CreateBatchEvents#self.up has the variable name 't' (UncommunicativeName)

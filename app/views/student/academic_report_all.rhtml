@@ -1,0 +1,80 @@
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+  <h1><%= t('student.academic_report.academic_reports') %></h1>
+  <h3> <%= @student.full_name %> </h3>
+  <div id="app-back-button">
+    <%= link_to image_tag("/images/buttons/back.png", :border => 0), :back %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
+  <% unless @user.student == true %>
+  <div class="prev-next-links">
+   <%= link_to "<", :controller=>"student", :action=>"academic_report_all", :id=>@prev_student.id %>
+    <%= link_to ">", :controller=>"student", :action=>"academic_report_all", :id=>@next_student.id %>
+  </div>
+  <% end %>
+
+  <%  @examtypes.each do |e_type|%>
+    <%- exam = Examination.find_all_by_examination_type_id(e_type.id) -%>
+    <span class="sub-heading"><%= e_type.name %></span>
+    <div id="res-table">
+      <table>
+        <tr class="tr-odd"><td class="td-name"><div><b></b></div></td>
+          <% exam.each do |t| %>
+            <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
+            <td width="200" class="td-subj"><b><%= examres.examination.subject.code %></b></td>
+          <% end %>
+          <td width="200" class="td-subj"><b>Total</b></td>
+        </tr>
+        <tr class="tr-even"><td class="td-name"><div><b><%= t('exam_groups.show.max_mark') %></b></div></td>
+          <% max_total = 0 %>
+          <% exam.each do |t| %>
+            <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
+            <td><%= examres.maximum_marks.to_i %></td>
+            <% max_total += examres.maximum_marks %>
+          <% end %>
+            <td><div><%= max_total.to_i %></div></td>
+        </tr>
+        <tr class="tr-odd"><td class="td-name"><div><b><%= t('exam_groups.new.marks') %></b></div></td>
+          <% total = 0 %>
+          <% exam.each do |t| %>
+            <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
+            <td><div><%= examres.marks %></div></td>
+            <% total += examres.marks %>
+          <% end %>
+          <td><div><%= total %></div></td>
+        </tr>
+        <tr class="tr-even"><td class="td-name"><div style="width:150px;"><b><%= t('payroll.add_category.percentage') %>/<%= t('exam_groups.new.grade') %></b></div></td>
+
+          <% exam.each do |t| %>
+            <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
+            <td><%= examres.percentage_marks %><small>(<%= examres.grading.name unless examres.grading.nil? %>)</small></td>
+
+          <% end %>
+          <td><%=  percentage = ((total*100)/max_total).to_f %><small>(<%= Grading.find_from_percentage(percentage).name %>)</small></td>
+        </tr>
+        <tr class="tr-odd"><td class="td-name"><div><b><%= t('student.academic_report.class_average') %></b></div></td>
+          <% class_avg = 0 %>
+          <% exam.each do |t| %>
+            <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
+            <td><%= t.average_marks %></td>
+            <% class_avg +=  t.average_marks %>
+          <% end %>
+            <td><div><%= class_avg %></div></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+  <script type="text/javascript" src="/javascripts/swfobject.js"></script>
+  <div class="graph-1">
+    <span class="sub-heading"><%= t('student.academic_report.examination_wise_performance') %></span>
+    <%= @graph %>
+  </div>
+  <div class="graph-2">
+    <span class="sub-heading"><%= t('student.academic_report.cumulative_performance') %></span>
+    <%= @graph2 %>
+  </div>
+</div>

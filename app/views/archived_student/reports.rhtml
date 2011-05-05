@@ -1,0 +1,80 @@
+<div id="content-header">
+  <img src="/images/student_details/student_details_logo.jpg" />
+  <h1>Students</h1>
+  <h3>Reports center</h3>
+  <div id="app-back-button">
+     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <div id="exam-results-dashboard">
+
+    <h3>Academics</h3>
+
+    <div class="exam-results-reports-col">
+    <% if permitted_to? :exam_report, :student %>
+      <h4>Recent exams</h4>
+      <ul>
+        <% @exam_groups.each do |e| %>
+          <li><%= link_to e.name, {  :action => 'generated_report',:exam_group=>e.id, :student => @student.id} %></li>
+        <% end %>
+      </ul>
+    <%end%>
+
+      <h4>Subjectwise results</h4>
+      <ul>
+        <% @subjects.each do |s| %>
+          <li><%= link_to s.name, {  :action => 'generated_report3', :student => @student.id, :subject => s.id } %></li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <div class="exam-results-reports-col">
+
+      <h4>Detailed reports</h4>
+      <ul>
+        <% unless @grouped_exams.empty? %>
+        <li><%= link_to 'Final Report(Exams Grouped)',{ :action=>'generated_report4',:student=>@student.id,:type=>'grouped'} %></li>
+        <li><%= link_to 'Compare with past years(Exams Grouped)', {  :action => 'previous_years_marks_overview',:student=>@student.id,:type=>'grouped' } %></li>
+        <% else %>
+        <li><%= link_to 'Final Report',{ :action=>'generated_report4',:student=>@student.id,:type=>'general'} %></li>
+        <li><%= link_to 'Compare with past years', {  :action => 'previous_years_marks_overview',:student=>@student.id,:type=>'general' } %></li>
+        <% end %>
+        
+      </ul>
+
+      <% unless @old_batches.nil? %>
+        <h4>Archives</h4>
+        <ul>
+          <% @old_batches.each do |b| %>
+          <% unless @grouped_exams.empty? %>
+            <li><%= link_to b.name+'-G', {  :action => 'academic_report', :student => @student.id, :year => b.id,:type=>'grouped' } %></li>
+            <% else %>
+            <li><%= link_to b.name, {  :action => 'academic_report', :student => @student.id, :year => b.id,:type=>'general' } %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      <% end %>
+
+
+    </div>
+
+    <div class="extender"> </div>
+
+  </div>
+
+  <div id="attendance-reports-dashboard">
+
+    <h3>Attendance</h3>
+
+    <h4>Detailed Reports</h4>
+<ul>
+ <% @old_batches.each do |b| %>
+       <li><%= link_to b.name, :action => 'student_report', :id => @student.id, :year => b.id %></li>
+    <% end %>
+  </ul>
+  </div>
+
+</div>

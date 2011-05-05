@@ -1,0 +1,48 @@
+.box{
+    width:750px;
+    margin:0px auto;
+}
+
+.submit_button {
+    margin-top:20px;
+    margin-left:220px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    float:left;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.user_button {
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px;
+    background:none repeat scroll 0 0 #27292B;
+    text-decoration: none;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0 auto;
+    padding:8px 12px;
+    text-align:center;
+    width:55px;
+    margin-top:21px;
+}
+.user_button a{
+    color:#fff;
+    text-decoration: none;
+}
+.user_button:hover{
+    background:  #373B3F;
+}

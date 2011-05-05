@@ -1,0 +1,109 @@
+
+/*#students {
+    clear : both;
+    height : 300px;
+    margin : 20px auto;
+    padding : 0px;
+    width : 825px;
+}
+#student_name {
+    float : left;
+    padding : 10px 0px 10px 0;
+    text-decoration : none;
+    width : 204px;
+}
+#student_name a {
+    color : #000;
+    font-weight : bold;
+    text-decoration : none;
+}
+#student_name a:hover {
+    color : #9E0F15;
+    text-decoration:underline;
+}
+
+.students-on-one-line {
+    background : #fff url(../../images/student_details/ajax_result_underline.jpg) bottom left repeat-x;
+    overflow: auto;
+    width:816px;
+    margin-bottom: 20px;
+}*/
+.label-field-pair-select-class {
+    height:40px;
+    padding-top:3px;
+    width:500px;
+    margin:0px auto;
+}
+.label-field-pair-select-class label {
+    color:#444444;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:10px;
+    width:120px;
+}
+#loader{
+    padding-top:10px;
+}
+
+
+table{
+    background: #c3d9ff;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding:20px;
+}
+tr.tr-head{
+    background: #fff;
+    color:#990a10;
+    font-weight:bold;
+    text-align:left;
+}
+.tr-head td{
+    padding-left:10px;
+
+}
+.tr-odd{
+    background: #fff;
+    text-align:center;
+    padding:50px;
+    color:#27292b;
+    font-weight:600;
+    font-size:14px;
+}
+.tr-even{
+    background: #f1f6ff;
+    text-align:center;
+    padding:50px;
+    color:#27292b;
+    font-weight:600;
+    font-size:14px;
+}
+td.col-1{
+    width:10%;
+    padding: 5px;
+}
+td.col-2{
+    width:40%;
+    text-align:left;
+    padding: 5px;
+    padding-left:10px;
+}
+td a{
+    text-decoration:none;
+    color:#27292b;
+}
+td a:hover{
+    color:#990a10;
+    text-decoration:underline;
+}
+td.col-3{
+    width:13%;
+    padding: 5px;
+}
+td.col-4{
+    width:30%;
+    padding: 5px;
+}

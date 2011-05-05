@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20091202104818_create_finance_donations.rb -- 3 warnings:
+  CreateFinanceDonations has no descriptive comment (IrresponsibleModule)
+  CreateFinanceDonations#self.up has approx 6 statements (LongMethod)
+  CreateFinanceDonations#self.up has the variable name 't' (UncommunicativeName)

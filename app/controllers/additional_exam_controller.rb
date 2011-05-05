@@ -1,0 +1,135 @@
+class AdditionalExamController < ApplicationController
+  before_filter :login_required
+  filter_access_to :all
+  def index
+  end
+
+  def update_exam_form
+    @batch = Batch.find(params[:batch])
+    @name = params[:exam_option][:name]
+    @type = params[:exam_option][:exam_type]
+
+    unless @name == ''
+      @additional_exam_group = AdditionalExamGroup.new
+      
+      @normal_subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>"no_exams = false AND elective_group_id IS NULL AND is_deleted = false")
+      @elective_subjects = []
+      elective_subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>"no_exams = false AND elective_group_id IS NOT NULL AND is_deleted = false")
+      elective_subjects.each do |e|
+        is_assigned = StudentsSubject.find_all_by_subject_id(e.id)
+        unless is_assigned.empty?
+          @elective_subjects.push e
+        end
+      end
+      @all_subjects = @normal_subjects+@elective_subjects
+      @all_subjects.each { |subject| @additional_exam_group.additional_exams.build(:subject_id => subject.id) }
+
+ 
+
+      @students_list = ""
+      for student in params[:students_list]
+        @students_list += student + ","
+      end unless params[:students_list].nil?
+
+
+
+      if @type == 'Marks' or @type == 'MarksAndGrades'
+        render(:update) do |page|
+          page.replace_html 'exam-form', :partial=>'exam_marks_form'
+          page.replace_html 'flash', :text=>''
+        end
+      else
+        render(:update) do |page|
+          page.replace_html 'exam-form', :partial=>'exam_grade_form'
+          page.replace_html 'flash', :text=>''
+        end
+      end
+
+    else
+      render(:update) do |page|
+        page.replace_html 'flash', :text=>'<div class="errorExplanation"><p>Exam name can\'t be blank</p></div>'
+      end
+    end
+  end
+
+  def publish
+    @additional_exam_group = AdditionalExamGroup.find(params[:id])
+    @additional_exams = @additional_exam_group.additional_exams
+    @batch =  @additional_exam_group.batch
+    @sms_setting_notice = ""
+    @no_exam_notice = ""
+  if params[:status] == "schedule"
+    students=@additional_exam_group.students
+    students.each do |s|
+      student_user = s.user
+      unless student_user.nil?
+        Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
+          :subject=>"Additional Exam Scheduled",          :body=>"#{@additional_exam_group.name} has been scheduled  <br/> Please view calendar for more details")
+      end
+    end
+  end
+    unless @additional_exams.empty?
+      AdditionalExamGroup.update( @additional_exam_group.id,:is_published=>true) if params[:status] == "schedule"
+      AdditionalExamGroup.update( @additional_exam_group.id,:result_published=>true) if params[:status] == "result"
+      sms_setting = SmsSetting.new()
+      if sms_setting.application_sms_active and sms_setting.exam_result_schedule_sms_active
+        students = @additional_exam_group.students
+        students.each do |s|
+          guardian = s.immediate_contact
+
+          recipients = []
+          if s.is_sms_enabled
+            if sms_setting.student_sms_active
+              recipients.push s.phone2 unless s.phone2.nil?
+            end
+            if sms_setting.parent_sms_active
+              recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
+            end
+            @message = "#{@additional_exam_group.name} exam Timetable has been published." if params[:status] == "schedule"
+            @message = "#{@additional_exam_group.name} exam result has been published." if params[:status] == "result"
+            unless recipients.empty?
+              sms = SmsManager.new(@message,recipients)
+              sms.send_sms
+            end
+          end
+        end
+      else
+        @conf = Configuration.available_modules
+        if @conf.include?('SMS')
+          @sms_setting_notice = "Exam schedule published, No sms was sent as Sms setting was not activated" if params[:status] == "schedule"
+          @sms_setting_notice = "Exam result published, No sms was sent as Sms setting was not activated" if params[:status] == "result"
+        else
+          @sms_setting_notice = "Exam schedule published" if params[:status] == "schedule"
+          @sms_setting_notice = "Exam result published" if params[:status] == "result"
+        end
+      end
+      if params[:status] == "result"
+        students = @additional_exam_group.students
+        students.each do |s|
+          student_user = s.user
+          Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
+            :subject=>"Result Published",
+            :body=>"#{ @additional_exam_group.name} result has been published  <br/> Please view reports for your result")
+        end
+      end
+    else
+      @no_exam_notice = "Exam scheduling not done yet."
+    end
+  end
+
+  def create_additional_exam
+    @course= Course
+  end
+
+  def update_batch
+    @batch = Batch.find_all_by_course_id(params[:course_name], :conditions => { :is_deleted => false})
+
+    render(:update) do |page|
+      page.replace_html 'update_batch', :partial=>'update_batch'
+    end
+
+  end
+  #REPORTS
+
+end
+

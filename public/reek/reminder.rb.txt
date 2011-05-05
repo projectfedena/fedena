@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/reminder.rb -- 1 warning:
+  Reminder has no descriptive comment (IrresponsibleModule)

@@ -1,0 +1,54 @@
+#page-yield{
+    margin:0px;
+
+}
+
+.label-field-pair label { 
+    width:100px;
+}
+
+#grading-levels {
+    margin-top:10px;
+}
+
+.submit_button  {
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px;
+    background:none repeat scroll 0 0 #27292B;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    float:left;
+    font-size:14px;
+    font-weight:bold;
+    padding:7px;
+    margin-left: 50px;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.add_grade a {
+    color:black;
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 20px;
+}
+
+.add_grade a:hover{
+    color:#bb0000;
+    text-decoration: none;
+}
+
+.add_grade{
+    margin-bottom: 5px;
+
+}
+   #error-box {
+    background: #ffdedf url(/images/_global/error.png) no-repeat 10px 14px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    height : auto;
+    margin : 20px auto;
+    padding : 1px 0 1px 20px;
+}

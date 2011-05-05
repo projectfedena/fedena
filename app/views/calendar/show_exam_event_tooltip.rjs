@@ -1,0 +1,3 @@
+page.replace_html :tooltip_header, :partial => 'exam_event_view'
+#page.visual_effect :highlight, 'tooltip_header',:duration => 0.5
+

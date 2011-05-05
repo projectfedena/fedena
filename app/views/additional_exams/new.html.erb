@@ -1,0 +1,79 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Additional Exams</h1>
+  <h3>New Additional  Exam</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+    <div class="bread_crumb">
+      <%=  'Courses' %> &raquo;
+      <%=  @course.full_name %> &raquo;
+      <%=  "Batch #{@batch.name}" %> &raquo;
+      <%= link_to 'Additional Exams', batch_additional_exam_groups_path(@batch) %> &raquo;
+      <%= link_to @additional_exam_group.name, [@batch, @additional_exam_group] %> &raquo;
+      New
+    </div>
+
+    <h5>For additional exam group - <%= @additional_exam_group.name %></h5>
+    <% unless @additional_exam_group.exam_type == 'Grades' %>
+      <% form_for [@additional_exam_group, @additional_exam] do |f| %>
+        <%= error_messages_for :additional_exam %>
+        <div class="label-field-pair">
+          <label for="subject_id">Subject</label>
+          <div class="text-input-bg"><%= f.select :subject_id, @subjects.map { |s| [s.name, s.id]} %></div>
+        </div>
+        <div class="label-field-pair">
+          <label for="subject_start_time">Start Time</label>
+          <div class="text-input-bg"> <%= f.calendar_date_select :start_time %></div>
+        </div>
+        <div class="label-field-pair">
+          <label for="subject_end_time">End Time</label>
+          <div class="text-input-bg"> <%= f.calendar_date_select :end_time %></div>
+        </div>
+        <div class="label-field-pair">
+          <label for="subject_maximum_marks">Maximum Marks</label>
+          <div class="text-input-bg"><%= f.text_field :maximum_marks %></div>
+        </div>
+        <div class="label-field-pair">
+          <label for="subject_minimum_marks">Minimum Marks</label>
+          <div class="text-input-bg"> <%= f.text_field :minimum_marks %></div>
+        </div>
+
+        <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+
+      <% end %>
+
+    <% else %>
+      <% form_for [@additional_exam_group, @additional_exam] do |f| %>
+
+        <%= error_messages_for :additional_exam %>
+        <div class="label-field-pair">
+          <%= f.label :subject_id %>
+          <div class="text-input-bg">  <%= f.select :subject_id, @subjects.map { |s| [s.name, s.id]} %></div>
+        </div>
+
+        <div class="label-field-pair">
+          <%= f.label :start_time %>
+          <div class="text-input-bg"><%= f.calendar_date_select :start_time %></div>
+        </div>
+        <div class="label-field-pair">
+          <%= f.label :end_time %>
+          <div class="text-input-bg"><%= f.calendar_date_select :end_time %></div>
+        </div>
+
+        <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+
+      <% end %>
+    <% end %>
+    <div class="extender"></div>
+  </div>
+</div>

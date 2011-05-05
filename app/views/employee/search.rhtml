@@ -1,0 +1,54 @@
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Employee Search</h1>
+  <h3>Employee Details</h3>
+  <div id="app-back-button">
+  <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "View all", :controller=>"employee", :action=>"view_all" %></li>
+    <li><%= link_to "Advanced", :controller=>"employee", :action=>"advanced_search"%></li>
+  </ul>
+
+</div>
+
+<div id="page-yield">
+    <div id="search_box_bg">
+      <div id="form-content">
+      <form name="employee" action="" style="display:inline;">
+        <label for="name">
+          Search
+          <%= image_tag("loader.gif",
+              :align => "absmiddle",
+              :border => 0,
+              :id => "loader",
+              :style => "display: none;" ) %>
+        </label>
+        <div id="search_textbox">
+          <%= text_field_tag("query", params['query'], :autocomplete => 'off') %><br/>
+        </div>
+      </form>
+      </div>
+        <div class="advanced_options">
+        <div class="advanced-options-select"><%= select :employee, :department_id, @departments.map {|s| [s.name, s.id]}, :prompt => "Select department" %></div>
+        <div class="advanced-options-select"><%= select :employee, :category_id,   @categories.map {|s| [s.name, s.id]},  :prompt => "Select category" %></div>
+        <div class="advanced-options-select"><%= select :employee, :position_id,   @positions.map {|s| [s.name, s.id]},   :prompt => "Select position" %></div>
+        <div class="advanced-options-select"><%= select :employee, :grade_id,      @grades.map {|s| [s.name, s.id]},      :prompt => "Select grade" %></div>
+        <div class="extender"></div>
+        </div>
+    </div>
+
+
+
+    <%= observe_fields ['query', 'employee_department_id','employee_category_id', 'employee_position_id', 'employee_grade_id'],
+         :frequency => 0.1,
+         :update => 'information',
+         :before => "Element.show('loader')",
+         :success => "Element.hide('loader')",
+         :url => {:action => 'search_ajax'} %>
+  <div class="extender"></div>
+    <div id="information"></div>
+
+</div>

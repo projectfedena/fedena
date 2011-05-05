@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090622114927_create_guardians.rb -- 3 warnings:
+  CreateGuardians has no descriptive comment (IrresponsibleModule)
+  CreateGuardians#self.up has approx 19 statements (LongMethod)
+  CreateGuardians#self.up has the variable name 't' (UncommunicativeName)

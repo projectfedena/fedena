@@ -1,0 +1,21 @@
+batch1:
+  id: 1
+  course_id: 1
+  name: 2009
+  start_date: <%= Date.today %>
+  end_date: <%= Date.today + 1.year %>
+
+batch2:
+  id: 2
+  course_id: 2
+  name: 2009
+  start_date: <%= Date.today %>
+  end_date: <%= Date.today + 1.year %>
+
+batch3:
+  id: 3
+  course_id: 3
+  name: 2009
+  start_date: <%= Date.today %>
+  end_date: <%= Date.today + 1.year %>
+

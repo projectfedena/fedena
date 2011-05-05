@@ -1,0 +1,27 @@
+<div id="content-header">
+     <img src="/images/show_finance.png" alt="" />
+  <h1>Transactions</h1>
+  <h3>Monthly Transactions</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <div class="box">
+  <% form_for :report, :url => {:action => 'update_monthly_report'} do |form| %>
+    <div class="label-field-pair">
+      <label>Select start date:</label>
+      <div class="input-container"><%= calendar_date_select_tag 'start_date', Date.today %></div>
+    </div>
+    <div class="label-field-pair">
+      <label>Select End date: </label>
+      <div class="input-container"><%= calendar_date_select_tag 'end_date', Date.today %></div>
+    </div>
+
+         <%=  submit_tag "► Monthly Report",:class=>'submit_button' %>
+  <%end%>
+</div>
+</div>
+
+

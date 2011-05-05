@@ -1,0 +1,15 @@
+
+  <% unless @student_batch_exam_event_array.empty? %>
+    <div class="current-date"> <%= @date.strftime('%B %Y') %> </div>
+    <% @student_batch_exam_event_array.each do |h| %>
+      <div class="events">
+        <div class="title">
+          <div style='width:12px;height:12px;background:#0C6C92; -moz-border-radius:2px;  -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div>
+          <%= h.title %></div>
+        <div class="extender"></div>
+        <div class="desc"><%= h.description %><br />Start time :<%= h.start_date.strftime("%I:%M %p") %><br />End time :<%= h.end_date.strftime("%I:%M %p") %></div>
+        <div class="extender"></div>
+      </div>
+    <% end %>
+  <% end %>
+

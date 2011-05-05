@@ -1,0 +1,76 @@
+<div id="content-header">
+    <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Reporting manager</h1>
+  <h3>Change</h3>
+  <div id="app-back-button">
+       <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<script> function update_reporting_manager(id) {
+  $('employee_reporting_manager_id').value = id;
+}
+</script>
+
+<div id="page-yield">
+
+  <div id="form-content">
+    <% form_for :employee do |e| %>
+      <div id="current-changed-manager">
+        <div id="current-manager-outer">
+          <div id="current-manager">Current Manager&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</div>
+          <div id="current-manager-name"><%= @reporting_manager %></div>
+          <div class="extender"></div>
+        </div>
+
+        <div id="changed-manager-outer">
+          <div id="changed-manager">New Manager&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</div>
+          <div id="changed-manager-name"><span class="not-selected">(not selected)</span></div>
+          <div id="update-button"><%= submit_tag "► Save",:class=>"submit_button" %></div>
+          <div class="extender"></div>
+        </div>
+      </div>
+
+      <%= e.hidden_field :reporting_manager_id %>
+      
+    <% end %>
+
+    <div id="search-options">
+      <div id="search-outer">
+        <div id="search-label">Search by name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</div>
+        <div id="search-text-box"><%= text_field_tag("query", params['query'], :autocomplete => 'off') %></div>
+
+        <%= image_tag("loader.gif",
+        :align => "absmiddle",
+        :border => 0,
+        :id => "loader",
+        :style => "display: none;" ) %>
+        <div class="extender"></div>
+      </div>
+      
+
+      <%= observe_fields ['employee_reporting_manager_id'],
+      :frequency => 0.1,
+      :update => 'changed-manager-name',
+      :url=> {:action=>'update_reporting_manager_name'} %>
+
+      <div id="advanced-options">
+        <div class="employee-search-options"><%= select :employee, :department_id, @departments.map {|s| [s.name, s.id]}, :prompt => "Select department" %></div>
+        <div class="employee-search-options"><%= select :employee, :category_id,   @categories.map {|s| [s.name, s.id]},  :prompt => "Select category" %></div>
+        <div class="employee-search-options"><%= select :employee, :position_id,   @positions.map {|s| [s.name, s.id]},   :prompt => "Select position" %></div>
+        <div class="employee-search-options"><%= select :employee, :grade_id,      @grades.map {|s| [s.name, s.id]},      :prompt => "Select grade" %></div>
+        <div class="extender"></div>
+      </div>
+    </div>
+
+    <%= observe_fields ['query', 'employee_department_id','employee_category_id', 'employee_position_id', 'employee_grade_id'],
+    :frequency => 0.1,
+    :update => 'information',
+    :before => "Element.show('loader')",
+    :success => "Element.hide('loader')",
+    :url => {:action => 'select_reporting_manager'} %>
+  </div>
+
+
+  <div id="information"></div>
+
+ </div>

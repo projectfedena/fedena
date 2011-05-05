@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/app/helpers/courses_helper.rb -- 3 warnings:
+  CoursesHelper#setup_course calls c.batches twice (Duplication)
+  CoursesHelper#setup_course has the variable name 'c' (UncommunicativeName)
+  CoursesHelper#setup_course refers to c more than self (LowCohesion)

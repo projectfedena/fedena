@@ -1,0 +1,7 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/spec/rails/interop/testcase_spec.rb -- 6 warnings:
+  TestUnitTesting declares the class variable @@has_been_run (ClassVariable)
+  TestUnitTesting declares the class variable @@setup_callback_count (ClassVariable)
+  TestUnitTesting declares the class variable @@setup_method_count (ClassVariable)
+  TestUnitTesting declares the class variable @@teardown_callback_count (ClassVariable)
+  TestUnitTesting declares the class variable @@teardown_method_count (ClassVariable)
+  TestUnitTesting has no descriptive comment (IrresponsibleModule)

@@ -1,0 +1,2 @@
+module StudentAttendanceHelper
+end

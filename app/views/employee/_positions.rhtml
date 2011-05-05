@@ -1,0 +1,3 @@
+
+<%= select :employee, :employee_position_id, @positions.map { |s| [s.name, s.id] },
+          {:prompt => "Select"} %>

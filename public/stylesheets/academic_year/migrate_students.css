@@ -1,0 +1,45 @@
+
+p {
+    background-color : #fff1ab;
+    width : 450px;
+    padding : 5px;
+}
+#finish {
+    margin : 0 0 0 50px;
+}
+#page-yield select {
+    height : auto; width : 150px;
+}
+#old-class-select {
+    margin : 0 0 0 50px;
+}
+#students-list {
+    height : auto; width : 600px;
+    margin : 30px 0 0 50px;
+}
+#students-list .student-names {
+    background : #fff url(../../images/backgrounds/list-bg-repeat.jpg) repeat-x;
+    height : 25px; width : auto;
+    padding : 10px 0 0 50px;
+}
+#students-list .student-names .check {
+    float : left;
+}
+#students-list .student-names .student-name {
+    margin : 0 0 0 20px;
+    float : left;
+}
+#new-class-selectbox {
+    float : left;
+    height : 50px; width : 250px;
+    margin : 50px 0 0 20px;
+}
+#new-class-selectbox select {
+    height : auto; width : 150px;
+    margin : 10px 0 0 0;
+}
+#submit-button {
+    float : left;
+    height : 50px; width : auto;
+    margin : 70px 0 0 30px;
+}

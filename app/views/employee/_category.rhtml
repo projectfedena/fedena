@@ -1,0 +1,28 @@
+
+
+<ul id="category-list">
+<% unless @categories.empty? %>
+  <li class="listheading"> <div class="category-name">Active Categories </div> </li>
+    <%- @categories.each do |c| -%>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="category-name"><%= c.name %> (<%= c.prefix %>)</div>
+        <div class="category-edit"><%= link_to "Edit", {:action => "edit_category", :id=>c.id} %></div>
+        <div class="category-edit"><%= link_to "Delete", {:action => "delete_category", :id=>c.id},:confirm=>"Are you sure?" %></div>
+      </li>
+     <% end %>
+     <% unless @inactive_categories.empty? %>
+      <li class="listheading"><div class="category-name"> Inactive Categories</div></li>
+    <%- @inactive_categories.each do |c| -%>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="category-name"><%= c.name %> (<%= c.prefix %>)</div>
+        <div class="category-edit"><%= link_to "Edit", {:action => "edit_category", :id=>c.id} %></div>
+        <div class="category-edit"><%= link_to "Delete", {:action => "delete_category", :id=>c.id},:confirm=>"Are you sure?" %></div>
+      </li>
+     <% end %>
+     <% end %>
+  <% else %>
+<p class="flash-msg">No employee category record found</p>
+  <% end %>
+</ul>
+
+ 

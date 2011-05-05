@@ -1,0 +1,29 @@
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+  <h1><%= t('edit.student_info') %></h1>
+  <h3><%= t('edit.h2') %></h3>
+  <div id="app-back-button">
+   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <script type="text/javascript" src="/javascripts/swfobject.js"></script>
+  <%= @graph %>
+
+  <div id="results-table">
+
+    <div class="results-table-th">
+      <div class="course-name"><%= t('edit.class_sec') %></div>
+      <div class="total-score"><%= t('layouts.default.total_mark') %></div>
+    </div>
+
+    <% @all_courses.each do |c| %>
+      <div class="results-table-tr">
+        <div class="course-name"><%= c.name %></div>
+        <div class="total-score"><%= @student.annual_average_marks_for_a_course(c)  %></div>
+      </div>
+    <% end %>
+  </div>
+
+</div>

@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090904071548_create_employee_positions.rb -- 2 warnings:
+  CreateEmployeePositions has no descriptive comment (IrresponsibleModule)
+  CreateEmployeePositions#self.up has the variable name 't' (UncommunicativeName)

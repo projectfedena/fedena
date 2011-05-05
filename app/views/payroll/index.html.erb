@@ -1,0 +1,25 @@
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1><%= t('employee.hr.payroll') %></h1>
+  <h3><%= t('edit_payroll_details.index') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+
+
+
+   <div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "#{t('employee.hr.add_payroll_category')}", :controller=>"payroll", :action=>"add_category" %></div>
+    <div class="link-descr"><%= t('employee.hr.add_edit_employee_payroll_category') %></div>
+  </div>
+
+   </div>

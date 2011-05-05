@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20100311113432_create_additional_fields.rb -- 2 warnings:
+  CreateAdditionalFields has no descriptive comment (IrresponsibleModule)
+  CreateAdditionalFields#self.up has the variable name 't' (UncommunicativeName)

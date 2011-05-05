@@ -1,0 +1,81 @@
+<% unless @report.empty? %>
+  <% working_days = @report.size %>
+
+  <% form_for :filter, :url => {:action=> 'filter'} do |f| %>
+    <%= f.hidden_field :batch , :value=> @batch.id %>
+    <%= f.hidden_field :start_date , :value=> @start_date %>
+    <%= f.hidden_field :end_date , :value=> @end_date %>
+    <% unless params[:subject_id].nil? %>
+      <%= f.hidden_field :subject , :value=> params[:subject_id] %>
+    <% end %>
+
+    <%= submit_tag 'Filter',:class=>'submit_button'  %>
+    <div class="label-field-pair1">
+      <label>Filter:</label>
+      <div class="text-input-bg1"><%= f.select :range, ['Below', 'Above', 'Equals'] %></div>
+      <div class="text-input-bg1"><%= f.text_field :value %></div></div>
+  <% end %>
+  <div class="label-field-pair">
+    <label>
+      <%  if @config.config_value == 'Daily' %>
+        <%= "Total no. of working days = " + working_days.to_s %>
+      <% else %>
+        <%= "Total no. of working hours = " + working_days.to_s %>
+
+      <% end  %>
+    </label>
+  </div>
+
+  <table id="listing" align="center" width="80%">
+    <tr class="tr-head">
+      <td>
+        Name
+      </td>
+      <td>
+        Total
+      </td>
+      <td>
+        Percentage(%)
+      </td>
+    </tr>
+    <tr class="blank"></tr>
+    <% @students.each do |student| %>
+
+      <% leaves =0 %>
+      <% @report.each do |report| %>
+        <% @attendance = Attendance.find_by_student_id_and_period_table_entry_id(student.id, report.id) %>
+        <% unless @attendance.nil? %>
+          <% if @config.config_value == 'Daily' %>
+            <% leaves += 0.5 if @attendance.forenoon %>
+            <% leaves += 0.5 if @attendance.afternoon %>
+          <% else %>
+            <% leaves += 1 %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% total = (working_days - leaves).to_f %>
+      <% percentage =  (total/working_days)*100 unless working_days == 0 %>
+
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-2"><%= link_to student.full_name, {:controller => "attendance_reports", :action => "student_details", :id => student.id } %></td>
+        <td class="col-3"> <%= total %></td>
+        <td class="col-3"><%= percentage.round(2)unless percentage.nil? %></td>
+      </tr>
+
+    <% end %>
+  </table>
+  <% form_for :filter, :url => {:action=> 'report_pdf'} do |f| %>
+    <%= f.hidden_field :batch , :value=> @batch.id %>
+    <%= f.hidden_field :start_date , :value=> @start_date %>
+    <%= f.hidden_field :end_date , :value=> @end_date %>
+    <% unless params[:subject_id].nil? %>
+      <%= f.hidden_field :subject , :value=> params[:subject_id] %>
+    <% end %>
+
+    <%= submit_tag '► PDF Report',:class=>'submit_button2'  %>
+  <% end %>
+<% else %>
+  <div class="label-field-pair2" >
+    No reports for the selected month.
+  </div>
+<%  end %>

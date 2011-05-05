@@ -1,0 +1,19 @@
+
+
+<% form_for :select_options, :url=>{:controller=>"event",:action=>"department_event", :id=>@event_id} do |m| %>
+      <ul id="category-list">
+      <% @employee_department.each do |department| %>
+          <li class="list<%= cycle('odd','even') %>">
+    <div class="category-box">
+       <%= check_box_tag "select_options[department_id][]", department.id%>
+       </div>
+    <div class="category-name">
+      <%= department.name %>
+    </div>
+      <% end %>
+      </ul>
+      <%= submit_tag "Create", :class=> 'create' %>
+
+    <% end %>
+
+    

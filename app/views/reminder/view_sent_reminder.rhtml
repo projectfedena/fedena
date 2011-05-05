@@ -1,0 +1,31 @@
+<div id="content-header">
+  <img src="/images/reminder/reminder_small.png" />
+  <h1><%= t('layouts.default.message') %></h1>
+  <h3><%= t('index.sent') %></h3>
+  <div id="app-back-button">
+  <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<% unless @sent_reminder.is_deleted_by_sender == true %>
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "#{t('layouts.default.delete')}", {:controller=>"reminder", :action=>"delete_reminder_by_sender", :id2=>@sent_reminder.id}, :confirm=>"#{t('layouts.default.delete_confirm_msg')}" %></li>
+  </ul>
+</div>
+<% end %>
+
+
+<div id="page-yield">
+<% recipient_user = User.find(@sent_reminder.recipient)  %>
+<div id="reminder-body">
+<div id="reminder-from"><%= t('index.to') %>: <%= recipient_user.full_name %></div>
+
+<div id="reminder-date"><%= "#{t('index.sent_on')}" %>: <%= @sent_reminder.created_at.strftime("%A, %d %B, %Y") %></div>
+
+<div id="reminder-subject"><%= t('subjects.index.subject') %>: <%= @sent_reminder.subject %></div>
+
+
+
+<div id="reminder-message"><strong><%= t('layouts.default.message') %>:</strong> <br /><br /><%= @sent_reminder.body %></div>
+</div>
+</div>

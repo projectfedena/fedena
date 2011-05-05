@@ -1,0 +1,91 @@
+<div id="content-header">
+  <img src="/images/attendence/attendence.png" />
+  <h1>Attendance</h1>
+  <h3>Student Report</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <div id="box">
+    <% remote_form_for :advance_search do |f| %>
+      <div class="label-field-pair">
+        <label for="student">Student name</label>
+        <div class="text-input-bg">
+          <%= f.text_field :student_name, :value => @student.full_name, :disabled=> true %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student">Admission no.</label>
+        <div class="text-input-bg">
+          <%= f.text_field :student_id, :value => @student.admission_no, :disabled=> true  %></div>
+      </div>
+
+    <% end %>
+
+    <div id="report">
+      <% working_days = @report.size %>
+      <% leaves =0 %>
+      <% percentage = 0 %>
+      <% table_id = [] %>
+
+      <% @report.each do |r| %>
+        <% @attendance = Attendance.find_by_student_id_and_period_table_entry_id(@student.id, r.id) %>
+        <% unless @attendance.nil? %>
+          <% table_id.push @attendance.id %>
+          <% if @config.config_value == 'Daily' %>
+            <% leaves += 0.5 if @attendance.forenoon %>
+            <% leaves += 0.5 if @attendance.afternoon %>
+          <% else %>
+            <% leaves += 1 %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div class="att_detail">
+        <%  if @config.config_value == 'Daily' %>
+          Total working days : <%= working_days %>
+        <% else %>
+          Total working hours : <%= working_days %>
+        <% end %>|Total Present : <%= total = (working_days - leaves).to_f %> |
+        <% percentage =  (total/working_days)*100 unless working_days == 0 %>
+        Percentage : <%= percentage.round.to_f unless percentage.nil? %>
+      </div>
+      <% unless table_id.empty? %>
+        <table id="listing" align="center" width="80%">
+          <tr class="tr-head">
+            <td>
+              Date
+            </td>
+            <td>
+              Status
+            </td>
+            <td>
+              Reason
+            </td>
+          </tr>
+          <tr class="blank"></tr>
+          <% table_id.each do |t| %>
+            <% detail_report = Attendance.find(t) %>
+            <tr class="tr-<%= cycle('odd', 'even') %>">
+              <% @details = PeriodEntry.find(detail_report.period_table_entry_id) %>
+              <td class="col-2"><%= @details.month_date.to_date %></td>
+              <td class="col-3">
+                <% if detail_report.forenoon and detail_report.afternoon %>
+                  <%= "Fullday" %>
+                <% elsif detail_report.afternoon %>
+                  <%= "Afternoon" %>
+                <% elsif detail_report.forenoon %>
+                  <%= "Forenoon" %>
+                <% else %>
+                  <%= "Absent" %>
+                <% end %>
+              </td>
+              <td class="col-2">
+                <%= detail_report.reason %></td>
+            <% end %>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/app/models/course.rb -- 1 warning:
+  Course has no descriptive comment (IrresponsibleModule)

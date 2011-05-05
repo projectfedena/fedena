@@ -1,0 +1,31 @@
+<div id="new_profile_info_top">
+  <div class="profile_info_label_top">Office phone1</div>
+  <div class="profile_info_text_top"><%= @employee.office_phone1 %></div>
+
+  <div class="profile_info_label_top2">Office phone2</div>
+  <div class="profile_info_text_top2"><%= @employee.office_phone2 %></div>
+
+  <div class="profile_info_label_top">Mobile</div>
+  <div class="profile_info_text_top"> <%= @employee.mobile_phone %> </div>
+</div>
+
+
+<div class="new_profile_info_area1">
+  <div class="profile_info_label_top2">Home phone</div>
+  <div class="profile_info_text_top2"> <%= @employee.home_phone %> </div>
+
+  <div class="profile_info_label_top">Email</div>
+  <div class="profile_info_text_top"> <%= @employee.email %> </div>
+</div>
+
+<div class="new_profile_info_area1">
+  <div class="profile_info_label_top2">Fax</div>
+  <div class="profile_info_text_top2"><%=  @employee.fax %></div>
+</div>
+<div class="extender"></div>
+<div class="edit-pdf-group">
+  <div class="pdf">
+    <%= link_to " ► PDF Report",
+      {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/resources/controllers/controller_spec_controller.rb -- 12 warnings:
+  ControllerInheritingFromApplicationControllerController has no descriptive comment (IrresponsibleModule)
+  ControllerSpecController has no descriptive comment (IrresponsibleModule)
+  ControllerSpecController has the variable name 'e' (UncommunicativeName)
+  ControllerSpecController#action_which_gets_cookie calls cookies twice (Duplication)
+  ControllerSpecController#action_which_gets_cookie calls cookies[:cookie_key] twice (Duplication)
+  ControllerSpecController#action_which_gets_cookie calls params twice (Duplication)
+  ControllerSpecController#action_which_gets_cookie calls params[:expected] twice (Duplication)
+  ControllerSpecController#action_which_gets_session calls params twice (Duplication)
+  ControllerSpecController#action_which_gets_session calls session twice (Duplication)
+  ControllerSpecController#action_which_gets_session calls session[:session_key] twice (Duplication)
+  ControllerSpecController::RescuedError has no descriptive comment (IrresponsibleModule)
+  ControllerSpecController::UnRescuedError has no descriptive comment (IrresponsibleModule)

@@ -1,0 +1,4 @@
+<div class="label-field-pair">
+    <div class="label-container"><label><%= t('layouts.default.student') + ' ' + t('layouts.default.category') %>:</label></div>
+   <div class="input-container"> <%= select :finance_fee_particulars,:student_category_id, @student_categories.map { |c| [c.name, c.id] },
+      {:prompt => "#{t('fee_collection_new.select_category')}" }%></div></div>

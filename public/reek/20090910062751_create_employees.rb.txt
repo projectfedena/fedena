@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090910062751_create_employees.rb -- 4 warnings:
+  CreateEmployees has no descriptive comment (IrresponsibleModule)
+  CreateEmployees#self.create_admin_employee calls Date.today twice (Duplication)
+  CreateEmployees#self.up has approx 46 statements (LongMethod)
+  CreateEmployees#self.up has the variable name 't' (UncommunicativeName)

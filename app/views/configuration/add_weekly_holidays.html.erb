@@ -1,0 +1,11 @@
+<% form_for :holiday do |f| %>
+<%= select :holiday, :weekdays, [ "Monday", "Tuesday","Thursday","Wednesday","Friday","Saturday", "Sunday" ]%>
+
+  <%= submit_tag "Submit" %>
+<% end %>
+<% unless @weekly_holidays.nil? %>
+  <% @weekly_holidays.each do |d| %>
+    <%= d.config_value %><%= link_to "delete", :action=>"delete", :id=>d.id  %>
+    
+  <% end %>
+<% end %>

@@ -1,0 +1,2 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/extensions/action_controller/rescue.rb -- 1 warning:
+  ActionController::Rescue#rescue_action_in_public? calls request twice (Duplication)

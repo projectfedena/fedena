@@ -1,0 +1,4 @@
+
+#page.visual_effect(:highlight, 'student-category-list')
+page.replace_html 'student-category-form', :partial => 'student_category_create_form'
+page.replace_html 'student-category-list', :partial => 'student_category_list'

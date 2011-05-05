@@ -1,0 +1,29 @@
+<div id="content-header">
+   <img src="/images/show_finance.png" alt="" />
+  <h1>Asset-Liability Management</h1>
+  <h3>Liability</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
+  <div class="box">
+  <div class="link-box">
+    <div class="link-heading">
+      <%= link_to_function("Create") { |page|
+        page.replace_html 'modal-box', :partial => 'create_liability_form'
+        page << "Modalbox.show($('modal-box'), {title: 'Create new Liability', width: 500});"
+      } %>
+    </div>
+    <div class="link-descr"> Creates new liability </div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "View", :action => "view_liability" %> </div>
+    <div class="link-descr"> Liability view</div>
+  </div>
+
+  <div id="modal-box" style="display:none;"></div>
+</div>
+</div>

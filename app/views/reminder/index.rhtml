@@ -1,0 +1,78 @@
+<div id="content-header">
+  <img src="/images/reminder/reminder_small.png" />
+  <h1><%= t('layouts.default.message') %></h1>
+  <h3><%= t('inbox') %></h3>
+  <div id="app-back-button">
+  <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="inner-tab-menu">
+  <ul>
+    <% unless @new_reminder_count.size == 0 %>
+      <li><%= link_to "<b>#{t('inbox')} (#{@new_reminder_count.size})</b>", :controller=>"reminder", :action=>"index" %></li>
+    <% else %>
+      <li><%= link_to "#{t('inbox')}", :controller=>"reminder", :action=>"index"%></li>
+    <% end %>
+    <li><%= link_to "#{t('sent')}", :controller=>"reminder", :action=>"sent_reminder"%></li>
+    <li><%= link_to "#{t('layouts.default.create')}", :controller=>"reminder", :action=>"create_reminder"%></li>
+  </ul>
+</div>
+
+
+
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+
+
+  <div id="application-list">
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+      <tr class="tr-head">
+        <td>
+          <%= t('from') %>
+        </td>
+        <td>
+          <%= t('subjects.index.subject') %>
+        </td>
+        <td>
+          <%= t('layouts.default.date') %>
+        </td>
+      </tr>
+      <tr class="tr-blank"></tr>
+
+
+      <% @reminders.each do |ur| %>
+        <% if ur.is_read %>
+          <% sender_user = User.find(ur.sender)  %>
+          <tr class="tr-read-<%= cycle('odd', 'even') %>">
+            <td class="col-3"><%= link_to "#{sender_user.first_name}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <td class="col-3"><%= link_to "#{ur.subject}",  :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <td class="col-1"><%= link_to "#{ur.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+
+          </tr>
+
+        <% else %>
+
+
+
+          <% sender_user = User.find(ur.sender)  %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-3"><%= link_to "#{sender_user.first_name}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <td class="col-2"><%= link_to "#{ur.subject}",  :controller=>"reminder", :action=>"view_reminder",  :id2=>ur.id %></td>
+            <td class="col-1"><%= link_to "#{ur.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_reminder", :id2=>ur.id %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+    <%= will_paginate @reminders %>
+
+
+
+
+  </div>
+</div>

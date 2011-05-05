@@ -1,0 +1,11 @@
+
+<% @absent = Attendance.find_by_student_id_and_period_table_entry_id(@student.id, @period_entry.id) %>
+
+<% unless @absent.nil? %>
+  <%= link_to_remote('X', {:url => edit_attendance_path(@absent), :method => 'get'}, :class=> 'absent') %>
+<% else %>
+  <%= link_to_remote('S',
+    {:url => {:controller =>'attendances', :action => 'new', :id=> @period_entry.id, :id2 => @student.id}}, :class=>'present') %>
+<% end %>
+<div class="date"><span><%=  @period_entry.month_date.strftime("%a %d")%> <div> <%= @student.full_name %></div></span>
+</div>

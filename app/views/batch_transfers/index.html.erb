@@ -1,0 +1,35 @@
+ <div id="content-header">
+    <img src="/images/show_settings.png" />
+  <h1>Batch Transfer</h1>
+  <h3>Home</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+ 
+<div id="page-yield">
+   <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+ <div class="label-field-pair">
+<label>Select a course:
+<%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader", :style =>"display: none;" ) %>
+   </label>
+   <div class="text-input-bg">
+  <%= select :courses, :name,
+        Course.active.map {|b| [b.course_name, b.id]},
+        {:prompt => 'Select a course'},
+        {:onChange => "#{remote_function(:url => {:action => "update_batch"},
+        :with => "'course_name='+ value",
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')"
+        )}"} %>
+</div></div>
+
+<div id="update_batch" style="float:left; width:800px"></div>
+
+<div class="extender"></div>
+
+ </div>

@@ -1,0 +1,7 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090706170408_create_news.rb -- 6 warnings:
+  CreateNews has no descriptive comment (IrresponsibleModule)
+  CreateNews#self.up calls t.references(:author) twice (Duplication)
+  CreateNews#self.up calls t.text(:content) twice (Duplication)
+  CreateNews#self.up calls t.timestamps twice (Duplication)
+  CreateNews#self.up has approx 10 statements (LongMethod)
+  CreateNews#self.up has the variable name 't' (UncommunicativeName)

@@ -1,0 +1,7 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/generators/rspec/rspec_generator.rb -- 6 warnings:
+  RspecGenerator#initialize has the variable name 'f' (UncommunicativeName)
+  RspecGenerator#manifest calls options twice (Duplication)
+  RspecGenerator#manifest calls options[:shebang] twice (Duplication)
+  RspecGenerator#manifest has approx 11 statements (LongMethod)
+  RspecGenerator#manifest has the variable name 'm' (UncommunicativeName)
+  RspecGenerator#manifest refers to m more than self (LowCohesion)

@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/candle.rb -- 2 warnings:
+  OpenFlashChart::Candle has no descriptive comment (IrresponsibleModule)
+  OpenFlashChart::CandleValue has no descriptive comment (IrresponsibleModule)

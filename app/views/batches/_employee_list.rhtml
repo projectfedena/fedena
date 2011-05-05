@@ -1,0 +1,23 @@
+<ul id="tutor-list">
+  <% @emps_assigned =  @batch.employee_id.split(",") unless @batch.employee_id.nil?%>
+  <% unless @employees.empty? %>
+    <li class="heading"> Assign new: </li>
+    <% @employees.each do |e| %>
+
+      <li class="list<%=cycle('even', 'odd')%>">
+        <div class="tutor-name"><%= e.full_name %></div>
+        
+          <% if @emps_assigned.nil? or not @emps_assigned.include?("#{e.id}")  %>
+            <div class="remove"><%= link_to_remote "Assign", :url => {:action => "assign_employee", :id => e.id,:batch_id=>params[:batch_id],:department_id=>params[:department_id]}, :update => "department-select" %></div>
+          <% else %>
+            <div class="remove"><%= link_to_remote "Remove", :url => {:action => "remove_employee", :id => e.id,:batch_id=>params[:batch_id],:department_id=>params[:department_id]}, :update => "department-select" %></div>
+          <% end %>
+        
+      </li>
+
+    <% end %>
+  <% else %>
+    <p class="flash-msg"> No employee found.</p>
+  <% end %>
+
+</ul>

@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/app/helpers/application_helper.rb -- 3 warnings:
+  ApplicationHelper#get_stylesheets calls controller twice (Duplication)
+  ApplicationHelper#observe_fields has approx 8 statements (LongMethod)
+  ApplicationHelper#observe_fields refers to with more than self (LowCohesion)

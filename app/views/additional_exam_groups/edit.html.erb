@@ -1,0 +1,41 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Additional Exams</h1>
+  <h3>Edit Additional  Exam group</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+    <div class="bread_crumb">
+         <%= 'Courses'%> &raquo;
+        <%=  @course.full_name%> &raquo;
+        <%= "Batch #{@batch.name}" %> &raquo;
+        <%= link_to 'Additional Exams', batch_additional_exam_groups_path(@batch) %> &raquo;
+       Edit Additional Exam
+        </div>
+
+
+    <% form_for [@batch, @additional_exam_group] do |f| %>
+
+      <%= f.error_messages %>
+
+
+      <div class="label-field-pair">
+        <label for="additional_exam_name"><%= f.label :name %></label>
+        <div class="text-input-bg"> <%= f.text_field :name %></div>
+      </div>
+      <div id="sub_button"><%= submit_tag "", :value => "► Save", :class => "submit_button" %></div>
+
+
+
+    <% end %>
+
+  </div></div>

@@ -1,0 +1,23 @@
+
+<% form_remote_for :liability,
+  :url => {:action => 'update_liability',:id => @liability.id} do |f| %>
+  <div id="form-errors"></div>
+  <div class="label-field-pair">
+    <div class="label-container"><label><%= t('news.all.title') %> :</label> </div>
+    <div class="input-container"><%= f.text_field :title%></div>
+   </div>
+     <div class="label-field-pair">
+       <div class="label-container"><label><%= t('layouts.default.description') %> :</label> </div>
+    <div class="text-input-bg"> <%= f.text_field :description %></div>
+   </div>
+     <div class="label-field-pair">
+    <div class="label-container"><label><%= t('layouts.default.amount') %> :</label> </div>
+    <div class="input-container"><%= f.text_field :amount %></div>
+   </div>
+ <div class="label-field-pair">
+   <div class="label-container"><label><%= t('index.solve_this_liability') %> </label> </div>
+    <div class="input-container"><%= f.check_box :is_solved %></div>
+   </div>
+
+    <%=  submit_tag "► #{t('weekday.index.save')}",:class=>'submit_button' %>
+<% end %>

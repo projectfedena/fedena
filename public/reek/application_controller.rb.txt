@@ -1,0 +1,9 @@
+D:/nithin/rails/fedena3/fedena2/app/controllers/application_controller.rb -- 8 warnings:
+  ApplicationController has no descriptive comment (IrresponsibleModule)
+  ApplicationController has the variable name 'c' (UncommunicativeName)
+  ApplicationController#current_user calls session twice (Duplication)
+  ApplicationController#current_user calls session[:user_id] twice (Duplication)
+  ApplicationController#protect_manager_leave_application_view has approx 6 statements (LongMethod)
+  ApplicationController#protect_other_student_data calls current_user twice (Duplication)
+  ApplicationController#protect_other_student_data calls params twice (Duplication)
+  ApplicationController#protect_other_student_data calls student.id twice (Duplication)

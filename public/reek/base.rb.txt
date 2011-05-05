@@ -1,0 +1,13 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/base.rb -- 12 warnings:
+  OpenFlashChart::Base has at least 12 instance variables (LargeClass)
+  OpenFlashChart::Base has no descriptive comment (IrresponsibleModule)
+  OpenFlashChart::Base#<< has the parameter name 'e' (UncommunicativeName)
+  OpenFlashChart::Base#append_value has the parameter name 'v' (UncommunicativeName)
+  OpenFlashChart::Base#initialize has the variable name 'k' (UncommunicativeName)
+  OpenFlashChart::Base#initialize has the variable name 'v' (UncommunicativeName)
+  OpenFlashChart::Base#method_missing calls args[0] twice (Duplication)
+  OpenFlashChart::Base#method_missing calls self.instance_variable_set("@#{$1}", args[0]) twice (Duplication)
+  OpenFlashChart::Base#render contains iterators nested 2 deep (NestedIterators)
+  OpenFlashChart::Base#set_offset has the parameter name 'v' (UncommunicativeName)
+  OpenFlashChart::Base#set_offset is controlled by argument v (ControlCouple)
+  OpenFlashChart::Base#to_json2 has the name 'to_json2' (UncommunicativeName)

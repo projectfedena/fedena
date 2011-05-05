@@ -1,0 +1,86 @@
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Additional Exams</h1>
+  <h3>Showing Additional  Exam group</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <% if permitted_to? :publish, :additional_exam %>
+    <% if @additional_exam_group.is_published %>
+      <li><%= link_to_remote("Publish Result",:url=>{:controller=>'additional_exam',:action=>'publish',:id=>@additional_exam_group.id,:status=>"result"},
+          :before => "Element.show('loader')",
+          :success => "Element.hide('loader')") %></li>
+    <% end  %>
+    <% end %>
+      <% if permitted_to? :new, :additional_exams %>
+    <li><%= link_to 'New', new_additional_exam_group_additional_exam_path(@additional_exam_group) %></li>
+    <% end %>
+  </ul>
+</div>
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+       <div class="bread_crumb">
+          <%='Courses' %> &raquo;
+        <%= @course.full_name%> &raquo;
+        <%= "Batch #{@batch.name}" %> &raquo;
+        <%= link_to 'Exams', batch_additional_exam_groups_path(@batch) %> &raquo;
+        <%= @additional_exam_group.name %>
+        </div>
+
+    <div class="update_msg"><h4><%= in_place_editor_field :additional_exam_group, :name %></h4><h4><span id="publish-notice-<%=@additional_exam_group.id%>"><%= image_tag("loader.gif",:align => "absmiddle",
+        :border => 0,
+        :id => "loader",
+        :style =>"display: none;" ) %></span></h4></div>
+
+
+    <% unless @additional_exam_group.exam_type == 'Grades' %>
+      <table id="listing">
+        <tr class="tr-head">
+          <td>Subject</td>
+          <td>Max marks</td>
+          <td>Min marks</td>
+          <td>Manage</td>
+        </tr>
+        <% @additional_exam_group.additional_exams.each do |additional_exam| %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <% @additional_exam = additional_exam %>
+            <td class="col-2"><%= link_to additional_exam.subject.name, [@additional_exam_group, additional_exam] %></td>
+            <td class="col-1"><%= in_place_editor_field :additional_exam, :maximum_marks,{},{:cols=>1} %></td>
+            <td class="col-1"><%= in_place_editor_field :additional_exam, :minimum_marks,{},{:cols=>1} %></td>
+            <td class="col-1">
+              <small><%= link_to 'Edit', edit_additional_exam_group_additional_exam_path(@additional_exam_group, additional_exam) %></small>
+              <small><%= link_to 'Delete', [@additional_exam_group, additional_exam], :method => 'delete', :confirm => 'Are you sure you want to delete?' %></small>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <table id="listing" width="100%">
+        <tr class="tr-head">
+          <td>Subject</td>
+          <td>Manage</td>
+        </tr>
+        <% @additional_exam_group.additional_exams.each do |exam| %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <% @exam = exam %>
+            <td class="col-3"><%= link_to exam.subject.name, [@additional_exam_group, exam] %></td>
+            <td class="col-1">
+              <small><%= link_to 'Edit', edit_additional_exam_group_additional_exam_path(@additional_exam_group, exam) %></small>
+              <small><%= link_to 'Delete', [@additional_exam_group, exam], :method => 'delete', :confirm => 'Are you sure you want to delete?' %></small>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+
+    <div class="extender"></div>
+  </div>
+</div>

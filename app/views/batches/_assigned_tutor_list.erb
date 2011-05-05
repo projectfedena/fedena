@@ -1,0 +1,14 @@
+<% unless @assigned_employee.nil? %>
+  <% unless @assigned_employee.empty? %>
+    <li class="heading"> Currently assigned: </li>
+    <% @assigned_employee.each do |e| %>
+      <% @employee = Employee.find(e) %>
+      <li class="list<%=cycle('even', 'odd')%>">
+        <div class="tutor-name"><%= @employee.first_name %>
+          <%= "(#{EmployeeDepartment.find(@employee.employee_department_id).name})" %></div>
+      </li>
+    <% end %>
+  <% else %>
+    <p class="flash-msg"> No employee assigned yet.</p>
+  <% end %>
+<% end %>

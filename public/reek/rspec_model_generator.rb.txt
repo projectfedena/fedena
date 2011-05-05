@@ -1,0 +1,9 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/generators/rspec_model/rspec_model_generator.rb -- 8 warnings:
+  RspecModelGenerator has no descriptive comment (IrresponsibleModule)
+  RspecModelGenerator#manifest calls class_name twice (Duplication)
+  RspecModelGenerator#manifest calls class_path 6 times (Duplication)
+  RspecModelGenerator#manifest calls file_name twice (Duplication)
+  RspecModelGenerator#manifest calls options 3 times (Duplication)
+  RspecModelGenerator#manifest calls options[:skip_fixture] twice (Duplication)
+  RspecModelGenerator#manifest has approx 9 statements (LongMethod)
+  RspecModelGenerator#manifest has the variable name 'm' (UncommunicativeName)

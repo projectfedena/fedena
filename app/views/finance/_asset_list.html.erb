@@ -1,0 +1,31 @@
+<table id="listing" width="99%" align="center">
+  <tr class="tr-head">
+    <td ><%= t('asset_liability.asset') %></td>
+    <td><%= t('view_asset.created_at') %></td>
+     <td></td>
+  </tr>
+
+  <% @assets.each do |a| %>
+    <% if a.is_inactive? %>
+      <tr class="inactive">
+        <td class="col-3"><%=link_to a.title+" ( inactive )" ,:action=>"each_asset_view",:id => a.id%></td>
+        <td class="col-3"><%=link_to a.created_at.strftime("%d-%m-%Y"),:action =>"each_asset_view",:id => a.id%></td>
+        <td class="col-1">
+          <%= link_to_remote t('layouts.default.edit'), :url => { :action => 'edit_asset', :id => a.id } %> |
+          <%= link_to_remote t('layouts.default.delete'), :url => { :action => 'delete_asset', :id => a.id } %>
+        </td>
+
+      </tr>
+    <% else %>
+      <tr class="tr-<%= cycle('odd', 'even')%> ">
+        <td class="col-3"><%=link_to a.title ,:action=>"each_asset_view",:id => a.id%></td>
+        <td class="col-3"><%=link_to a.created_at.strftime("%d-%m-%Y"),:action =>"each_asset_view",:id => a.id%></td>
+        <td class="col-1">
+          <%= link_to_remote t('layouts.default.edit'), :url => { :action => 'edit_asset', :id => a.id } %> |
+          <%= link_to_remote t('layouts.default.delete'), :url => { :action => 'delete_asset', :id => a.id },:confirm=>t('layouts.default.delete_confirm_msg') %>
+        </td>
+
+      </tr>
+    <% end %>
+  <% end %>
+</table>

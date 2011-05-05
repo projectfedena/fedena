@@ -1,0 +1,2 @@
+page.replace_html 'modal-box', :partial => 'approve_remark_form'
+page << "Modalbox.show($('modal-box'), {title: 'Manager Remarks', width: 500});"

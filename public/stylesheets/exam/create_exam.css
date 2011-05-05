@@ -1,0 +1,26 @@
+.link-box {
+    margin:10px 40px;
+    height:15px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+
+.label-field-pair label {
+    width:280px;
+}
+
+.text-input-bg {
+    width:100px;
+}
+.label-field-pair label {
+    color:#444444;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:10px;
+    width:150px;
+}

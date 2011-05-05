@@ -1,0 +1,23 @@
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Employee Management</h1>
+  <h3>Manage all employees </h3>
+  <div id="app-back-button">
+     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <div id="box">
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Employee admission", :controller=>"employee", :action=>"admission1" %></div>
+    <div class="link-descr">Employee admissions form</div>
+  </div>
+
+  <div class="link-box">
+    <div class="link-heading"><%= link_to "Employee Subject Association", :controller=>"employee", :action=>"subject_assignment"%></div>
+    <div class="link-descr">Assign an employee with one or more subjects</div>
+  </div>
+  </div>
+
+</div>

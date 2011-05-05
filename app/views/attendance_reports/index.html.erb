@@ -1,0 +1,48 @@
+<div id="content-header">
+  <img src="/images/attendence/attendence.png" />
+  <h1>Attendance Report</h1>
+  <h3>Report</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <!-- <li><%= link_to "Advanced", :controller=>"student_attendance", :action=>"advance_search" %></li> -->
+  </ul>
+</div>
+<div id="page-yield">
+  <div class="label-field-pair">
+          <label> Select a batch: </label>
+    <div class="text-input-bg">
+      <% if @config.config_value == 'Daily' %>
+        <%= select :batch, :id,
+          @batches.map {|b| [b.full_name, b.id] },
+          {:prompt => 'Select a batch'},
+          {:onchange => "#{remote_function(
+          :url => { :action => 'mode' },
+          :with => "'batch_id='+value+'&subject_id='",
+          :before => "Element.show('loader')",
+          :success => "Element.hide('loader')"  )}"} %>
+      <% else %>
+        <%= select :batch, :id,
+          @batches.map {|b| [b.full_name, b.id] },
+          {:prompt => 'Select a batch'},
+          {:onchange => "#{remote_function(
+          :url => { :action => 'subject' },
+          :with => "'batch_id='+value",
+          :before => "Element.show('loader')",
+          :success => "Element.hide('loader')"  )}"} %>
+      <% end %>
+
+<%= image_tag("loader.gif", :align => "absmiddle", :border => 0, :id => "loader", :style =>"display: none;" ) %><div class="extender"></div>
+    </div>
+  </div>
+
+ 
+  <div id="subject"></div>
+  <div id="mode"></div>
+  <div id="month"></div>
+  <div id="year"></div>
+  <div id="report"></div>
+</div>

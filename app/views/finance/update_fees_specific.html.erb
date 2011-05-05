@@ -1,0 +1,42 @@
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+  <h1>Special Fees for student</h1>
+  <h3><%= @student.full_name%></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+<% form_for :element , :url => {:action => 'fees_student_specific', :id => @student.id } do |f| %>
+  <div id="create_user_form">
+    <div class="label_field">
+      <label for="label">Label</label>
+      <div class="text_field_bg"><%= f.text_field :name %></div>
+    </div>
+    <div class="label_field">
+      <label for="label">Description </label>
+      <div class="text_field_bg"><%= f.text_field :description %></div>
+    </div>
+    <div class="label_field">
+      <label for="amount">Amount</label>
+      <div class="text_field_bg"><%= f.text_field :amount %></div>
+    </div>
+    <div class="label_field">
+      <label for="amount">Select a fees category </label>
+      <div class="text_field_bg">
+        <%= f.select(:fee_category_id, @fee_categories.map { |item| [item.name, item.id] },
+          {:prompt => "Select a batch" },
+          {:onchange => "#{remote_function(:url => {:action => "fee_particulars_update"}, :with => "'student='+'#{@student.id}'+'&id='+value")}"})
+      %>
+      </div>
+    </div>
+    <div class="label_field">
+      <label for="amount">Select a fees particulars that you wish to override</label>
+      <div id="particulars"><%= render :partial => "update_particulars"  %> </div>
+    </div>
+    <div class="label_field">
+      <%= image_submit_tag "", :value => "Save Changes", :class => "submit_button" %>
+    </div>
+  </div>
+<% end %>

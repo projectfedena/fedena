@@ -1,0 +1,18 @@
+<div class="dept-select">
+<% unless @department_event.empty? %>
+  <span class="title">Department Associated:</span>
+  <ul id="category-list">
+    <% @department_event.each do |d| %>
+      <li class="list<%= cycle('odd','even') %>">
+        <div class="category-name"> <%=  EmployeeDepartment.find(d.employee_department_id).name %></div>
+        <div class="category-edit"> <%= link_to "Remove", :controller=>"event",:action=>"remove_department", :id=>d %></div>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to_remote "Select more Department", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]} %>
+<% else %>
+  <span class="title">No department selected for this event yet :</span>
+  <%= link_to_remote "Select Employee Department", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]} %>
+<% end %>
+  </div>
+

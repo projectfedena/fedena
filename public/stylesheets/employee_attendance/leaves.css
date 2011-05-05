@@ -1,0 +1,481 @@
+.heading{
+    font-weight:bold;color:#900;
+    padding-bottom:20px;
+}
+
+#application-list{
+    width:960px;
+    margin:10px auto;
+}
+
+
+#submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:270px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+
+#item-list {
+    clear : both;
+    padding : 10px 0 40px 40px;
+}
+
+#item-list li {
+    background : #fff url(../../images/_global/list-bg-repeat.jpg) repeat;
+    color : #444;
+    height : 1.5em; width : 200px;
+    list-style-type : none;
+    padding : 0.5em 0 0 5em;
+}
+
+#item-list li div {
+    float : left;
+}
+#item-list li div.item-name {
+    width : 350px;
+}
+
+.item-edit a{
+    color : #000;
+}
+#item-list li div a {
+    color : #000;
+}
+.label_field_pair input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 0 0 10px;
+    width : 10px;
+    height:17px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+}
+
+.label-field {
+    height : 80px;
+    width : 250px;
+    margin:10px 0 0 40px;
+}
+.new-leaves-count{
+    background-color : #9d0e00;
+    color : #fff;
+    float : left;
+    font-size : 0.9em;
+    height : 1.5em;
+    list-style-type : none;
+    margin : 0 0 0 10px;
+    padding : 0;
+    text-align : center;
+    width : 125px;
+}
+
+.container{
+
+}
+
+.container-head{
+
+}
+
+
+.containereven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 0;
+    width:600px;
+}
+
+.containerodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 0;
+    width:600px;
+}
+
+/* validation error */
+
+
+
+/*INBOX STYLED INFORMATION*/
+/*
+#startdate-label{
+    border-bottom:2px solid;
+    float:left;
+    width:200px;
+    padding:10px 0 10px 0;
+    text-align:center;
+    font-weight:bold;
+    background-color : #fff1ab;
+}
+
+#enddate-label{
+    border-bottom:2px solid;
+    float:left;
+    width:200px;
+    padding:10px 0 10px 0;
+    text-align:center;
+    font-weight:bold;
+    background-color : #fff1ab;
+}
+
+#status-label{
+    border-bottom:2px solid;
+    float:left;
+    width:200px;
+    padding:10px 0 10px 0;
+    text-align:center;
+    font-weight:bold;
+    background-color : #fff1ab;
+}
+
+#name-label{
+    border-bottom:2px solid;
+    float:left;
+    width:200px;
+    padding:10px 0 10px 0;
+    text-align:center;
+    font-weight:bold;
+    background-color : #fff1ab;
+}
+
+.start-date-even{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#eef2fd;
+    padding:10px 0 10px 0;
+}
+.pending-start-date-even{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#eef2fd;
+    padding:10px 0 10px 0;
+    font-weight:bold;
+}
+
+.start-date-even a{
+    text-decoration:none;
+    color:black;
+}
+.pending-start-date-even a{
+    text-decoration:none;
+    color:black;
+}
+
+.end-date-even{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#eef2fd;
+    padding:10px 0 10px 0;
+}
+.pending-end-date-even{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#eef2fd;
+    padding:10px 0 10px 0;
+    font-weight:bold;
+}
+
+.end-date-even a{
+    text-decoration:none;
+    color:black;
+}
+.pending-end-date-even a{
+    text-decoration:none;
+    color:black;
+}
+
+.status-even{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#eef2fd;
+    padding:10px 0 10px 0;
+}
+.pending-status-even{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#eef2fd;
+    padding:10px 0 10px 0;
+    font-weight:bold;
+}
+
+.status-even a{
+    text-decoration:none;
+    color:black;
+}
+.pending-status-even a{
+    text-decoration:none;
+    color:black;
+}
+
+.name-even{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#eef2fd;
+    padding:10px 0 10px 0;
+}
+
+.name-even a{
+    text-decoration:none;
+    color:black;
+}
+
+.start-date-odd{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#dfeaff;
+    padding:10px 0 10px 0;
+}
+.pending-start-date-odd{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#dfeaff;
+    padding:10px 0 10px 0;
+    font-weight:bold;
+}
+
+.start-date-odd a{
+    text-decoration:none;
+    color:black;
+}
+.pending-start-date-odd a{
+    text-decoration:none;
+    color:black;
+}
+
+.end-date-odd{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#dfeaff;
+    padding:10px 0 10px 0;
+}
+.pending-end-date-odd{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#dfeaff;
+    padding:10px 0 10px 0;
+    font-weight:bold;
+}
+
+.end-date-odd a{
+    text-decoration:none;
+    color:black;
+}
+.pending-end-date-odd a{
+    text-decoration:none;
+    color:black;
+}
+
+.status-odd{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#dfeaff;
+    padding:10px 0 10px 0;
+}
+.pending-status-odd{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#dfeaff;
+    padding:10px 0 10px 0;
+    font-weight:bold;
+}
+
+.status-odd a{
+    text-decoration:none;
+    color:black;
+}
+.pending-status-odd a{
+    text-decoration:none;
+    color:black;
+}
+
+.name-odd{
+    border-bottom:1px solid #becffb;
+    float:left;
+    width:200px;
+    text-align:center;
+    background-color:#dfeaff;
+    padding:10px 0 10px 0;
+}
+
+.name-odd a{
+    text-decoration:none;
+    color:black;
+} */
+
+#startdate-label{
+    border-bottom:2px solid;
+    float:left;
+    width:200px;
+    padding:10px 0 10px 0;
+    text-align:center;
+    font-weight:bold;
+    /*background-color : #fff1ab;*/
+}
+
+#enddate-label{
+    border-bottom:2px solid;
+    float:left;
+    width:200px;
+    padding:10px 0 10px 0;
+    text-align:center;
+    font-weight:bold;
+    /* background-color : #fff1ab;*/
+}
+
+#status-label{
+    border-bottom:2px solid;
+    float:left;
+    width:200px;
+    padding:10px 0 10px 0;
+    text-align:center;
+    font-weight:bold;
+    /*background-color : #fff1ab;*/
+}
+
+#name-label{
+    border-bottom:2px solid;
+    float:left;
+    width:200px;
+    padding:10px 0 10px 0;
+    text-align:center;
+    font-weight:bold;
+    /* background-color : #fff1ab;*/
+}
+
+.start-date{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:200px;
+    text-align:center;
+    /* background-color:#e4ebfe;*/
+    /*padding:10px 0 10px 0;*/
+}
+.pending-start-date{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:200px;
+    text-align:center;
+    /*background-color:#e4ebfe;*/
+    /*padding:10px 0 10px 0;*/
+    font-weight:bold;
+}
+
+.start-date a{
+    text-decoration:none;
+    color:black;
+}
+.pending-start-date a{
+    text-decoration:none;
+    color:black;
+}
+
+.end-date{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:200px;
+    text-align:center;
+    /*background-color:#e4ebfe;*/
+    /*padding:10px 0 10px 0;*/
+}
+.pending-end-date{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:200px;
+    text-align:center;
+    /*background-color:#e4ebfe;*/
+    /*padding:10px 0 10px 0;*/
+    font-weight:bold;
+}
+
+.end-date a{
+    text-decoration:none;
+    color:black;
+}
+.pending-end-date a{
+    text-decoration:none;
+    color:black;
+}
+
+.status{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:200px;
+    text-align:center;
+    /*background-color:#e4ebfe;*/
+    /* padding:10px 0 10px 0;*/
+}
+.pending-status{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:200px;
+    text-align:center;
+    /*background-color:#e4ebfe;*/
+    /* padding:10px 0 10px 0;*/
+    font-weight:bold;
+}
+
+.status a{
+    text-decoration:none;
+    color:black;
+}
+.pending-status a{
+    text-decoration:none;
+    color:black;
+}
+
+.name{
+    /*border-bottom:1px solid #bccffb;*/
+    float:left;
+    width:200px;
+    text-align:center;
+    /*background-color:#e4ebfe;*/
+    /*padding:10px 0 10px 0;*/
+}
+
+.name a{
+    text-decoration:none;
+    color:black;
+}
+

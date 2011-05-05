@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20091202050910_create_finance_transaction_categories.rb -- 3 warnings:
+  CreateFinanceTransactionCategories has no descriptive comment (IrresponsibleModule)
+  CreateFinanceTransactionCategories#self.up has approx 6 statements (LongMethod)
+  CreateFinanceTransactionCategories#self.up has the variable name 't' (UncommunicativeName)

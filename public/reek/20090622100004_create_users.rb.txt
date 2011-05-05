@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090622100004_create_users.rb -- 4 warnings:
+  CreateUsers has no descriptive comment (IrresponsibleModule)
+  CreateUsers#self.create_admin_account has the variable name 'u' (UncommunicativeName)
+  CreateUsers#self.up has approx 14 statements (LongMethod)
+  CreateUsers#self.up has the variable name 't' (UncommunicativeName)

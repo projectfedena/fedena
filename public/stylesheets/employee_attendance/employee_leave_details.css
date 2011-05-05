@@ -1,0 +1,72 @@
+#skip{
+    margin-top:28px;
+    margin-left:130px;
+    float:left;
+    -moz-border-radius:12px;
+    -webkit-border-radius:12px;
+    background:none repeat scroll 0 0 #27292B;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:8px 12px 8px 8px;
+}
+#skip a{
+    color:#fff;
+    text-decoration: none;
+}
+#skip:hover,#add-more-parent:hover{
+   background:  #373B3F;
+}
+
+
+
+table#listing td a {
+color:#27292B;
+text-decoration:none;
+-moz-border-radius:10px 10px 10px 10px;
+-webkit-border-radius:10px 10px 10px 10px;
+background:none repeat scroll 0 0 #27292B;
+border:medium none;
+color:#FFFFFF;
+cursor:pointer;
+font-family:arial;
+font-size:14px;
+font-weight:bold;
+margin-left:0px;
+margin-top:15px;
+padding:7px 10px;
+width:115px;
+display: block;
+}
+table#listing td a:hover {
+color:#27292B;
+text-decoration:none;
+-moz-border-radius:10px 10px 10px 10px;
+-webkit-border-radius:10px 10px 10px 10px;
+background:none repeat scroll 0 0 #373B3F;
+border:medium none;
+color:#FFFFFF;
+cursor:pointer;
+font-family:arial;
+font-size:14px;
+font-weight:bold;
+margin-left:0px;
+margin-top:15px;
+padding:7px 10px;
+width:115px;
+display: block;
+}
+
+#reset-box {
+    background: #ffdedf ;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    height : auto;
+    margin : 20px auto;
+    padding : 1px 0 1px 20px;
+    text-align: center;
+    width :500px;
+    margin: 0 auto;
+    font-size: 18px;
+}

@@ -1,0 +1,37 @@
+<label class="head_label"><%= t('additional_fees_list.edit_master_category_for_free') %><span></span></label>
+
+<div id="grading-levels-form">
+
+  <% form_remote_for @finance_fee_category,
+    :url=>{:action=>'additional_fees_update',
+    :id => @finance_fee_category.id} do |f| %>
+    <div id="form-errors"></div>
+    <div class="label-field-pair">
+      <div class="label-container"><label><%= t('layouts.default.name') %>:</label> </div>
+      <div class="input-container"> <%= f.text_field :name %> </div>
+    </div>
+    <div class="label-field-pair">
+      <div class="label-container"><label><%= t('layouts.default.description') %>:</label></div>
+      <div class="input-container"><%= f.text_field :description %></div>
+    </div>
+    <div class="label-field-pair">
+      <div class="label-container"><label><%= t('layouts.deafult.start_date') %> :</label> </div>
+      <div class="input-container"><%= calendar_date_select_tag 'additional_fees[start_date]', @collection_date.start_date %></div>
+    </div>
+    <div class="label-field-pair">
+      <div class="label-container"><label><%= t('layouts.deafult.end_date') %> <span class="necessary-field">*</span>:</label> </div>
+      <div class="input-container"><%= calendar_date_select_tag 'additional_fees[end_date]', @collection_date.end_date %></div>
+    </div>
+    <div class="label-field-pair">
+      <div class="label-container"><label><%= t('layouts.default.course') %> :</label></div>
+      <div class="input-container"> <% unless @finance_fee_category.batch_id.nil? %>
+          <%= f.text_field :batch, :value => @finance_fee_category.batch.full_name, :disabled => true  %>
+        <% else %>
+          <label><%= t('layouts.default.all') %></label>
+        <% end %>
+      </div>
+    </div>
+
+    <%=  submit_tag "► #{t('layouts.default.update')}",:class=>'submit_button' %>
+  <% end %>
+</div>

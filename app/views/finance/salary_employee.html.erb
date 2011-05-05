@@ -1,0 +1,53 @@
+
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="Finance" />
+  <h1><%= @department.name %> Department Salary Report</h1>
+  <h3>Finance Tranasactions</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% total=0 %>
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td>Sl no.</td>
+      <td>Employee Name</td>
+      <td>Salary ( <%= currency %> )</td>
+      <td>Salary Date</td>
+    </tr>
+    <tr class="tr-blank"></tr>
+    <% amount=0 %>
+    <% @employees.each_with_index do |e,i| %>
+        <% salary_dates= e.all_salaries(@start_date,@end_date) %>
+        <% unless salary_dates.empty? %>
+          <% salary_dates.each do |s| %>
+      <tr class="tr-<%= cycle("even","odd") %>">
+        <td class ="col-1"><%=i+1%></td>
+            <td class="col-2"><%= link_to e.full_name + " - " , :action => 'employee_payslip_monthly_report',:id2 => s.salary_date.to_date,:id => e.id %> <%=s.salary_date.strftime("%B,%Y")%> </td>
+            <%  amount = e.employee_salary(s.salary_date.to_date)%>
+            <td class="col-3" align="right"> <%=  amount  %> </td>
+            <td class="col-3"> <%=s.salary_date %> </td>
+            <% total+=amount %>
+            <% amount=0 %>
+          <% end %>
+        </tr>
+        <% else %>
+      <tr class="tr-<%= cycle("even","odd") %>">
+	      <td class ="col-1"><%=i+1%></td>
+          <td class="col-2"><%=e.full_name %> </td>
+          <td class="col-3" align="right">0</td>
+          <td class="col-3">N.A.</td>
+        </tr>
+      <% end %>
+    <% end %>
+    <tr class="tr-blank"></tr>
+    <tr class="tr-head">
+      <td>Total Salary</td>
+      <td></td>
+      <td align="right"><%=total  %></td>
+      <td></td>
+    </tr>
+  </table>
+</div>

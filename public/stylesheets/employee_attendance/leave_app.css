@@ -1,0 +1,153 @@
+
+.label-field-area {
+    float:left;
+    height:210px;
+    width:250px;
+}
+
+#leave-info{
+
+}
+
+#item-list {
+    clear : both;
+    padding : 10px 0 0 190px;
+}
+
+#item-list .listodd{
+     background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 2em;
+}
+
+
+#item-list .listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 0 0 2em;
+}
+
+#item-list li {
+ background:none repeat scroll 0 0 #EFF3FE;
+    color : #444;
+    height : 1.5em; width : 530px;
+    list-style-type : none;
+    padding : 0.8em 0 0 0em;
+}
+
+#item-list li div {
+    float : left;
+}
+#item-list li div.item-name {
+    width : 230px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.item-edit a{
+    color : #000;
+}
+#item-list li div a {
+    color : #000;
+}
+
+.approve-deny{
+    width:125px;
+    margin:0 0 0 280px;
+}
+
+.approve-deny a{
+    color:black;
+    text-decoration:underline;
+}
+
+.approval-form{
+    width:626px;
+    height:110px;
+    background:url(../../images/form_bg/approval_form_bg.jpg);
+    margin:0 0 0 40px;
+}
+
+.approval-form a{
+    display:block;
+    height:35px;
+    float:right;
+    width:35px;
+}
+
+.remark-field-pair {
+    float : left;
+    height : 110px;
+    width : 450px;
+}
+
+.remark-field-pair label {
+    color : #444;
+    display : block;
+    font-weight : bold;
+    margin : 25px 0 0 75px;
+}
+.remark-field-pair input {
+    background : transparent;
+    border : 0;
+    margin : 5px 0 0 10px;
+    width : 330px;
+}
+
+
+.remark-input-bg {
+    background : #fff url(../../images/form_bg/remarks_text_bg.png) no-repeat;
+    height : 26px;
+    width : 341px;
+    margin: 5px 0 0 75px;
+}
+
+#form{
+    
+    height:250px;
+    width:222px;
+    margin-top:14px;
+    margin-left:185px;
+}
+
+.reminder-link{
+    margin:0 0 0 191px;
+}
+
+.reminder-link a{
+    color:black;
+}
+
+#submit-button{
+    margin-left:45px;
+}
+.label-field-pair textarea {
+-moz-background-inline-policy:continuous;
+-moz-border-radius:10px 10px 10px 10px;
+-webkit-border-radius:10px 10px 10px 10px;
+background:none repeat scroll 0 0 #EEEEEE;
+border:1px solid #C6C6C6;
+margin:5px 0 0 10px;
+padding:5px;
+}
+
+#submit-button input {
+-moz-border-radius:10px 10px 10px 10px;
+-webkit-border-radius:10px 10px 10px 10px;
+background:none repeat scroll 0 0 #27292B;
+border:medium none;
+color:#FFFFFF;
+cursor:pointer;
+font-family:arial;
+font-size:14px;
+font-weight:bold;
+margin-left:243px;
+margin-top:170px;
+padding:7px 10px;
+}

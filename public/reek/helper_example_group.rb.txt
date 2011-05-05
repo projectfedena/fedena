@@ -1,0 +1,5 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/lib/spec/rails/example/helper_example_group.rb -- 4 warnings:
+  Spec::Rails::Example::HelperExampleGroup#eval_erb calls helper twice (Duplication)
+  Spec::Rails::Example::HelperExampleGroup#helper calls described_type twice (Duplication)
+  Spec::Rails::Example::HelperExampleGroup::HelperObject has no descriptive comment (IrresponsibleModule)
+  Spec::Rails::Example::HelperExampleGroupController has no descriptive comment (IrresponsibleModule)

@@ -1,0 +1,22 @@
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="" />
+  <h1>Liability View</h1>
+  <h3><%= @liability.title %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+
+
+  <div id="liability-body">
+    <div id="liability-title">Liability Name : <%= @liability.title%></div>
+    <div id="liability-description"><%= @liability.description %></div>
+    <br/>
+    <div id="liability-amt">Amount : <%=@currency_type + " "%><%= @liability.amount%></div>
+    <div id="liability-date">Created At : <%= @liability.created_at.strftime("%A, %d %B, %Y") %></div>
+  </div>
+
+
+
+</div>

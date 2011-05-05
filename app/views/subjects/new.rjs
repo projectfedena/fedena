@@ -1,0 +1,2 @@
+page.replace_html 'modal-box', :partial => 'new'
+page << "Modalbox.show($('modal-box'), {title: '#{t('subjects.index.add_new_subject')}', width: 500});"

@@ -1,0 +1,34 @@
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="" />
+  <h1>Income</h1>
+  <h3>Incomes List</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<% unless @incomes.empty? %>
+  <table id="listing">
+    <tr class="tr-head">
+      <td>Name</td>
+      <td>Description</td>
+      <td>Amount</td>
+      <td>Transaction Date</td>
+      <td></td>
+    </tr>
+    <% @incomes.each do |d| %>
+      <tr class="tr-<%= cycle('odd','even') %>">
+        <td class="col-3"><%= d.title %></td>
+        <td class="col-3"><%= d.description %></td>
+        <td class="col-3"><%= d.amount %></td>
+        <td class="col-3"><%= d.transaction_date.strftime("%d-%m-%y") unless d.transaction_date.nil?%></td>
+        <td class="col-3"><small><%= link_to "Edit",:action=>'income_edit',:id=>d.id %></small> | <small><%= link_to "Delete",:action=>'delete_transaction',:id=>d.id %></small></td>
+      </tr>
+    <% end %>
+
+  </table>
+<% else %>
+  <br />
+  <br />
+No Transactions for the given period.
+<% end %>

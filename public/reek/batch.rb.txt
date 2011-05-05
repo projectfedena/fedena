@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/app/models/batch.rb -- 3 warnings:
+  Batch has no descriptive comment (IrresponsibleModule)
+  Batch#validate calls self.end_date twice (Duplication)
+  Batch#validate calls self.start_date twice (Duplication)

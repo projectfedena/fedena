@@ -1,0 +1,1 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/rspec-rails/spec/rails_suite.rb -- 0 warnings

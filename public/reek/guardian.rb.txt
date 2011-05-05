@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/app/models/guardian.rb -- 2 warnings:
+  Guardian has no descriptive comment (IrresponsibleModule)
+  Guardian#validate calls self.dob twice (Duplication)

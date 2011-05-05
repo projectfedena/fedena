@@ -1,0 +1,3 @@
+D:/nithin/rails/fedena3/fedena2/vendor/plugins/open_flash_chart/lib/open_flash_chart/bar_stack.rb -- 2 warnings:
+  OpenFlashChart::BarStack has no descriptive comment (IrresponsibleModule)
+  OpenFlashChart::BarStackValue has no descriptive comment (IrresponsibleModule)

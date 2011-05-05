@@ -1,0 +1,4 @@
+D:/nithin/rails/fedena3/fedena2/db/migrate/20090916052300_create_monthly_payslips.rb -- 3 warnings:
+  CreateMonthlyPayslips has no descriptive comment (IrresponsibleModule)
+  CreateMonthlyPayslips#self.up has approx 7 statements (LongMethod)
+  CreateMonthlyPayslips#self.up has the variable name 't' (UncommunicativeName)
