@@ -1,7 +1,7 @@
 <div id="content-header">
    <img src="/images/show_finance.png" alt="" />
-  <h1>Expenses</h1>
-  <h3>Edit expense</h3>
+   <h1><%= t('asset.expenses') %></h1>
+   <h3><%= t('asset.edit_expense') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -9,7 +9,7 @@
 
 <div id="inner-tab-menu">
  <ul>
-  <li><%= link_to "Expenses", :action => "expense_list" %></li>
+  <li><%= link_to "#{t('asset.expenses')}", :action => "expense_list" %></li>
  </ul>
 </div>
 <div id="page-yield">

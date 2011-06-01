@@ -1,7 +1,7 @@
 <div id="content-header">
   <img src="/images/examination/index/page_logo.jpg" alt="" />
-  <h1>Finance Monthly Report</h1>
-  <h3>Donations</h3>
+  <h1><%= t('asset.finance_monthly_report') %></h1>
+  <h3><%= t('index.donations') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -14,9 +14,9 @@
   <%donations_expenses=0%>
   <div id="fees-table">
     <div class="fees-th">
-      <div class="fees-table-description">Description</div>
-      <div class="fees-table-expenses">Credit</div>
-      <div class="fees-table-income">Debit</div>
+      <div class="fees-table-description"><%= t('layouts.default.description') %></div>
+      <div class="fees-table-expenses"><%= t('asset.credit') %></div>
+      <div class="fees-table-income"><%= ('asset.debit') %></div>
     </div>
 
     <% @donations.each do |d| %>
@@ -49,7 +49,7 @@
     <%donations_total=donations_income-donations_expenses %>
     <br/>
     <div class="fees-th">
-      <div class="fees-table-description">Total</div>
+      <div class="fees-table-description"><%= t('department_payslip.total') %></div>
       <div class="fees-table-total"><%=donations_total%></div>
     </div>
 

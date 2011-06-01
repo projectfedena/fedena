@@ -2,7 +2,7 @@
   <% @triggers.each do |trigger| %>
     <li class="list<%= cycle('odd','even') %>">
       <div class="category-name"><%= trigger.finance_category.name %> - <%= trigger.percentage %></div>
-      <div class="category-delete"><%= link_to_remote "Edit",:url=>{:controller=>'finance',:action=>'transaction_trigger_edit',:id=>trigger.id} %></div>
-      <div class="category-delete"><%= link_to_remote "Delete",:url=>{:controller=>'finance',:action=>'transaction_trigger_delete',:id=>trigger.id} %></div></li>
+      <div class="category-delete"><%= link_to_remote t('layouts.default.edit'),:url=>{:controller=>'finance',:action=>'transaction_trigger_edit',:id=>trigger.id} %></div>
+      <div class="category-delete"><%= link_to_remote t('layouts.default.delete'),:url=>{:controller=>'finance',:action=>'transaction_trigger_delete',:id=>trigger.id} %></div></li>
   <% end %>
 </ul>

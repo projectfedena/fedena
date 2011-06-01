@@ -1,7 +1,7 @@
 <div id="content-header">
   <img src="/images/show_finance.png" alt="" />
-  <h1>Finance Monthly Report</h1>
-  <h3>Donations</h3>
+  <h1><%= t('asset.finance_monthly_report') %></h1>
+  <h3><%= t('index.donations') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -14,24 +14,22 @@
   <%donations_expenses=0%>
   <table id="listing">
     <tr class="tr-head">
-      <td>Description</td>
-      <td>Expense</td>
-      <td>Income</td>
-      <td>Date</td>
+      <td><%= t('index.description') %></td>
+      <td><%= t('expense_create.expense') %></td>
+      <td><%= t('income_create.income') %></td>
+      <td><%= t('layouts.default.date') %></td>
     </tr>
     <% @donations.each do |d| %>
       <tr class="tr-<%= cycle('even','odd') %>">
         <td class="col-2"><%=d.title %></td>
         <% if d.master_transaction_id == 0  %>
           <td></td>
-          <% donations_income+=d.amount %>
-          <td class="col-7"><%=d.amount %></td>
+          <td class="col-2"><%=d.amount %></td>
         <% else %>
-          <% donations_expenses+=d.amount %>
-          <td class="col-7"><%=d.amount.to_f %></td>
+          <td class="col-2"><%=d.amount.to_f %></td>
           <td></td>
         <% end %>
-        <td class="col-4"><%=d.transaction_date.strftime("%m-%d-%Y") %></td>
+        <td class="col-2"><%=d.transaction_date.strftime("%m-%d-%Y") %></td>
       </tr>
       <!-- <%# unless @trigger.nil? %>
   <%# @trigger.each do |trigger|   %>
@@ -46,10 +44,10 @@
     <% end %>
     <%donations_total=donations_income-donations_expenses %>
     <tr class="tr-head">
-      <td>Total</td>
+      <td><%= t('layouts.default.total') %></td>
       <%= '<td></td>' if donations_income > donations_expenses %>
       <td <%='colspan="2"' if donations_income<donations_expenses%> ><%=donations_total%></td>
-      <td></td>
+        <td></td>
     </tr>
 
   </table>

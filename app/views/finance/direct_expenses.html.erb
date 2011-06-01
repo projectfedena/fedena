@@ -1,7 +1,7 @@
 <div id="content-header">
   <img src="/images/examination/index/page_logo.jpg" alt="" />
-  <h1>Finance Monthly Report</h1>
-  <h3>Direct Expenses</h3>
+  <h1><%= t('asset.finance_monthly_report') %></h1>
+  <h3><%= t('year_report.direct_expenses') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -12,8 +12,8 @@
   <%expenses_total = 0%>
   <div id="fees-table">
     <div class="fees-th">
-      <div class="fees-table-description">Description</div>
-      <div class="fees-table-expenses">Amount</div>
+      <div class="fees-table-description"><%= t('index.description') %></div>
+      <div class="fees-table-expenses"><%= t('layouts.default.amount') %></div>
     </div>
 
     <% @transactions_not_fees.each do |t| %>
@@ -28,7 +28,7 @@
     <%end%>
     <br/>
     <div class="fees-th">
-      <div class="fees-table-description">Total Expenses</div>
+      <div class="fees-table-description"><%= t('asset.total_expenses') %></div>
       <div class="fees-table-expenses"><%=expenses_total%></div>
     </div>
 

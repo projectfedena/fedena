@@ -1,7 +1,7 @@
 <div id="content-header">
   <img src="/images/admission/admission_page_logo.jpg" />
-  <h1>Transactions</h1>
-  <h3>Monthly Transactions</h3>
+  <h1><%= t('index.transactions') %></h1>
+  <h3><%= t('monthly_report.monthly_transactions') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -10,8 +10,8 @@
 <div id="page-yield">
 
   <% form_for :report, :url => {:action => 'update_monthly_report'} do |form| %>
-    <p>Select start date:<%= calendar_date_select_tag 'start_date', Date.today %></p>
-    <p>Select End date:  <%= calendar_date_select_tag 'end_date', Date.today %></p>
-    <p><%= form.submit("► get report ") %></p>
+    <p>Select start date:<%= calendar_date_select_tag 'start_date', I18n.localize(Date.today, :format=>:default) %></p>
+    <p>Select End date:  <%= calendar_date_select_tag 'end_date', I18n.localize(Date.today, :format=>:default) %></p>
+    <p><%= form.submit("► #{t('compare_report.get_report')} ") %></p>
   <%end%>
 </div>

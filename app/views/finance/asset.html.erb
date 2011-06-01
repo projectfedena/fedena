@@ -1,7 +1,7 @@
 <div id="content-header">
    <img src="/images/show_finance.png" alt="" />
-  <h1>Asset-Liability Management</h1>
-  <h3>Assets</h3>
+   <h1><%= t('asset_liability_mangmnt') %></h1>
+   <h3><%= t('assets') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -11,18 +11,18 @@
   <div class="box">
   <div class ="link-box">
     <div class="link-heading">
-      <%= link_to_function("Create") { |page|
+      <%= link_to_function("#{t('layouts.default.create')}") { |page|
         page.replace_html 'modal-box', :partial => 'create_asset_form'
-        page << "Modalbox.show($('modal-box'), {title: 'Create new Asset', width: 500});"
+        page << "Modalbox.show($('modal-box'), {title: '#{t('create_new_asset')}', width: 500});"
       } %>
     </div>
-    <div class="link-descr"> creates new asset </div>
+    <div class="link-descr"> <%= t('creates_new_assets') %> </div>
   </div>
 
 
   <div class="link-box">
-    <div class="link-heading"><%= link_to "View", :action => "view_asset" %> </div>
-    <div class="link-descr"> Asset view</div>
+    <div class="link-heading"><%= link_to t('timetable.index.view'), :action => "view_asset" %> </div>
+    <div class="link-descr"> <%= t('asset_view') %></div>
   </div>
 
   <div id="modal-box" style="display:none;"></div>

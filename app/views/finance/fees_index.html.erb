@@ -1,7 +1,7 @@
 <div id="content-header">
   <img src="/images/show_finance.png" alt="" />
-  <h1>Fees</h1>
-  <h3>Manages Fees</h3>
+  <h1><%= t('index.fees') %></h1>
+  <h3><%= t('index.manage_fees') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -11,28 +11,28 @@
   <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
   <div class="box">
   <div class="link-box">
-    <div class="link-heading"><%= link_to "Fees Create", :action => "fees_create" %></div>
-    <div class="link-descr">Creates Master Fees and Additional Fees</div>
+    <div class="link-heading"><%= link_to "#{t('index.create_fees')}  ", :action => "fees_create" %></div>
+    <div class="link-descr"><%= t('creates_master_fees_and_additional_fees') %></div>
   </div>
 
   <div class="link-box">
-    <div class="link-heading"><%= link_to "Fee collection", :action => "fee_collection" %></div>
-    <div class="link-descr">Creates new fee collecting dates </div>
+    <div class="link-heading"><%= link_to "#{t('fees_index.fees_collection')}", :action => "fee_collection" %></div>
+    <div class="link-descr"><%= t('creates_new_fee_collecting_dates') %> </div>
   </div>
 
   <div class="link-box">
-    <div class="link-heading"><%= link_to "Fees", :controller => "finance" , :action => "fees_submission_index" %> </div>
-    <div class="link-descr">Fee Submission </div>
+    <div class="link-heading"><%= link_to t('index.fees'), :controller => "finance" , :action => "fees_submission_index" %> </div>
+    <div class="link-descr"><%= t('fees_submission_index.fees_submission') %></div>
   </div>
 
   <div class="link-box">
-    <div class="link-heading"><%= link_to "Fees Structure", :action => "fees_student_structure_search" %> </div>
-    <div class="link-descr">Displays fees Structure for student</div>
+    <div class="link-heading"><%= link_to "#{t('fees_student_structure_search.fees_structure')}", :action => "fees_student_structure_search" %> </div>
+    <div class="link-descr"><%= t('displays_fees_structure_for_student') %></div>
   </div>
 
   <div class="link-box">
-    <div class="link-heading"><%= link_to "Fees Defaulters", :action => "fees_defaulters" %></div>
-    <div class="link-descr">Students with fees dues </div>
+    <div class="link-heading"><%= link_to "#{t('fees_defaulters.fees_defaulters')}", :action => "fees_defaulters" %></div>
+    <div class="link-descr"><%= t('students_with_fees_dues') %> </div>
   </div>
 </div>
 </div>

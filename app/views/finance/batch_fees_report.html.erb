@@ -1,7 +1,7 @@
 <div id="content-header">
   <img src="/images/show_finance.png" alt="" />
-  <h1>Finance Transactions</h1>
-  <h3><%=@batch.full_name%> Fees Report</h3>
+  <h1><%= t('transactions.finance_transactions') %></h1>
+  <h3><%=@batch.full_name%> <%= t('year_report.fees_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -10,12 +10,12 @@
 <div id="page-yield">
   <% total =0 %>
 
-  <b style="margin-left:200px;"><%= @batch.full_name%>  TRANSACTION REPORT </b>
+  <b style="margin-left:200px;"><%= @batch.full_name%>  <%= t('year_report.transacation_report') %> </b>
   <div id="fees-table">
     <div class="fees-th">
-      <div class="fees-table-description">Student Name</div>
-      <div class="fees-table-expenses">Amount</div>
-      <div class="fees-table-date">Date</div>
+      <div class="fees-table-description"><%= t('student_attendance.student.student_name') %></div>
+      <div class="fees-table-expenses"><%= t('layouts.default.amount') %></div>
+      <div class="fees-table-date"><%= t('layouts.default.date') %></div>
     </div>
     <% @fees.each do |f| %>
       <% unless f.transaction.nil? %>
@@ -34,7 +34,7 @@
     <% end %>
     <br/>
     <div class="fees-th">
-      <div class="fees-table-description">Total Fees</div>
+      <div class="fees-table-description"><%= t('fees_submission_index.total_fees') %></div>
       <div class="fees-table-expenses"><%=total %></div>
     </div>
   </div>

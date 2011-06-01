@@ -1747,6 +1747,7 @@ en: # locale
         aprove_monthly_payslip : 'Approve monthly payslip'
         total_deductions : 'Total Deductions'
         payslip_approved : 'Payslip approved!'
+        payslip_rejected : 'Payslip rejected!'
       approve_monthly_payslip :
         approve_payslip : 'Approve Payslip'
         salary_month : 'Salary Month'
@@ -1777,12 +1778,14 @@ en: # locale
         expenses: 'Expenses'
         edit_expense: 'Edit expense'
         expenses_list: 'Expenses List'
+        edit_asset : "Edit Asset"
       view_asset :
         created_at : 'Created At'
       liability :
         creates_new_liability : 'Creates new liability'
         liability_view : 'Liability view'
         create_new_liability : 'Create New Liability'
+        edit_liability: "Edit Liability"
       update_ajax:
         receipt_no : 'Receipt No'
       graph_for_compare_monthly_report:
@@ -2408,6 +2411,7 @@ en: # locale
         oct : "Oct"
         nov : "Nov"
         dec : "Dec"
+        reject  : "Reject"
 
 
 

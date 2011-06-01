@@ -1,20 +1,20 @@
 <div id="content-header">
   <img src="/images/show_finance.png" alt="Finance" />
-  <h1>Employee Salary Report</h1>
-  <h3>Payslip for <%= @employee.full_name %> on <%= @salary_date %></h3>
+  <h1><%= t('index.employee_salary_report') %></h1>
+  <h3><%= t('index.payslip_for') %> <%= @employee.full_name %> on <%= @salary_date %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
 <div id="page-yield">
-  
+
 
 
 
 
 <ul class="item-list">
-  <li class="heading">Payslip generated for <%= @employee.full_name %></li>
+  <li class="heading"><%= t('index.payslip_generated_for') %> <%= @employee.full_name %></li>
 </ul>
 <ul class="item-list">
   <% @monthly_payslips.each do |mp| %>
@@ -30,7 +30,7 @@
 </ul>
 
 <ul class="item-list">
-  <li class="heading">Deductions:</li>
+  <li class="heading"><%= t('department_payslip.deductions') %>:</li>
   <% @monthly_payslips.each do |mp| %>
     <% category = PayrollCategory.find(mp.payroll_category_id) %>
     <% @emp = Employee.find(mp.employee_id) %>
@@ -45,7 +45,7 @@
 
 <% unless @individual_payslip_category.empty? %>
   <ul class="item-list">
-    <li class="heading">Additional :</li>
+    <li class="heading"><%= t('additional_fees.additional') %> :</li>
     <% @individual_payslip_category.each do |pc| %>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="item-name"><%= pc.name %></div>
@@ -56,18 +56,18 @@
 <% end %>
 
 <ul class="item-list">
-  <li class="heading">Total:</li>
+  <li class="heading"><%= t('department_payslip.total') %>:</li>
   <li class="listodd">
-    <div class="item-name">Deductions :</div>
+    <div class="item-name"><%= t('payroll.deductions') %> :</div>
     <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%=@net_deductionable_amount %></div>
   </li>
   <li class="listeven">
-    <div class="item-name">Salary :</div>
+    <div class="item-name"><%= t('employee.profile.salary') %> :</div>
     <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%=@net_amount%></div>
   </li>
 </ul>
 
 
 
-  
+
 </div>
