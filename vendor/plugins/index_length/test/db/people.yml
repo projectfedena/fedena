@@ -1,0 +1,20 @@
+michael:
+  id: 1
+  first_name: Michael
+  last_name: Knight
+  permalink: michael-knight
+  administrador: false
+  
+david:
+  id: 2
+  first_name: David
+  last_name: Brian
+  permalink: david-brian
+  administrador: true
+  
+susan:
+  id: 3
+  first_name: Susan
+  last_name: Lee
+  permalink: susan-lee
+  administrador: false

@@ -1,6 +1,9 @@
 module WickedPdfHelper
-  def wicked_pdf_stylesheet_link_tag(style)
-    stylesheet_link_tag style, "file://#{Rails.root.join('public','stylesheets',style)}"
+  def wicked_pdf_stylesheet_link_tag(*sources)
+    css_dir = Rails.root.join('public','stylesheets')
+    sources.collect { |source|
+      "<style type='text/css'>#{File.read(css_dir.join(source+'.css'))}</style>"
+    }.join("\n").html_safe
   end
 
   def wicked_pdf_image_tag(img, options={})

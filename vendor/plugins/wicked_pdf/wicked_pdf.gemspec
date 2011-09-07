@@ -1,12 +1,11 @@
 Gem::Specification.new do |s|
   s.name              = "wicked_pdf"
-  s.version           = "0.6.0"
+  s.version           = "0.7.0"
   s.date              = Time.now.strftime('%Y-%m-%d')
   s.summary           = "PDF generator (from HTML) plugin for Ruby on Rails"
   s.homepage          = "http://github.com/mileszs/wicked_pdf"
   s.email             = "miles.sterrett@gmail.com"
   s.authors           = [ "Miles Z. Sterret" ]
-  s.has_rdoc          = false
 
   s.files             = %w( README.md Rakefile MIT-LICENSE )
   s.files            += Dir.glob("lib/**/*")

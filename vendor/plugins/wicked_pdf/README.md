@@ -12,7 +12,7 @@ First, be sure to install [wkhtmltopdf](http://code.google.com/p/wkhtmltopdf/).
 Note that versions before 0.9.0 [have problems](http://code.google.com/p/wkhtmltopdf/issues/detail?id=82&q=vodnik) on some machines with reading/writing to streams.
 This plugin relies on streams to communicate with wkhtmltopdf.
 
-More information about [wkhtmltopdf](http://code.google.com/p/wkhtmltopdf/) could be found [here](http://madalgo.au.dk/~jakobt/wkhtmltopdf-0.9.0_beta2-doc.html).
+More information about [wkhtmltopdf](http://code.google.com/p/wkhtmltopdf/) could be found [here](http://madalgo.au.dk/~jakobt/wkhtmltoxdoc/wkhtmltopdf-0.9.9-doc.html).
 
 Next:
 
@@ -39,12 +39,14 @@ Next:
           format.html
           format.pdf do
             render :pdf                            => 'file_name',
-                   :template                       => 'things/show.pdf.erb',        
+                   :template                       => 'things/show.pdf.erb',
                    :layout                         => 'pdf.html',                   # use 'pdf.html' for a pfd.html.erb file
                    :wkhtmltopdf                    => '/usr/local/bin/wkhtmltopdf', # path to binary
                    :show_as_html                   => params[:debug].present?,      # allow debuging based on url param
                    :orientation                    => 'Landscape',                  # default Portrait
                    :page_size                      => 'A4, Letter, ...',            # default A4
+                   :save_to_file                   => Rails.root.join('pdfs', "#{filename}.pdf"),
+                   :save_only                      => false,                        # depends on :save_to_file being set first
                    :proxy                          => 'TEXT',
                    :username                       => 'TEXT',
                    :password                       => 'TEXT',
@@ -71,7 +73,9 @@ Next:
                                :bottom             => SIZE,
                                :left               => SIZE,
                                :right              => SIZE},
-                   :header => {:html => {:template => 'users/header.pdf.erb' OR :url => 'www.header.bbb'},
+                   :header => {:html => { :template => 'users/header.pdf.erb', # use :template OR :url
+                                          :url      => 'www.example.com',
+                                          :locals   => { :foo => @bar }},
                                :center             => 'TEXT',
                                :font_name          => 'NAME',
                                :font_size          => SIZE,
@@ -79,7 +83,9 @@ Next:
                                :right              => 'TEXT',
                                :spacing            => REAL,
                                :line               => true},
-                   :footer => {:html => {:template => 'public/header.pdf.erb' OR :url => 'www.header.bbb'},
+                   :footer => {:html => { :template => 'shared/footer.pdf.erb', # use :template OR :url
+                                          :url      => 'www.example.com',
+                                          :locals   => { :foo => @bar }},
                                :center             => 'TEXT',
                                :font_name          => 'NAME',
                                :font_size          => SIZE,
@@ -116,6 +122,26 @@ Next:
     end
 
 By default, it will render without a layout (:layout => false) and the template for the current controller and action.
+
+### Super Advanced Usage ###
+
+If you need to just create a pdf and not display it:
+
+    # create a pdf from a string
+    pdf = WickedPdf.new.pdf_from_string('<h1>Hello There!</h1>')
+		
+    # or from your controller, using views & templates and all wicked_pdf options as normal
+    pdf = render_to_string :pdf => "some_file_name"
+		
+    # then save to a file
+    save_path = Rails.root.join('pdfs','filename.pdf')
+    File.open(save_path, 'wb') do |file|
+      file << pdf
+    end
+
+If you need to display utf encoded characters, add this to your pdf views or layouts:
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
 ### Styles
 
@@ -165,6 +191,10 @@ A bit of javascript can help you number your pages, create a template or header/
 
 Anything with a class listed in "var x" above will be auto-filled at render time.
 
+If you do not have explicit page breaks (and therefore do not have any "page" class), you can also use wkhtmltopdf's built in page number generation by setting one of the headers to "[page]":
+
+    render :pdf => 'filename', :header => { :right => '[page] of [topage]' }
+
 ### Configuration
 
 You can put your default configuration, applied to all pdf's at "wicked_pdf.rb" initializer.
@@ -191,4 +221,4 @@ You may have noticed: this plugin is heavily inspired by the PrinceXML plugin [p
 
 ### Awesome Peoples
 
-Also, thanks to [galdomedia](http://github.com/galdomedia) and [jcrisp](http://github.com/jcrisp) and [lleirborras](http://github.com/lleirborras), [tiennou](http://github.com/tiennou), and everyone else for all their hard work and patience with my delays in merging in their enhancements.
+Also, thanks to [unixmonkey](https://github.com/Unixmonkey), [galdomedia](http://github.com/galdomedia), [jcrisp](http://github.com/jcrisp), [lleirborras](http://github.com/lleirborras), [tiennou](http://github.com/tiennou), and everyone else for all their hard work and patience with my delays in merging in their enhancements.

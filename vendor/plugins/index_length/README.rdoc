@@ -1,0 +1,30 @@
+= Mysql Index Length
+
+Defining an index length is a commong practice in order to avoid large data indexes, and improve performance. This plugin adds support for index lengths on the MySQL adapter. With this plugin, you can specify easily index lengths in your migrations.
+
+== Example
+
+How to define index lengths in your migrations?
+
+	add_index(:accounts, :name, :limit => 10) 
+generates CREATE INDEX by_name ON accounts(name(10))
+
+	add_index(:accounts, [:name, :surname], :name => 'by_name_surname', :limit => 10) 
+generates CREATE INDEX by_name_surname ON accounts(name(10), surname(10))
+
+	add_index(:accounts, [:name, :surname], :name => 'by_name_surname', :limit => {:name => 10, :surname => 20}) 
+generates CREATE INDEX by_name_surname ON accounts(name(10), surname(20))
+
+Note that :name parameter is optional.
+
+== How to test?
+
+Create a MySQL database named mysql_index_length_plugin_test, go to vendor/plugins/mysql_index_length and run rake
+
+== Issues
+
+Use the GitHub Issue Tracker
+http://github.com/eparreno/mysql_index_length/issues
+
+Copyright (c) 2009 Emili Parreño - www.eparreno.com, released under the MIT license
+
