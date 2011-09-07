@@ -1,3 +1,22 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
 
 <div id="content-header">
   <img src="/images/show_finance.png" alt="Finance" />
@@ -19,33 +38,34 @@
     </tr>
     <tr class="tr-blank"></tr>
     <% amount=0 %>
-    <% @employees.each_with_index do |e,i| %>
-        <% salary_dates= e.all_salaries(@start_date,@end_date) %>
-        <% unless salary_dates.empty? %>
-          <% salary_dates.each do |s| %>
-      <tr class="tr-<%= cycle("even","odd") %>">
-        <td class ="col-1"><%=i+1%></td>
-            <td class="col-2"><%= link_to e.full_name + " - " , :action => 'employee_payslip_monthly_report',:id2 => s.salary_date.to_date,:id => e.id %> <%=s.salary_date.strftime("%B,%Y")%> </td>
-            <%  amount = e.employee_salary(s.salary_date.to_date)%>
-            <td class="col-3" align="right"> <%=  amount  %> </td>
-            <td class="col-3"> <%=s.salary_date %> </td>
-            <% total+=amount %>
-            <% amount=0 %>
-          <% end %>
-        </tr>
-        <% else %>
-      <tr class="tr-<%= cycle("even","odd") %>">
-	      <td class ="col-1"><%=i+1%></td>
-          <td class="col-2"><%=e.full_name %> </td>
-          <td class="col-3" align="right">0</td>
-          <td class="col-3">N.A.</td>
+    <% monthly_payslips = @payslips[:monthly_payslips].group_by(&:salary_date) %>
+    <% individual_categories = @payslips[:individual_categories].group_by(&:employee_id) %>
+    <% i = 0 %>
+    <% monthly_payslips.each do |(salary_date,payslip)| %>
+      <% emp_payslip = payslip.group_by(&:employee_id) %>
+      <% emp_payslip.each do |(empid,payslip)| %>
+        <% unless individual_categories.blank? %>
+          <%  individual_payslip_category = individual_categories[empid] unless individual_categories[empid].nil?  %>
+        <% end %>
+        <% employee_id = payslip.first.active_or_archived_employee.class.to_s=="ArchivedEmployee" ?  payslip.first.active_or_archived_employee.former_id :  payslip.first.active_or_archived_employee.id %>
+        <tr class="tr-<%= cycle("even","odd") %>">
+          <td class ="col-1"><%=i+1%></td>
+          <td class="col-2"><%= link_to payslip.first.active_or_archived_employee.full_name + " - " , :action => 'employee_payslip_monthly_report',:id2 => salary_date.to_date,:id =>employee_id %> <%=salary_date.strftime("%B,%Y")%> </td>
+          <%  amount = Employee.calculate_salary(payslip,individual_payslip_category)[:net_amount]%>
+          <td class="col-3" align="right"> <%=  amount  %> </td>
+          <td class="col-3"> <%=salary_date %> </td>
+          <% total+=amount %>
+          <% amount=0 %>
+          <% i +=1 %>
         </tr>
       <% end %>
+
+
     <% end %>
     <tr class="tr-blank"></tr>
     <tr class="tr-head">
-      <td>Total Salary</td>
       <td></td>
+      <td align="right">Total Salary</td>
       <td align="right"><%=total  %></td>
       <td></td>
     </tr>

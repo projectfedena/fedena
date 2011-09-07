@@ -1,10 +1,28 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class User < ActiveRecord::Base
   attr_accessor :password, :role, :old_password, :new_password, :confirm_password
 
   validates_uniqueness_of :username, :email
   validates_length_of     :username, :within => 1..20
   validates_length_of     :password, :within => 4..40, :allow_nil => true
-  validates_format_of     :username, :with => /^[A-Z0-9_]*$/i,
+  validates_format_of     :username, :with => /^[A-Z0-9_-]*$/i,
     :message => "must contain only letters, numbers, and underscores"
   validates_format_of     :email, :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,
     :message => "must be a valid email address"
@@ -13,6 +31,9 @@ class User < ActiveRecord::Base
   validates_presence_of   :password, :on => :create
   
   has_and_belongs_to_many :privileges
+
+  has_one :student_record,:class_name=>"Student",:foreign_key=>"user_id"
+  has_one :employee_record,:class_name=>"Employee",:foreign_key=>"user_id"
 
   def before_save
     self.salt = random_string(8) if self.salt == nil
@@ -62,7 +83,7 @@ class User < ActiveRecord::Base
   
   def role_symbols
     prv = []
-    privileges.map { |privilege| prv << privilege.name.underscore.to_sym }
+    @privilge_symbols ||= privileges.map { |privilege| prv << privilege.name.underscore.to_sym }
    
     if admin?
       return [:admin] + prv
@@ -73,14 +94,6 @@ class User < ActiveRecord::Base
     else
       return prv
     end
-  end
-
-  def student_record
-    Student.find_by_admission_no(self.username)
-  end
-
-  def employee_record
-    Employee.find_by_employee_number(self.username)
   end
   
 end

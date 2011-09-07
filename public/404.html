@@ -1,30 +1,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>The page you were looking for doesn't exist (404)</title>
-	<style type="text/css">
-		body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-		div.dialog {
-			width: 25em;
-			padding: 0 4em;
-			margin: 4em auto 0 auto;
-			border: 1px solid #ccc;
-			border-right-color: #999;
-			border-bottom-color: #999;
-		}
-		h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-	</style>
-</head>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>The page you were looking for doesn't exist (404)</title>
+        <style type="text/css">
+            body { background-color: #f7f6f6; color: #666; text-align: center; font-family: arial, sans-serif; }
+            #wrapper{ width: 690px; height: auto;margin: 0 auto;padding-top: 50px;}
+            .top{overflow: hidden;}
+            .image{ width:245px; height: 310px; float: left; background : #b00 url(../../images/404.png) repeat;
+                    margin-top: 15px;}
+            .dialogue{ width:360px; height: 310px; float: left;padding-left: 30px;}
+            .dialogue h1{color: #ab0008; font-weight: normal; font-size: 98px;margin-bottom: 3px;margin-top: 10px;}
+            .dialogue h3{color: #ab0008; font-weight: normal; font-size: 36px;margin-top: 3px;}
+            .bottom{width: 650px;text-align: justify;color: #000000; font-size: 23px;padding-top: 20px;}
+            .footer{background-color: transparent;}
+            .footer a{color:#ab0008;text-decoration: none; font-size:16px;text-align: left;font-weight: bold;}
+            .go-back{width:200px;float: left;text-align: left;}
+            .fedena-home{width:200px;float: left;text-align: center;padding-left: 16px;}
+            .contact-fedena{width:200px;float: left;text-align: center;padding-left: 61px;}
 
-<body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-</body>
+        </style>
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <div class="top">
+                <div class="image">
+
+                </div>
+                <div class="dialogue">
+                    <h1>SORRY</h1>
+                    <h3>404 - Page not found</h3>
+                </div>
+            </div>
+            <div class="bottom">
+                <p>The page you are looking for could not be found. The link to this address may be outdated, or it may be temporarily unavailable.</p>
+            </div>
+            <div class="footer">
+                <div class="go-back">
+                    <a href="javascript: history.back()">GO BACK</a>
+                </div>
+                <div class="fedena-home">
+                    <a href="http://www.projectfedena.org/" target="_blank">FEDENA HOME</a>
+                </div>
+                <div class="contact-fedena">
+                    <a href="http://www.projectfedena.org/contact/" target="_blank">CONTACT FEDENA</a>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

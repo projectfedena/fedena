@@ -1,3 +1,22 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
 <div id="register">
       <div class="header">
         <div class="prev">
@@ -15,8 +34,11 @@
 
 <div class="table">
   <% @batches.each do |b| %>
-      <% @timetable = TimetableEntry.find_all_by_batch_id_and_weekday_id(b.id, @today.wday) %>
-      <% unless @timetable.empty? %>
+    <% weekday = Weekday.find_by_batch_id_and_weekday(b.id, @today.wday) %>
+    <% weekday = Weekday.find_by_batch_id_and_weekday(nil, @today.wday) if weekday.blank? %>
+
+      <% @timetable = TimetableEntry.find_all_by_batch_id_and_weekday_id(b.id, weekday.id) unless weekday.blank? %>
+      <% unless @timetable.blank? %>
     <table border="0" align="center" width="100%" id="timing"  cellspacing="0">
       <tr>
         <td class="head">

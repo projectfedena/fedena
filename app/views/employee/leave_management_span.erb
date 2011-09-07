@@ -1,0 +1,56 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Span Leave Management</h1>
+  <h3>My span</h3>
+  <div id="app-back-button">
+   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+
+<div id="page-yield">
+
+
+<% unless @reporting_employees == [] %>
+
+      <div id="new-application-links">
+        <%= link_to_remote "New leave applications",
+        :update => "application-list",
+        :url => {:controller=>"employee_attendance",:action => "new_leave_applications", :id=>@employee.id} %>
+      [<%= @total_leave_count %>]
+      </div>
+
+      <div id="all-application-links">
+        <%= link_to_remote "All leave applications",
+        :update => "application-list",
+        :url => {:controller=>"employee_attendance",:action => "all_leave_applications", :id=>@employee.id} %>
+      </div>
+
+
+<br/><br/>
+
+    <% else %> No employees under my span.
+    <% end %>
+
+<div id="application-list"> </div>
+</div>

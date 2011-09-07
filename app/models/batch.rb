@@ -1,3 +1,21 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class Batch < ActiveRecord::Base
   belongs_to :course
 
@@ -16,8 +34,8 @@ class Batch < ActiveRecord::Base
 
   validates_presence_of :name, :start_date, :end_date
 
-  named_scope :active, :conditions => { :is_deleted => false, :is_active => true }
-  named_scope :deleted, :conditions => { :is_deleted => true }
+  named_scope :active,{ :conditions => { :is_deleted => false, :is_active => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
+  named_scope :deleted,{:conditions => { :is_deleted => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
 
   def validate
     errors.add(:start_date, 'should be before end date.') \

@@ -1,30 +1,58 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
-<head>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <title>We're sorry, but something went wrong (500)</title>
-	<style type="text/css">
-		body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-		div.dialog {
-			width: 25em;
-			padding: 0 4em;
-			margin: 4em auto 0 auto;
-			border: 1px solid #ccc;
-			border-right-color: #999;
-			border-bottom-color: #999;
-		}
-		h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-	</style>
-</head>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>Internal Server Error (500)</title>
+        <style type="text/css">
+            body { background-color: #f7f6f6; color: #666; text-align: center; font-family: arial, sans-serif; }
+            #wrapper{ width: 690px; height: auto;margin: 0 auto;padding-top: 50px;}
+            .top{overflow: hidden;}
+            .image{ width:245px; height: 318px; float: left; background : #b00 url(../../images/500.png) repeat;
+                    margin-top: 15px;}
+            .dialogue{ width:393px; height: 310px; float: left;padding-left: 30px;}
+            .dialogue h1{color: #ab0008; font-weight: normal; font-size: 145px;margin-bottom: 3px;margin-top: 10px;}
+            .dialogue h3{color: #ab0008; font-weight: normal; font-size: 35px;margin-top: 3px;margin-bottom: 5px;}
+            .dialogue h4{color: #828080; font-weight: normal; font-size: 30px;margin-top: 3px;}
+            .bottom{width: 650px;text-align: justify;color: #000000; font-size: 23px;}
+            .bottom p{margin-top:5px;}
+            .footer{background-color: transparent;}
+            .footer a{color:#ab0008;text-decoration: none; font-size:16px;text-align: left;font-weight: bold;}
+            .go-back{width:200px;float: left;text-align: left;}
+            .fedena-home{width:200px;float: left;text-align: center;padding-left: 16px;}
+            .contact-fedena{width:200px;float: left;text-align: center;padding-left: 61px;}
 
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
-    <p>We've been notified about this issue and we'll take a look at it shortly.</p>
-  </div>
-</body>
+        </style>
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <div class="top">
+                <div class="image">
+
+                </div>
+                <div class="dialogue">
+                    <h1>Oops!</h1>
+                    <h3>Something went wrong</h3>
+                    <h4>500 - Internal Server Error</h4>
+                </div>
+            </div>
+            <div class="bottom">
+                <p>Don't worry, our engineers are working on it. Your Fedena will be back soon.</p>
+            </div>
+            <div class="footer">
+                <div class="go-back">
+                    <a href="javascript: history.back()">GO BACK</a>
+                </div>
+                <div class="fedena-home">
+                    <a href="http://www.projectfedena.org/" target="_blank">FEDENA HOME</a>
+                </div>
+                <div class="contact-fedena">
+                    <a href="http://www.projectfedena.org/contact/" target="_blank">CONTACT FEDENA</a>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

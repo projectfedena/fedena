@@ -3,6 +3,13 @@ require File.expand_path(File.dirname(__FILE__) + './../test_helper')
 class BatchTest < ActiveSupport::TestCase
   should_have_many :students
   should_have_many :exam_groups
+  should_has_many :archived_students
+  should_has_many :grading_levels, :conditions => { :is_deleted => false }
+  should_has_many :subjects, :conditions => { :is_deleted => false }
+  should_has_many :fee_category , :class_name => "FinanceFeeCategory"
+  should_has_many :elective_groups
+  should_has_many :additional_exam_groups
+
   should_belong_to :course
 
   should_validate_presence_of :name

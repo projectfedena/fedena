@@ -1,0 +1,45 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div class="box">
+  <% remote_form_for :leave_count,:url=>{:action=>'employee_leave_count_update', :id=>@leave_count.id} do |c| %>
+    <div id="form-content">
+      <div class="label-field-pair">
+        <label for="category_name">Leave name</label>
+        <div class="text-bg"><%= @leave_type.name %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="category_name">Available leave</label>
+        <div class="text-input-bg"><%= c.text_field :leave_count %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="category_name">Leave taken</label>
+        <div class="text-bg"><%= @leave_count.leave_taken %></div>
+      </div>
+        
+      <div id="submit-button">
+          <%=submit_tag("► Save") %>
+      </div>
+
+
+    </div>
+  <%end%>
+  </div>

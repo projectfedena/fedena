@@ -146,3 +146,7 @@ input#employee_image_file{
     width:75px;
     float:left;
 }
+
+input#employee_photo{
+    height: 28px;
+}

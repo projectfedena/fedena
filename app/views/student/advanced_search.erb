@@ -1,0 +1,314 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <img src="/images/student_details/student_details_logo.jpg" />
+  <h1>Student</h1>
+  <h3>Advanced search</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% unless flash[:notice].nil? %>
+    <div class="show-msg"><div class="flash-msg"><%= flash[:notice] %></div> </div>
+  <% end %>
+  <div id="search-form">
+    <% form_for @search do |f| %>
+      <div class="label-field-pair">
+        <label for="name">Name</label>
+        <div class="text-input-bg">
+          <%= f.text_field :first_name_or_middle_name_or_last_name_like %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_admission_no">Admission no</label>
+        <div class="text-input-bg">
+          <%= f.text_field :admission_no_equals %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_course">Course<%= image_tag("loader.gif",
+            :align => "absmiddle",
+            :border => 0,
+            :id => "loader",
+            :style =>"display: none;" ) %></label>
+        <div class="text-input-bg">
+          <%= select :advv_search, :course_id, Course.active.map{|c| [c.course_name+" "+c.section_name, c.id]},
+            {:prompt=>'Select Course'},
+            {:onChange => "#{remote_function(:url => {:action => "list_batches"},
+            :with => "'course_id='+value",
+            :before => "Element.show('loader')",
+            :success => "Element.hide('loader')"
+            )}"}%>
+        </div>
+      </div>
+      <div class="label-field-pair" id="course_batches">
+        <label for="student_batch">Batch</label>
+        <div class="text-input-bg" >
+          <%= select :search,:batch_id_equals, @batches.map{|c| [c.name, c.id]},{:prompt=>'Select Batch'}%>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_category">Category</label>
+        <div class="text-input-bg">
+          <%= f.collection_select :student_category_id_equals,StudentCategory.active,:id,:name,{:prompt=>'Select Category'}%>
+        </div>
+      </div>
+      <div class="label_field_pair">
+        <label class="label_for_student" for="student_gender">Gender</label>
+        <div class="student_gender_value">
+          <%= f.radio_button  :gender_equals, "" %>
+          <label class="label_for_gender" for="student_gender_true">All</label>
+          <%= f.radio_button  :gender_equals, "m"%>
+          <label class="label_for_gender" for="student_gender_false">Male</label>
+          <%= f.radio_button  :gender_equals, "f" %>
+          <label class="label_for_gender" for="student_gender_false">Female</label>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_blood_group">Blood group</label>
+        <div class="text-input-bg">
+          <%= select :search, :blood_group_like, ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],{:prompt=>"Select"}%>
+        </div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="student_country">
+          Country
+        </label>
+        <div class="text-input-bg">
+          <%= f.collection_select :nationality_id_equals, Country.all,:id,:name,{:prompt=>"Select"}%>
+        </div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="student_grade">Admission Date</label>
+        <div class="text-input-bg">
+          <%= select :advv_search,:doa_option,["equal to","less than","greater than"],{:prompt=>"Option"},
+            {:onChange => "#{remote_function(:url => {:action => "list_doa_year"},
+            :with=>"'doa_option='+value",
+            :before => "Element.show('loader')",
+            :success => "Element.hide('loader')"
+            )}"}
+        %>
+          <%= image_tag("loader.gif",
+            :align => "absmiddle",
+            :border => 0,
+            :id => "loader",
+            :style =>"display: none;" ) %>
+          <div id="doa_year">
+            <%= select :advv_search,:doa_year,[],{:prompt=>"Select"} %>
+          </div>
+          <div id="doa_year_hidden"></div>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_birth_date">Birth date</label>
+        <div class="text-input-bg">
+          <%= select :advv_search,:dob_option,["equal to","less than","greater than"],{:prompt=>"Option"},
+            {:onChange => "#{remote_function(:url => {:action => "list_dob_year"},
+            :with=>"'dob_option='+value",
+            :before => "Element.show('loader')",
+            :success => "Element.hide('loader')",
+            :class=>'small-box'
+            )}"}
+        %>
+          <%= image_tag("loader.gif",
+            :align => "absmiddle",
+            :border => 0,
+            :id => "loader",
+            :style =>"display: none;" ) %>
+          <div id="dob_year">
+            <%= select :advv_search,:dob_year,[],{:prompt=>"Select"} %>
+          </div>
+          <div id="dob_year_hidden"></div>
+        </div>
+      </div>
+      <div class="label_field_pair">
+        <label class="label_for_student" for="student_gender">Status</label>
+        <div class="student_gender_value">
+          <%= f.radio_button  :is_active_equals, "true", {:checked => 'checked'} %>
+          <label class="label_for_gender" for="student_gender_true">Present</label>
+          <%= f.radio_button  :is_active_equals, "false" %>
+          <label class="label_for_gender" for="student_gender_false">Former</label>
+          <%= f.radio_button  :is_active_equals, "", {:checked => false} %>
+          <label class="label_for_gender" for="student_gender_false">All</label>
+
+        </div>
+      </div>
+
+
+      <%= f.submit "Search", :class=>'submit' %>
+    <% end %>
+  </div>
+  <% unless @students.nil? %>
+    <% @students= @students.to_a.sort_by{|s| s.first_name} %>
+    <script type="text/javascript">
+      Event.observe(window, 'load', function() { $('search-form').hide(); });
+    </script>
+    <div id="search-result">
+
+      <p>You have searched for:</p>
+      <div class="search-again">
+  <%#= link_to_function '► Search again' do |page|
+  page.visual_effect :toggle_slide, "search-form"
+  page.hide "search-result"
+  end %>
+
+        <% searched_for = 'Listed by ' %>
+        <% searched_for += 'Name: ' + params[:search][:first_name_or_middle_name_or_last_name_like].to_s unless params[:search][:first_name_or_middle_name_or_last_name_like].empty? %>
+        <% searched_for += ' Admission no.: ' + params[:search][:admission_no_equals].to_s unless params[:search][:admission_no_equals].empty? %>
+        <% unless params[:advv_search][:course_id].empty? %>
+          <% course = Course.find(params[:advv_search][:course_id]) %>
+          <% batch = Batch.find(params[:search][:batch_id_equals]) unless (params[:search][:batch_id_equals]).blank? %>
+          <% searched_for += ' Course: ' + course.full_name %>
+          <% searched_for += ' Batch: ' + batch.full_name unless batch.nil? %>
+        <% end %>
+        <% searched_for += ' Category: ' + StudentCategory.find(params[:search][:student_category_id_equals]).name.to_s unless params[:search][:student_category_id_equals].empty? %>
+        <% unless  params[:search][:gender_equals].empty? %>
+          <% if  params[:search][:gender_equals] == 'm' %>
+            <% searched_for += " Gender: male" %>
+          <% elsif  params[:search][:gender_equals] == 'f' %>
+            <% searched_for += " Gender: female" %>
+          <% else %>
+            <% searched_for += " Gender: All" %>
+          <% end %>
+        <% end %>
+        <% searched_for += ' Blood group: ' + params[:search][:blood_group_like].to_s unless params[:search][:blood_group_like].empty? %>
+        <% searched_for += ' Nationality: ' + Country.find(params[:search][:nationality_id_equals]).name.to_s unless params[:search][:nationality_id_equals].empty? %>
+        <% searched_for += ' Year of admission: ' +  params[:advv_search][:doa_option].to_s + ' '+ params[:adv_search][:admission_date_year].to_s unless  params[:advv_search][:doa_option].empty? %>
+        <% searched_for += ' Year of birth: ' +  params[:advv_search][:dob_option].to_s + ' ' + params[:adv_search][:birth_date_year].to_s unless  params[:advv_search][:dob_option].empty? %>
+        <% if params[:search][:is_active_equals]=="true" %>
+          <% searched_for += " Present students" %>
+        <% elsif params[:search][:is_active_equals]=="false" %>
+          <% searched_for += " Former students" %>
+        <% else %>
+          <% searched_for += " All students" %>
+        <% end %>
+
+
+        <%= link_to "► Search again", {:action=>"advanced_search"}%>
+        <% unless @students.empty? %>
+          <%= link_to "► View PDF report",   {:action => "advanced_search_pdf",:for =>searched_for, :result=>@students,:search=> params[:search],:status=>params[:search][:is_active_equals]}, :target => '_blank' , :class=> 'submit_button' %>
+        <% end %>
+      </div>
+      <div class="extender"></div>
+      <div class="searched_for">
+
+        <% unless params[:search][:first_name_or_middle_name_or_last_name_like].empty? %>
+          <span>Name:</span> <%= params[:search][:first_name_or_middle_name_or_last_name_like] %>
+        <% end %>
+        <% unless  params[:search][:admission_no_equals].empty? %>
+          <span>Admission no:</span><%= params[:search][:admission_no_equals] %>
+        <% end %>
+        <% unless params[:advv_search][:course_id].empty? %>
+          <% course = Course.find(params[:advv_search][:course_id]) %>
+          <% batch = Batch.find(params[:search][:batch_id_equals])  unless (params[:search][:batch_id_equals]).blank?%>
+          <span>Course:</span> <%= course.full_name %>
+          <% unless batch.nil?  %>
+          <span>Batch: </span> <%= batch.full_name %>
+          <% end %>
+        <% end %>
+        <% unless  params[:search][:student_category_id_equals].empty? %>
+          <% category = StudentCategory.find(params[:search][:student_category_id_equals]) %>
+          <span> Category: </span> <%= category.name %>
+        <% end %>
+        <% unless  params[:search][:gender_equals].empty? %>
+          <% if  params[:search][:gender_equals] == 'm' %>
+            <span> Gender: </span> male
+          <% elsif  params[:search][:gender_equals] == 'f' %>
+            <span> Gender: </span> female
+          <% else %>
+            <span> Gender: </span> All
+          <% end %>
+        <% end %>
+        <% unless  params[:search][:blood_group_like].empty? %>
+          <span> Blood group:</span> <%= params[:search][:blood_group_like] %>
+        <% end %>
+        <% unless  params[:search][:nationality_id_equals].empty? %>
+          <% nationality = Country.find(params[:search][:nationality_id_equals]) %>
+          <span> Nationality: </span> <%= nationality.name %>
+        <% end %>
+        <% unless  params[:advv_search][:doa_option].empty? %>
+          <span> Year of admission: </span> <%= params[:advv_search][:doa_option] %>
+
+          <%= params[:adv_search][:admission_date_year] %>
+        <% end %>
+        <% unless  params[:advv_search][:dob_option].empty? %>
+          <span>Year of birth: </span> <%= params[:advv_search][:dob_option] %>
+
+          <%= params[:adv_search][:birth_date_year] %>
+        <% end %>
+        <% if params[:search][:is_active_equals]=="true" %>
+          <span> Present student </span>
+        <% elsif params[:search][:is_active_equals]=="false" %>
+          <span> Former students </span>
+        <% else %>
+          <span> All </span>
+        <% end %>
+
+      </div>
+
+
+      <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+        <% unless @students.empty? %>
+          <tr class="tr-head">
+            <td>
+              Sl no.
+            </td>
+            <td>
+              First Name
+            </td>
+            <td> Batch</td>
+            <td> Adm no</td>
+
+          </tr>
+          <tr class="tr-blank"></tr>
+          <% @students.each_with_index do |student, i| %>
+            <tr class="tr-<%= cycle('odd', 'even') %>">
+              <td class="col-1"><%= i+1 %></td>
+              <%  if  student.is_active %>
+                <td class="col-2"><%=  link_to student.full_name, :controller => 'student', :action => 'profile', :id => student.id%></td>
+              <% else  %>
+                <td class="col-2"><%=  link_to student.full_name, :controller => 'archived_student', :action => 'profile', :id => student.id%></td>
+              <% end %>
+              <td class="col-2"><%= student.batch.full_name %></td>
+              <td class="col-2"><%= student.admission_no %></td>
+            </tr>
+          <% end %>
+        <% else %>
+
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-2">No students found</td>
+          </tr>
+        <% end %>
+      </table>
+
+      <div class="extender">
+
+
+
+
+      </div>
+    </div>
+  <% end %>
+
+</div>

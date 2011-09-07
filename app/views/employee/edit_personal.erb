@@ -1,0 +1,130 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<script src="/javascripts/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="/javascripts/jquery-ui.min.js" type="text/javascript"></script>
+
+<div id="content-header">
+   <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Edit employee information</h1>
+  <h3>Personal</h3>
+  <div id="app-back-button">
+ <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+  <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+
+    <% form_for :employee, :url => {:action => 'edit_personal'}, :html => {:multipart => true} do |a| %>
+
+    <%= error_messages_for 'employee' %>
+
+      
+          <span class="span-sub-heading">Personal Details</span>
+          <hr class="sub-heading"></hr>
+          <div class="label-field-pair">
+            <label>DOB</label>
+        <div class="text-input-bg"><%= calendar_date_select_tag 'employee[date_of_birth]', @employee.date_of_birth,
+            :year_range => 70.years.ago..4.years.ago %></div>
+      </div>
+            <div class="extender"></div>
+          </div>
+          <hr class="label-underline"></hr>
+
+          <div class="label-field-pair">
+            <label>Martial status</label>
+            <div class="text-input-bg"><%= select :employee, :marital_status, ["Single", "Married"] %></div>
+            <div class="extender"></div>
+          </div>
+
+          <hr class="label-underline"></hr>
+
+          <div class="label-field-pair">
+            <label>Number of children</label>
+            <div class="text-input-bg"><%= a.text_field :children_count %></div>
+            <div class="extender"></div>
+          </div>
+
+          <hr class="label-underline"></hr>
+
+          <div class="label-field-pair">
+            <label>Father name</label>
+            <div class="text-input-bg"><%= a.text_field :father_name %></div>
+            <div class="extender"></div>
+          </div>
+
+          <hr class="label-underline"></hr>
+
+          <div class="label-field-pair">
+            <label>Mother name</label>
+            <div class="text-input-bg"><%= a.text_field :mother_name %></div>
+            <div class="extender"></div>
+          </div>
+
+          <hr class="label-underline"></hr>
+
+          <div class="label-field-pair">
+            <label>Spouse name</label>
+            <div class="text-input-bg"><%= a.text_field :husband_name %></div>
+            <div class="extender"></div>
+          </div>
+
+          <hr class="label-underline"></hr>
+
+          <div class="label-field-pair">
+            <label>Blood group</label>
+            <div class="text-input-bg"><%= select :employee, :blood_group, ["Unknown","A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"] %></div>
+            <div class="extender"></div>
+          </div>
+
+          <hr class="label-underline"></hr>
+
+          <div class="label-field-pair">
+            <label>Nationality</label>
+            <div class="text-input-bg"><%= select :employee, :nationality_id, @nationalities.map {|c| [c.name, c.id]}, :selected => 76 %></div>
+            <div class="extender"></div>
+          </div>
+
+          <hr class="label-underline"></hr>
+
+<script>
+  (function($){$.fn.filestyle=function(options){var settings={width:250};if(options){$.extend(settings,options);};return this.each(function(){var self=this;var wrapper=$("<div>").css({"width":settings.imagewidth+"px","height":settings.imageheight+"px","background":"url("+settings.image+") 0 0 no-repeat","background-position":"right","display":"inline","position":"absolute","overflow":"hidden"});var filename=$('<input class="file">').addClass($(self).attr("class")).css({"display":"inline","width":settings.width+"px"});$(self).before(filename);$(self).wrap(wrapper);$(self).css({"position":"relative","height":settings.imageheight+"px","width":settings.width+"px","display":"inline","cursor":"pointer","opacity":"0.0"});if($.browser.mozilla){if(/Win/.test(navigator.platform)){$(self).css("margin-left","-142px");}else{$(self).css("margin-left","-168px");};}else{$(self).css("margin-left",settings.imagewidth-settings.width+"px");};$(self).bind("change",function(){filename.val($(self).val());});});};})(jQuery);
+</script>
+
+    <div class="label-field-pair">
+      <label for="master_student_image_file">Upload photo</label>
+      <div class="text_input_bg"><%= a.file_field :photo %></div>
+    </div>
+
+        
+      
+
+    <div class="save-proceed-button">
+      <%= submit_tag "► Update" %>
+    </div>
+  <% end %>
+
+
+</div>

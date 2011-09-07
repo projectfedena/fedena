@@ -1,4 +1,4 @@
-if @error.nil?
+unless @error
 	page.replace_html 'form-errors', :text => ''
   page << "Modalbox.hide();"
  	page.replace_html 'categories', :partial => 'master_particulars_list'

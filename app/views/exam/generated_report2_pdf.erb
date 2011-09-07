@@ -1,0 +1,95 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+<div id="page-yield">
+  <div class="hor_line"></div>
+
+  <div class="extender"> </div>
+  <div class="report">
+    <div id ="main_info">
+      <h3><%= @subject.name %></h3>
+      <h4>  <%= @batch.name %> - <%= @batch.course.full_name %> </h4>
+    </div>
+    <div id="pdf-info">
+      <% c = 'even' %>
+      <table id="pdf-table" width="100%" cellspacing="0">
+        <tr class="table-header">
+        <td>Name</td>
+        <% @exam_groups.each do |exam_group| %>
+          <td><%= exam_group.name %></td>
+        <% end %>
+      </tr>
+      <% i = 0 %>
+      <% @students.each do |student| %>
+      <% if i== 22 %>
+            <% i= 0 %>
+            <tr class="page-break"><td colspan="3"></td></tr>
+
+                <tr class="table-header">
+        <td>Name</td>
+        <% @exam_groups.each do |exam_group| %>
+          <td><%= exam_group.name %></td>
+        <% end %>
+      </tr>
+
+          <% end %>
+        <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+          <td class="col-pdf"><%= student.full_name %></td>
+          <% @exam_groups.each do |exam_group| %>
+            <td class="col-pdf">
+              <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
+              <% exam_score = ExamScore.find_by_student_id(student.id,:conditions=>{:exam_id=>exam.id}) unless exam.nil? %>
+              <% unless exam.nil? %>
+                <% if exam_group.exam_type == 'Marks' %>
+                  <%= exam_score.nil? ? '-' : "#{exam_score.marks || "-"}/"+exam.maximum_marks.to_s %>
+                <% elsif exam_group.exam_type == 'Grades'%>
+                  <%= exam_score.nil? ? '-' : (exam_score.grading_level || '-') %>
+                <% else %>
+                  <%= exam_score.nil? ? '-' :  "#{(exam_score.marks || "-")}" +"/"+exam.maximum_marks.to_s+"[#{(exam_score.grading_level || "-")}]" %>
+                <% end %>
+              <% else %>
+                <%= "N.A" %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+        <% i+=1 %>
+      <% end %>
+      <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+        <td class="col-pdf-bold">
+          Class Avg
+        </td>
+        <% @exam_groups.each do |exam_group| %>
+          <% if exam_group.exam_type == 'Marks' or exam_group.exam_type == 'MarksAndGrades' %>
+            <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
+            <td class="col-pdf-bold">
+              <%="%.2f"%exam_group.subject_wise_batch_average_marks(@subject.id) unless exam.nil?%>
+            </td>
+          <% else %>
+            <td class="col-pdf-bold">-</td>
+          <% end %>
+        <% end %>
+      </tr>
+      </table>
+    </div>
+  </div>
+
+
+</div>

@@ -221,4 +221,44 @@ label-field-pair2 {
 .pay_fees{
     text-align: right;
     margin-top:10px;
+    margin-right: 29px;
+}
+
+td span{
+   color: #990A10;
+}
+
+table#listing td.col-8 {
+    padding: 5px 5px 5px 10px;
+    width: 10%;
+    text-align: right;
+}
+
+
+a.user_button{
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin-top:4px;
+    margin-left: 806px
+}
+
+
+table#listing td a {
+    color: #fff;
+    text-decoration: none;
+    text-align: right;
+}
+
+table#listing td a:hover {
+    color: #fff;
+    text-decoration: none;
+    background:  #373B3F;
 }

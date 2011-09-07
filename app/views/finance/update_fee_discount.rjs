@@ -1,0 +1,9 @@
+unless @error.nil?
+  page.replace_html 'form-errors', :partial => 'errors', :object => @fee_discount
+  page.visual_effect(:highlight, 'form-errors')
+else
+	page.replace_html 'form-errors', :text => ''
+  page << "Modalbox.hide();"
+  page.replace_html 'flash-notice', :text => '<p class="flash-msg"> Fees Discount Successfully Updated </p>'
+  page.replace_html 'discount-box', :partial=>'show_fee_discounts', :object => @discounts
+end

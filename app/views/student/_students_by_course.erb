@@ -1,0 +1,72 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+<div class="students-table">
+  <table align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td>
+        Sl no.
+      </td>
+      <td>
+        Name
+      </td>
+      <td>
+        Adm no.
+      </td>
+      <td>
+
+      </td>
+    </tr>
+    <tr>
+      <td>
+
+      </td>
+      <td>
+
+      </td>
+      <td>
+
+      </td>
+      <td>
+
+      </td>
+    </tr>
+
+    <% @students.each_with_index do |r, i| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-1">
+          <%= i+1 %>
+        </td>
+
+        <td class="col-2">
+          <%= link_to r.full_name,:controller => "student", :action => "profile", :id => r.id %>
+        </td>
+
+        <td class="col-3">
+          <%= r.admission_no %>
+        </td>
+
+        <td class="col-4">
+          <%=  link_to 'View Profile', :controller => "student", :action => "profile", :id => r.id %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

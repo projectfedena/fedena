@@ -1,0 +1,106 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+<div id="box">
+
+  <table border="0" align="center" width="100%" id="table" cellspacing="0"  >
+    <tr>
+      <td class="loader">
+        <%= image_tag("loader.gif",
+          :align => "absmiddle",
+          :border => 0,
+          :id => "loader",
+          :style =>"display: none;" ) %>
+        &nbsp;</td><!--timetable_td_tl -->
+      <td class="td-blank"></td>
+      <% @class_timing.each do |pt| %>
+        <td class="td"><div class="top"><%= pt.start_time.strftime("%I:%M%p")  unless pt.start_time.nil? %> - <%= pt.end_time.strftime("%I:%M%p")  unless pt.end_time.nil? %></div></td>
+      <% end %>
+    </tr> <!-- timetable_tr -->
+    <tr class="blank">
+      <td></td>
+      <td></td>
+      <% @class_timing.each do |pt| %>
+        <td></td>
+      <% end %>
+    </tr>
+    <%- @day.each do |d| -%>
+      <tr>
+        <td class="td"><div class="name"><%= @weekday[d.weekday.to_i][0,3].upcase %></div></td>
+        <td class="td-blank"></td>
+        <%- @class_timing.each do |pt1| -%>
+          <td class="td">
+            <%- @tte = TimetableEntry.find_by_weekday_id_and_class_timing_id_and_batch_id(d.id, pt1.id, @batch.id) -%>
+            <% @config = Configuration.available_modules %>
+            <div class="drop">
+              <div class="tt-subject">
+                <div class="subject">
+                  <% unless @tte.nil? %>
+                    <% unless @tte.subject.nil? %>
+                      <% unless @tte.subject.elective_group_id.nil?   %>
+                        <%= shorten_string(@tte.subject.elective_group.name.to_s,10) %>
+                      <% else %>
+                        <%= @tte.subject.code  %>
+                      <% end %>
+                    <% end %>
+      <%#= @tte.subject.code unless @tte.subject.nil? %>
+                    <% unless @tte.subject.nil? %>
+                      <span>
+                        <% unless @tte.subject.elective_group_id.nil?   %>
+                          <% @subj_in_elective = Subject.find_all_by_elective_group_id(@tte.subject.elective_group_id,:conditions=>'is_deleted = false')   %>
+                          <% @subj_in_elective.each do |s| %>
+                            <%= s.name unless s.nil? %>
+                            <% @sub_emp = EmployeesSubject.find_by_subject_id(s.id) %>
+                            <div class="emp-name"><%= @sub_emp.employee.full_name unless @sub_emp.nil? %></div>
+                          <% end %>
+                        <% else %>
+                          <%= @tte.subject.name unless @tte.subject.nil? %>
+                          <div class="emp-name"><%= @tte.employee.full_name unless @tte.employee.nil? %></div>
+                        <% end %>
+                      </span>
+                    <%  end %>
+                  <%  end %>
+                </div>
+
+                <% if @config.include?('HR') %>
+                  <div class="employee">
+                    <% unless @tte.nil? %>
+                      <% unless @tte.subject.nil? %>
+                        <% unless @tte.subject.elective_group_id.nil?   %>
+                          Elective
+                        <% else %>
+                          <%= @tte.employee.first_name unless @tte.employee.nil? %>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+          </td><!--timetable_td -->
+        <% end %>
+      </tr><!--timetable_tr -->
+    <% end %>
+  </table>
+</div>
+
+<%= link_to " ► PDF Report",
+  {:controller => "timetable", :action => "timetable_pdf", :course_id => @batch.id},:target => '_blank', :class=> 'user_button' %>

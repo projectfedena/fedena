@@ -26,14 +26,14 @@ class AddNewColumnsToFedena < ActiveRecord::Migration
     remove_column :students,  :has_paid_fees
     remove_column :batches,  :employee_id
     remove_column :monthly_payslips, :is_rejected
-    remove_column :monthly_payslips, :rejector
+    remove_column :monthly_payslips, :rejector_id
     remove_column :monthly_payslips, :reason
-    remove_column :employee_leave_types, :carry_forward
-    remove_column :finance_transactions, :transaction_date
-    remove_column :finance_transactions, :fine_amount
-    remove_column :finance_transactions, :master_transaction_id
-    remove_column :finance_transactions, :user
-    remove_column :finance_donations, :transaction_date
+    remove_column :employee_leave_types
+    remove_column :finance_transactions
+    remove_column :finance_transactions
+    remove_column :finance_transactions
+    remove_column :finance_transactions
+    remove_column :finance_donations
   end
 
   def self.create_default

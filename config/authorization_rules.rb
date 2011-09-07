@@ -238,7 +238,8 @@ authorization do
       :delete,
       :generate_tc_pdf,
       :edit_admission4,
-      :fees
+      :fees,
+      :fee_details
     ]
   end
 
@@ -290,7 +291,10 @@ authorization do
       :dob_greater_than_update,
       :list_batches,
       :find_student,
-      :fees
+      :fees,
+      :fee_details,
+      :admission3_1,
+      :immediate_contact2
     ]
     has_permission_on [:archived_student],
       :to => [
@@ -599,6 +603,20 @@ authorization do
       :fee_collection_create,
       :categories_new,
       :categories_create,
+      :fee_discounts,
+      :fee_discount_new,
+      :load_discount_create_form,
+      :load_discount_batch,
+      :load_batch_fee_category,
+      :batch_wise_discount_create,
+      :category_wise_fee_discount_create,
+      :student_wise_fee_discount_create,
+      :update_master_fee_category_list,
+      :show_fee_discounts,
+      :edit_fee_discount,
+      :update_fee_discount,
+      :delete_fee_discount,
+      :collection_details_view,
       :master_category_edit,
       :master_category_update,
       :master_category_delete,
@@ -638,7 +656,9 @@ authorization do
       :pdf_fee_structure,
 
       #graph-------------
-      :graph_for_update_monthly_report
+      :graph_for_update_monthly_report,
+
+      :view_employee_payslip
     ]
     has_permission_on [:xml],
       :to => [
@@ -863,7 +883,8 @@ authorization do
       :department_payslip,
       :update_employee_payslip,
       :department_payslip_pdf,
-      :employee_individual_payslip_pdf
+      :employee_individual_payslip_pdf,
+      :view_employee_payslip
     ]
     has_permission_on [:payroll],
       :to => [
@@ -925,7 +946,8 @@ authorization do
       :create,
       :edit,
       :destroy,
-      :list_subject
+      :list_subject,
+      :update
     ]
     has_permission_on [:sms],  :to => [:index, :settings, :update_general_sms_settings, :students, :list_students, :batches, :sms_all, :employees, :list_employees, :departments, :all]
     has_permission_on [:sms_settings],  :to => [:index, :update_general_sms_settings]
@@ -1298,7 +1320,21 @@ authorization do
       :fees_particulars_create,
       :add_particulars_new,
       :add_particulars_create,
+      :fee_discounts,
+      :fee_discount_new,
+      :load_discount_create_form,
+      :load_discount_batch,
+      :load_batch_fee_category,
+      :batch_wise_discount_create,
+      :category_wise_fee_discount_create,
+      :student_wise_fee_discount_create,
+      :update_master_fee_category_list,
+      :show_fee_discounts,
+      :edit_fee_discount,
+      :update_fee_discount,
+      :delete_fee_discount,
       :fee_collection_new,
+      :collection_details_view,
       :fee_collection_create,
       :categories_new,
       :categories_create,
@@ -1341,7 +1377,9 @@ authorization do
       :pdf_fee_structure,
 
       #graph-------------
-      :graph_for_update_monthly_report
+      :graph_for_update_monthly_report,
+
+      :view_employee_payslip
 
     ]
         
@@ -1445,7 +1483,8 @@ authorization do
       :edit_admission4,
       :admission3_1,
       :show_previous_details,
-      :fees
+      :fees,
+      :fee_details
     ]
     has_permission_on [:archived_student],
       :to => [
@@ -1614,7 +1653,7 @@ authorization do
       :doj_less_than_update,
       :doj_greater_than_update,
       :list_dob_year,:dob_equal_to_update,:dob_less_than_update,:dob_greater_than_update,
-      :remove,:change_to_former,:delete,
+      :remove,:change_to_former,:delete,:remove_subordinate_employee,
       :edit_privilege,
       :advanced_search_pdf,
       :profile_pdf,
@@ -1627,7 +1666,8 @@ authorization do
       :one_click_approve_submit,
       :employee_individual_payslip_pdf,
       :employee_leave_count_edit,
-      :employee_leave_count_update
+      :employee_leave_count_update,
+      :view_employee_payslip
       
     ]
     has_permission_on [:calendar], :to => [:event_delete]
@@ -1664,7 +1704,9 @@ authorization do
       :graph_for_exam_report,
       :graph_for_academic_report,
       :show_previous_details,
-      :fees ]
+      :fees,
+      :fee_details
+       ]
     has_permission_on [:news],
       :to => [
       :index,

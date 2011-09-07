@@ -17,7 +17,7 @@
     border: 1px solid #9e0f15;
 }
 
-#information{height:100px;width:816px;margin:0px auto;padding-left:0px; margin-top:30px;}
+#information{height:auto;width:900px;margin:0px auto;padding-left:0px; margin-top:30px;}
 #no_result{font-weight:bold;color:#b00}
 #ajax_result {padding:10px 0 10px 0;width:204px;float:left;}
 #ajax_result a{color:#000;font-weight:bold; text-decoration:none;}

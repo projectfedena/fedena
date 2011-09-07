@@ -1,39 +1,85 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class Employee < ActiveRecord::Base
   belongs_to  :employee_category
   belongs_to  :employee_position
   belongs_to  :employee_grade
   belongs_to  :employee_department
   belongs_to  :nationality, :class_name => 'Country'
-  has_and_belongs_to_many :subjects
+  belongs_to  :user, :dependent=>:destroy,:autosave=>true
+  
+  has_many :employees_subjects
+  has_many :subjects ,:through => :employees_subjects
   has_many    :timetable_entries
   has_many    :employee_bank_details
   has_many    :employee_additional_details
   has_many    :apply_leaves
   has_many    :monthly_payslips
   has_many    :employee_salary_structures
-  before_update :validate_updation
+
   validates_format_of     :email, :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,   :allow_blank=>true,
     :message => "must be a valid email address"
 
   validates_presence_of :employee_category_id, :employee_number, :first_name, :employee_position_id,
-    :employee_department_id, :employee_grade_id, :date_of_birth
+    :employee_department_id,  :date_of_birth
   validates_uniqueness_of  :employee_number
 
-  before_save :user_validation
+  validates_associated :user
+  before_validation :create_user_and_validate
 
-  def user_validation
-    if self.id.nil?
-      if User.find_by_username("#{self.employee_number}")
-        errors.add_to_base( "User already exist with entered Employee number")
-        return false
-      end
+  has_attached_file :photo,
+    :styles => {
+    :thumb=> "100x100#",
+    :small  => "150x150>"},
+    :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
+    :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension"
+
+  def create_user_and_validate
+    self.email ||="noreply" + self.employee_number.to_s + "@fedena.com"
+    if self.new_record?
+      user_record = self.build_user
+      user_record.first_name = self.first_name
+      user_record.last_name = self.last_name
+      user_record.username = self.employee_number.to_s
+      user_record.password = self.employee_number.to_s + "123"
+      user_record.role = 'Employee'
+      user_record.email = self.email.blank? ? "noreply#{self.employee_number.to_s}@fedena.com" : self.email.to_s
+      check_user_errors(user_record)
     else
-      employee = Employee.find(self.id)
-      if User.find_by_username("#{employee.employee_number}", :conditions=>["id != #{employee.user.id}"])
-        errors.add_to_base( "User already exist with entered Employee number")
-        return false
+      changes_to_be_checked = ['employee_number','first_name','last_name','email']
+      check_changes = self.changed & changes_to_be_checked
+      self.user.role = "Employee"
+      unless check_changes.blank?
+        self.user.username = self.employee_number if check_changes.include?('employee_number')
+        self.user.first_name = self.first_name if check_changes.include?('first_name')
+        self.user.last_name = self.last_name if check_changes.include?('last_name')
+        self.user.email ||= self.email.to_s if check_changes.include?('email')
+        check_user_errors(self.user)
       end
     end
+  end
+
+  def check_user_errors(user)
+    unless user.valid?
+      user.errors.each{|attr,msg| errors.add(attr.to_sym,"#{msg}")}
+    end
+    return false unless user.errors.blank?
   end
 
   def image_file=(input_data)
@@ -44,15 +90,11 @@ class Employee < ActiveRecord::Base
   end
 
   def max_hours_per_day
-    self.employee_grade.max_hours_day
+    self.employee_grade.max_hours_day unless self.employee_grade.blank?
   end
 
   def max_hours_per_week
-    self.employee_grade.max_hours_week
-  end
-
-  def user
-    User.find_by_username self.employee_number
+    self.employee_grade.max_hours_week unless self.employee_grade.blank?
   end
 
   def next_employee
@@ -154,8 +196,15 @@ class Employee < ActiveRecord::Base
     self.update_attributes(:status => false, :status_description => status)
     employee_attributes = self.attributes
     employee_attributes.delete "id"
-    if archived_employee = ArchivedEmployee.create(employee_attributes)
-      user = User.find_by_username(self.employee_number).delete unless user.nil?
+    employee_attributes.delete "photo_file_size"
+    employee_attributes.delete "photo_file_name"
+    employee_attributes.delete "photo_content_type"
+    employee_attributes.delete "user_id"
+    employee_attributes["former_id"]= self.id
+    archived_employee = ArchivedEmployee.new(employee_attributes)
+    archived_employee.photo = self.photo
+    if archived_employee.save
+      self.user.delete unless self.user.nil?
       employee_salary_structures = self.employee_salary_structures
       employee_bank_details = self.employee_bank_details
       employee_additional_details = self.employee_additional_details
@@ -168,6 +217,7 @@ class Employee < ActiveRecord::Base
       employee_additional_details.each do |g|
         g.archive_employee_additional_detail(archived_employee.id)
       end
+      self.user.delete
       self.delete
     end
   end
@@ -178,21 +228,46 @@ class Employee < ActiveRecord::Base
       :conditions => ["salary_date >= '#{start_date.to_date}' and salary_date <= '#{end_date.to_date}' and is_approved = 1"])
   end
 
-  def validate_updation
-    employee = Employee.find(self.id)
-    unless self.email.blank?
-      user = User.find_by_email(self.email, :conditions=>["id != #{employee.user.id}"])
-      unless user.nil?
-        errors.add(:email, "already taken")
+  def self.calculate_salary(monthly_payslip,individual_payslip_category)
+    individual_category_non_deductionable = 0
+    individual_category_deductionable = 0
+    unless individual_payslip_category.blank?
+      individual_payslip_category.each do |pc|
+        if pc.is_deduction == true
+          individual_category_deductionable = individual_category_deductionable + pc.amount.to_f
+        else
+          individual_category_non_deductionable = individual_category_non_deductionable + pc.amount.to_f
+        end
       end
-    else
-      self.email = "noreply#{self.employee_number}@fedena.com"
     end
+    non_deductionable_amount = 0
+    deductionable_amount = 0
+    unless monthly_payslip.blank?
+      monthly_payslip.each do |mp|
+        unless mp.payroll_category.blank?
+          if mp.payroll_category.is_deduction == true
+            deductionable_amount = deductionable_amount + mp.amount.to_f
+          else
+            non_deductionable_amount = non_deductionable_amount + mp.amount.to_f
+          end
+        end
+      end
+    end
+    net_non_deductionable_amount = individual_category_non_deductionable + non_deductionable_amount
+    net_deductionable_amount = individual_category_deductionable + deductionable_amount
+    net_amount = net_non_deductionable_amount - net_deductionable_amount
 
-    user = User.find_by_username(self.employee_number.to_s, :conditions=>["id != #{employee.user.id}"])
-    unless user.nil?
-      errors.add_to_base( "User already exist with entered employee number")
+    return_hash = {:net_amount=>net_amount,:net_deductionable_amount=>net_deductionable_amount,\
+        :net_non_deductionable_amount=>net_non_deductionable_amount }
+    return_hash
+  end
+
+  def self.find_in_active_or_archived(id)
+    employee = Employee.find(:first,:conditions=>"id=#{id}")
+    if employee.blank?
+      return  ArchivedEmployee.find(:first,:conditions=>"former_id=#{id}")
+    else
+      return employee
     end
-    return false if !errors.blank?
   end
 end

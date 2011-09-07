@@ -100,12 +100,12 @@ table#pdf-table{
 }
 
 .report{
-    min-height: 1100px;
+    min-height: 1250px;
     margin: 0 auto;
 }
 
 .report1{
-    min-height: 1325px;
+    min-height: 1260px;
     margin: 0 auto;
 }
 
@@ -130,9 +130,7 @@ table#pdf-table{
     border-bottom: 1px solid #ADACAB;
 }
 
-#pdf-footer{
-   color: #fff;
-}
+
 
 
 

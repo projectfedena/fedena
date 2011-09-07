@@ -224,3 +224,7 @@ input#student_image_file {
     background: #fff;
     border: 1px solid #9e0f15;
 }
+
+input#student_photo{
+    height: 28px;
+}

@@ -1,3 +1,21 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class Exam < ActiveRecord::Base
   validates_presence_of :start_time
   validates_presence_of :end_time
@@ -8,6 +26,9 @@ class Exam < ActiveRecord::Base
   before_save :update_exam_group_date
 
   belongs_to :event
+
+  validates_presence_of :maximum_marks
+  validates_presence_of :minimum_marks
 
   has_many :exam_scores
   has_many :archived_exam_scores
@@ -20,10 +41,10 @@ class Exam < ActiveRecord::Base
   end
 
   def validate
-    errors.add(:minimum_marks, "can't be more than max marks.") \
+    errors.add_to_base("Minimum marks can't be more than max marks.") \
       if minimum_marks and maximum_marks and minimum_marks > maximum_marks
     unless self.start_time.nil? or self.end_time.nil?
-      errors.add(:end_time, "can not be before the start time")if self.end_time < self.start_time
+      errors.add_to_base("End time can not be before the start time")if self.end_time < self.start_time
     end
     
   end

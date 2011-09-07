@@ -1,3 +1,21 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class ExamController < ApplicationController
     before_filter :login_required
     before_filter :protect_other_student_data
@@ -201,14 +219,7 @@ class ExamController < ApplicationController
         @exam_group = ExamGroup.find(params[:exam_group])
         @batch = Batch.find(params[:batch])
         @students = @batch.students
-        render :pdf => 'generated_report_pdf',
-          :margin => {    :top=> 10,
-            :bottom => 10,
-            :left=> 30,
-            :right => 30}
-        #    respond_to do |format|
-        #      format.pdf { render :layout => false }
-        #    end
+        render :pdf => 'generated_report_pdf'      
     end
 
 
@@ -219,11 +230,7 @@ class ExamController < ApplicationController
     def consolidated_exam_report_pdf
         @exam_group = ExamGroup.find(params[:exam_group])
         render :pdf => 'consolidated_exam_report_pdf',
-          :margin => {    :top=> 10,
-            :bottom => 10,
-            :left=> 30,
-            :right => 30,
-            :page_size=> 'A3'   }
+            :page_size=> 'A3'   
 #        respond_to do |format|
 #            format.pdf { render :layout => false }
 #        end
@@ -259,11 +266,8 @@ class ExamController < ApplicationController
         @batch = @subject.batch
         @students = @batch.students
         @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
-        render :pdf => 'generated_report_pdf',
-          :margin => {    :top=> 10,
-            :bottom => 10,
-            :left=> 30,
-            :right => 30}
+        render :pdf => 'generated_report_pdf'
+          
 #        respond_to do |format|
 #            format.pdf { render :layout => false }
 #        end
@@ -393,10 +397,6 @@ class ExamController < ApplicationController
             @subjects = general_subjects + elective_subjects
         end
         render :pdf => 'generated_report_pdf',
-          :margin => {    :top=> 10,
-            :bottom => 10,
-            :left=> 30,
-            :right => 30},
             :orientation => 'Landscape'
         #    respond_to do |format|
         #      format.pdf { render :layout => false }
@@ -420,10 +420,6 @@ class ExamController < ApplicationController
         @student = Student.find(params[:student])
         @all_batches = @student.all_batches
         render :pdf => 'previous_years_marks_overview_pdf',
-            :margin => {  :top=> 10,
-            :bottom => 10,
-            :left=> 10,
-            :right => 10},
               :orientation => 'Landscape'
                         
     

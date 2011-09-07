@@ -1,0 +1,125 @@
+#MB_frame .label-field-pair select {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #C6C6C6;
+    border-radius: 10px 10px 10px 10px;
+    height: 31px;
+    margin: 5px 10px 0 12px;
+    padding: 5px;
+    width: 214px;
+}
+
+
+#fee-collections-list ul {
+    padding-top : 50px;
+    padding-left: 0px;
+    width : 500px;
+}
+#fee-collections-list ul li {
+    background : #fff url(../../images/_global/list-bg-repeat.jpg) repeat;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 40px;
+}
+#fee-collections-list ul li .fee-name,
+#fee-collections-list ul li .fee-edit-link,
+#fee-collections-list ul li .fee-delete-link {
+    float : left;
+    margin : 0 10px 0 0;
+
+}
+#fee-collections-list ul li .fee-name {
+    width : 350px;
+}
+
+#fee-collections-list ul li .fee-edit-link a,
+#fee-collections-list ul li .fee-delete-link a {
+    color : #000;
+    text-decoration : none;
+}
+
+
+.submit_button {
+    margin-top:15px;
+    margin-left:180px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.box{
+    width:750px;
+    margin:0px auto;
+}
+
+.each_batch{
+    font-size: 12px;
+    overflow:auto;
+    width:260px;
+}
+
+.fee_category_scroll {
+    height:76px;
+    margin-left:200px;
+    margin-top:-53px;
+    overflow:auto;
+    width:280px;
+}
+
+.sel-list {
+    margin-bottom: 2px;
+    width: 257px;
+}
+
+
+#form-box{
+    width: 450px;
+}
+
+#discount-box{
+    margin-top: 20px;
+}
+
+#inner-tab-menu ul li {
+    background-color: #9D0E00;
+    color: #FFFFFF;
+    float: left;
+    font-size: 0.9em;
+    height: 1.5em;
+    list-style-type: none;
+    margin: 0 0 0 10px;
+    padding: 0;
+    text-align: center;
+    width: 110px;
+}
+
+.submit_button {
+    background: none repeat scroll 0 0 #27292B;
+    border: medium none;
+    border-radius: 10px 10px 10px 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 180px;
+    margin-top: 15px;
+    padding: 7px 10px;
+}
+
+.edit{
+    float: left;
+}
+
+.delete{
+    float: left;
+}

@@ -1,13 +1,35 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class Student < ActiveRecord::Base
   belongs_to :country
   belongs_to :batch
   belongs_to :student_category
   belongs_to :nationality, :class_name => 'Country'
+  belongs_to :user,:dependent=>:destroy,:autosave=>true
+
   has_one    :immediate_contact
   has_one    :student_previous_data
   has_many   :student_previous_subject_mark
   has_many   :guardians, :foreign_key => 'ward_id', :dependent => :destroy
   has_many   :finance_transactions
+  has_many   :attendances
+  has_many   :finance_fees
   has_many   :fee_category ,:class_name => "FinanceFeeCategory"
 
   has_and_belongs_to_many :graduated_batches, :class_name => 'Batch', :join_table => 'batch_students'
@@ -19,11 +41,25 @@ class Student < ActiveRecord::Base
   validates_presence_of :gender
   validates_format_of     :email, :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,   :allow_blank=>true,
     :message => "must be a valid email address"
+  validates_format_of     :admission_no, :with => /^[A-Z0-9_-]*$/i,
+    :message => "must contain only letters, numbers, hyphen, and  underscores"
 
-  after_create :create_user_account
-  before_create :user_validation
+  validates_associated :user
+  before_validation :create_user_and_validate
 
-  before_update :validate_updation
+  has_attached_file :photo,
+    :styles => {
+    :thumb=> "100x100#",
+    :small  => "150x150>"},
+    :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
+    :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension"
+
+  VALID_IMAGE_TYPES = ['image/gif', 'image/png','image/jpeg', 'image/jpg']
+
+  validates_attachment_content_type :photo, :content_type =>VALID_IMAGE_TYPES,
+    :message=>'Image can only be GIF, PNG, JPG',:if=> Proc.new { |p| !p.photo_file_name.blank? }
+  validates_attachment_size :photo, :less_than => 512000,\
+    :message=>'must be less than 500 KB.',:if=> Proc.new { |p| p.photo_file_name_changed? }
 
   def validate
     errors.add(:date_of_birth, "can't be a future date.") if self.date_of_birth >= Date.today \
@@ -31,17 +67,42 @@ class Student < ActiveRecord::Base
     errors.add(:gender, 'attribute is invalid.') unless ['m', 'f'].include? self.gender.downcase \
       unless self.gender.nil?
     errors.add(:admission_no, 'can\'t be zero') if self.admission_no=='0'
-
+    
   end
 
-  def user_validation
-    errors.add_to_base( "User already exist with entered admission number") if User.find_by_username(self.admission_no.to_s)
-    if !self.photo_data.nil? and self.photo_data.size.to_f > 280000
-        errors.add_to_base( "File size limit exceeded!")
-        return false
+  def create_user_and_validate
+    self.email ||="noreply" + self.admission_no.to_s + "@fedena.com"
+    if self.new_record?
+      user_record = self.build_user
+      user_record.first_name = self.first_name
+      user_record.last_name = self.last_name
+      user_record.username = self.admission_no.to_s
+      user_record.password = self.admission_no.to_s + "123"
+      user_record.role = 'Student'
+      user_record.email = self.email.blank? ? "noreply#{self.admission_no.to_s}@fedena.com" : self.email.to_s
+      check_user_errors(user_record)
+      return false unless errors.blank?
+    else
+      self.user.role = "Student"
+      changes_to_be_checked = ['admission_no','first_name','last_name','email']
+      check_changes = self.changed & changes_to_be_checked
+      unless check_changes.blank?
+        self.user.username = self.admission_no if check_changes.include?('admission_no')
+        self.user.first_name = self.first_name if check_changes.include?('first_name')
+        self.user.last_name = self.last_name if check_changes.include?('last_name')
+        self.user.email = self.email if check_changes.include?('email')
+        check_user_errors(self.user)
+      end
     end
-    return false if !errors.blank?
     self.email = "noreply#{self.admission_no}@fedena.com" if self.email.blank?
+    return false unless errors.blank?
+  end
+
+  def check_user_errors(user)
+    unless user.valid?
+      user.errors.each{|attr,msg| errors.add(attr.to_sym,"#{msg}")}
+    end
+    return false unless user.errors.blank?
   end
 
   def first_and_last_name
@@ -56,10 +117,6 @@ class Student < ActiveRecord::Base
     return 'Male' if gender.downcase == 'm'
     return 'Female' if gender.downcase == 'f'
     nil
-  end
-
-  def user
-    User.find_by_username self.admission_no
   end
 
   def all_batches
@@ -89,16 +146,19 @@ class Student < ActiveRecord::Base
   end
 
   def previous_fee_student(date)
-    prev_st = FinanceFee.first(:conditions => "student_id < #{self.id} and fee_collection_id = #{date}", :order => "student_id DESC")
-    prev_st = prev_st.student unless prev_st.nil?
-    prev_st ||= FinanceFee.first(:conditions=>"fee_collection_id = #{date}",:order => "student_id DESC").student
+    fee = FinanceFee.first(:conditions => "student_id < #{self.id} and fee_collection_id = #{date}", :joins=>'INNER JOIN students ON finance_fees.student_id = students.id',:order => "student_id DESC")
+    prev_st = fee.student unless fee.blank?
+    fee ||= FinanceFee.first(:conditions=>"fee_collection_id = #{date}", :joins=>'INNER JOIN students ON finance_fees.student_id = students.id',:order => "student_id DESC")
+    prev_st ||= fee.student unless fee.blank?
     #    prev_st ||= self.batch.students.first(:order => "id DESC")
   end
-    
+
   def next_fee_student(date)
-    next_st = FinanceFee.first(:conditions => "student_id > #{self.id} and fee_collection_id = #{date}", :order => "student_id ASC")
-    next_st = next_st.student unless next_st.nil?
-    next_st ||= FinanceFee.first(:conditions=>"fee_collection_id = #{date}",:order => "student_id ASC").student
+
+    fee = FinanceFee.first(:conditions => "student_id > #{self.id} and fee_collection_id = #{date}", :joins=>'INNER JOIN students ON finance_fees.student_id = students.id', :order => "student_id ASC")
+    next_st = fee.student unless fee.nil?
+    fee ||= FinanceFee.first(:conditions=>"fee_collection_id = #{date}", :joins=>'INNER JOIN students ON finance_fees.student_id = students.id',:order => "student_id ASC")
+    next_st ||= fee.student unless fee.nil?
     #    prev_st ||= self.batch.students.first(:order => "id DESC")
   end
 
@@ -153,12 +213,15 @@ class Student < ActiveRecord::Base
     student_attributes["former_id"]= self.id
     student_attributes.delete "id"
     student_attributes.delete "has_paid_fees"
-    if archived_student = ArchivedStudent.create(student_attributes)
+    student_attributes.delete "photo_file_size"
+    student_attributes.delete "photo_file_name"
+    student_attributes.delete "photo_content_type"
+    student_attributes.delete "user_id"
+    archived_student = ArchivedStudent.new(student_attributes)
+    archived_student.photo = self.photo
+    if archived_student.save
       guardian = self.guardians
-      user = User.find_by_username(self.admission_no)
-      unless user.nil?
-        user.delete
-      end
+      self.user.delete unless self.user.blank?
       self.delete
       guardian.each do |g|
         g.archive_guardian(archived_student.id)
@@ -178,39 +241,18 @@ class Student < ActiveRecord::Base
  
   end
   
-  def student_user
-    User.find_by_username(self.admission_no).id
-  end
-
-
-  def validate_updation
-    student = Student.find(self.id)
-    unless self.email.blank?
-      user = User.find_by_email(self.email, :conditions=>["id != #{student.user.id}"])
-      unless user.nil?
-        errors.add(:email, "already taken")
-      end
+  def check_dependency
+    flag = false
+    flag = true unless self.finance_transactions.blank?
+    flag = true unless self.graduated_batches.blank?
+    flag = true unless self.attendances.blank?
+    flag = true unless self.finance_fees.blank?
+    if flag
+      return true
     else
-      self.email = "noreply#{self.admission_no}@fedena.com"
+      return false
     end
-        
-    user = User.find_by_username(self.admission_no.to_s, :conditions=>["id != #{student.user.id}"])
-    unless user.nil?
-      errors.add_to_base( "User already exist with entered admission number")
-    end
-    return false if !errors.blank?
   end
 
-
-  private
-  def create_user_account
-    user = User.new do |u|
-      u.first_name, u.last_name, u.username = first_name, last_name, admission_no.to_s
-      u.password = "#{admission_no.to_s}123"
-      u.role = 'Student'
-      u.email = ( email == '' or User.find_by_email(email) ) ? "noreply#{admission_no.to_s}@fedena.com" : email
-    end
-    user.save
-  end
 
 end

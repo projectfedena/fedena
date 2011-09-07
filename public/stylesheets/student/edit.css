@@ -118,3 +118,7 @@ width:205px;
     height: 1px;
     border: none;
 }
+
+input#student_photo{
+    height: 28px;
+}

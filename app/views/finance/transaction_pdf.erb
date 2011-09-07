@@ -1,0 +1,114 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+
+<div id="page-yield">
+
+  <div class="hor_line"></div>
+  <h2>Finance Transaction Report</h2>
+  <div class="hor_line"></div>
+
+
+  <div class="extender"> </div>
+  <div class="report">
+    <div id ="main_info">
+      <h4> <%= "From( #{@start_date})to( #{@end_date})" %></h4>
+    </div>
+    <div id="pdf-info">
+      <table id="pdf-table" width="100%" cellspacing="0">
+        <tr class="table-header"><td class="col-pdf">Sl no.</td><td class="col-pdf"> Particulars </td><td class="col-pdf"><%= "Expenses( #{currency})" %></td><td class="col-pdf"><%=  "Income( #{currency})" %></td></tr>
+        <%  index = 0 %>
+        <% i = 0 %>
+        <% income_total = 0 %>
+        <% expenses_total = 0 %>
+        <% c= 'even' %>
+        <%  unless @hr.nil? %>
+          <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+            <td class="col-pdf"><%= index+=1 %></td>
+            <td class="col-pdf"> Salary </td>
+            <td class="col-pdf">&nbsp;<%= @salary %></td>
+            <td class="col-pdf"></td>
+          </tr>
+          <% i+= 1 %>
+        <% end %>
+        <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+          <td class="col-pdf"><%= index+=1 %></td>
+          <td class="col-pdf"> Donations </td>
+          <td class="col-pdf"></td>
+          <td class="col-pdf">&nbsp;<%= @donations_total %></td>
+        </tr>
+        <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+          <td class="col-pdf"><%= index+=1 %></td>
+          <td class="col-pdf"> Fees account </td>
+          <td class="col-pdf"></td>
+          <td class="col-pdf">&nbsp;<%= @transactions_fees %></td>
+        </tr>
+        <% i+= 2 %>
+        <%  @other_transactions.each_with_index do |t,i| %>
+            <% if i == 19 %>
+              <% i= 0 %>
+              <% c= 'even' %>
+              <tr class="page-break"><td colspan="3"></td></tr>
+              <tr class="table-header"><td class="col-pdf">Sl no.</td><td class="col-pdf"> Particulars </td><td class="col-pdf"><%= "Expenses( #{currency})" %></td><td class="col-pdf"><%=  "Income( #{currency})" %></td></tr>
+            <% end %>
+          <% if t.category.is_income? %>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= index+=1 %></td>
+              <td class="col-pdf"> <%= t.title %> </td>
+              <td class="col-pdf"></td>
+              <td class="col-pdf">&nbsp;<%= t.amount %></td>
+            </tr>
+            <% i+= 1 %>
+            <% income_total +=t.amount %>
+          <% else %>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= index+=1 %></td>
+              <td class="col-pdf"> <%= t.title %> </td>
+              <td class="col-pdf">&nbsp;<%= t.amount %></td>
+              <td class="col-pdf"></td>
+            </tr>
+            <% i+= 1 %>
+            <% expenses_total +=t.amount %>
+          <% end %>
+        <% end %>
+        <% if @grand_total >= 0 %>
+          <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+            <td class="col-pdf"><%= index+=1 %></td>
+            <td class="col-pdf">Grand total</td>
+            <td class="col-pdf"></td>
+            <td class="col-pdf">&nbsp;<%= @grand_total %></td>
+          </tr>
+
+        <%  else %>
+          <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+            <td class="col-pdf"></td>
+            <td class="col-pdf">Grand total</td>
+            <td class="col-pdf">&nbsp;<%= @grand_total * -1 %></td>
+            <td class="col-pdf"></td>
+          </tr>
+
+        <% end %>
+
+      </table>
+    </div>
+
+  </div>
+
+</div>

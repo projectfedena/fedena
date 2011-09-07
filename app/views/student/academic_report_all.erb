@@ -1,0 +1,99 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+  <h1>Academic reports</h1>
+  <h3> <%= @student.full_name %> </h3>
+  <div id="app-back-button">
+    <%= link_to image_tag("/images/buttons/back.png", :border => 0), :back %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
+  <% unless @user.student == true %>
+  <div class="prev-next-links">
+   <%= link_to "<", :controller=>"student", :action=>"academic_report_all", :id=>@prev_student.id %>
+    <%= link_to ">", :controller=>"student", :action=>"academic_report_all", :id=>@next_student.id %>
+  </div>
+  <% end %>
+
+  <%  @examtypes.each do |e_type|%>
+    <%- exam = Examination.find_all_by_examination_type_id(e_type.id) -%>
+    <span class="sub-heading"><%= e_type.name %></span>
+    <div id="res-table">
+      <table>
+        <tr class="tr-odd"><td class="td-name"><div><b></b></div></td>
+          <% exam.each do |t| %>
+            <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
+            <td width="200" class="td-subj"><b><%= examres.examination.subject.code %></b></td>
+          <% end %>
+          <td width="200" class="td-subj"><b>Total</b></td>
+        </tr>
+        <tr class="tr-even"><td class="td-name"><div><b>Maximum mark</b></div></td>
+          <% max_total = 0 %>
+          <% exam.each do |t| %>
+            <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
+            <td><%= examres.maximum_marks.to_i %></td>
+            <% max_total += examres.maximum_marks %>
+          <% end %>
+            <td><div><%= max_total.to_i %></div></td>
+        </tr>
+        <tr class="tr-odd"><td class="td-name"><div><b>Marks</b></div></td>
+          <% total = 0 %>
+          <% exam.each do |t| %>
+            <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
+            <td><div><%= examres.marks %></div></td>
+            <% total += examres.marks %>
+          <% end %>
+          <td><div><%= total %></div></td>
+        </tr>
+        <tr class="tr-even"><td class="td-name"><div style="width:150px;"><b>Percentage/grade</b></div></td>
+          
+          <% exam.each do |t| %>
+            <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
+            <td><%= examres.percentage_marks %><small>(<%= examres.grading.name unless examres.grading.nil? %>)</small></td>
+            
+          <% end %>
+          <td><%=  percentage = ((total*100)/max_total).to_f %><small>(<%= Grading.find_from_percentage(percentage).name %>)</small></td>
+        </tr>
+        <tr class="tr-odd"><td class="td-name"><div><b>Class average</b></div></td>
+          <% class_avg = 0 %>
+          <% exam.each do |t| %>
+            <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
+            <td><%= t.average_marks %></td>
+            <% class_avg +=  t.average_marks %>
+          <% end %>
+            <td><div><%= class_avg %></div></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+  <script type="text/javascript" src="/javascripts/swfobject.js"></script>
+  <div class="graph-1">
+    <span class="sub-heading">Examination - wise performance</span>
+    <%= @graph %>
+  </div>
+  <div class="graph-2">
+    <span class="sub-heading">Cumulative performance</span>
+    <%= @graph2 %>
+  </div>
+</div>

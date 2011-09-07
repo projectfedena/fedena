@@ -70,3 +70,149 @@ Factory.define :exam do |e|
   e.minimum_marks 30
   e.weightage     50
 end
+
+Factory.define :general_subject,:class=>"Subject" do |s|
+  s.name  "Subject"
+  s.code   "SUB1"
+  s.batch_id           1
+  s.max_weekly_classes 5
+end
+
+Factory.define :elective_group do |s|
+  s.name  "Test Elective"
+  s.batch_id           1
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Factory.define :employee_department do |e|
+  e.sequence(:name) { |n| "emp_department#{n}" }
+  e.sequence(:code) { |n| "forad#{n}" }
+end
+
+Factory.define :general_department,:class=>"EmployeeDepartment" do |s|
+  s.name  "Dep1"
+  s.code   "forad"
+end
+
+Factory.define :employee_category do |e|
+  e.sequence(:name) { |n| "emp_category#{n}" }
+  e.sequence(:prefix) { |n| "forad#{n}" }
+end
+
+Factory.define :general_emp_category,:class=>"EmployeeCategory" do |s|
+  s.name  "cat1"
+  s.prefix   "forads"
+end

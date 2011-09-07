@@ -1,0 +1,97 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <img src="/images/reminder/reminder_small.png" />
+  <h1>Messages</h1>
+  <h3>Inbox</h3>
+  <div id="app-back-button">
+  <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="inner-tab-menu">
+  <ul>
+    <% unless @new_reminder_count.size == 0 %>
+      <li><%= link_to "<b>Inbox (#{@new_reminder_count.size})</b>", :controller=>"reminder", :action=>"index" %></li>
+    <% else %>
+      <li><%= link_to "Inbox", :controller=>"reminder", :action=>"index"%></li>
+    <% end %>
+    <li><%= link_to "Sent", :controller=>"reminder", :action=>"sent_reminder"%></li>
+    <li><%= link_to "Create", :controller=>"reminder", :action=>"create_reminder"%></li>
+  </ul>
+</div>
+
+
+
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+
+
+  <div id="application-list">
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+      <tr class="tr-head">
+        <td>
+          From
+        </td>
+        <td>
+          Subject
+        </td>
+        <td>
+          Date
+        </td>
+      </tr>
+      <tr class="tr-blank"></tr>
+
+
+      <% @reminders.each do |ur| %>
+        <% if ur.is_read %>
+          <% sender_user = User.find(ur.sender)  %>
+          <tr class="tr-read-<%= cycle('odd', 'even') %>">
+            <td class="col-3"><%= link_to "#{sender_user.first_name}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <td class="col-3"><%= link_to "#{ur.subject}",  :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <td class="col-1"><%= link_to "#{ur.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+
+          </tr>
+
+        <% else %>
+
+
+
+          <% sender_user = User.find(ur.sender)  %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-3"><%= link_to "#{sender_user.first_name}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <td class="col-2"><%= link_to "#{ur.subject}",  :controller=>"reminder", :action=>"view_reminder",  :id2=>ur.id %></td>
+            <td class="col-1"><%= link_to "#{ur.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_reminder", :id2=>ur.id %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+    <%= will_paginate @reminders %>
+
+
+
+
+  </div>
+</div>

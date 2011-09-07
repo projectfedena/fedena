@@ -1,0 +1,154 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="page-yield">
+
+  <div class="hor_line"></div>
+  <div id ="main_info">
+    <h2> <%= @employee.full_name %>  </h2>
+    <h4> Employee Profile(General)</h4>
+  </div>
+
+  <div id="general_info">
+    <table id="pdf-table" width="100%" cellspacing="0">
+      <tr class="odd"><td class="col-pdf">Employee Number</td><td class="col-pdf"><%= @employee.employee_number unless @employee.employee_number.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Joining Date</td><td class="col-pdf"><%= @employee.joining_date.strftime("%d %b, %Y") unless @employee.joining_date.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">Department</td><td class="col-pdf"><%= @employee.employee_department.name unless @employee.employee_department.name.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Category</td><td class="col-pdf"><%= @employee.employee_category.name unless @employee.employee_category.name.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">Position</td><td class="col-pdf"><%= @employee.employee_position.name unless @employee.employee_position.name.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Job title</td><td class="col-pdf"><%= @employee.job_title unless @employee.job_title.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">Manager</td><td class="col-pdf"><%= @reporting_manager unless @reporting_manager.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Gender</td><td class="col-pdf"><%= @gender unless @gender.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">Status</td><td class="col-pdf"><%= @status unless @status.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Qualification</td><td class="col-pdf"><%= @employee.qualification unless @employee.qualification.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">Total experience</td><td class="col-pdf"><%= @total_years.to_s+"Years "+@total_months.to_s+"Months" unless @total_years.nil? or @total_months.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Experience info</td><td class="col-pdf"><%= @employee.experience_detail unless @employee.experience_detail.nil? %></td></tr>
+    </table>
+
+  </div>
+
+
+  <div id="page-extender"></div>
+
+  <div id ="main_info">
+    <h2> <%= @employee.full_name %>  </h2>
+    <h4> Employee Profile(Personal)</h4>
+  </div>
+  <div id="personal_info">
+    <table id="pdf-table" width="100%" cellspacing="0">
+      <tr class="odd"><td class="col-pdf">Date Of Birth</td><td class="col-pdf"><%= @employee.date_of_birth unless @employee.date_of_birth.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Marital status</td><td class="col-pdf"><%= @employee.marital_status unless @employee.marital_status.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">No. of children</td><td class="col-pdf"><%= @employee.children_count unless @employee.children_count.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Father's name</td><td class="col-pdf"><%= @employee.father_name unless @employee.father_name.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">Mother's name</td><td class="col-pdf"><%= @employee.mother_name unless @employee.mother_name.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Spouse name</td><td class="col-pdf"><%= @employee.husband_name unless @employee.husband_name.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">Blood group</td><td class="col-pdf"><%= @employee.blood_group unless @employee.blood_group.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Nationality</td><td class="col-pdf"><%= @employee.nationality.name unless @employee.nationality.name.nil? %></td></tr>
+    </table>
+
+  </div>
+
+  <div id="page-extender1"></div>
+
+  <div id ="main_info">
+    <h2> <%= @employee.full_name %>  </h2>
+    <h4> Employee Profile(Address details)</h4>
+  </div>
+  <div id="personal_info">
+    <table id="pdf-table" width="100%" cellspacing="0">
+      <tr class="odd"><td class="col-pdf">Home address</td><td class="col-pdf"><%= @employee.home_address_line1 unless @employee.home_address_line1.nil? %><br/><%= @employee.home_address_line2 unless @employee.home_address_line2.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">City</td><td class="col-pdf"><%= @employee.home_city unless @employee.home_city.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">State</td><td class="col-pdf"><%= @employee.home_state unless @employee.home_state.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Country</td><td class="col-pdf"><%= @home_country unless @home_country.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">Pin code</td><td class="col-pdf"><%= @employee.home_pin_code unless @employee.home_pin_code.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Office address</td><td class="col-pdf"><%= @employee.office_address_line1 unless @employee.office_address_line1.nil? %><br/><%= @employee.office_address_line2 unless @employee.office_address_line2.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">City</td><td class="col-pdf"><%= @employee.office_city unless @employee.office_city.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">State</td><td class="col-pdf"><%= @employee.office_state unless @employee.office_state.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">Country</td><td class="col-pdf"><%= @office_country unless @office_country.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Pin code</td><td class="col-pdf"><%= @employee.office_pin_code unless @employee.office_pin_code.nil? %></td></tr>
+    </table>
+
+  </div>
+
+  <div id="page-extender1"></div>
+
+  <div id ="main_info">
+    <h2> <%= @employee.full_name %>  </h2>
+    <h4> Employee Profile(Contact details)</h4>
+  </div>
+
+  <div id="personal_info">
+    <table id="pdf-table" width="100%" cellspacing="0">
+      <tr class="odd"><td class="col-pdf">Office phone1</td><td class="col-pdf"><%= @employee.office_phone1 unless @employee.office_phone1.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Office phone2</td><td class="col-pdf"><%= @employee.office_phone2 unless @employee.office_phone2.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">Mobile phone</td><td class="col-pdf"><%= @employee.mobile_phone unless @employee.mobile_phone.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Home phone</td><td class="col-pdf"><%= @employee.home_phone unless @employee.home_phone.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf">Email</td><td class="col-pdf"><%= @employee.email unless @employee.email.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf">Fax</td><td class="col-pdf"><%= @employee.fax unless @employee.fax.nil? %></td></tr>
+    </table>
+
+  </div>
+
+  
+  <% p= 'odd' %>
+
+  <% unless @bank_details.blank? %>
+
+  <div id="page-extender1"></div>
+  <div id ="main_info">
+    <h2> <%= @employee.full_name %>  </h2>
+    <h4> Employee Profile(Bank Account Details)</h4>
+  </div>
+
+  <div id="personal_info">
+    <table id="pdf-table" width="100%" cellspacing="0">
+      <% @bank_details.each do |b| %>
+        <% p =cycle('odd','even ') %>
+        <tr class="<%= "#{p}" %>"><td class="col-pdf"><%= b.bank_field.name %></td><td class="col-pdf"><%= b.bank_info %></td></tr>
+        <% end %>
+      </table>
+    </div>
+
+  
+
+   <% end %>
+
+
+  <% unless @additional_details.blank? %>
+
+  
+  <div id="page-extender1"></div>
+  <div id ="main_info">
+    <h2> <%= @employee.full_name %>  </h2>
+    <h4> Employee Profile(Bank Account Details)</h4>
+  </div>
+
+  <div id="personal_info">
+    <table id="pdf-table" width="100%" cellspacing="0">
+      <% @additional_details.each do |a| %>
+        <% p =cycle('odd','even ') %>
+        <tr class="<%= "#{p}" %>"><td class="col-pdf"><%= a.bank_field.name %></td><td class="col-pdf"><%= a.bank_info %></td></tr>
+        <% end %>
+      </table>
+    </div>
+
+
+   <% end %>
+
+</div>

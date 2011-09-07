@@ -1,0 +1,76 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Payslip</h1>
+  <h3>Create</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  <div id="box">
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Select Employee", {:controller=>"employee", :action=>"select_department_employee"} %></div>
+      <div class="link-descr">Generate payslip of an employee</div>
+    </div>
+    
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Rejected payslip", {:controller=>"employee", :action=>"rejected_payslip"} %></div>
+      <div class="link-descr">Manage employee rejected payslips</div>
+    </div>
+
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to_remote "One click payslip generator",:update=>"message-div",
+          :before => "Element.show('loader')",
+          :success => "Element.hide('loader')",
+          :url=>{:controller=>"employee", :action=>"payslip_date_select"} %></div>
+      <div class="link-descr">Generate payslip of an employee</div>
+
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to_remote "One click payslip revert",:update=>"message-div",
+          :before => "Element.show('loader')",
+          :success => "Element.hide('loader')",
+          :url=>{:controller=>"employee", :action=>"payslip_revert_date_select"},:confirm=>"This will delete the entire payslip record of all the employees(of the month you select),  from the system. Are you sure ?" %></div>
+      <div class="link-descr">Generate payslip of an employee</div>
+
+    </div>
+    <div class="extender"></div>
+    <div class="loader-image">
+      <%= image_tag("loader2.gif",
+        :align => "absmiddle",
+        :border => 0,
+        :id => "loader",
+        :style =>"display: none;" ) %>
+    </div>
+
+    <div id="message-div">
+      <div class="extender"></div>
+    </div>
+  </div>
+
+</div>

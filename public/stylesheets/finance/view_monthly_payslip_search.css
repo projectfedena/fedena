@@ -32,7 +32,7 @@
 .item-list li.heading1 {
     background : #BECFFB;
     border-bottom:1px solid #BECFFB;
-    font-weight : bold;
+    font-weight : normal;
     height : 1.5em;
     width : 34em;
     list-style-type : none;
@@ -43,12 +43,13 @@
 }
 .item-list li div.item-name {
     width : 350px;
+    font-size: 14px;
 }
 .item-list li div.item-edit,
 .item-list li div.item-delete {
-    font-size : 0.9em;
+    font-size : 14px;
     width : 100px;
-    text-align:right;
+    text-align:justify;
 }
 .item-list li div a {
     color : #000;

@@ -1,0 +1,101 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+<div id="page-yield">
+  <div class="hor_line"></div>
+
+  <div class="extender"> </div>
+  <div class="report">
+    <div id ="main_info">
+      <h4>  <%= @student.full_name %> </h4>
+    </div>
+    <div id="pdf-info">
+      <table id="pdf-table" width="100%" cellspacing="0">
+        <tr class="table-header">
+          <td>Subject</td>
+          <% @exam_groups.each do |exam_group| %>
+            <td><%= exam_group.name %></td>
+          <% end %>
+          <td>Total</td>
+        </tr>
+        <% c ='even' %>
+        <% @subjects.each do |subject| %>
+          <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+            <td class="col-pdf" ><%= subject.name %></td>
+            <% @mmg = 1;@g = 1 %>
+            <% @exam_groups.each do |exam_group| %>
+
+               <% @exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id) %>
+              <% exam_score = ArchivedExamScore.find_by_student_id(@student.id, :conditions=>{:exam_id=>@exam.id})unless @exam.nil? %>
+              <% unless exam_score.nil?  %>
+              <% if exam_group.exam_type == "MarksAndGrades" %>
+                <td class="col-3"><% unless @exam.nil?  %>
+<%= exam_score.marks %> | <%= @exam.maximum_marks %> | <%= exam_score.grading_level.name %></td>
+      <% end  %>
+      <% elsif exam_group.exam_type == "Marks" %>
+                <td class="col-3"><%= exam_score.marks unless @exam.nil? %> | <%= @exam.maximum_marks unless @exam.nil?%></td>
+              <% else %>
+                <td class="col-3"><%= exam_score.grading_level.name unless exam_score.nil?%></td>
+                <% @g = 0 %>
+              <% end %>
+              <% else %>
+                <td></td>
+              <% end %>
+          <% end %>
+          <% total_score = ArchivedExamScore.new() %>
+          <% if @mmg == @g %>
+            <td class="col-1"><%= total_score.grouped_exam_subject_total(subject,@student,@type) %></td>
+          <% else %>
+            <td class="col-1">-</td>
+          <% end %>
+        </tr>
+
+      <% end %>
+      <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+        <td>Total</td>
+        <% @max_total = 0 %>
+        <% @marks_total = 0 %>
+
+        <% @exam_groups.each do |exam_group| %>
+          <% if exam_group.exam_type == "MarksAndGrades" %>
+            <td><%= exam_group.archived_total_marks(@student)[0] %></td>
+          <% elsif exam_group.exam_type == "Marks" %>
+            <td><%= exam_group.archived_total_marks(@student)[0] %></td>
+          <% else %>
+            <td>-</td>
+          <% end %>
+          <% unless exam_group.exam_type == "Grades" %>
+          <% @max_total = @max_total + exam_group.archived_total_marks(@student)[1] %>
+          <% @marks_total = @marks_total + exam_group.archived_total_marks(@student)[0] %>
+          <% end %>
+        <% end %>
+        <td></td>
+      </tr>
+      <tr></tr>
+      </table>
+    </div>
+    <% if @mmg == @g %>
+      <% percentage = (@marks_total*100/@max_total.to_f)  unless @max_total==0 %>
+      <h4>Total Marks = <%= @marks_total %> | Aggregate % = <%=percentage %> </h4>
+    <% end %>
+  </div>
+
+
+</div>

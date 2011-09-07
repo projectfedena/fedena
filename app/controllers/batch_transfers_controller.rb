@@ -1,3 +1,21 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class BatchTransfersController < ApplicationController
   before_filter :login_required
   filter_access_to :all
@@ -24,8 +42,13 @@ class BatchTransfersController < ApplicationController
     @stu = Student.find_all_by_batch_id(batch.id)
     if @stu.empty?
       batch.update_attribute :is_active, false
+      Subject.find_all_by_batch_id(batch.id).each do |sub|
+          sub.employees_subjects.each do |emp_sub|
+            emp_sub.delete
+          end
+      end
     end
-    flash[:notice] = 'Trasferred students sucessfully.'
+    flash[:notice] = 'Trasferred students successfully.'
     redirect_to :controller => 'batch_transfers'
   end
 
@@ -46,8 +69,8 @@ class BatchTransfersController < ApplicationController
         @stu = Student.find_all_by_batch_id(@batch.id)
         if @stu.empty?
           @batch.update_attribute :is_active, false
-          flash[:notice]="Graduated selected students successfully."
-          redirect_to :controller=>'batch_transfers' and return
+#          flash[:notice]="Graduated selected students successfully."
+#          redirect_to :controller=>'batch_transfers' and return
         end
         flash[:notice]="Graduated selected students successfully."
         redirect_to :action=>"graduation", :id=>params[:id], :ids => @admission_list

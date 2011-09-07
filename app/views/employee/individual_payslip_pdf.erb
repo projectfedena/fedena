@@ -1,0 +1,151 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+
+<div id="page-yield">
+
+  
+    <div class="hor_line"></div>
+    <h2>Employee Payslip</h2>
+    <div class="hor_line"></div>
+    <div class="extender"> </div>
+    <div class="report">
+      <div id ="main_info">
+        <div class="info"><div class="info-label">Name</div> <div class="info-data"><span>:</span><%= @employee.full_name.upcase %></div></div>
+        <div class="info"><div class="info-label">ID</div> <div class="info-data"><span>:</span><%= @employee.employee_number %></div></div>
+        <div class="info"><div class="info-label">Grade</div> <div class="info-data"><span>:</span><%= EmployeeGrade.find(@employee.employee_grade_id).name %></div></div>
+        <div class="info"><div class="info-label">Category</div> <div class="info-data"><span>:</span><%=  EmployeeCategory.find(@employee.employee_category_id).name %></div></div>
+        <div class="info"><div class="info-label">Department</div> <div class="info-data"><span>:</span><%= @employee.employee_department.name %></div></div>
+        <div class="info"><div class="info-label">Joning Date</div> <div class="info-data"><span>:</span><%= @employee.joining_date.strftime("%d %B %Y") %></div></div>
+        <div class="info"><div class="info-label">Payslip generated on</div> <div class="info-data"><span>:</span><%=  @salary_date%></div></div>
+      </div>
+      <div id="pdf-info">
+        <%  @monthly_payslips = MonthlyPayslip.find_all_by_salary_date(@salary_date,
+          :conditions=> "employee_id =#{@employee.id}",
+          :order=> "payroll_category_id ASC")%>
+
+        <%  @individual_payslip_category = IndividualPayslipCategory.find_all_by_salary_date(@salary_date,
+          :conditions=>"employee_id =#{@employee.id}",
+          :order=>"id ASC") %>
+        <%  @individual_category_non_deductionable = 0 %>
+        <% @individual_category_deductionable = 0 %>
+        <% @individual_payslip_category.each do |pc| %>
+          <% unless pc.is_deduction == true %>
+            <% @individual_category_non_deductionable = @individual_category_non_deductionable + pc.amount.to_i %>
+          <% end %>
+        <% end %>
+
+        <% @individual_payslip_category.each do |pc| %>
+          <% unless pc.is_deduction == false %>
+            <% @individual_category_deductionable = @individual_category_deductionable + pc.amount.to_ %>i
+          <% end %>
+        <% end %>
+
+        <% @non_deductionable_amount = 0 %>
+        <% @deductionable_amount = 0 %>
+        <% @monthly_payslips.each do |mp| %>
+          <% category1 = PayrollCategory.find(mp.payroll_category_id) %>
+          <% unless category1.is_deduction == true %>
+            <% @non_deductionable_amount = @non_deductionable_amount + mp.amount.to_i %>
+          <% end %>
+        <% end %>
+
+        <% @monthly_payslips.each do |mp| %>
+          <% category2 = PayrollCategory.find(mp.payroll_category_id) %>
+          <% unless category2.is_deduction == false %>
+            <% @deductionable_amount = @deductionable_amount + mp.amount.to_i %>
+          <% end %>
+        <% end %>
+
+        <% @net_non_deductionable_amount = @individual_category_non_deductionable + @non_deductionable_amount %>
+        <% @net_deductionable_amount = @individual_category_deductionable + @deductionable_amount %>
+
+        <% @net_amount = @net_non_deductionable_amount - @net_deductionable_amount %>
+
+
+        <table id="pdf-table" width="100%" cellspacing="0">
+          <tr class="table-header"><td colspan="2"class="col-pdf">Salary</td></tr>
+          <% c = 'even' %>
+          <% @monthly_payslips.each do |mp| %>
+            <% category = PayrollCategory.find(mp.payroll_category_id) %>
+            <% if category.is_deduction == false %>
+              <% c =cycle('even','odd ') %>
+              <tr class="<%= "#{c}" %>">
+                <td class="col-pdf"><%= category.name %></td>
+                <td class="col-pdf"><%= "#{@currency_type.to_s}" + " " "#{mp.amount.to_s}" %></td>
+              </tr>
+            <% end %>
+          <% end %>
+          <% unless @individual_payslip_category.empty? %>
+            <% @individual_payslip_category.each do |pc| %>
+              <% if pc.is_deduction == false %>
+                <% c = cycle('even','odd ') %>
+                <tr class="<%= "#{c}" %>">
+                  <td class="col-pdf"><%= pc.name %></td>
+                  <td class="col-pdf"><%= "#{@currency_type.to_s}" + " " "#{pc.amount.to_s}" %></td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+          <% if c =='even' %>
+            <tr class="odd"><td class="col-pdf">Total Salary</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_non_deductionable_amount.to_s}" %></td></tr>
+          <% else %>
+            <tr class="even"><td class="col-pdf">Total Salary</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_non_deductionable_amount.to_s}" %></td></tr>
+          <% end  %>
+          <tr class="table-header"><td colspan="2"class="col-pdf">Deductions</td></tr>
+          <% @monthly_payslips.each do |mp| %>
+            <% category = PayrollCategory.find(mp.payroll_category_id) %>
+            <% if category.is_deduction == true %>
+              <% c =cycle('even','odd ') %>
+              <tr class="<%= "#{c}" %>">
+                <td class="col-pdf"><%= category.name %></td>
+                <td class="col-pdf"><%= "#{@currency_type.to_s}" + " " "#{mp.amount.to_s}" %></td>
+              </tr>
+            <% end %>
+          <% end %>
+          <% unless @individual_payslip_category.empty? %>
+            <% @individual_payslip_category.each do |pc| %>
+              <% if pc.is_deduction == true %>
+                <% c =cycle('even','odd ') %>
+                <tr class="<%= "#{c}" %>">
+                  <td class="col-pdf"><%= pc.name %></td>
+                  <td class="col-pdf"><%= "#{@currency_type.to_s}" + " " "#{pc.amount.to_s}" %></td>
+                </tr>
+
+              <% end %>
+            <% end %>
+          <% end %>
+          <% if c =='even' %>
+            <tr class="odd"><td class="col-pdf">Total Deduction</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+" ""#{@net_deductionable_amount.to_s}" %></td></tr>
+            <tr class="table-header"><td colspan="2"class="col-pdf">Total</td></tr>
+            <tr class="even"><td class="col-pdf">Net Salary</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_amount.to_s}" %></td></tr>
+          <% else %>
+            <tr class="even"><td class="col-pdf">Total Deduction</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " ""#{@net_deductionable_amount.to_s}" %></td></tr>
+            <tr class="table-header"><td colspan="2"class="col-pdf">Total</td></tr>
+            <tr class="odd"><td class="col-pdf">Net Salary</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_amount.to_s}" %></td></tr>
+          <% end  %>
+        </table>
+
+      </div>
+    
+
+  </div>
+
+</div>

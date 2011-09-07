@@ -1,0 +1,116 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <img src="/images/show_finance.png" alt="" />
+  <h1>Fees</h1>
+  <h3>Collection Details</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+
+  <div class="info">
+    <div class="name">Fee Collection Name</div><div class="val"><span>:</span><%= @fee_collection.name %></div>
+    <div class="name">Fee Category Name</div><div class="val"><span>:</span><%= @fee_collection.fee_category.name %></div>
+    <div class="name">Start date</div><div class="val"><span>:</span><%= @fee_collection.start_date %></div>
+    <div class="name">End date</div><div class="val"><span>:</span><%= @fee_collection.end_date %></div>
+    <div class="name">Due date</div><div class="val"><span>:</span><%= @fee_collection.due_date %></div>
+    <div class="extender"></div>
+  </div>
+
+
+  <% unless @discounts.blank? %>
+
+    <div class="discount">
+
+      <table id="listing">
+        <tr class="tr-head">
+          <td>Name</td>
+          <td>Student Category</td>
+          <td>Student Name</td>
+          <td>Discount (%)</td>
+        </tr>
+
+        <% @discounts.each do |f| %>
+          <tr class="tr-<%= cycle('odd', 'even')%> ">
+            <td class="col-3"><%= f.name %></td>
+            <% if f.type == "StudentCategoryFeeCollectionDiscount" %>
+              <td class="col-3"><%= f.category_name   %></td>
+              <td class="col-3"></td>
+            <% elsif f.type == "StudentFeeCollectionDiscount" %>
+              <td class="col-3"></td>
+              <td class="col-3"><%= f.student_name   %></td>
+            <% elsif f.type == "BatchFeeCollectionDiscount" %>
+              <td class="col-3"></td>
+              <td class="col-3"></td>
+            <% end %>
+            <td class="col-3"><%= f.discount %></td>
+
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+
+
+  <% unless @particulars.empty? %>
+
+  <div class="particulars">
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+      <tr class="tr-head">
+        <td>Sl no.</td>
+        <td>Particulars</td>
+        <td>Student Category</td>
+        <td>Admission No</td>
+        <td>Amount ( <%=currency  %> )</td>
+        <td>Created Date</td>
+      </tr>
+      <tr class="tr-blank"></tr>
+
+      <% @particulars.each_with_index do |fees,i| %>
+        <tr class="tr-<%= cycle("odd","even") %>">
+          <td class="col-1"><%= i+1 %></td>
+          <td class="col-4"><%= fees.name %></td>
+          <td class="col-3">
+            <%unless fees.student_category_id.nil?%>
+              <%= StudentCategory.find(fees.student_category_id).name%>
+            <% else %> - <% end %>
+          </td>
+          <td class="col-3">
+            <%unless fees.admission_no.nil?%>
+              <%  student =  Student.find_by_admission_no(fees.admission_no)%>
+              <%= student.nil? ? "N.A." : student.full_name %>
+            <% else %> - <% end %>
+          </td>
+          <td class="col-3"><%= fees.amount%></td>
+          <td class="col-3"><%= fees.created_at.strftime("%m-%d-%Y") %></td>
+
+        </tr>
+      <% end %>
+
+
+    </table>
+  </div>
+  <% end %>
+
+</div>
+
+

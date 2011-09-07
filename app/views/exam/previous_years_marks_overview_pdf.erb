@@ -1,0 +1,185 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+<div id="page-yield">
+  <div class="hor_line"></div>
+
+  <div class="extender"> </div>
+  <div class="report">
+    <div id ="main_info">
+      <h4>  <%= @student.full_name %> </h4>
+
+
+      <% @all_batches.each do |b| %>
+        <%   if @type == 'grouped' %>
+          <%   @grouped_exams = GroupedExam.find_all_by_batch_id(b.id) %>
+          <%   @exam_groups = [] %>
+          <%   @grouped_exams.each do |x| %>
+            <%   @exam_groups.push ExamGroup.find(x.exam_group_id) %>
+          <%   end %>
+        <% else %>
+          <%   @exam_groups = ExamGroup.find_all_by_batch_id(b.id) %>
+        <%  end %>
+        <%  general_subjects = Subject.find_all_by_batch_id(b.id, :conditions=>"elective_group_id IS NULL AND is_deleted=false") %>
+        <%  student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{b.id}") %>
+        <%  elective_subjects = [] %>
+        <%  student_electives.each do |elect| %>
+          <%    elective_subjects.push Subject.find(elect.subject_id) %>
+        <%  end %>
+        <%  @subjects = general_subjects + elective_subjects %>
+        <div id="register">
+          <div class="header2">
+            <div class="month">
+              <% exam = ExamScore.new() %>
+              <% @aggr =  exam.batch_wise_aggregate(@student,b)  %>
+              <h4> <%= b.name %> | Aggregate : <%="%.2f" %@aggr.to_f unless @aggr== 'nil' or @aggr.nil? %></h4>
+            </div>
+            <div class="extender"></div>
+          </div>
+        </div>
+      </div>
+      <div id="pdf-info">
+        <% c = 'even' %>
+        <table id="pdf-table" width="100%" cellspacing="0">
+          <tr class="table-header">
+            <td>Subject</td>
+            <% @exam_groups.each do |exam_group| %>
+              <td><%= exam_group.name %></td>
+            <% end %>
+            <td>Total</td>
+          </tr>
+          <% i = 0  %>
+          <% @subjects.each do |subject| %>
+            <% i+=1  %>
+            <% if i== 12 %>
+              <% i= 0 %>
+              <tr class="page-break"><td colspan="3"></td></tr>
+              <tr class="table-header">
+                <td>Subject</td>
+                <% @exam_groups.each do |exam_group| %>
+                  <td><%= exam_group.name %></td>
+                <% end %>
+                <td>Total</td>
+              </tr>
+            <% end %>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf" ><%= subject.name %></td>
+              <% @mmg = 1;@g = 1 %>
+
+              <% @exam_groups.each do |exam_group| %>
+
+                <% @exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id) %>
+                <% exam_score = ExamScore.find_by_student_id(@student.id, :conditions=>{:exam_id=>@exam.id})unless @exam.nil? %>
+                <% unless exam_score.nil?  %>
+                  <% if exam_group.exam_type == "MarksAndGrades" %>
+                    <td class="col-pdf"><% unless @exam.nil?  %>
+                        <%= exam_score.marks || "-" %>/<%= @exam.maximum_marks %>(<%= exam_score.grading_level || "-" %>)</td>
+                    <% end  %>
+                  <% elsif exam_group.exam_type == "Marks" %>
+                    <td class="col-pdf"><%= exam_score.marks || "-" unless @exam.nil? %>/<%= @exam.maximum_marks unless @exam.nil?%></td>
+                  <% else %>
+                    <td class="col-pdf"><%= exam_score.grading_level || "-" unless exam_score.nil? %></td>
+                    <% @g = 0 %>
+                  <% end %>
+                <% else %>
+                  <td></td>
+                <% end %>
+              <% end %>
+              <% total_score = ExamScore.new() %>
+              <% if @mmg == @g %>
+                <td class="col-pdf"><%= total_score.grouped_exam_subject_total(subject,@student,@type,b) %></td>
+              <% else %>
+                <td class="col-pdf">-</td>
+              <% end %>
+            </tr>
+
+          <% end %>
+          <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+            <td class="col-pdf-bold">Total</td>
+            <% @max_total = 0 %>
+            <% @marks_total = 0 %>
+
+            <% @exam_groups.each do |exam_group| %>
+              <% if exam_group.exam_type == "MarksAndGrades" %>
+                <td class="col-pdf-bold"><%= exam_group.total_marks(@student)[0] %></td>
+              <% elsif exam_group.exam_type == "Marks" %>
+                <td class="col-pdf-bold"><%= exam_group.total_marks(@student)[0] %></td>
+              <% else %>
+                <td class="col-pdf-bold">-</td>
+              <% end %>
+              <% unless exam_group.exam_type == "Grades" %>
+                <% @max_total = @max_total + exam_group.total_marks(@student)[1] %>
+                <% @marks_total = @marks_total + exam_group.total_marks(@student)[0] %>
+              <% end %>
+            <% end %>
+            <td class="col-pdf-bold"></td>
+          </tr>
+        </table>
+        <br />
+        <% @additional_exam_groups = AdditionalExamGroup.find_all_by_batch_id(b) %>
+        <% @additional_exam_groups.each do |additional_exam_group| %>
+          <% if additional_exam_group.students.include?(@student) %>
+            <% i+=1  %>
+            <% if i== 12 %>
+              <% i= 0 %>
+              <table id="pdf-table" width="100%" cellspacing="0">
+                <tr class="page-break"><td colspan="3"></td></tr>
+              </table>
+            <% end %>
+            <div id="additional_register">
+              <div class="header2">
+                <div class="month">
+                  <%= b.name+" | "+ additional_exam_group.name%>
+                </div>
+
+                <div class="extender"></div>
+              </div>
+            </div>
+            <% @additional_exams = AdditionalExam.find_all_by_additional_exam_group_id(additional_exam_group) %>
+            <table id="pdf-table" width="100%" cellspacing="0">
+              <tr class="table-header">
+                <td>Subject</td>
+                <% unless additional_exam_group.exam_type == "Grades" %>      <td>Marks</td> <% end %>
+                <% unless additional_exam_group.exam_type == "Marks" %> <td> Grades </td><% end %>
+              </tr>
+              <% @additional_exams.each do |exam| %>
+                <% unless (exam.score_for(@student).marks.nil? &&  exam.score_for(@student).grading_level_id.nil?)   %>
+                  <% i+=1  %>
+                  <% if i== 12 %>
+                    <% i= 0 %>
+                    <tr class="page-break"><td colspan="3"></td></tr>
+                  <% end %>
+                  <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+                    <td class="col-pdf" ><%= exam.subject.name %></td>
+                    <% unless additional_exam_group.exam_type == "Grades" %>  <td class="col-pdf"><%= exam.score_for(@student).marks || "-"  %> </td> <% end %>
+                    <% unless additional_exam_group.exam_type == "Marks" %> <td class="col-pdf"><%= exam.score_for(@student).grading_level || "-" %> </td> <% end %>
+                  </tr>
+                <% end %>
+              <% end %>
+            </table>
+          <% end %>
+        <% end %>
+      <% end %>
+
+
+    </div>
+  </div>
+
+</div>

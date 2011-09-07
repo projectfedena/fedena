@@ -1,10 +1,28 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class EmployeeAttendanceController < ApplicationController
     before_filter :login_required,:configuration_settings_for_hr
     before_filter :protect_leave_dashboard, :only => [:leaves]#, :employee_attendance_pdf]
     before_filter :protect_applied_leave, :only => [:own_leave_application, :cancel_application]
     before_filter :protect_manager_leave_application_view, :only => [:leave_application]
     before_filter :protect_leave_history, :only => [:leave_history,:update_leave_history]
-    prawnto :prawn => {:left_margin => 25, :right_margin => 25}
+#    prawnto :prawn => {:left_margin => 25, :right_margin => 25}
 
     filter_access_to :all
 
@@ -39,7 +57,7 @@ class EmployeeAttendanceController < ApplicationController
             @leave_count.each do |e|
                 e.delete
             end
-            flash[:notice] = "Leave type deleted succesfully"
+            flash[:notice] = "Leave type deleted successfully"
         else
             flash[:notice] = "Sorry! Cannot delete a leave type with leave entry"
         end
@@ -82,10 +100,10 @@ class EmployeeAttendanceController < ApplicationController
                             attendance.each do |a|
                                 if a.is_half_day
                                     leave_taken += (0.5).to_f
-                                    available_leave += (0.5).to_f
+
                                 else
                                     leave_taken += (1).to_f
-                                    available_leave += (1).to_f
+                                     
                                 end
                             end
                         end
@@ -97,10 +115,10 @@ class EmployeeAttendanceController < ApplicationController
                             attendance.each do |a|
                                 if a.is_half_day
                                     leave_taken += (0.5).to_f
-                                    available_leave += (0.5).to_f
+
                                 else
                                     leave_taken += (1).to_f
-                                    available_leave += (1).to_f
+
                                 end
                             end
                         end
@@ -113,10 +131,10 @@ class EmployeeAttendanceController < ApplicationController
                         attendance.each do |a|
                             if a.is_half_day
                                 leave_taken += (0.5).to_f
-                                available_leave += (0.5).to_f
+
                             else
                                 leave_taken += (1).to_f
-                                available_leave += (1).to_f
+                                
                             end
                         end
                     end
@@ -169,10 +187,10 @@ class EmployeeAttendanceController < ApplicationController
                                 attendance.each do |a|
                                     if a.is_half_day
                                         leave_taken += (0.5).to_f
-                                        available_leave += (0.5).to_f
+
                                     else
                                         leave_taken += (1).to_f
-                                        available_leave += (1).to_f
+
                                     end
                                 end
                             end
@@ -184,10 +202,10 @@ class EmployeeAttendanceController < ApplicationController
                                 attendance.each do |a|
                                     if a.is_half_day
                                         leave_taken += (0.5).to_f
-                                        available_leave += (0.5).to_f
+
                                     else
                                         leave_taken += (1).to_f
-                                        available_leave += (1).to_f
+
                                     end
                                 end
                             end
@@ -200,10 +218,10 @@ class EmployeeAttendanceController < ApplicationController
                             attendance.each do |a|
                                 if a.is_half_day
                                     leave_taken += (0.5).to_f
-                                    available_leave += (0.5).to_f
+
                                 else
                                     leave_taken += (1).to_f
-                                    available_leave += (1).to_f
+
                                 end
                             end
                         end
@@ -213,7 +231,7 @@ class EmployeeAttendanceController < ApplicationController
 
             end
         end
-        flash[:notice]="Department Wise Leave Reset Sucessfull"
+        flash[:notice]="Department Wise Leave Reset Successfull"
         redirect_to :controller=>"employee_attendance", :action => "employee_leave_reset_by_department"
     end
 
@@ -279,10 +297,10 @@ class EmployeeAttendanceController < ApplicationController
                             attendance.each do |a|
                                 if a.is_half_day
                                     leave_taken += (0.5).to_f
-                                    available_leave += (0.5).to_f
+                                    
                                 else
                                     leave_taken += (1).to_f
-                                    available_leave += (1).to_f
+                                    
                                 end
                             end
                         end
@@ -294,10 +312,10 @@ class EmployeeAttendanceController < ApplicationController
                             attendance.each do |a|
                                 if a.is_half_day
                                     leave_taken += (0.5).to_f
-                                    available_leave += (0.5).to_f
+                                    
                                 else
                                     leave_taken += (1).to_f
-                                    available_leave += (1).to_f
+                                    
                                 end
                             end
                         end
@@ -310,10 +328,10 @@ class EmployeeAttendanceController < ApplicationController
                         attendance.each do |a|
                             if a.is_half_day
                                 leave_taken += (0.5).to_f
-                                available_leave += (0.5).to_f
+
                             else
                                 leave_taken += (1).to_f
-                                available_leave += (1).to_f
+
                             end
                         end
                     end
@@ -322,7 +340,7 @@ class EmployeeAttendanceController < ApplicationController
             end
         end
         render :update do |page|
-            flash.now[:notice]="Leave Reset Sucessfull"
+            flash.now[:notice]="Leave Reset Successfull"
             page.replace_html "list", :partial => 'employee_reset_sucess'
         end
     end
@@ -379,7 +397,7 @@ class EmployeeAttendanceController < ApplicationController
         @employee = Employee.find(params[:id])
         @attendance_report = EmployeeAttendance.find_all_by_employee_id(@employee.id)
         @leave_types = EmployeeLeaveType.find(:all, :conditions => "status = true")
-        @leave_count = EmployeeLeave.find_all_by_employee_id(@employee)
+        @leave_count = EmployeeLeave.find_all_by_employee_id(@employee,:joins=>:employee_leave_type,:conditions=>"status = true")
         @total_leaves = 0
         @leave_types.each do |lt|
             leave_count = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id,lt.id).size
@@ -524,8 +542,12 @@ class EmployeeAttendanceController < ApplicationController
     def cancel_application
         @applied_leave = ApplyLeave.find(params[:id])
         @employee = Employee.find(@applied_leave.employee_id)
+        unless @applied_leave.viewed_by_manager
         ApplyLeave.destroy(params[:id])
         flash[:notice] = "Leave application deleted"
+        else
+        flash[:notice] = "Sorry aproved leave cannot be deleted"
+        end
         redirect_to :action=>"leaves", :id=>@employee.id
     end
 
@@ -551,17 +573,14 @@ class EmployeeAttendanceController < ApplicationController
         @employee = Employee.find(params[:id])
         @attendance_report = EmployeeAttendance.find_all_by_employee_id(@employee.id)
         @leave_types = EmployeeLeaveType.find(:all, :conditions => "status = true")
-        @leave_count = EmployeeLeave.find_all_by_employee_id(@employee)
+        @leave_count = EmployeeLeave.find_all_by_employee_id(@employee,:joins=>:employee_leave_type,:conditions=>"status = true")
         @total_leaves = 0
         @leave_types.each do |lt|
             leave_count = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id,lt.id).size
             @total_leaves = @total_leaves + leave_count
         end
-        render :pdf => 'employee_attendance_pdf',
-           :margin => {    :top=> 10,
-                             :bottom => 10,
-                             :left=> 30,
-                             :right => 30}
+        render :pdf => 'employee_attendance_pdf'
+          
 
 #        respond_to do |format|
 #            format.pdf { render :layout => false }

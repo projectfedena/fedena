@@ -1,0 +1,83 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <img src="/images/user_profile/user_profile_logo.jpg" />
+  <h1>User Profile</h1>
+  <h3>User Information</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<% if @current_user.id == @user.id %>
+  <div id="inner-tab-menu">
+    <ul><li><%= link_to "Change Password", :controller => "user", :action => "change_password" %></li></ul>
+  </div>
+<% end %>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %><p class="flash-msg"> <%= flash[:notice] %> </p><% end %>
+
+  <div id="profile_view">
+
+    <div class="profile_info_label">Username</div>
+    <div class="profile_info_text"> <%= @user.username %> </div>
+
+    <div class="profile_info_label2">Name</div>
+    <div class="profile_info_text2"> <%= @user.full_name %> </div>
+
+
+    <div class="profile_info_label">Role</div>
+    <div class="profile_info_text"> <%= @user.role_name %> </div>
+
+    <div class="profile_info_label2">Email</div>
+    <div class="profile_info_text2"> <%= @user.email %> </div>
+    <div class="extender"></div>
+  </div>
+
+  <% if @current_user.admin? %>
+    <div class="submit-buttons">
+
+      <% if @user.role_name == 'Employee' %>
+        <% if @config.include?('HR') %>
+          <%= link_to "► View profile",{:controller => "employee", :action => "profile", :id => @employee.id }, :class => "user_button" unless @employee.nil?%>
+        <% end %>
+      <% elsif @user.role_name == 'Student' %>
+        <%= link_to "► View profile",{:controller => "student", :action => "profile", :id => @student.id }, :class => "user_button"%>
+      <% else %>
+        <% if @config.include?('HR') %>
+          <%= link_to "► View profile",{:controller => "employee", :action => "profile", :id => @employee.id }, :class => "user_button" unless @employee.nil?%>
+        <% end %>
+      <% end %>
+      <%#= link_to "► Edit",{:controller => "user", :action => "edit", :id => @user.username }, :class => "user_button"%>
+      <%= link_to "Change Password", {:controller => "user", :action => "user_change_password", :id =>@user.username}, :class => "user_button" %>
+      <%# unless @current_user.id == @user.id %>
+        <%#= link_to "► Delete", { :controller => "user", :action => "delete", :id => @user.username}, :class => "user_button", :confirm=>"Are you sure you want to delete this USER?" %>
+      <%# end %>
+      <% unless @user.admin %>
+        <% unless @user.role_name == 'Student' %>
+          <%= link_to "► Edit Privilege", {:controller => "user", :action => "edit_privilege", :id => @user.username } ,:class => "user_button" %>
+      
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

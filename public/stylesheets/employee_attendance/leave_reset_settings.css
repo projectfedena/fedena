@@ -25,3 +25,10 @@
 .check_box{
     padding-left: 10px;
 }
+
+
+.label-field-pair {
+    height: 55px;
+    padding-top: 3px;
+    width: 600px;
+}

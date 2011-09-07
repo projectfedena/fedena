@@ -1,0 +1,69 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+
+<div id="page-yield">
+
+  <div class="hor_line"></div>
+  <h2>Timetable</h2>
+  <div class="hor_line"></div>
+
+
+  <div class="extender"> </div>
+  <div class="report">
+
+    <div id ="main_info">
+      <h4> <%= @batch.full_name %></h4>
+    </div>
+    <div id="pdf-info">
+      <table id="pdf-table" width="100%" cellspacing="0">
+        <tr class="table-header">
+          <td class="col-pdf">Day</td>
+          <% @class_timing.each do |class_time| %>
+            <td class="col-pdf"> <%= class_time.name %> </td>
+          <% end %>
+        </tr>
+        <%  @day.each do |d| %>
+          <% c =cycle('even','odd ') %>
+          <tr class="<%= "#{c}" %>">
+            <td class="col-pdf"><%= @weekday[d.weekday.to_i][0,3].upcase %></td>
+
+            <% @class_timing.each do |pt1|  %>
+              <% tte = TimetableEntry.find_by_weekday_id_and_class_timing_id_and_batch_id(d.id, pt1.id, @batch.id) %>
+              <% unless tte.nil? %>
+                <% period = tte.subject.nil?? " ":tte.subject.code %>
+                <% if Configuration.available_modules.include?('HR') %>
+                  <% teacher = "\n("+tte.employee.employee_number+")"    unless tte.employee.nil? %>
+                  <td class="col-pdf"><%= period %><br/><%= teacher.to_s %></td>
+                <% else %>
+                  <td class="col-pdf"><%= period %></td>
+                <% end %>
+              <% else %>
+                <td class="col-pdf"></td>
+              <% end %>
+            <% end %>
+          </tr>
+          <% end %>
+      </table>
+    </div>
+
+  </div>
+
+</div>

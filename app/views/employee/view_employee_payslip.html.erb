@@ -1,0 +1,97 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Employee</h1>
+  <h3>Employee payslip</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+<ul class="item-list">
+  <li class="heading"><%= @monthly_payslips.first.active_or_archived_employee.full_name %></li>
+  <li class="heading">Payslip generated on <%= params[:salary_date] %> <span class="red">(Status: <%=  @monthly_payslips.first.status_as_text %>)</span></li>
+</ul>
+<ul class="item-list">
+  <li class="heading1">Salary</li>
+  <% @monthly_payslips.each do |mp| %>
+    <% unless mp.payroll_category.is_deduction == true %>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="item-name"><%= mp.payroll_category.name  %> </div>
+        <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %mp.amount.to_f  %></div>
+      </li>
+    <% end %>
+  <% end %>
+  <% unless @individual_payslips.empty? %>
+    <% @individual_payslips.each do |pc| %>
+      <%if  pc.is_deduction == false %>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <div class="item-name"><%= pc.name %></div>
+          <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %pc.amount %></div>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+  <li class="list<%=cycle('odd', 'even')%>">
+    <div class="item-name"><b>Total Salary </b></div>
+    <div class="item-edit"><b><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %@salary[:net_non_deductionable_amount]  %></b></div>
+  </li>
+</ul>
+
+<ul class="item-list">
+  <li class="heading1">Deductions</li>
+  <% @monthly_payslips.each do |mp| %>
+    <% unless mp.payroll_category.is_deduction == false %>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="item-name"><%= mp.payroll_category.name  %></div>
+        <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %mp.amount.to_f %></div>
+      </li>
+    <% end %>
+  <% end %>
+  <% unless @individual_payslips.empty? %>
+    <% @individual_payslips.each do |pc| %>
+      <%if  pc.is_deduction == true %>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <div class="item-name"><%= pc.name %></div>
+          <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" % pc.amount %></div>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+  <li class="list<%=cycle('odd', 'even')%>">
+    <div class="item-name"><b>Total Deductions </b></div>
+    <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span> <b><%="%.2f" %@salary[:net_deductionable_amount] %></b></div>
+  </li>
+</ul>
+
+<ul class="item-list">
+  <li class="heading1">Total</li>
+  <li class="listeven">
+    <div class="item-name"><b>Net Salary </b></div>
+    <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span><b> <%="%.2f" %@salary[:net_amount]%></b></div>
+  </li>
+</ul>
+
+
+<div class="pdf-report">
+  <%= link_to "PDF report", :controller=>"employee", :action=>"employee_individual_payslip_pdf", :id=>params[:id], :id2=>params[:salary_date], :format=>'pdf', :target=>"_blank" %>
+</div>
+</div>

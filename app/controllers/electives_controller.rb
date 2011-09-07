@@ -1,2 +1,0 @@
-class ElectivesController < ApplicationController
-end

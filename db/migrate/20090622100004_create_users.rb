@@ -17,17 +17,12 @@ class CreateUsers < ActiveRecord::Migration
       
       t.timestamps
     end
-    create_default
   end
 
   def self.down
     drop_table :users
   end
 
-  def self.create_default
-    User.create :username   => 'admin',:password   => 'admin123',:first_name => 'Fedena',
-    :last_name  => 'Administrator',:email=> 'admin@fedena.com',:role=> 'Admin'
-  end
 
 
 end

@@ -1,0 +1,176 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <img src="/images/student_details/student_details_logo.jpg" />
+  <h1>Student</h1>
+  <h3>Fee Status</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "Fees", :controller => 'student', :action => 'fees', :id => @student.id %></li>
+    <li><%= link_to "Student profile", :controller => 'student', :action => 'profile', :id => @student.id %></li>
+  </ul>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
+
+  <div id="student_profile_heading">
+
+
+
+    <div id="student_main_info">
+      <span class="name"> <%= @student.full_name %>  </span>
+      <span class="course"> Course & Batch: <%= @student.batch.course_name %> </span>
+      <span class="adm"> Adm no : <%= @student.admission_no %> </span>
+    </div>
+
+    <div class="extender"> </div>
+
+  </div>
+
+  <% unless @fee_particulars.nil? %>
+
+    <% total_fees = 0  %>
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+      <tr class="tr-head">
+        <td>Sl no.</td>
+        <td>Particulars</td>
+        <td>Amount (<%= currency %>  )</td>
+      </tr>
+      <tr class="tr-blank"></tr>
+      <% i = 0 %>
+      <% @fee_particulars.each do |fee| %>
+        <tr class="tr-<%= cycle("odd","even") %>">
+          <td class="col-1"><%= i+=1 %></td>
+          <td class="col-2"><%= shorten_string(fee.name,20) %></td>
+          <td class="col-6"><%= fee.amount%></td>
+        </tr>
+        <% total_fees += fee.amount %>
+      <% end %>
+
+      <% unless @total_discount == 0 %>
+        <tr class="tr-blank"></tr>
+        <tr class="tr-blank"></tr>
+        <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
+          <td class="col-1" ></td>
+          <td class="col-1" colspan="2"><span>Discount</span></td>
+          
+        </tr>
+        <% @batch_discounts.each do |d| %>
+          <tr class="tr-<%= cycle("odd","even") %>">
+            <td class="col-1"><%= i+1 %></td>
+            <td class="col-2"><%= shorten_string(d.name,20) %></td>
+            <td class="col-6"><%= d.discount%> %</td>
+          </tr>
+          <% i += 1 %>
+        <% end %>
+        <% @student_discounts.each do |d| %>
+          <tr class="tr-<%= cycle("odd","even") %>">
+            <td class="col-1"><%= i+1 %></td>
+            <td class="col-2"><%= shorten_string(d.name,20) %></td>
+            <td class="col-6"><%= d.discount%> %</td>
+          </tr>
+          <% i += 1 %>
+        <% end %>
+        <% @category_discounts.each do |d| %>
+          <tr class="tr-<%= cycle("odd","even") %>">
+            <td class="col-1"><%= i+1 %></td>
+            <td class="col-2"><%= shorten_string(d.name,20) %></td>
+            <td class="col-6"><%= d.discount%> %</td>
+          </tr>
+          <% i += 1 %>
+        <% end %>
+        <tr class="tr-blank"></tr>
+        <tr class="tr-blank"></tr>
+
+        <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
+          <td class="col-8" colspan="2" >Total Discount</td>
+          <td class="col-6" ><%= "#{@total_discount} %" %></td>
+        </tr>
+
+        <tr class="tr-blank"></tr>
+        <tr class="tr-blank"></tr>
+        <% total_fees = (total_fees - ((total_fees*@total_discount)/100)) %>
+        <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
+          <td class="col-8" colspan="2" >Total Fee</td>
+          <td class="col-6" ><%= total_fees %></td>
+        </tr>
+        <tr class="tr-blank"></tr>
+        <tr class="tr-blank"></tr>
+      <% end %>
+
+
+      <% unless @fine.nil? %>
+        <tr class="tr-<%= cycle("odd","even") %>">
+          <td class="col-1"><%= i+=1 %></td>
+          <td class="col-2"><span>Fine</span></td>
+          <td class="col-6"><%= @fine.to_f %></td>
+        </tr>
+        <% total_fees += @fine.to_f %>
+      <% end %>
+      <% unless @paid_fees.nil? %>
+        <tr class="tr-blank"></tr>
+        <tr class="tr-blank"></tr>
+        <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
+          <td class="col-1" ></td>
+          <td class="col-1" colspan="2" ><span>Payment Done</span></td
+        </tr>
+        <% paid = 0 %>
+        <% @paid_fees.each do |p| %>
+          <% paid += p.amount.to_f %>
+          <tr class="tr-<%= cycle("odd","even") %>">
+            <td class="col-1"><%= i+=1 %></td>
+            <td class="col-2">Partial Payment on <%= p.transaction_date %></td>
+            <td class="col-6">-<%= p.amount.to_f %></td>
+          </tr>
+        <% end %>
+        <% total_fees -= paid %>
+      <% end %>
+
+      <% unless @financefee.transaction_id.nil? %>
+
+        <% @trans = FinanceTransaction.find_by_id(@financefee.transaction_id) %>
+        <% unless @trans.nil? %>
+          <% if @trans.fine_included %>
+            <tr class="tr-<%= cycle("odd","even") %>">
+              <td class="col-1"><%= i+= 1 %></td>
+              <td class="col-2">Fine</td>
+              <td class="col-6"><%= @trans.fine_amount %></td>
+            </tr>
+            <% total_fees += @trans.fine_amount.to_f %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <tr class="tr-blank"></tr>
+      <tr class="tr-blank"></tr>
+      <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
+        <td class="col-8" colspan="2" >Amount to be paid:</td>
+        <td class="col-6" ><%= total_fees%></td>
+      </tr>
+
+    </table>
+  <% end %>
+</div>

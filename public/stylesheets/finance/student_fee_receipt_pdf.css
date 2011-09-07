@@ -122,6 +122,13 @@ table#pdf-table{
     border-bottom: 1px solid #ADACAB;
 }
 
+td span{
+    color: #990A10;
+}
+
+td.col-8 {
+    text-align: right;
+}
 
 
 

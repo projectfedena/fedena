@@ -146,3 +146,7 @@ span.title{
     color : #d00;
     text-decoration: none;
 }
+.dept-select{
+    width: 600px;
+    margin-left: 20px;
+}

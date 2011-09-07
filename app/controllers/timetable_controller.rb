@@ -1,3 +1,21 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class TimetableController < ApplicationController
   before_filter :login_required
   before_filter :protect_other_student_data
@@ -21,16 +39,18 @@ class TimetableController < ApplicationController
               unless @config.config_value == 'Daily'
                 entries = TimetableEntry.find_all_by_weekday_id_and_batch_id(weekday.id, @batch.id)
                 entries.each do |tte|
-                  if tte.subject.elective_group_id.nil?
-                    PeriodEntry.create(:month_date=> d, :batch_id => @batch.id, :subject_id => tte.subject_id, :class_timing_id => tte.class_timing_id, :employee_id => tte.employee_id) unless tte.subject.nil?
+                  if tte.subject.nil?
+                    PeriodEntry.create(:month_date=> d, :batch_id => @batch.id,:class_timing_id => tte.class_timing_id, :employee_id => tte.employee_id)
+                  elsif tte.subject.elective_group_id.nil?
+                    PeriodEntry.create(:month_date=> d, :batch_id => @batch.id, :subject_id => tte.subject_id, :class_timing_id => tte.class_timing_id, :employee_id => tte.employee_id)
                   else
                     sub = Subject.find_all_by_elective_group_id_and_batch_id(tte.subject.elective_group_id, @batch.id)
                     sub.each do |s|
                       PeriodEntry.create(:month_date=> d, :batch_id => @batch.id, :subject_id => s.id, :class_timing_id => tte.class_timing_id, :employee_id => tte.employee_id)
-                    end
                   end
                 end
-                set = 2
+              end
+              set = 2
             else
               PeriodEntry.create(:month_date=> d, :batch_id => @batch.id)
               set = 2
@@ -79,13 +99,13 @@ def extra_class
   unless   params[:extra_class].nil?
     @date = params[:extra_class][:date].to_date
     @batch = Batch.find(params[:extra_class][:batch_id])
-    @period_entry = PeriodEntry.find_all_by_batch_id_and_month_date(@batch.id, @date)
+    @period_entry = PeriodEntry.find_all_by_month_date_and_batch_id(@date,@batch.id)
     render (:update) do |page|
       if @period_entry.blank?
-      flash[:notice] = 'No timetable entry for selected date'
-      page.replace_html 'extra-class-form', :partial=>"no_period_entry"
+        flash[:notice] = 'No timetable entry for selected date'
+        page.replace_html 'extra-class-form', :partial=>"no_period_entry"
       else
-      page.replace_html 'extra-class-form', :partial => "extra_class_form"
+        page.replace_html 'extra-class-form', :partial => "extra_class_form"
       end
     end
   end
@@ -411,14 +431,11 @@ def timetable_pdf
   end
   @subjects = Subject.find_all_by_batch_id(@batch.id)
   @weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  render :pdf=>'timetable_pdf',
-          :margin => {  :top=> 10,
-            :bottom => 10,
-            :left=> 30,
-            :right => 30}
+  render :pdf=>'timetable_pdf'
+          
 
-#  respond_to do |format|
-#    format.pdf { render :layout => false }
-#  end
+  #  respond_to do |format|
+  #    format.pdf { render :layout => false }
+  #  end
 end
 end

@@ -1,0 +1,2 @@
+page.replace_html 'modal-box', :partial => 'fee_discount_edit_form'
+page << "Modalbox.show($('modal-box'), {title: 'Edit Fee Discount', width: 500});"

@@ -1,3 +1,21 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class FinanceTransaction < ActiveRecord::Base
   belongs_to :category, :class_name => 'FinanceTransactionCategory', :foreign_key => 'category_id'
   belongs_to :student
@@ -37,14 +55,12 @@ class FinanceTransaction < ActiveRecord::Base
       expenses_total += salary
     end
     donations.each do |d|
-      if d.category.is_income?
+      if d.master_transaction_id == 0
         income_total +=d.amount
       else
         expenses_total +=d.amount
       end
-      trigger.each do |trgr|
-        expenses_total += (d.amount * (trgr.percentage / 100)) if d.category_id == trgr.finance_category.id unless trgr.finance_category.id.nil?
-      end
+      
     end
     transactions_fees.each do |fees|
       income_total +=fees.amount

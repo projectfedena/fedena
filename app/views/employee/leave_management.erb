@@ -1,0 +1,161 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+
+
+<div id="content-header">
+  <img src="/images/HR/leave-new.png" alt="" />
+  <h1>Leave Management</h1>
+  <h3></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="nav">
+  <ul>
+    <li>
+      <a href="#" class="drops" id="link_one">My Leaves ▼</a>
+      <ul id="box_one" class="scriptaculously" style="display:none;">
+        <li><%= link_to "Apply", :controller=>"employee", :action=>"leave_management" %></li>
+        <li><%= link_to_remote "My leaves",
+            :update => "application-list",
+            :url => {:controller=>"employee_attendance",:action => "individual_leave_applications", :id=>@employee.id} %></li>
+        <li><%= link_to "History", :controller=>"employee_attendance", :action=>"leave_history",:id=>@employee.id %></li>
+      </ul>
+    </li>
+
+    <% unless @reporting_employees.empty? %>
+      <% if @total_leave_count == 0 %>
+        <li>
+          <a href="#" class="drops" id="link_two">My Emp ▼</a>
+          <ul id="box_two" class="scriptaculously" style="display:none;">
+            <!-- no new leave applications of any employee -->
+            <li><%= link_to_remote "All Leaves",
+                :update => "application-list",
+                :url => {:controller=>"employee_attendance",:action => "all_leave_applications", :id=>@employee.id} %></li>
+          </ul>
+        </li>
+
+      <% else %>
+        <li>
+          <a href="#" class="drops" id="link_two">My Emp<%= "(#{@total_leave_count})"  %> ▼</a>
+          <ul id="box_two" class="scriptaculously" style="display:none;">
+            <!-- no new leave applications of any employee -->
+            <li><%= link_to_remote "New (#{@total_leave_count})",
+                :update => "application-list",
+                :url => {:controller=>"employee_attendance",:action => "new_leave_applications", :id=>@employee.id} %></li>
+            <li><%= link_to_remote "All Leaves",
+                :update => "application-list",
+                :url => {:controller=>"employee_attendance",:action => "all_leave_applications", :id=>@employee.id} %></li>
+          </ul>
+        </li>
+      <% end %>
+    <% end %>
+
+
+
+
+    <% if @all_employee_total_leave_count == 0 %>
+      <li>
+        <a href="#" class="drops" id="link_three">All Emp ▼</a>
+        <ul id="box_three" class="scriptaculously" style="display:none;">
+          <!-- no new leave applications of any employee -->
+          <li><%= link_to_remote "All Records",
+              :update => "application-list",
+              :url => {:controller=>"employee",:action => "all_employee_leave_applications", :id=>@employee.id} %></li>
+        </ul>
+      </li>
+
+    <% else %>
+      <li>
+        <a href="#" class="drops" id="link_three">All Emp<%= "(#{@all_employee_total_leave_count})"  %> ▼ </a>
+        <ul id="box_three" class="scriptaculously" style="display:none;">
+          <!-- no new leave applications of any employee -->
+          <li><%= link_to_remote "New (#{@all_employee_total_leave_count})",
+              :update => "application-list",
+              :url => {:controller=>"employee_attendance",:action => "all_employee_new_leave_applications", :id=>@employee.id} %></li>
+          <li><%= link_to_remote "All Records",
+              :update => "application-list",
+              :url => {:controller=>"employee",:action => "all_employee_leave_applications", :id=>@employee.id} %></li>
+        </ul>
+      </li>
+
+    <% end %>
+
+
+  </ul>
+
+</div>
+
+
+
+
+
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+
+
+  <div id="application-list">
+    <div class="heading">Apply for a leave</div>
+    <% form_for :leave_apply do |l| %>
+      <%= error_messages_for :leave_apply %>
+      <%= l.hidden_field :employee_id, :value=>@employee.id %>
+      <div class="label-field-pair">
+        <label for="leave_type">Leave type:</label>
+        <div class="text-input-bg"><%= select :leave_apply, :employee_leave_types_id, @leave_types.map {|s| [s.name, s.id]},:prompt => "Select" %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="create_user" id="create_user_option"> Is half day?</label>
+        <div class="text-input-bg"><%= check_box_tag :is_half_day, :checked => false %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="start_date">Start date</label>
+        <div class="text-input-bg"><%= calendar_date_select_tag 'leave_apply[start_date]'  %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="end_date">End date:</label>
+        <div class="text-input-bg"><%= calendar_date_select_tag 'leave_apply[end_date]'  %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="reason">Reason:</label>
+        <div class="text-input-bg"><%= l.text_field   :reason %></div>
+      </div>
+
+
+      <div id="submit-button">
+        <%=  submit_tag("► Create") %>
+      </div>
+    <% end %>
+    <div class="extender"></div>
+  </div>
+
+
+
+
+
+
+</div>

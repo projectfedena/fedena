@@ -1,0 +1,164 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+<div id="content-header">
+  <img src="/images/admission/admission_page_logo.jpg" />
+  <h1>Parent Information</h1>
+  <h3>Edit Parent/guardian details</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
+
+  <% form_for :parent_detail do |s| %>
+
+    <div id="admission1_form">
+
+
+
+      <div class="label-field-pair">
+        <label for="parent_detail_student_id">Student Admission no.</label>
+        <div class="text_display"><%= @student.admission_no %></div>
+        <%= s.hidden_field :ward_id, :value => @student.id %>
+      </div>
+      <br/>
+      <span class="span-sub-heading">Parent - Personal Details</span>
+      <hr class="sub-heading"></hr>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_name">First name</label>
+        <div class="text-input-bg"><%= s.text_field :first_name, :value => @parent.first_name %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_name">Second name</label>
+        <div class="text-input-bg"><%= s.text_field :last_name, :value => @parent.last_name %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_relation">Relation</label>
+        <div class="text-input-bg"><%= s.text_field :relation, :value => @parent.relation %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_dob">Date of birth</label>
+        <div class="text-input-bg"><%= calendar_date_select_tag 'parent_detail[dob]', @parent.dob,:year_range => 60.years.ago..20.years.ago %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_education">Education</label>
+        <div class="text-input-bg"><%= s.text_field :education, :value => @parent.education %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_occupation">Occupation</label>
+        <div class="text-input-bg"><%= s.text_field :occupation, :value => @parent.occupation %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_income">Income</label>
+        <div class="text-input-bg"><%= s.text_field :income, :value => @parent.income %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_email">Email</label>
+        <div class="text-input-bg"><%= s.text_field :email, :value => @parent.email %></div>
+      </div>
+      <br/>
+      <span class="span-sub-heading">Parent - Contact Details</span>
+      <hr class="sub-heading"></hr>
+      <div class="label-field-pair">
+        <label for="master_student_city">Address Line 1</label>
+        <% unless @parent.office_address_line1.to_s.empty? %>
+          <div class="text-input-bg"><%= s.text_field :office_address_line1, :value => @parent.office_address_line1 %></div>
+        <% else %>
+          <div class="text-input-bg"><%= s.text_field :office_address_line1, :value => @student.address_line1 %></div>
+        <% end %>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="master_student_city">Address Line 2</label>
+        <% unless @parent.office_address_line2.to_s.empty? %>
+          <div class="text-input-bg"><%= s.text_field :office_address_line2, :value => @parent.office_address_line2 %></div>
+        <% else %>
+          <div class="text-input-bg"><%= s.text_field :office_address_line2, :value => @student.address_line2 %></div>
+        <% end %>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_city">City</label>
+        <% unless @parent.city.to_s.empty? %>
+          <div class="text-input-bg"><%= s.text_field :city, :value => @parent.city %></div>
+        <% else %>
+          <div class="text-input-bg"><%= s.text_field :city, :value => @student.city %></div>
+        <% end %>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_state">State</label>
+        <% unless @parent.state.to_s.empty? %>
+          <div class="text-input-bg"><%= s.text_field :state, :value => @parent.state %></div>
+        <% else %>
+          <div class="text-input-bg"><%= s.text_field :state, :value => @student.state %></div>
+        <% end %>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_country">Country</label>
+        <% unless @parent.country.to_s.empty?  %>
+        <div class="text-input-bg"> <%= select :parent_detail, :country_id, @countries.map {|c| [c.name, c.id]}, :selected => @parent.country.id %> </div>
+        <% else %>
+        <div class="text-input-bg"> <%= select :parent_detail, :country_id, @countries.map {|c| [c.name, c.id]}, :selected => @student.country.id %> </div>
+          <% end %>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_office_phone1">Phone 1</label>
+        <div class="text-input-bg"><%= s.text_field :office_phone1, :value => @parent.office_phone1 %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_office_phone2">Phone 2</label>
+        <div class="text-input-bg"><%= s.text_field :office_phone2, :value => @parent.office_phone2 %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="parent_detail_mob_phone">Mobile phone no.</label>
+        <div class="text-input-bg"><%= s.text_field :mobile_phone, :value => @parent.mobile_phone %></div>
+      </div>
+
+
+
+    </div>
+
+    <div class="extender">
+    </div>
+
+    <%= submit_tag "",  :name => "commit", :class => "submit_button3", :value => "► Update" %>
+
+
+
+  <% end %>
+
+</div>

@@ -1,0 +1,120 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="calendar-legend">
+  <div id="legend-entry">
+    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#000000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-text">Events</div>
+  </div>
+  <div id="legend-entry">
+    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#0C6C92; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-text">Examinations</div>
+  </div>
+  <div id="legend-entry">
+    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#00b400; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-text">Holidays</div>
+  </div>
+  <div id="legend-entry">
+    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#b40000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-text">Dues</div>
+  </div>
+</div>
+<br/>
+<div id="head-month">
+  <div class="header">
+    <div class="prev">
+      <%= link_to_remote "◄",
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')",
+        :url=>{:controller=>"calendar", :action=>"new_calendar"},
+        :with   => "'new_month=#{@show_month.month-1}'+ '&passed_date=#{@show_month}'"%>
+    </div>
+    <div class="month">
+      <%= @show_month.strftime('%B %Y') %>
+    </div>
+    <div class="next">
+      <%= link_to_remote "►",
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')",
+        :url=>{:controller=>"calendar", :action=>"new_calendar"},
+        :with   => "'new_month=#{@show_month.month+1}'+ '&passed_date=#{@show_month}'"%>
+    </div>
+    <div class="extender"></div>
+  </div>
+</div>
+
+
+<table id="calendar-table" align="center" width="100%">
+  <tbody>
+    <tr class="week">
+      <% @days_of_week= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"] %>
+      <% @days_of_week.each do |d| %>
+        <td><span><%= d %></span></td>
+      <% end %>
+    </tr>
+    <tr class="blank"></tr>
+    <% (1..6).each do |r|%>
+      <tr class="day">
+        <% (1..7).each do |c|%>
+          <% dt = c - @start_date_day + (r-1)*7 %>
+          <% day_style = (dt==@show_month.day&&Date.today==@show_month)? "today" : nil %>
+          <td class="<%= day_style.to_s  %>">
+            <% unless (r == 1 and c <= @start_date_day) %>
+              <% unless dt > @last_day.day %>
+                <%  if permitted_to? :index,:event %>
+                  <div class="link"><%= link_to 'Add', :controller=>"event",:action=>"index",:id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") %>
+                  <% end  %>
+                  <span><%= dt  %></span></div>
+                <div class="link-group">
+                  <% if @events.include?("#{@show_month.year}-#{@show_month.month}-#{dt}".to_date) %>
+                    <%= link_to_remote("<div style='width:12px;height:12px;background:#000000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:2px;'></div>", {:url => {:action => "#"}}, {:onmouseover =>remote_function(
+                          :url => { :action => :show_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                        :class=>"event"}) %>
+                  <% end %>
+                  <% if @holiday_event.include?("#{@show_month.year}-#{@show_month.month}-#{dt}".to_date) %>
+                    <%= link_to_remote("<div style='width:12px;height:12px;background:#00b400; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}}, {:onmouseover =>remote_function(
+                          :url => { :action => :show_holiday_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                        :class=>"event"}) %>
+                  <% end %>
+                  <% if @notifications['student_batch_exam'].include?("#{@show_month.year}-#{@show_month.month}-#{dt}".to_date) %>
+                    <%= link_to_remote("<div style='width:12px;height:12px;background:#0C6C92; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                          :url => { :action => :show_exam_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                        :class=>"event"}) %>
+                  <% end %>
+                  <% if @user.admin? or @user.student? %>
+                    <% if @notifications['finance_due'].include?("#{@show_month.year}-#{@show_month.month}-#{dt}".to_date) %>
+                      <%= link_to_remote("<div style='width:12px;height:12px;background:#b40000; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                            :url => { :action => :show_due_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
+                          :class=>"event"}) %>
+                    <% end %>
+                  <% end %>
+
+                </div>
+
+              <% end %>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<div id="modal-box" style="display:none;"></div>

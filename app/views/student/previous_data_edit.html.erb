@@ -1,3 +1,22 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
 <div id="content-header">
   <img src="/images/admission/admission_page_logo.jpg" />
   <h1><%= t('layouts.default.admission') %></h1>
@@ -5,6 +24,12 @@
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
+</div>
+
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to 'Profile', :action=>:profile, :id=>@student.id %> </li>
+  </ul>
 </div>
 
 <div id="page-yield">
@@ -54,10 +79,10 @@
         <% @previous_subject.each  do |p| %>
 
           <li><div class="name"><%= p.subject %></div>
-               <div class="val"><span>:</span><%= p.mark %></div>
-              <div class="delete"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
+            <div class="val"><span>:</span><%= p.mark %></div>
+            <div class="delete"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
                 :url => {:action => "delete_previous_subject", :id => p.id},
-                
+
                 :update => "added_subjects"%></div></li>
 
         <% end %>

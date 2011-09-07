@@ -1,3 +1,21 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class ApplicationController < ActionController::Base
   helper :all
   protect_from_forgery # :secret => '434571160a81b5595319c859d32060c1'
@@ -23,7 +41,9 @@ class ApplicationController < ActionController::Base
     end
 
     rescue_from NoMethodError do |exception|
-      flash[:notice] = "Sorry, an error occured .Please contact Administrator."
+      flash[:notice] = "Sorry, an error occurred .Please contact Administrator."
+      logger.info "[FedenaRescue] No method error #{exception.to_s}"
+      logger.info exception.backtrace
       redirect_to :controller=>:user ,:action=>:dashboard
     end
   end
@@ -31,10 +51,11 @@ class ApplicationController < ActionController::Base
  
   def only_assigned_employee_allowed
     if @current_user.employee?
-      @employee_subjects= @current_user.employee_record.subjects.map { |n| n.subject_id}
-      if @employee_subjects.empty?
-        flash[:notice] = "Sorry, you are not allowed to access that page."
-        redirect_to :controller => 'user', :action => 'dashboard'
+      @employee_subjects= @current_user.employee_record.subjects
+      privilege = @current_user.privileges.map{|p| p.id}
+      if @employee_subjects.empty? and !privilege.include?(8) and !privilege.include?(16)
+          flash[:notice] = "Sorry, you are not allowed to access that page."
+          redirect_to :controller => 'user', :action => 'dashboard'
       else
         @allow_access = true
       end
@@ -43,7 +64,7 @@ class ApplicationController < ActionController::Base
 
   def restrict_employees_from_exam
     if @current_user.employee?
-      @employee_subjects= @current_user.employee_record.subjects.map { |n| n.subject_id}
+      @employee_subjects= @current_user.employee_record.subjects
       if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.id}.include?(1) and !@current_user.privileges.map{|p| p.id}.include?(2) and !@current_user.privileges.map{|p| p.id}.include?(3)
         flash[:notice] = "Sorry, you are not allowed to access that page."
         redirect_to :controller => 'user', :action => 'dashboard'
@@ -55,7 +76,7 @@ class ApplicationController < ActionController::Base
 
   def block_unauthorised_entry
     if @current_user.employee?
-      @employee_subjects= @current_user.employee_record.subjects.map { |n| n.subject_id}
+      @employee_subjects= @current_user.employee_record.subjects
       if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.id}.include?(1)
         flash[:notice] = "Sorry, you are not allowed to access that page."
         redirect_to :controller => 'user', :action => 'dashboard'
@@ -116,8 +137,17 @@ class ApplicationController < ActionController::Base
 
   def protect_other_student_data
     if current_user.student?
-      student = Student.find_by_admission_no(current_user.username)
+      student = current_user.student_record
       unless params[:id].to_i == student.id or params[:student].to_i == student.id
+        flash[:notice] = "You are not allowed to view that information."
+        redirect_to :controller=>"user", :action=>"dashboard"
+      end
+    end
+  end
+
+  def protect_user_data
+    unless current_user.admin?
+      unless params[:id].to_s == current_user.username
         flash[:notice] = "You are not allowed to view that information."
         redirect_to :controller=>"user", :action=>"dashboard"
       end
@@ -126,7 +156,7 @@ class ApplicationController < ActionController::Base
 
   def protect_other_employee_data
     if current_user.employee?
-      employee = Employee.find_by_employee_number(current_user.username)
+      employee = current_user.employee_record
       #    pri = Privilege.find(:all,:select => "privilege_id",:conditions=> 'privileges_users.user_id = ' + current_user.id.to_s, :joins =>'INNER JOIN `privileges_users` ON `privileges`.id = `privileges_users`.privilege_id' )
       #    privilege =[]
       #    pri.each do |p|
@@ -141,16 +171,16 @@ class ApplicationController < ActionController::Base
   end
 
   def protect_leave_history
-   if current_user.employee?
-   employee = Employee.find(params[:id])
-   employee_user = employee.user
-    unless employee_user.id == current_user.id
+    if current_user.employee?
+      employee = Employee.find(params[:id])
+      employee_user = employee.user
+      unless employee_user.id == current_user.id
         unless current_user.role_symbols.include?(:hr_basics) or current_user.role_symbols.include?(:employee_attendance)
-      flash[:notice] = "Access denied"
-      redirect_to :controller=>"user", :action=>"dashboard"
+          flash[:notice] = "Access denied"
+          redirect_to :controller=>"user", :action=>"dashboard"
         end
+      end
     end
-  end
   end
   #  end
 

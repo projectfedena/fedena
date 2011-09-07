@@ -1,0 +1,92 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <img src="/images/manage_news/manage_news_logo.png" />
+  <h1>School News</h1>
+  <h3>Latest announcements</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <% if permitted_to? :add,:news %>
+      <li><%= link_to 'Add', :controller => 'news', :action => 'add' %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div id="all_news">
+    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+      <tr class="tr-head">
+        <td>
+          Sl no.
+        </td>
+        <td>
+          Title
+        </td>
+        <td>
+          Author
+        </td>
+        <td>
+          Comments
+        </td>
+        <td>
+          Posted
+        </td>
+      </tr>
+      <tr class="tr-blank"></tr>
+      <% @news.each_with_index do |r,i| %>
+        <% @comments = NewsComment.find_all_by_news_id(r.id) %>
+        <% link_value = r.title %>
+        <tr class="tr-<%= cycle('odd', 'even') %>">
+          <td class="col-1">
+            <%= i+1 %>
+          </td>
+          <td class="col-3">
+            <%=  link_to link_value, :controller => 'news', :action => 'view', :id => r.id%>
+          </td>
+          <td class="col-3">
+            <% unless r.author.blank?  %>
+              <%= r.author.first_name %> <%= '- admin' if r.author.admin==true%>
+            <% else %>
+              User Deleted
+            <% end %>
+          </td>
+          <td class="col-1">
+            <%= @comments.size %>
+          </td>
+          <td class="col-3">
+            <%= time_ago_in_words(r.created_at) %> ago
+          </td>
+        </tr>
+      <% end %>
+
+    </table>
+    <%= will_paginate @news %>
+  </div>
+
+</div>

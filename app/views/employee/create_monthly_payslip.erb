@@ -1,0 +1,80 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+ <div id="content-header">
+    <img src="/images/HR/show_hr.png" alt="" />
+  <h1>Monthly payslip</h1>
+  <h3>Create</h3>
+    <div id="app-back-button">
+     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    </div>
+  </div>
+
+
+    <div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+<div id="form-content">
+  <% form_for :manage_payroll do |s| %>
+
+    <div class="payslip-field-pair">
+      <label for="salary_date">Salary date</label>
+      <div class="payslip-input-bg">
+<%= calendar_date_select_tag 'salary_date', Date.today,
+            :year_range => 2.years.ago..0.years.from_now %></div>
+    </div>
+
+  <% @independent_categories.each do |c| %>
+      <%- val = EmployeeSalaryStructure.find_by_employee_id_and_payroll_category_id(@employee, c) -%>
+    <div class="payslip-field-pair">
+      <label for="payroll_category_name"><%= c.name %></label>
+      <div class="payslip-input-bg"><%= s.text_field :amount, :index => c.id, :value => (val.nil? ? 0 : val.amount),
+                                                      :onChange=> "#{remote_function(:url  => {:controller=>"payroll",:action => "update_dependent_fields"},
+                                                          :with => "'amount='+ value + '&cat_id=' + #{c.id}")}"%></div>
+    </div>
+    <% end %>
+  <% @dependent_categories.each do |c| %>
+      <%- val = EmployeeSalaryStructure.find_by_employee_id_and_payroll_category_id(@employee, c) -%>
+    <div class="payslip-field-pair">
+      <label for="payroll_category_name"><%= c.name %></label>
+      <div class="payslip-input-bg"><%= s.text_field :amount, :index => c.id, :value => (val.nil? ? 0 : val.amount),
+                                                      :onChange=> "#{remote_function(:url  => {:controller=>"payroll",:action => "update_dependent_fields"},
+                                                          :with => "'amount='+ value + '&cat_id=' + #{c.id}")}"%></div>
+    </div>
+    <% end %>
+
+
+    <div id="submit-button">
+      <%=submit_tag("► Create") %>
+    </div>
+    <div class="extender"></div>
+  <% end %>
+  </div>
+
+  <div id="individual-payslip-categories">
+    <div id="individual-payslip-categories-list">
+      <%= render :partial => "payslip_category_list", :locals => {:emp_id => @employee.id, :salary_date=>''}  %>
+      <!-- div id="payslip-category-form"> </div -->
+    </div>
+  </div>
+  <div class="extender"></div>
+</div>

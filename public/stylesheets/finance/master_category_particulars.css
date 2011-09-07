@@ -1,6 +1,6 @@
 
 .link-box {
-    margin:10px 40px;
+    margin: 14px 27px 31px 171px;
     width:270px;
     float:left;
     height:80px;
@@ -31,12 +31,12 @@
 }
 
 .box{
-    width:750px;
+    width:960px;
     margin:0px auto;
 }
 
 #categories{
-    width:750px;
+    width:970px;
     margin:0px auto;
 }
 
@@ -71,7 +71,7 @@
 
 .label-field-pair2 {
     height : 50px;
-    width : 400px;
+    width : 426px;
     padding-top: 3px;
 }
 
@@ -121,10 +121,11 @@
     border:none;
     font-family: arial;
     cursor:pointer;
-    margin: 10px auto 0 334px;
+    margin: 10px 0 0 433px;
     text-decoration: none;
     margin-left: 300px;
     float:left;
+    margin-left: 433px;
 
 }
 .user_button:hover{
@@ -143,10 +144,20 @@
 
 }
 
+.each_batch input{
+    width: 20px;
+    margin-left: 0px;
+}
+
+.label-container{
+ float: left;
+}
+
 .batches {
     overflow: auto;
-    width:221px;
+    width:222px;
     height: 90px;
+    float: left;
 }
 .label-field-pair {
     height:auto;

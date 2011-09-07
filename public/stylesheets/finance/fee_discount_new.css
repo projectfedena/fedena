@@ -1,0 +1,94 @@
+
+
+#fee-collections-list ul {
+    padding-top : 50px;
+    padding-left: 0px;
+    width : 500px;
+}
+#fee-collections-list ul li {
+    background : #fff url(../../images/_global/list-bg-repeat.jpg) repeat;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 0 0 40px;
+}
+#fee-collections-list ul li .fee-name,
+#fee-collections-list ul li .fee-edit-link,
+#fee-collections-list ul li .fee-delete-link {
+    float : left;
+    margin : 0 10px 0 0;
+
+}
+#fee-collections-list ul li .fee-name {
+    width : 350px;
+}
+
+#fee-collections-list ul li .fee-edit-link a,
+#fee-collections-list ul li .fee-delete-link a {
+    color : #000;
+    text-decoration : none;
+}
+
+
+#submit-button input {
+    margin-top:15px;
+    margin-left:208px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+}
+#submit-button :hover{
+    background:  #373B3F;
+}
+
+.box{
+    width:750px;
+    margin:0px auto;
+}
+
+.each_batch{
+    font-size: 12px;
+    overflow:auto;
+    width:198px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.fee_category_scroll {
+    height:76px;
+    margin-left:209px;
+    margin-top:-53px;
+    overflow:auto;
+    width:205px;
+
+    -moz-background-inline-policy: continuous;
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #C6C6C6;
+    border-radius: 10px 10px 10px 10px;
+    max-height: 100px;
+    overflow: auto;
+    padding: 7px;
+}
+
+.sel-list {
+    margin-bottom: 2px;
+    width: 197px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+
+#form-box{
+    width: 450px;
+}
+
+#batchs{
+    
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+

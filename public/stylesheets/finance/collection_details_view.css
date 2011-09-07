@@ -1,0 +1,26 @@
+ .name {
+    color: #999999;
+    float: left;
+    font-size: 13px;
+    font-weight: bold;
+    width: 160px;
+}
+.val {
+    color: #BB0000;
+    font-size: 13px;
+    font-weight: bold;
+    width: 400px;
+}
+.val span {
+    color: black;
+    margin-right: 12px;
+}
+
+.discount{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.particulars{
+    margin-top: 30px;
+}

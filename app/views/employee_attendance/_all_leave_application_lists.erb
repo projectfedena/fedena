@@ -1,0 +1,65 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+
+
+
+<% unless @all_applied_leaves == [] %>
+  <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td>
+        Start date
+      </td>
+      <td>
+        End date
+      </td>
+      <td>
+        Status
+      </td>
+    </tr>
+    <tr class="tr-blank"></tr>
+
+    <% @all_applied_leaves.each do |l| %>
+      <% unless l.viewed_by_manager? %>
+        <tr class="tr-<%= cycle('odd', 'even') %>">
+          <td class="col-3"><%= link_to "#{l.start_date.strftime("%d-%m-%Y")}", :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+          <td class="col-3"><%= link_to "#{l.end_date.strftime("%d-%m-%Y")}",   :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+          <td class="col-1"><%= link_to "Pending", :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+        </tr>
+      <% else %>
+
+        <% if l.approved? %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-3"><%= link_to "#{l.start_date.strftime("%d-%m-%Y")}", :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+            <td class="col-3"><%= link_to "#{l.end_date.strftime("%d-%m-%Y")}",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+            <td class="col-1"><%= link_to "Approved",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+          </tr>
+        <% else %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-3"><%= link_to "#{l.start_date.strftime("%d-%m-%Y")}", :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+            <td class="col-3"><%= link_to "#{l.end_date.strftime("%d-%m-%Y")}",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+            <td class="col-1"><%= link_to "Denied",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% else %>
+  <% end %>
+</table>

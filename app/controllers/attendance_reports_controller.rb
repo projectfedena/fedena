@@ -1,6 +1,24 @@
+#Fedena
+#Copyright 2011 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing, software
+#distributed under the License is distributed on an "AS IS" BASIS,
+#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#See the License for the specific language governing permissions and
+#limitations under the License.
+
 class AttendanceReportsController < ApplicationController
   before_filter :login_required
-  #filter_access_to :all
+  filter_access_to :all
   before_filter :only_assigned_employee_allowed
 
   def index
@@ -184,11 +202,8 @@ class AttendanceReportsController < ApplicationController
     else
       @report = ''
     end
-    render :pdf => 'report_pdf',
-             :margin => {    :top=> 10,
-                             :bottom => 10,
-                             :left=> 30,
-                             :right => 30}
+    render :pdf => 'report_pdf'
+             
 #    render :layout=>'pdf'
 #    respond_to do |format|
 #      format.pdf { render :layout => false }
@@ -217,11 +232,8 @@ class AttendanceReportsController < ApplicationController
         @report = PeriodEntry.find_all_by_batch_id(@batch.id,  :conditions =>{:month_date => @start_date..@end_date})
       end
     end
-    render :pdf => 'filter_report_pdf',
-             :margin => {    :top=> 10,
-                             :bottom => 10,
-                             :left=> 30,
-                             :right => 30}
+    render :pdf => 'filter_report_pdf'
+            
 
 
 #    respond_to do |format|
