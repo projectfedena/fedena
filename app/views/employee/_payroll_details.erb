@@ -19,7 +19,7 @@
 
 <% unless @payroll_details.empty? %>
   <ul class="item-list">
-    <li class="heading1">Basic payroll details</li>
+    <li class="heading1"><%= t('profile.basic_payroll_details') %></li>
     <% total = 0 %>
     <% @payroll_details.each do |p| %>
 
@@ -36,13 +36,13 @@
         </li>
       <% end %>
     <% end %>
-    <li class="list<%=cycle('odd', 'even')%>"><div class="item-name">Total :</div><div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= total %></div></li>
+    <li class="list<%=cycle('odd', 'even')%>"><div class="item-name"><%= t('layouts.common.total') %> :</div><div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= total %></div></li>
     </ul>
 <% if permitted_to? :edit_payroll_details, :payroll %>
     <div class="edit-delete-link">
-    <%= link_to "Edit", :controller => "payroll", :action => "edit_payroll_details", :id => @employee.id  %>
+    <%= link_to "#{t('layouts.common.edit')}", :controller => "payroll", :action => "edit_payroll_details", :id => @employee.id  %>
     </div>
 <% end %>
 <% else %>
-  <p class="flash-msg">No payroll details entered for <%= @employee.first_name%>. <%= link_to "ADD", :controller => "payroll", :action => "manage_payroll", :id => @employee.id %></p>
+  <p class="flash-msg"><%= t('profile.no_payroll_detail_entered') %>  <%= @employee.first_name%>. <%= link_to "#{t('layouts.common.add')}", :controller => "payroll", :action => "manage_payroll", :id => @employee.id %></p>
 <% end %>

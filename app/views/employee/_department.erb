@@ -19,25 +19,25 @@
 
 <ul id="department-list">
   <% unless @departments.empty? %>
-    <li class="listheading"><div class="department-name"> Active Departments</div></li>
+    <li class="listheading"><div class="department-name"><%= "#{t('hr.active_department')}" %></div></li>
     <% @departments.each do |d| %>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="department-name"><%= d.name %>(<%= d.code %>)</div>
-        <div class="department-edit"><%= link_to "Edit", :action => "edit_department", :id=>d.id %></div>
-        <div class="department-edit"><%= link_to "Delete", {:action => "delete_department", :id=>d.id}, :confirm => "Are you sure?" %></div>
+        <div class="department-edit"><%= link_to "#{t('layouts.common.edit')}", :action => "edit_department", :id=>d.id %></div>
+        <div class="department-edit"><%= link_to "#{t('layouts.common.delete')}", {:action => "delete_department", :id=>d.id}, :confirm => "#{t('batches.show.are_you_sure')}" %></div>
       </li>
     <% end %>
       <% unless @inactive_departments.empty? %>
-      <li class="listheading"><div class="department-name"> Inactive Departments</div></li>
+      <li class="listheading"><div class="department-name"><%= "#{t('hr.inactive_department')}" %></div></li>
     <%- @inactive_departments.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="department-name"><%= c.name %> (<%= c.code %>)</div>
-        <div class="department-edit"><%= link_to "Edit", {:action => "edit_department", :id=>c.id} %></div>
-        <div class="department-edit"><%= link_to "Delete", {:action => "delete_department", :id=>c.id},:confirm=>"Are you sure?" %></div>
+        <div class="department-edit"><%= link_to "#{t('layouts.common.edit')}", {:action => "edit_department", :id=>c.id} %></div>
+        <div class="department-edit"><%= link_to "#{t('layouts.common.delete')}", {:action => "delete_department", :id=>c.id},:confirm=>"Are you sure?" %></div>
       </li>
      <% end %>
      <% end %>
     <% else %>
-    <p class="flash-msg"> No employee departments found</p>
+    <p class="flash-msg"><%= "#{t('hr.no_department_found')}" %></p>
   <% end %>
 </ul>

@@ -27,7 +27,7 @@
 <div class="extender"></div>
 <div id="add-payslip-category-link">
   
-  <%= link_to_remote "► Add new category",
+  <%= link_to_remote "► #{t('create_monthly_payslip.add_new_category')}",
            :update => "payslip-category-form",
            :url => {:action => "add_payslip_category"},
             :with=>"'emp_id=#{emp_id}&salary_date=#{salary_date}'" ,:class=>'submit_button'%>

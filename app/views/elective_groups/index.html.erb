@@ -19,15 +19,15 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Batches</h1>
-  <h3>Electives</h3>
+  <h1><%= t('layouts.common.batches') %></h1>
+  <h3><%= "#{t('index.new_elective')}" %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to 'New', new_batch_elective_group_path(@batch) %></li>
+    <li><%= link_to t('layouts.common.new'), new_batch_elective_group_path(@batch) %></li>
 
   </ul>
 </div>
@@ -40,10 +40,10 @@
   <div class="box">
 
     <div class="bread_crumb">
-      <%= link_to 'Courses', courses_path %> &raquo;
+      <%= link_to t('layouts.common.course'), courses_path %> &raquo;
       <%= link_to @course.full_name, @course %> &raquo;
       <%= link_to @batch.name, [@course, @batch] %> &raquo;
-      Elective Group
+      <%= t('elective_group') %>
     </div>
 
 
@@ -52,13 +52,13 @@
       <% @elective_groups.each do |elective| %>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="category-name"><%= link_to elective.name, [@batch, elective] %></div>
-          <div class="category-edit"><%= link_to 'Edit',
+          <div class="category-edit"><%= link_to t('layouts.common.edit'),
               :controller=>"elective_groups",:action => "edit", :id =>elective %> </div>
           <% @subjects= Subject.find_all_by_elective_group_id(elective, :conditions => "is_deleted = '0'") %>
           <% if @subjects.empty? %>
-            <div class="category-delete"><%= link_to('Delete', [@batch, elective],
+            <div class="category-delete"><%= link_to(t('layouts.common.delete'), [@batch, elective],
                 :method => 'delete',
-                :confirm => 'Are you sure?') %> </div>
+                :confirm => t('batches.show.are_you_sure')) %> </div>
           <% end %>
         </li>
       <% end %>

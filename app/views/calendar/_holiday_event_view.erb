@@ -19,7 +19,7 @@
 
 
   <% unless @events.empty? %>
-    <div class="current-date"> <%= @date.strftime('%B %Y') %> </div>
+    <div class="current-date"> <%= I18n.l(@date,:format => :month_year) %> </div>
     <% @events.each do |h| %>
       <div class="events">
         <div class="title">
@@ -28,10 +28,10 @@
         <div class="extender"></div>
         <div class="desc"><%= h.description %></div>
         <% if permitted_to? :edit_event, :event %>
-        <%= link_to "Edit",{:controller=>'event',:action=>'edit_event',:id=>h.id},:class=>"delete" %>
+        <%= link_to "#{t('layouts.common.edit')}",{:controller=>'event',:action=>'edit_event',:id=>h.id},:class=>"delete" %>
         <% end %>
         <% if permitted_to? :event_delete, :calendar %>
-        <%= link_to " Delete",{:action=>'event_delete',:id=>h.id},:confirm=>'Are you sure?',:class=>"delete" %>
+        <%= link_to "#{t('layouts.common.delete')}",{:action=>'event_delete',:id=>h.id},:confirm=>'Are you sure?',:class=>"delete" %>
         <% end %>
         <div class="extender"></div>
       </div>

@@ -22,7 +22,7 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2>Attendance Report</h2>
+  <h2><%= t('index.attendance_report') %></h2>
   <div class="hor_line"></div>
 
 
@@ -32,15 +32,15 @@
     <% working_days = @report.size %>
          <div id ="main_info">
              <% if @config.config_value == 'Daily' %>
-          <h4> <%= "Total no. of working days = " + working_days.to_s %></h4>
+          <h4> <%= "#{t('index.total_days')} = " + working_days.to_s %></h4>
         <% else %>
-          <h4> <%= "Total no. of working hours = " + working_days.to_s %></h4>
+          <h4> <%= "#{t('index.total_hours')} = " + working_days.to_s %></h4>
         <% end %>
-        <h4> <%= "Filtered: "+ @range.to_s + " " + @value.to_s %></h4>
+        <h4> <%= "#{t('filter.filtered')}: "+ @range.to_s + " " + @value.to_s %></h4>
       </div>
       <div id="pdf-info">
         <table id="pdf-table" width="100%" cellspacing="0">
-          <tr class="odd"><td class="col-pdf">Name</td><td class="col-pdf">Total</td><td class="col-pdf">Percentage</td></tr>
+          <tr class="odd"><td class="col-pdf"><%= t('index.name') %></td><td class="col-pdf"><%= t('index.total') %></td><td class="col-pdf"><%= t('index.percentage') %></td></tr>
           <% @students.each do |student| %>
             <% c =cycle('even','odd ') %>
             <% leaves =0 %>
@@ -83,7 +83,7 @@
 
       </div>
     <%  else %>
-      <div class="no-data">No reports for the given period</div>
+      <div class="no-data"><%= t('filter.no_report') %></div>
 
     <% end %>
 

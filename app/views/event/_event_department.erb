@@ -19,19 +19,19 @@
 
 <div class="dept-select">
 <% unless @department_event.empty? %>
-  <span class="title">Department Associated:</span>
+  <span class="title"><%= "#{t('index.department_associated')}" %>:</span>
   <ul id="category-list">
     <% @department_event.each do |d| %>
       <li class="list<%= cycle('odd','even') %>">
         <div class="category-name"> <%=  EmployeeDepartment.find(d.employee_department_id).name %></div>
-        <div class="category-edit"> <%= link_to "Remove", :controller=>"event",:action=>"remove_department", :id=>d %></div>
+        <div class="category-edit"> <%= link_to "#{t('layouts.common.remove')}", :controller=>"event",:action=>"remove_department", :id=>d %></div>
       </li>
     <% end %>
   </ul>
-  <%= link_to_remote "Select more Department", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]} %>
+  <%= link_to_remote "#{t('index.select_more_department')}", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]} %>
 <% else %>
-  <span class="title">No department selected for this event yet :</span>
-  <%= link_to_remote "Select Employee Department", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]} %>
+  <span class="title"><%= t('index.no_department_selected') %>:</span>
+  <%= link_to_remote "#{t('index.select_department')}", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]} %>
 <% end %>
   </div>
 

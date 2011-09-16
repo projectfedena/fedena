@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Exams</h1>
-  <h3>Showing Exam group</h3>
+  <h1><%= t('exams.index.exams') %></h1>
+  <h3><%= t('index.view_exam_groups') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -29,13 +29,13 @@
   <ul>
     <%  if permitted_to? :publish,:exam %>
       <% if @exam_group.is_published %>
-        <li><%= link_to_remote("Publish Result",:url=>{:controller=>'exam',:action=>'publish',:id=>@exam_group.id,:status=>"result"},
+        <li><%= link_to_remote("#{t('index.publish_exam_result')}",:url=>{:controller=>'exam',:action=>'publish',:id=>@exam_group.id,:status=>"result"},
             :before => "Element.show('loader')",
             :success => "Element.hide('loader')") %></li>
       <% end  %>
     <% end %>
     <%  if permitted_to? :new,:exams %>
-      <li><%= link_to 'New', new_exam_group_exam_path(@exam_group) %></li>
+      <li><%= link_to t('layouts.common.new'), new_exam_group_exam_path(@exam_group) %></li>
     <% end %>
   </ul>
 </div>
@@ -47,10 +47,10 @@
 
   <div class="box">
     <div class="bread_crumb">
-      <%= link_to 'Courses', courses_path %> &raquo;
+      <%= link_to t('layouts.common.course'), courses_path %> &raquo;
       <%= link_to @course.full_name, @course %> &raquo;
-      <%= link_to "Batch #{@batch.name}", [@course, @batch] %> &raquo;
-      <%= link_to 'Exams', batch_exam_groups_path(@batch) %> &raquo;
+      <%= link_to "#{t('layouts.common.batch')} #{@batch.name}", [@course, @batch] %> &raquo;
+      <%= link_to t('exams.index.exams'), batch_exam_groups_path(@batch) %> &raquo;
       <%= @exam_group.name %>
     </div>
 
@@ -64,10 +64,10 @@
     <% unless @exam_group.exam_type == 'Grades' %>
       <table id="listing">
         <tr class="tr-head">
-          <td>Subject</td>
-          <td>Max marks</td>
-          <td>Min marks</td>
-          <td>Manage</td>
+          <td><%= t('layouts.common.subject') %></td>
+          <td><%= t('max_mark') %></td>
+          <td><%= t('min_mark') %></td>
+          <td><%= t('layouts.common.manage') %></td>
         </tr>
         <% @exam_group.exams.each do |exam| %>
 
@@ -78,8 +78,8 @@
               <td class="col-1"><%= in_place_editor_field :exam, :maximum_marks,{},{:cols=>1} %></td>
               <td class="col-1"><%= in_place_editor_field :exam, :minimum_marks,{},{:cols=>1} %></td>
               <td class="col-1">
-                <small><%= link_to 'Edit', edit_exam_group_exam_path(@exam_group, exam) %></small>
-                <small><%= link_to 'Delete', [@exam_group, exam], :method => 'delete', :confirm => 'Are you sure you want to delete?' %></small>
+                <small><%= link_to t('layouts.common.edit'), edit_exam_group_exam_path(@exam_group, exam) %></small>
+                <small><%= link_to t('layouts.common.delete'), [@exam_group, exam], :method => 'delete', :confirm => t('layouts.common.delete_confirm_msg') %></small>
               </td>
             </tr>
           <% end %>
@@ -88,8 +88,8 @@
     <% else %>
       <table id="listing" width="100%">
         <tr class="tr-head">
-          <td>Subject</td>
-          <td>Manage</td>
+          <td><%= t('layouts.common.subject') %></td>
+          <td><%= t('layouts.common.manage') %></td>
         </tr>
         <% @exam_group.exams.each do |exam| %>
           <% if @employee_subjects.include?("#{exam.subject.id}") or @current_user.admin?  or @current_user.privileges.map{|p| p.id}.include?(1) or @current_user.privileges.map{|p| p.id}.include?(2) %>
@@ -97,8 +97,8 @@
               <% @exam = exam %>
               <td class="col-3"><%= link_to exam.subject.name, [@exam_group, exam] %></td>
               <td class="col-1">
-                <small><%= link_to 'Edit', edit_exam_group_exam_path(@exam_group, exam) %></small>
-                <small><%= link_to 'Delete', [@exam_group, exam], :method => 'delete', :confirm => 'Are you sure you want to delete?' %></small>
+                <small><%= link_to t('layouts.common.edit'), edit_exam_group_exam_path(@exam_group, exam) %></small>
+                <small><%= link_to t('layouts.common.delete'), [@exam_group, exam], :method => 'delete', :confirm => t('layouts.common.delete_confirm_msg') %></small>
               </td>
             </tr>
           <% end %>

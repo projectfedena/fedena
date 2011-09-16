@@ -29,8 +29,8 @@
   <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
   <div class="box">
   <div class="link-box">
-    <div class="link-heading"><%= link_to "#{t('layouts.default.create')}", :action => "additional_fees_create_form" %></div>
-    <div class="link-descr"><%= t('layouts.default.create') %> <%= t('additional') %> <%= t('index.fees') %> </div>
+    <div class="link-heading"><%= link_to "#{t('layouts.common.create')}", :action => "additional_fees_create_form" %></div>
+    <div class="link-descr"><%= t('layouts.common.create') %> <%= t('additional') %> <%= t('index.fees') %> </div>
   </div>
 
   <div class="link-box">

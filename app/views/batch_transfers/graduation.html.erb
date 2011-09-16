@@ -19,8 +19,8 @@
 
  <div id="content-header">
     <img src="/images/show_settings.png" />
-  <h1>Batch Transfer</h1>
-  <h3>Graduation</h3>
+  <h1><%= t('courses.manage_batches.batch_transfer') %></h1>
+  <h3><%= t('index.graduation') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -32,26 +32,25 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
   <% unless @id_lists.blank?  %>
-<%= link_to "Generate TC for ALL",
+<%= link_to "#{t('index.generate_tc_for_all')}",
         {:controller => "student", :action => "generate_all_tc_pdf", :stud => @id_lists},:target => '_blank',:class=>'user_button' %>
 <br />
 <br />
 <% end %>
-<h4>Graduating batch: <%= @batch.full_name %></h4>
+<h4><%= t('index.garduating_batch') %>: <%= @batch.full_name %></h4>
 <% form_for :graduate do |f| %>
-  These students will now be trasferred to former students database. Add the
-    status description for the students. e.g. 'Graduated 10th grade, 2010.
+  <%= t('index.graduation_message') %>
      <div class="label-field-pair">
-          <label for="subject_id">Status description : </label>
+          <label for="subject_id"><%= t('index.status_description') %> : </label>
           <div class="text-input-bg"><%= f.text_field 'status_description' %></div>
         </div>
 
 
-<p>Uncheck the students not eligible for graduation .</p>
+<p><%= t('index.uncheck_message') %>.</p>
 <ul id="category-list">
   <li class="listheading">
-      <div class="heading-no">Admn. No.</div>
-    <div class="category-name">Name</div>
+      <div class="heading-no"><%= t('layouts.common.adm_no') %></div>
+    <div class="category-name"><%= t('layouts.common.name') %></div>
   </li>
   <% @batch.students.each do |student| %>
   <li class="list<%=cycle('odd', 'even')%>">
@@ -62,7 +61,7 @@
   <% end %>
 </ul>
 
-  <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+  <%= submit_tag "", :value => "► #{t('layouts.common.save')}", :class => "submit_button" %>
 
 <% end %>
 

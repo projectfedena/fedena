@@ -31,7 +31,7 @@ class ElectiveGroupsController < ApplicationController
     @elective_group = ElectiveGroup.new(params[:elective_group])
     @elective_group.batch_id = @batch.id
     if @elective_group.save
-      flash[:notice] = 'New elective group created.'
+      flash[:notice] = "#{t('flash_message.elective_groups.flash1')}"
       redirect_to batch_elective_groups_path(@batch)
     else
        render :action=>'new'
@@ -46,7 +46,7 @@ class ElectiveGroupsController < ApplicationController
   def update
     @elective_group = ElectiveGroup.find(params[:id])
     if @elective_group.update_attributes(params[:elective_group])
-      flash[:notice] = 'Elective group updated.'
+      flash[:notice] = "#{t('flash_message.elective_groups.flash1')}"
       #redirect_to [@batch, @elective_group]
       redirect_to batch_elective_groups_path(@batch)
     else
@@ -56,7 +56,7 @@ class ElectiveGroupsController < ApplicationController
 
   def destroy
     @elective_group.inactivate
-    flash[:notice] = 'Deleted elective group.'
+    flash[:notice] =  "#{t('flash_message.elective_groups.flash2')}"
     redirect_to batch_elective_groups_path(@batch)
   end
 

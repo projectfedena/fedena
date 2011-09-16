@@ -20,10 +20,10 @@
 <% unless @additional_categories.empty? %>
     <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
       <tr class="tr-head">
-        <td><%= t('layouts.default.sl_no') %></td>
-        <td><%= t('index.fees') %> <%= t('layouts.default.name') %></td>
-        <td><%= t('layouts.default.batch') %> <%= t('layouts.default.name') %></td>
-        <td><%= t('layouts.default.created') %> <%= t('layouts.default.date') %></td>
+        <td><%= t('layouts.common.sl_no') %></td>
+        <td><%= t('index.fees') %> <%= t('layouts.common.name') %></td>
+        <td><%= t('layouts.common.batch') %> <%= t('layouts.common.name') %></td>
+        <td><%= t('layouts.common.created') %> <%= t('layouts.common.date') %></td>
       </tr>
       <tr class="tr-blank"></tr>
 
@@ -32,11 +32,11 @@
           <td class="col-1"><%= i+1 %></td>
           <td class="col-2"><%= link_to_remote fees.name,:url => {:action => 'additional_particulars',:id => fees.id }%>
             <%  unless fees.check_fee_collection_for_additional_fees == false %>
-              <span class="small"> <%= link_to_remote t('layouts.default.delete'),:confirm=>"#{t('additional_fees_list.delete_msg1')}", :url => { :action => 'additional_fees_delete',:id => fees.id} %></span>
+              <span class="small"> <%= link_to_remote t('layouts.common.delete'),:confirm=>"#{t('additional_fees_list.delete_msg1')}", :url => { :action => 'additional_fees_delete',:id => fees.id} %></span>
             <% else %>
-              <span class="small-strike"><%= t('layouts.default.delete') %></span>
+              <span class="small-strike"><%= t('layouts.common.delete') %></span>
             <% end %>
-            <span class="small"> <%= link_to_remote t('layouts.default.edit'), :url => { :action => 'additional_fees_edit',:id => fees.id} %></span>
+            <span class="small"> <%= link_to_remote t('layouts.common.edit'), :url => { :action => 'additional_fees_edit',:id => fees.id} %></span>
           </td>
           <td class="col-3"><%= shorten_string(fees.batch.full_name,20) unless fees.batch.nil?%> </td>
           <td class="col-3"><%= fees.created_at.strftime("%m-%d-%Y") %></td>

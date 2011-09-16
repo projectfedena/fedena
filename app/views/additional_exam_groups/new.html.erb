@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Additional Exams</h1>
-  <h3>New Exam</h3>
+  <h1><%= t('additional_exam.create_additional_exam.additional_exams') %></h1>
+  <h3><%= t('new_exam') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -33,11 +33,11 @@
   <% end %>
 
   <div class="bread_crumb">
-    <%= 'Courses' %> &raquo;
+    <%= t('layouts.common.courses') %> &raquo;
     <%= @course.full_name %> &raquo;
-    <%="Batch #{@batch.name}" %> &raquo;
-    <%= link_to "Additional Exams", batch_additional_exam_groups_path(@batch) %> &raquo;
-    New Additional Exam
+    <%="#{t('layouts.common.batch')} #{@batch.name}" %> &raquo;
+    <%= link_to "#{t('additional_exam.create_additional_exam.additional_exams')}", batch_additional_exam_groups_path(@batch) %> &raquo;
+    <%= t('new_additional_exam') %>
   </div>
 
 
@@ -49,7 +49,7 @@
       <%= error_messages_for :additional_exam_group %>
       <% form_remote_for :exam_option, :url => {:controller=>'additional_exam',:action => 'update_exam_form',:batch=>@batch} do |form| %>
         <div class="label-field-pair">
-          <label for="exam_name">Name</label>
+          <label for="exam_name"><%= t('layouts.common.name') %></label>
           <% if params[:ename].nil?  %>
             <% @ename = "" %>
           <% else %>
@@ -58,13 +58,13 @@
           <div class="text-input-bg"><%= form.text_field :name, :value=>@ename%></div>
         </div>
         <div class="label-field-pair">
-          <label for="exam_type">Exam Type</label>
-          <div class="text-input-bg"><%= select :exam_option,:exam_type,['Marks','Grades','MarksAndGrades'] %></div>
+          <label for="exam_type"><%= t('exam.index.exam_type') %></label>
+          <div class="text-input-bg"><%= select :exam_option,:exam_type,[[t('exam_groups.new.marks'),'Marks'],[t('exam_groups.new.grades'),'Grades'],[t('exam_groups.new.marks_and_grades'),'MarksAndGrades']] %></div>
         </div>
       <div id="list">
   <div class="sel-list">
-Select: <%= link_to_function 'All', "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
-<%= link_to_function 'None', "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+<%= t('layouts.common.select') %>: <%= link_to_function t('layouts.common.all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+<%= link_to_function "#{t('layouts.common.none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
 </div>
         <% @students.each do |student| %>
 
@@ -74,7 +74,7 @@ Select: <%= link_to_function 'All', "$$('input.right').each(function(checkbox) {
             </li>  </div>
         <% end %>
       </div>
-        <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+        <%= submit_tag "", :value => "► #{t('layouts.common.save')}", :class => "submit_button" %>
         <%  #  form.submit("Save") %>
       <%end%>
     </div>

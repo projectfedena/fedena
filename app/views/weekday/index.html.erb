@@ -34,7 +34,7 @@
 
     <div class="box">
   <div class="label-field-pair">
-    <label for="timetable_entry_course_id"><%= t('layouts.default.select_a_batch') %>:</label>
+    <label for="timetable_entry_course_id"><%= t('layouts.common.select_a_batch') %>:</label>
     <div class="text-input-bg"><%= select :batch, :id,
         @batches.map {|b| [b.full_name, b.id] },
         {:prompt => "#{t('timetable.weekdays.common')}"},

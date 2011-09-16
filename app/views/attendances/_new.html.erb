@@ -17,7 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<label class="head_label">Attendance for <span><%= @student.first_name %></span></label>
+<label class="head_label"><%= t('index.attendance') %> <span><%= @student.first_name %></span></label>
 
 <div id="ajax-edit">
   <br></br>
@@ -26,20 +26,20 @@
     <%= f.hidden_field :student_id, :value => @student.id %>
     <%= f.hidden_field :period_table_entry_id, :value => @period_entry_id %>
     <div class="label-field-pair">
-      <label for="reason"> Reason for absence</label>
+      <label for="reason"><%= t('index.reason') %></label>
       <div class="text-input-bg"><%= f.text_field :reason %></div>
     </div>
     <% if @config.config_value == 'Daily' %>
       <div class="label-checkbox-pair">
-        <label><%= f.check_box :forenoon, :checked => true %>Forenoon</label>
+        <label><%= f.check_box :forenoon, :checked => true %><%= t('student_attendance.student_report.forenoon') %></label>
 
       </div>
       <div class="label-checkbox-pair">
-        <label><%= f.check_box :afternoon, :checked => true %>Afternoon</label>
+        <label><%= f.check_box :afternoon, :checked => true %><%= t('student_attendance.student_report.afternoon') %></label>
       </div>
     <% end %>
   <div class="extender"></div>
-    <%= f.submit '► Add', :class => 'submit-button', :confirm => 'Are you sure?' %>
+    <%= f.submit "► #{t('index.add')}", :class => 'submit-button', :confirm => "#{t('batches.show.are_you_sure')}" %>
   <% end %>
   
 </div>

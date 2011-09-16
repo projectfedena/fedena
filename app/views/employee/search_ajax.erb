@@ -21,16 +21,16 @@
         <% unless @employee.blank? %>
         <tr class="tr-head">
           <td>
-            Sl no.
+            <%= t('layouts.common.sl_no') %>
           </td>
           <td>
-            Employee Name
+            <%= t('select_department_employee.employee_name') %>
           </td>
           <td>
-            Employee ID
+           <%= t('employee.hr.emp_id') %>
           </td>
           <td>
-            Employee dept
+            <%= t('advanced_search.employee_department') %>
           </td>
         </tr>
         <tr class="tr-blank"></tr>
@@ -45,7 +45,7 @@
           <% end %>
           <% else %>
         <tr class="tr-<%= cycle('odd', 'even') %>">
-          <td class="col-2">No employee found</td>
+          <td class="col-2"><%= t('batches.new.no_employee_found') %></td>
         </tr>
       <% end %>
     </table>

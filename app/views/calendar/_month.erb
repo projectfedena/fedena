@@ -20,19 +20,19 @@
 <div id="calendar-legend">
   <div id="legend-entry">
     <div id="legend-symbol"> <div style='width:12px;height:12px;background:#000000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
-    <div id="legend-text">Events</div>
+    <div id="legend-text"><%= t('event.index.events') %></div>
   </div>
   <div id="legend-entry">
     <div id="legend-symbol"> <div style='width:12px;height:12px;background:#0C6C92; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
-    <div id="legend-text">Examinations</div>
+    <div id="legend-text"><%= t('exam.index.examinations') %></div>
   </div>
   <div id="legend-entry">
     <div id="legend-symbol"> <div style='width:12px;height:12px;background:#00b400; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
-    <div id="legend-text">Holidays</div>
+    <div id="legend-text"><%= t('event.index.holidays') %></div>
   </div>
   <div id="legend-entry">
     <div id="legend-symbol"> <div style='width:12px;height:12px;background:#b40000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
-    <div id="legend-text">Dues</div>
+    <div id="legend-text"><%= t('event.index.dues') %></div>
   </div>
 </div>
 <br/>
@@ -46,7 +46,7 @@
         :with   => "'new_month=#{@show_month.month-1}'+ '&passed_date=#{@show_month}'"%>
     </div>
     <div class="month">
-      <%= @show_month.strftime('%B %Y') %>
+      <%= I18n.l(@show_month, :format => :month_year) %>
     </div>
     <div class="next">
       <%= link_to_remote "►",
@@ -78,7 +78,7 @@
             <% unless (r == 1 and c <= @start_date_day) %>
               <% unless dt > @last_day.day %>
                 <%  if permitted_to? :index,:event %>
-                  <div class="link"><%= link_to 'Add', :controller=>"event",:action=>"index",:id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") %>
+                  <div class="link"><%= link_to "#{t('layouts.common.add')}", :controller=>"event",:action=>"index",:id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") %>
                   <% end  %>
                   <span><%= dt  %></span></div>
                 <div class="link-group">

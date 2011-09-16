@@ -114,11 +114,11 @@ class AdditionalExamController < ApplicationController
       else
         @conf = Configuration.available_modules
         if @conf.include?('SMS')
-          @sms_setting_notice = "Exam schedule published, No sms was sent as Sms setting was not activated" if params[:status] == "schedule"
-          @sms_setting_notice = "Exam result published, No sms was sent as Sms setting was not activated" if params[:status] == "result"
+          @sms_setting_notice = "#{t('exam.publish.exam_schedule_published_no_sms')}" if params[:status] == "schedule"
+          @sms_setting_notice = "#{t('exam.publish.exam_result_published_no_sms')}" if params[:status] == "result"
         else
-          @sms_setting_notice = "Exam schedule published" if params[:status] == "schedule"
-          @sms_setting_notice = "Exam result published" if params[:status] == "result"
+          @sms_setting_notice = "#{t('exam_schedule_published')}" if params[:status] == "schedule"
+          @sms_setting_notice = "#{t('exam_result_published')}" if params[:status] == "result"
         end
       end
       if params[:status] == "result"
@@ -126,12 +126,12 @@ class AdditionalExamController < ApplicationController
         students.each do |s|
           student_user = s.user
           Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
-            :subject=>"Result Published",
+            :subject=>"#{t('exam_groups.index.result_published')}",
             :body=>"#{ @additional_exam_group.name} result has been published  <br/> Please view reports for your result")
         end
       end
     else
-      @no_exam_notice = "Exam scheduling not done yet."
+      @no_exam_notice = "#{t('flash_message.additional_exams.flash15')}"
     end
   end
 

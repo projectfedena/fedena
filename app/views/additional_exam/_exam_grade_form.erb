@@ -21,29 +21,29 @@
 
   <%= f.error_messages %>
   <div class="label-field-pair">
-    <%= f.label :name %>
+    <%= f.label "#{t('layouts.common.name')}" %>
      <div class="label-field-pair"> <div class="text-input-bg">
   <%= f.text_field :name, :value=>@name %>
     </div></div>
   </div>
 
   <div class="label-field-pair">
-   <%= f.label :exam_type %>
+   <%= f.label "#{t('exam.index.exam_type')}" %>
     <%= f.hidden_field :exam_type,:value=>@type %>
      <%= f.hidden_field :students_list,:value=>@students_list %>
     <div class="text-input-bg">
     <%= f.text_field :exam_type, :value=>@type,:disabled=>true %>
-    </div>  <%= link_to "Change Type", new_batch_additional_exam_group_path(@batch,:ename=>@name),:class=>"type_link" %>
+    </div>  <%= link_to "#{t('exam.index.change_type')}", new_batch_additional_exam_group_path(@batch,:ename=>@name),:class=>"type_link" %>
   </div>
 
-  <h4>    Enter exam related details here:  </h4>
+  <h4><%= t('additional_exam.create_additional_exam.enter_exam_related_details_here') %></h4>
 
   <table width="100%" id="listing">
     <tr class="tr-head">
-      <td>Subject name</td>
-      <td>Start time</td>
-      <td>End time</td>
-      <td>Do not create</td>
+      <td><%= t('additional_exam.create_additional_exam.subject_name') %></td>
+      <td><%= t('layouts.common.start_date') %></td>
+      <td><%= t('layouts.common.end_date') %></td>
+      <td><%= t('additional_exam.create_additional_exam.do_not_create') %></td>
     </tr>
 
     <% f.fields_for :additional_exams do |exam_form| %>
@@ -56,6 +56,6 @@
     <% end %>
   </table>
 
-  <%= submit_tag "", :value => "► Save Changes", :class => "submit_button2" %>
+  <%= submit_tag "", :value => "► #{t('xml.settings.save_changes')}", :class => "submit_button2" %>
 
 <% end %>

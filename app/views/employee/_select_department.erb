@@ -23,24 +23,24 @@
   <% end %>
 <ul id="department-list">
   <% unless @assigned_employee.empty? %>
-    <li class="heading"> Currently assigned: </li>
+    <li class="heading"><%= t('subject_assignment.currently_assigned') %>: </li>
     <% @assigned_employee.each do |e| %>
       <% @employee = Employee.find(e.employee_id) %>
       <li class="list<%=cycle('even', 'odd')%>">
         <div class="department-name"><%= @employee.first_name %> <%= @employee.last_name %>
           <%= "(#{EmployeeDepartment.find(@employee.employee_department_id).name})" %></div>
-        <div class="remove"><%= link_to_remote "Remove", :url => {:action => "remove_employee", :id => e.employee_id, :id1=>e.subject_id}, :update => "department-select" %></div>
+        <div class="remove"><%= link_to_remote "#{t('layouts.common.remove')}", :url => {:action => "remove_employee", :id => e.employee_id, :id1=>e.subject_id}, :update => "department-select" %></div>
       </li>
     <% end %>
   <% else %>
-    <p class="flash-msg"> No employee assigned yet.</p>
+    <p class="flash-msg"><%= t('subject_assignment.no_employee_assigned') %></p>
   <% end %>
 </ul>
 
 <div class="label-field-pair">
-  <label for="department_name">Department</label>
+  <label for="department_name"><%= t('layouts.common.department') %></label>
   <div class="text-input-bg"><%= select :subject_assignment, :department_id, @departments.map { |s| [s.name, s.id] },
-                                        {:prompt => "Select department"},
+                                        {:prompt => "#{t('layouts.common.select_a_department')}"},
                                         {:onChange => "#{remote_function(:url => {:action => "update_employees"},
                                         :with => "'department_id='+value+'&subject_id=#{@subject.id}'")}"} %>
   </div>

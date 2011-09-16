@@ -48,7 +48,7 @@ class BatchTransfersController < ApplicationController
           end
       end
     end
-    flash[:notice] = 'Trasferred students successfully.'
+    flash[:notice] = "#{t('flash_message.batch_transfers.flash1')}"
     redirect_to :controller => 'batch_transfers'
   end
 
@@ -72,7 +72,7 @@ class BatchTransfersController < ApplicationController
 #          flash[:notice]="Graduated selected students successfully."
 #          redirect_to :controller=>'batch_transfers' and return
         end
-        flash[:notice]="Graduated selected students successfully."
+        flash[:notice]= "#{t('flash_message.batch_transfers.flash2')}"
         redirect_to :action=>"graduation", :id=>params[:id], :ids => @admission_list
       end
     end

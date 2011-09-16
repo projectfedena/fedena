@@ -38,17 +38,17 @@
 
   <table id="pdf-table" width="100%" cellspacing="0">
     <tr class="table-header">
-      <td>Subject</td>
+      <td><%= t('layouts.common.subject') %></td>
       <% if @exam_group.exam_type == 'Marks' %>
-        <td>Marks</td>
-        <td>Max Marks</td>
+        <td><%= t('exam_groups.new.marks') %></td>
+        <td><%= t('exam.index.max') %></td>
         <td>%</td>
       <% elsif @exam_group.exam_type == 'Grades' %>
-        <td>Grades</td>
+        <td><%= t('exam_groups.new.grades') %></td>
       <% else %>
-        <td>Marks</td>
-        <td>Max Marks</td>
-        <td>Grades</td>
+        <td><%= t('exam_groups.new.marks') %></td>
+        <td><%= t('exam.index.max') %></td>
+        <td><%= t('exam_groups.new.grades') %></td>
         <td>%</td>
       <% end %>
     </tr>
@@ -87,7 +87,7 @@
   </table>
 
   <% if @exam_group.exam_type == 'Marks' or @exam_group.exam_type == 'MarksAndGrades' %>
-    <h5>Class Average Marks : <%="%.2f" %@exam_group.batch_average_marks('marks') unless total_max_marks == 0%> | Class Average % : <%="%.2f" %(@exam_group.batch_average_marks('marks')*100/total_max_marks) unless total_max_marks == 0 %></h5>
+    <h5><%= t('exam.index.class_average_marks') %> : <%="%.2f" %@exam_group.batch_average_marks('marks') unless total_max_marks == 0%> |<%= t('exam.index.class_average') %> % : <%="%.2f" %(@exam_group.batch_average_marks('marks')*100/total_max_marks) unless total_max_marks == 0 %></h5>
     <script type="text/javascript" src="/javascripts/swfobject.js"></script>
     <%= @graph %>
   <% end %>

@@ -28,18 +28,18 @@
       <%= f.hidden_field :subject , :value=> params[:subject_id] %>
     <% end %>
 
-    <%= submit_tag 'Filter',:class=>'submit_button'  %>
+    <%= submit_tag "#{t('attendance_reports.index.filter')}",:class=>'submit_button'  %>
     <div class="label-field-pair1">
-      <label>Filter:</label>
-      <div class="text-input-bg1"><%= f.select :range, ['Below', 'Above', 'Equals'] %></div>
+      <label><%= t('attendance_reports.index.filter') %>:</label>
+      <div class="text-input-bg1"><%= f.select :range, ["#{t('index.below')}", "#{t('index.above')}", "#{t('index.equals')}"] %></div>
       <div class="text-input-bg1"><%= f.text_field :value %></div></div>
   <% end %>
   <div class="label-field-pair">
     <label>
       <%  if @config.config_value == 'Daily' %>
-        <%= "Total no. of working days = " + working_days.to_s %>
+        <%= "#{t('index.total_days')} = " + working_days.to_s %>
       <% else %>
-        <%= "Total no. of working hours = " + working_days.to_s %>
+        <%= "#{t('index.total_hours')}= " + working_days.to_s %>
 
       <% end  %>
     </label>
@@ -48,13 +48,13 @@
   <table id="listing" align="center" width="80%">
     <tr class="tr-head">
       <td>
-        Name
+        <%= t('attendance_reports.index.name') %>
       </td>
       <td>
-        Total
+         <%= t('attendance_reports.index.total') %>
       </td>
       <td>
-        Percentage(%)
+         <%= t('attendance_reports.index.percentage') %>(%)
       </td>
     </tr>
     <tr class="blank"></tr>
@@ -91,10 +91,10 @@
       <%= f.hidden_field :subject , :value=> params[:subject_id] %>
     <% end %>
 
-    <%= submit_tag '► PDF Report',:class=>'submit_button2'  %>
+    <%= submit_tag "►#{t('layouts.common.pdf_report')}" ,:class=>'submit_button2'  %>
   <% end %>
 <% else %>
   <div class="label-field-pair2" >
-    No reports for the selected month.
+    <%= t('attendance_reports.index.no_reports') %>.
   </div>
 <%  end %>

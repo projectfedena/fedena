@@ -31,7 +31,7 @@
      <% if @config.include?('HR') %>
         <div class="category-emp"> <%= p.employee.first_name unless p.employee_id.nil? %></div>
         <% end %>
-      <div class="category-edit"><%= link_to_remote("#{t('layouts.default.edit')}", :url => {:action=>'extra_class_edit', :id=>p.id})  %></div>
+      <div class="category-edit"><%= link_to_remote("#{t('layouts.common.edit')}", :url => {:action=>'extra_class_edit', :id=>p.id})  %></div>
     </div></li>
   <% end %>
   </ul>

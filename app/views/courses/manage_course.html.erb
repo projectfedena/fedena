@@ -19,8 +19,8 @@
 
 <div id="content-header">
     <img src="/images/show_settings.png" alt="Course" />
-  <h1>Courses</h1>
-  <h3>Manage Course</h3>
+  <h1><%= t('layouts.common.courses') %></h1>
+  <h3><%= "#{t('index.manage_course')}" %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -28,7 +28,7 @@
 
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to 'New', new_course_path %> </li>
+    <li><%= link_to "#{t('layouts.common.new')}", new_course_path %> </li>
 
   </ul>
 </div>
@@ -46,14 +46,14 @@
   <% end %>
 
  <div class="box">
-<h4 align="center">Courses</h4>
+<h4 align="center"><%= t('layouts.common.course') %></h4>
 
 <ul id="category-list">
 
     <% @courses.each do |course| %>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= link_to course.full_name, course %></div>
-        <div class="category-edit"><%= link_to 'Edit', edit_course_path(course) if permitted_to? :edit, :courses %></div><div class="category-delete">   <%= link_to('Delete', course_path(course), :method => 'delete', :confirm => 'Are you sure?') if permitted_to? :destroy, :courses %></div>
+        <div class="category-edit"><%= link_to "#{t('layouts.common.edit')}", edit_course_path(course) if permitted_to? :edit, :courses %></div><div class="category-delete">   <%= link_to('Delete', course_path(course), :method => 'delete', :confirm => "#{t('layouts.common.delete_confirm_msg')}") if permitted_to? :destroy, :courses %></div>
       </li>
      <% end %>
 

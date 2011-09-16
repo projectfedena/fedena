@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1>Employee</h1>
-  <h3>Advanced search</h3>
+  <h1><%= t('layouts.common.employee') %></h1>
+  <h3><%= t('advanced_search') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -30,74 +30,74 @@
   <div id="search-form">
     <% form_for @search do |f| %>
       <div class="label-field-pair">
-        <label for="name">Name</label>
+        <label for="name"><%= t('layouts.common.name') %></label>
         <div class="text-input-bg">
           <%= f.text_field :first_name_or_middle_name_or_last_name_like %>
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no">Employee no</label>
+        <label for="student_admission_no"><%= t('admission1.employee_number') %></label>
         <div class="text-input-bg">
           <%= f.text_field :employee_number_equals %>
         </div>
       </div>
       <div class="label_field_pair">
-        <label class="label_for_student" >Gender</label>
+        <label class="label_for_student" ><%= t('student.admission1.gender') %></label>
         <div class="student_gender_value">
-          <label class="label_for_gender" >All</label>
+          <label class="label_for_gender" ><%= t('layouts.common.all') %></label>
           <%= f.radio_button  :gender_equals, "" %>
-          <label class="label_for_gender" >Male</label>
+          <label class="label_for_gender" ><%= t('student.admission1.male') %></label>
           <%= f.radio_button  :gender_equals, "m"%>
-          <label class="label_for_gender" >Female</label>
+          <label class="label_for_gender" ><%= t('student.admission1.female') %></label>
           <%= f.radio_button  :gender_equals, "f" %>
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no">Blood group</label>
+        <label for="student_admission_no"><%= t('student.admission1.blood_group') %></label>
         <div class="text-input-bg">
-          <%= select :search, :blood_group_like, ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],{:prompt=>"Select"}%>
+          <%= select :search, :blood_group_like, ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],{:prompt=>"#{t('layouts.common.select')}"}%>
         </div>
       </div>
 
       <div class="label-field-pair">
-        <label for="student_admission_no">Marital status</label>
+        <label for="student_admission_no"><%= t('admission1.marital_status') %></label>
         <div class="text-input-bg">
-          <%= select :search, :marital_status_like, ["Single", "Married", "Divorced"],{:prompt=>"Select"}%>
+          <%= select :search, :marital_status_like, ["#{t('admission1.single')}", "#{t('admission1.married')}", "#{t('admission1.divorced')}"],{:prompt=>"#{t('layouts.common.select')}"}%>
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no">Country</label>
+        <label for="student_admission_no"><%= t('student.admission1.country') %></label>
         <div class="text-input-bg">
-          <%= f.collection_select :nationality_id_equals, Country.all,:id,:name,{:prompt=>"Select"}%>
+          <%= f.collection_select :nationality_id_equals, Country.all,:id,:name,{:prompt=>"#{t('layouts.common.select')}"}%>
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no">Category</label>
+        <label for="student_admission_no"><%= t('layouts.common.category') %></label>
         <div class="text-input-bg">
-          <%= f.collection_select :employee_category_id_equals, EmployeeCategory.all, :id, :name, {:prompt=>"Select"} %>
+          <%= f.collection_select :employee_category_id_equals, EmployeeCategory.all, :id, :name, {:prompt=>"#{t('layouts.common.select')}"} %>
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no">Department</label>
+        <label for="student_admission_no"><%= t('layouts.common.department') %></label>
         <div class="text-input-bg">
-          <%= f.collection_select :employee_department_id_equals, EmployeeDepartment.all, :id, :name, {:prompt=>"Select"} %>
+          <%= f.collection_select :employee_department_id_equals, EmployeeDepartment.all, :id, :name, {:prompt=>"#{t('layouts.common.select')}"} %>
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no">Position</label>
+        <label for="student_admission_no"><%= t('hr.position') %></label>
         <div class="text-input-bg">
-          <%= f.collection_select :employee_position_id_equals, EmployeePosition.all, :id, :name, {:prompt=>"Select"}%>
+          <%= f.collection_select :employee_position_id_equals, EmployeePosition.all, :id, :name, {:prompt=>"#{t('layouts.common.select')}"}%>
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no">Grade</label>
+        <label for="student_admission_no"><%= t('hr.grade') %></label>
         <div class="text-input-bg">
-          <%= f.collection_select :employee_grade_id_equals, EmployeeGrade.all, :id, :name,{:prompt=>"Select"} %>
+          <%= f.collection_select :employee_grade_id_equals, EmployeeGrade.all, :id, :name,{:prompt=>"#{t('layouts.common.select')}"} %>
         </div>
       </div>
 
       <div class="label-field-pair">
-        <label for="student_admission_no">Date of joining
+        <label for="student_admission_no"><%= t('admission1.joining_date') %>
           <%= image_tag("loader.gif",
             :align => "absmiddle",
             :border => 0,
@@ -105,7 +105,7 @@
             :style =>"display: none;" ) %>
         </label>
         <div class="text-input-bg">
-          <%= select :adv_search,:doj_option,["equal to","less than","greater than"],{:prompt=>"choose your option"},
+          <%= select :adv_search,:doj_option,["#{t('equal_to')}","#{t('less_than')}","#{t('greater_than')}"],{:prompt=>"#{t('choose_your_option')}"},
             {:onChange => "#{remote_function(:url => {:action => "list_doj_year"},
             :with=>"'doj_option='+value",
             :before => "Element.show('loader')",
@@ -113,13 +113,13 @@
             )}"}
         %>
           <div id="doj_year">
-            <%= select :adv_search,:doj_year,[],{:prompt=>"Select"} %>
+            <%= select :adv_search,:doj_year,[],{:prompt=>"#{t('layouts.common.select')}"} %>
           </div>
           <div id="doj_year_hidden"></div>
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no">Birth date
+        <label for="student_admission_no"><%= t('student.admission1.date_of_birth') %>
           <%= image_tag("loader.gif",
             :align => "absmiddle",
             :border => 0,
@@ -127,7 +127,7 @@
             :style =>"display: none;" ) %>
         </label>
         <div class="text-input-bg">
-          <%= select :adv_search,:dob_option,["equal to","less than","greater than"],{:prompt=>"choose your option"},
+          <%= select :adv_search,:dob_option,["#{t('equal_to')}","#{t('less_than')}","#{t('greater_than')}"],{:prompt=>"#{t('choose_your_option')}"},
             {:onChange => "#{remote_function(:url => {:action => "list_dob_year"},
             :with=>"'dob_option='+value",
             :before => "Element.show('loader')",
@@ -135,17 +135,17 @@
             )}"}
         %>
           <div id="dob_year">
-            <%= select :adv_search,:dob_year,[],{:prompt=>"Select"} %>
+            <%= select :adv_search,:dob_year,[],{:prompt=>"#{t('layouts.common.select')}"} %>
           </div>
           <div id="dob_year_hidden"></div>
         </div>
       </div>
       <div class="label_field_pair">
-        <label class="label_for_student" for="student_gender">Status</label>
+        <label class="label_for_student" for="student_gender"><%= t('layouts.common.status') %></label>
         <div class="student_gender_value">
-          <label class="label_for_gender" for="student_gender_true">Present</label>
+          <label class="label_for_gender" for="student_gender_true"><%= t('layouts.common.present') %></label>
           <%= f.radio_button  :status_equals, "true", {:checked => false } %>
-          <label class="label_for_gender" for="student_gender_false">Former</label>
+          <label class="label_for_gender" for="student_gender_false"><%= t('layouts.common.former') %></label>
           <%= f.radio_button  :status_equals, "false" %>
           <label class="label_for_gender" for="student_gender_false">All</label>
           <%= f.radio_button  :status_equals, "", {:checked => 'checked'} %>
@@ -153,20 +153,20 @@
       </div>
 
 
-      <%= f.submit "Search", :class=>'submit' %>
+      <%= f.submit  "#{t('layouts.common.search')}", :class=>'submit' %>
     <% end %>
   </div>
 
 
 
   <% unless @employees1.nil? %>
-  <% @employees1= @employees1.to_a.sort_by{|s| s.first_name} %>
+    <% @employees1= @employees1.to_a.sort_by{|s| s.first_name} %>
     <script type="text/javascript">
       Event.observe(window, 'load', function() { $('search-form').hide(); });
     </script>
     <div id="search-result">
 
-      <p>You have searched for:</p>
+      <p><%= t('student.advanced_search.searched_for') %>:</p>
       <div class="search-again">
   <%#= link_to_function '► Search again' do |page|
   page.visual_effect :toggle_slide, "search-form"
@@ -174,38 +174,38 @@
   end %>
         <% searched_for = 'Listed by ' %>
 
-        <% searched_for += 'Name: ' + params[:search][:first_name_or_middle_name_or_last_name_like].to_s unless params[:search][:first_name_or_middle_name_or_last_name_like].empty? %>
-        <% searched_for += ' Employee number: ' + params[:search][:employee_number_equals].to_s unless params[:search][:employee_number_equals].empty? %>
-        <% searched_for += ' Employee department: ' + EmployeeDepartment.find(params[:search][:employee_department_id_equals]).name.to_s unless params[:search][:employee_department_id_equals].empty? %>
-        <% searched_for += ' Employee category: ' + EmployeeCategory.find(params[:search][:employee_category_id_equals]).name.to_s unless params[:search][:employee_category_id_equals].empty? %>
-        <% searched_for += ' Employee position: ' + EmployeePosition.find(params[:search][:employee_position_id_equals]).name.to_s unless params[:search][:employee_position_id_equals].empty? %>
-        <% searched_for += ' Employee grade: ' + EmployeeGrade.find(params[:search][:employee_grade_id_equals]).name.to_s unless params[:search][:employee_grade_id_equals].empty? %>
+        <% searched_for += "#{t('layouts.common.name')}: " + params[:search][:first_name_or_middle_name_or_last_name_like].to_s unless params[:search][:first_name_or_middle_name_or_last_name_like].empty? %>
+        <% searched_for += " #{t('admission1.employee_number')}: " + params[:search][:employee_number_equals].to_s unless params[:search][:employee_number_equals].empty? %>
+        <% searched_for += " #{t('employee_department')}: " + EmployeeDepartment.find(params[:search][:employee_department_id_equals]).name.to_s unless params[:search][:employee_department_id_equals].empty? %>
+        <% searched_for += " #{t('employee_category')}: " + EmployeeCategory.find(params[:search][:employee_category_id_equals]).name.to_s unless params[:search][:employee_category_id_equals].empty? %>
+        <% searched_for += " #{t('employee_position')}: " + EmployeePosition.find(params[:search][:employee_position_id_equals]).name.to_s unless params[:search][:employee_position_id_equals].empty? %>
+        <% searched_for += " #{t('employee_grade')}: " + EmployeeGrade.find(params[:search][:employee_grade_id_equals]).name.to_s unless params[:search][:employee_grade_id_equals].empty? %>
         <% unless  params[:search][:gender_equals].empty? %>
           <% if  params[:search][:gender_equals] == 'm' %>
-            <% searched_for += " Gender: male" %>
+            <% searched_for += " #{t('student.admission1.gender')}: #{t('student.admission1.male')}" %>
           <% elsif  params[:search][:gender_equals] == 'f' %>
-            <% searched_for += " Gender: female" %>
+            <% searched_for += " #{t('student.admission1.gender')}: #{t('student.admission1.female')}" %>
           <% else %>
-            <% searched_for += " Gender: all" %>
+            <% searched_for += " #{t('student.admission1.gender')}: #{t('layouts.common.all')}" %>
           <% end %>
         <% end %>
-        <% searched_for += ' Blood group: ' + params[:search][:blood_group_like].to_s unless params[:search][:blood_group_like].empty? %>
-        <% searched_for += ' Marital status: ' + params[:search][:marital_status_like].to_s unless params[:search][:marital_status_like].empty? %>
-        <% searched_for += ' Nationality: ' + Country.find(params[:search][:nationality_id_equals]).name.to_s unless params[:search][:nationality_id_equals].empty? %>
-        <% searched_for += ' Year of join: ' +  params[:adv_search][:doj_option].to_s + params[:adv_search][:joining_date_year].to_s unless  params[:adv_search][:doj_option].empty? %>
-        <% searched_for += ' Year of birth: ' +  params[:adv_search][:dob_option].to_s + params[:adv_search][:birth_date_year].to_s unless  params[:adv_search][:dob_option].empty? %>
+        <% searched_for += " #{t('student.admission1.blood_group')}: " + params[:search][:blood_group_like].to_s unless params[:search][:blood_group_like].empty? %>
+        <% searched_for += " #{t('admission1.marital_status')}: " + params[:search][:marital_status_like].to_s unless params[:search][:marital_status_like].empty? %>
+        <% searched_for += " #{t('student.admission1.nationality')}: " + Country.find(params[:search][:nationality_id_equals]).name.to_s unless params[:search][:nationality_id_equals].empty? %>
+        <% searched_for += " #{t('year_of_join')}: " +  params[:adv_search][:doj_option].to_s + params[:adv_search][:joining_date_year].to_s unless  params[:adv_search][:doj_option].empty? %>
+        <% searched_for += " #{t('year_of_birth')}: " +  params[:adv_search][:dob_option].to_s + params[:adv_search][:birth_date_year].to_s unless  params[:adv_search][:dob_option].empty? %>
         <% if params[:search][:status_equals]=="true" %>
-          <% searched_for += " Present employees" %>
+          <% searched_for += " #{t('present_employee')}" %>
         <% elsif params[:search][:status_equals]=="false" %>
-          <% searched_for += " Former employees" %>
+          <% searched_for += " #{t('former_employee')}" %>
         <% else %>
-          <% searched_for += " All employees" %>
+          <% searched_for += " #{t('all_employee')}" %>
         <% end %>
 
 
-        <%= link_to "► Search again", {:action=>"advanced_search"}%>
+        <%= link_to "► #{t('student.advanced_search.search_again')}", {:action=>"advanced_search"}%>
         <% unless @employees1.empty? %>
-          <%= link_to "► View PDF report",   {:action => "advanced_search_pdf",:for =>searched_for, :result2=>@employees2 , :result =>@employees1,:status=>params[:search][:status_equals], :format => 'pdf'}, :target => '_blank' , :class=> 'submit_button' %>
+          <%= link_to "► #{t('student.profile.pdf_report')}",   {:action => "advanced_search_pdf",:for =>searched_for, :result2=>@employees2 , :result =>@employees1,:status=>params[:search][:status_equals], :format => 'pdf'}, :target => '_blank' , :class=> 'submit_button' %>
         <% end %>
       </div>
       <div class="extender"></div>
@@ -213,62 +213,62 @@
       <div class="searched_for">
         <% unless params[:search][:first_name_or_middle_name_or_last_name_like].empty? %>
           <% searched_for = params[:search][:first_name_or_middle_name_or_last_name_like] %>
-          <span>Name:</span> <%= params[:search][:first_name_or_middle_name_or_last_name_like] %>
+          <span><%= t('layouts.common.name') %>:</span> <%= params[:search][:first_name_or_middle_name_or_last_name_like] %>
         <% end %>
         <% unless  params[:search][:employee_number_equals].empty? %>
-          <span>Employee no:</span> <%= params[:search][:employee_number_equals] %>
+          <span><%= t('admission1.employee_number') %>:</span> <%= params[:search][:employee_number_equals] %>
         <% end %>
         <% unless params[:search][:employee_department_id_equals].empty? %>
           <% dept = EmployeeDepartment.find(params[:search][:employee_department_id_equals]) %>
-          <span>Department:</span> <%= dept.name %>
+          <span><%= t('employee_department') %>:</span> <%= dept.name %>
         <% end %>
         <% unless  params[:search][:employee_category_id_equals].empty? %>
           <% category = EmployeeCategory.find(params[:search][:employee_category_id_equals]) %>
-          <span> Category: </span> <%= category.name %>
+          <span> <%= t('employee_category') %>: </span> <%= category.name %>
         <% end %>
         <% unless  params[:search][:employee_position_id_equals].empty? %>
           <% position = EmployeePosition.find(params[:search][:employee_position_id_equals]) %>
-          <span> Employee position: </span> <%= position.name %>
+          <span><%= t('employee_position') %>: </span> <%= position.name %>
         <% end %>
         <% unless  params[:search][:employee_grade_id_equals].empty? %>
           <% grade = EmployeeGrade.find(params[:search][:employee_grade_id_equals]) %>
-          <span> Employee grade: </span> <%= grade.name %>
+          <span> <%= t('employee_grade') %>: </span> <%= grade.name %>
         <% end %>
         <% unless  params[:search][:gender_equals].empty? %>
           <% if  params[:search][:gender_equals] == 'm' %>
-            <span> Gender: </span> male
+            <span><%= t('student.admission1.gender') %>: </span> <%= t('student.admission1.male') %>
           <% elsif  params[:search][:gender_equals] == 'f' %>
-            <span> Gender: </span> female
+            <span> <%= t('student.admission1.gender') %>: </span><%= t('student.admission1.female') %>
           <% else %>
-            <span> Gender: </span> All
+            <span><%= t('student.admission1.gender') %>: </span> <%= t('layouts.common.all') %>
           <% end %>
         <% end %>
         <% unless  params[:search][:blood_group_like].empty? %>
-          <span> Blood group:</span> <%= params[:search][:blood_group_like] %>
+          <span> <%= t('student.admission1.blood_group') %>:</span> <%= params[:search][:blood_group_like] %>
         <% end %>
         <% unless  params[:search][:marital_status_like].empty? %>
-          <span> Marital status:</span> <%= params[:search][:marital_status_like] %>
+          <span><%= t('admission1.marital_status') %>:</span> <%= params[:search][:marital_status_like] %>
         <% end %>
         <% unless  params[:search][:nationality_id_equals].empty? %>
           <% nationality = Country.find(params[:search][:nationality_id_equals]) %>
-          <span> Nationality: </span> <%= nationality.name %>
+          <span><%= t('student.admission1.nationality') %>: </span> <%= nationality.name %>
         <% end %>
         <% unless  params[:adv_search][:doj_option].empty? %>
-          <span> Year of joining: </span> <%= params[:adv_search][:doj_option] %>
+          <span><%= t('year_of_join') %>: </span> <%= params[:adv_search][:doj_option] %>
 
           <%= params[:adv_search][:joining_date_year] %>
         <% end %>
         <% unless  params[:adv_search][:dob_option].empty? %>
-          <span>Year of birth: </span> <%= params[:adv_search][:dob_option] %>
+          <span><%= t('year_of_birth') %>: </span> <%= params[:adv_search][:dob_option] %>
 
           <%= params[:adv_search][:birth_date_year] %>
         <% end %>
         <% if params[:search][:status_equals]=="true" %>
-          <span> Present employees </span>
+          <span> <%= t('present_employee') %> </span>
         <% elsif params[:search][:status_equals]=="false" %>
-          <span> Former employees </span>
+          <span> <%= t('former_employee') %> </span>
         <% else %>
-          <span> All </span>
+          <span><%= t('layouts.common.all') %></span>
         <% end %>
 
       </div>
@@ -276,57 +276,57 @@
 
       <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
         <% unless @employees1.empty? %>
-        <tr class="tr-head">
-          <td>
-            Sl no.
-          </td>
-          <td>
-            <%= order @search, :by => :first_name %>
-          </td>
-          <td>
-            Employee ID
-          </td>
-          <td>
-            Employee dept
-          </td>
-        </tr>
-        <tr class="tr-blank"></tr>
+          <tr class="tr-head">
+            <td>
+             <%= t('layouts.common.sl_no') %>
+            </td>
+            <td>
+              <%= order @search, :by => :first_name %>
+            </td>
+            <td>
+              <%= t('profile.employee_id') %>
+            </td>
+            <td>
+               <%= t('employee_department') %>
+            </td>
+          </tr>
+          <tr class="tr-blank"></tr>
 
-        <% @employees1.each_with_index do |emp1, i| %>
-          <tr class="tr-<%= cycle('odd', 'even') %>">
-            <td class="col-1"><%= i+1 %></td>
-            <% if params[:search][:status_equals]=="false" %>
-              <td class="col-4"><%=  link_to emp1.first_name + ' ' + emp1.last_name, :controller => 'archived_employee', :action => 'profile', :id => emp1.id%></td>
-            <% else %>
-              <td class="col-4"><%=  link_to emp1.first_name + ' ' + emp1.last_name, :controller => 'employee', :action => 'profile', :id => emp1.id%></td>
-            <% end %>
-            <td class="col-3"><%= emp1.employee_number %></td>
-            <td class="col-4"><%= emp1.employee_department.name %></td>
-
-          <% end %>
-          <% unless @employees2.nil? %>
-            <% k = @employees1.size %>
-            <% @employees2.each do |emp2| %>
+          <% @employees1.each_with_index do |emp1, i| %>
             <tr class="tr-<%= cycle('odd', 'even') %>">
-              <td class="col-1"><%= k+= 1  %></td>
-              <td class="col-4"><%=  link_to emp2.first_name + ' ' + emp2.last_name, :controller => 'archived_employee', :action => 'profile', :id => emp2.id%></td>
-              <td class="col-3"><%= emp2.employee_number %></td>
-              <td class="col-4"><%= emp2.employee_department.name %></td>
+              <td class="col-1"><%= i+1 %></td>
+              <% if params[:search][:status_equals]=="false" %>
+                <td class="col-4"><%=  link_to emp1.first_name + ' ' + emp1.last_name, :controller => 'archived_employee', :action => 'profile', :id => emp1.id%></td>
+              <% else %>
+                <td class="col-4"><%=  link_to emp1.first_name + ' ' + emp1.last_name, :controller => 'employee', :action => 'profile', :id => emp1.id%></td>
+              <% end %>
+              <td class="col-3"><%= emp1.employee_number %></td>
+              <td class="col-4"><%= emp1.employee_department.name %></td>
+
             <% end %>
-          <% end  %>
-        </tr>
-      <% else %>
-        <tr class="tr-<%= cycle('odd', 'even') %>">
-          <td class="col-2">No employee found</td>
-        </tr>
-      <% end %>
-    </table>
-    <div class="extender">
+            <% unless @employees2.nil? %>
+              <% k = @employees1.size %>
+              <% @employees2.each do |emp2| %>
+              <tr class="tr-<%= cycle('odd', 'even') %>">
+                <td class="col-1"><%= k+= 1  %></td>
+                <td class="col-4"><%=  link_to emp2.first_name + ' ' + emp2.last_name, :controller => 'archived_employee', :action => 'profile', :id => emp2.id%></td>
+                <td class="col-3"><%= emp2.employee_number %></td>
+                <td class="col-4"><%= emp2.employee_department.name %></td>
+              <% end %>
+            <% end  %>
+          </tr>
+        <% else %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-2"><%= t('batches.new.no_employee_found') %></td>
+          </tr>
+        <% end %>
+      </table>
+      <div class="extender">
 
 
 
 
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 </div>

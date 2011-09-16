@@ -23,18 +23,18 @@
 
   <% @employees.each do |employee|  %>
     <div class="hor_line"></div>
-    <h2>Employee Payslip</h2>
+    <h2><%= t('department_payslip.employee_payslip') %></h2>
     <div class="hor_line"></div>
     <div class="extender"> </div>
     <div class="report">
       <div id ="main_info">
-        <div class="info"><div class="info-label">Name</div> <div class="info-data"><span>:</span><%= employee.full_name.upcase %></div></div>
-        <div class="info"><div class="info-label">ID</div> <div class="info-data"><span>:</span><%= employee.employee_number %></div></div>
-        <div class="info"><div class="info-label">Grade</div> <div class="info-data"><span>:</span><%= EmployeeGrade.find(employee.employee_grade_id).name %></div></div>
-        <div class="info"><div class="info-label">Category</div> <div class="info-data"><span>:</span><%=  EmployeeCategory.find(employee.employee_category_id).name %></div></div>
-        <div class="info"><div class="info-label">Department</div> <div class="info-data"><span>:</span><%= employee.employee_department.name %></div></div>
-        <div class="info"><div class="info-label">Joning Date</div> <div class="info-data"><span>:</span><%= employee.joining_date.strftime("%d %B %Y") %></div></div>
-        <div class="info"><div class="info-label">Payslip generated on</div> <div class="info-data"><span>:</span><%=  @salary_date%></div></div>
+        <div class="info"><div class="info-label"><%= t('layouts.common.name') %></div> <div class="info-data"><span>:</span><%= employee.full_name.upcase %></div></div>
+        <div class="info"><div class="info-label"><%= t('department_payslip.id') %></div> <div class="info-data"><span>:</span><%= employee.employee_number %></div></div>
+        <div class="info"><div class="info-label"><%= t('employee.hr.grade') %></div> <div class="info-data"><span>:</span><%= EmployeeGrade.find(employee.employee_grade_id).name %></div></div>
+        <div class="info"><div class="info-label"><%= t('layouts.common.category') %></div> <div class="info-data"><span>:</span><%=  EmployeeCategory.find(employee.employee_category_id).name %></div></div>
+        <div class="info"><div class="info-label"><%= t('layouts.common.department') %></div> <div class="info-data"><span>:</span><%= employee.employee_department.name %></div></div>
+        <div class="info"><div class="info-label"><%= t('admission1.joining_date') %></div> <div class="info-data"><span>:</span><%= employee.joining_date.strftime("%d %B %Y") %></div></div>
+        <div class="info"><div class="info-label"><%= t('department_payslip.payslip_generated_on') %></div> <div class="info-data"><span>:</span><%=  @salary_date%></div></div>
       </div>
       <div id="pdf-info">
         <%  @monthly_payslips = MonthlyPayslip.find_all_by_salary_date(@salary_date,
@@ -81,7 +81,7 @@
 
 
         <table id="pdf-table" width="100%" cellspacing="0">
-          <tr class="table-header"><td colspan="2"class="col-pdf">Salary</td></tr>
+          <tr class="table-header"><td colspan="2"class="col-pdf"><%= t('profile.salary') %></td></tr>
           <% c = 'even' %>
           <% @monthly_payslips.each do |mp| %>
             <% category = PayrollCategory.find(mp.payroll_category_id) %>
@@ -105,11 +105,11 @@
             <% end %>
           <% end %>
           <% if c =='even' %>
-            <tr class="odd"><td class="col-pdf">Total Salary</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_non_deductionable_amount.to_s}" %></td></tr>
+            <tr class="odd"><td class="col-pdf"><%= t('department_payslip.total_salary') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_non_deductionable_amount.to_s}" %></td></tr>
           <% else %>
-            <tr class="even"><td class="col-pdf">Total Salary</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_non_deductionable_amount.to_s}" %></td></tr>
+            <tr class="even"><td class="col-pdf"><%= t('department_payslip.total_salary') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_non_deductionable_amount.to_s}" %></td></tr>
           <% end  %>
-          <tr class="table-header"><td colspan="2"class="col-pdf">Deductions</td></tr>
+          <tr class="table-header"><td colspan="2"class="col-pdf"><%= t('department_payslip.deductions') %></td></tr>
           <% @monthly_payslips.each do |mp| %>
             <% category = PayrollCategory.find(mp.payroll_category_id) %>
             <% if category.is_deduction == true %>
@@ -133,13 +133,13 @@
             <% end %>
           <% end %>
           <% if c =='even' %>
-            <tr class="odd"><td class="col-pdf">Total Deduction</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+" ""#{@net_deductionable_amount.to_s}" %></td></tr>
-            <tr class="table-header"><td colspan="2"class="col-pdf">Total</td></tr>
-            <tr class="even"><td class="col-pdf">Net Salary</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_amount.to_s}" %></td></tr>
+            <tr class="odd"><td class="col-pdf"><%= t('department_payslip.total_deduction') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+" ""#{@net_deductionable_amount.to_s}" %></td></tr>
+            <tr class="table-header"><td colspan="2"class="col-pdf"><%= t('layouts.common.total') %></td></tr>
+            <tr class="even"><td class="col-pdf"><%= t('net_salary') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_amount.to_s}" %></td></tr>
           <% else %>
-            <tr class="even"><td class="col-pdf">Total Deduction</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " ""#{@net_deductionable_amount.to_s}" %></td></tr>
-            <tr class="table-header"><td colspan="2"class="col-pdf">Total</td></tr>
-            <tr class="odd"><td class="col-pdf">Net Salary</td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_amount.to_s}" %></td></tr>
+            <tr class="even"><td class="col-pdf"><%= t('total_deduction') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " ""#{@net_deductionable_amount.to_s}" %></td></tr>
+            <tr class="table-header"><td colspan="2"class="col-pdf"><%= t('layouts.common.total') %></td></tr>
+            <tr class="odd"><td class="col-pdf"><%= t('net_salary') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_amount.to_s}" %></td></tr>
           <% end  %>
         </table>
 

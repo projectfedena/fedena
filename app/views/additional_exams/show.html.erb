@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Additional Exams</h1>
-  <h3>Result Entry</h3>
+  <h1><%= t('additional_exam.create_additional_exam.additional_exams') %></h1>
+  <h3><%= t('exams.show.result_entry') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -31,34 +31,34 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-    <div class="box">
-       <div class="bread_crumb">
-       <%=  'Courses'%> &raquo;
-        <%= @additional_exam_group.batch.course.full_name%> &raquo;
-        <%=@additional_exam_group.batch.name %> &raquo;
-        <%= link_to 'Additional Exams', batch_additional_exam_groups_path(@batch) %> &raquo;
-        <%= link_to @additional_exam_group.name, [@additional_exam_group.batch, @additional_exam_group] %> &raquo;
-        <%= @additional_exam.subject.name %>
-        </div>
+  <div class="box">
+    <div class="bread_crumb">
+      <%= t('layouts.common.courses') %>&raquo;
+      <%= @additional_exam_group.batch.course.full_name%> &raquo;
+      <%=@additional_exam_group.batch.name %> &raquo;
+      <%= link_to "#{t('additional_exam.create_additional_exam.additional_exams')}", batch_additional_exam_groups_path(@batch) %> &raquo;
+      <%= link_to @additional_exam_group.name, [@additional_exam_group.batch, @additional_exam_group] %> &raquo;
+      <%= @additional_exam.subject.name %>
+    </div>
 
 
     <% form_for :exams, :url =>save_additional_scores_additional_exam_group_additional_exam_url do |f| %>
 
       <table id="listing" width="100%">
         <tr class="tr-head">
-          <td>Name</td>
+          <td><%= t('layouts.common.name') %></td>
           <% unless @additional_exam_group.exam_type == 'Grades' %>
-            <td>Marks</td>
+            <td><%= t('exam_groups.new.marks') %></td>
           <% else %>
-            <td>Grades</td>
+            <td><%= t('exam_groups.new.grades') %></td>
           <% end %>
-          <td>Remarks(absent/disqualified etc)</td>
+          <td><%= t('exams.show.remarks') %>(<%= t('exams.show.absent_disqualified_etc') %>)</td>
           <% unless @additional_exam_group.exam_type == 'Marks' %>
-            <td>Grade</td>
+            <td><%= t('exam_groups.new.grade') %></td>
           <% end %>
         </tr>
         <% @students.each do |student| %>
-                   <tr class="tr-<%= cycle('odd', 'even') %>">
+          <tr class="tr-<%= cycle('odd', 'even') %>">
             <td class="col-2"><%= student.full_name %> </td>
             <% @additional_exam_score = @additional_exam.score_for(student) %>
             <% unless @additional_exam_group.exam_type == 'Grades' %>
@@ -67,7 +67,7 @@
                     <%= text_field_tag "additional_exam[#{student.id}][marks]", @additional_exam_score.marks, :size => '4' %></div></div></td>
             <% else %>
               <td class="col-2"><%= select "additional_exam[#{student.id}]", "grading_level_id", @grades.map {|g| [g.name, g.id] },
-                  { :prompt =>"Select Grade", :selected => @additional_exam_score.grading_level_id } %></td>
+                  { :prompt =>"#{t('select_grade')}", :selected => @additional_exam_score.grading_level_id } %></td>
             <% end %>
 
             <td class="col-2"><div class="label-field-pair2">
@@ -81,7 +81,7 @@
         <% end %>
 
       </table>
-      <div id="sub-button"><%= submit_tag "", :value => "► Save", :class => "submit_button" %></div>
+      <div id="sub-button"><%= submit_tag "", :value => "► #{t('layouts.common.save')}", :class => "submit_button" %></div>
     <% end %>
 
     <div class="extender"></div>

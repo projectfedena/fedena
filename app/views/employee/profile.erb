@@ -22,8 +22,8 @@
 
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1>Employee Profile</h1>
-  <h3>Details</h3>
+  <h1><%= t('employee_profile') %></h1>
+  <h3><%= t('details') %></h3>
   <div id="app-back-button">
    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -33,20 +33,20 @@
 <div id="nav">
   <ul>
     <li>
-      <a href="#" class="drops" id="link_one">Profile &#9660;</a>
+      <a href="#" class="drops" id="link_one"><%= t('profile') %> &#9660;</a>
       <ul id="box_one" class="scriptaculously" style="display:none;">
-        <li><%= link_to_remote "General", :url => {:action => "profile_general", :id => @employee.id}, :update => "profile-infos" %></li>
-        <li><%= link_to_remote "Personal", :url => {:action => "profile_personal", :id => @employee.id}, :update => "profile-infos" %></li>
-        <li><%= link_to_remote "Address", :url => {:action => "profile_address", :id => @employee.id}, :update => "profile-infos" %></li>
-        <li><%= link_to_remote "Contact", :url => {:action => "profile_contact", :id => @employee.id}, :update => "profile-infos" %></li>
-        <li><%= link_to_remote "Bank Info", :url => {:action => "profile_bank_details", :id => @employee.id}, :update => "profile-infos" %></li>
-        <li><%= link_to_remote "Additional Info", :url => {:action => "profile_additional_details", :id => @employee.id}, :update => "profile-infos" %></li>
+        <li><%= link_to_remote "#{t('general')}", :url => {:action => "profile_general", :id => @employee.id}, :update => "profile-infos" %></li>
+        <li><%= link_to_remote "#{t('personal')}", :url => {:action => "profile_personal", :id => @employee.id}, :update => "profile-infos" %></li>
+        <li><%= link_to_remote "#{t('address')}", :url => {:action => "profile_address", :id => @employee.id}, :update => "profile-infos" %></li>
+        <li><%= link_to_remote "#{t('contact')}", :url => {:action => "profile_contact", :id => @employee.id}, :update => "profile-infos" %></li>
+        <li><%= link_to_remote "#{t('bank_info')}", :url => {:action => "profile_bank_details", :id => @employee.id}, :update => "profile-infos" %></li>
+        <li><%= link_to_remote "#{t('additional_info')}", :url => {:action => "profile_additional_details", :id => @employee.id}, :update => "profile-infos" %></li>
       </ul>
     </li>
 
     <% if current_username == profile_employee_no %>
       <li>
-        <a href="#" class="drops" id="link_two">Salary &#9660;</a>
+        <a href="#" class="drops" id="link_two"><%= t('salary') %> &#9660;</a>
         <ul id="box_two" class="scriptaculously" style="display:none;">
           <li><%= link_to_remote "Payroll", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
           <li><%= link_to_remote "Payslip", :url => {:action => "view_payslip", :id => @employee.id}, :update => "profile-infos" %></li>
@@ -55,10 +55,10 @@
     <%else%>
       <% if permitted_to? :payslip, :employee %>
         <li>
-          <a href="#" class="drops" id="link_two">Salary &#9660;</a>
+          <a href="#" class="drops" id="link_two"><%= t('salary') %> &#9660;</a>
           <ul id="box_two" class="scriptaculously" style="display:none;">
-            <li><%= link_to_remote "Payroll", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
-            <li><%= link_to_remote "Payslip", :url => {:action => "view_payslip", :id => @employee.id}, :update => "profile-infos" %></li>
+            <li><%= link_to_remote "#{t('payroll')}", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
+            <li><%= link_to_remote "#{t('payslip')}", :url => {:action => "view_payslip", :id => @employee.id}, :update => "profile-infos" %></li>
           </ul>
         </li>
       <%end%>
@@ -67,18 +67,18 @@
 
     <% if current_username == profile_employee_no %>
       <li>
-        <a href="#" class="drops" id="link_three">Leaves &#9660;</a>
+        <a href="#" class="drops" id="link_three"><%= t('leaves') %> &#9660;</a>
         <ul id="box_three" class="scriptaculously" style="display:none;">
-          <li><%= link_to_remote "Attendance", :url => {:action => "view_attendance", :id => @employee.id}, :update => "profile-infos" %></li>
-          <li><%= link_to        "Leaves", :controller=>"employee_attendance", :action=>"leaves", :id=>@employee.id %></li>
+          <li><%= link_to_remote "#{t('attendance')}", :url => {:action => "view_attendance", :id => @employee.id}, :update => "profile-infos" %></li>
+          <li><%= link_to        "#{t('leaves')}", :controller=>"employee_attendance", :action=>"leaves", :id=>@employee.id %></li>
         </ul>
       </li>
     <% else %>
       <% if permitted_to? :employee_attendance, :employee %>
         <li>
-          <a href="#" class="drops" id="link_three">Leaves &#9660;</a>
+          <a href="#" class="drops" id="link_three"><%= t('leaves') %> &#9660;</a>
           <ul id="box_three" class="scriptaculously" style="display:none;">
-            <li><%= link_to_remote "Attendance", :url => {:action => "view_attendance", :id => @employee.id}, :update => "profile-infos" %></li>
+            <li><%= link_to_remote "#{t('attendance')}", :url => {:action => "view_attendance", :id => @employee.id}, :update => "profile-infos" %></li>
           </ul>
         </li>
 
@@ -87,20 +87,20 @@
 
     <% if permitted_to? :timetable, :employee %>
       <% unless @employee.subjects.empty? %>
-        <li><%= link_to        "Timetable", :controller=>"employee", :action=>"timetable", :id=>@employee.id %></li>
+        <li><%= link_to        "#{t('timetable')}", :controller=>"employee", :action=>"timetable", :id=>@employee.id %></li>
         <% end %>
     <%end%>
 
     <% if current_username == profile_employee_no %>
       <% if @new_reminder_count.size == 0 %>
-        <li><%= link_to        "Reminder", :controller=>"reminder", :action=>"index"%></li>
+        <li><%= link_to        "#{t('reminder')}", :controller=>"reminder", :action=>"index"%></li>
       <% else %>
-        <li><%= link_to        "Reminder(#{@new_reminder_count.size})", :controller=>"reminder", :action=>"index"%></li>
+        <li><%= link_to        "#{t('reminder')}(#{@new_reminder_count.size})", :controller=>"reminder", :action=>"index"%></li>
       <% end %>
     <%end%>
       <% if @current_user.admin? %>
     <li>
-      <%= link_to "Delete" ,:action=>'remove',:id=>@employee.id %>
+      <%= link_to "#{t('layouts.common.delete')}" ,:action=>'remove',:id=>@employee.id %>
     </li>
       <% end %>
   </ul>
@@ -128,7 +128,7 @@
 
     <div id ="employee_main_info">
       <h3> <%= @employee.full_name %>  </h3>
-      <h4> Employee ID. : <%= @employee.employee_number %> </h4>
+      <h4> <%= t('employee_id') %> : <%= @employee.employee_number %> </h4>
     </div>
 
     <div id="profile-general-info">

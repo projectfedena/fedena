@@ -17,10 +17,10 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<label class="head_label">Add new class timing for
+<label class="head_label"><%= t('index.add_new_class_timing_for') %>
   <span>
     <% if @batch.nil?%>
-      <%= "common" %>
+      <%= t('timetable.weekdays.common') %>
     <% else %>
       <%=  @batch.full_name %>
     <% end %>
@@ -34,26 +34,26 @@
   <div id="form-errors"></div>
 
     <div class="label-field-pair">
-      <label for="name"> Name</label>
+      <label for="name"><%= t('layouts.common.name') %></label>
       <div class="input-field"><%= f.text_field :name %></div>
     </div>
 
 
     <div class="label-field-pair">
-      <label for="name"> Start time</label>
+      <label for="name"> <%= t('layouts.common.start_time') %> </label>
       <div class="time-select-field"><%= time_select :class_timing, :start_time, {:minute_step => 5} %></div>
     </div>
 
     <div class="label-field-pair">
-      <label for="name"> End time </label>
+      <label for="name"><%= t('layouts.common.end_time') %>  </label>
       <div class="time-select-field"><%= time_select :class_timing, :end_time, {:minute_step => 5} %></div>
     </div>
 
     <div class="label-checkbox-pair">
-      <label><%= f.check_box :is_break, :checked => false %> Is a break</label>
+      <label><%= f.check_box :is_break, :checked => false %> <%= t('index.is_a_break') %></label>
     </div>
 
-    <%= f.submit '► Save', :class => 'submit-button' %>
+    <%= f.submit "► #{t('layouts.common.save')}", :class => 'submit-button' %>
 
   <% end %>
 </div>

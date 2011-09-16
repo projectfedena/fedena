@@ -19,25 +19,25 @@
 
 <div id="content-header">
   <img src="/images/attendence/attendence.png" />
-  <h1>Attendance Report</h1>
-  <h3>Report</h3>
+  <h1><%= t('attendance_report') %></h1>
+  <h3><%= t('report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <!-- <li><%= link_to "Advanced", :controller=>"student_attendance", :action=>"advance_search" %></li> -->
+    <!-- <li><%= link_to "#{t('student.index.advanced')}", :controller=>"student_attendance", :action=>"advance_search" %></li> -->
   </ul>
 </div>
 <div id="page-yield">
   <div class="label-field-pair">
-          <label> Select a batch: </label>
+          <label> <%= t('layouts.common.select_a_batch') %>: </label>
     <div class="text-input-bg">
       <% if @config.config_value == 'Daily' %>
         <%= select :batch, :id,
           @batches.map {|b| [b.full_name, b.id] },
-          {:prompt => 'Select a batch'},
+          {:prompt => "#{t('layouts.common.select_a_batch')}"},
           {:onchange => "#{remote_function(
           :url => { :action => 'mode' },
           :with => "'batch_id='+value+'&subject_id='",
@@ -46,7 +46,7 @@
       <% else %>
         <%= select :batch, :id,
           @batches.map {|b| [b.full_name, b.id] },
-          {:prompt => 'Select a batch'},
+          {:prompt => "#{t('layouts.common.select_a_batch')}"},
           {:onchange => "#{remote_function(
           :url => { :action => 'subject' },
           :with => "'batch_id='+value",

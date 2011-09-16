@@ -36,20 +36,20 @@
         <div class="category-name"><%= subject.name %></div>
         <div class="opt">
           <div class="category-code"><%= subject.code %></div>
-          <div class="category-edit"><%= link_to_remote(t('layouts.default.edit'),
+          <div class="category-edit"><%= link_to_remote(t('layouts.common.edit'),
               :url => { :controller=>"subjects",:action => 'edit', :id =>subject,:id2=>@elective_group},
               :method => 'get' ) %> </div>
           <div class="category-delete">
             <% @subject_exams= Exam.find_by_subject_id(subject.id) %>
             <% @subject_timetable = TimetableEntry.find_all_by_subject_id(subject.id) %>
             <% if @subject_exams.blank? and @subject_timetable.blank?%>
-             <%= link_to_remote(t('layouts.default.delete'),
+             <%= link_to_remote(t('layouts.common.delete'),
                 :url => subject_path(subject),
                 :method => 'delete',
                 :confirm => t('batches.show.are_you_sure'),
                 :update => "subject-#{subject.id}") %>
             <% else %>
-              <s><%= t('layouts.default.delete') %></s>
+              <s><%= t('layouts.common.delete') %></s>
             <% end %>
           </div>
           <% unless subject.elective_group_id.nil? %>
@@ -81,20 +81,20 @@
           <div class="category-name"><%= subject.name %></div>
           <div class="opt">
             <div class="category-code"><%= subject.code %></div>
-            <div class="category-edit"><%= link_to_remote( t('layouts.default.edit'),
+            <div class="category-edit"><%= link_to_remote( t('layouts.common.edit'),
                 :url => { :controller=>"subjects",:action => 'edit', :id =>subject,:id2=>@elective_group},
                 :method => 'get' ) %> </div>
             <div class="category-delete">
               <% @subject_exams= Exam.find_by_subject_id(subject.id) %>
               <% @subject_timetable = TimetableEntry.find_by_subject_id(subject.id) %>
               <% if @subject_exams.nil? and @subject_timetable.nil?%>
-               <%= link_to_remote( t('layouts.default.delete'),
+               <%= link_to_remote( t('layouts.common.delete'),
                   :url => subject_path(subject),
                   :method => 'delete',
                   :confirm =>  t('batches.show.are_you_sure'),
                   :update => "subject-#{subject.id}") %>
               <% else %>
-                <s><%= t('layouts.default.delete') %></s>
+                <s><%= t('layouts.common.delete') %></s>
               <% end %>
             </div>
             <% unless subject.elective_group_id.nil? %>

@@ -30,7 +30,7 @@
       <tr class="tr-head">
         <td>Sl no.</td>
         <td><%= t('master_fees.particulars') %></td>
-        <td><%= t('layouts.default.amount') %> (<%= currency %>  )</td>
+        <td><%= t('layouts.common.amount') %> (<%= currency %>  )</td>
       </tr>
       <% i = 0 %>
       <tr class="tr-blank"></tr>
@@ -149,7 +149,7 @@
           <div class="pay_fees">
             <%unless total_fees.to_f ==0 %>
               <div class="label-field-pair2">
-                <label><%= t('layouts.default.amount') %> :</label>
+                <label><%= t('layouts.common.amount') %> :</label>
                 <div class="text-input-bg2"><%= form.text_field :fees_paid, :value=>total_fees %>
                   <%=  hidden_field_tag :total_fees, total_fees %>
                 </div>

@@ -25,8 +25,8 @@
     <div id="ajax_result">
       <% link_value = t.full_name %>
       <%= link_to link_value, :controller => "finance", :action => "fees_structure_dates", :id => t.id %><br/>
-      <small><%= t('layouts.default.batch') %>: <%= t.batch.full_name%></small>
-      <small><br/><%= t('layouts.default.adm_no.') %><%= t.admission_no %></small> <%= @st.to_s %>
+      <small><%= t('layouts.common.batch') %>: <%= t.batch.full_name%></small>
+      <small><br/><%= t('layouts.common.adm_no.') %><%= t.admission_no %></small> <%= @st.to_s %>
     </div>
   <%end%>
 <%end%>

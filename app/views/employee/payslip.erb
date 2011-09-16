@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1>Payslip</h1>
-  <h3>Create</h3>
+  <h1><%= t('profile.payslip') %></h1>
+  <h3><%= t('layouts.common.create') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -32,31 +32,31 @@
   <% end %>
   <div id="box">
     <div class="link-box">
-      <div class="link-heading"><%= link_to "Select Employee", {:controller=>"employee", :action=>"select_department_employee"} %></div>
-      <div class="link-descr">Generate payslip of an employee</div>
+      <div class="link-heading"><%= link_to "#{t('select_employee')}", {:controller=>"employee", :action=>"select_department_employee"} %></div>
+      <div class="link-descr"><%= t('link_desc1') %></div>
     </div>
     
     <div class="link-box">
-      <div class="link-heading"><%= link_to "Rejected payslip", {:controller=>"employee", :action=>"rejected_payslip"} %></div>
-      <div class="link-descr">Manage employee rejected payslips</div>
+      <div class="link-heading"><%= link_to "#{t('rejected_employee')}", {:controller=>"employee", :action=>"rejected_payslip"} %></div>
+      <div class="link-descr"><%= t('link_desc4') %></div>
     </div>
 
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to_remote "One click payslip generator",:update=>"message-div",
+      <div class="link-heading"><%= link_to_remote "#{t('one_click_payslip')}",:update=>"message-div",
           :before => "Element.show('loader')",
           :success => "Element.hide('loader')",
           :url=>{:controller=>"employee", :action=>"payslip_date_select"} %></div>
-      <div class="link-descr">Generate payslip of an employee</div>
+      <div class="link-descr"><%= t('link_desc2') %></div>
 
     </div>
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to_remote "One click payslip revert",:update=>"message-div",
+      <div class="link-heading"><%= link_to_remote "#{t('one_click_payslip_revert')}",:update=>"message-div",
           :before => "Element.show('loader')",
           :success => "Element.hide('loader')",
-          :url=>{:controller=>"employee", :action=>"payslip_revert_date_select"},:confirm=>"This will delete the entire payslip record of all the employees(of the month you select),  from the system. Are you sure ?" %></div>
-      <div class="link-descr">Generate payslip of an employee</div>
+          :url=>{:controller=>"employee", :action=>"payslip_revert_date_select"},:confirm=>"#{t('revert_confirm')}" %></div>
+      <div class="link-descr"><%= t('link_desc3') %></div>
 
     </div>
     <div class="extender"></div>

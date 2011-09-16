@@ -54,7 +54,7 @@ class AdditionalExamGroupsController < ApplicationController
     @additional_exam_group.batch_id = @batch.id
     if @additional_exam_group.save
 
-      flash[:notice] = "Additional Exam Group successfuly saved."
+      flash[:notice] = "#{t('flash_message.additional_exam_groups.flash1')}"
       redirect_to batch_additional_exam_groups_path(@batch)
     else
       render 'new'
@@ -64,7 +64,7 @@ class AdditionalExamGroupsController < ApplicationController
   def update
     @additional_exam_group = AdditionalExamGroup.find params[:id]
     if @additional_exam_group.update_attributes(params[:additional_exam_group])
-      flash[:notice] = 'Updated additional exam group successfully.'
+      flash[:notice] = "#{t('flash_message.additional_exam_groups.flash2')}"
       redirect_to [@batch, @additional_exam_group]
     else
       render 'edit'

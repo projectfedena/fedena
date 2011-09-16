@@ -19,5 +19,5 @@
 
 
 <div class="category-name"><%= @student.full_name %></div>
-<div class="category-edit"> <%= link_to_remote "#{t('layouts.default.assign')}",:url=>{:controller=>"student",:action=>"assign_students",:id=>@student.id,:id2=>@elective_subject.id} %>
+<div class="category-edit"> <%= link_to_remote "#{t('layouts.common.assign')}",:url=>{:controller=>"student",:action=>"assign_students",:id=>@student.id,:id2=>@elective_subject.id} %>
 </div>

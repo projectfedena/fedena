@@ -29,17 +29,17 @@
 
     <div id="form-errors"></div>
        <div class="label-field-pair">
-    <div class="label-container"><%= f.label :"#{t('layouts.default.name')}" %></div>
+    <div class="label-container"><%= f.label :"#{t('layouts.common.name')}" %></div>
     <div class="input-container"><%= f.text_field :name %></div>
    </div>
 
   <div class="label-field-pair">
-    <div class="label-container"><%= f.label :"#{t('layouts.default.description')}" %></div>
+    <div class="label-container"><%= f.label :"#{t('layouts.common.description')}" %></div>
     <div class="input-container"><%= f.text_field :description %></div>
   </div>
 
      <div class="label-field-pair">
-    <div class="label-container"><label><%= t('layouts.default.select_a_batch') %> :</label></div>
+    <div class="label-container"><label><%= t('layouts.common.select_a_batch') %> :</label></div>
     <div class="input-container">
 <% unless @finance_fee_category.batch.nil? %>
   <%= f.text_field :batch, :value => @finance_fee_category.batch.full_name, :disabled => true   %>
@@ -51,6 +51,6 @@
   </div>
 
 
-  <%=  submit_tag "► #{t('layouts.default.save')}",:class=>'submit_button' %>
+  <%=  submit_tag "► #{t('layouts.common.save')}",:class=>'submit_button' %>
   <% end %>
 </div>

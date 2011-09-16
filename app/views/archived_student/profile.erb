@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/student_details/student_details_logo.jpg" />
-  <h1>Student info</h1>
-  <h3>Student profile</h3>
+  <h1><%= t('student.edit.student_info') %></h1>
+  <h3><%= t('student.fees.student_profile') %></h3>
   <div id="app-back-button">
    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -29,17 +29,17 @@
 <div id="inner-tab-menu">
   <ul>
 
-    <li><%= link_to 'Reports', :controller => 'archived_student',
+    <li><%= link_to "#{t('student.reports.h3')}", :controller => 'archived_student',
         :action => 'reports', :id => @archived_student %></li>
 
 
-    <li><%= link_to "Guardians", :controller => "archived_student",
+    <li><%= link_to "#{t('student.profile.guardians')}", :controller => "archived_student",
         :action => "guardians", :id => @archived_student.id %></li>
 
 
     <%#*<li><%= link_to "Delete", :controller => 'archived_student',%>
         <%#*:action => 'delete', :id => @archived_student.id %><%#</li>%>
-    <li><%= link_to "Generate TC",
+    <li><%= link_to "#{t('student.profile.generate_tc')}",
         {:controller => "student", :action => "generate_tc_pdf", :id => @archived_student.admission_no},:target => '_blank' %></li>
 
   </ul>
@@ -61,8 +61,8 @@
 
     <div id ="student_main_info">
       <h3> <%= @archived_student.full_name %>  </h3>
-      <h4> Course & Batch : <%= @archived_student.batch.course_name %> </h4>
-      <h4> Adm no. : <%= @archived_student.admission_no %> </h4>
+      <h4> <%= t('layouts.common.course_and_batch') %> : <%= @archived_student.batch.course_name %> </h4>
+      <h4> <%= t('layouts.common.adm_no') %>. : <%= @archived_student.admission_no %> </h4>
     </div>
 
     <div class="extender"> </div>
@@ -71,69 +71,69 @@
 
   <div id="new_profile_info_top">
     <div class="profile_top_banner"><%= image_tag "master_student/profile/topbanner.png" %></div>
-    <div class="profile_info_label_top"> Admission Date </div>
+    <div class="profile_info_label_top"> <%= t('student.admission1.admission_date') %> </div>
     <div class="profile_info_text_top">
       <%= @archived_student.admission_date.strftime("%d %b, %Y") unless @archived_student.admission_date.nil? %>
     </div>
 
-    <div class="profile_info_label_top2">Date of birth</div>
+    <div class="profile_info_label_top2"><%= t('student.admission1.date_of_birth') %></div>
     <div class="profile_info_text_top2"><%= @archived_student.date_of_birth.strftime("%d %b, %Y") unless @archived_student.date_of_birth.nil? %></div>
 
-    <div class="profile_info_label_top">Blood group</div>
+    <div class="profile_info_label_top"><%= t('student.admission1.blood_group') %></div>
     <div class="profile_info_text_top"><%= @archived_student.blood_group %></div>
 
     <div class="new_profile_info_area1">
-      <div class="profile_info_label_top2">Gender</div>
+      <div class="profile_info_label_top2"><%= t('student.admission1.gender') %></div>
       <div class="profile_info_text_top2"> <%= @archived_student.gender_as_text %> </div>
 
-      <div class="profile_info_label_top">Nationality</div>
+      <div class="profile_info_label_top"><%= t('student.admission1.nationality') %></div>
       <div class="profile_info_text_top"> <%= @archived_student.nationality.name unless @archived_student.nationality_id.nil? %> </div>
     </div>
 
     <div class="new_profile_info_area1">
-      <div class="profile_info_label_top2">Language</div>
+      <div class="profile_info_label_top2"><%= t('student.admission1.language') %></div>
       <div class="profile_info_text_top2"> <%= @archived_student.language %> </div>
 
 
-      <div class="profile_info_label_top">Category</div>
+      <div class="profile_info_label_top"><%= t('layouts.common.category') %></div>
       <div class="profile_info_text_top"> <%= @archived_student.student_category.name unless @archived_student.student_category.nil? %> </div>
     </div>
 
     <div class="new_profile_info_area1">
-      <div class="profile_info_label_top2">Religion</div>
+      <div class="profile_info_label_top2"><%= t('student.admission1.religion') %></div>
       <div class="profile_info_text_top2"> <%= @archived_student.religion %> </div>
 
-      <div class="profile_info_label_top">Address</div>
+      <div class="profile_info_label_top"><%= t('student.admission1.address') %></div>
       <div class="profile_info_text_top"><%= @address %></div>
 
     </div>
 
     <div class="new_profile_info_area1">
-      <div class="profile_info_label_top2">City</div>
+      <div class="profile_info_label_top2"><%= t('student.admission1.city') %></div>
       <div class="profile_info_text_top2"> <%= @archived_student.city %> </div>
 
-      <div class="profile_info_label_top">State</div>
+      <div class="profile_info_label_top"><%= t('student.admission1.state') %></div>
       <div class="profile_info_text_top"> <%= @archived_student.state %> </div>
     </div>
 
     <div class="new_profile_info_area1">
-      <div class="profile_info_label_top2">Country</div>
+      <div class="profile_info_label_top2"><%= t('student.admission1.country') %></div>
       <div class="profile_info_text_top2"> <%= @archived_student.country.name unless @archived_student.country_id.nil? %> </div>
 
-      <div class="profile_info_label_top">Phone 1</div>
+      <div class="profile_info_label_top"><%= t('student.admission1.phone1') %></div>
       <div class="profile_info_text_top"> <%= @archived_student.phone1 %> </div>
     </div>
 
     <div class="new_profile_info_area1">
-      <div class="profile_info_label_top2">Phone 2</div>
+      <div class="profile_info_label_top2"><%= t('student.admission1.phone2') %></div>
       <div class="profile_info_text_top2"> <%= @archived_student.phone2 %> </div>
 
-      <div class="profile_info_label_top">Email  </div>
+      <div class="profile_info_label_top"><%= t('student.admission1.email') %></div>
       <div class="profile_info_text_top"><%= @archived_student.email %></div>
     </div>
 
     <div class="new_profile_info_area1">
-      <div class="profile_info_label_top2">Reason for leaving</div>
+      <div class="profile_info_label_top2"><%= t('student.change_to_former.reason_for_leaving') %></div>
       <div class="profile_info_text_top2"> <%= @archived_student.status_description %> </div>
     </div>
     <div class="extender"></div>

@@ -23,7 +23,7 @@
 
 <ul id="employee-list">
 <% unless @employees.empty? %>
-  <li class="heading"> Employee name </li>
+  <li class="heading"><%=  t('select_department_employee.employee_name') %></li>
     <%- @employees.each do |e| -%>
       <li class="list<%=cycle('even','odd')  %>">
         <div class="employee-name"><%= link_to "#{e.first_name} #{e.last_name} (#{e.employee_number})", :controller=>"employee", :action=>"create_monthly_payslip", :id=>e.id %></div>
@@ -31,6 +31,6 @@
      <% end %>
 
   <% else %>
-<p class="flash-msg">No employees added under this category</p>
+<p class="flash-msg"><%= t('select_department_employee.message') %></p>
   <% end %>
 </ul>

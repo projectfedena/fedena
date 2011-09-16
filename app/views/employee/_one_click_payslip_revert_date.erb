@@ -36,13 +36,13 @@ $jq(document).ready(function() {
 
 
     <div class="label-field-pair">
-    <label for="salary_date">Salary month</label>
-    <div class="text-input-bg"><%= select :one_click_payslip, :salary_date, @salary_dates.map {|c| [c.salary_date.strftime("%B %Y"),c.salary_date.strftime("%Y-%m-%d")]},
-                                              {:prompt => 'Select a month'} %></div>
+    <label for="salary_date"><%= t('create_monthly_payslip.salary_month') %></label>
+    <div class="text-input-bg"><%= select :one_click_payslip, :salary_date, @salary_dates.map {|c| [I18n.localize(c.salary_date, :format=>:month_year),c.salary_date.strftime("%Y-%m-%d")]},
+                                              {:prompt => "#{t('create_monthly_payslip.select_month')}"} %></div>
     </div>
 
     <div id="submit-button">
-      <%=submit_tag("► Go") %>
+      <%=submit_tag("► #{t('layouts.common.go')}") %>
     </div>
 
 

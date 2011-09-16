@@ -14,5 +14,8 @@ class CreateLanguages < ActiveRecord::Migration
 
   def self.create_default
     Language.create :name   => 'English',:code =>'en'
+    Configuration.create :config_key   => 'Locale',:config_value =>'en'
+    Language.create :name   => 'Spanish',:code =>'es'
+    Configuration.create :config_key   => 'Locale',:config_value =>'es'
   end
 end

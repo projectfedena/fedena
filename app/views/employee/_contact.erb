@@ -18,23 +18,23 @@
 #under the License. -%>
 
 <table width="700">
-  <tr class="odd left"><td>Office phone1</td><td class="right"><%= @employee.office_phone1 %></td></tr>
-  <tr class="even left"><td>Office phone2</td><td class="right"><%= @employee.office_phone2 %></td></tr>
-  <tr class="odd left"><td>Mobile</td><td class="right"><%= @employee.mobile_phone %></td></tr>
-  <tr class="even left"><td>Home phone</td><td class="right"><%= @employee.home_phone %></td></tr>
-  <tr class="odd left"><td>Email</td><td class="right"><%= @employee.email %></td></tr>
-  <tr class="even left"><td>Fax</td><td class="right"><%=  @employee.fax %></td></tr>
+  <tr class="odd left"><td><%= t('admission2.office_phone1') %></td><td class="right"><%= @employee.office_phone1 %></td></tr>
+  <tr class="even left"><td><%= t('admission2.office_phone2') %></td><td class="right"><%= @employee.office_phone2 %></td></tr>
+  <tr class="odd left"><td><%= t('student.admission1.mobile') %></td><td class="right"><%= @employee.mobile_phone %></td></tr>
+  <tr class="even left"><td><%= t('admission2.home_phone') %></td><td class="right"><%= @employee.home_phone %></td></tr>
+  <tr class="odd left"><td><%= t('student.admission1.email') %></td><td class="right"><%= @employee.email %></td></tr>
+  <tr class="even left"><td><%= t('admission2.fax') %></td><td class="right"><%=  @employee.fax %></td></tr>
 </table>
 
 <div class="edit-pdf-group">
   <% if permitted_to? :edit_contact,:employee %>
     <div class="edit">
-      <%= link_to "► Edit",   :controller => "employee", :action => "edit_contact", :id =>@employee.id %>
+      <%= link_to "► #{t('layouts.common.edit')}",   :controller => "employee", :action => "edit_contact", :id =>@employee.id %>
     </div>
   <%end%>
   <% if permitted_to?  :profile_pdf , :employee %>
   <div class="pdf">
-    <%= link_to " ► PDF Report",
+    <%= link_to "► #{t('layouts.common.pdf_report')}",
       {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
   </div>
   <% end %>

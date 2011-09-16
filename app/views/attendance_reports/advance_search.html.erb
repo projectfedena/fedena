@@ -21,8 +21,8 @@
 <%= f.text_field :student%>
 <%= f.text_field :student_id %>
 <%= f.select :mode, :id,
-  ["Monthly", "Overall"],
-  {:prompt => 'Select a mode'},
+  ["#{t('student_attendance.student.monthly')}", "#{t('student_attendance.student.overall')}"],
+  {:prompt => "#{t('student_attendance.student.select_mode')}"},
   {:onchange => "#{remote_function(
   :url => { :action => 'month' },
   :with => "'mode='+value",
@@ -31,5 +31,5 @@
 <% unless @subject.nil? %>
 <%= f.hidden_field :subject , :value=> @subject.id %>
 <% end %>
-<%= f.submit 'submit'  %>
+<%= f.submit "#{t('layouts.common.submit')}"  %>
 <% end %>

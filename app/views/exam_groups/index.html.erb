@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Exams</h1>
-  <h3>Exam groups</h3>
+  <h1><%= t('exams.index.exams') %></h1>
+  <h3><%= t('exam_groups') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -28,10 +28,10 @@
 <div id="inner-tab-menu">
   <ul>
     <%  if permitted_to? :new,:exam_groups %>
-      <li><%= link_to "New", new_batch_exam_group_path(@batch) %></li>
+      <li><%= link_to "#{t('layouts.common.new')}", new_batch_exam_group_path(@batch) %></li>
     <% end %>
     <%  if permitted_to? :grouping,:exam %>
-      <li><%= link_to "Connect exams", :controller=>'exam', :action=>'grouping', :id=>@batch %></li>
+      <li><%= link_to "#{t('connect_exams')}", :controller=>'exam', :action=>'grouping', :id=>@batch %></li>
     <% end %>
   </ul>
 </div>
@@ -43,17 +43,17 @@
 
   <div class="box">
     <div class="bread_crumb">
-      <%= link_to 'Courses', courses_path %> &raquo;
+      <%= link_to t('layouts.common.course'), courses_path %> &raquo;
       <%= link_to @course.full_name, @course %> &raquo;
-      <%= link_to "Batch #{@batch.name}", [@course, @batch] %> &raquo;
-      Exams
+      <%= link_to "#{t('layouts.common.batch')} #{@batch.name}", [@course, @batch] %> &raquo;
+      <%= t('exams.index.exams') %>
     </div>
 
 
     <table id="listing" width="100%">
       <tr class="tr-head">
-        <td>Exam name</td>
-        <td> Action</td>
+        <td><%= t('additional_exam_groups.index.exam_name') %></td>
+        <td><%= t('actions') %></td>
       </tr>
       <% @config = Configuration.available_modules %>
       <% @exam_groups.each do |exam_group| %>
@@ -62,28 +62,28 @@
 
             <%= link_to exam_group.name, [@batch, exam_group] %>
             <span><small>
-                <%= link_to('Delete', [@batch, exam_group], :method => 'delete', :confirm => 'Are you sure?') if exam_group.removable? %>
-                <s><%= 'Delete' unless exam_group.removable? %></s>
+                <%= link_to(t('layouts.common.delete'), [@batch, exam_group], :method => 'delete', :confirm => 'Are you sure?') if exam_group.removable? %>
+                <s><%=  t('layouts.common.delete') unless exam_group.removable? %></s>
               </small></span>
           </td>
           <td class="col-2"><small>
               <% unless exam_group.is_published %>
-                <%= link_to_remote("Publish Exam Schedule",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"schedule"},
+                <%= link_to_remote("#{t('publish_exam_schedule')}",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"schedule"},
                   :before => "Element.show('loader')",
                   :success => "Element.hide('loader')")  %>
               <% else  %>
                 <%  unless  exam_group.result_published  %>
-                  Schedule published.  <% if @config.include?('SMS') %>
-                    <%= link_to_remote "Resend",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"schedule"},
+                  <%= t('schedule_published') %>.  <% if @config.include?('SMS') %>
+                    <%= link_to_remote "#{t('resend')}",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"schedule"},
                       :before => "Element.show('loader')",
-                      :success => "Element.hide('loader')"  %> SMS notification.<br />
+                      :success => "Element.hide('loader')"  %> <%= t('sms_notification') %><br />
                   <% end %>
-                  <%= link_to_remote("Publish Exam Result",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"result"},:confirm=>"Are you sure?",
+                  <%= link_to_remote("#{t('publish_exam_result')}",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"result"},:confirm=>"#{t('layouts.common.delete_confirm_msg')}",
                     :before => "Element.show('loader')",
                     :success => "Element.hide('loader')")  %>
                 <% else %>
-                  Result published. <% if @config.include?('SMS') %>
-                    <%= link_to_remote "Resend  SMS notification",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"result"},
+                  <%= t('result_published') %>. <% if @config.include?('SMS') %>
+                    <%= link_to_remote "#{t('resend_sms_notification')}",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"result"},
                       :before => "Element.show('loader')",
                       :success => "Element.hide('loader')"  %>
                   <% end  %>

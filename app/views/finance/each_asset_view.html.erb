@@ -32,7 +32,7 @@
     <div id="asset-title"><%= t('asset.asset_name') %> : <%= @asset.title%></div>
     <div id="asset-description"><%= @asset.description %></div>
     <br/>
-    <div id="asset-amt"><%= t('layouts.default.amount') %> : <%=  @currency_type + " "%><%= @asset.amount%></div>
+    <div id="asset-amt"><%= t('layouts.common.amount') %> : <%=  @currency_type + " "%><%= @asset.amount%></div>
     <div id="asset-date"><%= t('view_asset.created_at') %> : <%= @asset.created_at.strftime("%A, %d %B, %Y") %></div>
   </div>
 

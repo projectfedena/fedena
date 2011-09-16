@@ -20,10 +20,10 @@
 <% unless @master_categories.empty? %>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">
-      <td><%= t('layouts.default.sl_no') %></td>
-      <td><%= t('index.fees') %> <%= t('layouts.default.name') %></td>
-      <td><%= t('layouts.default.batch') %> <%= t('layouts.default.name') %></td>
-      <td><%= t('layouts.default.created') %> <%= t('layouts.default.date') %></td>
+      <td><%= t('layouts.common.sl_no') %></td>
+      <td><%= t('index.fees') %> <%= t('layouts.common.name') %></td>
+      <td><%= t('layouts.common.batch') %> <%= t('layouts.common.name') %></td>
+      <td><%= t('layouts.common.created') %> <%= t('layouts.common.date') %></td>
     </tr>
     <tr class="tr-blank"></tr>
 
@@ -32,16 +32,16 @@
         <td class="col-1"><%= i+1 %></td>
         <td class="col-1"><%= link_to  fees.name, :action => 'master_category_particulars',:id => fees.id %>
           <%  unless fees.check_fee_collection == false %>
-            <span class="small"> <%= link_to_remote t('layouts.default.delete'), :url => { :action => 'master_category_delete',:id => fees.id} %></span>
+            <span class="small"> <%= link_to_remote t('layouts.common.delete'), :url => { :action => 'master_category_delete',:id => fees.id} %></span>
           <% else %>
-            <span class="small-strike"><%= t('layouts.default.delete') %></span>
+            <span class="small-strike"><%= t('layouts.common.delete') %></span>
           <% end %>
-          <span class="small"> <%= link_to_remote t('layouts.default.edit'), :url => { :action => 'master_category_edit',:id => fees.id} %></span>
+          <span class="small"> <%= link_to_remote t('layouts.common.edit'), :url => { :action => 'master_category_edit',:id => fees.id} %></span>
         </td>
         <td class="col-1"><%  unless fees.batch.nil? %>
             <%=shorten_string(fees.batch.full_name,20)%>
           <% else %>
-            <%= t('layouts.default.all') %>
+            <%= t('layouts.common.all') %>
           <% end %></td>
         <td class="col-1"><%= fees.created_at.strftime("%m-%d-%Y") %></td>
       </tr>

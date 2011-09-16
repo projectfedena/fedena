@@ -19,64 +19,64 @@
 
 
 <div class="profile_top_banner"><%= image_tag "master_student/profile/topbanner.png" %></div>
-<div class="profile_info_label_top">Joining date</div>
-<div class="profile_info_text_top"><%= @employee.joining_date.strftime("%d %b,%Y")%></div>
+<div class="profile_info_label_top"><%= t('employee.admission1.joining_date') %></div>
+<div class="profile_info_text_top"><%= I18n.l(@employee.joining_date, :format=>"%d %b,%Y")%></div>
 
-<div class="profile_info_label_top2">Department</div>
+<div class="profile_info_label_top2"><%= t('layouts.common.department') %></div>
 <div class="profile_info_text_top2"><%= @employee.employee_department.name%></div>
 
-<div class="profile_info_label_top">Category</div>
+<div class="profile_info_label_top"><%= t('layouts.common.category') %></div>
 <div class="profile_info_text_top"><%= @employee.employee_category.name %></div>
 
 
 
 
-<div class="profile_info_label_top2">Position</div>
+<div class="profile_info_label_top2"><%= t('employee.hr.position') %></div>
 <div class="profile_info_text_top2"> <%= @employee.employee_position.name %> </div>
 
-<div class="profile_info_label_top">Grade</div>
+<div class="profile_info_label_top"><%= t('employee.hr.grade') %></div>
 <div class="profile_info_text_top"> <%= @employee.employee_grade.name unless @employee.employee_grade.nil? %> </div>
 
 
 
 
-<div class="profile_info_label_top2">Job title</div>
+<div class="profile_info_label_top2"><%= t('employee.admission1.job_title') %></div>
 <div class="profile_info_text_top2"> <%= @employee.job_title %> </div>
 
-<div class="profile_info_label_top">Manager</div>
+<div class="profile_info_label_top"><%= t('employee.profile.manager') %></div>
 <div class="profile_info_text_top"> <%= @reporting_manager %>
 
   <% if permitted_to? :change_reporting_manager, :employee %>
-    <%= link_to "change", :controller=> "employee", :action=> "change_reporting_manager", :id=>@employee.id %>
+    <%= link_to "#{t('employee.profile.change')}", :controller=> "employee", :action=> "change_reporting_manager", :id=>@employee.id %>
   <%end%>
 
 </div>
 
 
 
-<div class="profile_info_label_top2">Gender</div>
+<div class="profile_info_label_top2"><%= t('student.admission1.gender') %></div>
 <div class="profile_info_text_top2"> <%= @gender %> </div>
 
-<div class="profile_info_label_top">Status</div>
+<div class="profile_info_label_top"><%= t('layouts.common.status') %></div>
 <div class="profile_info_text_top"><%= @status %> </div>
 
 
 
 
-<div class="profile_info_label_top2">Qualification</div>
+<div class="profile_info_label_top2"><%= t('employee.admission1.qualification') %></div>
 <div class="profile_info_text_top2"><%= @employee.qualification %> </div>
 
 
-<div class="profile_info_label_top">Total Experience</div>
+<div class="profile_info_label_top"><%= t('employee.admission1.total_exp') %></div>
 <div class="profile_info_text_top"><%= @total_years.to_s+"Years "+@total_months.to_s+"Months" %> </div>
 
-<div class="profile_info_label_top2">Experience info</div>
+<div class="profile_info_label_top2"><%= t('employee.admission1.exp_info') %></div>
 <div class="profile_info_text_top2"><%= @employee.experience_detail %> </div>
 <div class="extender"></div>
 <div class="edit-pdf-group">
       <% if permitted_to?  :profile_pdf , :employee %>
   <div class="pdf">
-    <%= link_to " ► PDF Report",
+    <%= link_to " ► #{t('layouts.common.pdf_report')}",
       {:controller => "archived_employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
   </div>
   <% end %>

@@ -34,11 +34,11 @@
     <div class="text-input-bg"><%= form.text_field :name%></div>
   </div>
   <div class="label-field-pair">
-    <label for="reason">  <%= t('layouts.default.start_date') %>:</label>
+    <label for="reason">  <%= t('layouts.common.start_date') %>:</label>
     <div class="text-input-bg"><%= calendar_date_select_tag 'finance_fee_collection[start_date]', I18n.localize(Date.today, :format=>:default) %></div>
   </div>
   <div class="label-field-pair">
-    <label for="reason">  <%= t('layouts.default.end_date') %>:</label>
+    <label for="reason">  <%= t('layouts.common.end_date') %>:</label>
     <div class="text-input-bg"><%= calendar_date_select_tag 'finance_fee_collection[end_date]', I18n.localize(Date.today, :format=>:default) %></div>
   </div>
   <div class="label-field-pair">
@@ -48,6 +48,6 @@
 
   <div class="extender"></div>
   <div id="submit-button">
-      <%=  submit_tag "► #{t('layouts.default.create')}",:class=>'submit_button' %>
+      <%=  submit_tag "► #{t('layouts.common.create')}",:class=>'submit_button' %>
   </div>
 <% end %>

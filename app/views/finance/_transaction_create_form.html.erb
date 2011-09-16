@@ -25,25 +25,25 @@
       <div class="text-field-bg"><%= form.text_field :title %> </div>
     </div>
     <div class="label-field-pair">
-      <label for="description"><%= t('layouts.default.description') %> : </label>
+      <label for="description"><%= t('layouts.common.description') %> : </label>
       <div class="text-field-bg"><%= form.text_field :description %> </div>
     </div>
 
 
     <div class="label-field-pair">
-      <label for="amount"><%= t('layouts.default.amount') %> : </label>
+      <label for="amount"><%= t('layouts.common.amount') %> : </label>
       <div class="text-field-bg"><%= form.text_field :amount %> </div>
     </div>
     <div class="label-field-pair">
-      <label for="amount"><%= t('layouts.default.date') %> :</label>
+      <label for="amount"><%= t('layouts.common.date') %> :</label>
       <div class="text-field-bg"><%= calendar_date_select_tag 'transaction[transaction_date]', Date.today, :year_range => 5.years.ago..0.years.ago %>
       </div>
     </div>
     <div class="label-field-pair">
-      <label for="category"><%= t('layouts.default.category') %> :</label>
+      <label for="category"><%= t('layouts.common.category') %> :</label>
       <div class="text-input-bg"><%= select :transaction, :category_id, @categories.map { |c| [c.name, c.id] },:prompt=>'Select a category' %></div>
     </div>
 
-    <%=  submit_tag "► #{t('layouts.default.save')}",:class=>'submit_button' %>
+    <%=  submit_tag "► #{t('layouts.common.save')}",:class=>'submit_button' %>
   </div>
 <% end %>

@@ -19,9 +19,9 @@
 
 <%= flash[:notice] %>
 
-<%= link_to_remote "Select Courses", :url=>{:controller=>"event", :action=>"select_course", :id=>params[:id]} %> |
-<%= link_to_remote "Select Employee Department", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]} %>
+<%= link_to_remote "#{t('index.select_course')}", :url=>{:controller=>"event", :action=>"select_course", :id=>params[:id]} %> |
+<%= link_to_remote "#{t('index.select_department')}", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]} %>
 
 <div id="select-options"></div>
 
-<%= link_to "Done", :controller=>"event", :action=>"index" %>
+<%= link_to "#{t('layouts.common.done')}", :controller=>"event", :action=>"index" %>

@@ -31,7 +31,7 @@ class ExamGroupsController < ApplicationController
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id}
       if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.id}.include?(1) and !@current_user.privileges.map{|p| p.id}.include?(2)
-        flash[:notice] = "Sorry, you are not allowed to access that page."
+        flash[:notice] = "#{t('flash_message.application.flash2')}"
         redirect_to :controller => 'user', :action => 'dashboard'
       end
     end
@@ -45,7 +45,7 @@ class ExamGroupsController < ApplicationController
     @exam_group = ExamGroup.new(params[:exam_group])
     @exam_group.batch_id = @batch.id
     if @exam_group.save
-      flash[:notice] = 'Exam group created successfully.'
+      flash[:notice] =  "#{t('flash_message.exam_groups.flash1')}"
       redirect_to batch_exam_groups_path(@batch)
     else
       render 'new'
@@ -59,7 +59,7 @@ class ExamGroupsController < ApplicationController
   def update
     @exam_group = ExamGroup.find params[:id]
     if @exam_group.update_attributes(params[:exam_group])
-      flash[:notice] = 'Updated exam group successfully.'
+      flash[:notice] = "#{t('flash_message.exam_groups.flash2')}"
       redirect_to [@batch, @exam_group]
     else
       render 'edit'
@@ -71,7 +71,7 @@ class ExamGroupsController < ApplicationController
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id}
       if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.id}.include?(1) and !@current_user.privileges.map{|p| p.id}.include?(2)
-        flash[:notice] = "Sorry, you are not allowed to access that page."
+        flash[:notice] = "#{t('flash_message.application.flash2')}"
         redirect_to :controller => 'user', :action => 'dashboard'
       end
     end
@@ -84,7 +84,7 @@ class ExamGroupsController < ApplicationController
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id}
       if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.id}.include?(1) and !@current_user.privileges.map{|p| p.id}.include?(2)
-        flash[:notice] = "Sorry, you are not allowed to access that page."
+        flash[:notice] = "#{t('flash_message.application.flash2')}"
         redirect_to :controller => 'user', :action => 'dashboard'
       end
     end

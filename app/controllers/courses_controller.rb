@@ -49,7 +49,7 @@ class CoursesController < ApplicationController
   def create
     @course = Course.new params[:course]
     if @course.save
-      flash[:notice] = 'Created course successfully.'
+      flash[:notice] = "#{t('flash_message.courses.flash1')}"
       redirect_to :action=>'manage_course'
     else
       render 'new'
@@ -61,7 +61,7 @@ class CoursesController < ApplicationController
 
   def update
     if @course.update_attributes(params[:course])
-      flash[:notice] = 'Updated course details successfully.'
+      flash[:notice] = "#{t('flash_message.courses.flash2')}"
       redirect_to :action=>'manage_course'
     else
       render 'edit'
@@ -71,10 +71,10 @@ class CoursesController < ApplicationController
   def destroy
     if @course.batches.active.empty?
       @course.inactivate
-       flash[:notice]="Course deleted successfully."
+       flash[:notice]="#{t('flash_message.courses.flash3')}"
       redirect_to :action=>'manage_course'
     else
-      flash[:warn_notice]="<p>Unable to Delete. Please remove existing batches and students.</p>"
+      flash[:warn_notice]="<p>#{t('flash_message.courses.flash4')}</p>"
       redirect_to :action=>'manage_course'
     end
   

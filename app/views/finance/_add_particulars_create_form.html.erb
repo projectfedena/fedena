@@ -14,7 +14,7 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
-<label class="head_label"><%= t('layouts.default.add') %> <%= t('master_fees.particulars') %> <%= t('layouts.default.for') %> <%= t('additional_fees.additional') %> <%= t('index.fees') %><span></span></label>
+<label class="head_label"><%= t('layouts.common.add') %> <%= t('master_fees.particulars') %> <%= t('layouts.common.for') %> <%= t('additional_fees.additional') %> <%= t('index.fees') %><span></span></label>
 
 <% form_remote_for :finance_fee_particulars, :url => {:action => 'add_particulars_create',:id => @collection_date.id} do |form| %>
   <div id="form-errors"></div>
@@ -29,10 +29,10 @@
 <div class="label-field-pair2">
   <div class="label-container2"><label><%= t('master_fees.particulars') %> :</label></div>
     <div class="input-container2">
-      <div class="opt"><%= radio_button("particulars","select","all",:checked => true) %><%= t('layouts.default.all') %></div>
+      <div class="opt"><%= radio_button("particulars","select","all",:checked => true) %><%= t('layouts.common.all') %></div>
      <div class="opt"><%= radio_button("particulars","select","student",
       {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
-        :with => "'select_value='+value")}"}) %> <%= t('layouts.default.admission_number') %> </div>
+        :with => "'select_value='+value")}"}) %> <%= t('layouts.common.admission_number') %> </div>
       <div class="opt"> <%= radio_button("particulars","select","category",
       {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
         :with => "'select_value='+value")}"}) %><%= t('fees_submission_index.student_category') %></div>
@@ -43,7 +43,7 @@
       <div class="label-container"><label><%= t('index.fees_amount') %> :</label> </div>
     <div class="input-container"><%= form.text_field :amount %></div>
    </div>
-    <%=  submit_tag "► #{t('layouts.default.add')}",:class=>'submit_button' %>
+    <%=  submit_tag "► #{t('layouts.common.add')}",:class=>'submit_button' %>
 
 <% end %>
 

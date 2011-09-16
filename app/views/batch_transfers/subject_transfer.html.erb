@@ -19,8 +19,8 @@
 
  <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Subjects</h1>
-  <h3>Assign Subjects</h3>
+  <h1><%= t('student.reports.h1') %></h1>
+  <h3><%= t('assign_subject') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -34,9 +34,9 @@
     <div id="errors"></div>
 <div id="msg"></div>
 <div class="linker">
-<%= link_to_remote 'Add Normal Subject', :url => { :action => 'new_subject', :id => @batch} %> |
-<%= link_to 'Add Electives', batch_elective_groups_path(@batch) %> |
-<%= link_to_remote 'Assign old batch subjects', :url => { :controller=>'batch_transfers',:action => 'get_previous_batch_subjects', :id => @batch} %>
+<%= link_to_remote "#{t('subjects.index.add_normal_subject')}", :url => { :action => 'new_subject', :id => @batch} %> |
+<%= link_to "#{t('add_elective')}", batch_elective_groups_path(@batch) %> |
+<%= link_to_remote "#{t('assign_old_batch_subject ')}", :url => { :controller=>'batch_transfers',:action => 'get_previous_batch_subjects', :id => @batch} %>
 </div>
     <div id="previous-batch-subjects"></div>
 
@@ -44,7 +44,7 @@
 <% unless @normal_subjects.empty? %>
 
   <ul id="category-list">
-    <h4>Normal subjects</h4>
+    <h4><%= t('subject_transfer.normal_subjects') %></h4>
   <% @normal_subjects.each do |sub| %>
     <li id="subject-<%=sub.id%>" class="list<%=cycle('odd', 'even')%>">
       <div class="category-name"> <%= sub.name %></div>

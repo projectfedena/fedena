@@ -19,8 +19,8 @@
 
 <div id="content-header">
    <img src="/images/HR/show_hr.png" alt="" />
-  <h1>Edit employee information</h1>
-  <h3>Address</h3>
+  <h1><%= t('edit1.edit_employee_information') %></h1>
+  <h3><%= t('profile.address') %></h3>
   <div id="app-back-button">
      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -35,84 +35,84 @@
 
   <% form_for :employee do |a| %>
     <%= error_messages_for 'employee' %>
-      <span class="span-sub-heading">Home Address</span>
+      <span class="span-sub-heading"><%= t('admission2.home_address') %></span>
       <hr class="sub-heading"></hr>
           <div class="label-field-pair">
-            <label>Line 1</label>
+            <label><%= t('admission2.line_1') %></label>
             <div class="text-input-bg"><%= a.text_field :home_address_line1 %></div>
             <div class="extender"></div>
           </div>
       <hr class="label-underline"></hr>
           <div class="label-field-pair">
-            <label>Line 2</label>
+            <label><%= t('admission2.line_2') %></label>
             <div class="text-input-bg"><%= a.text_field :home_address_line2 %></div>
             <div class="extender"></div>
           </div>
       <hr class="label-underline"></hr>
           <div class="label-field-pair">
-            <label>City</label>
+            <label><%= t('student.admission1.city') %></label>
             <div class="text-input-bg"><%= a.text_field :home_city %></div>
             <div class="extender"></div>
           </div>
       <hr class="label-underline"></hr>
           <div class="label-field-pair">
-            <label>State</label>
+            <label><%= t('student.admission1.state') %></label>
             <div class="text-input-bg"><%= a.text_field :home_state %></div>
             <div class="extender"></div>
           </div>
       <hr class="label-underline"></hr>
           <div class="label-field-pair">
-            <label>Country</label>
+            <label><%= t('student.admission1.country') %></label>
             <div class="text-input-bg"><%= select :employee, :home_country_id, @countries.map {|c| [c.name, c.id]}, :selected => 76 %></div>
             <div class="extender"></div>
           </div>
       <hr class="label-underline"></hr>
           <div class="label-field-pair">
-            <label>PIN</label>
+            <label><%= t('student.admission1.zip') %></label>
             <div class="text-input-bg"><%= a.text_field :home_pin_code %></div>
             <div class="extender"></div>
           </div>
       <br/>
-      <span class="span-sub-heading">Office Address</span>
+      <span class="span-sub-heading"><%= t('admission2.office_address') %></span>
       <hr class="sub-heading"></hr>
           <div class="label-field-pair">
-            <label>Line 1</label>
+            <label><%= t('admission2.line_1') %></label>
             <div class="text-input-bg"><%= a.text_field :office_address_line1 %></div>
             <div class="extender"></div>
           </div>
       <hr class="label-underline"></hr>
           <div class="label-field-pair">
-            <label>Line 2</label>
+            <label><%= t('admission2.line_1') %></label>
             <div class="text-input-bg"><%= a.text_field :office_address_line2 %></div>
             <div class="extender"></div>
           </div>
       <hr class="label-underline"></hr>
           <div class="label-field-pair">
-            <label>City</label>
+            <label><%= t('student.admission1.city') %></label>
             <div class="text-input-bg"><%= a.text_field :office_city %></div>
             <div class="extender"></div>
           </div>
       <hr class="label-underline"></hr>
           <div class="label-field-pair">
-            <label>State</label>
+            <label><%= t('student.admission1.state') %></label>
             <div class="text-input-bg"><%= a.text_field :office_state %></div>
             <div class="extender"></div>
           </div>
       <hr class="label-underline"></hr>
           <div class="label-field-pair">
-            <label>Country</label>
+            <label><%= t('student.admission1.country') %></label>
             <div class="text-input-bg"><%= select :employee, :office_country_id, @countries.map {|c| [c.name, c.id]}, :selected => 76 %></div>
             <div class="extender"></div>
           </div>
       <hr class="label-underline"></hr>
           <div class="label-field-pair">
-            <label>PIN</label>
+            <label><%= t('student.admission1.zip') %></label>
             <div class="text-input-bg"><%= a.text_field :office_pin_code %></div>
             <div class="extender"></div>
           </div>
 
     <div class="save-proceed-button">
-      <%= submit_tag "► Update" %>
+      <%= submit_tag "► #{t('layouts.common.update')}" %>
     </div>
   <% end %>
 

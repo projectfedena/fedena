@@ -85,7 +85,7 @@
             <%  if this_user.student? || this_user.employee? %>
               <%= link_to t('top_nav_calendar'), :controller => "calendar" %>
             <% end %>
-            <%= link_to t('layouts.default.student'), :controller => "student", :action => "index" \
+            <%= link_to t('layouts.common.student'), :controller => "student", :action => "index" \
               if this_user.admin? %>
             <%= link_to t('attendance'), :controller => "student_attendance", :action => "index" \
               if this_user.admin? %>

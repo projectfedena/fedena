@@ -30,10 +30,10 @@
   <div class="extender"></div>
   <div class="edit-pdf-group">
     <div class="pdf">
-      <%= link_to " ► PDF Report",
+      <%= link_to " ► #{t('layouts.common.pdf_report')}",
         {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
     </div>
   </div>
 <% else %>
-  <p class="flash-msg">No bank details entered for <%= @employee.first_name%>.</p>
+  <p class="flash-msg"><%= t('employee.profile.no_bank_details_entered') %><%= @employee.first_name%>.</p>
 <% end %>

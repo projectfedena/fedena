@@ -25,19 +25,19 @@
   <%= hidden_field_tag :salary_date, @salary_date %>
   <%= error_messages_for "created_category",:header_message =>nil  %>
   <div class="label-field-pair">
-    <label for="category_name">Name</label>
+    <label for="category_name"><%= t('layouts.common.name') %></label>
     <div class="text-input-bg"> <%= text_field_tag :name %> </div>
   </div>
   <div class="label-field-pair">
-    <label for="category_amount">Amount</label>
+    <label for="category_amount"><%= t('create_monthly_payslip.amount') %></label>
     <div class="text-input-bg"> <%= text_field_tag :amount %> </div>
   </div>
   <div class="label-field-pair">
-    <label for="category_amount">Is Deduction ?</label>
+    <label for="category_amount"><%= t('create_monthly_payslip.is_deduction') %></label>
     <div class="text-input-bg"> <%= check_box_tag :is_deduction %>  </div>
   </div>
   <div id="new-category-submit-button">
-    <%=submit_tag("► Create") %>
+    <%=submit_tag("► #{t('layouts.common.create')}") %>
   </div>
 
 

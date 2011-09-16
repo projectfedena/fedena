@@ -18,12 +18,12 @@
 #under the License. -%>
 
 <div class="label-field-pair">
-  <label>Select a subject </label>
+  <label><%= t('assignments.index.select_a_subject') %> </label>
   <div class="text-input-bg">
     <% if @current_user.employee? and @allow_access==true %>
-      <% text = 'Select a Subject'  %>
+      <% text = "#{t('timetable.extra_class.select_a_subject')}"  %>
     <% else %>
-      <% text =  'All Subjects'%>
+      <% text =  "#{t('student_attendance.student.all_subjects')}" %>
     <% end %>
     <%= select :subject, :id,
       @subjects.map {|b| [b.name, b.id] },

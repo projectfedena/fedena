@@ -18,29 +18,29 @@
 #under the License. -%>
 
 <div id="form-errors"></div>
-<label class="head_label">Edit attendance for <span><%= @student.first_name %></span></label>
+<label class="head_label"><%= t('index.edit_attendance') %> <span><%= @student.first_name %></span></label>
 
 <div id="ajax-edit">
   <br/>
   <% form_remote_for @absentee do |f| %>
   <div class="label-field-pair">
-      <label for="reason"> Reason for absence</label>
+      <label for="reason"> <%= t('index.reason') %></label>
       <div class="text-input-bg"><%= f.text_field :reason %></div>
     </div>
     <% if @config.config_value == 'Daily' %>
     <div class="label-checkbox-pair">
-        <label><%= f.check_box :forenoon %>Forenoon</label>
+        <label><%= f.check_box :forenoon %><%= t('student_attendance.student_report.forenoon') %></label>
     </div>
     <div class="label-checkbox-pair">
-        <label><%= f.check_box :afternoon %>Afternoon</label>
+        <label><%= f.check_box :afternoon %><%= t('student_attendance.student_report.afternoon') %></label>
     </div>
     <% end %>
   <div class="extender"></div>
-    <%= f.submit '► Update', :class => 'submit-button' %>
+    <%= f.submit "► #{t('layouts.common.update')}", :class => 'submit-button' %>
   <% end %>
-    <div id="delete-button"><%= link_to_remote('► Delete',
+    <div id="delete-button"><%= link_to_remote("► #{t('layouts.common.delete')}",
           :url => attendance_path(@absentee),
           :method =>'delete',
-          :confirm => 'Are you sure?') %></div>
+          :confirm => "#{t('batches.show.are_you_sure')}") %></div>
 
 </div>

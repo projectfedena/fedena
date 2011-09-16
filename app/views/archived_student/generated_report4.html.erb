@@ -19,15 +19,15 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Exams</h1>
-  <h3>Grouped exam Reports</h3>
+  <h1><%= t('exams.index.exams') %></h1>
+  <h3><%= t('exam.index.grouped_exam_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <div id="inner-tab-menu">
   <ul>
-   <li><%= link_to "PDF Report", { :action => "generated_report4_pdf", :type => @type, :student => @student.id},:target => '_blank' %></li>
+   <li><%= link_to "#{t('layouts.commonpdf_report')}", { :action => "generated_report4_pdf", :type => @type, :student => @student.id},:target => '_blank' %></li>
   </ul>
 </div>
 <div id="page-yield">
@@ -40,11 +40,11 @@
     <h4><%= @student.full_name %></h4>
     <table id="listing" width="100%">
       <tr class="tr-head">
-        <td>Subject</td>
+        <td><%= t('layouts.common.subject') %></td>
         <% @exam_groups.each do |exam_group| %>
           <td><%= exam_group.name %></td>
         <% end %>
-        <td>Total</td>
+        <td><%= t('layouts.common.total') %></td>
       </tr>
       <% @subjects.each do |subject| %>
         <tr class="tr-<%= cycle('odd', 'even') %>">
@@ -80,7 +80,7 @@
 
       <% end %>
       <tr class="tr-head">
-        <td>Total</td>
+        <td><%= t('layouts.common.total') %></td>
         <% @max_total = 0 %>
         <% @marks_total = 0 %>
 
@@ -103,7 +103,7 @@
     </table>
     <% if @mmg == @g %>
       <% percentage = (@marks_total*100/@max_total.to_f)  unless @max_total==0 %>
-      <h4>Total Marks = <%= @marks_total %> | Aggregate % = <%=percentage %> </h4>
+      <h4><%= t('layouts.common.total_marks') %> = <%= @marks_total %> | <%= t('exam.index.aggregate') %> % = <%=percentage %> </h4>
     <% end %>
     <div class="extender"></div>
   </div></div>

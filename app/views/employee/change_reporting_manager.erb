@@ -19,8 +19,8 @@
 
 <div id="content-header">
     <img src="/images/HR/show_hr.png" alt="" />
-  <h1>Reporting manager</h1>
-  <h3>Change</h3>
+  <h1><%= t('reporting_manager') %></h1>
+  <h3><%= t('change') %></h3>
   <div id="app-back-button">
        <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -36,15 +36,15 @@
     <% form_for :employee do |e| %>
       <div id="current-changed-manager">
         <div id="current-manager-outer">
-          <div id="current-manager">Current Manager&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</div>
+          <div id="current-manager"><%= t('current_manager') %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</div>
           <div id="current-manager-name"><%= @reporting_manager %></div>
           <div class="extender"></div>
         </div>
 
         <div id="changed-manager-outer">
-          <div id="changed-manager">New Manager&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</div>
-          <div id="changed-manager-name"><span class="not-selected">(not selected)</span></div>
-          <div id="update-button"><%= submit_tag "► Save",:class=>"submit_button" %></div>
+          <div id="changed-manager"><%= t('new_manager') %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</div>
+          <div id="changed-manager-name"><span class="not-selected">(<%= t('admission4.not_selected') %>)</span></div>
+          <div id="update-button"><%= submit_tag "► #{t('layouts.common.save')}",:class=>"submit_button" %></div>
           <div class="extender"></div>
         </div>
       </div>
@@ -55,7 +55,7 @@
 
     <div id="search-options">
       <div id="search-outer">
-        <div id="search-label">Search by name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</div>
+        <div id="search-label"><%= t('admission4.search_by_name') %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</div>
         <div id="search-text-box"><%= text_field_tag("query", params['query'], :autocomplete => 'off') %></div>
 
         <%= image_tag("loader.gif",
@@ -73,10 +73,10 @@
       :url=> {:action=>'update_reporting_manager_name'} %>
 
       <div id="advanced-options">
-        <div class="employee-search-options"><%= select :employee, :department_id, @departments.map {|s| [s.name, s.id]}, :prompt => "Select department" %></div>
-        <div class="employee-search-options"><%= select :employee, :category_id,   @categories.map {|s| [s.name, s.id]},  :prompt => "Select category" %></div>
-        <div class="employee-search-options"><%= select :employee, :position_id,   @positions.map {|s| [s.name, s.id]},   :prompt => "Select position" %></div>
-        <div class="employee-search-options"><%= select :employee, :grade_id,      @grades.map {|s| [s.name, s.id]},      :prompt => "Select grade" %></div>
+        <div class="employee-search-options"><%= select :employee, :department_id, @departments.map {|s| [s.name, s.id]}, :prompt => "#{t('search.select_department')}" %></div>
+        <div class="employee-search-options"><%= select :employee, :category_id,   @categories.map {|s| [s.name, s.id]},  :prompt => "#{t('search.select_category')}" %></div>
+        <div class="employee-search-options"><%= select :employee, :position_id,   @positions.map {|s| [s.name, s.id]},   :prompt => "#{t('search.select_position')}" %></div>
+        <div class="employee-search-options"><%= select :employee, :grade_id,      @grades.map {|s| [s.name, s.id]},      :prompt => "#{t('search.select_grade')}" %></div>
         <div class="extender"></div>
       </div>
     </div>

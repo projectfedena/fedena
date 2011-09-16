@@ -20,7 +20,7 @@
 <ul id="department-list">
  
   <% unless @employees.empty? %>
-      <li class="heading"> Assign new: </li>
+      <li class="heading"><%= t('subject_assignment.assign_new') %>: </li>
     <% @employees.each do |e| %>
 
      
@@ -28,15 +28,15 @@
         <div class="department-name"><%= e.full_name %></div>
         <% @emp_sub_assoc = EmployeesSubject.find_by_employee_id_and_subject_id(e.id,@subject.id) %>
         <% if @emp_sub_assoc.nil? %>
-          <div class="remove"><%= link_to_remote "Assign", :url => {:action => "assign_employee", :id => e.id, :id1=>@subject.id}, :update => "department-select" %></div>
+          <div class="remove"><%= link_to_remote "#{t('layouts.common.assign')}", :url => {:action => "assign_employee", :id => e.id, :id1=>@subject.id}, :update => "department-select" %></div>
         <% else %>
-          <div class="remove"><%= link_to_remote "Remove", :url => {:action => "remove_employee", :id => e.id, :id1=>@subject.id}, :update => "department-select" %></div>
+          <div class="remove"><%= link_to_remote "#{t('layouts.common.remove')}", :url => {:action => "remove_employee", :id => e.id, :id1=>@subject.id}, :update => "department-select" %></div>
         <% end %>
       </li>
      
     <% end %>
     <% else %>
-    <p class="flash-msg"> No employee found.</p>
+    <p class="flash-msg"><%= t('batches.new.no_employee_found') %></p>
   <% end %>
  
 </ul>

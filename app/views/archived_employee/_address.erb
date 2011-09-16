@@ -18,29 +18,29 @@
 #under the License. -%>
 
 <div id="new_profile_info_top">
-  <div class="profile_info_label_top">Home address</div>
+  <div class="profile_info_label_top"><%= t('employee.admission2.home_address') %></div>
   <div class="profile_info_text_top"><%= @employee.home_address_line1 %></div>
 
   <div class="profile_info_label_top2">&nbsp;</div>
   <div class="profile_info_text_top2"><%= @employee.home_address_line2 %></div>
 
-  <div class="profile_info_label_top">City</div>
+  <div class="profile_info_label_top"><%= t('student.profile.city') %></div>
   <div class="profile_info_text_top"><%= @employee.home_city %></div>
 
 </div>
 
 
 <div class="new_profile_info_area1">
-  <div class="profile_info_label_top2">State</div>
+  <div class="profile_info_label_top2"><%= t('student.profile.state') %></div>
   <div class="profile_info_text_top2"> <%= @employee.home_state %> </div>
 
-  <div class="profile_info_label_top">Country</div>
+  <div class="profile_info_label_top"><%= t('student.profile.country') %></div>
   <div class="profile_info_text_top"> <%= @home_country %> </div>
 
 </div>
 
 <div class="new_profile_info_area1">
-  <div class="profile_info_label_top2">Pin code</div>
+  <div class="profile_info_label_top2"><%= t('employee.admission2.pin_code') %></div>
   <div class="profile_info_text_top2"> <%=  @employee.home_pin_code %> </div>
 
   <div class="profile_info_label_top"></div>
@@ -48,7 +48,7 @@
 </div>
 
 <div class="new_profile_info_area1">
-  <div class="profile_info_label_top2">Office address</div>
+  <div class="profile_info_label_top2"><%= t('employee.admission2.office_address') %></div>
   <div class="profile_info_text_top2"><%=  @employee.office_address_line1 %></div>
 
   <div class="profile_info_label_top">&nbsp;</div>
@@ -56,18 +56,18 @@
 </div>
 
 <div class="new_profile_info_area1">
-  <div class="profile_info_label_top2">City</div>
+  <div class="profile_info_label_top2"><%= t('student.profile.city') %></div>
   <div class="profile_info_text_top2"> <%=  @employee.office_city %> </div>
 
-  <div class="profile_info_label_top">State</div>
+  <div class="profile_info_label_top"><%= t('student.profile.state') %></div>
   <div class="profile_info_text_top"><%= @employee.office_state %></div>
 </div>
 
 <div class="new_profile_info_area1">
-  <div class="profile_info_label_top2">Country</div>
+  <div class="profile_info_label_top2"><%= t('student.profile.country') %></div>
   <div class="profile_info_text_top2"> <%=  @office_country %> </div>
 
-  <div class="profile_info_label_top">Pin code</div>
+  <div class="profile_info_label_top"><%= t('employee.admission2.pin_code') %></div>
   <div class="profile_info_text_top"><%= @employee.office_pin_code %></div>
 </div>
 
@@ -75,7 +75,7 @@
 <div class="extender"></div>
 <div class="edit-pdf-group">
   <div class="pdf">
-    <%= link_to " ► PDF Report",
+    <%= link_to " ► #{t('layouts.common.pdf_report')}",
       {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
   </div>
 </div>

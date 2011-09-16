@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/attendence/attendence.png" />
-  <h1>Attendance</h1>
-  <h3>Student Report</h3>
+  <h1><%= t('student.reports.sub_title2') %></h1>
+  <h3><%= t('attendance_reports.student_details.student_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -30,12 +30,12 @@
   <div id="box">
     <% remote_form_for :advance_search do |f| %>
       <div class="label-field-pair">
-        <label for="student">Student name</label>
+        <label for="student"><%= t('student_attendance.student.student_name') %></label>
         <div class="text-input-bg">
           <%= f.text_field :student_name, :value => @student.full_name, :disabled=> true %></div>
       </div>
       <div class="label-field-pair">
-        <label for="student">Admission no.</label>
+        <label for="student"><%= t('student_attendance.student.admission_no') %>.</label>
         <div class="text-input-bg">
           <%= f.text_field :student_id, :value => @student.admission_no, :disabled=> true  %></div>
       </div>
@@ -62,24 +62,24 @@
       <% end %>
       <div class="att_detail">
         <%  if @config.config_value == 'Daily' %>
-          Total working days : <%= working_days %>
+          <%= t('attendance_reports.student_details.total_working_days') %> : <%= working_days %>
         <% else %>
-          Total working hours : <%= working_days %>
-        <% end %>|Total Present : <%= total = (working_days - leaves).to_f %> |
+          <%= t('attendance_reports.student_details.total_working_hours') %> : <%= working_days %>
+        <% end %>|<%= t('attendance_reports.student_details.total_present') %> : <%= total = (working_days - leaves).to_f %> |
         <% percentage =  (total/working_days)*100 unless working_days == 0 %>
-        Percentage : <%= percentage.round.to_f unless percentage.nil? %>
+        <%= t('attendance_reports.index.percentage') %> : <%= percentage.round.to_f unless percentage.nil? %>
       </div>
       <% unless table_id.empty? %>
         <table id="listing" align="center" width="80%">
           <tr class="tr-head">
             <td>
-              Date
+              <%= t('layouts.common.date') %>
             </td>
             <td>
-              Status
+              <%= t('layouts.common.status') %>
             </td>
             <td>
-              Reason
+              <%= t('student.remove.reason') %>
             </td>
           </tr>
           <tr class="blank"></tr>
@@ -90,13 +90,13 @@
               <td class="col-2"><%= @details.month_date.to_date %></td>
               <td class="col-3">
                 <% if detail_report.forenoon and detail_report.afternoon %>
-                  <%= "Fullday" %>
+                  <%= "#{t('student_attendance.student_report.fullday')}" %>
                 <% elsif detail_report.afternoon %>
-                  <%= "Afternoon" %>
+                  <%= "#{t('student_attendance.student_report.afternoon')}" %>
                 <% elsif detail_report.forenoon %>
-                  <%= "Forenoon" %>
+                  <%= "#{t('student_attendance.student_report.forenoon')}" %>
                 <% else %>
-                  <%= "Absent" %>
+                  <%= "#{t('student_attendance.student_report.absent')}" %>
                 <% end %>
               </td>
               <td class="col-2">

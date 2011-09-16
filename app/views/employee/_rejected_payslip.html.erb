@@ -19,10 +19,10 @@
 
 <ul class="item-list">
   <!-- <li class="heading"><%= @employee.full_name %></li> -->
-  <li class="heading">Payslip generated on <%= @salary_date %></li>
+  <li class="heading"><%= t('department_payslip.payslip_generated_on') %><%= @salary_date %></li>
 </ul>
 <ul class="item-list">
-  <li class="heading1">Salary</li>
+  <li class="heading1"><%= t('profile.salary') %></li>
   <% @monthly_payslips.each do |mp| %>
     <% category = PayrollCategory.find(mp.payroll_category_id) %>
     <% @emp = Employee.find(mp.employee_id) %>
@@ -47,13 +47,13 @@
     <% end %>
   <% end %>
   <li class="list<%=cycle('odd', 'even')%>">
-    <div class="item-name"><b>Total Salary </b></div>
+    <div class="item-name"><b><%= t('department_payslip.total_salary') %></b></div>
     <div class="item-edit"><b><span class="currency-type"><%= @currency_type %></span> <%=@net_non_deductionable_amount  %></b></div>
   </li>
 </ul>
 
 <ul class="item-list">
-  <li class="heading1">Deductions</li>
+  <li class="heading1"><%= t('department_payslip.deductions') %></li>
   <% @monthly_payslips.each do |mp| %>
     <% category = PayrollCategory.find(mp.payroll_category_id) %>
     <% @emp = Employee.find(mp.employee_id) %>
@@ -77,20 +77,20 @@
     <% end %>
   <% end %>
   <li class="list<%=cycle('odd', 'even')%>">
-    <div class="item-name"><b>Total Deductions </b></div>
+    <div class="item-name"><b><%= t('department_payslip.total_deduction') %></b></div>
     <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span> <b><%=@net_deductionable_amount %></b></div>
   </li>
 </ul>
 
 <ul class="item-list">
-  <li class="heading1">Total</li>
+  <li class="heading1"><%= t('layouts.common.total') %></li>
   <li class="listeven">
-    <div class="item-name"><b>Net Salary </b></div>
+    <div class="item-name"><b><%= t('department_payslip.net_salary') %></b></div>
     <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span><b> <%=@net_amount%></b></div>
   </li>
 </ul>
 <ul class="item-list">
-  <li class="heading1">Reason</li>
+  <li class="heading1"><%= t('remove.reason') %></li>
   <li class="listeven">
     <div class="item-name"><%= @reason %></div>
     <div class="item-edit"></div>
@@ -98,5 +98,5 @@
 </ul>
 
 <div id="submit-button" class ="approve">
-    <%= link_to "Edit", {:controller=>"employee", :action=>"edit_rejected_payslip",:id =>@employee.id,:id2 => @salary_date } %>
+    <%= link_to "#{t('layouts.common.edit')}", {:controller=>"employee", :action=>"edit_rejected_payslip",:id =>@employee.id,:id2 => @salary_date } %>
   </div>

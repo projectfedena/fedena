@@ -35,8 +35,8 @@
 
     <div id="list">
       <div class="sel-list">
-        <%= t('sms_settings.index.select') %> : <%= link_to_function "#{t('layouts.default.all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
-<%= link_to_function "#{t('layouts.default.none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+        <%= t('sms_settings.index.select') %> : <%= link_to_function "#{t('layouts.common.all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+<%= link_to_function "#{t('layouts.common.none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
       </div>
 <% @departments.each do |dept| %>
      <div class="name_list<%=cycle('odd', 'even')%>"><li>

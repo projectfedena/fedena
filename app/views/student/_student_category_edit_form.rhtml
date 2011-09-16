@@ -1,9 +1,0 @@
-<div class="box">
-<% form_remote_tag :url => {:action => 'category_update'}  do |f| %>
-<div class="label-field-pair">
-  <label><%= t('categories.edit_category') %>: <%= @student_category.name %> </label>
-  <%= hidden_field_tag :id, @student_category.id %>
-<div class="text-input-bg"> <%= text_field_tag :name, @student_category.name %></div></div>
-  <%= submit_tag "", :value => "► #{t('layouts.default.save')}", :class => "submit_button" %>
-<% end %>
-</div>

@@ -214,6 +214,8 @@ es: # locale
         long: "%A, %e %B, %Y"
         only_day: "%e"
         month : "%B"
+        day   : "%a"
+        mon   : "%d"
 
       day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
       abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
@@ -347,6 +349,8 @@ es: # locale
         license_delivery_year : 'Año de Expedición'
         report_header : 'Imprimir encabezado del informe y pie de página'
         exam_grouping_type : "Examen de Tipo de Agrupación"
+        finance_year_start_date : 'Año Finanzas fecha de inicio'
+        finance_year_end_date : 'Año Finanzas fecha final'
 
 
 #courses controller translation
@@ -379,7 +383,7 @@ es: # locale
         subject_transfer_message : 'Las siguientes Asignaturas han sido importadas'
         assign_tutor : 'Asignar Tutor'
         fee_import_message : 'Las siguientes categorías de Tarifas han sido importadas'
-        are_you_sure : '¿Estás seguro?'
+        electives : 'electivas'
 
       new:
         import_subject : 'Importar Asignaturas del grupo previas'
@@ -419,6 +423,7 @@ es: # locale
     batch_transfers:
       subject_transfer:
         normal_subject : 'Asignatura normal'
+        normal_subjects : 'Asignaturas normal'
         assign_old_batch_subject : 'Asignar asignaturas de grupo previas'
         assign_subject : "Asignar Asignatura"
         add_elective : "Añadir electiva"
@@ -426,7 +431,6 @@ es: # locale
       assign_all_previous_batch_subjects:
         the_subject : 'La asignatura'
         has_been_added_to_batch : 'se ha añadido al grupo'
-        batch : 'Lote'
         already_has_subject : 'ya tiene una asignatura con el nombre de'
         subjects_assigned : 'Las asignaturas han sido asignadas.'
 
@@ -460,7 +464,6 @@ es: # locale
 #subject controller translation
     subjects:
       index:
-        subject : 'Asignatura'
         add_subject_to_elective_group : 'Agregar asignatura a este grupo de electivas'
         add_normal_subject : 'Añadir Asignatura Normal'
         new_elective_group : 'Nuevo Grupo de electivas'
@@ -502,10 +505,10 @@ es: # locale
         events : 'Eventos'
         holidays : "Dias festivos"
         dues : "Deudas"
-        h3 : 'Paso 1 - Creación de evento'
+        event_creation : 'Paso 1 - Creación de evento'
         common_event : 'Evento común a todos'
         common_to_all_message : 'Este evento es común en todos los cursos y departamentos'
-        h3_3 : 'Paso 2 - Confirmación'
+        confirmation: 'Paso 2 - Confirmación'
         other_event : 'Otros Eventos'
         no_event_scheduled : 'No hay otros eventos programados'
         no_course_selected : 'No hay cursos seleccionados para este evento todavía'
@@ -618,6 +621,11 @@ es: # locale
         add_edit_employee_payroll_category : "Agregar y editar categoría de nómina"
         add_edit_bank_detail : "Agregar y editar información bancaria"
         add_edit_additional_detail : "Agregar y editar información adicional para formularios de admisión de los empleados"
+        address_details  : 'detalles de la dirección'
+        bank_account_details : 'Detalles de la cuenta bancaria'
+        add_department : 'Añadir departamento'
+        histroy : 'historia'
+       
 
       search:
         employee_search: 'Búsqueda de Empleados'
@@ -626,6 +634,7 @@ es: # locale
         select_category : 'Seleccionar categoría'
         select_position: 'Seleccionar posición'
         select_grade: 'Seleccionar nivel'
+        employee_search_report : 'Empleado del informe de búsqueda'
 
       employee_attendance:
         manage_attendance: 'Gestionar Asistencia'
@@ -647,6 +656,7 @@ es: # locale
       add_additional_details:
         add_additional_details: "Agregar información adicional"
         no_additional_details : "No se ha encontrado ninguna información adicional"
+        no_additional_details_entered : "No entró en detalles adicionales para"
         active_fields : "Campos Activos"
         inactive_fields : "Campos Inactivos"
 
@@ -695,6 +705,7 @@ es: # locale
         fax : "FAX"
         joining_info : 'Información de ingreso de'
         change_password_after_login : 'Por favor, cambie su contraseña después de iniciar sesión'
+        pin_code : 'pin Code'
 
       admission3:
         step_3 : "Paso - 3"
@@ -774,6 +785,11 @@ es: # locale
         remove_record_msg : "Eliminar completamente el empleado de la base de datos de la Institución. Utilice esta opción sólo si ha creado un empleado por accidente y quiere eliminarlo por completo."
         confirm : "Esto también cancela la asignación del empleado a todas sus Asignaturas actuales, ¿Desea continuar?"
 
+      remove_subordinate_employee:
+        change_reporting_manager : 'Cambiar la presentación de informes gerente'
+        below_listed_employees : 'Los empleados se enumeran a continuación están bajo esta Manager. Por favor, gerente de seleccionar y alternativa '
+        selected_new_manager : 'Gerente de Nuevos seleccionados'
+
       change_to_former:
         leaving_school : "Retiro de la Institución"
         paragraph : "Para los empleados que se retiran de la Institución, utilice esta opción para eliminarlos de la lista de empleados activos y colocarlos en la lista de los ex empleados."
@@ -790,10 +806,12 @@ es: # locale
         select_employee : "Seleccionar Empleado"
         one_click_payslip : "Generar comprobante de pago con un clic"
         one_click_payslip_revert : " Revertir comprobante de pago con un click"
+        rejected_employee : 'recibo de pago rechazado'
         revert_confirm : "Esto eliminará los comprobantes de pago de todos los empleados (del mes que elija), del sistema. ¿Estás seguro?"
         link_desc1 : "Generar comprobante de pago a un empleado"
         link_desc2 : "Generar comprobante de pago con clic"
         link_desc3 : "Revertir comprobante de pago con un clic"
+        link_desc4 : "Gestionar nóminas empleado rechazado"
 
       select_department_employee:
         payslip_generation : "Generar comprobante de pago"
@@ -819,17 +837,20 @@ es: # locale
         total_salary : "Salario Total"
         deductions : "Deducciones"
         total_deduction : "Deducción total"
-        total : "Total"
         net_salary : "Salario Neto"
         id : "Id"
         employee_payslip : "Comprobante de nómina"
+        employee_no : 'No empleado.'
+        payslip_status : 'nómina de estado'
+        total_employees : 'El total de empleados'
+        approved_salary : 'salarial aprobado'
+        no_payslip_found : 'No encontró Nóminas.'
 
       edit1:
         edit_employee_information : "Editar Información del Empleado"
 
       change_reporting_manager:
         reporting_manager : "Administrador de reportes"
-        change : "Cambiar"
         current_manager : "Administrador actual"
         new_manager : "Nuevo Administrador"
 
@@ -860,7 +881,6 @@ es: # locale
       add_category:
         add_new_category : "Añadir nueva categoría"
         category_name : "Nombre de la categoría"
-        percentage : "Porcentaje"
         percentage_of : "Porcentaje de"
         is_deduction : "es deducción?"
         earnings : "Ganancias"
@@ -909,6 +929,8 @@ es: # locale
         net_total_leaves : "Licencias totales netas"
         leave_application : "Solicitud de licencias"
         pending_approval : "Aprobación pendiente"
+        reset_leave : 'Perdí mi licencia'
+        reset_employee_leaves : 'Restablecer hojas empleado.'
 
       leave_app:
         manager_name : "Nombre del Jefe"
@@ -935,6 +957,9 @@ es: # locale
         warn_notice : "Lo sentimos, no puedes solicitar una licencia sin un reporte del Jefe. Por favor, comuníquese con él."
         cancel_leave : "Cancelar licencia"
         attendance_date : "Fecha de Asistencia"
+        available_leave : 'dejar disponible'
+        leave_taken     : 'baja laboral'
+
 
 #Sms Setting Controller
     sms_settings:
@@ -949,7 +974,6 @@ es: # locale
         send_sms_to_parents : 'Enviar SMS a los padres'
         send_sms_to_students : 'Enviar SMS a los estudiantes'
         send_sms : 'Enviar SMS'
-        select : 'Seleccionar'
         departments: 'Departamentos'
         employees : 'empleados'
         settings: 'Configuración'
@@ -1228,8 +1252,8 @@ es: # locale
         search: 'Buscar'
         present_student: 'Estudiantes presentes'
         former_student: 'Ex estudiantes'
-        h1: 'Información  de estudiantes'
-        h3: 'Ver información'
+        student_details: 'Información  de estudiantes'
+        view_details: 'Ver información'
         view_all : 'Ver todos'
         advanced : 'Avanzada'
         no_results_found: 'No se encontró resultados'
@@ -1242,10 +1266,10 @@ es: # locale
       search_ajax:
         no_users : 'No se encontraron usuarios'
         course_and_batch : 'Curso y Grupo:'
-        number : 'Adm No.'
+        
 
       admission1:
-        h3 : 'Paso 1 – Información  del estudiante'
+        student_detail_step1 : 'Paso 1 – Información  del estudiante'
         legend1 : 'Campos marcados con'
         legend2 : 'debe ser llenado.'
         personal_details : 'Información  personal'
@@ -1270,8 +1294,10 @@ es: # locale
         state : 'Dpto/Est/Prov'
         zip : 'Codigo PIN'
         country : 'País'
-        phone : 'Teléfono'
+        phone1 : 'Teléfono'
+        phone2 : 'Teléfono'
         mobile : 'Celular'
+        mobile_phone : 'Teléfono móvil'
         email : 'Correo electrónico'
         enable_sms_feature : 'Activar función SMS'
         upload_user_photo : 'Cargar foto de usuario'
@@ -1287,7 +1313,7 @@ es: # locale
         student: 'Estudiante'
         parent : 'Padre'
         admission_number : 'Admisión No.'
-        h3 : 'Paso 2 – Información de los Padres/Guardian'
+        parent_guardian_details : 'Paso 2 – Información de los Padres/Guardian'
         personal_details : 'Información personal'
         first_name : 'Primer nombre'
         last_name : 'Apellidos'
@@ -1311,38 +1337,37 @@ es: # locale
 
 
       admission3:
-        h3 : 'Paso 3 – Información de los Padres/Gurdian'
+        parent_guardian_details : 'Paso 3 – Información de los Padres/Gurdian'
         message : 'Seleccionar uno de los guardianes como contacto de emergencia.'
         sms_part1 : 'La admisión del estudiante ha sido completada. El nombre de usuario es'
         sms_part2 : 'y la contraseña es'
 
       previous_data:
-        h3 : 'Información previa'
+        previous_details : 'Información previa'
         sub_title : 'Información de educación previa'
         institution_name : 'Nombre de la Institución'
         add_subject : 'Agregar asignatura'
         skip : 'Omitir'
 
+      previous_data_edit:
+        edit_previous_details : 'Editar detalles Anterior'
+
       previous_subject:
         subject_details : 'Información de la asignatura'
-        subject : 'Asignatura'
         mark : 'Nota'
 
       admission4:
-        h3 : 'Paso 4'
+        step4 : 'Paso 4'
         additional_detail : 'Información adicional'
 
 
       profile:
-        h1 : 'Información del estudiante'
-        h3 : 'Perfil del estudiante'
+        student_information : 'Información del estudiante'
+        student_profile : 'Perfil del estudiante'
         reports : 'Reportes'
         fees : 'Tarifas'
         guardians: 'Guardianes'
         send_email : 'Enviar correo electrónico'
-        delete : 'Eliminar'
-        course : 'Curso'
-        batch : 'Grupo'
         admission_number : 'No. de admisión'
         admission_date : ' Fecha de admisión'
         date_of_birth : 'F. Nacimiento'
@@ -1355,13 +1380,6 @@ es: # locale
         language : 'Idioma'
         religion : 'Religión'
         address : 'Dirección'
-        city : 'Ciudad'
-        state : 'Dpto/Est/prov'
-        zip : 'Código PIN'
-        country : 'País'
-        phone : 'Teléfono'
-        mobile : 'Celular'
-        email : 'Correo electrónico'
         sms_alerts : 'Alertas SMS'
         group_tutor : 'Tutor de grupo'
         contact_message : 'En caso de emergencias, comuníquese con:'
@@ -1374,13 +1392,12 @@ es: # locale
         no_guardian : 'Ningún guardián agregado todavía'
         enabled : 'Habilitado'
         disabled : 'Deshabilitado'
-        pdf_report : 'Reporte PDF'
         generate_tc : "Generar Certificado de Estudios"
         report_center : "Centro de Reportes"
 
       reports:
-        h1 : 'Estudiantes'
-        h3 : 'Reportes'
+        students : 'Estudiantes'
+        reports : 'Reportes'
         sub_title1 : 'Académicos'
         sub_title2 : 'Asistencia'
         recent_exams : 'Exámenes recientes'
@@ -1393,59 +1410,54 @@ es: # locale
         archives : 'Archivos'
         grouped_exam_final_report : 'Reporte final de exámenes agrupados'
         compare_grouped_exam_past : 'Comparar exámenes agrupados con años anteriores'
+        exam_goruped : 'agrupados examen'
 
       fees:
-        h1 : 'Estudiante'
-        h3 : 'Estado de Pagos'
+        student : 'Estudiante'
+        fee_status : 'Estado de Pagos'
         student_profile : 'Perfil del estudiante'
         paid_all : 'Ha ingresado todos los pagos del grupo.'
         paid : 'PAGADO'
         unpaid : 'NO PAGADO'
 
       guardians:
-        h1 : 'Información de los Padres'
-        h3 : 'Perfil de los Padres'
+        parent_info : 'Información de los Padres'
+        parents_profile : 'Perfil de los Padres'
         add_guardian : 'Agregar Guardián'
         parents : 'Padres/Guardián'
-        name : 'Nombre'
-
+        
       add_guardian:
-        h3 : 'Agregar información del Guardián'
+        add_guardian_details : 'Agregar información del Guardián'
         office : 'Oficina'
 
       view_all:
-        h1 : 'Perfil del Estudiante'
-        h3 : 'Ver Información'
+        view_details : 'Ver Información'
 
       email:
-        h1 : 'Estudiante'
-        h3 : 'Enviar correo electrónico'
-        subject : 'Asunto'
-
+        send_email : 'Enviar correo electrónico'
 
       remove:
-        h3 : 'Eliminar estudiante'
+        remove_student : 'Eliminar estudiante'
         leaving_institution : 'Estudiante en proceso de retiro de la institución'
         leaving_institution_message : 'Para los estudiantes que se retiran de la institución, utilice esta opción para eliminarlos de la lista de estudiantes activos y colocarlos en la lista de ex estudiantes.'
-        remove_student : 'Eliminar registros del estudiante'
+        remove_student_records : 'Eliminar registros del estudiante'
         remove_student_message : 'Eliminar completamente al estudiante de la base de datos de la Institución. Utilice esta opción sólo si ha creado un estudiante por accidente y quiere eliminarlo por completo'
         reason : 'Causa'
         student_left_message : 'El estudiante se ha retirado de la institución'
 
       change_to_former:
-        h3 : 'Proceso de retiro de la Institución'
+        leaving_school : 'Proceso de retiro de la Institución'
         reason_for_leaving : 'Causa del retiro'
         description : 'Para los estudiantes que se retiran de la institución, utilice esta opción para eliminarlos de la lista de estudiantes activos y colocarlos en la lista de ex estudiantes.'
 
       delete:
-        h3 : 'Eliminar estudiante'
         delete_student : 'Eliminar estudiante'
         description1 : "Eliminar completamente al estudiante de la base de datos de la Institución. Utilice esta opción sólo si ha creado un estudiante por accidente y quiere eliminarlo por completo."
         description2 : "Advertencia: Todos los registros del estudiante se eliminarán y no se podrán recuperar."
 
 
       advanced_search:
-        h3 : 'Búsqueda avanzada'
+        advanced_search : 'Búsqueda avanzada'
         searched_for : 'Usted ha buscado'
         listed_by : 'Listado por'
         search_again : 'Búscar de nuevo'
@@ -1458,7 +1470,7 @@ es: # locale
         edit_category : 'Editar categoría'
 
       edit_admission4:
-        h3 : 'Editar información de admisión'
+        enter_admission_details : 'Editar información de admisión'
 
       add_additional_details:
         field_name : 'Nombre del campo'
@@ -1486,9 +1498,9 @@ es: # locale
         parent_personal_details : 'Datos Personales de los Padres'
         examination_results : 'Resultado de exámenes'
         student_info: 'Información del Estudiante'
-        h2: 'Revisión de resultados en años previos'
+        previous_year_result: 'Revisión de resultados en años previos'
         class_sec: 'Clase/Sección'
-        h3: 'Revisión de resultados según Asignaturas'
+        subject_wise_result: 'Revisión de resultados según Asignaturas'
         upcoming_exams: 'Próximos Exámenes'
 
 
@@ -1620,7 +1632,6 @@ es: # locale
         set_fee_collection_date : 'Configurar fechas de Pago'
         fee_category : 'Categoría Tarifas'
         fee_collection_name : 'Nombre de las fechas de Pago'
-        due_date : 'Fecha de vencimiento'
         select_category : 'Seleccionar categoría'
         create_new_category : 'Crear nueva categoría'
         is_this_under_income : '¿Es esto un ingreso?'
@@ -1628,7 +1639,7 @@ es: # locale
       fee_collection_view :
         fee_collection_dates : 'Fechas de Pago'
         view_fee_collection_dates : 'Ver fechas de Pago'
-        select_batch : 'Seleccionar un grupo'
+
       fees_submission_index :
         fees_submission : 'Ingresar pagos'
         student_fees_submission : 'Ingresar pagos de estudiantes'
@@ -1793,6 +1804,7 @@ es: # locale
         exams : 'Exámenes'
         edit_exam : "Editar examen"
         for_exam_group : "Para el grupo de examenes"
+        edit_exam_group : 'Editar Grupo de Examen'
 
       show:
         result_entry : 'Entrar resultados'
@@ -1876,44 +1888,6 @@ es: # locale
         view_reports : 'Por favor, ver los reportes de su resultado'
         exam_scheduling_not_done : 'La programación del examen no se ha completado todavía.'
 
-
-# exam_collections controller
-    exam_collections:
-      setting:
-        include_marks_column : "Incluir columna de notas"
-        enter_marks_manually : "Ingresar notas manualmente"
-        include_grading_column : "Incluir columna de desempeños"
-        include_hours_column : "Incluir columna de intensidad horaria"
-        include_absence_column : "Incluir columna de ausencias"
-        include_remarks_column : "Incluir observaciones"
-        include_admission_number_report : "Número de admisión en los boletines de calificaciones"
-        include_exam_collection_name_report : "Nombre de la colección de  exámenes en los boletines de calificaciones"
-        include_schoolday_report : "Nombre de la jornada en los boletines de calificaciones"
-        include_batch_report : "Nombre del grupo en el los boletines de calificaciones"
-        include_date_of_stay_report : "Fecha de estancia en los boletines de calificaciones"
-        include_report_date_report : "Fecha del reporte en los boletines de calificaciones"
-        include_percentage_report : "Porcentaje en los boletines de calificaciones"
-        include_exam_collection_mark_report : "Nota de la colección de exámenes en los boletines de calificaciones"
-        include_batch_ranking_report : "Puesto en el grupo en los boletines de calificaciones"
-        include_course_ranking_report : "Puesto en el curso en los boletines de calificaciones"
-        include_institution_ranking_report : "Puesto en la Institución en los boletines de calificaciones"
-        include_tutor_sign_report : "Firma del tutor de grupo en los boletines de calificaciones"
-        include_tutor_name_report : "Nombre del tutor de grupo en los boletines de calificaciones"
-
-      conjugation:
-        conjugation_settings : "Configuración de la conjugación"
-        set_features : "Configurar detalles para conjugar colección de exámenes"
-        conjugate_exam_collections : "Conjugar colección de exámenes"
-        assign_remarks : "Asignar observaciones y/o notas a una colección de exámenes"
-        hours_week : "Intensidad horaria"
-        absence : "Ausencias"
-        report_cards : "Reporte de Calificaciones"
-        exam_collection_statistical : "Examen de recopilación estadística"
-        final_report_settings : "Final report settings"
-        final_report_conjugation : "Final report conjugation"
-        final_report_cards : "Final report card"
-        final_report_statistics : "Final report statistics"
-
 # exam_groups controller
     exam_groups:
       index:
@@ -1956,19 +1930,8 @@ es: # locale
         enter_exam_related_details_here : 'Introducir Información del Examen Aquí'
         do_not_create : 'No crear'
         cant_be_more_than_max_marks : 'no puede ser más que la nota máxima'
+        subject_name : 'nombre del sujeto'
 
-
-#remarks controller
-
-    remarks:
-      index:
-        create_categories_for_remark : "Crear categorías para las observaciones"
-        create_edit_remarks : "Crear/Editar Observaciones"
-        import_remarks_file : "Importar archivo de observaciones"
-        import_file_with_remarks : "Importar un archivo con observaciones"
-        export_remarks_file : "Exportar archivo de observaciones"
-        export_file_with_remarks : "Exportar un archivo con observaciones"
-        remark : "Observación"
 
 #additional exams controller
     additional_exams:
@@ -1986,181 +1949,23 @@ es: # locale
         edit_additional_exam : "Editar examen adicional"
 
       index:
-        additional_exam_group : "Grupos de exámenes adicionales"
+        additional_exam_groups : "Grupos de exámenes adicionales"
         resend_sms_notification : "Reenviar notificación SMS"
+        exam_name : 'Nombre del examen'
+        action      : 'acción'
 
       new:
         new_exam : "Nuevo examen"
+        new_additional_exam : 'Examen adicional nueva'
 
       show:
         view_additional_exam : "Ver examen adicional"
-
-#books controller
-    books:
-      index:
-         books: 'Libros'
-         add_books: 'Añadir libros'
-         filter_by: 'Filtrar por'
-         available: 'Disponible'
-         borrowed: 'Prestado'
-         binding: 'En reparación'
-         book_number: 'Número del libro'
-         author: 'Autor'
-         tags: 'Etiqueta'
-         title: 'Título'
-         status: 'Estado'
-         filter: 'Filtrar'
-         view: 'Ver'
-         edit: 'Editar'
-         delete: 'Borrar'
-         are_you_sure: 'Esta seguro?'
-         edit_book: 'Editar libro'
-         show: 'Mostrar'
-         update: 'Actualizar'
-         listing_items: 'Listado'
-         tags_list: 'Lista de palabras claves'
-         borrower: 'Prestador'
-         reserver_this_book: 'Reservar este libro'
-         issue_this_book: 'Prestar este libro'
-         this_book_is_reserved_by: 'Este libro está reservado por:'
-         reserve_date: 'Fecha de Reserva'
-
-
-      new:
-        create: 'Crear'
-        no_of_copies: 'No. de copias'
-        custom_tags: 'Personalizar Etiquetas'
-        tags: 'Etiqueta'
-
-
-#library controller
-    library:
-      index:
-        library: 'Biblioteca'
-        library_management: 'Gestión de Biblioteca'
-        manage_books: 'Gestionar Libros'
-        manage_library_books: 'Gestionar libros de la biblioteca'
-        search_book: 'Buscar libro'
-        search_for_a_book_here: 'Buscar un libro aquí'
-        return_book: 'Devolver libro'
-        manage_book_return: 'Gestionar devolución de libros'
-        issue_books: 'Prestar libros'
-        issue_books_here: 'Prestar libros aquí'
-        library_setting: 'Configuración de bibioteca'
-        initial_library_setting_for_courses: 'Configuración de biblioteca inicial para cursos'
-        movement_log: 'Detalles del estado de los libros'
-        issue_renew_book_status: 'Estado de los libros Prestados/renovados'
-        book_renewal: 'Renovación de libro'
-        renew_books_here: 'Renovar libro aquí'
-        search_by: 'Buscar por'
-        search: 'Buscar'
-        detail_search: 'Buscar detalles'
-        book_issuable: 'Libros prestables'
-        time_period: 'Periodo de tiempo'
-        submit: 'Procesar'
-        in_days: '(en dias)'
-        days: ''
-        add_new: 'Añadir nuevo'
-        book_not_found_try_again: 'Los libros de su búsqueda no se encontraron. Intente otra vez.'
-        total_book: 'Libros totales'
-        library_setting: 'Configuración de biblioteca'
-        book_search_result: 'Resultado de búsqueda de libros'
-        borrowed_by: 'Prestado por'
-        book_movement_log: 'Detalles del estado de los libros'
-        view_books: 'Ver Libros'
-
-      detail_search:
-        book_title: 'Título del Libro'
-        book_author: 'autor del libro'
-        tag_list: 'Lista de palabras claves'
-        no_of_copies_in_shelf: 'No. de copias en el estante'
-        no_of_copies_borrowed: 'No. de copias prestadas'
-
- ## Book movement controller
-    book_movement:
-      return_book:
-       return_book: 'Devolver libros'
-       book_holder: 'Portador del libro'
-       due_date_exceeded: 'Se ha excedido la fecha de vencimiento:'
-       enter_fine_amount: 'Ingresar la suma de la multa'
-       return: 'Devolver'
-
-      issue_book:
-        search_admission_employee_no: 'Buscar por No de admisión / No del empleado'
-        book_can_be_taken: 'El libro puede ser prestado'
-        user_reached_max_limit: 'Este usuario ha alcanzado el límite máximo de libros que puede prestar.'
-        books_taken: 'Libros prestados'
-        issue_date: 'Fecha del préstamo'
-        due_date: 'Fecha de vencimiento'
-        issue: 'Prestar'
-        this_book_is_reserved: 'Este libro ha sido reservado por:'
-        booked_on: 'Reservado el'
-        book_holder: 'Portador del Libro'
-        due_date_exceeded: 'La fecha de vencimiento se ha excedido:'
-        book_taken: 'Libro Prestado'
-        no_of_books_can_be taken: 'No. de libros que pueden ser prestados'
-        reached_max_limit_availing_books: 'Este usuario ha alcanzado el límite máximo de libros que puede prestar.'
-
-      renewal:
-        book_renewal: 'Renovación del libro'
-        renew: 'Renovar'
-
-  ## translation for assignment answers controller
-    assignment_answers:
-      new:
-        assignment: 'Asignaciones'
-        submit_an_answer: 'Ingresar una respondidas'
-        title: 'Título'
-        content: 'Contenido'
-        attach_file: 'Adjuntar un archivo'
-        submit_answer: 'Ingresar una respondidas'
-        answer: 'Responder'
-        submitted_by: 'Realizado por'
-        submitted_on: 'Realizado el'
-        answer_to_be_evaluated: 'Esta respondidas está todavía pendiente de ser evaluada'
-        the_assignment_is: 'La asignación es'
-        resubmit_answer: '( Reingresar respondidas )'
-        accept_answer: 'Aceptar respondidas'
-        reject_anser: 'Rechazar respondidas'
-
-    assignments:
-      index:
-        no_student: 'N Estudiantil'
-        on: 'en'
-        sl_no: 'Número de serie'
-        due_date: 'Fecha de vencimiento'
-        no_assignment_for_this_subject: 'No hay asignaciones para este tema se han creado'
-        create_new_assignment: 'Crear nueva asignación'
-        all_assignments: 'Todas las asignaciones'
-        subject: 'Asunto'
-        select_a_subject: 'Seleccione un tema'
-        no_subjects_assigned_to_employee: 'No hay temas asignados a este empleado'
-        no_assignment_assigned: 'No se han asignado ninguna tarea'
-        edit_assignment: 'Modificar la asignación'
-        change_subject: 'Cambio de Sujeto'
-        update_assignment: 'Actualización de Asignación'
-        create_new_assignment: 'Crear nueva asignación'
-        due_in: 'Vence en'
-        assignment_already_due: 'Asignación ya por'
-        delete_assignment: 'Eliminar asignación'
-        are_you_sure_delete_assignment: 'Está seguro que desea eliminar esta tarea? Esto también eliminar todas las respuestas presentadas a esta tarea.'
-        assigned: 'Asignadas'
-        answered: 'Respondidas'
-        pending: 'Pendientes'
-        resubmit: 'Volver a enviar'
-        rejected: 'Rechazada'
-        accepted: 'Aceptamos'
-        answer_this_assignment: 'Responder a esta asignación'
-        none: 'Ninguno'
-        all: 'Todos los'
-        edit: 'Editar'
-        select: 'Seleccione'
+        show_additional_exam_group : 'Grupo que muestra el examen adicional'
 
     ## translation for timetable controller
     timetable:
       index:
         timetable : 'Horario'
-        home : 'Inicio'
         select_a_class_and_edit_the_timetable : 'Seleccionar una clase y editar el horario de esa clase'
         set_class_timings : 'Configurar los intervalos de las clases'
         select_a_class_timings_for_each_class : 'Seleccionar los intervalos de cada clase'
@@ -2194,7 +1999,7 @@ es: # locale
         no_timetable_entry_for_batch : 'No se ha entrado información al horario de grupo'
       weekdays:
         select_batch_to_edit : 'Seleccionar grupo para editar'
-        common : 'Todos'
+        
       select_class:
         select_a_batch_to_continue : 'Seleccionar un grupo para continuar'
     weekday:
@@ -2290,7 +2095,7 @@ es: # locale
         ago: 'atras'
         powered_by: 'Desarrollado por'
 
-      default:
+      common:
         sl_no : 'Sl No.'
         name : 'Nombre'
         adm_no : 'Adm No.'
@@ -2306,6 +2111,7 @@ es: # locale
         recipient : 'Destinatario'
         guardian : 'Guardián'
         course : 'Curso'
+        courses : 'cursos'
         batch : 'Grupo'
         remove : 'Eliminar'
         delete : 'Eliminar'
@@ -2323,6 +2129,7 @@ es: # locale
         finish : 'Finalizar'
         year : 'Año'
         total_mark : 'Calificación total'
+        total_marks : 'puntuación total'
         save_and_proceed : 'Guardar y Proceder'
         edit : 'Editar'
         save : 'Guardar'
@@ -2348,6 +2155,7 @@ es: # locale
         exam : 'Examen'
         date : 'Fecha'
         go : 'Ir'
+        dob : 'Fecha de Nacimiento'
         department : 'Departamento'
         assign : 'Asignar'
         start_time : 'Hora de inicio'
@@ -2376,6 +2184,9 @@ es: # locale
         continue : "Continuar"
         email : "Email"
         web_address : "Direccion Web"
+        are_you_completely_sure : '¿Está usted completamente seguro?'
+        common: 'Common'
+        done : 'hecho'
 
 
 
@@ -2442,6 +2253,10 @@ es: # locale
         flash8: 'a'
         flash9: 'Licencia denegada para'
         flash10: 'Solicitud de licencia eliminada'
+        flash11: 'Lo siento! No se puede eliminar un tipo de licencia con la entrada de dejar'
+        flash12: 'Lo sentimos dejar aprovado no se pueden eliminar'
+        flash13: 'Deja rearme con éxito'
+        flash14: 'Departamento Sabio Deja rearme con éxito'
       employee:
         flash1: 'Categoría de empleado creada'
         flash2: 'Categoria de empleado actualizada'
@@ -2480,6 +2295,7 @@ es: # locale
         flash35: 'No puede ser eliminado. Este empleado es un gestor de información'
         flash36: 'No hay campos disponibles banco'
         flash37: 'No hay campos adicionales disponibles'
+        flash38: 'Categoría de empleado no puede ser actualizado'
       event:
         flash1: 'Evento creado para los cursos seleccionados.'
         flash2: 'Evento creado para los departamentos seleccionados'
@@ -2580,57 +2396,7 @@ es: # locale
       subjects:
         flash1: 'Los sujetos seleccionados se han importado correctamente'
 
-      exam_collections:
-        flash1  : 'Recolección de Examen creado con éxito'
-        flash2  : 'Recolección de Examen eliminado con éxito'
-        flash3  : 'Recolección de Examen editada con éxito'
-        flash4  : 'No hay estudiantes en el grupo selecianado'
-        flash5  : 'No hay ajustes de recogida examen se ha encontrado'
-
-      remarks:
-        flash1 : "La categoría ha sido guardada"
-        flash2 : "La categoría ha sido borrada"
-        flash3 : "La observación ha sido guardada"
-        flash4 : "La observación ha sido actualizada"
-        flash5 : "La observación ha sido borrada"
-
-      book_movement:
-        flash1  : 'El libro ha sido prestado'
-        flash2  : '<h2>Un error impidió esta acción</h2><p>Hubo problemas con los siguientes campos:</p><ul><li>El libro ya ha sido prestado</li></ul>'
-        flash3  : '<ul><li>Este libro no ha sido prestado</li></ul>'
-        flash4  : '<ul><li>Ingrese un numero de libro valido.</li></ul>'
-        flash5  : 'El libro ha sido  devuelto'
-        flash6  : '<h2>Un error impidió esta acción</h2><p>Hubo problemas con los siguientes campos:</p><ul><li>El libro ya ha sido prestado</li></ul>'
-        flash7  : '<h2>Un error impidió esta acción</h2><p>Hubo problemas con los siguientes campos:</p><ul><li>Libro no encontrado con el numero'
-        flash8  : '<h2>Un error impidió esta acción</h2><p>Hubo problemas con los siguientes campos:</p><ul><li>El número del libro no puede estar en blanco</li></ul>'
-        flash9  : '<h2>Un error impidió esta acción</h2><p>Hubo problemas con los siguientes campos:</p><ul><li>Libro no encontrado con el numero'
-        flash10 : '<h2>Un error impidió esta acción</h2><p>Hubo problemas con los siguientes campos:</p><ul><li>El libro no ha sido prestado</li></ul>'
-        flash11 : '<h2>Un error impidió esta acción</h2><p>Hubo problemas con los siguientes campos:</p><ul><li>El número del libro no puede estar en blanco</li></ul>'
-
-      books:
-        flash1  : '<h2>Un error impidió esta acción</h2><p>Hubo problemas con los siguientes campos:</p><ul><li>Los libros prestados no pueden ser borrados</li></ul>'
-
-      library:
-        flash1  : '<h2>Su búsqueda no fue exitosa.</h2>'
-        flash2 : '<h2>Un error impidió esta acción</h2><p>Hubo problemas con los siguientes campos:</p><ul><li>Rellenar con todos los detalles</li></ul>'
-
-      assignment_answers:
-        flash1  : 'Asignación procesada'
-        flash2  : 'No esta autorizado para ver esta pagina'
-        flash3  : 'No puede editar la asignación una vez esta ha sido asignadas'
-        flash4  : 'No puede editar esta asignación'
-        flash5  : 'La asignación fue actualizada exitósamente'
-        flash6  : 'La actualización de la asignación falló'
-        flash7  : 'Asignación'
-        flash8  : 'La configuración del estado de la asignación falló'
-        flash9  : 'No puede aprobar o rechazar esta asignación'
-        flash10 : 'No está autorizado para descargar este archivo'
-
-      assignments:
-        flash1  : 'Detalles de la asignación actualizados'
-        flash2  : 'Asignación eliminada exitósamente'
-        flash3  : 'No tiene permiso para eliminar esta asignación'
-        flash4  : 'No tiene permiso para descargar este archivo'
+     
 
     # for shared partials called like: render :template => "shared/user"
     # where "shared" is the directory name

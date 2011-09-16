@@ -32,19 +32,19 @@
   <% form_for(:additional_fees,:url => {:action=> 'additional_fees_create'}) do |form| %>
 
      <div class="label-field-pair">
-    <div class="label-container"><label><%= t('layouts.default.name') %> <span class="necessary-field">*</span> :</label> </div>
+    <div class="label-container"><label><%= t('layouts.common.name') %> <span class="necessary-field">*</span> :</label> </div>
     <div class="input-container"><%= form.text_field :name %></div>
    </div>
        <div class="label-field-pair">
-    <div class="label-container"><label><%= t('layouts.default.description') %>: </label> </div>
+    <div class="label-container"><label><%= t('layouts.common.description') %>: </label> </div>
     <div class="input-container"><%= form.text_field :description %></div>
    </div>
        <div class="label-field-pair">
-    <div class="label-container"><label><%= t('layouts.default.batch') %> : </label></div>
+    <div class="label-container"><label><%= t('layouts.common.batch') %> : </label></div>
     <div class="input-container"><%= form.select :batch_id, @batches.map { |c| [c.full_name, c.id] },:prompt => "Select Batch"  %></div>
    </div>
        <div class="label-field-pair">
-    <div class="label-container"><label><%= t('layouts.default.start_date') %> <span class="necessary-field">*</span> :</label> </div>
+    <div class="label-container"><label><%= t('layouts.common.start_date') %> <span class="necessary-field">*</span> :</label> </div>
     <div class="input-container"><%= calendar_date_select_tag 'additional_fees[start_date]', Date.today %></div>
    </div>
        <div class="label-field-pair">
@@ -52,11 +52,11 @@
     <div class="input-container"><%= calendar_date_select_tag 'additional_fees[end_date]', Date.today %></div>
    </div>
        <div class="label-field-pair">
-    <div class="label-container"><label><%= t('layouts.default.due_date') %> <span class="necessary-field">*</span> :</label> </div>
+    <div class="label-container"><label><%= t('layouts.common.due_date') %> <span class="necessary-field">*</span> :</label> </div>
     <div class="input-container"><%= calendar_date_select_tag 'additional_fees[due_date]', Date.today %></div>
    </div>
 
-    <%=  submit_tag "► #{t('layouts.default.save')}",:class=>'submit_button' %>
+    <%=  submit_tag "► #{t('layouts.common.save')}",:class=>'submit_button' %>
   <% end %>
 
 </div>

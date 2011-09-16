@@ -19,7 +19,7 @@
 
 <% unless @assigned_employee.nil? %>
   <% unless @assigned_employee.empty? %>
-    <li class="heading"> Currently assigned: </li>
+    <li class="heading"> <%= t('employee.assign_tutor.currently_assigned') %>: </li>
     <% @assigned_employee.each do |e| %>
       <% @employee = Employee.find_by_id(e) %>
       <% unless @employee.blank? %>
@@ -30,6 +30,6 @@
       <% end %>
     <% end %>
   <% else %>
-    <p class="flash-msg"> No employee assigned yet.</p>
+    <p class="flash-msg"> <%= t('employee.assign_tutor.no_employee_assigned') %>.</p>
   <% end %>
 <% end %>
