@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('layouts.common.courses') %></h1>
-  <h3><%= t('layouts.common.new') %></h3>
+  <h1><%= t('courses') %></h1>
+  <h3><%= t('new') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -34,8 +34,8 @@
 
   <div class="box">
     <div class="bread_crumb">
-      <%= link_to "#{t('layouts.common.course')}", courses_path %> &raquo;
-      <%= t('layouts.common.new') %>
+      <%= link_to "#{t('course')}", courses_path %> &raquo;
+      <%= t('new') %>
     </div>
 
     <% form_for setup_course(@course) do |f| %>
@@ -43,12 +43,12 @@
       <%= error_messages_for :course %>
 
       <div class="label-field-pair">
-        <div class="label-container"><%= "#{t('index.course_name')}" %></div>
+        <div class="label-container"><%= "#{t('course_name')}" %></div>
         <div class="input-container"><%= f.text_field :course_name %></div>
       </div>
 
       <div class="label-field-pair">
-        <div class="label-container"><%= "#{t('index.section_name')}" %></div>
+        <div class="label-container"><%= "#{t('section_name')}" %></div>
         <div class="input-container"><%= f.text_field :section_name %></div>
       </div>
 
@@ -62,24 +62,24 @@
       <% f.fields_for :batches do |batch_form| %>
 
         <div class="label-field-pair">
-          <div class="label-container"><%= batch_form.label "#{t('layouts.common.name')}" %></div>
+          <div class="label-container"><%= batch_form.label "#{t('name')}" %></div>
           <div class="input-container"><%= batch_form.text_field :name %></div>
         </div>
 
 
         <div class="label-field-pair">
-          <div class="label-container"><%= batch_form.label "#{t('layouts.common.start_date')}" %></div>
+          <div class="label-container"><%= batch_form.label "#{t('start_date')}" %></div>
           <div class="input-container"><%= calendar_date_select_tag 'course[batches_attributes][0][start_date]', Date.today %></div>
         </div>
 
         <div class="label-field-pair">
-          <div class="label-container"><%= batch_form.label "#{t('layouts.common.end_date')}" %></div>
+          <div class="label-container"><%= batch_form.label "#{t('end_date')}" %></div>
           <div class="input-container"><%= calendar_date_select_tag 'course[batches_attributes][0][end_date]', Date.today + 1.year %></div>
         </div>
 
       <% end %>
 
-      <%= submit_tag "", :value => "► #{t('layouts.common.save')}", :class => "submit_button" %>
+      <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
 
     <% end %>
 

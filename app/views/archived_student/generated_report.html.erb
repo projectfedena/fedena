@@ -27,7 +27,7 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to " ► #{t('layouts.common.pdf_report')}",
+    <li><%= link_to " ► #{t('pdf_report')}",
         {:action => "generated_report_pdf", :exam_group => @exam_group.id, :batch => @batch.id, :student=>@student.id},:target => '_blank' %></li>
   </ul>
 </div>
@@ -50,7 +50,7 @@
 
     <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
       <tr class="tr-head">
-        <td><%= t('layouts.common.subject') %></td>
+        <td><%= t('subject') %></td>
         <% if @exam_group.exam_type == 'Marks' %>
           <td><%= t('exam_groups.new.marks') %></td>
           <td><%= t('exam.index.max') %></td>
@@ -88,7 +88,7 @@
 
       <% if @exam_group.exam_type == 'Marks' or @exam_group.exam_type == 'MarksAndGrades' %>
         <tr class="tr-head">
-          <td><%= t('layouts.common.total_marks') %>:</td>
+          <td><%= t('total_marks') %>:</td>
           <td><%= total_marks_attained %></td><td><%= total_max_marks %></td>
           <%  if @exam_group.exam_type == 'MarksAndGrades' %>
             <td>-</td>

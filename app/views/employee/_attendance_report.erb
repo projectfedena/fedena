@@ -48,7 +48,7 @@
       <div class="type_name<%=cycle("odd", "even")%> ">
         <div class="total"><%= t('department_payslip.total') %><%= leave_type.name %>:</div><div class="count"><%= e.leave_taken %>/<%= e.leave_count %></div>
          <% if permitted_to? :employee_leave_count_edit, :employee %>
-        <div class="edit-leave"><%=  link_to_remote "#{t('layouts.common.edit')}", :url =>{:action=>"employee_leave_count_edit", :id=>e.id, :leave_type=>e.employee_leave_type_id }%></div>
+        <div class="edit-leave"><%=  link_to_remote "#{t('edit')}", :url =>{:action=>"employee_leave_count_edit", :id=>e.id, :leave_type=>e.employee_leave_type_id }%></div>
       <%end%>
       </div>
       <% total_leave+= e.leave_taken %>
@@ -56,7 +56,7 @@
     <div class="type_nameeven"><div class="total"><%= t('profile.total_leaves_taken')  %>:</div><div class="count"><%= total_leave %></div></div>
   </div>
   <div class="pdf-link">
-    <%=  link_to " ►#{t('layouts.common.pdf_report')}", :controller=>"employee_attendance", :action=>"employee_attendance_pdf", :id=>@employee.id, :format=>'pdf' %>
+    <%=  link_to " ►#{t('pdf_report')}", :controller=>"employee_attendance", :action=>"employee_attendance_pdf", :id=>@employee.id, :format=>'pdf' %>
   </div>
 </div>
 

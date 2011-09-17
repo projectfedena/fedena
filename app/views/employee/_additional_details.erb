@@ -28,19 +28,19 @@
   <div class="edit-pdf-group">
     <% if permitted_to? :edit3_1,:employee %>
       <div class="edit">
-        <%= link_to "► #{t('layouts.common.edit')}",   :controller => "employee", :action => "edit3_1", :id =>@employee.id %>
+        <%= link_to "► #{t('edit')}",   :controller => "employee", :action => "edit3_1", :id =>@employee.id %>
       </div>
     <%end%>
     <% if permitted_to?  :profile_pdf , :employee %>
   <div class="pdf">
-    <%= link_to " ► #{t('layouts.commonpdf_report')}",
+    <%= link_to " ► #{t('pdf_report')}",
       {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
   </div>
   <% end %>
   </div>
 <% else %>
   <% if permitted_to? :edit3_1,:employee %>
-    <p class="flash-msg"><%= t('add_additional_details.no_additional_details_entered') %> <%= @employee.first_name%>. <%= link_to "#{t('layouts.common.add')}", :controller => "employee", :action => "edit3_1", :id => @employee.id %></p>
+    <p class="flash-msg"><%= t('add_additional_details.no_additional_details_entered') %> <%= @employee.first_name%>. <%= link_to "#{t('.add')}", :controller => "employee", :action => "edit3_1", :id => @employee.id %></p>
   <% else %>
      <p class="flash-msg"><%= t('add_additional_details.no_additional_details_entered') %> <%= @employee.first_name%>. <%#= link_to "ADD", :controller => "employee", :action => "edit3_1", :id => @employee.id %></p>
   <% end %>

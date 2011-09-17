@@ -25,7 +25,7 @@
   <%= hidden_field_tag :salary_date, @salary_date %>
   <%= error_messages_for "created_category",:header_message =>nil  %>
   <div class="label-field-pair">
-    <label for="category_name"><%= t('layouts.common.name') %></label>
+    <label for="category_name"><%= t('name') %></label>
     <div class="text-input-bg"> <%= text_field_tag :name %> </div>
   </div>
   <div class="label-field-pair">
@@ -37,7 +37,7 @@
     <div class="text-input-bg"> <%= check_box_tag :is_deduction %>  </div>
   </div>
   <div id="new-category-submit-button">
-    <%=submit_tag("► #{t('layouts.common.create')}") %>
+    <%=submit_tag("► #{t('create')}") %>
   </div>
 
 

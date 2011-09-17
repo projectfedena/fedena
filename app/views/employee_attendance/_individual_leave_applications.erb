@@ -17,21 +17,21 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<div class="heading">My leave applications</div>
+<div class="heading"><%= t('employee.hr.my_leave_applications') %></div>
 <% unless @applied_leaves == [] %>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">
       <td>
-        Start date
+        <%= t('start_date') %>
       </td>
       <td>
-        End date
+        <%= t('end_date') %>
       </td>
       <td>
-        Status
+        <%= t('status') %>
       </td>
       <td>
-        Remark
+       <%= t('exams.show.remarks') %>
       </td>
     </tr>
     <tr class="tr-blank"></tr>
@@ -42,7 +42,7 @@
         <tr class="tr-<%= cycle('odd', 'even') %>">
           <td class="col-3"><%= link_to "#{l.start_date.strftime("%d/%m/%Y")}",:controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
           <td class="col-3"><%= link_to "#{l.end_date.strftime("%d/%m/%Y")}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
-          <td class="col-1"><%= link_to "Pending",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
+          <td class="col-1"><%= link_to "#{t('employee.hr.pending')}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
           <td class="col-1"> No Remarks</td>
         </tr>
       <% else %>
@@ -50,7 +50,7 @@
           <tr class="tr-<%= cycle('odd', 'even') %>">
             <td class="col-3"><%= link_to "#{l.start_date.strftime("%d/%m/%Y")}", :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
             <td class="col-3"><%= link_to "#{l.end_date.strftime("%d/%m/%Y")}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
-            <td class="col-1"><%= link_to "Approved",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
+            <td class="col-1"><%= link_to "#{t('employee.hr.approved')}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
             <% if l.manager_remark.nil? %>
               <td class="col-1"> No Remarks</td>
             <% else %>

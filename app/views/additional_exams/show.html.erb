@@ -33,7 +33,7 @@
   <% end %>
   <div class="box">
     <div class="bread_crumb">
-      <%= t('layouts.common.courses') %>&raquo;
+      <%= t('courses') %>&raquo;
       <%= @additional_exam_group.batch.course.full_name%> &raquo;
       <%=@additional_exam_group.batch.name %> &raquo;
       <%= link_to "#{t('additional_exam.create_additional_exam.additional_exams')}", batch_additional_exam_groups_path(@batch) %> &raquo;
@@ -46,7 +46,7 @@
 
       <table id="listing" width="100%">
         <tr class="tr-head">
-          <td><%= t('layouts.common.name') %></td>
+          <td><%= t('name') %></td>
           <% unless @additional_exam_group.exam_type == 'Grades' %>
             <td><%= t('exam_groups.new.marks') %></td>
           <% else %>
@@ -81,7 +81,7 @@
         <% end %>
 
       </table>
-      <div id="sub-button"><%= submit_tag "", :value => "► #{t('layouts.common.save')}", :class => "submit_button" %></div>
+      <div id="sub-button"><%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %></div>
     <% end %>
 
     <div class="extender"></div>

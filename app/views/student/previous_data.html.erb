@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/admission/admission_page_logo.jpg" />
- <h1><%= t('layouts.common.admission') %></h1>
+ <h1><%= t('.admission') %></h1>
   <h3><%= t('h3') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -47,24 +47,24 @@
         <div class="extender"></div>
       </div>
       <div class="label-field-pair">
-        <label><%= t('layouts.common.course') %></label>
+        <label><%= t('.course') %></label>
         <div class="text-input-bg"><%= a.text_field :course %></div>
         <div class="extender"></div>
       </div>
       <div class="label-field-pair">
-        <label><%= t('layouts.common.year') %></label>
+        <label><%= t('.year') %></label>
         <div class="text-input-bg"><%= a.text_field :year %></div>
         <div class="extender"></div>
       </div>
       <div class="label-field-pair">
-        <label><%= t('layouts.common.total_mark') %></label>
+        <label><%= t('.total_mark') %></label>
         <div class="text-input-bg"><%= a.text_field :total_mark %></div>
         <div class="extender"></div>
       </div>
       <div class="save-proceed-button">
         <%= link_to "► #{t('skip')}", {:controller => "student", :action => "admission4", :id => @student.id },:class=>'skip' %>
 
-        <%= submit_tag "► #{t('layouts.common.save_and_proceed')}" %>
+        <%= submit_tag "► #{t('.save_and_proceed')}" %>
 
       </div>
     </div>

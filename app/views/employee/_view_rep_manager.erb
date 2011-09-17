@@ -31,7 +31,7 @@
 <div class="edit-pdf-group">
   <% if permitted_to? :change_reporting_manager, :employee %>
     <div class="edit">
-      <%= link_to "► #{t('layouts.common.edit')}",  :controller => "employee", :action => "change_reporting_manager", :id =>@employee.id %>
+      <%= link_to "► #{t('edit')}",  :controller => "employee", :action => "change_reporting_manager", :id =>@employee.id %>
     </div>
   <%end%>
 </div>

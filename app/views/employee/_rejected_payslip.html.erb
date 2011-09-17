@@ -83,7 +83,7 @@
 </ul>
 
 <ul class="item-list">
-  <li class="heading1"><%= t('layouts.common.total') %></li>
+  <li class="heading1"><%= t('total') %></li>
   <li class="listeven">
     <div class="item-name"><b><%= t('department_payslip.net_salary') %></b></div>
     <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span><b> <%=@net_amount%></b></div>
@@ -98,5 +98,5 @@
 </ul>
 
 <div id="submit-button" class ="approve">
-    <%= link_to "#{t('layouts.common.edit')}", {:controller=>"employee", :action=>"edit_rejected_payslip",:id =>@employee.id,:id2 => @salary_date } %>
+    <%= link_to "#{t('edit')}", {:controller=>"employee", :action=>"edit_rejected_payslip",:id =>@employee.id,:id2 => @salary_date } %>
   </div>

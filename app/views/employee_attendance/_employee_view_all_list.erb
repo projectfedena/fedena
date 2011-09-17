@@ -19,9 +19,9 @@
 
 <table id="listing" width="100%">
   <tr class="tr-head">
-    <td>Name</td>
-    <td>Emp. Number</td>
-    <td>Department</td>
+    <td><%= t('name') %></td>
+    <td><%= t('employee.admission1.employee_number') %></td>
+    <td><%= t('department') %></td>
   </tr>
 <% @employees.each do |e| %>
   <tr class="tr-<%= cycle('odd','even') %>">

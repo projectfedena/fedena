@@ -25,12 +25,12 @@
       <div class ="comment"><%= t('leave_field_blank') %>.</div>
     </div>
     <div class="label_field">
-      <label for="amount"><%= t('fees_index.layouts.common.amount') %></label>
+      <label for="amount"><%= t('fees_index..amount') %></label>
       <div class="text_field_bg"><%= f.text_field :amount %></div>
     </div>
     <div class="label_field">
       <label for="amount"><%= t('fees_index.select_fee_category') %></label>
-      <div class="text_field_bg"><%= select :element, :parent_id, @components.map{|c| [c.label, c.id]}, :prompt => t('layouts.common.select_a_category') %></div>
+      <div class="text_field_bg"><%= select :element, :parent_id, @components.map{|c| [c.label, c.id]}, :prompt => t('.select_a_category') %></div>
     </div>
 
     <div class="label_field">

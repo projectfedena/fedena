@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= t('layouts.common.employee') %></h1>
+  <h1><%= t('employee') %></h1>
   <h3><%= t('department_wise_payslip') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -56,8 +56,8 @@
         <% grouped_individual_payslip_categories = @payslips[:individual_payslip_category] unless @payslips[:individual_payslip_category].blank?%>
         <table id="listing" width="100%">
           <tr class="tr-head">
-            <td><%= t('layouts.common.sl_no') %></td>
-            <td><%= t('layouts.common.employee') %></td>
+            <td><%= t('sl_no') %></td>
+            <td><%= t('employee') %></td>
             <td><%= t('employee_no') %></td>
             <td><%= t('net_salary') %></td>
             <td><%= t('payslip_status') %></td>

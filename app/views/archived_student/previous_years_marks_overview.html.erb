@@ -62,11 +62,11 @@
       </div>
       <table id="listing" width="100%">
         <tr class="tr-head">
-          <td><%= t('layouts.common.subject') %></td>
+          <td><%= t('subject') %></td>
           <% @exam_groups.each do |exam_group| %>
             <td><%= exam_group.name %></td>
           <% end %>
-          <td><%= t('layouts.common.total') %></td>
+          <td><%= t('total') %></td>
         </tr>
 
         <% @subjects.each do |subject| %>
@@ -103,7 +103,7 @@
 
         <% end %>
         <tr class="tr-head">
-          <td><%= t('layouts.common.total') %></td>
+          <td><%= t('total') %></td>
           <% @max_total = 0 %>
           <% @marks_total = 0 %>
 

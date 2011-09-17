@@ -19,8 +19,8 @@
 
  <div id="content-header">
     <img src="/images/show_settings.png" />
-  <h1><%= t('courses.manage_batches.batch_transfer') %></h1>
-  <h3><%= t('index.transfer') %></h3>
+  <h1><%= t('batch_transfer') %></h1>
+  <h3><%= t('transfer') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -41,12 +41,12 @@
           <div class="text-input-bg"><%= select :transfer, :to, @batches.map{ |b| [b.full_name, b.id] } %></div>
         </div>
 
-  <p><%= t('index.uncheck_message') %>.</p>
+  <p><%= t('uncheck_message') %>.</p>
 
     <ul id="category-list">
         <li class="listheading">
-      <div class="heading-no"><%= t('layouts.common.adm_no') %></div>
-    <div class="category-name"><%= t('layouts.common.name') %></div>
+      <div class="heading-no"><%= t('adm_no') %></div>
+    <div class="category-name"><%= t('name') %></div>
   </li>
   <% @batch.students.each do |student| %>
   <li class="list<%=cycle('odd', 'even')%>">
@@ -57,7 +57,7 @@
   <% end %>
 </ul>
 
- <%= submit_tag "", :value => "► #{t('layouts.common.save')}", :class => "submit_button" %>
+ <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
 
 <% end %>
 

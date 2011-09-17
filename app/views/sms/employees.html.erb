@@ -32,11 +32,11 @@
         :before => "Element.show('loader2')",
         :success => "Element.hide('loader2')" do |x| %>
    <div class="label-field-pair">
-     <div class="label-container"><label><%= t('layouts.common.select_a_department') %>:</label> </div>
+     <div class="label-container"><label><%= t('.select_a_department') %>:</label> </div>
     <div class="text-input-bg">
 <%= select :send_sms, :batch_id,
         EmployeeDepartment.all.map {|b| [b.name, b.id]},
-        {:prompt => "#{t('layouts.common.select_a_department')}"},
+        {:prompt => "#{t('.select_a_department')}"},
         {:onChange => "#{remote_function(:url => {:action => "list_employees"},
         :with => "'dept_id='+value",
         :before => "Element.show('loader')",

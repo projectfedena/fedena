@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <% unless @normal_subjects.nil? %>
-<h4><%= t('subject_transfer.normal_subjects') %></h4>
+<h4><%= t('normal_subjects') %></h4>
   <ul id="category-list">
   <% @normal_subjects.each do |sub| %>
     <li id="subject-<%=sub.id%>" class="list<%=cycle('odd', 'even')%>">

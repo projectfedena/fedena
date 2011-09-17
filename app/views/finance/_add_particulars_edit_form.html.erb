@@ -52,5 +52,5 @@
     <div class="label-container"><label><%= t('fees_defaulters.fee_amount') %> :</label> </div>
     <div class="input-container"><%= form.text_field :amount, :value => @finance_fee_particulars.amount, :disabled => true   %></div>
    </div>
-  <%=  submit_tag "► #{t('layouts.common.update')}",:class=>'submit_button' %>
+  <%=  submit_tag "► #{t('update')}",:class=>'submit_button' %>
 <% end %>

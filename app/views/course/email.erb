@@ -31,17 +31,17 @@
   <% form_for :email do |f| %>
 
     <div class="label-field-pair">
-      <label for="email_subject"><%= t('layouts.common.subject') %></label>
+      <label for="email_subject"><%= t('subject') %></label>
       <div class="text-input-bg"><%= f.text_field 'subject' %></div>
     </div>
 
     <div class="label-field-pair">
-      <label for="email_recipients"><%= t('layouts.common.recipient') %></label>
+      <label for="email_recipients"><%= t('recipient') %></label>
       <div class="text-input-bg"><%= select 'email', 'recipients', ['Students', 'Guardians', 'Students & Guardians'] %></div>
     </div>
 
     <div class="message-area">
-      <label for="email_message"><%= t('layouts.common.message') %></label>
+      <label for="email_message"><%= t('message') %></label>
       <%= f.text_area 'message' %>
     </div>
 

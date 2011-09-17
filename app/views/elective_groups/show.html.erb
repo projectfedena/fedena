@@ -19,15 +19,15 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('layouts.common.batches') %></h1>
-  <h3><%= "#{t('index.show_elective')}" %></h3>
+  <h1><%= t('batches') %></h1>
+  <h3><%= "#{t('show_elective')}" %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to_remote  t('layouts.common.add'), :url => { :controller=>"subjects",:action => 'new', :id => @batch,:id2=>@elective_group} %></li>
+    <li><%= link_to_remote  t('add'), :url => { :controller=>"subjects",:action => 'new', :id => @batch,:id2=>@elective_group} %></li>
   </ul>
 </div>
 <div id="page-yield">
@@ -36,10 +36,10 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
   <div class="bread_crumb">
-    <%= link_to t('layouts.common.course'), courses_path %> &raquo;
+    <%= link_to t('course'), courses_path %> &raquo;
     <%= link_to @course.full_name, @course %> &raquo;
-    <%= link_to "#{t('layouts.common.batch')} #{@batch.name}", [@course, @batch] %> &raquo;
-    <%= link_to "#{t('batches.show.electives')}", batch_elective_groups_path(@batch) %> &raquo;
+    <%= link_to "#{t('batch')} #{@batch.name}", [@course, @batch] %> &raquo;
+    <%= link_to "#{t('electives')}", batch_elective_groups_path(@batch) %> &raquo;
     <%= @elective_group.name %>
   </div>
 
@@ -54,13 +54,13 @@
           <li id="subject-<%= subject.id %>" class="list<%= cycle('even','odd')%>" >
             <div class="category-name"><%= subject.name %></div>
             <div class="category-code"><%= subject.code %></div>
-            <div class="category-edit"><%= link_to_remote("#{t('layouts.common.edit')} ",
+            <div class="category-edit"><%= link_to_remote("#{t('edit')} ",
                 :url => { :controller=>"subjects",:action => 'edit', :id =>subject,:id2=>@elective_group},
                 :method => 'get' ) %> </div>
-            <div class="category-delete"><%= link_to_remote('layouts.common.delete',
+            <div class="category-delete"><%= link_to_remote('delete',
                 :url => subject_path(subject),
                 :method => 'delete',
-                :confirm => t('batches.show.are_you_sure'),
+                :confirm => t('are_you_sure'),
                 :update => "subject-#{subject.id}") %> </div>
             <div class="category-assign"><%= link_to " #{t('index.assign_student')}", :controller=>"student", :action=>"electives",:id=>@batch,:id2=>subject.id%>
             </div>

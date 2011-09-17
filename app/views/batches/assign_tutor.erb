@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/show_settings.png" alt="" />
-  <h1><%= t('layouts.common.batch') %></h1>
-  <h3><%= t('show.assign_tutor') %></h3>
+  <h1><%= t('batch') %></h1>
+  <h3><%= t('assign_tutor') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -33,9 +33,9 @@
   </ul>
 
   <div class="label-field-pair">
-    <label for="department_name"><%= t('layouts.common.department') %></label>
+    <label for="department_name"><%= t('department') %></label>
     <div class="text-input-bg"><%= select :subject_assignment, :department_id, @departments.map { |s| [s.name, s.id] },
-        {:prompt => "#{t('layouts.common.select_a_department')}"},
+        {:prompt => "#{t('select_a_department')}"},
         {:onChange => "#{remote_function(:url => {:action => "update_employees"},
         :with => "'department_id='+value+'&batch_id=#{@batch.id}&'+")}"} %>
     </div>

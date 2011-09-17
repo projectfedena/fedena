@@ -28,22 +28,22 @@
 
 
     <div class="label-field-pair">
-      <div class="label-container"><%= f.label :"#{t('layouts.common.name')}" %></div>
+      <div class="label-container"><%= f.label :"#{t('.name')}" %></div>
       <div class="input-container"><%= f.text_field :name %></div>
     </div>
 
     <div class="label-field-pair">
-      <div class="label-container"><%= f.label :"#{t('layouts.common.description')}" %></div>
+      <div class="label-container"><%= f.label :"#{t('.description')}" %></div>
       <div class="input-container"><%= f.text_field :description %></div>
     </div>
 
     <div class="label-field-pair">
-      <div class="label-container"><label><%= t('layouts.common.select_a_batch') %> :</label></div>
+      <div class="label-container"><label><%= t('.select_a_batch') %> :</label></div>
       <%#= f.select :batch_id, @batches.map { |c| [c.full_name, c.id] },{:prompt => 'Select Batch'} %>
       <div class="batches">
          <div class="sel-list">
-           <%= t('layouts.common.select') %>: <%= link_to_function t('layouts.common.all'), "$$('input.MB_focusable').each(function(checkbox) { checkbox.checked = true; });" %>,
-      <%= link_to_function t('layouts.common.none'), "$$('input.MB_focusable').each(function(checkbox) { checkbox.checked = false; });" %>
+           <%= t('.select') %>: <%= link_to_function t('.all'), "$$('input.MB_focusable').each(function(checkbox) { checkbox.checked = true; });" %>,
+      <%= link_to_function t('.none'), "$$('input.MB_focusable').each(function(checkbox) { checkbox.checked = false; });" %>
     </div>
       <% @batches.each do |f| %>
         <div class="each_batch">
@@ -52,7 +52,7 @@
       <% end %></div>
     </div>
 
-    <%=  submit_tag "► #{t('layouts.common.save')}",:class=>'submit_button' %>
+    <%=  submit_tag "► #{t('.save')}",:class=>'submit_button' %>
 
 
   <% end %>

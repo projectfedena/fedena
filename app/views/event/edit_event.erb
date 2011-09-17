@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/manage_news/manage_news_logo.png" />
-  <h1>Events</h1>
-  <h3>Step 1 - Edit Event</h3>
+  <h1><%= t('events') %></h1>
+  <h3><%= t('edit_event') %></h3>
   <div id="app-back-button">
        <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -30,29 +30,29 @@
   <% form_for :event do |f| %>
     <%= error_messages_for 'events' %>
     <div class="label-field-pair">
-      <label for="start-date">Start Date:</label>
+      <label for="start-date"><%= t('start_date') %>:</label>
       <div class="text-input-bg"><%= calendar_date_select_tag "event[start_date]", @event.start_date, :time => true%></div>
     </div>
     <div class="label-field-pair">
-      <label for="end-date">End Date:</label>
+      <label for="end-date"><%= t('end_date') %>:</label>
       <div class="text-input-bg"><%= calendar_date_select_tag "event[end_date]", @event.end_date, :time => true  %></div>
     </div>
     <div class="label-field-pair">
-      <label for="title">Title:</label>
+      <label for="title"><%= t('title') %>:</label>
       <div class="text-input-bg"><%= f.text_field :title %></div>
     </div>
     <div class="label-field-pair">
-      <label for="description">  Description :</label>
+      <label for="description"><%= t('description') %>:</label>
     </div>
     <%= f.text_area "description" %>
     <div class="label-field-pair">
-      <label for="is-holiday">Is Holiday?</label>
+      <label for="is-holiday"><%= t('is_holiday') %></label>
       <%= f.check_box :is_holiday %>
     </div>
     <div class="label-field-pair">
-      <label for="end-date"> Event common to all</label>
+      <label for="end-date"> <%= t('common_event') %></label>
       <%= f.check_box :is_common %>
     </div>
-    <%= f.submit "► Update Event" %>
+    <%= f.submit "►#{t('update_event')}" %>
   <% end %>
 </div>

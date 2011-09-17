@@ -15,16 +15,16 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 <div class="name"><%= t('payroll.add_category.category_name') %></div><div class="val"><span>:</span><%= @additional_category.name %></div>
-<div class="name"><%= t('layouts.common.description') %></div><div class="val"><span>:</span><%= @additional_category.description %></div>
+<div class="name"><%= t('description') %></div><div class="val"><span>:</span><%= @additional_category.description %></div>
 
 <% unless @additional_category.batch.nil? %>
   <div class="name"><%= t('student.profile.course') %></div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
 <% else %>
   <div class="name"><%= t('student.profile.course') %></div><div class="val"><span>:</span>NIL</div>
 <% end %>
-<div class="name"><%= t('layouts.common.start_date') %></div><div class="val"><span>:</span><%= @collection_date.start_date %></div>
-<div class="name"><%= t('layouts.common.end_date') %></div><div class="val"><span>:</span><%= @collection_date.end_date%></div>
-<div class="name"><%= t('layouts.common.due_date') %></div><div class="val"><span>:</span><%= @collection_date.due_date%></div>
+<div class="name"><%= t('start_date') %></div><div class="val"><span>:</span><%= @collection_date.start_date %></div>
+<div class="name"><%= t('end_date') %></div><div class="val"><span>:</span><%= @collection_date.end_date%></div>
+<div class="name"><%= t('due_date') %></div><div class="val"><span>:</span><%= @collection_date.due_date%></div>
 <br/>
 
 <div class="linker"><%= link_to_remote 'Add Particular', :url => { :action => 'add_particulars_new',:id => @collection_date} %>
@@ -36,11 +36,11 @@
 <% unless @particulars.empty? %>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">
-      <td><%= t('layouts.common.sl_no') %></td>
+      <td><%= t('sl_no') %></td>
       <td><%= t('master_fees.particulars') %></td>
       <td><%= t('fees_submission_index.student_category') %></td>
       <td><%= t('student_attendance.student.admission_no') %></td>
-      <td><%= t('layouts.common.amount') %> (<%= currency %>)</td>
+      <td><%= t('amount') %> (<%= currency %>)</td>
       <td><%= t('fees_defaulters.created_date') %></td>
       <td></td>
     </tr>
@@ -63,11 +63,11 @@
         <td class="col-3"><%= fees.created_at.strftime("%m-%d-%Y") %></td>
         <td class="col-1">
           <%  unless @additional_category.check_fee_collection_for_additional_fees == false %>
-            <span class="small"> <%= link_to_remote t('layouts.common.delete'), :confirm=>t('fees_defaulters.delete_this_particular'),:url => { :action => 'add_particulars_delete',:id => fees.id} %></span>
-            <span class="small"> <%= link_to_remote 'Edit', :url => { :action => 'add_particulars_edit',:id => fees.id} %></span>
+            <span class="small"> <%= link_to_remote t('delete'), :confirm=>t('fees_defaulters.delete_this_particular'),:url => { :action => 'add_particulars_delete',:id => fees.id} %></span>
+            <span class="small"> <%= link_to_remote t('edit'), :url => { :action => 'add_particulars_edit',:id => fees.id} %></span>
           <% else %>
-            <span class="small-strike"><%= t('fees_defaulters.delete') %></span>
-            <span class="small-strike">Edit</span>
+            <span class="small-strike"><%= t('delete') %></span>
+            <span class="small-strike"><%= t('edit') %></span>
           <% end %>
         </td>
       </tr>
@@ -84,4 +84,4 @@
   </table>
 
 <% end%>
-<%= link_to t('layouts.common.back'),{:action => 'additional_fees_list'},:class=>'user_button' %>
+<%= link_to t('.back'),{:action => 'additional_fees_list'},:class=>'user_button' %>

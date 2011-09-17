@@ -34,7 +34,7 @@
   <div id="box">
     <% if permitted_to? :settings, :employee %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('layouts.common.setting')}", :controller=>"employee", :action=>"settings"%></div>
+        <div class="link-heading"><%= link_to "#{t('setting')}", :controller=>"employee", :action=>"settings"%></div>
         <div class="link-descr"><%= "#{t('hr_setting')}" %>.</div>
       </div>
     <%end%>

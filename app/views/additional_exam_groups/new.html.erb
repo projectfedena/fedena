@@ -33,9 +33,9 @@
   <% end %>
 
   <div class="bread_crumb">
-    <%= t('layouts.common.courses') %> &raquo;
+    <%= t('courses') %> &raquo;
     <%= @course.full_name %> &raquo;
-    <%="#{t('layouts.common.batch')} #{@batch.name}" %> &raquo;
+    <%="#{t('batch')} #{@batch.name}" %> &raquo;
     <%= link_to "#{t('additional_exam.create_additional_exam.additional_exams')}", batch_additional_exam_groups_path(@batch) %> &raquo;
     <%= t('new_additional_exam') %>
   </div>
@@ -49,7 +49,7 @@
       <%= error_messages_for :additional_exam_group %>
       <% form_remote_for :exam_option, :url => {:controller=>'additional_exam',:action => 'update_exam_form',:batch=>@batch} do |form| %>
         <div class="label-field-pair">
-          <label for="exam_name"><%= t('layouts.common.name') %></label>
+          <label for="exam_name"><%= t('name') %></label>
           <% if params[:ename].nil?  %>
             <% @ename = "" %>
           <% else %>
@@ -63,8 +63,8 @@
         </div>
       <div id="list">
   <div class="sel-list">
-<%= t('layouts.common.select') %>: <%= link_to_function t('layouts.common.all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
-<%= link_to_function "#{t('layouts.common.none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+<%= t('select') %>: <%= link_to_function t('all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+<%= link_to_function "#{t('none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
 </div>
         <% @students.each do |student| %>
 
@@ -74,7 +74,7 @@
             </li>  </div>
         <% end %>
       </div>
-        <%= submit_tag "", :value => "► #{t('layouts.common.save')}", :class => "submit_button" %>
+        <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
         <%  #  form.submit("Save") %>
       <%end%>
     </div>

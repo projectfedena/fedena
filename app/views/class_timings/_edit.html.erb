@@ -32,19 +32,19 @@
     <div id="form-errors"></div>
 
     <div class="label-field-pair">
-      <label for="name"><%= t('layouts.common.name') %></label>
+      <label for="name"><%= t('name') %></label>
       <div class="text-input-bg"><%= f.text_field :name %></div>
     </div>
 
     
 
     <div class="label-field-pair">
-      <label for="name"> <%= t('layouts.common.start_time') %> </label>
+      <label for="name"> <%= t('start_time') %> </label>
     <div class="time-select-field"><%= time_select :class_timing, :start_time, {:minute_step => 5} %></div>
     </div>
 
     <div class="label-field-pair">
-      <label for="name"><%= t('layouts.common.end_time') %></label>
+      <label for="name"><%= t('end_time') %></label>
     <div class="time-select-field"><%= time_select :class_timing, :end_time, {:minute_step => 5} %></div>
     </div>
 
@@ -56,7 +56,7 @@
       <% end %>
     </div>
 
-    <%= submit_tag "► #{t('layouts.common.save')}", :class => 'submit-button' %>
+    <%= submit_tag "► #{t('save')}", :class => 'submit-button' %>
 
 
   <% end %>

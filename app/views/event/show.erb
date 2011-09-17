@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/manage_news/manage_news_logo.png" />
-  <h1><%= t('index.event') %></h1>
-  <h3><%= t('index.confirmation') %></h3>
+  <h1><%= t('event') %></h1>
+  <h3><%= t('confirmation') %></h3>
   <div id="app-back-button">
     <%= link_to image_tag("/images/buttons/back.png", :border => 0), :back %>
   </div>
@@ -32,23 +32,23 @@
 
 
     <div class="detail-box">
-      <div class="label">  <%= t('news.all.title') %> :</div>
+      <div class="label">  <%= t('title') %> :</div>
       <div class="description">
         <%= @event.title %>
       </div>
     <div class="extender"></div>
-      <div class="label"><%= t('layouts.default.description') %>:</div>
+      <div class="label"><%= t('description') %>:</div>
       <div class="description">
         <%= @event.description %>
       </div>
     <div class="extender"></div>
       <div class="label">
-         <%= t('layouts.common.start_date') %> :</div>
+         <%= t('start_date') %> :</div>
       <div class="description">
         <%= @event.start_date %>
       </div>
     <div class="extender"></div>
-      <div class="label"><%= t('layouts.common.end_date') %>:</div>
+      <div class="label"><%= t('end_date') %>:</div>
       <div class="description">
         <%= @event.end_date %>
       </div>
@@ -57,9 +57,9 @@
    
     
     <div class="other-events">
-      <div class="head"><%= t('index.other_event') %></div>
+      <div class="head"><%= t('other_event') %></div>
 <% if  @other_events.empty? %>
- <%= t('index.no_event_scheduled') %>...
+ <%= t('no_event_scheduled') %>...
 <% end %>
 
 <% unless @other_events.empty? %>
@@ -115,14 +115,14 @@
 
       <% else %>
 
-        => <%= t('index.common_to_all_message') %><br/><br/>
+        => <%= t('common_to_all_message') %><br/><br/>
 
       <% end %>
 
     <% unless @command == 'edit' %>
-    <%= link_to "► #{t('confirm_event.confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create'%>  <%= link_to "► Cancel", { :action=>"cancel_event" , :id=>@event.id },  :class=> 'create' %>
+    <%= link_to "► #{t('confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create'%>  <%= link_to "► Cancel", { :action=>"cancel_event" , :id=>@event.id },  :class=> 'create' %>
     <% else %>
-    <%= link_to "► #{t('confirm_event.confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create'%>  <%= link_to "► Cancel", { :action=>"edit_event" , :id=>@event.id },  :class=> 'create' %>
+    <%= link_to "► #{t('confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create'%>  <%= link_to "► Cancel", { :action=>"edit_event" , :id=>@event.id },  :class=> 'create' %>
     <% end %>
     </div>
 </div>

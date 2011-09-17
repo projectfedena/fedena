@@ -34,9 +34,9 @@
 
   <div class="box">
     <div class="bread_crumb">
-         <%= "#{t('layouts.common.course')}"%> &raquo;
+         <%= "#{t('course')}"%> &raquo;
         <%=  @course.full_name%> &raquo;
-        <%= "#{t('layouts.common.batch')} #{@batch.name}" %> &raquo;
+        <%= "#{t('batch')} #{@batch.name}" %> &raquo;
         <%= link_to "#{t('additional_exam.create_additional_exam.additional_exams')}", batch_additional_exam_groups_path(@batch) %> &raquo;
        <%= t('edit_additional_exam') %>
         </div>
@@ -48,10 +48,10 @@
 
 
       <div class="label-field-pair">
-        <label for="additional_exam_name"><%= f.label "#{t('layouts.common.name')}" %></label>
+        <label for="additional_exam_name"><%= f.label "#{t('name')}" %></label>
         <div class="text-input-bg"> <%= f.text_field :name %></div>
       </div>
-      <div id="sub_button"><%= submit_tag "", :value => "► #{t('layouts.common.save')}", :class => "submit_button" %></div>
+      <div id="sub_button"><%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %></div>
 
 
 

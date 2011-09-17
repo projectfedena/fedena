@@ -26,7 +26,7 @@
           <div style='width:12px;height:12px;background:#0C6C92; -moz-border-radius:2px;  -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div>
           <%= h.title %></div>
         <div class="extender"></div>
-        <div class="desc"><%= h.description %><br /><%= t('layouts.common.start_time') %> :<%= I18n.l(h.start_date,:format=>"%I:%M %p") %><br /><%= t('layouts.common.end_time') %> :<%= I18n.l(h.end_date,:format=>"%I:%M %p") %></div>
+        <div class="desc"><%= h.description %><br /><%= t('start_time') %> :<%= I18n.l(h.start_date,:format=>"%I:%M %p") %><br /><%= t('end_time') %> :<%= I18n.l(h.end_date,:format=>"%I:%M %p") %></div>
         <div class="extender"></div>
       </div>
     <% end %>

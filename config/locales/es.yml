@@ -292,48 +292,166 @@ es: # locale
     batch_transfers:
       errors_found : "A raíz de los errores se encontraron"
 
-#additional_exam controller translation
-    additional_exam:
-      publish:
-         additional_exam : 'Examen adicional'
+    sl_no : 'Sl No.'
+    name : 'Nombre'
+    adm_no : 'Adm No.'
+    view_profile : 'Ver Perfil'
+    select_a_category : 'Seleccionar una categoría'
+    select_a_batch : 'Seleccionar un grupo'
+    select_a_course : 'Seleccionar un Curso'
+    create : 'Crear'
+    student : 'Estudiante'
+    course_and_batch : 'Curso y grupo'
+    subject : 'Asignatura'
+    message : 'Mensaje'
+    recipient : 'Destinatario'
+    guardian : 'Guardián'
+    course : 'Curso'
+    courses : 'cursos'
+    batch : 'Grupo'
+    remove : 'Eliminar'
+    delete : 'Eliminar'
+    admission_number : 'Numero de Admisión'
+    all : 'TODOS'
+    select : 'Seleccionar'
+    option : 'Opción'
+    status : 'Estado'
+    present : 'Presente'
+    former : 'Ex'
+    search : 'Buscar'
+    pdf_report : 'Reporte PDF'
+    category : 'Categoría'
+    no_students_found : 'Ningún estudiante encontrado'
+    finish : 'Finalizar'
+    year : 'Año'
+    total_mark : 'Calificación total'
+    total_marks : 'puntuación total'
+    save_and_proceed : 'Guardar y Proceder'
+    edit : 'Editar'
+    save : 'Guardar'
+    setting : 'Configuración'
+    active : 'Activo'
+    inactive : 'Inactivo'
+    update : 'Actualizar'
+    admin : 'Admin'
+    employee : 'Empleado'
+    username: "Nombre de usuario"
+    user : 'usuario'
+    no_users : 'Ningún usuario encontrado'
+    select_a_department : 'Seleccionar un departamento'
+    add : 'Agregar'
+    none : 'Ninguno'
+    submit : 'Ingresar'
+    manage : 'Gestionar'
+    admission : 'Admisión'
+    type : 'Tipo'
+    currency : 'Moneda'
+    start_date : 'Fecha de inicio'
+    end_date : 'Fecha de finalización'
+    exam : 'Examen'
+    date : 'Fecha'
+    go : 'Ir'
+    dob : 'Fecha de Nacimiento'
+    department : 'Departamento'
+    assign : 'Asignar'
+    start_time : 'Hora de inicio'
+    end_time : 'Hora de finalización'
+    operations : 'Operaciones'
+    management : 'Gestión'
+    description : 'Descripción'
+    created  : 'Creado'
+    for : 'Para'
+    amount : 'Cantidad'
+    back : 'Atras'
+    due_date : 'Fecha de Vencimiento'
+    n_a : 'No aplica'
+    batches : 'Grupos'
+    delete_confirm_msg : '¿Está seguro?'
+    new : 'Nuevo'
+    and : 'y'
+    wise : 'según'
+    assign_all: 'Asignar TODOS'
+    remove_all: 'Eliminar TODOS'
+    select_all : "Seleccionar TODOS"
+    total : "Total"
+    all : 'TODOS'
+    teacher : "Profesor"
+    total_average : "Promedio Total"
+    continue : "Continuar"
+    email : "Email"
+    web_address : "Direccion Web"
+    jan           : 'Ene'
+    feb           : 'Feb'
+    mar           : 'Mar'
+    apr           : 'Abr'
+    may           : 'Mayo'
+    jun           : 'Jun'
+    jul           : 'Jul'
+    aug           : 'Ago'
+    sept          : 'Sep'
+    oct           : 'Oct'
+    nov           : 'Nov'
+    dec           : 'Dici'
+    are_you_completely_sure : '¿Está usted completamente seguro?'
+    common: 'Common'
+    done : 'hecho'
+    home : 'Inicio'
+    general : 'General'
+    show : 'Mostrar'
+    electives : 'electivas'
+    particular: 'Particular'
+    category: 'Categoría'
+    code : 'código'
+    normal_subject : 'Asignatura normal'
+    normal_subjects : 'Asignaturas normal'
+    batch_transfer : 'Promoción de grupo'
+    max_weekly_class : 'Máximo de clases semanales'
+    no_exam : 'sin examen'
+    assign_student : "Asignar estudiante"
+    select_department : "Seleccionar departamento de empleados"
+    events : 'Eventos'
+    title : 'Título'
+    is_holiday : 'Es día festivo?'
+    confirm : 'confirmar'
+    sunday : 'Domingo'
+    monday : 'Lunes'
+    tuesday : 'Martes'
+    wednesday : 'Miércoles'
+    thursday : 'Jueves'
+    friday : 'Viernes'
+    saturday : 'Sábado'
+    dom : 'Dom'
+    mon : 'Lun'
+    tue : 'Mar'
+    wed : 'Mie'
+    thu : 'Jue'
+    fri : 'Vie'
+    sat : 'Sab'
+    exams : 'Exámenes'
+    attendance: "Asistencia"
+    father_name : "Nombre del Padre"
+    mother_name : "Nombre de la Madre"
+    spouse_name : "Nombre del Cónyuge"
 
-    archived_student:
-      graph_for_generated_report:
-        student_marks : "Notas"
-        class_average : 'Promedio del grupo'
 
 #configuration controller translation
     configuration:
+      configuration : 'Configuración'
+      general_settings : "Configuración general"
       index:
-        configuration : 'Configuración'
-        home : 'Inicio'
-        general : 'General'
         manage_course_batch : "Gestionar Curso/Grupo"
         manage_student_category : "Gestionar Categoría de Estudiantes"
         manage_subject : "Gestionar Asignaturas"
         add_admission_additional_detail : "Añadir  Información Adicional"
-        general_settings : "Configuración general"
-        smtp_settings : "Configuración SMTP"
         link_desc1 : 'Añadir un nuevo curso o grupo para este año académico.'
         link_desc2 : 'Gestionar asignaturas correspondientes a los diferentes cursos.'
         link_desc3 : 'Configurar información general relacionada con la institución, la asistencia, etc'
         link_desc4 : 'Configurar información adicional para la admisión.'
         link_desc5 : 'Activar/Desactivar configuración SMS'
         link_desc6 : "Agregar Categoría del Estudiante"
-        link_desc7 : "Configurar SMTP"
-        link_desc8 : "Database Backup Management"
         sms_module : 'Módulo SMS'
-        database_backup: 'Base de datos de copia de seguridad'
-        export: 'de exportación'
-        schedule_your_backup_now : 'Programe su copia de seguridad ahora :'
-        backup_now : 'Copia de seguridad ahora'
-        do_you_want_backup_now : 'Quieres copia de seguridad ahora?'
-        download_backups : 'Descarga copias de seguridad'
-        download: 'Descargar'
-
 
       settings:
-        school : 'Institución'
         school_college_name : "Nombre de la Institución"
         school_college_address : "Dirección de la Institución"
         school_college_phone : "Teléfono de la Institución"
@@ -344,64 +462,44 @@ es: # locale
         network_state : 'Estado de red'
         student_admission_auto : 'Permitir autoincremento del No. de admisión del estudiante.'
         employee_admission_auto : 'Permitir autoincremento del No. de admisión del empleado.'
-        user_language : 'Idioma'
-        license_number : 'Licencia de funcionamiento No'
-        license_delivery_year : 'Año de Expedición'
-        report_header : 'Imprimir encabezado del informe y pie de página'
-        exam_grouping_type : "Examen de Tipo de Agrupación"
         finance_year_start_date : 'Año Finanzas fecha de inicio'
         finance_year_end_date : 'Año Finanzas fecha final'
 
 
 #courses controller translation
     courses:
+      manage_batch : "Gestionar Grupo"
+      manage_course : "Gestionar Curso"
+      course_name : "Nombre del curso"
+      section_name : "Nombre de sección"
+
       index:
-        course_name : "Nombre del curso"
-        section_name : "Nombre de sección"
-        manage_course : "Gestionar Curso"
-        sort_order : "Orden de Clasificación"
-        manage_batch : "Gestionar Grupo"
         link_desc1: 'Gestionar cursos y crear grupos'
         link_desc2: 'Gestionar grupos activos'
-
-      edit:
-        code : 'Código'
-        section : 'Sección'
 
       new:
         initial_batch: 'Información inicial de grupo'
         active_batches : 'Grupos activos'
-        show : 'Mostrar'
 
       manage_batches:
         grading_system : 'Desempeños'
-        batch_transfer : 'Promoción de grupo'
+        
 
 #batches controller translation
     batches:
+      assign_new : 'Asignar nuevo'
+      assign_tutor : 'Asignar Tutor'
       show:
         subject_transfer_message : 'Las siguientes Asignaturas han sido importadas'
-        assign_tutor : 'Asignar Tutor'
         fee_import_message : 'Las siguientes categorías de Tarifas han sido importadas'
-        electives : 'electivas'
-
+        
       new:
         import_subject : 'Importar Asignaturas del grupo previas'
         import_fees : 'Importar Tarifas Mayores previas'
-        assign_new : 'Asignar nuevo'
         no_employee_found : 'Ningún empleado encontrado.'
         new_batch : "Nuevo grupo"
         Not applicable : "No aplica"
-        Morning : "Mañana"
-        Afternoon : "Tarde"
-        Night : "Noche"
-        Morning and afternoon : "Mañana y tarde"
-        School_day : "Jornada"
-
-      create:
-        particular: 'Particular'
-        category: 'Categoría'
-
+        
       assign_tutor:
         currently_assigned : 'Actualmente asignado'
         no_employee_assigned : 'Ningún empleado asignado todavía.'
@@ -409,43 +507,29 @@ es: # locale
       edit:
         edit_batch : "Editar grupo"
 
-#    sms:
-#      students:
-#        sms_sent: 'SMS enviados exitosamente a los estudiantes seleccionados y sus guardianes'
-#      batches:
-#        sms_sent_selected_course: 'SMS enviados exitosamente a los estudiantes (guardianes) del curso seleccionado'
-#      employees:
-#        sms_sent_to_employee: 'SMS enviados exitosamente a los empleados seleccionados'
-#      departments:
-#        sent_to_selected_department : 'SMS enviados exitosamente a los empleados del departamento seleccionado'
-
 #batch_transfers controller
     batch_transfers:
+      transfer: 'Transferir'
+      graduation : 'Graduación'
+      uncheck_message : 'Desmarque los estudiantes que no van a ser transferidos'
+      graduating_batch : 'Grupo graduandose'
+      generate_tc_for_all : 'Generar Certificado de Estudios para TODOS'
+
       subject_transfer:
-        normal_subject : 'Asignatura normal'
-        normal_subjects : 'Asignaturas normal'
         assign_old_batch_subject : 'Asignar asignaturas de grupo previas'
         assign_subject : "Asignar Asignatura"
         add_elective : "Añadir electiva"
         previous_batch : "Grupo previo"
+
       assign_all_previous_batch_subjects:
         the_subject : 'La asignatura'
         has_been_added_to_batch : 'se ha añadido al grupo'
         already_has_subject : 'ya tiene una asignatura con el nombre de'
         subjects_assigned : 'Las asignaturas han sido asignadas.'
 
-      new_subject:
-        max_weekly_class : 'Máximo de clases semanales'
-        no_exam : 'Sin examen'
-
       index:
-        transfer: 'Transferir'
-        graduation : 'Graduación'
-        graduating_batch : 'Grupo graduandose'
-        generate_tc_for_all : 'Generar Certificado de Estudios para TODOS'
         graduation_message : "Estos estudiantes serán ahora trasferidos a la base de datos de ex estudiantes. Agregue una descripción. Por ejemplo, Grado 11 Graduado, 2010."
         status_description : 'Descripción de estado'
-        uncheck_message : 'Desmarque los estudiantes que no van a ser transferidos'
         previous : 'Previo'
 
       show:
@@ -454,19 +538,20 @@ es: # locale
 
 #elective_group controller translation
     elective_groups:
+      new_elective : "Nueva electiva"
+      show_elective : "Mostrar electivas"
       index:
         elective_group: 'Grupo de electivas'
         edit_elective : "Editar electivas"
-        new_elective : "Nueva electiva"
-        show_elective : "Mostrar electivas"
-        assign_student : "Asignar estudiante"
+       
 
 #subject controller translation
     subjects:
+      add_normal_subject : 'Añadir Asignatura Normal'
+      add_subject_to_elective_group : 'Agregar asignatura a este grupo de electivas'
+      new_elective_group : 'Nuevo Grupo de electivas'
+
       index:
-        add_subject_to_elective_group : 'Agregar asignatura a este grupo de electivas'
-        add_normal_subject : 'Añadir Asignatura Normal'
-        new_elective_group : 'Nuevo Grupo de electivas'
         add_new_subject : 'Añadir Nueva Asignatura'
         select_subjects : 'Seleccionar Asignaturas'
         import_subject_from_batch : 'Importar Asignatura de Grupo'
@@ -499,20 +584,22 @@ es: # locale
 
 #event controller translation
     event:
+      select_more_course : "Seleccionar más cursos"
+      select_more_department : "Seleccionar más departamentos"
+      course_associated : "Curso de Asociado"
+      no_course_selected : 'No hay cursos seleccionados para este evento todavía'
+      no_department_selected : 'No hay departamentos seleccionados para este evento todavía'
+      department_associated : "Departamento asociado"
+      common_event : 'Evento común a todos'
+      event : 'Evento'
+      new_event : 'Nuevo Evento'
+      event_description : ' Nueva descripción del evento'
+      event_notification : 'Notificación de eventos'
+
       index:
-        is_holiday : 'Es día festivo'
-        event : 'Evento'
-        events : 'Eventos'
         holidays : "Dias festivos"
         dues : "Deudas"
         event_creation : 'Paso 1 - Creación de evento'
-        common_event : 'Evento común a todos'
-        common_to_all_message : 'Este evento es común en todos los cursos y departamentos'
-        confirmation: 'Paso 2 - Confirmación'
-        other_event : 'Otros Eventos'
-        no_event_scheduled : 'No hay otros eventos programados'
-        no_course_selected : 'No hay cursos seleccionados para este evento todavía'
-        no_department_selected : 'No hay departamentos seleccionados para este evento todavía'
         more : 'más'
         associated : 'Asociado'
         cancel : 'Cancelar'
@@ -520,34 +607,32 @@ es: # locale
         common : "Evento común"
         my_course_event : "Evento de Mi Curso"
         my_department_event : "Evento de Mi Departamento"
-        course_associated : "Curso de Asociado"
-        department_associated : "Departamento asociado"
-        select_more_course : "Seleccionar más cursos"
-        select_more_department : "Seleccionar más departamentos"
-        select_course : "Seleccionar curso"
-        select_department : "Seleccionar departamento de empleados"
         create_event : "Crear evento"
 
-      confirm_event:
-        new_event : 'Nuevo Evento'
-        event_description : ' Nueva descripción del evento'
-        event_notification : 'Notificación de eventos'
+      edit:
+        edit_event : 'Paso 1 - Editar evento'
+        update_event : 'actualización de eventos'
 
-
+      show:
+        confirmation: 'Paso 2 - Confirmación'
+        other_event : 'Otros Eventos'
+        no_event_scheduled : 'No hay otros eventos programados'
+        common_to_all_message : 'Este evento es común en todos los cursos y departamentos'
 
 
 #employee controller translation
     employee:
+      approve : 'Aprobar'
+      position  : 'Posición'
+      grade : 'Nivel'
+      add_additional_details: "Agregar información adicional"
+      
       hr:
         management: 'Gestion'
         hr : 'GH'
         human_resource : 'Gestión Humana'
         leave : 'Licencia'
-        attendance : 'Asistencia'
         one_click_approve : 'Aprobar con un clic'
-        approve : 'Aprobar'
-        position  : 'Posición'
-        grade : 'Nivel'
         bank_detail : 'Información  bancaria'
         payroll  : 'Nómina'
         prefix : 'Prefijo'
@@ -654,7 +739,6 @@ es: # locale
         edit_bank_details : "Editar Información Bancaria"
 
       add_additional_details:
-        add_additional_details: "Agregar información adicional"
         no_additional_details : "No se ha encontrado ninguna información adicional"
         no_additional_details_entered : "No entró en detalles adicionales para"
         active_fields : "Campos Activos"
@@ -686,9 +770,7 @@ es: # locale
         married : "Casado"
         divorced : "Divorciado"
         no_of_children : "Cantidad de hijos"
-        father_name : "Nombre del Padre"
-        mother_name : "Nombre de la Madre"
-        spouse_name : "Nombre del Cónyuge"
+        
         last_employee_number : "El número del ultimo empleado es"
         upload_user_signature : "Cargar Firma"
 
@@ -931,6 +1013,8 @@ es: # locale
         pending_approval : "Aprobación pendiente"
         reset_leave : 'Perdí mi licencia'
         reset_employee_leaves : 'Restablecer hojas empleado.'
+        reser  : 'reajustar'
+        last_reset_date : 'Fecha última puesta a cero'
 
       leave_app:
         manager_name : "Nombre del Jefe"
@@ -1014,7 +1098,7 @@ es: # locale
         more_news : 'Mas Noticias'
 
       all:
-        title : 'Título'
+        
         author : 'Autor'
         comments : 'Comentarios'
         posted : 'Publicado el'
@@ -1801,7 +1885,7 @@ es: # locale
 # translation for exam module
     exams:
       index:
-        exams : 'Exámenes'
+        
         edit_exam : "Editar examen"
         for_exam_group : "Para el grupo de examenes"
         edit_exam_group : 'Editar Grupo de Examen'
@@ -2007,20 +2091,7 @@ es: # locale
         weekdays : 'Días de la semana'
         save : 'Guardar'
         alter_message: 'Esto alterará toda la información de los días de la semana de los horarios y de la Asistencia. Desea continuar cambiando los días de la semana?'
-        sunday : 'Domingo'
-        monday : 'Lunes'
-        tuesday : 'Martes'
-        wednesday : 'Miércoles'
-        thursday : 'Jueves'
-        friday : 'Viernes'
-        saturday : 'Sábado'
-        dom : 'Dom'
-        mon : 'Lun'
-        tue : 'Mar'
-        wed : 'Mie'
-        thu : 'Jue'
-        fri : 'Vie'
-        sat : 'Sab'
+        
 
       create:
         weekday_modified : 'Día de la semana modificado'
@@ -2048,148 +2119,25 @@ es: # locale
     # "layouts" is fixed
     layouts:
       # the layout name (template "main.erb")
-      application:
-        top_nav_calendar: "Calendario"
-        top_nav_dashboard: "Inicio"
-        attendance: "Asistencia"
-        setting: "Configuración"
-        top_nav_examination : 'Exámenes'
-        top_nav_event_creation : 'Eventos'
-        top_nav_human_resource : 'Gestión Humana'
-        top_nav_finance : 'Finanzas'
-        top_nav_library : 'Biblioteca'
-        top_nav_user : 'Usuario'
-        top_nav_timetable: "Horario"
-        top_nav_assignments: "Asignaciones"
-        top_nav_news: "Noticias"
-        top_nav_more: "Más ▼"
-        top_nav_sms: "SMS"
-        logged_as: "Conectado como:"
-        fedena_logo: "/images/application/app_fedena_logo.jpg"
-        messages: "Mensajes"
-        log_out: "Cerrar sesión"
-        ago: 'atras'
-        powered_by: 'Desarrollado por'
-
-      dashboard:
-        top_nav_calendar: "Calendario"
-        top_nav_dashboard: "Inicio"
-        top_nav_students: "Estudiantes"
-        top_nav_attendance: "Asistencia"
-        top_nav_settings: "Configuración"
-        top_nav_examination : 'Exámenes'
-        top_nav_event_creation : 'Eventos'
-        top_nav_human_resource : 'Gestión Humana'
-        top_nav_finance : 'Finanzas'
-        top_nav_library : 'Biblioteca'
-        top_nav_user : 'Usuario'
-        top_nav_timetable: "Horario"
-        top_nav_assignments: "Asignaciones"
-        top_nav_news: "Noticias"
-        top_nav_more: "Más ▼"
-        top_nav_sms: "SMS"
-        logged_as: "Conectado como:"
-        fedena_logo: "/images/application/app_fedena_logo.jpg"
-        messages: "Mensajes"
-        log_out: "Cerrar sesión"
-        ago: 'atras'
-        powered_by: 'Desarrollado por'
-
-      common:
-        sl_no : 'Sl No.'
-        name : 'Nombre'
-        adm_no : 'Adm No.'
-        view_profile : 'Ver Perfil'
-        select_a_category : 'Seleccionar una categoría'
-        select_a_batch : 'Seleccionar un grupo'
-        select_a_course : 'Seleccionar un Curso'
-        create : 'Crear'
-        student : 'Estudiante'
-        course_and_batch : 'Curso y grupo'
-        subject : 'Asignatura'
-        message : 'Mensaje'
-        recipient : 'Destinatario'
-        guardian : 'Guardián'
-        course : 'Curso'
-        courses : 'cursos'
-        batch : 'Grupo'
-        remove : 'Eliminar'
-        delete : 'Eliminar'
-        admission_number : 'Numero de Admisión'
-        all : 'TODOS'
-        select : 'Seleccionar'
-        option : 'Opción'
-        status : 'Estado'
-        present : 'Presente'
-        former : 'Ex'
-        search : 'Buscar'
-        pdf_report : 'Reporte PDF'
-        category : 'Categoría'
-        no_students_found : 'Ningún estudiante encontrado'
-        finish : 'Finalizar'
-        year : 'Año'
-        total_mark : 'Calificación total'
-        total_marks : 'puntuación total'
-        save_and_proceed : 'Guardar y Proceder'
-        edit : 'Editar'
-        save : 'Guardar'
-        setting : 'Configuración'
-        active : 'Activo'
-        inactive : 'Inactivo'
-        update : 'Actualizar'
-        admin : 'Admin'
-        employee : 'Empleado'
-        username: "Nombre de usuario"
-        user : 'usuario'
-        no_users : 'Ningún usuario encontrado'
-        select_a_department : 'Seleccionar un departamento'
-        add : 'Agregar'
-        none : 'Ninguno'
-        submit : 'Ingresar'
-        manage : 'Gestionar'
-        admission : 'Admisión'
-        type : 'Tipo'
-        currency : 'Moneda'
-        start_date : 'Fecha de inicio'
-        end_date : 'Fecha de finalización'
-        exam : 'Examen'
-        date : 'Fecha'
-        go : 'Ir'
-        dob : 'Fecha de Nacimiento'
-        department : 'Departamento'
-        assign : 'Asignar'
-        start_time : 'Hora de inicio'
-        end_time : 'Hora de finalización'
-        operations : 'Operaciones'
-        management : 'Gestión'
-        description : 'Descripción'
-        created  : 'Creado'
-        for : 'Para'
-        amount : 'Cantidad'
-        back : 'Atras'
-        due_date : 'Fecha de Vencimiento'
-        n_a : 'No aplica'
-        batches : 'Grupos'
-        delete_confirm_msg : '¿Está seguro?'
-        new : 'Nuevo'
-        and : 'y'
-        wise : 'según'
-        assign_all: 'Asignar TODOS'
-        remove_all: 'Eliminar TODOS'
-        select_all : "Seleccionar TODOS"
-        total : "Total"
-        all : 'TODOS'
-        teacher : "Profesor"
-        total_average : "Promedio Total"
-        continue : "Continuar"
-        email : "Email"
-        web_address : "Direccion Web"
-        are_you_completely_sure : '¿Está usted completamente seguro?'
-        common: 'Common'
-        done : 'hecho'
-
-
-
+      calendar: "Calendario"
+      dashboard: "Inicio"
+      students: "Estudiantes"
+      settings: "Configuración"
+      examination : 'Exámenes'
+      event_creation : 'Eventos'
+      human_resource : 'Gestión Humana'
+      finance : 'Finanzas'
+      user : 'Usuario'
+      timetable: "Horario"
+      news: "Noticias"
+      more: "Más ▼"
+      sms: "SMS"
+      logged_as: "Conectado como:"
+      fedena_logo: "/images/application/app_fedena_logo.jpg"
+      messages: "Mensajes"
+      log_out: "Cerrar sesión"
+      ago: 'atras'
+      powered_by: 'Desarrollado por'
 
     #flash message translations
     flash_message:

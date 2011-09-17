@@ -31,7 +31,7 @@
     <tr class="tr-head">
       <td>Sl no.</td>
       <td><%= t('master_fees.particulars') %></td>
-      <td><%= t('layouts.common.amount') %>  (<%= currency %>  )</td>
+      <td><%= t('.amount') %>  (<%= currency %>  )</td>
     </tr>
     <% i = 0 %>
     <tr class="tr-blank"></tr>
@@ -104,4 +104,4 @@
   </table>
 
 <% end %>
-<%= link_to t('layouts.common.pdf_report'),{:action => "pdf_fee_structure",:id => @student.id,:id2=>@fee_collection.id},:class => 'user_button'%>
+<%= link_to t('.pdf_report'),{:action => "pdf_fee_structure",:id => @student.id,:id2=>@fee_collection.id},:class => 'user_button'%>

@@ -36,11 +36,11 @@
     </div>
     <% end %>
   <div class="extender"></div>
-    <%= f.submit "► #{t('layouts.common.update')}", :class => 'submit-button' %>
+    <%= f.submit "► #{t('update')}", :class => 'submit-button' %>
   <% end %>
-    <div id="delete-button"><%= link_to_remote("► #{t('layouts.common.delete')}",
+    <div id="delete-button"><%= link_to_remote("► #{t('delete')}",
           :url => attendance_path(@absentee),
           :method =>'delete',
-          :confirm => "#{t('batches.show.are_you_sure')}") %></div>
+          :confirm => "#{t('are_you_sure')}") %></div>
 
 </div>

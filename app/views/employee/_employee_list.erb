@@ -28,9 +28,9 @@
         <div class="department-name"><%= e.full_name %></div>
         <% @emp_sub_assoc = EmployeesSubject.find_by_employee_id_and_subject_id(e.id,@subject.id) %>
         <% if @emp_sub_assoc.nil? %>
-          <div class="remove"><%= link_to_remote "#{t('layouts.common.assign')}", :url => {:action => "assign_employee", :id => e.id, :id1=>@subject.id}, :update => "department-select" %></div>
+          <div class="remove"><%= link_to_remote "#{t('assign')}", :url => {:action => "assign_employee", :id => e.id, :id1=>@subject.id}, :update => "department-select" %></div>
         <% else %>
-          <div class="remove"><%= link_to_remote "#{t('layouts.common.remove')}", :url => {:action => "remove_employee", :id => e.id, :id1=>@subject.id}, :update => "department-select" %></div>
+          <div class="remove"><%= link_to_remote "#{t('remove')}", :url => {:action => "remove_employee", :id => e.id, :id1=>@subject.id}, :update => "department-select" %></div>
         <% end %>
       </li>
      

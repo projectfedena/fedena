@@ -27,23 +27,23 @@
     <div id="form-errors"></div>
 
     <div class="label-field-pair">
-      <div class="label-container"><label><%= t('index.fees') %> <%= t('fees_create.master') %> <%= t('layouts.common.category') %></label> </div>
+      <div class="label-container"><label><%= t('index.fees') %> <%= t('fees_create.master') %> <%= t('.category') %></label> </div>
     <div class="input-container"><%= f.select :finance_fee_category_id, @fees_categories.map { |c| ["#{c.name} - #{c.batch.full_name}", c.id] },:selected=>params[:category_id].to_i%></div>
    </div>
 
   <div class="label-field-pair">
-    <div class="label-container"> <%= f.label :"#{t('layouts.common.name')}"  %></div>
+    <div class="label-container"> <%= f.label :"#{t('.name')}"  %></div>
     <div class="input-container"><%= f.text_field :name %></div>
    </div>
 
    <div class="label-field-pair">
-    <div class="label-container"><%= f.label :"#{t('layouts.common.description')}" %></div>
+    <div class="label-container"><%= f.label :"#{t('.description')}" %></div>
     <div class="input-container"><%= f.text_field :description %></div>
    </div>
    <div class="label-field-pair2">
     <div class="label-container2"><label><%= t('master_fees.create_using') %></label></div>
     <div class="input-container2">
-      <div class="opt"><%= radio_button("particulars","select","all",:checked => true) %><%= t('layouts.common.all') %></div>
+      <div class="opt"><%= radio_button("particulars","select","all",:checked => true) %><%= t('.all') %></div>
      <!-- <div class="opt"><%#radio_button("particulars","select","student",
         {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
           :with => "'select_value='+value")}"}) %> Admission No </div> -->
@@ -70,12 +70,12 @@
   <div id="student"></div>
 
   <div class="label-field-pair">
-    <div class="label-container"><%= f.label :"#{t('layouts.common.amount')}" %></div>
+    <div class="label-container"><%= f.label :"#{t('.amount')}" %></div>
     <div class="input-container"> <%= f.text_field :amount %></div>
    </div>
 
 
-  <%=  submit_tag "► #{t('layouts.common.create')}",:class=>'submit_button' %>
+  <%=  submit_tag "► #{t('.create')}",:class=>'submit_button' %>
 
 <% end %>
 </div>

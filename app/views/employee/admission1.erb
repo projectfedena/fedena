@@ -91,15 +91,15 @@
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
-        <label for="employee_department"><%= t('layouts.common.department') %> <span class="necessary-field">*</span></label>
-        <div class="text-input-bg"><%= select :employee, :employee_department_id, @departments.map {|s| [s.name, s.id]},:prompt => "#{t('layouts.common.select')}"%></div>
+        <label for="employee_department"><%= t('department') %> <span class="necessary-field">*</span></label>
+        <div class="text-input-bg"><%= select :employee, :employee_department_id, @departments.map {|s| [s.name, s.id]},:prompt => "#{t('.select')}"%></div>
       </div>
       <hr class="label-underline"></hr>
 
       <div class="label-field-pair">
-        <label for="employee_category"><%= t('layouts.common.category') %><span class="necessary-field">*</span> </label>
+        <label for="employee_category"><%= t('category') %><span class="necessary-field">*</span> </label>
         <div class="text-input-bg"><%= select :employee, :employee_category_id, @categories.map { |s| [s.name, s.id] },
-            {:prompt => "#{t('layouts.common.select')}"},
+            {:prompt => "#{t('.select')}"},
             {:onChange => "#{remote_function(:url => {:action => "update_positions"}, :with => "'category_id='+value")}"} %></div>
       </div>
       <hr class="label-underline"></hr>
@@ -110,7 +110,7 @@
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
         <label for="employee_grade"><%= t('hr.grade') %></label>
-        <div class="text-input-bg"><%= select :employee, :employee_grade_id, @grades.map {|s| [s.name, s.id]},:prompt => "#{t('layouts.common.select')}" %></div>
+        <div class="text-input-bg"><%= select :employee, :employee_grade_id, @grades.map {|s| [s.name, s.id]},:prompt => "#{t('select')}" %></div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
@@ -130,7 +130,7 @@
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
         <label for="employee_total-experience"><%= t('total_exp') %></label>
-        <div class="text-input-bg"><%= select :employee, :experience_year, (0..20),{:prompt=>"#{t('layouts.common.year')}"} %>
+        <div class="text-input-bg"><%= select :employee, :experience_year, (0..20),{:prompt=>"#{t('year')}"} %>
           <%= select :employee, :experience_month, (0..11),{:prompt=>"#{t('student_attendance.student.month')}"} %></div>
       </div>
       <hr class="label-underline"></hr>
@@ -138,12 +138,12 @@
 
 
       <div class="label_field_pair">
-        <label class="employee_status" for="employee_status"><%= t('layouts.common.status') %></label>
+        <label class="employee_status" for="employee_status"><%= t('status') %></label>
 
-        <label class="label_for_status" for="employee_status_true"><%= t('layouts.common.active') %></label>
+        <label class="label_for_status" for="employee_status_true"><%= t('active') %></label>
         <%= a.radio_button  "status", "true", :checked => "checked" %>
 
-        <label class="label_for_status" for="employee_status_false"><%= t('layouts.common.inactive') %></label>
+        <label class="label_for_status" for="employee_status_false"><%= t('inactive') %></label>
         <%= a.radio_button  "status", "false" %>
       </div>
 
@@ -198,7 +198,7 @@
 
     </div>
 
-    <%= submit_tag "► #{t('layouts.common.save_and_proceed')}", :class => "submit_button" %>
+    <%= submit_tag "► #{t('save_and_proceed')}", :class => "submit_button" %>
   <% end %>
 
 </div>

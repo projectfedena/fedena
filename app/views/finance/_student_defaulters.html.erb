@@ -33,7 +33,7 @@
       </div>
     <%end%>
   <%end%>
-<%= link_to " ► #{t('layouts.common.pdf_report')}",
+<%= link_to " ► #{t('.pdf_report')}",
         {:controller => "finance", :action => "fee_defaulters_pdf", :batch_id => @batch.id, :date => @date.id},:target => '_blank', :class=> 'user_button' %>
 </div>
 <% else %>

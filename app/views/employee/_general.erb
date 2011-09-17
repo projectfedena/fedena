@@ -22,8 +22,8 @@
 
 <table width="700">
   <tr class="odd left"><td><%= t('admission1.joining_date') %></td><td class="right"><%= I18n.localize(@employee.joining_date)%></td></tr>
-  <tr class="even left"><td><%= t('layouts.common.department') %></td><td class="right"><%= @employee.employee_department.name%></td></tr>
-  <tr class="odd left"><td><%= t('layouts.common.category') %></td><td class="right"><%= @employee.employee_category.name %></td></tr>
+  <tr class="even left"><td><%= t('department') %></td><td class="right"><%= @employee.employee_department.name%></td></tr>
+  <tr class="odd left"><td><%= t('category') %></td><td class="right"><%= @employee.employee_category.name %></td></tr>
   <tr class="even left"><td><%= t('hr.position') %></td><td class="right"><%= @employee.employee_position.name %></td></tr>
 
   <tr class="odd left"><td><%= t('hr.grade') %></td><td class="right"><%= @employee.employee_grade.name unless @employee.employee_grade.nil? %></td></tr>
@@ -39,7 +39,7 @@
       <%= link_to "#{t('profile.change')}", :controller=> "employee", :action=> "change_reporting_manager", :id=>@employee.id %>
     <%end%></td></tr>
   <tr class="even left"><td><%= t('student.admission1.gender') %></td><td class="right"><%= @gender %></td></tr>
-  <tr class="odd left"><td><%= t('layouts.common.status') %></td><td class="right"><%= @status %></td></tr>
+  <tr class="odd left"><td><%= t('.status') %></td><td class="right"><%= @status %></td></tr>
   <tr class="even left"><td><%= t('admission1.qualification') %></td><td class="right"><%= @employee.qualification %></td></tr>
   <tr class="odd left"><td><%= t('admission1.total_exp') %></td><td class="right"><%= @total_years.to_s+"Years "+@total_months.to_s+"Months" %></td></tr>
   <tr class="even left"><td><%= t('admission1.exp_info') %></td><td class="right"><%= @employee.experience_detail %></td></tr>
@@ -47,7 +47,7 @@
   <div class="edit-pdf-group">
     <% if permitted_to? :change_reporting_manager, :employee %>
       <div class="edit">
-        <%= link_to "► #{t('layouts.common.edit')}",  :controller => "employee", :action => "edit1", :id =>@employee.id %>
+        <%= link_to "► #{t('edit')}",  :controller => "employee", :action => "edit1", :id =>@employee.id %>
       </div>
     <%end%>
     <% if permitted_to?  :profile_pdf , :employee %>

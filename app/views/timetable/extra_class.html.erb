@@ -30,14 +30,14 @@
   <div class="box">
   <% form_remote_for :extra_class do |f| %>
   <div class="label-field-pair">
-    <label for="student_date_of_birth"><%= t('layouts.common.select') %> <%= t('layouts.common.date') %></label>
+    <label for="student_date_of_birth"><%= t('.select') %> <%= t('.date') %></label>
     <div class="text-input-bg">
       <%= calendar_date_select_tag 'extra_class[date]',
         I18n.localize(Date.today, :format=>:default) , :year_range => 40.years.ago..0.years.ago %>
     </div>
   </div>
   <div class="label-field-pair">
-    <label for="student_grade"><%= t('layouts.common.course') %> & <%= t('layouts.common.batch') %></label>
+    <label for="student_grade"><%= t('.course') %> & <%= t('.batch') %></label>
     <div class="text-input-bg"><%= select :extra_class, :batch_id, Batch.active.map {|b| [b.full_name, b.id]} %></div>
   </div>
 

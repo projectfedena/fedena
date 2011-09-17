@@ -25,8 +25,8 @@
 <% @positions.each do |p| %>
   <li class="list<%=cycle('odd', 'even')%>">
     <div class="position-name"><%= p.name %>(<%= p.employee_category.prefix unless p.employee_category_id.nil? %>)</div>
-    <div class="position-edit"><%= link_to "#{t('layouts.common.edit')}", :action => "edit_position", :id=>p.id %></div>
-    <div class="position-edit"><%= link_to "#{t('layouts.common.delete')}", {:action => "delete_position", :id=>p.id}, :confirm =>"#{t('batches.show.are_you_sure')}" %></div>
+    <div class="position-edit"><%= link_to "#{t('edit')}", :action => "edit_position", :id=>p.id %></div>
+    <div class="position-edit"><%= link_to "#{t('delete')}", {:action => "delete_position", :id=>p.id}, :confirm =>"#{t('delete_confirm_msg')}" %></div>
   </li>
 <% end %>
   <% unless @inactive_positions.empty? %>
@@ -34,8 +34,8 @@
     <%- @inactive_positions.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="position-name"><%= c.name %> (<%=  c.employee_category.prefix unless c.employee_category_id.nil?  %>)</div>
-        <div class="position-edit"><%= link_to "#{t('layouts.common.edit')}", {:action => "edit_position", :id=>c.id} %></div>
-        <div class="position-edit"><%= link_to "#{t('layouts.common.delete')}", {:action => "delete_position", :id=>c.id},:confirm=>"#{t('batches.show.are_you_sure')}" %></div>
+        <div class="position-edit"><%= link_to "#{t('edit')}", {:action => "edit_position", :id=>c.id} %></div>
+        <div class="position-edit"><%= link_to "#{t('delete')}", {:action => "delete_position", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}" %></div>
       </li>
      <% end %>
      <% end %>

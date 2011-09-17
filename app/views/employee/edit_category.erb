@@ -41,7 +41,7 @@
     <%= error_messages_for 'category' %>
     <div id="form-content">
       <div class="label-field-pair">
-        <label for="category_name"><%= t('layouts.common.name') %></label>
+        <label for="category_name"><%= t('name') %></label>
         <div class="text-input-bg"> <%= c.text_field :name %> </div>
       </div>
 
@@ -51,18 +51,18 @@
       </div>
 
       <div class="label-checkbox-pair">
-        <label class="status" for="status"><%= t('layouts.common.status') %></label>
+        <label class="status" for="status"><%= t('status') %></label>
         <div id="radio-buttons">
           <%= c.radio_button  "status", "true", :checked => "checked" %>
-          <label class="label_for_status" for="add_grade_status_true"><%= t('layouts.common.active') %></label>
+          <label class="label_for_status" for="add_grade_status_true"><%= t('active') %></label>
 
           <%= c.radio_button  "status", "false" %>
-          <label class="label_for_status" for="add_grade_status_false"><%= t('layouts.common.inactive') %></label>
+          <label class="label_for_status" for="add_grade_status_false"><%= t('inactive') %></label>
         </div>
       </div>
 
       <div id="submit-button">
-        <%=  submit_tag("► #{t('layouts.common.update')}") %>
+        <%=  submit_tag("► #{t('update')}") %>
       </div>
     </div>
 

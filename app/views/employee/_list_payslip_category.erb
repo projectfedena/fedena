@@ -28,7 +28,7 @@
       <div class="name"><%= c.name %></div>
       <div class="val"> <span>:</span><%= c.amount %></div>
       <div class="del-button"> <%= link_to_remote image_tag("/images/buttons/delete-new.png", :alt=>'Delete', :border => 0), :url => { :action => "remove_new_paylist_category", :id => c.id, :id3=>CGI::unescape(@salary_date) },
-          :update => "list-payslip-category", :confirm=>"#{t('layouts.common.delete_confirm_msg')}" %></div>
+          :update => "list-payslip-category", :confirm=>"#{t('.delete_confirm_msg')}" %></div>
     </li>
   <% end %>
   <%- @individual.each do |c| -%>
@@ -37,7 +37,7 @@
       <div class="name"><%= c.name %></div>
       <div class="val"> <span>:</span><%= c.amount %></div>
       <div class="del-button"> <%= link_to_remote image_tag("/images/buttons/delete-new.png", :alt=>'Delete', :border => 0), :url => { :action => "remove_new_paylist_category", :id => c.id, :id3 =>CGI::unescape(@salary_date) },
-          :update => "list-payslip-category", :confirm=>"#{t('layouts.common.delete_confirm_msg')}" %></div>
+          :update => "list-payslip-category", :confirm=>"#{t('delete_confirm_msg')}" %></div>
     </li>
   <% end %>
 </ul>

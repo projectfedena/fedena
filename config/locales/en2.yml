@@ -386,62 +386,49 @@ en: # locale
     are_you_completely_sure : 'Are you completely sure?'
     common : 'común'
     done   : 'Done'
-    home : 'Home'
-    general : 'General'
-    show : 'Show'
-    electives : 'Electives'
-    particular: 'Particular'
-    category: 'Category'
-    code : 'Code'
-    normal_subject : 'Normal Subject'
-    normal_subjects : 'Normal Subjects'
-    batch_transfer : 'Batch Transfer'
-    max_weekly_class : 'Max weekly classes'
-    no_exam : 'No Exam'
-    assign_student : "Assign Student"
-    select_department : "Select employee department"
-    events : "Events"
-    title : 'Title'
-    is_holiday : 'Is Holiday?'
-    confirm : 'Confirm'
-    sunday : 'Sunday'
-    monday : 'Monday'
-    tuesday : 'Tuesday'
-    wednesday : 'Wednesday'
-    thursday : 'Thursday'
-    friday : 'Friday'
-    saturday : 'Saturday'
-    sun : 'Sun'
-    mon : 'Mon'
-    tue : 'Tue'
-    wed : 'Wed'
-    thu : 'Thu'
-    fri : 'Fri'
-    sat : 'Sat'
-    exams : 'Exams'
-    attendance: "Attendance"
-    father_name : "Father Name"
-    mother_name : "Mother Name"
-    spouse_name : "Spouse name"
-        
+
+#additional_exam controller translation
+    additional_exam:
+      publish:
+         additional_exam : 'Additional Exam'
+
+    archived_student:
+      graph_for_generated_report:
+        student_marks : "Marks"
+        class_average : 'Class Average'
+
 #configuration controller translation
     configuration:
-      configuration : 'Configuration'
-      general_settings : "General Settings"
       index:
+        configuration : 'Configuration'
+        home : 'Home'
+        general : 'General'
         manage_course_batch : "Manage Course/Batch"
         manage_student_category : "Manage Student Category"
         manage_subject : "Manage Subject"
         add_admission_additional_detail : "Add Admission Additional Detail"
+        general_settings : "General Settings"
+        smtp_settings : "SMTP Settings"
         link_desc1 : 'Add a new Course or Batch for this academic year.'
         link_desc2 : 'Manage subjects corresponding to different courses.'
         link_desc3 : 'Set some general configurations related to institution,attendance, etc.'
         link_desc4 : 'Set some additional details for admission.'
         link_desc5 : 'Enable/Disable SMS settings'
         link_desc6 : "Add Student Category"
+        link_desc7 : "SMTP Settings"
+        link_desc8 : "Database Backup Management"
         sms_module : 'SMS module'
-        
+        database_backup: 'Database Backup'
+        export: 'Export'
+        schedule_your_backup_now : 'Schedule your backup now :'
+        backup_now : 'Backup Now'
+        do_you_want_backup_now : 'Do you want backup now?'
+        download_backups : 'Download backups'
+        download: 'Download'
+
+
       settings:
+        school : 'School'
         school_college_name : "School/College Name"
         school_college_address : "School/College Address"
         school_college_phone : "School/College Phone"
@@ -452,45 +439,66 @@ en: # locale
         network_state : 'Network State'
         student_admission_auto : 'Enable Auto increment Student admission no. '
         employee_admission_auto : 'Enable Auto increment Employee no. '
+        user_language : 'Language'
+        license_number : 'License Number'
+        license_delivery_year : 'License Delivery year'
+        report_header : 'Print Report Header and Footer'
+        exam_grouping_type : "Exam Grouping Type"
         finance_year_start_date : 'Finance year start date'
         finance_year_end_date : 'Finance year end date'
 
 
 #courses controller translation
     courses:
-      manage_batch : "Manage Batch"
-      manage_course : "Manage Course"
-      course_name : "Course name"
-      section_name : "Section name"
-
       index:
+        course_name : "Course name"
+        section_name : "Section name"
+        manage_course : "Manage Course"
+        sort_order : "Sort order"
+        manage_batch : "Manage Batch"
         link_desc1: 'Manage Courses and create batches'
         link_desc2: 'Manage active batches'
+
+      edit:
+        code: 'Code'
+        section : 'Section'
 
       new:
         initial_batch : 'Initial Batch Details'
         active_batches : 'Active batches'
-        
+        show : 'Show'
+
       manage_batches:
         grading_system : 'Grading system'
-        
+        batch_transfer : 'Batch Transfer'
 
 
 #batches controller translation
     batches:
-      assign_new : 'Assign new'
-      assign_tutor : 'Assign Tutor'
       show:
         subject_transfer_message : 'Following Subjects have been imported'
+        assign_tutor : 'Assign Tutor'
         fee_import_message : 'Following Fee Categories have been imported'
-        
+        electives : 'Electives'
+
       new:
         import_subject : 'Import previous batch Subjects'
         import_fees : 'Import previous batch Master fees'
+        assign_new : 'Assign new'
         no_employee_found : 'No employee found'
         new_batch : "New batch"
         Not applicable : "Not applicable"
-        
+        Morning : "Morning"
+        Afternoon : "Afternoon"
+        Night : "Night"
+        Morning and afternoon : "Morning and Afternoon"
+        school_day : "School Day"
+
+      create:
+        particular: 'Particular'
+        category: 'Category'
+
+
       assign_tutor:
         currently_assigned: 'Currently assigned'
         no_employee_assigned : ' No employee assigned yet.'
@@ -498,15 +506,22 @@ en: # locale
       edit:
         edit_batch : "Edit Batch"
 
+#    sms:
+#      students:
+#        sms_sent: 'SMS sent successfully to selected students and their guardians'
+#      batches:
+#        sms_sent_selected_course: 'SMS sent successfully to students(guardians) of selected course'
+#      employees:
+#        sms_sent_to_employee: 'SMS sent successfully to selected employees'
+#      departments:
+#        sent_to_selected_department : 'SMS sent successfully to employees of selected department'
+
+
 #batch_transfer controller translation
     batch_transfers:
-      transfer: 'Transfer'
-      graduation : 'Graduation'
-      uncheck_message : 'Uncheck the students not eligible for graduation'
-      garduating_batch : 'Graduating Batch'
-      generate_tc_for_all : 'Generate TC for ALL'
-
       subject_transfer:
+        normal_subject : 'Normal Subject'
+        normal_subjects : 'Normal Subjects'
         assign_old_batch_subject : 'Assign old batch subjects'
         assign_subject : "Assign Subject"
         add_elective : "Add Elective"
@@ -518,32 +533,42 @@ en: # locale
         already_has_subject : 'already has a subject with name'
         subjects_assigned : 'Subjects have been assigned.'
 
+
+      new_subject:
+        max_weekly_class : 'Max weekly classes'
+        no_exam : 'No exam'
+
       index:
+        transfer: 'Transfer'
+        graduation : 'Graduation'
+        garduating_batch : 'Graduating Batch'
+        generate_tc_for_all : 'Generate TC for ALL'
         graduation_message : " These students will now be trasferred to former students database. Add the status description for the students. e.g. 'Graduated 10th grade, 2010."
         status_description : 'Status description'
+        uncheck_message : 'Uncheck the students not eligible for graduation'
         previous : 'Previous'
 
       show:
         transferring_batch: 'Transferring batch'
         transfer_to : 'Transfer to batch'
 
+
+
 #elective controller translation
     elective_groups:
-      new_elective : "New Elective"
-      show_elective : "Show Elective"
-
       index:
         elective_group : 'Elective Group'
         edit_elective : "Edit Elective"
-        
+        new_elective : "New Elective"
+        show_elective : "Show Elective"
+        assign_student : "Assign Student"
 
 #subject controller translation
     subjects:
-      add_normal_subject : 'Add Normal subject'
-      add_subject_to_elective_group : 'Add Subject to this Elective group'
-      new_elective_group : 'New Elective Group'
-
       index:
+        add_subject_to_elective_group : 'Add Subject to this Elective group'
+        add_normal_subject : 'Add Normal subject'
+        new_elective_group : 'New Elective Group'
         add_new_subject : 'Add New Subject'
         select_subjects : 'Select Subjects'
         import_subject_from_batch : 'Import subject from a batch'
@@ -576,22 +601,20 @@ en: # locale
 
 #event controller translation
     event:
-      select_more_course : "Select more course"
-      select_more_department : "Select more department"
-      course_associated : "Course Associated"
-      no_course_selected : 'No Course selected for this event yet'
-      no_department_selected : 'No department selected for this event yet'
-      department_associated : "Department Associated"
-      common_event : ' Event common to all'
-      event : 'Event'
-      new_event : 'New Event'
-      event_description : ' New event description'
-      event_notification : 'Event Notification'
-
       index:
+        is_holiday : 'Is Holiday'
+        event : 'Event'
+        events : "Events"
         holidays : "Holidays"
         dues : "Dues"
         event_creation : 'Step 1 - Event creation'
+        common_event : ' Event common to all  '
+        common_to_all_message  : 'This event is common across all courses and departments'
+        confirmation : 'Step 2 - Confirmation'
+        other_event : 'Other Events'
+        no_event_scheduled : 'No other events scheduled'
+        no_course_selected : 'No Course selected for this event yet'
+        no_department_selected : 'No department selected for this event yet'
         more : 'more'
         associated : 'Associated'
         cancel : 'Cancel'
@@ -599,32 +622,32 @@ en: # locale
         common : "Common Event"
         my_course_event : "My Course Event"
         my_department_event : "My Department Event"
+        course_associated : "Course Associated"
+        department_associated : "Department Associated"
+        select_more_course : "Select more course"
+        select_more_department : "Select more department"
+        select_course : "Select course"
+        select_department : "Select employee department"
         create_event : "Create Event"
 
-      edit:
-        edit_event : 'Step 1 - Edit Event'
-        update_event : 'Update Event'
-
-      show:
-        confirmation : 'Step 2 - Confirmation'
-        other_event : 'Other Events'
-        no_event_scheduled : 'No other events scheduled'
-        common_to_all_message  : 'This event is common across all courses and departments'
+      confirm_event:
+        new_event : 'New Event'
+        event_description : ' New event description'
+        event_notification : 'Event Notification'
 
 
 #employee controller translation
     employee:
-      approve : 'Approve'
-      position : 'Position'
-      grade : 'Grade'
-      add_additional_details : "Add additional Details"
-
       hr:
         management: 'Management'
         hr : 'HR'
         human_resource : 'Human Resource'
         leave : 'Leave'
+        attendance : 'Attendance'
         one_click_approve : 'One click approve'
+        approve : 'Approve'
+        position : 'Position'
+        grade : 'Grade'
         bank_detail : 'Bank Detail'
         payroll : 'Payroll'
         prefix : 'Prefix'
@@ -702,7 +725,7 @@ en: # locale
         bank_account_details : 'Bank Account Details'
         add_department : 'Add department'
         histroy : 'History'
-        
+
 
       search:
         employee_search: 'Employee Search'
@@ -731,6 +754,7 @@ en: # locale
         edit_bank_details : "Edit Bank Details"
 
       add_additional_details:
+        add_additional_details : "Add additional Details"
         no_additional_details : "No additional details record found"
         no_additional_details_entered : "No additional details entered for"
         active_fields : "Active Fields"
@@ -762,6 +786,9 @@ en: # locale
         married : "Married"
         divorced : "Divorced"
         no_of_children : "No of children"
+        father_name : "Father Name"
+        mother_name : "Mother Name"
+        spouse_name : "Spouse name"
         last_employee_number : "Employee number of last employee is"
         upload_user_signature : "Upload User Signature"
 
@@ -1084,6 +1111,7 @@ en: # locale
         more_news : 'More News'
 
       all:
+        title : 'Title'
         author : 'Author'
         comments : 'Comments'
         posted : 'Posted'
@@ -1338,7 +1366,7 @@ en: # locale
       search_ajax:
         no_users : 'No user found'
         course_and_batch : 'Course & Batch:'
-      
+
 
       admission1:
         student_detail_step1 : 'Step 1 - Student details'
@@ -1496,8 +1524,8 @@ en: # locale
         parents_profile : 'Parents Profile'
         add_guardian : 'Add Guardian'
         parents : 'Parents/Guardian'
-        
-        
+
+
       add_guardian:
         add_guardian_details : 'Add Guardian Details'
         office : 'Office'
@@ -1507,7 +1535,7 @@ en: # locale
 
       email:
         send_email : 'Send email'
-        
+
       remove:
         remove_student : 'Remove student'
         leaving_institution : 'Student leaving institution'
@@ -1880,7 +1908,7 @@ en: # locale
 # translation for exam module
     exams:
       index:
-        
+        exams : 'Exams'
         edit_exam : "Edit Exam"
         for_exam_group : "For exam group"
         edit_exam_group : 'Edit Exam Group'
@@ -2083,14 +2111,28 @@ en: # locale
         no_timetable_entry_for_batch : 'No Timetable entry for Batch'
       weekdays:
         select_batch_to_edit : 'Select batch to edit'
-        
+
       select_class:
         select_a_batch_to_continue : 'Select a batch to continue'
     weekday:
       index:
         weekdays : 'Weekdays'
+        save : 'Save'
         alter_message : 'This will alter all time table entries and Attendance entries for the weekdays, Proceed with changing weekdays ?'
-        
+        sunday : 'Sunday'
+        monday : 'Monday'
+        tuesday : 'Tuesday'
+        wednesday : 'Wednesday'
+        thursday : 'Thursday'
+        friday : 'Friday'
+        saturday : 'Saturday'
+        sun : 'Sun'
+        mon : 'Mon'
+        tue : 'Tue'
+        wed : 'Wed'
+        thu : 'Thu'
+        fri : 'Fri'
+        sat : 'Sat'
         add_new_grading_level: 'Add new grading level'
       create:
         weekday_modified : 'Weekday modified'
@@ -2115,27 +2157,59 @@ en: # locale
     # "layouts" is fixed
     layouts:
       # the layout name (template "main.erb")
-      calendar: "Calendar"
-      dashboard: "Dashboard"
-      students: "Students"
-      settings: "Settings"
-      examination : 'Examination'
-      creation : 'Event Creation'
-      human_resource : 'Human Resource'
-      finance : 'Finance'
-      user : 'User'
-      timetable: "Timetable"
-      news: "News"
-      more: "More ▼"
-      sms: "SMS"
-      logged_as: "Logged in as:"
-      fedena_logo: "/images/application/app_fedena_logo.jpg"
-      messages: "Messages"
-      log_out: "Log out"
-      ago: 'ago'
-      powered_by: 'Powered by'
-        
-   #flash message translations
+      application:
+        top_nav_calendar: "Calendar"
+        top_nav_dashboard: "Dashboard"
+        attendance: "Attendance"
+        setting: "Settings"
+        top_nav_examination : 'Examination'
+        top_nav_event_creation : 'Event Creation'
+        top_nav_human_resource : 'Human Resource'
+        top_nav_finance : 'Finance'
+        top_nav_library : 'Library'
+        top_nav_user : 'User'
+        top_nav_timetable: "Timetable"
+        top_nav_news: "News"
+        top_nav_assignments: "Assignments"
+        top_nav_more: "More ▼"
+        top_nav_sms: "SMS"
+        logged_as: "Logged in as:"
+        fedena_logo: "/images/application/app_fedena_logo.jpg"
+        messages: "Messages"
+        log_out: "Log out"
+        ago: 'ago'
+        powered_by: 'Powered by'
+
+      dashboard:
+        calendar: "Calendar"
+        dashboard: "Dashboard"
+        students: "Students"
+        attendance: "Attendance"
+        settings: "Settings"
+        examination : 'Examination'
+        creation : 'Event Creation'
+        human_resource : 'Human Resource'
+        top_nav_finance : 'Finance'
+        top_nav_library : 'Library'
+        top_nav_assignments: "Assignments"
+        top_nav_user : 'User'
+        top_nav_timetable: "Timetable"
+        top_nav_news: "News"
+        top_nav_more: "More ▼"
+        top_nav_sms: "SMS"
+        logged_as: "Logged in as:"
+        fedena_logo: "/images/application/app_fedena_logo.jpg"
+        messages: "Messages"
+        log_out: "Log out"
+        ago: 'ago'
+        powered_by: 'Powered by'
+
+      common:
+
+
+
+
+    #flash message translations
     flash_message:
       batch_transfers:
         flash1: 'Trasferred students successfully'
@@ -2342,7 +2416,7 @@ en: # locale
       subjects:
         flash1: 'Selected Subjects have been sucessfully imported'
 
-      
+
 
     # for shared partials called like: render :template => "shared/user"
     # where "shared" is the directory name

@@ -18,13 +18,13 @@
 #under the License. -%>
 
 <% form_for :holiday do |f| %>
-<%= select :holiday, :weekdays, [ "#{t('weekday.index.monday')}", "#{t('weekday.index.tuesday')}","#{t('weekday.index.thursday')}","#{t('weekday.index.wednesday')}","#{t('weekday.index.friday')}","#{t('weekday.index.saturday')}", "#{t('weekday.index.sunday')}" ]%>
+<%= select :holiday, :weekdays, [ "#{t('monday')}", "#{t('weekday.index.tuesday')}","#{t('thursday')}","#{t('wednesday')}","#{t('friday')}","#{t('saturday')}", "#{t('sunday')}" ]%>
 
-  <%= submit_tag "#{t('layouts.common.submit')}" %>
+  <%= submit_tag "#{t('submit')}" %>
 <% end %>
 <% unless @weekly_holidays.nil? %>
   <% @weekly_holidays.each do |d| %>
-    <%= d.config_value %><%= link_to "#{t('layouts.common.delete')}", :action=>"delete", :id=>d.id  %>
+    <%= d.config_value %><%= link_to "#{t('delete')}", :action=>"delete", :id=>d.id  %>
     
   <% end %>
 <% end %>

@@ -28,10 +28,10 @@
         <div class="extender"></div>
         <div class="desc"><%= h.description %></div>
         <% if permitted_to? :edit_event, :event %>
-        <%= link_to "#{t('layouts.common.edit')}",{:controller=>'event',:action=>'edit_event',:id=>h.id},:class=>"delete" %>
+        <%= link_to "#{t('edit')}",{:controller=>'event',:action=>'edit_event',:id=>h.id},:class=>"delete" %>
         <% end %>
         <% if permitted_to? :event_delete, :calendar %>
-        <%= link_to "#{t('layouts.common.delete')}",{:action=>'event_delete',:id=>h.id},:confirm=>'Are you sure?',:class=>"delete" %>
+        <%= link_to "#{t('delete')}",{:action=>'event_delete',:id=>h.id},:confirm=>"#{t('are_you_sure')}",:class=>"delete" %>
         <% end %>
         <div class="extender"></div>
       </div>

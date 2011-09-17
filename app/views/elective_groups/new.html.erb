@@ -19,15 +19,15 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('layouts.common.batches') %></h1>
-  <h3><%= "#{t('index.new_elective')}" %></h3>
+  <h1><%= t('batches') %></h1>
+  <h3><%= "#{t('new_elective')}" %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to t('layouts.common.new'), new_batch_elective_group_path(@batch) %></li>
+    <li><%= link_to t('new'), new_batch_elective_group_path(@batch) %></li>
 
   </ul>
 </div>
@@ -38,11 +38,11 @@
   <% end %>
     
 <div class="bread_crumb">
-        <%= link_to t('layouts.common.course'), courses_path %> &raquo;
+        <%= link_to t('course'), courses_path %> &raquo;
         <%= link_to @course.full_name, @course %> &raquo;
-        <%= link_to "#{t('layouts.common.batch')} #{@batch.name}", [@course, @batch] %> &raquo;
-        <%= link_to "#{t('batches.show.electives')}", batch_elective_groups_path(@batch) %> &raquo;
-         <%= t('layouts.common.new') %>
+        <%= link_to "#{t('batch')} #{@batch.name}", [@course, @batch] %> &raquo;
+        <%= link_to "#{t('electives')}", batch_elective_groups_path(@batch) %> &raquo;
+         <%= t('new') %>
         </div>
   <div class="box">
 
@@ -51,11 +51,11 @@
     <%= f.error_messages :header_message => nil %>
     
       <div class="label-field-pair">
-        <div class="label-container"> <%= f.label "#{t('layouts.common.name')}" %></div>
+        <div class="label-container"> <%= f.label "#{t('name')}" %></div>
         <div class="input-container"><%= f.text_field :name %></div>
       </div>
 
-      <%= submit_tag "", :value => "► #{t('layouts.common.save')}", :class => "submit_button" %>
+      <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
 
     <% end %>
 

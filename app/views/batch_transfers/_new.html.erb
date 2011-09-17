@@ -31,12 +31,12 @@
       <div id="form-errors"></div>
 
   <div class="label-field-pair">
-    <div class="label-container"><%= f.label :name %></div>
+    <div class="label-container"><%= f.label "#{t('name')}" %></div>
     <div class="input-container"> <%= f.text_field :name %></div>
   </div>
 
     <div class="label-field-pair">
-    <div class="label-container">  <%= f.label :code %></div>
+    <div class="label-container">  <%= f.label "#{t('code')}" %></div>
     <div class="input-container"><%= f.text_field :code %></div>
   </div>
 
@@ -50,7 +50,7 @@
     <div class="input-container"><%= f.check_box :no_exams %></div>
   </div>
 
-   <%= f.submit  "", :value => "► #{t('layouts.common.save')}", :class => "submit_button" %>
+   <%= f.submit  "", :value => "► #{t('save')}", :class => "submit_button" %>
 
   <% end %>
 </div>

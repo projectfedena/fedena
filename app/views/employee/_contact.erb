@@ -29,12 +29,12 @@
 <div class="edit-pdf-group">
   <% if permitted_to? :edit_contact,:employee %>
     <div class="edit">
-      <%= link_to "► #{t('layouts.common.edit')}",   :controller => "employee", :action => "edit_contact", :id =>@employee.id %>
+      <%= link_to "► #{t('edit')}",   :controller => "employee", :action => "edit_contact", :id =>@employee.id %>
     </div>
   <%end%>
   <% if permitted_to?  :profile_pdf , :employee %>
   <div class="pdf">
-    <%= link_to "► #{t('layouts.common.pdf_report')}",
+    <%= link_to "► #{t('pdf_report')}",
       {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
   </div>
   <% end %>

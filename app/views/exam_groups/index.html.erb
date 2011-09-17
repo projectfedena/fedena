@@ -28,7 +28,7 @@
 <div id="inner-tab-menu">
   <ul>
     <%  if permitted_to? :new,:exam_groups %>
-      <li><%= link_to "#{t('layouts.common.new')}", new_batch_exam_group_path(@batch) %></li>
+      <li><%= link_to "#{t('new')}", new_batch_exam_group_path(@batch) %></li>
     <% end %>
     <%  if permitted_to? :grouping,:exam %>
       <li><%= link_to "#{t('connect_exams')}", :controller=>'exam', :action=>'grouping', :id=>@batch %></li>
@@ -43,9 +43,9 @@
 
   <div class="box">
     <div class="bread_crumb">
-      <%= link_to t('layouts.common.course'), courses_path %> &raquo;
+      <%= link_to t('course'), courses_path %> &raquo;
       <%= link_to @course.full_name, @course %> &raquo;
-      <%= link_to "#{t('layouts.common.batch')} #{@batch.name}", [@course, @batch] %> &raquo;
+      <%= link_to "#{t('batch')} #{@batch.name}", [@course, @batch] %> &raquo;
       <%= t('exams.index.exams') %>
     </div>
 
@@ -62,8 +62,8 @@
 
             <%= link_to exam_group.name, [@batch, exam_group] %>
             <span><small>
-                <%= link_to(t('layouts.common.delete'), [@batch, exam_group], :method => 'delete', :confirm => 'Are you sure?') if exam_group.removable? %>
-                <s><%=  t('layouts.common.delete') unless exam_group.removable? %></s>
+                <%= link_to(t('delete'), [@batch, exam_group], :method => 'delete', :confirm => "#{t('delete_confirm_msg')}") if exam_group.removable? %>
+                <s><%=  t('delete') unless exam_group.removable? %></s>
               </small></span>
           </td>
           <td class="col-2"><small>
@@ -78,7 +78,7 @@
                       :before => "Element.show('loader')",
                       :success => "Element.hide('loader')"  %> <%= t('sms_notification') %><br />
                   <% end %>
-                  <%= link_to_remote("#{t('publish_exam_result')}",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"result"},:confirm=>"#{t('layouts.common.delete_confirm_msg')}",
+                  <%= link_to_remote("#{t('publish_exam_result')}",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"result"},:confirm=>"#{t('.delete_confirm_msg')}",
                     :before => "Element.show('loader')",
                     :success => "Element.hide('loader')")  %>
                 <% else %>

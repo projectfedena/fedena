@@ -33,9 +33,9 @@
   <% end %>
 
 <div class="bread_crumb">
-        <%= link_to t('layouts.common.course'), courses_path %> &raquo;
+        <%= link_to t('course'), courses_path %> &raquo;
         <%= link_to @course.full_name, @course %> &raquo;
-        <%= link_to "#{t('layouts.common.batch')} #{@batch.name}", [@course, @batch] %> &raquo;
+        <%= link_to "#{t('batch')} #{@batch.name}", [@course, @batch] %> &raquo;
         <%= link_to "#{t('exam.index.exam')}", batch_exam_groups_path(@batch) %> &raquo;
       <%= t('additional_exam_groups.new.new_exam') %>
         </div>
@@ -49,7 +49,7 @@
       <%= error_messages_for :exam_group %>
       <% form_remote_for :exam_option, :url => {:controller=>'exam',:action => 'update_exam_form',:batch=>@batch} do |form| %>
         <div class="label-field-pair">
-          <label for="exam_name"><%= t('layouts.default.new') %></label>
+          <label for="exam_name"><%= t('new') %></label>
           <% if params[:ename].nil?  %>
           <% @ename = "" %>
           <% else %>
@@ -61,7 +61,7 @@
           <label for="exam_type"><%= t('exam.index.exam_type') %></label>
           <div class="text-input-bg"><%= select :exam_option,:exam_type,[[t('marks'), "Marks"],[t('grades'), "Grades"],[t('marks_and_grades'),"MarksAndGrades"]] %></div>
         </div>
-        <%= submit_tag "", :value => "► #{t('layouts.default.save')}", :class => "submit_button" %>
+        <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
         <%  #  form.submit("Save") %>
       <%end%>
     </div>

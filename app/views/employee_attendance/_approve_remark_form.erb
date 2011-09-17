@@ -26,7 +26,7 @@
                    
 
       <div class="label-field-pair">
-        <label for="course_grade">Approval remarks</label>
+        <label for="course_grade"><%= t('add_leave_types.approval_remark') %></label>
         <div class="text-input-bg"> <%= text_field_tag :manager_remark %> </div>
         <%= hidden_field_tag :applied_leave, @applied_leave.id %>
       </div>
@@ -34,7 +34,7 @@
 
 
       <div class="submit-button">
-        <%=submit_tag "► OK",:class=>'submit_button' %>
+        <%=submit_tag "►#{t('add_leave_types.ok')}",:class=>'submit_button' %>
       
    </div>
 

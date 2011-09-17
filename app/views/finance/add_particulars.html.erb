@@ -36,13 +36,13 @@
 
 
   <% unless @additional_category.batch.nil? %>
- <div class="name"><%= t('layouts.common.course') %></div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
+ <div class="name"><%= t('.course') %></div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
   <% else %>
-  <div class="name"><%= t('layouts.common.course') %></div><div class="val"><span>:</span>ALL</div>
+  <div class="name"><%= t('.course') %></div><div class="val"><span>:</span>ALL</div>
   <% end %>
-<div class="name"><%= t('layouts.common.start_date') %></div><div class="val"><span>:</span><%= @collection_date.start_date %></div>
-<div class="name"><%= t('layouts.common.end_date') %></div><div class="val"><span>:</span><%= @collection_date.end_date%></div>
-<div class="name"><%= t('layouts.common.due_date') %></div><div class="val"><span>:</span><%= @collection_date.due_date%></div>
+<div class="name"><%= t('.start_date') %></div><div class="val"><span>:</span><%= @collection_date.start_date %></div>
+<div class="name"><%= t('.end_date') %></div><div class="val"><span>:</span><%= @collection_date.end_date%></div>
+<div class="name"><%= t('.due_date') %></div><div class="val"><span>:</span><%= @collection_date.due_date%></div>
 
 <br />
 <br />

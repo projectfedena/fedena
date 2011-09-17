@@ -32,7 +32,7 @@
 <div class="box-1">
 <table class="" align="center" width="100%">
   <tr class="tr-head">
-    <td class="head-td-name"><%= t('layouts.common.name') %></td>
+    <td class="head-td-name"><%= t('name') %></td>
     <% current_day = Date.today  %>
     <% (@start_date..@end_date).each do |date| %>
       <% if current_day.strftime("%a %d %y") == date.strftime("%a %d %y") %>

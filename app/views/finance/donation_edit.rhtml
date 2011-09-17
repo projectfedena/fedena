@@ -23,7 +23,7 @@
           <div class="text-field-bg"><%= f.text_field :donor %></div>
         </div>
         <div class="label-field-pair">
-          <label for="description"><%= t('layouts.common.description') %>:</label>
+          <label for="description"><%= t('.description') %>:</label>
           <div class="text-field-bg"><%= f.text_field :description %></div>
         </div>
         <div class="label-field-pair">
@@ -31,10 +31,10 @@
           <div class="text-field-bg"><%= calendar_date_select_tag 'donation[transaction_date]', I18n.localize(Date.today, :format=>:default), :year_range => 5.years.ago..0.years.ago %></div>
         </div>
         <div class="label-field-pair">
-          <label for="amount"><%= t('layouts.common.amount') %> :</label>
+          <label for="amount"><%= t('.amount') %> :</label>
           <div class="text-field-bg"><%= f.text_field :amount %></div>
         </div>
-        <%=  submit_tag "► #{t('layouts.common.update')}",:class=>'submit_button' %>
+        <%=  submit_tag "► #{t('.update')}",:class=>'submit_button' %>
       </div>
 
 

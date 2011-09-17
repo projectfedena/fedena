@@ -19,20 +19,20 @@
 
 <div id="content-header">
     <img src="/images/show_settings.png" />
-  <h1><%= t('layouts.common.courses') %></h1>
-  <h3><%= t('new.show') %></h3>
+  <h1><%= t('courses') %></h1>
+  <h3><%= t('show') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "#{t('layouts.common.new')}", new_course_batch_path(@course) %> </li>
+    <li><%= link_to "#{t('new')}", new_course_batch_path(@course) %> </li>
         <% if permitted_to? :edit, :course %>
-    <li><%= link_to "#{t('layouts.common.edit')}", edit_course_path(@course) if permitted_to? :edit, :course %></li>
+    <li><%= link_to "#{t('edit')}", edit_course_path(@course) if permitted_to? :edit, :course %></li>
         <%  end %>
     <% if permitted_to? :destroy, :course %>
-      <li><%= link_to("#{t('layouts.common.delete')}", course_path(@course), :method => 'delete', :confirm => "#{t('layouts.common.delete_confirm_msg')}") %></li>
+      <li><%= link_to("#{t('delete')}", course_path(@course), :method => 'delete', :confirm => "#{t('delete_confirm_msg')}") %></li>
     <%  end %>
   </ul>
 </div>
@@ -42,7 +42,7 @@
   <% end %>
   <div class="box">
         <div class="bread_crumb">
-        <%= link_to "#{t('layouts.common.courses')}", courses_path %> &raquo;
+        <%= link_to "#{t('courses')}", courses_path %> &raquo;
         <%= @course.full_name %>
         </div>
 
@@ -51,7 +51,7 @@
 
       <% @batches.each do |batch| %>
         <li class="list<%=cycle('odd', 'even')%>">
-          <div class="category-name"><%= link_to batch.full_name, [@course, batch] %></div> <div class="category-edit"> <%= link_to "#{t('layouts.common.edit')}", edit_course_batch_path(@course, batch) if permitted_to? :edit, :batches %></div><div class="category-delete">   <%= link_to("#{t('layouts.common.delete')}", [@course, batch], :method => 'delete', :confirm => "#{t('layouts.common.delete_confirm_msg')}")  if permitted_to? :destroy, :batches %></div>
+          <div class="category-name"><%= link_to batch.full_name, [@course, batch] %></div> <div class="category-edit"> <%= link_to "#{t('.edit')}", edit_course_batch_path(@course, batch) if permitted_to? :edit, :batches %></div><div class="category-delete">   <%= link_to("#{t('.delete')}", [@course, batch], :method => 'delete', :confirm => "#{t('delete_confirm_msg')}")  if permitted_to? :destroy, :batches %></div>
         </li>
       <% end %>
 

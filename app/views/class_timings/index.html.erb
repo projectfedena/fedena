@@ -33,7 +33,7 @@
   <% end %>
     
     <div class="label-field-pair">
-   <label ><%= t('layouts.common.select_a_batch') %>:</label>
+   <label ><%= t('select_a_batch') %>:</label>
  <div class="text-input-bg">
   <%= select :batch, :id,
     @batches.map {|b| [b.full_name, b.id] },

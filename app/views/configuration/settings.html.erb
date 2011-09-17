@@ -20,8 +20,8 @@
 <%=  @file_size %>
 <div id="content-header">
   <img src="/images/show_settings.png" />
-  <h1><%= t('index.configuration') %></h1>
-  <h3><%= t('index.general_settings') %></h3>
+  <h1><%= t('configuration') %></h1>
+  <h3><%= t('general_settings') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -110,7 +110,7 @@
         <% end %>
       <% end %>
       <div id="submit-button">
-        <%= submit_tag "► #{t('layouts.common.update')}" %>
+        <%= submit_tag "► #{t('update')}" %>
       </div>
 
     <% end %>

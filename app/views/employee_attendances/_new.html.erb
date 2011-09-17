@@ -38,7 +38,7 @@
       <label><%= f.check_box :is_half_day, :checked => false %><%= t('employee_attendance.add_leave_types.half_day') %></label>
     </div>
     <div class="extender"></div>
-    <%= f.submit "#{t('layouts.common.submit')}", :class => 'submit-button', :confirm => "#{t('layouts.common.delete_confirm_msg')}" %>
+    <%= f.submit "#{t('submit')}", :class => 'submit-button', :confirm => "#{t('.delete_confirm_msg')}" %>
   <% end %>
   <div id="form-errors"></div>
 </div>

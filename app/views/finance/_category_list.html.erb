@@ -23,14 +23,14 @@
   <div class="container<%= cycle('odd', 'even')%> ">
     <div class="title"> <%= cat.name %></div>
     <%unless (cat.id == 1 or cat.id ==2 or cat.id ==3) %>
-      <div class="edit"><%= link_to_remote t('layouts.common.edit'), :url => { :action => 'category_edit', :id => cat.id } %></div>
+      <div class="edit"><%= link_to_remote t('edit'), :url => { :action => 'category_edit', :id => cat.id } %></div>
       <div class="edit">
         <% transaction = FinanceTransaction.find(:all, :conditions=>{:category_id=>cat.id}) %>
         <% if transaction.blank? %>
-        <%= link_to_remote 'Delete', :url => { :action => 'category_delete', :id => cat.id } , :confirm=>"Are you sure to delete this finance category?" %>
+        <%= link_to_remote t('delete'), :url => { :action => 'category_delete', :id => cat.id } , :confirm=>"Are you sure to delete this finance category?" %>
         <% else %>
         
-        <%= link_to_remote "<s>#{t('layouts.common.delete')}</s>", :url => { :action => '', :id => "" } %>
+        <%= link_to_remote "<s>#{t('delete')}</s>", :url => { :action => '', :id => "" } %>
           <% end %>
       </div>
     <%end %>

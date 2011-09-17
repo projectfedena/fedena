@@ -78,7 +78,7 @@
             <% unless (r == 1 and c <= @start_date_day) %>
               <% unless dt > @last_day.day %>
                 <%  if permitted_to? :index,:event %>
-                  <div class="link"><%= link_to "#{t('layouts.common.add')}", :controller=>"event",:action=>"index",:id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") %>
+                  <div class="link"><%= link_to "#{t('add')}", :controller=>"event",:action=>"index",:id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") %>
                   <% end  %>
                   <span><%= dt  %></span></div>
                 <div class="link-group">

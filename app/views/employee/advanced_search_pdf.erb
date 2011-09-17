@@ -29,11 +29,11 @@
   <div class="extender"> </div>
   <div class="report">
     <div id ="main_info">
-      <h4> <%= "#{t('layouts.common.employee')} "+@searched_for.camelcase %></h4>
+      <h4> <%= "#{t('employee')} "+@searched_for.camelcase %></h4>
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="odd"><td class="col-pdf"><%= t('layouts.common.name') %></td><td class="col-pdf"><%= t('layouts.common.department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
+        <tr class="odd"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
         <% i=0 %>
         <% @employees1.each do |employee1| %>
         <% c =cycle('even','odd ') %>
@@ -42,9 +42,9 @@
               <% i= 0 %>
               <tr class="page-break"><td colspan="3"></td></tr>
               <% if c == 'even' %>
-               <tr class="odd"><td class="col-pdf"><%= t('layouts.common.name') %></td><td class="col-pdf"><%= t('layouts.common.department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
+               <tr class="odd"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
               <% else %>
-               <tr class="even"><td class="col-pdf"><%= t('layouts.common.name') %></td><td class="col-pdf"><%= t('layouts.common.department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
+               <tr class="even"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
               <% end %>
               <% end %>
         <tr class="<%= "#{c}" %>">
@@ -63,9 +63,9 @@
               <% i= 0 %>
               <tr class="page-break"><td colspan="3"></td></tr>
               <% if c == 'even' %>
-               <tr class="odd"><td class="col-pdf"><%= t('layouts.common.name') %></td><td class="col-pdf"><%= t('layouts.common.department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
+               <tr class="odd"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
               <% else %>
-               <tr class="even"><td class="col-pdf"><%= t('layouts.common.name') %></td><td class="col-pdf"><%= t('layouts.common.department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
+               <tr class="even"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
               <% end %>
               <% end %>
             <tr class="<%= "#{c}" %>">

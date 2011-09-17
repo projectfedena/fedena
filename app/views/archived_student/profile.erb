@@ -29,7 +29,7 @@
 <div id="inner-tab-menu">
   <ul>
 
-    <li><%= link_to "#{t('student.reports.h3')}", :controller => 'archived_student',
+    <li><%= link_to "#{t('student.reports.reports')}", :controller => 'archived_student',
         :action => 'reports', :id => @archived_student %></li>
 
 
@@ -61,8 +61,8 @@
 
     <div id ="student_main_info">
       <h3> <%= @archived_student.full_name %>  </h3>
-      <h4> <%= t('layouts.common.course_and_batch') %> : <%= @archived_student.batch.course_name %> </h4>
-      <h4> <%= t('layouts.common.adm_no') %>. : <%= @archived_student.admission_no %> </h4>
+      <h4> <%= t('course_and_batch') %> : <%= @archived_student.batch.course_name %> </h4>
+      <h4> <%= t('adm_no') %>. : <%= @archived_student.admission_no %> </h4>
     </div>
 
     <div class="extender"> </div>
@@ -95,7 +95,7 @@
       <div class="profile_info_text_top2"> <%= @archived_student.language %> </div>
 
 
-      <div class="profile_info_label_top"><%= t('layouts.common.category') %></div>
+      <div class="profile_info_label_top"><%= t('.category') %></div>
       <div class="profile_info_text_top"> <%= @archived_student.student_category.name unless @archived_student.student_category.nil? %> </div>
     </div>
 

@@ -36,13 +36,13 @@
         </li>
       <% end %>
     <% end %>
-    <li class="list<%=cycle('odd', 'even')%>"><div class="item-name"><%= t('layouts.common.total') %> :</div><div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= total %></div></li>
+    <li class="list<%=cycle('odd', 'even')%>"><div class="item-name"><%= t('total') %> :</div><div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%= total %></div></li>
     </ul>
 <% if permitted_to? :edit_payroll_details, :payroll %>
     <div class="edit-delete-link">
-    <%= link_to "#{t('layouts.common.edit')}", :controller => "payroll", :action => "edit_payroll_details", :id => @employee.id  %>
+    <%= link_to "#{t('edit')}", :controller => "payroll", :action => "edit_payroll_details", :id => @employee.id  %>
     </div>
 <% end %>
 <% else %>
-  <p class="flash-msg"><%= t('profile.no_payroll_detail_entered') %>  <%= @employee.first_name%>. <%= link_to "#{t('layouts.common.add')}", :controller => "payroll", :action => "manage_payroll", :id => @employee.id %></p>
+  <p class="flash-msg"><%= t('profile.no_payroll_detail_entered') %>  <%= @employee.first_name%>. <%= link_to "#{t('add')}", :controller => "payroll", :action => "manage_payroll", :id => @employee.id %></p>
 <% end %>

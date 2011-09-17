@@ -30,7 +30,7 @@ $jq(document).ready(function() {
  <div id="content-header">
  <img src="/images/HR/show_hr.png" alt="" />
   <h1><%= t('employee.create_monthly_payslip.monthly_payslip') %></h1>
-  <h3><%= t('layouts.common.edit') %></h3>
+  <h3><%= t('edit') %></h3>
     <div id="app-back-button">
    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
     </div>
@@ -55,7 +55,7 @@ $jq(document).ready(function() {
       <label for="salary_date"><%= t('employee.create_monthly_payslip.salary_date') %></label>
       <div class="text-input-bg"><%= text_field_tag :salary_date, @date  %>**<%= t('employee.hr.select_the_last_day_of_the_month') %></div>
     </div>
-    <%= submit_tag "#{t('layouts.common.update')}" %>
+    <%= submit_tag "#{t('update')}" %>
   <% end %>
 
   </div>

@@ -44,13 +44,13 @@
        ***********************************************/
       var anylinkmenu1={divclass:'anylinkmenu', inlinestyle:'', linktarget:''} //First menu variable. Make sure "anylinkmenu1" is a unique name!
       anylinkmenu1.items = [
-        ["<%= t('top_nav_calendar') %>", "/calendar"],
-        ["<%= t('top_nav_examination')%>", "/exam"],
-        ["<%= t('top_nav_news')%>", "/news"],
-        ["<%= t('top_nav_event_creation')%>", "/event"],
-        ["<%= t('top_nav_human_resource')%>", "/employee/hr"],
-        ["<%= t('top_nav_finance')%>", "/finance/index"],
-        ["<%= t('top_nav_user')%>", "/user"],
+        ["<%= t('calendar') %>", "/calendar"],
+        ["<%= t('examination')%>", "/exam"],
+        ["<%= t('news')%>", "/news"],
+        ["<%= t('event_creation')%>", "/event"],
+        ["<%= t('human_resource')%>", "/employee/hr"],
+        ["<%= t('finance')%>", "/finance/index"],
+        ["<%= t('user')%>", "/user"],
       ]
       anylinkmenu.init("menuanchorclass");
     </script>
@@ -79,23 +79,23 @@
         </div>
         <div id="outer-main-menu">
           <div id="main-menu">
-            <%= link_to t('top_nav_dashboard'), :controller => "user", :action => "dashboard" %>
+            <%= link_to t('dashboard'), :controller => "user", :action => "dashboard" %>
             <% this_user = User.find(session[:user_id]) if session[:user_id] %>
             <%  if this_user.student? || this_user.employee? %>
-              <%= link_to t('top_nav_calendar'), :controller => "calendar" %>
+              <%= link_to t('calendar'), :controller => "calendar" %>
             <% end %>
-            <%= link_to t('top_nav_students'), :controller => "student", :action => "index" \
+            <%= link_to t('students'), :controller => "student", :action => "index" \
               if this_user.admin? %>
-            <%= link_to t('top_nav_attendance'), :controller => "student_attendance", :action => "index" \
+            <%= link_to t('attendance'), :controller => "student_attendance", :action => "index" \
               if this_user.admin? %>
-            <%= link_to t('top_nav_settings'), :controller => "configuration", :action => "index" \
+            <%= link_to t('settings'), :controller => "configuration", :action => "index" \
               if this_user.admin? %> <!--
-            <%= link_to t('top_nav_news'), :controller => "news", :action => "index" \
+            <%= link_to t('news'), :controller => "news", :action => "index" \
               if this_user.admin? %> -->
-            <%= link_to t('top_nav_timetable'), :controller => "timetable", :action => "index" \
+            <%= link_to t('timetable'), :controller => "timetable", :action => "index" \
               if this_user.admin? %>
             <% if this_user.admin? %>
-              <a href="#" class="menuanchorclass" rel="anylinkmenu1"><%=  t('top_nav_more') %></a>
+              <a href="#" class="menuanchorclass" rel="anylinkmenu1"><%=  t('more') %></a>
             <% end %>
           </div>
         </div>
@@ -116,7 +116,7 @@
         </div>
         <div id="sidebar_news_area">
           <% if action_name == "dashboard" %>
-            <%= link_to "#{t('news.index.news')}", { :controller => "news", :action => "index" }, :id => 'news_feed_top_img' %>
+            <%= link_to "#{t('news')}", { :controller => "news", :action => "index" }, :id => 'news_feed_top_img' %>
             <div id="news_feed">
               <% @dash_news.each do |n| %>
                 <div class="sidebar_news_item<%= cycle("0", "1") %>">
@@ -126,7 +126,7 @@
               <% end %>
             </div>
             <div class="extender"> </div>
-            <%= link_to "#{t('news.index.more_news')}", {:controller => "news", :action => "all"}, :id => "bottom_read_more" %>
+            <%= link_to "#{t('more_news')}", {:controller => "news", :action => "all"}, :id => "bottom_read_more" %>
           </div>
         <% end %>
       </div>

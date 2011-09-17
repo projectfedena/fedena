@@ -22,10 +22,10 @@
 <div class="profile_info_label_top"><%= t('employee.admission1.joining_date') %></div>
 <div class="profile_info_text_top"><%= I18n.l(@employee.joining_date, :format=>"%d %b,%Y")%></div>
 
-<div class="profile_info_label_top2"><%= t('layouts.common.department') %></div>
+<div class="profile_info_label_top2"><%= t('department') %></div>
 <div class="profile_info_text_top2"><%= @employee.employee_department.name%></div>
 
-<div class="profile_info_label_top"><%= t('layouts.common.category') %></div>
+<div class="profile_info_label_top"><%= t('category') %></div>
 <div class="profile_info_text_top"><%= @employee.employee_category.name %></div>
 
 
@@ -57,7 +57,7 @@
 <div class="profile_info_label_top2"><%= t('student.admission1.gender') %></div>
 <div class="profile_info_text_top2"> <%= @gender %> </div>
 
-<div class="profile_info_label_top"><%= t('layouts.common.status') %></div>
+<div class="profile_info_label_top"><%= t('.status') %></div>
 <div class="profile_info_text_top"><%= @status %> </div>
 
 
@@ -76,7 +76,7 @@
 <div class="edit-pdf-group">
       <% if permitted_to?  :profile_pdf , :employee %>
   <div class="pdf">
-    <%= link_to " ► #{t('layouts.common.pdf_report')}",
+    <%= link_to " ► #{t('.pdf_report')}",
       {:controller => "archived_employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
   </div>
   <% end %>

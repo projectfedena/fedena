@@ -21,10 +21,10 @@
 <div id="fee-collections-list">
 <table id="listing">
   <tr class="tr-head">
-    <td><%= t('layouts.common.name') %></td>
-    <td><%= t('layouts.common.start_date') %></td>
-    <td><%= t('layouts.common.end_date') %></td>
-    <td><%= t('additional_fees_create.message_body_part6') %></td>
+    <td><%= t('name') %></td>
+    <td><%= t('start_date') %></td>
+    <td><%= t('end_date') %></td>
+    <td><%= t('message_body_part6') %></td>
     <td></td>
   </tr>
 
@@ -35,9 +35,9 @@
       <td class="col-3"><%= f.end_date %></td>
       <td class="col-3"><%= f.due_date %></td>
       <td class="col-1">
-        <div class="edit"><%= link_to_remote t('layouts.common.edit'), :url => {:action => 'fee_collection_edit', :id => f.id} %></div>
+        <div class="edit"><%= link_to_remote t('edit'), :url => {:action => 'fee_collection_edit', :id => f.id} %></div>
         <% unless f.check_fee_category == false %>
-          <div class="delete"><%= link_to_remote t('layouts.common.delete'), :url => {:action => 'fee_collection_delete', :id => f.id },:confirm=>t('batches.show.are_you_sure') %></div>
+          <div class="delete"><%= link_to_remote t('delete'), :url => {:action => 'fee_collection_delete', :id => f.id },:confirm=>"#{t('delete_confirm_msg')}" %></div>
         <% end %>
       </td>
    </tr>

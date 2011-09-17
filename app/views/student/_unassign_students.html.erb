@@ -19,5 +19,5 @@
 
 
      <div class="category-name"><%= @student.full_name %></div>
-      <div class="category-edit"> <%= link_to_remote "#{t('layouts.common.remove')}",:url=>{:controller=>"student",:action=>"unassign_students",:id=>@student.id,:id2=>@elective_subject.id} %>
+      <div class="category-edit"> <%= link_to_remote "#{t('.remove')}",:url=>{:controller=>"student",:action=>"unassign_students",:id=>@student.id,:id2=>@elective_subject.id} %>
       </div>

@@ -20,12 +20,12 @@
 
 
 
-<div class="label-field-pair"><label> Select course: </label></div>
+<div class="label-field-pair"><label> <%= t('event.index.select_course') %>: </label></div>
 <div id="list_content">
   <div id="list">
     <div class="sel-list">
-      Select: <%= link_to_function 'All', "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
-      <%= link_to_function 'None', "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
+      <%= t('select') %>: <%= link_to_function "#{t('all')}", "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
+      <%= link_to_function "#{t('none')}", "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
     </div>
     <% form_for :employee,:url=>{:action=>'update_department_leave_reset'} do |form| %>
       <% @employees.each do |b| %>
@@ -36,7 +36,7 @@
 
 
       <div class="user_submit_button1">
-        <%= form.submit  "asd", :name => "commit", :value => "► Reset" %>
+        <%= form.submit  "asd", :name => "commit", :value => "► #{t('add_leave_types.reset')}" %>
       </div>
     <%  end %>
   </div>

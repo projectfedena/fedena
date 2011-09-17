@@ -90,7 +90,7 @@
 </ul>
 <% if permitted_to? :delete_payslip, :payroll %>
   <div class="edit-delete-link">
-    <%= link_to "#{t('layouts.common.delete')}",{:controller => "employee", :action => "delete_payslip", :id=> @emp.id, :id2=>@salary_date}, :confirm=>"#{t('layouts.common.delete_confirm_msg')}" %>
+    <%= link_to "#{t('delete')}",{:controller => "employee", :action => "delete_payslip", :id=> @emp.id, :id2=>@salary_date}, :confirm=>"#{t('delete_confirm_msg')}" %>
   </div>
 <% end %>
 <% if @current_user==@emp.user %>

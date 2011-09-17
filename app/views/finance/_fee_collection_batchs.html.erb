@@ -17,8 +17,8 @@
 <div class="label-field-pair"><label> <%= t('fee_collection.select_batch') %>: </label></div>
 <div class="fee_category_scroll">
   <div class="sel-list">
-    Select: <%= link_to_function t('layouts.common.all'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
-    <%= link_to_function t('layouts.common.none'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
+    <%= t('select') %>: <%= link_to_function t('all'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
+    <%= link_to_function t('none'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
   </div>
   <% @fee_category.each do |f| %>
     <div class="each_batch">
