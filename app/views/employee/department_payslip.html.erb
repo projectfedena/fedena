@@ -30,20 +30,20 @@
   <% form_for :payslip do |f| %>
     <div id="box">
       <div class="label-field-pair">
-        <label for="student_course"><%= t('search.select_department') %>:</label>
+        <label for="student_course"><%= t('select_department') %>:</label>
 
         <% selected_dept = params[:payslip].blank? ? "" : params[:payslip][:department_id].blank? ? "" : params[:payslip][:department_id] %>
         <% selected_salary_date = params[:payslip].blank? ? "" : params[:payslip][:salary_date].blank? ? "" : params[:payslip][:salary_date] %>
-        <div class="text-input-bg"> <%= f.select :department_id, [['All Deparments','All']] + @departments.map { |c| [c.name, c.id] }, {:selected=>selected_dept.to_i,:prompt => "#{t('search.select_department')}"}
+        <div class="text-input-bg"> <%= f.select :department_id, [['All Deparments','All']] + @departments.map { |c| [c.name, c.id] }, {:selected=>selected_dept.to_i,:prompt => "#{t('select_department')}"}
         %>
         </div></div>
       <div class="label-field-pair">
-        <label for="student_course">Select a month:</label>
+        <label for="student_course"><%= t('select_a_month') %></label>
         <div class="text-input-bg">
           <%= f.select :salary_date, @salary_dates.map {|c| [c.salary_date.strftime("%B %Y"),c.salary_date.strftime("%Y-%m-%d")]},
-            {:selected=>selected_salary_date,:prompt => "#{ t('create_monthly_payslip.select_month')}"} %>
+            {:selected=>selected_salary_date,:prompt => "#{ t('select_month')}"} %>
         </div></div>
-      <%= submit_tag "► #{t('timetable.index.view')}",:class=>'submit_button' %>
+      <%= submit_tag "► #{t('view')}",:class=>'submit_button' %>
     </div>
 
 
@@ -81,7 +81,7 @@
                   <% emp_payslip = Employee.calculate_salary(payslip,grouped_individual_payslip_category) %>
                   <td class="col-1">  <%="%.2f" %emp_payslip[:net_amount] unless emp_payslip.nil? %></td>
                   <td class="col-1">  <%= payslip.first.status_as_text %></td>
-                  <td class="col-5"><%= link_to "#{t('books.index.view')}",{:action=>"view_employee_payslip",:id=>payslip.first.employee_id,:salary_date=>params[:payslip][:salary_date]} %></td>
+                  <td class="col-5"><%= link_to "#{t('view')}",{:action=>"view_employee_payslip",:id=>payslip.first.employee_id,:salary_date=>params[:payslip][:salary_date]} %></td>
                 <% end %>
                 <% total_salary +=  emp_payslip[:net_amount].to_f unless emp_payslip.nil?  %>
                 <% total_approved_salary +=  emp_payslip[:net_amount].to_f if  !emp_payslip.nil? and payslip.first.is_approved  %>

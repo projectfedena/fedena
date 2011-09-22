@@ -19,16 +19,16 @@
 
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= t('search.employee_search') %></h1>
-  <h3><%= t('search.employee_details') %></h3>
+  <h1><%= t('employee_search') %></h1>
+  <h3><%= t('employee_details') %></h3>
   <div id="app-back-button">
   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "#{t('student.index.view_all')}", :controller=>"employee", :action=>"view_all" %></li>
-    <li><%= link_to "#{t('student.index.advanced')}", :controller=>"employee", :action=>"advanced_search"%></li>
+    <li><%= link_to "#{t('view_all')}", :controller=>"employee", :action=>"view_all" %></li>
+    <li><%= link_to "#{t('advanced')}", :controller=>"employee", :action=>"advanced_search"%></li>
   </ul>
 
 </div>

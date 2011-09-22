@@ -19,7 +19,7 @@
 
 <ul id="category-list">
 <% unless @additional_details.empty? %>
-  <li class="listheading"><div class="category-name"><%= t('add_additional_details.active_fields') %></div></li>
+  <li class="listheading"><div class="category-name"><%= t('active_fields') %></div></li>
     <%- @additional_details.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= c.name %></div>
@@ -28,7 +28,7 @@
       </li>
      <% end %>
     <% unless @inactive_additional_details.empty? %>
-      <li class="listheading"><div class="category-name"> <%= t('add_additional_details.inactive_fields') %></div></li>
+      <li class="listheading"><div class="category-name"> <%= t('inactive_fields') %></div></li>
       <%- @inactive_additional_details.each do |c| -%>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="category-name"><%= c.name %></div>

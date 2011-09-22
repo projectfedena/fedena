@@ -20,7 +20,7 @@
 
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= t('employee_management.employee_admission') %></h1>
+  <h1><%= t('employee_admission') %></h1>
   <h3><%= t('step_1') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -59,33 +59,33 @@
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
-        <label for="employee_name"><%= t('student.admission1.first_name') %><span class="necessary-field">*</span> </label>
+        <label for="employee_name"><%= t('first_name') %><span class="necessary-field">*</span> </label>
         <div class="text-input-bg"><%= a.text_field :first_name %></div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
-        <label for="employee_name"><%= t('student.admission1.middle_name') %></label>
+        <label for="employee_name"><%= t('middle_name') %></label>
         <div class="text-input-bg"><%= a.text_field :middle_name %></div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
-        <label for="employee_name"><%= t('student.admission1.last_name') %></label>
+        <label for="employee_name"><%= t('last_name') %></label>
         <div class="text-input-bg"><%= a.text_field :last_name %></div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label_field_pair">
-        <label class="label_for_employee_gender" for="master_student_gender"><%= t('student.admission1.gender') %></label>
+        <label class="label_for_employee_gender" for="master_student_gender"><%= t('gender') %></label>
         <div class="employee_gender_value">
-          <label class="label_for_gender" for="master_student_gender_true"><%= t('student.admission1.male') %></label>
+          <label class="label_for_gender" for="master_student_gender_true"><%= t('male') %></label>
           <%= a.radio_button  "gender", "true", :checked => "checked" %>
 
-          <label class="label_for_gender" for="master_student_gender_false"><%= t('student.admission1.female') %></label>
+          <label class="label_for_gender" for="master_student_gender_false"><%= t('female') %></label>
           <%= a.radio_button  "gender", "false" %>
         </div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
-        <label for="dob"><%= t('student.admission1.date_of_birth') %><span class="necessary-field">*</span></label>
+        <label for="dob"><%= t('date_of_birth') %><span class="necessary-field">*</span></label>
         <div class="text-input-bg"><%= calendar_date_select_tag 'employee[date_of_birth]',I18n.localize(Date.today-10.years),
             :year_range => 70.years.ago..4.years.ago %></div>
       </div>
@@ -104,12 +104,12 @@
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
-        <label for="employee_position"><%= t('hr.position') %> <span class="necessary-field">*</span></label>
+        <label for="employee_position"><%= t('position') %> <span class="necessary-field">*</span></label>
         <div class="text-input-bg"><div id="positions1"> <%= render :partial => 'positions', :object => @positions %></div></div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
-        <label for="employee_grade"><%= t('hr.grade') %></label>
+        <label for="employee_grade"><%= t('grade') %></label>
         <div class="text-input-bg"><%= select :employee, :employee_grade_id, @grades.map {|s| [s.name, s.id]},:prompt => "#{t('select')}" %></div>
       </div>
       <hr class="label-underline"></hr>
@@ -177,12 +177,12 @@
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
-        <label for="employee_blood"><%= t('student.admission1.blood_group') %></label>
+        <label for="employee_blood"><%= t('blood_group') %></label>
         <div class="text-input-bg"><%= select :employee, :blood_group, ["Unknown","A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],{:prompt=> "#{t('student.admission1.unknown')}"} %></div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
-        <label for="employee_nationality"><%= t('student.admission1.nationality') %></label>
+        <label for="employee_nationality"><%= t('nationality') %></label>
         <div class="text-input-bg"><%= select :employee, :nationality_id, @nationalities.map {|c| [c.name, c.id]}, :selected => 76 %></div>
       </div>
       <hr class="label-underline"></hr>
@@ -191,7 +191,7 @@
       </script>
 
       <div class="label-field-pair">
-        <label for="master_student_image_file"><%= t('student.admission1.upload_photo') %></label>
+        <label for="master_student_image_file"><%= t('upload_photo') %></label>
         <div class="text-input-bg"><%= a.file_field :photo %></div>
 
       </div>

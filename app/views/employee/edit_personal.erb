@@ -22,8 +22,8 @@
 
 <div id="content-header">
    <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= t('edit1.edit_employee_information') %></h1>
-  <h3><%= t('profile.personal') %></h3>
+  <h1><%= t('edit_employee_information') %></h1>
+  <h3><%= t('personal') %></h3>
   <div id="app-back-button">
  <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -42,10 +42,10 @@
     <%= error_messages_for 'employee' %>
 
       
-          <span class="span-sub-heading"><%= t('admission1.personal_details') %></span>
+          <span class="span-sub-heading"><%= t('personal_details') %></span>
           <hr class="sub-heading"></hr>
           <div class="label-field-pair">
-            <label><%= t('student.admission1.date_of_birth') %></label>
+            <label><%= t('date_of_birth') %></label>
         <div class="text-input-bg"><%= calendar_date_select_tag 'employee[date_of_birth]', @employee.date_of_birth,
             :year_range => 70.years.ago..4.years.ago %></div>
       </div>
@@ -54,15 +54,15 @@
           <hr class="label-underline"></hr>
 
           <div class="label-field-pair">
-            <label><%= t('admission1.marital_status') %></label>
-            <div class="text-input-bg"><%= select :employee, :marital_status, ["Single", "Married"] %></div>
+            <label><%= t('marital_status') %></label>
+            <div class="text-input-bg"><%= select :employee, :marital_status, ["#{t('single')}", "#{t('married')}"] %></div>
             <div class="extender"></div>
           </div>
 
           <hr class="label-underline"></hr>
 
           <div class="label-field-pair">
-            <label><%= t('admission1.no_of_children') %></label>
+            <label><%= t('no_of_children') %></label>
             <div class="text-input-bg"><%= a.text_field :children_count %></div>
             <div class="extender"></div>
           </div>
@@ -70,7 +70,7 @@
           <hr class="label-underline"></hr>
 
           <div class="label-field-pair">
-            <label><%= t('admission1.father_name') %></label>
+            <label><%= t('father_name') %></label>
             <div class="text-input-bg"><%= a.text_field :father_name %></div>
             <div class="extender"></div>
           </div>
@@ -78,7 +78,7 @@
           <hr class="label-underline"></hr>
 
           <div class="label-field-pair">
-            <label><%= t('admission1.mother_name') %></label>
+            <label><%= t('mother_name') %></label>
             <div class="text-input-bg"><%= a.text_field :mother_name %></div>
             <div class="extender"></div>
           </div>
@@ -86,7 +86,7 @@
           <hr class="label-underline"></hr>
 
           <div class="label-field-pair">
-            <label><%= t('admission1.spouse_name') %></label>
+            <label><%= t('spouse_name') %></label>
             <div class="text-input-bg"><%= a.text_field :husband_name %></div>
             <div class="extender"></div>
           </div>
@@ -94,7 +94,7 @@
           <hr class="label-underline"></hr>
 
           <div class="label-field-pair">
-            <label><%= t('student.admission1.blood_group') %></label>
+            <label><%= t('blood_group') %></label>
             <div class="text-input-bg"><%= select :employee, :blood_group, ["Unknown","A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"] %></div>
             <div class="extender"></div>
           </div>
@@ -102,7 +102,7 @@
           <hr class="label-underline"></hr>
 
           <div class="label-field-pair">
-            <label><%= t('student.admission1.nationality') %></label>
+            <label><%= t('nationality') %></label>
             <div class="text-input-bg"><%= select :employee, :nationality_id, @nationalities.map {|c| [c.name, c.id]}, :selected => 76 %></div>
             <div class="extender"></div>
           </div>
@@ -114,7 +114,7 @@
 </script>
 
     <div class="label-field-pair">
-      <label for="master_student_image_file"><%= t('student.admission1.upload_photo') %></label>
+      <label for="master_student_image_file"><%= t('upload_photo') %></label>
       <div class="text_input_bg"><%= a.file_field :photo %></div>
     </div>
 

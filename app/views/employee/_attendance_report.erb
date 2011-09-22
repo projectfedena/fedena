@@ -33,7 +33,7 @@
       <% @report.each do |r| %>
         <div class="date-<%=cycle("even", "odd")%>"><%= I18n(r.attendance_date,:forma=>"%B %d, %Y") %>
           <% if r.is_half_day==true %>
-           <%= t('employee_attendances.index.half_day') %>
+           <%= t('half_day') %>
           <% end %>
         </div>
       <% end %>

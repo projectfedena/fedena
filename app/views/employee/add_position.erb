@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= "#{t('employee.add_bank_details.employee_settings')}" %></h1>
+  <h1><%= "#{t('employee_settings')}" %></h1>
   <h3><%= "#{t('hr.add_position')}" %></h3>
   <div id="app-back-button">
      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -42,7 +42,7 @@
     </div>
 
    <div class="label-field-pair">
-      <label for="category_name"><%= "#{t('employee.advanced_search.employee_category')}" %></label>
+      <label for="category_name"><%= "#{t('employee_category')}" %></label>
       <div class="text-input-bg"><%= select :position, :employee_category_id, @categories.map {|s| [s.name, s.id]}, :prompt => "Select" %></div>
     </div>
 

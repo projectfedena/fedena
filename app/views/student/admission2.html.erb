@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/admission/admission_page_logo.jpg" />
-  <h1><%= t('.admission') %></h1>
-  <h3><%= t('h3') %></h3>
+  <h1><%= t('admission') %></h1>
+  <h3><%= t('parent_guardian_details_step2') %></h3>
 </div>
 
 <div id="page-yield">
@@ -43,7 +43,7 @@
           end %>
         </div>
         <div id="skip">
-          <%= link_to "► #{t('.finish')}", {:controller => "student", :action => "admission3", :id => @student.id } %>
+          <%= link_to "► #{t('finish')}", {:controller => "student", :action => "admission3", :id => @student.id } %>
         </div>
         <script type="text/javascript">
           Event.observe(window, 'load', function() { $('admission1_form').hide(); });
@@ -63,7 +63,7 @@
       <div id="admission1_form_vertical_block_left">
 
         <div class="label-field-pair">
-          <label for="parent_detail_student_id"><%= t('student') + ' ' + t('admission_number') %></label>
+          <label for="parent_detail_student_id"><%= "#{t('student_text')}  #{t('admission_number')}" %></label>
           <div class="text_display"><%= @student.admission_no %></div>
           <%= f.hidden_field :ward_id, :value => @student.id %>
         </div>
@@ -215,7 +215,7 @@
         </div>
 
         <div class="extender">
-          <%= submit_tag "", :value => " ► #{t('.finish')}",  :name => "commit", :class => "submit_button3" %>
+          <%= submit_tag "", :value => " ► #{t('finish')}",  :name => "commit", :class => "submit_button3" %>
         </div>
         <div id="skip">
           <%= link_to "► #{t('click_here_to_skip')}", {:controller => "student", :action => "admission3", :id => @student.id } %>

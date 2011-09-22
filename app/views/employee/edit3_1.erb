@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= t('edit1.edit_employee_information') %></h1>
-  <h3><%= t('student.admission4.additional_detail') %></h3>
+  <h1><%= t('edit_employee_information') %></h1>
+  <h3><%= t('additional_detail') %></h3>
   <div id="app-back-button">
    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -36,7 +36,7 @@
   <% form_for :employee_additional_details do |a| %>
   <%= error_messages_for 'employee_additional_details' %>
 
-      <span class="span-sub-heading"><%= t('student.admission4.additional_detail') %></span>
+      <span class="span-sub-heading"><%= t('additional_detail') %></span>
       <hr class="sub-heading"></hr>
           <% @additional_fields.each do |additional| %>
             <% @employee_additional_detail = EmployeeAdditionalDetail.find_by_employee_id_and_additional_field_id(@employee.id,additional.id) %>

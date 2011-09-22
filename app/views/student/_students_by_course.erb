@@ -21,32 +21,16 @@
 <div class="students-table">
   <table align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">
-      <td>
-        Sl no.
-      </td>
-      <td>
-        Name
-      </td>
-      <td>
-        Adm no.
-      </td>
-      <td>
-
-      </td>
+      <td><%= t('sl_no') %></td>
+      <td><%= t('name') %></td>
+      <td><%= t('adm_no') %></td>
+      <td></td>
     </tr>
     <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
 
     <% @students.each_with_index do |r, i| %>
@@ -64,7 +48,7 @@
         </td>
 
         <td class="col-4">
-          <%=  link_to 'View Profile', :controller => "student", :action => "profile", :id => r.id %>
+          <%=  link_to  "#{t('view_profile')}", :controller => "student", :action => "profile", :id => r.id %>
         </td>
       </tr>
     <% end %>

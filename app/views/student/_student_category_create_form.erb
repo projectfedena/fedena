@@ -20,11 +20,11 @@
 <div class="box">
 <% form_for :student_category, :url => {:action => 'categories'} do |f| %>
 <div class="label-field-pair">
-  <label> Enter new Category : </label>
+  <label><%= t('enter_new_category') %> : </label>
 <div class="text-input-bg"><%= f.text_field :name, :value => '' %>
 </div>
   </div>
-  <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+  <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
 
 <% end %>
 </div>

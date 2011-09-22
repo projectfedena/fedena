@@ -20,7 +20,7 @@
  <div class="label-field-pair">
     <div class="text-input-bg"><%= select :batch, :batch_id,
       Batch.active.all.map {|c| [c.full_name, c.id]},
-      {:prompt => 'Select a batch'},
+      {:prompt => "#{t('select_a_batch')}"},
       {:onChange => "#{remote_function(:url => {:action => "list_student_user"},
         :with => "'batch_id='+value",
         :before => "Element.show('loader')",

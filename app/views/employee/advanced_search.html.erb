@@ -36,39 +36,39 @@
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no"><%= t('admission1.employee_number') %></label>
+        <label for="student_admission_no"><%= t('employee_number') %></label>
         <div class="text-input-bg">
           <%= f.text_field :employee_number_equals %>
         </div>
       </div>
       <div class="label_field_pair">
-        <label class="label_for_student" ><%= t('student.admission1.gender') %></label>
+        <label class="label_for_student" ><%= t('gender') %></label>
         <div class="student_gender_value">
           <label class="label_for_gender" ><%= t('all') %></label>
           <%= f.radio_button  :gender_equals, "" %>
-          <label class="label_for_gender" ><%= t('student.admission1.male') %></label>
+          <label class="label_for_gender" ><%= t('male') %></label>
           <%= f.radio_button  :gender_equals, "m"%>
-          <label class="label_for_gender" ><%= t('student.admission1.female') %></label>
+          <label class="label_for_gender" ><%= t('female') %></label>
           <%= f.radio_button  :gender_equals, "f" %>
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no"><%= t('student.admission1.blood_group') %></label>
+        <label for="student_admission_no"><%= t('blood_group') %></label>
         <div class="text-input-bg">
           <%= select :search, :blood_group_like, ["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],{:prompt=>"#{t('select')}"}%>
         </div>
       </div>
 
       <div class="label-field-pair">
-        <label for="student_admission_no"><%= t('admission1.marital_status') %></label>
+        <label for="student_admission_no"><%= t('marital_status') %></label>
         <div class="text-input-bg">
-          <%= select :search, :marital_status_like, ["#{t('admission1.single')}", "#{t('admission1.married')}", "#{t('admission1.divorced')}"],{:prompt=>"#{t('select')}"}%>
+          <%= select :search, :marital_status_like, ["#{t('single')}", "#{t('married')}", "#{t('divorced')}"],{:prompt=>"#{t('select')}"}%>
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no"><%= t('student.admission1.country') %></label>
+        <label for="student_admission_no"><%= t('country') %></label>
         <div class="text-input-bg">
-          <%= f.collection_select :nationality_id_equals, Country.all,:id,:name,{:prompt=>"#{t('.select')}"}%>
+          <%= f.collection_select :nationality_id_equals, Country.all,:id,:name,{:prompt=>"#{t('select')}"}%>
         </div>
       </div>
       <div class="label-field-pair">
@@ -90,14 +90,14 @@
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no"><%= t('hr.grade') %></label>
+        <label for="student_admission_no"><%= t('grade') %></label>
         <div class="text-input-bg">
           <%= f.collection_select :employee_grade_id_equals, EmployeeGrade.all, :id, :name,{:prompt=>"#{t('select')}"} %>
         </div>
       </div>
 
       <div class="label-field-pair">
-        <label for="student_admission_no"><%= t('admission1.joining_date') %>
+        <label for="student_admission_no"><%= t('joining_date') %>
           <%= image_tag("loader.gif",
             :align => "absmiddle",
             :border => 0,
@@ -119,7 +119,7 @@
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_admission_no"><%= t('student.admission1.date_of_birth') %>
+        <label for="student_admission_no"><%= t('date_of_birth') %>
           <%= image_tag("loader.gif",
             :align => "absmiddle",
             :border => 0,
@@ -174,24 +174,24 @@
   end %>
         <% searched_for = 'Listed by ' %>
 
-        <% searched_for += "#{t(name')}: " + params[:search][:first_name_or_middle_name_or_last_name_like].to_s unless params[:search][:first_name_or_middle_name_or_last_name_like].empty? %>
-        <% searched_for += " #{t('admission1.employee_number')}: " + params[:search][:employee_number_equals].to_s unless params[:search][:employee_number_equals].empty? %>
+        <% searched_for += "#{t('name')}: " + params[:search][:first_name_or_middle_name_or_last_name_like].to_s unless params[:search][:first_name_or_middle_name_or_last_name_like].empty? %>
+        <% searched_for += "#{t('employee_number')}: " + params[:search][:employee_number_equals].to_s unless params[:search][:employee_number_equals].empty? %>
         <% searched_for += " #{t('employee_department')}: " + EmployeeDepartment.find(params[:search][:employee_department_id_equals]).name.to_s unless params[:search][:employee_department_id_equals].empty? %>
         <% searched_for += " #{t('employee_category')}: " + EmployeeCategory.find(params[:search][:employee_category_id_equals]).name.to_s unless params[:search][:employee_category_id_equals].empty? %>
         <% searched_for += " #{t('employee_position')}: " + EmployeePosition.find(params[:search][:employee_position_id_equals]).name.to_s unless params[:search][:employee_position_id_equals].empty? %>
         <% searched_for += " #{t('employee_grade')}: " + EmployeeGrade.find(params[:search][:employee_grade_id_equals]).name.to_s unless params[:search][:employee_grade_id_equals].empty? %>
         <% unless  params[:search][:gender_equals].empty? %>
           <% if  params[:search][:gender_equals] == 'm' %>
-            <% searched_for += " #{t('student.admission1.gender')}: #{t('student.admission1.male')}" %>
+            <% searched_for += " #{t('gender')}: #{t('male')}" %>
           <% elsif  params[:search][:gender_equals] == 'f' %>
-            <% searched_for += " #{t('student.admission1.gender')}: #{t('student.admission1.female')}" %>
+            <% searched_for += " #{t('gender')}: #{t('female')}" %>
           <% else %>
-            <% searched_for += " #{t('student.admission1.gender')}: #{t('all')}" %>
+            <% searched_for += " #{t('gender')}: #{t('all')}" %>
           <% end %>
         <% end %>
-        <% searched_for += " #{t('student.admission1.blood_group')}: " + params[:search][:blood_group_like].to_s unless params[:search][:blood_group_like].empty? %>
-        <% searched_for += " #{t('admission1.marital_status')}: " + params[:search][:marital_status_like].to_s unless params[:search][:marital_status_like].empty? %>
-        <% searched_for += " #{t('student.admission1.nationality')}: " + Country.find(params[:search][:nationality_id_equals]).name.to_s unless params[:search][:nationality_id_equals].empty? %>
+        <% searched_for += " #{t('blood_group')}: " + params[:search][:blood_group_like].to_s unless params[:search][:blood_group_like].empty? %>
+        <% searched_for += " #{t('marital_status')}: " + params[:search][:marital_status_like].to_s unless params[:search][:marital_status_like].empty? %>
+        <% searched_for += " #{t('nationality')}: " + Country.find(params[:search][:nationality_id_equals]).name.to_s unless params[:search][:nationality_id_equals].empty? %>
         <% searched_for += " #{t('year_of_join')}: " +  params[:adv_search][:doj_option].to_s + params[:adv_search][:joining_date_year].to_s unless  params[:adv_search][:doj_option].empty? %>
         <% searched_for += " #{t('year_of_birth')}: " +  params[:adv_search][:dob_option].to_s + params[:adv_search][:birth_date_year].to_s unless  params[:adv_search][:dob_option].empty? %>
         <% if params[:search][:status_equals]=="true" %>
@@ -205,7 +205,7 @@
 
         <%= link_to "► #{t('student.advanced_search.search_again')}", {:action=>"advanced_search"}%>
         <% unless @employees1.empty? %>
-          <%= link_to "► #{t('student.profile.pdf_report')}",   {:action => "advanced_search_pdf",:for =>searched_for, :result2=>@employees2 , :result =>@employees1,:status=>params[:search][:status_equals], :format => 'pdf'}, :target => '_blank' , :class=> 'submit_button' %>
+          <%= link_to "► #{t('pdf_report')}",   {:action => "advanced_search_pdf",:for =>searched_for, :result2=>@employees2 , :result =>@employees1,:status=>params[:search][:status_equals], :format => 'pdf'}, :target => '_blank' , :class=> 'submit_button' %>
         <% end %>
       </div>
       <div class="extender"></div>
@@ -216,7 +216,7 @@
           <span><%= t('name') %>:</span> <%= params[:search][:first_name_or_middle_name_or_last_name_like] %>
         <% end %>
         <% unless  params[:search][:employee_number_equals].empty? %>
-          <span><%= t('admission1.employee_number') %>:</span> <%= params[:search][:employee_number_equals] %>
+          <span><%= t('employee_number') %>:</span> <%= params[:search][:employee_number_equals] %>
         <% end %>
         <% unless params[:search][:employee_department_id_equals].empty? %>
           <% dept = EmployeeDepartment.find(params[:search][:employee_department_id_equals]) %>
@@ -236,22 +236,22 @@
         <% end %>
         <% unless  params[:search][:gender_equals].empty? %>
           <% if  params[:search][:gender_equals] == 'm' %>
-            <span><%= t('student.admission1.gender') %>: </span> <%= t('student.admission1.male') %>
+            <span><%= t('gender') %>: </span> <%= t('male') %>
           <% elsif  params[:search][:gender_equals] == 'f' %>
-            <span> <%= t('student.admission1.gender') %>: </span><%= t('student.admission1.female') %>
+            <span> <%= t('gender') %>: </span><%= t('female') %>
           <% else %>
-            <span><%= t('student.admission1.gender') %>: </span> <%= t('all') %>
+            <span><%= t('gender') %>: </span> <%= t('all') %>
           <% end %>
         <% end %>
         <% unless  params[:search][:blood_group_like].empty? %>
-          <span> <%= t('student.admission1.blood_group') %>:</span> <%= params[:search][:blood_group_like] %>
+          <span> <%= t('blood_group') %>:</span> <%= params[:search][:blood_group_like] %>
         <% end %>
         <% unless  params[:search][:marital_status_like].empty? %>
-          <span><%= t('admission1.marital_status') %>:</span> <%= params[:search][:marital_status_like] %>
+          <span><%= t('marital_status') %>:</span> <%= params[:search][:marital_status_like] %>
         <% end %>
         <% unless  params[:search][:nationality_id_equals].empty? %>
           <% nationality = Country.find(params[:search][:nationality_id_equals]) %>
-          <span><%= t('student.admission1.nationality') %>: </span> <%= nationality.name %>
+          <span><%= t('nationality') %>: </span> <%= nationality.name %>
         <% end %>
         <% unless  params[:adv_search][:doj_option].empty? %>
           <span><%= t('year_of_join') %>: </span> <%= params[:adv_search][:doj_option] %>
@@ -284,7 +284,7 @@
               <%= order @search, :by => :first_name %>
             </td>
             <td>
-              <%= t('profile.employee_id') %>
+              <%= t('employee_id') %>
             </td>
             <td>
                <%= t('employee_department') %>
@@ -317,7 +317,7 @@
           </tr>
         <% else %>
           <tr class="tr-<%= cycle('odd', 'even') %>">
-            <td class="col-2"><%= t('batches.new.no_employee_found') %></td>
+            <td class="col-2"><%= t('no_employee_found') %></td>
           </tr>
         <% end %>
       </table>

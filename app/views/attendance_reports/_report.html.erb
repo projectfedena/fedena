@@ -28,18 +28,18 @@
       <%= f.hidden_field :subject , :value=> params[:subject_id] %>
     <% end %>
 
-    <%= submit_tag "#{t('attendance_reports.index.filter')}",:class=>'submit_button'  %>
+    <%= submit_tag "#{t('filter')}",:class=>'submit_button'  %>
     <div class="label-field-pair1">
-      <label><%= t('attendance_reports.index.filter') %>:</label>
-      <div class="text-input-bg1"><%= f.select :range, ["#{t('index.below')}", "#{t('index.above')}", "#{t('index.equals')}"] %></div>
+      <label><%= t('filter') %>:</label>
+      <div class="text-input-bg1"><%= f.select :range, ["#{t('below')}", "#{t('above')}", "#{t('equals')}"] %></div>
       <div class="text-input-bg1"><%= f.text_field :value %></div></div>
   <% end %>
   <div class="label-field-pair">
     <label>
       <%  if @config.config_value == 'Daily' %>
-        <%= "#{t('index.total_days')} = " + working_days.to_s %>
+        <%= "#{t('total_no_of_wrkng_days')} = " + working_days.to_s %>
       <% else %>
-        <%= "#{t('index.total_hours')}= " + working_days.to_s %>
+        <%= "#{t('total_no_of_wrkng_hours')}= " + working_days.to_s %>
 
       <% end  %>
     </label>
@@ -48,13 +48,13 @@
   <table id="listing" align="center" width="80%">
     <tr class="tr-head">
       <td>
-        <%= t('attendance_reports.index.name') %>
+        <%= t('name') %>
       </td>
       <td>
-         <%= t('attendance_reports.index.total') %>
+         <%= t('total') %>
       </td>
       <td>
-         <%= t('attendance_reports.index.percentage') %>(%)
+         <%= t('percentage') %>(%)
       </td>
     </tr>
     <tr class="blank"></tr>
@@ -95,6 +95,6 @@
   <% end %>
 <% else %>
   <div class="label-field-pair2" >
-    <%= t('attendance_reports.index.no_reports') %>.
+    <%= t('no_reports') %>.
   </div>
 <%  end %>

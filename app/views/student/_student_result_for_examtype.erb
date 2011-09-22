@@ -30,11 +30,11 @@
   
     <div id="results-table">
       <div class="results-th">
-        <div class="results-table-subject">Subjects</div>
-        <div class="results-table-marks">Marks</div>
-        <div class="results-table-maxmarks">Max</div>
-        <div class="results-table-grade">Grade</div>
-        <div class="results-table-percentage">(in %)</div>
+        <div class="results-table-subject"><%= t('subjects') %></div>
+        <div class="results-table-marks"><%= t('marks') %></div>
+        <div class="results-table-maxmarks"><%= t('max') %>/div>
+        <div class="results-table-grade"><%= t('grade') %></div>
+        <div class="results-table-percentage">(<%= t('in') %> %)</div>
       </div>
 
       <% total = 0 %>
@@ -59,16 +59,17 @@
       <% end %>
       <% percentage = (total*100)/max_total.to_f %>
       <div class="results-tr">
-          <div class="results-table-subject"><b>Total</b></div>
+          <div class="results-table-subject"><b><%= t('total') %></b></div>
           <div class="results-table-marks"><%= total %></div>
           <div class="results-table-maxmarks"><%= max_total %></div>
           <div class="results-table-grade"><%= Grading.find_from_percentage(max_total).name %></div>
           <div class="results-table-percentage"><%= percentage %></div>
         </div>
     </div>
-    <% if @results.empty? %> <p><%= "No results found." %></p> <% end %>
+    <% if @results.empty? %> <p><%= t('no_results_found') %></p> <% end %>
 
     <script type="text/javascript" src="/javascripts/swfobject.js"></script>
     <%= @graph %>
 
+</div>
 </div>

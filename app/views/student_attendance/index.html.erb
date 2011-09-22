@@ -20,8 +20,8 @@
 
 <div id="content-header">
   <img src="/images/attendence/attendence.png" />
-  <h1><%= t('layouts.application.attendance') %></h1>
-  <h3><%= t('layouts.application.attendance' ) + ' '  + t('configuration.index.home') %> </h3>
+  <h1><%= t('attendance') %></h1>
+  <h3><%= t('attendance' ) + ' '  + t('home') %> </h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -38,21 +38,21 @@
 
       <% if permitted_to? :index, :attendances or @allow_access == true%>
         <div class="link-box">
-          <div class="link-heading"><%= link_to "#{t('attendances.index.attendance_register')}", :controller => 'attendances', :action => 'index'  %></div>
-          <div class="link-descr"><%= t('link_desc1') %></div>
+          <div class="link-heading"><%= link_to "#{t('attendance_register')}", :controller => 'attendances', :action => 'index'  %></div>
+          <div class="link-descr"><%= t('attendance_registered_for_students') %></div>
         </div>
       <% end %>
 
       <% if permitted_to? :index, :attendance_reports or permitted_to? :index, :attendances or @allow_access == true%>
         <div class="link-box">
-          <div class="link-heading"><%= link_to "#{t('attendance_reports.index.attendance_report')}", :controller => "attendance_reports", :action => "index" %></div>
-          <div class="link-descr"><%= t('link_desc2') %></div>
+          <div class="link-heading"><%= link_to "#{t('attendance_report')}", :controller => "attendance_reports", :action => "index" %></div>
+          <div class="link-descr"><%= t('attendance_report_for_students') %></div>
         </div>
       <% end %>
 
     <!--
        <div class="link-box">
-           <div class="link-heading"><%= link_to "Attendance Report", :controller => "attendance_reports", :action => "advance_search" %></div>
+           <div class="link-heading"><%= link_to "#{t('attendance_report')}", :controller => "attendance_reports", :action => "advance_search" %></div>
            <div class="link-descr">Attendance report for students</div>
          </div>
     -->

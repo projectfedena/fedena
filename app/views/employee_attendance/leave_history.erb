@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/attendence/attendence.png" alt="" />
-  <h1>Employee Attendance</h1>
-  <h3>Leave History</h3>
+  <h1><%= t('employee_attendance') %></h1>
+  <h3><%= t('leave_history') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -28,7 +28,7 @@
 <div id="inner-tab-menu">
   <ul>
     <%  if permitted_to? :emp_attendance,:employee_attendance %>
-    <li><%= link_to 'Mini Report', :action => 'emp_attendance', :id=>@employee.id %></li>
+    <li><%= link_to "#{t('mini_report')}", :action => 'emp_attendance', :id=>@employee.id %></li>
     <% end %>
   </ul>
 </div>
@@ -37,15 +37,15 @@
 
     <% remote_form_for :period ,:url=>{:action=>'update_leave_history', :id=>@employee.id}do |f| %>
      <div class="label-field-pair">
-    <label for="reason">  Start Date</label>
+    <label for="reason"><%= t('start_date') %></label>
     <div class="text-input-bg"><%= calendar_date_select_tag 'period[start_date]', 1.month.ago.to_date %></div>
     </div>
      <div class="label-field-pair">
-    <label for="reason">  End Date</label>
+    <label for="reason"><%= t('end_date') %></label>
     <div class="text-input-bg"><%= calendar_date_select_tag 'period[end_date]', Date.today %></div>
     </div>
     <div id="submit-button">
-      <%=  submit_tag "► Go",:class=>'submit_button' %>
+      <%=  submit_tag "►#{t('go')}",:class=>'submit_button' %>
   </div>
     <% end %>
     

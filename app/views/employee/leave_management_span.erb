@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= t('employee.hr.span_leave_management') %></h1>
-  <h3><%= t('employee.hr.my_span') %></h3>
+  <h1><%= t('hr.span_leave_management') %></h1>
+  <h3><%= t('hr.my_span') %></h3>
   <div id="app-back-button">
    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -34,14 +34,14 @@
 <% unless @reporting_employees == [] %>
 
       <div id="new-application-links">
-        <%= link_to_remote "#{t('employee.hr.new_leave_applications')}",
+        <%= link_to_remote "#{t('hr.new_leave_applications')}",
         :update => "application-list",
         :url => {:controller=>"employee_attendance",:action => "new_leave_applications", :id=>@employee.id} %>
       [<%= @total_leave_count %>]
       </div>
 
       <div id="all-application-links">
-        <%= link_to_remote "#{t('employee.hr.all_leave_applications')}",
+        <%= link_to_remote "#{t('hr.all_leave_applications')}",
         :update => "application-list",
         :url => {:controller=>"employee_attendance",:action => "all_leave_applications", :id=>@employee.id} %>
       </div>
@@ -49,7 +49,7 @@
 
 <br/><br/>
 
-    <% else %> <%= t('employee.hr.no_employees_under_my_span') %>.
+    <% else %> <%= t('hr.no_employees_under_my_span') %>.
     <% end %>
 
 <div id="application-list"> </div>

@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/user_profile/user_profile_logo.jpg" />
-  <h1>Create User</h1>
-  <h3>Make new admin user</h3>
+  <h1><%= t('create_user') %></h1>
+  <h3><%= t('make_new_admin_user') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -36,37 +36,37 @@
 
     <div id="create_user_form">
 
-      <div id="necessary-field-notification"> Fields marked with <span class="necessary-field">*</span> must be filled. (Only Admin User can be created)</div>
+      <div id="necessary-field-notification"><%= t('legend1') %> <span class="necessary-field">*</span> <%= t('legend2') %>  (<%= t('only_admin_user_can_created') %>)</div>
 
       <div class="label-field-pair">
-        <label for="user_username">Username <span class="necessary-field">*</span></label>
+        <label for="user_username"><%= t('username') %><span class="necessary-field">*</span></label>
         <div class="text-input-bg"><%= f.text_field :username %></div>
       </div>
 
       <div class="label-field-pair">
-        <label for="user_first_name">First Name <span class="necessary-field">*</span></label>
+        <label for="user_first_name"><%= t('first_name') %><span class="necessary-field">*</span></label>
         <div class="text-input-bg"><%= f.text_field :first_name %></div>
       </div>
 
       <div class="label-field-pair">
-        <label for="user_last_name">Last Name</label>
+        <label for="user_last_name"><%= t('last_name') %></label>
         <div class="text-input-bg"><%= f.text_field :last_name %></div>
       </div>
 
       <div class="label-field-pair">
-        <label for="user_password">Password <span class="necessary-field">*</span></label>
+        <label for="user_password"><%= t('password') %> <span class="necessary-field">*</span></label>
         <div class="text-input-bg"><%= f.password_field :password %></div>
       </div>
 
       <div class="label-field-pair">
-        <label for="user_email">Email <span class="necessary-field">*</span></label>
+        <label for="user_email"><%= t('email') %> <span class="necessary-field">*</span></label>
         <div class="text-input-bg"><%= f.text_field :email %></div>
       </div>
 
       <%= f.hidden_field :role, :value=>'Admin' %>
       <div class="extender"></div>
 
-      <%= submit_tag "", :value => "► Create", :class => "user_submit_button" %>
+      <%= submit_tag "", :value => "►#{t('create')}", :class => "user_submit_button" %>
       
     </div>
 

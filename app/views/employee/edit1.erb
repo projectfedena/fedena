@@ -31,7 +31,7 @@
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
   <h1><%= t('edit_employee_information') %></h1>
-  <h3><%= t('configuration.index.general') %></h3>
+  <h3><%= t('general') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -50,7 +50,7 @@
 
     <div id="admission1_form">
 
-      <div id="necessary-field-notification"> <%= t('student.admission1.legend1') %>  <span class="necessary-field">*</span><%= t('student.admission1.legend2') %></div>
+      <div id="necessary-field-notification"> <%= t('legend1') %>  <span class="necessary-field">*</span><%= t('student.admission1.legend2') %></div>
       <span class="span-sub-heading"><%= t('general_details') %></span>
       <hr class="sub-heading"></hr>
       <div class="label-field-pair">
@@ -67,21 +67,21 @@
       <hr class="label-underline"></hr>
 
       <div class="label-field-pair">
-        <label for="employee_name"><%= t('student.admission1.first_name') %> <span class="necessary-field">*</span> </label>
+        <label for="employee_name"><%= t('first_name') %> <span class="necessary-field">*</span> </label>
         <div class="text-input-bg"><%= a.text_field :first_name, :value => @employee.first_name %></div>
       </div>
 
       <hr class="label-underline"></hr>
 
       <div class="label-field-pair">
-        <label for="employee_name"><%= t('student.admission1.middle_name') %></label>
+        <label for="employee_name"><%= t('middle_name') %></label>
         <div class="text-input-bg"><%= a.text_field :middle_name, :value => @employee.middle_name %></div>
       </div>
 
       <hr class="label-underline"></hr>
 
       <div class="label-field-pair">
-        <label for="employee_name"><%= t('student.admission1.last_name') %><span class="necessary-field">*</span> </label>
+        <label for="employee_name"><%= t('last_name') %><span class="necessary-field">*</span> </label>
         <div class="text-input-bg"><%= a.text_field :last_name, :value => @employee.last_name %></div>
       </div>
 
@@ -104,48 +104,48 @@
       <hr class="label-underline"></hr>
 
       <div class="label-field-pair">
-        <label for="employee_position"><%= t('hr.position') %> <span class="necessary-field">*</span></label>
+        <label for="employee_position"><%= t('position') %> <span class="necessary-field">*</span></label>
         <div class="text-input-bg"><div id="positions1"> <%= render :partial => 'positions', :object => @positions %> </div></div>
       </div>
 
       <hr class="label-underline"></hr>
 
       <div class="label-field-pair">
-        <label for="employee_grade"><%= t('hr.grade') %><span class="necessary-field">*</span></label>
+        <label for="employee_grade"><%= t('grade') %><span class="necessary-field">*</span></label>
         <div class="text-input-bg"><%= select :employee, :employee_grade_id, @grades.map {|s| [s.name, s.id]}, :value => @employee.employee_grade_id %></div>
       </div>
       <hr class="label-underline"></hr>
 
       <div class="label-field-pair">
-        <label for="employee_job_title"><%= t('admission1.job_title') %></label>
+        <label for="employee_job_title"><%= t('job_title') %></label>
         <div class="text-input-bg"><%= a.text_field :job_title, :value => @employee.job_title %></div>
       </div>
       <hr class="label-underline"></hr>
 
       <div class="label-field-pair">
-        <label for="employee_qualification"><%= t('admission1.qualification') %></label>
+        <label for="employee_qualification"><%= t('qualification') %></label>
         <div class="text-input-bg"><%= a.text_field :qualification, :value => @employee.qualification %></div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair-text-area">
-        <label for="employee_experience"><%= t('admission1.exp_info') %></label>
+        <label for="employee_experience"><%= t('exp_info') %></label>
         <div class="textarea-input-bg"><%= a.text_area :experience_detail,:cols => 27, :rows => 5,:class => 'admission1-textarea' %></div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
-        <label for="employee_total-experience"><%= t('admission1.total_exp') %></label>
+        <label for="employee_total-experience"><%= t('total_exp') %></label>
         <div class="text-input-bg"><%= select :employee, :experience_year, (0..20),{:prompt=>"#{t('year')}"} %>
-          <%= select :employee, :experience_month, (0..11),{:prompt=>"#{t('student_attendance.student.month')}"} %></div>
+          <%= select :employee, :experience_month, (0..11),{:prompt=>"#{t('month')}"} %></div>
       </div>
       <hr class="label-underline"></hr>
 
       <div class="label_field_pair">
-        <label class="label_for_employee_gender" for="master_student_gender"><%= t('student.admission1.gender') %></label>
+        <label class="label_for_employee_gender" for="master_student_gender"><%= t('gender') %></label>
         <div class="employee_gender_value">
-          <label class="label_for_gender" for="master_student_gender_true"><%= t('student.admission1.male') %></label>
+          <label class="label_for_gender" for="master_student_gender_true"><%= t('male') %></label>
           <%= a.radio_button  "gender", "true", :checked => "checked" %>
 
-          <label class="label_for_gender" for="master_student_gender_false"><%= t('student.admission1.female') %></label>
+          <label class="label_for_gender" for="master_student_gender_false"><%= t('female') %></label>
           <%= a.radio_button  "gender", "false" %>
         </div>
       </div>

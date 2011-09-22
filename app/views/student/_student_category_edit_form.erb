@@ -20,9 +20,9 @@
 <div class="box">
 <% form_remote_tag :url => {:action => 'category_update'}  do |f| %>
 <div class="label-field-pair">
-  <label>Editing category: <%= @student_category.name %> </label>
+  <label><%= t('edit_category') %>: <%= @student_category.name %> </label>
   <%= hidden_field_tag :id, @student_category.id %>
 <div class="text-input-bg"> <%= text_field_tag :name, @student_category.name %></div></div>
-  <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+  <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
 <% end %>
 </div>

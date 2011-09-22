@@ -18,12 +18,12 @@
 #under the License. -%>
 
 <div class="label-field-pair"><label>
-  <%= t('student.select_month_and_year') %> :
+  <%= t('select_month_and_year') %> :
 </label>
 <div class="text-input-bg2">
 <%= select :advance_search, :month,
-  [["#{t('.jan')}",'01'], ["#{t('.feb')}",'02'], ["#{t('.mar')}",'03'], ["#{t('.apr')}",'04'], ["#{t('.may')}",'05'], ["#{t('.jun')}",'06'], ["#{t('.jul')}",'07'], ["#{t('.aug')}",'08'], ["#{t('.sep')}",'09'], ["#{t('.oct')}",'10'], ["#{t('.nov')}",'11'], ["#{t('.dec')}",'12']],
-  {:prompt => "#{t('student.month')}"} %>
+  [["#{t('jan')}",'01'], ["#{t('feb')}",'02'], ["#{t('mar')}",'03'], ["#{t('apr')}",'04'], ["#{t('may')}",'05'], ["#{t('jun')}",'06'], ["#{t('jul')}",'07'], ["#{t('aug')}",'08'], ["#{t('sep')}",'09'], ["#{t('oct')}",'10'], ["#{t('nov')}",'11'], ["#{t('dec')}",'12']],
+  {:prompt => "#{t('month')}"} %>
 </div>
 <div id="year"><%= render :partial => 'year' %></div>
 </div>

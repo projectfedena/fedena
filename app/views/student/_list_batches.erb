@@ -17,7 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
- <label for="student_batch">Batch</label>
+ <label for="student_batch"><%= t('batch') %></label>
       <div class="text-input-bg" >
- <%= select :search, :batch_id_equals, @batches.map{|c| [c.name+"["+c.start_date.strftime("%b %Y")+"-"+c.end_date.strftime("%b %Y")+"]", c.id]},{:prompt=>'Select batch'} %>
+ <%= select :search, :batch_id_equals, @batches.map{|c| [c.name+"["+c.start_date.strftime("%b %Y")+"-"+c.end_date.strftime("%b %Y")+"]", c.id]},{:prompt=>"#{t('select_batch')}"} %>
       </div>

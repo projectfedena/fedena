@@ -18,21 +18,21 @@
 #under the License. -%>
 
 <div id="form-errors"></div>
-<label class="head_label"><%= t('index.edit_attendance') %> <span><%= @student.first_name %></span></label>
+<label class="head_label"><%= t('edit_attendance') %> <span><%= @student.first_name %></span></label>
 
 <div id="ajax-edit">
   <br/>
   <% form_remote_for @absentee do |f| %>
   <div class="label-field-pair">
-      <label for="reason"> <%= t('index.reason') %></label>
+      <label for="reason"> <%= t('reason') %></label>
       <div class="text-input-bg"><%= f.text_field :reason %></div>
     </div>
     <% if @config.config_value == 'Daily' %>
     <div class="label-checkbox-pair">
-        <label><%= f.check_box :forenoon %><%= t('student_attendance.student_report.forenoon') %></label>
+        <label><%= f.check_box :forenoon %><%= t('forenoon') %></label>
     </div>
     <div class="label-checkbox-pair">
-        <label><%= f.check_box :afternoon %><%= t('student_attendance.student_report.afternoon') %></label>
+        <label><%= f.check_box :afternoon %><%= t('afternoon') %></label>
     </div>
     <% end %>
   <div class="extender"></div>

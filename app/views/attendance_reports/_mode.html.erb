@@ -18,12 +18,12 @@
 #under the License. -%>
 
 <div class="label-field-pair">
-  <label><%= t('student_attendance.student.select_mode') %>: </label>
+  <label><%= t('select_mode') %>: </label>
  
 <div class="text-input-bg">
 <%= select :mode, :id,
-  ["#{t('student_attendance.student.monthly')}", "#{t('student_attendance.student.overall')}"],
-  {:prompt => "#{t('student_attendance.student.select_mode')}"},
+  ["#{t('monthly')}", "#{t('overall')}"],
+  {:prompt => "#{t('select_mode')}"},
   {:onchange => "#{remote_function(
   :url => { :action => 'show' },
   :with => "'mode='+value+'&batch_id='+#{@batch.id}+'&subject_id='+#{@subject}",

@@ -79,7 +79,7 @@
         </div>
         <div id="outer-main-menu">
           <div id="main-menu">
-            <%= link_to t('dashboard'), :controller => "user", :action => "dashboard" %>
+            <%= link_to t('dashboard_text'), :controller => "user", :action => "dashboard" %>
             <% this_user = User.find(session[:user_id]) if session[:user_id] %>
             <%  if this_user.student? || this_user.employee? %>
               <%= link_to t('calendar'), :controller => "calendar" %>

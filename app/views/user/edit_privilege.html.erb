@@ -34,8 +34,8 @@
   <div id="list">
 
     <div class="sel-list">
-      <%=  t('.select') %>: <%= link_to_function "#{t('.all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
-      <%= link_to_function "#{t('.none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+      <%=  t('select') %>: <%= link_to_function "#{t('all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+      <%= link_to_function "#{t('none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
     </div>
 
 
@@ -59,7 +59,7 @@
           </li></div>
       <% end %>
       <div class="user_submit_button1">
-        <%= submit_tag "", :name => "commit", :value => "► #{t('.update')}" %>
+        <%= submit_tag "", :name => "commit", :value => "► #{t('update')}" %>
       </div>
     <% end %>
   </div>

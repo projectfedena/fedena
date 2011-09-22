@@ -17,12 +17,12 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<div class="heading">New applications from reporting employees</div>
+<div class="heading"><%= t('new_applications_from_employee') %></div>
 <table id="listing" width="100%">
   <tr class="tr-head">
-    <td>Name</td>
-  <td>Start date</td>
-  <td>End date</td>
+    <td><%= t('name') %></td>
+  <td><%= t('start_date') %></td>
+  <td><%= t('end_date') %></td>
   </tr>
 
   <% @reporting_employees.each do |e| %>

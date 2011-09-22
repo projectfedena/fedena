@@ -23,7 +23,7 @@
   <% end %>
 <ul id="department-list">
   <% unless @assigned_employee.empty? %>
-    <li class="heading"><%= t('subject_assignment.currently_assigned') %>: </li>
+    <li class="heading"><%= t('currently_assigned') %>: </li>
     <% @assigned_employee.each do |e| %>
       <% @employee = Employee.find(e.employee_id) %>
       <li class="list<%=cycle('even', 'odd')%>">
@@ -33,7 +33,7 @@
       </li>
     <% end %>
   <% else %>
-    <p class="flash-msg"><%= t('subject_assignment.no_employee_assigned') %></p>
+    <p class="flash-msg"><%= t('no_employee_assigned') %></p>
   <% end %>
 </ul>
 

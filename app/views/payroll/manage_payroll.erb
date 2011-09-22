@@ -19,8 +19,8 @@
 
  <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1>Manage payroll</h1>
-  <h3> enter payroll details </h3>
+  <h1><%= t('manage_payroll') %></h1>
+  <h3> <%= t('enter_payroll_detail') %></h3>
     <div id="app-back-button">
      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
     </div>
@@ -51,7 +51,7 @@
       </div>
   <% end %>
     <div id="submit-button">
-      <%=submit_tag("► Finish") %>
+      <%=submit_tag("►#{t('finish')}") %>
     </div>
   <% end %>
 </div>

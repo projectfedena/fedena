@@ -17,7 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<%= select :adv_search, :birth_date_year, (1970..2011),{:prompt=>"Select"},
+<%= select :adv_search, :birth_date_year, (1970..2011),{:prompt=>"#{t('select')}"},
 {:onChange => "#{remote_function(:url => {:action => "dob_greater_than_update"},
         :with => "'year='+value"
         )}"}

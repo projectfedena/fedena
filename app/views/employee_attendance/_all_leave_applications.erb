@@ -18,10 +18,10 @@
 #under the License. -%>
 
 
-<div class="heading"><%= t('all_leave_applications.view_all_leave_application') %></div>
+<div class="heading"><%= t('view_all_leave_application') %></div>
 <div class="label-field">      
   <div class="text-input-bg"><%= select :leave_applications, :employee_id, @reporting_employees.map {|c| [c.full_name, c.id]},
-      {:prompt => "#{t('employee.payslip.select_employee')}"},
+      {:prompt => "#{t('select_employee')}"},
       {:onChange => "#{remote_function(:url => {:action => "update_all_application_view"}, :with => "'employee_id='+value")}"} %>
   </div>
 </div>

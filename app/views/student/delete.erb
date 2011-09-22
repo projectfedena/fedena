@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/admission/admission_page_logo.jpg" />
-  <h1>Students</h1>
-  <h3>Remove student</h3>
+  <h1><%= t('students') %></h1>
+  <h3><%= t('remove_student') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -29,12 +29,12 @@
 <div id="page-yield">
 
   <div id="delete-student">
-    <h4>Delete student</h4>
-    <p>Completely delete student's records from the school's databases. Use this option only if you created the student record by accident and want to remove it completely.</p>
+    <h4><%= t('delete_student') %></h4>
+    <p><%= t('description1') %></p>
 
-    <p class="warning">(Warning: All records will be deleted for the student and cannot be recovered.)</p>
-    <%= link_to '► Delete',
-      { :action => 'destroy', :id => @student.id }, :class => 'delete-button', :confirm => 'Are you completely sure?' %>
+    <p class="warning">(<%= t('description2') %>)</p>
+    <%= link_to "► #{t('delete')}",
+      { :action => 'destroy', :id => @student.id }, :class => 'delete-button', :confirm => "#{t('are_you_completely_sure')}" %>
   </div>
 
 </div>

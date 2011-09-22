@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/attendence/attendence.png" />
-  <h1><%= t('index.attendance_report') %></h1>
-  <h3><%= t('student_details.student_report') %></h3>
+  <h1><%= t('attendance_report') %></h1>
+  <h3><%= t('student_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -28,7 +28,7 @@
 
 <div id="page-yield">
   <div class="label-field-pair">
-    <label><%= t('student_details.student_details') %> <%= @student.full_name %></label>
+    <label><%= t('student_details') %> <%= @student.full_name %></label>
   </div>
   <table id="listing" align="center" width="80%">
     <tr class="tr-head">

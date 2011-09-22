@@ -41,7 +41,7 @@
         <tr class="tr-<%= cycle('odd', 'even') %>">
           <td class="col-3"><%= link_to "#{l.start_date.strftime("%d-%m-%Y")}", :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
           <td class="col-3"><%= link_to "#{l.end_date.strftime("%d-%m-%Y")}",   :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
-          <td class="col-1"><%= link_to "#{t('employee.hr.pending')}", :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+          <td class="col-1"><%= link_to "#{t('pending')}", :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
         </tr>
       <% else %>
 
@@ -49,13 +49,13 @@
           <tr class="tr-<%= cycle('odd', 'even') %>">
             <td class="col-3"><%= link_to "#{l.start_date.strftime("%d-%m-%Y")}", :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
             <td class="col-3"><%= link_to "#{l.end_date.strftime("%d-%m-%Y")}",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
-            <td class="col-1"><%= link_to "#{t('employee.hr.approved')}",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+            <td class="col-1"><%= link_to "#{t('approved')}",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
           </tr>
         <% else %>
           <tr class="tr-<%= cycle('odd', 'even') %>">
             <td class="col-3"><%= link_to "#{l.start_date.strftime("%d-%m-%Y")}", :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
             <td class="col-3"><%= link_to "#{l.end_date.strftime("%d-%m-%Y")}",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
-            <td class="col-1"><%= link_to "#{t('employee.hr.denied')}",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
+            <td class="col-1"><%= link_to "#{t('denied')}",  :controller=>"employee_attendance", :action=>"leave_application", :id=>l.id %></td>
           </tr>
         <% end %>
       <% end %>

@@ -19,8 +19,8 @@
 
  <div id="content-header">
   <img src="/images/attendence/attendence.png" />
-  <h1><%= t('layouts.application.attendance') %></h1>
-  <h3><%= t('student.advanced_search.h3') %></h3>
+  <h1><%= t('attendance') %></h1>
+  <h3><%= t('advanced_search') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -41,7 +41,7 @@
     </div>
  <% unless @config.config_value == 'Daily' %>
     <div class="label-field-pair">
-      <label for="student"><%= t('student.previous_subject.subject') %></label>
+      <label for="student"><%= t('subject') %></label>
       <div class="text-input-bg">
             <%= f.select :subject_id,
               @subjects.map {|b| [b.name, b.id] },
@@ -66,7 +66,7 @@
 
     </div>
   <div id="month"></div>
-     <%= submit_tag "", :value => "► OK", :class => "submit_button" %>
+     <%= submit_tag "", :value => "► #{t('ok')}", :class => "submit_button" %>
 
 <% end %>
 

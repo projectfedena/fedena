@@ -22,7 +22,7 @@
 
 <div id="content-header">
   <img src="/images/HR/leave-new.png" alt="" />
-  <h1><%= t('employee.hr.leave_management') %></h1>
+  <h1><%= t('hr.leave_management') %></h1>
   <h3></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -32,13 +32,13 @@
 <div id="nav">
   <ul>
     <li>
-      <a href="#" class="drops" id="link_one"><%= "#{t('employee.hr.my_leaves')}" %> ▼</a>
+      <a href="#" class="drops" id="link_one"><%= "#{t('hr.my_leaves')}" %> ▼</a>
       <ul id="box_one" class="scriptaculously" style="display:none;">
-        <li><%= link_to t('employee.hr.apply'), :controller=>"employee", :action=>"leave_management" %></li>
-        <li><%= link_to_remote t('employee.hr.my_leaves'),
+        <li><%= link_to t('hr.apply'), :controller=>"employee", :action=>"leave_management" %></li>
+        <li><%= link_to_remote t('hr.my_leaves'),
             :update => "application-list",
             :url => {:controller=>"employee_attendance",:action => "individual_leave_applications", :id=>@employee.id} %></li>
-        <li><%= link_to "#{t('hr.history')}", :controller=>"employee_attendance", :action=>"leave_history",:id=>@employee.id %></li>
+        <li><%= link_to "#{t('history')}", :controller=>"employee_attendance", :action=>"leave_history",:id=>@employee.id %></li>
       </ul>
     </li>
 
@@ -48,7 +48,7 @@
           <a href="#" class="drops" id="link_two"><%= "#{t('employee.hr.my_emp')}" %> ▼</a>
           <ul id="box_two" class="scriptaculously" style="display:none;">
             <!-- no new leave applications of any employee -->
-            <li><%= link_to_remote "#{t('employee.hr.all_leaves')}",
+            <li><%= link_to_remote "#{t('hr.all_leaves')}",
                 :update => "application-list",
                 :url => {:controller=>"employee_attendance",:action => "all_leave_applications", :id=>@employee.id} %></li>
           </ul>
@@ -56,13 +56,13 @@
 
       <% else %>
         <li>
-          <a href="#" class="drops" id="link_two"><%= "#{t('employee.hr.my_emp')}" %><%= "(#{@total_leave_count})"  %> ▼</a>
+          <a href="#" class="drops" id="link_two"><%= "#{t('hr.my_emp')}" %><%= "(#{@total_leave_count})"  %> ▼</a>
           <ul id="box_two" class="scriptaculously" style="display:none;">
             <!-- no new leave applications of any employee -->
             <li><%= link_to_remote "#{t('new')}(#{@total_leave_count})",
                 :update => "application-list",
                 :url => {:controller=>"employee_attendance",:action => "new_leave_applications", :id=>@employee.id} %></li>
-            <li><%= link_to_remote "#{t('employee.hr.all_leaves')}",
+            <li><%= link_to_remote "#{t('hr.all_leaves')}",
                 :update => "application-list",
                 :url => {:controller=>"employee_attendance",:action => "all_leave_applications", :id=>@employee.id} %></li>
           </ul>

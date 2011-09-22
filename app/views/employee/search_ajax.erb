@@ -24,13 +24,13 @@
             <%= t('sl_no') %>
           </td>
           <td>
-            <%= t('select_department_employee.employee_name') %>
+            <%= t('employee_name') %>
           </td>
           <td>
-           <%= t('employee.hr.emp_id') %>
+           <%= t('emp_id') %>
           </td>
           <td>
-            <%= t('advanced_search.employee_department') %>
+            <%= t('employee_department') %>
           </td>
         </tr>
         <tr class="tr-blank"></tr>
@@ -45,7 +45,7 @@
           <% end %>
           <% else %>
         <tr class="tr-<%= cycle('odd', 'even') %>">
-          <td class="col-2"><%= t('batches.new.no_employee_found') %></td>
+          <td class="col-2"><%= t('no_employee_found') %></td>
         </tr>
       <% end %>
     </table>

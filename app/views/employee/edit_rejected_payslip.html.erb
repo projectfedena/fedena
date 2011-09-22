@@ -20,7 +20,7 @@
 
  <div id="content-header">
     <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= t('create_monthly_payslip.monthly_payslip') %></h1>
+  <h1><%= t('monthly_payslip') %></h1>
   <h3><%= t('create') %></h3>
     <div id="app-back-button">
      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -37,7 +37,7 @@
   <% form_for :manage_payroll do |s| %>
 
     <div class="payslip-field-pair">
-      <label for="salary_date"><%= t('create_monthly_payslip.salary_date') %></label>
+      <label for="salary_date"><%= t('salary_date') %></label>
       <div class="payslip-input-bg">
 <%= calendar_date_select_tag 'salary_date', @salary_date,
             :year_range => 2.years.ago..0.years.from_now %></div>

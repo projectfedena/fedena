@@ -23,17 +23,17 @@
 
 <ul class="leave-type-list">
 <% unless @leave_types.empty? %>
-  <li class="listheading"><div class="leave-type-name"><%= t('add_leave_types.active_leave') %> </div></li>
+  <li class="listheading"><div class="leave-type-name"><%= t('active_leave') %> </div></li>
     <%- @leave_types.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="leave-type-name"><%= c.name %>-<%= c.code %></div>
         <div class="leave-type-edit"><%= link_to "#{t('edit')}", {:action => "edit_leave_types", :id=>c.id} %></div>
         <div class="leave-type-edit"><%= link_to "#{t('delete')}", {:action => "delete_leave_types", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}"  %></div>
-        <div class="leave-type-edit"><%= "(Inactive)" unless c.status == true %></div>
+        <div class="leave-type-edit"><%= "#{t('Inactive')}" unless c.status == true %></div>
         </li>
      <% end %>
 <% unless @inactive_leave_types.empty? %>
-      <li class="listheading"><div class="leave-type-name"> <%= t('add_leave_types.inactive_leave') %></div></li>
+      <li class="listheading"><div class="leave-type-name"> <%= t('inactive_leave') %></div></li>
       <%- @inactive_leave_types.each do |c| -%>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="leave-type-name"><%= c.name %>-<%= c.code %> </div>
@@ -43,6 +43,6 @@
       <% end %>
     <% end %>
   <% else %>
-<p class="flash-msg"><%= t('add_leave_types.flash1') %></p>
+<p class="flash-msg"><%= t('employee_leave_types_records') %></p>
   <% end %>
 </ul>

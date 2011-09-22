@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/HR/leave-new.png" alt="" />
-  <h1>Leave types</h1>
-  <h3>Edit leave types</h3>
+  <h1><%= t('leave_types') %></h1>
+  <h3><%= t('edit_leave_types') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -40,23 +40,23 @@
       <%= error_messages_for 'leave_type' %>
       <div id="form-content">
         <div class="label-field-pair">
-          <label for="category_name">Leave name</label>
+          <label for="category_name"> <%= t('leave_name') %></label>
           <div class="text-input-bg"><%= c.text_field :name %></div>
         </div>
 
         <div class="label-field-pair">
-          <label for="category_name">Leave code</label>
+          <label for="category_name"><%= t('leave_code') %></label>
           <div class="text-input-bg"><%= c.text_field :code %></div>
         </div>
 
         <div class="label-field-pair">
-          <label for="category_name">Maximum leave count</label>
+          <label for="category_name"><%= t('max_leave') %></label>
           <div class="text-input-bg"><%= c.text_field :max_leave_count %></div>
         </div>
         <div class="extender"></div>
 
         <div class="label-field-pair">
-          <label for="category_name">Enable Carry Forward</label>
+          <label for="category_name"><%= t('enable_carry_forward') %></label>
           <%if @leave_type.carry_forward %>
             <div class="check_box"><%= c.check_box "carry_forward",:checked => true %></div>
           <%else%>
@@ -65,17 +65,17 @@
         </div>
 
         <div class="label-radio-pair">
-          <label class="status">Status</label>
+          <label class="status"><%= t('status') %></label>
 
           <%= c.radio_button  "status", "true", :checked => "checked" %>
-          <label class="label_for_status" for="add_grade_status_true">Active</label>
+          <label class="label_for_status" for="add_grade_status_true"><%= t('active') %></label>
 
           <%= c.radio_button  "status", "false" %>
-          <label class="label_for_status" for="add_grade_status_false">Inactive</label>
+          <label class="label_for_status" for="add_grade_status_false"><%= t('inactive') %></label>
         </div>
 
         <div id="submit-button">
-          <%=submit_tag("► Update") %>
+          <%=submit_tag("► #{t('update')}") %>
         </div>
       </div>
     </div>

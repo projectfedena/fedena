@@ -295,6 +295,7 @@ en: # locale
     subject : 'Subject'
     message : 'Message'
     recipient : 'Recipient'
+    recipients : 'Recipients'
     guardian : 'Guardian'
     course : 'Course'
     courses : 'Courses'
@@ -423,7 +424,139 @@ en: # locale
     father_name : "Father Name"
     mother_name : "Mother Name"
     spouse_name : "Spouse name"
-        
+    address : "Address"
+    city : 'City'
+    state : 'State'
+    zip : 'PIN code'
+    country : 'Country'
+    half_day : "Half Day"
+    mobile : 'Mobile'
+    email : 'Email'
+    assign_new : "Assign New"
+    employee_number : "Employee Number"
+    manager : "Manager"
+    change : "Change"
+    already_approved : 'Already approved!'
+    salary_date : "Salary date"
+    salary_month : "Salary month"
+    select_month : "Select month"
+    is_deduction : "Is Deduction ?"
+    blood_group: 'Blood Group'
+    nationality : 'Nationality'
+    total_salary : "Total Salary"
+    deductions : "Deductions"
+    total_deduction : "Total deduction"
+    net_salary : "Net Salary"
+    id : "Id"
+    employee_payslip : "Employee payslip"
+    reason : 'Reason'
+    currently_assigned: 'Currently assigned'
+    no_employee_assigned : "No employees assigned yet"
+    grade : 'Grade'
+    date_of_birth : 'Date of Birth'
+    gender : 'Gender'
+    male : 'Male'
+    female : 'Female'
+    first_name : 'First Name'
+    middle_name : ' Middle Name'
+    last_name : 'Last Name'
+    upload_photo : 'Upload User Photo'
+    no_employee_found : 'No employee found'
+    view : 'View'
+    legend1 : 'Fields marked with'
+    legend2 : 'must be filled.'
+    month: 'Month'
+    edit_category : "Edit Category"
+    salary : "Salary"
+    monthly_payslip : "Monthly payslip"
+    personal_details : "Personal Details"
+    attendance_register: 'Attendance register'
+    attendance_report: 'Attendance Report'
+    payslip : "Payslip"
+    approve_payslip : 'Approve Payslip'
+    view_all : 'View all'
+    advanced : 'Advanced'
+    timetable : 'Timetable'
+    payroll : 'Payroll'
+    add_new_category : "Add new category"
+    percentage: 'Percentage'
+    pending : "Pending"
+    approved : "Approved"
+    denied : "Denied"
+    select_employee : "Select Employee"
+    remarks : 'Remarks'
+    leave_management: 'Leave Management'
+    apply_for_a_leave: 'Apply for a leave'
+    detailed_report : 'Detailed Report'
+    total_leaves_taken : "Total leaves taken"
+    cancel : 'Cancel'
+    select_the_department: 'Select the department'
+    search: 'Search'
+    emp_id: 'Emp ID'
+    approve : 'Approve'
+    apply: 'Apply'
+    my_leaves: 'My Leaves'
+    all_leaves: 'All Leaves'
+    leave_type: 'Leave type'
+    is_half_day: 'is half day ?'
+    register: 'Register'
+    report: 'Report'
+    no_users: 'No users found'
+    student : 'Student'
+    student_details: 'Student Details'
+    examinations : "Examinations"
+    reset : 'Reset'
+    select_month_and_year: 'Select a month & year'
+    total_working_days : "Total working days"
+    total_working_hours : "Total working hours"
+    total_present : "Total Present"
+    full_day: 'Fullday'
+    afternoon: 'Afternoon'
+    forenoon: 'Forenoon'
+    absent: 'Absent'
+    advanced_search : "Advanced Search"
+    overall: 'Overall'
+    monthly: 'Monthly'
+    ok : "OK"
+    student_report: 'Student Report'
+    select_mode: 'Select a mode'
+    select_a_subject : 'Select a subject'
+    all_subjects: 'All Subjects'
+    edit_attendance_for: 'Edit attendance for'
+    reason_for_absence: 'Reason for absence'
+    attendance_for: 'Attendance for'
+    no_additional_details : "No additional details record found"
+    select_batch : 'Select batch'
+    subjects : 'Subjects'
+    marks : 'Marks'
+    max : 'Max Marks'
+    min : 'Min Marks'
+    grade : 'Grade'
+    max_mark : 'Maximum Mark'
+    min_mark : 'Minimum mark'
+    add_additional_details : "Add additional Details"
+    income : 'Income'
+    office_phone1 : "Office phone 1"
+    office_phone2 : "Office phone 2"
+    admission_date : 'Admission Date'
+    contact_details : 'Contact Details'
+    additional_detail : 'Additional Details'
+    select_category : 'Select category'
+    less_than : "less than"
+    greater_than : "greater than"
+    equal_to : "equal to"
+    year_of_birth : "Year of birth"
+    admission_no: 'Admission no'
+    students : 'Students'
+    categories : 'Categories'
+    class : 'Class'
+    leaving_school : "Leaving school"
+    reason_for_leaving : "Reason for leaving"
+    edit_additional_details : 'Edit Additional Details'
+    elective : 'Elective'
+    elective_group : 'Elective Group'
+    message : 'Message'
+
 #configuration controller translation
     configuration:
       configuration : 'Configuration'
@@ -487,12 +620,11 @@ en: # locale
       new:
         import_subject : 'Import previous batch Subjects'
         import_fees : 'Import previous batch Master fees'
-        no_employee_found : 'No employee found'
         new_batch : "New batch"
         Not applicable : "Not applicable"
         
       assign_tutor:
-        currently_assigned: 'Currently assigned'
+        
         no_employee_assigned : ' No employee assigned yet.'
 
       edit:
@@ -533,7 +665,6 @@ en: # locale
       show_elective : "Show Elective"
 
       index:
-        elective_group : 'Elective Group'
         edit_elective : "Edit Elective"
         
 
@@ -594,7 +725,6 @@ en: # locale
         event_creation : 'Step 1 - Event creation'
         more : 'more'
         associated : 'Associated'
-        cancel : 'Cancel'
         my : 'My'
         common : "Common Event"
         my_course_event : "My Course Event"
@@ -614,10 +744,55 @@ en: # locale
 
 #employee controller translation
     employee:
-      approve : 'Approve'
       position : 'Position'
-      grade : 'Grade'
-      add_additional_details : "Add additional Details"
+      general_details : "General Details"
+      joining_date : "Joining date"
+      job_title : "Job Title"
+      qualification : "Qualification"
+      exp_info : " Experience Info"
+      total_exp : "Total Experience"
+      marital_status : "Marital Status"
+      single : "Single"
+      married : "Married"
+      divorced : "Divorced"
+      no_of_children : "No of children"
+      active_fields : "Active Fields"
+      inactive_fields : "Inactive Fields"
+      home_address : "Home Address"
+      fax : "FAX"
+      home_phone : "Home Phone"
+      employee_name : "Employee name"
+      message : "No employees added under this category"
+      payslip_generated_on : "Payslip generated on"
+      employee_settings : "Employee Settings"
+      employee_department : "Employee Department"
+      employee_category : "Employee Category"
+      employee_position : "Employee Position"
+      employee_grade : "Employee Grade"
+      prefix : 'Prefix'
+      department_code : "Department Code"
+      priority : 'Priority'
+      max_period_per_day : 'Max period per day'
+      max_period_per_week : 'Max period per week'
+      employee_admission : "Employee admission"
+      select_department: 'Select department'
+      select_position: 'Select position'
+      select_grade: 'Select grade'
+      employee_id : "Employee ID"
+      not_selected : "not selected"
+      edit_employee_information : "Edit Employee Information"
+      line_1 : "Line 1"
+      line_2 : "Line 2"
+      contact : "Contact"
+      personal : "Personal"
+      employee_management : "Employee Management"
+      employee_search: 'Employee Search'
+      histroy : 'History'
+      all_employee : "All Employees"
+      employee_profile : "Employee Profile"
+      student_leaving_school : 'Student leaving school'
+      search_by_name : "Search by name"
+      rejected_payslip : 'Rejected payslip'
 
       hr:
         management: 'Management'
@@ -626,25 +801,15 @@ en: # locale
         leave : 'Leave'
         one_click_approve : 'One click approve'
         bank_detail : 'Bank Detail'
-        payroll : 'Payroll'
-        prefix : 'Prefix'
         no  : 'No'
         record : 'Record'
         found : 'found'
-        priority : 'Priority'
-        max_period_per_day : 'Max period per day'
-        max_period_per_week : 'Max period per week'
         no_employee_grades_record_found: 'No Employee grades record found'
         all_leave_records: 'All leave records'
         select_the_last_day_of_the_month: 'select the last day of the month'
         signature: 'Signature'
-        leave_management: 'Leave Management'
-        my_leaves: 'My Leaves'
-        apply: 'Apply'
         my_emp: 'My Emp'
         all_records: 'All Records'
-        apply_for_a_leave: 'Apply for a leave'
-        all_leaves: 'All Leaves'
         personal_leave_management: 'Personal Leave Management'
         my_leave_applications: 'My leave applications'
         span_leave_management: 'Span Leave Management'
@@ -652,8 +817,6 @@ en: # locale
         new_leave_applications: 'New leave applications'
         all_leave_applications: 'All leave applications'
         no_employees_under_my_span: 'No employees under my span'
-        emp_id: 'Emp ID'
-        payslip_settings: 'Payslip Settings'
         general_profile: 'General Profile'
         active_category : "Active Category"
         inactive_category : "Inactive Category"
@@ -663,20 +826,15 @@ en: # locale
         no_department_found : "No Employee department Found"
         active_grade : "Active Grade"
         inactive_grade : "Inactive Grade"
-        pending : "Pending"
-        approved : "Approved"
-        denied : "Denied"
         active_position : "Active Position"
         inactive_position : "Inactive Position"
         no_position_record_found : "No employee position record found"
-        department_code : "Department Code"
         add_grade : "Add Grade"
         add_position : "Add Position"
         edit_department : "Edit Department"
         edit_grade : "Edit Grade"
         edit_position : "Edit Position"
         hr_management : "HR Management"
-        hr_setting : "HR Setting"
         manage_all_employee : "Manage All Employee"
         employee_leave_management : "Employee Leave Management"
         manage_all_employee_attendance_and_leave : "Manage all employee attendance and leaves"
@@ -684,44 +842,23 @@ en: # locale
         create_employee_monthly_payslip : "Create employee monthly payslips"
         search_for_employees : "Search for employees"
         view_department_wise_payslip : "View department wise payslip"
-        add_employee_category : "Add Employee Category"
-        add_employee_position : "Add Employee Position"
-        add_employee_department : "Add Employee Department"
-        add_employee_grade : "Add Employee Grade"
-        add_payroll_category : "Add Payroll Category"
-        add_bank_detail : "Add Bank Detail"
-        add_additional_detail : "Add Additional Detail"
-        add_edit_employee_category : "Add and Edit Employee Category"
-        add_edit_employee_position : "Add and Edit Employee Position"
-        add_edit_employee_department : "Add and Edit Employee Department"
-        add_edit_employee_grade : "Add and Edit Employee Grade"
-        add_edit_employee_payroll_category : "Add and Edit Employee Payroll Category"
-        add_edit_bank_detail : "Add and Edit Bank Detail"
-        add_edit_additional_detail : "Add and edit additional details for employee admission forms"
         address_details  : 'Address details'
         bank_account_details : 'Bank Account Details'
         add_department : 'Add department'
-        histroy : 'History'
+        
         
 
       search:
-        employee_search: 'Employee Search'
         employee_details: 'Employee Details'
-        select_department: 'Select department'
-        select_category : 'Select category'
-        select_position: 'Select position'
-        select_grade: 'Select grade'
         employee_search_report : 'Employee Search Report'
 
       employee_attendance:
         manage_attendance: 'Manage Attendance'
         leave_attendance: 'Leave and Attendance'
-        add_type: 'Add Leave types'
         link_dec1: 'Add and edit employee attendance types.'
-        link_dec2: 'Register attendance.'
+        
 
       add_bank_details:
-        employee_settings : "Employee Settings"
         add_bank_details : "Add Bank Details"
         no_bank_detail : "No bank details record found"
         active_bank_field : "Active Bank fields"
@@ -731,55 +868,25 @@ en: # locale
         edit_bank_details : "Edit Bank Details"
 
       add_additional_details:
-        no_additional_details : "No additional details record found"
         no_additional_details_entered : "No additional details entered for"
-        active_fields : "Active Fields"
-        inactive_fields : "Inactive Fields"
-
-      edit_additional_details:
-        edit_additional_details : "Edit Additional Details"
-
+        
       employee_management:
-        employee_management : "Employee Management"
         manage_all_employee : "Manage All Employees"
-        employee_admission : "Employee admission"
         employee_admission_form : "Employee admissions form"
         employee_subject_association : "Employee Subject Association"
         assign_an_employee : "Assign an employee with one or more subjects"
 
       admission1:
-        employee_number : "Employee Number"
         step_1 : "Step - 1"
-        general_details : "General Details"
-        joining_date : "Joining date"
-        job_title : "Job Title"
-        qualification : "Qualification"
-        exp_info : " Experience Info"
-        total_exp : "Total Experience"
-        personal_details : "Personal Details"
-        marital_status : "Marital Status"
-        single : "Single"
-        married : "Married"
-        divorced : "Divorced"
-        no_of_children : "No of children"
         last_employee_number : "Employee number of last employee is"
         upload_user_signature : "Upload User Signature"
 
       admission2:
         step_2 : "Step - 2"
-        home_address : "Home Address"
-        line_1 : "Line 1"
-        line_2 : "Line 2"
         office_address : "Office Address"
-        contact_details : "Contact Details"
-        office_phone1 : "Office phone 1"
-        office_phone2 : "Office phone 2"
-        home_phone : "Home Phone"
-        fax : "FAX"
         joining_info : 'Joining Info for'
         change_password_after_login : 'Please change your password after logging in.'
         pin_code : 'Pin Code'
-
 
       admission3:
         step_3 : "Step-3"
@@ -817,37 +924,22 @@ en: # locale
         select_reporting_manager : "Select Reporting Manager"
         step_5 : "Step - 5"
         selected_manager : "Selected Manager"
-        not_selected : "not selected"
-        search_by_name : "Search by name"
         select_manager_msg : "Select the manager by clicking on it and then update !"
 
       profile:
-        employee_profile : "Employee Profile"
         details : "Details"
-        general : "General"
-        personal : "Personal"
-        address : "Address"
-        contact : "Contact"
         bank_info : "Bank Info"
         additional_info : "Additional Info"
         profile : "Profile"
-        salary : "Salary"
-        payroll : "Payroll"
-        payslip : "Payslip"
         leaves : "Leaves"
-        attendance : "Attendance"
-        timetable : "Timetable"
         reminder : "Reminder"
-        employee_id : "Employee ID"
-        manager : "Manager"
-        change : "Change"
         no_bank_details_entered : "No bank details entered for"
         no_add_details_entered : "No additional details entered for"
         basic_payroll_details : "Basic Payroll Details"
         no_payroll_detail_entered : "No payroll details entered for"
-        select_month_and_year : "Select the Month & Year"
+        
         no_dates_found : "No dates found"
-        total_leaves_taken : "Total leaves taken"
+        
 
       remove:
         remove_employee : "Remove Employee"
@@ -865,22 +957,16 @@ en: # locale
         selected_new_manager : 'Selected  New Manager'
 
       change_to_former:
-        leaving_school : "Leaving school"
         paragraph : "For employees leaving the school, use this option to remove them from the list of active employees and place them in the former employees list."
-        reason_for_leaving : "Reason for leaving"
+        
 
       subject_assignment:
         employee_subject : "Employee's Subject"
         associate  : "Associate"
-        currently_assigned : "Currently assigned"
-        no_employee_assigned : "No employees assigned yet"
-        assign_new : "Assign New"
-
+        
       payslip:
-        select_employee : "Select Employee"
         one_click_payslip : "One click payslip generator"
         one_click_payslip_revert : "One click payslip revert"
-        rejected_payslip : 'Rejected payslip'
         revert_confirm : "This will delete the entire payslip record of all the employees(of the month you select),  from the system. Are you sure ?"
         link_desc1 : "Generate payslip of an employee"
         link_desc2 : "One click payslip generation"
@@ -890,38 +976,19 @@ en: # locale
       select_department_employee:
         payslip_generation : "Payslip generation"
         individual_employee : "Individual Employees"
-        employee_name : "Employee name"
-        message : "No employees added under this category"
-
+        
       create_monthly_payslip:
-        monthly_payslip : "Monthly payslip"
-        salary_date : "Salary date"
-        salary_month : "Salary month"
-        select_month : "Select month"
-        add_new_category : "Add new category"
-        amount : "Amount"
-        is_deduction : "Is Deduction ?"
         payslip_generated : ' Payslip generated'
         payslip_generated_for : ' Payslip has been generated for'
         kindly_approve : 'Kindly approve this request'
 
       department_payslip:
         department_wise_payslip : "Department wise payslip"
-        payslip_generated_on : "Payslip generated on"
-        total_salary : "Total Salary"
-        deductions : "Deductions"
-        total_deduction : "Total deduction"
-        net_salary : "Net Salary"
-        id : "Id"
-        employee_payslip : "Employee payslip"
         employee_no : 'Employee No.'
         payslip_status : 'Payslip status'
         total_employees : 'Total employees'
         approved_salary : 'Approved salary'
         no_payslip_found : 'No Payslips found.'
-
-      edit1:
-        edit_employee_information : "Edit Employee Information"
 
       change_reporting_manager:
         reporting_manager : "Reporting manager"
@@ -929,20 +996,11 @@ en: # locale
         new_manager : "New Manager"
 
       advanced_search:
-        advanced_search : "Advanced Search"
-        employee_department : "Employee Department"
-        employee_category : "Employee Category"
-        employee_position : "Employee Position"
-        employee_grade : "Employee Grade"
         year_of_join : "Year of join"
-        year_of_birth : "Year of birth"
         present_employee : "Present Employees"
         former_employee : "Former Employees"
-        all_employee : "All Employees"
-        less_than : "less than"
-        greater_than : "greater than"
-        equal_to : "equal to"
         choose_your_option : "choose your option"
+
       one_click_payslip_generation:
         salary_slip_for_month: 'Salary slip generated for the month'
         note: 'NOTE'
@@ -951,25 +1009,41 @@ en: # locale
         please_select_month: 'Please select a month...'
         message_body : 'Payslip has been generated for the particular month. Kindly approve this request'
 
+      settings:
+        hr_setting : "HR Setting"
+        add_employee_category : "Add Employee Category"
+        add_employee_position : "Add Employee Position"
+        add_employee_department : "Add Employee Department"
+        add_employee_grade : "Add Employee Grade"
+        add_payroll_category : "Add Payroll Category"
+        add_bank_detail : "Add Bank Detail"
+        add_additional_detail : "Add Additional Detail"
+        add_edit_employee_category : "Add and Edit Employee Category"
+        add_edit_employee_position : "Add and Edit Employee Position"
+        add_edit_employee_department : "Add and Edit Employee Department"
+        add_edit_employee_grade : "Add and Edit Employee Grade"
+        add_edit_employee_payroll_category : "Add and Edit Employee Payroll Category"
+        add_edit_bank_detail : "Add and Edit Bank Detail"
+        add_edit_additional_detail : "Add and edit additional details for employee admission forms"
+        payslip_settings: 'Payslip Settings'
+
 #payroll translation
     payroll:
+      earnings : "Earnings"
+      inactivate : "Inactivate"
+      inactivate_confirm : "Are you sure you want to inactivate this Category?"
+      activate : "Activate"
+      activate_confirm : "Are you sure you want to activate this Category?"
+      earnings_msg : " No employee payroll non-deductionable category record found"
+      deduction_msg : " No employee payroll deductionable category record found"
+      category_name : 'Category Name'
+      index : 'Index'
+
       add_category:
         add_new_category : "Add New Category"
-        category_name : 'Category Name'
         percentage_of : "Percentage of"
         is_deduction : "is deduction?"
-        earnings : "Earnings"
-        deductions : "Deduction"
-        inactivate : "Inactivate"
-        inactivate_confirm : "Are you sure you want to inactivate this Category?"
-        activate : "Activate"
-        activate_confirm : "Are you sure you want to activate this Category?"
-        earnings_msg : " No employee payroll non-deductionable category record found"
-        deduction_msg : " No employee payroll deductionable category record found"
-
-      edit_category:
-        edit_category : "Edit Category"
-
+        
       manage_payroll:
         manage_payroll : "Manage payroll"
         enter_payroll_detail : "Enter Payroll Detail"
@@ -977,63 +1051,91 @@ en: # locale
       edit_payroll_details:
         edit_payroll : 'Edit Payroll'
         payroll_details : 'Payroll Details'
-        index : 'Index'
+        
 
 #employee_attendance translation
     employee_attendance:
+      new_application_from_employees : "New applications from employees"
+      view_all_leave_application : "View all employee leave applications"
+      new_applications_from_employee : "New applications from reporting employees"
+      approval_remark : "Approval remarks"
+      deny_remark : "Deny remarks"
+      leave_types: 'Leave types'
+      available_leave : 'Available Leave'
+      leave_taken     : 'Leave taken'
+      last_reset_date : 'Last reset date'
+      no_remarks : 'No Remarks'
+      no_leave_application : "There are no leave applications"
+      employee_leave_types_records: 'Employee leave types records not found'
+      active_leave: 'Active Leave types'
+      inactive_leave: 'Inactive  Leave types'
+      employee_attendance: 'Employee Attendance'
+      leave_history : 'Leave History'
+      no_leaves_taken : "No leaves taken"
+      no_leave_type_registered : ' Sorry! No Leave type registered for Employee'
+      employee_attendance_report : 'Employee Attendance Report'
+      no_dates : 'No Dates'
+      net_total_leaves : "Net total leaves"
+      reset_employee_leaves : 'Reset employee leaves.'
+      enable_carry_forward  : 'Enable Carry Forward'
+      reset_employee_leaves_for : 'Reset Employee Leave for '
+      reset_leave : 'Reset Leave'
+      full_leave_reset : 'Full Leave Reset'
+      reset_leave_count_for_all : 'Reset Leave Count For All Employees'
+      reset_count_msg  : 'This will reset leave count for all employees '
+      dept_leave_reset : 'Department Leave Reset'
+      reset_employee_leave_dept_wise : 'Reset Employee Leave Department Wise'
+      reset_employee_leave_for_each_emp : 'Reset Employee Leave for each employee'
+      add_and_edit_employee_leave_types : 'Add and edit employee leave types'
+      register_attendance: 'Register attendance.'
+      add_type: 'Add Leave types'
+      attendance_reports : 'Attendance reports.'
+      leave_application : "Leave Application"
+      approve_deny : "Approve / Deny"
+      manager_name : "Manager Name"
+      leave_start_date : "Leave start date"
+      leave_end_date : "Leave end date"
+      leave_count : 'Leave Count'
+      deny : "Deny"
+      mini_report : 'Mini Report'
+      add_leave_type: 'Add new leave types'
+      enable_automatic_reset : 'Enable Automatic Reset'
+      leave_reset_period : 'Leave Reset Period(months)'
+      rest_period        : 'Reset Period(months)'
+      count_begin_date : 'Count Begin Date'
+      apply_or_check_status : 'Apply or check status'
+      warn_notice : "Sorry, You cannot apply for a leave without a reporting manager. Please contact administrator."
+      manual_leave_reset : 'Manual Leave Reset'
+      reset_employee_leave_manually : 'Reset Employee Leave Manually'
+      leave_reset_settings : 'Leave Reset Settings'
+      configure_automatic_leave_reset : 'Configure automatic leave reset settings'
+      reset_all : 'Reset All'
+      department_reset : 'Department Reset'
+      reset_emp_leave_count_by_dept : 'Reset employee leave count by department'
+      individual_reset : 'Individual Reset'
+      reset_emp_leave_count_ind : 'Reset employee leave count individually.'
+      info: 'Info'
+      manager_remark : 'Manager Remark'
+      cancel_leave : "Cancel Leave"
+      attendance_date : "Attendance Date"
+      automatic_reset : 'Automatic Reset'
+      configure_auto_leave_reset: 'Configure Automatic Employee Leave Reset'
+      manual_reset : 'Manual Reset'
+
       add_leave_types:
-        leave_types: 'Leave types'
-        add_leave_type: 'Add new leave types'
         leave_name: 'Leave name'
         leave_code: 'Leave code'
         max_leave: 'Maximum leave count'
-        flash1: 'Employee leave types records not found'
-        active_leave: 'Active Leave types'
-        inactive_leave: 'Inactive  Leave types'
-        employee_attendance: 'Employee Attendance'
-        approval_remark : "Approval remarks"
-        ok : "OK"
-        deny_remark : "Deny remarks"
-        no_leave_application : "There are no leave applications"
         edit_leave_types : "Edit leave types"
-        no_leaves_taken : "No leaves taken"
-        half_day : "Half Day"
-        net_total_leaves : "Net total leaves"
-        leave_application : "Leave Application"
-        pending_approval : "Pending approval"
-        reset_leave : 'Reset Leave'
-        reset_employee_leaves : 'Reset employee leaves.'
-        reset : 'Reset'
-        last_reset_date : 'Last reset date'
-
+        
       leave_app:
-        manager_name : "Manager Name"
-        leave_start_date : "Leave start date"
-        leave_end_date : "Leave end date"
         send_message : "Send messages to the manager of this employee"
-
-
-      all_employee_new_leave_applications:
-        new_application_from_employees : "New applications from employees"
-
-      all_leave_applications:
-        view_all_leave_application : "View all employee leave applications"
-
-      new_leave_applications:
-        new_applications_from_employee : "New applications from reporting employees"
+        pending_approval : "Pending approval"
 
       index:
         add_edit_leave_type : "Add and Edit Employee Leave type"
-        approve_deny : "Approve / Deny"
-        deny : "Deny"
-        apply_or_status : "Apply or check the status"
         new_leaves : "New Leaves"
-        warn_notice : "Sorry, You cannot apply for a leave without a reporting manager. Please contact administrator."
-        cancel_leave : "Cancel Leave"
-        attendance_date : "Attendance Date"
-        available_leave : 'Available Leave'
-        leave_taken     : 'Leave taken'
-
+        
 #Sms Setting Controller
     sms_settings:
       index:
@@ -1042,7 +1144,7 @@ en: # locale
         student_admission: 'Student Admission'
         exam_schedule : 'Exam Schedule'
         result_publish : 'Result Publish'
-        attendance : 'attendance'
+        
         news_events : 'News/Events'
         send_sms_to_parents : 'Send Sms to Parents'
         send_sms_to_students : 'Send Sms to Students'
@@ -1104,35 +1206,48 @@ en: # locale
 
 #user controller translation
     user:
+      details_about_user : 'Details about user'
+      edit_user : "Edit User"
+      update_user_information : "Update user information"
+      old_password : "Old Password"
+      new_password : "New Password"
+      confirm_password : "Confirm Password"
+      make_new_admin_user : 'Make new admin user'
+      only_admin_user_can_created : 'Only Admin User can be created'
+      change_password : 'Change password'
+      role : 'Role'
+      help: "Help!"
+      powered_by: 'Powered by'
+      manage_users : 'Manage Users'
+      detailed_about_user : 'Details about users'
+      password: "Password"
+      edit_privilege : "Edit Privilege"
+      faq : "FAQ"
+      support : "Support"
+
       # the action name
       index:
         manage_user: 'Manage user'
-        details_about_user : 'Details about user'
         search_user : 'Search user'
         add_new : 'Add new'
-        role : 'Role'
         password_rst_msg: 'You can reset your password by using the following link'
         password_rst_msg1: 'Thank your for using fedena.com'
 
-
       all:
         select_a_role : 'Select a role'
-        all_user : "All User"
+        all_users : "All Users"
 
       create:
         create_user : "Create User"
         add_new_user : "Add New User"
-
+        
       profile:
         user_profile : 'User profile'
         user_information : 'User Information'
-        change_password : 'Change password'
         privilege : 'privilege'
-
 
       edit_privilege:
         set_privilege : 'Set privileges for'
-        edit_privilege : "Edit Privilege"
         ExaminationControl : "Examination Control"
         EnterResults : "Enter Result"
         ViewResults : "View Result"
@@ -1155,32 +1270,12 @@ en: # locale
         SMSManagement : "SMS Management"
         Librarian : "Librarian"
 
-      edit:
-
-
-      user_change_password:
-        old_password : "Old Password"
-        new_password : "New Password"
-        confirm_password : "Confirm Password"
-
-
       login:
-        password: "Password"
         remember_me: "Remember me"
         forgot_password: "Help! I've Forgotten my Password?"
         login: "Login"
-        help: "Help"
         fedena_logo: "/images/application/app_fedena_logo.jpg"
         login_error_message: "Invalid username or password combination"
-
-      delete:
-
-
-      forgot_password:
-
-
-      change_password:
-
 
       dashboard:
         welcome: "Welcome"
@@ -1197,30 +1292,25 @@ en: # locale
         finance_link_title: "        Manages Finance module    "
         library_link_title: "        Manages Library module    "
         sms_link_title: "        Manages SMS module    "
-
         messages: "Messages"
         log_out: "Log out"
         student_messages : "Student messages"
-        dash_admission: "Admission"
-        dash_student: "Student Information"
-        dash_users: "Manage User"
-        dash_news: "Manage News"
-        dash_exam: "Exams"
-        dash_timetable: "Timetable"
-        dash_attendance: "Attendance"
-        dash_settings: "Settings"
-        dash_hr: "Human Resource"
-        dash_finance: "Finance"
-        dash_library: "Library"
+        student: "Student Information"
+        users: "Manage User"
+        news: "Manage News"
+        exam: "Exams"
+        timetable: "Timetable"
+        attendance: "Attendance"
+        settings: "Settings"
+        hr: "Human Resource"
+        finance: "Finance"
+        library: "Library"
         academic_report : "Academic Reports"
         profile_detail : "Employee profile details."
         view_your_profile : "View your profile"
         leave_management : "Leave Management"
         leave_details : "Employee leave details"
         employee_messages : "Employee messages"
-        edit_user : "Edit User"
-        update_user_information : "Update user information"
-        manage_users : 'Manage Users'
         human_resources : 'Human Resources'
         my_profile : 'My Profile'
         campus_news : 'Campus News'
@@ -1230,11 +1320,7 @@ en: # locale
       forgot_password:
         enter_email : "Enter your email address"
         contact_admin : "Contact Fedena Administrator to recover your password"
-        faq : "FAQ"
-        support : "Support"
-
-
-
+        
       header_link:
         logged_as: "Logged in as:"
         messages: "Messages"
@@ -1246,134 +1332,93 @@ en: # locale
 #student_attendance controller translation
     student_attendance:
       index:
-        register: 'Register'
-        report: 'Report'
-        link_desc1: 'Attendance register for students'
-        link_desc2: 'Attendance report of students'
-      student:
+        attendance_registered_for_students: 'Attendance register for students'
+        attendance_report_for_students: 'Attendance report of students'
         student_name: 'Student Name'
-        admission_no: 'Admission no'
+      student:
         mode: 'Mode'
-        select_mode: 'Select a mode'
-        all_subjects: 'All Subjects'
-        select_month_and_year: 'Select a month & year'
-        monthly: 'Monthly'
-        overall: 'Overall'
-        month: 'Month'
-      student_report:
-        full_day: 'Fullday'
-        afternoon: 'Afternoon'
-        forenoon: 'Forenoon'
-        absent: 'Absent'
-
+        
 #attendance_report controller translation
     attendance_reports:
+      select_a_month: 'Select a month'
+      total_no_of_wrkng_days: 'Total no. of working days'
+      total_no_of_wrkng_hours: 'Total no. of working hours'
+      filter: 'Filter'
+      below: 'Below'
+      above: 'Above'
+      equals: 'Equals'
+      no_reports_for_selectd_mnth: 'No reports for the selected month.'
+      no_report_for_given_period : "No reports for the given period"
+      filtered: 'Filtered'
+      
       index:
-        attendance_report: 'Attendance Report'
         report: 'Report'
-        select_a_month: 'Select a month'
-        no_reports: 'No reports for the selected month.'
-        filter: 'Filter'
-        below: 'Below'
-        above: 'Above'
-        equals: 'Equals'
-        name: 'Name'
-        total: 'Total'
-        percentage: 'Percentage'
-        report: 'Report'
-        total_days: 'Total no. of working days'
-        total_hours: 'Total no. of working hours'
       filter:
         filtered_report: 'Filtered Report'
-        filtered: 'Filtered'
-        no_report : "No reports for the given period"
-
       student_details:
-        student_report: 'Student Report'
-        student_details: 'Detailed report for'
-        full_day: 'Fullday'
-        afternoon: 'Afternoon'
-        forenoon: 'Forenoon'
-        absent: 'Absent'
-        total_working_days : "Total working days"
-        total_working_hours : "Total working hours"
-        total_present : "Total actual"
-
- #attendances_controller translation
-    attendances:
-      index:
-        attendance_register: 'Attendance register'
-        reason_for_absence: 'Reason for absence'
-        edit_attendance: 'Edit attendance for'
-        attendance: 'Attendance for'
-        add: 'Add'
-
-#employee_attendances translation
-    employee_attendances:
-      index:
-        select_the_department: 'Select the department'
-        leave_type: 'Leave type'
-        half_day: 'is half day ?'
-
+        detailed_report_for: 'Detailed report for'
 
 #student controller translation
     student:
+      field_name : 'Field name'
+      subject_details : 'Subject Details'
+      mark : 'Mark'
+      enter_new_category : ' Enter new Category'
+      edit_category : 'Editing category'
+      in: 'IN'
+      no_results_found: 'No results found.'
+      student_deleted_successfully: 'Student deleted successfully!'
+      generate_tc : 'Generate TC'
+      view_pdf : 'View PDF'
+      academic_reports: 'Academic  reports'
+      student_settings : 'Student Settings'
+      student_admission_no : 'Student Admission no.'
+      parent : 'Parent'
+      parent_personal_details : 'Parent Personal Details'
+      relation : 'Relation'
+      education : 'Education'
+      occupation : 'Occupation'
+      parent_contact_details : 'Parent - Contact Details'
+      office_address_line1 : 'Office Address Line 1'
+      office_address_line2 : 'Office Address Line 2'
+      mobile_phone_no : 'Mobile Phone no.'
+      admission_no_of_last_stud : 'Admission no. of last student is'
+      birth_place : 'Birth Place'
+      mother_tongue : 'Mother Tongue'
+      religion : 'Religion'
+      address_line : 'Address Line'
+      phone : 'Phone'
+      parent_guardian_details_step2 : 'Step 2 - Parent/guardian details'
+      emergency_contact_step3 : 'Step 3 - Emergency contact'
+      birth_date : 'Birth Date'
+      year_of_admission : 'Year of admission'
+      present_student: 'Present students'
+      former_student: 'Former students'
+      all_students : 'All students'
+      remove_student : 'Remove student'
+      select_blood_group : 'Select Blood Group'
+      address_line1 : 'Address Line 1'
+      address_line2 : 'Address Line 2'
+      enable_sms_feature : 'Enable SMS Features'
+      parent_information: 'Parent Information'
+      edit_parent_guardian_details: 'Edit Parent/guardian details'
+      send_email : 'Send email'
+
+
       index:
-        search: 'Search'
-        present_student: 'Present students'
-        former_student: 'Former students'
-        student_details: 'Student Details'
         view_details: 'View Details'
-        no_users: 'No users found'
-        view_all : 'View all'
-        advanced : 'Advanced'
-        no_results_found: 'No results found'
-        generate_tc : 'Generate TC'
-        student_deleted_successfully: 'Student deleted successfully'
-        Overall : 'Overall'
-        view_pdf : 'View PDF'
-        remove : 'Remove'
         no_previous_subject : "No Previous Subject Added"
 
       search_ajax:
         no_users : 'No user found'
-        course_and_batch : 'Course & Batch:'
+        
       
 
       admission1:
         student_detail_step1 : 'Step 1 - Student details'
-        legend1 : 'Fields marked with'
-        legend2 : 'must be filled.'
-        personal_details : 'Personal Details'
-        admission_number : 'Admission no.'
-        admission_date : 'Admssion Date'
-        first_name : 'First Name'
-        middle_name : ' Middle Name'
-        last_name : 'Last Name'
-        course_and_batch : 'Course and Batch'
-        date_of_birth : 'Date of Birth'
-        gender : 'Gender'
-        male : 'Male'
-        female : 'Female'
-        blood_group: 'Blood Group'
-        birth_place : 'Birth Place'
-        nationality : 'Nationality'
         language : 'Language'
-        religion : 'Religion'
-        contact_details : 'Contact Details'
-        address_line : 'Address Line '
-        city : 'City'
-        state : 'State'
-        zip : 'PIN code'
-        country : 'Country'
-        phone1 : 'Phone'
-        phone2 : 'Phone'
-        mobile : 'Mobile'
-        mobile_phone : 'Mobile Phone'
-        email : 'Email'
         enable_sms_feature : 'Enable SMS Feature'
-        upload_photo : 'Upload User Photo'
-        max : '50KB max'
+        max_size : '50KB max'
         student_admission_done : 'Student admission done. username is'
         password_is : 'and password is'
         last_course: 'Last Attended Course'
@@ -1382,35 +1427,12 @@ en: # locale
         no_admission_notice : 'No student has been admitted yet'
 
       admission2:
-        parent_guardian_details : 'Step 2 - Parent/guardian details'
-        student : 'Student'
-        parent : 'Parent'
-        personal_details : 'Personal Details'
-        admission_number : 'Admission no.'
-        admission_date : 'Admssion Date'
-        first_name : 'First Name'
-        last_name : 'Last Name'
-        relation : 'Relation'
-        date_of_birth : 'Date of Birth'
-        education : 'Education'
-        occupation : 'Occupation'
-        income : 'Income'
-        contact_details : 'Contact Details'
-        email : 'Email'
-        address_line : 'Address Line'
-        city : 'City'
-        state : 'State'
-        zip : 'PIN code'
-        country : 'Country'
-        phone : 'Phone'
-        mobile : 'Mobile'
         click_here_to_skip : 'Click here to skip'
         add_another_guardian : 'Add another guardian'
         saved_message : 'The following guardians have been saved for '
 
       admission3:
-        parent_guardian_details : 'Step 3 - Parent/guardian details'
-        message : 'Select one of the guardians as emergency contact.'
+        select_one_of_the_guardians : 'Select one of the guardians as emergency contact.'
         sms_part1 : 'Student admission done. username is'
         sms_part2 : 'and password is'
 
@@ -1424,40 +1446,22 @@ en: # locale
       previous_data_edit:
         edit_previous_details : 'Edit Previous Details'
 
-      previous_subject:
-        subject_details : 'Subject Details'
-        mark : 'Mark'
-
       admission4:
         step4 : 'Step 4'
-        additional_detail : 'Additional Details'
-
-
+        
       profile:
         student_information : 'Student Information'
         student_profile : 'Student Profile'
         reports : 'Reports'
         fees : 'Fees'
         guardians: 'Guardians'
-        send_email : 'Send email'
-        admission_number : 'Admission Number'
-        admission_date : 'Admisssion Date'
-        date_of_birth : 'Date of Birth'
-        gender : 'Gender'
-        male : 'Male'
-        female : 'Female'
-        blood_group: 'Blood Group'
-        birth_place : 'Birth Place'
-        nationality : 'Nationality'
         language : 'Language'
-        religion : 'Religion'
         address : 'Address'
         sms_alerts : 'SMS Alerts'
         group_tutor : 'Group tutor'
         contact_message : 'In case of emergencies, contact :'
         change_contact : 'Change immediate contact'
         immediate_contact : 'Immediate contact'
-        edit_additional_details : 'Edit Additional Details'
         previous_details : 'Previous Details'
         previous_institution : 'Previous Institution'
         add_guardian : 'Add Guardian'
@@ -1468,12 +1472,9 @@ en: # locale
         report_center : "Reports center"
 
       reports:
-        students : 'Students'
         reports : 'Reports'
         sub_title1 : 'Academics'
-        sub_title2 : 'Attendance'
         recent_exams : 'Recent Exams'
-        detailed_report : 'Detailed Report'
         subject_wise_result : 'Subjectwise Report'
         final_report : 'Final Report'
         compare_past : 'Compare with past years'
@@ -1506,20 +1507,16 @@ en: # locale
         view_details : 'View Details'
 
       email:
-        send_email : 'Send email'
+        
         
       remove:
-        remove_student : 'Remove student'
         leaving_institution : 'Student leaving institution'
         leaving_institution_message : 'For students leaving the Institution, use this option to remove them from the list of active students and place them in the former students list.'
         remove_student_records : 'Remove student records'
         remove_student_message : "Completely delete student's records from the Institution's databases. Use this option only if you created the student record by accident and want to remove it completely"
-        reason : 'Reason'
         student_left_message  : 'Student has left the school'
 
       change_to_former:
-        leaving_school : 'Leaving School'
-        reason_for_leaving : 'Reason for leaving'
         description : 'For students leaving the school, use this option to remove them from the list of active students and place them in the former students list.'
 
       delete:
@@ -1529,47 +1526,28 @@ en: # locale
 
 
       advanced_search:
-        advanced_search : 'Advanced Search'
-        searched_for : 'You have searched for'
-        listed_for : 'Listed by'
+        searched_for : 'You have searched for:'
+        listed_by : 'Listed by'
         search_again : 'Search again'
-        notice : 'Admission no. of last student is'
-        greater_than : 'greater than'
-        less_than : 'less than'
-        equal_to : 'equal to'
+        
 
-      categories:
-        enter_category : 'Enter new category'
-        edit_category : 'Editing category'
 
       edit_admission4:
         enter_admission_details : 'Edit admission details'
-
-      add_additional_details:
-        field_name : 'Field name'
-        notice : 'No additional details record found'
+ 
 
       academic_report:
-        academic_reports: 'Academic  reports'
         weighted_scores: 'Weighted scores'
         class_average: 'Class average'
         examination_wise_performance: 'Examination - wise performance'
         cumulative_performance: 'Cumulative Performance'
         examination_Name: 'Examination Name'
         marks_obtained: 'Marks Obtained'
-        in: 'IN'
         signature: 'Signature'
+
       edit:
         edit_details : 'Edit Details'
-        student_details: 'Student Details'
-        fields_marked_with: 'Fields marked with'
-        must_be_filled: 'must be filled'
-        personal_details: 'Personal Details'
         necessary_field: 'necessary-field'
-        select_category: 'Select Category'
-        parent_information: 'Parent Information'
-        edit_parent_guardian_details: 'Edit Parent/guardian details'
-        parent_personal_details : 'Parent Personal Details'
         examination_results : 'Examination Results'
         student_info: 'Student info'
         previous_year_result: 'Previous years results overview'
@@ -1698,7 +1676,7 @@ en: # locale
         collection : 'Collection'
         creates_new_fee_collecting_dates : 'Creates new fee collecting dates'
         displays_collection_dates : 'Displays fee collection dates'
-        select_batch : 'Select batch'
+        
       fee_collection_create:
         message_body_check_your: 'check your'
         message_body_fee_structure: 'Fee structure'
@@ -1707,7 +1685,6 @@ en: # locale
         set_fee_collection_date : 'Set fee collection date'
         fee_category : 'Fee category'
         fee_collection_name : 'Fee Collection Name'
-        select_category : 'Select category'
         create_new_category : 'Create new category'
         is_this_under_income : 'Is this under income?'
         course_for_category : 'Course for this Category'
@@ -1766,7 +1743,6 @@ en: # locale
 
       categories :
         finance_management : 'Finance Management'
-        categories : 'Categories'
         create_finance_category : 'Create Finance Category'
         create_category : 'Create Category'
 
@@ -1785,7 +1761,7 @@ en: # locale
       income_create :
         create_income : 'Create Income'
         incomes : 'Incomes'
-        income : 'Income'
+        
 
       monthly_report :
         monthly_transactions : 'Monthly Transactions'
@@ -1819,10 +1795,9 @@ en: # locale
         total_deductions : 'Total Deductions'
         payslip_approved : 'Payslip approved!'
         payslip_rejected : 'Payslip rejected!'
-      approve_monthly_payslip :
-        approve_payslip : 'Approve Payslip'
-        salary_month : 'Salary Month'
-        already_approved : 'Already approved!'
+      
+        
+        
       asset_liability :
         asset_liability_management : 'Asset Liability Management'
         asset : 'Asset'
@@ -1888,7 +1863,7 @@ en: # locale
       show:
         result_entry : 'Result Entry'
         absent_disqualified_etc : 'Absent/Disqualified etc'
-        remarks : 'Remarks'
+        
 
 
 
@@ -1904,9 +1879,8 @@ en: # locale
 
     exam:
       index:
-        examinations : "Examinations"
         set_grading_levels: 'Set grading levels'
-        exam : 'Exam'
+       
         results : 'Results'
         exam_wise_report : 'Exam Wise Report'
         generates : 'Generates'
@@ -1915,13 +1889,10 @@ en: # locale
         group_up_exams_for_specific_reports : 'Group up exams for specific reports'
         exam_related_details : 'Enter exam related details here'
         do_not : 'Do not'
-        max : 'Max Marks'
-        min : 'Min Marks'
         academic : 'Academic'
         consolidated : 'Consolidated'
         generated_report : 'Generated Report'
         report : 'Report'
-        class : 'Class'
         average : 'Average'
         aggregate : 'Aggregate'
         grouping : 'Grouping'
@@ -1994,14 +1965,12 @@ en: # locale
         view_exam_groups : "View Exam Groups"
 
       show:
-        max_mark : 'Maximum Mark'
-        min_mark : 'Minimum mark'
+        
       new:
         type : 'Type'
-        marks : 'Marks'
         grades : 'Grades'
         marks_and_grades : 'Marks and Grades'
-        grade : 'Grade'
+        
 
 #additional exam controller
 
@@ -2049,11 +2018,10 @@ en: # locale
  ## translation for timetable controller
     timetable:
       index:
-        timetable : 'Timetable'
         select_a_class_and_edit_the_timetable : 'Select a class and edit the timetable for that class'
         set_class_timings : 'Set class timings'
         select_a_class_timings_for_each_class : 'Select a class timings for each class'
-        view : 'View'
+        
         view_the_timetable_for_a_class : 'View the timetable for a class'
         swap_class : 'Swap class'
         generate_period_entry : 'Generate period entry for a given time'
@@ -2070,12 +2038,11 @@ en: # locale
       edit2:
         publish : 'Publish'
         time_table_is_being_generated : 'Time table is being generated.Please stay on the page'
-        elective : 'Elective'
         warning : 'Warning'
         no_teacher_associated : 'No teacher associated to this subject'
       extra_class:
         select_a_class : 'select a class'
-        select_a_subject : 'Select a subject'
+        
       view:
         select_batch_to_view : 'Select batch to view'
       timetable:
@@ -2116,11 +2083,10 @@ en: # locale
     layouts:
       # the layout name (template "main.erb")
       calendar: "Calendar"
-      dashboard: "Dashboard"
-      students: "Students"
+      dashboard_text: "Dashboard"
       settings: "Settings"
       examination : 'Examination'
-      creation : 'Event Creation'
+      event_creation : 'Event Creation'
       human_resource : 'Human Resource'
       finance : 'Finance'
       user : 'User'
@@ -2134,6 +2100,8 @@ en: # locale
       log_out: "Log out"
       ago: 'ago'
       powered_by: 'Powered by'
+
+      
         
    #flash message translations
     flash_message:

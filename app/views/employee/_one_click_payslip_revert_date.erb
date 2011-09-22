@@ -36,9 +36,9 @@ $jq(document).ready(function() {
 
 
     <div class="label-field-pair">
-    <label for="salary_date"><%= t('create_monthly_payslip.salary_month') %></label>
+    <label for="salary_date"><%= t('salary_month') %></label>
     <div class="text-input-bg"><%= select :one_click_payslip, :salary_date, @salary_dates.map {|c| [I18n.localize(c.salary_date, :format=>:month_year),c.salary_date.strftime("%Y-%m-%d")]},
-                                              {:prompt => "#{t('create_monthly_payslip.select_month')}"} %></div>
+                                              {:prompt => "#{t('select_month')}"} %></div>
     </div>
 
     <div id="submit-button">

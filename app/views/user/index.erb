@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/user_profile/user_profile_logo.jpg" />
-  <h1>Manage Users</h1>
-  <h3>Details about users</h3>
+  <h1><%= t('manage_users') %></h1>
+  <h3><%= t('detailed_about_user') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -28,15 +28,15 @@
 
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "View all", :action => "all" %></li>
-    <li><%= link_to "Add new", :action => "create" %></li>
+    <li><%= link_to "#{t('view_all')}", :action => "all" %></li>
+    <li><%= link_to "#{t('add_new')}", :action => "create" %></li>
   </ul>
 </div>
 <div id="search-area">
   <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
     <div id="searchbox">
       <form name="search-form" id="search-form">
-        <label for="query">Search users
+        <label for="query"><%= t('search_user') %>
           <%= image_tag("loader.gif",
               :align => "absmiddle",
               :border => 0,

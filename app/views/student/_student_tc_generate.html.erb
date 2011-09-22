@@ -17,8 +17,8 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<h4>Student deleted successfully!</h4>
+<h4><%= t('student_deleted_successfully') %></h4>
 <br/>
 <br/>
-<%= link_to " ► #{t('student.index.generate_tc')}",
+<%= link_to " ► #{t('generate_tc')}",
         {:controller => "student", :action => "generate_tc_pdf", :id => @student.admission_no},:target => '_blank', :class=> 'user_button' %>

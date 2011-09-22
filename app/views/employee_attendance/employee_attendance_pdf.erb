@@ -22,7 +22,7 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2>Employee Attendance Report</h2>
+  <h2><%= t('employee_attendance_report') %></h2>
   <div class="hor_line"></div>
 
 
@@ -38,7 +38,7 @@
     <div id="pdf-info">
       <% c='even' %>
         <table id="pdf-table" width="100%" cellspacing="0">
-          <tr class="table-header"><td class="col-pdf">Leave Types</td><td class="col-pdf">Dates</td></tr>
+          <tr class="table-header"><td class="col-pdf"><%= t('leave_types') %></td><td class="col-pdf">Dates</td></tr>
       <% @leave_types.each do |lt| %>
         <% leave_count = EmployeeLeave.find_by_employee_leave_type_id_and_employee_id(lt.id, @employee.id) %>
         <% unless leave_count.reset_date.nil? %>
@@ -47,7 +47,7 @@
           <% @report = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id, lt.id) %>
         <% end %>
           <% if @report == [] %>
-            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>"><td class="col-pdf"><%= lt.name %></td><td class="col-pdf">No Dates</td></tr>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>"><td class="col-pdf"><%= lt.name %></td><td class="col-pdf"><%= t('no_dates') %></td></tr>
           <% else %>
             <% @report.each do |r| %>
               <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
@@ -68,7 +68,7 @@
         <% end %>
 
         <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-          <td class="col-bold">Net total leaves</td>
+          <td class="col-bold"><%= t('net_total_leaves') %></td>
           <td class="col-bold"><%= total_leave %></td>
         </tr>
       </table>

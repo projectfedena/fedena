@@ -29,7 +29,7 @@
 <div id="page-yield">
 
   <div id="student-details">
-    <h4> <%= @employee.first_name %> |  <%= t('admission1.employee_number') %>  : <%= @employee.employee_number %> | Department : <%= @employee.employee_department.name %> </h4>
+    <h4> <%= @employee.first_name %> |  <%= t('employee_number') %>  : <%= @employee.employee_number %> | Department : <%= @employee.employee_department.name %> </h4>
   </div>
 
   <div class="extender"> </div>
@@ -53,7 +53,7 @@
     <!--
 
   <div id="remove-student">
-    <h4><%= link_to 'Student leaving school' %></h4>
+    <h4><%= link_to "#{t('student_leaving_school')}" %></h4>
     <p>For students leaving the school, use this option to remove them from the list of active students and place them in the former students list.</p>
     <% form_for :remove do |f| %>
       <div class="label-field-pair">
@@ -71,7 +71,7 @@
 
     <p class="warning">(Warning: All records will be deleted for the student and cannot be recovered.)</p>
     <%= link_to image_tag('/images/buttons/delete.png', :border => 0),
-      { :action => 'destroy', :id => @employee.id }, :confirm => 'Are you completely sure?' %>
+      { :action => 'destroy', :id => @employee.id }, :confirm => "#{t('are_you_sure')}" %>
   </div>
     -->
 

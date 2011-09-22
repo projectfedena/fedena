@@ -20,7 +20,7 @@
  <div class="label-field-pair">
 
 <div class="text-input-bg"><%= select :user_type, :type, EmployeeDepartment.active.map {|c| [c.name, c.id]},
-    {:prompt => 'Select a Department '},
+    {:prompt => "#{t('select_a_department')}"},
     {:onChange => "#{remote_function(:url => {:action => "list_employee_user"},
     :with => "'dept_id='+value",
         :before => "Element.show('loader')",

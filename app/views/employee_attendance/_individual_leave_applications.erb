@@ -31,7 +31,7 @@
         <%= t('status') %>
       </td>
       <td>
-       <%= t('exams.show.remarks') %>
+       <%= t('remarks') %>
       </td>
     </tr>
     <tr class="tr-blank"></tr>
@@ -42,17 +42,17 @@
         <tr class="tr-<%= cycle('odd', 'even') %>">
           <td class="col-3"><%= link_to "#{l.start_date.strftime("%d/%m/%Y")}",:controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
           <td class="col-3"><%= link_to "#{l.end_date.strftime("%d/%m/%Y")}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
-          <td class="col-1"><%= link_to "#{t('employee.hr.pending')}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
-          <td class="col-1"> No Remarks</td>
+          <td class="col-1"><%= link_to "#{t('pending')}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
+          <td class="col-1"> <%= t('no_remarks') %></td>
         </tr>
       <% else %>
         <% if l.approved? %>
           <tr class="tr-<%= cycle('odd', 'even') %>">
             <td class="col-3"><%= link_to "#{l.start_date.strftime("%d/%m/%Y")}", :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
             <td class="col-3"><%= link_to "#{l.end_date.strftime("%d/%m/%Y")}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
-            <td class="col-1"><%= link_to "#{t('employee.hr.approved')}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
+            <td class="col-1"><%= link_to "#{t('approved')}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
             <% if l.manager_remark.nil? %>
-              <td class="col-1"> No Remarks</td>
+              <td class="col-1"> <%= t('no_remarks') %></td>
             <% else %>
               <td class="col-1"><%= l.manager_remark %></td>
             <% end %>
@@ -61,9 +61,9 @@
           <tr class="tr-<%= cycle('odd', 'even') %>">
             <td class="col-3"><%= link_to "#{l.start_date.strftime("%d/%m/%Y")}", :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
             <td class="col-3"><%= link_to "#{l.end_date.strftime("%d/%m/%Y")}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
-            <td class="col-1"><%= link_to "Denied",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
+            <td class="col-1"><%= link_to "#{t('denied')}",  :controller=>"employee_attendance", :action=>"own_leave_application", :id=>l.id %></td>
             <% if l.manager_remark.nil? %>
-              <td class="col-1"> No Remarks</td>
+              <td class="col-1"><%= t('no_remarks') %></td>
             <% else %>
               <td class="col-1"><%= l.manager_remark %></td>
             <% end %>
@@ -82,5 +82,5 @@
   <% posted_params.each{|k,v| @url_params = @url_params.to_s+k.to_s+"="+v.to_s+"&"}  %>
   <%= will_paginate @applied_leaves,:renderer => 'RemoteLinkRenderer',:remote=>{:update=>'application-list'} %>
 <% else %>
-  <span>There are no leave applications</span>
+  <span><%= t('no_leave_application ') %></span>
 <% end %>

@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/admission/admission_page_logo.jpg" alt="" />
-  <h1>Student Settings</h1>
-  <h3>Edit Additional Details</h3>
+  <h1><%= t('student_settings') %></h1>
+  <h3><%= t('edit_additional_details') %></h3>
   <div id="app-back-button">
      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -37,23 +37,23 @@
       <%= error_messages_for 'additional_details' %>
       <div id="form-content">
         <div class="label-field-pair">
-          <label for="category_name">Name</label>
+          <label for="category_name"><%= t('name') %></label>
           <div class="text-input-bg"> <%= c.text_field :name %> </div>
         </div>
 
         <div class="label-checkbox-pair">
-          <label class="status" for="status">Status</label>
+          <label class="status" for="status"><%= t('status') %></label>
           <div id="radio-buttons">
             <%= c.radio_button  "status", "true", :checked => "checked" %>
-            <label class="label_for_status" for="add_grade_status_true">Active</label>
+            <label class="label_for_status" for="add_grade_status_true"><%= t('active') %></label>
 
             <%= c.radio_button  "status", "false" %>
-            <label class="label_for_status" for="add_grade_status_false">Inactive</label>
+            <label class="label_for_status" for="add_grade_status_false"><%= t('inactive') %></label>
           </div>
         </div>
 
         <div id="submit-button">
-          <%=submit_tag("► Update") %>
+          <%=submit_tag("► #{t('update')}") %>
         </div>
       </div>
 

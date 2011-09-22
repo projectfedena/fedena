@@ -30,8 +30,8 @@
 
 <div id="content-header">
  <img src="/images/HR/leave-new.png" alt="" />
-  <h1>Leave Management</h1>
-  <h3>Apply for a leave</h3>
+  <h1><%= t('leave_management') %></h1>
+  <h3><%= t('apply_for_a_leave') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -50,10 +50,10 @@
       <% form_for :leave_apply do |l| %>
           <%= error_messages_for :leave_apply %>
           <%= l.hidden_field :employee_id, :value=>@employee.id %>
-        Leave type:<%= select :leave_apply, :employee_leave_types_id, @leave_types.map {|s| [s.name, s.id]},:prompt => "Select" %><br/>
-        Start date:<%= l.text_field :start_date %><br/>
-        End date:<%= l.text_field :end_date %><br/>
-        Reason:<%= l.text_field   :reason %>
+        <%= t('leave_types') %>:<%= select :leave_apply, :employee_leave_types_id, @leave_types.map {|s| [s.name, s.id]},:prompt => "#{t('select')}" %><br/>
+        <%= t('start_date') %>:<%= l.text_field :start_date %><br/>
+        <%= t('end_date') %>:<%= l.text_field :end_date %><br/>
+        <%= t('reason') %>:<%= l.text_field   :reason %>
         <%= submit_tag "Submit"  %>
       <% end %>
 

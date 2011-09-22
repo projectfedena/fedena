@@ -18,10 +18,10 @@
 #under the License. -%>
 
 <ul class="item-list">
-  <li class="heading"><%= t('department_payslip.payslip_generated_on') %> <%= @salary_date %></li>
+  <li class="heading"><%= t('payslip_generated_on') %> <%= @salary_date %></li>
 </ul>
 <ul class="item-list">
-  <li class="heading1"><%= t('profile.salary') %></li>
+  <li class="heading1"><%= t('salary') %></li>
   <% @monthly_payslips.each do |mp| %>
     <% category = PayrollCategory.find(mp.payroll_category_id) %>
     <% @emp = Employee.find(mp.employee_id) %>
@@ -44,14 +44,14 @@
     <% end %>
   <% end %>
   <li class="list<%=cycle('odd', 'even')%>">
-    <div class="item-name"><b><%= t('department_payslip.total_salary') %></b></div>
+    <div class="item-name"><b><%= t('total_salary') %></b></div>
     <div class="item-edit"><b><span class="currency-type"><%= @currency_type %></span> <%=@net_non_deductionable_amount  %></b></div>
   </li>
 </ul>
 
 
 <ul class="item-list">
-  <li class="heading1"><%= t('department_payslip.deductions') %></li>
+  <li class="heading1"><%= t('deductions') %></li>
 
   <% @monthly_payslips.each do |mp| %>
     <% category = PayrollCategory.find(mp.payroll_category_id) %>
@@ -75,16 +75,16 @@
     <% end %>
   <% end %>
   <li class="list<%=cycle('odd', 'even')%>">
-    <div class="item-name"><b><%= t('department_payslip.total_deduction') %></b></div>
+    <div class="item-name"><b><%= t('total_deduction') %></b></div>
     <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span> <b><%=@net_deductionable_amount %></b></div>
   </li>
 </ul>
 
 <ul class="item-list">
-  <li class="heading1"><%= t('department_payslip.total') %></li>
+  <li class="heading1"><%= t('total') %></li>
 
   <li class="listeven">
-    <div class="item-name"><b><%= t('department_payslip.net_salary') %></b></div>
+    <div class="item-name"><b><%= t('net_salary') %></b></div>
     <div class="item-edit"><b><span class="currency-type"><%= @currency_type %></span> <%=@net_amount%></b></div>
   </li>
 </ul>
@@ -95,10 +95,10 @@
 <% end %>
 <% if @current_user==@emp.user %>
   <div class="pdf-link">
-    <%= link_to "► PDF Report", {:controller=>"employee", :action=>"individual_payslip_pdf", :id=>@emp.id, :id2=>@salary_date}, :target=> "_blank" %>
+    <%= link_to "► #{t('pdf_report')}", {:controller=>"employee", :action=>"individual_payslip_pdf", :id=>@emp.id, :id2=>@salary_date}, :target=> "_blank" %>
   </div>
 <% elsif permitted_to?     :employee_individual_payslip_pdf,:employee %>
   <div class="pdf-link">
-    <%= link_to "► #{t('student.profile.pdf_report')}", {:controller=>"employee", :action=>"employee_individual_payslip_pdf", :id=>@emp.id, :id2=>@salary_date}, :target=> "_blank" %>
+    <%= link_to "► #{t('pdf_report')}", {:controller=>"employee", :action=>"employee_individual_payslip_pdf", :id=>@emp.id, :id2=>@salary_date}, :target=> "_blank" %>
   </div>
 <% end %>

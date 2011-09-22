@@ -300,11 +300,12 @@ es: # locale
     select_a_batch : 'Seleccionar un grupo'
     select_a_course : 'Seleccionar un Curso'
     create : 'Crear'
-    student : 'Estudiante'
+    student_text : 'Estudiante'
     course_and_batch : 'Curso y grupo'
     subject : 'Asignatura'
     message : 'Mensaje'
     recipient : 'Destinatario'
+    recipients : 'los beneficiarios'
     guardian : 'Guardián'
     course : 'Curso'
     courses : 'cursos'
@@ -432,6 +433,138 @@ es: # locale
     father_name : "Nombre del Padre"
     mother_name : "Nombre de la Madre"
     spouse_name : "Nombre del Cónyuge"
+    address : "Dirección"
+    city : 'Ciudad'
+    state : 'Dpto/Est/Prov'
+    zip : 'Codigo PIN'
+    country : 'País'
+    half_day : "Medio día"
+    mobile : 'Celular'
+    email : 'Correo electrónico'
+    assign_new : "Asignar nuevo"
+    employee_number: "Numero del Empleado"
+    manager : "Administrador"
+    change : "Cambiar"
+    already_approved : 'Ya está aprobado!'
+    salary_date : "Fecha de Salario"
+    salary_month : "Mes de salario"
+    select_month : "Seleccionar el mes"
+    is_deduction : "Es deducción?"
+    blood_group: 'Tipo de sangre'
+    nationality : 'Nacionalidad'
+    total_salary : "Salario Total"
+    deductions : "Deducciones"
+    total_deduction : "Deducción total"
+    net_salary : "Salario Neto"
+    id : "Id"
+    employee_payslip : "Comprobante de nómina"
+    reason : "Causa"
+    currently_assigned : 'Actualmente asignado'
+    no_employee_assigned : " Ningún empleado asignado aun"
+    grade : 'Nivel'
+    date_of_birth : 'F. Nacimiento'
+    gender : 'Sexo'
+    male : 'Masculino'
+    female : 'Femenino'
+    first_name : 'Primer nombre'
+    middle_name : 'Segundo nombre'
+    last_name : 'Apellidos'
+    upload_photo : 'Cargar foto'
+    no_employee_found : 'Ningún empleado encontrado.'
+    view : 'Ver'
+    legend1 : 'Campos marcados con'
+    legend2 : 'debe ser llenado.'
+    month: 'Mes'
+    edit_category : "Editar categoría"
+    salary : "Salario"
+    monthly_payslip : "Comprobante de pago mensual"
+    personal_details : "Datos personales"
+    attendance_register: 'Lista de asistencia'
+    attendance_report: 'Reporte de Asistencia'
+    payslip : "Comprobante de pago"
+    approve_payslip : 'Aprobar comprobante de pago'
+    view_all : 'Ver todos'
+    advanced : 'Avanzada'
+    timetable : 'Horario'
+    payroll  : 'Nómina'
+    add_new_category : "Añadir nueva categoría"
+    percentage: 'Porcentaje'
+    pending : "Pendientes"
+    approved : "Aprobado"
+    denied : "Denegado"
+    select_employee : "Seleccionar Empleado"
+    remarks : 'Observaciones'
+    leave_management: 'Gestión de Licencias'
+    apply_for_a_leave: 'Solicitar una licencia'
+    detailed_report : 'Reporte detallado'
+    total_leaves_taken : "Total Licencias utilizadas"
+    cancel : 'Cancelar'
+    select_the_department: 'Seleccionar departamento'
+    search: 'Buscar'
+    emp_id: 'ID del Empleado'
+    approve : 'Aprobar'
+    apply: 'Aplicar'
+    my_leaves: 'Mis Licencias'
+    all_leaves: 'Todas las licencias'
+    leave_type: 'Tipo de licencia'
+    is_half_day: 'es medio dia?'
+    register: 'Registrarse'
+    report: 'Reporte'
+    no_users_found : 'No se encontraron usuarios'
+    student: 'Estudiante'
+    student_details: 'Información  de estudiantes'
+    examinations : "Exámenes"
+    reset  : 'reajustar'
+    select_month_and_year: 'Seleccione mes y año'
+    total_working_days : "Total días de trabajo"
+    total_working_hours : "Total horas de trabajo"
+    total_present : "Total actual"
+    full_day: 'Todo el día'
+    afternoon: 'por la tarde'
+    forenoon: 'por la mañana'
+    absent: 'Ausente'
+    advanced_search : 'Búsqueda avanzada'
+    overall: 'En general'
+    monthly: 'Mensualmente'
+    ok : "OK"
+    student_report: 'Reporte de estudiante'
+    select_mode: 'Seleccione un modo'
+    select_a_subject : 'Seleccionar una asignatura'
+    all_subjects: 'Todas las Asignaturas'
+    edit_attendance_for: 'Editar asistencia de'
+    reason_for_absence: 'Causa de la ausencia'
+    attendance_for: 'Asistencia de'
+    no_additional_details : "No se ha encontrado ninguna información adicional"
+    select_batch : 'Seleccionar grupo'
+    subjects : 'Los sujetos'
+    marks : 'Notas'
+    max : 'Max nota'
+    min : 'Min nota'
+    grade : 'Desempeño'
+    max_mark : 'Nota Máxima'
+    min_mark : 'Nota Mínima'
+    add_additional_details: "Agregar información adicional"
+    income : 'Ingresos'
+    office_phone1 : "Telefono de oficina1"
+    office_phone2 : "Telefono de oficina2"
+    admission_date : 'Fecha de admisión'
+    contact_details : "Datos de contacto"
+    additional_detail : 'Información adicional'
+    select_category : 'Seleccionar categoría'
+    less_than : "menor que"
+    greater_than : "mayor que"
+    equal_to : "igual a"
+    year_of_birth : "Año de nacimiento"
+    admission_no: 'Admisión No.'
+    students : 'Estudiantes'
+    categories : 'Categorías'
+    class : 'Clase'
+    leaving_school : 'Proceso de retiro de la Institución'
+    reason_for_leaving : 'Causa del retiro'
+    edit_additional_details : 'Editar información adicional'
+    elective : 'Electivo'
+    elective_group: 'Grupo de electivas'
+    message : 'mensaje'
 
 
 #configuration controller translation
@@ -496,12 +629,11 @@ es: # locale
       new:
         import_subject : 'Importar Asignaturas del grupo previas'
         import_fees : 'Importar Tarifas Mayores previas'
-        no_employee_found : 'Ningún empleado encontrado.'
+        
         new_batch : "Nuevo grupo"
         Not applicable : "No aplica"
         
       assign_tutor:
-        currently_assigned : 'Actualmente asignado'
         no_employee_assigned : 'Ningún empleado asignado todavía.'
 
       edit:
@@ -541,7 +673,6 @@ es: # locale
       new_elective : "Nueva electiva"
       show_elective : "Mostrar electivas"
       index:
-        elective_group: 'Grupo de electivas'
         edit_elective : "Editar electivas"
        
 
@@ -602,7 +733,6 @@ es: # locale
         event_creation : 'Paso 1 - Creación de evento'
         more : 'más'
         associated : 'Asociado'
-        cancel : 'Cancelar'
         my : 'Mi'
         common : "Evento común"
         my_course_event : "Evento de Mi Curso"
@@ -622,10 +752,56 @@ es: # locale
 
 #employee controller translation
     employee:
-      approve : 'Aprobar'
       position  : 'Posición'
-      grade : 'Nivel'
-      add_additional_details: "Agregar información adicional"
+      general_details : "Información General"
+      joining_date : "Fecha de Admisión"
+      job_title : "Cargo laboral"
+      qualification : "Calificación"
+      exp_info : "Info de Experiencia"
+      total_exp : "Experiencia Total"
+      marital_status : "Estado civil"
+      single : "Soltero"
+      married : "Casado"
+      divorced : "Divorciado"
+      no_of_children : "Cantidad de hijos"
+      active_fields : "Campos Activos"
+      inactive_fields : "Campos Inactivos"
+      home_address : "Domicilio"
+      fax : "FAX"
+      home_phone : "Teléfono de la casa"
+      employee_name : "Nombre del empleado"
+      message : "Ningún empleado agregado bajo esta categoría"
+      payslip_generated_on : "Comprobante pago generado el"
+      employee_settings : "Configuración de los empleados"
+      employee_department : "Departamento de empleados"
+      employee_category : "Categoría de Empleados"
+      employee_position : "Posición de Empleado"
+      employee_grade : "Nivel del Empleado"
+      prefix : 'Prefijo'
+      department_code : "Código del Departamento"
+      priority : 'Prioridad'
+      max_period_per_day : 'Máximo de períodos por día'
+      max_period_per_week : 'Máximo de períodos por semana'
+      employee_admission : "Admisión de empleados"
+      select_department: 'Seleccionar departamento'
+      select_position: 'Seleccionar posición'
+      select_grade: 'Seleccionar nivel'
+      employee_id : "ID del empleado"
+      not_selected : "no seleccionado"
+      edit_employee_information : "Editar Información del Empleado"
+      line_1 : "Línea 1"
+      line_2 : "Línea 2"
+      contact : "Contacto"
+      personal : "Personal"
+      employee_management : "Gestion de Empleados"
+      employee_search: 'Búsqueda de Empleados'
+      histroy : 'historia'
+      all_employee : "Todos los Empleados"
+      employee_profile : "Perfil del Empleado"
+      student_leaving_school : 'Estudiantes que abandonan la escuela'
+      search_by_name : "Buscar por nombre"
+      rejected_employee : 'recibo de pago rechazado'
+
       
       hr:
         management: 'Gestion'
@@ -634,25 +810,15 @@ es: # locale
         leave : 'Licencia'
         one_click_approve : 'Aprobar con un clic'
         bank_detail : 'Información  bancaria'
-        payroll  : 'Nómina'
-        prefix : 'Prefijo'
         no : 'No'
         record : 'registro'
         found : 'encontrado'
-        priority : 'Prioridad'
-        max_period_per_day : 'Máximo de períodos por día'
-        max_period_per_week : 'Máximo de períodos por semana'
         no_employee_grades_record_found: 'No se encontró ningún registro correspondiente al nivel del Empleado'
         all_leave_records: 'Registro de todas las licencias'
         select_the_last_day_of_the_month: 'seleccionar el último día del mes'
         signature: 'Firma'
-        leave_management: 'Gestión de Licencias'
-        my_leaves: 'Mis Licencias'
-        apply: 'Aplicar'
         my_emp: 'Mi empleado'
         all_records: 'Todos los Registros'
-        apply_for_a_leave: 'Solicitar una licencia'
-        all_leaves: 'Todas las licencias'
         personal_leave_management: 'Gestion de licencias personales'
         my_leave_applications: 'Mis solicitudes de licencias'
         span_leave_management: 'Gestion de la Duración de Licencias'
@@ -660,8 +826,6 @@ es: # locale
         new_leave_applications: 'Nueva solicitud de licencia'
         all_leave_applications: 'Todas las solicitudes de licencia'
         no_employees_under_my_span: 'No hay empleados bajo mi Duracion de mis licencias'
-        emp_id: 'ID del Empleado'
-        payslip_settings: 'Configuración de Comprobante de Nómina'
         general_profile: 'Perfil General'
         active_category : "Categoría activa"
         inactive_category : "Categoría inactiva"
@@ -671,20 +835,15 @@ es: # locale
         no_department_found : "No se encontró departamento de empleados"
         active_grade : "Nivel Activo"
         inactive_grade : "Nivel Inactivo"
-        pending : "Pendientes"
-        approved : "Aprobado"
-        denied : "Denegado"
         active_position : "Posición Activa"
         inactive_position : "Posición Inactiva"
         no_position_record_found : "No se encontró Posición de los empleados"
-        department_code : "Código del Departamento"
         add_grade : "Añadir Nivel"
         add_position : "Añadir Posición"
         edit_department : "Editar Departamento"
         edit_grade : "Editar Nivel"
         edit_position : "Editar Posición"
         hr_management : "Gestión Humana"
-        hr_setting : "Configuración de Gestión Humana"
         manage_all_employee : "Gestionar TODOS los empleados"
         employee_leave_management : "Gestión de Licencias"
         manage_all_employee_attendance_and_leave : "Gestionar TODAS Asistencias y Licencias"
@@ -692,44 +851,22 @@ es: # locale
         create_employee_monthly_payslip : "Crear comprobante de nómina mensual"
         search_for_employees : "Buscar empleados"
         view_department_wise_payslip : "Ver comprobante de nómina por departamentos"
-        add_employee_category : "Agregar categoría de empleados"
-        add_employee_position : "Añadir posición de empleados"
-        add_employee_department : "Añadir Departamento de Empleados"
-        add_employee_grade : "Añadir Nivel de empleados"
-        add_payroll_category : "Agregar categoría de nómina"
-        add_bank_detail : "Añadir información bancaria"
-        add_additional_detail : "Añadir información adicional"
-        add_edit_employee_category : "Agregar y Editar categoría de empleados"
-        add_edit_employee_position : "Agregar y editar posición de empleados"
-        add_edit_employee_department : "Agregar y Editar Departamento de Empleados"
-        add_edit_employee_grade : "Agregar y Editar Nivel de Empleados"
-        add_edit_employee_payroll_category : "Agregar y editar categoría de nómina"
-        add_edit_bank_detail : "Agregar y editar información bancaria"
-        add_edit_additional_detail : "Agregar y editar información adicional para formularios de admisión de los empleados"
         address_details  : 'detalles de la dirección'
         bank_account_details : 'Detalles de la cuenta bancaria'
         add_department : 'Añadir departamento'
-        histroy : 'historia'
        
 
       search:
-        employee_search: 'Búsqueda de Empleados'
         employee_details: 'Información de Empleados'
-        select_department: 'Seleccionar departamento'
-        select_category : 'Seleccionar categoría'
-        select_position: 'Seleccionar posición'
-        select_grade: 'Seleccionar nivel'
         employee_search_report : 'Empleado del informe de búsqueda'
 
       employee_attendance:
         manage_attendance: 'Gestionar Asistencia'
         leave_attendance: 'Licencias y Asistencia'
-        add_type: 'Añadir tipos de licencia'
         link_dec1: 'Agregar y editar tipos de asistencia de los empleados.'
-        link_dec2: 'Lista de asistencia.'
+        
 
       add_bank_details:
-        employee_settings : "Configuración de los empleados"
         add_bank_details : "Añadir Información  Bancaria"
         no_bank_detail : "No se encontró ninguna información bancaria"
         active_bank_field : "Campos Bancarios Activos "
@@ -739,52 +876,22 @@ es: # locale
         edit_bank_details : "Editar Información Bancaria"
 
       add_additional_details:
-        no_additional_details : "No se ha encontrado ninguna información adicional"
         no_additional_details_entered : "No entró en detalles adicionales para"
-        active_fields : "Campos Activos"
-        inactive_fields : "Campos Inactivos"
-
-      edit_additional_details:
-        edit_additional_details : "Editar Información adicional"
-
+      
       employee_management:
-        employee_management : "Gestion de Empleados"
         manage_all_employee : "Gestionar TODOS los Empleados"
-        employee_admission : "Admisión de empleados"
         employee_admission_form : "Formulario de Admisión para Empleados"
         employee_subject_association : "Asociación de asignaturas a Empleado"
         assign_an_employee : "Asignar un empleado a una o más Asignaturas"
 
       admission1:
-        employee_number: "Numero del Empleado"
         step_1 : "Paso - 1"
-        general_details : "Información General"
-        joining_date : "Fecha de Admisión"
-        job_title : "Cargo laboral"
-        qualification : "Calificación"
-        exp_info : "Info de Experiencia"
-        total_exp : "Experiencia Total"
-        personal_details : "Datos personales"
-        marital_status : "Estado civil"
-        single : "Soltero"
-        married : "Casado"
-        divorced : "Divorciado"
-        no_of_children : "Cantidad de hijos"
-        
         last_employee_number : "El número del ultimo empleado es"
         upload_user_signature : "Cargar Firma"
 
       admission2:
         step_2 : "Paso - 2"
-        home_address : "Domicilio"
-        line_1 : "Línea 1"
-        line_2 : "Línea 2"
         office_address : "Dirección de oficina"
-        contact_details : "Datos de contacto"
-        office_phone1 : "Telefono de oficina1"
-        office_phone2 : "Telefono de oficina2"
-        home_phone : "Teléfono de la casa"
-        fax : "FAX"
         joining_info : 'Información de ingreso de'
         change_password_after_login : 'Por favor, cambie su contraseña después de iniciar sesión'
         pin_code : 'pin Code'
@@ -825,44 +932,28 @@ es: # locale
         select_reporting_manager : "Seleccionar Administrador de Reportes"
         step_5 : "Paso - 5"
         selected_manager : "Administrador Seleccionado"
-        not_selected : "no seleccionado"
-        search_by_name : "Buscar por nombre"
         select_manager_msg : "Seleccionar administrador haciendo clic sobre este y luego actualizar!"
 
       profile:
-        employee_profile : "Perfil del Empleado"
         details : "Información"
-        general : "General"
-        personal : "Personal"
-        address : "Dirección"
-        contact : "Contacto"
         bank_info : "Información Bancaria"
         additional_info : "Información Adicional"
         profile : "Perfil"
-        salary : "Salario"
-        payroll : "Nómina"
-        payslip : "Comprobante de pago"
         leaves : "Licencias"
-        attendance : "Asistencia"
-        timetable : "Horario"
         reminder : "Recordatorio"
-        employee_id : "ID del empleado"
-        manager : "Administrador"
-        change : "Cambiar"
         no_bank_details_entered : "No se ingresó información bancaria para"
         no_add_details_entered : "No se ingresó información adicional para"
         basic_payroll_details : "Datos básicos de nómina"
         no_payroll_detail_entered : "No se ingresó información de nómina para"
-        select_month_and_year :  "Seleccionar Mes y Año"
+        
         no_dates_found : "No se encontró ninguna fecha"
-        total_leaves_taken : "Total Licencias utilizadas"
+        
 
       remove:
         remove_employee : "Eliminar Empleado"
         employee_leaving_institution : "Empleado que se retira de la Institución"
         employee_leaving_institution_msg : "Para los empleados que se retiran de la Institución, utilice esta opción para eliminarlos de la lista de los empleados activos y colocarlos en la lista de los ex empleados."
         employee_left_school : "El empleado se ha retirado de Institución"
-        reason : "Causa"
         remove_record : "Eliminar registros del empleado"
         remove_record_msg : "Eliminar completamente el empleado de la base de datos de la Institución. Utilice esta opción sólo si ha creado un empleado por accidente y quiere eliminarlo por completo."
         confirm : "Esto también cancela la asignación del empleado a todas sus Asignaturas actuales, ¿Desea continuar?"
@@ -873,22 +964,16 @@ es: # locale
         selected_new_manager : 'Gerente de Nuevos seleccionados'
 
       change_to_former:
-        leaving_school : "Retiro de la Institución"
         paragraph : "Para los empleados que se retiran de la Institución, utilice esta opción para eliminarlos de la lista de empleados activos y colocarlos en la lista de los ex empleados."
-        reason_for_leaving : "Causa del retiro"
+        
 
       subject_assignment:
         employee_subject : "Asignatura del Empleado"
         associate : "Asociar"
-        currently_assigned : "Actualmente asignado"
-        no_employee_assigned : " Ningún empleado asignado aun"
-        assign_new : "Asignar nuevo"
-
+        
       payslip:
-        select_employee : "Seleccionar Empleado"
         one_click_payslip : "Generar comprobante de pago con un clic"
         one_click_payslip_revert : " Revertir comprobante de pago con un click"
-        rejected_employee : 'recibo de pago rechazado'
         revert_confirm : "Esto eliminará los comprobantes de pago de todos los empleados (del mes que elija), del sistema. ¿Estás seguro?"
         link_desc1 : "Generar comprobante de pago a un empleado"
         link_desc2 : "Generar comprobante de pago con clic"
@@ -898,38 +983,19 @@ es: # locale
       select_department_employee:
         payslip_generation : "Generar comprobante de pago"
         individual_employee : "Empleados individuales"
-        employee_name : "Nombre del empleado"
-        message : "Ningún empleado agregado bajo esta categoría"
-
+        
       create_monthly_payslip:
-        monthly_payslip : "Comprobante de pago mensual"
-        salary_date : "Fecha de Salario"
-        salary_month : "Mes de salario"
-        select_month : "Seleccionar el mes"
-        add_new_category : "Añadir nueva categoría"
-        amount : "Cantidad"
-        is_deduction : "Es deducción?"
         payslip_generated : ' Comprobante de pago generado'
         payslip_generated_for : 'El comprobante de pago se ha generado para'
         kindly_approve : 'Por favor, aprobar esta solicitud'
 
       department_payslip:
         department_wise_payslip : "Comprobantes de pago por departamentos"
-        payslip_generated_on : "Comprobante pago generado el"
-        total_salary : "Salario Total"
-        deductions : "Deducciones"
-        total_deduction : "Deducción total"
-        net_salary : "Salario Neto"
-        id : "Id"
-        employee_payslip : "Comprobante de nómina"
         employee_no : 'No empleado.'
         payslip_status : 'nómina de estado'
         total_employees : 'El total de empleados'
         approved_salary : 'salarial aprobado'
         no_payslip_found : 'No encontró Nóminas.'
-
-      edit1:
-        edit_employee_information : "Editar Información del Empleado"
 
       change_reporting_manager:
         reporting_manager : "Administrador de reportes"
@@ -937,20 +1003,11 @@ es: # locale
         new_manager : "Nuevo Administrador"
 
       advanced_search:
-        advanced_search : "Búsqueda Avanzada"
-        employee_department : "Departamento de empleados"
-        employee_category : "Categoría de Empleados"
-        employee_position : "Posición de Empleado"
-        employee_grade : "Nivel del Empleado"
         year_of_join : "Año de ingreso"
-        year_of_birth : "Año de nacimiento"
         present_employee : "Empleados actuales"
         former_employee : "Ex Empleados"
-        all_employee : "Todos los Empleados"
-        less_than : "menor que"
-        greater_than : "mayor que"
-        equal_to : "igual a"
         choose_your_option : "elija su opción"
+
       one_click_payslip_generation:
         salary_slip_for_month: 'Comprobante de salario generado en el mes de'
         note: 'NOTA'
@@ -958,25 +1015,40 @@ es: # locale
         salary_slip_reverted: 'Comprobante de salario revertido para el mes de'
         please_select_month: 'Por favor, seleccionar un mes ...'
 
+      settings:
+        hr_setting : "Configuración de Gestión Humana"
+        add_employee_category : "Agregar categoría de empleados"
+        add_employee_position : "Añadir posición de empleados"
+        add_employee_department : "Añadir Departamento de Empleados"
+        add_employee_grade : "Añadir Nivel de empleados"
+        add_payroll_category : "Agregar categoría de nómina"
+        add_bank_detail : "Añadir información bancaria"
+        add_additional_detail : "Añadir información adicional"
+        add_edit_employee_category : "Agregar y Editar categoría de empleados"
+        add_edit_employee_position : "Agregar y editar posición de empleados"
+        add_edit_employee_department : "Agregar y Editar Departamento de Empleados"
+        add_edit_employee_grade : "Agregar y Editar Nivel de Empleados"
+        add_edit_employee_payroll_category : "Agregar y editar categoría de nómina"
+        add_edit_bank_detail : "Agregar y editar información bancaria"
+        add_edit_additional_detail : "Agregar y editar información adicional para formularios de admisión de los empleados"
+        payslip_settings: 'Configuración de Comprobante de Nómina'
+
 #payroll translation
     payroll:
+      earnings : "Ganancias"
+      inactivate : "Desactivar"
+      inactivate_confirm : "¿Estás seguro que desea desactivar esta categoría?"
+      activate : "Activar"
+      activate_confirm : "¿Estás seguro de que desea activar esta categoría?"
+      earnings_msg : "No se encontró ninguna categoría de nómina no deducible"
+      deduction_msg : "No se encontró ninguna categoría de nómina deducible"
+      category_name : "Nombre de la categoría"
+      index : 'Index'
+
       add_category:
         add_new_category : "Añadir nueva categoría"
-        category_name : "Nombre de la categoría"
         percentage_of : "Porcentaje de"
         is_deduction : "es deducción?"
-        earnings : "Ganancias"
-        deductions : "Deducciones"
-        inactivate : "Desactivar"
-        inactivate_confirm : "¿Estás seguro que desea desactivar esta categoría?"
-        activate : "Activar"
-        activate_confirm : "¿Estás seguro de que desea activar esta categoría?"
-        earnings_msg : "No se encontró ninguna categoría de nómina no deducible"
-        deduction_msg : "No se encontró ninguna categoría de nómina deducible"
-
-
-      edit_category:
-        edit_category : "Editar categoría"
 
       manage_payroll:
         manage_payroll : "Gestionar nómina"
@@ -985,66 +1057,94 @@ es: # locale
       edit_payroll_details:
         edit_payroll : 'Editar nómina'
         payroll_details : 'Datos de nómina'
-        index : 'Index'
-
-
+        
 
 #employee_attendance translation
     employee_attendance:
+      new_application_from_employees : "Nuevas solicitudes de empleados"
+      view_all_leave_application : "Ver todas las solicitudes de licencia de los empleados"
+      new_applications_from_employee : "Nuevas solicitudes de empleados"
+      approval_remark : "Observaciones de aprobación"
+      deny_remark : "Denegar comentarios"
+      leave_types: 'Tipos de licencia'
+      available_leave : 'dejar disponible'
+      leave_taken     : 'baja laboral'
+      last_reset_date : 'Fecha última puesta a cero'
+      no_remarks : 'no hay Comentarios'
+      no_leave_application : "No hay solicitudes de licencias"
+      employee_leave_types_records: 'No se encontró registros de tipos de licencias'
+      active_leave: 'Tipos de licencia activos'
+      inactive_leave: 'Tipos de licencia inactivos'
+      employee_attendance: 'Asistencia de los empleados'
+      leave_history : 'dejar un'
+      no_leaves_taken : "No se han tomado licencias"
+      no_leave_type_registered : ' Lo siento! Ningún tipo de licencia registrada para el empleado'
+      employee_attendance_report : 'Informe de Asistencia de Empleados'
+      no_dates : 'no hay fechas'
+      net_total_leaves : "Licencias totales netas"
+      reset_employee_leaves : 'Restablecer hojas empleado.'
+      enable_carry_forward  : 'Habilitar Arrastre'
+      reset_employee_leaves_for : 'Perdí mi licencia del empleado para'
+      reset_leave : 'Perdí mi licencia'
+      full_leave_reset : 'Perdí mi licencia completa'
+      reset_leave_count_for_all : 'Restablecer Deja Conde para todos los empleados'
+      reset_count_msg  : 'Esto restablecerá contar con licencia para todos los empleados'
+      dept_leave_reset : 'Departamento Deja Restablecer'
+      reset_employee_leave_dept_wise : 'Restablecer los empleados Deja Departamento Sabio'
+      reset_employee_leave_for_each_emp : 'Perdí mi licencia del empleado para cada empleado'
+      add_and_edit_employee_leave_types : 'Agregar y editar tipos de empleados dejan'
+      add_type: 'Añadir tipos de licencia'
+      register_attendance: 'Lista de asistencia.'
+      attendance_reports : 'los informes de asistencia.'
+      leave_application : "Solicitud de licencias"
+      approve_deny : "Aprobar / Denegar"
+      manager_name : "Nombre del Jefe"
+      leave_start_date : "Fecha inicial de licencia"
+      leave_end_date : "Fecha final de licencia"
+      leave_count : 'deja conde'
+      deny : "Denegar"
+      mini_report : 'Mini Informes'
+      add_leave_type: 'Añadir nuevos tipos de licencia'
+      enable_automatic_reset : 'Habilitar el restablecimiento automático'
+      leave_reset_period : 'Deja período de reposición (meses)'
+      rest_period        : 'Período de reposición (meses)'
+      count_begin_date : 'Conde Fecha de inicio'
+      apply_or_check_status : 'Aplicar o comprobar el estado de'
+      warn_notice : "Lo sentimos, no puedes solicitar una licencia sin un reporte del Jefe. Por favor, comuníquese con él."
+      manual_leave_reset : 'Manual Deja Restablecer'
+      reset_employee_leave_manually : 'Empleados restablecer Agregar manualmente'
+      leave_reset_settings : 'Deja Restablecer configuración'
+      configure_automatic_leave_reset : 'Configurar los ajustes automáticos dejar restablecer'
+      reset_all : 'restablecer todos'
+      department_reset : 'Departamento Restablecer'
+      reset_emp_leave_count_by_dept : 'Perdí mi número de empleados ausencias por departamentos'
+      individual_reset : 'Restablecer individuales'
+      reset_emp_leave_count_ind : 'Empleado restablecer dejar cuentan individualmente.'
+      info: 'info'
+      manager_remark : 'gerente de Observación'
+      cancel_leave : "Cancelar licencia"
+      attendance_date : "Fecha de Asistencia"
+      automatic_reset : 'restablecimiento automático'
+      configure_auto_leave_reset: 'Configurar restablecimiento automático Deja empleados'
+      manual_reset : 'reset manual'
+
+
       add_leave_types:
-        leave_types: 'Tipos de licencia'
-        add_leave_type: 'Añadir nuevos tipos de licencia'
         leave_name: 'Nombre de la licencia'
         leave_code: 'Código de la licencia'
         max_leave: 'Cantidad máxima de licencias'
-        flash1: 'No se encontró registros de tipos de licencias'
-        active_leave: 'Tipos de licencia activos'
-        inactive_leave: 'Tipos de licencia inactivos'
-        employee_attendance: 'Asistencia de los empleados'
-        approval_remark : "Observaciones de aprobación"
-        ok : "OK"
-        deny_remark : "Denegar comentarios"
-        no_leave_application : "No hay solicitudes de licencias"
         edit_leave_types : "Editar tipos de licencia"
-        no_leaves_taken : "No se han tomado licencias"
-        half_day : "Medio día"
-        net_total_leaves : "Licencias totales netas"
-        leave_application : "Solicitud de licencias"
-        pending_approval : "Aprobación pendiente"
-        reset_leave : 'Perdí mi licencia'
-        reset_employee_leaves : 'Restablecer hojas empleado.'
-        reser  : 'reajustar'
-        last_reset_date : 'Fecha última puesta a cero'
-
+        
+        
       leave_app:
-        manager_name : "Nombre del Jefe"
-        leave_start_date : "Fecha inicial de licencia"
-        leave_end_date : "Fecha final de licencia"
         send_message : "Enviar mensajes al Jefe de este empleado"
-
-      all_employee_new_leave_applications:
-        new_application_from_employees : "Nuevas solicitudes de empleados"
-
-      all_leave_applications:
-        view_all_leave_application : "Ver todas las solicitudes de licencia de los empleados"
-
-      new_leave_applications:
-        new_applications_from_employee : "Nuevas solicitudes de empleados"
-
+        pending_approval : "Aprobación pendiente"
 
       index:
         add_edit_leave_type : "Agregar y editar tipos de licencia."
-        approve_deny : "Aprobar / Denegar"
-        deny : "Denegar"
-        apply_or_status : "Solicitar o chequear el estado"
         new_leaves : "Nuevas licencias"
-        warn_notice : "Lo sentimos, no puedes solicitar una licencia sin un reporte del Jefe. Por favor, comuníquese con él."
-        cancel_leave : "Cancelar licencia"
-        attendance_date : "Fecha de Asistencia"
-        available_leave : 'dejar disponible'
-        leave_taken     : 'baja laboral'
-
-
+        
+        
 #Sms Setting Controller
     sms_settings:
       index:
@@ -1119,32 +1219,50 @@ es: # locale
 
 #user controller translation
     user:
+      details_about_user : 'Información de usuario'
+      edit_user : "Editar usuario"
+      update_user_information : "Actualizar la información del usuario"
+      old_password : "Contraseña antigua"
+      new_password : "Nueva Contraseña"
+      confirm_password : "Confirmar contraseña"
+      make_new_admin_user : 'Hacer que el usuario admin nueva'
+      only_admin_user_can_created : 'Sólo usuario administrador puede crear'
+      change_password : 'Cambiar contraseña'
+      role : 'Rol'
+      help: "Ayuda!"
+      powered_by: 'Desarrollado por'
+      manage_users : 'Gestionar Usuarios'
+      detailed_about_user : 'Detalles acerca de los usuarios'
+      password: "Contraseña"
+      edit_privilege : "Editar privilegios"
+      faq : "Preguntas Frecuentes"
+      support : "Soporte"
+
+      
       # the action name
       index:
        manage_user : 'Gestionar Usuario'
-       details_about_user : 'Información de usuario'
        search_user : 'Buscar usuario'
        add_new : 'Agregar nuevo'
-       role : 'Rol'
+      
 
       all:
         select_a_role : 'seleccionar un rol'
-        all_user : "Todos los usuarios"
+        all_users : "todos los usuarios"
 
       create:
         create_user : "Crear usuario"
         add_new_user : "Añadir Nuevo usuario"
+        
 
       profile:
         user_profile : 'Perfil de Usuario'
         user_information : 'Información de usuario'
-        change_password : 'Cambiar contraseña'
         privilege : 'privilegio'
 
 
       edit_privilege:
         set_privilege: 'Configurar privilegios para'
-        edit_privilege : "Editar privilegios"
         ExaminationControl : "Control de Exámenes"
         EnterResults : "Ingresar exámenes"
         ViewResults : "Ver resultado"
@@ -1167,32 +1285,13 @@ es: # locale
         SMSManagement : "Gestión SMS"
         Librarian : "Bibliotecario"
 
-      edit:
-
-
-      user_change_password:
-        old_password : "Contraseña antigua"
-        new_password : "Nueva Contraseña"
-        confirm_password : "Confirmar contraseña"
-
-
+     
       login: #action
-        password: "Contraseña"
         remember_me: "Recuérdeme"
         forgot_password: "Ayuda! He olvidado mi contraseña?"
         login: "Iniciar sesión"
-        help: "Ayuda"
         fedena_logo: "/images/application/app_fedena_logo.jpg"
         login_error_message: "Nombre de usuario o contraseña invalida"
-
-      delete:
-
-
-      forgot_password:
-
-
-      change_password:
-
 
       dashboard:
         welcome: "Bienvenido"
@@ -1213,26 +1312,22 @@ es: # locale
         messages: "Mensajes"
         log_out: "Cerrar sesión"
         student_messages : "Mensajes de estudiantes"
-        dash_admission: "Admisión"
-        dash_student: "Información del estudiante"
-        dash_users: "Gestionar usuario"
-        dash_news: "Gestionar noticias"
-        dash_exam: "Exámenes"
-        dash_timetable: "Horarios"
-        dash_attendance: "Asistencia"
-        dash_settings: "Configuración"
-        dash_hr: "Gestión Humana"
-        dash_finance: "Finanzas"
-        dash_library: ""
+        student: "Información del estudiante"
+        users: "Gestionar usuario"
+        news: "Gestionar noticias"
+        exam: "Exámenes"
+        timetable: "Horarios"
+        attendance: "Asistencia"
+        settings: "Configuración"
+        hr: "Gestión Humana"
+        finance: "Finanzas"
+        library: ""
         academic_report : "Reportes Academicos"
         profile_detail : "Perfil del empleado"
         view_your_profile : "Ver su perfil"
         leave_management : "Gestión de Licencias"
         leave_details : "Información de Licencias de empleados"
         employee_messages : "Mensajes de Empleados"
-        edit_user : "Editar usuario"
-        update_user_information : "Actualizar la información del usuario"
-        manage_users : 'Gestionar Usuarios'
         human_resources : 'Gestión Humana'
         my_profile : 'Mi Perfil'
         campus_news : 'Noticias Institucionales'
@@ -1242,9 +1337,7 @@ es: # locale
       forgot_password:
         enter_email : "Ingrese su dirección de correo electrónico"
         contact_admin : "Póngase en contacto con el administrador de Fedena para recuperar su contraseña"
-        faq : "Preguntas Frecuentes"
-        support : "Soporte"
-
+        
       header_link:
         logged_as: "Conectado como:"
         messages: "Mensajes"
@@ -1260,133 +1353,93 @@ es: # locale
 #student_attendance controller translation
     student_attendance:
       index:
-        register: 'Registrarse'
-        report: 'Reporte'
-        link_desc1: 'Lista de asistencia de estudiantes'
-        link_desc2: 'Reporte de asistencia de estudiantes'
-      student:
+        attendance_registered_for_students: 'Lista de asistencia de estudiantes'
+        attendance_report_for_students: 'Reporte de asistencia de estudiantes'
         student_name: 'Nombre del estudiante'
-        admission_no: 'Admisión No.'
+      student:
         mode: 'Modo'
-        select_mode: 'Seleccione un modo'
-        all_subjects: 'Todas las Asignaturas'
-        select_month_and_year: 'Seleccione mes y año'
-        monthly: 'Mensualmente'
-        overall: 'En general'
-        month: 'Mes'
-      student_report:
-        full_day: 'Todo el día'
-        afternoon: 'por la tarde'
-        forenoon: 'por la mañana'
-        absent: 'Ausente'
-
+        
 #attendance_reports controller
     attendance_reports:
+      select_a_month: 'Seleccionar un mes'
+      total_no_of_wrkng_days: 'Total días de trabajo'
+      total_no_of_wrkng_hours: 'Total horas de trabajo'
+      filter: 'Filtrar'
+      below: 'Abajo'
+      above: 'Arriba'
+      equals: 'es igual a'
+      no_reports_for_selectd_mnth: 'No hay Reportes para el mes seleccionado.'
+      no_report_for_given_period : "No hay Reportes para el periodo indicado"
+      filtered: 'Filtrado'
+
       index:
-        attendance_report: 'Reporte de Asistencia'
         report: 'Reporte'
-        select_a_month: 'Seleccionar un mes'
-        no_reports: 'No hay Reportes para el mes seleccionado.'
-        filter: 'Filtrar'
-        below: 'Abajo'
-        above: 'Arriba'
-        equals: 'es igual a'
-        name: 'Nombre'
-        total: 'Total'
-        percentage: 'Porcentaje'
-        report: 'Reporte'
-        total_days: 'Total días de trabajo'
-        total_hours: 'Total horas de trabajo'
       filter:
         filtered_report: 'Reporte filtrado'
-        filtered: 'Filtrado'
-        no_report : "No hay Reportes para el periodo indicado"
-
       student_details:
-        student_report: 'Reporte de estudiante'
-        student_details: 'Reporte detallado para'
-        full_day: 'Todo el día'
-        afternoon: 'por la tarde'
-        forenoon: 'por la mañana'
-        absent: 'Ausente'
-        total_working_days : "Total días de trabajo"
-        total_working_hours : "Total horas de trabajo"
-        total_present : "Total"
-
-#attendances_controller translation
-
-    attendances:
-      index:
-        attendance_register: 'Lista de asistencia'
-        reason: 'Causa de la ausencia'
-        edit_attendance: 'Editar asistencia de'
-        attendance: 'Asistencia de'
-        add: 'Agregar'
-
-#employee_attendances translation
-    employee_attendances:
-      index:
-        select_the_department: 'Seleccionar departamento'
-        leave_type: 'Tipo de licencia'
-        half_day: 'es medio dia?'
-
+        detailed_report_for: 'Reporte detallado para'
+    
 #student controller translation
     student:
-      index:
-        search: 'Buscar'
-        present_student: 'Estudiantes presentes'
-        former_student: 'Ex estudiantes'
-        student_details: 'Información  de estudiantes'
-        view_details: 'Ver información'
-        view_all : 'Ver todos'
-        advanced : 'Avanzada'
-        no_results_found: 'No se encontró resultados'
-        generate_tc: 'Generar Certificado de Estudios'
-        student_deleted_successfully: 'Estudiante eliminado exitosamente'
-        Overall : 'En general'
-        view_pdf : 'Ver PDF'
-        remove : 'Eliminar'
+      field_name : 'Nombre del campo'
+      subject_details : 'Información de la asignatura'
+      mark : 'Nota'
+      enter_new_category : 'Introduzca nueva categoría'
+      edit_category : 'Editar categoría'
+      in: 'EN'
+      no_results_found: 'No se encontró resultados.'
+      student_deleted_successfully: 'Estudiante eliminado exitosamente!'
+      generate_tc: 'Generar Certificado de Estudios'
+      view_pdf : 'Ver PDF'
+      academic_reports: 'Reportes Académicos'
+      student_settings : 'Configuración de los estudiantes'
+      student_admission_no : 'De admisión de alumnos no.'
+      parent : 'Padre'
+      parent_personal_details : 'Datos Personales de los Padres'
+      relation : 'Relación'
+      education : 'Educación'
+      occupation : 'Ocupación'
+      parent_contact_details : 'Padres - Detalles de Contacto'
+      office_address_line1 : 'Oficina de Dirección Línea 1'
+      office_address_line2 : 'Oficina de Dirección Línea 2'
+      mobile_phone_no : 'Sin teléfono móvil.'
+      admission_no_of_last_stud : 'La admisión no. estudiante de último'
+      birth_place : 'L. Nacimiento'
+      mother_tongue : 'idioma materno'
+      religion : 'Religión'
+      address_line : 'Dirección'
+      phone : 'Teléfono'
+      parent_guardian_details_step2 : 'Paso 2 – Información de los Padres/Guardian'
+      emergency_contact_step3 : 'Paso 3 - Contacto de Emergencia'
+      birth_date : 'Fecha de Nacimiento'
+      year_of_admission : 'Año de ingreso'
+      present_student: 'Estudiantes presentes'
+      former_student: 'Ex estudiantes'
+      all_students : 'todos los estudiantes'
+      remove_student : 'Eliminar estudiante'
+      select_blood_group : 'Seleccione Grupo de Sangre'
+      address_line1 : 'Dirección Línea 1'
+      address_line2 : 'Dirección Línea 2'
+      enable_sms_feature : 'Habilitar las funciones de SMS'
+      parent_information: 'Información de los Padres'
+      edit_Parent_guardian_details: 'Editar información de los Padres/Guardián'
+      send_email : 'Enviar correo electrónico'
 
+      
+      index:
+        view_details: 'Ver información'
+        
+        
       search_ajax:
-        no_users : 'No se encontraron usuarios'
-        course_and_batch : 'Curso y Grupo:'
+       
         
 
       admission1:
         student_detail_step1 : 'Paso 1 – Información  del estudiante'
-        legend1 : 'Campos marcados con'
-        legend2 : 'debe ser llenado.'
-        personal_details : 'Información  personal'
-        admission_number : 'Admisión No.'
-        admission_date : 'Fecha de admisión'
-        first_name : 'Primer nombre'
-        middle_name : 'Segundo nombre'
-        last_name : 'Apellidos'
-        course_and_batch : 'Curso y grupo'
-        date_of_birth : 'F. Nacimiento'
-        gender : 'Sexo'
-        male : 'Masculino'
-        female : 'Femenino'
-        blood_group: 'Tipo de sangre'
-        birth_place : 'L. Nacimiento'
-        nationality : 'Nacionalidad'
         language : 'Idioma'
-        religion : 'Religión'
-        contact_details : 'Información de contacto'
-        address_line : 'Dirección'
-        city : 'Ciudad'
-        state : 'Dpto/Est/Prov'
-        zip : 'Codigo PIN'
-        country : 'País'
-        phone1 : 'Teléfono'
-        phone2 : 'Teléfono'
-        mobile : 'Celular'
-        mobile_phone : 'Teléfono móvil'
-        email : 'Correo electrónico'
         enable_sms_feature : 'Activar función SMS'
         upload_user_photo : 'Cargar foto de usuario'
-        upload_photo : 'Cargar foto'
-        max : 'Máximo 50 KB'
+        max_size : 'Máximo 50 KB'
         student_admission_done : 'La admisión del estudiante ha sido completada. El nombre de usuario es'
         password_is : 'y la contraseña es'
         last_course: 'Último grado cursado'
@@ -1394,35 +1447,14 @@ es: # locale
         unknown : "Desconocido"
 
       admission2:
-        student: 'Estudiante'
-        parent : 'Padre'
-        admission_number : 'Admisión No.'
-        parent_guardian_details : 'Paso 2 – Información de los Padres/Guardian'
-        personal_details : 'Información personal'
-        first_name : 'Primer nombre'
-        last_name : 'Apellidos'
-        relation : 'Relación'
-        date_of_birth : 'F. Nacimiento'
-        education : 'Educación'
-        occupation : 'Ocupación'
-        income : 'Ingresos'
-        contact_details : 'Información de contacto'
-        email : 'Correo electrónico'
-        address_line : 'Dirección'
-        city : 'Ciudad'
-        state : 'Estado/Dpto/prov'
-        zip : 'Codigo PIN'
-        country : 'País'
-        phone : 'Teléfono'
-        mobile : 'Celular'
+        
         click_here_to_skip: 'Hacer clic aquí para omitir'
         add_another_guardian : 'Agregar otro guardian'
         saved_message : 'Los siguientes guardianes se han guardado para'
 
 
       admission3:
-        parent_guardian_details : 'Paso 3 – Información de los Padres/Gurdian'
-        message : 'Seleccionar uno de los guardianes como contacto de emergencia.'
+        select_one_of_the_guardians : 'Seleccionar uno de los guardianes como contacto de emergencia.'
         sms_part1 : 'La admisión del estudiante ha sido completada. El nombre de usuario es'
         sms_part2 : 'y la contraseña es'
 
@@ -1437,12 +1469,11 @@ es: # locale
         edit_previous_details : 'Editar detalles Anterior'
 
       previous_subject:
-        subject_details : 'Información de la asignatura'
-        mark : 'Nota'
+       
 
       admission4:
         step4 : 'Paso 4'
-        additional_detail : 'Información adicional'
+        
 
 
       profile:
@@ -1451,25 +1482,13 @@ es: # locale
         reports : 'Reportes'
         fees : 'Tarifas'
         guardians: 'Guardianes'
-        send_email : 'Enviar correo electrónico'
-        admission_number : 'No. de admisión'
-        admission_date : ' Fecha de admisión'
-        date_of_birth : 'F. Nacimiento'
-        gender : 'Sexo'
-        male : 'Masculino'
-        female : 'Femenino'
-        blood_group: 'Tipo de sangre'
-        birth_place : 'L. Nacimiento'
-        nationality : 'Nacionalidad'
         language : 'Idioma'
-        religion : 'Religión'
         address : 'Dirección'
         sms_alerts : 'Alertas SMS'
         group_tutor : 'Tutor de grupo'
         contact_message : 'En caso de emergencias, comuníquese con:'
         change_contact : 'Cambiar Contacto Inmediato'
         immediate_contact : 'Contacto inmediato'
-        edit_additional_details : 'Editar información adicional'
         previous_details : 'Información previa'
         previous_institution : 'Institución previa'
         add_guardian : 'Agregar Guardián'
@@ -1480,12 +1499,9 @@ es: # locale
         report_center : "Centro de Reportes"
 
       reports:
-        students : 'Estudiantes'
         reports : 'Reportes'
         sub_title1 : 'Académicos'
-        sub_title2 : 'Asistencia'
         recent_exams : 'Exámenes recientes'
-        detailed_report : 'Reporte detallado'
         subject_wise_result : 'Reporte por Asignaturas'
         final_report : 'Reporte final'
         compare_past : 'Comparar con años anteriores'
@@ -1518,10 +1534,9 @@ es: # locale
         view_details : 'Ver Información'
 
       email:
-        send_email : 'Enviar correo electrónico'
+        
 
       remove:
-        remove_student : 'Eliminar estudiante'
         leaving_institution : 'Estudiante en proceso de retiro de la institución'
         leaving_institution_message : 'Para los estudiantes que se retiran de la institución, utilice esta opción para eliminarlos de la lista de estudiantes activos y colocarlos en la lista de ex estudiantes.'
         remove_student_records : 'Eliminar registros del estudiante'
@@ -1530,8 +1545,6 @@ es: # locale
         student_left_message : 'El estudiante se ha retirado de la institución'
 
       change_to_former:
-        leaving_school : 'Proceso de retiro de la Institución'
-        reason_for_leaving : 'Causa del retiro'
         description : 'Para los estudiantes que se retiran de la institución, utilice esta opción para eliminarlos de la lista de estudiantes activos y colocarlos en la lista de ex estudiantes.'
 
       delete:
@@ -1541,45 +1554,31 @@ es: # locale
 
 
       advanced_search:
-        advanced_search : 'Búsqueda avanzada'
-        searched_for : 'Usted ha buscado'
+        
+        searched_for : 'Usted ha buscado:'
         listed_by : 'Listado por'
         search_again : 'Búscar de nuevo'
-        greater_than : 'mayor que'
-        less_than : 'menor que'
-        equal_to : 'igual a'
-
+        
       categories:
-        enter_category : 'Introducir una nueva categoría'
-        edit_category : 'Editar categoría'
+        
 
       edit_admission4:
         enter_admission_details : 'Editar información de admisión'
 
       add_additional_details:
-        field_name : 'Nombre del campo'
-        notice : 'Ninguna información adicional encontrada'
+        
       academic_report:
-        academic_reports: 'Reportes Académicos'
         weighted_scores: 'Puntajes ponderados'
         class_average: 'Promedio de la Clase'
         examination_wise_performance: 'Rendimiento según exámenes'
         cumulative_performance: 'Rendimiento Acumulado'
         examination_Name: 'Nombre del Examen'
         marks_obtained: 'Calificaciones obtenidas'
-        in: 'EN'
+        
         signature: 'Firma'
       edit:
         edit_details: 'Editar información'
-        student_details: 'Información de Estudiantes'
-        fields_marked_with: 'Campos marcados con'
-        must_be_filled: 'debe ser llenado'
-        personal_details: 'Datos personales'
         necessary_field: 'Campo necesario'
-        select_category: 'Seleccionar Categoría'
-        parent_information: 'Información de los Padres'
-        edit_Parent_guardian_details: 'Editar información de los Padres/Guardián'
-        parent_personal_details : 'Datos Personales de los Padres'
         examination_results : 'Resultado de exámenes'
         student_info: 'Información del Estudiante'
         previous_year_result: 'Revisión de resultados en años previos'
@@ -1707,7 +1706,7 @@ es: # locale
         collection : 'Fecha'
         creates_new_fee_collecting_dates : 'Crear nueva fecha de Pago'
         displays_collection_dates : 'Muestra fechas de Pago'
-        select_batch : 'Seleccionar grupo'
+        
       fee_collection_create:
         message_body_check_your: 'chequear sus'
         message_body_fee_structure: 'Información de Pagos'
@@ -1716,7 +1715,6 @@ es: # locale
         set_fee_collection_date : 'Configurar fechas de Pago'
         fee_category : 'Categoría Tarifas'
         fee_collection_name : 'Nombre de las fechas de Pago'
-        select_category : 'Seleccionar categoría'
         create_new_category : 'Crear nueva categoría'
         is_this_under_income : '¿Es esto un ingreso?'
         course_for_category : 'Destino de esta categoría'
@@ -1775,7 +1773,6 @@ es: # locale
         fees_transaction_report: 'REPORTE DE TRANSACCIÓN DE TARIFAS'
       categories :
         finance_management : 'Gestión Financiera'
-        categories : 'Categorías'
         create_finance_category : 'Crear Categoría Financiera'
         create_category : 'Crear categoría'
       transactions :
@@ -1793,7 +1790,7 @@ es: # locale
       income_create :
         create_income : 'Crear Ingreso'
         incomes : 'Ingresos'
-        Income : 'Ingreso'
+        
       monthly_report :
         monthly_transactions : 'Transacciones Mensuales'
         select_start_date : 'Seleccionar fecha de inicio'
@@ -1825,10 +1822,8 @@ es: # locale
         aprove_monthly_payslip : 'Aprobar comprobantes de pago mensuales'
         total_deductions : 'Total Deducciones'
         payslip_approved : 'Comprobante de pago aprobado!'
-      approve_monthly_payslip:
-        approve_payslip : 'Aprobar comprobante de pago'
-        salary_month : 'Mes del Salario'
-        already_approved : 'Ya está aprobado!'
+      
+        
       asset_liability :
         asset_liability_management : 'Gestión de Activos y Pasivos'
         asset : 'Activos'
@@ -1893,7 +1888,7 @@ es: # locale
       show:
         result_entry : 'Entrar resultados'
         absent_disqualified_etc : 'Ausente/Descalificado etc'
-        remarks : 'Observaciones'
+        
 
     grading_levels:
       index:
@@ -1907,9 +1902,8 @@ es: # locale
 
     exam:
       index:
-        examinations : "Exámenes"
         set_grading_levels: 'Configurar desempeños'
-        exam : 'Examen'
+      
         results : 'Resultados'
         exam_wise_report : 'Reportes Según Exámenes'
         generates : 'Generar'
@@ -1918,13 +1912,10 @@ es: # locale
         group_up_exams_for_specific_reports : 'Agrupar exámenes para Reportes específicos'
         exam_related_details : 'Introducir la información del examen aquí'
         do_not : 'No'
-        max : 'Max nota'
-        min : 'Min nota'
         academic : 'Académico'
         consolidated : 'Consolidado'
         generated_report : 'Reporte Generado'
         report : 'Reporte'
-        class : 'Clase'
         average : 'Promedio'
         aggregate : 'Rendimiento'
         grouping : 'Agrupación'
@@ -1994,14 +1985,12 @@ es: # locale
         view_exam_groups : "Ver grupos de exámenes"
 
       show:
-        max_mark : 'Nota Máxima'
-        min_mark : 'Nota Mínima'
+        
       new:
         type : 'Tipo'
-        marks : 'Notas'
         grades : 'Desempeños'
         marks_and_grades : 'Notas y Desempeños'
-        grade : 'Desempeño'
+        
 
 
 
@@ -2049,11 +2038,10 @@ es: # locale
     ## translation for timetable controller
     timetable:
       index:
-        timetable : 'Horario'
         select_a_class_and_edit_the_timetable : 'Seleccionar una clase y editar el horario de esa clase'
         set_class_timings : 'Configurar los intervalos de las clases'
         select_a_class_timings_for_each_class : 'Seleccionar los intervalos de cada clase'
-        view : 'Ver'
+        
         view_the_timetable_for_a_class : 'Ver el Horario de una clase'
         swap_class : 'Intercambiar clase'
         generate_period_entry : 'Crear intervalo para un momento dado'
@@ -2070,12 +2058,11 @@ es: # locale
       edit2:
         publish : 'Publicar'
         time_table_is_being_generated : 'El Horario de clases está siendo generado. Por favor, permanecer en la  página'
-        elective : 'Electivo'
         warning : 'Advertencia'
         no_teacher_associated : 'Ningún profesor está asociado a esta asignatura'
       extra_class:
         select_a_class : 'Seleccionar una clase'
-        select_a_subject : 'Seleccionar una asignatura'
+       
       view:
         select_batch_to_view : 'Seleccionar el grupo para ver'
       timetable:
@@ -2120,8 +2107,7 @@ es: # locale
     layouts:
       # the layout name (template "main.erb")
       calendar: "Calendario"
-      dashboard: "Inicio"
-      students: "Estudiantes"
+      dashboard_text: "Inicio"
       settings: "Configuración"
       examination : 'Exámenes'
       event_creation : 'Eventos'
@@ -2138,6 +2124,8 @@ es: # locale
       log_out: "Cerrar sesión"
       ago: 'atras'
       powered_by: 'Desarrollado por'
+
+      
 
     #flash message translations
     flash_message:

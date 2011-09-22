@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= "#{t('hr.hr_management')}" %></h1>
+  <h1><%= "#{t('hr_management')}" %></h1>
   <h3><%= t('human_resource') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -41,34 +41,34 @@
 
     <% if permitted_to? :employee_management, :employee %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('employee_management.employee_management')}", :controller=>"employee", :action=>"employee_management"%></div>
-        <div class="link-descr"><%= "#{t('hr.manage_all_employee')}" %></div>
+        <div class="link-heading"><%= link_to "#{t('employee_management')}", :controller=>"employee", :action=>"employee_management"%></div>
+        <div class="link-descr"><%= "#{t('manage_all_employee')}" %></div>
       </div>
     <%end%>
 
     <% if permitted_to? :employee_attendance, :employee %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('hr.employee_leave_management')}", :controller=>"employee", :action=>"employee_attendance" %></div>
-        <div class="link-descr"><%= "#{t('hr.manage_all_employee_attendance_and_leave')}" %></div>
+        <div class="link-heading"><%= link_to "#{t('employee_leave_management')}", :controller=>"employee", :action=>"employee_attendance" %></div>
+        <div class="link-descr"><%= "#{t('manage_all_employee_attendance_and_leave')}" %></div>
       </div>
     <%end%>
 
     <% if permitted_to? :payslip, :employee %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to  "#{t('hr.create_payslip')}", :controller=>"employee", :action=>"payslip" %></div>
-        <div class="link-descr"><%= "#{t('hr.create_employee_monthly_payslip')}" %></div>
+        <div class="link-heading"><%= link_to  "#{t('create_payslip')}", :controller=>"employee", :action=>"payslip" %></div>
+        <div class="link-descr"><%= "#{t('create_employee_monthly_payslip')}" %></div>
       </div>
     <%end%>
 
     <% if permitted_to? :search, :employee %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('search.employee_search')}", :controller=>"employee", :action=>"search" %></div>
-        <div class="link-descr"><%= "#{t('hr.search_for_employees')}" %></div>
+        <div class="link-heading"><%= link_to "#{t('employee_search')}", :controller=>"employee", :action=>"search" %></div>
+        <div class="link-descr"><%= "#{t('search_for_employees')}" %></div>
       </div>
     <%end%>
     <% if permitted_to? :department_payslip, :employee %>
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('department_payslip.employee_payslip')}", :controller=>"employee", :action=>"department_payslip" %></div>
+      <div class="link-heading"><%= link_to "#{t('employee_payslip')}", :controller=>"employee", :action=>"department_payslip" %></div>
       <div class="link-descr"><%= "#{t('view_department_wise_payslip')}" %></div>
     </div>
     <% end %>

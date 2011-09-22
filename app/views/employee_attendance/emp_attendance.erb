@@ -19,15 +19,15 @@
 
 <div id="content-header">
   <img src="/images/attendence/attendence.png" alt="" />
-  <h1>Employee Attendance</h1>
-  <h3>Detailed Report</h3>
+  <h1><%= t('employee_attendance') %></h1>
+  <h3><%= t('detailed_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to 'Leave History', :action => 'leave_history', :id=>@employee.id %></li>
+    <li><%= link_to "#{t('leave_history')}", :action => 'leave_history', :id=>@employee.id %></li>
   </ul>
 </div>
 <div id="page-yield">
@@ -46,14 +46,14 @@
         <% end %>
         <% if @report == [] %>
           <div class="date-<%= cycle('odd', 'even') %>">
-            No leaves taken
+            <%= t('no_leaves_taken') %>
           </div>
         <% else %>
           <% @report.each do |r| %>
             <div class="date-<%= cycle('odd', 'even') %>">
               <%= r.attendance_date.strftime("%B %d, %Y") %>
               <% if r.is_half_day==true %>
-                (Half Day)
+                (<%= t('half_day') %>)
               <% end %>
             </div>
           <% end %>
@@ -71,15 +71,15 @@
       </div>
       <% total_leave+= e.leave_taken %>
     <%end%>
-    <div class="type_nameeven"><div class="total">Total leaves taken:</div><div class="count"><%= total_leave %></div></div>
+    <div class="type_nameeven"><div class="total"><%= t('total_leaves_taken') %>:</div><div class="count"><%= total_leave %></div></div>
         <% else %>
         <br/>
-        <p class="flash-msg"> Sorry! No Leave type registered for Employee </p>
+        <p class="flash-msg"><%= t('no_leave_type_registered ') %> </p>
         <% end %>
       </div>
     </div>
     <div class="user_button">
-      <%=  link_to "► PDF Report", {:controller=>"employee_attendance", :action=>"employee_attendance_pdf", :id=>@employee.id},  :format=>'pdf', :target => '_blank' %>
+      <%=  link_to "► #{t('pdf_report')}", {:controller=>"employee_attendance", :action=>"employee_attendance_pdf", :id=>@employee.id},  :format=>'pdf', :target => '_blank' %>
     </div>
   </div>
 </div>

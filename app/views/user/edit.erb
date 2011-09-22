@@ -19,15 +19,15 @@
 
 <div id="content-header">
   <img src="/images/edit_users/edit_users_logo.jpg" />
-  <h1>Edit User</h1>
-  <h3>Update user information</h3>
+  <h1><%= t('edit_user') %></h1>
+  <h3><%= t('update_user_information') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <% if @current_user.admin? and @current_user.id != @user.id %>
   <div id="inner-tab-menu">
-    <ul><li><%= link_to "Change Password", :controller => "user", :action => "user_change_password", :id =>@user.username %></li></ul>
+    <ul><li><%= link_to "#{t('change_password')}", :controller => "user", :action => "user_change_password", :id =>@user.username %></li></ul>
   </div>
 <% end %>
 
@@ -41,31 +41,31 @@
 
     <div id="edit_user_form">
 
-      <div id="necessary-field-notification"> Fields marked with <span class="necessary-field">*</span> must be filled.</div>
+      <div id="necessary-field-notification"><%= t('legend1') %><span class="necessary-field">*</span> <%= t('legend2') %></div>
 
 
 
       <div class="label-field-pair">
-        <label for="user_username">Username <span class="necessary-field">*</span></label>
+        <label for="user_username"><%= t('username') %><span class="necessary-field">*</span></label>
         <div class="text-input-bg"><%= u.text_field :username, :value => @user.username, :disabled => true %></div>
       </div>
 
       <div class="label-field-pair">
-        <label for="user_first_name">First Name</label>
+        <label for="user_first_name"><%= t('first_name') %></label>
         <div class="text-input-bg"><%= u.text_field :first_name, :value => @user.first_name, :disabled => true %></div>
       </div>
 
       <div class="label-field-pair">
-        <label for="user_last_name">Last Name</label>
+        <label for="user_last_name"><%= t('last_name') %></label>
         <div class="text-input-bg"><%= u.text_field :last_name, :value => @user.last_name, :disabled => true %><br/></div>
       </div>
       <div class="label-field-pair">
-        <label for="user_email">Email <span class="necessary-field">*</span></label>
+        <label for="user_email"><%= t('email') %><span class="necessary-field">*</span></label>
         <div class="text-input-bg"><%= u.text_field :email, :value => @user.email, :disabled => true %></div>
       </div>
       <% unless @user.role_name == "Student"  %>
         <div class="label-field-pair">
-          <label for="user_role">Role</label>
+          <label for="user_role"><%= t('role') %></label>
           <div class="text-input-bg">
 
             <% if @current_user.role_name == "Admin"  and @current_user.username == @user.username  %>
@@ -81,7 +81,7 @@
 
           </div>
         </div>
-        <%= submit_tag "", :value => "► Update", :class => "user_submit_button" %>
+        <%= submit_tag "", :value => "► #{t('update')}", :class => "user_submit_button" %>
       <% end  %>
 
     </div>

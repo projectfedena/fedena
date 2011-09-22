@@ -20,7 +20,7 @@
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
   <h1><%= t('setting') %></h1>
-  <h3><%= "#{t('employee.hr.hr_setting')}" %></h3>
+  <h3><%= "#{t('hr_setting')}" %></h3>
   <div id="app-back-button">
      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -29,42 +29,42 @@
 <div id="page-yield">
   <div id="box">
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('hr.add_employee_category')}", :controller=>"employee", :action=>"add_category" %></div>
-      <div class="link-descr"><%= "#{t('hr.add_edit_employee_category')}" %></div>
+      <div class="link-heading"><%= link_to "#{t('add_employee_category')}", :controller=>"employee", :action=>"add_category" %></div>
+      <div class="link-descr"><%= "#{t('add_edit_employee_category')}" %></div>
     </div>
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('hr.add_employee_position')}", :controller=>"employee", :action=>"add_position"%></div>
-      <div class="link-descr"><%= "#{t('hr.add_edit_employee_position')}" %></div>
+      <div class="link-heading"><%= link_to "#{t('add_employee_position')}", :controller=>"employee", :action=>"add_position"%></div>
+      <div class="link-descr"><%= "#{t('add_edit_employee_position')}" %></div>
     </div>
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('hr.add_employee_department')}", :controller=>"employee", :action=>"add_department"%></div>
-      <div class="link-descr"><%= "#{t('hr.add_edit_employee_department')}" %></div>
+      <div class="link-heading"><%= link_to "#{t('add_employee_department')}", :controller=>"employee", :action=>"add_department"%></div>
+      <div class="link-descr"><%= "#{t('add_edit_employee_department')}" %></div>
     </div>
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('hr.add_employee_grade')}", :controller=>"employee", :action=>"add_grade"%></div>
-      <div class="link-descr"><%= "#{t('hr.add_edit_employee_grade')}" %></div>
+      <div class="link-heading"><%= link_to "#{t('add_employee_grade')}", :controller=>"employee", :action=>"add_grade"%></div>
+      <div class="link-descr"><%= "#{t('add_edit_employee_grade')}" %></div>
     </div>
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('hr.add_payroll_category')}", :controller=>"payroll", :action=>"add_category"%></div>
-      <div class="link-descr"><%= "#{t('hr.add_edit_employee_payroll_category')}" %></div>
+      <div class="link-heading"><%= link_to "#{t('add_payroll_category')}", :controller=>"payroll", :action=>"add_category"%></div>
+      <div class="link-descr"><%= "#{t('add_edit_employee_payroll_category')}" %></div>
     </div>
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('hr.add_bank_detail')}", :controller=>"employee", :action=>"add_bank_details"%></div>
-      <div class="link-descr"><%= "#{t('hr.add_edit_bank_detail')} " %></div>
+      <div class="link-heading"><%= link_to "#{t('add_bank_detail')}", :controller=>"employee", :action=>"add_bank_details"%></div>
+      <div class="link-descr"><%= "#{t('add_edit_bank_detail')} " %></div>
     </div>
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('hr.add_additional_detail')}", :controller=>"employee", :action=>"add_additional_details"%></div>
-      <div class="link-descr"><%= "#{t('hr.add_edit_additional_detail')}" %></div>
+      <div class="link-heading"><%= link_to "#{t('add_additional_detail')}", :controller=>"employee", :action=>"add_additional_details"%></div>
+      <div class="link-descr"><%= "#{t('add_edit_additional_detail')}" %></div>
     </div>
 
    <!-- <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('employee.hr.payslip_settings')}", :controller=>"employee", :action=>""%></div>
+      <div class="link-heading"><%= link_to "#{t('payslip_settings')}", :controller=>"employee", :action=>""%></div>
       <div class="link-descr">Creates payslip approve power for finance manager.</div>
     </div>
   </div> -->

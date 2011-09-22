@@ -18,14 +18,14 @@
 #under the License. -%>
 
 <table width="700">
-  <tr class="odd left"><td><%= t('student.admission1.date_of_birth') %></td><td class="right"><%= I18n.localize(@employee.date_of_birth)%></td></tr>
-  <tr class="even left"><td><%= t('admission1.marital_status') %></td><td class="right"><%= @employee.marital_status %></td></tr>
-  <tr class="odd left"><td><%= t('admission1.no_of_children') %></td><td class="right"><%= @employee.children_count %></td></tr>
-  <tr class="even left"><td><%= t('admission1.father_name') %></td><td class="right"><%= @employee.father_name %></td></tr>
-  <tr class="odd left"><td><%= t('admission1.mother_name') %></td><td class="right"><%= @employee.mother_name %></td></tr>
-  <tr class="even left"><td><%= t('admission1.spouse_name') %></td><td class="right"><%=  @employee.husband_name %></td></tr>
-  <tr class="odd left"><td><%= t('student.admission1.blood_group') %></td><td class="right"><%= @employee.blood_group %></td></tr>
-  <tr class="even left"><td><%= t('student.admission1.nationality') %></td><td class="right"><%= @employee.nationality.name unless @employee.nationality.nil? %></td></tr>
+  <tr class="odd left"><td><%= t('date_of_birth') %></td><td class="right"><%= I18n.localize(@employee.date_of_birth)%></td></tr>
+  <tr class="even left"><td><%= t('marital_status') %></td><td class="right"><%= @employee.marital_status %></td></tr>
+  <tr class="odd left"><td><%= t('no_of_children') %></td><td class="right"><%= @employee.children_count %></td></tr>
+  <tr class="even left"><td><%= t('father_name') %></td><td class="right"><%= @employee.father_name %></td></tr>
+  <tr class="odd left"><td><%= t('mother_name') %></td><td class="right"><%= @employee.mother_name %></td></tr>
+  <tr class="even left"><td><%= t('spouse_name') %></td><td class="right"><%=  @employee.husband_name %></td></tr>
+  <tr class="odd left"><td><%= t('blood_group') %></td><td class="right"><%= @employee.blood_group %></td></tr>
+  <tr class="even left"><td><%= t('nationality') %></td><td class="right"><%= @employee.nationality.name unless @employee.nationality.nil? %></td></tr>
 </table>
 
 <div class="edit-pdf-group">
@@ -36,7 +36,7 @@
   <%end%>
   <% if permitted_to?  :profile_pdf , :employee %>
   <div class="pdf">
-    <%= link_to " ► #{t('student.profile.pdf_report')}",
+    <%= link_to " ► #{t('pdf_report')}",
       {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
   </div>
   <% end %>

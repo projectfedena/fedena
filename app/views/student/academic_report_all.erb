@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/admission/admission_page_logo.jpg" />
-  <h1>Academic reports</h1>
+  <h1><%= t('academic_reports') %></h1>
   <h3> <%= @student.full_name %> </h3>
   <div id="app-back-button">
     <%= link_to image_tag("/images/buttons/back.png", :border => 0), :back %>
@@ -46,9 +46,9 @@
             <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
             <td width="200" class="td-subj"><b><%= examres.examination.subject.code %></b></td>
           <% end %>
-          <td width="200" class="td-subj"><b>Total</b></td>
+          <td width="200" class="td-subj"><b><%= t('total') %></b></td>
         </tr>
-        <tr class="tr-even"><td class="td-name"><div><b>Maximum mark</b></div></td>
+        <tr class="tr-even"><td class="td-name"><div><b><%= t('max_mark') %></b></div></td>
           <% max_total = 0 %>
           <% exam.each do |t| %>
             <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
@@ -57,7 +57,7 @@
           <% end %>
             <td><div><%= max_total.to_i %></div></td>
         </tr>
-        <tr class="tr-odd"><td class="td-name"><div><b>Marks</b></div></td>
+        <tr class="tr-odd"><td class="td-name"><div><b><%= t('marks') %></b></div></td>
           <% total = 0 %>
           <% exam.each do |t| %>
             <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
@@ -66,7 +66,7 @@
           <% end %>
           <td><div><%= total %></div></td>
         </tr>
-        <tr class="tr-even"><td class="td-name"><div style="width:150px;"><b>Percentage/grade</b></div></td>
+        <tr class="tr-even"><td class="td-name"><div style="width:150px;"><b><%= t('percentage') %>/<%= t('grade') %></b></div></td>
           
           <% exam.each do |t| %>
             <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
@@ -75,7 +75,7 @@
           <% end %>
           <td><%=  percentage = ((total*100)/max_total).to_f %><small>(<%= Grading.find_from_percentage(percentage).name %>)</small></td>
         </tr>
-        <tr class="tr-odd"><td class="td-name"><div><b>Class average</b></div></td>
+        <tr class="tr-odd"><td class="td-name"><div><b><%= t('class_average') %></b></div></td>
           <% class_avg = 0 %>
           <% exam.each do |t| %>
             <% examres = ExaminationResult.find_by_examination_id_and_student_id(t.id, @student.id) %>
@@ -89,11 +89,11 @@
   <% end %>
   <script type="text/javascript" src="/javascripts/swfobject.js"></script>
   <div class="graph-1">
-    <span class="sub-heading">Examination - wise performance</span>
+    <span class="sub-heading"><%= t('examination_wise_performance') %></span>
     <%= @graph %>
   </div>
   <div class="graph-2">
-    <span class="sub-heading">Cumulative performance</span>
+    <span class="sub-heading"><%= t('cumulative_performance') %></span>
     <%= @graph2 %>
   </div>
 </div>

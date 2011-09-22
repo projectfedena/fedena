@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/HR/leave-new.png" alt="" />
-  <h1>Full Leave Reset</h1>
-  <h3>Reset Leave Count For All Employees</h3>
+  <h1><%= t('full_leave_reset') %></h1>
+  <h3><%= t('reset_leave_count_for_all') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -35,13 +35,13 @@
 
 
       <div id="reset-box">
-        <p> This will reset leave count for all employees </p>
+        <p> <%= t('reset_count_msg') %></p>
         <div id="skip">
-          <%= link_to_remote('► Reset',
+          <%= link_to_remote("► #{t('reset')}",
               :url => {:action =>'update_employee_leave_reset_all'} ) %>
         </div>
        <div id="skip1">
-          <%= link_to "► Cancel", { :action => "manual_reset",} %>
+          <%= link_to "► #{t('cancel')}l", { :action => "manual_reset",} %>
         </div>
       
 

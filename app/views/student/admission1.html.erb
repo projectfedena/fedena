@@ -20,8 +20,8 @@
 
 <div id="content-header">
   <img src="/images/admission/admission_page_logo.jpg" />
-  <h1><%= t('.admission') %></h1>
-  <h3><%=  t('h3') %></h3>
+  <h1><%= t('admission') %></h1>
+  <h3><%=  t('student_detail_step1') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -32,7 +32,7 @@
     <% if @last_admitted_student.nil? %>
       <p class="flash-msg"><%= t('no_admission_notice') %></p>
     <% else %>
-      <p class="flash-msg"><%= t('advanced_search.notice') %> <%= @last_admitted_student.admission_no %> </p>
+      <p class="flash-msg"><%= t('admission_no_of_last_stud') %> <%= @last_admitted_student.admission_no %> </p>
     <% end %>
   <% end %>
 
@@ -63,7 +63,7 @@
         <div class="student_admission_date">
           <label for="student_admission_date"><%= t('admission_date') %> <span class="necessary-field">*</span> </label>
           <div class="text-input-bg-admission">
-            <%= calendar_date_select_tag 'student[admission_date]', I18n.localize(Date.today, :format=>:default),
+            <%= calendar_date_select_tag 'student[admission_date]', Date.today,
               :year_range => 15.years.ago..5.years.from_now %>
           </div>
         </div>
@@ -97,7 +97,7 @@
       <div id="admission1_form_vertical_block_left">
 
         <div class="label-field-pair">
-          <label for="student_grade"><%= t('.course_and_batch') %></label>
+          <label for="student_grade"><%= t('course_and_batch') %></label>
           <div class="text-input-bg"><%= select :student, :batch_id, Batch.active.map {|b| [b.full_name, b.id]} %></div>
         </div>
 
@@ -107,7 +107,7 @@
           <label for="student_date_of_birth"><%= t('date_of_birth') %> <span class="necessary-field">*</span> </label>
           <div class="text-input-bg">
             <%= calendar_date_select_tag 'student[date_of_birth]',
-              I18n.localize(Date.today-5.years, :format=>:default) , :year_range => 40.years.ago..0.years.ago %>
+              Date.today-5.years , :year_range => 40.years.ago..0.years.ago %>
           </div>
         </div>
 
@@ -149,15 +149,15 @@
         <hr class="label-underline"></hr>
 
         <div class="label-field-pair">
-          <label for="student_birth_place">Mother Tongue</label>
+          <label for="student_birth_place"><%= t("mother_tongue") %></label>
           <div class="text-input-bg"><%= s.text_field :language %></div>
         </div>
 
         <hr class="label-underline"></hr>
 
         <div class="label-field-pair">
-          <label for="student_category"><%= t('.category') %></label>
-          <div class="text-input-bg"><%= s.select :student_category_id, StudentCategory.all.map {|c| [c.name, c.id]}, { :prompt => "#{t('.select_a_category')}" } %></div>
+          <label for="student_category"><%= t('category') %></label>
+          <div class="text-input-bg"><%= s.select :student_category_id, StudentCategory.all.map {|c| [c.name, c.id]}, { :prompt => "#{t('select_a_category')}" } %></div>
         </div>
 
         <hr class="label-underline"></hr>
@@ -239,7 +239,7 @@
         <span class="span-sub-heading"><%= t('upload_photo') %></span>
         <hr class="sub-heading"></hr>
         <div class="label-field-pair">
-          <label for="student_image_file"><%= t('upload_photo') %> (<%= t('max') %>)</label>
+          <label for="student_image_file"><%= t('upload_photo') %> (<%= t('max_size') %>)</label>
           <div class="text-input-bg"><%= s.file_field :photo %></div>
 
         </div>
@@ -249,7 +249,7 @@
       </div>
     </div>
 
-    <%= submit_tag "", :value => "► #{t('.save_and_proceed')}", :class => "submit_button" %>
+    <%= submit_tag "", :value => "► #{t('save_and_proceed')}", :class => "submit_button" %>
   <% end %>
 
 </div>

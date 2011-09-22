@@ -22,10 +22,10 @@
   <% end %>
 <table id="listing" width="100%">
   <tr class="tr-head">
-    <td><%= t('add_leave_types.leave_types') %></td>
-    <td><%= t('index.available_leave') %></td>
-    <td><%= t('index.leave_taken') %></td>
-    <td><%= t('add_leave_types.last_reset_date') %></td>
+    <td><%= t('leave_types') %></td>
+    <td><%= t('available_leave') %></td>
+    <td><%= t('leave_taken') %></td>
+    <td><%= t('last_reset_date') %></td>
   </tr>
   <% @leave_count.each do |e| %>
     <%  leave_type =EmployeeLeaveType.find_by_id(e.employee_leave_type_id)%>

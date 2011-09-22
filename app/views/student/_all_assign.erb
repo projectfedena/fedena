@@ -17,8 +17,8 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<div class="linker"><%= link_to_remote "Assign All",:url=>{:controller=>"student",:action=>"assign_all_students",:id=>@batch.id,:id2=>@elective_subject.id} %>
-  <%= link_to_remote "Remove All",:url=>{:controller=>"student",:action=>"unassign_all_students",:id=>@batch.id,:id2=>@elective_subject.id} %>
+<div class="linker"><%= link_to_remote "#{t('assign_all')}",:url=>{:controller=>"student",:action=>"assign_all_students",:id=>@batch.id,:id2=>@elective_subject.id} %>
+  <%= link_to_remote "#{t('remove_all')}",:url=>{:controller=>"student",:action=>"unassign_all_students",:id=>@batch.id,:id2=>@elective_subject.id} %>
 </div>
 <% @students.each do |s| %>
   <li id="stud_<%=s.id%>" class="list<%=cycle('odd', 'even')%>">
@@ -26,9 +26,9 @@
     <% assigned = stud_assigned.student_assigned(s.id,@elective_subject.id) %>
    <div class="category-name"> <%= s.full_name %></div>
     <% unless assigned.nil? %>
-   <div class="category-edit"><%= link_to_remote "Remove",:url=>{:controller=>"student",:action=>"unassign_students",:id=>s.id,:id2=>@elective_subject.id} %></div>
+   <div class="category-edit"><%= link_to_remote "#{t('remove')}",:url=>{:controller=>"student",:action=>"unassign_students",:id=>s.id,:id2=>@elective_subject.id} %></div>
       <% else %>
-   <div class="category-edit"><%= link_to_remote "Assign", :url=>{:controller=>"student",:action=>"assign_students",:id=>s.id,:id2=>@elective_subject.id} %></div>
+   <div class="category-edit"><%= link_to_remote "#{t('assign')}", :url=>{:controller=>"student",:action=>"assign_students",:id=>s.id,:id2=>@elective_subject.id} %></div>
         <% end %>
   </li>
   <% end %>

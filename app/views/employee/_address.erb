@@ -18,15 +18,15 @@
 #under the License. -%>
 
 <table width="700">
-  <tr class="odd left"><td><%= t('admission2.home_address') %></td><td class="right"><%= @employee.home_address_line1 %>&nbsp;<%= @employee.home_address_line2 %></td></tr>
-  <tr class="even left"><td><%= t('student.admission1.city') %></td><td class="right"><%= @employee.home_city %></td></tr>
-  <tr class="odd left"><td><%= t('student.admission1.state') %></td><td class="right"><%= @employee.home_state %></td></tr>
-  <tr class="even left"><td><%= t('student.admission1.country') %></td><td class="right"><%= @home_country %></td></tr>
-  <tr class="odd left"><td><%= t('admission2.pin_code') %></td><td class="right"><%=  @employee.home_pin_code %></td></tr>
-  <tr class="even left"><td><%= t('admission2.office_address') %></td><td class="right"><%=  @employee.office_address_line1 %>&nbsp;<%= @employee.office_address_line2 %></td></tr>
-  <tr class="odd left"><td><%= t('student.admission1.city') %></td><td class="right"><%=  @employee.office_city %> </td></tr>
-  <tr class="even left"><td><%= t('student.admission1.country') %></td><td class="right"><%=  @office_country %></td></tr>
-  <tr class="odd left"><td><%= t('admission2.pin_code') %></td><td class="right"><%= @employee.office_pin_code %></td></tr>
+  <tr class="odd left"><td><%= t('home_address') %></td><td class="right"><%= @employee.home_address_line1 %>&nbsp;<%= @employee.home_address_line2 %></td></tr>
+  <tr class="even left"><td><%= t('city') %></td><td class="right"><%= @employee.home_city %></td></tr>
+  <tr class="odd left"><td><%= t('state') %></td><td class="right"><%= @employee.home_state %></td></tr>
+  <tr class="even left"><td><%= t('country') %></td><td class="right"><%= @home_country %></td></tr>
+  <tr class="odd left"><td><%= t('pin_code') %></td><td class="right"><%=  @employee.home_pin_code %></td></tr>
+  <tr class="even left"><td><%= t('office_address') %></td><td class="right"><%=  @employee.office_address_line1 %>&nbsp;<%= @employee.office_address_line2 %></td></tr>
+  <tr class="odd left"><td><%= t('city') %></td><td class="right"><%=  @employee.office_city %> </td></tr>
+  <tr class="even left"><td><%= t('country') %></td><td class="right"><%=  @office_country %></td></tr>
+  <tr class="odd left"><td><%= t('pin_code') %></td><td class="right"><%= @employee.office_pin_code %></td></tr>
 </table>
 <div class="extender"></div>
 <div class="edit-pdf-group">
@@ -37,7 +37,7 @@
   <%end%>
   <% if permitted_to?  :profile_pdf , :employee %>
   <div class="pdf">
-    <%= link_to " ► pdf_report",
+    <%= link_to " ► #{t('pdf_report')}",
       {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
   </div>
   <% end %>
