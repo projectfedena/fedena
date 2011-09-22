@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/student_details/student_details_logo.jpg" />
-  <h1>Students</h1>
-  <h3>Remove student</h3>
+  <h1><%= t('students') %></h1>
+  <h3><%= t('remove_student') %></h3>
   <div id="app-back-button">
      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -32,31 +32,31 @@
   <% end %>
   <div id="student-details">
     <h3><%= @student.full_name %></h3>
-    <h4>Adm no : <%= @student.admission_no %></h4>
-    <h4>Class : <%= @student.batch.course_name %></h4>
+    <h4><%= t('adm_no') %> : <%= @student.admission_no %></h4>
+    <h4><%= t('class') %>: <%= @student.batch.course_name %></h4>
   </div>
 
   <div class="extender"> </div>
   <% if @student.is_active == true %>
   <div class="link-box">
-    <div class="link-heading"> <%= link_to "Student leaving Institution", :controller => "student", :action => "change_to_former", :id => @student.id %> </div>
-    <div class="link-descr">For students leaving the Institution, use this option to remove them from the list of active students and place them in the former students list.</div>
+    <div class="link-heading"> <%= link_to "#{t('leaving_institution')}", :controller => "student", :action => "change_to_former", :id => @student.id %> </div>
+    <div class="link-descr"><%= t('leaving_institution_message') %></div>
   </div>
   <% else %>
     <div class="link-box">
-    <div class="link-heading"> <a>Student has left the school</a> </div>
-    <div class="link-descr"><b>Reason:</b><%= @student.status_description %> </div>
+    <div class="link-heading"> <a><%= t('student_left_message') %></a> </div>
+    <div class="link-descr"><b><%= t('reason') %>:</b><%= @student.status_description %> </div>
   </div>
     <% end %>
   <div class="link-box">
     <div class="link-heading"> <%= link_to "Remove student records", :controller => "student", :action => "delete", :id => @student.id %> </div>
-    <div class="link-descr">Completely delete student's records from the Institution's databases. Use this option only if you created the student record by accident and want to remove it completely.</div>
+    <div class="link-descr"><%= t('remove_student_message') %></div>
   </div>
 
     <!--
 
   <div id="remove-student">
-    <h4><%= link_to 'Student leaving school' %></h4>
+    <h4><%= link_to "#{t('student_left_message')}" %></h4>
     <p>For students leaving the school, use this option to remove them from the list of active students and place them in the former students list.</p>
     <% form_for :remove do |f| %>
       <div class="label-field-pair">
@@ -74,7 +74,7 @@
 
     <p class="warning">(Warning: All records will be deleted for the student and cannot be recovered.)</p>
     <%= link_to image_tag('/images/buttons/delete.png', :border => 0),
-      { :action => 'destroy', :id => @student.id }, :confirm => 'Are you completely sure?' %>
+      { :action => 'destroy', :id => @student.id }, :confirm =>"#{t('are_you_completely_sure')}" %>
   </div>
     -->
 

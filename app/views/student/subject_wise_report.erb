@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/admission/admission_page_logo.jpg" />
-  <h1>Student info</h1>
-  <h3>Subject wise results overview</h3>
+  <h1><%= t('student_info') %></h1>
+  <h3><%= t('subject_wise_result') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -31,11 +31,11 @@
   <%= @graph %>
 
   <div class="subject-results-th">
-    <div class="subject-results-exam">Exam</div>
-    <div class="subject-results-marks">Marks</div>
-    <div class="subject-results-maxmarks">Max</div>
-    <div class="subject-results-grade">Grade</div>
-    <div class="subject-results-percentage">(in %)</div>
+    <div class="subject-results-exam"><%= t('exam') %></div>
+    <div class="subject-results-marks"><%= t('marks') %></div>
+    <div class="subject-results-maxmarks"><%= t('max') %></div>
+    <div class="subject-results-grade"><%= t('grade') %></div>
+    <div class="subject-results-percentage">(<%= t('in') %> %)</div>
   </div>
 
   <%- @examtypes.uniq.each do |e_type| -%>
@@ -60,7 +60,7 @@
   <% end %>
 
   <div class="subject-results-tf">
-    <div class="subject-results-exam">Weighted scores</div>
+    <div class="subject-results-exam"><%= t('weighted_scores') %></div>
     <div class="subject-results-marks">&nbsp;</div>
     <div class="subject-results-maxmarks">&nbsp;</div>
     <div class="subject-results-grade">&nbsp;</div><% results_percentage = @student.annual_weighted_marks_for_a_subject(@subject) %>

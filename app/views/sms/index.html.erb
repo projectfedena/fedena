@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/sms/sms_icon.png" alt="" />
-  <h1>SMS</h1>
-  <h3>Home</h3>
+  <h1><%= t('sms') %></h1>
+  <h3><%= t('home') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -29,29 +29,29 @@
 <div id="page-yield">
   <div class="box">
      <div class="link-box">
-      <div class="link-heading"><%= link_to 'SMS Settings',:action=>'settings' %></div>
-      <div class="link-descr">SMS Settings page</div>
+      <div class="link-heading"><%= link_to "#{t('sms')} #{t('settings')}",:action=>'settings' %></div>
+      <div class="link-descr"><%= t('sms_settings_page') %></div>
     </div>
 <% if @sms_setting.application_sms_active %>
      <div class="link-box">
-      <div class="link-heading"><%= link_to 'SMS to Students',:action=>'students'%></div>
-      <div class="link-descr">Send SMS to Students</div>
+      <div class="link-heading"><%= link_to "#{t('send_sms_to_students')}",:action=>'students'%></div>
+      <div class="link-descr"><%= t('send_sms_to_students') %></div>
     </div>
      <div class="link-box">
-      <div class="link-heading"><%= link_to 'SMS to Batches',:action=>'batches'%></div>
-      <div class="link-descr">Send Sms to Batches</div>
+      <div class="link-heading"><%= link_to "#{t('sms_to_batches')}",:action=>'batches'%></div>
+      <div class="link-descr"><%= t('sms_to_batches') %></div>
     </div>
      <div class="link-box">
-      <div class="link-heading"><%= link_to 'SMS to Employees',:action=>'employees'%></div>
-      <div class="link-descr">Send SMS to Employees</div>
+      <div class="link-heading"><%= link_to "#{t('sms_to_employees')}",:action=>'employees'%></div>
+      <div class="link-descr"><%= t('sms_to_employees') %></div>
     </div>
      <div class="link-box">
-      <div class="link-heading"><%= link_to 'SMS to Employee Departments',:action=>'departments'%></div>
-      <div class="link-descr">Send SMS to Employee Departments</div>
+      <div class="link-heading"><%= link_to "#{t('sms_to_employee_department')}",:action=>'departments'%></div>
+      <div class="link-descr"><%= t('sms_to_employee_department') %></div>
     </div>
      <div class="link-box">
-      <div class="link-heading"><%= link_to_remote 'SMS to All',:url=>{:action=>'all'} %></div>
-      <div class="link-descr">Send Sms to All</div>
+      <div class="link-heading"><%= link_to_remote "#{t('sms_to_all')}",:url=>{:action=>'all'} %></div>
+      <div class="link-descr"><%= t('sms_to_all') %></div>
     </div>
 
 <% end %>

@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_category"><%= t('catgeory') %></label>
+        <label for="student_category"><%= t('category') %></label>
         <div class="text-input-bg">
           <%= f.collection_select :student_category_id_equals,StudentCategory.active,:id,:name,{:prompt=>"#{t('select_category')}"}%>
         </div>

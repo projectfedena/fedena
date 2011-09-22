@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/sms/sms_icon.png" alt="" />
-  <h1>SMS</h1>
-  <h3>Settings</h3>
+  <h1><%= t('sms') %></h1>
+  <h3><%= t('settings') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -31,47 +31,47 @@
   <div id="list">
   <div class="name_list<%=cycle('odd', 'even')%>"><li>
   <label><%= s.check_box :application_enabled, :checked=>@application_sms_enabled.is_enabled %>
-  <div class="att_list_names">Application</div> </label>
+  <div class="att_list_names"><%= t('application') %></div> </label>
   </li></div>
-      <%= s.submit "Update", :class=>'submit_button' %>
+      <%= s.submit "#{t('update')}", :class=>'submit_button' %>
   </div>
 <% end %>
 <% unless @application_sms_enabled.is_enabled == false %>
-  <h4>General SMS Settings:</h4>
+  <h4><%= t('general_sms_setting') %>:</h4>
   <% form_for :general_settings, :url=>{:controller=>"sms",:action=>"update_general_sms_settings"} do |sms| %>
 
   <div id="list">
   <div class="name_list<%=cycle('odd', 'even')%>"><li>
   <label><%= sms.check_box :student_admission_enabled, :checked=>@student_admission_sms_enabled.is_enabled %>
-  <div class="att_list_names">Student Admission</div> </label>
+  <div class="att_list_names"><%= t('student_admission') %></div> </label>
   </li>  </div>
   <div class="name_list<%=cycle('odd', 'even')%>"><li>
   <label> <%= sms.check_box :exam_schedule_result_enabled, :checked=>@exam_schedule_result_sms_enabled.is_enabled %>
-  <div class="att_list_names">Exam Schedule / Result</div> </label>
+  <div class="att_list_names"><%= t('exam_schedule') %> / <%= t('result') %></div> </label>
   </li>  </div>
     <div class="name_list<%=cycle('odd', 'even')%>"><li>
   <label><%= sms.check_box :student_attendance_enabled, :checked=>@student_attendance_sms_enabled.is_enabled %>
-  <div class="att_list_names">Attendance</div> </label>
+  <div class="att_list_names"><%= t('attendance') %></div> </label>
   </li>  </div>
       <div class="name_list<%=cycle('odd', 'even')%>"><li>
   <label><%= sms.check_box :news_events_enabled, :checked=>@news_events_sms_enabled.is_enabled %>
-  <div class="att_list_names">News / Events</div> </label>
+  <div class="att_list_names"><%= t('news_events') %></div> </label>
   </li>  </div>
       <div class="name_list<%=cycle('odd', 'even')%>"><li>
   <label><%= sms.check_box :sms_parents_enabled, :checked=>@parents_sms_enabled.is_enabled %>
-  <div class="att_list_names">Send Sms to Parents</div> </label>
+  <div class="att_list_names"><%= t('send_sms_to_parents') %></div> </label>
   </li>  </div>
       <div class="name_list<%=cycle('odd', 'even')%>"><li>
   <label><%= sms.check_box :sms_students_enabled, :checked=>@students_sms_enabled.is_enabled %>
-  <div class="att_list_names">Send Sms to Students</div> </label>
+  <div class="att_list_names"><%= t('send_sms_to_students') %></div> </label>
   </li>  </div>
       <div class="name_list<%=cycle('odd', 'even')%>"><li>
   <label><%= sms.check_box :sms_employees_enabled, :checked=>@employees_sms_enabled.is_enabled %>
-  <div class="att_list_names">Send Sms to Employees</div> </label>
+  <div class="att_list_names"><%= t('send_sms_to_employees') %></div> </label>
   </li>  </div>
 
   
-    <%= sms.submit "Update",:class=>'submit_button' %>
+    <%= sms.submit "#{t('update')}",:class=>'submit_button' %>
 </div>
   <% end %>
 <% end %>

@@ -565,6 +565,33 @@ es: # locale
     elective : 'Electivo'
     elective_group: 'Grupo de electivas'
     message : 'mensaje'
+    examination_results : 'Resultado de exámenes'
+    fee_status : 'Estado de Pagos'
+    fees : 'Tarifas'
+    particulars : 'Específicos'
+    discount : 'descuento'
+    total_discount : 'total de descuento'
+    total_fees : 'Total Tarifas'
+    fine : 'Multa'
+    payment_done : 'Hecho el pago'
+    partial_payment_on : 'Pago parcial de'
+    profile : "Perfil"
+    messages: "Mensajes"
+    reminder : "Recordatorio"
+    send_sms : 'Enviar SMS'
+    application: 'Solicitud'
+    general_sms_setting : 'Configuración General SMS'
+    student_admission: 'Admisión de Estudiantes'
+    exam_schedule : 'Calendario de Exámenes'
+    result_publish : 'Publicación de resultados'
+    attendance : 'Asistencia'
+    news_events : 'Noticias/Eventos'
+    send_sms_to_parents : 'Enviar SMS a los padres'
+    send_sms_to_students : 'Enviar SMS a los estudiantes'
+    send_sms_to_employees : 'Enviar SMS a los empleados'
+    result : 'resultado'
+    ago: 'atras'
+    publish: 'Publicar'
 
 
 #configuration controller translation
@@ -690,18 +717,18 @@ es: # locale
 
 #reminder controller translation
     reminder:
-      index:
-        inbox : 'Recibidos'
-        sent : 'Enviados'
-        from : 'De'
-        sent_on : 'Enviado el'
-        to : 'Para'
-        reply : 'Responder'
-        send : 'Enviar'
-        no_new_message : 'No hay mensajes nuevos'
-        no_message_created  : 'Ningún mensaje creado todavía'
-        select_recipient : 'Seleccionar destinatario'
-
+      from : 'De'
+      no_new_message : 'No hay mensajes nuevos.'
+      send : 'Enviar'
+      inbox : 'Recibidos'
+      sent : 'Enviados'
+      sent_on : 'Enviado el'
+      to : 'Para'
+      reply : 'Responder'
+      no_message_created  : 'Ningún mensaje creado todavía'
+      select_recipient : 'Seleccionar destinatario'
+      user_unavailable: 'el usuario no está disponible'
+     
       view_reminder:
         back_to_inbox: 'Volver a Recibidos'
         mark_as_unread : 'Marcar como no leído'
@@ -709,6 +736,7 @@ es: # locale
       create_reminder:
         reminder_to_staff : 'Crear recordatorio para empleados'
         reminder_to_student : 'Crear recordatorio para estudiante'
+
       send_reminder:
         your_message_sent: 'Tu mensaje ha sido enviado'
         enter_subject: 'Por favor, introduzca el mensaje y el asunto.'
@@ -938,9 +966,7 @@ es: # locale
         details : "Información"
         bank_info : "Información Bancaria"
         additional_info : "Información Adicional"
-        profile : "Perfil"
         leaves : "Licencias"
-        reminder : "Recordatorio"
         no_bank_details_entered : "No se ingresó información bancaria para"
         no_add_details_entered : "No se ingresó información adicional para"
         basic_payroll_details : "Datos básicos de nómina"
@@ -1143,30 +1169,15 @@ es: # locale
       index:
         add_edit_leave_type : "Agregar y editar tipos de licencia."
         new_leaves : "Nuevas licencias"
-        
-        
-#Sms Setting Controller
-    sms_settings:
-      index:
-        application: 'Solicitud'
-        general_setting : 'Configuración General SMS'
-        student_admission: 'Admisión de Estudiantes'
-        exam_schedule : 'Calendario de Exámenes'
-        result_publish : 'Publicación de resultados'
-        attendance : 'Asistencia'
-        news_events : 'Noticias/Eventos'
-        send_sms_to_parents : 'Enviar SMS a los padres'
-        send_sms_to_students : 'Enviar SMS a los estudiantes'
-        send_sms : 'Enviar SMS'
-        departments: 'Departamentos'
-        employees : 'empleados'
-        settings: 'Configuración'
-        news_events : 'Noticias/Eventos'
-
-
-
+ 
+  
 #Sms Controller
     sms:
+      sms : "SMS"
+      departments : 'departamentos'
+      employees : 'empleados'
+      settings: 'Configuración'
+      
       index:
         sms_settings_page : 'Página de configuración SMS'
         send_sms_to_students : 'Enviar SMS a los estudiantes'
@@ -1176,8 +1187,7 @@ es: # locale
         sms_to_all : 'Enviar SMS a todos'
         exam_schedule_result : 'Calendario de Exámenes/Resultados'
         msg1 : 'SMS enviados a Grupos y Departamentos'
-        sms : "SMS"
-
+        
       students:
         sms_sent: 'SMS enviados exitosamente a los estudiantes seleccionados y sus guardianes'
       batches:
@@ -1187,33 +1197,26 @@ es: # locale
       departments:
         sent_to_selected_department : 'SMS enviados exitosamente a los empleados del departamento seleccionado'
 
-
-
 #news controller translation
     news:
+      posted : 'Publicado el'
+      school_news : 'Noticias Escolares'
+      news : 'Noticias'
+      latest_announcement : 'Últimos anuncios'
+      user_deleted : 'usuario eliminado'
+      read_news : 'Leer noticias'
+      posted_on : 'Publicado el'
+      content : 'Contenido'
+      publish_news  : 'Publicar Noticias'
+      
       index:
-        school_news : 'Noticias Escolares'
-        news : 'Noticias'
-        latest_announcement : 'Últimos anuncios'
         more_news : 'Mas Noticias'
-
       all:
-        
         author : 'Autor'
         comments : 'Comentarios'
-        posted : 'Publicado el'
-
-      add:
-        publish: 'Publicar'
-        content : 'Contenido'
-        publish_news  : 'Publicar Noticias'
-
-
       search_news_ajax:
         no_news : 'No se encontraron noticias'
-
       view:
-        read_news : 'Leer noticias'
         no_comments : 'No hay comentarios todavía.'
         leave_comment : 'Dejar un comentario'
 
@@ -1309,7 +1312,6 @@ es: # locale
         library_link_title: " Módulo Gestión de Biblioteca"
         sms_link_title: "        Maneja SMS módulo    "
         logged_as: "Conectado como:"
-        messages: "Mensajes"
         log_out: "Cerrar sesión"
         student_messages : "Mensajes de estudiantes"
         student: "Información del estudiante"
@@ -1424,34 +1426,46 @@ es: # locale
       parent_information: 'Información de los Padres'
       edit_Parent_guardian_details: 'Editar información de los Padres/Guardián'
       send_email : 'Enviar correo electrónico'
-
-      
-      index:
-        view_details: 'Ver información'
+      student_profile : 'Perfil del estudiante'
+      amount_to_be_paid : 'Cantidad a pagar'
+      has_paid_all_the_fees : 'Ha pagado todos los honorarios de los honorarios para el lote.'
+      transfer_certificate : 'Certificado de transferencia'
+      language : 'Idioma'
+      previous_details : 'Información previa'
+      previous_educational_details : 'Información de educación previa'
+      institution_name : 'Nombre de la Institución'
+      add_subject : 'Agregar asignatura'
+      student_info: 'Información del Estudiante'
+      previous_year_result: 'Revisión de resultados en años previos'
+      class_sec: 'Clase/Sección'
+      reports : 'Reportes'
+      no_previous_data : 'No hay datos anteriores'
+      add_previous_data : 'Agregar datos anteriores'
+      group_tutor : 'Tutor de grupo'
+      immediate_contact : 'Contacto inmediato'
+      previous_institution : 'Institución previa'
+      report_center : "Centro de Reportes"
+      no_previous_subject : "No tema anterior Alta"
+      subject_wise_result: 'Revisión de resultados según Asignaturas'
+      weighted_scores: 'Puntajes ponderados'
+      upcoming_exams: 'Próximos Exámenes'
+      view_details: 'Ver información'
+      searched_for : 'Usted ha buscado:'
+      listed_by : 'Listado por'
+      search_again : 'Búscar de nuevo'
         
-        
-      search_ajax:
-       
-        
-
       admission1:
         student_detail_step1 : 'Paso 1 – Información  del estudiante'
-        language : 'Idioma'
-        enable_sms_feature : 'Activar función SMS'
-        upload_user_photo : 'Cargar foto de usuario'
         max_size : 'Máximo 50 KB'
         student_admission_done : 'La admisión del estudiante ha sido completada. El nombre de usuario es'
         password_is : 'y la contraseña es'
         last_course: 'Último grado cursado'
-        address: 'Dirección'
         unknown : "Desconocido"
 
       admission2:
-        
         click_here_to_skip: 'Hacer clic aquí para omitir'
         add_another_guardian : 'Agregar otro guardian'
         saved_message : 'Los siguientes guardianes se han guardado para'
-
 
       admission3:
         select_one_of_the_guardians : 'Seleccionar uno de los guardianes como contacto de emergencia.'
@@ -1459,50 +1473,30 @@ es: # locale
         sms_part2 : 'y la contraseña es'
 
       previous_data:
-        previous_details : 'Información previa'
-        sub_title : 'Información de educación previa'
-        institution_name : 'Nombre de la Institución'
-        add_subject : 'Agregar asignatura'
         skip : 'Omitir'
 
       previous_data_edit:
         edit_previous_details : 'Editar detalles Anterior'
 
-      previous_subject:
-       
-
       admission4:
         step4 : 'Paso 4'
         
-
-
       profile:
         student_information : 'Información del estudiante'
-        student_profile : 'Perfil del estudiante'
-        reports : 'Reportes'
-        fees : 'Tarifas'
         guardians: 'Guardianes'
-        language : 'Idioma'
-        address : 'Dirección'
         sms_alerts : 'Alertas SMS'
-        group_tutor : 'Tutor de grupo'
         contact_message : 'En caso de emergencias, comuníquese con:'
         change_contact : 'Cambiar Contacto Inmediato'
-        immediate_contact : 'Contacto inmediato'
-        previous_details : 'Información previa'
-        previous_institution : 'Institución previa'
         add_guardian : 'Agregar Guardián'
         no_guardian : 'Ningún guardián agregado todavía'
         enabled : 'Habilitado'
         disabled : 'Deshabilitado'
         generate_tc : "Generar Certificado de Estudios"
-        report_center : "Centro de Reportes"
-
+        
       reports:
-        reports : 'Reportes'
-        sub_title1 : 'Académicos'
+        academics : 'Académicos'
         recent_exams : 'Exámenes recientes'
-        subject_wise_result : 'Reporte por Asignaturas'
+        subject_wise_report : 'Reporte por Asignaturas'
         final_report : 'Reporte final'
         compare_past : 'Comparar con años anteriores'
         current_year_report : 'Reporte del año actual'
@@ -1513,9 +1507,6 @@ es: # locale
         exam_goruped : 'agrupados examen'
 
       fees:
-        student : 'Estudiante'
-        fee_status : 'Estado de Pagos'
-        student_profile : 'Perfil del estudiante'
         paid_all : 'Ha ingresado todos los pagos del grupo.'
         paid : 'PAGADO'
         unpaid : 'NO PAGADO'
@@ -1524,17 +1515,11 @@ es: # locale
         parent_info : 'Información de los Padres'
         parents_profile : 'Perfil de los Padres'
         add_guardian : 'Agregar Guardián'
-        parents : 'Padres/Guardián'
+        parents_guardian : 'Padres/Guardián'
         
       add_guardian:
         add_guardian_details : 'Agregar información del Guardián'
         office : 'Oficina'
-
-      view_all:
-        view_details : 'Ver Información'
-
-      email:
-        
 
       remove:
         leaving_institution : 'Estudiante en proceso de retiro de la institución'
@@ -1552,49 +1537,27 @@ es: # locale
         description1 : "Eliminar completamente al estudiante de la base de datos de la Institución. Utilice esta opción sólo si ha creado un estudiante por accidente y quiere eliminarlo por completo."
         description2 : "Advertencia: Todos los registros del estudiante se eliminarán y no se podrán recuperar."
 
-
-      advanced_search:
-        
-        searched_for : 'Usted ha buscado:'
-        listed_by : 'Listado por'
-        search_again : 'Búscar de nuevo'
-        
-      categories:
-        
-
       edit_admission4:
         enter_admission_details : 'Editar información de admisión'
-
-      add_additional_details:
-        
+   
       academic_report:
-        weighted_scores: 'Puntajes ponderados'
         class_average: 'Promedio de la Clase'
         examination_wise_performance: 'Rendimiento según exámenes'
         cumulative_performance: 'Rendimiento Acumulado'
         examination_Name: 'Nombre del Examen'
         marks_obtained: 'Calificaciones obtenidas'
-        
         signature: 'Firma'
+
       edit:
         edit_details: 'Editar información'
         necessary_field: 'Campo necesario'
-        examination_results : 'Resultado de exámenes'
-        student_info: 'Información del Estudiante'
-        previous_year_result: 'Revisión de resultados en años previos'
-        class_sec: 'Clase/Sección'
-        subject_wise_result: 'Revisión de resultados según Asignaturas'
-        upcoming_exams: 'Próximos Exámenes'
-
-
-
+        
 
  ## traslation for finance controller
     finance:
       index:
         finance : 'Finanzas'
         manage : 'Gestionar'
-        fees : 'Tarifas'
         transactions: 'Transacciones'
         creates_expense_and_income : 'Crear gastos e ingresos'
         donations : 'Donaciones'
@@ -1673,7 +1636,6 @@ es: # locale
         master : 'Mayores'
         aditional : 'Menores'
       master_fees:
-        particulars : 'Específicos'
         no_categories_to_display : 'No hay categorías para mostrar'
         create_using : 'Crear utilizando'
       master_category_particulars:
@@ -1734,13 +1696,10 @@ es: # locale
         student_category : 'Categoría del estudiante'
         due_date_exceeded_collect_fine : 'La fecha límite se ha vencido. Por favor, pagar el valor de la multa.'
         add_fine : 'Añadir multa'
-        fine : 'Multa'
         amount_to_pay : 'Valor a pagar'
-        partial_payment_on : 'Pago parcial de'
         pay_fees : 'Realizar Pagos'
         fees_paid : 'Pagos Realizados'
         print_receipt : 'Imprimir recibo'
-        total_fees : 'Total Tarifas'
         fee_collection_name : 'Nombre de las fechas de Pago'
         no_fee_defaulters : 'No hay morosos'
         edit_fee_collection_date : 'Editar Fechas de Pago'
@@ -1979,7 +1938,6 @@ es: # locale
         class_average_marks : "Nota Promedio de Clase"
         class_average : "Promedio de Clase"
         grouped_exam_report : "Reportes de exámenes agrupados"
-        examination_results : "Resultado de exámenes"
         connect_exams : "Conectar exámenes"
         resend_sms_notification : "Reenviar notificación SMS"
         view_exam_groups : "Ver grupos de exámenes"
@@ -2056,7 +2014,6 @@ es: # locale
         select_class_to_edit : 'Seleccionar una clase para editarla'
         go : 'Ir'
       edit2:
-        publish : 'Publicar'
         time_table_is_being_generated : 'El Horario de clases está siendo generado. Por favor, permanecer en la  página'
         warning : 'Advertencia'
         no_teacher_associated : 'Ningún profesor está asociado a esta asignatura'

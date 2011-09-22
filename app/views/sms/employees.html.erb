@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/sms_icon.png" alt="" />
-  <h1>SMS</h1>
-  <h3><%= t('sms_settings.index.employees') %></h3>
+  <h1><%= t('sms') %></h1>
+  <h3><%= t('employees') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -32,11 +32,11 @@
         :before => "Element.show('loader2')",
         :success => "Element.hide('loader2')" do |x| %>
    <div class="label-field-pair">
-     <div class="label-container"><label><%= t('.select_a_department') %>:</label> </div>
+     <div class="label-container"><label><%= t('select_a_department') %>:</label> </div>
     <div class="text-input-bg">
 <%= select :send_sms, :batch_id,
         EmployeeDepartment.all.map {|b| [b.name, b.id]},
-        {:prompt => "#{t('.select_a_department')}"},
+        {:prompt => "#{t('select_a_department')}"},
         {:onChange => "#{remote_function(:url => {:action => "list_employees"},
         :with => "'dept_id='+value",
         :before => "Element.show('loader')",

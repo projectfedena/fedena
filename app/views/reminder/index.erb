@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/reminder/reminder_small.png" />
-  <h1>Messages</h1>
-  <h3>Inbox</h3>
+  <h1><%= t('messages') %></h1>
+  <h3><%= t('inbox') %></h3>
   <div id="app-back-button">
   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -29,12 +29,12 @@
 <div id="inner-tab-menu">
   <ul>
     <% unless @new_reminder_count.size == 0 %>
-      <li><%= link_to "<b>Inbox (#{@new_reminder_count.size})</b>", :controller=>"reminder", :action=>"index" %></li>
+      <li><%= link_to "<b>#{t('inbox')} (#{@new_reminder_count.size})</b>", :controller=>"reminder", :action=>"index" %></li>
     <% else %>
-      <li><%= link_to "Inbox", :controller=>"reminder", :action=>"index"%></li>
+      <li><%= link_to "#{t('inbox')}", :controller=>"reminder", :action=>"index"%></li>
     <% end %>
-    <li><%= link_to "Sent", :controller=>"reminder", :action=>"sent_reminder"%></li>
-    <li><%= link_to "Create", :controller=>"reminder", :action=>"create_reminder"%></li>
+    <li><%= link_to "#{t('sent')}", :controller=>"reminder", :action=>"sent_reminder"%></li>
+    <li><%= link_to "#{t('create')}", :controller=>"reminder", :action=>"create_reminder"%></li>
   </ul>
 </div>
 
@@ -53,13 +53,13 @@
     <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
       <tr class="tr-head">
         <td>
-          From
+          <%= t('from') %>
         </td>
         <td>
-          Subject
+          <%= t('subject') %>
         </td>
         <td>
-          Date
+          <%= t('date') %>
         </td>
       </tr>
       <tr class="tr-blank"></tr>

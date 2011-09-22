@@ -29,16 +29,16 @@
       <%= l.hidden_field :to, :value=>@manager.id %>
       
     <div class="label-field-pair ">
-      <label for="subject">Subject</label>
+      <label for="subject"><%= t('subject') %></label>
       <div class="text-input-bg1"><%= l.text_field :subject %></div>
     </div>
 
   <div class="label-field-pair">
-  <label for="start_date">Message</label>
+  <label for="start_date"><%= t('message') %></label>
   <div class="text-feild-bg"><%= l.text_area :message, :cols=>25, :rows=>10 %></div>
   </div>
     <div id="submit-button">
-        <%=  submit_tag("Send") %>
+        <%=  submit_tag("#{t('send')}") %>
       </div>
   <div class="extender"></div>
   <% end %>

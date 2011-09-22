@@ -20,8 +20,8 @@
   
 <div id="list">
   <div class="sel-list">
-    <%= t('sms_settings.index.select') %> : <%= link_to_function "#{t('.all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
-<%= link_to_function "#{t('.none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+    <%= t('select') %> : <%= link_to_function "#{t('all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+<%= link_to_function "#{t('none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
   </div>
 <% @employees.each do |employee| %>
  <div class="name_list<%=cycle('odd', 'even')%>"><li>
@@ -35,4 +35,4 @@
 <%= text_area :send_sms,:message, :rows=>5,:cols=>30 %><br/>
 </div>
 </div>
-<%= submit_tag "#{t('sms_settings.index.send_sms')}",:class=>'submit_button' %>
+<%= submit_tag "#{t('send_sms')}",:class=>'submit_button' %>

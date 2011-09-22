@@ -21,10 +21,10 @@
 <% string = @to_users.inject('') { |arr, u| arr + u.to_s + ',' }.chomp(',') %>
 <% add = '<span> Add </span>' %>
 <div class="label-field-pair">
-  <label for="student_grade">Select recipient</label>
+  <label for="student_grade"><%= t('select_recipient') %></label>
   <div class ="scrolable" >
     <div class="scroll-inside">
-      <div class="hover"><%= link_to "Select all  <span> Add </span>", '#', :onClick => "add_all_recipient('#{string}')", :class=> 'all' %>
+      <div class="hover"><%= link_to "#{t('select_all')}  <span> Add </span>", '#', :onClick => "add_all_recipient('#{string}')", :class=> 'all' %>
        
       </div>
       <% @to_users.each do |t| %>

@@ -22,7 +22,7 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2>Transfer Certificate</h2>
+  <h2><%= t('transfer_certificate') %></h2>
   <div class="hor_line"></div>
 
 
@@ -33,19 +33,19 @@
       <table id="pdf-table" width="100%" cellspacing="0">
         <% c= 'odd' %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Name</td>
+            <td class="col-pdf"><%= t('name') %></td>
             <td class="col-pdf"> <%= @student.full_name  %> </td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf"> Admission no.</td>
+            <td class="col-pdf"><%= t('admission_no') %></td>
             <td class="col-pdf"><%= @student.admission_no %></td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Date of admission</td>
+            <td class="col-pdf"><%= t('admission_date') %></td>
             <td class="col-pdf"><%= @student.admission_date.strftime("%d %B %Y") %></td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">DOB</td>
+            <td class="col-pdf"><%= t('date_of_birth') %></td>
             <td class="col-pdf"><%= @student.date_of_birth.strftime("%d %B %Y") %></td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
@@ -53,31 +53,31 @@
             <td class="col-pdf"><%= @student.batch.full_name %></td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Blood group</td>
+            <td class="col-pdf"><%= t('blood_group') %></td>
             <td class="col-pdf"><%= @student.blood_group %></td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Gender</td>
+            <td class="col-pdf"><%= t('gender') %></td>
             <td class="col-pdf"><%= @student.gender_as_text %></td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Nationality</td>
+            <td class="col-pdf"><%= t('nationality') %></td>
             <td class="col-pdf"><%= @student.nationality.name %></td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Language</td>
+            <td class="col-pdf"><%= t('language') %></td>
             <td class="col-pdf"><%= @student.language %></td>
           </tr>
 
           <% if @father %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Father</td>
+            <td class="col-pdf"><%= t('father') %></td>
             <td class="col-pdf"><%= @father.full_name %></td>
           </tr>
 
                 <% elsif @mother %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Mother</td>
+            <td class="col-pdf"><%= t('mother') %></td>
             <td class="col-pdf"><%= @mother.full_name %></td>
           </tr>
 
@@ -92,38 +92,38 @@
               <% end %>
               <% unless @student.student_category.nil? %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Category</td>
+            <td class="col-pdf"><%= t('category') %></td>
             <td class="col-pdf"><%= @student.student_category.name %></td>
           </tr>
           <% end %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Religion</td>
+            <td class="col-pdf"><%= t('religion') %></td>
             <td class="col-pdf"><%= @student.religion %></td>
           </tr>
           
 
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Address</td>
+            <td class="col-pdf"><%= t('address') %></td>
             <td class="col-pdf"><%= @student.address_line1 %><br/><%= @student.address_line2 %></td>
           </tr>
 
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">City</td>
+            <td class="col-pdf"><%= t('city') %></td>
             <td class="col-pdf"><%= @student.city %></td>
           </tr>
 
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">State</td>
+            <td class="col-pdf"><%= t('state') %></td>
             <td class="col-pdf"><%= @student.state %></td>
           </tr>
 
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Country</td>
+            <td class="col-pdf"><%= t('country') %></td>
             <td class="col-pdf"><%= @student.country.name %></td>
           </tr>
 
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Reason for leaving</td>
+            <td class="col-pdf"><%= t('reason_for_leaving') %></td>
             <td class="col-pdf"><%= @student.status_description %></td>
           </tr>      
       </table>

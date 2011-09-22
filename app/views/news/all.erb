@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/manage_news/manage_news_logo.png" />
-  <h1>School News</h1>
-  <h3>Latest announcements</h3>
+  <h1><%= t('school_news') %></h1>
+  <h3><%= t('latest_announcement') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -28,7 +28,7 @@
 <div id="inner-tab-menu">
   <ul>
     <% if permitted_to? :add,:news %>
-      <li><%= link_to 'Add', :controller => 'news', :action => 'add' %></li>
+      <li><%= link_to "#{t('add')}", :controller => 'news', :action => 'add' %></li>
     <% end %>
   </ul>
 </div>
@@ -43,19 +43,19 @@
     <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
       <tr class="tr-head">
         <td>
-          Sl no.
+          <%= t('sl_no') %>
         </td>
         <td>
-          Title
+         <%= t('title') %>
         </td>
         <td>
-          Author
+          <%= t('author') %>
         </td>
         <td>
-          Comments
+          <%= t('comments') %>
         </td>
         <td>
-          Posted
+         <%= t('posted') %>
         </td>
       </tr>
       <tr class="tr-blank"></tr>
@@ -73,14 +73,14 @@
             <% unless r.author.blank?  %>
               <%= r.author.first_name %> <%= '- admin' if r.author.admin==true%>
             <% else %>
-              User Deleted
+             <%= t('user_deleted') %>
             <% end %>
           </td>
           <td class="col-1">
             <%= @comments.size %>
           </td>
           <td class="col-3">
-            <%= time_ago_in_words(r.created_at) %> ago
+            <%= time_ago_in_words(r.created_at) %> <%= t('ago') %>
           </td>
         </tr>
       <% end %>

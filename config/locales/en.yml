@@ -556,6 +556,32 @@ en: # locale
     elective : 'Elective'
     elective_group : 'Elective Group'
     message : 'Message'
+    examination_results : 'Examination Results'
+    fee_status : 'Fee Status'
+    fees : 'Fees'
+    particulars : 'Particulars'
+    discount : 'Discount'
+    total_discount : 'Total Discount'
+    total_fees : 'Total Fees'
+    fine : 'Fine'
+    payment_done : 'Payment Done'
+    partial_payment_on : 'Partial Payment on'
+    profile : "Profile"
+    messages: "Messages"
+    reminder : "Reminder"
+    send_sms : 'Send SMS'
+    application: 'Application'
+    general_sms_setting : 'General SMS Settings'
+    student_admission: 'Student Admission'
+    exam_schedule : 'Exam Schedule'
+    result_publish : 'Result Publish'
+    news_events : 'News/Events'
+    send_sms_to_parents : 'Send Sms to Parents'
+    send_sms_to_students : 'Send Sms to Students'
+    send_sms_to_employees : 'Send Sms to Employees'
+    result : 'Result'
+    ago: 'ago'
+    publish : 'Publish'
 
 #configuration controller translation
     configuration:
@@ -682,17 +708,17 @@ en: # locale
 
 #reminder controller translation
     reminder:
-      index:
-        inbox : 'Inbox'
-        sent : 'Sent'
-        from : 'From'
-        sent_on : 'Sent on'
-        to : 'To'
-        reply : 'Reply'
-        send : 'Send'
-        no_new_message : 'No new messages'
-        no_message_created  : 'No messages created yet'
-        select_recipient : 'Select Recipient'
+      from : 'From'
+      no_new_message : 'No new messages.'
+      send : 'Send'
+      inbox : 'Inbox'
+      sent : 'Sent'
+      sent_on : 'Sent on'
+      to : 'To'
+      reply : 'Reply'
+      no_message_created  : 'No messages created yet'
+      select_recipient : 'Select Recipient'
+      user_unavailable: 'User Unavailable'
 
       view_reminder:
         back_to_inbox: 'Back to inbox'
@@ -701,6 +727,7 @@ en: # locale
       create_reminder:
         reminder_to_staff : 'Create reminder to staff'
         reminder_to_student : 'Create reminder to student'
+
       send_reminder:
         your_message_sent: 'Your message has been sent'
         enter_subject: 'Please enter message and subject.'
@@ -930,9 +957,7 @@ en: # locale
         details : "Details"
         bank_info : "Bank Info"
         additional_info : "Additional Info"
-        profile : "Profile"
         leaves : "Leaves"
-        reminder : "Reminder"
         no_bank_details_entered : "No bank details entered for"
         no_add_details_entered : "No additional details entered for"
         basic_payroll_details : "Basic Payroll Details"
@@ -1135,27 +1160,15 @@ en: # locale
       index:
         add_edit_leave_type : "Add and Edit Employee Leave type"
         new_leaves : "New Leaves"
-        
-#Sms Setting Controller
-    sms_settings:
-      index:
-        application: 'Application'
-        general_setting : 'General SMS Settings'
-        student_admission: 'Student Admission'
-        exam_schedule : 'Exam Schedule'
-        result_publish : 'Result Publish'
-        
-        news_events : 'News/Events'
-        send_sms_to_parents : 'Send Sms to Parents'
-        send_sms_to_students : 'Send Sms to Students'
-        send_sms : 'Send SMS'
-        departments: 'Departments'
-        employees : 'employees'
-        settings: 'Settings'
-        news_events : 'News / Events'
 
+        
 #Sms Controller
     sms:
+      sms : "SMS"
+      departments : 'Departments'
+      employees : 'employees'
+      settings: 'Settings'
+
       index:
         sms_settings_page : 'SMS Settings page'
         send_sms_to_students : 'Send SMS to Students'
@@ -1165,8 +1178,7 @@ en: # locale
         sms_to_all : 'Send SMS to all'
         exam_schedule_result : 'Exam Schedule / Result'
         msg1 : 'SMS sent across batches and empoloyee departments'
-        sms : "SMS"
-
+  
       students:
         sms_sent: 'SMS sent successfully to selected students and their guardians'
       batches:
@@ -1176,31 +1188,26 @@ en: # locale
       departments:
         sent_to_selected_department : 'SMS sent successfully to employees of selected department'
 
-
 #news controller translation
     news:
-      index:
-        school_news : 'School News'
-        news : 'News'
-        latest_announcement : 'Latest announcements'
-        more_news : 'More News'
+      posted : 'Posted'
+      school_news : 'School News'
+      news : 'News'
+      latest_announcement : 'Latest announcements'
+      user_deleted : 'User Deleted'
+      read_news : 'Read news'
+      posted_on : 'Posted On'
+      content : 'Content'
+      publish_news  : 'Publish News'
 
+      index:
+        more_news : 'More News'
       all:
         author : 'Author'
         comments : 'Comments'
-        posted : 'Posted'
-
-      add:
-        publish : 'Publish'
-        content : 'Content'
-        publish_news  : 'Publish News'
-
-
       search_news_ajax:
         no_news: 'No news found'
-
       view:
-        read_news : 'Read news'
         no_comments : 'No comments yet.'
         leave_comment : 'Leave a comment'
 
@@ -1292,7 +1299,6 @@ en: # locale
         finance_link_title: "        Manages Finance module    "
         library_link_title: "        Manages Library module    "
         sms_link_title: "        Manages SMS module    "
-        messages: "Messages"
         log_out: "Log out"
         student_messages : "Student messages"
         student: "Student Information"
@@ -1403,26 +1409,40 @@ en: # locale
       parent_information: 'Parent Information'
       edit_parent_guardian_details: 'Edit Parent/guardian details'
       send_email : 'Send email'
-
-
-      index:
-        view_details: 'View Details'
-        no_previous_subject : "No Previous Subject Added"
-
-      search_ajax:
-        no_users : 'No user found'
-        
-      
+      student_profile : 'Student Profile'
+      amount_to_be_paid : 'Amount to be paid'
+      has_paid_all_the_fees : 'Has paid fees all fees for the batch.'
+      transfer_certificate : 'Transfer Certificate'
+      language : 'Language'
+      previous_details : 'Previous Details'
+      previous_educational_details: 'Previous Educational Details'
+      institution_name : 'Institution Name'
+      add_subject : 'Add Subject'
+      student_info: 'Student info'
+      previous_year_result: 'Previous years results overview'
+      class_sec: 'Class/Sec'
+      reports : 'Reports'
+      no_previous_data : 'No Previous data '
+      add_previous_data : 'Add Previous Data'
+      group_tutor : 'Group tutor'
+      immediate_contact : 'Immediate contact'
+      previous_institution : 'Previous Institution'
+      report_center : "Reports center"
+      no_previous_subject : "No Previous Subject Added"
+      subject_wise_result: 'Subject wise results overview'
+      weighted_scores: 'Weighted scores'
+      upcoming_exams: 'Upcoming Exams'
+      view_details: 'View Details'
+      searched_for : 'You have searched for:'
+      listed_by : 'Listed by'
+      search_again : 'Search again'
 
       admission1:
         student_detail_step1 : 'Step 1 - Student details'
-        language : 'Language'
-        enable_sms_feature : 'Enable SMS Feature'
         max_size : '50KB max'
         student_admission_done : 'Student admission done. username is'
         password_is : 'and password is'
         last_course: 'Last Attended Course'
-        address: 'Address'
         unknown : 'Unknown'
         no_admission_notice : 'No student has been admitted yet'
 
@@ -1437,12 +1457,8 @@ en: # locale
         sms_part2 : 'and password is'
 
       previous_data:
-        previous_details : 'Previous Details'
-        sub_title: 'Previous Educational Details'
-        institution_name : 'Institution Name'
-        total_mark : 'Total Mark'
-        add_subject : 'Add Subject'
         skip : 'Skip'
+
       previous_data_edit:
         edit_previous_details : 'Edit Previous Details'
 
@@ -1451,31 +1467,20 @@ en: # locale
         
       profile:
         student_information : 'Student Information'
-        student_profile : 'Student Profile'
-        reports : 'Reports'
-        fees : 'Fees'
         guardians: 'Guardians'
-        language : 'Language'
-        address : 'Address'
         sms_alerts : 'SMS Alerts'
-        group_tutor : 'Group tutor'
         contact_message : 'In case of emergencies, contact :'
         change_contact : 'Change immediate contact'
-        immediate_contact : 'Immediate contact'
-        previous_details : 'Previous Details'
-        previous_institution : 'Previous Institution'
         add_guardian : 'Add Guardian'
         no_guardian : 'No guardian added yet'
         enabled : 'Enabled'
         disabled : 'Disabled'
         generate_tc : "Generate TC"
-        report_center : "Reports center"
-
+        
       reports:
-        reports : 'Reports'
-        sub_title1 : 'Academics'
+        academics : 'Academics'
         recent_exams : 'Recent Exams'
-        subject_wise_result : 'Subjectwise Report'
+        subject_wise_report : 'Subjectwise Report'
         final_report : 'Final Report'
         compare_past : 'Compare with past years'
         current_year_report : 'Current year report'
@@ -1485,9 +1490,6 @@ en: # locale
         exam_goruped : 'Exam Grouped'
 
       fees:
-        student : 'Student'
-        fee_status : 'Fee Status'
-        student_profile : 'Student Profile'
         paid_all : 'Has paid all fees for the batch.'
         paid : 'PAID'
         unpaid : 'UNPAID'
@@ -1496,19 +1498,12 @@ en: # locale
         parent_info : 'Parents Info'
         parents_profile : 'Parents Profile'
         add_guardian : 'Add Guardian'
-        parents : 'Parents/Guardian'
-        
+        parents_guardian : 'Parents/Guardian'
         
       add_guardian:
         add_guardian_details : 'Add Guardian Details'
         office : 'Office'
-
-      view_all:
-        view_details : 'View Details'
-
-      email:
-        
-        
+  
       remove:
         leaving_institution : 'Student leaving institution'
         leaving_institution_message : 'For students leaving the Institution, use this option to remove them from the list of active students and place them in the former students list.'
@@ -1524,20 +1519,10 @@ en: # locale
         description1 : "Completely delete student's records from the school's databases. Use this option only if you created the student record by accident and want to remove it completely."
         description2 : "Warning: All records will be deleted for the student and cannot be recovered."
 
-
-      advanced_search:
-        searched_for : 'You have searched for:'
-        listed_by : 'Listed by'
-        search_again : 'Search again'
-        
-
-
       edit_admission4:
         enter_admission_details : 'Edit admission details'
  
-
       academic_report:
-        weighted_scores: 'Weighted scores'
         class_average: 'Class average'
         examination_wise_performance: 'Examination - wise performance'
         cumulative_performance: 'Cumulative Performance'
@@ -1548,22 +1533,12 @@ en: # locale
       edit:
         edit_details : 'Edit Details'
         necessary_field: 'necessary-field'
-        examination_results : 'Examination Results'
-        student_info: 'Student info'
-        previous_year_result: 'Previous years results overview'
-        class_sec: 'Class/Sec'
-        subject_wise_result: 'Subject wise results overview'
-        upcoming_exams: 'Upcoming Exams'
-
-
-
-
+        
    ## traslation for finance controller
     finance:
       index:
         finance: 'Finance'
         manage : 'Manage'
-        fees : 'Fees'
         transactions : 'Transactions'
         creates_expense_and_income : 'Creates expense and income'
         donations : 'Donations'
@@ -1643,7 +1618,6 @@ en: # locale
         master : 'Master'
         aditional : 'aditional'
       master_fees:
-        particulars : 'Particulars'
         no_categories_to_display :  'No Categories to display'
         create_using : 'Create using'
       master_category_particulars:
@@ -1703,13 +1677,10 @@ en: # locale
         student_category : 'Student Category'
         due_date_exceeded_collect_fine : 'Due date has been exceeded. Please collect fine amount.'
         add_fine : 'Add Fine'
-        fine : 'Fine'
         amount_to_pay : 'Amount to pay'
-        partial_payment_on : 'Partial Payment on'
         pay_fees : 'Pay Fees'
         fees_paid : 'Fees Paid'
         print_receipt : 'Print receipt'
-        total_fees : 'Total Fees'
         fee_collection_name : 'Fee Collection Name'
         no_fee_defaulters : 'There are no fee defaulters'
         edit_fee_collection_date : 'Edit fee collection date'
@@ -1959,7 +1930,6 @@ en: # locale
         class_average_marks : "Class Average Marks"
         class_average : "Class Average"
         grouped_exam_reports : "Grouped exam Reports"
-        examination_results : "Examination result"
         connect_exams : "Connect Exams"
         resend_sms_notification : "Resend SMS notification"
         view_exam_groups : "View Exam Groups"
@@ -2036,7 +2006,7 @@ en: # locale
         select_class_to_edit : 'Select class to edit'
         go : 'Go'
       edit2:
-        publish : 'Publish'
+       
         time_table_is_being_generated : 'Time table is being generated.Please stay on the page'
         warning : 'Warning'
         no_teacher_associated : 'No teacher associated to this subject'

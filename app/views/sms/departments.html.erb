@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/sms_icon.png" alt="" />
-  <h1>SMS</h1>
-  <h3><%= t('sms_settings.index.departments') %></h3>
+  <h1><%= t('sms') %></h1>
+  <h3><%= t('departments') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -35,8 +35,8 @@
 
     <div id="list">
       <div class="sel-list">
-        <%= t('sms_settings.index.select') %> : <%= link_to_function "#{t('.all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
-<%= link_to_function "#{t('.none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+        <%= t('select') %> : <%= link_to_function "#{t('all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+<%= link_to_function "#{t('none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
       </div>
 <% @departments.each do |dept| %>
      <div class="name_list<%=cycle('odd', 'even')%>"><li>
@@ -50,7 +50,7 @@
 <%= text_area :send_sms,:message, :rows=>5,:cols=>30 %><br/>
 </div>
 </div>
-  <%= submit_tag "#{t('sms_settings.index.send_sms')}",:class=>'submit_button' %>
+  <%= submit_tag "#{t('send_sms')}",:class=>'submit_button' %>
 
 <% end %>
 

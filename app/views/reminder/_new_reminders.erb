@@ -21,13 +21,13 @@
 
 <ul id="sent-list">
 <% unless @new_reminders.empty? %>
-  <li class="heading"> From </li>
+  <li class="heading"><%= t('from') %></li>
 <% @new_reminders.each do |r| %>
   <li>
     <div class="sent-name"><%= link_to "#{Employee.find(r.from).first_name}", :controller=>"employee", :action=>"new_reminders", :id=>@employee.id, :id2=>r.id %></div>
   </li>
 <% end %>
 <% else %>
-<p class="flash-msg">No new messages.</p>
+<p class="flash-msg"><%= t('no_new_message') %></p>
 <% end %>
 </ul>
