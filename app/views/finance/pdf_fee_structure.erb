@@ -22,7 +22,7 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2>Fee Structure</h2>
+  <h2><%= t('fees_structure') %></h2>
   <div class="hor_line"></div>
 
 
@@ -34,7 +34,7 @@
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="table-header"><td class="col-pdf">Sl no.</td><td class="col-pdf"> Particulars </td><td class="col-pdf"> Amount </td></tr>
+        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('particulars') %></td><td class="col-pdf"><%= t('amount') %></td></tr>
         <% i=0 %>
         <% c='even' %>
         <% unless @fee_particulars.nil? %>
@@ -48,7 +48,7 @@
         <% end %>
 
         <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-          <td class="col-8" colspan="2">Total Fees</td>
+          <td class="col-8" colspan="2"><%= t('total_fees') %></td>
           <td class="col-pdf">&nbsp;<%= "#{@currency_type.to_s} #{@total.to_s}" %></td>
         </tr>
 
@@ -57,7 +57,7 @@
           <tr class="tr-blank"></tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-1" ></td>
-            <td class="col-1" colspan="2" ><span>Discount<span></td>
+            <td class="col-1" colspan="2" ><span><%= t('discount') %><span></td>
             
           </tr>
           <% @batch_discounts.each do |d| %>
@@ -88,7 +88,7 @@
           <tr class="tr-blank"></tr>
 
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-8" colspan="2" >Total Discount</td>
+            <td class="col-8" colspan="2" ><%= t('total_discount') %></td>
             <td class="col-6" ><%= "#{@total_discount} %" %></td>
           </tr>
 
@@ -96,7 +96,7 @@
           <tr class="tr-blank"></tr>
           <% net_fee = (@total - ((@total*@total_discount)/100)) %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-8" colspan="2" >Fee to be paid</td>
+            <td class="col-8" colspan="2" ><%= t('fees_to_be_paid') %></td>
             <td class="col-6" ><%= "#{@currency_type.to_s} #{net_fee.to_s}" %></td>
           </tr>
         <% end %>

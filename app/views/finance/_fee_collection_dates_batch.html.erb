@@ -24,7 +24,7 @@
     <td><%= t('name') %></td>
     <td><%= t('start_date') %></td>
     <td><%= t('end_date') %></td>
-    <td><%= t('message_body_part6') %></td>
+    <td><%= t('due_date') %></td>
     <td></td>
   </tr>
 
@@ -45,5 +45,5 @@
 </table>
 </div>
 <%  else %>
-<p class="flash-msg">Sorry! No Fee Collection exist</p>
+<p class="flash-msg"><%= t('no_fee_collection_exist') %></p>
 <% end %>

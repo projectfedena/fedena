@@ -22,16 +22,16 @@
 <div id="form-errors"> </div>
 
  <div class="label-field-pair">
-    <label for="reason"> Name </label>
+    <label for="reason"><%= t('name') %></label>
     <div class="text-input-bg"><%= form.text_field :name, :disabled=>true %></div>
  </div>
  <div class="label-field-pair">
-    <label for="reason"> Discount(%) </label>
+    <label for="reason"><%= t('discount') %>(%) </label>
     <div class="text-input-bg"><%= form.text_field :discount %></div>
  </div>
 
 <div id="submit-button">
-      <%=  submit_tag "► Update",:class=>'submit_button' %>
+      <%=  submit_tag "► #{t('update')}",:class=>'submit_button' %>
   </div>
 
   <% end %>

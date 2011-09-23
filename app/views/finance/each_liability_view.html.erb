@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/show_finance.png" alt="" />
-  <h1><%= t('liability.liability_view') %></h1>
+  <h1><%= t('liability_view') %></h1>
   <h3><%= @liability.title %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -29,11 +29,11 @@
 
 
   <div id="liability-body">
-    <div id="liability-title">Liability Name : <%= @liability.title%></div>
+    <div id="liability-title"><%= t('liability_name') %> : <%= @liability.title%></div>
     <div id="liability-description"><%= @liability.description %></div>
     <br/>
-    <div id="liability-amt">Amount : <%=@currency_type + " "%><%= @liability.amount%></div>
-    <div id="liability-date">Created At : <%= @liability.created_at.strftime("%A, %d %B, %Y") %></div>
+    <div id="liability-amt"><%= t('amount') %> : <%=@currency_type + " "%><%= @liability.amount%></div>
+    <div id="liability-date"><%= t('created_at') %> : <%= @liability.created_at.strftime("%A, %d %B, %Y") %></div>
   </div>
 
 

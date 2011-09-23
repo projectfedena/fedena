@@ -22,7 +22,7 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2>Donation Receipt</h2>
+  <h2><%= t('donation_receipt') %></h2>
   <div class="hor_line"></div>
 
 
@@ -30,21 +30,21 @@
   <div class="report">
 
     <div id ="main_info">
-      <h4> <%= "Donor : #{@donation.donor}" %></h4>
+      <h4> <%= "#{t('donor')}: #{@donation.donor}" %></h4>
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
 
             <tr class="even">
-              <td class="col-pdf">Description</td>
+              <td class="col-pdf"><%= t('description') %></td>
               <td class="col-pdf"><%= @donation.description %></td>
             </tr>
             <tr class="odd">
-              <td class="col-pdf">Amount</td>
+              <td class="col-pdf"><%= t('amount') %></td>
               <td class="col-pdf"><%= @currency_type.to_s+" "+@donation.amount.to_s %></td>
             </tr>
             <tr class="even">
-              <td class="col-pdf">Transaction id</td>
+              <td class="col-pdf"><%= t('transaction_id') %></td>
               <td class="col-pdf"><%= @donation.transaction_id %></td>
             </tr>
          

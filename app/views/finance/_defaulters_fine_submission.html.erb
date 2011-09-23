@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="fee-defaulters">
-  <h5><%= t('fees_submission_index.due_date_exceeded_collect_fine') %> : </h5>
+  <h5><%= t('due_date_exceeded_collect_fine') %> : </h5>
 <% form_for :fine, :url => {:action => 'update_defaulters_fine_ajax' } do |form| %>
  <div class="label-field-pair">
    <div class="text-input-bg">
@@ -26,7 +26,7 @@
   <%= form.hidden_field :student, :value => @student.id %>
   <%= form.hidden_field :date, :value => @date.id %>
 </div>
-      <%=  submit_tag "► #{t('fees_submission_index.add_fine')}",:class=>'submit_button2' %>
+      <%=  submit_tag "► #{t('add_fine')}",:class=>'submit_button2' %>
 <% end %>
 
 </div>

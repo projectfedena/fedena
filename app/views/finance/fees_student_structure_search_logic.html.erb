@@ -19,14 +19,14 @@
 
 
 <% if @students_result.nil? %>
-  <div id="no_result"><%= t('student.index.no_users_found') %></div>
+  <div id="no_result"><%= t('no_users') %></div>
 <%else%>
   <% @students_result.each do |t| %>
     <div id="ajax_result">
       <% link_value = t.full_name %>
       <%= link_to link_value, :controller => "finance", :action => "fees_structure_dates", :id => t.id %><br/>
-      <small><%= t('.batch') %>: <%= t.batch.full_name%></small>
-      <small><br/><%= t('.adm_no.') %><%= t.admission_no %></small> <%= @st.to_s %>
+      <small><%= t('batch') %>: <%= t.batch.full_name%></small>
+      <small><br/><%= t('adm_no.') %><%= t.admission_no %></small> <%= @st.to_s %>
     </div>
   <%end%>
 <%end%>

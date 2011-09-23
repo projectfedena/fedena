@@ -27,7 +27,7 @@
       <div class="edit">
         <% transaction = FinanceTransaction.find(:all, :conditions=>{:category_id=>cat.id}) %>
         <% if transaction.blank? %>
-        <%= link_to_remote t('delete'), :url => { :action => 'category_delete', :id => cat.id } , :confirm=>"Are you sure to delete this finance category?" %>
+        <%= link_to_remote t('delete'), :url => { :action => 'category_delete', :id => cat.id } , :confirm=>"#{t('are_you_sure_to_delete')}" %>
         <% else %>
         
         <%= link_to_remote "<s>#{t('delete')}</s>", :url => { :action => '', :id => "" } %>

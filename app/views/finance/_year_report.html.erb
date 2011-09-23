@@ -20,9 +20,9 @@
 
 <div id="fees-table">
   <div class="fees-th">
-    <div class="fees-table-description"><%= t('.description') %></div>
-    <div class="fees-table-expenses"><%= t('expense_create.expense') %></div>
-    <div class="fees-table-income"><%= t('student.admission2.income') %></div>
+    <div class="fees-table-description"><%= t('description') %></div>
+    <div class="fees-table-expenses"><%= t('expense') %></div>
+    <div class="fees-table-income"><%= t('income') %></div>
   </div>
 
   <%income_total = 0%>
@@ -46,7 +46,7 @@
   <% end %>
 
   <div class="fees-tr">
-    <div class="fees-table-description"><%= link_to t('year_report.salary_account') , :action => 'salary_department_year' , :date => @academic_year%> </div>
+    <div class="fees-table-description"><%= link_to t('salary_account') , :action => 'salary_department_year' , :date => @academic_year%> </div>
     <div class="fees-table-expenses"> <%=expenses_total%> </div>
   </div>
 
@@ -61,12 +61,12 @@
   <%end%>
 
   <div class="fees-tr">
-    <div class="fees-table-description"><%= link_to t('year_report.direct_expense') , :action => 'direct_expenses_year',:date => @academic_year%> </div>
+    <div class="fees-table-description"><%= link_to t('direct_expense') , :action => 'direct_expenses_year',:date => @academic_year%> </div>
     <div class="fees-table-expenses"> <%=direct_expenses%> </div>
   </div>
 
   <div class="fees-tr">
-    <div class="fees-table-description"><%= link_to t('year_report.direct_income') , :action => 'direct_income_year',:date => @academic_year%> </div>
+    <div class="fees-table-description"><%= link_to t('direct_income') , :action => 'direct_income_year',:date => @academic_year%> </div>
     <div class="fees-table-income"> <%=direct_income%> </div>
   </div>
 
@@ -90,7 +90,7 @@
   <%donations_total=donations_income-donations_expenses %>
 
   <div class="fees-tr">
-    <div class="fees-table-description"><%= link_to t('index.donations') , :action => 'donations_report_year',:date => @academic_year%> </div>
+    <div class="fees-table-description"><%= link_to t('donations') , :action => 'donations_report_year',:date => @academic_year%> </div>
     <div class="fees-table-income"> <%=donations_total%></div>
   </div>
 
@@ -100,17 +100,17 @@
   <%end%>
 
   <div class="fees-tr">
-    <div class="fees-table-description"><%= link_to t('student.profile.fees') , :action => 'fees_report_year' , :date => @academic_year%> </div>
+    <div class="fees-table-description"><%= link_to t('fees') , :action => 'fees_report_year' , :date => @academic_year%> </div>
     <div class="fees-table-income"> <%=fees_total%> </div>
   </div>
 
   <div class="fees-th">
-    <div class="fees-table-description"><%= t('attendance_reports.index.total') %></div>
+    <div class="fees-table-description"><%= t('total') %></div>
     <div class="fees-table-expenses"><%=expenses_total%></div>
     <div class="fees-table-income"><%=income_total%></div>
   </div>
   <div class ="fees-th-grandtotal">
-    <div class="fees-table-description"><%= t('year_report.grand_total') %></div>
+    <div class="fees-table-description"><%= t('grand_total') %></div>
     <div class="fees-table-total"><%=income_total-expenses_total%></div>
   </div>
 </div>

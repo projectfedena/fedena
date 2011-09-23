@@ -22,17 +22,17 @@
 
 
    <div class="label-field-pair">
-    <label for="reason"> Name </label>
+    <label for="reason"><%= t('name') %></label>
     <div class="text-input-bg"><%= form.text_field :name %></div>
  </div>
 
  
 
  <div class="label-field-pair">
-    <label for="reason"> Fee Category:</label>
+    <label for="reason"><%= t('fee_category') %>:</label>
     <div class="text-input-bg">
       <%= select("","", @fee_categories.map { |item| [item.name, item.name] },
-      {:prompt => "Select category" },
+      {:prompt => "#{t('select_category')}" },
       {:onchange => "#{remote_function(:url => {:action => "fee_collection_batch_update"}, :with => "'id='+value")}"})
       %></div>
  </div>
@@ -40,12 +40,12 @@
   <div id ="batchs"></div>
 
     <div class="label-field-pair">
-    <label for="reason"> Discount(%) </label>
+    <label for="reason"><%= t('discount') %>(%) </label>
     <div class="text-input-bg"><%= form.text_field :discount %></div>
  </div>
 
     <div id="submit-button">
-      <%=  form.submit "► Create" %>
+      <%=  form.submit "►#{t('create')}" %>
   </div>
 
     <% end %>

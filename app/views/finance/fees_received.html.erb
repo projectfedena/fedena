@@ -18,9 +18,9 @@
 #under the License. -%>
 
 
-<h2>Fee submission</h2>
+<h2><%= t('fees_submission') %></h2>
 
-<p><%= link_to "#{t('index.finance')}", :action => "index" %></p>
+<p><%= link_to "#{t('finance')}", :action => "index" %></p>
 
 <% @fee_components.each do |c| %>
   <%= c.fee_element.label %> - <%= c.fee_element.amount %> <br/>

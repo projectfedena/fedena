@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/show_finance.png" alt="Finance" />
-  <h1>Employee Salary Report</h1>
-  <h3>Payslip for <%= @monthly_payslips.first.active_or_archived_employee.full_name %> on <%= @salary_date %></h3>
+  <h1><%= t('employee_salary_report') %></h1>
+  <h3><%= t('payslip_for') %><%= @monthly_payslips.first.active_or_archived_employee.full_name %> on <%= @salary_date %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -33,10 +33,10 @@
 
 
 <ul class="item-list">
-  <li class="heading">Payslip generated for <%= @monthly_payslips.first.active_or_archived_employee.full_name %></li>
+  <li class="heading"><%= t('payslip_generated_for') %><%= @monthly_payslips.first.active_or_archived_employee.full_name %></li>
 </ul>
 <ul class="item-list">
-  <li class="heading">Salary:</li>
+  <li class="heading"><%= t('salary') %>:</li>
   <% @monthly_payslips.each do |mp| %>
     <% unless mp.payroll_category.is_deduction == true %>
       <li class="list<%=cycle('odd', 'even')%>">
@@ -56,13 +56,13 @@
     <% end %>
   <% end %>
   <li class="list<%=cycle('odd', 'even')%>">
-    <div class="item-name"><b>Total Salary</b></div>
+    <div class="item-name"><b><%= t('total_salary') %></b></div>
     <div class="item-edit"><b><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %@salary[:net_non_deductionable_amount]  %></b></div>
   </li>
 </ul>
 
 <ul class="item-list">
-  <li class="heading"><%= t('department_payslip.deductions') %>:</li>
+  <li class="heading"><%= t('deductions') %>:</li>
   <% @monthly_payslips.each do |mp| %>
     <% unless mp.payroll_category.is_deduction == false %>
       <li class="list<%=cycle('odd', 'even')%>">
@@ -82,15 +82,15 @@
     <% end %>
   <% end %>
   <li class="list<%=cycle('odd', 'even')%>">
-    <div class="item-name"><b>Total Deductions </b></div>
+    <div class="item-name"><b><%= t('total_deductions') %></b></div>
     <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span> <b><%="%.2f" %@salary[:net_deductionable_amount] %></b></div>
   </li>
 </ul>
 
 <ul class="item-list">
-  <li class="heading"><%= t('department_payslip.total') %>:</li>
+  <li class="heading"><%= t('total') %>:</li>
   <li class="listodd">
-    <div class="item-name"><b>Net Salary </b></div>
+    <div class="item-name"><b><%= t('net_salary') %></b></div>
     <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span><b> <%="%.2f" %@salary[:net_amount]%></b></div>
   </li>
 </ul>

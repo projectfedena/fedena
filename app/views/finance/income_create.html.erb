@@ -19,8 +19,8 @@
 
 <div id="content-header">
    <img src="/images/show_finance.png" alt="" />
-  <h1>Create Income </h1>
-  <h3>Create New Income</h3>
+  <h1><%= t('create_income') %></h1>
+  <h3><%= t('create_new_income') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -28,7 +28,7 @@
 
 <div id="inner-tab-menu">
  <ul>
-  <li><%= link_to "Incomes", :action => "income_list" %></li>
+  <li><%= link_to "#{t('incomes')}", :action => "income_list" %></li>
  </ul>
 </div>
 

@@ -20,8 +20,8 @@
 
 <table id="listing" width="99%" align="center">
   <tr class="tr-head">
-    <td><%= t('asset_liability.liability') %></td>
-    <td><%= t('view_asset.created_at') %></td>
+    <td><%= t('liability') %></td>
+    <td><%= t('created_at') %></td>
     <td></td>
   </tr>
 
@@ -33,8 +33,8 @@
 
         <td class="col-3"><%=link_to l.created_at.strftime("%d-%m-%Y"),:action =>"each_liability_view",:id => l.id%></td>
         <td class="col-1">
-        <%= link_to_remote t('.edit'), :url => { :action => 'edit_liability', :id => l.id } %> |
-        <%= link_to_remote t('.delete'), :url => { :action => 'delete_liability', :id => l.id } %></td>
+        <%= link_to_remote t('edit'), :url => { :action => 'edit_liability', :id => l.id } %> |
+        <%= link_to_remote t('delete'), :url => { :action => 'delete_liability', :id => l.id } %></td>
       </tr>
     <% else %>
       <tr class="tr-<%= cycle('odd', 'even')%> ">
@@ -42,8 +42,8 @@
 
         <td class="col-3"><%=link_to l.created_at.strftime("%d-%m-%Y"),:action =>"each_liability_view",:id => l.id%></td>
         <td class="col-1">
-          <%= link_to_remote t('.edit'), :url => { :action => 'edit_liability', :id => l.id } %> |
-          <%= link_to_remote t('.delete'), :url => { :action => 'delete_liability', :id => l.id } ,:confirm=>t('.delete_confirm_msg')%>
+          <%= link_to_remote t('edit'), :url => { :action => 'edit_liability', :id => l.id } %> |
+          <%= link_to_remote t('delete'), :url => { :action => 'delete_liability', :id => l.id } ,:confirm=>t('delete_confirm_msg')%>
         </td>
 
       </tr>

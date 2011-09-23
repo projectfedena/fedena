@@ -19,7 +19,7 @@
 
 <div id="content-header">
       <img src="/images/show_finance.png" alt="" />
-      <h1><%= t('index.special_fees_for_student') %></h1>
+      <h1><%= t('special_fees_for_student') %></h1>
   <h3><%= @student.full_name%></h3>
   <div id="app-back-button">
   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -30,7 +30,7 @@
   <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
   <div class="text-input-bg">
     <%= select  :fees_submission, :dates_id, @dates.map { |e| [e.name+" : "+e.start_date.to_s, e.id]},
-      {:prompt => "#{t('index.select_fees_collection_date')}"},
+      {:prompt => "#{t('select_fees_collection_date')}"},
       {:onChange => "#{remote_function( :url =>
       {:action => "update_fees_specific"},
       :with => "'date='+value+'&id='+#{@student.id}") }"} %>

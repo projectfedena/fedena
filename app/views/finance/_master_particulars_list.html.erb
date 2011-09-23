@@ -20,12 +20,12 @@
 <% unless @particulars.empty? %>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">
-      <td><%= t('.sl_no') %></td>
-      <td><%= t('.category') %></td>
-      <td><%= t('fees_submission_index.student_category')%></td>
-      <td><%= t('.admission_number') %></td>
-      <td><%= t('.amount') %><br/> ( <%=currency  %> )</td>
-      <td><%= t('index.created_date') %></td>
+      <td><%= t('sl_no') %></td>
+      <td><%= t('category') %></td>
+      <td><%= t('student_category')%></td>
+      <td><%= t('admission_number') %></td>
+      <td><%= t('amount') %><br/> ( <%=currency  %> )</td>
+      <td><%= t('created_date') %></td>
       <td></td>
     </tr>
     <tr class="tr-blank"></tr>
@@ -48,13 +48,13 @@
         <td class="col-3"><%= fees.amount%></td>
         <td class="col-3"><%= fees.created_at.strftime("%m-%d-%Y") %></td>
         <td class="col-1">
-          <span class="small"> <%= link_to_remote 'Edit', :url => { :action => 'master_category_particulars_edit',:id => fees.id} %></span>
+          <span class="small"> <%= link_to_remote "#{t('edit')}", :url => { :action => 'master_category_particulars_edit',:id => fees.id} %></span>
           <%#  unless @finance_fee_category.check_fee_collection == false %>
-            <span class="small"> <%= link_to_remote t('.delete'),:confirm=>"#{t('master_category_particulars.delete_msg')}", :url => { :action => 'master_category_particulars_delete',:id => fees.id} %></span>
+            <span class="small"> <%= link_to_remote t('delete'),:confirm=>"#{t('master_category_particulars.delete_msg')}", :url => { :action => 'master_category_particulars_delete',:id => fees.id} %></span>
           <%# else %>
             <%#*<span class="small-strike">delete</span>%>
           <%# end %>
-          <span class="small"> <%= link_to_remote t('.edit'), :url => { :action => 'master_category_particulars_edit',:id => fees.id} %></span>
+          <span class="small"> <%= link_to_remote t('edit'), :url => { :action => 'master_category_particulars_edit',:id => fees.id} %></span>
         </td>
       </tr>
     <% end %>
@@ -65,9 +65,9 @@
 <% else %>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">
-      <td><%= t('master_category_particulars.no_particulars_to_display') %>!</td>
+      <td><%= t('no_particulars_to_display') %>!</td>
     </tr>
   </table>
 
 <% end%>
-<%= link_to t('.back'),{:action => 'master_fees'},:class=>'user_button' %>
+<%= link_to t('back'),{:action => 'master_fees'},:class=>'user_button' %>

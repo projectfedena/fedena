@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/show_finance.png" alt="" />
-  <h1><%= t('asset.asset_view') %></h1>
+  <h1><%= t('asset_view') %></h1>
   <h3><%= @asset.title %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -29,11 +29,11 @@
 
 
   <div id="asset-body">
-    <div id="asset-title"><%= t('asset.asset_name') %> : <%= @asset.title%></div>
+    <div id="asset-title"><%= t('asset_name') %> : <%= @asset.title%></div>
     <div id="asset-description"><%= @asset.description %></div>
     <br/>
-    <div id="asset-amt"><%= t('.amount') %> : <%=  @currency_type + " "%><%= @asset.amount%></div>
-    <div id="asset-date"><%= t('view_asset.created_at') %> : <%= @asset.created_at.strftime("%A, %d %B, %Y") %></div>
+    <div id="asset-amt"><%= t('amount') %> : <%=  @currency_type + " "%><%= @asset.amount%></div>
+    <div id="asset-date"><%= t('created_at') %> : <%= @asset.created_at.strftime("%A, %d %B, %Y") %></div>
   </div>
 
 

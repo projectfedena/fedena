@@ -20,8 +20,8 @@
 
 <div id="content-header">
     <img src="/images/show_finance.png" alt="" />
-    <h1><%= t('layouts.application.top_nav_finance') %></h1>
-    <h3><%= t('fees_submission_index.fees_submission') %></h3>
+    <h1><%= t('finance') %></h1>
+    <h3><%= t('fees_submission') %></h3>
   <div id="app-back-button">
    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -34,7 +34,7 @@
   <div id="search_box_bg">
       <form name="search_form" action="" style="display:inline;">
         <label for="user_name">
-          <%= t('.search') %>
+          <%= t('search') %>
           <%= image_tag("loader.gif",
               :align => "absmiddle",
               :border => 0,

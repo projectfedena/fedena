@@ -18,11 +18,11 @@
 #under the License. -%>
 
 <div class="info">
-  <div class="name">Fee Collection Name</div><div class="val"><span>:</span><%= @fee_collection.name %></div>
-  <div class="name">Fee Category Name</div><div class="val"><span>:</span><%= @fee_category.name %></div>
-  <div class="name">Start date</div><div class="val"><span>:</span><%= @fee_collection.start_date %></div>
-  <div class="name">End date</div><div class="val"><span>:</span><%= @fee_collection.end_date %></div>
-  <div class="name">Due date</div><div class="val"><span>:</span><%= @fee_collection.due_date %></div>
+  <div class="name"><%= t('fee_collection_name') %></div><div class="val"><span>:</span><%= @fee_collection.name %></div>
+  <div class="name"><%= t('fee_category_name') %></div><div class="val"><span>:</span><%= @fee_category.name %></div>
+  <div class="name"><%= t('start_date') %></div><div class="val"><span>:</span><%= @fee_collection.start_date %></div>
+  <div class="name"><%= t('end_date') %></div><div class="val"><span>:</span><%= @fee_collection.end_date %></div>
+  <div class="name"><%= t('due_date') %></div><div class="val"><span>:</span><%= @fee_collection.due_date %></div>
   <div class="extender"></div>
 </div>
 <% total_fees =0 %>
@@ -30,8 +30,8 @@
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">
       <td>Sl no.</td>
-      <td><%= t('master_fees.particulars') %></td>
-      <td><%= t('.amount') %>  (<%= currency %>  )</td>
+      <td><%= t('particulars') %></td>
+      <td><%= t('amount') %>  (<%= currency %>  )</td>
     </tr>
     <% i = 0 %>
     <tr class="tr-blank"></tr>
@@ -49,7 +49,7 @@
     <tr class="tr-blank"></tr>
 
     <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
-      <td class="col-8" colspan="2" >Total Fees</td>
+      <td class="col-8" colspan="2" ><%= t('total_fees') %></td>
       <td class="col-6" ><%= total_fees%></td>
     </tr>
 
@@ -58,7 +58,7 @@
       <tr class="tr-blank"></tr>
       <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
         <td class="col-1"></td>
-        <td class="col-1" colspan="2" ><span>Discount</span></td>
+        <td class="col-1" colspan="2" ><span><%= t('discount') %></span></td>
       </tr>
       <% @batch_discounts.each do |d| %>
         <tr class="tr-<%= cycle("odd","even") %>">
@@ -88,7 +88,7 @@
       <tr class="tr-blank"></tr>
 
       <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
-        <td class="col-8" colspan="2" >Total Discount</td>
+        <td class="col-8" colspan="2" ><%= t('total_discount') %></td>
         <td class="col-6" ><%= "#{@total_discount} %" %></td>
       </tr>
 
@@ -96,7 +96,7 @@
       <tr class="tr-blank"></tr>
       <% net_fee = (total_fees - ((total_fees*@total_discount)/100)) %>
       <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
-        <td class="col-8" colspan="2" >Fee to be paid</td>
+        <td class="col-8" colspan="2" ><%= t('fees_to_be_paid') %></td>
         <td class="col-6" ><%= net_fee %></td>
       </tr>
 
@@ -104,4 +104,4 @@
   </table>
 
 <% end %>
-<%= link_to t('.pdf_report'),{:action => "pdf_fee_structure",:id => @student.id,:id2=>@fee_collection.id},:class => 'user_button'%>
+<%= link_to t('pdf_report'),{:action => "pdf_fee_structure",:id => @student.id,:id2=>@fee_collection.id},:class => 'user_button'%>

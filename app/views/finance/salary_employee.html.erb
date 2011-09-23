@@ -20,8 +20,8 @@
 
 <div id="content-header">
   <img src="/images/show_finance.png" alt="Finance" />
-  <h1><%= @department.name %> Department Salary Report</h1>
-  <h3>Finance Tranasactions</h3>
+  <h1><%= @department.name %><%= t('department_salary_report') %></h1>
+  <h3><%= t('finance_transactions') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -31,10 +31,10 @@
   <% total=0 %>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">
-      <td>Sl no.</td>
-      <td>Employee Name</td>
-      <td>Salary ( <%= currency %> )</td>
-      <td>Salary Date</td>
+      <td><%= t('sl_no') %></td>
+      <td><%= t('employee_name') %></td>
+      <td><%= t('salary') %>( <%= currency %> )</td>
+      <td><%= t('salary_date') %></td>
     </tr>
     <tr class="tr-blank"></tr>
     <% amount=0 %>
@@ -65,7 +65,7 @@
     <tr class="tr-blank"></tr>
     <tr class="tr-head">
       <td></td>
-      <td align="right">Total Salary</td>
+      <td align="right"><%= t('total_salary') %></td>
       <td align="right"><%=total  %></td>
       <td></td>
     </tr>

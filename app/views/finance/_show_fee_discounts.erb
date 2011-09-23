@@ -25,10 +25,10 @@
 
 <table id="listing">
   <tr class="tr-head">
-    <td>Name</td>
-    <td>Student Category</td>
-    <td>Student Name</td>
-    <td>Discount (%)</td>
+    <td><%= t('name') %></td>
+    <td><%= t('student_category') %></td>
+    <td><%= t('student_name') %></td>
+    <td><%= t('discount') %>(%)</td>
     <% if @discount_edit %>
     <td></td>
     <% end %>
@@ -50,9 +50,9 @@
       <td class="col-3"><%= f.discount %></td>
       <% if @discount_edit %>
       <td class="col-1">
-        <div class="edit"><%= link_to_remote 'Edit', :url => {:action => 'edit_fee_discount', :id => f.id} %> |&nbsp; </div>
+        <div class="edit"><%= link_to_remote "#{t('edit')}", :url => {:action => 'edit_fee_discount', :id => f.id} %> |&nbsp; </div>
 
-        <div class="delete"><%= link_to_remote 'Delete', :url => {:action => 'delete_fee_discount', :id => f.id} %></div>
+        <div class="delete"><%= link_to_remote "#{t('delete')}", :url => {:action => 'delete_fee_discount', :id => f.id} %></div>
       </td>
         <% end %>
     </tr>
@@ -60,6 +60,6 @@
 </table>
 
     <% else %>
-  <p class="flash-msg"> Sorry! No discounts found </p>
+  <p class="flash-msg"> <%= t('no_discount_found') %></p>
 
     <% end %>

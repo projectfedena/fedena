@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/show_finance.png" alt="" />
-  <h1><%= t('asset.finance_monthly_report') %></h1>
-  <h3><%= t('index.donations') %></h3>
+  <h1><%= t('finance_monthly_report') %></h1>
+  <h3><%= t('donations') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -33,10 +33,10 @@
   <%donations_expenses=0%>
   <table id="listing">
     <tr class="tr-head">
-      <td><%= t('index.description') %></td>
-      <td><%= t('expense_create.expense') %></td>
-      <td><%= t('income_create.income') %></td>
-      <td><%= t('.date') %></td>
+      <td><%= t('description') %></td>
+      <td><%= t('expense') %></td>
+      <td><%= t('income') %></td>
+      <td><%= t('date') %></td>
     </tr>
     <% @donations.each do |d| %>
       <tr class="tr-<%= cycle('even','odd') %>">
@@ -63,7 +63,7 @@
     <% end %>
     <%donations_total=donations_income-donations_expenses %>
     <tr class="tr-head">
-      <td><%= t('.total') %></td>
+      <td><%= t('total') %></td>
       <%= '<td></td>' if donations_income > donations_expenses %>
       <td <%='colspan="2"' if donations_income<donations_expenses%> ><%=donations_total%></td>
         <td></td>

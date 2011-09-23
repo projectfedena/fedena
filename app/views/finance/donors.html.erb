@@ -19,21 +19,21 @@
 
 <div id="content-header">
    <img src="/images/show_finance.png" alt="" />
-   <h1><%= t('index.donations') %></h1>
-   <h3><%=t('donation.donors')  %></h3>
+   <h1><%= t('donations') %></h1>
+   <h3><%=t('donors')  %></h3>
   <div id="app-back-button">
    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
 <div id="page-yield">
-  <h4> <%= t('index.list_of_donors') %> </h4>
+  <h4> <%= t('list_of_donors') %> </h4>
   <table id="listing">
     <tr class="tr-head">
-      <td><%= t('.name') %></td>
-      <td><%= t('index.description') %></td>
-      <td><%= t('.amount') %></td>
-      <td><%= t('view_asset.created_at') %></td>
+      <td><%= t('name') %></td>
+      <td><%= t('description') %></td>
+      <td><%= t('amount') %></td>
+      <td><%= t('created_at') %></td>
       <td></td>
     </tr>
 <% @donations.each do |d| %>
@@ -42,7 +42,7 @@
   <td class="col-3"><%= d.description %></td>
   <td class="col-3"><%= d.amount %></td>
 <td class="col-3"><%= d.transaction_date.strftime("%d-%m-%y") unless d.transaction_date.nil?%></td>
- <td class="col-3 links_class"><%= link_to t('.edit'), :action => 'donation_edit', :id => d.id %>  |  <%= link_to t('.delete'), :action => 'donation_delete',  :id=> d.id , :confirm => t('.delet_confirm_msg')%></td>
+ <td class="col-3 links_class"><%= link_to t('edit'), :action => 'donation_edit', :id => d.id %>  |  <%= link_to t('.delete'), :action => 'donation_delete',  :id=> d.id , :confirm => t('delete_confirm_msg')%></td>
     </tr>
 <% end %>
 

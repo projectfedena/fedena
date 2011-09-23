@@ -21,12 +21,12 @@
 
 
    <div class="label-field-pair">
-    <label for="reason"> Name </label>
+    <label for="reason"> <%= t('name') %></label>
     <div class="text-input-bg"><%= form.text_field :name %></div>
  </div>
 
-<div class="label-field-pair"><label>Select course : </label>
-        <div class="text-input-bg"> <%= select("","", @courses.map{|c|[c.full_name,c.id]},{:prompt => "Select course"},
+<div class="label-field-pair"><label> <%= t('select_a_course') %> : </label>
+        <div class="text-input-bg"> <%= select("","", @courses.map{|c|[c.full_name,c.id]},{:prompt => "#{t('select_a_course')}"},
             {:onChange => "#{remote_function(:url => {:action => "load_discount_batch"}, :with => "'id='+value")}"})%> </div>
    </div>
 
@@ -39,17 +39,17 @@
 <div id="fee-category-box"></div>
 
    <div class="label-field-pair">
-    <label for="reason"> Admission Number </label>
+    <label for="reason">  <%= t('admission_number') %> </label>
     <div class="text-input-bg"><%= text_field_tag "students" %></div>
  </div>
 
     <div class="label-field-pair">
-    <label for="discount"> Discount(%) </label>
+    <label for="discount">  <%= t('discount') %>(%) </label>
     <div class="text-input-bg"><%= form.text_field :discount %></div>
  </div>
 
     <div id="submit-button">
-      <%=  form.submit "► Create" %>
+      <%=  form.submit "► #{t('create')}" %>
   </div>
 
     <% end %>

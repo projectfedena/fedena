@@ -14,7 +14,7 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
-<label class="head_label"><%= t('additional_fees_list.edit_master_category_for_free') %><span></span></label>
+<label class="head_label"><%= t('edit_master_category_for_free') %><span></span></label>
 
 <div id="grading-levels-form">
 
@@ -39,11 +39,11 @@
       <div class="input-container"><%= calendar_date_select_tag 'additional_fees[end_date]', @collection_date.end_date %></div>
     </div>
     <div class="label-field-pair">
-      <div class="label-container"><label>Due date :</label> </div>
+      <div class="label-container"><label><%= t('due_date') %> :</label> </div>
       <div class="input-container"><%= calendar_date_select_tag 'additional_fees[due_date]', @collection_date.due_date %></div>
     </div>
     <div class="label-field-pair">
-      <div class="label-container"><label>Course :</label></div>
+      <div class="label-container"><label><%= t('course') %> :</label></div>
       <div class="input-container"> <% unless @finance_fee_category.batch_id.nil? %>
           <%= f.text_field :batch, :value => @finance_fee_category.batch.full_name, :disabled => true  %>
         <% else %>

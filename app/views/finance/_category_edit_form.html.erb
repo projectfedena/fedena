@@ -22,7 +22,7 @@
       :complete => 'Modalbox.hide();return false;' do |f| %>
 
 <div class="label-field-pair">
-    <div class="label-container"><label><%= t('payroll.add_category.category_name') %>:</label> </div>
+    <div class="label-container"><label><%= t('category_name') %>:</label> </div>
     <div class="input-container"><%= f.text_field :name %></div>
    </div>
 <div class="label-field-pair">
@@ -30,7 +30,7 @@
     <div class="input-container"><%= f.text_field :description %></div>
    </div>
 <div class="label-field-pair">
-    <div class="label-container"><label><%= t('fee_collection_new.is_this_under_income') %></label> </div>
+    <div class="label-container"><label><%= t('is_this_under_income') %></label> </div>
     <div class="input-container"><%= f.check_box :is_income %> </div>
    </div>
 

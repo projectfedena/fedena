@@ -14,7 +14,7 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
-<label class="head_label"><%= t('add') %> <%= t('master_fees.particulars') %> <%= t('.for') %> <%= t('additional_fees.additional') %> <%= t('index.fees') %><span></span></label>
+<label class="head_label"><%= t('add') %> <%= t('particulars') %> <%= t('for') %> <%= t('additional') %> <%= t('fees') %><span></span></label>
 
 <% form_remote_for :finance_fee_particulars, :url => {:action => 'add_particulars_create',:id => @collection_date.id} do |form| %>
   <div id="form-errors"></div>
@@ -23,24 +23,24 @@
     <div class="input-container"><%= form.text_field :name %></div>
    </div>
      <div class="label-field-pair">
-    <div class="label-container"><label><%= t('index.fees_description') %> :</label> </div>
+    <div class="label-container"><label><%= t('fees_description') %> :</label> </div>
     <div class="input-container"><%= form.text_field :description %></div>
    </div>
 <div class="label-field-pair2">
-  <div class="label-container2"><label><%= t('master_fees.particulars') %> :</label></div>
+  <div class="label-container2"><label><%= t('particulars') %> :</label></div>
     <div class="input-container2">
-      <div class="opt"><%= radio_button("particulars","select","all",:checked => true) %><%= t('all') %></div>
-     <div class="opt"><%= radio_button("particulars","select","student",
+      <div class="opt"><%= radio_button("#{t('particulars')}","#{t('select')}","#{t('all')}",:checked => true) %><%= t('all') %></div>
+     <div class="opt"><%= radio_button("#{t('particulars')}","#{t('select')}","#{t('student_text')}",
       {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
         :with => "'select_value='+value")}"}) %> <%= t('admission_number') %> </div>
-      <div class="opt"> <%= radio_button("particulars","select","category",
+      <div class="opt"> <%= radio_button("#{t('particulars')}","#{t('select')}","#{t('category')}",
       {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
-        :with => "'select_value='+value")}"}) %><%= t('fees_submission_index.student_category') %></div>
+        :with => "'select_value='+value")}"}) %><%= t('student_category') %></div>
     </div>
    </div>
   <div id="student"></div>
     <div class="label-field-pair">
-      <div class="label-container"><label><%= t('index.fees_amount') %> :</label> </div>
+      <div class="label-container"><label><%= t('fees_amount') %> :</label> </div>
     <div class="input-container"><%= form.text_field :amount %></div>
    </div>
     <%=  submit_tag "► #{t('add')}",:class=>'submit_button' %>

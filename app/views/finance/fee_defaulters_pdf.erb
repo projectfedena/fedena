@@ -22,7 +22,7 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2>Fee Defaulters</h2>
+  <h2><%= t('fees_defaulters') %></h2>
   <div class="hor_line"></div>
 
 
@@ -30,11 +30,11 @@
   <div class="report">
 
     <div id ="main_info">
-      <h4> <%= "Class :"+ " " "#{@batch.full_name}" %></h4>
+      <h4> <%= "#{t('class')} :"+ " " "#{@batch.full_name}" %></h4>
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="table-header"><td class="col-pdf">Sl no.</td><td class="col-pdf"> Name </td><td class="col-pdf"> Amount </td></tr>
+        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('amount') %></td></tr>
         <% i = 0 %>
         <% index = 0   %>
         <% @students.each do |s| %>
@@ -42,9 +42,9 @@
             <% i= 0 %>
             <tr class="page-break"><td colspan="3"></td></tr>
             <% if c == 'even' %>
-              <tr class="odd"><td class="col-pdf">Sl no.</td><td class="col-pdf">Name</td><td class="col-pdf">Amount</td></tr>
+              <tr class="odd"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('amount') %></td></tr>
             <% else %>
-              <tr class="even"><td class="col-pdf">Sl no.</td><td class="col-pdf">Name</td><td class="col-pdf">Amount</td></tr>
+              <tr class="even"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('amount') %></td></tr>
             <% end %>
           <% end %>
           <% @fee_collection = FinanceFeeCollection.find(params[:date]) %>

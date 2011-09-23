@@ -14,24 +14,24 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
-<label class="head_label"><%= t('fees_defaulters.edit_particulars_for_fee') %><span></span></label>
+<label class="head_label"><%= t('edit_particulars_for_fee') %><span></span></label>
 
 <% form_remote_for :finance_fee_particulars,
   :url => {:action => 'add_particulars_update',:id => @finance_fee_particulars.id} do |form| %>
 
   <div id="form-errors"></div>
    <div class="label-field-pair">
-   <div class="label-container"><label><%= t('fees_defaulters.fee_name') %> :</label> </div>
+   <div class="label-container"><label><%= t('fee_name') %> :</label> </div>
     <div class="input-container"><%= form.text_field :name %></div>
    </div>
      <div class="label-field-pair">
-    <div class="label-container"><label><%= t('fees_defaulters.fee_description') %> :</label> </div>
+    <div class="label-container"><label><%= t('fee_description') %> :</label> </div>
     <div class="input-container"><%= form.text_field :description %></div>
    </div>
 
   <%  unless @finance_fee_particulars.admission_no.nil? %>
     <div class="label-field-pair">
-    <div class="label-container"><label><%= t('student_attendance.student.admission_no') %> :</label> </div>
+    <div class="label-container"><label><%= t('admission_no') %> :</label> </div>
     <div class="input-container"><%= form.text_field :admission_no, :value => @finance_fee_particulars.admission_no ,
         :disabled => true %></div>
    </div>
@@ -40,7 +40,7 @@
 
   <% unless @finance_fee_particulars.student_category_id.nil? %>
     <div class="label-field-pair">
-    <div class="label-container"><label><%= t('fees_submission_index.student_category') %> :</label> </div>
+    <div class="label-container"><label><%= t('student_category') %> :</label> </div>
     <div class="input-container"><%= form.text_field :student_category_id,
         :value => StudentCategory.find(@finance_fee_particulars.student_category_id).name,
         :disabled => true %></div>
@@ -49,7 +49,7 @@
 
 
      <div class="label-field-pair">
-    <div class="label-container"><label><%= t('fees_defaulters.fee_amount') %> :</label> </div>
+    <div class="label-container"><label><%= t('fee_amount') %> :</label> </div>
     <div class="input-container"><%= form.text_field :amount, :value => @finance_fee_particulars.amount, :disabled => true   %></div>
    </div>
   <%=  submit_tag "► #{t('update')}",:class=>'submit_button' %>
