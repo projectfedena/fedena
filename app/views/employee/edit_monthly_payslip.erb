@@ -53,7 +53,7 @@ $jq(document).ready(function() {
 
     <div class="label-field-pair">
       <label for="salary_date"><%= t('salary_date') %></label>
-      <div class="text-input-bg"><%= text_field_tag :salary_date, @date  %>**<%= t('hr.select_the_last_day_of_the_month') %></div>
+      <div class="text-input-bg"><%= text_field_tag :salary_date, @date  %>**<%= t('select_the_last_day_of_the_month') %></div>
     </div>
     <%= submit_tag "#{t('update')}" %>
   <% end %>

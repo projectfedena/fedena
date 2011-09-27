@@ -43,7 +43,7 @@
     <%= link_to_remote("#{t('delete')}",
                 :url => class_timing_path(class_timing),
                 :method => 'delete',
-                :confirm => "#{t('index.confirm_msg')}",
+                :confirm => "#{t('confirm_msg')}",
                 :update => "class-timing-#{class_timing.id}") %>
               <% else %>
           <s><%= t('delete') %></s>
@@ -52,5 +52,5 @@
   <% end %>
 </table>
 <% else %>
-<h4><%= t('index.set_in_common') %></h4>
+<h4><%= t('set_in_common') %></h4>
 <% end %>

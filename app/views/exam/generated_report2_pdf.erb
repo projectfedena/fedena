@@ -31,7 +31,7 @@
       <% c = 'even' %>
       <table id="pdf-table" width="100%" cellspacing="0">
         <tr class="table-header">
-        <td>Name</td>
+        <td><%= t('name') %></td>
         <% @exam_groups.each do |exam_group| %>
           <td><%= exam_group.name %></td>
         <% end %>
@@ -43,7 +43,7 @@
             <tr class="page-break"><td colspan="3"></td></tr>
 
                 <tr class="table-header">
-        <td>Name</td>
+        <td><%= t('name') %></td>
         <% @exam_groups.each do |exam_group| %>
           <td><%= exam_group.name %></td>
         <% end %>
@@ -65,7 +65,7 @@
                   <%= exam_score.nil? ? '-' :  "#{(exam_score.marks || "-")}" +"/"+exam.maximum_marks.to_s+"[#{(exam_score.grading_level || "-")}]" %>
                 <% end %>
               <% else %>
-                <%= "N.A" %>
+                <%= "#{t('n_a')}" %>
               <% end %>
             </td>
           <% end %>
@@ -74,7 +74,7 @@
       <% end %>
       <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
         <td class="col-pdf-bold">
-          Class Avg
+          <%= t('class_average') %>
         </td>
         <% @exam_groups.each do |exam_group| %>
           <% if exam_group.exam_type == 'Marks' or exam_group.exam_type == 'MarksAndGrades' %>

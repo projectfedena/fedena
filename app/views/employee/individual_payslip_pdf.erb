@@ -33,7 +33,7 @@
         <div class="info"><div class="info-label"><%= t('grade') %></div> <div class="info-data"><span>:</span><%= EmployeeGrade.find(@employee.employee_grade_id).name %></div></div>
         <div class="info"><div class="info-label"><%= t('category') %></div> <div class="info-data"><span>:</span><%=  EmployeeCategory.find(@employee.employee_category_id).name %></div></div>
         <div class="info"><div class="info-label"><%= t('department') %></div> <div class="info-data"><span>:</span><%= @employee.employee_department.name %></div></div>
-        <div class="info"><div class="info-label">J<%= t('joining_date') %></div> <div class="info-data"><span>:</span><%= @employee.joining_date.strftime("%d %B %Y") %></div></div>
+        <div class="info"><div class="info-label">J<%= t('joining_date') %></div> <div class="info-data"><span>:</span><%= I18n.l(@employee.joining_date,:format=>:dmy) %></div></div>
         <div class="info"><div class="info-label"><%= t('payslip_generated_on') %></div> <div class="info-data"><span>:</span><%=  @salary_date%></div></div>
       </div>
       <div id="pdf-info">

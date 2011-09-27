@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Exams</h1>
-  <h3>Home</h3>
+  <h1><%= t('exams_text') %></h1>
+  <h3><%= t('home') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -35,35 +35,35 @@
   <div class="box">
     <%  if permitted_to? :index,:grading_levels %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to 'Set grading levels' ,:controller=>'grading_levels',:action=>'index' %> </div>
-        <div class="link-descr">Set the Grading Levels</div>
+        <div class="link-heading"><%= link_to "#{t('set_grading_levels')}" ,:controller=>'grading_levels',:action=>'index' %> </div>
+        <div class="link-descr"><%= t('set_grading_levels') %></div>
       </div>
     <% end %>
     <% @employee_subjects=[] %>
     <% @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id} if @current_user.employee?  %>
     <%  if (permitted_to? :create_exam,:exam and @allow_for_exams == true and !@current_user.privileges.map{|p| p.id}.include?(3)) or @current_user.admin? or !@employee_subjects.empty? or (@current_user.privileges.map{|p| p.id}.include?(1)) or @current_user.privileges.map{|p| p.id}.include?(2) %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to 'Exam Management' ,:action=>'create_exam' %>  </div>
-        <div class="link-descr">Create new exams, enter results.</div>
+        <div class="link-heading"><%= link_to "#{t('exam_management')}" ,:action=>'create_exam' %>  </div>
+        <div class="link-descr"><%= t('create_a_new_exam_and_enter_result') %></div>
       </div>
     <% end %>
     <%  if permitted_to? :create_additional_exam,:additional_exam %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to 'Additional Exams' ,:controller=>'additional_exam' , :action=>'create_additional_exam' %></div>
-        <div class="link-descr">Create additional exams,Edit results</div>
+        <div class="link-heading"><%= link_to "#{t('additional_exams_text')}" ,:controller=>'additional_exam' , :action=>'create_additional_exam' %></div>
+        <div class="link-descr"><%= t('create_additional_exams_and_edit_results') %></div>
       </div>
     <% end %>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Exam Wise report' ,:action=>'exam_wise_report' %></div>
-      <div class="link-descr">Generates reports Exam wise</div>
+      <div class="link-heading"><%= link_to "#{t('exam_wise_report')}" ,:action=>'exam_wise_report' %></div>
+      <div class="link-descr"><%= t('generate_exam_wise_report') %></div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Subject Wise report' ,:action=>'subject_wise_report' %> </div>
-      <div class="link-descr">Generates reports Subject wise</div>
+      <div class="link-heading"><%= link_to "#{t('subject_wise_report')}" ,:action=>'subject_wise_report' %> </div>
+      <div class="link-descr"><%= t('generate_subject_wise_report') %></div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Grouped Exam report' ,:action=>'grouped_exam_report' %></div>
-      <div class="link-descr">Group up exams for specific reports</div>
+      <div class="link-heading"><%= link_to "#{t('grouped_exam_report')}" ,:action=>'grouped_exam_report' %></div>
+      <div class="link-descr"><%= t('group_up_exams_for_specific_reports') %></div>
     </div>
     <div class="extender"></div>
   </div>

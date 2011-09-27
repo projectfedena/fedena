@@ -166,13 +166,13 @@
     </script>
     <div id="search-result">
 
-      <p><%= t('student.advanced_search.searched_for') %>:</p>
+      <p><%= t('searched_for') %>:</p>
       <div class="search-again">
   <%#= link_to_function '► Search again' do |page|
   page.visual_effect :toggle_slide, "search-form"
   page.hide "search-result"
   end %>
-        <% searched_for = 'Listed by ' %>
+        <% searched_for = "#{t('listed_by')}" %>
 
         <% searched_for += "#{t('name')}: " + params[:search][:first_name_or_middle_name_or_last_name_like].to_s unless params[:search][:first_name_or_middle_name_or_last_name_like].empty? %>
         <% searched_for += "#{t('employee_number')}: " + params[:search][:employee_number_equals].to_s unless params[:search][:employee_number_equals].empty? %>
@@ -203,7 +203,7 @@
         <% end %>
 
 
-        <%= link_to "► #{t('student.advanced_search.search_again')}", {:action=>"advanced_search"}%>
+        <%= link_to "► #{t('search_again')}", {:action=>"advanced_search"}%>
         <% unless @employees1.empty? %>
           <%= link_to "► #{t('pdf_report')}",   {:action => "advanced_search_pdf",:for =>searched_for, :result2=>@employees2 , :result =>@employees1,:status=>params[:search][:status_equals], :format => 'pdf'}, :target => '_blank' , :class=> 'submit_button' %>
         <% end %>

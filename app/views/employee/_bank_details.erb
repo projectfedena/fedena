@@ -39,8 +39,8 @@
   </div>
 <% else %>
   <% if permitted_to? :edit3, :employee %>
-    <p class="flash-msg"><%= t('profile.no_bank_details_entered') %><%= @employee.first_name%>. <%= link_to "ADD", :controller => "employee", :action => "edit3", :id => @employee.id %></p>
+    <p class="flash-msg"><%= t('no_bank_details_entered') %><%= @employee.first_name%>. <%= link_to "ADD", :controller => "employee", :action => "edit3", :id => @employee.id %></p>
   <% else %>  
-    <p class="flash-msg"><%= t('profile.no_bank_details_entered') %> <%= @employee.first_name%>. <%#= link_to "ADD", :controller => "employee", :action => "edit3", :id => @employee.id %></p>
+    <p class="flash-msg"><%= t('no_bank_details_entered') %> <%= @employee.first_name%>. <%#= link_to "ADD", :controller => "employee", :action => "edit3", :id => @employee.id %></p>
   <%end%>
 <% end %>

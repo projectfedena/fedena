@@ -32,7 +32,7 @@ class BatchesController < ApplicationController
     @batch = @course.batches.build(params[:batch])
 
     if @batch.save
-      flash[:notice] = "#{t('flash_message.batches.flash1')}"
+      flash[:notice] = "#{t('flash1')}"
       unless params[:import_subjects].nil?
         msg = []
         msg << "<ol>"
@@ -82,11 +82,11 @@ class BatchesController < ApplicationController
                   :admission_no=>p.admission_no,:student_id=>p.student_id)
               new_particular.finance_fee_category_id = new_category.id
               unless new_particular.save
-                err += "<li>Particular #{p.name} import failed.</li>"
+                err += "<li>#{t('particular')} #{p.name} #{t('import_failed')}.</li>"
               end
             end
           else
-            err += "<li>Category #{c.name} import failed.</li>"
+            err += "<li>#{t('category')}#{c.name}#{t('import_failed')}.</li>"
           end
         end
         fee_msg << "</ol>"
@@ -105,10 +105,10 @@ class BatchesController < ApplicationController
 
   def update
     if @batch.update_attributes(params[:batch])
-      flash[:notice] = "#{t('flash_message.batches.flash2')}"
+      flash[:notice] = "#{t('flash2')}"
       redirect_to [@course, @batch]
     else
-      flash[:notice] ="#{t('flash_message.batches.flash3')}"
+      flash[:notice] ="#{t('flash3')}"
       redirect_to  edit_course_batch_path(@course, @batch)
     end
   end
@@ -120,11 +120,11 @@ class BatchesController < ApplicationController
   def destroy
     if @batch.students.empty? and @batch.subjects.empty?
       @batch.inactivate
-      flash[:notice] = "#{t('flash_message.batches.flash4')}"
+      flash[:notice] = "#{t('flash4')}"
       redirect_to @course
     else
-      flash[:warn_notice] = "<p>#{t('flash_message.batches.flash5')}</p>" unless @batch.students.empty?
-      flash[:warn_notice] = "<p>#{t('flash_message.batches.flash6')}</p>" unless @batch.subjects.empty?
+      flash[:warn_notice] = "<p>#{t('flash5')}</p>" unless @batch.students.empty?
+      flash[:warn_notice] = "<p>#{t('flash6')}</p>" unless @batch.subjects.empty?
       redirect_to [@course, @batch]
     end
   end

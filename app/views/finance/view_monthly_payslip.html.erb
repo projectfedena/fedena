@@ -19,8 +19,8 @@
 
 <div id="content-header">
    <img src="/images/show_finance.png" alt="" />
-  <h1>Finance</h1>
-  <h3>Department wise payslip</h3>
+  <h1><%= t('finance_text') %></h1>
+  <h3><%= t('department_wise_payslip') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -30,20 +30,20 @@
   <% form_for :payslip do |f| %>
     <div id="box">
       <div class="label-field-pair">
-        <label for="student_course">Select a department:</label>
+        <label for="student_course"><%= t('select_a_department') %>:</label>
 
         <% selected_dept = params[:payslip].blank? ? "" : params[:payslip][:department_id].blank? ? "" : params[:payslip][:department_id] %>
         <% selected_salary_date = params[:payslip].blank? ? "" : params[:payslip][:salary_date].blank? ? "" : params[:payslip][:salary_date] %>
-        <div class="text-input-bg"> <%= f.select :department_id, [['All Deparments','All']] + @departments.map { |c| [c.name, c.id] }, {:selected=>selected_dept.to_i,:prompt => "Select department"}
+        <div class="text-input-bg"> <%= f.select :department_id, [["#{t('all_departments')}","#{t('all')}"]] + @departments.map { |c| [c.name, c.id] }, {:selected=>selected_dept.to_i,:prompt => "#{t('select_department')}"}
         %>
         </div></div>
       <div class="label-field-pair">
-        <label for="student_course">Select a month:</label>
+        <label for="student_course"><%= t('select_a_month') %>:</label>
         <div class="text-input-bg">
           <%= f.select :salary_date, @salary_dates.map {|c| [c.salary_date.strftime("%B %Y"),c.salary_date.strftime("%Y-%m-%d")]},
-            {:selected=>selected_salary_date,:prompt => 'Select a month'} %>
+            {:selected=>selected_salary_date,:prompt =>"#{t('select_a_month')}"} %>
         </div></div>
-      <%= submit_tag "► View",:class=>'submit_button' %>
+      <%= submit_tag "► #{t('view')}",:class=>'submit_button' %>
     </div>
 
 
@@ -56,11 +56,11 @@
       <% grouped_individual_payslip_categories = @payslips[:individual_payslip_category]  unless @payslips[:individual_payslip_category].blank?%>
       <table id="listing" width="100%">
         <tr class="tr-head">
-          <td>Sl</td>
-          <td>Employee</td>
-          <td>Employee No.</td>
-          <td>Net Salary</td>
-          <td>Payslip status</td>
+          <td><%= t('sl_no') %></td>
+          <td><%= t('employee_text') %></td>
+          <td><%= t('employee_no') %></td>
+          <td><%= t('net_salary') %></td>
+          <td><%= t('payslip_status') %></td>
           <td></td>
         </tr>
         <% total_salary = 0 %>
@@ -80,7 +80,7 @@
                 <% emp_payslip = Employee.calculate_salary(payslip,grouped_individual_payslip_category) %>
                 <td class="col-1">  <%="%.2f" %emp_payslip[:net_amount] unless emp_payslip.nil? %></td>
                 <td class="col-1">  <%= payslip.first.status_as_text %></td>
-                <td class="col-5"><%= link_to "View",{:action=>"view_employee_payslip",:id=>payslip.first.employee_id,:salary_date=>params[:payslip][:salary_date]} %></td>
+                <td class="col-5"><%= link_to "#{t('view')}",{:action=>"view_employee_payslip",:id=>payslip.first.employee_id,:salary_date=>params[:payslip][:salary_date]} %></td>
               <% end %>
               <% total_salary +=  emp_payslip[:net_amount].to_f unless emp_payslip.nil?  %>
               <% total_employees = i+1 %>
@@ -88,15 +88,15 @@
           <% end %>
         <% end %>
         <tr class="tr-head">
-          <td class="col-1" colspan="2">Total employees: </td>
+          <td class="col-1" colspan="2"><%= t('total_employees') %>: </td>
           <td class="col-1"><%= total_employees %> </td>
-          <td class="col-1">Total salary : </td>
+          <td class="col-1"><%= t('total_salary') %> : </td>
           <td class="col-1" colspan="3"><%="%.2f" %total_salary %></td>
         </tr>
 
       </table>
    <% else %>
-    <div class="no-data">No Payslips found.</div>
+    <div class="no-data"><%= t('no_payslip_found') %></div>
     <% end %>
     <% end %>
   </div>

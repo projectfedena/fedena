@@ -19,7 +19,7 @@
 
 <div id="content-header">
    <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= t('hr.personal_leave_management') %></h1>
+  <h1><%= t('personal_leave_management') %></h1>
   <h3><%=  @employee.first_name %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -32,11 +32,11 @@
 
   <div class="link-box">
     <div class="link-heading"><%= link_to "#{t('apply')}", :controller=>"employee_attendance", :action=>"apply_leave", :id=> @employee.id %></div>
-    <div class="link-descr"><%= t('hr.apply_for_a_leave') %>.</div>
+    <div class="link-descr"><%= t('apply_for_a_leave') %>.</div>
   </div>
 
       <div id="individual-application-links">
-        <%= link_to_remote "#{t('hr.my_leave_applications')}",
+        <%= link_to_remote "#{t('my_leave_applications')}",
         :update => "application-list",
         :url => {:controller=>"employee_attendance",:action => "individual_leave_applications", :id=>@employee.id} %>
       </div>

@@ -28,7 +28,7 @@
       <% @report = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id, lt.id)%>
     <%end%>
     <% if @report == [] %>
-      <div class="date-even"><%= t('profile.no_dates_found') %></div>
+      <div class="date-even"><%= t('no_dates_found') %></div>
     <% else %>
       <% @report.each do |r| %>
         <div class="date-<%=cycle("even", "odd")%>"><%= I18n(r.attendance_date,:forma=>"%B %d, %Y") %>

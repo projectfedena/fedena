@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Exams</h1>
-  <h3>Generated Report</h3>
+  <h1><%= t('exams_text') %></h1>
+  <h3><%= t('generated_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -28,10 +28,10 @@
 <div id="inner-tab-menu">
   <ul>
     <%  if permitted_to? :consolidated_exam_report,:exam %>
-    <li><%= link_to 'Consolidated Report', :action=>'consolidated_exam_report',:exam_group=>@exam_group.id %></li>
+    <li><%= link_to "#{t('consolidated_report')}", :action=>'consolidated_exam_report',:exam_group=>@exam_group.id %></li>
     <% end %>
     <%  if permitted_to? :generated_report_pdf,:exam %>
-    <li><%= link_to "PDF Report",
+    <li><%= link_to "#{t('pdf_report')}",
         {:controller => "exam", :action => "generated_report_pdf", :exam_group => @exam_group.id, :batch => @batch.id},:target => '_blank' %></li>
   <% end %>
   </ul>
@@ -69,18 +69,18 @@
 
     <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
       <tr class="tr-head">
-        <td>Subject</td>
+        <td><%= t('subject') %></td>
         <% if @exam_group.exam_type == 'Marks' %>
-          <td>Obtained Marks</td>
-          <td>Max Marks</td>
-          <td>Percentage(%)</td>
+          <td><%= t('marks_obtained') %></td>
+          <td><%= t('max') %></td>
+          <td><%= t('percentage') %>(%)</td>
         <% elsif @exam_group.exam_type == 'Grades' %>
-          <td>Grades</td>
+          <td><%= t('grades') %></td>
         <% else %>
-          <td>Obtained Marks</td>
-          <td>Max Marks</td>
-          <td>Grades</td>
-          <td>Percentage(%)</td>
+          <td><%= t('marks_obtained') %></td>
+          <td><%= t('max') %></td>
+          <td><%= t('grades') %></td>
+          <td><%= t('percentage') %>(%)</td>
         <% end %>
       </tr>
       <% exam_score.each do |es| %>
@@ -107,7 +107,7 @@
 
       <% if @exam_group.exam_type == 'Marks' or @exam_group.exam_type == 'MarksAndGrades' %>
         <tr class="tr-head">
-          <td>Total Marks:</td>
+          <td><%= t('total_marks') %>:</td>
           <td><%= total_marks_attained %></td><td><%= total_max_marks %></td>
           <%  if @exam_group.exam_type == 'MarksAndGrades' %>
             <td>-</td>
@@ -118,7 +118,7 @@
     </table>
 
     <% if @exam_group.exam_type == 'Marks' or @exam_group.exam_type == 'MarksAndGrades' %>
-      <h5>Class Average Marks : <%= "%.2f" %@exam_group.batch_average_marks('marks') unless total_max_marks == 0%> | Class Average % : <%=  "%.2f" %(@exam_group.batch_average_marks('marks')*100/total_max_marks) unless total_max_marks == 0 %></h5>
+      <h5><%= t('class_average_marks') %> : <%= "%.2f" %@exam_group.batch_average_marks('marks') unless total_max_marks == 0%> | Class Average % : <%=  "%.2f" %(@exam_group.batch_average_marks('marks')*100/total_max_marks) unless total_max_marks == 0 %></h5>
       <script type="text/javascript" src="/javascripts/swfobject.js"></script>
       <%= @graph %>
     <% end %>

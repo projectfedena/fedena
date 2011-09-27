@@ -36,12 +36,12 @@ class ApplicationController < ActionController::Base
 
   if Rails.env.production?
     rescue_from ActiveRecord::RecordNotFound do |exception|
-      flash[:notice] = "Sorry , #{exception} ."
+      flash[:notice] = "#{t('flash_msg2')} , #{exception} ."
       redirect_to :controller=>:user ,:action=>:dashboard
     end
 
     rescue_from NoMethodError do |exception|
-      flash[:notice] = "#{t('flash_message.application.flash1')}"
+      flash[:notice] = "#{t('flash_msg3')}"
       logger.info "[FedenaRescue] No method error #{exception.to_s}"
       logger.info exception.backtrace
       redirect_to :controller=>:user ,:action=>:dashboard
@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
       @employee_subjects= @current_user.employee_record.subjects
       privilege = @current_user.privileges.map{|p| p.id}
       if @employee_subjects.empty? and !privilege.include?(8) and !privilege.include?(16)
-          flash[:notice] = "#{t('flash_message.application.flash2')}"
+          flash[:notice] = "#{t('flash_msg4')}"
           redirect_to :controller => 'user', :action => 'dashboard'
       else
         @allow_access = true
@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects
       if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.id}.include?(1) and !@current_user.privileges.map{|p| p.id}.include?(2) and !@current_user.privileges.map{|p| p.id}.include?(3)
-        flash[:notice] = "#{t('flash_message.application.flash2')}"
+        flash[:notice] = "#{t('flash_msg4')}"
         redirect_to :controller => 'user', :action => 'dashboard'
       else
         @allow_for_exams = true
@@ -78,7 +78,7 @@ class ApplicationController < ActionController::Base
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects
       if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.id}.include?(1)
-        flash[:notice] = "#{t('flash_message.application.flash2')}"
+        flash[:notice] = "#{t('flash_msg4')}"
         redirect_to :controller => 'user', :action => 'dashboard'
       else
         @allow_for_exams = true
@@ -104,7 +104,7 @@ class ApplicationController < ActionController::Base
   end
 
   def permission_denied
-    flash[:notice] = "#{t('flash_message.application.flash2')}"
+    flash[:notice] = "#{t('flash_msg4')}"
     redirect_to :controller => 'user', :action => 'dashboard'
   end
   
@@ -117,7 +117,7 @@ class ApplicationController < ActionController::Base
     hr = Configuration.find_by_config_value("HR")
     if hr.nil?
       redirect_to :controller => 'user', :action => 'dashboard'
-      flash[:notice] = "#{t('flash_message.application.flash2')}"
+      flash[:notice] = "#{t('flash_msg4')}"
     end
   end
 
@@ -127,7 +127,7 @@ class ApplicationController < ActionController::Base
     finance = Configuration.find_by_config_value("Finance")
     if finance.nil?
       redirect_to :controller => 'user', :action => 'dashboard'
-      flash[:notice] = "#{t('flash_message.application.flash2')}"
+      flash[:notice] = "#{t('flash_msg4')}"
     end
   end
 
@@ -139,7 +139,7 @@ class ApplicationController < ActionController::Base
     if current_user.student?
       student = current_user.student_record
       unless params[:id].to_i == student.id or params[:student].to_i == student.id
-        flash[:notice] = "#{t('flash_message.application.flash3')}"
+        flash[:notice] = "#{t('flash_msg5')}"
         redirect_to :controller=>"user", :action=>"dashboard"
       end
     end
@@ -148,7 +148,7 @@ class ApplicationController < ActionController::Base
   def protect_user_data
     unless current_user.admin?
       unless params[:id].to_s == current_user.username
-        flash[:notice] = "#{t('flash_message.application.flash3')}"
+        flash[:notice] = "#{t('flash_msg5')}"
         redirect_to :controller=>"user", :action=>"dashboard"
       end
     end
@@ -164,7 +164,7 @@ class ApplicationController < ActionController::Base
       #    end
       #    unless privilege.include?('9') or privilege.include?('14') or privilege.include?('17') or privilege.include?('18') or privilege.include?('19')
       unless params[:id].to_i == employee.id
-        flash[:notice] = "#{t('flash_message.application.flash3')}"
+        flash[:notice] = "#{t('flash_msg5')}"
         redirect_to :controller=>"user", :action=>"dashboard"
       end
     end
@@ -176,7 +176,7 @@ class ApplicationController < ActionController::Base
       employee_user = employee.user
       unless employee_user.id == current_user.id
         unless current_user.role_symbols.include?(:hr_basics) or current_user.role_symbols.include?(:employee_attendance)
-          flash[:notice] = "#{t('flash_message.application.flash4')}"
+          flash[:notice] = "#{t('flash_msg6')}"
           redirect_to :controller=>"user", :action=>"dashboard"
         end
       end
@@ -188,7 +188,7 @@ class ApplicationController < ActionController::Base
   def protect_view_reminders
     reminder = Reminder.find(params[:id2])
     unless reminder.recipient == current_user.id
-      flash[:notice] = "#{t('flash_message.application.flash3')}"
+      flash[:notice] = "#{t('flash_msg5')}"
       redirect_to :controller=>"reminder", :action=>"index"
     end
   end
@@ -196,7 +196,7 @@ class ApplicationController < ActionController::Base
   def protect_sent_reminders
     reminder = Reminder.find(params[:id2])
     unless reminder.sender == current_user.id
-      flash[:notice] = "#{t('flash_message.application.flash3')}"
+      flash[:notice] = "#{t('flash_msg5')}"
       redirect_to :controller=>"reminder", :action=>"index"
     end
   end
@@ -207,7 +207,7 @@ class ApplicationController < ActionController::Base
     employee_user = employee.user
     #    unless permitted_to? :employee_attendance_pdf, :employee_attendance
     unless employee_user.id == current_user.id
-      flash[:notice] = "#{t('flash_message.application.flash4')}"
+      flash[:notice] = "#{t('flash_msg6')}"
       redirect_to :controller=>"user", :action=>"dashboard"
       #    end
     end
@@ -218,7 +218,7 @@ class ApplicationController < ActionController::Base
     applied_employee = applied_leave.employee
     applied_employee_user = applied_employee.user
     unless applied_employee_user.id == current_user.id
-      flash[:notice]="#{t('flash_message.application.flash4')}"
+      flash[:notice]="#{t('flash_msg5')}"
       redirect_to :controller=>"user", :action=>"dashboard"
     end
   end
@@ -229,7 +229,7 @@ class ApplicationController < ActionController::Base
     applied_employees_manager = Employee.find(applied_employee.reporting_manager_id)
     applied_employees_manager_user = applied_employees_manager.user
     unless applied_employees_manager_user.id == current_user.id
-      flash[:notice]="#{t('flash_message.application.flash4')}"
+      flash[:notice]="#{t('flash_msg5')}"
       redirect_to :controller=>"user", :action=>"dashboard"
     end
   end

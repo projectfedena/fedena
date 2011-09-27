@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/show_timetable.png" />
-  <h1>Timetable</h1>
-  <h3>View</h3>
+  <h1><%= t('timetable_text') %></h1>
+  <h3><%= t('view') %></h3>
 
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -47,7 +47,7 @@
           &nbsp;</td><!--timetable_td_tl -->
         <td class="td-blank"></td>
         <% @class_timing.each do |pt| %>
-          <td class="td"><div class="top"><%= pt.start_time.strftime("%I:%M%p")  unless pt.start_time.nil? %> - <%= pt.end_time.strftime("%I:%M%p")  unless pt.end_time.nil? %></div></td>
+          <td class="td"><div class="top"><%= I18n.l(pt.start_time,:format=> "%I:%M%p")  unless pt.start_time.nil? %> - <%= I18n.l(pt.end_time,:format=>"%I:%M%p")  unless pt.end_time.nil? %></div></td>
         <% end %>
       </tr> <!-- timetable_tr -->
       <tr class="blank">
@@ -104,7 +104,7 @@
                       <% unless @tte.nil? %>
                       <% unless @tte.subject.nil? %>
                         <% unless @tte.subject.elective_group_id.nil?   %>
-                          Elective
+                          <%= t('elective') %>
                         <% else %>
                           <%= @tte.employee.first_name unless @tte.employee.nil? %>
                         <% end %>

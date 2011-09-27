@@ -19,7 +19,7 @@
 
 <ul id="department-list">
   <% unless @departments.empty? %>
-    <li class="listheading"><div class="department-name"><%= "#{t('hr.active_department')}" %></div></li>
+    <li class="listheading"><div class="department-name"><%= "#{t('active_department')}" %></div></li>
     <% @departments.each do |d| %>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="department-name"><%= d.name %>(<%= d.code %>)</div>
@@ -28,7 +28,7 @@
       </li>
     <% end %>
       <% unless @inactive_departments.empty? %>
-      <li class="listheading"><div class="department-name"><%= "#{t('hr.inactive_department')}" %></div></li>
+      <li class="listheading"><div class="department-name"><%= "#{t('inactive_department')}" %></div></li>
     <%- @inactive_departments.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="department-name"><%= c.name %> (<%= c.code %>)</div>
@@ -38,6 +38,6 @@
      <% end %>
      <% end %>
     <% else %>
-    <p class="flash-msg"><%= "#{t('hr.no_department_found')}" %></p>
+    <p class="flash-msg"><%= "#{t('no_department_found')}" %></p>
   <% end %>
 </ul>

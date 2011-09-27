@@ -21,7 +21,7 @@
 
 <ul id="category-list">
 <% unless @categories.empty? %>
-  <li class="listheading"> <div class="category-name"><%= "#{t('hr.active_category')}" %> </div> </li>
+  <li class="listheading"> <div class="category-name"><%= "#{t('active_category')}" %> </div> </li>
     <%- @categories.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= c.name %> (<%= c.prefix %>)</div>
@@ -30,7 +30,7 @@
       </li>
      <% end %>
      <% unless @inactive_categories.empty? %>
-      <li class="listheading"><div class="category-name"><%= "#{t('hr.inactive_category')}" %></div></li>
+      <li class="listheading"><div class="category-name"><%= "#{t('inactive_category')}" %></div></li>
     <%- @inactive_categories.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= c.name %> (<%= c.prefix %>)</div>
@@ -40,7 +40,7 @@
      <% end %>
      <% end %>
   <% else %>
-<p class="flash-msg"><%= "#{t('hr.no_category_record_found')}" %></p>
+<p class="flash-msg"><%= "#{t('no_category_record_found')}" %></p>
   <% end %>
 </ul>
 

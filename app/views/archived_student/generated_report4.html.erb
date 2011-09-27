@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('exams.index.exams') %></h1>
-  <h3><%= t('exam.index.grouped_exam_report') %></h3>
+  <h1><%= t('exams_text') %></h1>
+  <h3><%= t('grouped_exam_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -103,7 +103,7 @@
     </table>
     <% if @mmg == @g %>
       <% percentage = (@marks_total*100/@max_total.to_f)  unless @max_total==0 %>
-      <h4><%= t('total_marks') %> = <%= @marks_total %> | <%= t('exam.index.aggregate') %> % = <%=percentage %> </h4>
+      <h4><%= t('total_marks') %> = <%= @marks_total %> | <%= t('aggregate') %> % = <%=percentage %> </h4>
     <% end %>
     <div class="extender"></div>
   </div></div>

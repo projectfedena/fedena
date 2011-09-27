@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <% form_for :holiday do |f| %>
-<%= select :holiday, :weekdays, [ "#{t('monday')}", "#{t('weekday.index.tuesday')}","#{t('thursday')}","#{t('wednesday')}","#{t('friday')}","#{t('saturday')}", "#{t('sunday')}" ]%>
+<%= select :holiday, :weekdays, [ "#{t('monday')}", "#{t('tuesday')}","#{t('thursday')}","#{t('wednesday')}","#{t('friday')}","#{t('saturday')}", "#{t('sunday')}" ]%>
 
   <%= submit_tag "#{t('submit')}" %>
 <% end %>

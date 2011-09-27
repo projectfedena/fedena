@@ -36,14 +36,14 @@
     </div>  <%= link_to "#{t('change_type')}", new_batch_additional_exam_group_path(@batch,:ename=>@name),:class=>"type_link" %>
   </div>
 
-  <h4><%= t('additional_exam.create_additional_exam.enter_exam_related_details_here') %></h4>
+  <h4><%= t('enter_exam_related_details_here') %></h4>
 
   <table width="100%" id="listing">
     <tr class="tr-head">
-      <td><%= t('additional_exam.create_additional_exam.subject_name') %></td>
-      <td><%= t('.start_date') %></td>
-      <td><%= t('.end_date') %></td>
-      <td><%= t('additional_exam.create_additional_exam.do_not_create') %></td>
+      <td><%= t('subject_name') %></td>
+      <td><%= t('start_date') %></td>
+      <td><%= t('end_date') %></td>
+      <td><%= t('do_not_create') %></td>
     </tr>
 
     <% f.fields_for :additional_exams do |exam_form| %>
@@ -56,6 +56,6 @@
     <% end %>
   </table>
 
-  <%= submit_tag "", :value => "► #{t('xml.settings.save_changes')}", :class => "submit_button2" %>
+  <%= submit_tag "", :value => "► #{t('save_changes')}", :class => "submit_button2" %>
 
 <% end %>

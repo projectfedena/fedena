@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('additional_exam.create_additional_exam.additional_exams') %></h1>
-  <h3><%= t('additional_exam_groups.edit.edit_additional_exam') %></h3>
+  <h1><%= t('additional_exams_text') %></h1>
+  <h3><%= t('edit_additional_exam') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -35,15 +35,15 @@
   <div class="box">
 
     <div class="bread_crumb">
-      <%= t('courses') %> &raquo;
+      <%= t('courses_text') %> &raquo;
       <%= @course.full_name%> &raquo;
       <%= "#{t('batch')} #{@batch.name}"%> &raquo;
-      <%= link_to t('exams.index.exams'), batch_additional_exam_groups_path(@batch) %> &raquo;
+      <%= link_to t('exams_text'), batch_additional_exam_groups_path(@batch) %> &raquo;
       <%= link_to @additional_exam_group.name, [@batch, @additional_exam_group] %> &raquo;
-      <%= t('.edit') %>
+      <%= t('edit') %>
     </div>
 
-    <h4><%= t('exams.index.for_exam_group') %> - <%= @additional_exam_group.name %></h4>
+    <h4><%= t('for_exam_group') %> - <%= @additional_exam_group.name %></h4>
 
     <% form_for [@additional_exam_group, @additional_exam] do |f| %>
       <%= error_messages_for :additional_exam %>
@@ -61,11 +61,11 @@
         <div class="text-input-bg"><%= f.calendar_date_select :end_time %></div>
       </div>
       <div class="label-field-pair">
-        <%= f.label "#{t('exam_groups.show.max_mark')}" %>
+        <%= f.label "#{t('max_mark')}" %>
         <div class="text-input-bg"><%= f.text_field :maximum_marks %></div>
       </div>
       <div class="label-field-pair">
-        <%= f.label "#{t('exam_groups.show.min_mark')}" %>
+        <%= f.label "#{t('min_mark')}" %>
         <div class="text-input-bg"><%= f.text_field :minimum_marks %></div>
       </div>
 

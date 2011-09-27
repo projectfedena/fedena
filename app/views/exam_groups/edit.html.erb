@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('exams.index.exams') %></h1>
-  <h3><%= t('exams.index.edit_exam_group') %></h3>
+  <h1><%= t('exams_text') %></h1>
+  <h3><%= t('edit_exam_group') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -37,8 +37,8 @@
          <%= link_to t('course'), courses_path %> &raquo;
         <%= link_to @course.full_name, @course %> &raquo;
         <%= link_to "#{t('batch')}  #{@batch.name}" %> &raquo;
-        <%= link_to "#{t('exams.index.exam')}", batch_exam_groups_path(@batch) %> &raquo;
-      <%= t('exams.index.edit_exam') %>
+        <%= link_to "#{t('exam_text')}", batch_exam_groups_path(@batch) %> &raquo;
+      <%= t('edit_exam') %>
         </div>
 
 

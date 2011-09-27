@@ -76,8 +76,8 @@
     <% unless finance.include?("Finance") %>
       <% if permitted_to? :payslip_approve, :employee %>
         <div class="link-box">
-          <div class="link-heading"><%= link_to "#{t('finance.payslip_index.one_click_aprove_payslip')}", :controller=>"employee", :action=>"payslip_approve" %></div>
-          <div class="link-descr"><%= "#{t('finance.payslip_index.aprove_monthly_payslip')}" %> </div>
+          <div class="link-heading"><%= link_to "#{t('one_click_aprove_payslip')}", :controller=>"employee", :action=>"payslip_approve" %></div>
+          <div class="link-descr"><%= "#{t('aprove_monthly_payslip')}" %> </div>
         </div>
       <%end%>
     <%end%>

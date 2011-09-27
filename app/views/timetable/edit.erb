@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/show_timetable.png" />
-  <h1>Timetable</h1>
-  <h3>Edit</h3>
+  <h1><%= t('timetable_text') %></h1>
+  <h3><%= t('edit') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -92,7 +92,7 @@
   <div id="timetable">
     <%= render :partial => "edit_tt_multiple", :with=> @timetable %>
   </div>
-<h4>Add Subjects</h4>
+<h4><%= t('add_subjects') %></h4>
   <div id="subjects-list">
     <% @subjects.each do |s| %>
       <div class="subjects" id="sub_<%= s.id %>"> <%= s.code %> </div>

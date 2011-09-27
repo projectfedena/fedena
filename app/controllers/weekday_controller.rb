@@ -22,14 +22,14 @@ class WeekdayController < ApplicationController
   def index
     @batches = Batch.active
     @weekdays = Weekday.default
-    @day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    @day = ["#{t('sunday')}", "#{t('monday')}", "#{t('tuesday')}", "#{t('wednesday')}", "#{t('thursday')}", "#{t('friday')}", "#{t('satarday')}"]
     @days = ["0", "1", "2", "3", "4", "5", "6"]
   end
 
   def week
     @batch = nil
     @days = ["0", "1", "2", "3", "4", "5", "6"]
-    @day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    @day = ["#{t('sunday')}", "#{t('monday')}", "#{t('tuesday')}", "#{t('wednesday')}", "#{t('thursday')}", "#{t('friday')}", "#{t('satarday')}"]
     if params[:batch_id] == ''
       @weekdays = Weekday.default
     else
@@ -44,7 +44,7 @@ class WeekdayController < ApplicationController
   
 
   def create
-    @day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    @day = ["#{t('sunday')}", "#{t('monday')}", "#{t('tuesday')}", "#{t('wednesday')}", "#{t('thursday')}", "#{t('friday')}", "#{t('satarday')}"]
     batch = params[:weekday][:batch_id]
     if request.post?
       new_weekdays = params[:weekdays]||[]
@@ -68,7 +68,7 @@ class WeekdayController < ApplicationController
     end
         weekday.destroy
       end
-    flash[:notice] = "Weekdays modified "
+    flash[:notice] = "#{t('weekdays_modified')}"
     end
     redirect_to :action => "index"
   end

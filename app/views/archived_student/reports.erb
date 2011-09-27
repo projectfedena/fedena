@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/student_details/student_details_logo.jpg" />
-  <h1><%= t('student.reports.h1') %></h1>
-  <h3><%= t('student.profile.report_center') %></h3>
+  <h1><%= t('student_details') %></h1>
+  <h3><%= t('student.report_center') %></h3>
   <div id="app-back-button">
      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -30,11 +30,11 @@
 
   <div id="exam-results-dashboard">
 
-    <h3><%= t('student.reports.sub_title1') %></h3>
+    <h3><%= t('student.academics') %></h3>
 
     <div class="exam-results-reports-col">
     <% if permitted_to? :exam_report, :student %>
-      <h4><%= t('student.reports.recent_exams') %><</h4>
+      <h4><%= t('student.recent_exams') %><</h4>
       <ul>
         <% @exam_groups.each do |e| %>
           <li><%= link_to e.name, {  :action => 'generated_report',:exam_group=>e.id, :student => @student.id} %></li>
@@ -42,7 +42,7 @@
       </ul>
     <%end%>
 
-      <h4><%= t('student.reports.subject_wise_result') %></h4>
+      <h4><%= t('student.subject_wise_result') %></h4>
       <ul>
         <% @subjects.each do |s| %>
           <li><%= link_to s.name, {  :action => 'generated_report3', :student => @student.id, :subject => s.id } %></li>
@@ -52,20 +52,20 @@
     
     <div class="exam-results-reports-col">
 
-      <h4><%= t('student.reports.detailed_report') %></h4>
+      <h4><%= t('student.detailed_report') %></h4>
       <ul>
         <% unless @grouped_exams.empty? %>
-        <li><%= link_to "#{t('student.reports.final_report')}(#{t('student.reports.exam_goruped')})",{ :action=>'generated_report4',:student=>@student.id,:type=>'grouped'} %></li>
-        <li><%= link_to "#{t('student.reports.compare_past')}(#{t('student.reports.exam_goruped')})", {  :action => 'previous_years_marks_overview',:student=>@student.id,:type=>'grouped' } %></li>
+        <li><%= link_to "#{t('student.final_report')}(#{t('student.exam_goruped')})",{ :action=>'generated_report4',:student=>@student.id,:type=>'grouped'} %></li>
+        <li><%= link_to "#{t('student.compare_past')}(#{t('student.exam_goruped')})", {  :action => 'previous_years_marks_overview',:student=>@student.id,:type=>'grouped' } %></li>
         <% else %>
-        <li><%= link_to "#{t('student.reports.final_report')}",{ :action=>'generated_report4',:student=>@student.id,:type=>'general'} %></li>
-        <li><%= link_to "#{t('student.reports.compare_past')}", {  :action => 'previous_years_marks_overview',:student=>@student.id,:type=>'general' } %></li>
+        <li><%= link_to "#{t('student.final_report')}",{ :action=>'generated_report4',:student=>@student.id,:type=>'general'} %></li>
+        <li><%= link_to "#{t('student.compare_past')}", {  :action => 'previous_years_marks_overview',:student=>@student.id,:type=>'general' } %></li>
         <% end %>
         
       </ul>
 
       <% unless @old_batches.nil? %>
-        <h4><%= t('student.reports.archives') %></h4>
+        <h4><%= t('student.archives') %></h4>
         <ul>
           <% @old_batches.each do |b| %>
           <% unless @grouped_exams.empty? %>
@@ -86,9 +86,9 @@
 
   <div id="attendance-reports-dashboard">
 
-    <h3><%= t('layouts.application.attendance') %></h3>
+    <h3><%= t('attendance') %></h3>
 
-    <h4><%= t('student.reports.detailed_report') %></h4>
+    <h4><%= t('detailed_report') %></h4>
 <ul>
  <% @old_batches.each do |b| %>
        <li><%= link_to b.name, :action => 'student_report', :id => @student.id, :year => b.id %></li>

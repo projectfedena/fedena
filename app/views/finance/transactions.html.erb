@@ -19,8 +19,8 @@
 
 <div id="content-header">
    <img src="/images/show_finance.png" alt="" />
-  <h1>Finance transactions</h1>
-  <h3>Expences and income</h3>
+  <h1><%= t('finance_transactions') %></h1>
+  <h3><%= t('expences_n_income') %></h3>
   <div id="app-back-button">
      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -31,21 +31,21 @@
 
 <div class="box">
   <div class="link-box">
-    <div class="link-heading"><%= link_to "Add expense", :action => "expense_create" %></div>
-    <div class="link-descr">Creates new expenses </div>
+    <div class="link-heading"><%= link_to "#{t('add_expense')}", :action => "expense_create" %></div>
+    <div class="link-descr"><%= t('create_new_expense') %></div>
   </div>
   <div class="link-box">
-    <div class="link-heading"><%= link_to "Add income", :action => "income_create" %></div>
-    <div class="link-descr">Create new income</div>
+    <div class="link-heading"><%= link_to "#{t('add_income')}", :action => "income_create" %></div>
+    <div class="link-descr"><%= t('create_new_income') %></div>
   </div>
 
   <div class="link-box">
-    <div class="link-heading"><%= link_to "Report", :action => "monthly_report" %></div>
-    <div class="link-descr">Shows transactions</div>
+    <div class="link-heading"><%= link_to "#{t('report')}", :action => "monthly_report" %></div>
+    <div class="link-descr"><%= t('show_transactions') %></div>
   </div>
   <div class="link-box">
-    <div class="link-heading"><%= link_to "Compare Transaction", :action => "compare_report" %></div>
-    <div class="link-descr">Compare Transactions</div>
+    <div class="link-heading"><%= link_to "#{t('compare_transactions')}", :action => "compare_report" %></div>
+    <div class="link-descr"><%= t('compare_transactions') %></div>
   </div>
 
 </div>

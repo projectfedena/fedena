@@ -28,7 +28,7 @@
   <div id="general_info">
     <table id="pdf-table" width="100%" cellspacing="0">
       <tr class="odd"><td class="col-pdf"><%= t('employee_number') %></td><td class="col-pdf"><%= @employee.employee_number unless @employee.employee_number.nil? %></td></tr>
-      <tr class="even"><td class="col-pdf"><%= t('joining_date') %></td><td class="col-pdf"><%= I18n.l(@employee.joining_date,:format=>"%d %b, %Y") unless @employee.joining_date.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf"><%= t('joining_date') %></td><td class="col-pdf"><%= I18n.l(@employee.joining_date,:format=>:dmy) unless @employee.joining_date.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= @employee.employee_department.name unless @employee.employee_department.name.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('category') %></td><td class="col-pdf"><%= @employee.employee_category.name unless @employee.employee_category.name.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('position') %></td><td class="col-pdf"><%= @employee.employee_position.name unless @employee.employee_position.name.nil? %></td></tr>
@@ -66,7 +66,7 @@
 
   <div id ="main_info">
     <h2> <%= @employee.full_name %>  </h2>
-    <h4> <%= t('employee_profile') %>(<%= t('hr.address_details') %>)</h4>
+    <h4> <%= t('employee_profile') %>(<%= t('address_details') %>)</h4>
   </div>
   <div id="personal_info">
     <table id="pdf-table" width="100%" cellspacing="0">
@@ -88,7 +88,7 @@
 
   <div id ="main_info">
     <h2> <%= @employee.full_name %>  </h2>
-    <h4><%= t('employee_profile') %>(<%= t('admission2.contact_details') %>)</h4>
+    <h4><%= t('employee_profile') %>(<%= t('contact_details') %>)</h4>
   </div>
 
   <div id="personal_info">
@@ -111,7 +111,7 @@
   <div id="page-extender1"></div>
   <div id ="main_info">
     <h2> <%= @employee.full_name %>  </h2>
-    <h4><%= t('employee_profile') %>(<%= t('hr.bank_account_details') %>)</h4>
+    <h4><%= t('employee_profile') %>(<%= t('bank_account_details') %>)</h4>
   </div>
 
   <div id="personal_info">
@@ -134,7 +134,7 @@
   <div id="page-extender1"></div>
   <div id ="main_info">
     <h2> <%= @employee.full_name %>  </h2>
-    <h4> <%= t('employee_profile') %>(<%= t('admission4.additional_detail') %>)</h4>
+    <h4> <%= t('employee_profile') %>(<%= t('additional_detail') %>)</h4>
   </div>
 
   <div id="personal_info">

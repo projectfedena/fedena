@@ -4,6 +4,6 @@ unless @error.nil?
 else
 	page.replace_html 'form-errors', :text => ''
   page << "Modalbox.hide();"
-  page.replace_html 'flash-notice', :text => '<p class="flash-msg"> Fees Discount Successfully Updated </p>'
+  page.replace_html 'flash-notice', :text => "<p class='flash-msg'>#{t('fees_discount_succesfully_updated')}</p>"
   page.replace_html 'discount-box', :partial=>'show_fee_discounts', :object => @discounts
 end

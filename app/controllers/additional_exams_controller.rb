@@ -65,14 +65,14 @@ class AdditionalExamsController < ApplicationController
         @additional_exam_score.update_attributes(details)
       end
     end
-    flash[:notice] = "#{t('flash_message.additional_exams.flash1')}"
+    flash[:notice] = "#{t('flash1')}"
     redirect_to [@additional_exam_group, @additional_exam]
   end
 
   def create
     @additional_exam = @additional_exam_group.additional_exams.build(params[:additional_exam])
     if @additional_exam.save
-      flash[:notice] = "#{t('flash_message.additional_exams.flash2')}"
+      flash[:notice] = "#{t('flash2')}"
       redirect_to [@batch, @additional_exam_group]
     else
       @subjects = @batch.subjects
@@ -86,7 +86,7 @@ class AdditionalExamsController < ApplicationController
     @subjects = @additional_exam_group.batch.subjects
 
     if @additional_exam.update_attributes(params[:additional_exam])
-      flash[:notice] = "#{t('flash_message.additional_exams.flash3')}"
+      flash[:notice] = "#{t('flash3')}"
       redirect_to [@additional_exam_group, @additional_exam]
     else
       render 'edit'

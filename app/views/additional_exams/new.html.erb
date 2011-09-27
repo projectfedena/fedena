@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('additional_exam.create_additional_exam.additional_exams') %></h1>
-  <h3><%= t('additional_exam_groups.new.new_additional_exam') %></h3>
+  <h1><%= t('additional_exams_text') %></h1>
+  <h3><%= t('new_additional_exam') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -34,15 +34,15 @@
 
   <div class="box">
     <div class="bread_crumb">
-      <%= t('courses') %> &raquo;
+      <%= t('courses_text') %> &raquo;
       <%=  @course.full_name %> &raquo;
       <%=  "#{t('batch')} #{@batch.name}" %> &raquo;
-      <%= link_to "#{t('additional_exam.create_additional_exam.additional_exams')}", batch_additional_exam_groups_path(@batch) %> &raquo;
+      <%= link_to "#{t('additional_exams_text')}", batch_additional_exam_groups_path(@batch) %> &raquo;
       <%= link_to @additional_exam_group.name, [@batch, @additional_exam_group] %> &raquo;
       <%= t('new') %>
     </div>
 
-    <h5><%= t('additional_exams.edit.for_additional_exam_group') %>  - <%= @additional_exam_group.name %></h5>
+    <h5><%= t('for_additional_exam_group') %>  - <%= @additional_exam_group.name %></h5>
     <% unless @additional_exam_group.exam_type == 'Grades' %>
       <% form_for [@additional_exam_group, @additional_exam] do |f| %>
         <%= error_messages_for :additional_exam %>
@@ -59,11 +59,11 @@
           <div class="text-input-bg"> <%= f.calendar_date_select :end_time %></div>
         </div>
         <div class="label-field-pair">
-          <label for="subject_maximum_marks"><%= t('exam_groups.show.max_mark') %></label>
+          <label for="subject_maximum_marks"><%= t('max_mark') %></label>
           <div class="text-input-bg"><%= f.text_field :maximum_marks %></div>
         </div>
         <div class="label-field-pair">
-          <label for="subject_minimum_marks"><%= t('exam_groups.show.min_mark') %></label>
+          <label for="subject_minimum_marks"><%= t('min_mark') %></label>
           <div class="text-input-bg"> <%= f.text_field :minimum_marks %></div>
         </div>
 

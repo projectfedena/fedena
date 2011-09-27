@@ -19,7 +19,7 @@
 
 <% unless @payroll_details.empty? %>
   <ul class="item-list">
-    <li class="heading1"><%= t('profile.basic_payroll_details') %></li>
+    <li class="heading1"><%= t('basic_payroll_details') %></li>
     <% total = 0 %>
     <% @payroll_details.each do |p| %>
 
@@ -44,5 +44,5 @@
     </div>
 <% end %>
 <% else %>
-  <p class="flash-msg"><%= t('profile.no_payroll_detail_entered') %>  <%= @employee.first_name%>. <%= link_to "#{t('add')}", :controller => "payroll", :action => "manage_payroll", :id => @employee.id %></p>
+  <p class="flash-msg"><%= t('no_payroll_detail_entered') %>  <%= @employee.first_name%>. <%= link_to "#{t('add')}", :controller => "payroll", :action => "manage_payroll", :id => @employee.id %></p>
 <% end %>

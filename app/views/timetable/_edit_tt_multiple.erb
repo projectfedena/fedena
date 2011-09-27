@@ -41,7 +41,7 @@
         &nbsp;</td>
       <td class="td-blank"></td>
       <% @class_timing.each do |pt| %>
-        <td class="td"><div class="top"><%= pt.start_time.strftime("%I:%M%p")  unless pt.start_time.nil? %> - <%= pt.end_time.strftime("%I:%M%p")  unless pt.end_time.nil? %> </div></td>
+        <td class="td"><div class="top"><%= I18n.l(pt.start_time, :format=>"%I:%M%p")  unless pt.start_time.nil? %> - <%= I18n.l(pt.end_time, :format=>"%I:%M%p")  unless pt.end_time.nil? %> </div></td>
       <% end %>
     </tr> <!-- timetable_tr -->
     <tr class="blank">
@@ -93,7 +93,7 @@
   <div id="errors">
     <% @validation_problems.each do |tte_id, errors| %>
       <div id="error_div_<%= tte_id %>" class="error-explanation">
-        <b>Warning</b> :
+        <b><%= t('warning') %></b> :
         <%- errors["messages"].each do |err| -%>
           <%= err -%>
         <%- end -%>

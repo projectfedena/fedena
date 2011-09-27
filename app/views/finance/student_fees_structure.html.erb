@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/show_finance.png" alt="" />
-  <h1>Fee collection dates</h1>
-  <h3>View fee collection dates</h3>
+  <h1><%= t('fee_collection_dates') %></h1>
+  <h3><%= t('view_fee_collection_dates') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -28,17 +28,17 @@
 <div id="page-yield">
   <div class="box">
     <br/>
-    <div class="name">Fee Collection Name</div><div class="val"><span>:</span><%= @fee_collection.name %></div>
-    <div class="name">Fee Category Name</div><div class="val"><span>:</span><%= @fee_category.name %></div>
-    <div class="name">Start date</div><div class="val"><span>:</span><%= @fee_collection.start_date %></div>
-    <div class="name">End date</div><div class="val"><span>:</span><%= @fee_collection.end_date %></div>
-    <div class="name">Due date</div><div class="val"><span>:</span><%= @fee_collection.due_date %></div>
+    <div class="name"><%= t('fee_collection_name') %></div><div class="val"><span>:</span><%= @fee_collection.name %></div>
+    <div class="name"><%= t('fee_category_name') %></div><div class="val"><span>:</span><%= @fee_category.name %></div>
+    <div class="name"><%= t('start_date') %></div><div class="val"><span>:</span><%= @fee_collection.start_date %></div>
+    <div class="name"><%= t('end_date') %></div><div class="val"><span>:</span><%= @fee_collection.end_date %></div>
+    <div class="name"><%= t('due_date') %></div><div class="val"><span>:</span><%= @fee_collection.due_date %></div>
     <br /><br />
     <% total_fees =0 %>
     <div id="fees-table">
       <div class="fees-th">
-        <div class="fees-table-particulars">Particulars</div>
-        <div class="fees-table-amount">Amount</div>
+        <div class="fees-table-particulars"><%= t('particulars') %></div>
+        <div class="fees-table-amount"><%= t('amount') %></div>
       </div>
       <% unless @fee_particulars.nil? %>
         <% @fee_particulars.each do |fee| %>
@@ -51,7 +51,7 @@
       <% end %>
 
       <div class="fees-tr">
-        <div class="fees-table-particulars"><b>Total Fees</b></div>
+        <div class="fees-table-particulars"><b><%= t('total_fees') %></b></div>
         <div class="fees-table-amount"><b><%= total_fees %></b></div>
       </div>
     </div>

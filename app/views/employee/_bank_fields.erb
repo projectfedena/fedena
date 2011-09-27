@@ -19,7 +19,7 @@
 
 <ul id="category-list">
   <% unless @bank_details.empty? %>
-    <li class="listheading"><div class="category-name"><%= t('add_bank_details.active_bank_field') %></div></li>
+    <li class="listheading"><div class="category-name"><%= t('active_bank_field') %></div></li>
     <%- @bank_details.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= c.name %></div>
@@ -28,7 +28,7 @@
       </li>
     <% end %>
     <% unless @inactive_bank_details.empty? %>
-      <li class="listheading"><div class="category-name"><%= t('add_bank_details.inactive_bank_field') %></div></li>
+      <li class="listheading"><div class="category-name"><%= t('inactive_bank_field') %></div></li>
       <%- @inactive_bank_details.each do |c| -%>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="category-name"><%= c.name %></div>
@@ -38,7 +38,7 @@
       <% end %>
     <% end %>
   <% else %>
-    <p class="flash-msg"><%= t('add_bank_details.no_bank_detail') %></p>
+    <p class="flash-msg"><%= t('no_bank_detail') %></p>
   <% end %>
 </ul>
 

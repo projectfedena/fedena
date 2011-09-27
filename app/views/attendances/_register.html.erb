@@ -81,7 +81,7 @@
             <%= link_to_remote( 'O',
               {:url => {:controller =>'attendances', :action => 'new', :id=> date.id, :id2 =>student.id}}, :class=>'present' ) %>
           <% end %>
-          <div class="date"><span><%=  I18n.l(date.month_date,:format=>"%a %d")%> <div> <%= student.full_name %></div></span>
+          <div class="date"><span><%=  I18n.l(date.month_date,:format=>:day_mon)%> <div> <%= student.full_name %></div></span>
           </div>
         </td>
       <% end %>

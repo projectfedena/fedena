@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <% unless @common_event_array.empty? %>
-<%= t('event.index.common') %>:<br/>
+<%= t('common_eve') %>:<br/>
 <% @common_event_array.each do |h| %>
   <%= h.title %><br/>
 <% end %>
@@ -27,14 +27,14 @@
 
   <% if @user.student == true %>
 <% unless @student_course_not_common_event_array.empty? %>
-<%= t('event.index.my_course_event') %>:<br/>
+<%= t('my_course_event') %>:<br/>
 <% @student_course_not_common_event_array.each do |h| %>
   <%= h.title %><br/>
 <% end %>
 <% end %>
 <% else %>
 <% unless @employee_dept_not_common_event_array.empty? %>
-<%= t('event.index.my_department_event') %>:<br/>
+<%= t('my_department_event') %>:<br/>
 <% @employee_dept_not_common_event_array.each do |h| %>
   <%= h.title %><br/>
 <% end %>

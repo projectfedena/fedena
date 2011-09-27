@@ -22,7 +22,7 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2>Finance Transaction Report</h2>
+  <h2><%= t('finance_transaction_report') %></h2>
   <div class="hor_line"></div>
 
 
@@ -33,7 +33,7 @@
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="table-header"><td class="col-pdf">Sl no.</td><td class="col-pdf"> Particulars </td><td class="col-pdf"><%= "Expenses( #{currency})" %></td><td class="col-pdf"><%=  "Income( #{currency})" %></td></tr>
+        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('particulars') %></td><td class="col-pdf"><%= "#{t('expenses')}( #{currency})" %></td><td class="col-pdf"><%=  "#{t('income')}( #{currency})" %></td></tr>
         <%  index = 0 %>
         <% i = 0 %>
         <% income_total = 0 %>
@@ -42,7 +42,7 @@
         <%  unless @hr.nil? %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"><%= index+=1 %></td>
-            <td class="col-pdf"> Salary </td>
+            <td class="col-pdf"><%= t('salary') %></td>
             <td class="col-pdf">&nbsp;<%= @salary %></td>
             <td class="col-pdf"></td>
           </tr>
@@ -50,13 +50,13 @@
         <% end %>
         <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
           <td class="col-pdf"><%= index+=1 %></td>
-          <td class="col-pdf"> Donations </td>
+          <td class="col-pdf"><%= t('donations') %></td>
           <td class="col-pdf"></td>
           <td class="col-pdf">&nbsp;<%= @donations_total %></td>
         </tr>
         <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
           <td class="col-pdf"><%= index+=1 %></td>
-          <td class="col-pdf"> Fees account </td>
+          <td class="col-pdf"><%= t('fees_account') %></td>
           <td class="col-pdf"></td>
           <td class="col-pdf">&nbsp;<%= @transactions_fees %></td>
         </tr>
@@ -66,7 +66,7 @@
               <% i= 0 %>
               <% c= 'even' %>
               <tr class="page-break"><td colspan="3"></td></tr>
-              <tr class="table-header"><td class="col-pdf">Sl no.</td><td class="col-pdf"> Particulars </td><td class="col-pdf"><%= "Expenses( #{currency})" %></td><td class="col-pdf"><%=  "Income( #{currency})" %></td></tr>
+              <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('particulars') %></td><td class="col-pdf"><%= "#{t('expenses')}( #{currency})" %></td><td class="col-pdf"><%=  "#{t('income')}( #{currency})" %></td></tr>
             <% end %>
           <% if t.category.is_income? %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
@@ -91,7 +91,7 @@
         <% if @grand_total >= 0 %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"><%= index+=1 %></td>
-            <td class="col-pdf">Grand total</td>
+            <td class="col-pdf"><%= t('grand_total') %></td>
             <td class="col-pdf"></td>
             <td class="col-pdf">&nbsp;<%= @grand_total %></td>
           </tr>
@@ -99,7 +99,7 @@
         <%  else %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"></td>
-            <td class="col-pdf">Grand total</td>
+            <td class="col-pdf"><%= t('grand_total') %></td>
             <td class="col-pdf">&nbsp;<%= @grand_total * -1 %></td>
             <td class="col-pdf"></td>
           </tr>

@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Exams</h1>
-  <h3>Grouping</h3>
+  <h1><%= t('exams_text') %></h1>
+  <h3><%= t('grouping') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -33,7 +33,7 @@
   <% end %>
 
   <div class="box">
-    <h4>Connect Exams</h4>
+    <h4><%= t('connect_exams') %></h4>
       <div id="list_content">
       <div id="list">
          <% unless @exam_groups.empty? %>
@@ -52,7 +52,7 @@
               </div>
             <% end %>
 
-            <%= submit_tag "", :value => "Save", :class => "submit_button" %>
+            <%= submit_tag "", :value => "#{t('save')}", :class => "submit_button" %>
           <% end %>
 
         <% end %>

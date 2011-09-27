@@ -49,7 +49,7 @@
             <div class="month">
               <% exam = ExamScore.new() %>
               <% @aggr =  exam.batch_wise_aggregate(@student,b)  %>
-              <h4> <%= b.name %> | Aggregate : <%="%.2f" %@aggr.to_f unless @aggr== 'nil' or @aggr.nil? %></h4>
+              <h4> <%= b.name %> |<%= t('aggregate') %> : <%="%.2f" %@aggr.to_f unless @aggr== 'nil' or @aggr.nil? %></h4>
             </div>
             <div class="extender"></div>
           </div>
@@ -59,11 +59,11 @@
         <% c = 'even' %>
         <table id="pdf-table" width="100%" cellspacing="0">
           <tr class="table-header">
-            <td>Subject</td>
+            <td><%= t('subject') %></td>
             <% @exam_groups.each do |exam_group| %>
               <td><%= exam_group.name %></td>
             <% end %>
-            <td>Total</td>
+            <td><%= t('total') %></td>
           </tr>
           <% i = 0  %>
           <% @subjects.each do |subject| %>
@@ -72,11 +72,11 @@
               <% i= 0 %>
               <tr class="page-break"><td colspan="3"></td></tr>
               <tr class="table-header">
-                <td>Subject</td>
+                <td><%= t('subject') %></td>
                 <% @exam_groups.each do |exam_group| %>
                   <td><%= exam_group.name %></td>
                 <% end %>
-                <td>Total</td>
+                <td><%= t('total') %></td>
               </tr>
             <% end %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
@@ -112,7 +112,7 @@
 
           <% end %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf-bold">Total</td>
+            <td class="col-pdf-bold"><%= t('total') %></td>
             <% @max_total = 0 %>
             <% @marks_total = 0 %>
 
@@ -155,9 +155,9 @@
             <% @additional_exams = AdditionalExam.find_all_by_additional_exam_group_id(additional_exam_group) %>
             <table id="pdf-table" width="100%" cellspacing="0">
               <tr class="table-header">
-                <td>Subject</td>
-                <% unless additional_exam_group.exam_type == "Grades" %>      <td>Marks</td> <% end %>
-                <% unless additional_exam_group.exam_type == "Marks" %> <td> Grades </td><% end %>
+                <td><%= t('subject') %></td>
+                <% unless additional_exam_group.exam_type == "Grades" %>      <td><%= t('marks') %></td> <% end %>
+                <% unless additional_exam_group.exam_type == "Marks" %> <td><%= t('grades') %></td><% end %>
               </tr>
               <% @additional_exams.each do |exam| %>
                 <% unless (exam.score_for(@student).marks.nil? &&  exam.score_for(@student).grading_level_id.nil?)   %>

@@ -20,7 +20,7 @@
 
 <ul id="position-list">
 <% unless @positions.empty? %>
-  <li class="listheading"> <div class="position-name"><%= "#{t('hr.active_position')}" %></div> </li>
+  <li class="listheading"> <div class="position-name"><%= "#{t('active_position')}" %></div> </li>
   
 <% @positions.each do |p| %>
   <li class="list<%=cycle('odd', 'even')%>">
@@ -30,7 +30,7 @@
   </li>
 <% end %>
   <% unless @inactive_positions.empty? %>
-      <li class="listheading"><div class="position-name"><%= "#{t('hr.inactive_position')}" %></div></li>
+      <li class="listheading"><div class="position-name"><%= "#{t('inactive_position')}" %></div></li>
     <%- @inactive_positions.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="position-name"><%= c.name %> (<%=  c.employee_category.prefix unless c.employee_category_id.nil?  %>)</div>
@@ -40,6 +40,6 @@
      <% end %>
      <% end %>
 <% else %>
-<p class="flash-msg"><%= "#{t('hr.no_position_record_found')}" %></p>
+<p class="flash-msg"><%= "#{t('no_position_record_found')}" %></p>
 <% end %>
 </ul>

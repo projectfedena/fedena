@@ -32,7 +32,7 @@
     <%#*<div class="text-input-bg"><%= select :batch, :id,%>
     <%#*@batches.map {|b| [b.full_name, b.id] } </div>%>
     <%= e.hidden_field :batch_id, :value=> @batch.id %>
-    <%= submit_tag "", :value => "#{t('edit2.publish')} #{t('index.timetable')}", :class=>'submit-button' ,:onclick=>"$('loadingmsg').innerHTML= '" + image_tag("loader.gif", :align => "absmiddle", :border => 0, :id => "generating" )  +"#{t('edit2.time_table_is_being_generated')}" %>
+    <%= submit_tag "", :value => "#{t('publish_t')} #{t('timetable_text')}", :class=>'submit-button' ,:onclick=>"$('loadingmsg').innerHTML= '" + image_tag("loader.gif", :align => "absmiddle", :border => 0, :id => "generating" )  +"#{t('time_table_is_being_generated')}" %>
   <% end %>
 
 <%#*</div>%>

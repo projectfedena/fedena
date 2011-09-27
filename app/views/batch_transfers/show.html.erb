@@ -32,12 +32,12 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
-<p><%= t('show.transferring_batch') %>: <%= @batch.full_name %></p>
+<p><%= t('transferring_batch') %>: <%= @batch.full_name %></p>
 
 <% form_for :transfer, :url => { :controller => 'batch_transfers', :action => 'transfer', :id => @batch.id } do |f| %>
 
 <div class="label-field-pair">
-          <label for="subject_id"><%= t('show.transfer_to') %> </label>
+          <label for="subject_id"><%= t('transfer_to') %> </label>
           <div class="text-input-bg"><%= select :transfer, :to, @batches.map{ |b| [b.full_name, b.id] } %></div>
         </div>
 

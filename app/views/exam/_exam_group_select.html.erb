@@ -17,4 +17,4 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<%= select :exam_report, :exam_group_id, @exam_groups.map{|exam| [exam.name,exam.id]},:prompt=>'Select exam group' %>
+<%= select :exam_report, :exam_group_id, @exam_groups.map{|exam| [exam.name,exam.id]},:prompt=>"#{t('select_exam_group')}" %>

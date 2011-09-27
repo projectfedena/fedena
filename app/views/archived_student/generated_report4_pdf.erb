@@ -29,7 +29,7 @@
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
         <tr class="table-header">
-          <td><%= t('.subject') %></td>
+          <td><%= t('subject') %></td>
           <% @exam_groups.each do |exam_group| %>
             <td><%= exam_group.name %></td>
           <% end %>
@@ -93,7 +93,7 @@
     </div>
     <% if @mmg == @g %>
       <% percentage = (@marks_total*100/@max_total.to_f)  unless @max_total==0 %>
-      <h4><%= t('total_marks') %> = <%= @marks_total %> | <%= t('exam.index.aggregate') %> % = <%=percentage %> </h4>
+      <h4><%= t('total_marks') %> = <%= @marks_total %> | <%= t('aggregate') %> % = <%=percentage %> </h4>
     <% end %>
   </div>
 

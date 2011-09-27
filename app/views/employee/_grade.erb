@@ -20,7 +20,7 @@
 
 <ul id="grade-list">
   <% unless @grades.empty? %>
-    <li class="listheading"><div class="grade-name"><%= "#{t('hr.active_grade')}" %></div></li>
+    <li class="listheading"><div class="grade-name"><%= "#{t('active_grade')}" %></div></li>
     <% @grades.each do |g| %>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="grade-name"><%= g.name %>(<%= g.priority %>)</div>
@@ -29,7 +29,7 @@
       </li>
     <% end %>
     <% unless @inactive_grades.empty? %>
-      <li class="listheading"><div class="grade-name"><%= "#{t('hr.inactive_grade')}" %></div></li>
+      <li class="listheading"><div class="grade-name"><%= "#{t('inactive_grade')}" %></div></li>
       <%- @inactive_grades.each do |c| -%>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="grade-name"><%= c.name %> (<%= c.priority %>)</div>
@@ -39,6 +39,6 @@
       <% end %>
     <% end %>
   <% else %>
-    <p class="flash-msg"> <%= t('employee.hr.no_employee_grades_record_found') %></p>
+    <p class="flash-msg"> <%= t('no_employee_grades_record_found') %></p>
   <% end %>
 </ul>

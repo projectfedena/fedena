@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('additional_exam.create_additional_exam.additional_exams') %></h1>
+  <h1><%= t('additional_exams_text') %></h1>
   <h3><%= t('new_exam') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -33,10 +33,10 @@
   <% end %>
 
   <div class="bread_crumb">
-    <%= t('courses') %> &raquo;
+    <%= t('courses_text') %> &raquo;
     <%= @course.full_name %> &raquo;
     <%="#{t('batch')} #{@batch.name}" %> &raquo;
-    <%= link_to "#{t('additional_exam.create_additional_exam.additional_exams')}", batch_additional_exam_groups_path(@batch) %> &raquo;
+    <%= link_to "#{t('additional_exams_text')}", batch_additional_exam_groups_path(@batch) %> &raquo;
     <%= t('new_additional_exam') %>
   </div>
 
@@ -58,7 +58,7 @@
           <div class="text-input-bg"><%= form.text_field :name, :value=>@ename%></div>
         </div>
         <div class="label-field-pair">
-          <label for="exam_type"><%= t('exam.index.exam_type') %></label>
+          <label for="exam_type"><%= t('exam_type') %></label>
           <div class="text-input-bg"><%= select :exam_option,:exam_type,[[t('exam_groups.new.marks'),'Marks'],[t('exam_groups.new.grades'),'Grades'],[t('exam_groups.new.marks_and_grades'),'MarksAndGrades']] %></div>
         </div>
       <div id="list">

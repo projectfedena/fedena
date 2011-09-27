@@ -28,12 +28,12 @@
 
     <p>
       <%= f.label :select_weekday %>
-      <%= select :weekday, :weekday, { "#{t('index.monday')}"=>'1', "#{t('index.tuesday')}" => '2',"#{t('index.thursday')}" =>'3',"#{t('index.wedesday')}" =>'4',"#{t('index.friday')}" =>'5',"#{t('index.saturday')}"=>'6', "#{t('index.sunday')}"=>'0' }%>
+      <%= select :weekday, :weekday, { "#{t('monday')}"=>'1', "#{t('tuesday')}" => '2',"#{t('wedesday')}" =>'3',"#{t('thursday')}" =>'4',"#{t('friday')}" =>'5',"#{t('saturday')}"=>'6', "#{t('sunday')}"=>'0' }%>
     </p>
-    <%= f.check_box :is_break, :checked => false %> <%= t('create.check_if_this_is_a_break') %>
-<%= f.check_box :is_break, :checked => false %> <%= t('create.check_if_this_is_a_break') %>
+    <%= f.check_box :is_break, :checked => false %> <%= t('check_if_this_is_a_break') %>
+<%= f.check_box :is_break, :checked => false %> <%= t('check_if_this_is_a_break') %>
     <p>
-      <%= f.submit "#{t('.submit')}" %>
+      <%= f.submit "#{t('submit')}" %>
     </p>
 
     <div id="form-errors"></div>

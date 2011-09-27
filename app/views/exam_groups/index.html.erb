@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('exams.index.exams') %></h1>
+  <h1><%= t('exams_text') %></h1>
   <h3><%= t('exam_groups') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -46,13 +46,13 @@
       <%= link_to t('course'), courses_path %> &raquo;
       <%= link_to @course.full_name, @course %> &raquo;
       <%= link_to "#{t('batch')} #{@batch.name}", [@course, @batch] %> &raquo;
-      <%= t('exams.index.exams') %>
+      <%= t('exams_text') %>
     </div>
 
 
     <table id="listing" width="100%">
       <tr class="tr-head">
-        <td><%= t('additional_exam_groups.index.exam_name') %></td>
+        <td><%= t('exam_name') %></td>
         <td><%= t('actions') %></td>
       </tr>
       <% @config = Configuration.available_modules %>

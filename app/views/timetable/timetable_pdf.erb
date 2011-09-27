@@ -22,7 +22,7 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2>Timetable</h2>
+  <h2><%= t('timetable_text') %></h2>
   <div class="hor_line"></div>
 
 
@@ -35,7 +35,7 @@
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
         <tr class="table-header">
-          <td class="col-pdf">Day</td>
+          <td class="col-pdf"><%= t('day') %></td>
           <% @class_timing.each do |class_time| %>
             <td class="col-pdf"> <%= class_time.name %> </td>
           <% end %>

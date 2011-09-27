@@ -22,7 +22,7 @@
 <% if @employee.nil? %>
   <div id="no_result"><%= t('no_employee_found') %></div>
 <% else %>
-<p class="flash-msg"><%= t('admission4.select_manager_msg') %></p>
+<p class="flash-msg"><%= t('select_manager_msg') %></p>
   <% @employee.each do |r| %>
     <div id="ajax_result">
       <a href="#" onclick="update_reporting_manager(<%= r.id %>)"><%= r.full_name %></a><br/>

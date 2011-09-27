@@ -79,7 +79,7 @@ class EventController < ApplicationController
       end
     end
 
-    flash[:notice] = "#{t('flash_message.event.flash1')}"
+    flash[:notice] = "#{t('flash1')}"
     redirect_to :action=>"show", :id => event.id
   end
 
@@ -116,7 +116,7 @@ class EventController < ApplicationController
         end
       end
     end
-    flash[:notice] = "#{t('flash_message.event.flash2')}"
+    flash[:notice] = "#{t('flash2')}"
     redirect_to :action=>"show", :id=>event.id
   end
 
@@ -154,7 +154,7 @@ class EventController < ApplicationController
       @users.each do |u|
         Reminder.create(:sender=> current_user.id,:recipient=>u.id,
           :subject=>"#{t('new_event')} : #{event.title}",
-          :body=>"#{t('event_description')} : #{event.description} <br/> Start date : " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/> End date : " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
+          :body=>"#{t('event_description')} : #{event.description} <br/> #{t('start_date')} : " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/> #{t('end_date')} : " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
       end
       sms_setting = SmsSetting.new()
       if sms_setting.application_sms_active and sms_setting.event_news_sms_active
@@ -183,7 +183,7 @@ class EventController < ApplicationController
           end
         end
         unless recipients.empty?
-          message = "#{t('event_notification')}: #{event.title}. From : #{event.start_date} to #{event.end_date}"
+          message = "#{t('event_notification')}: #{event.title}.#{t('from')} : #{event.start_date} #{t('to')} #{event.end_date}"
           sms = SmsManager.new(message,recipients)
           sms.send_sms
         end
@@ -206,7 +206,7 @@ class EventController < ApplicationController
             unless student_user.nil?
               Reminder.create(:sender => current_user.id,:recipient=>student_user.id,
                 :subject=>"#{t('new_event')} : #{event.title}",
-                :body=>" #{t('event_description')} : #{event.description} <br/> #{t('.start_date')}: " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/>  #{t('.end_date')}: " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
+                :body=>" #{t('event_description')} : #{event.description} <br/> #{t('start_date')}: " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/>  #{t('.end_date')}: " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
             end
           end
         end
@@ -219,7 +219,7 @@ class EventController < ApplicationController
             emp_user = e.user
             Reminder.create(:sender => current_user.id,:recipient=>emp_user.id,
               :subject=>"#{t('new_event')} : #{event.title}",
-              :body=>" #{t('event_description')}  : #{event.description} <br/>  #{t('.start_date')}: " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/> #{t('.end_date')} : " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
+              :body=>" #{t('event_description')}  : #{event.description} <br/>  #{t('start_date')}: " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/> #{t('.end_date')} : " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
           end
         end
       end
@@ -235,7 +235,7 @@ class EventController < ApplicationController
     
     batch_event.each { |x| x.destroy } unless batch_event.nil?
     dept_event.each { |x| x.destroy } unless dept_event.nil?
-    flash[:notice] ="#{t('flash_message.event.flash3')}"
+    flash[:notice] ="#{t('flash3')}"
     redirect_to :action=>"index"
   end
 

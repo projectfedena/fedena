@@ -22,7 +22,7 @@
 
 <div id="content-header">
   <img src="/images/HR/leave-new.png" alt="" />
-  <h1><%= t('hr.leave_management') %></h1>
+  <h1><%= t('leave_management') %></h1>
   <h3></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -32,10 +32,10 @@
 <div id="nav">
   <ul>
     <li>
-      <a href="#" class="drops" id="link_one"><%= "#{t('hr.my_leaves')}" %> ▼</a>
+      <a href="#" class="drops" id="link_one"><%= "#{t('my_leaves')}" %> ▼</a>
       <ul id="box_one" class="scriptaculously" style="display:none;">
-        <li><%= link_to t('hr.apply'), :controller=>"employee", :action=>"leave_management" %></li>
-        <li><%= link_to_remote t('hr.my_leaves'),
+        <li><%= link_to t('apply'), :controller=>"employee", :action=>"leave_management" %></li>
+        <li><%= link_to_remote t('my_leaves'),
             :update => "application-list",
             :url => {:controller=>"employee_attendance",:action => "individual_leave_applications", :id=>@employee.id} %></li>
         <li><%= link_to "#{t('history')}", :controller=>"employee_attendance", :action=>"leave_history",:id=>@employee.id %></li>
@@ -48,7 +48,7 @@
           <a href="#" class="drops" id="link_two"><%= "#{t('employee.hr.my_emp')}" %> ▼</a>
           <ul id="box_two" class="scriptaculously" style="display:none;">
             <!-- no new leave applications of any employee -->
-            <li><%= link_to_remote "#{t('hr.all_leaves')}",
+            <li><%= link_to_remote "#{t('all_leaves')}",
                 :update => "application-list",
                 :url => {:controller=>"employee_attendance",:action => "all_leave_applications", :id=>@employee.id} %></li>
           </ul>
@@ -56,13 +56,13 @@
 
       <% else %>
         <li>
-          <a href="#" class="drops" id="link_two"><%= "#{t('hr.my_emp')}" %><%= "(#{@total_leave_count})"  %> ▼</a>
+          <a href="#" class="drops" id="link_two"><%= "#{t('my_emp')}" %><%= "(#{@total_leave_count})"  %> ▼</a>
           <ul id="box_two" class="scriptaculously" style="display:none;">
             <!-- no new leave applications of any employee -->
             <li><%= link_to_remote "#{t('new')}(#{@total_leave_count})",
                 :update => "application-list",
                 :url => {:controller=>"employee_attendance",:action => "new_leave_applications", :id=>@employee.id} %></li>
-            <li><%= link_to_remote "#{t('hr.all_leaves')}",
+            <li><%= link_to_remote "#{t('all_leaves')}",
                 :update => "application-list",
                 :url => {:controller=>"employee_attendance",:action => "all_leave_applications", :id=>@employee.id} %></li>
           </ul>
@@ -75,10 +75,10 @@
 
     <% if @all_employee_total_leave_count == 0 %>
       <li>
-        <a href="#" class="drops" id="link_three"><%= "#{t('employee.advanced_search.all_employee')}" %>  ▼</a>
+        <a href="#" class="drops" id="link_three"><%= "#{t('all_employee')}" %>  ▼</a>
         <ul id="box_three" class="scriptaculously" style="display:none;">
           <!-- no new leave applications of any employee -->
-          <li><%= link_to_remote "#{t('employee.hr.all_records')}",
+          <li><%= link_to_remote "#{t('all_records')}",
               :update => "application-list",
               :url => {:controller=>"employee",:action => "all_employee_leave_applications", :id=>@employee.id} %></li>
         </ul>
@@ -86,7 +86,7 @@
 
     <% else %>
       <li>
-        <a href="#" class="drops" id="link_three"><%= "#{t('employee.advanced_search.all_employee')}" %><%= "(#{@all_employee_total_leave_count})"  %> ▼ </a>
+        <a href="#" class="drops" id="link_three"><%= "#{t('all_employee')}" %><%= "(#{@all_employee_total_leave_count})"  %> ▼ </a>
         <ul id="box_three" class="scriptaculously" style="display:none;">
           <!-- no new leave applications of any employee -->
           <li><%= link_to_remote "#{t('new')}(#{@all_employee_total_leave_count})",
@@ -119,16 +119,16 @@
 
 
   <div id="application-list">
-    <div class="heading"><%= t('employee.hr.apply_for_a_leave') %></div>
+    <div class="heading"><%= t('apply_for_a_leave') %></div>
     <% form_for :leave_apply do |l| %>
       <%= error_messages_for :leave_apply %>
       <%= l.hidden_field :employee_id, :value=>@employee.id %>
       <div class="label-field-pair">
-        <label for="leave_type"><%= "#{t('employee_attendance.add_leave_types.leave_types')}" %>:</label>
+        <label for="leave_type"><%= "#{t('leave_types')}" %>:</label>
         <div class="text-input-bg"><%= select :leave_apply, :employee_leave_types_id, @leave_types.map {|s| [s.name, s.id]},:prompt => "Select" %></div>
       </div>
       <div class="label-field-pair">
-        <label for="create_user" id="create_user_option"><%= t('employee_attendances.index.half_day') %></label>
+        <label for="create_user" id="create_user_option"><%= t('.half_day') %></label>
         <div class="text-input-bg"><%= check_box_tag :is_half_day, :checked => false %></div>
       </div>
 
@@ -141,7 +141,7 @@
         <div class="text-input-bg"><%= calendar_date_select_tag 'leave_apply[end_date]'  %></div>
       </div>
       <div class="label-field-pair">
-        <label for="reason"><%= t('employee.remove.reason') %>:</label>
+        <label for="reason"><%= t('reason') %>:</label>
         <div class="text-input-bg"><%= l.text_field   :reason %></div>
       </div>
 

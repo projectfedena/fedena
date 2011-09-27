@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Exams</h1>
-  <h3>Consolidated Report</h3>
+  <h1><%= t('exams_text') %></h1>
+  <h3><%= t('consolidated_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -41,11 +41,11 @@
     <div class="students-table">
       <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
         <tr class="tr-head">
-          <td>Name</td>
+          <td><%= t('name') %></td>
           <% @exam_group.exams.each do |exam| %>
             <td><%= exam.subject.code %><%= "(" + exam.maximum_marks.to_s + ")"  unless exam.maximum_marks.nil? %></td>
           <% end %>
-          <td>Percentage(%)</td> 
+          <td><%= t('percentage') %>e(%)</td>
         </tr>
         <% @exam_group.batch.students.each do |student|%>
           <tr class="tr-<%= cycle('odd', 'even') %>">

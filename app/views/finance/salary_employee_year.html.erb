@@ -32,8 +32,8 @@
 
   <div id="fees-table">
     <div class="fees-th">
-      <div class="fees-table-description">Employee</div>
-      <div class="fees-table-salary">Salary</div>
+      <div class="fees-table-description"><%= t('employee_text') %></div>
+      <div class="fees-table-salary"><%= t('salary') %></div>
     </div>
     <% amount=0 %>
     <% @employees.each do |e| %>
@@ -48,7 +48,7 @@
     <% end %>
     <br/>
     <div class="fees-th">
-      <div class="fees-table-description">Total Salary</div>
+      <div class="fees-table-description"><%= t('total_salary') %></div>
       <div class="fees-table-salary"><%=total  %></div>
     </div>
     

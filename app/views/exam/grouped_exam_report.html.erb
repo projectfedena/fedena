@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Exams</h1>
-  <h3>Grouped exam Reports</h3>
+  <h1><%= t('exams_text') %></h1>
+  <h3><%= t('grouped_exam_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -33,18 +33,18 @@
 
     <% form_for :exam_report, :url=>{:action=>'generated_report4'} do |x| %>
       <div class="label-field-pair">
-        <label for="student_course">Select a batch:
+        <label for="student_course"><%= t('select_a_batch') %>:
           <%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader", :style =>"display: none;" ) %>
         </label>
         <div  class="text-input-bg">
           <%= select :exam_report, :batch_id,
             Batch.active.map {|b| [b.full_name, b.id]},
-            {:prompt => 'Select a batch'},
+            {:prompt => "#{t('select_a_batch')}"},
             {:onChange => "#{remote_function(:url => {:action => "final_report_type"},
             :with => "'batch_id='+value"
             )}"} %></div></div>
       <div id="report_type"></div>
-      <%= submit_tag "", :value => "► View", :class => "submit_button" %>
+      <%= submit_tag "", :value => "► #{t('view')}", :class => "submit_button" %>
       <% #  x.submit 'View' %>
 
     <% end %>

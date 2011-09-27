@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('additional_exam.create_additional_exam.additional_exams') %></h1>
+  <h1><%= t('additional_exams_text') %></h1>
   <h3><%= t('show_additional_exam_group') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -29,7 +29,7 @@
   <ul>
     <% if permitted_to? :publish, :additional_exam %>
       <% if @additional_exam_group.is_published %>
-        <li><%= link_to_remote("#{t('exam_groups.index.publish_exam_result')}",:url=>{:controller=>'additional_exam',:action=>'publish',:id=>@additional_exam_group.id,:status=>"result"},
+        <li><%= link_to_remote("#{t('publish_exam_result')}",:url=>{:controller=>'additional_exam',:action=>'publish',:id=>@additional_exam_group.id,:status=>"result"},
             :before => "Element.show('loader')",
             :success => "Element.hide('loader')") %></li>
       <% end  %>
@@ -47,10 +47,10 @@
 
   <div class="box">
     <div class="bread_crumb">
-      <%= t('courses')  %> &raquo;
+      <%= t('courses_text')  %> &raquo;
       <%= @course.full_name%> &raquo;
       <%= "#{t('batch')} #{@batch.name}" %> &raquo;
-      <%= link_to t('exams.index.exams'), batch_additional_exam_groups_path(@batch) %> &raquo;
+      <%= link_to t('exams_text'), batch_additional_exam_groups_path(@batch) %> &raquo;
       <%= @additional_exam_group.name %>
     </div>
 
@@ -64,8 +64,8 @@
       <table id="listing">
         <tr class="tr-head">
           <td><%= t('subject') %></td>
-          <td><%= t('exam_groups.show.max_mark') %></td>
-          <td><%= t('exam_groups.show.min_mark') %></td>
+          <td><%= t('max_mark') %></td>
+          <td><%= t('min_mark') %></td>
           <td><%= t('manage') %></td>
         </tr>
         <% @additional_exam_group.additional_exams.each do |additional_exam| %>

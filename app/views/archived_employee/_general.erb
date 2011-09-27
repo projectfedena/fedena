@@ -19,7 +19,7 @@
 
 
 <div class="profile_top_banner"><%= image_tag "master_student/profile/topbanner.png" %></div>
-<div class="profile_info_label_top"><%= t('employee.admission1.joining_date') %></div>
+<div class="profile_info_label_top"><%= t('employee.joining_date') %></div>
 <div class="profile_info_text_top"><%= I18n.l(@employee.joining_date, :format=>"%d %b,%Y")%></div>
 
 <div class="profile_info_label_top2"><%= t('department') %></div>
@@ -31,23 +31,23 @@
 
 
 
-<div class="profile_info_label_top2"><%= t('employee.hr.position') %></div>
+<div class="profile_info_label_top2"><%= t('position') %></div>
 <div class="profile_info_text_top2"> <%= @employee.employee_position.name %> </div>
 
-<div class="profile_info_label_top"><%= t('employee.hr.grade') %></div>
+<div class="profile_info_label_top"><%= t('grade') %></div>
 <div class="profile_info_text_top"> <%= @employee.employee_grade.name unless @employee.employee_grade.nil? %> </div>
 
 
 
 
-<div class="profile_info_label_top2"><%= t('employee.admission1.job_title') %></div>
+<div class="profile_info_label_top2"><%= t('employee.job_title') %></div>
 <div class="profile_info_text_top2"> <%= @employee.job_title %> </div>
 
-<div class="profile_info_label_top"><%= t('employee.profile.manager') %></div>
+<div class="profile_info_label_top"><%= t('manager') %></div>
 <div class="profile_info_text_top"> <%= @reporting_manager %>
 
   <% if permitted_to? :change_reporting_manager, :employee %>
-    <%= link_to "#{t('employee.profile.change')}", :controller=> "employee", :action=> "change_reporting_manager", :id=>@employee.id %>
+    <%= link_to "#{t('change')}", :controller=> "employee", :action=> "change_reporting_manager", :id=>@employee.id %>
   <%end%>
 
 </div>
@@ -57,7 +57,7 @@
 <div class="profile_info_label_top2"><%= t('student.admission1.gender') %></div>
 <div class="profile_info_text_top2"> <%= @gender %> </div>
 
-<div class="profile_info_label_top"><%= t('.status') %></div>
+<div class="profile_info_label_top"><%= t('status') %></div>
 <div class="profile_info_text_top"><%= @status %> </div>
 
 
@@ -76,7 +76,7 @@
 <div class="edit-pdf-group">
       <% if permitted_to?  :profile_pdf , :employee %>
   <div class="pdf">
-    <%= link_to " ► #{t('.pdf_report')}",
+    <%= link_to " ► #{t('pdf_report')}",
       {:controller => "archived_employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
   </div>
   <% end %>

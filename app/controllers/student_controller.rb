@@ -61,7 +61,7 @@ class StudentController < ApplicationController
         sms_setting = SmsSetting.new()
         if sms_setting.application_sms_active and @student.is_sms_enabled
           recipients = []
-          message = "Student admission done. username is #{@student.admission_no} and password is #{@student.admission_no}123"
+          message = "#{t('student_admission_done')} #{@student.admission_no} #{t('password_is')} #{@student.admission_no}123"
           if sms_setting.student_sms_active
             recipients.push @student.phone2 unless @student.phone2.nil?
           end
@@ -70,7 +70,7 @@ class StudentController < ApplicationController
             sms.send_sms
           end
         end
-        flash[:notice] = "Student Record Saved Successfully. Please fill the Parent Details."
+        flash[:notice] = "#{t('flash8')}"
         redirect_to :controller => "student", :action => "admission2", :id => @student.id
       end
     end
@@ -96,7 +96,7 @@ class StudentController < ApplicationController
       @student = Student.update(@student.id, :immediate_contact_id => params[:immediate_contact][:contact])
       if sms_setting.application_sms_active and @student.is_sms_enabled
         recipients = []
-        message = "Student admission done. username is #{@student.admission_no} and password is #{@student.admission_no}123"
+        message = "#{t('student_admission_done')}  #{@student.admission_no} #{t('password_is')} #{@student.admission_no}123"
         if sms_setting.parent_sms_active
           guardian = Guardian.find(@student.immediate_contact_id)
           recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
@@ -122,7 +122,7 @@ class StudentController < ApplicationController
       @student = Student.update(@student.id, :immediate_contact_id => params[:immediate_contact][:contact])
       if sms_setting.application_sms_active and @student.is_sms_enabled
         recipients = []
-        message = "Student admission done. username is #{@student.admission_no} and password is #{@student.admission_no}123"
+        message = "#{t('student_admission_done')}   #{@student.admission_no} #{t('password_is')}#{@student.admission_no}123"
         if sms_setting.parent_sms_active
           guardian = Guardian.find(@student.immediate_contact_id)
           recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
@@ -191,7 +191,7 @@ class StudentController < ApplicationController
         StudentAdditionalDetails.create(:student_id => params[:id],
           :additional_field_id => k,:additional_info => v['additional_info'])
       end
-      flash[:notice] = "Student records saved for #{@student.first_name} #{@student.last_name}."
+      flash[:notice] = "#{t('flash9')} #{@student.first_name} #{@student.last_name}."
       redirect_to :controller => "student", :action => "profile", :id => @student.id
     end
   end
@@ -215,7 +215,7 @@ class StudentController < ApplicationController
           StudentAdditionalDetails.create(:student_id=>@student.id,:additional_field_id=>k,:additional_info=>v['additional_info'])
         end
       end
-      flash[:notice] = "Student #{@student.first_name} additional details updated"
+      flash[:notice] = "#{t('student_text')} #{@student.first_name} #{t('flash2')}"
       redirect_to :action => "profile", :id => @student.id
     end
   end
@@ -223,7 +223,7 @@ class StudentController < ApplicationController
     @additional_details = StudentAdditionalField.find(:all)
     @additional_field = StudentAdditionalField.new(params[:additional_field])
     if request.post? and @additional_field.save
-      flash[:notice] = "Additional field created"
+      flash[:notice] = "#{t('flash1')}"
       redirect_to :controller => "student", :action => "add_additional_details"
     end
   end
@@ -231,7 +231,7 @@ class StudentController < ApplicationController
   def edit_additional_details
     @additional_details = StudentAdditionalField.find(params[:id])
     if request.post? and @additional_details.update_attributes(params[:additional_details])
-      flash[:notice] = "Additional details updated"
+      flash[:notice] = "#{t('flash2')}"
       redirect_to :action => "add_additional_details"
     end
   end
@@ -241,10 +241,10 @@ class StudentController < ApplicationController
     if students.blank?
       StudentAdditionalField.find(params[:id]).destroy
       @additional_details = StudentAdditionalField.find(:all)
-      flash[:notice]="Successfully deleted!"
+      flash[:notice]="#{t('flash13')}"
       redirect_to :action => "add_additional_details"
     else
-      flash[:notice]="Sorry! Unable to delete when entries exists under the selected detail"
+      flash[:notice]="#{t('flash14')}"
       redirect_to :action => "add_additional_details"
     end
   end
@@ -286,10 +286,10 @@ class StudentController < ApplicationController
     unless student.check_dependency
     student.user.destroy unless student.user.nil?
     Student.destroy(params[:id])
-    flash[:notice] = "All records have been deleted for student with admission no. #{student.admission_no}."
+    flash[:notice] = "#{t('flash10')}. #{student.admission_no}."
     redirect_to :controller => 'user', :action => 'dashboard'
     else
-    flash[:warn_notice] = "Sorry ! Could not delete student when dependent record exists."
+    flash[:warn_notice] = "#{t('flash15')}"
       redirect_to  :action => 'remove', :id=>student.id
     end
   end
@@ -310,11 +310,11 @@ class StudentController < ApplicationController
             else
               @student_user.update_attributes(:username=> @student.admission_no,:first_name=> @student.first_name , :last_name=> @student.last_name, :email=> @student.email, :role=>'Student')
             end
-            flash[:notice] = "Student's Record updated successfully!"
+            flash[:notice] = "#{t('flash3')}"
             redirect_to :controller => "student", :action => "profile", :id => @student.id
           end
         else
-          flash[:notice] = "Image file size too large. Please upload an image with size less than 250KB."
+          flash[:notice] = "#{t('flash_msg11')}"
           redirect_to :controller => "student", :action => "edit", :id => @student.id
         end
       else
@@ -324,7 +324,7 @@ class StudentController < ApplicationController
           else
             @student_user.update_attributes(:username=> @student.admission_no,:first_name=> @student.first_name , :last_name=> @student.last_name, :email=> @student.email, :role=>'Student')
           end
-          flash[:notice] = "Student's Record updated successfully!"
+          flash[:notice] = "#{t('flash3')}"
           redirect_to :controller => "student", :action => "profile", :id => @student.id
         end
       end
@@ -337,7 +337,7 @@ class StudentController < ApplicationController
     @student = Student.find(@parent.ward_id)
     @countries = Country.all
     if request.post? and @parent.update_attributes(params[:parent_detail])
-      flash[:notice] = "Parent Record updated!"
+      flash[:notice] = "#{t('flash4')}"
       redirect_to :controller => "student", :action => "guardians", :id => @student.id
     end
   end
@@ -357,7 +357,7 @@ class StudentController < ApplicationController
       end
       recipients = recipient_list.join(', ')
       FedenaMailer::deliver_email(sender,recipients, params['email']['subject'], params['email']['message'])
-      flash[:notice] = "Mail sent to #{recipients}"
+      flash[:notice] = "#{t('flash12')} #{recipients}"
       redirect_to :controller => 'student', :action => 'profile', :id => @student.id
     end
   end
@@ -468,7 +468,7 @@ class StudentController < ApplicationController
     @parent_info = Guardian.new(params[:parent_detail])
     @countries = Country.all
     if request.post? and @parent_info.save
-      flash[:notice] = "Parent details saved for #{@parent_info.ward_id}"
+      flash[:notice] = "#{t('flash5')} #{@parent_info.ward_id}"
       redirect_to :controller => "student" , :action => "admission3_1", :id => @parent_info.ward_id
     end
   end
@@ -525,12 +525,12 @@ class StudentController < ApplicationController
     @student = @guardian.ward
     if @guardian.is_immediate_contact?
       if @guardian.destroy
-        flash[:notice] = "Guardian has been deleted"
+        flash[:notice] = "#{t('flash6')}"
         redirect_to :controller => 'student', :action => 'admission3', :id => @student.id
       end
     else
       if @guardian.destroy
-        flash[:notice] = "Guardian has been deleted"
+        flash[:notice] = "#{t('flash6')}"
         redirect_to :controller => 'student', :action => 'profile', :id => @student.id
       end
     end
@@ -565,7 +565,7 @@ class StudentController < ApplicationController
     @student_categories = StudentCategory.active
     @student_category = StudentCategory.new(params[:student_category])
     if request.post? and @student_category.save
-      flash[:notice] = "Student category has been saved."
+      flash[:notice] = "#{t('flash7')}"
       redirect_to :action => 'categories'
     end
   end

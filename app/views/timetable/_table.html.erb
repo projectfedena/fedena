@@ -23,7 +23,7 @@
           <%= link_to_remote "◄", :url=>{:controller=>"timetable", :action=>"timetable",:next=>(@today-1.day)} %>
         </div>
         <div class="month">
-          <%= @today.strftime(" %d %B %Y") %>
+          <%= I18n.l(@today,:format=>" %d %B %Y") %>
         </div>
         <div class="next">
         <%= link_to_remote "►", :url=>{:controller=>"timetable", :action=>"timetable",:next=>(@today+1.day)} %>
@@ -76,7 +76,7 @@
       </tr>
     </table>
       <% else %>
-        <div class="no-tt-entry"><%= t('timetable.no_timetable_entry_for_batch') %> : <%= b.full_name %> </div>
+        <div class="no-tt-entry"><%= t('no_timetable_entry_for_batch') %> : <%= b.full_name %> </div>
     <% end %>
   <% end %>
 

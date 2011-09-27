@@ -206,6 +206,8 @@ en: # locale
         month : "%B"
         day   : "%a"
         mon   : "%d"
+        day_mon : "%a %d"
+        dmy  : "%d %b, %Y"
 
       day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
       abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]
@@ -297,8 +299,8 @@ en: # locale
     recipient : 'Recipient'
     recipients : 'Recipients'
     guardian : 'Guardian'
-    course : 'Course'
-    courses : 'Courses'
+    course_text : 'Course'
+    courses_text : 'Courses'
     batch : 'Batch'
     remove : 'Remove'
     delete : 'Delete'
@@ -325,9 +327,9 @@ en: # locale
     inactive : 'Inactive'
     update : 'Update'
     admin : 'Admin'
-    employee : 'Employee'
+    employee_text : 'Employee'
     username: "Username"
-    user : 'User'
+    user_text : 'User'
     no_users : 'No user found'
     select_a_department : 'Select a department'
     add : 'Add'
@@ -339,7 +341,7 @@ en: # locale
     currency : 'Currency'
     start_date : 'Start Date'
     end_date : 'End Date'
-    exam : 'Exam'
+    exam_text : 'Exam'
     date : 'Date'
     go : 'Go'
     dob : 'DOB'
@@ -356,7 +358,7 @@ en: # locale
     back : 'Back'
     due_date : 'Due Date'
     n_a : 'N.A'
-    batches : 'Batches'
+    batches_text : 'Batches'
     delete_confirm_msg : 'Are You Sure?'
     new : 'New'
     and : 'and'
@@ -419,7 +421,7 @@ en: # locale
     thu : 'Thu'
     fri : 'Fri'
     sat : 'Sat'
-    exams : 'Exams'
+    exams_text : 'Exams'
     attendance: "Attendance"
     father_name : "Father Name"
     mother_name : "Mother Name"
@@ -476,7 +478,7 @@ en: # locale
     approve_payslip : 'Approve Payslip'
     view_all : 'View all'
     advanced : 'Advanced'
-    timetable : 'Timetable'
+    timetable_text : 'Timetable'
     payroll : 'Payroll'
     add_new_category : "Add new category"
     percentage: 'Percentage'
@@ -581,16 +583,106 @@ en: # locale
     send_sms_to_employees : 'Send Sms to Employees'
     result : 'Result'
     ago: 'ago'
-    publish : 'Publish'
+    publish_t : 'Publish'
     category_name : 'Category Name'
     save_changes : 'Save Changes'
     student_name: 'Student Name'
     finance_text: "Finance"
+    department_wise_payslip : "Department wise payslip"
+    employee_no : 'Employee No.'
+    all_departments: 'All Departments'
+    payslip_status : 'Payslip status'
+    total_employees : 'Total employees'
+    no_payslip_found : 'No Payslips found.'
+    employee_search: 'Employee Search'
+    new_exam : "New Exam"
+    set_in_common : 'set in common'
+    change_type : 'Change Type'
+    enter_exam_related_details : 'Enter exam related details here'
+    subject_name : 'Subject name'
+    do_not_create : "Do not create"
+    exam_type : 'Exam Type'
+    select_subject : 'Select Subject'
+    academic_reports: 'Academic  reports'
+    marks_obtained: 'Marks Obtained'
+    class_average_marks : "Class Average Marks"
+    class_average : "Class Average"
+    grouped_exam_reports : "Grouped exam Reports"
+    connect_exams : "Connect Exams"
+    additional_exams_text : 'Additional Exams'
+    edit_exam_group : 'Edit Exam Group'
+    edit_exam : "Edit Exam"
+    exam_name   : 'Exam Name'
+    actions      : 'Actions'
+    grades : 'Grades'
+    edit_additional_exam : "Edit Additional Exam"
+    for_exam_group : "For exam group"
+    new_additional_exam : 'New Additional Exam'
+    result_entry : 'Result Entry'
+    absent_disqualified_etc : 'Absent/Disqualified etc'
+    publish_exam_schedule : 'Publish Exam Schedule'
+    schedule_published : 'Schedule Published'
+    sms_notification : 'SMS Notification'
+    result_published : 'Result Published'
+    resend_sms_notification : "Resend SMS notification"
+    resend : 'Resend'
+    set_class_timings : 'Set class timings'
+    weekdays_text : 'weekdays'
+    office_address : "Office Address"
+    home_address : "Home Address"
+    home_phone : "Home Phone"
+    generated_report : 'Generated Report'
+    aggregate : 'Aggregate'
+    student_wise_report_for : "Student wise report for"
+    previous_marks_overview : 'Previous marks overview'
+    has_been_scheduled : 'has been scheduled'
+    view_calendar: 'Please view calendar for more details'
+    exam_timetable_published : 'exam Timetable has been published.'
+    exam_result_published : 'exam result has been published.'
+    exam_schedule_published_no_sms : 'Exam schedule published, No sms was sent as Sms setting was not activated'
+    exam_result_published_no_sms : 'Exam result published, No sms was sent as Sms setting was not activated'
+    exam_schedule_published : 'Exam schedule published'
+    result_has_been_published : 'result has been published'
+    view_reports : 'Please view reports for your result'
+    exam_scheduling_not_done : 'Exam scheduling not done yet.'
+    select_a_batch_to_continue : 'Select a batch to continue'
+    to : 'To'
+    from : 'From'
+    password: "Password"
+    for_the_month : 'for the month'
+    select_salary_date : 'Select Salary Date'
+    send_email : 'Send email'
+    leave_name: 'Leave name'
+    available_leave : 'Available Leave'
+    leave_taken     : 'Leave taken'
+    searched_for : 'You have searched for:'
+    listed_by : 'Listed by'
+    search_again : 'Search again'
+    reset_leave : 'Reset Leave'
+    reset_employee_leaves : 'Reset employee leaves.'
+    one_click_aprove_payslip : 'One click approve payslip'
+    aprove_monthly_payslip : 'Approve monthly payslip'
+    time : 'Time'
+    select_payslip_month_year: 'Select payslip Month & Year'
+    
+    flash_msg1: 'Updated additional exam group successfully.'
+    flash_msg2: 'Sorry'
+    flash_msg3: 'Sorry, an error occurred .Please contact Administrator.'
+    flash_msg4: 'Sorry, you are not allowed to access that page.'
+    flash_msg5: 'You are not allowed to view that information.'
+    flash_msg6: 'Access denied!'
+    flash_msg7: 'is absent on'
+    flash_msg8 : 'Settings has been saved'
+    flash_msg9: "Exam name can't be blank"
+    flash_msg10: 'New exam created successfully.'
+    flash_msg11: 'Image file size too large. Please upload an image with size less than 250KB.'
 
 #configuration controller translation
     configuration:
       configuration : 'Configuration'
       general_settings : "General Settings"
+      flash1 : 'Invalid Extention. Image must be .JPG'
+      flash2 : 'File too large. File size should be less than 1 MB'
       index:
         manage_course_batch : "Manage Course/Batch"
         manage_student_category : "Manage Student Category"
@@ -625,15 +717,17 @@ en: # locale
       manage_course : "Manage Course"
       course_name : "Course name"
       section_name : "Section name"
+      initial_batch : 'Initial Batch Details'
+      active_batches : 'Active batches'
+      flash1: 'Created course successfully'
+      flash2: 'Updated course details successfully.'
+      flash3: 'Course deleted successfully.'
+      flash4: 'Unable to Delete. Please remove existing batches and students.'
 
       index:
         link_desc1: 'Manage Courses and create batches'
         link_desc2: 'Manage active batches'
 
-      new:
-        initial_batch : 'Initial Batch Details'
-        active_batches : 'Active batches'
-        
       manage_batches:
         grading_system : 'Grading system'
         
@@ -643,6 +737,13 @@ en: # locale
     batches:
       assign_new : 'Assign new'
       assign_tutor : 'Assign Tutor'
+      import_failed : "Import Failed"
+      flash1: 'Batch created successfully.'
+      flash2: 'Updated batch details successfully.'
+      flash3: 'Please fill all fields'
+      flash4: 'Batch deleted successfully.'
+      flash5: 'Unable to delete Batch.Please delete all Students'
+      flash6: 'Unable to delete Batch.Please delete all Subjects'
       show:
         subject_transfer_message : 'Following Subjects have been imported'
         fee_import_message : 'Following Fee Categories have been imported'
@@ -667,6 +768,17 @@ en: # locale
       uncheck_message : 'Uncheck the students not eligible for graduation'
       garduating_batch : 'Graduating Batch'
       generate_tc_for_all : 'Generate TC for ALL'
+      has_been_added_to_batch : 'has been added to Batch'
+      already_has_subject : 'already has a subject with name'
+      subjects_assigned : 'Subjects have been assigned.'
+      the_subject : 'The subject'
+      following_errors_found : 'Following errors were found'
+      status_description : 'Status description'
+      add_new_subjects: 'Add new subjects'
+      
+      flash1: 'Trasferred students successfully'
+      flash2: 'Graduated selected students successfully'
+      flash3: 'Already has the subject with name'
 
       subject_transfer:
         assign_old_batch_subject : 'Assign old batch subjects'
@@ -674,15 +786,8 @@ en: # locale
         add_elective : "Add Elective"
         previous_batch : "Previous Batch"
 
-      assign_all_previous_batch_subjects:
-        the_subject : 'The subject'
-        has_been_added_to_batch : 'has been added to Batch'
-        already_has_subject : 'already has a subject with name'
-        subjects_assigned : 'Subjects have been assigned.'
-
       index:
         graduation_message : " These students will now be trasferred to former students database. Add the status description for the students. e.g. 'Graduated 10th grade, 2010."
-        status_description : 'Status description'
         previous : 'Previous'
 
       show:
@@ -693,6 +798,8 @@ en: # locale
     elective_groups:
       new_elective : "New Elective"
       show_elective : "Show Elective"
+      flash1: 'New elective group created.'
+      flash2: 'Deleted elective group.'
 
       index:
         edit_elective : "Edit Elective"
@@ -703,26 +810,34 @@ en: # locale
       add_normal_subject : 'Add Normal subject'
       add_subject_to_elective_group : 'Add Subject to this Elective group'
       new_elective_group : 'New Elective Group'
+      cannot_delete_subjects : 'Cannot delete subjects'
+      flash1: 'Selected Subjects have been sucessfully imported'
 
       index:
         add_new_subject : 'Add New Subject'
-        select_subjects : 'Select Subjects'
         import_subject_from_batch : 'Import subject from a batch'
         no_subjects : 'No Subjects available for import in selected batch'
 
 #reminder controller translation
     reminder:
-      from : 'From'
       no_new_message : 'No new messages.'
       send : 'Send'
       inbox : 'Inbox'
       sent : 'Sent'
       sent_on : 'Sent on'
-      to : 'To'
       reply : 'Reply'
       no_message_created  : 'No messages created yet'
       select_recipient : 'Select Recipient'
       user_unavailable: 'User Unavailable'
+      your_message_sent: 'Your message has been sent'
+      enter_subject: 'Please enter message and subject.'
+      
+      flash1: 'Message sent successfully'
+      flash2: 'Reminder deleted.'
+      flash3: 'Your reply has been sent'
+      flash4: 'Please enter both subject and body'
+      flash5: 'Reminder marked unread.'
+      flash6: 'Please fill the required fields to create this message'
 
       view_reminder:
         back_to_inbox: 'Back to inbox'
@@ -731,10 +846,6 @@ en: # locale
       create_reminder:
         reminder_to_staff : 'Create reminder to staff'
         reminder_to_student : 'Create reminder to student'
-
-      send_reminder:
-        your_message_sent: 'Your message has been sent'
-        enter_subject: 'Please enter message and subject.'
 
 #event controller translation
     event:
@@ -749,17 +860,21 @@ en: # locale
       new_event : 'New Event'
       event_description : ' New event description'
       event_notification : 'Event Notification'
+      holidays : "Holidays"
+      dues : "Dues"
+      common_eve : "Common Event"
+      my_course_event : "My Course Event"
+      my_department_event : "My Department Event"
+
+      flash1: 'Event created for selected courses.'
+      flash2: 'Event created for selected departments'
+      flash3: 'Event creation cancelled'
 
       index:
-        holidays : "Holidays"
-        dues : "Dues"
         event_creation : 'Step 1 - Event creation'
         more : 'more'
         associated : 'Associated'
         my : 'My'
-        common : "Common Event"
-        my_course_event : "My Course Event"
-        my_department_event : "My Department Event"
         create_event : "Create Event"
 
       edit:
@@ -789,9 +904,7 @@ en: # locale
       no_of_children : "No of children"
       active_fields : "Active Fields"
       inactive_fields : "Inactive Fields"
-      home_address : "Home Address"
       fax : "FAX"
-      home_phone : "Home Phone"
       employee_name : "Employee name"
       message : "No employees added under this category"
       payslip_generated_on : "Payslip generated on"
@@ -817,13 +930,113 @@ en: # locale
       contact : "Contact"
       personal : "Personal"
       employee_management : "Employee Management"
-      employee_search: 'Employee Search'
       histroy : 'History'
       all_employee : "All Employees"
       employee_profile : "Employee Profile"
       student_leaving_school : 'Student leaving school'
       search_by_name : "Search by name"
       rejected_payslip : 'Rejected payslip'
+      no_additional_details_entered : "No additional details entered for"
+      no_bank_details_entered : "No bank details entered for"
+      basic_payroll_details : "Basic Payroll Details"
+      no_payroll_detail_entered : "No payroll details entered for"
+      details : "Details"
+      bank_info : "Bank Info"
+      additional_info : "Additional Info"
+      address_details  : 'Address details'
+      bank_account_details : 'Bank Account Details'
+      joining_info : 'Joining Info for'
+      change_password_after_login : 'Please change your password after logging in.'
+      kindly_approve : 'Kindly approve this request'
+      rejected_payslip_regenerated: 'Rejected Payslip re-generated'
+      payslip_has_been_generated_for: 'Payslip has been re-generated for'
+      payslip_generated : ' Payslip generated'
+      message_body : 'Payslip has been generated for the particular month. Kindly approve this request'
+      salary_slip_for_month: 'Salary slip generated for the month'
+      employees_salary_generated_manually: 'Employees whose salary was generated manually, their salary slip was not generated by this process'
+      salary_slip_reverted: 'Salary slip reverted for the month'
+      please_select_month: 'Please select a month...'
+      active_bank_field : "Active Bank fields"
+      inactive_bank_field : "Inactive Bank fields"
+      add_bank_details : "Add Bank Details"
+      no_bank_detail : "No bank details record found"
+      active_category : "Active Category"
+      inactive_category : "Inactive Category"
+      no_category_record_found : "No Employee Category Record Found"
+      active_department : "Active Department"
+      inactive_department : "Inactive Department"
+      no_department_found : "No Employee department Found"
+      active_grade : "Active Grade"
+      inactive_grade : "Inactive Grade"
+      active_position : "Active Position"
+      inactive_position : "Inactive Position"
+      no_position_record_found : "No employee position record found"
+      all_leave_records: 'All leave records'
+      reporting_manager : "Reporting manager"
+      add_department : 'Add department'
+      add_grade : "Add Grade"
+      add_position : "Add Position"
+      employee_search_report : 'Employee Search Report'
+      bank_details : 'Bank Details'
+      edit_department : "Edit Department"
+      edit_grade : "Edit Grade"
+      edit_position : "Edit Position"
+      select_the_last_day_of_the_month: 'select the last day of the month'
+      my_emp: 'My Emp'
+      all_records: 'All Records'
+      personal_leave_management: 'Personal Leave Management'
+      my_leave_applications: 'My leave applications'
+      span_leave_management: 'Span Leave Management'
+      my_span: 'My span'
+      new_leave_applications: 'New leave applications'
+      all_leave_applications: 'All leave applications'
+      no_employees_under_my_span: 'No employees under my span'
+      select_manager_msg : "Select the manager by clicking on it and then update !"
+      individual_employee : "Individual Employees"
+      
+      flash1: 'Employee category created'
+      flash2: 'Employee category updated'
+      flash3: 'Successfully deleted!'
+      flash4: 'Unable to delete!'
+      flash5: 'Employee position created'
+      flash6: 'Employee position updated'
+      flash7: 'Employee department created'
+      flash8: 'Employee department updated'
+      flash9: 'Employee grade created'
+      flash10: 'Employee grade updated'
+      flash11: 'Bank field created'
+      flash12: 'Bank details updated'
+      flash13: 'Additional field created'
+      flash14: 'Additional details updated'
+      flash15: 'Employee'
+      flash16: 'record saved'
+      flash17: 'general information updated'
+      flash18: 'personal information updated'
+      flash19: 'address and contact details saved for'
+      flash20: 'Employee address  details saved for'
+      flash21: 'Employee contact details saved for'
+      flash22: 'Bank details saved for'
+      flash23: 'bank details updated'
+      flash24: 'Bank details saved for'
+      flash25: 'employee reporting manager saved'
+      flash26: 'Reporting manager successfully changed'
+      flash27: 'salary slip generated for'
+      flash28: 'salary slip  already generated for'
+      flash29: 'Payslip deleted for'
+      flash30: 'Leave application created'
+      flash31: 'Successfully deleted employee!'
+      flash32: 'All records have been deleted for employee with employee no.'
+      flash33: 'Payslip has been approved'
+      flash34: 'Cant be deleted. This employee is a reporting manager'
+      flash35: 'No bank fields available'
+      flash36: 'No additional fields available'
+      flash37: 'Employee category cant be updated'
+      flash38: 'Employee position cant be updated'
+      flash39: 'Employee department cant be updated'
+      flash40: 'Employee grade cant be updated'
+      flash41: 'The employee is currently assigned to same subject in timetable'
+      flash42: 'Please assign another employee in timetable inorder to remove this association'
+
 
       hr:
         management: 'Management'
@@ -836,35 +1049,8 @@ en: # locale
         record : 'Record'
         found : 'found'
         no_employee_grades_record_found: 'No Employee grades record found'
-        all_leave_records: 'All leave records'
-        select_the_last_day_of_the_month: 'select the last day of the month'
         signature: 'Signature'
-        my_emp: 'My Emp'
-        all_records: 'All Records'
-        personal_leave_management: 'Personal Leave Management'
-        my_leave_applications: 'My leave applications'
-        span_leave_management: 'Span Leave Management'
-        my_span: 'My span'
-        new_leave_applications: 'New leave applications'
-        all_leave_applications: 'All leave applications'
-        no_employees_under_my_span: 'No employees under my span'
         general_profile: 'General Profile'
-        active_category : "Active Category"
-        inactive_category : "Inactive Category"
-        no_category_record_found : "No Employee Category Record Found"
-        active_department : "Active Department"
-        inactive_department : "Inactive Department"
-        no_department_found : "No Employee department Found"
-        active_grade : "Active Grade"
-        inactive_grade : "Inactive Grade"
-        active_position : "Active Position"
-        inactive_position : "Inactive Position"
-        no_position_record_found : "No employee position record found"
-        add_grade : "Add Grade"
-        add_position : "Add Position"
-        edit_department : "Edit Department"
-        edit_grade : "Edit Grade"
-        edit_position : "Edit Position"
         hr_management : "HR Management"
         manage_all_employee : "Manage All Employee"
         employee_leave_management : "Employee Leave Management"
@@ -873,34 +1059,18 @@ en: # locale
         create_employee_monthly_payslip : "Create employee monthly payslips"
         search_for_employees : "Search for employees"
         view_department_wise_payslip : "View department wise payslip"
-        address_details  : 'Address details'
-        bank_account_details : 'Bank Account Details'
-        add_department : 'Add department'
         
-        
-
       search:
         employee_details: 'Employee Details'
-        employee_search_report : 'Employee Search Report'
-
+        
       employee_attendance:
         manage_attendance: 'Manage Attendance'
         leave_attendance: 'Leave and Attendance'
         link_dec1: 'Add and edit employee attendance types.'
         
-
-      add_bank_details:
-        add_bank_details : "Add Bank Details"
-        no_bank_detail : "No bank details record found"
-        active_bank_field : "Active Bank fields"
-        inactive_bank_field : "Inactive Bank fields"
-
       edit_bank_details:
         edit_bank_details : "Edit Bank Details"
 
-      add_additional_details:
-        no_additional_details_entered : "No additional details entered for"
-        
       employee_management:
         manage_all_employee : "Manage All Employees"
         employee_admission_form : "Employee admissions form"
@@ -914,11 +1084,7 @@ en: # locale
 
       admission2:
         step_2 : "Step - 2"
-        office_address : "Office Address"
-        joining_info : 'Joining Info for'
-        change_password_after_login : 'Please change your password after logging in.'
-        pin_code : 'Pin Code'
-
+       
       admission3:
         step_3 : "Step-3"
 
@@ -955,18 +1121,10 @@ en: # locale
         select_reporting_manager : "Select Reporting Manager"
         step_5 : "Step - 5"
         selected_manager : "Selected Manager"
-        select_manager_msg : "Select the manager by clicking on it and then update !"
-
-      profile:
-        details : "Details"
-        bank_info : "Bank Info"
-        additional_info : "Additional Info"
-        leaves : "Leaves"
-        no_bank_details_entered : "No bank details entered for"
-        no_add_details_entered : "No additional details entered for"
-        basic_payroll_details : "Basic Payroll Details"
-        no_payroll_detail_entered : "No payroll details entered for"
         
+      profile:
+        leaves : "Leaves"
+        no_add_details_entered : "No additional details entered for"
         no_dates_found : "No dates found"
         
 
@@ -1004,23 +1162,11 @@ en: # locale
 
       select_department_employee:
         payslip_generation : "Payslip generation"
-        individual_employee : "Individual Employees"
-        
-      create_monthly_payslip:
-        payslip_generated : ' Payslip generated'
-        payslip_generated_for : ' Payslip has been generated for'
-        kindly_approve : 'Kindly approve this request'
 
       department_payslip:
-        department_wise_payslip : "Department wise payslip"
-        employee_no : 'Employee No.'
-        payslip_status : 'Payslip status'
-        total_employees : 'Total employees'
         approved_salary : 'Approved salary'
-        no_payslip_found : 'No Payslips found.'
 
       change_reporting_manager:
-        reporting_manager : "Reporting manager"
         current_manager : "Current Manager"
         new_manager : "New Manager"
 
@@ -1031,13 +1177,8 @@ en: # locale
         choose_your_option : "choose your option"
 
       one_click_payslip_generation:
-        salary_slip_for_month: 'Salary slip generated for the month'
         note: 'NOTE'
-        employees_salary_generated_manually: 'Employees whose salary was generated manually, their salary slip was not generated by this process'
-        salary_slip_reverted: 'Salary slip reverted for the month'
-        please_select_month: 'Please select a month...'
-        message_body : 'Payslip has been generated for the particular month. Kindly approve this request'
-
+        
       settings:
         hr_setting : "HR Setting"
         add_employee_category : "Add Employee Category"
@@ -1066,9 +1207,15 @@ en: # locale
       earnings_msg : " No employee payroll non-deductionable category record found"
       deduction_msg : " No employee payroll deductionable category record found"
       index : 'Index'
+      data_saved_for: 'Data saved for'
+
+      flash1: 'Payroll category saved'
+      flash2: 'Payroll category updated'
+      flash3: 'Successfully deleted!'
+      flash4: 'Unable to delete!'
+      
 
       add_category:
-        add_new_category : "Add New Category"
         percentage_of : "Percentage of"
         is_deduction : "is deduction?"
         
@@ -1089,8 +1236,6 @@ en: # locale
       approval_remark : "Approval remarks"
       deny_remark : "Deny remarks"
       leave_types: 'Leave types'
-      available_leave : 'Available Leave'
-      leave_taken     : 'Leave taken'
       last_reset_date : 'Last reset date'
       no_remarks : 'No Remarks'
       no_leave_application : "There are no leave applications"
@@ -1104,10 +1249,8 @@ en: # locale
       employee_attendance_report : 'Employee Attendance Report'
       no_dates : 'No Dates'
       net_total_leaves : "Net total leaves"
-      reset_employee_leaves : 'Reset employee leaves.'
       enable_carry_forward  : 'Enable Carry Forward'
       reset_employee_leaves_for : 'Reset Employee Leave for '
-      reset_leave : 'Reset Leave'
       full_leave_reset : 'Full Leave Reset'
       reset_leave_count_for_all : 'Reset Leave Count For All Employees'
       reset_count_msg  : 'This will reset leave count for all employees '
@@ -1149,9 +1292,21 @@ en: # locale
       automatic_reset : 'Automatic Reset'
       configure_auto_leave_reset: 'Configure Automatic Employee Leave Reset'
       manual_reset : 'Manual Reset'
+      leave_count_reset_sucessfull : 'Leave count reset successful for all employees'
+      flash1: 'Employee leave type saved'
+      flash2: 'Leave type updated'
+      flash3: 'Leave type deleted succesfully'
+      flash4: 'attendance registered'
+      flash5: 'Leave application created'
+      flash6: 'Leave approved for'
+      flash7: 'Leave denied for'
+      flash8: 'Leave application deleted'
+      flash9 : 'Sorry! Cannot delete a leave type with leave entry'
+      flash10 : 'Sorry aproved leave cannot be deleted'
+      flash11 : 'Leave Reset Successfull'
+      flash12 : 'Department Wise Leave Reset Successfull'
 
       add_leave_types:
-        leave_name: 'Leave name'
         leave_code: 'Leave code'
         max_leave: 'Maximum leave count'
         edit_leave_types : "Edit leave types"
@@ -1171,6 +1326,10 @@ en: # locale
       departments : 'Departments'
       employees : 'employees'
       settings: 'Settings'
+      sms_sent: 'SMS sent successfully to selected students and their guardians'
+      sms_sent_selected_course: 'SMS sent successfully to students(guardians) of selected course'
+      sms_sent_to_employee: 'SMS sent successfully to selected employees'
+      sent_to_selected_department : 'SMS sent successfully to employees of selected department'
 
       index:
         sms_settings_page : 'SMS Settings page'
@@ -1181,16 +1340,7 @@ en: # locale
         sms_to_all : 'Send SMS to all'
         exam_schedule_result : 'Exam Schedule / Result'
         msg1 : 'SMS sent across batches and empoloyee departments'
-  
-      students:
-        sms_sent: 'SMS sent successfully to selected students and their guardians'
-      batches:
-        sms_sent_selected_course: 'SMS sent successfully to students(guardians) of selected course'
-      employees:
-        sms_sent_to_employee: 'SMS sent successfully to selected employees'
-      departments:
-        sent_to_selected_department : 'SMS sent successfully to employees of selected department'
-
+   
 #news controller translation
     news:
       posted : 'Posted'
@@ -1202,6 +1352,9 @@ en: # locale
       posted_on : 'Posted On'
       content : 'Content'
       publish_news  : 'Publish News'
+      flash1 : 'News added!'
+      flash2 : 'News item deleted succefully!'
+      flash3 :  'News updated!'
 
       index:
         more_news : 'More News'
@@ -1230,10 +1383,32 @@ en: # locale
       powered_by: 'Powered by'
       manage_users : 'Manage Users'
       detailed_about_user : 'Details about users'
-      password: "Password"
       edit_privilege : "Edit Privilege"
       faq : "FAQ"
       support : "Support"
+      welcome: "Welcome"
+      login_error_message: "Invalid username or password combination"
+      logged_out: "Logged out"
+
+      flash1: 'Reset time expired'
+      flash2: 'Invalid reset link'
+      flash3: 'Password succesfully reset. Use new password to log in.'
+      flash4: 'Password confirmation failed. Please enter password again.'
+      flash5: 'You have followed an invalid link. Please try again.'
+      flash6 : 'Password fields cannot be blank!'
+      flash7 : 'Password has been updated successfully!'
+      flash8 : 'Password confirmation failed. Please try again.'
+      flash9 : 'Password changed successfully'
+      flash10 : 'Password confirmation failed. Please try again.'
+      flash11 : 'The old password you entered is incorrect. Please enter valid password.'
+      flash12 : 'User account deleted!'
+      flash13 : 'User account updated!'
+      flash14 : 'User profile not found.'
+      flash15 : 'Role updated'
+      flash16 : 'User account not created! '
+      flash17 : 'User account created! '
+      flash18 : 'Reset Password link emailed to'
+      flash19 : 'No user exists with email address'
 
       # the action name
       index:
@@ -1285,8 +1460,7 @@ en: # locale
         forgot_password: "Help! I've Forgotten my Password?"
         login: "Login"
         fedena_logo: "/images/application/app_fedena_logo.jpg"
-        login_error_message: "Invalid username or password combination"
-
+        
       dashboard:
         welcome: "Welcome"
         to_dashboard: "to Fedena dashboard"
@@ -1335,9 +1509,6 @@ en: # locale
         messages: "Messages"
         log_out: "Log out"
 
-      logout:
-        logged_out: "Logged out"
-
 #student_attendance controller translation
     student_attendance:
       index:
@@ -1359,8 +1530,6 @@ en: # locale
       no_report_for_given_period : "No reports for the given period"
       filtered: 'Filtered'
       
-      index:
-        report: 'Report'
       filter:
         filtered_report: 'Filtered Report'
       student_details:
@@ -1378,7 +1547,6 @@ en: # locale
       student_deleted_successfully: 'Student deleted successfully!'
       generate_tc : 'Generate TC'
       view_pdf : 'View PDF'
-      academic_reports: 'Academic  reports'
       student_settings : 'Student Settings'
       student_admission_no : 'Student Admission no.'
       parent : 'Parent'
@@ -1410,7 +1578,6 @@ en: # locale
       enable_sms_feature : 'Enable SMS Features'
       parent_information: 'Parent Information'
       edit_parent_guardian_details: 'Edit Parent/guardian details'
-      send_email : 'Send email'
       student_profile : 'Student Profile'
       amount_to_be_paid : 'Amount to be paid'
       has_paid_all_the_fees : 'Has paid fees all fees for the batch.'
@@ -1435,15 +1602,40 @@ en: # locale
       weighted_scores: 'Weighted scores'
       upcoming_exams: 'Upcoming Exams'
       view_details: 'View Details'
-      searched_for : 'You have searched for:'
-      listed_by : 'Listed by'
-      search_again : 'Search again'
+      delete_student : 'Delete student'
+      description1 : "Completely delete student's records from the school's databases. Use this option only if you created the student record by accident and want to remove it completely."
+      description2 : "Warning: All records will be deleted for the student and cannot be recovered."
+      parent_info : 'Parents Info'
+      parents_profile : 'Parents Profile'
+      academics : 'Academics'
+      recent_exams : 'Recent Exams'
+      subject_wise_report : 'Subjectwise Report'
+      final_report : 'Final Report'
+      compare_past : 'Compare with past years'
+      archives : 'Archives'
+      exam_goruped : 'Exam Grouped'
+      student_admission_done : 'Student admission done. username is'
+      password_is : 'and password is'
+
+      flash1: 'Additional field created'
+      flash2: 'Additional details updated'
+      flash3: 'Student Record updated successfully!'
+      flash4: 'Parent Record updated!'
+      flash5: 'Parent details saved for'
+      flash6: 'Guardian has been deleted'
+      flash7: 'Student category has been saved.'
+      flash8 : 'Student Record Saved Successfully. Please fill the Parent Details.'
+      flash9 : 'Student records saved for'
+      flash10 : 'All records have been deleted for student with admission no.'
+      flash11 : 'Please select a batch.'
+      flash12 : 'Mail sent to'
+      flash13: 'Successfully deleted!'
+      flash14: 'Sorry! Unable to delete when entries exists under the selected detail'
+      flash15: 'Sorry ! Could not delete student when dependent record exists'
 
       admission1:
         student_detail_step1 : 'Step 1 - Student details'
         max_size : '50KB max'
-        student_admission_done : 'Student admission done. username is'
-        password_is : 'and password is'
         last_course: 'Last Attended Course'
         unknown : 'Unknown'
         no_admission_notice : 'No student has been admitted yet'
@@ -1477,19 +1669,12 @@ en: # locale
         no_guardian : 'No guardian added yet'
         enabled : 'Enabled'
         disabled : 'Disabled'
-        generate_tc : "Generate TC"
         
       reports:
-        academics : 'Academics'
-        recent_exams : 'Recent Exams'
-        subject_wise_report : 'Subjectwise Report'
-        final_report : 'Final Report'
-        compare_past : 'Compare with past years'
         current_year_report : 'Current year report'
         grouped_exam_final_report : 'Grouped Exam Final Report'
         compare_grouped_exam_past : 'Compare Grouped Exam with past years'
-        archives : 'Archives'
-        exam_goruped : 'Exam Grouped'
+        
 
       fees:
         paid_all : 'Has paid all fees for the batch.'
@@ -1497,8 +1682,6 @@ en: # locale
         unpaid : 'UNPAID'
 
       guardians:
-        parent_info : 'Parents Info'
-        parents_profile : 'Parents Profile'
         add_guardian : 'Add Guardian'
         parents_guardian : 'Parents/Guardian'
         
@@ -1516,20 +1699,13 @@ en: # locale
       change_to_former:
         description : 'For students leaving the school, use this option to remove them from the list of active students and place them in the former students list.'
 
-      delete:
-        delete_student : 'Delete student'
-        description1 : "Completely delete student's records from the school's databases. Use this option only if you created the student record by accident and want to remove it completely."
-        description2 : "Warning: All records will be deleted for the student and cannot be recovered."
-
       edit_admission4:
         enter_admission_details : 'Edit admission details'
  
       academic_report:
-        class_average: 'Class average'
         examination_wise_performance: 'Examination - wise performance'
         cumulative_performance: 'Cumulative Performance'
         examination_Name: 'Examination Name'
-        marks_obtained: 'Marks Obtained'
         signature: 'Signature'
 
       edit:
@@ -1703,7 +1879,55 @@ en: # locale
       department_wise_salary_report : 'Department-wise Salary Report'
       department_salary_report : 'Department Salary Report'
       employee_salary : 'Employee Salary'
+      fee_reciept: 'Fee Reciept'
+      fee_collection_dates : 'Fee collection dates'
+      view_fee_collection_dates : 'View fee collection dates'
+      fees_discount_succesfully_created : 'Fees Discount Successfully created '
+      finance_transaction_report: 'Finance Transaction Report'
+      fees_discount_succesfully_updated : ' Fees Discount Successfully Updated '
+      select_a_fees_particulars_that: 'Select a fees particulars that you wish to override'
+      finance_transactions_view: 'Finance Transactions View'
+      select_year: 'Select Year'
+      payslip_rejected_for : 'Payslip has been rejected for'
+      does_not_belong_to_batch : 'does not belong to Batch'
+      does_not_exist: 'does not exist'
+      fee_submission_date_for : 'Fee submission date for'
+      has_been_published : 'has been published'
+      fees_submiting_date_starts_on : 'Fees submitting date starts on'
+      fees_submission_date : 'Fees submission date'
+      fees_due : 'Fees Due'
+      invalid : 'Invalid'
+      is_blank : 'is blank'
+      check_your: 'check your'
+      fee_structure: 'Fee structure'
+      regards: 'regards'
+      fees_category_cant_be_blank : 'Fee category cant be blank'
+      receipt_no : 'Receipt No'
+      batch_cant_be_blank : 'Batch cant be blank'
+      is_invalid_admission_no : 'is invalid admission number'
+      admission_cant_be_blank : 'Admission cant be blank'
+      fees_category_cant_blank : 'Fees Category cant be blankFees Category cant be blank'
 
+      flash1: 'Donation accepted'
+      flash2: 'Please create category for expense!'
+      flash3: 'Expense has been added to the accounts.'
+      flash4: 'Expense edited successfully.'
+      flash5: 'Please create category for income!'
+      flash6: 'Income has been added to the accounts'
+      flash7: 'Income edited successfully.'
+      flash8: 'Payslip has been approved'
+      flash9: 'Category created, please add Particulars for the category'
+      flash10: 'Fields with * cannot be empty'
+      flash11: 'Due date should be after End date'
+      flash12: 'Fee Collection updated successfully'
+      flash13: 'Error : Due date must be after End date.'
+      flash14: 'Fees Paid'
+      flash15: 'Donation from'
+      flash16: 'Donation edited successfully.'
+      flash17: 'End Date must be later than Start Date!'
+      flash18: 'Finance Transaction Successfully Deleted'
+      flash19: 'Cannot pay amount greater than total fee'
+      flash20: 'Discount already exists for admission number'
 
       index:
         manage : 'Manage'
@@ -1719,13 +1943,6 @@ en: # locale
         create_master_category: 'Create Master Category'
         create_master_fees_particulars : 'Create Master Fees Particulars'
         no_records_for_the_date: 'No records for the date'
-        fee_reciept: 'Fee Reciept'
-        finance_transaction_report: 'Finance Transaction Report'
-        msg2: 'Select a fees particulars that you wish to override'
-        finance_transactions_view: 'Finance Transactions View'
-        select_payslip_month_year: 'Select payslip Month & Year'
-        select_year: 'Select Year'
-        edit_donation : 'Edit Donation'
         
       fees_index:
         collection : 'collection'
@@ -1744,31 +1961,12 @@ en: # locale
         no_particulars_to_display : 'No particulars to display'
         delete_msg : 'Delete the fee particular ?'
        
-      add_particulars_create:
-        does_not_belong_to_batch : 'does not belong to Batch'
-        does_not_exist: 'does not exist'
-
       additional_fees_list:
         delete_msg1: 'Delete this category?'
-
-      additional_fees_create:
-        message_body_part1 : 'Fee submission date for'
-        message_body_part2 : 'has been published'
-        message_body_part3 : 'Fees submitting date starts on'
-        message_body_subject : 'Fees submission date'
 
       fee_collection :
         collection : 'Collection'
         displays_collection_dates : 'Displays fee collection dates'
-
-      fee_collection_create:
-        message_body_check_your: 'check your'
-        message_body_fee_structure: 'Fee structure'
-        message_body_regards: 'regards'
-
-      fee_collection_view :
-        fee_collection_dates : 'Fee collection dates'
-        view_fee_collection_dates : 'View fee collection dates'
 
       fees_submission_index :
         fees_submission_by_course : 'Fees submission by course'
@@ -1798,22 +1996,19 @@ en: # locale
       payslip_index :
         view_payslip : 'View Payslip'
         view_employee_monthly_payslip : 'View employee monthly payslip'
-        one_click_aprove_payslip : 'One click approve payslip'
-        aprove_monthly_payslip : 'Approve monthly payslip'
         
       asset_liability :
         manages_asset : 'Manages Asset'
         manages_liability : 'Manages Liability'
         
-      update_ajax:
-        receipt_no : 'Receipt No'
-
       graph_for_compare_monthly_report:
         for_the_period : 'For the period'
 
+## traslation for xml controller
     xml:
+      tally : 'Tally'
+      flash1: 'XML settings updated successfully'
       index:
-        tally : 'Tally'
         tally_settings : 'Tally settings'
         change_ledger_settings_for_tally : 'Change ledger settings for Tally'
         export_for_tally : 'Export for Tally'
@@ -1826,223 +2021,149 @@ en: # locale
         export_to_tally : 'Export to Tally'
 
 
-# translation for exam module
-    exams:
-      index:
-        
-        edit_exam : "Edit Exam"
-        for_exam_group : "For exam group"
-        edit_exam_group : 'Edit Exam Group'
-
-      show:
-        result_entry : 'Result Entry'
-        absent_disqualified_etc : 'Absent/Disqualified etc'
-        
-
-
+# translation for exams controller
+    
+# translation for grading level controller
 
     grading_levels:
+      min_score : 'Min Score'
+      add_grades : 'Add grades'
+      add_new_grading_levels  : 'Add New Grading Levels'
       index:
         grading : 'Grading'
         levels : 'Levels'
-        add_grades : 'Add grades'
-        min_score : 'Min Score'
         grading_levels : 'Grading Levels'
-        add_new_grading_levels  : 'Add New Grading Levels'
         edit_grading_levels : "Edit grading levels"
 
+# translation for exam controller
     exam:
+      select_exam_group : "Select Exam Group"
+      consolidated_report : "Consolidated Report"
+      create_exam : "Create Exam"
+      exam_results_entry : 'Exam results entry'
+      exam_wise_report : 'Exam Wise Report'
+      grouping : 'Grouping'
+      exam_scheduled : 'Exam Scheduled'
+      flash1: 'Selected exams grouped successfully.'
+      flash2: 'Select a batch and exam to continue.'
+      flash3: 'Invalid parameters.'
+      flash4: 'Select a subject to continue'
+      flash5: 'No Students in selected batch'
       index:
+        create_a_new_exam_and_enter_result : 'Create new exams, enter results.'
+        create_additional_exams_and_edit_results : 'Create additional exams,Edit results'
         set_grading_levels: 'Set grading levels'
-       
         results : 'Results'
-        exam_wise_report : 'Exam Wise Report'
         generates : 'Generates'
         subject_wise_report : 'Subject Wise Report'
-        grouped_exam_report : ' Grouped Exam Report'
         group_up_exams_for_specific_reports : 'Group up exams for specific reports'
-        exam_related_details : 'Enter exam related details here'
         do_not : 'Do not'
         academic : 'Academic'
         consolidated : 'Consolidated'
-        generated_report : 'Generated Report'
-        report : 'Report'
         average : 'Average'
-        aggregate : 'Aggregate'
-        grouping : 'Grouping'
         connect : 'Connect'
-        previous_marks_overview : 'Previous marks overview'
-        exam_type : "Exam Type"
-        change_type : "Change Type"
-        do_not_create : "Do not create"
-        consolidated_report : "Consolidated Report"
-        create_exam : "Create Exam"
-        select_exam_group : "Select Exam Group"
-        class_average_marks : "Class average marks"
-        student_wise_report_for : "Student wise report for"
         exam_management : "Exam Management"
         generate_exam_wise_report : "Generates exam wise reports"
         generate_subject_wise_report : "Generates subject wise reports"
         marklist_for : "Marklist for"
-        class_average : "Class Average"
         average_mark : "Average Mark"
-        exam_collection : "Exam Collection"
-        collect_exams_for_an_interval : "Collect exams for a particular time interval"
-        remarks_for_exam_collection : "Remarks for exam collection"
-        remarks_link_desc : "Create or edit remarks for conjugation of an exam collection"
-        exam_collection_conjugation : "Exam collection conjugation"
-        exam_collection_conjugation_link_desc : "Conjugate an exam collection with remarks and more details"
-        exam_report : "Exam report"
-        exam_report_link_desc : "Report displaying exam marks and/or grades"
-        exam_collection_report : "Exam collection report"
-        exam_collection_link_desc : "Report displaying exam collection marks and other details"
-        final_exam_collection_report : "Final exam collection report"
-        final_exam_collection_link_desc : "Report displaying the sum of all exam collection marks"
-        select_exam_collection : "Select exam collection"
-
-
-
-
-      publish:
-        exam_scheduled : 'Exam Scheduled'
-        has_been_scheduled : 'has been scheduled'
-        view_calendar: 'Please view calendar for more details'
-        exam_timetable_published : 'exam Timetable has been published.'
-        exam_result_published : 'exam result has been published.'
-        exam_schedule_published : 'Exam schedule published'
-        exam_schedule_published_no_sms : 'Exam schedule published, No sms was sent as Sms setting was not activated'
-        exam_result_published_no_sms : 'Exam result published, No sms was sent as Sms setting was not activated'
-        result_has_been_published : 'result has been published'
-        view_reports : 'Please view reports for your result'
-        exam_scheduling_not_done : 'Exam scheduling not done yet.'
-
-
+     
+# exams controller
+    exams:
+      flash1: 'Updated exam details successfully.'
+      flash2: 'Exam score exceeds Maximum Mark.'
+      flash3: 'Exam scores updated.'
+      flash4: 'Garading Levels are not set. Please set Garding Levels.'
 # exam_groups controller
     exam_groups:
+      view_exam_groups : "View Exam Groups"
+      publish_exam_result : 'Publish Exam Result'
+      flash1: 'Exam group created successfully.'
+      flash2: 'Updated exam group successfully.'
       index:
         exam_groups : 'Exam Groups'
         exam_group : 'exam Group'
         connect : 'Connect'
-        actions : 'Actions'
-        publish_exam_schedule : 'Publish Exam Schedule'
-        schedule_published : 'Schedule Published'
-        resend : 'Resend'
-        sms_notification : 'SMS Notification'
-        publish_exam_result : 'Publish Exam Result'
-        result_published : 'Result Published'
-        class_average_marks : "Class Average Marks"
-        class_average : "Class Average"
-        grouped_exam_reports : "Grouped exam Reports"
-        connect_exams : "Connect Exams"
-        resend_sms_notification : "Resend SMS notification"
-        view_exam_groups : "View Exam Groups"
-
-      show:
         
       new:
-        type : 'Type'
-        grades : 'Grades'
         marks_and_grades : 'Marks and Grades'
-        
-
+      
 #additional exam controller
-
     additional_exam:
       create_additional_exam:
         create_additional_exams : 'Create Additional Exams'
-        additional_exams : 'Additional Exams'
-        exam_type : 'Exam Type'
-        change_type : 'Change Type'
-        enter_exam_related_details_here : 'Enter Exam  Related Details Here'
-        do_not_create : 'Do not create'
         cant_be_more_than_max_marks : 'cant be more than max marks'
-        subject_name : 'Subject name'
 
 #additional exams controller
     additional_exams:
+      for_additional_exam_group : "For additional exam group"
+      flash1: 'Additional exam scores updated.'
+      flash3: 'Updated additional exam details successfully.'
       show:
-        result_entry : 'Result Entry'
         select_grade : 'Select Grade'
-        exam_type : 'Exam Type'
-
-      edit:
-        for_additional_exam_group : "For additional exam group"
-
+      
+#additional exam groups controller
     additional_exam_groups:
+      flash1: 'Additional Exam Group successfully saved'
+      
       edit:
         edit_additional_exam_groups : "Edit Additional Exam Groups"
-        edit_additional_exam : "Edit Additional Exam"
-
       index:
         additional_exam_groups : "Additional Exam Groups"
-        resend_sms_notification : "Resend  SMS notification"
-        exam_name   : 'Exam Name'
-        action      : 'Action'
-
-      new:
-        new_exam : "New Exam"
-        new_additional_exam : 'New Additional Exam'
-
       show:
         view_additional_exam : "View Additional Exam"
         show_additional_exam_group : 'Showing Additional Exam group'
 
-
  ## translation for timetable controller
     timetable:
+      warning : 'Warning'
+      no_teacher_associated : 'No teacher associated to this subject'
+      time_table_is_being_generated : 'Time table is being generated.Please stay on the page'
+      no_timetable_entry_for_batch : 'No Timetable entry for Batch'
+      add_subjects : 'Add Subjects'
+      swap_class : 'Swap class'
+      create_or_edit_timetable : 'Create/Edit Timetable'
+      view_timetable : 'View Timetables'
+      select_batch_to_edit : 'Select batch to edit'
+      institutional : 'Institutional'
+      day : 'Day'
+      cancelled : 'Cancelled.'
+      select_batch_to_view : 'Select batch to view'
+      weekly_limit_reached : "Weekly subject limit reached"
+      class_overlap : "Class overlap occured with Batch"
+      max_hour_exceeded_day : "Max hours per day exceeded"
+      max_hour_exceeded_week : "Max hours per week exceeded"
+      welcome: "Welcome"
+
+      flash1: 'Timetable has already been published'
+      flash2: 'Timetable updated'
+      flash3: 'Time table Published'
+      flash4: 'No timetable entry for selected date'
+      
       index:
         select_a_class_and_edit_the_timetable : 'Select a class and edit the timetable for that class'
-        set_class_timings : 'Set class timings'
         select_a_class_timings_for_each_class : 'Select a class timings for each class'
-        
         view_the_timetable_for_a_class : 'View the timetable for a class'
-        swap_class : 'Swap class'
         generate_period_entry : 'Generate period entry for a given time'
-        institutional : 'Institutional'
         view_entire_timetable : 'View the entire timetable for a day'
-        weekdays : 'weekdays'
-        reset_attendance_register : "Reset attendance register"
-        discard_attendance_register_for_batch : "Discard attendance register of a batch"
-        attendance_discard_warning : "Are you sure you want to continue? This will discard complete attendance register of this batch."
-        no_attendance_register_created : "No attendance register created for this batch"
       select_class2:
         select_class_to_edit : 'Select class to edit'
-        go : 'Go'
-      edit2:
-       
-        time_table_is_being_generated : 'Time table is being generated.Please stay on the page'
-        warning : 'Warning'
-        no_teacher_associated : 'No teacher associated to this subject'
       extra_class:
         select_a_class : 'select a class'
         
-      view:
-        select_batch_to_view : 'Select batch to view'
-      timetable:
-        time : 'Time'
-        no_timetable_entry_for_batch : 'No Timetable entry for Batch'
-      weekdays:
-        select_batch_to_edit : 'Select batch to edit'
-        
-      select_class:
-        select_a_batch_to_continue : 'Select a batch to continue'
+ ## translation for class timings controller
     weekday:
-      index:
-        weekdays : 'Weekdays'
-        alter_message : 'This will alter all time table entries and Attendance entries for the weekdays, Proceed with changing weekdays ?'
-        
-        add_new_grading_level: 'Add new grading level'
-      create:
-        weekday_modified : 'Weekday modified'
-        check_if_this_is_a_break : 'Check if this is a break'
+      check_if_this_is_a_break : 'Check if this is a break'
+      alter_message : 'This will alter all time table entries and Attendance entries for the weekdays, Proceed with changing weekdays ?'
+      add_new_grading_level: 'Add new grading level'
+      weekdays_modified : 'Weekdays modified'
+
+ ## translation for class timings controller
     class_timings:
-      index:
-        set_class_timings : 'Set class timings'
-        confirm_msg : 'This will delete all timetable entried assosciated with this class timing , proceed with deletion?'
-        set_in_common : 'set in common'
-        edit_class_timing_for : 'Edit class timing for'
-        is_a_break : 'Is a break'
-        add_new_class_timing_for : 'Add new class timing for'
+      edit_class_timing_for : 'Edit class timing for'
+      is_a_break : 'Is a break'
+      confirm_msg : 'This will delete all timetable entried assosciated with this class timing , proceed with deletion?'
+      add_new_class_timing_for : 'Add new class timing for'
 
       # partials w/o underscore (template "_footer.erb")
       footer:
@@ -2073,218 +2194,8 @@ en: # locale
       log_out: "Log out"
       ago: 'ago'
       powered_by: 'Powered by'
-
-      
-        
-   #flash message translations
-    flash_message:
-      batch_transfers:
-        flash1: 'Trasferred students successfully'
-        flash2: 'Graduated selected students successfully'
-        flash3: 'Already has the subject with name'
-      archived_student:
-        flash1: 'All records have been deleted for student with admission no.'
-      batches:
-        flash1: 'Batch created successfully.'
-        flash2: 'Updated batch details successfully.'
-        flash3: 'Please fill all fields'
-        flash4: 'Batch deleted successfully.'
-        flash5: 'Unable to delete Batch.Please delete all Students'
-        flash6: 'Unable to delete Batch.Please delete all Subjects'
-      courses:
-        flash1: 'Created course successfully'
-        flash2: 'Updated course details successfully.'
-        flash3: 'Course deleted successfully.'
-        flash4: 'Unable to Delete. Please remove existing batches and students.'
-      elective_groups:
-        flash1: 'New elective group created.'
-        flash2: 'Deleted elective group.'
-      additional_exam:
-        flash1: "Exam name can't be blank"
-      additional_exam_groups:
-        flash1: 'Additional Exam Group successfully saved'
-        flash2: 'Updated additional exam group successfully.'
-      additional_exams:
-        flash1: 'Additional exam scores updated.'
-        flash2: 'New exam created successfully.'
-        flash3: 'Updated additional exam details successfully.'
-        flash4: 'Exam name cant be blank'
-        flash5: 'has been scheduled'
-        flash6: 'Please view calendar for more details'
-        flash7: 'exam timetable has been published'
-        flash8: 'exam result has been published'
-        flash9: 'Exam schedule published, No sms was sent as Sms setting was not activated'
-        flash10: 'Exam result published, No sms was sent as Sms setting was not activated'
-        flash11: 'Exam schedule published'
-        Flash12: 'Exam result published'
-        flash13: 'result has been published'
-        flash14: 'Please view reports for your result'
-        flash15: 'Exam scheduling not done yet'
-
-      application:
-        flash1: 'Sorry, an error occurred .Please contact Administrator.'
-        flash2: 'Sorry, you are not allowed to access that page.'
-        flash3: 'You are not allowed to view that information.'
-        flash4: 'Access denied!'
-        flash5: 'Sorry'
-      employee_attendance:
-        flash1: 'Employee leave type saved'
-        flash2: 'Leave type updated'
-        flash3: 'Leave type deleted succesfully'
-        flash4: 'attendance registered'
-        flash5: 'Leave application created'
-        flash6: 'Leave approved for'
-        flash7: 'from'
-        flash8: 'to'
-        flash9: 'Leave denied for'
-        flash10: 'Leave application deleted'
-        flash11 : 'Sorry! Cannot delete a leave type with leave entry'
-        flash12 : 'Sorry aproved leave cannot be deleted'
-        flash13 : 'Leave Reset Successfull'
-        flash14 : 'Department Wise Leave Reset Successfull'
-      employee:
-        flash1: 'Employee category created'
-        flash2: 'Employee category updated'
-        flash3: 'Successfully deleted!'
-        flash4: 'Unable to delete!'
-        flash5: 'Employee position created'
-        flash6: 'Employee position updated'
-        flash7: 'Employee department created'
-        flash8: 'Employee department updated'
-        flash9: 'Employee grade created'
-        flash10: 'Employee grade updated'
-        flash11: 'Bank field created'
-        flash12: 'Bank details updated'
-        flash13: 'Additional field created'
-        flash14: 'Additional details updated'
-        flash15: 'Employee'
-        flash16: 'record saved'
-        flash17: 'general information updated'
-        flash18: 'personal information updated'
-        flash19: 'Image file size too large. Please upload an image with size less than 250KB.'
-        flash20: 'address and contact details saved for'
-        flash21: 'Employee address  details saved for'
-        flash22: 'Employee contact details saved for'
-        flash23: 'Bank details saved for'
-        flash24: 'bank details updated'
-        flash25: 'Bank details saved for'
-        flash26: 'employee reporting manager saved'
-        flash27: 'Reporting manager successfully changed'
-        flash28: 'salary slip generated for'
-        flash29: 'salary slip  already generated for'
-        flash30: 'Payslip deleted for'
-        flash31: 'Leave application created'
-        flash32: 'Successfully deleted employee!'
-        flash33: 'All records have been deleted for employee with employee no.'
-        flash34: 'Payslip has been approved'
-        flash35: 'Cant be deleted. This employee is a reporting manager'
-        flash36: 'No bank fields available'
-        flash37: 'No additional fields available'
-        flash38: 'Employee category cant be updated'
-      event:
-        flash1: 'Event created for selected courses.'
-        flash2: 'Event created for selected departments'
-        flash3: 'Event creation cancelled'
-      exam:
-        flash1: 'Selected exams grouped successfully.'
-        flash2: 'Select a batch and exam to continue.'
-        flash3: 'Invalid parameters.'
-        flash4: 'Select a subject to continue'
-      exam_groups:
-        flash1: 'Exam group created successfully.'
-        flash2: 'Updated exam group successfully.'
-      exams:
-        flash1: 'Updated exam details successfully.'
-        flash2: 'Exam score exceeds Maximum Mark.'
-        flash3: 'Exam scores updated.'
-        flash4: 'Garading Levels are not set. Please set Garding Levels.'
-      finance:
-        flash1: 'Donation accepted'
-        flash2: 'Please create category for expense!'
-        flash3: 'Expense has been added to the accounts.'
-        flash4: 'Expense edited successfully.'
-        flash5: 'Please create category for income!'
-        flash6: 'Income has been added to the accounts'
-        flash7: 'Income edited successfully.'
-        flash8: 'Payslip has been approved'
-        flash9: 'Category created, please add Particulars for the category'
-        flash10: 'Fields with * cannot be empty'
-        flash11: 'Due date should be after End date'
-        flash12: 'Fee Collection updated successfully'
-        flash13: 'Error : Due date must be after End date.'
-        flash14: 'Fees Paid'
-
-      payroll:
-        flash1: 'Payroll category saved'
-        flash2: 'Payroll category updated'
-        flash3: 'Successfully deleted!'
-        flash4: 'Unable to delete!'
-        flash5: 'Data saved for'
-      reminder:
-        flash1: 'Message sent successfully'
-        flash2: 'Reminder deleted.'
-        flash3: 'Your reply has been sent'
-        flash4: 'Please enter both subject and body'
-        flash5: 'Reminder marked unread.'
-        flash6: 'Please fill the required fields to create this message'
-
-      student:
-        flash1: 'Additional field created'
-        flash2: 'Additional details updated'
-        flash3: 'Student Record updated successfully!'
-        flash4: 'Parent Record updated!'
-        flash5: 'Parent details saved for'
-        flash6: 'Guardian has been deleted'
-        flash7: 'Student category has been saved.'
-        flash8 : 'Student Record Saved Successfully. Please fill the Parent Details.'
-        flash9 : 'Student records saved for'
-        flash10 : 'All records have been deleted for student with admission no.'
-        flash11 : 'Please select a batch.'
-        flash12 : 'Mail sent to'
-      timetable:
-        flash1: 'Timetable has already been published'
-        flash2: 'Timetable updated'
-        flash3: 'Time table Published'
-        flash4 : 'Select a batch to continue'
-      user:
-        flash1: 'Reset time expired'
-        flash2: 'Invalid reset link'
-        flash3: 'Password succesfully reset. Use new password to log in.'
-        flash4: 'Password confirmation failed. Please enter password again.'
-        flash5: 'You have followed an invalid link. Please try again.'
-        flash6 : 'Password fields cannot be blank!'
-        flash7 : 'Password has been updated successfully!'
-        flash8 : 'Password confirmation failed. Please try again.'
-        flash9 : 'Password changed successfully'
-        flash10 : 'Password confirmation failed. Please try again.'
-        flash11 : 'The old password you entered is incorrect. Please enter valid password.'
-        flash12 : 'User account deleted!'
-        flash13 : 'User account updated!'
-        flash14 : 'User profile not found.'
-        flash15 : 'Role updated'
-        flash16 : 'User account not created! '
-        flash17 : 'User account created! '
-        flash18 : 'Reset Password link emailed to'
-        flash19 : 'No user exists with email address'
-      news:
-        flash1 : 'News added'
-        flash2 : 'News item deleted succefully!'
-        flash3 :  'News updated!'
-      xml:
-        flash1: 'XML settings updated successfully'
-
-      configuration:
-        flash1 : 'Invalid Extention. Image must be .JPG'
-        flash2 : 'File too large. File size should be less than 1 MB'
-        flash3 : 'Settings has been saved'
-        flash4 : "back up scheduled"
-        flash5 : "You are not allowed to download that file"
-
-      subjects:
-        flash1: 'Selected Subjects have been sucessfully imported'
-
-      
-
+    
+ 
     # for shared partials called like: render :template => "shared/user"
     # where "shared" is the directory name
     shared:

@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('exams.index.exams') %></h1>
-  <h3><%= t('user.dashboard.academic_report') %></h3>
+  <h1><%= t('exams_text') %></h1>
+  <h3><%= t('academic_reports') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -34,10 +34,10 @@
 
     <table id="listing" width="100%">
       <tr class="tr-head">
-        <td><%= t('exam') %></td>
-        <td><%= t('exam_groups.new.marks') %></td>
-        <td><%= t('exam.index.max') %></td>
-        <td><%= t('exam_groups.new.grades') %></td>
+        <td><%= t('exam_text') %></td>
+        <td><%= t('marks') %></td>
+        <td><%= t('max') %></td>
+        <td><%= t('grades') %></td>
       </tr>
       <% @exam_groups.each do |exam_group| %>
         <tr class="tr-<%= cycle('odd','even') %>">

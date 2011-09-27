@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/student_details/student_details_logo.jpg" />
-  <h1>Students</h1>
-  <h3>Previous marks overview</h3>
+  <h1><%= t('students') %></h1>
+  <h3><%= t('previous_marks_overview') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -28,7 +28,7 @@
 <div id="inner-tab-menu">
   <ul>
     <li>
-      <%= link_to '► PDF ',{:controller => "exam",:action=> 'previous_years_marks_overview_pdf',:student => @student.id},:target=> '_blank' %>
+      <%= link_to "► pdf_report" ,{:controller => "exam",:action=> 'previous_years_marks_overview_pdf',:student => @student.id},:target=> '_blank' %>
     </li>
   </ul>
 </div>
@@ -77,7 +77,7 @@
           <div class="month">
             <% exam = ExamScore.new() %>
             <% @aggr =  exam.batch_wise_aggregate(@student,b)  %>
-            <%= b.name %> | Aggregate : <%="%.2f" %@aggr.to_f unless @aggr== 'nil' or @aggr.nil? %>
+            <%= b.name %> |<%= t('aggregate') %> : <%="%.2f" %@aggr.to_f unless @aggr== 'nil' or @aggr.nil? %>
           </div>
           <div class="extender"></div>
         </div>
@@ -85,11 +85,11 @@
     <div id="score-table">
       <table id="listing" width="100%">
         <tr class="tr-head">
-          <td>Subject</td>
+          <td><%= t('subject') %></td>
           <% @exam_groups.each do |exam_group| %>
             <td><%= exam_group.name %></td>
           <% end %>
-          <td>Total</td>
+          <td><%= t('total') %></td>
         </tr>
 
         <% @subjects.each do |subject| %>
@@ -126,7 +126,7 @@
 
         <% end %>
         <tr class="tr-head">
-          <td>Total</td>
+          <td><%= t('total') %></td>
           <% @max_total = 0 %>
           <% @marks_total = 0 %>
 
@@ -164,9 +164,9 @@
           <% @additional_exams = AdditionalExam.find_all_by_additional_exam_group_id(additional_exam_group) %>
           <table id="additional_listing" width="100%">
             <tr class="tr-head">
-              <td>Subject</td>
-              <% unless additional_exam_group.exam_type == "Grades" %>      <td>Marks</td> <% end %>
-              <% unless additional_exam_group.exam_type == "Marks" %> <td> Grades </td><% end %>
+              <td><%= t('subject') %></td>
+              <% unless additional_exam_group.exam_type == "Grades" %>      <td><%= t('marks') %></td> <% end %>
+              <% unless additional_exam_group.exam_type == "Marks" %> <td><%= t('grades') %></td><% end %>
             </tr>
             <% @additional_exams.each do |exam| %>
               <% unless (exam.score_for(@student).marks.nil? &&  exam.score_for(@student).grading_level_id.nil?)   %>

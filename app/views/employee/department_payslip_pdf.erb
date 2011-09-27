@@ -30,7 +30,7 @@
       <div id ="main_info">
         <div class="info"><div class="info-label"><%= t('name') %></div> <div class="info-data"><span>:</span><%= employee.full_name.upcase %></div></div>
         <div class="info"><div class="info-label"><%= t('department_payslip.id') %></div> <div class="info-data"><span>:</span><%= employee.employee_number %></div></div>
-        <div class="info"><div class="info-label"><%= t('employee.hr.grade') %></div> <div class="info-data"><span>:</span><%= EmployeeGrade.find(employee.employee_grade_id).name %></div></div>
+        <div class="info"><div class="info-label"><%= t('grade') %></div> <div class="info-data"><span>:</span><%= EmployeeGrade.find(employee.employee_grade_id).name %></div></div>
         <div class="info"><div class="info-label"><%= t('category') %></div> <div class="info-data"><span>:</span><%=  EmployeeCategory.find(employee.employee_category_id).name %></div></div>
         <div class="info"><div class="info-label"><%= t('department') %></div> <div class="info-data"><span>:</span><%= employee.employee_department.name %></div></div>
         <div class="info"><div class="info-label"><%= t('joining_date') %></div> <div class="info-data"><span>:</span><%= employee.joining_date.strftime("%d %B %Y") %></div></div>

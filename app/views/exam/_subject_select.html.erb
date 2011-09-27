@@ -17,4 +17,4 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<%= select :exam_report, :subject_id, @subjects.map{|subject| [subject.name,subject.id]},:prompt=>'Select subject' %>
+<%= select :exam_report, :subject_id, @subjects.map{|subject| [subject.name,subject.id]},:prompt=>"#{t('select_subject')}" %>

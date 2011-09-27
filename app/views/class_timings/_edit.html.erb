@@ -17,10 +17,10 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<label class="head_label"><%= t('index.edit_class_timing_for') %>
+<label class="head_label"><%= t('edit_class_timing_for') %>
   <span>
     <% if @batch.nil?%>
-      <%= t('timetable.weekdays.common') %>
+      <%= t('common') %>
     <% else %>
       <%=  @batch.full_name %>
     <% end %>
@@ -50,9 +50,9 @@
 
     <div class="label-checkbox-pair">
       <% if @class_timing.is_break %>
-      <label><%= f.check_box :is_break, :checked => true %><%= t('index.is_a_break') %></label>
+      <label><%= f.check_box :is_break, :checked => true %><%= t('is_a_break') %></label>
       <% else %>
-      <label><%= f.check_box :is_break, :checked => false %><%= t('index.is_a_break') %></label>
+      <label><%= f.check_box :is_break, :checked => false %><%= t('is_a_break') %></label>
       <% end %>
     </div>
 

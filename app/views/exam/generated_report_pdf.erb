@@ -22,7 +22,7 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2><%= "Student wise report for "+@exam_group.name+", Batch:"+@batch.name %></h2>
+  <h2><%= "#{t('student_wise_report_for')} "+@exam_group.name+", #{t('batch')}:"+@batch.name %></h2>
   <div class="hor_line"></div>
 
   <% @students.each_with_index do |student,i| %>
@@ -34,13 +34,13 @@
         <% end  %>
       <div id ="main_info">
         <h4> <%= student.full_name %></h4>
-        <h4> <%= "Exam : "+@exam_group.name %></h4>
+        <h4> <%= "#{t('exam_text')} : "+@exam_group.name %></h4>
       </div>
       <div id="pdf-info">
         <table id="pdf-table" width="100%" cellspacing="0">
           <% c = 'even'  %>
           <%  if @exam_group.exam_type == 'Marks' %>
-            <tr class="table-header"><td class="col-pdf">Subject</td><td class="col-pdf"> Marks Obtained </td><td class="col-pdf">Maximum marks</td><td class="col-pdf">Percentage(%)</td></tr>
+            <tr class="table-header"><td class="col-pdf"><%= t('subject') %></td><td class="col-pdf"><%= t('marks_obtained') %></td><td class="col-pdf"><%= t('max_mark') %></td><td class="col-pdf"><%= t('percentage') %>(%)</td></tr>
             <% total_marks = 0 %>
             <% total_max_marks = 0 %>
             <% @exam_group.exams.each_with_index do |exam,i|  %>
@@ -57,7 +57,7 @@
             <% i= 0 %>
             <tr class="page-break"><td colspan="3"></td></tr>
 
-                <tr class="table-header"><td class="col-pdf">Subject</td><td class="col-pdf"> Marks Obtained </td><td class="col-pdf">Maximum marks</td><td class="col-pdf">Percentage(%)</td></tr>
+                <tr class="table-header"><td class="col-pdf"><%= t('subject') %></td><td class="col-pdf"><%= t('marks_obtained') %> </td><td class="col-pdf"><%= t('max_marks') %></td><td class="col-pdf"><%= t('percentage') %>(%)</td></tr>
 
           <% end %>
               <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
@@ -74,7 +74,7 @@
               <td class="col-pdf"><%= @total_percentage %></td>
             </tr>
           <%  elsif @exam_group.exam_type == 'Grades' %>
-            <tr class="table-header"><td class="col-pdf">Subject</td><td class="col-pdf"> Grade </td></tr>
+            <tr class="table-header"><td class="col-pdf"><%= t('subject') %></td><td class="col-pdf"> <%= t('grade') %> </td></tr>
             <% @exam_group.exams.each do |exam| %>
               <% exam_score = ExamScore.find_by_student_id_and_exam_id(student,exam) %>
               <% unless exam_score.nil? %>
@@ -91,7 +91,7 @@
             <% end %>
 
           <% else %>
-            <tr class="table-header"><td class="col-pdf">Subject</td><td class="col-pdf"> Grade </td><td class="col-pdf"> Marks Obtained </td><td class="col-pdf"> Maximum marks </td><td class="col-pdf"> Percentage(%) </td></tr>
+            <tr class="table-header"><td class="col-pdf"><%= t('subject') %></td><td class="col-pdf"> <%= t('grade') %> </td><td class="col-pdf"><%= t('marks_obtained') %></td><td class="col-pdf"><%= t('max_marks') %></td><td class="col-pdf"><%= t('percentage') %>(%) </td></tr>
             <% total_marks = 0 %>
             <% total_max_marks = 0 %>
             <% @exam_group.exams.each do |exam| %>
@@ -128,4 +128,5 @@
          
   <% end %>
 
+</div>
 </div>

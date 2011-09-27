@@ -28,7 +28,7 @@ class ExamsController < ApplicationController
     if @current_user.employee? and  !@current_user.privileges.map{|m| m.id}.include?(1)
       @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
       if @subjects.blank?
-        flash[:notice] = "Sorry, you are not allowed to access that page."
+        flash[:notice] = "#{t('flash_msg4')}"
         redirect_to [@batch, @exam_group]
       end
     end
@@ -38,7 +38,7 @@ class ExamsController < ApplicationController
     @exam = Exam.new(params[:exam])
     @exam.exam_group_id = @exam_group.id
     if @exam.save
-      flash[:notice] = "New exam created successfully."
+      flash[:notice] = "#{t('flash_msg10')}"
       redirect_to [@batch, @exam_group]
     else
       @subjects = @batch.subjects
@@ -55,7 +55,7 @@ class ExamsController < ApplicationController
     if @current_user.employee?  and !@current_user.privileges.map{|m| m.id}.include?(1)
       @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
       unless @subjects.map{|m| m.id}.include?(@exam.subject_id)
-        flash[:notice] = "Sorry, you are not allowed to access that page."
+        flash[:notice] = "#{t('flash_msg4')}"
         redirect_to [@batch, @exam_group]
       end
     end
@@ -65,7 +65,7 @@ class ExamsController < ApplicationController
     @exam = Exam.find params[:id], :include => :exam_group
 
     if @exam.update_attributes(params[:exam])
-      flash[:notice] = 'Updated exam details successfully.'
+      flash[:notice] = "#{t('flash1')}"
       redirect_to [@exam_group, @exam]
     else
       @subjects = @batch.subjects
@@ -81,7 +81,7 @@ class ExamsController < ApplicationController
     @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id} if @current_user.employee?
     @exam = Exam.find params[:id], :include => :exam_group
     unless @employee_subjects.include?("#{@exam.subject_id}") or @current_user.admin? or @current_user.privileges.map{|p| p.id}.include?(1) or @current_user.privileges.map{|p| p.id}.include?(2)
-      flash[:notice] = 'Access Denied.'
+      flash[:notice] = "#{t('flash_msg6')}"
       redirect_to :controller=>"user", :action=>"dashboard"
     end
     exam_subject = Subject.find(@exam.subject_id)
@@ -106,7 +106,7 @@ class ExamsController < ApplicationController
     if @current_user.employee?  and !@current_user.privileges.map{|m| m.id}.include?(1)
       @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
       unless @subjects.map{|m| m.id}.include?(@exam.subject_id)
-        flash[:notice] = "Sorry, you are not allowed to access that page."
+        flash[:notice] = "#{t('flash_msg4')}"
         redirect_to [@batch, @exam_group] and return
       end
     end
@@ -141,7 +141,7 @@ class ExamsController < ApplicationController
         if details[:marks].to_f <= @exam.maximum_marks.to_f
           if @exam_score.update_attributes(details)
           else
-            flash[:warn_notice] = 'Grading Levels are not set. Please set Grading Level'
+            flash[:warn_notice] = "#{t('flash4')}"
             @error = nil
           end
         else
@@ -149,8 +149,8 @@ class ExamsController < ApplicationController
         end
       end
     end
-    flash[:notice] = 'Exam score exceeds Maximum Mark.' if @error == true
-    flash[:notice] = 'Exam scores updated.' if @error == false
+    flash[:notice] = "#{t('flash2')}" if @error == true
+    flash[:notice] = "#{t('flash3')}" if @error == false
     redirect_to [@exam_group, @exam]
   end
 

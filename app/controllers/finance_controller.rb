@@ -32,7 +32,7 @@ class FinanceController < ApplicationController
   def donation
     @donation = FinanceDonation.new(params[:donation])
     if request.post? and @donation.save
-      flash[:notice] = 'Donation accepted.'
+      flash[:notice] = "#{t('flash1')}"
       redirect_to :action => 'donation_receipt', :id => @donation.id
     end
   end
@@ -45,10 +45,10 @@ class FinanceController < ApplicationController
     @donation = FinanceDonation.find(params[:id])
     @transaction = FinanceTransaction.find(@donation.transaction_id)
     if request.post? and @donation.update_attributes(params[:donation])
-      donor = "Donation from #{params[:donation][:donor]}"
+      donor = "#{t('flash15')} #{params[:donation][:donor]}"
       FinanceTransaction.update(@transaction.id, :description => params[:donation][:description], :title=>donor, :amount=>params[:donation][:amount], :transaction_date=>@donation.transaction_date)
       redirect_to :action => 'donors'
-      flash[:notice] = "Donation edited successfully."
+      flash[:notice] = "#{t('flash16')}"
     end
   end
   
@@ -81,10 +81,10 @@ class FinanceController < ApplicationController
     @expense.user_id = @current_user.id
     @categories = FinanceTransactionCategory.expense_categories
     if @categories.empty?
-      flash[:notice] = "Please create category for expense!"
+      flash[:notice] = "#{t('flash2')}"
     end
     if request.post? and @expense.save
-      flash[:notice] = "Expense has been added to the accounts."
+      flash[:notice] = "#{t('flash3')}"
     end
   end
 
@@ -93,7 +93,7 @@ class FinanceController < ApplicationController
     @transaction.user_id = @current_user.id
     @categories = FinanceTransactionCategory.all(:conditions =>'id != 1 and is_income = false' )
     if request.post? and @transaction.update_attributes(params[:transaction])
-      flash[:notice] = "Expense edited successfully."
+      flash[:notice] = "#{t('flash4')}"
     end
   end
 
@@ -102,7 +102,7 @@ class FinanceController < ApplicationController
 
   def expense_list_update
     if params[:start_date].to_date > params[:end_date].to_date
-      flash[:warn_notice] = "End Date must be later than Start Date!"
+      flash[:warn_notice] = "#{t('flash17')}"
       redirect_to :action => 'expense_list'
     end
     @start_date = (params[:start_date]).to_date
@@ -116,10 +116,10 @@ class FinanceController < ApplicationController
     @income.user_id = @current_user.id
     @categories = FinanceTransactionCategory.income_categories
     if @categories.empty?
-      flash[:notice] = "Please create category for income!"
+      flash[:notice] = "#{t('flash5')}"
     end
     if request.post? and @income.save
-      flash[:notice] = "Income has been added to the accounts."
+      flash[:notice] = "#{t('flash6')}"
     end
   end
 
@@ -132,7 +132,7 @@ class FinanceController < ApplicationController
     @transaction.user_id = @current_user.id
     @categories = FinanceTransactionCategory.all(:conditions => 'is_income=true and id != 2 and id != 3' )
     if request.post? and @transaction.update_attributes(params[:transaction])
-      flash[:notice] = "Income edited successfully."
+      flash[:notice] = "#{t('flash7')}"
       redirect_to :action=> 'income_list'
     end
   end
@@ -148,7 +148,7 @@ class FinanceController < ApplicationController
       auto_transactions.each { |a| a.destroy } unless auto_transactions.nil?
     end
     @transaction.destroy
-    flash[:notice]="Finance Transaction Successfully Deleted"
+    flash[:notice]="#{t('flash18')}"
     if income
       redirect_to :action=>'income_list'
     else
@@ -368,7 +368,7 @@ class FinanceController < ApplicationController
     dates.each do |d|
       d.approve(current_user.id)
     end
-    flash[:notice] = 'Payslip has been approved'
+    flash[:notice] = "#{t('flash8')}"
     redirect_to :action => "index"
     
   end
@@ -379,7 +379,7 @@ class FinanceController < ApplicationController
     dates.each do |d|
       d.approve(current_user.id)
     end
-    flash[:notice] = 'Payslip has been approved'
+    flash[:notice] = "#{t('flash8')}"
     redirect_to :action => "view_employee_payslip",:id=>params[:id],:salary_date=>params[:id2]
   end
   def employee_payslip_reject
@@ -391,8 +391,8 @@ class FinanceController < ApplicationController
     end
     privilege = Privilege.find(18)
     hr = privilege.users
-    subject = " Payslip Rejected"
-    body = "Payslip has been rejected for "+ employee.first_name+" "+ employee.last_name+ "(Employee number : #{employee.employee_number})" +" for the month #{params[:id2].to_date.strftime("%B %Y")}"
+    subject = "#{t('payslip_rejected')}"
+    body = "#{t('payslip_rejected_for')}"+ employee.first_name+" "+ employee.last_name+ "(#{t('employee_number')} : #{employee.employee_number})" +" #{t('for_the_month')} #{params[:id2].to_date.strftime("%B %Y")}"
     hr.each do |f|
       Reminder.create(:sender=>current_user.id, :recipient=>f.id, :subject=> subject,
         :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
@@ -421,7 +421,7 @@ class FinanceController < ApplicationController
         if post_data[:salary_date].present? and post_data[:department_id].present?
           @payslips = MonthlyPayslip.find_and_filter_by_department(post_data[:salary_date],post_data[:department_id])
         else
-          flash[:notice] = "Select Salary Date"
+          flash[:notice] = "#{t('select_salary_date')}"
           redirect_to :action=>"view_monthly_payslip"
         end
       end
@@ -717,11 +717,11 @@ class FinanceController < ApplicationController
             unless s.nil?
               unless (s.batch_id == @fee_category.batch_id)
                 @error = true
-                @finance_fee_particulars.errors.add_to_base("#{a} does not belong to Batch #{@fee_category.batch.full_name}")
+                @finance_fee_particulars.errors.add_to_base("#{a} #{t('does_not_belong_to_batch')} #{@fee_category.batch.full_name}")
               end
             else
               @error = true
-              @finance_fee_particulars.errors.add_to_base("#{a} does not exist")
+              @finance_fee_particulars.errors.add_to_base("#{a} #{t('does_not_exist')}")
             end
           end
           unless @error
@@ -770,12 +770,12 @@ class FinanceController < ApplicationController
           :batch_id => params[:additional_fees][:batch_id],
           :fee_category_id => @additional_category.id
         )
-        body = "<p>Fee submission date for "+@additional_category.name+" has been published <br />
-                               Fees submitting date starts on<br />
-                               Start date :"+@collection_date.start_date.to_s+"<br />"+
-          "End date :"+@collection_date.end_date.to_s+"<br />"+
-          "Due date :"+@collection_date.due_date.to_s
-        subject = "Fees submission date"
+        body = "<p>#{t('fee_submission_date_for')} "+@additional_category.name+" #{t('has_been_published')} <br />
+                               #{t('fees_submiting_date_starts_on')}<br />
+                               #{t('start_date')} :"+@collection_date.start_date.to_s+"<br />"+
+          "#{t('end_date')} :"+@collection_date.end_date.to_s+"<br />"+
+          "#{t('due_date')} :"+@collection_date.due_date.to_s
+        subject = "#{t('fees_submission_date')}"
         @due_date = @collection_date.due_date.strftime("%Y-%b-%d") +  " 00:00:00"
         unless batch.empty?
           @students.each do |s|
@@ -783,7 +783,7 @@ class FinanceController < ApplicationController
             Reminder.create(:sender=>@user.id, :recipient=>s.id, :subject=> subject,
               :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
           end
-          Event.create(:title=> "Fees Due", :description =>@additional_category.name, :start_date => @due_date, :end_date => @due_date, :is_due => true)
+          Event.create(:title=> "#{t('fees_due')}", :description =>@additional_category.name, :start_date => @due_date, :end_date => @due_date, :is_due => true)
         else
           @batches.each do |b|
             @students = Student.find_all_by_batch_id(b.id)
@@ -793,16 +793,16 @@ class FinanceController < ApplicationController
                 :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
             end
           end
-          Event.create(:title=> "Fees Due", :description =>@additional_category.name, :start_date => @due_date, :end_date => @due_date, :is_due => true)
+          Event.create(:title=> "#{t('fees_due')}", :description =>@additional_category.name, :start_date => @due_date, :end_date => @due_date, :is_due => true)
         end
-        flash[:notice] = "Category created, please add Particulars for the category"
+        flash[:notice] = "#{t('flash9')}"
         redirect_to(:action => "add_particulars" ,:id => @collection_date.id)
       else
-        flash[:notice] = 'Fields with * cannot be empty'
+        flash[:notice] = "#{t('flash10')}"
         redirect_to :action => "additional_fees_create_form"
       end
     else
-      flash[:notice] = 'Due date should be after End date'
+      flash[:notice] = "#{t('flash11')}"
       redirect_to :action => "additional_fees_create_form"
     end
   end
@@ -888,20 +888,20 @@ class FinanceController < ApplicationController
               end
             else
               @error = true
-              err = err + "#{a} does not belong to Batch #{@collection_date.batch.full_name}. <br />"
+              err = err + "#{a}#{t('does_not_belong_to_batch')} #{@collection_date.batch.full_name}. <br />"
             end
           else
             @error = true
-            err = err + "#{a} does not exist. <br />"
+            err = err + "#{a}#{t('does_not_exist')}<br />"
           end
         end
-        @finance_fee_particulars.errors.add(:admission_no," invalid : <br />" + err) if @error==true
+        @finance_fee_particulars.errors.add(:admission_no," #{t('invalid')} : <br />" + err) if @error==true
         @finance_fee_particulars_list = FeeCollectionParticular.find(:all,:conditions => ["is_deleted = '#{false}' and finance_fee_collection_id = '#{@collection_date.id}'"])  unless @error== true
       else
         @error = true
         @finance_fee_particulars = FeeCollectionParticular.new(params[:finance_fee_particulars])
         @finance_fee_particulars.valid?
-        @finance_fee_particulars.errors.add(:admission_no," is blank")
+        @finance_fee_particulars.errors.add(:admission_no,"#{t('is_blank')}")
       end
     else
       @finance_fee_particulars = FeeCollectionParticular.new(params[:finance_fee_particulars])
@@ -1001,7 +1001,7 @@ class FinanceController < ApplicationController
     category =[]
     unless params[:fee_collection].nil?
       category = params[:fee_collection][:category_ids]
-      subject = "Fees submission date"
+      subject = "#{t('fees_submission_date')}"
 
       category.each do |c|
         fee_category = FinanceFeeCategory.find_by_id(c)
@@ -1017,12 +1017,12 @@ class FinanceController < ApplicationController
         if @finance_fee_collection.save
           @students = Student.find_all_by_batch_id(b.id)
           @students.each do |s|
-            body = "<p><b>Fee submission date for <i>"+fee_category_name+"</i> has been published</b><br /><br/>
+            body = "<p><b>#{t('fee_submission_date_for')}<i>"+fee_category_name+"</i>#{t('has_been_published')}</b><br /><br/>
                                 Start date :"+@finance_fee_collection.start_date.to_s+"<br />"+
-              " End date :"+@finance_fee_collection.end_date.to_s+"<br />"+
-              " Due date :"+@finance_fee_collection.due_date.to_s+"<br /><br /><br />"+
-              " check your  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>Fee structure</a> <br/><br/><br/>
-                               regards,<br/>"+@user.full_name.capitalize
+              " #{t('end_date')} :"+@finance_fee_collection.end_date.to_s+"<br />"+
+              " #{t('due_date')} :"+@finance_fee_collection.due_date.to_s+"<br /><br /><br />"+
+              " #{t('check_your')}  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>#{t('fee_structure')}</a> <br/><br/><br/>
+                               #{t('regards')},<br/>"+@user.full_name.capitalize
 
             unless s.has_paid_fees == 1
               FinanceFee.create(:student_id => s.id,:fee_collection_id => @finance_fee_collection.id)
@@ -1030,7 +1030,7 @@ class FinanceController < ApplicationController
                 :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
             end
           end
-          Event.create(:title=> "Fees Due", :description =>fee_category_name, :start_date => @finance_fee_collection.due_date, :end_date => @finance_fee_collection.due_date, :is_due => true)
+          Event.create(:title=> "#{t('fees_due')}", :description =>fee_category_name, :start_date => @finance_fee_collection.due_date, :end_date => @finance_fee_collection.due_date, :is_due => true)
 
         else
           @error = true
@@ -1039,7 +1039,7 @@ class FinanceController < ApplicationController
     else
       @error = true
       @finance_fee_collection = FinanceFeeCollection.new
-      @finance_fee_collection.errors.add_to_base("Fee category cant be blank")
+      @finance_fee_collection.errors.add_to_base("#{t('fees_category_cant_be_blank')}")
     end
   end
 
@@ -1067,7 +1067,7 @@ class FinanceController < ApplicationController
       if params[:finance_fee_collection][:due_date].to_date >= params[:finance_fee_collection][:end_date].to_date
         if @finance_fee_collection.update_attributes(params[:finance_fee_collection])
           @finance_fee_collections = FinanceFeeCollection.all(:conditions => ["is_deleted = '#{false}' and batch_id = '#{@finance_fee_collection.batch_id}'"])
-          flash[:notice]="Fee Collection updated successfully"
+          flash[:notice]="#{t('')}"
           page.replace_html 'form-errors', :text => ''
           page << "Modalbox.hide();"
           page.replace_html 'fee_collection_dates', :partial => 'fee_collection_list'
@@ -1076,7 +1076,7 @@ class FinanceController < ApplicationController
           page.visual_effect(:highlight, 'form-errors')
         end
       else
-        page.replace_html 'form-errors', :text => '<div id="error-box"><ul><li>Error : Due date must be after End date.</li></ul></div>'
+        page.replace_html 'form-errors', :text => "<div id='error-box'><ul><li>#{t('flash13')} .</li></ul></div>"
         flash[:notice]=""
         
       end
@@ -1179,7 +1179,7 @@ class FinanceController < ApplicationController
     end
     unless params[:fees][:fees_paid].to_f > params[:total_fees].to_f
       transaction = FinanceTransaction.new
-      (total_fees > params[:fees][:fees_paid].to_f ) ? transaction.title = "Receipt No. (partial) F#{@financefee.id}" :  transaction.title = "Receipt No. F#{@financefee.id}"
+      (total_fees > params[:fees][:fees_paid].to_f ) ? transaction.title = "#{t('receipt_no')}. (partial) F#{@financefee.id}" :  transaction.title = "#{t('receipt_no')}. F#{@financefee.id}"
       transaction.category = FinanceTransactionCategory.find_by_name("Fee")
       transaction.student_id = params[:student]
       transaction.amount = params[:fees][:fees_paid].to_f
@@ -1199,7 +1199,7 @@ class FinanceController < ApplicationController
       @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{tid}\")")
     else
       @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
-      @financefee.errors.add_to_base("Cannot pay amount greater than total fee")
+      @financefee.errors.add_to_base("#{t('flash19')}")
     end
     render :update do |page|
       page.replace_html "student", :partial => "student_fees_submission"
@@ -1378,7 +1378,7 @@ class FinanceController < ApplicationController
     if request.post?
       unless params[:fees][:fees_paid].to_f> params[:total_fees].to_f
         transaction = FinanceTransaction.new
-        transaction.title = "Recipit No. F#{@financefee.id}"
+        transaction.title = "#{t('receipt_no')}. F#{@financefee.id}"
         transaction.category = FinanceTransactionCategory.find_by_name("Fee")
         transaction.student_id = params[:student]
         transaction.finance_fees_id = @financefee.id
@@ -1394,9 +1394,9 @@ class FinanceController < ApplicationController
           tid=transaction.id
         end
         @financefee.update_attribute(:transaction_id, tid)
-        flash[:notice] = 'Fees paid'
+        flash[:notice] = "#{t('flash14')}"
       else
-        flash[:notice] = 'Cannot pay amount greater than total fee'
+        flash[:notice] = "#{t('flash19')}"
       end
     end
     redirect_to  :action => "fees_student_search"
@@ -1522,7 +1522,7 @@ class FinanceController < ApplicationController
     if request.post?
       unless params[:fees][:fees_paid].to_f> params[:total_fees].to_f
         transaction = FinanceTransaction.new
-        transaction.title = "Recipit No. F#{@financefee.id}"
+        transaction.title = "#{t('receipt_no')}. F#{@financefee.id}"
         transaction.category = FinanceTransactionCategory.find_by_name("Fee")
         transaction.student_id = params[:student]
         transaction.finance_fees_id = @financefee.id
@@ -1541,10 +1541,10 @@ class FinanceController < ApplicationController
         @financefee.update_attribute(:transaction_id, tid)
 
         @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{tid}\")")
-        flash[:notice] = "Fees Paid"
+        flash[:notice] = "#{t('flash14')}"
         redirect_to  :action => "fees_defaulters"
       else
-        flash[:notice] = 'Cannot pay amount greater than total fee'
+        flash[:notice] = "#{t('flash19')}"
       end
     
     end
@@ -2046,7 +2046,7 @@ class FinanceController < ApplicationController
       end
     else
       @fee_discount = BatchFeeDiscount.new(params[:fee_discount])
-      @fee_discount.errors.add_to_base("Fee Category cant be blank")
+      @fee_discount.errors.add_to_base("#{t('fees_category_cant_be_blank')}")
       @error = true
     end
 
@@ -2064,7 +2064,7 @@ class FinanceController < ApplicationController
       end
     else
       @fee_discount = StudentCategoryFeeDiscount.new(params[:fee_discount])
-      @fee_discount.errors.add_to_base("Batch cant be blank")
+      @fee_discount.errors.add_to_base("#{t('batch_cant_be_blank')}")
       @error = true
     end
   end
@@ -2081,15 +2081,15 @@ class FinanceController < ApplicationController
           unless s.nil?
             if FeeDiscount.find_by_type_and_receiver_id('StudentFeeDiscount',s.id,:conditions=>"finance_fee_category_id = #{@fee_category.id}").present?
               @error = true
-              @fee_discount.errors.add_to_base("Discount already exists for admission number - #{a}")
+              @fee_discount.errors.add_to_base("#{t('flash20')} - #{a}")
             end
             unless (s.batch_id == @fee_category.batch_id)
               @error = true
-              @fee_discount.errors.add_to_base("#{a} does not belong to Batch #{@fee_category.batch.full_name}")
+              @fee_discount.errors.add_to_base("#{a} #{t('does_not_belong_to_batch')} #{@fee_category.batch.full_name}")
             end
           else
             @error = true
-            @fee_discount.errors.add_to_base("#{a} is invalid admission number")
+            @fee_discount.errors.add_to_base("#{a} #{t('is_invalid_admission_no')}")
           end
         end
         unless @error
@@ -2104,11 +2104,11 @@ class FinanceController < ApplicationController
         end
       else
         @error = true
-        @fee_discount.errors.add_to_base("Admission can't be blank")
+        @fee_discount.errors.add_to_base("#{t('admission_cant_be_blank')}")
       end
     else
       @error = true
-      @fee_discount.errors.add_to_base("Fees Category can't be blank")
+      @fee_discount.errors.add_to_base("#{t('fees_category_cant_blank')}")
     end
   end
   

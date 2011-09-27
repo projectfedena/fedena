@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1><%= t('courses') %></h1>
+  <h1><%= t('courses_text') %></h1>
   <h3><%= t('new_batch') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -35,7 +35,7 @@
 
   <div class="box">
     <div class="bread_crumb">
-      <%= link_to "#{t('courses')}", courses_path %> &raquo;
+      <%= link_to "#{t('courses_text')}", courses_path %> &raquo;
       <%= link_to @course.full_name, @course %> &raquo;
       <%= t('new_batch') %>
     </div>
