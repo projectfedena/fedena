@@ -99,14 +99,14 @@
             <td class="col-2"><%= t.title %> </td>
             <td></td>
             <td class="col-3" align="right"><%=  t.amount%></td>
-            <td class="col-3"><%=t.transaction_date.strftime("%m-%d-%Y")%></td>
+            <td class="col-3"><%= I18n.l(t.transaction_date:format=>"%m-%d-%Y")%></td>
             <%income_total +=t.amount%>
 
           <%else%>
             <td class="col-2"><%= t.title %> </td>
             <td class="col-3" align="right"><%=  t.amount%></td>
             <td></td>
-            <td class="col-3"><%=t.transaction_date.strftime("%m-%d-%Y")%></td>
+            <td class="col-3"><%=I18n.l(t.transaction_date:format=>"%m-%d-%Y")%></td>
 
             <%expenses_total +=t.amount%>
           <%end%>
@@ -129,7 +129,7 @@
   </table>
 <%#= will_paginate@other_transactions,:params => {:start_date => @start_date , :end_date => @end_date}%>
 <br/>
-<h4><%= t('report_for_the_period_from') %><%= @start_date2.strftime("%d-%m-%Y") %> to <%= @end_date2.strftime("%d-%m-%Y") %></h4>
+<h4><%= t('report_for_the_period_from') %><%= I18n.l(@start_date2,:format=>"%d-%m-%Y") %> to <%= I18n.l(@end_date2,:format=>"%d-%m-%Y") %></h4>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     
       <tr class="tr-head">
@@ -200,7 +200,7 @@
             <td class="col-2"><%= t.title %> </td>
             <td class="col-3" align="right"><%=  t.amount%></td>
             <td></td>
-            <td class="col-3"><%=t.transaction_date.strftime("%m-%d-%Y")%></td>
+            <td class="col-3"><%= I18n.l(t.transaction_date,:format=>"%m-%d-%Y")%></td>
 
             <%expenses_total +=t.amount%>
           <%end%>

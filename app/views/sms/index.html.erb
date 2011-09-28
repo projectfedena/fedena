@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/sms/sms_icon.png" alt="" />
-  <h1><%= t('sms') %></h1>
+  <h1><%= t('sms_text') %></h1>
   <h3><%= t('home') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -29,7 +29,7 @@
 <div id="page-yield">
   <div class="box">
      <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('sms')} #{t('settings')}",:action=>'settings' %></div>
+      <div class="link-heading"><%= link_to "#{t('sms_text')} #{t('settings')}",:action=>'settings' %></div>
       <div class="link-descr"><%= t('sms_settings_page') %></div>
     </div>
 <% if @sms_setting.application_sms_active %>

@@ -28,7 +28,7 @@
   <br/>
     <div class="label-field-pair">
       <label for="leave_type"><%= t('leave_type') %></label>
-      <div class="text-input-bg"><%= select :employee_attendance,:employee_leave_type_id, @leave_types.map {|c| [c.name, c.id]},:prompt => "Select a leave type" %></div>
+      <div class="text-input-bg"><%= select :employee_attendance,:employee_leave_type_id, @leave_types.map {|c| [c.name, c.id]},:prompt => "#{t('select_a_leave_type')}" %></div>
     </div>
     <div class="label-field-pair">
       <label for="leave_type"> <%= t('reason_for_absence') %></label>

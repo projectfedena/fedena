@@ -33,7 +33,7 @@
 <div id="nav">
   <ul>
     <li>
-      <a href="#" class="drops" id="link_one"><%= t('profile') %> &#9660;</a>
+      <a href="#" class="drops" id="link_one"><%= t('profile_text') %> &#9660;</a>
       <ul id="box_one" class="scriptaculously" style="display:none;">
         <li><%= link_to_remote "#{t('general')}", :url => {:action => "profile_general", :id => @employee.id}, :update => "profile-infos" %></li>
         <li><%= link_to_remote "#{t('personal')}", :url => {:action => "profile_personal", :id => @employee.id}, :update => "profile-infos" %></li>
@@ -48,7 +48,7 @@
       <li>
         <a href="#" class="drops" id="link_two"><%= t('salary') %> &#9660;</a>
         <ul id="box_two" class="scriptaculously" style="display:none;">
-          <li><%= link_to_remote "Payroll", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
+          <li><%= link_to_remote "Payroll_text", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
           <li><%= link_to_remote "Payslip", :url => {:action => "view_payslip", :id => @employee.id}, :update => "profile-infos" %></li>
         </ul>
       </li>
@@ -57,8 +57,8 @@
         <li>
           <a href="#" class="drops" id="link_two"><%= t('salary') %> &#9660;</a>
           <ul id="box_two" class="scriptaculously" style="display:none;">
-            <li><%= link_to_remote "#{t('payroll')}", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
-            <li><%= link_to_remote "#{t('payslip')}", :url => {:action => "view_payslip", :id => @employee.id}, :update => "profile-infos" %></li>
+            <li><%= link_to_remote "#{t('payroll_text')}", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
+            <li><%= link_to_remote "#{t('payslip_text')}", :url => {:action => "view_payslip", :id => @employee.id}, :update => "profile-infos" %></li>
           </ul>
         </li>
       <%end%>

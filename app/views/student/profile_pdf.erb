@@ -39,7 +39,7 @@
       <tr class="odd"><td class="col-pdf"><%= t('admission_number') %></td><td class="col-pdf"><%= @student.admission_no unless @student.admission_no.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('admission_date') %></td><td class="col-pdf"><%= @student.admission_date.strftime("%d %b, %Y") unless @student.admission_date.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('batch') %></td><td class="col-pdf"><%= @student.batch.name unless @student.batch.name.nil? %></td></tr>
-      <tr class="even"><td class="col-pdf"><%= t('course') %></td><td class="col-pdf"><%= @student.batch.course.full_name unless @student.batch.course.full_name.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf"><%= t('course_text') %></td><td class="col-pdf"><%= @student.batch.course.full_name unless @student.batch.course.full_name.nil? %></td></tr>
       <tr class="odd"><td><%= t('date_of_birth') %></td><td class="right"><%= @student.date_of_birth.strftime("%d %b, %Y") unless @student.date_of_birth.nil? %></td></tr>
       <tr class="even"><td><%= t('blood_group') %></td><td class="right"><%= @student.blood_group %></td></tr>
       <tr class="odd"><td><%= t('gender') %></td><td class="right"><%= @student.gender_as_text %></td></tr>

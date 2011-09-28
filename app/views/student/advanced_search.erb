@@ -45,7 +45,7 @@
         </div>
       </div>
       <div class="label-field-pair">
-        <label for="student_course"><%= t('course') %><%= image_tag("loader.gif",
+        <label for="student_course"><%= t('course_text') %><%= image_tag("loader.gif",
             :align => "absmiddle",
             :border => 0,
             :id => "loader",
@@ -222,7 +222,7 @@
         <% unless params[:advv_search][:course_id].empty? %>
           <% course = Course.find(params[:advv_search][:course_id]) %>
           <% batch = Batch.find(params[:search][:batch_id_equals])  unless (params[:search][:batch_id_equals]).blank?%>
-          <span><%= t('course') %>:</span> <%= course.full_name %>
+          <span><%= t('course_text') %>:</span> <%= course.full_name %>
           <% unless batch.nil?  %>
           <span><%= t('batch') %>: </span> <%= batch.full_name %>
           <% end %>

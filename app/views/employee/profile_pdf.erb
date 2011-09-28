@@ -28,7 +28,7 @@
   <div id="general_info">
     <table id="pdf-table" width="100%" cellspacing="0">
       <tr class="odd"><td class="col-pdf"><%= t('employee_number') %></td><td class="col-pdf"><%= @employee.employee_number unless @employee.employee_number.nil? %></td></tr>
-      <tr class="even"><td class="col-pdf"><%= t('joining_date') %></td><td class="col-pdf"><%= I18n.l(@employee.joining_date,:format=>:dmy) unless @employee.joining_date.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf"><%= t('joining_date') %></td><td class="col-pdf"><%= I18n.l(@employee.joining_date,:format=>:normal) unless @employee.joining_date.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= @employee.employee_department.name unless @employee.employee_department.name.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('category') %></td><td class="col-pdf"><%= @employee.employee_category.name unless @employee.employee_category.name.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('position') %></td><td class="col-pdf"><%= @employee.employee_position.name unless @employee.employee_position.name.nil? %></td></tr>

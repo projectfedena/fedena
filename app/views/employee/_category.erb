@@ -26,7 +26,7 @@
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= c.name %> (<%= c.prefix %>)</div>
         <div class="category-edit"><%= link_to "#{t('edit')}", {:action => "edit_category", :id=>c.id} %></div>
-        <div class="category-edit"><%= link_to "#{t('delete')}", {:action => "delete_category", :id=>c.id},:confirm=>"#{t('are_you_sure')}" %></div>
+        <div class="category-edit"><%= link_to "#{t('delete')}", {:action => "delete_category", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}" %></div>
       </li>
      <% end %>
      <% unless @inactive_categories.empty? %>
@@ -35,7 +35,7 @@
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= c.name %> (<%= c.prefix %>)</div>
         <div class="category-edit"><%= link_to "#{t('edit')}", {:action => "edit_category", :id=>c.id} %></div>
-        <div class="category-edit"><%= link_to "#{t('delete')}", {:action => "delete_category", :id=>c.id},:confirm=>"#{t('are_you_sure')}" %></div>
+        <div class="category-edit"><%= link_to "#{t('delete')}", {:action => "delete_category", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}" %></div>
       </li>
      <% end %>
      <% end %>

@@ -39,7 +39,7 @@
             <span class="small"> <%= link_to_remote t('edit'), :url => { :action => 'additional_fees_edit',:id => fees.id} %></span>
           </td>
           <td class="col-3"><%= shorten_string(fees.batch.full_name,20) unless fees.batch.nil?%> </td>
-          <td class="col-3"><%= fees.created_at.strftime("%m-%d-%Y") %></td>
+          <td class="col-3"><%= I18n.l(fees.created_at,:format=>"%m-%d-%Y") %></td>
         </tr>
       <% end %>
     </table>

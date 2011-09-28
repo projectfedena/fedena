@@ -37,7 +37,7 @@
 
   <div class="box">
     <div class="bread_crumb">
-      <%= link_to "#{t('courses')}", courses_path %> &raquo;
+      <%= link_to "#{t('courses_text')}", courses_path %> &raquo;
       <%= link_to @exam_group.batch.course.full_name, @exam_group.batch.course %> &raquo;
       <%= link_to  "#{t('batch')} " + @exam_group.batch.name, [@exam_group.batch.course, @exam_group.batch] %> &raquo;
       <%= link_to "#{t('exams_text')}", batch_exam_groups_path(@batch) %> &raquo;

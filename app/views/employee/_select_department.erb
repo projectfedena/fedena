@@ -29,7 +29,7 @@
       <li class="list<%=cycle('even', 'odd')%>">
         <div class="department-name"><%= @employee.first_name %> <%= @employee.last_name %>
           <%= "(#{EmployeeDepartment.find(@employee.employee_department_id).name})" %></div>
-        <div class="remove"><%= link_to_remote "#{t('remove')}", :url => {:action => "remove_employee", :id => e.employee_id, :id1=>e.subject_id}, :update => "department-select" %></div>
+        <div class="remove"><%= link_to_remote "#{t('delete')}", :url => {:action => "remove_employee", :id => e.employee_id, :id1=>e.subject_id}, :update => "department-select" %></div>
       </li>
     <% end %>
   <% else %>

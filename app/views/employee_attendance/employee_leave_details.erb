@@ -43,7 +43,7 @@
           <td class="col-3"><%=e.leave_count %></td>
           <td class="col-3"><%=e.leave_taken %></td>
           <%unless e.reset_date.nil? %>
-          <td class="col-3"><%=e.reset_date.strftime("%d / %m / %Y") %></td>
+          <td class="col-3"><%= I18n.l(e.reset_date, :format=>"%d / %m / %Y") %></td>
           <%else%>
           <td class="col-3">-</td>
           <%end%>

@@ -29,12 +29,12 @@
 <div id="inner-tab-menu">
   <ul>
     <% if permitted_to? :reports,:student %>
-      <li><%= link_to "#{t('reports')}", :controller => 'student',
+      <li><%= link_to "#{t('reports_text')}", :controller => 'student',
           :action => 'reports', :id => @student %></li>
     <%end%>
     <% if @sms_module.include?('Finance') %>
       <% if permitted_to? :fees, :student %>
-        <li><%= link_to "#{t('fees')}", :controller => 'student',
+        <li><%= link_to "#{t('fees_text')}", :controller => 'student',
             :action => 'fees', :id => @student.id %></li>
       <% end %>
     <% end %>
@@ -72,7 +72,7 @@
 
     <div id ="student_main_info">
       <h3> <%= @student.full_name %>  </h3>
-      <h4> <%= t('course') %>: <%= @student.batch.course.full_name %> </h4>
+      <h4> <%= t('course_text') %>: <%= @student.batch.course.full_name %> </h4>
       <h4> <%= t('batch') %> : <%= @student.batch.name %> </h4>
       <h4> <%= t('adm_no') %> : <%= @student.admission_no %> </h4>
     </div>
@@ -164,7 +164,7 @@
     </table>
     <% if @current_user.admin? %>
       <div class="buttons">
-        <%= link_to " ► #{t('edit')}",
+        <%= link_to " ► #{t('edit_text')}",
           { :controller => "student", :action => "edit", :id => @student.id },:class => "user_button"%>
 
         <%= link_to " ► #{t('pdf_report')}",
@@ -172,7 +172,7 @@
       </div>
     <% elsif permitted_to? :edit, :student %>
       <div class="buttons">
-        <%= link_to " ► #{t('edit')}",
+        <%= link_to " ► #{t('edit_text')}",
           { :controller => "student", :action => "edit", :id => @student.id },:class => "user_button"%>
 
         <%= link_to " ► #{t('pdf_report')}",

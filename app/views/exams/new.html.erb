@@ -34,7 +34,7 @@
 
   <div class="box">
     <div class="bread_crumb">
-      <%= link_to "#{t('courses')}", courses_path %> &raquo;
+      <%= link_to "#{t('courses_text')}", courses_path %> &raquo;
       <%= link_to @course.full_name, @course %> &raquo;
       <%= link_to "#{t('batch')} #{@batch.name}", [@course, @batch] %> &raquo;
       <%= link_to "#{t('exams_text')}", batch_exam_groups_path(@batch) %> &raquo;
@@ -88,7 +88,7 @@
           <div class="text-input-bg"><%= f.calendar_date_select :end_time %></div>
         </div>
 
-        <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+        <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
 
       <% end %>
     <% end %>

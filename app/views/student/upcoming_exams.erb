@@ -32,7 +32,7 @@
     <li>
       <%= exam.name %>
       (<%= exam.subject.name %>) -
-      <%= exam.date.strftime("%d %B, %Y") %>
+      <%= I18n.l(exam.date,:format=>"%d %B, %Y") %>
     </li>
   <% end %>
 

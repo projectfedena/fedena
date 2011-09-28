@@ -1565,7 +1565,7 @@ class EmployeeController < ApplicationController
     @employee = Employee.find(params[:id])
     associate_employee = Employee.find(:all, :conditions=>["reporting_manager_id=#{@employee.id}"])
     unless associate_employee.blank?
-      flash[:notice] = t('flash_message.employee.flash35')
+      flash[:notice] = t('flash35')
       redirect_to :action=>'remove_subordinate_employee', :id=>@employee.id
     end
   end

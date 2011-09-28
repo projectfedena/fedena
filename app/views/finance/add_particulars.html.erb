@@ -36,9 +36,9 @@
 
 
   <% unless @additional_category.batch.nil? %>
- <div class="name"><%= t('course') %></div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
+ <div class="name"><%= t('course_text') %></div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
   <% else %>
-  <div class="name"><%= t('course') %></div><div class="val"><span>:</span>ALL</div>
+  <div class="name"><%= t('course_text') %></div><div class="val"><span>:</span>ALL</div>
   <% end %>
 <div class="name"><%= t('start_date') %></div><div class="val"><span>:</span><%= @collection_date.start_date %></div>
 <div class="name"><%= t('end_date') %></div><div class="val"><span>:</span><%= @collection_date.end_date%></div>
@@ -46,7 +46,7 @@
 
 <br />
 <br />
-    <div class="linker"><%= link_to_remote "#{t('add_particulars')}", :url => { :action => 'add_particulars_new',:id => @collection_date.id} %>
+    <div class="linker"><%= link_to_remote "#{t('add_particular')}", :url => { :action => 'add_particulars_new',:id => @collection_date.id} %>
     </div>
 
   <br/>

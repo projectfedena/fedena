@@ -46,7 +46,7 @@
              <%= link_to_remote(t('delete'),
                 :url => subject_path(subject),
                 :method => 'delete',
-                :confirm => t('are_you_sure'),
+                :confirm => t('delete_confirm_msg'),
                 :update => "subject-#{subject.id}") %>
             <% else %>
               <s><%= t('delete') %></s>

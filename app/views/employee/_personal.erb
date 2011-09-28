@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <table width="700">
-  <tr class="odd left"><td><%= t('date_of_birth') %></td><td class="right"><%= I18n.localize(@employee.date_of_birth)%></td></tr>
+  <tr class="odd left"><td><%= t('date_of_birth') %></td><td class="right"><%= @employee.date_of_birth%></td></tr>
   <tr class="even left"><td><%= t('marital_status') %></td><td class="right"><%= @employee.marital_status %></td></tr>
   <tr class="odd left"><td><%= t('no_of_children') %></td><td class="right"><%= @employee.children_count %></td></tr>
   <tr class="even left"><td><%= t('father_name') %></td><td class="right"><%= @employee.father_name %></td></tr>

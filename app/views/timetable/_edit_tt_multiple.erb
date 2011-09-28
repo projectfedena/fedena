@@ -41,7 +41,7 @@
         &nbsp;</td>
       <td class="td-blank"></td>
       <% @class_timing.each do |pt| %>
-        <td class="td"><div class="top"><%= I18n.l(pt.start_time, :format=>"%I:%M%p")  unless pt.start_time.nil? %> - <%= I18n.l(pt.end_time, :format=>"%I:%M%p")  unless pt.end_time.nil? %> </div></td>
+        <td class="td"><div class="top"><%= pt.start_time.strftime("%I:%M%p")  unless pt.start_time.nil? %> - <%= pt.end_time.strftime("%I:%M%p")  unless pt.end_time.nil? %> </div></td>
       <% end %>
     </tr> <!-- timetable_tr -->
     <tr class="blank">
@@ -98,12 +98,12 @@
           <%= err -%>
         <%- end -%>
         - On <%= @weekday[TimetableEntry.find(tte_id).weekday_id.to_i] %> (<%= TimetableEntry.find(tte_id).class_timing.name -%>)
-        <%= link_to_remote "Continue", :url=> {:action=> "tt_entry_update"},
+        <%= link_to_remote "#{t('continue')}", :url=> {:action=> "tt_entry_update"},
           :with   => "'&sub_id=#{errors["info"]["sub_id"]}' + '&tte_id=#{errors["info"]["tte_id"]}'",
           :before => "Element.show('loader')",
           :success => "Element.hide('loader')",
           :update=> "timetable" -%> |
-        <%= link_to_remote "Cancel", :url=>{:action=>"tt_entry_noupdate"},
+        <%= link_to_remote "#{t('cancel')}", :url=>{:action=>"tt_entry_noupdate"},
           :before => "Element.show('loader')",
           :success => "Element.hide('loader')",
           :with   => "'emp_id=#{errors["info"]["emp_id"]}' + '&sub_id=#{errors["info"]["sub_id"]}' + '&tte_id=#{errors["info"]["tte_id"]}'",

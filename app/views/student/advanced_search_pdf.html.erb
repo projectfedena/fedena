@@ -48,7 +48,7 @@
               <td class="col-pdf"><%= student.full_name %></td>
               <td class="col-pdf"><%= student.batch.full_name %></td>
               <td class="col-pdf"><%= student.admission_no %></td>
-              <td class="col-pdf"><%= student.date_of_birth.strftime("%d %b, %Y") %></td>
+              <td class="col-pdf"><%= I18n.l(student.date_of_birth,:format=>"%d %b, %Y") %></td>
             </tr>
             <% index+= 1 %>
             <% end %>

@@ -33,7 +33,7 @@
     <div id="asset-description"><%= @asset.description %></div>
     <br/>
     <div id="asset-amt"><%= t('amount') %> : <%=  @currency_type + " "%><%= @asset.amount%></div>
-    <div id="asset-date"><%= t('created_at') %> : <%= @asset.created_at.strftime("%A, %d %B, %Y") %></div>
+    <div id="asset-date"><%= t('created_at') %> : <%= I18n.l(@asset.created_at,:format=>"%A, %d %B, %Y") %></div>
   </div>
 
 

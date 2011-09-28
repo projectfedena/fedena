@@ -46,7 +46,7 @@
         :with   => "'new_month=#{@show_month.month-1}'+ '&passed_date=#{@show_month}'"%>
     </div>
     <div class="month">
-      <%= I18n.l(@show_month, :format => :month_year) %>
+      <%= I18n.l(@show_month,:format=>:month_year) %>
     </div>
     <div class="next">
       <%= link_to_remote "►",
@@ -63,7 +63,7 @@
 <table id="calendar-table" align="center" width="100%">
   <tbody>
     <tr class="week">
-      <% @days_of_week= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"] %>
+      <% @days_of_week= ["#{t('sunday')}","#{t('monday')}","#{t('tuesday')}","#{t('wednesday')}","#{t('thursday')}","#{t('friday')}","#{t('saturday')}"] %>
       <% @days_of_week.each do |d| %>
         <td><span><%= d %></span></td>
       <% end %>

@@ -22,7 +22,7 @@
     <%= link_to_remote "◄", :url=>{:controller=>"employee_attendances", :action=>"show",:dept_id=>@dept.id, :next=>(@today-1.month)} %>
   </div>
   <div class="month">
-     <%= I18n.localize(@today, :format=>:month_year) %>
+     <%= @today.strftime("%B %Y") %>
   </div>
   <div class="next">
     <%= link_to_remote "►", :url=>{:controller=>"employee_attendances", :action=>"show",:dept_id=>@dept.id, :next=>(@today+1.month)} %>
@@ -36,9 +36,9 @@
     <% current_day = Date.today  %>
     <% (@start_date..@end_date).each do |date| %>
       <% if current_day.strftime("%a %d %y") == date.strftime("%a %d %y") %>
-        <td class="head-td-date active" ><div class="day"><%= I18n.localize(date.to_date, :format=>:day) %></div> <div class="date"> <%= I18n.localize(date.to_date, :format=>:mon) %></div></td>
+        <td class="head-td-date active" ><div class="day"><%= datestrftime("%a")  %></div> <div class="date"> <%= date.strftime("%d") %></div></td>
       <% else %>
-        <td class="head-td-date"><div class="day"><%= I18n.localize(date.to_date, :format=>:day) %></div> <div class="date"> <%= I18n.localize(date.to_date, :format=>:mon) %></div></td>
+        <td class="head-td-date"><div class="day"><%= date.strftime("%a")) %></div> <div class="date"> <%=  date.strftime("%d") %></div></td>
       <% end %>
 
     <% end %>

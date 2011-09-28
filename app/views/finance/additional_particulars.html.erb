@@ -31,9 +31,9 @@
     <div class="name"><%= t('description') %></div><div class="val"><span>:</span><%= @additional_category.description %></div>
 
   <% unless @additional_category.batch.nil? %>
-    <div class="name"><%= t('course') %></div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
+    <div class="name"><%= t('course_text') %></div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
     <% else %>
-  <div class="name"><%= t('course') %></div><div class="val"><span>:</span>NIL</div>
+  <div class="name"><%= t('course_text') %></div><div class="val"><span>:</span>NIL</div>
   <% end %>
 <br/>
 
@@ -64,7 +64,7 @@
           <% end %>
         </td>
         <td class="col-1" align="right"><%= fees.amount%></td>
-        <td class="col-3"><%= fees.created_at.strftime("%m-%d-%Y") %></td>
+        <td class="col-3"><%= I18n.l(fees.created_at,:format=>"%m-%d-%Y") %></td>
         <td class="col-1">
           <%  unless @additional_category.check_fee_collection_for_additional_fees == false %>
             <span class="small"> <%= link_to_remote "#{t('delete')}", :confirm=>"#{t('delete_this_particular')}",:url => { :action => 'add_particulars_delete',:id => fees.id} %></span>

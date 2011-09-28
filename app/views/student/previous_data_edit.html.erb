@@ -28,7 +28,7 @@
 
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "#{t('profile')}", :action=>:profile, :id=>@student.id %> </li>
+    <li><%= link_to "#{t('profile_text')}", :action=>:profile, :id=>@student.id %> </li>
   </ul>
 </div>
 
@@ -52,7 +52,7 @@
         <div class="extender"></div>
       </div>
       <div class="label-field-pair">
-        <label><%= t('course') %></label>
+        <label><%= t('course_text') %></label>
         <div class="text-input-bg"><%= a.text_field :course %></div>
         <div class="extender"></div>
       </div>

@@ -37,7 +37,7 @@
     <div class="label-field-pair">
       <label for="timetable_entry_course_id"><%= t('select_a_batch') %></label>
       <div class="text-input-bg"><%= select :timetable_entry, :batch_id, @batches.map {|c| [c.full_name, c.id]},
-      :prompt => "Common"
+      :prompt => "#{t('common')}"
       %></div>
     </div>
 

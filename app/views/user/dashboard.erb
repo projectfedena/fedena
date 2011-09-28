@@ -29,7 +29,7 @@
   <% if @user.admin? %>
     <div class="button-box">
       <%= link_to "<div class ='button-label'><p>#{t('admission')}</p></div>", {:controller => "student", :action => "admission1"},
-        :class => "option_buttons", :id => "admission_button", :title => "Enter a Students admission details into the school records"%>
+        :class => "option_buttons", :id => "admission_button", :title => "#{t('admission_link_title')}"%>
     </div>
     <div class="button-box">
       <%= link_to "<div class ='button-label'><p>#{t('student_details')}</p></div>", {:controller => "student", :action => "index"},
@@ -121,7 +121,7 @@
      <% if permitted_to? :admission1, :student %>
       <div class="button-box">
         <%= link_to '<div class ="button-label"><p>Admission</p></div>', {:controller => "student", :action => "admission1"},
-          :class => "option_buttons", :id => "admission_button", :title => "Enter a Students admission details into the school records"%>
+          :class => "option_buttons", :id => "admission_button", :title => "#{t('admission_link_title')}" %>
       </div>
     <%end%>
 
@@ -187,7 +187,7 @@
 
         <% if permitted_to? :index, :student_attendance or  permitted_to? :index, :attendances %>
           <div class="button-box">
-            <%= link_to "<div class ='button-label'><p>#{t('student.reports.sub_title2')}</p></div>", {:controller => "student_attendance", :action => "index"},
+            <%= link_to "<div class ='button-label'><p>#{t('attendance')}</p></div>", {:controller => "student_attendance", :action => "index"},
               :class => "option_buttons", :id => "student_attendance_button", :title => t('attendance_link_title') %>
           </div>
         <%end%>
@@ -203,13 +203,13 @@
         <% @attendance_type = Configuration.find_by_config_key('StudentAttendanceType') %>
         <% unless @attendance_type.config_value == 'Daily' %>
           <div class="button-box">
-            <%= link_to "<div class ='button-label'><p>#{t('student.reports.sub_title2')}</p></div>", {:controller => "student_attendance", :action => "index"},
+            <%= link_to "<div class ='button-label'><p>#{t('attendance')}</p></div>", {:controller => "student_attendance", :action => "index"},
               :class => "option_buttons", :id => "student_attendance_button", :title => t('attendance_link_title') %>
           </div>
         <% else %>
           <div class="button-box">
             <% if permitted_to? :index, :student_attendance or  permitted_to? :index, :attendances %>
-              <%= link_to "<div class ='button-label'><p>#{t('student.reports.sub_title2')}</p></div>", {:controller => "student_attendance", :action => "index"},
+              <%= link_to "<div class ='button-label'><p>#{t('attendance')}</p></div>", {:controller => "student_attendance", :action => "index"},
                 :class => "option_buttons", :id => "student_attendance_button", :title => t('attendance_link_title')%>
             <%end%>
           </div>

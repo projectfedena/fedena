@@ -41,7 +41,7 @@
 
     <% if permitted_to? :employee_management, :employee %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('employee_management')}", :controller=>"employee", :action=>"employee_management"%></div>
+        <div class="link-heading"><%= link_to "#{t('employee_management_text')}", :controller=>"employee", :action=>"employee_management"%></div>
         <div class="link-descr"><%= "#{t('manage_all_employee')}" %></div>
       </div>
     <%end%>

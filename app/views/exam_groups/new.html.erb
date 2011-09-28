@@ -33,7 +33,7 @@
   <% end %>
 
 <div class="bread_crumb">
-        <%= link_to t('course'), courses_path %> &raquo;
+        <%= link_to t('course_text'), courses_path %> &raquo;
         <%= link_to @course.full_name, @course %> &raquo;
         <%= link_to "#{t('batch')} #{@batch.name}", [@course, @batch] %> &raquo;
         <%= link_to "#{t('exam_text')}", batch_exam_groups_path(@batch) %> &raquo;
@@ -59,7 +59,7 @@
         </div>
         <div class="label-field-pair">
           <label for="exam_type"><%= t('exam_type') %></label>
-          <div class="text-input-bg"><%= select :exam_option,:exam_type,[[t('marks'), "Marks"],[t('grades'), "Grades"],[t('marks_and_grades'),"MarksAndGrades"]] %></div>
+          <div class="text-input-bg"><%= select :exam_option,:exam_type,[["Marks"],[t('grades'), "Grades"],[t('marks_and_grades'),"MarksAndGrades"]] %></div>
         </div>
         <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
         <%  #  form.submit("Save") %>

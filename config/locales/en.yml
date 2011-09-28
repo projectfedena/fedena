@@ -23,8 +23,7 @@ en: # locale
                course_name : 'Course name'
                section_name : 'Section name'
                code : 'Code'
-               sort_order : "Sort order"
-
+               
              additional_exam:
                start_time : 'Start Time'
                end_time : 'End Time'
@@ -198,7 +197,8 @@ en: # locale
 
     date:
       formats:
-        default: "%B %e, %Y"
+        default: "%e-%m-%Y"
+        normal : "%B %e, %Y"
         short: "%e. %b"
         month_year : "%B %Y"
         long: "%A, %e %B, %Y"
@@ -207,7 +207,7 @@ en: # locale
         day   : "%a"
         mon   : "%d"
         day_mon : "%a %d"
-        dmy  : "%d %b, %Y"
+       
 
       day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
       abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]
@@ -312,6 +312,7 @@ en: # locale
     present : 'Present'
     former : 'Former'
     search  : 'Search'
+    search_text : 'Search'
     category : 'Category'
     pdf_report : 'PDF Report'
     no_students_found : 'No students found'
@@ -342,7 +343,7 @@ en: # locale
     start_date : 'Start Date'
     end_date : 'End Date'
     exam_text : 'Exam'
-    date : 'Date'
+    date_text : 'Date'
     go : 'Go'
     dob : 'DOB'
     department : 'Department'
@@ -361,6 +362,7 @@ en: # locale
     batches_text : 'Batches'
     delete_confirm_msg : 'Are You Sure?'
     new : 'New'
+    new_text : 'New'
     and : 'and'
     wise : 'wise'
     assign_all: 'Assign All'
@@ -479,7 +481,7 @@ en: # locale
     view_all : 'View all'
     advanced : 'Advanced'
     timetable_text : 'Timetable'
-    payroll : 'Payroll'
+    payroll_text : 'Payroll'
     add_new_category : "Add new category"
     percentage: 'Percentage'
     pending : "Pending"
@@ -516,7 +518,7 @@ en: # locale
     afternoon: 'Afternoon'
     forenoon: 'Forenoon'
     absent: 'Absent'
-    advanced_search : "Advanced Search"
+    advanced_search_text : "Advanced Search"
     overall: 'Overall'
     monthly: 'Monthly'
     ok : "OK"
@@ -561,6 +563,7 @@ en: # locale
     examination_results : 'Examination Results'
     fee_status : 'Fee Status'
     fees : 'Fees'
+    fees_text: 'Fees'
     particulars : 'Particulars'
     discount : 'Discount'
     total_discount : 'Total Discount'
@@ -569,8 +572,9 @@ en: # locale
     payment_done : 'Payment Done'
     partial_payment_on : 'Partial Payment on'
     profile : "Profile"
+    profile_text : "Profile"
     messages: "Messages"
-    reminder : "Reminder"
+    reminder_text : "Reminder"
     send_sms : 'Send SMS'
     application: 'Application'
     general_sms_setting : 'General SMS Settings'
@@ -664,6 +668,20 @@ en: # locale
     aprove_monthly_payslip : 'Approve monthly payslip'
     time : 'Time'
     select_payslip_month_year: 'Select payslip Month & Year'
+    my_leave_applications: 'My leave applications'
+    select_a_leave_type: 'Select a leave type'
+    signature: 'Signature'
+    add_payroll_category : "Add Payroll Category"
+    add_edit_employee_payroll_category : "Add and Edit Employee Payroll Category"
+    edit_text: 'Edit'
+    add_type: 'Add Leave types'
+    register_attendance: 'Register attendance.'
+    select_position: 'Select position'
+    select_grade: 'Select grade'
+    holidays : "Holidays"
+    dues : "Dues"
+    marks_and_grades : 'Marks and Grades'
+    subject_wise_report : 'Subject wise Report'
     
     flash_msg1: 'Updated additional exam group successfully.'
     flash_msg2: 'Sorry'
@@ -719,6 +737,7 @@ en: # locale
       section_name : "Section name"
       initial_batch : 'Initial Batch Details'
       active_batches : 'Active batches'
+      
       flash1: 'Created course successfully'
       flash2: 'Updated course details successfully.'
       flash3: 'Course deleted successfully.'
@@ -738,6 +757,7 @@ en: # locale
       assign_new : 'Assign new'
       assign_tutor : 'Assign Tutor'
       import_failed : "Import Failed"
+      
       flash1: 'Batch created successfully.'
       flash2: 'Updated batch details successfully.'
       flash3: 'Please fill all fields'
@@ -811,10 +831,11 @@ en: # locale
       add_subject_to_elective_group : 'Add Subject to this Elective group'
       new_elective_group : 'New Elective Group'
       cannot_delete_subjects : 'Cannot delete subjects'
+      edit_subject : 'Edit Subject'
+      add_new_subject : 'Add New Subject'
       flash1: 'Selected Subjects have been sucessfully imported'
 
       index:
-        add_new_subject : 'Add New Subject'
         import_subject_from_batch : 'Import subject from a batch'
         no_subjects : 'No Subjects available for import in selected batch'
 
@@ -856,12 +877,10 @@ en: # locale
       no_department_selected : 'No department selected for this event yet'
       department_associated : "Department Associated"
       common_event : ' Event common to all'
-      event : 'Event'
+      event_text : 'Event'
       new_event : 'New Event'
       event_description : ' New event description'
       event_notification : 'Event Notification'
-      holidays : "Holidays"
-      dues : "Dues"
       common_eve : "Common Event"
       my_course_event : "My Course Event"
       my_department_event : "My Department Event"
@@ -920,8 +939,6 @@ en: # locale
       max_period_per_week : 'Max period per week'
       employee_admission : "Employee admission"
       select_department: 'Select department'
-      select_position: 'Select position'
-      select_grade: 'Select grade'
       employee_id : "Employee ID"
       not_selected : "not selected"
       edit_employee_information : "Edit Employee Information"
@@ -929,12 +946,13 @@ en: # locale
       line_2 : "Line 2"
       contact : "Contact"
       personal : "Personal"
-      employee_management : "Employee Management"
+      employee_management_text : "Employee Management"
       histroy : 'History'
       all_employee : "All Employees"
       employee_profile : "Employee Profile"
       student_leaving_school : 'Student leaving school'
       search_by_name : "Search by name"
+      rejected_employee : 'Rejected Employee'
       rejected_payslip : 'Rejected payslip'
       no_additional_details_entered : "No additional details entered for"
       no_bank_details_entered : "No bank details entered for"
@@ -985,7 +1003,6 @@ en: # locale
       my_emp: 'My Emp'
       all_records: 'All Records'
       personal_leave_management: 'Personal Leave Management'
-      my_leave_applications: 'My leave applications'
       span_leave_management: 'Span Leave Management'
       my_span: 'My span'
       new_leave_applications: 'New leave applications'
@@ -993,6 +1010,9 @@ en: # locale
       no_employees_under_my_span: 'No employees under my span'
       select_manager_msg : "Select the manager by clicking on it and then update !"
       individual_employee : "Individual Employees"
+      hr_setting : "HR Setting"
+      payslip_text : 'Payslip'
+      no_dates_found : "No dates found"
       
       flash1: 'Employee category created'
       flash2: 'Employee category updated'
@@ -1049,7 +1069,6 @@ en: # locale
         record : 'Record'
         found : 'found'
         no_employee_grades_record_found: 'No Employee grades record found'
-        signature: 'Signature'
         general_profile: 'General Profile'
         hr_management : "HR Management"
         manage_all_employee : "Manage All Employee"
@@ -1125,7 +1144,6 @@ en: # locale
       profile:
         leaves : "Leaves"
         no_add_details_entered : "No additional details entered for"
-        no_dates_found : "No dates found"
         
 
       remove:
@@ -1180,19 +1198,16 @@ en: # locale
         note: 'NOTE'
         
       settings:
-        hr_setting : "HR Setting"
         add_employee_category : "Add Employee Category"
         add_employee_position : "Add Employee Position"
         add_employee_department : "Add Employee Department"
         add_employee_grade : "Add Employee Grade"
-        add_payroll_category : "Add Payroll Category"
         add_bank_detail : "Add Bank Detail"
         add_additional_detail : "Add Additional Detail"
         add_edit_employee_category : "Add and Edit Employee Category"
         add_edit_employee_position : "Add and Edit Employee Position"
         add_edit_employee_department : "Add and Edit Employee Department"
         add_edit_employee_grade : "Add and Edit Employee Grade"
-        add_edit_employee_payroll_category : "Add and Edit Employee Payroll Category"
         add_edit_bank_detail : "Add and Edit Bank Detail"
         add_edit_additional_detail : "Add and edit additional details for employee admission forms"
         payslip_settings: 'Payslip Settings'
@@ -1208,17 +1223,14 @@ en: # locale
       deduction_msg : " No employee payroll deductionable category record found"
       index : 'Index'
       data_saved_for: 'Data saved for'
+      is_deduction : "is deduction?"
+      percentage_of : "Percentage of"
 
       flash1: 'Payroll category saved'
       flash2: 'Payroll category updated'
       flash3: 'Successfully deleted!'
       flash4: 'Unable to delete!'
-      
 
-      add_category:
-        percentage_of : "Percentage of"
-        is_deduction : "is deduction?"
-        
       manage_payroll:
         manage_payroll : "Manage payroll"
         enter_payroll_detail : "Enter Payroll Detail"
@@ -1242,7 +1254,7 @@ en: # locale
       employee_leave_types_records: 'Employee leave types records not found'
       active_leave: 'Active Leave types'
       inactive_leave: 'Inactive  Leave types'
-      employee_attendance: 'Employee Attendance'
+      employee_attendance_text: 'Employee Attendance'
       leave_history : 'Leave History'
       no_leaves_taken : "No leaves taken"
       no_leave_type_registered : ' Sorry! No Leave type registered for Employee'
@@ -1258,8 +1270,6 @@ en: # locale
       reset_employee_leave_dept_wise : 'Reset Employee Leave Department Wise'
       reset_employee_leave_for_each_emp : 'Reset Employee Leave for each employee'
       add_and_edit_employee_leave_types : 'Add and edit employee leave types'
-      register_attendance: 'Register attendance.'
-      add_type: 'Add Leave types'
       attendance_reports : 'Attendance reports.'
       leave_application : "Leave Application"
       approve_deny : "Approve / Deny"
@@ -1293,6 +1303,10 @@ en: # locale
       configure_auto_leave_reset: 'Configure Automatic Employee Leave Reset'
       manual_reset : 'Manual Reset'
       leave_count_reset_sucessfull : 'Leave count reset successful for all employees'
+      leave_code: 'Leave code'
+      max_leave: 'Maximum leave count'
+      edit_leave_types : "Edit leave types"
+
       flash1: 'Employee leave type saved'
       flash2: 'Leave type updated'
       flash3: 'Leave type deleted succesfully'
@@ -1306,11 +1320,6 @@ en: # locale
       flash11 : 'Leave Reset Successfull'
       flash12 : 'Department Wise Leave Reset Successfull'
 
-      add_leave_types:
-        leave_code: 'Leave code'
-        max_leave: 'Maximum leave count'
-        edit_leave_types : "Edit leave types"
-        
       leave_app:
         send_message : "Send messages to the manager of this employee"
         pending_approval : "Pending approval"
@@ -1322,7 +1331,7 @@ en: # locale
         
 #Sms Controller
     sms:
-      sms : "SMS"
+      sms_text : "SMS"
       departments : 'Departments'
       employees : 'employees'
       settings: 'Settings'
@@ -1351,7 +1360,10 @@ en: # locale
       read_news : 'Read news'
       posted_on : 'Posted On'
       content : 'Content'
+      comments : 'Comments'
+      leave_comment : 'Leave a comment'
       publish_news  : 'Publish News'
+      
       flash1 : 'News added!'
       flash2 : 'News item deleted succefully!'
       flash3 :  'News updated!'
@@ -1360,13 +1372,11 @@ en: # locale
         more_news : 'More News'
       all:
         author : 'Author'
-        comments : 'Comments'
       search_news_ajax:
         no_news: 'No news found'
       view:
         no_comments : 'No comments yet.'
-        leave_comment : 'Leave a comment'
-
+        
 #user controller translation
     user:
       details_about_user : 'Details about user'
@@ -1526,6 +1536,7 @@ en: # locale
       below: 'Below'
       above: 'Above'
       equals: 'Equals'
+      no_reports: 'No Reports'
       no_reports_for_selectd_mnth: 'No reports for the selected month.'
       no_report_for_given_period : "No reports for the given period"
       filtered: 'Filtered'
@@ -1590,7 +1601,7 @@ en: # locale
       student_info: 'Student info'
       previous_year_result: 'Previous years results overview'
       class_sec: 'Class/Sec'
-      reports : 'Reports'
+      reports_text : 'Reports'
       no_previous_data : 'No Previous data '
       add_previous_data : 'Add Previous Data'
       group_tutor : 'Group tutor'
@@ -1609,7 +1620,6 @@ en: # locale
       parents_profile : 'Parents Profile'
       academics : 'Academics'
       recent_exams : 'Recent Exams'
-      subject_wise_report : 'Subjectwise Report'
       final_report : 'Final Report'
       compare_past : 'Compare with past years'
       archives : 'Archives'
@@ -1706,8 +1716,7 @@ en: # locale
         examination_wise_performance: 'Examination - wise performance'
         cumulative_performance: 'Cumulative Performance'
         examination_Name: 'Examination Name'
-        signature: 'Signature'
-
+        
       edit:
         edit_details : 'Edit Details'
         necessary_field: 'necessary-field'
@@ -1907,6 +1916,9 @@ en: # locale
       is_invalid_admission_no : 'is invalid admission number'
       admission_cant_be_blank : 'Admission cant be blank'
       fees_category_cant_blank : 'Fees Category cant be blankFees Category cant be blank'
+      fee_discount_succesfully_created : ' Fees Discount Successfully created '
+      no_particulars_to_display : 'No particulars to display'
+      student_fees_submission : 'Student fees submission'
 
       flash1: 'Donation accepted'
       flash2: 'Please create category for expense!'
@@ -1958,7 +1970,6 @@ en: # locale
         aditional : 'aditional'
         
       master_category_particulars:
-        no_particulars_to_display : 'No particulars to display'
         delete_msg : 'Delete the fee particular ?'
        
       additional_fees_list:
@@ -1974,9 +1985,6 @@ en: # locale
         fees_submit_for_student : 'Fees submission for each student'
         submitting_fees_by_search : 'Submitting fees by searching each students'
         
-      fees_submission_batch :
-        student_fees_submission : 'Student fees submission'
-        
       fees_defaulters :
         students_fee_dues : 'Students with fee dues'
       
@@ -1991,8 +1999,7 @@ en: # locale
      
       view_monthly_payslip :
         view_monthly_payslips : 'View Monthly Payslips'
-        search : 'Search'
-
+       
       payslip_index :
         view_payslip : 'View Payslip'
         view_employee_monthly_payslip : 'View employee monthly payslip'
@@ -2055,7 +2062,6 @@ en: # locale
         set_grading_levels: 'Set grading levels'
         results : 'Results'
         generates : 'Generates'
-        subject_wise_report : 'Subject Wise Report'
         group_up_exams_for_specific_reports : 'Group up exams for specific reports'
         do_not : 'Do not'
         academic : 'Academic'
@@ -2085,9 +2091,7 @@ en: # locale
         exam_group : 'exam Group'
         connect : 'Connect'
         
-      new:
-        marks_and_grades : 'Marks and Grades'
-      
+     
 #additional exam controller
     additional_exam:
       create_additional_exam:
@@ -2194,6 +2198,7 @@ en: # locale
       log_out: "Log out"
       ago: 'ago'
       powered_by: 'Powered by'
+      more_news : 'More News'
     
  
     # for shared partials called like: render :template => "shared/user"

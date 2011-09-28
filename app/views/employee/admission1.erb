@@ -54,7 +54,7 @@
 
       <div class="label-field-pair">
         <label for="employee_joining_date"><%= t('joining_date') %></label>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'employee[joining_date]', I18n.localize(Date.today),
+        <div class="text-input-bg"><%= calendar_date_select_tag 'employee[joining_date]', I18n.l(Date.today,:format=>:default),
             :year_range => 25.years.ago..0.years.from_now %></div>
       </div>
       <hr class="label-underline"></hr>
@@ -86,20 +86,20 @@
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
         <label for="dob"><%= t('date_of_birth') %><span class="necessary-field">*</span></label>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'employee[date_of_birth]',I18n.localize(Date.today-10.years),
+        <div class="text-input-bg"><%= calendar_date_select_tag 'employee[date_of_birth]', I18n.l(Date.today-10.years,:format=>:default),
             :year_range => 70.years.ago..4.years.ago %></div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
         <label for="employee_department"><%= t('department') %> <span class="necessary-field">*</span></label>
-        <div class="text-input-bg"><%= select :employee, :employee_department_id, @departments.map {|s| [s.name, s.id]},:prompt => "#{t('.select')}"%></div>
+        <div class="text-input-bg"><%= select :employee, :employee_department_id, @departments.map {|s| [s.name, s.id]},:prompt => "#{t('select')}"%></div>
       </div>
       <hr class="label-underline"></hr>
 
       <div class="label-field-pair">
         <label for="employee_category"><%= t('category') %><span class="necessary-field">*</span> </label>
         <div class="text-input-bg"><%= select :employee, :employee_category_id, @categories.map { |s| [s.name, s.id] },
-            {:prompt => "#{t('.select')}"},
+            {:prompt => "#{t('select')}"},
             {:onChange => "#{remote_function(:url => {:action => "update_positions"}, :with => "'category_id='+value")}"} %></div>
       </div>
       <hr class="label-underline"></hr>

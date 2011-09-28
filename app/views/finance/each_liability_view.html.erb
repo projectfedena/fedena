@@ -33,7 +33,7 @@
     <div id="liability-description"><%= @liability.description %></div>
     <br/>
     <div id="liability-amt"><%= t('amount') %> : <%=@currency_type + " "%><%= @liability.amount%></div>
-    <div id="liability-date"><%= t('created_at') %> : <%= @liability.created_at.strftime("%A, %d %B, %Y") %></div>
+    <div id="liability-date"><%= t('created_at') %> : <%= I18n.l(@liability.created_at,:format=>"%A, %d %B, %Y") %></div>
   </div>
 
 

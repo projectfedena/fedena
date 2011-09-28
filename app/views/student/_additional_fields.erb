@@ -28,7 +28,7 @@
         <% else %>
         <div class="category-status"> <%= t('inactive') %></div>
         <% end %>
-        <div class="category-edit"><%= link_to "#{t('edit')}", {:action => "edit_additional_details", :id=>c.id} %></div>
+        <div class="category-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_additional_details", :id=>c.id} %></div>
         <div class="category-edit"><%= link_to "#{t('delete')}", {:action => "delete_additional_details", :id=>c.id}, :confirm => "#{t('delete_confirm_msg')}" %></div>
       </li>
      <% end %>
