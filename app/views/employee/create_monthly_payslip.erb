@@ -39,7 +39,7 @@
     <div class="payslip-field-pair">
       <label for="salary_date"><%= t('salary_date') %></label>
       <div class="payslip-input-bg">
-<%= calendar_date_select_tag 'salary_date', Date.today,
+<%= calendar_date_select_tag 'salary_date', I18n.l(Date.today,:format=>:normal),
             :year_range => 2.years.ago..0.years.from_now %></div>
     </div>
 

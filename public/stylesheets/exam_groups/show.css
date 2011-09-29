@@ -128,3 +128,6 @@ table#listing .tr-even .inplaceeditor-form .editor_field:focus{
     border: 1px solid #9e0f15;
 
 }
+#inner-tab-menu ul li {
+    width: 157px;
+}

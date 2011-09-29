@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= t('employee') %></h1>
+  <h1><%= t('employee_text') %></h1>
   <h3><%= t('remove_employee') %></h3>
   <div id="app-back-button">
      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -46,7 +46,7 @@
   </div>
     <% end %>
   <div class="link-box">
-    <div class="link-heading"> <%= link_to"#{t('remove_record')}",{ :controller => "employee", :action => "delete", :id => @employee.id },:confirm=>"This will also unassign employee from all his current subjects , Do you want to proceed ?"%> </div>
+    <div class="link-heading"> <%= link_to"#{t('remove_record')}",{ :controller => "employee", :action => "delete", :id => @employee.id },:confirm=>"#{t('confirm')}"%> </div>
     <div class="link-descr"><%= t('remove_record_msg') %></div>
   </div>
   </div>

@@ -28,7 +28,7 @@
 <div id="inner-tab-menu">
   <ul>
     <li>
-      <%= link_to "► pdf_report" ,{:controller => "exam",:action=> 'previous_years_marks_overview_pdf',:student => @student.id},:target=> '_blank' %>
+      <%= link_to "► #{t('pdf_report')}" ,{:controller => "exam",:action=> 'previous_years_marks_overview_pdf',:student => @student.id},:target=> '_blank' %>
     </li>
   </ul>
 </div>

@@ -36,7 +36,7 @@
 <div class="linker">
 <%= link_to_remote "#{t('add_normal_subject')}", :url => { :action => 'new_subject', :id => @batch} %> |
 <%= link_to "#{t('add_elective')}", batch_elective_groups_path(@batch) %> |
-<%= link_to_remote "#{t('assign_old_batch_subject ')}", :url => { :controller=>'batch_transfers',:action => 'get_previous_batch_subjects', :id => @batch} %>
+<%= link_to_remote "#{t('assign_old_batch_subject')}", :url => { :controller=>'batch_transfers',:action => 'get_previous_batch_subjects', :id => @batch} %>
 </div>
     <div id="previous-batch-subjects"></div>
 

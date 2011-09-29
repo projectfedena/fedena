@@ -58,7 +58,7 @@
           <% if @subjects.empty? %>
             <div class="category-delete"><%= link_to(t('delete'), [@batch, elective],
                 :method => 'delete',
-                :confirm => t('are_you_sure')) %> </div>
+                :confirm => t('delete_confirm_msg')) %> </div>
           <% end %>
         </li>
       <% end %>

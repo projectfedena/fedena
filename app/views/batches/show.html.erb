@@ -32,7 +32,7 @@
       <li><%= link_to "#{t('exams_text')}", batch_exam_groups_path(@batch) %> </li>
     <% end %>
 
-    <li><%= link_to "#{t('edit')}", edit_course_batch_path(@course, @batch) %></li>
+    <li><%= link_to "#{t('edit_text')}", edit_course_batch_path(@course, @batch) %></li>
     <li><%= link_to("#{t('delete')}", [@course, @batch], :method => 'delete', :confirm => "#{t('are_you_sure')}") %></li>
 
 

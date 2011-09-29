@@ -19,7 +19,7 @@
 
 <div id="content-header">
     <img src="/images/HR/show_hr.png" alt="" />
-  <h1><%= t('employee') %></h1>
+  <h1><%= t('employee_text') %></h1>
   <h3><%= t('leaving_school') %></h3>
   <div id="app-back-button">
    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -44,7 +44,7 @@
       </div>
 
       <div id="submit-button">
-        <%= submit_tag "► #{t('remove')}",:class=>'submit_button' %>
+        <%= submit_tag "► #{t('delete')}",:class=>'submit_button' %>
       </div>
 
     <% end %>

@@ -30,7 +30,7 @@
   <ul>
      <li><%= link_to "#{t('back_to_inbox')}", :controller=>"reminder", :action=>"index"%></li>
     <li><%= link_to "#{t('mark_as_unread')}" ,:controller=> "reminder", :action=>"mark_unread", :id2=>@new_reminder.id%></li>
-    <li><%= link_to "#{t('delete')}", {:controller=>"reminder", :action=>"delete_reminder_by_recipient", :id2=>@new_reminder.id}, :confirm=>"Are you sure?" %></li>
+    <li><%= link_to "#{t('delete')}", {:controller=>"reminder", :action=>"delete_reminder_by_recipient", :id2=>@new_reminder.id}, :confirm=>"#{t('delete_confirm_msg')}" %></li>
   </ul>
 </div>
 
@@ -42,7 +42,7 @@
 
   <div id="reminder-body">
     <div id="reminder-from"><%= t('from') %>: <%= @sender.full_name %></div>
-    <div id="reminder-date"><%= t('sent_on') %>: <%= @new_reminder.created_at.strftime("%A, %d %B, %Y") %></div>
+    <div id="reminder-date"><%= t('sent_on') %>: <%= I18n.l(@new_reminder.created_at,:format=>"%A, %d %B, %Y") %></div>
     <div id="reminder-subject"><%= t('subject') %>: <%= @new_reminder.subject %></div>
     <div id="reminder-message"><strong><%= t('message') %>:</strong><br /><br /><%=h @new_reminder.body %></div>
     <div id="reminder-reply">

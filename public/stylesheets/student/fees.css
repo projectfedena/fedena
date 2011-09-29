@@ -249,3 +249,6 @@
     color: #BB0000;
     font-weight: normal;
 }
+#inner-tab-menu ul li {
+    width: 150px;
+}

@@ -5,164 +5,164 @@ en: # locale
              student:
                first_name: "First name"
                admission_no: "Admission number"
-               admission_date : 'Admission date'
-               batch_id : 'Batch'
-               date_of_birth : 'Date of birth'
-               gender : 'Gender'
+               admission_date : "Admission date"
+               batch_id : "Batch"
+               date_of_birth : "Date of birth"
+               gender : "Gender"
 
              student_additional_field:
-               name : 'Name'
+               name : "Name"
 
              user:
                username: "username"
-               email : 'Email'
-               password : 'password'
-               role : 'role'
+               email : "Email"
+               password : "password"
+               role : "role"
 
              course:
-               course_name : 'Course name'
-               section_name : 'Section name'
-               code : 'Code'
+               course_name : "Course name"
+               section_name : "Section name"
+               code : "Code"
                
              additional_exam:
-               start_time : 'Start Time'
-               end_time : 'End Time'
-               minimum_marks : 'Minimum Marks'
+               start_time : "Start Time"
+               end_time : "End Time"
+               minimum_marks : "Minimum Marks"
 
              additional_exam_group:
-               name : 'Name'
-               students_list : 'Student List'
+               name : "Name"
+               students_list : "Student List"
 
              additional_field:
-               name: 'Name'
+               name: "Name"
 
              attendance:
-               student_id: 'Student ID'
+               student_id: "Student ID"
 
              batch:
-               name: 'Name'
+               name: "Name"
 
              class_timing:
-               name: 'Name'
+               name: "Name"
 
              elective_group:
-               name: 'name'
+               name: "name"
 
              event:
-               title : 'Title'
+               title : "Title"
 
              exam:
-               start_time : 'Start Time'
-               end_time : 'End Time'
+               start_time : "Start Time"
+               end_time : "End Time"
 
              exam_group:
-               name: 'Name'
+               name: "Name"
 
              grading_level:
-               name: 'Name'
+               name: "Name"
 
              guardian:
                first_name: "First Name"
 
              news:
-               title: 'Title'
+               title: "Title"
 
              news_comment:
-               content: 'content'
-               author: 'Author'
-               news_id: 'News'
+               content: "content"
+               author: "Author"
+               news_id: "News"
 
              reminder:
-               body: 'Body'
+               body: "Body"
 
              student_category:
-               name: 'Name'
+               name: "Name"
 
              student_subject:
-               name: 'Name'
+               name: "Name"
 
              subject:
-               name: 'Name'
-               max_weekly_classes: 'Maximum Weekly Classes'
+               name: "Name"
+               max_weekly_classes: "Maximum Weekly Classes"
 
              asset:
-               amount : 'Amount'
+               amount : "Amount"
 
              finance_donation:
-               donor: 'Donor'
+               donor: "Donor"
 
              finance_fee_category:
-               name: 'Name'
-               batch_id : 'Batch'
+               name: "Name"
+               batch_id : "Batch"
 
              finance_fee_collection:
-               name: 'Name'
+               name: "Name"
 
              finance_fee_particulars:
-               name: 'Name'
-               amount : 'Amount'
+               name: "Name"
+               amount : "Amount"
 
              finance_transaction:
-               title : 'Title'
-               amount : 'Amount'
-               transaction_date : 'Transaction Date'
-               category : 'Category'
-               amount : 'Amount'
+               title : "Title"
+               amount : "Amount"
+               transaction_date : "Transaction Date"
+               category : "Category"
+               amount : "Amount"
 
              finance_transaction_category:
-               name : 'Name'
+               name : "Name"
 
              finance_transaction_trigger:
-               percentage : 'Percentage'
+               percentage : "Percentage"
 
              liablility:
-               amount : 'Amount'
+               amount : "Amount"
 
              apply_leave:
-               employee_leave_types_id : 'Employee Leave Types'
-               start_date : 'Start Date'
-               end_date : 'End Date'
-               reason : 'Reason'
+               employee_leave_types_id : "Employee Leave Types"
+               start_date : "Start Date"
+               end_date : "End Date"
+               reason : "Reason"
 
              bank_field:
-               name : 'Name'
+               name : "Name"
 
              employee:
-               employee_category_id: 'Employee Category'
-               employee_number: 'Employee Number'
-               first_name : 'First Name'
-               employee_position_id: 'Employee Position'
-               employee_department_id: 'Employee Department'
-               employee_grade_id: 'Employee Grade'
-               date_of_birth: 'Date Of Birth'
+               employee_category_id: "Employee Category"
+               employee_number: "Employee Number"
+               first_name : "First Name"
+               employee_position_id: "Employee Position"
+               employee_department_id: "Employee Department"
+               employee_grade_id: "Employee Grade"
+               date_of_birth: "Date Of Birth"
 
              employee_attendance:
-               employee_id : 'Employee'
-               employee_leave_type_id : 'Employee Leave Type'
+               employee_id : "Employee"
+               employee_leave_type_id : "Employee Leave Type"
 
              employee_category:
-               name : 'Name'
+               name : "Name"
 
              employee_department:
-               name : 'Name'
+               name : "Name"
 
              employee_grade:
-               name : 'Name'
-               priority : 'Priority'
+               name : "Name"
+               priority : "Priority"
 
              employee_leave_type:
-               name : 'Name'
-               code : 'Code'
-               max_leave_count : 'Maximum Leave Count'
+               name : "Name"
+               code : "Code"
+               max_leave_count : "Maximum Leave Count"
 
              employee_position:
-               name : 'Name'
-               employee_category_id: 'Employee Category'
+               name : "Name"
+               employee_category_id: "Employee Category"
 
              monthly_payslip:
-               salary_date : 'Salary Date'
+               salary_date : "Salary Date"
              payroll_category:
-               name : 'Name'
+               name : "Name"
 
           errors:
             template:
@@ -205,7 +205,7 @@ en: # locale
         only_day: "%e"
         month : "%B"
         day   : "%a"
-        mon   : "%d"
+        mont   : "%d"
         day_mon : "%a %d"
        
 
@@ -261,16 +261,16 @@ en: # locale
 #Errors From Model
     model_errors:
       course:
-        error1 : 'En caso de tener un lote inicial'
+        error1 : "En caso de tener un lote inicial"
 
       exam:
-        error1 : 'cant be more than max marks'
+        error1 : "cant be more than max marks"
 
       student:
-        error1 : 'cant be a future date'
-        error2 : 'attribute is invalid'
-        error3 : 'cant be zero'
-        error4: 'Email already taken'
+        error1 : "cant be a future date"
+        error2 : "attribute is invalid"
+        error3 : "cant be zero"
+        error4: "Email already taken"
 
       batches:
         import_failed : "Import Failed"
@@ -284,67 +284,68 @@ en: # locale
       batch_transfers:
         errors_found : "Following errors were found"
 
-    sl_no : 'Sl  no.'
-    name : 'Name'
-    adm_no : 'Adm no.'
-    view_profile : 'View Profile'
-    select_a_category : 'Select a Category'
-    select_a_batch: 'Select a Batch'
-    select_a_course : 'Select a Course'
-    create : 'Create'
-    student_text : 'Student'
-    course_and_batch : 'Course & Batch'
-    subject : 'Subject'
-    message : 'Message'
-    recipient : 'Recipient'
-    recipients : 'Recipients'
-    guardian : 'Guardian'
-    course_text : 'Course'
-    courses_text : 'Courses'
-    batch : 'Batch'
-    remove : 'Remove'
-    delete : 'Delete'
-    admission_number : 'Admission number'
-    all : 'All'
-    select : 'Select'
-    option : 'Option'
-    status : 'Status'
-    present : 'Present'
-    former : 'Former'
-    search  : 'Search'
-    search_text : 'Search'
-    category : 'Category'
-    pdf_report : 'PDF Report'
-    no_students_found : 'No students found'
-    finish : 'Finish'
-    year : 'Year'
-    total_mark : 'Total mark'
-    total_marks : 'Total marks'
+    sl_no : "Sl  no."
+    name : "Name"
+    adm_no : "Adm no."
+    view_profile : "View Profile"
+    select_a_category : "Select a Category"
+    select_a_batch: "Select a Batch"
+    select_a_course : "Select a Course"
+    create : "Create"
+    create_text : "Create"
+    student_text : "Student"
+    course_and_batch : "Course & Batch"
+    subject : "Subject"
+    message : "Message"
+    recipient : "Recipient"
+    recipients : "Recipients"
+    guardian : "Guardian"
+    course_text : "Course"
+    courses_text : "Courses"
+    batch : "Batch"
+    remove : "Remove"
+    delete : "Delete"
+    admission_number : "Admission number"
+    all : "All"
+    select : "Select"
+    option : "Option"
+    status : "Status"
+    present : "Present"
+    former : "Former"
+    search  : "Search"
+    search_text : "Search"
+    category : "Category"
+    pdf_report : "PDF Report"
+    no_students_found : "No students found"
+    finish : "Finish"
+    year : "Year"
+    total_mark : "Total mark"
+    total_marks : "Total marks"
     save_and_proceed : 'Save & Proceed'
-    edit : 'Edit'
-    save : 'Save'
-    setting : 'Setting'
-    active : 'Active'
-    inactive : 'Inactive'
-    update : 'Update'
-    admin : 'Admin'
-    employee_text : 'Employee'
+    edit : "Edit"
+    save : "Save"
+    setting : "Setting"
+    active : "Active"
+    inactive : "Inactive"
+    update : "Update"
+    admin : "Admin"
+    employee_text : "Employee"
     username: "Username"
-    user_text : 'User'
-    no_users : 'No user found'
-    select_a_department : 'Select a department'
-    add : 'Add'
-    none : 'None'
-    submit : 'Submit'
-    manage : 'Manage'
-    admission : 'Admission'
-    type : 'Type'
-    currency : 'Currency'
-    start_date : 'Start Date'
-    end_date : 'End Date'
-    exam_text : 'Exam'
-    date_text : 'Date'
-    go : 'Go'
+    user_text : "User"
+    no_users : "No user found"
+    select_a_department : "Select a department"
+    add : "Add"
+    none : "None"
+    submit : "Submit"
+    manage : "Manage"
+    admission : "Admission"
+    type : "Type"
+    currency : "Currency"
+    start_date : "Start Date"
+    end_date : "End Date"
+    exam_text : "Exam"
+    date_text : "Date"
+    go : "Go"
     dob : 'DOB'
     department : 'Department'
     assign : 'Assign'
@@ -682,6 +683,13 @@ en: # locale
     dues : "Dues"
     marks_and_grades : 'Marks and Grades'
     subject_wise_report : 'Subject wise Report'
+    online: 'Online'
+    offline : 'Offline'
+    add_subject : 'Add Subject'
+    add_normal_subject : 'Add Normal subject'
+    subjects_assigned : 'Subjects have been assigned.'
+    following_errors_found : 'Following errors were found'
+    academics : 'Academics'
     
     flash_msg1: 'Updated additional exam group successfully.'
     flash_msg2: 'Sorry'
@@ -701,6 +709,7 @@ en: # locale
       general_settings : "General Settings"
       flash1 : 'Invalid Extention. Image must be .JPG'
       flash2 : 'File too large. File size should be less than 1 MB'
+
       index:
         manage_course_batch : "Manage Course/Batch"
         manage_student_category : "Manage Student Category"
@@ -749,14 +758,13 @@ en: # locale
 
       manage_batches:
         grading_system : 'Grading system'
-        
-
 
 #batches controller translation
     batches:
       assign_new : 'Assign new'
       assign_tutor : 'Assign Tutor'
       import_failed : "Import Failed"
+      no_employee_assigned : ' No employee assigned yet.'
       
       flash1: 'Batch created successfully.'
       flash2: 'Updated batch details successfully.'
@@ -764,6 +772,7 @@ en: # locale
       flash4: 'Batch deleted successfully.'
       flash5: 'Unable to delete Batch.Please delete all Students'
       flash6: 'Unable to delete Batch.Please delete all Subjects'
+
       show:
         subject_transfer_message : 'Following Subjects have been imported'
         fee_import_message : 'Following Fee Categories have been imported'
@@ -773,11 +782,7 @@ en: # locale
         import_fees : 'Import previous batch Master fees'
         new_batch : "New batch"
         Not applicable : "Not applicable"
-        
-      assign_tutor:
-        
-        no_employee_assigned : ' No employee assigned yet.'
-
+      
       edit:
         edit_batch : "Edit Batch"
 
@@ -790,22 +795,20 @@ en: # locale
       generate_tc_for_all : 'Generate TC for ALL'
       has_been_added_to_batch : 'has been added to Batch'
       already_has_subject : 'already has a subject with name'
-      subjects_assigned : 'Subjects have been assigned.'
       the_subject : 'The subject'
-      following_errors_found : 'Following errors were found'
       status_description : 'Status description'
       add_new_subjects: 'Add new subjects'
+      assign_old_batch_subject : 'Assign old batch subjects'
+      previous_batch : "Previous Batch"
       
       flash1: 'Trasferred students successfully'
       flash2: 'Graduated selected students successfully'
       flash3: 'Already has the subject with name'
 
       subject_transfer:
-        assign_old_batch_subject : 'Assign old batch subjects'
         assign_subject : "Assign Subject"
         add_elective : "Add Elective"
-        previous_batch : "Previous Batch"
-
+        
       index:
         graduation_message : " These students will now be trasferred to former students database. Add the status description for the students. e.g. 'Graduated 10th grade, 2010."
         previous : 'Previous'
@@ -823,11 +826,9 @@ en: # locale
 
       index:
         edit_elective : "Edit Elective"
-        
 
 #subject controller translation
     subjects:
-      add_normal_subject : 'Add Normal subject'
       add_subject_to_elective_group : 'Add Subject to this Elective group'
       new_elective_group : 'New Elective Group'
       cannot_delete_subjects : 'Cannot delete subjects'
@@ -1597,7 +1598,6 @@ en: # locale
       previous_details : 'Previous Details'
       previous_educational_details: 'Previous Educational Details'
       institution_name : 'Institution Name'
-      add_subject : 'Add Subject'
       student_info: 'Student info'
       previous_year_result: 'Previous years results overview'
       class_sec: 'Class/Sec'
@@ -1618,7 +1618,6 @@ en: # locale
       description2 : "Warning: All records will be deleted for the student and cannot be recovered."
       parent_info : 'Parents Info'
       parents_profile : 'Parents Profile'
-      academics : 'Academics'
       recent_exams : 'Recent Exams'
       final_report : 'Final Report'
       compare_past : 'Compare with past years'
@@ -1626,6 +1625,8 @@ en: # locale
       exam_goruped : 'Exam Grouped'
       student_admission_done : 'Student admission done. username is'
       password_is : 'and password is'
+      select_one_of_the_guardians : 'Select one of the guardians as emergency contact.'
+      max_size : '50KB max'
 
       flash1: 'Additional field created'
       flash2: 'Additional details updated'
@@ -1645,7 +1646,6 @@ en: # locale
 
       admission1:
         student_detail_step1 : 'Step 1 - Student details'
-        max_size : '50KB max'
         last_course: 'Last Attended Course'
         unknown : 'Unknown'
         no_admission_notice : 'No student has been admitted yet'
@@ -1656,7 +1656,6 @@ en: # locale
         saved_message : 'The following guardians have been saved for '
 
       admission3:
-        select_one_of_the_guardians : 'Select one of the guardians as emergency contact.'
         sms_part1 : 'Student admission done. username is'
         sms_part2 : 'and password is'
 
@@ -2015,15 +2014,18 @@ en: # locale
     xml:
       tally : 'Tally'
       flash1: 'XML settings updated successfully'
+
       index:
         tally_settings : 'Tally settings'
         change_ledger_settings_for_tally : 'Change ledger settings for Tally'
         export_for_tally : 'Export for Tally'
         creates_xml_import : 'Creates xml import file for tally'
+
       settings:
         ledger_name_correspond_salary : 'Ledger name corresponding to salary'
         ledger_name_correspond_fees : 'Ledger name corresponding to fees'
         ledger_name_correspond_donation : 'Ledger name corresponding to donation'
+
       create_xml:
         export_to_tally : 'Export to Tally'
 
@@ -2051,11 +2053,13 @@ en: # locale
       exam_wise_report : 'Exam Wise Report'
       grouping : 'Grouping'
       exam_scheduled : 'Exam Scheduled'
+
       flash1: 'Selected exams grouped successfully.'
       flash2: 'Select a batch and exam to continue.'
       flash3: 'Invalid parameters.'
       flash4: 'Select a subject to continue'
       flash5: 'No Students in selected batch'
+
       index:
         create_a_new_exam_and_enter_result : 'Create new exams, enter results.'
         create_additional_exams_and_edit_results : 'Create additional exams,Edit results'
@@ -2086,6 +2090,7 @@ en: # locale
       publish_exam_result : 'Publish Exam Result'
       flash1: 'Exam group created successfully.'
       flash2: 'Updated exam group successfully.'
+
       index:
         exam_groups : 'Exam Groups'
         exam_group : 'exam Group'
@@ -2103,6 +2108,7 @@ en: # locale
       for_additional_exam_group : "For additional exam group"
       flash1: 'Additional exam scores updated.'
       flash3: 'Updated additional exam details successfully.'
+
       show:
         select_grade : 'Select Grade'
       

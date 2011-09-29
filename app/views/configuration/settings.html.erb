@@ -91,7 +91,7 @@
       <div class="label-field-pair">
         <label for="configuration_currency_type"><%= t('network_state') %></label>
         <div class="text-input-bg">
-          <%= select :configuration, :network_state, ['Online','Offline'],:selected =>@config[:network_state] %>
+          <%= select :configuration, :network_state, [["#{t('online')}","Online"],["#{t('offline')}","Offline"]],:selected =>@config[:network_state] %>
         </div>
       </div>
       <div class="extender"></div>

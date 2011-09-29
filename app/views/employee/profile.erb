@@ -48,8 +48,8 @@
       <li>
         <a href="#" class="drops" id="link_two"><%= t('salary') %> &#9660;</a>
         <ul id="box_two" class="scriptaculously" style="display:none;">
-          <li><%= link_to_remote "Payroll_text", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
-          <li><%= link_to_remote "Payslip", :url => {:action => "view_payslip", :id => @employee.id}, :update => "profile-infos" %></li>
+          <li><%= link_to_remote "#{t('payroll_text')}", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
+          <li><%= link_to_remote "#{t('payslip_text')}", :url => {:action => "view_payslip", :id => @employee.id}, :update => "profile-infos" %></li>
         </ul>
       </li>
     <%else%>
@@ -87,15 +87,15 @@
 
     <% if permitted_to? :timetable, :employee %>
       <% unless @employee.subjects.empty? %>
-        <li><%= link_to        "#{t('timetable')}", :controller=>"employee", :action=>"timetable", :id=>@employee.id %></li>
+        <li><%= link_to        "#{t('timetable_text')}", :controller=>"employee", :action=>"timetable", :id=>@employee.id %></li>
         <% end %>
     <%end%>
 
     <% if current_username == profile_employee_no %>
       <% if @new_reminder_count.size == 0 %>
-        <li><%= link_to        "#{t('reminder')}", :controller=>"reminder", :action=>"index"%></li>
+        <li><%= link_to        "#{t('reminder_text')}", :controller=>"reminder", :action=>"index"%></li>
       <% else %>
-        <li><%= link_to        "#{t('reminder')}(#{@new_reminder_count.size})", :controller=>"reminder", :action=>"index"%></li>
+        <li><%= link_to        "#{t('reminder_text')}(#{@new_reminder_count.size})", :controller=>"reminder", :action=>"index"%></li>
       <% end %>
     <%end%>
       <% if @current_user.admin? %>

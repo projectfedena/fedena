@@ -179,7 +179,7 @@ class BatchTransfersController < ApplicationController
     @elective_groups = @previous_batch.elective_groups
     @previous_batch_electives = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"])
     render(:update) do |page|
-      page.replace_html 'previous-batch-subjects', :text=>"<p>#{t('subjects_assigned')}.</p> "
+      page.replace_html 'previous-batch-subjects', :text=>"<p>#{t('subjects_assigned')}</p> "
       unless msg.empty?
         page.replace_html "msg", :text=>"<div class=\"flash-msg\"><ul>" +msg +"</ul></p>"
       end

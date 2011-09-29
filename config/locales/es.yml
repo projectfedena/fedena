@@ -4,167 +4,167 @@ es: # locale
 
              student:
                first_name: "Primer nombre"
-               admission_no: "No. de admisión"
+               admission_no: "Admisión número"
                admission_date: "Fecha de admisión"
-               batch_id : 'Id de grupo'
-               date_of_birth : 'Nacimiento'
-               gender : 'Sexo'
+               batch_id : "Lote"
+               date_of_birth : "Fecha de nacimiento"
+               gender : "Género"
 
              student_additional_field:
-               name : 'Nombre'
+               name : "Nombre"
 
              user:
                username: "Nombre de usuario"
-               email : 'Correo electrónico'
-               password : 'contraseña'
-               role : 'rol'
-               password_rst_msg: 'Puede restablecer la contraseña utilizando el siguiente enlace'
-               password_rst_msg1: 'Gracias por usar fedena.com'
+               email : "E-mail"
+               password : "contraseña"
+               role : "papel"
+               password_rst_msg: "Puede restablecer la contraseña utilizando el siguiente enlace"
+               password_rst_msg1: "Gracias por usar fedena.com"
 
              course:
-               course_name : 'Nombre del curso'
-               section_name : 'Nombre de la sección'
-               code : 'Código'
+               course_name : "Nombre del curso"
+               section_name : "Nombre de la sección"
+               code : "Código"
                sort_order : "La orden de clasificacion"
 
              additional_exam:
-               start_time : 'Hora de inicio'
-               end_time : 'Hora de finalización'
-               minimum_marks : 'Nota mínima'
+               start_time : "Hora de inicio"
+               end_time : "Hora de finalización"
+               minimum_marks : "Marcas mínimas"
 
              additional_exam_group:
-               name : 'Nombre'
-               students_list : 'Lista de Estudiantes'
+               name : "Nombre"
+               students_list : "Lista de Estudiantes"
 
              additional_field:
-               name: 'Nombre'
+               name: "Nombre"
 
              attendance:
-               student_id: 'ID de Estudiante'
+               student_id: "Identificación del estudiante"
 
              batch:
-               name: 'Nombre'
+               name: "Nombre"
 
              class_timing:
-               name: 'Nombre'
+               name: "Nombre"
 
              elective_group:
-               name: 'Nombre'
+               name: "Nombre"
 
              event:
                title : 'Título'
 
              exam:
-               start_time : 'Hora de inicio'
-               end_time : 'Hora de finalización'
+               start_time : "Hora de inicio"
+               end_time : "Hora de finalización"
 
              exam_group:
-               name: 'Nombre'
+               name: "Nombre"
 
              grading_level:
-               name: 'Nombre'
+               name: "Nombre"
 
              guardian:
-               first_name: 'Primer nombre'
+               first_name: "Primer nombre"
 
              news:
-               title: 'Título'
+               title: "Título"
 
              news_comment:
-               content: 'Contenido'
-               author: 'Autor'
-               news_id: 'Noticias'
+               content: "Contenido"
+               author: "Autor"
+               news_id: "Noticias"
 
              reminder:
-               body: 'Mensaje'
+               body: "Cuerpo"
 
              student_category:
-               name: 'Nombre'
+               name: "Nombre"
 
              subject:
-               name: 'Nombre'
-               max_weekly_classes: 'Máximo de Clases Semanales'
+               name: "Nombre"
+               max_weekly_classes: "Máximo Clases semanales"
 
              asset:
-               amount : 'Cantidad'
+               amount : "Cantidad"
 
              finance_donation:
-               donor: 'Donante'
+               donor: "Donante"
 
              finance_fee_category:
-               name: 'Nombre'
-               batch_id : 'Grupo'
+               name: "Nombre"
+               batch_id : "Lote"
 
 
              finance_fee_collection:
-               name: 'Nombre'
+               name: "Nombre"
 
              finance_fee_particulars:
-               name: 'Nombre'
-               amount : 'Cantidad'
+               name: "Nombre"
+               amount : "Cantidad"
 
              finance_transaction:
-               title : 'Título'
-               amount : 'Cantidad'
-               transaction_date : 'Fecha de la transacción'
-               category : 'Categoría'
-               amount : 'Cantidad'
+               title : "Título"
+               amount : "Cantidad"
+               transaction_date : "Fecha de la transacción"
+               category : "Categoría"
+               amount : "Cantidad"
 
              finance_transaction_category:
-               name : 'Nombre'
+               name : "Nombre"
 
              finance_transaction_trigger:
-               percentage : 'Porcentaje'
+               percentage : "Porcentaje"
 
              liablility:
-               amount : 'Cantidad'
+               amount : "Cantidad"
 
              apply_leave:
-               employee_leave_types_id : 'Tipo de licencia'
-               start_date : 'Fecha de inicio'
-               end_date : 'Fecha de finalización'
-               reason : 'Causa'
+               employee_leave_types_id : "Tipos de empleados Agregar"
+               start_date : "Fecha de inicio"
+               end_date : "Fecha de finalización"
+               reason : "Razón"
 
              bank_field:
-               name : 'Nombre'
+               name : "Nombre"
 
              employee:
-               employee_category_id: 'Categoría de empleado'
-               employee_number: 'No. de empleado'
-               first_name : 'Primer Nombre'
-               employee_position_id: 'Posición del empleado'
-               employee_department_id: 'Departamento del empleado'
-               employee_grade_id: 'Nivel del empleado'
-               date_of_birth: 'Nacimiento'
+               employee_category_id: "Categoría de empleado"
+               employee_number: "No. de empleado"
+               first_name : "Primer Nombre"
+               employee_position_id: "Posición del empleado"
+               employee_department_id: "Empleado del Departamento de"
+               employee_grade_id: "Los empleados de grado"
+               date_of_birth: "Fecha de Nacimiento"
 
              employee_attendance:
-               employee_id : 'Empleado'
-               employee_leave_type_id : 'Tipo de licencia'
+               employee_id : "Empleado"
+               employee_leave_type_id : "Tipo de empleado Deje"
 
              employee_category:
-               name : 'Nombre'
+               name : "Nombre"
 
              employee_department:
-               name : 'Nombre'
+               name : "Nombre"
 
              employee_grade:
-               name : 'Nombre'
-               priority : 'Prioridad'
+               name : "Nombre"
+               priority : "Prioridad"
 
              employee_leave_type:
-               name : 'Nombre'
-               code : 'Código'
-               max_leave_count : 'Máximo de licencias'
+               name : "Nombre"
+               code : "Código"
+               max_leave_count : "Conde Deja máximo"
 
              employee_position:
-               name : 'Nombre'
-               employee_category_id: 'Categoría del empleado'
+               name : "Nombre"
+               employee_category_id: "Categoría del empleado"
 
              monthly_payslip:
-               salary_date : 'Fecha de salario'
+               salary_date : "Fecha de salario"
 
              payroll_category:
-               name : 'Nombre'
+               name : "Nombre"
 
 
 
@@ -216,7 +216,7 @@ es: # locale
         only_day: "%e"
         month : "%B"
         day   : "%a"
-        mon   : "%d"
+        mont   : "%d"
         day_mon : "%a %d"
         
 
@@ -272,90 +272,91 @@ es: # locale
 #Errors From Model
     model_errors:
       course:
-        error1 : 'Debe tener un grupo inicial'
+        error1 : "Debe tener un grupo inicial"
 
       exam:
-        error1: 'no puede ser mayor la nota máxima'
+        error1: "no puede ser mayor la nota máxima"
 
       student:
-        error1 : 'no puede ser una fecha futura'
-        error2: 'atributo no es válido'
-        error3 : 'no puede ser cero'
-        error4 : 'Este correo ya existe'
+        error1 : "no puede ser una fecha futura"
+        error2: "atributo no es válido"
+        error3 : "no puede ser cero"
+        error4 : "Correo electrónico ya se"
 
       batches:
         import_failed : "Fallo de Importación"
 
       timetable:
-        weekly_limit_reached : "Weekly subject limit reached"
+        weekly_limit_reached : "Limitar el tema semanal alcanzó"
         class_overlap : "Clase solapamiento con lotes"
-        max_hour_exceeded_day : "Número máximo de horas por día superado"
-        max_hour_exceeded_week : "Número máximo de horas por semana superó"
+        max_hour_exceeded_day : "Máximo de horas por día superado"
+        max_hour_exceeded_week : "máximo de horas por semana superó"
 
     batch_transfers:
-      errors_found : "A raíz de los errores se encontraron"
+      errors_found : "Se encontraron los siguientes errores"
 
-    sl_no : 'Sl No.'
-    name : 'Nombre'
-    adm_no : 'Adm No.'
-    view_profile : 'Ver Perfil'
-    select_a_category : 'Seleccionar una categoría'
-    select_a_batch : 'Seleccionar un grupo'
-    select_a_course : 'Seleccionar un Curso'
-    create : 'Crear'
-    student_text : 'Estudiante'
-    course_and_batch : 'Curso y grupo'
-    subject : 'Asignatura'
-    message : 'Mensaje'
-    recipient : 'Destinatario'
-    recipients : 'los beneficiarios'
-    guardian : 'Guardián'
-    course_text : 'Curso'
-    courses_text : 'cursos'
-    batch : 'Grupo'
-    remove : 'Eliminar'
-    delete : 'Eliminar'
-    admission_number : 'Numero de Admisión'
-    all : 'TODOS'
-    select : 'Seleccionar'
-    option : 'Opción'
-    status : 'Estado'
-    present : 'Presente'
-    former : 'Ex'
-    search : 'Buscar'
-    search_text : 'Buscar'
-    pdf_report : 'Reporte PDF'
-    category : 'Categoría'
-    no_students_found : 'Ningún estudiante encontrado'
-    finish : 'Finalizar'
-    year : 'Año'
-    total_mark : 'Calificación total'
-    total_marks : 'puntuación total'
-    save_and_proceed : 'Guardar y Proceder'
-    edit : 'Editar'
-    save : 'Guardar'
-    setting : 'Configuración'
-    active : 'Activo'
-    inactive : 'Inactivo'
-    update : 'Actualizar'
-    admin : 'Admin'
-    employee_text : 'Empleado'
+    sl_no : "Sl No."
+    name : "Nombre"
+    adm_no : "Adm No."
+    view_profile : "Ver Perfil"
+    select_a_category : "Seleccionar una categoría"
+    select_a_batch : "Seleccione un lote"
+    select_a_course : "Seleccionar un Curso"
+    create : "Crear"
+    create_text : "Crear"
+    student_text : "Estudiante"
+    course_and_batch : "Curso y grupo"
+    subject : "Asignatura"
+    message : "Mensaje"
+    recipient : "Destinatario"
+    recipients : "los beneficiarios"
+    guardian : "Guardián"
+    course_text : "Curso"
+    courses_text : "cursos"
+    batch : "Lote"
+    remove : "Eliminar"
+    delete : "Eliminar"
+    admission_number : "Numero de Admisión"
+    all : "TODOS"
+    select : "Seleccionar"
+    option : "Opción"
+    status : "Estado"
+    present : "Presente"
+    former : "Ex"
+    search : "Buscar"
+    search_text : "Buscar"
+    pdf_report : "Reporte PDF"
+    category : "Categoría"
+    no_students_found : "Ningún estudiante encontrado"
+    finish : "Finalizar"
+    year : "Año"
+    total_mark : "Calificación total"
+    total_marks : "puntuación total"
+    save_and_proceed : "Guardar y Proceder"
+    edit : "Editar"
+    save : "Guardar"
+    setting : "Configuración"
+    active : "Activo"
+    inactive : "Inactivo"
+    update : "Actualizar"
+    admin : "Admin"
+    employee_text : "Empleado"
     username: "Nombre de usuario"
-    user_text : 'usuario'
-    no_users : 'Ningún usuario encontrado'
-    select_a_department : 'Seleccionar un departamento'
-    add : 'Agregar'
-    none : 'Ninguno'
-    submit : 'Ingresar'
-    manage : 'Gestionar'
-    admission : 'Admisión'
-    type : 'Tipo'
-    currency : 'Moneda'
-    start_date : 'Fecha de inicio'
-    end_date : 'Fecha de finalización'
-    exam_text : 'Examen'
-    date_text : 'Fecha'
-    go : 'Ir'
+    user_text : "usuario"
+    no_users : "Ningún usuario encontrado"
+    select_a_department : "Seleccionar un departamento"
+    add : "Agregar"
+    none : "Ninguno"
+    submit : "Ingresar"
+    manage : "Gestionar"
+    admission : "Admisión"
+    type : "Tipo"
+    currency : "Moneda"
+    start_date : "Fecha de inicio"
+    end_date : "Fecha de finalización"
+    exam_text : "Examen"
+    date_text : "Fecha"
+    go : "Ir"
     dob : 'Fecha de Nacimiento'
     department : 'Departamento'
     assign : 'Asignar'
@@ -379,7 +380,7 @@ es: # locale
     assign_all: 'Asignar TODOS'
     remove_all: 'Eliminar TODOS'
     select_all : "Seleccionar TODOS"
-    total : "Total"
+    total : "total"
     all : 'TODOS'
     teacher : "Profesor"
     total_average : "Promedio Total"
@@ -426,7 +427,7 @@ es: # locale
     thursday : 'Jueves'
     friday : 'Viernes'
     saturday : 'Sábado'
-    dom : 'Dom'
+    sun : 'Dom'
     mon : 'Lun'
     tue : 'Mar'
     wed : 'Mie'
@@ -440,7 +441,7 @@ es: # locale
     spouse_name : "Nombre del Cónyuge"
     address : "Dirección"
     city : 'Ciudad'
-    state : 'Dpto/Est/Prov'
+    state : 'estado'
     zip : 'Codigo PIN'
     country : 'País'
     half_day : "Medio día"
@@ -693,6 +694,13 @@ es: # locale
     dues : "Deudas"
     marks_and_grades : 'Notas y Desempeños'
     subject_wise_report : 'Reporte por Asignaturas'
+    online: 'en línea'
+    offline : 'fuera de línea'
+    add_subject : 'Agregar asignatura'
+    add_normal_subject : 'Añadir Asignatura Normal'
+    subjects_assigned : 'Las asignaturas han sido asignadas.'
+    following_errors_found : 'Se encontraron los siguientes errores'
+    academics : 'Académicos'
     
     flash_msg1: 'Grupo de exámenes actualizado exitosamente.'
     flash_msg2: 'Lo sentimos'
@@ -750,6 +758,7 @@ es: # locale
       section_name : "Nombre de sección"
       initial_batch: 'Información inicial de grupo'
       active_batches : 'Grupos activos'
+
       flash1: 'Curso creado exitosamente'
       flash2: 'Información  del curso actualizada exitosamente.'
       flash3: 'Curso eliminado exitosamente.'
@@ -769,26 +778,23 @@ es: # locale
       assign_new : 'Asignar nuevo'
       assign_tutor : 'Asignar Tutor'
       import_failed : "Fallo de Importación"
+      no_employee_assigned : 'Ningún empleado asignado todavía.'
+
       flash1: 'Grupo creado exitosamente.'
       flash2: 'Información del grupo actualizada exitosamente.'
       flash3: 'Por favor, rellene todos los campos'
       flash4: 'Grupo eliminado exitosamente.'
       flash5: 'No es posible eliminar el Grupo. Por favor eliminar todos los estudiantes'
       flash6: 'No se puede eliminar el grupo. Por favor eliminar todas las asignaturas'
+
       show:
         subject_transfer_message : 'Las siguientes Asignaturas han sido importadas'
         fee_import_message : 'Las siguientes categorías de Tarifas han sido importadas'
-        
       new:
         import_subject : 'Importar Asignaturas del grupo previas'
         import_fees : 'Importar Tarifas Mayores previas'
-        
         new_batch : "Nuevo grupo"
         Not applicable : "No aplica"
-        
-      assign_tutor:
-        no_employee_assigned : 'Ningún empleado asignado todavía.'
-
       edit:
         edit_batch : "Editar grupo"
 
@@ -800,23 +806,21 @@ es: # locale
       graduating_batch : 'Grupo graduandose'
       has_been_added_to_batch : 'se ha añadido al grupo'
       already_has_subject : 'ya tiene una asignatura con el nombre de'
-      subjects_assigned : 'Las asignaturas han sido asignadas.'
       generate_tc_for_all : 'Generar Certificado de Estudios para TODOS'
       the_subject : 'La asignatura'
-      following_errors_found : 'Se encontraron los siguientes errores'
       status_description : 'Descripción de estado'
       add_new_subjects: 'Añadir nuevos temas'
+      assign_old_batch_subject : 'Asignar asignaturas de grupo previas'
+      previous_batch : "Grupo previo"
 
       flash1: 'Estudiantes transferidos exitosamente'
       flash2: 'Los estudiantes seleccionados se graduaron exitosamente'
       flash3: 'Ya tiene la asignatura cuyo nombre es'
 
       subject_transfer:
-        assign_old_batch_subject : 'Asignar asignaturas de grupo previas'
         assign_subject : "Asignar Asignatura"
         add_elective : "Añadir electiva"
-        previous_batch : "Grupo previo"
-
+        
       index:
         graduation_message : "Estos estudiantes serán ahora trasferidos a la base de datos de ex estudiantes. Agregue una descripción. Por ejemplo, Grado 11 Graduado, 2010."
         previous : 'Previo'
@@ -829,15 +833,16 @@ es: # locale
     elective_groups:
       new_elective : "Nueva electiva"
       show_elective : "Mostrar electivas"
+
       flash1: 'Nuevo grupo electivo creado.'
       flash2: 'Grupo electivo eliminado'
+
       index:
         edit_elective : "Editar electivas"
        
 
 #subject controller translation
     subjects:
-      add_normal_subject : 'Añadir Asignatura Normal'
       add_subject_to_elective_group : 'Agregar asignatura a este grupo de electivas'
       new_elective_group : 'Nuevo Grupo de electivas'
       cannot_delete_subjects : 'No se puede eliminar temas'
@@ -1087,8 +1092,6 @@ es: # locale
         search_for_employees : "Buscar empleados"
         view_department_wise_payslip : "Ver comprobante de nómina por departamentos"
         
-       
-
       search:
         employee_details: 'Información de Empleados'
         
@@ -1172,7 +1175,6 @@ es: # locale
 
       change_to_former:
         paragraph : "Para los empleados que se retiran de la Institución, utilice esta opción para eliminarlos de la lista de empleados activos y colocarlos en la lista de los ex empleados."
-        
 
       subject_assignment:
         employee_subject : "Asignatura del Empleado"
@@ -1372,6 +1374,7 @@ es: # locale
       comments : 'Comentarios'
       leave_comment : 'Dejar un comentario'
       publish_news  : 'Publicar Noticias'
+
       flash1: 'Noticias agregadas!'
       flash2: 'Noticia eliminada exitosamente'
       flash3 : 'Noticias actualizadas!'
@@ -1434,7 +1437,6 @@ es: # locale
        manage_user : 'Gestionar Usuario'
        search_user : 'Buscar usuario'
        add_new : 'Agregar nuevo'
-      
 
       all:
         select_a_role : 'seleccionar un rol'
@@ -1443,13 +1445,11 @@ es: # locale
       create:
         create_user : "Crear usuario"
         add_new_user : "Añadir Nuevo usuario"
-        
 
       profile:
         user_profile : 'Perfil de Usuario'
         user_information : 'Información de usuario'
         privilege : 'privilegio'
-
 
       edit_privilege:
         set_privilege: 'Configurar privilegios para'
@@ -1475,7 +1475,6 @@ es: # locale
         SMSManagement : "Gestión SMS"
         Librarian : "Bibliotecario"
 
-     
       login: #action
         remember_me: "Recuérdeme"
         forgot_password: "Ayuda! He olvidado mi contraseña?"
@@ -1540,6 +1539,7 @@ es: # locale
       index:
         attendance_registered_for_students: 'Lista de asistencia de estudiantes'
         attendance_report_for_students: 'Reporte de asistencia de estudiantes'
+
       student:
         mode: 'Modo'
         
@@ -1613,7 +1613,6 @@ es: # locale
       previous_details : 'Información previa'
       previous_educational_details : 'Información de educación previa'
       institution_name : 'Nombre de la Institución'
-      add_subject : 'Agregar asignatura'
       student_info: 'Información del Estudiante'
       previous_year_result: 'Revisión de resultados en años previos'
       class_sec: 'Clase/Sección'
@@ -1634,7 +1633,6 @@ es: # locale
       description2 : "Advertencia: Todos los registros del estudiante se eliminarán y no se podrán recuperar."
       parent_info : 'Información de los Padres'
       parents_profile : 'Perfil de los Padres'
-      academics : 'Académicos'
       recent_exams : 'Exámenes recientes'
       final_report : 'Reporte final'
       compare_past : 'Comparar con años anteriores'
@@ -1642,6 +1640,8 @@ es: # locale
       archives : 'Archivos'
       student_admission_done : 'La admisión del estudiante ha sido completada. El nombre de usuario es'
       password_is : 'y la contraseña es'
+      select_one_of_the_guardians : 'Seleccionar uno de los guardianes como contacto de emergencia.'
+      max_size : 'Máximo 50 KB'
 
       flash1: 'Campo adicional creado'
       flash2: 'Información adicional actualizada'
@@ -1662,7 +1662,6 @@ es: # locale
         
       admission1:
         student_detail_step1 : 'Paso 1 – Información  del estudiante'
-        max_size : 'Máximo 50 KB'
         last_course: 'Último grado cursado'
         unknown : "Desconocido"
 
@@ -1672,7 +1671,6 @@ es: # locale
         saved_message : 'Los siguientes guardianes se han guardado para'
 
       admission3:
-        select_one_of_the_guardians : 'Seleccionar uno de los guardianes como contacto de emergencia.'
         sms_part1 : 'La admisión del estudiante ha sido completada. El nombre de usuario es'
         sms_part2 : 'y la contraseña es'
 
@@ -1737,7 +1735,6 @@ es: # locale
       edit:
         edit_details: 'Editar información'
         necessary_field: 'Campo necesario'
-        
 
  ## traslation for finance controller
     finance:
@@ -1859,7 +1856,7 @@ es: # locale
       creates_new_fee_collecting_dates : 'Crear nuevas fechas de Pago'
       fees_defaulters_text : 'Morosos'
       fee_discounts : 'Descuentos de tarifa'
-      view_discount : 'View discount'
+      view_discount : 'Ver descuento'
       select_discount_type : 'Seleccione el tipo de descuento'
       batch_wise : 'discontinua'
       student_wise : 'estudiante inteligente'
@@ -2033,11 +2030,13 @@ es: # locale
     xml:
       tally : 'Tally'
       flash1: 'Configuración XML actualizada exitosamente'
+
       index:
         tally_settings : 'Configuración Tally'
         change_ledger_settings_for_tally : 'Cambiar la configuración del  libro Mayor de Tally'
         export_for_tally : 'Exportar a Tally'
         creates_xml_import : 'Crear archivo XML para Tally'
+
       settings:
         ledger_name_correspond_salary : 'Nombre del Libro Correspondiente a Salario'
         ledger_name_correspond_fees : 'Nombre del Libro correspondiente a Tarifas'
@@ -2052,6 +2051,7 @@ es: # locale
       min_score : '% mínimo'
       add_grades : 'Añadir desempeños'
       add_new_grading_levels  : 'Agregar nuevos desempeños'
+
       index:
         grading : 'Desempeño'
         levels : 'Niveles'
@@ -2066,11 +2066,13 @@ es: # locale
       exam_wise_report : 'Reportes Según Exámenes'
       grouping : 'Agrupación'
       exam_scheduled : 'Examen Programado'
+
       flash1: 'Exámenes seleccionados agrupados exitosamente.'
       flash2: 'Seleccionar un grupo y un examen para continuar.'
       flash3: 'Parámetros no válidos.'
       flash4: 'Seleccionar una asignatura para continuar'
       flash5: 'No hay clases en el lote seleccionado'
+
       index:
         create_a_new_exam_and_enter_result : 'Crear nuevos exámenes, entre los resultados.'
         create_additional_exams_and_edit_results : 'Crear exámenes adicionales, resultados Editar'
@@ -2118,6 +2120,7 @@ es: # locale
       for_additional_exam_group : "Para grupo exámenes adicionales"
       flash1: 'Puntajes de examen adicional actualizado.'
       flash3: 'Información de examen adicional actualizada exitosamente.'
+
       show:
         select_grade : 'Seleccionar desempeño'
       
@@ -2125,11 +2128,14 @@ es: # locale
     additional_exam_groups:
       flash1: 'Grupo de exámenes adicionales guardados exitosamente'
       flash2: 'Grupo de exámenes adicionales actualizados exitosamente.'
+
       edit:
         edit_additional_exam_groups : "Editar grupos de exámenes adicionales"
+
       index:
         additional_exam_groups : "Grupos de exámenes adicionales"
         resend_sms_notification : "Reenviar notificación SMS"
+
       show:
         view_additional_exam : "Ver examen adicional"
         show_additional_exam_group : 'Grupo que muestra el examen adicional'
@@ -2154,8 +2160,6 @@ es: # locale
       max_hour_exceeded_day : "Número máximo de horas por día superado"
       max_hour_exceeded_week : "Número máximo de horas por semana superó"
 
-      
-
       flash1: 'El horario ya ha sido publicado'
       flash2: 'Horario actualizado'
       flash3: 'Horario publicado'
@@ -2167,8 +2171,10 @@ es: # locale
         view_the_timetable_for_a_class : 'Ver el Horario de una clase'
         generate_period_entry : 'Crear intervalo para un momento dado'
         view_entire_timetable : 'Ver el horario completo de un día'
+
       select_class2:
         select_class_to_edit : 'Seleccionar una clase para editarla'
+
       extra_class:
         select_a_class : 'Seleccionar una clase'
      

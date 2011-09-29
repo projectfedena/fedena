@@ -28,7 +28,7 @@
 <% unless @sent_reminder.is_deleted_by_sender == true %>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "#{t('delete')}", {:controller=>"reminder", :action=>"delete_reminder_by_sender", :id2=>@sent_reminder.id}, :confirm=>"Are you sure?" %></li>
+    <li><%= link_to "#{t('delete')}", {:controller=>"reminder", :action=>"delete_reminder_by_sender", :id2=>@sent_reminder.id}, :confirm=>"#{t('delete_confirm_msg')}" %></li>
   </ul>
 </div>
 <% end %>
@@ -39,7 +39,7 @@
 <div id="reminder-body">
 <div id="reminder-from">To: <%= recipient_user.full_name %></div>
 
-<div id="reminder-date"><%= t('sent_on') %>: <%= @sent_reminder.created_at.strftime("%A, %d %B, %Y") %></div>
+<div id="reminder-date"><%= t('sent_on') %>: <%= I18n.l(@sent_reminder.created_at,:format=>"%A, %d %B, %Y") %></div>
 
 <div id="reminder-subject"><%= t('subject') %>: <%= @sent_reminder.subject %></div>
 

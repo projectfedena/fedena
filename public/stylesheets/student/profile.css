@@ -173,7 +173,7 @@ a.user_button{
     float:left;
 }
 .buttons{
-    width:232px;
+    width:304px;
     margin:0px auto;
 }
 
@@ -238,4 +238,8 @@ a.user_button:hover{
     border-top:1px solid #bdcfff;
     border-bottom:1px solid #bdcfff;
     padding:10px 10px 10px 10px;
+}
+#inner-tab-menu ul li {
+    height: 2.5em;
+    width: 110px;
 }
