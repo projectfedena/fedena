@@ -47,14 +47,16 @@
         </td>
         <td class="col-3"><%= fees.amount%></td>
         <td class="col-3"><%= fees.created_at.strftime("%m-%d-%Y") %></td>
-        <td class="col-1">
+        <td class="col-2">
           <span class="small"> <%= link_to_remote "#{t('edit')}", :url => { :action => 'master_category_particulars_edit',:id => fees.id} %></span>
-          <%#  unless @finance_fee_category.check_fee_collection == false %>
-            <span class="small"> <%= link_to_remote t('delete'),:confirm=>"#{t('master_category_particulars.delete_msg')}", :url => { :action => 'master_category_particulars_delete',:id => fees.id} %></span>
-          <%# else %>
-            <%#*<span class="small-strike">delete</span>%>
-          <%# end %>
-          <span class="small"> <%= link_to_remote t('edit'), :url => { :action => 'master_category_particulars_edit',:id => fees.id} %></span>
+    <%#  unless @finance_fee_category.check_fee_collection == false %>
+          <span class="small"> <%= link_to_remote t('delete'),:confirm=>"#{t('master_category_particulars.delete_msg')}", :url => { :action => 'master_category_particulars_delete',:id => fees.id} %></span>
+    <%# else %>
+    <%#*<span class="small-strike">delete</span>%>
+    <%# end %>
+    <%#*<span class="small">%>
+    <%#= link_to_remote t('edit'), :url => { :action => 'master_category_particulars_edit',:id => fees.id} %>
+    <%#*</span>%>
         </td>
       </tr>
     <% end %>

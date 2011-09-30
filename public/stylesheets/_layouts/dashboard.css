@@ -185,7 +185,16 @@ p.flash-msg {
     float: right;
     width: 110px;
 }
-
+.language select {
+    background-color : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 0 0 0px;
+    width : 100px;
+    height:27px;
+    padding:3px 6px;
+    -moz-border-radius:6px;
+    -webkit-border-radius:6px;
+}
 
 #news_feed_bottom_img a {
     display:block;

@@ -74,7 +74,7 @@
       <%# end %>
       <% unless @user.admin %>
         <% unless @user.role_name == 'Student' %>
-          <%= link_to "► #{t('edit_privilage')}", {:controller => "user", :action => "edit_privilege", :id => @user.username } ,:class => "user_button" %>
+          <%= link_to "► #{t('edit_privilege_text')}", {:controller => "user", :action => "edit_privilege", :id => @user.username } ,:class => "user_button" %>
       
         <% end %>
       <% end %>

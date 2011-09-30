@@ -62,7 +62,7 @@
 
         <div id="outer-header-link">
           <div class="language">
-            <%= select :configuration, :locale,  Language.translation_available.map{|lan| [lan.name, lan.code]},{:selected=>session[:language]},
+            <%= select :configuration, :locale,  Language.translation_available.map{|lan| [lan.name, lan.code]},{:selected=>"#{I18n.locale}"},
               {:onchange => "#{remote_function(
               :url => { :controller=>'application',:action => 'set_language' },
               :with => "'language='+value"  )}"}%>

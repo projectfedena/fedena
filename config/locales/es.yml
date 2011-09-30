@@ -357,107 +357,107 @@ es: # locale
     exam_text : "Examen"
     date_text : "Fecha"
     go : "Ir"
-    dob : 'Fecha de Nacimiento'
-    department : 'Departamento'
-    assign : 'Asignar'
-    start_time : 'Hora de inicio'
-    end_time : 'Hora de finalización'
-    operations : 'Operaciones'
-    management : 'Gestión'
-    description : 'Descripción'
-    created  : 'Creado'
-    for : 'Para'
-    amount : 'Cantidad'
-    back : 'Atras'
-    due_date : 'Fecha de Vencimiento'
-    n_a : 'No aplica'
-    batches_text : 'Grupos'
-    delete_confirm_msg : '¿Está seguro?'
-    new : 'Nuevo'
-    new_text : 'Nuevo'
-    and : 'y'
-    wise : 'según'
-    assign_all: 'Asignar TODOS'
-    remove_all: 'Eliminar TODOS'
+    dob : "Fecha de Nacimiento"
+    department : "Departamento"
+    assign : "Asignar"
+    start_time : "Hora de inicio"
+    end_time : "Hora de finalización"
+    operations : "Operaciones"
+    management : "Gestión"
+    description : "Descripción"
+    created  : "Creado"
+    for : "Para"
+    amount : "Cantidad"
+    back : "Atras"
+    due_date : "Fecha de Vencimiento"
+    n_a : "No aplica"
+    batches_text : "Grupos"
+    delete_confirm_msg : "¿Está seguro?"
+    new : "Nuevo"
+    new_text : "Nuevo"
+    and : "y"
+    wise : "según"
+    assign_all: "Asignar TODOS"
+    remove_all: "Eliminar TODOS"
     select_all : "Seleccionar TODOS"
     total : "total"
-    all : 'TODOS'
+    all_text : "TODOS"
     teacher : "Profesor"
     total_average : "Promedio Total"
     continue : "Continuar"
     email : "Email"
     web_address : "Direccion Web"
-    jan           : 'Ene'
-    feb           : 'Feb'
-    mar           : 'Mar'
-    apr           : 'Abr'
-    may           : 'Mayo'
-    jun           : 'Jun'
-    jul           : 'Jul'
-    aug           : 'Ago'
-    sept          : 'Sep'
-    oct           : 'Oct'
-    nov           : 'Nov'
-    dec           : 'Dici'
-    are_you_completely_sure : '¿Está usted completamente seguro?'
-    common: 'Common'
-    done : 'hecho'
-    home : 'Inicio'
-    general : 'General'
-    show : 'Mostrar'
-    electives : 'electivas'
-    particular: 'Particular'
-    category: 'Categoría'
-    code : 'código'
-    normal_subject : 'Asignatura normal'
-    normal_subjects : 'Asignaturas normal'
-    batch_transfer : 'Promoción de grupo'
-    max_weekly_class : 'Máximo de clases semanales'
-    no_exam : 'sin examen'
+    jan           : "Ene"
+    feb           : "Feb"
+    mar           : "Mar"
+    apr           : "Abr"
+    may           : "Mayo"
+    jun           : "Jun"
+    jul           : "Jul"
+    aug           : "Ago"
+    sept          : "Sep"
+    oct           : "Oct"
+    nov           : "Nov"
+    dec           : "Dici"
+    are_you_completely_sure : "¿Está usted completamente seguro?"
+    common: "Common"
+    done : "hecho"
+    home : "Inicio"
+    general : "General"
+    show : "Mostrar"
+    electives : "electivas"
+    particular: "Particular"
+    category: "Categoría"
+    code : "código"
+    normal_subject : "Asignatura normal"
+    normal_subjects : "Asignaturas normal"
+    batch_transfer : "Promoción de grupo"
+    max_weekly_class : "Máximo de clases semanales"
+    no_exam : "sin examen"
     assign_student : "Asignar estudiante"
     select_department : "Seleccionar departamento de empleados"
-    events : 'Eventos'
-    title : 'Título'
-    is_holiday : 'Es día festivo?'
-    confirm : 'confirmar'
-    sunday : 'Domingo'
-    monday : 'Lunes'
-    tuesday : 'Martes'
-    wednesday : 'Miércoles'
-    thursday : 'Jueves'
-    friday : 'Viernes'
-    saturday : 'Sábado'
-    sun : 'Dom'
-    mon : 'Lun'
-    tue : 'Mar'
-    wed : 'Mie'
-    thu : 'Jue'
-    fri : 'Vie'
-    sat : 'Sab'
-    exams_text : 'Exámenes'
+    events : "Eventos"
+    title : "Título"
+    is_holiday : "Es día festivo?"
+    confirm : "confirmar"
+    sunday : "Domingo"
+    monday : "Lunes"
+    tuesday : "Martes"
+    wednesday : "Miércoles"
+    thursday : "Jueves"
+    friday : "Viernes"
+    saturday : "Sábado"
+    sun : "Dom"
+    mon : "Lun"
+    tue : "Mar"
+    wed : "Mie"
+    thu : "Jue"
+    fri : "Vie"
+    sat : "Sab"
+    exams_text : "Exámenes"
     attendance: "Asistencia"
     father_name : "Nombre del Padre"
     mother_name : "Nombre de la Madre"
     spouse_name : "Nombre del Cónyuge"
     address : "Dirección"
-    city : 'Ciudad'
-    state : 'estado'
-    zip : 'Codigo PIN'
-    country : 'País'
+    city : "Ciudad"
+    state : "estado"
+    zip : "Codigo PIN"
+    country : "País"
     half_day : "Medio día"
-    mobile : 'Celular'
-    email : 'Correo electrónico'
+    mobile : "Celular"
+    email : "Correo electrónico"
     assign_new : "Asignar nuevo"
     employee_number: "Numero del Empleado"
     manager : "Administrador"
     change : "Cambiar"
-    already_approved : 'Ya está aprobado!'
+    already_approved : "Ya está aprobado!"
     salary_date : "Fecha de Salario"
     salary_month : "Mes de salario"
     select_month : "Seleccionar el mes"
     is_deduction : "Es deducción?"
-    blood_group: 'Tipo de sangre'
-    nationality : 'Nacionalidad'
+    blood_group: "Tipo de sangre"
+    nationality : "Nacionalidad"
     total_salary : "Salario Total"
     deductions : "Deducciones"
     total_deduction : "Deducción total"
@@ -465,144 +465,144 @@ es: # locale
     id : "Id"
     employee_payslip : "Comprobante de nómina"
     reason : "Causa"
-    currently_assigned : 'Actualmente asignado'
+    currently_assigned : "Actualmente asignado"
     no_employee_assigned : " Ningún empleado asignado aun"
-    grade : 'Nivel'
-    date_of_birth : 'F. Nacimiento'
-    gender : 'Sexo'
-    male : 'Masculino'
-    female : 'Femenino'
-    first_name : 'Primer nombre'
-    middle_name : 'Segundo nombre'
-    last_name : 'Apellidos'
-    upload_photo : 'Cargar foto'
-    no_employee_found : 'Ningún empleado encontrado.'
-    view : 'Ver'
-    legend1 : 'Campos marcados con'
-    legend2 : 'debe ser llenado.'
-    month: 'Mes'
+    grade : "Nivel"
+    date_of_birth : "F. Nacimiento"
+    gender : "Sexo"
+    male : "Masculino"
+    female : "Femenino"
+    first_name : "Primer nombre"
+    middle_name : "Segundo nombre"
+    last_name : "Apellidos"
+    upload_photo : "Cargar foto"
+    no_employee_found : "Ningún empleado encontrado."
+    view : "Ver"
+    legend1 : "Campos marcados con"
+    legend2 : "debe ser llenado."
+    month: "Mes"
     edit_category : "Editar categoría"
     salary : "Salario"
     monthly_payslip : "Comprobante de pago mensual"
     personal_details : "Datos personales"
-    attendance_register: 'Lista de asistencia'
-    attendance_report: 'Reporte de Asistencia'
+    attendance_register: "Lista de asistencia"
+    attendance_report: "Reporte de Asistencia"
     payslip : "Comprobante de pago"
-    approve_payslip : 'Aprobar comprobante de pago'
-    view_all : 'Ver todos'
-    advanced : 'Avanzada'
-    timetable_text : 'Horario'
-    payroll_text  : 'Nómina'
+    approve_payslip : "Aprobar comprobante de pago"
+    view_all : "Ver todos"
+    advanced : "Avanzada"
+    timetable_text : "Horario"
+    payroll_text  : "Nómina"
     add_new_category : "Añadir nueva categoría"
-    percentage: 'Porcentaje'
+    percentage: "Porcentaje"
     pending : "Pendientes"
     approved : "Aprobado"
     denied : "Denegado"
     select_employee : "Seleccionar Empleado"
-    remarks : 'Observaciones'
-    leave_management: 'Gestión de Licencias'
-    apply_for_a_leave: 'Solicitar una licencia'
-    detailed_report : 'Reporte detallado'
+    remarks : "Observaciones"
+    leave_management: "Gestión de Licencias"
+    apply_for_a_leave: "Solicitar una licencia"
+    detailed_report : "Reporte detallado"
     total_leaves_taken : "Total Licencias utilizadas"
-    cancel : 'Cancelar'
-    select_the_department: 'Seleccionar departamento'
-    search: 'Buscar'
-    emp_id: 'ID del Empleado'
-    approve : 'Aprobar'
-    apply: 'Aplicar'
-    my_leaves: 'Mis Licencias'
-    all_leaves: 'Todas las licencias'
-    leave_type: 'Tipo de licencia'
-    is_half_day: 'es medio dia?'
-    register: 'Registrarse'
-    report: 'Reporte'
-    no_users_found : 'No se encontraron usuarios'
-    student: 'Estudiante'
-    student_details: 'Información  de estudiantes'
+    cancel : "Cancelar"
+    select_the_department: "Seleccionar departamento"
+    search: "Buscar"
+    emp_id: "ID del Empleado"
+    approve : "Aprobar"
+    apply: "Aplicar"
+    my_leaves: "Mis Licencias"
+    all_leaves: "Todas las licencias"
+    leave_type: "Tipo de licencia"
+    is_half_day: "es medio dia?"
+    register: "Registrarse"
+    report: "Reporte"
+    no_users_found : "No se encontraron usuarios"
+    student: "Estudiante"
+    student_details: "Información  de estudiantes"
     examinations : "Exámenes"
-    reset  : 'reajustar'
-    select_month_and_year: 'Seleccione mes y año'
+    reset  : "reajustar"
+    select_month_and_year: "Seleccione mes y año"
     total_working_days : "Total días de trabajo"
     total_working_hours : "Total horas de trabajo"
     total_present : "Total actual"
-    full_day: 'Todo el día'
-    afternoon: 'por la tarde'
-    forenoon: 'por la mañana'
-    absent: 'Ausente'
-    advanced_search_text : 'Búsqueda avanzada'
-    overall: 'En general'
-    monthly: 'Mensualmente'
+    full_day: "Todo el día"
+    afternoon: "por la tarde"
+    forenoon: "por la mañana"
+    absent: "Ausente"
+    advanced_search_text : "Búsqueda avanzada"
+    overall: "En general"
+    monthly: "Mensualmente"
     ok : "OK"
-    student_report: 'Reporte de estudiante'
-    select_mode: 'Seleccione un modo'
-    select_a_subject : 'Seleccionar una asignatura'
-    all_subjects: 'Todas las Asignaturas'
-    edit_attendance_for: 'Editar asistencia de'
-    reason_for_absence: 'Causa de la ausencia'
-    attendance_for: 'Asistencia de'
+    student_report: "Reporte de estudiante"
+    select_mode: "Seleccione un modo"
+    select_a_subject : "Seleccionar una asignatura"
+    all_subjects: "Todas las Asignaturas"
+    edit_attendance_for: "Editar asistencia de"
+    reason_for_absence: "Causa de la ausencia"
+    attendance_for: "Asistencia de"
     no_additional_details : "No se ha encontrado ninguna información adicional"
-    select_batch : 'Seleccionar grupo'
-    subjects : 'Los sujetos'
-    marks : 'Notas'
-    max : 'Max nota'
-    min : 'Min nota'
-    grade : 'Desempeño'
-    max_mark : 'Nota Máxima'
-    min_mark : 'Nota Mínima'
+    select_batch : "Seleccionar grupo"
+    subjects : "Los sujetos"
+    marks : "Notas"
+    max : "Max nota"
+    min : "Min nota"
+    grade : "Desempeño"
+    max_mark : "Nota Máxima"
+    min_mark : "Nota Mínima"
     add_additional_details: "Agregar información adicional"
-    income : 'Ingresos'
+    income : "Ingresos"
     office_phone1 : "Telefono de oficina1"
     office_phone2 : "Telefono de oficina2"
-    admission_date : 'Fecha de admisión'
+    admission_date : "Fecha de admisión"
     contact_details : "Datos de contacto"
-    additional_detail : 'Información adicional'
-    select_category : 'Seleccionar categoría'
+    additional_detail : "Información adicional"
+    select_category : "Seleccionar categoría"
     less_than : "menor que"
     greater_than : "mayor que"
     equal_to : "igual a"
     year_of_birth : "Año de nacimiento"
-    admission_no: 'Admisión No.'
-    students : 'Estudiantes'
-    categories : 'Categorías'
-    class : 'Clase'
-    leaving_school : 'Proceso de retiro de la Institución'
-    reason_for_leaving : 'Causa del retiro'
-    edit_additional_details : 'Editar información adicional'
-    elective : 'Electivo'
-    elective_group: 'Grupo de electivas'
-    message : 'mensaje'
-    examination_results : 'Resultado de exámenes'
-    fee_status : 'Estado de Pagos'
-    fees : 'Tarifas'
-    fees_text : 'Tarifas'
-    particulars : 'Específicos'
-    discount : 'descuento'
-    total_discount : 'total de descuento'
-    total_fees : 'Total Tarifas'
-    fine : 'Multa'
-    payment_done : 'Hecho el pago'
-    partial_payment_on : 'Pago parcial de'
+    admission_no: "Admisión No."
+    students : "Estudiantes"
+    categories : "Categorías"
+    class : "Clase"
+    leaving_school : "Proceso de retiro de la Institución"
+    reason_for_leaving : "Causa del retiro"
+    edit_additional_details : "Editar información adicional"
+    elective : "Electivo"
+    elective_group: "Grupo de electivas"
+    message : "mensaje"
+    examination_results : "Resultado de exámenes"
+    fee_status : "Estado de Pagos"
+    fees : "Tarifas"
+    fees_text : "Tarifas"
+    particulars : "Específicos"
+    discount : "descuento"
+    total_discount : "total de descuento"
+    total_fees : "Total Tarifas"
+    fine : "Multa"
+    payment_done : "Hecho el pago"
+    partial_payment_on : "Pago parcial de"
     profile : "Perfil"
     profile_text : "Perfil"
     messages: "Mensajes"
     reminder_text : "Recordatorio"
-    send_sms : 'Enviar SMS'
-    application: 'Solicitud'
-    general_sms_setting : 'Configuración General SMS'
-    student_admission: 'Admisión de Estudiantes'
-    exam_schedule : 'Calendario de Exámenes'
-    result_publish : 'Publicación de resultados'
-    attendance : 'Asistencia'
-    news_events : 'Noticias/Eventos'
-    send_sms_to_parents : 'Enviar SMS a los padres'
-    send_sms_to_students : 'Enviar SMS a los estudiantes'
-    send_sms_to_employees : 'Enviar SMS a los empleados'
-    result : 'resultado'
-    ago: 'atras'
-    publish_t: 'Publicar'
-    category_name: 'Nombre de la categoría'
-    save_changes : 'Guardar cambios'
-    student_name: 'Nombre del estudiante'
+    send_sms : "Enviar SMS"
+    application: "Solicitud"
+    general_sms_setting : "Configuración General SMS"
+    student_admission: "Admisión de Estudiantes"
+    exam_schedule : "Calendario de Exámenes"
+    result_publish : "Publicación de resultados"
+    attendance : "Asistencia"
+    news_events : "Noticias/Eventos"
+    send_sms_to_parents : "Enviar SMS a los padres"
+    send_sms_to_students : "Enviar SMS a los estudiantes"
+    send_sms_to_employees : "Enviar SMS a los empleados"
+    result : "resultado"
+    ago: "atras"
+    publish_t: "Publicar"
+    category_name: "Nombre de la categoría"
+    save_changes : "Guardar cambios"
+    student_name: "Nombre del estudiante"
     finance_text: "Finanzas"
     department_wise_payslip : "Comprobantes de pago por departamentos"
     employee_no : 'No empleado.'
@@ -667,7 +667,7 @@ es: # locale
     password: "Contraseña"
     for_the_month : 'para el mes'
     select_salary_date : 'Seleccione la fecha de Salario'
-    send_email : 'Enviar correo electrónico'
+    send_email : 'Enviar correo'
     leave_name: 'Nombre de la licencia'
     available_leave : 'dejar disponible'
     leave_taken     : 'baja laboral'
@@ -678,7 +678,7 @@ es: # locale
     reset_leave : 'Perdí mi licencia'
     one_click_aprove_payslip : 'Aprobación de comprobante de Pago con un clic'
     aprove_monthly_payslip : 'Aprobar comprobantes de pago mensuales'
-    time : 'tiempo'
+    time_text : 'tiempo'
     select_payslip_month_year: 'Seleccionar Mes y Año del comprobante de pago'
     my_leave_applications: 'Mis solicitudes de licencias'
     select_a_leave_type: 'Seleccione un tipo de licencia'
@@ -701,6 +701,8 @@ es: # locale
     subjects_assigned : 'Las asignaturas han sido asignadas.'
     following_errors_found : 'Se encontraron los siguientes errores'
     academics : 'Académicos'
+    language : 'Idioma'
+    user_privilege : "Privilegios de usuario"
     
     flash_msg1: 'Grupo de exámenes actualizado exitosamente.'
     flash_msg2: 'Lo sentimos'
@@ -1124,7 +1126,6 @@ es: # locale
         step_4 : "Paso - 4"
 
       edit_privilege:
-        user_privilege : "Privilegios de usuario"
         set_privilege : "Configurar privilegios"
         set_privilege_for : "Configurar privilegios para"
         ExaminationControl : "Control de Exámenes"
@@ -1404,7 +1405,7 @@ es: # locale
       powered_by: 'Desarrollado por'
       manage_users : 'Gestionar Usuarios'
       detailed_about_user : 'Detalles acerca de los usuarios'
-      edit_privilege : "Editar privilegios"
+      edit_privilege_text : "Editar privilegios"
       faq : "Preguntas Frecuentes"
       support : "Soporte"
       welcome: "Bienvenido"
@@ -1609,7 +1610,6 @@ es: # locale
       amount_to_be_paid : 'Cantidad a pagar'
       has_paid_all_the_fees : 'Ha pagado todos los honorarios de los honorarios para el lote.'
       transfer_certificate : 'Certificado de transferencia'
-      language : 'Idioma'
       previous_details : 'Información previa'
       previous_educational_details : 'Información de educación previa'
       institution_name : 'Nombre de la Institución'
@@ -1642,6 +1642,7 @@ es: # locale
       password_is : 'y la contraseña es'
       select_one_of_the_guardians : 'Seleccionar uno de los guardianes como contacto de emergencia.'
       max_size : 'Máximo 50 KB'
+      unknown : "Desconocido"
 
       flash1: 'Campo adicional creado'
       flash2: 'Información adicional actualizada'
@@ -1663,7 +1664,7 @@ es: # locale
       admission1:
         student_detail_step1 : 'Paso 1 – Información  del estudiante'
         last_course: 'Último grado cursado'
-        unknown : "Desconocido"
+        
 
       admission2:
         click_here_to_skip: 'Hacer clic aquí para omitir'

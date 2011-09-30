@@ -39,21 +39,23 @@
 
     <%= calendar_date_select_includes 'red' %>
 
+    <%= javascript_include_tag "calendar_date_select/locale/#{I18n.locale}.js" %>
+
     <script type="text/javascript">
       /***********************************************
-       * Dynamic Countdown script- © Dynamic Drive (http://www.dynamicdrive.com)
-       * This notice MUST stay intact for legal use
-       * Visit http://www.dynamicdrive.com/ for this script and 100s more.
-       ***********************************************/
+      * Dynamic Countdown script- © Dynamic Drive (http://www.dynamicdrive.com)
+      * This notice MUST stay intact for legal use
+      * Visit http://www.dynamicdrive.com/ for this script and 100s more.
+      ***********************************************/
       var anylinkmenu1={divclass:'anylinkmenu', inlinestyle:'', linktarget:''} //First menu variable. Make sure "anylinkmenu1" is a unique name!
       anylinkmenu1.items = [
-        ["<%= t('calendar') %>", "/calendar"],
-        ["<%= t('examination')%>", "/exam"],
-        ["<%= t('news')%>", "/news"],
-        ["<%= t('event_creation')%>", "/event"],
-        ["<%= t('human_resource')%>", "/employee/hr"],
-        ["<%= t('finance')%>", "/finance/index"],
-        ["<%= t('user')%>", "/user"],
+      ["<%= t('calendar') %>", "/calendar"],
+      ["<%= t('examination')%>", "/exam"],
+      ["<%= t('news')%>", "/news"],
+      ["<%= t('event_creation')%>", "/event"],
+      ["<%= t('human_resource')%>", "/employee/hr"],
+      ["<%= t('finance')%>", "/finance/index"],
+      ["<%= t('user')%>", "/user"],
       ]
       anylinkmenu.init("menuanchorclass");
     </script>
@@ -64,7 +66,7 @@
       <div id="header">
         <div id="outer-header-link">
           <div class="language">
-            <%= select :configuration, :locale,  Language.translation_available.map{|lan| [lan.name, lan.code]},{:selected=>session[:language]},
+            <%= select :configuration, :locale,  Language.translation_available.map{|lan| [lan.name, lan.code]},{:selected=>"#{I18n.locale}"},
               {:onchange => "#{remote_function(
               :url => { :controller=>'application',:action => 'set_language' },
               :with => "'language='+value" )}"}%>
@@ -127,7 +129,7 @@
 
       <div class="extender"></div>
     </div>
-    
+
     <div id="footer">
       <div id="footer_logo">
         <div id="powered_by">

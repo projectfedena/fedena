@@ -26,7 +26,7 @@ class ConfigurationController < ApplicationController
   def settings
     @config = Configuration.get_multiple_configs_as_hash ['InstitutionName', 'InstitutionAddress', 'InstitutionPhoneNo', \
         'StudentAttendanceType', 'CurrencyType', 'ExamResultType', 'AdmissionNumberAutoIncrement','EmployeeNumberAutoIncrement', \
-        'NetworkState','FinancialYearStartDate','FinancialYearEndDate']
+        'NetworkState','Locale','FinancialYearStartDate','FinancialYearEndDate']
 
     if request.post?
 

@@ -21,7 +21,7 @@
 <div id="content-header">
   <img src="/images/user_profile/user_profile_logo.jpg" />
   <h1><%= t('user_privilege') %></h1>
-  <h3><%= t('edit_privilege') %></h3>
+  <h3><%= t('edit_privilege_text') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -34,7 +34,7 @@
   <div id="list">
 
     <div class="sel-list">
-      <%=  t('select') %>: <%= link_to_function "#{t('all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+      <%=  t('select') %>: <%= link_to_function "#{t('all_text')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
       <%= link_to_function "#{t('none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
     </div>
 
