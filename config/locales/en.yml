@@ -692,6 +692,8 @@ en: # locale
     academics : "Academics"
     language : "Language"
     user_privilege : "User Privileges"
+    pay_fees : "Pay Fees"
+    fees_paid : "Fees Paid"
     
     flash_msg1: "Updated additional exam group successfully."
     flash_msg2: "Sorry"
@@ -1762,8 +1764,6 @@ en: # locale
       label : "Label"
       leave_field_blank : "Leave the field blank if this will be overridden by another category"
       amount_to_pay : "Amount to pay"
-      pay_fees : "Pay Fees"
-      fees_paid : "Fees Paid"
       print_receipt : "Print receipt"
       solve_this_liability : "Solve this Liability?"
       liability : "Liability"
