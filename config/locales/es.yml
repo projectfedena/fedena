@@ -703,6 +703,8 @@ es: # locale
     academics : 'Académicos'
     language : 'Idioma'
     user_privilege : "Privilegios de usuario"
+    pay_fees : 'Realizar Pagos'
+    fees_paid : 'Pagos Realizados'
     
     flash_msg1: 'Grupo de exámenes actualizado exitosamente.'
     flash_msg2: 'Lo sentimos'
@@ -1780,8 +1782,6 @@ es: # locale
       label : 'Etiqueta'
       leave_field_blank : 'Dejar el campo en blanco si este va a ser reemplazado por otra categoría'
       amount_to_pay : 'Valor a pagar'  
-      pay_fees : 'Realizar Pagos'
-      fees_paid : 'Pagos Realizados'
       print_receipt : 'Imprimir recibo'
       solve_this_liability: 'Gestionar este pasivo?'
       liability : 'Pasivos'
