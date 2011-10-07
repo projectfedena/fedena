@@ -1,2241 +1,2238 @@
 es: # locale
-    activerecord:
-          attributes:
+  activerecord:
+    attributes:
 
-             student:
-               first_name: "Primer nombre"
-               admission_no: "Admisión número"
-               admission_date: "Fecha de admisión"
-               batch_id : "Lote"
-               date_of_birth : "Fecha de nacimiento"
-               gender : "Género"
+      student:
+        first_name: "Primer nombre"
+        admission_no: "Admisión número"
+        admission_date: "Fecha de admisión"
+        batch_id : "Lote"
+        date_of_birth : "Fecha de nacimiento"
+        gender : "Género"
 
-             student_additional_field:
-               name : "Nombre"
+      student_additional_field:
+        name : "Nombre"
 
-             user:
-               username: "Nombre de usuario"
-               email : "E-mail"
-               password : "contraseña"
-               role : "papel"
-               password_rst_msg: "Puede restablecer la contraseña utilizando el siguiente enlace"
-               password_rst_msg1: "Gracias por usar fedena.com"
+      user:
+        username: "Nombre de usuario"
+        email : "E-mail"
+        password : "contraseña"
+        role : "papel"
+        password_rst_msg: "Puede restablecer la contraseña utilizando el siguiente enlace"
+        password_rst_msg1: "Gracias por usar fedena.com"
 
-             course:
-               course_name : "Nombre del curso"
-               section_name : "Nombre de la sección"
-               code : "Código"
-               sort_order : "La orden de clasificacion"
+      course:
+        course_name : "Nombre del curso"
+        section_name : "Nombre de la sección"
+        code : "Código"
+        sort_order : "La orden de clasificacion"
 
-             additional_exam:
-               start_time : "Hora de inicio"
-               end_time : "Hora de finalización"
-               minimum_marks : "Marcas mínimas"
+      additional_exam:
+        start_time : "Hora de inicio"
+        end_time : "Hora de finalización"
+        minimum_marks : "Marcas mínimas"
 
-             additional_exam_group:
-               name : "Nombre"
-               students_list : "Lista de Estudiantes"
+      additional_exam_group:
+        name : "Nombre"
+        students_list : "Lista de Estudiantes"
 
-             additional_field:
-               name: "Nombre"
+      additional_field:
+        name: "Nombre"
 
-             attendance:
-               student_id: "Identificación del estudiante"
+      attendance:
+        student_id: "Identificación del estudiante"
 
-             batch:
-               name: "Nombre"
+      batch:
+        name: "Nombre"
 
-             class_timing:
-               name: "Nombre"
+      class_timing:
+        name: "Nombre"
 
-             elective_group:
-               name: "Nombre"
+      elective_group:
+        name: "Nombre"
 
-             event:
-               title : 'Título'
+      event:
+        title : 'Título'
 
-             exam:
-               start_time : "Hora de inicio"
-               end_time : "Hora de finalización"
+      exam:
+        start_time : "Hora de inicio"
+        end_time : "Hora de finalización"
 
-             exam_group:
-               name: "Nombre"
+      exam_group:
+        name: "Nombre"
 
-             grading_level:
-               name: "Nombre"
+      grading_level:
+        name: "Nombre"
 
-             guardian:
-               first_name: "Primer nombre"
+      guardian:
+        first_name: "Primer nombre"
 
-             news:
-               title: "Título"
+      news:
+        title: "Título"
 
-             news_comment:
-               content: "Contenido"
-               author: "Autor"
-               news_id: "Noticias"
+      news_comment:
+        content: "Contenido"
+        author: "Autor"
+        news_id: "Noticias"
 
-             reminder:
-               body: "Cuerpo"
+      reminder:
+        body: "Cuerpo"
 
-             student_category:
-               name: "Nombre"
+      student_category:
+        name: "Nombre"
 
-             subject:
-               name: "Nombre"
-               max_weekly_classes: "Máximo Clases semanales"
+      subject:
+        name: "Nombre"
+        max_weekly_classes: "Máximo Clases semanales"
 
-             asset:
-               amount : "Cantidad"
+      asset:
+        amount : "Cantidad"
 
-             finance_donation:
-               donor: "Donante"
+      finance_donation:
+        donor: "Donante"
 
-             finance_fee_category:
-               name: "Nombre"
-               batch_id : "Lote"
-
-
-             finance_fee_collection:
-               name: "Nombre"
-
-             finance_fee_particulars:
-               name: "Nombre"
-               amount : "Cantidad"
-
-             finance_transaction:
-               title : "Título"
-               amount : "Cantidad"
-               transaction_date : "Fecha de la transacción"
-               category : "Categoría"
-               amount : "Cantidad"
-
-             finance_transaction_category:
-               name : "Nombre"
-
-             finance_transaction_trigger:
-               percentage : "Porcentaje"
-
-             liablility:
-               amount : "Cantidad"
-
-             apply_leave:
-               employee_leave_types_id : "Tipos de empleados Agregar"
-               start_date : "Fecha de inicio"
-               end_date : "Fecha de finalización"
-               reason : "Razón"
-
-             bank_field:
-               name : "Nombre"
-
-             employee:
-               employee_category_id: "Categoría de empleado"
-               employee_number: "No. de empleado"
-               first_name : "Primer Nombre"
-               employee_position_id: "Posición del empleado"
-               employee_department_id: "Empleado del Departamento de"
-               employee_grade_id: "Los empleados de grado"
-               date_of_birth: "Fecha de Nacimiento"
-
-             employee_attendance:
-               employee_id : "Empleado"
-               employee_leave_type_id : "Tipo de empleado Deje"
-
-             employee_category:
-               name : "Nombre"
-
-             employee_department:
-               name : "Nombre"
-
-             employee_grade:
-               name : "Nombre"
-               priority : "Prioridad"
-
-             employee_leave_type:
-               name : "Nombre"
-               code : "Código"
-               max_leave_count : "Conde Deja máximo"
-
-             employee_position:
-               name : "Nombre"
-               employee_category_id: "Categoría del empleado"
-
-             monthly_payslip:
-               salary_date : "Fecha de salario"
-
-             payroll_category:
-               name : "Nombre"
+      finance_fee_category:
+        name: "Nombre"
+        batch_id : "Lote"
 
 
+      finance_fee_collection:
+        name: "Nombre"
+
+      finance_fee_particulars:
+        name: "Nombre"
+        amount : "Cantidad"
+
+      finance_transaction:
+        title : "Título"
+        amount : "Cantidad"
+        transaction_date : "Fecha de la transacción"
+        category : "Categoría"
+        amount : "Cantidad"
+
+      finance_transaction_category:
+        name : "Nombre"
+
+      finance_transaction_trigger:
+        percentage : "Porcentaje"
+
+      liablility:
+        amount : "Cantidad"
+
+      apply_leave:
+        employee_leave_types_id : "Tipos de empleados Agregar"
+        start_date : "Fecha de inicio"
+        end_date : "Fecha de finalización"
+        reason : "Razón"
+
+      bank_field:
+        name : "Nombre"
+
+      employee:
+        employee_category_id: "Categoría de empleado"
+        employee_number: "No. de empleado"
+        first_name : "Primer Nombre"
+        employee_position_id: "Posición del empleado"
+        employee_department_id: "Empleado del Departamento de"
+        employee_grade_id: "Los empleados de grado"
+        date_of_birth: "Fecha de Nacimiento"
+
+      employee_attendance:
+        employee_id : "Empleado"
+        employee_leave_type_id : "Tipo de empleado Deje"
+
+      employee_category:
+        name : "Nombre"
+
+      employee_department:
+        name : "Nombre"
+
+      employee_grade:
+        name : "Nombre"
+        priority : "Prioridad"
+
+      employee_leave_type:
+        name : "Nombre"
+        code : "Código"
+        max_leave_count : "Conde Deja máximo"
+
+      employee_position:
+        name : "Nombre"
+        employee_category_id: "Categoría del empleado"
+
+      monthly_payslip:
+        salary_date : "Fecha de salario"
+
+      payroll_category:
+        name : "Nombre"
 
 
+    errors:
+      template:
+        header:
+          one: "Un error impidió {{model}} que los cambios se hayan guardado"
+          other: "{{count}} errores impidieron {{model}} que los cambios se hayan guardado"
+        body: "hubo problemas con los siguientes campos:"
+      messages:
+        accepted: "debe ser aceptado"
+        blank: "no puede estar en blanco"
+        confirmation: "no coincide la confirmación"
+        empty: "no puede estar vacío"
+        equal_to: "debe ser igual a {{count}}"
+        even: "debe ser par"
+        exclusion: "es reservado"
+        greater_than: "debe ser mayor que {{count}}"
+        greater_than_or_equal_to: "debe ser mayor o igual a {{count}}"
+        inclusion: "no está incluido en la lista"
+        invalid: "es inválido"
+        less_than: "debe ser menor a {{count}}"
+        less_than_or_equal_to: "debe ser menor o igual a {{count}}"
+        not_a_number: "no es un número"
+        odd: "debe ser impar"
+        taken: "ya se ha tomado"
+        too_long: "es demasiado largo (el máximo es {{count}} caracteres)"
+        too_short: "es demasiado corto (el mínimo es {{count}} caracteres)"
+        wrong_length: "es de longitud errada (debe ser {{count}} caracteres)"
+        errors_found: 'A raíz de los errores se encontraron'
+        cannot_delete_subjects : 'No se pueden eliminar las asignaturas'
+        weekly_limit_reached : 'Limite semanal alcanzado.'
+        class_overlap : 'Intercambio de clases.'
+        max_hour_exceeded_day : 'El número máximo de horas por día se ha superado.'
+        max_hour_exceeded_week : 'El número máximo de horas por semana se ha superado'
 
-          errors:
-            template:
-              header:
-                one: "Un error impidió {{model}} que los cambios se hayan guardado"
-                other: "{{count}} errores impidieron {{model}} que los cambios se hayan guardado"
-              body: "hubo problemas con los siguientes campos:"
-            messages:
-              accepted: "debe ser aceptado"
-              blank: "no puede estar en blanco"
-              confirmation: "no coincide la confirmación"
-              empty: "no puede estar vacío"
-              equal_to: "debe ser igual a {{count}}"
-              even: "debe ser par"
-              exclusion: "es reservado"
-              greater_than: "debe ser mayor que {{count}}"
-              greater_than_or_equal_to: "debe ser mayor o igual a {{count}}"
-              inclusion: "no está incluido en la lista"
-              invalid: "es inválido"
-              less_than: "debe ser menor a {{count}}"
-              less_than_or_equal_to: "debe ser menor o igual a {{count}}"
-              not_a_number: "no es un número"
-              odd: "debe ser impar"
-              taken: "ya se ha tomado"
-              too_long: "es demasiado largo (el máximo es {{count}} caracteres)"
-              too_short: "es demasiado corto (el mínimo es {{count}} caracteres)"
-              wrong_length: "es de longitud errada (debe ser {{count}} caracteres)"
-              errors_found: 'A raíz de los errores se encontraron'
-              cannot_delete_subjects : 'No se pueden eliminar las asignaturas'
-              weekly_limit_reached : 'Limite semanal alcanzado.'
-              class_overlap : 'Intercambio de clases.'
-              max_hour_exceeded_day : 'El número máximo de horas por día se ha superado.'
-              max_hour_exceeded_week : 'El número máximo de horas por semana se ha superado'
+  support:
+    array:
+      two_words_connector : ", "
+  date:
+    formats:
+      default: "%e-%m-%Y"
+      normal : "%B %e, %Y"
+      short: "%e. %b"
+      month_year : "%B %Y"
+      long: "%A, %e %B, %Y"
+      only_day: "%e"
+      month : "%B"
+      day   : "%a"
+      mont   : "%d"
+      day_mon : "%a %d"
 
-    support:
-      array:
-        two_words_connector : ", "
-    date:
-      formats:
-        default: "%e-%m-%Y"
-        normal : "%B %e, %Y"
-        short: "%e. %b"
-        month_year : "%B %Y"
-        long: "%A, %e %B, %Y"
-        only_day: "%e"
-        month : "%B"
-        day   : "%a"
-        mont   : "%d"
-        day_mon : "%a %d"
-        
 
-      day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
-      abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
-      month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
-      abbr_month_names: [~, Ene, Feb, Mar, Abr, Mayo, Jun, Jul, Ago, Sep, Oct, Nov, Dici]
-      order: [ :day, :month, :year ]
+    day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
+    abbr_day_names: [Dom, Lun, Mar, Mie, Jue, Vie, Sab]
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
+    abbr_month_names: [~, Ene, Feb, Mar, Abr, Mayo, Jun, Jul, Ago, Sep, Oct, Nov, Dici]
+    order: [ :day, :month, :year ]
 
-    time:
-      formats:
-        default: "%A, %d. %B %Y, %H:%M Uhr"
-        short: "%d. %B, %H:%M Uhr"
-        long: "%A, %d. %B %Y, %H:%M Uhr"
-        time: "%H:%M"
+  time:
+    formats:
+      default: "%A, %d. %B %Y, %H:%M Uhr"
+      short: "%d. %B, %H:%M Uhr"
+      long: "%A, %d. %B %Y, %H:%M Uhr"
+      time: "%H:%M"
 
-      am: "vormittags"
-      pm: "nachmittags"
+    am: "vormittags"
+    pm: "nachmittags"
 
-    datetime:
-        distance_in_words:
-          less_than_x_seconds:
-            other: '1 minuto'
-          half_a_minute: '1 minuto'
-          less_than_x_minutes:
-            one: '1 minuto'
-          x_years:
-            one: '1 año'
-            other: '{{count}} años'
-          x_months:
-            one: '1 mes'
-            other: '{{count}} meses'
-          x_minutes:
-            one: '1 minuto'
-            other: '{{count}} minutos'
-          x_days:
-            one: '1 día'
-            other: '{{count}} días'
-          about_x_hours:
-            one: '1 hora'
-            other: '{{count}} horas'
-          about_x_months:
-            one: '1 mes'
-            other: '{{count}} meses'
-          about_x_years:
-            one: '1 año'
-            other: '{{count}} años'
-          over_x_years:
-            one: 'mas de 1 año'
-            other: 'mas de {{count}} años'
+  datetime:
+    distance_in_words:
+      less_than_x_seconds:
+        other: '1 minuto'
+        half_a_minute: '1 minuto'
+      less_than_x_minutes:
+        one: '1 minuto'
+      x_years:
+        one: '1 año'
+        other: '{{count}} años'
+      x_months:
+        one: '1 mes'
+        other: '{{count}} meses'
+      x_minutes:
+        one: '1 minuto'
+        other: '{{count}} minutos'
+      x_days:
+        one: '1 día'
+        other: '{{count}} días'
+      about_x_hours:
+        one: '1 hora'
+        other: '{{count}} horas'
+      about_x_months:
+        one: '1 mes'
+        other: '{{count}} meses'
+        about_x_years:
+        one: '1 año'
+        other: '{{count}} años'
+      over_x_years:
+        one: 'mas de 1 año'
+        other: 'mas de {{count}} años'
 
 
 #Errors From Model
-    model_errors:
-      course:
-        error1 : "Debe tener un grupo inicial"
+  model_errors:
+    course:
+      error1 : "Debe tener un grupo inicial"
 
-      exam:
-        error1: "no puede ser mayor la nota máxima"
+    exam:
+      error1: "no puede ser mayor la nota máxima"
 
-      student:
-        error1 : "no puede ser una fecha futura"
-        error2: "atributo no es válido"
-        error3 : "no puede ser cero"
-        error4 : "Correo electrónico ya se"
+    student:
+      error1 : "no puede ser una fecha futura"
+      error2: "atributo no es válido"
+      error3 : "no puede ser cero"
+      error4 : "Correo electrónico ya se"
 
-      batches:
-        import_failed : "Fallo de Importación"
+    batches:
+      import_failed : "Fallo de Importación"
 
-      timetable:
-        weekly_limit_reached : "Limitar el tema semanal alcanzó"
-        class_overlap : "Clase solapamiento con lotes"
-        max_hour_exceeded_day : "Máximo de horas por día superado"
-        max_hour_exceeded_week : "máximo de horas por semana superó"
+    timetable:
+      weekly_limit_reached : "Limitar el tema semanal alcanzó"
+      class_overlap : "Clase solapamiento con lotes"
+      max_hour_exceeded_day : "Máximo de horas por día superado"
+      max_hour_exceeded_week : "máximo de horas por semana superó"
 
     batch_transfers:
       errors_found : "Se encontraron los siguientes errores"
 
-    sl_no : "Sl No."
-    name : "Nombre"
-    adm_no : "Adm No."
-    view_profile : "Ver Perfil"
-    select_a_category : "Seleccionar una categoría"
-    select_a_batch : "Seleccione un lote"
-    select_a_course : "Seleccionar un Curso"
-    create : "Crear"
-    create_text : "Crear"
-    student_text : "Estudiante"
-    course_and_batch : "Curso y grupo"
-    subject : "Asignatura"
-    message : "Mensaje"
-    recipient : "Destinatario"
-    recipients : "los beneficiarios"
-    guardian : "Guardián"
-    course_text : "Curso"
-    courses_text : "cursos"
-    batch : "Lote"
-    remove : "Eliminar"
-    delete : "Eliminar"
-    admission_number : "Numero de Admisión"
-    all : "TODOS"
-    select : "Seleccionar"
-    option : "Opción"
-    status : "Estado"
-    present : "Presente"
-    former : "Ex"
-    search : "Buscar"
-    search_text : "Buscar"
-    pdf_report : "Reporte PDF"
-    category : "Categoría"
-    no_students_found : "Ningún estudiante encontrado"
-    finish : "Finalizar"
-    year : "Año"
-    total_mark : "Calificación total"
-    total_marks : "puntuación total"
-    save_and_proceed : "Guardar y Proceder"
-    edit : "Editar"
-    save : "Guardar"
-    setting : "Configuración"
-    active : "Activo"
-    inactive : "Inactivo"
-    update : "Actualizar"
-    admin : "Admin"
-    employee_text : "Empleado"
-    username: "Nombre de usuario"
-    user_text : "usuario"
-    no_users : "Ningún usuario encontrado"
-    select_a_department : "Seleccionar un departamento"
-    add : "Agregar"
-    none : "Ninguno"
-    submit : "Ingresar"
-    manage : "Gestionar"
-    admission : "Admisión"
-    type : "Tipo"
-    currency : "Moneda"
-    start_date : "Fecha de inicio"
-    end_date : "Fecha de finalización"
-    exam_text : "Examen"
-    date_text : "Fecha"
-    go : "Ir"
-    dob : "Fecha de Nacimiento"
-    department : "Departamento"
-    assign : "Asignar"
-    start_time : "Hora de inicio"
-    end_time : "Hora de finalización"
-    operations : "Operaciones"
-    management : "Gestión"
-    description : "Descripción"
-    created  : "Creado"
-    for : "Para"
-    amount : "Cantidad"
-    back : "Atras"
-    due_date : "Fecha de Vencimiento"
-    n_a : "No aplica"
-    batches_text : "Grupos"
-    delete_confirm_msg : "¿Está seguro?"
-    new : "Nuevo"
-    new_text : "Nuevo"
-    and : "y"
-    wise : "según"
-    assign_all: "Asignar TODOS"
-    remove_all: "Eliminar TODOS"
-    select_all : "Seleccionar TODOS"
-    total : "total"
-    all_text : "TODOS"
-    teacher : "Profesor"
-    total_average : "Promedio Total"
-    continue : "Continuar"
-    email : "Email"
-    web_address : "Direccion Web"
-    jan           : "Ene"
-    feb           : "Feb"
-    mar           : "Mar"
-    apr           : "Abr"
-    may           : "Mayo"
-    jun           : "Jun"
-    jul           : "Jul"
-    aug           : "Ago"
-    sept          : "Sep"
-    oct           : "Oct"
-    nov           : "Nov"
-    dec           : "Dici"
-    are_you_completely_sure : "¿Está usted completamente seguro?"
-    common: "Common"
-    done : "hecho"
-    home : "Inicio"
-    general : "General"
-    show : "Mostrar"
-    electives : "electivas"
-    particular: "Particular"
-    category: "Categoría"
-    code : "código"
-    normal_subject : "Asignatura normal"
-    normal_subjects : "Asignaturas normal"
-    batch_transfer : "Promoción de grupo"
-    max_weekly_class : "Máximo de clases semanales"
-    no_exam : "sin examen"
-    assign_student : "Asignar estudiante"
-    select_department : "Seleccionar departamento de empleados"
-    events : "Eventos"
-    title : "Título"
-    is_holiday : "Es día festivo?"
-    confirm : "confirmar"
-    sunday : "Domingo"
-    monday : "Lunes"
-    tuesday : "Martes"
-    wednesday : "Miércoles"
-    thursday : "Jueves"
-    friday : "Viernes"
-    saturday : "Sábado"
-    sun : "Dom"
-    mon : "Lun"
-    tue : "Mar"
-    wed : "Mie"
-    thu : "Jue"
-    fri : "Vie"
-    sat : "Sab"
-    exams_text : "Exámenes"
-    attendance: "Asistencia"
-    father_name : "Nombre del Padre"
-    mother_name : "Nombre de la Madre"
-    spouse_name : "Nombre del Cónyuge"
-    address : "Dirección"
-    city : "Ciudad"
-    state : "estado"
-    zip : "Codigo PIN"
-    country : "País"
-    half_day : "Medio día"
-    mobile : "Celular"
-    email : "Correo electrónico"
-    assign_new : "Asignar nuevo"
-    employee_number: "Numero del Empleado"
-    manager : "Administrador"
-    change : "Cambiar"
-    already_approved : "Ya está aprobado!"
-    salary_date : "Fecha de Salario"
-    salary_month : "Mes de salario"
-    select_month : "Seleccionar el mes"
-    is_deduction : "Es deducción?"
-    blood_group: "Tipo de sangre"
-    nationality : "Nacionalidad"
-    total_salary : "Salario Total"
-    deductions : "Deducciones"
-    total_deduction : "Deducción total"
-    net_salary : "Salario Neto"
-    id : "Id"
-    employee_payslip : "Comprobante de nómina"
-    reason : "Causa"
-    currently_assigned : "Actualmente asignado"
-    no_employee_assigned : " Ningún empleado asignado aun"
-    grade : "Nivel"
-    date_of_birth : "F. Nacimiento"
-    gender : "Sexo"
-    male : "Masculino"
-    female : "Femenino"
-    first_name : "Primer nombre"
-    middle_name : "Segundo nombre"
-    last_name : "Apellidos"
-    upload_photo : "Cargar foto"
-    no_employee_found : "Ningún empleado encontrado."
-    view : "Ver"
-    legend1 : "Campos marcados con"
-    legend2 : "debe ser llenado."
-    month: "Mes"
-    edit_category : "Editar categoría"
-    salary : "Salario"
-    monthly_payslip : "Comprobante de pago mensual"
-    personal_details : "Datos personales"
-    attendance_register: "Lista de asistencia"
-    attendance_report: "Reporte de Asistencia"
-    payslip : "Comprobante de pago"
-    approve_payslip : "Aprobar comprobante de pago"
-    view_all : "Ver todos"
-    advanced : "Avanzada"
-    timetable_text : "Horario"
-    payroll_text  : "Nómina"
-    add_new_category : "Añadir nueva categoría"
-    percentage: "Porcentaje"
-    pending : "Pendientes"
-    approved : "Aprobado"
-    denied : "Denegado"
-    select_employee : "Seleccionar Empleado"
-    remarks : "Observaciones"
-    leave_management: "Gestión de Licencias"
-    apply_for_a_leave: "Solicitar una licencia"
-    detailed_report : "Reporte detallado"
-    total_leaves_taken : "Total Licencias utilizadas"
-    cancel : "Cancelar"
-    select_the_department: "Seleccionar departamento"
-    search: "Buscar"
-    emp_id: "ID del Empleado"
-    approve : "Aprobar"
-    apply: "Aplicar"
-    my_leaves: "Mis Licencias"
-    all_leaves: "Todas las licencias"
-    leave_type: "Tipo de licencia"
-    is_half_day: "es medio dia?"
-    register: "Registrarse"
-    report: "Reporte"
-    no_users_found : "No se encontraron usuarios"
-    student: "Estudiante"
-    student_details: "Información  de estudiantes"
-    examinations : "Exámenes"
-    reset  : "reajustar"
-    select_month_and_year: "Seleccione mes y año"
-    total_working_days : "Total días de trabajo"
-    total_working_hours : "Total horas de trabajo"
-    total_present : "Total actual"
-    full_day: "Todo el día"
-    afternoon: "por la tarde"
-    forenoon: "por la mañana"
-    absent: "Ausente"
-    advanced_search_text : "Búsqueda avanzada"
-    overall: "En general"
-    monthly: "Mensualmente"
-    ok : "OK"
-    student_report: "Reporte de estudiante"
-    select_mode: "Seleccione un modo"
-    select_a_subject : "Seleccionar una asignatura"
-    all_subjects: "Todas las Asignaturas"
-    edit_attendance_for: "Editar asistencia de"
-    reason_for_absence: "Causa de la ausencia"
-    attendance_for: "Asistencia de"
-    no_additional_details : "No se ha encontrado ninguna información adicional"
-    select_batch : "Seleccionar grupo"
-    subjects : "Los sujetos"
-    marks : "Notas"
-    max : "Max nota"
-    min : "Min nota"
-    grade : "Desempeño"
-    max_mark : "Nota Máxima"
-    min_mark : "Nota Mínima"
-    add_additional_details: "Agregar información adicional"
-    income : "Ingresos"
-    office_phone1 : "Telefono de oficina1"
-    office_phone2 : "Telefono de oficina2"
-    admission_date : "Fecha de admisión"
-    contact_details : "Datos de contacto"
-    additional_detail : "Información adicional"
-    select_category : "Seleccionar categoría"
-    less_than : "menor que"
-    greater_than : "mayor que"
-    equal_to : "igual a"
-    year_of_birth : "Año de nacimiento"
-    admission_no: "Admisión No."
-    students : "Estudiantes"
-    categories : "Categorías"
-    class : "Clase"
-    leaving_school : "Proceso de retiro de la Institución"
-    reason_for_leaving : "Causa del retiro"
-    edit_additional_details : "Editar información adicional"
-    elective : "Electivo"
-    elective_group: "Grupo de electivas"
-    message : "mensaje"
-    examination_results : "Resultado de exámenes"
-    fee_status : "Estado de Pagos"
-    fees : "Tarifas"
-    fees_text : "Tarifas"
-    particulars : "Específicos"
-    discount : "descuento"
-    total_discount : "total de descuento"
-    total_fees : "Total Tarifas"
-    fine : "Multa"
-    payment_done : "Hecho el pago"
-    partial_payment_on : "Pago parcial de"
-    profile : "Perfil"
-    profile_text : "Perfil"
-    messages: "Mensajes"
-    reminder_text : "Recordatorio"
-    send_sms : "Enviar SMS"
-    application: "Solicitud"
-    general_sms_setting : "Configuración General SMS"
-    student_admission: "Admisión de Estudiantes"
-    exam_schedule : "Calendario de Exámenes"
-    result_publish : "Publicación de resultados"
-    attendance : "Asistencia"
-    news_events : "Noticias/Eventos"
-    send_sms_to_parents : "Enviar SMS a los padres"
-    send_sms_to_students : "Enviar SMS a los estudiantes"
-    send_sms_to_employees : "Enviar SMS a los empleados"
-    result : "resultado"
-    ago: "atras"
-    publish_t: "Publicar"
-    category_name: "Nombre de la categoría"
-    save_changes : "Guardar cambios"
-    student_name: "Nombre del estudiante"
-    finance_text: "Finanzas"
-    department_wise_payslip : "Comprobantes de pago por departamentos"
-    employee_no : 'No empleado.'
-    all_departments: 'Todos los departamentos'
-    payslip_status : 'nómina de estado'
-    total_employees : 'El total de empleados'
-    no_payslip_found : 'No encontró Nóminas.'
-    employee_search: 'Búsqueda de Empleados'
-    new_exam : "Nuevo examen"
-    set_in_common : 'Configurar en Todos'
-    change_type : 'Cambiar tipo'
-    enter_exam_related_details_here : 'Introducir Información del Examen Aquí'
-    subject_name : 'nombre del sujeto'
-    do_not_create : "No crear"
-    exam_type : "Tipo de examen"
-    select_subject : 'Seleccionar Asignatura'
-    academic_reports: 'Reportes Académicos'
-    marks_obtained: 'Calificaciones obtenidas'
-    class_average_marks : "Nota Promedio del Grupo"
-    class_average: 'Promedio de la Clase'
-    grouped_exam_reports : "Reportes de exámenes agrupados"
-    connect_exams : "Conectar exámenes"
-    additional_exams_text : 'Exámenes adicionales'
-    edit_exam_group : 'Editar Grupo de Examen'
-    edit_exam : "Editar examen"
-    exam_name : 'Nombre del examen'
-    actions      : 'accións'
-    grades : 'Desempeños'
-    edit_additional_exam : "Editar examen adicional"
-    for_exam_group : "Para el grupo de examenes"
-    new_additional_exam : 'Examen adicional nueva'
-    result_entry : 'Entrar Resultados'
-    absent_disqualified_etc : 'Ausente/Descalificado etc'
-    publish_exam_schedule : 'Publicar Calendario de Exámenes'
-    schedule_published : 'Calendario Publicado'
-    sms_notification : 'Notificación SMS'
-    result_published : 'Resultado publicado'
-    resend_sms_notification : "Reenviar notificación SMS"
-    resend : 'Reenviar'
-    set_class_timings : 'Configurar los intervalos de las clases'
-    weekdays_text : 'días de la semana'
-    office_address : "Dirección de oficina"
-    home_address : "Domicilio"
-    home_phone : "Teléfono de la casa"
-    generated_report : 'Reporte Generado'
-    aggregate : 'Rendimiento'
-    student_wise_report_for : "Reporte correspondiente a estudiantes para"
-    previous_marks_overview : 'Ver calificaciones previas'
-    has_been_scheduled : 'Ha sido programado'
-    view_calendar: 'Por favor, consulte el calendario para obtener más detalles'
-    exam_timetable_published : 'Horario de examen publicado.'
-    exam_result_published : 'Resultado de examen publicado.'
-    exam_schedule_published_no_sms : 'Calendario de examen publicado, ningún SMS fue enviado porque la configuración SMS no fue activada'
-    exam_result_published_no_sms : 'Resultado del examen publicado, no SMS fue enviado como el establecimiento de SMS no se activa'
-    exam_schedule_published : 'Calendario de examen publicado'
-    result_has_been_published : 'el resultado ha sido publicado'
-    view_reports : 'Por favor, ver los reportes de su resultado'
-    exam_scheduling_not_done : 'La programación del examen no se ha completado todavía.'
-    select_a_batch_to_continue : 'Seleccionar un grupo para continuar'
-    to : 'Para'
-    from : 'De'
-    password: "Contraseña"
-    for_the_month : 'para el mes'
-    select_salary_date : 'Seleccione la fecha de Salario'
-    send_email : 'Enviar correo'
-    leave_name: 'Nombre de la licencia'
-    available_leave : 'dejar disponible'
-    leave_taken     : 'baja laboral'
-    searched_for : 'Usted ha buscado:'
-    listed_by : 'Listado por'
-    search_again : 'Búscar de nuevo'
-    reset_employee_leaves : 'Restablecer hojas empleado.'
-    reset_leave : 'Perdí mi licencia'
-    one_click_aprove_payslip : 'Aprobación de comprobante de Pago con un clic'
-    aprove_monthly_payslip : 'Aprobar comprobantes de pago mensuales'
-    time_text : 'tiempo'
-    select_payslip_month_year: 'Seleccionar Mes y Año del comprobante de pago'
-    my_leave_applications: 'Mis solicitudes de licencias'
-    select_a_leave_type: 'Seleccione un tipo de licencia'
-    signature: 'Firma'
-    add_payroll_category : "Agregar categoría de nómina"
-    add_edit_employee_payroll_category : "Agregar y editar categoría de nómina"
-    edit_text: 'editar'
-    add_type: 'Añadir tipos de licencia'
-    register_attendance: 'Lista de asistencia.'
-    select_position: 'Seleccionar posición'
-    select_grade: 'Seleccionar nivel'
-    holidays : "Dias festivos"
-    dues : "Deudas"
-    marks_and_grades : 'Notas y Desempeños'
-    subject_wise_report : 'Reporte por Asignaturas'
-    online: 'en línea'
-    offline : 'fuera de línea'
-    add_subject : 'Agregar asignatura'
-    add_normal_subject : 'Añadir Asignatura Normal'
-    subjects_assigned : 'Las asignaturas han sido asignadas.'
-    following_errors_found : 'Se encontraron los siguientes errores'
-    academics : 'Académicos'
-    language : 'Idioma'
-    user_privilege : "Privilegios de usuario"
-    pay_fees : 'Realizar Pagos'
-    fees_paid : 'Pagos Realizados'
-    
-    flash_msg1: 'Grupo de exámenes actualizado exitosamente.'
-    flash_msg2: 'Lo sentimos'
-    flash_msg3: 'Lo sentimos, ha ocurrido un error. Póngase en contacto con Administrador.'
-    flash_msg4: 'Lo sentimos, no tiene acceso a esa página.'
-    flash_msg5: 'No pueden ver esa información.'
-    flash_msg6: 'Acceso denegado!'
-    flash_msg7: 'está ausente en'
-    flash_msg8 : 'La configuración se ha guardado'
-    flash_msg9: "El nombre del examen no puede estar en blanco"
-    flash_msg10: 'Nuevo examen creado exitosamente.'
-    flash_msg11: 'Tamaño de la imagen muy grande. Por favor, suba una imagen con un tamaño menor de 250KB.'
+  sl_no : "Sl No."
+  name : "Nombre"
+  adm_no : "Adm No."
+  view_profile : "Ver Perfil"
+  select_a_category : "Seleccionar una categoría"
+  select_a_batch : "Seleccione un lote"
+  select_a_course : "Seleccionar un Curso"
+  create : "Crear"
+  create_text : "Crear"
+  student_text : "Estudiante"
+  course_and_batch : "Curso y grupo"
+  subject : "Asignatura"
+  message : "Mensaje"
+  recipient : "Destinatario"
+  recipients : "los beneficiarios"
+  guardian : "Guardián"
+  course_text : "Curso"
+  courses_text : "cursos"
+  batch : "Lote"
+  remove : "Eliminar"
+  delete : "Eliminar"
+  admission_number : "Numero de Admisión"
+  all : "TODOS"
+  select : "Seleccionar"
+  option : "Opción"
+  status : "Estado"
+  present : "Presente"
+  former : "Ex"
+  search : "Buscar"
+  search_text : "Buscar"
+  pdf_report : "Reporte PDF"
+  category : "Categoría"
+  no_students_found : "Ningún estudiante encontrado"
+  finish : "Finalizar"
+  year : "Año"
+  total_mark : "Calificación total"
+  total_marks : "puntuación total"
+  save_and_proceed : "Guardar y Proceder"
+  edit : "Editar"
+  save : "Guardar"
+  setting : "Configuración"
+  active : "Activo"
+  inactive : "Inactivo"
+  update : "Actualizar"
+  admin : "Admin"
+  employee_text : "Empleado"
+  username: "Nombre de usuario"
+  user_text : "usuario"
+  no_users : "Ningún usuario encontrado"
+  select_a_department : "Seleccionar un departamento"
+  add : "Agregar"
+  none : "Ninguno"
+  submit : "Ingresar"
+  manage : "Gestionar"
+  admission : "Admisión"
+  type : "Tipo"
+  currency : "Moneda"
+  start_date : "Fecha de inicio"
+  end_date : "Fecha de finalización"
+  exam_text : "Examen"
+  date_text : "Fecha"
+  go : "Ir"
+  dob : "Fecha de Nacimiento"
+  department : "Departamento"
+  assign : "Asignar"
+  start_time : "Hora de inicio"
+  end_time : "Hora de finalización"
+  operations : "Operaciones"
+  management : "Gestión"
+  description : "Descripción"
+  created  : "Creado"
+  for : "Para"
+  amount : "Cantidad"
+  back : "Atras"
+  due_date : "Fecha de Vencimiento"
+  n_a : "No aplica"
+  batches_text : "Grupos"
+  delete_confirm_msg : "¿Está seguro?"
+  new : "Nuevo"
+  new_text : "Nuevo"
+  and : "y"
+  wise : "según"
+  assign_all: "Asignar TODOS"
+  remove_all: "Eliminar TODOS"
+  select_all : "Seleccionar TODOS"
+  total : "total"
+  all_text : "TODOS"
+  teacher : "Profesor"
+  total_average : "Promedio Total"
+  continue : "Continuar"
+  email : "Email"
+  web_address : "Direccion Web"
+  jan           : "Ene"
+  feb           : "Feb"
+  mar           : "Mar"
+  apr           : "Abr"
+  may           : "Mayo"
+  jun           : "Jun"
+  jul           : "Jul"
+  aug           : "Ago"
+  sept          : "Sep"
+  oct           : "Oct"
+  nov           : "Nov"
+  dec           : "Dici"
+  are_you_completely_sure : "¿Está usted completamente seguro?"
+  common: "Common"
+  done : "hecho"
+  home : "Inicio"
+  general : "General"
+  show : "Mostrar"
+  electives : "electivas"
+  particular: "Particular"
+  category: "Categoría"
+  code : "código"
+  normal_subject : "Asignatura normal"
+  normal_subjects : "Asignaturas normal"
+  batch_transfer : "Promoción de grupo"
+  max_weekly_class : "Máximo de clases semanales"
+  no_exam : "sin examen"
+  assign_student : "Asignar estudiante"
+  select_department : "Seleccionar departamento de empleados"
+  events : "Eventos"
+  title : "Título"
+  is_holiday : "Es día festivo?"
+  confirm : "confirmar"
+  sunday : "Domingo"
+  monday : "Lunes"
+  tuesday : "Martes"
+  wednesday : "Miércoles"
+  thursday : "Jueves"
+  friday : "Viernes"
+  saturday : "Sábado"
+  sun : "Dom"
+  mon : "Lun"
+  tue : "Mar"
+  wed : "Mie"
+  thu : "Jue"
+  fri : "Vie"
+  sat : "Sab"
+  exams_text : "Exámenes"
+  attendance: "Asistencia"
+  father_name : "Nombre del Padre"
+  mother_name : "Nombre de la Madre"
+  spouse_name : "Nombre del Cónyuge"
+  address : "Dirección"
+  city : "Ciudad"
+  state : "estado"
+  zip : "Codigo PIN"
+  country : "País"
+  half_day : "Medio día"
+  mobile : "Celular"
+  email : "Correo electrónico"
+  assign_new : "Asignar nuevo"
+  employee_number: "Numero del Empleado"
+  manager : "Administrador"
+  change : "Cambiar"
+  already_approved : "Ya está aprobado!"
+  salary_date : "Fecha de Salario"
+  salary_month : "Mes de salario"
+  select_month : "Seleccionar el mes"
+  is_deduction : "Es deducción?"
+  blood_group: "Tipo de sangre"
+  nationality : "Nacionalidad"
+  total_salary : "Salario Total"
+  deductions : "Deducciones"
+  total_deduction : "Deducción total"
+  net_salary : "Salario Neto"
+  id : "Id"
+  employee_payslip : "Comprobante de nómina"
+  reason : "Causa"
+  currently_assigned : "Actualmente asignado"
+  no_employee_assigned : " Ningún empleado asignado aun"
+  grade : "Nivel"
+  date_of_birth : "F. Nacimiento"
+  gender : "Sexo"
+  male : "Masculino"
+  female : "Femenino"
+  first_name : "Primer nombre"
+  middle_name : "Segundo nombre"
+  last_name : "Apellidos"
+  upload_photo : "Cargar foto"
+  no_employee_found : "Ningún empleado encontrado."
+  view : "Ver"
+  legend1 : "Campos marcados con"
+  legend2 : "debe ser llenado."
+  month: "Mes"
+  edit_category : "Editar categoría"
+  salary : "Salario"
+  monthly_payslip : "Comprobante de pago mensual"
+  personal_details : "Datos personales"
+  attendance_register: "Lista de asistencia"
+  attendance_report: "Reporte de Asistencia"
+  payslip : "Comprobante de pago"
+  approve_payslip : "Aprobar comprobante de pago"
+  view_all : "Ver todos"
+  advanced : "Avanzada"
+  timetable_text : "Horario"
+  payroll_text  : "Nómina"
+  add_new_category : "Añadir nueva categoría"
+  percentage: "Porcentaje"
+  pending : "Pendientes"
+  approved : "Aprobado"
+  denied : "Denegado"
+  select_employee : "Seleccionar Empleado"
+  remarks : "Observaciones"
+  leave_management: "Gestión de Licencias"
+  apply_for_a_leave: "Solicitar una licencia"
+  detailed_report : "Reporte detallado"
+  total_leaves_taken : "Total Licencias utilizadas"
+  cancel : "Cancelar"
+  select_the_department: "Seleccionar departamento"
+  search: "Buscar"
+  emp_id: "ID del Empleado"
+  approve : "Aprobar"
+  apply: "Aplicar"
+  my_leaves: "Mis Licencias"
+  all_leaves: "Todas las licencias"
+  leave_type: "Tipo de licencia"
+  is_half_day: "es medio dia?"
+  register: "Registrarse"
+  report: "Reporte"
+  no_users_found : "No se encontraron usuarios"
+  student: "Estudiante"
+  student_details: "Información  de estudiantes"
+  examinations : "Exámenes"
+  reset  : "reajustar"
+  select_month_and_year: "Seleccione mes y año"
+  total_working_days : "Total días de trabajo"
+  total_working_hours : "Total horas de trabajo"
+  total_present : "Total actual"
+  full_day: "Todo el día"
+  afternoon: "por la tarde"
+  forenoon: "por la mañana"
+  absent: "Ausente"
+  advanced_search_text : "Búsqueda avanzada"
+  overall: "En general"
+  monthly: "Mensualmente"
+  ok : "OK"
+  student_report: "Reporte de estudiante"
+  select_mode: "Seleccione un modo"
+  select_a_subject : "Seleccionar una asignatura"
+  all_subjects: "Todas las Asignaturas"
+  edit_attendance_for: "Editar asistencia de"
+  reason_for_absence: "Causa de la ausencia"
+  attendance_for: "Asistencia de"
+  no_additional_details : "No se ha encontrado ninguna información adicional"
+  select_batch : "Seleccionar grupo"
+  subjects : "Los sujetos"
+  marks : "Notas"
+  max : "Max nota"
+  min : "Min nota"
+  grade : "Desempeño"
+  max_mark : "Nota Máxima"
+  min_mark : "Nota Mínima"
+  add_additional_details: "Agregar información adicional"
+  income : "Ingresos"
+  office_phone1 : "Telefono de oficina1"
+  office_phone2 : "Telefono de oficina2"
+  admission_date : "Fecha de admisión"
+  contact_details : "Datos de contacto"
+  additional_detail : "Información adicional"
+  select_category : "Seleccionar categoría"
+  less_than : "menor que"
+  greater_than : "mayor que"
+  equal_to : "igual a"
+  year_of_birth : "Año de nacimiento"
+  admission_no: "Admisión No."
+  students : "Estudiantes"
+  categories : "Categorías"
+  class : "Clase"
+  leaving_school : "Proceso de retiro de la Institución"
+  reason_for_leaving : "Causa del retiro"
+  edit_additional_details : "Editar información adicional"
+  elective : "Electivo"
+  elective_group: "Grupo de electivas"
+  message : "mensaje"
+  examination_results : "Resultado de exámenes"
+  fee_status : "Estado de Pagos"
+  fees : "Tarifas"
+  fees_text : "Tarifas"
+  particulars : "Específicos"
+  discount : "descuento"
+  total_discount : "total de descuento"
+  total_fees : "Total Tarifas"
+  fine : "Multa"
+  payment_done : "Hecho el pago"
+  partial_payment_on : "Pago parcial de"
+  profile : "Perfil"
+  profile_text : "Perfil"
+  messages: "Mensajes"
+  reminder_text : "Recordatorio"
+  send_sms : "Enviar SMS"
+  application: "Solicitud"
+  general_sms_setting : "Configuración General SMS"
+  student_admission: "Admisión de Estudiantes"
+  exam_schedule : "Calendario de Exámenes"
+  result_publish : "Publicación de resultados"
+  attendance : "Asistencia"
+  news_events : "Noticias/Eventos"
+  send_sms_to_parents : "Enviar SMS a los padres"
+  send_sms_to_students : "Enviar SMS a los estudiantes"
+  send_sms_to_employees : "Enviar SMS a los empleados"
+  result : "resultado"
+  ago: "atras"
+  publish_t: "Publicar"
+  category_name: "Nombre de la categoría"
+  save_changes : "Guardar cambios"
+  student_name: "Nombre del estudiante"
+  finance_text: "Finanzas"
+  department_wise_payslip : "Comprobantes de pago por departamentos"
+  employee_no : 'No empleado.'
+  all_departments: 'Todos los departamentos'
+  payslip_status : 'nómina de estado'
+  total_employees : 'El total de empleados'
+  no_payslip_found : 'No encontró Nóminas.'
+  employee_search: 'Búsqueda de Empleados'
+  new_exam : "Nuevo examen"
+  set_in_common : 'Configurar en Todos'
+  change_type : 'Cambiar tipo'
+  enter_exam_related_details_here : 'Introducir Información del Examen Aquí'
+  subject_name : 'nombre del sujeto'
+  do_not_create : "No crear"
+  exam_type : "Tipo de examen"
+  select_subject : 'Seleccionar Asignatura'
+  academic_reports: 'Reportes Académicos'
+  marks_obtained: 'Calificaciones obtenidas'
+  class_average_marks : "Nota Promedio del Grupo"
+  class_average: 'Promedio de la Clase'
+  grouped_exam_reports : "Reportes de exámenes agrupados"
+  connect_exams : "Conectar exámenes"
+  additional_exams_text : 'Exámenes adicionales'
+  edit_exam_group : 'Editar Grupo de Examen'
+  edit_exam : "Editar examen"
+  exam_name : 'Nombre del examen'
+  actions      : 'accións'
+  grades : 'Desempeños'
+  edit_additional_exam : "Editar examen adicional"
+  for_exam_group : "Para el grupo de examenes"
+  new_additional_exam : 'Examen adicional nueva'
+  result_entry : 'Entrar Resultados'
+  absent_disqualified_etc : 'Ausente/Descalificado etc'
+  publish_exam_schedule : 'Publicar Calendario de Exámenes'
+  schedule_published : 'Calendario Publicado'
+  sms_notification : 'Notificación SMS'
+  result_published : 'Resultado publicado'
+  resend_sms_notification : "Reenviar notificación SMS"
+  resend : 'Reenviar'
+  set_class_timings : 'Configurar los intervalos de las clases'
+  weekdays_text : 'días de la semana'
+  office_address : "Dirección de oficina"
+  home_address : "Domicilio"
+  home_phone : "Teléfono de la casa"
+  generated_report : 'Reporte Generado'
+  aggregate : 'Rendimiento'
+  student_wise_report_for : "Reporte correspondiente a estudiantes para"
+  previous_marks_overview : 'Ver calificaciones previas'
+  has_been_scheduled : 'Ha sido programado'
+  view_calendar: 'Por favor, consulte el calendario para obtener más detalles'
+  exam_timetable_published : 'Horario de examen publicado.'
+  exam_result_published : 'Resultado de examen publicado.'
+  exam_schedule_published_no_sms : 'Calendario de examen publicado, ningún SMS fue enviado porque la configuración SMS no fue activada'
+  exam_result_published_no_sms : 'Resultado del examen publicado, no SMS fue enviado como el establecimiento de SMS no se activa'
+  exam_schedule_published : 'Calendario de examen publicado'
+  result_has_been_published : 'el resultado ha sido publicado'
+  view_reports : 'Por favor, ver los reportes de su resultado'
+  exam_scheduling_not_done : 'La programación del examen no se ha completado todavía.'
+  select_a_batch_to_continue : 'Seleccionar un grupo para continuar'
+  to : 'Para'
+  from : 'De'
+  password: "Contraseña"
+  for_the_month : 'para el mes'
+  select_salary_date : 'Seleccione la fecha de Salario'
+  send_email : 'Enviar correo'
+  leave_name: 'Nombre de la licencia'
+  available_leave : 'dejar disponible'
+  leave_taken     : 'baja laboral'
+  searched_for : 'Usted ha buscado:'
+  listed_by : 'Listado por'
+  search_again : 'Búscar de nuevo'
+  reset_employee_leaves : 'Restablecer hojas empleado.'
+  reset_leave : 'Perdí mi licencia'
+  one_click_aprove_payslip : 'Aprobación de comprobante de Pago con un clic'
+  aprove_monthly_payslip : 'Aprobar comprobantes de pago mensuales'
+  time_text : 'tiempo'
+  select_payslip_month_year: 'Seleccionar Mes y Año del comprobante de pago'
+  my_leave_applications: 'Mis solicitudes de licencias'
+  select_a_leave_type: 'Seleccione un tipo de licencia'
+  signature: 'Firma'
+  add_payroll_category : "Agregar categoría de nómina"
+  add_edit_employee_payroll_category : "Agregar y editar categoría de nómina"
+  edit_text: 'editar'
+  add_type: 'Añadir tipos de licencia'
+  register_attendance: 'Lista de asistencia.'
+  select_position: 'Seleccionar posición'
+  select_grade: 'Seleccionar nivel'
+  holidays : "Dias festivos"
+  dues : "Deudas"
+  marks_and_grades : 'Notas y Desempeños'
+  subject_wise_report : 'Reporte por Asignaturas'
+  online: 'en línea'
+  offline : 'fuera de línea'
+  add_subject : 'Agregar asignatura'
+  add_normal_subject : 'Añadir Asignatura Normal'
+  subjects_assigned : 'Las asignaturas han sido asignadas.'
+  following_errors_found : 'Se encontraron los siguientes errores'
+  academics : 'Académicos'
+  language : 'Idioma'
+  user_privilege : "Privilegios de usuario"
+  pay_fees : 'Realizar Pagos'
+  fees_paid : 'Pagos Realizados'
+  details : "Información"
+
+  flash_msg1: 'Grupo de exámenes actualizado exitosamente.'
+  flash_msg2: 'Lo sentimos'
+  flash_msg3: 'Lo sentimos, ha ocurrido un error. Póngase en contacto con Administrador.'
+  flash_msg4: 'Lo sentimos, no tiene acceso a esa página.'
+  flash_msg5: 'No pueden ver esa información.'
+  flash_msg6: 'Acceso denegado!'
+  flash_msg7: 'está ausente en'
+  flash_msg8 : 'La configuración se ha guardado'
+  flash_msg9: "El nombre del examen no puede estar en blanco"
+  flash_msg10: 'Nuevo examen creado exitosamente.'
+  flash_msg11: 'Tamaño de la imagen muy grande. Por favor, suba una imagen con un tamaño menor de 250KB.'
 
 
 #configuration controller translation
-    configuration:
-      configuration : 'Configuración'
-      general_settings : "Configuración general"
-      flash1 : 'Extensión no válida. La imagen debe ser JPG'
-      flash2 : 'El archivo es demasiado grande. El tamaño del archivo debe ser inferior a 1 MB'
-      
-      index:
-        manage_course_batch : "Gestionar Curso/Grupo"
-        manage_student_category : "Gestionar Categoría de Estudiantes"
-        manage_subject : "Gestionar Asignaturas"
-        add_admission_additional_detail : "Añadir  Información Adicional"
-        link_desc1 : 'Añadir un nuevo curso o grupo para este año académico.'
-        link_desc2 : 'Gestionar asignaturas correspondientes a los diferentes cursos.'
-        link_desc3 : 'Configurar información general relacionada con la institución, la asistencia, etc'
-        link_desc4 : 'Configurar información adicional para la admisión.'
-        link_desc5 : 'Activar/Desactivar configuración SMS'
-        link_desc6 : "Agregar Categoría del Estudiante"
-        sms_module : 'Módulo SMS'
+  configuration:
+    configuration : 'Configuración'
+    general_settings : "Configuración general"
+    flash1 : 'Extensión no válida. La imagen debe ser JPG'
+    flash2 : 'El archivo es demasiado grande. El tamaño del archivo debe ser inferior a 1 MB'
 
-      settings:
-        school_college_name : "Nombre de la Institución"
-        school_college_address : "Dirección de la Institución"
-        school_college_phone : "Teléfono de la Institución"
-        student_attendance_type : "Asistencia Estudiantil"
-        currency_type : "Tipo de moneda"
-        college : 'Universidad'
-        upload_logo : 'Cargar Logotipo'
-        network_state : 'Estado de red'
-        student_admission_auto : 'Permitir autoincremento del No. de admisión del estudiante.'
-        employee_admission_auto : 'Permitir autoincremento del No. de admisión del empleado.'
-        finance_year_start_date : 'Año Finanzas fecha de inicio'
-        finance_year_end_date : 'Año Finanzas fecha final'
+    index:
+      manage_course_batch : "Gestionar Curso/Grupo"
+      manage_student_category : "Gestionar Categoría de Estudiantes"
+      manage_subject : "Gestionar Asignaturas"
+      add_admission_additional_detail : "Añadir  Información Adicional"
+      link_desc1 : 'Añadir un nuevo curso o grupo para este año académico.'
+      link_desc2 : 'Gestionar asignaturas correspondientes a los diferentes cursos.'
+      link_desc3 : 'Configurar información general relacionada con la institución, la asistencia, etc'
+      link_desc4 : 'Configurar información adicional para la admisión.'
+      link_desc5 : 'Activar/Desactivar configuración SMS'
+      link_desc6 : "Agregar Categoría del Estudiante"
+      sms_module : 'Módulo SMS'
+
+    settings:
+      school_college_name : "Nombre de la Institución"
+      school_college_address : "Dirección de la Institución"
+      school_college_phone : "Teléfono de la Institución"
+      student_attendance_type : "Asistencia Estudiantil"
+      currency_type : "Tipo de moneda"
+      college : 'Universidad'
+      upload_logo : 'Cargar Logotipo'
+      network_state : 'Estado de red'
+      student_admission_auto : 'Permitir autoincremento del No. de admisión del estudiante.'
+      employee_admission_auto : 'Permitir autoincremento del No. de admisión del empleado.'
+      finance_year_start_date : 'Año Finanzas fecha de inicio'
+      finance_year_end_date : 'Año Finanzas fecha final'
 
 
 #courses controller translation
-    courses:
-      manage_batch : "Gestionar Grupo"
-      manage_course : "Gestionar Curso"
-      course_name : "Nombre del curso"
-      section_name : "Nombre de sección"
-      initial_batch: 'Información inicial de grupo'
-      active_batches : 'Grupos activos'
+  courses:
+    manage_batch : "Gestionar Grupo"
+    manage_course : "Gestionar Curso"
+    course_name : "Nombre del curso"
+    section_name : "Nombre de sección"
+    initial_batch: 'Información inicial de grupo'
+    active_batches : 'Grupos activos'
 
-      flash1: 'Curso creado exitosamente'
-      flash2: 'Información  del curso actualizada exitosamente.'
-      flash3: 'Curso eliminado exitosamente.'
-      flash4: 'No se puede eliminar. Por favor, elimine los grupos y estudiantes existentes.'
+    flash1: 'Curso creado exitosamente'
+    flash2: 'Información  del curso actualizada exitosamente.'
+    flash3: 'Curso eliminado exitosamente.'
+    flash4: 'No se puede eliminar. Por favor, elimine los grupos y estudiantes existentes.'
 
-      index:
-        link_desc1: 'Gestionar cursos y crear grupos'
-        link_desc2: 'Gestionar grupos activos'
+    index:
+      link_desc1: 'Gestionar cursos y crear grupos'
+      link_desc2: 'Gestionar grupos activos'
 
-    
-      manage_batches:
-        grading_system : 'Desempeños'
-        
+
+    manage_batches:
+      grading_system : 'Desempeños'
+
 
 #batches controller translation
-    batches:
-      assign_new : 'Asignar nuevo'
-      assign_tutor : 'Asignar Tutor'
-      import_failed : "Fallo de Importación"
-      no_employee_assigned : 'Ningún empleado asignado todavía.'
+  batches:
+    assign_new : 'Asignar nuevo'
+    assign_tutor : 'Asignar Tutor'
+    import_failed : "Fallo de Importación"
+    no_employee_assigned : 'Ningún empleado asignado todavía.'
 
-      flash1: 'Grupo creado exitosamente.'
-      flash2: 'Información del grupo actualizada exitosamente.'
-      flash3: 'Por favor, rellene todos los campos'
-      flash4: 'Grupo eliminado exitosamente.'
-      flash5: 'No es posible eliminar el Grupo. Por favor eliminar todos los estudiantes'
-      flash6: 'No se puede eliminar el grupo. Por favor eliminar todas las asignaturas'
+    flash1: 'Grupo creado exitosamente.'
+    flash2: 'Información del grupo actualizada exitosamente.'
+    flash3: 'Por favor, rellene todos los campos'
+    flash4: 'Grupo eliminado exitosamente.'
+    flash5: 'No es posible eliminar el Grupo. Por favor eliminar todos los estudiantes'
+    flash6: 'No se puede eliminar el grupo. Por favor eliminar todas las asignaturas'
 
-      show:
-        subject_transfer_message : 'Las siguientes Asignaturas han sido importadas'
-        fee_import_message : 'Las siguientes categorías de Tarifas han sido importadas'
-      new:
-        import_subject : 'Importar Asignaturas del grupo previas'
-        import_fees : 'Importar Tarifas Mayores previas'
-        new_batch : "Nuevo grupo"
-        Not applicable : "No aplica"
-      edit:
-        edit_batch : "Editar grupo"
+    show:
+      subject_transfer_message : 'Las siguientes Asignaturas han sido importadas'
+      fee_import_message : 'Las siguientes categorías de Tarifas han sido importadas'
+    new:
+      import_subject : 'Importar Asignaturas del grupo previas'
+      import_fees : 'Importar Tarifas Mayores previas'
+      new_batch : "Nuevo grupo"
+      Not applicable : "No aplica"
+    edit:
+      edit_batch : "Editar grupo"
 
 #batch_transfers controller
-    batch_transfers:
-      transfer: 'Transferir'
-      graduation : 'Graduación'
-      uncheck_message : 'Desmarque los estudiantes que no van a ser transferidos'
-      graduating_batch : 'Grupo graduandose'
-      has_been_added_to_batch : 'se ha añadido al grupo'
-      already_has_subject : 'ya tiene una asignatura con el nombre de'
-      generate_tc_for_all : 'Generar Certificado de Estudios para TODOS'
-      the_subject : 'La asignatura'
-      status_description : 'Descripción de estado'
-      add_new_subjects: 'Añadir nuevos temas'
-      assign_old_batch_subject : 'Asignar asignaturas de grupo previas'
-      previous_batch : "Grupo previo"
+  batch_transfers:
+    transfer: 'Transferir'
+    graduation : 'Graduación'
+    uncheck_message : 'Desmarque los estudiantes que no van a ser transferidos'
+    graduating_batch : 'Grupo graduandose'
+    has_been_added_to_batch : 'se ha añadido al grupo'
+    already_has_subject : 'ya tiene una asignatura con el nombre de'
+    generate_tc_for_all : 'Generar Certificado de Estudios para TODOS'
+    the_subject : 'La asignatura'
+    status_description : 'Descripción de estado'
+    add_new_subjects: 'Añadir nuevos temas'
+    assign_old_batch_subject : 'Asignar asignaturas de grupo previas'
+    previous_batch : "Grupo previo"
 
-      flash1: 'Estudiantes transferidos exitosamente'
-      flash2: 'Los estudiantes seleccionados se graduaron exitosamente'
-      flash3: 'Ya tiene la asignatura cuyo nombre es'
+    flash1: 'Estudiantes transferidos exitosamente'
+    flash2: 'Los estudiantes seleccionados se graduaron exitosamente'
+    flash3: 'Ya tiene la asignatura cuyo nombre es'
 
-      subject_transfer:
-        assign_subject : "Asignar Asignatura"
-        add_elective : "Añadir electiva"
-        
-      index:
-        graduation_message : "Estos estudiantes serán ahora trasferidos a la base de datos de ex estudiantes. Agregue una descripción. Por ejemplo, Grado 11 Graduado, 2010."
-        previous : 'Previo'
+    subject_transfer:
+      assign_subject : "Asignar Asignatura"
+      add_elective : "Añadir electiva"
 
-      show:
-        transferring_batch: 'Grupo de transferencia'
-        transfer_to : 'Transferir al grupo'
+    index:
+      graduation_message : "Estos estudiantes serán ahora trasferidos a la base de datos de ex estudiantes. Agregue una descripción. Por ejemplo, Grado 11 Graduado, 2010."
+      previous : 'Previo'
+
+    show:
+      transferring_batch: 'Grupo de transferencia'
+      transfer_to : 'Transferir al grupo'
 
 #elective_group controller translation
-    elective_groups:
-      new_elective : "Nueva electiva"
-      show_elective : "Mostrar electivas"
+  elective_groups:
+    new_elective : "Nueva electiva"
+    show_elective : "Mostrar electivas"
 
-      flash1: 'Nuevo grupo electivo creado.'
-      flash2: 'Grupo electivo eliminado'
+    flash1: 'Nuevo grupo electivo creado.'
+    flash2: 'Grupo electivo eliminado'
 
-      index:
-        edit_elective : "Editar electivas"
-       
+    index:
+      edit_elective : "Editar electivas"
+
 
 #subject controller translation
-    subjects:
-      add_subject_to_elective_group : 'Agregar asignatura a este grupo de electivas'
-      new_elective_group : 'Nuevo Grupo de electivas'
-      cannot_delete_subjects : 'No se puede eliminar temas'
-      edit_subject : 'editar asunto'
-      add_new_subject : 'Añadir Nueva Asignatura'
-      flash1: 'Los sujetos seleccionados se han importado correctamente'
+  subjects:
+    add_subject_to_elective_group : 'Agregar asignatura a este grupo de electivas'
+    new_elective_group : 'Nuevo Grupo de electivas'
+    cannot_delete_subjects : 'No se puede eliminar temas'
+    edit_subject : 'editar asunto'
+    add_new_subject : 'Añadir Nueva Asignatura'
+    flash1: 'Los sujetos seleccionados se han importado correctamente'
 
-      index:
-        import_subject_from_batch : 'Importar Asignatura de Grupo'
-        no_subjects : 'No hay asignaturas disponibles para importar en el grupo'
+    index:
+      import_subject_from_batch : 'Importar Asignatura de Grupo'
+      no_subjects : 'No hay asignaturas disponibles para importar en el grupo'
 
 #reminder controller translation
-    reminder:
-      no_new_message : 'No hay mensajes nuevos.'
-      send : 'Enviar'
-      inbox : 'Recibidos'
-      sent : 'Enviados'
-      sent_on : 'Enviado el'
-      reply : 'Responder'
-      no_message_created  : 'Ningún mensaje creado todavía'
-      select_recipient : 'Seleccionar destinatario'
-      user_unavailable: 'el usuario no está disponible'
-      your_message_sent: 'Tu mensaje ha sido enviado'
-      enter_subject: 'Por favor, introduzca el mensaje y el asunto.'
+  reminder:
+    no_new_message : 'No hay mensajes nuevos.'
+    send : 'Enviar'
+    inbox : 'Recibidos'
+    sent : 'Enviados'
+    sent_on : 'Enviado el'
+    reply : 'Responder'
+    no_message_created  : 'Ningún mensaje creado todavía'
+    select_recipient : 'Seleccionar destinatario'
+    user_unavailable: 'el usuario no está disponible'
+    your_message_sent: 'Tu mensaje ha sido enviado'
+    enter_subject: 'Por favor, introduzca el mensaje y el asunto.'
 
-      flash1: 'Mensaje enviado exitosamente'
-      flash2: 'Recordatorio eliminado.'
-      flash3: 'Su respondidas ha sido enviada'
-      flash4: 'Por favor, introducir el Asunto y el Mensaje'
-      flash5: 'Recordatorio marcado como no leido.'
-      flash6: 'Por favor, rellene los campos necesarios para crear este mensaje'
-     
-      view_reminder:
-        back_to_inbox: 'Volver a Recibidos'
-        mark_as_unread : 'Marcar como no leído'
+    flash1: 'Mensaje enviado exitosamente'
+    flash2: 'Recordatorio eliminado.'
+    flash3: 'Su respondidas ha sido enviada'
+    flash4: 'Por favor, introducir el Asunto y el Mensaje'
+    flash5: 'Recordatorio marcado como no leido.'
+    flash6: 'Por favor, rellene los campos necesarios para crear este mensaje'
 
-      create_reminder:
-        reminder_to_staff : 'Crear recordatorio para empleados'
-        reminder_to_student : 'Crear recordatorio para estudiante'
+    view_reminder:
+      back_to_inbox: 'Volver a Recibidos'
+      mark_as_unread : 'Marcar como no leído'
+
+    create_reminder:
+      reminder_to_staff : 'Crear recordatorio para empleados'
+      reminder_to_student : 'Crear recordatorio para estudiante'
 
 #event controller translation
-    event:
-      select_more_course : "Seleccionar más cursos"
-      select_more_department : "Seleccionar más departamentos"
-      course_associated : "Curso de Asociado"
-      no_course_selected : 'No hay cursos seleccionados para este evento todavía'
-      no_department_selected : 'No hay departamentos seleccionados para este evento todavía'
-      department_associated : "Departamento asociado"
-      common_event : 'Evento común a todos'
-      event_text : 'Evento'
-      new_event : 'Nuevo Evento'
-      event_description : ' Nueva descripción del evento'
-      event_notification : 'Notificación de eventos'
-      common_eve : "Evento común"
-      my_course_event : "Evento de Mi Curso"
-      my_department_event : "Evento de Mi Departamento"
+  event:
+    select_more_course : "Seleccionar más cursos"
+    select_more_department : "Seleccionar más departamentos"
+    course_associated : "Curso de Asociado"
+    no_course_selected : 'No hay cursos seleccionados para este evento todavía'
+    no_department_selected : 'No hay departamentos seleccionados para este evento todavía'
+    department_associated : "Departamento asociado"
+    common_event : 'Evento común a todos'
+    event_text : 'Evento'
+    new_event : 'Nuevo Evento'
+    event_description : ' Nueva descripción del evento'
+    event_notification : 'Notificación de eventos'
+    common_eve : "Evento común"
+    my_course_event : "Evento de Mi Curso"
+    my_department_event : "Evento de Mi Departamento"
 
-      flash1: 'Evento creado para los cursos seleccionados.'
-      flash2: 'Evento creado para los departamentos seleccionados'
-      flash3: 'Creación de evento cancelada'
+    flash1: 'Evento creado para los cursos seleccionados.'
+    flash2: 'Evento creado para los departamentos seleccionados'
+    flash3: 'Creación de evento cancelada'
 
-      index:
-        event_creation : 'Paso 1 - Creación de evento'
-        more : 'más'
-        associated : 'Asociado'
-        my : 'Mi'
-        create_event : "Crear evento"
+    index:
+      event_creation : 'Paso 1 - Creación de evento'
+      more : 'más'
+      associated : 'Asociado'
+      my : 'Mi'
+      create_event : "Crear evento"
 
-      edit:
-        edit_event : 'Paso 1 - Editar evento'
-        update_event : 'actualización de eventos'
+    edit:
+      edit_event : 'Paso 1 - Editar evento'
+      update_event : 'actualización de eventos'
 
-      show:
-        confirmation: 'Paso 2 - Confirmación'
-        other_event : 'Otros Eventos'
-        no_event_scheduled : 'No hay otros eventos programados'
-        common_to_all_message : 'Este evento es común en todos los cursos y departamentos'
+    show:
+      confirmation: 'Paso 2 - Confirmación'
+      other_event : 'Otros Eventos'
+      no_event_scheduled : 'No hay otros eventos programados'
+      common_to_all_message : 'Este evento es común en todos los cursos y departamentos'
 
 
 #employee controller translation
-    employee:
-      position  : 'Posición'
-      general_details : "Información General"
-      joining_date : "Fecha de Admisión"
-      job_title : "Cargo laboral"
-      qualification : "Calificación"
-      exp_info : "Info de Experiencia"
-      total_exp : "Experiencia Total"
-      marital_status : "Estado civil"
-      single : "Soltero"
-      married : "Casado"
-      divorced : "Divorciado"
-      no_of_children : "Cantidad de hijos"
-      active_fields : "Campos Activos"
-      inactive_fields : "Campos Inactivos"
-      fax : "FAX"
-      employee_name : "Nombre del empleado"
-      message : "Ningún empleado agregado bajo esta categoría"
-      payslip_generated_on : "Comprobante pago generado el"
-      employee_settings : "Configuración de los empleados"
-      employee_department : "Departamento de empleados"
-      employee_category : "Categoría de Empleados"
-      employee_position : "Posición de Empleado"
-      employee_grade : "Nivel del Empleado"
-      prefix : 'Prefijo'
-      department_code : "Código del Departamento"
-      priority : 'Prioridad'
-      max_period_per_day : 'Máximo de períodos por día'
-      max_period_per_week : 'Máximo de períodos por semana'
-      employee_admission : "Admisión de empleados"
-      select_department: 'Seleccionar departamento'
-      employee_id : "ID del empleado"
-      not_selected : "no seleccionado"
-      edit_employee_information : "Editar Información del Empleado"
-      line_1 : "Línea 1"
-      line_2 : "Línea 2"
-      contact : "Contacto"
-      personal : "Personal"
-      employee_management_text : "Gestion de Empleados"
-      histroy : 'historia'
-      all_employee : "Todos los Empleados"
-      employee_profile : "Perfil del Empleado"
-      student_leaving_school : 'Estudiantes que abandonan la escuela'
-      search_by_name : "Buscar por nombre"
-      rejected_employee : 'recibo de pago rechazado'
-      no_additional_details_entered : "No entró en detalles adicionales para"
-      basic_payroll_details : "Datos básicos de nómina"
-      no_payroll_detail_entered : "No se ingresó información de nómina para"
-      details : "Información"
-      bank_info : "Información Bancaria"
-      additional_info : "Información Adicional"
-      address_details  : 'detalles de la dirección'
-      bank_account_details : 'Detalles de la cuenta bancaria'
-      joining_info : 'Información de ingreso de'
-      change_password_after_login : 'Por favor, cambie su contraseña después de iniciar sesión'
-      kindly_approve : 'Por favor, aprobar esta solicitud'
-      rejected_payslip_regenerated: 'Nómina rechazó volver a generar'
-      payslip_has_been_generated_for: 'Recibo de sueldo ha sido re-generado por'
-      payslip_generated : ' Comprobante de pago generado'
-      message_body : 'Recibo de pago se ha generado para el mes en particular. Por favor aprobar esta solicitud'
-      salary_slip_for_month: 'Comprobante de salario generado en el mes de'
-      employees_salary_generated_manually: 'Los empleados cuyo salario se ha generado de forma manual, su comprobante de salario no se ha generado por este proceso'
-      salary_slip_reverted: 'Comprobante de salario revertido para el mes de'
-      please_select_month: 'Por favor, seleccionar un mes ...'
-      active_bank_field : "Campos Bancarios Activos "
-      inactive_bank_field : "Campos Bancarios Inactivos"
-      add_bank_details : "Añadir Información  Bancaria"
-      no_bank_detail : "No se encontró ninguna información bancaria"
-      active_category : "Categoría activa"
-      inactive_category : "Categoría inactiva"
-      no_category_record_found : "No se encontró categoría de empleados"
-      active_department : "Departamento Activo"
-      inactive_department : "Departamento Inactivo"
-      no_department_found : "No se encontró departamento de empleados"
-      active_grade : "Nivel Activo"
-      inactive_grade : "Nivel Inactivo"
-      active_position : "Posición Activa"
-      inactive_position : "Posición Inactiva"
-      no_position_record_found : "No se encontró Posición de los empleados"
-      all_leave_records: 'Registro de todas las licencias'
-      reporting_manager : "Administrador de reportes"
-      add_department : 'Añadir departamento'
-      add_grade : "Añadir Nivel"
-      add_position : "Añadir Posición"
-      employee_search_report : 'Empleado del informe de búsqueda'
-      bank_details : 'Datos bancarios'
-      edit_department : "Editar Departamento"
-      edit_grade : "Editar Nivel"
-      edit_position : "Editar Posición"
-      select_the_last_day_of_the_month: 'seleccionar el último día del mes'
-      my_emp: 'Mi empleado'
-      all_records: 'Todos los Registros'
-      personal_leave_management: 'Gestion de licencias personales'
-      span_leave_management: 'Gestion de la Duración de Licencias'
-      my_span: 'Duración de mis licencias'
-      new_leave_applications: 'Nueva solicitud de licencia'
-      all_leave_applications: 'Todas las solicitudes de licencia'
-      no_employees_under_my_span: 'No hay empleados bajo mi Duracion de mis licencias'
-      select_manager_msg : "Seleccionar administrador haciendo clic sobre este y luego actualizar!"
-      individual_employee : "Empleados individuales"
-      hr_setting : "Configuración de Gestión Humana"
-      payslip_text : "Comprobante de pago"
-      no_dates_found : "No se encontró ninguna fecha"
+  employee:
+    position  : 'Posición'
+    general_details : "Información General"
+    joining_date : "Fecha de Admisión"
+    job_title : "Cargo laboral"
+    qualification : "Calificación"
+    exp_info : "Info de Experiencia"
+    total_exp : "Experiencia Total"
+    marital_status : "Estado civil"
+    single : "Soltero"
+    married : "Casado"
+    divorced : "Divorciado"
+    no_of_children : "Cantidad de hijos"
+    active_fields : "Campos Activos"
+    inactive_fields : "Campos Inactivos"
+    fax : "FAX"
+    employee_name : "Nombre del empleado"
+    message : "Ningún empleado agregado bajo esta categoría"
+    payslip_generated_on : "Comprobante pago generado el"
+    employee_settings : "Configuración de los empleados"
+    employee_department : "Departamento de empleados"
+    employee_category : "Categoría de Empleados"
+    employee_position : "Posición de Empleado"
+    employee_grade : "Nivel del Empleado"
+    prefix : 'Prefijo'
+    department_code : "Código del Departamento"
+    priority : 'Prioridad'
+    max_period_per_day : 'Máximo de períodos por día'
+    max_period_per_week : 'Máximo de períodos por semana'
+    employee_admission : "Admisión de empleados"
+    select_department: 'Seleccionar departamento'
+    employee_id : "ID del empleado"
+    not_selected : "no seleccionado"
+    edit_employee_information : "Editar Información del Empleado"
+    line_1 : "Línea 1"
+    line_2 : "Línea 2"
+    contact : "Contacto"
+    personal : "Personal"
+    employee_management_text : "Gestion de Empleados"
+    histroy : 'historia'
+    all_employee : "Todos los Empleados"
+    employee_profile : "Perfil del Empleado"
+    student_leaving_school : 'Estudiantes que abandonan la escuela'
+    search_by_name : "Buscar por nombre"
+    rejected_employee : 'recibo de pago rechazado'
+    no_additional_details_entered : "No entró en detalles adicionales para"
+    basic_payroll_details : "Datos básicos de nómina"
+    no_payroll_detail_entered : "No se ingresó información de nómina para"
+    bank_info : "Información Bancaria"
+    additional_info : "Información Adicional"
+    address_details  : 'detalles de la dirección'
+    bank_account_details : 'Detalles de la cuenta bancaria'
+    joining_info : 'Información de ingreso de'
+    change_password_after_login : 'Por favor, cambie su contraseña después de iniciar sesión'
+    kindly_approve : 'Por favor, aprobar esta solicitud'
+    rejected_payslip_regenerated: 'Nómina rechazó volver a generar'
+    payslip_has_been_generated_for: 'Recibo de sueldo ha sido re-generado por'
+    payslip_generated : ' Comprobante de pago generado'
+    message_body : 'Recibo de pago se ha generado para el mes en particular. Por favor aprobar esta solicitud'
+    salary_slip_for_month: 'Comprobante de salario generado en el mes de'
+    employees_salary_generated_manually: 'Los empleados cuyo salario se ha generado de forma manual, su comprobante de salario no se ha generado por este proceso'
+    salary_slip_reverted: 'Comprobante de salario revertido para el mes de'
+    please_select_month: 'Por favor, seleccionar un mes ...'
+    active_bank_field : "Campos Bancarios Activos "
+    inactive_bank_field : "Campos Bancarios Inactivos"
+    add_bank_details : "Añadir Información  Bancaria"
+    no_bank_detail : "No se encontró ninguna información bancaria"
+    active_category : "Categoría activa"
+    inactive_category : "Categoría inactiva"
+    no_category_record_found : "No se encontró categoría de empleados"
+    active_department : "Departamento Activo"
+    inactive_department : "Departamento Inactivo"
+    no_department_found : "No se encontró departamento de empleados"
+    active_grade : "Nivel Activo"
+    inactive_grade : "Nivel Inactivo"
+    active_position : "Posición Activa"
+    inactive_position : "Posición Inactiva"
+    no_position_record_found : "No se encontró Posición de los empleados"
+    all_leave_records: 'Registro de todas las licencias'
+    reporting_manager : "Administrador de reportes"
+    add_department : 'Añadir departamento'
+    add_grade : "Añadir Nivel"
+    add_position : "Añadir Posición"
+    employee_search_report : 'Empleado del informe de búsqueda'
+    bank_details : 'Datos bancarios'
+    edit_department : "Editar Departamento"
+    edit_grade : "Editar Nivel"
+    edit_position : "Editar Posición"
+    select_the_last_day_of_the_month: 'seleccionar el último día del mes'
+    my_emp: 'Mi empleado'
+    all_records: 'Todos los Registros'
+    personal_leave_management: 'Gestion de licencias personales'
+    span_leave_management: 'Gestion de la Duración de Licencias'
+    my_span: 'Duración de mis licencias'
+    new_leave_applications: 'Nueva solicitud de licencia'
+    all_leave_applications: 'Todas las solicitudes de licencia'
+    no_employees_under_my_span: 'No hay empleados bajo mi Duracion de mis licencias'
+    select_manager_msg : "Seleccionar administrador haciendo clic sobre este y luego actualizar!"
+    individual_employee : "Empleados individuales"
+    hr_setting : "Configuración de Gestión Humana"
+    payslip_text : "Comprobante de pago"
+    no_dates_found : "No se encontró ninguna fecha"
 
-      flash1: 'Categoría de empleado creada'
-      flash2: 'Categoria de empleado actualizada'
-      flash3: 'Se ha eliminado exitosamente!'
-      flash4: 'No se puede eliminar!'
-      flash5: 'Posición de empleado creada'
-      flash6: 'Posición de empleado actualizada'
-      flash7: 'Departamento de empleado creado'
-      flash8: 'Departamento de empleado actualizado'
-      flash9: 'Nivel de empleado creado'
-      flash10: 'Nivel de empleado actualizado'
-      flash11: 'Campo Bancario creado'
-      flash12: 'Campo Bancario actualizado'
-      flash13: 'Campo adicional creado'
-      flash14: 'Información adicional actualizada'
-      flash15: 'Empleado'
-      flash16: 'registro guardado'
-      flash17: 'Información general actualizada'
-      flash18: 'información personal actualizada'
-      flash19: 'información de contacto guardada para'
-      flash20: 'Dirección del Empleado guardada para'
-      flash21: 'Información de contacto del empleado guardada para'
-      flash22: 'Datos bancarios guardados para'
-      flash23: 'datos bancarios actualizados'
-      flash24: 'Datos bancarios guardados para'
-      flash25: 'Jefe de empleados guardado'
-      flash26: 'Jefe de empleados modificado exitosamente'
-      flash27: 'Comprobante de salario generado para'
-      flash28: 'El comprobante de salario ya está generado para'
-      flash29: 'Comprobante de pago eliminado para'
-      flash30: 'Solicitud de licencia creada'
-      flash31: 'Empleado eliminado exitosamente!'
-      flash32: 'Todos los registros se han eliminado para el empleado No.'
-      flash33: 'El comprobante de pago ha sido aprobado'
-      flash34: 'No puede ser eliminado. Este empleado es un gestor de información'
-      flash35: 'No hay campos disponibles banco'
-      flash36: 'No hay campos adicionales disponibles'
-      flash37: 'Categoría de empleado no puede ser actualizado'
-      flash38: 'Posición de los empleados no pueden ser actualizados'
-      flash39: 'Empleado del departamento no puede ser actualizado'
-      flash40: 'No puedo empleado de grado se actualizará'
-      flash41: 'El empleado está asignado actualmente a mismo tema en el calendario'
-      flash42: 'Por favor, asignar a otro empleado en inorden calendario para eliminar esta asociación'
+    flash1: 'Categoría de empleado creada'
+    flash2: 'Categoria de empleado actualizada'
+    flash3: 'Se ha eliminado exitosamente!'
+    flash4: 'No se puede eliminar!'
+    flash5: 'Posición de empleado creada'
+    flash6: 'Posición de empleado actualizada'
+    flash7: 'Departamento de empleado creado'
+    flash8: 'Departamento de empleado actualizado'
+    flash9: 'Nivel de empleado creado'
+    flash10: 'Nivel de empleado actualizado'
+    flash11: 'Campo Bancario creado'
+    flash12: 'Campo Bancario actualizado'
+    flash13: 'Campo adicional creado'
+    flash14: 'Información adicional actualizada'
+    flash15: 'Empleado'
+    flash16: 'registro guardado'
+    flash17: 'Información general actualizada'
+    flash18: 'información personal actualizada'
+    flash19: 'información de contacto guardada para'
+    flash20: 'Dirección del Empleado guardada para'
+    flash21: 'Información de contacto del empleado guardada para'
+    flash22: 'Datos bancarios guardados para'
+    flash23: 'datos bancarios actualizados'
+    flash24: 'Datos bancarios guardados para'
+    flash25: 'Jefe de empleados guardado'
+    flash26: 'Jefe de empleados modificado exitosamente'
+    flash27: 'Comprobante de salario generado para'
+    flash28: 'El comprobante de salario ya está generado para'
+    flash29: 'Comprobante de pago eliminado para'
+    flash30: 'Solicitud de licencia creada'
+    flash31: 'Empleado eliminado exitosamente!'
+    flash32: 'Todos los registros se han eliminado para el empleado No.'
+    flash33: 'El comprobante de pago ha sido aprobado'
+    flash34: 'No puede ser eliminado. Este empleado es un gestor de información'
+    flash35: 'No hay campos disponibles banco'
+    flash36: 'No hay campos adicionales disponibles'
+    flash37: 'Categoría de empleado no puede ser actualizado'
+    flash38: 'Posición de los empleados no pueden ser actualizados'
+    flash39: 'Empleado del departamento no puede ser actualizado'
+    flash40: 'No puedo empleado de grado se actualizará'
+    flash41: 'El empleado está asignado actualmente a mismo tema en el calendario'
+    flash42: 'Por favor, asignar a otro empleado en inorden calendario para eliminar esta asociación'
 
-      
-      hr:
-        management: 'Gestion'
-        hr : 'GH'
-        human_resource : 'Gestión Humana'
-        leave : 'Licencia'
-        one_click_approve : 'Aprobar con un clic'
-        bank_detail : 'Información  bancaria'
-        no : 'No'
-        record : 'registro'
-        found : 'encontrado'
-        no_employee_grades_record_found: 'No se encontró ningún registro correspondiente al nivel del Empleado'
-        general_profile: 'Perfil General'
-        hr_management : "Gestión Humana"
-        manage_all_employee : "Gestionar TODOS los empleados"
-        employee_leave_management : "Gestión de Licencias"
-        manage_all_employee_attendance_and_leave : "Gestionar TODAS Asistencias y Licencias"
-        create_payslip : "Crear comprobante de nómina"
-        create_employee_monthly_payslip : "Crear comprobante de nómina mensual"
-        search_for_employees : "Buscar empleados"
-        view_department_wise_payslip : "Ver comprobante de nómina por departamentos"
-        
-      search:
-        employee_details: 'Información de Empleados'
-        
-      employee_attendance:
-        manage_attendance: 'Gestionar Asistencia'
-        leave_attendance: 'Licencias y Asistencia'
-        link_dec1: 'Agregar y editar tipos de asistencia de los empleados.'
 
-      edit_bank_details:
-        edit_bank_details : "Editar Información Bancaria"
+    hr:
+      management: 'Gestion'
+      hr : 'GH'
+      human_resource : 'Gestión Humana'
+      leave : 'Licencia'
+      one_click_approve : 'Aprobar con un clic'
+      bank_detail : 'Información  bancaria'
+      no : 'No'
+      record : 'registro'
+      found : 'encontrado'
+      no_employee_grades_record_found: 'No se encontró ningún registro correspondiente al nivel del Empleado'
+      general_profile: 'Perfil General'
+      hr_management : "Gestión Humana"
+      manage_all_employee : "Gestionar TODOS los empleados"
+      employee_leave_management : "Gestión de Licencias"
+      manage_all_employee_attendance_and_leave : "Gestionar TODAS Asistencias y Licencias"
+      create_payslip : "Crear comprobante de nómina"
+      create_employee_monthly_payslip : "Crear comprobante de nómina mensual"
+      search_for_employees : "Buscar empleados"
+      view_department_wise_payslip : "Ver comprobante de nómina por departamentos"
 
-      employee_management:
-        manage_all_employee : "Gestionar TODOS los Empleados"
-        employee_admission_form : "Formulario de Admisión para Empleados"
-        employee_subject_association : "Asociación de asignaturas a Empleado"
-        assign_an_employee : "Asignar un empleado a una o más Asignaturas"
+    search:
+      employee_details: 'Información de Empleados'
 
-      admission1:
-        step_1 : "Paso - 1"
-        last_employee_number : "El número del ultimo empleado es"
-        upload_user_signature : "Cargar Firma"
+    employee_attendance:
+      manage_attendance: 'Gestionar Asistencia'
+      leave_attendance: 'Licencias y Asistencia'
+      link_dec1: 'Agregar y editar tipos de asistencia de los empleados.'
 
-      admission2:
-        step_2 : "Paso - 2"
-      
-      admission3:
-        step_3 : "Paso - 3"
+    edit_bank_details:
+      edit_bank_details : "Editar Información Bancaria"
 
-      admission3_1:
-        step_4 : "Paso - 4"
+    employee_management:
+      manage_all_employee : "Gestionar TODOS los Empleados"
+      employee_admission_form : "Formulario de Admisión para Empleados"
+      employee_subject_association : "Asociación de asignaturas a Empleado"
+      assign_an_employee : "Asignar un empleado a una o más Asignaturas"
 
-      edit_privilege:
-        set_privilege : "Configurar privilegios"
-        set_privilege_for : "Configurar privilegios para"
-        ExaminationControl : "Control de Exámenes"
-        EnterResults : "Ingresar exámenes"
-        ViewResults : "Ver resultado"
-        Admission : "Admisión"
-        StudentsControl : "Control de Estudiantes"
-        ManageNews : "Gestionar noticias"
-        Timetable : "Horarios"
-        StudentAttendanceView : "Ver Asistencia de Estudiantes"
-        HrBasics : "Recurso Humano Básico"
-        AddNewBatch : "Anadir Nuevo Grupo"
-        SubjectMaster : "Gestión de asignaturas"
-        EventManagement : "Gestión de Eventos"
-        GeneralSettings : "Configuración General"
-        FinanceControl : "Control Financiero"
-        TimetableView : "Ver Horarios"
-        StudentAttendanceRegister : "Registro de Asistencia de Estudiantes"
-        EmployeeAttendance : "Asistencia de Empleados"
-        PayslipPowers : "Comprobante de pago"
-        EmployeeSearch : "Búsqueda de Empleados"
-        SMSManagement : "Gestión SMS"
-        Librarian : "Bibliotecario"
+    admission1:
+      step_1 : "Paso - 1"
+      last_employee_number : "El número del ultimo empleado es"
+      upload_user_signature : "Cargar Firma"
 
-      admission4:
-        select_reporting_manager : "Seleccionar Administrador de Reportes"
-        step_5 : "Paso - 5"
-        selected_manager : "Administrador Seleccionado"
-       
-      profile:
-        leaves : "Licencias"
-        no_bank_details_entered : "No se ingresó información bancaria para"
-        no_add_details_entered : "No se ingresó información adicional para"
-        
-      remove:
-        remove_employee : "Eliminar Empleado"
-        employee_leaving_institution : "Empleado que se retira de la Institución"
-        employee_leaving_institution_msg : "Para los empleados que se retiran de la Institución, utilice esta opción para eliminarlos de la lista de los empleados activos y colocarlos en la lista de los ex empleados."
-        employee_left_school : "El empleado se ha retirado de Institución"
-        remove_record : "Eliminar registros del empleado"
-        remove_record_msg : "Eliminar completamente el empleado de la base de datos de la Institución. Utilice esta opción sólo si ha creado un empleado por accidente y quiere eliminarlo por completo."
-        confirm : "Esto también cancela la asignación del empleado a todas sus Asignaturas actuales, ¿Desea continuar?"
+    admission2:
+      step_2 : "Paso - 2"
 
-      remove_subordinate_employee:
-        change_reporting_manager : 'Cambiar la presentación de informes gerente'
-        below_listed_employees : 'Los empleados se enumeran a continuación están bajo esta Manager. Por favor, gerente de seleccionar y alternativa '
-        selected_new_manager : 'Gerente de Nuevos seleccionados'
+    admission3:
+      step_3 : "Paso - 3"
 
-      change_to_former:
-        paragraph : "Para los empleados que se retiran de la Institución, utilice esta opción para eliminarlos de la lista de empleados activos y colocarlos en la lista de los ex empleados."
+    admission3_1:
+      step_4 : "Paso - 4"
 
-      subject_assignment:
-        employee_subject : "Asignatura del Empleado"
-        associate : "Asociar"
-        
-      payslip:
-        one_click_payslip : "Generar comprobante de pago con un clic"
-        one_click_payslip_revert : " Revertir comprobante de pago con un click"
-        revert_confirm : "Esto eliminará los comprobantes de pago de todos los empleados (del mes que elija), del sistema. ¿Estás seguro?"
-        link_desc1 : "Generar comprobante de pago a un empleado"
-        link_desc2 : "Generar comprobante de pago con clic"
-        link_desc3 : "Revertir comprobante de pago con un clic"
-        link_desc4 : "Gestionar nóminas empleado rechazado"
+    edit_privilege:
+      set_privilege : "Configurar privilegios"
+      set_privilege_for : "Configurar privilegios para"
+      ExaminationControl : "Control de Exámenes"
+      EnterResults : "Ingresar exámenes"
+      ViewResults : "Ver resultado"
+      Admission : "Admisión"
+      StudentsControl : "Control de Estudiantes"
+      ManageNews : "Gestionar noticias"
+      Timetable : "Horarios"
+      StudentAttendanceView : "Ver Asistencia de Estudiantes"
+      HrBasics : "Recurso Humano Básico"
+      AddNewBatch : "Anadir Nuevo Grupo"
+      SubjectMaster : "Gestión de asignaturas"
+      EventManagement : "Gestión de Eventos"
+      GeneralSettings : "Configuración General"
+      FinanceControl : "Control Financiero"
+      TimetableView : "Ver Horarios"
+      StudentAttendanceRegister : "Registro de Asistencia de Estudiantes"
+      EmployeeAttendance : "Asistencia de Empleados"
+      PayslipPowers : "Comprobante de pago"
+      EmployeeSearch : "Búsqueda de Empleados"
+      SMSManagement : "Gestión SMS"
+      Librarian : "Bibliotecario"
 
-      select_department_employee:
-        payslip_generation : "Generar comprobante de pago"
-        
-      department_payslip:
-        approved_salary : 'salarial aprobado'
+    admission4:
+      select_reporting_manager : "Seleccionar Administrador de Reportes"
+      step_5 : "Paso - 5"
+      selected_manager : "Administrador Seleccionado"
 
-      change_reporting_manager:
-        current_manager : "Administrador actual"
-        new_manager : "Nuevo Administrador"
+    profile:
+      leaves : "Licencias"
+      no_bank_details_entered : "No se ingresó información bancaria para"
+      no_add_details_entered : "No se ingresó información adicional para"
 
-      advanced_search:
-        year_of_join : "Año de ingreso"
-        present_employee : "Empleados actuales"
-        former_employee : "Ex Empleados"
-        choose_your_option : "elija su opción"
+    remove:
+      remove_employee : "Eliminar Empleado"
+      employee_leaving_institution : "Empleado que se retira de la Institución"
+      employee_leaving_institution_msg : "Para los empleados que se retiran de la Institución, utilice esta opción para eliminarlos de la lista de los empleados activos y colocarlos en la lista de los ex empleados."
+      employee_left_school : "El empleado se ha retirado de Institución"
+      remove_record : "Eliminar registros del empleado"
+      remove_record_msg : "Eliminar completamente el empleado de la base de datos de la Institución. Utilice esta opción sólo si ha creado un empleado por accidente y quiere eliminarlo por completo."
+      confirm : "Esto también cancela la asignación del empleado a todas sus Asignaturas actuales, ¿Desea continuar?"
 
-      one_click_payslip_generation:
-        note: 'NOTA'
-        
-      settings:
-        add_employee_category : "Agregar categoría de empleados"
-        add_employee_position : "Añadir posición de empleados"
-        add_employee_department : "Añadir Departamento de Empleados"
-        add_employee_grade : "Añadir Nivel de empleados"
-        add_bank_detail : "Añadir información bancaria"
-        add_additional_detail : "Añadir información adicional"
-        add_edit_employee_category : "Agregar y Editar categoría de empleados"
-        add_edit_employee_position : "Agregar y editar posición de empleados"
-        add_edit_employee_department : "Agregar y Editar Departamento de Empleados"
-        add_edit_employee_grade : "Agregar y Editar Nivel de Empleados"
-        add_edit_bank_detail : "Agregar y editar información bancaria"
-        add_edit_additional_detail : "Agregar y editar información adicional para formularios de admisión de los empleados"
-        payslip_settings: 'Configuración de Comprobante de Nómina'
+    remove_subordinate_employee:
+      change_reporting_manager : 'Cambiar la presentación de informes gerente'
+      below_listed_employees : 'Los empleados se enumeran a continuación están bajo esta Manager. Por favor, gerente de seleccionar y alternativa '
+      selected_new_manager : 'Gerente de Nuevos seleccionados'
+
+    change_to_former:
+      paragraph : "Para los empleados que se retiran de la Institución, utilice esta opción para eliminarlos de la lista de empleados activos y colocarlos en la lista de los ex empleados."
+
+    subject_assignment:
+      employee_subject : "Asignatura del Empleado"
+      associate : "Asociar"
+
+    payslip:
+      one_click_payslip : "Generar comprobante de pago con un clic"
+      one_click_payslip_revert : " Revertir comprobante de pago con un click"
+      revert_confirm : "Esto eliminará los comprobantes de pago de todos los empleados (del mes que elija), del sistema. ¿Estás seguro?"
+      link_desc1 : "Generar comprobante de pago a un empleado"
+      link_desc2 : "Generar comprobante de pago con clic"
+      link_desc3 : "Revertir comprobante de pago con un clic"
+      link_desc4 : "Gestionar nóminas empleado rechazado"
+
+    select_department_employee:
+      payslip_generation : "Generar comprobante de pago"
+
+    department_payslip:
+      approved_salary : 'salarial aprobado'
+
+    change_reporting_manager:
+      current_manager : "Administrador actual"
+      new_manager : "Nuevo Administrador"
+
+    advanced_search:
+      year_of_join : "Año de ingreso"
+      present_employee : "Empleados actuales"
+      former_employee : "Ex Empleados"
+      choose_your_option : "elija su opción"
+
+    one_click_payslip_generation:
+      note: 'NOTA'
+
+    settings:
+      add_employee_category : "Agregar categoría de empleados"
+      add_employee_position : "Añadir posición de empleados"
+      add_employee_department : "Añadir Departamento de Empleados"
+      add_employee_grade : "Añadir Nivel de empleados"
+      add_bank_detail : "Añadir información bancaria"
+      add_additional_detail : "Añadir información adicional"
+      add_edit_employee_category : "Agregar y Editar categoría de empleados"
+      add_edit_employee_position : "Agregar y editar posición de empleados"
+      add_edit_employee_department : "Agregar y Editar Departamento de Empleados"
+      add_edit_employee_grade : "Agregar y Editar Nivel de Empleados"
+      add_edit_bank_detail : "Agregar y editar información bancaria"
+      add_edit_additional_detail : "Agregar y editar información adicional para formularios de admisión de los empleados"
+      payslip_settings: 'Configuración de Comprobante de Nómina'
 
 #payroll translation
-    payroll:
-      earnings : "Ganancias"
-      inactivate : "Desactivar"
-      inactivate_confirm : "¿Estás seguro que desea desactivar esta categoría?"
-      activate : "Activar"
-      activate_confirm : "¿Estás seguro de que desea activar esta categoría?"
-      earnings_msg : "No se encontró ninguna categoría de nómina no deducible"
-      deduction_msg : "No se encontró ninguna categoría de nómina deducible"
-      index : 'Index'
-      data_saved_for: 'Datos guardados para'
-      is_deduction : "es deducción?"
-      percentage_of : "Porcentaje de"
+  payroll:
+    earnings : "Ganancias"
+    inactivate : "Desactivar"
+    inactivate_confirm : "¿Estás seguro que desea desactivar esta categoría?"
+    activate : "Activar"
+    activate_confirm : "¿Estás seguro de que desea activar esta categoría?"
+    earnings_msg : "No se encontró ninguna categoría de nómina no deducible"
+    deduction_msg : "No se encontró ninguna categoría de nómina deducible"
+    index : 'Index'
+    data_saved_for: 'Datos guardados para'
+    is_deduction : "es deducción?"
+    percentage_of : "Porcentaje de"
 
-      flash1: 'Categoría de nómina guardada'
-      flash2: 'Categoría de nómina actualizada'
-      flash3: 'Se ha eliminado exitosamente!'
-      flash4: 'No se puede eliminar!'
-      
-      manage_payroll:
-        manage_payroll : "Gestionar nómina"
-        enter_payroll_detail : "Introduzcir datos de nómina"
+    flash1: 'Categoría de nómina guardada'
+    flash2: 'Categoría de nómina actualizada'
+    flash3: 'Se ha eliminado exitosamente!'
+    flash4: 'No se puede eliminar!'
 
-      edit_payroll_details:
-        edit_payroll : 'Editar nómina'
-        payroll_details : 'Datos de nómina'
-        
+    manage_payroll:
+      manage_payroll : "Gestionar nómina"
+      enter_payroll_detail : "Introduzcir datos de nómina"
+
+    edit_payroll_details:
+      edit_payroll : 'Editar nómina'
+      payroll_details : 'Datos de nómina'
+
 
 #employee_attendance translation
-    employee_attendance:
-      new_application_from_employees : "Nuevas solicitudes de empleados"
-      view_all_leave_application : "Ver todas las solicitudes de licencia de los empleados"
-      new_applications_from_employee : "Nuevas solicitudes de empleados"
-      approval_remark : "Observaciones de aprobación"
-      deny_remark : "Denegar comentarios"
-      leave_types: 'Tipos de licencia'
-      last_reset_date : 'Fecha última puesta a cero'
-      no_remarks : 'no hay Comentarios'
-      no_leave_application : "No hay solicitudes de licencias"
-      employee_leave_types_records: 'No se encontró registros de tipos de licencias'
-      active_leave: 'Tipos de licencia activos'
-      inactive_leave: 'Tipos de licencia inactivos'
-      employee_attendance_text: 'Asistencia de los empleados'
-      leave_history : 'dejar un'
-      no_leaves_taken : "No se han tomado licencias"
-      no_leave_type_registered : ' Lo siento! Ningún tipo de licencia registrada para el empleado'
-      employee_attendance_report : 'Informe de Asistencia de Empleados'
-      no_dates : 'no hay fechas'
-      net_total_leaves : "Licencias totales netas"
-      enable_carry_forward  : 'Habilitar Arrastre'
-      reset_employee_leaves_for : 'Perdí mi licencia del empleado para'
-      full_leave_reset : 'Perdí mi licencia completa'
-      reset_leave_count_for_all : 'Restablecer Deja Conde para todos los empleados'
-      reset_count_msg  : 'Esto restablecerá contar con licencia para todos los empleados'
-      dept_leave_reset : 'Departamento Deja Restablecer'
-      reset_employee_leave_dept_wise : 'Restablecer los empleados Deja Departamento Sabio'
-      reset_employee_leave_for_each_emp : 'Perdí mi licencia del empleado para cada empleado'
-      add_and_edit_employee_leave_types : 'Agregar y editar tipos de empleados dejan'
-      attendance_reports : 'los informes de asistencia.'
-      leave_application : "Solicitud de licencias"
-      approve_deny : "Aprobar / Denegar"
-      manager_name : "Nombre del Jefe"
-      leave_start_date : "Fecha inicial de licencia"
-      leave_end_date : "Fecha final de licencia"
-      leave_count : 'deja conde'
-      deny : "Denegar"
-      mini_report : 'Mini Informes'
-      add_leave_type: 'Añadir nuevos tipos de licencia'
-      enable_automatic_reset : 'Habilitar el restablecimiento automático'
-      leave_reset_period : 'Deja período de reposición (meses)'
-      rest_period        : 'Período de reposición (meses)'
-      count_begin_date : 'Conde Fecha de inicio'
-      apply_or_check_status : 'Aplicar o comprobar el estado de'
-      warn_notice : "Lo sentimos, no puedes solicitar una licencia sin un reporte del Jefe. Por favor, comuníquese con él."
-      manual_leave_reset : 'Manual Deja Restablecer'
-      reset_employee_leave_manually : 'Empleados restablecer Agregar manualmente'
-      leave_reset_settings : 'Deja Restablecer configuración'
-      configure_automatic_leave_reset : 'Configurar los ajustes automáticos dejar restablecer'
-      reset_all : 'restablecer todos'
-      department_reset : 'Departamento Restablecer'
-      reset_emp_leave_count_by_dept : 'Perdí mi número de empleados ausencias por departamentos'
-      individual_reset : 'Restablecer individuales'
-      reset_emp_leave_count_ind : 'Empleado restablecer dejar cuentan individualmente.'
-      info: 'info'
-      manager_remark : 'gerente de Observación'
-      cancel_leave : "Cancelar licencia"
-      attendance_date : "Fecha de Asistencia"
-      automatic_reset : 'restablecimiento automático'
-      configure_auto_leave_reset: 'Configurar restablecimiento automático Deja empleados'
-      manual_reset : 'reset manual'
-      leave_count_reset_sucessfull : 'Deja contar rearme con éxito para todos los empleados'
-      leave_code: 'Código de la licencia'
-      max_leave: 'Cantidad máxima de licencias'
-      edit_leave_types : "Editar tipos de licencia"
+  employee_attendance:
+    new_application_from_employees : "Nuevas solicitudes de empleados"
+    view_all_leave_application : "Ver todas las solicitudes de licencia de los empleados"
+    new_applications_from_employee : "Nuevas solicitudes de empleados"
+    approval_remark : "Observaciones de aprobación"
+    deny_remark : "Denegar comentarios"
+    leave_types: 'Tipos de licencia'
+    last_reset_date : 'Fecha última puesta a cero'
+    no_remarks : 'no hay Comentarios'
+    no_leave_application : "No hay solicitudes de licencias"
+    employee_leave_types_records: 'No se encontró registros de tipos de licencias'
+    active_leave: 'Tipos de licencia activos'
+    inactive_leave: 'Tipos de licencia inactivos'
+    employee_attendance_text: 'Asistencia de los empleados'
+    leave_history : 'dejar un'
+    no_leaves_taken : "No se han tomado licencias"
+    no_leave_type_registered : ' Lo siento! Ningún tipo de licencia registrada para el empleado'
+    employee_attendance_report : 'Informe de Asistencia de Empleados'
+    no_dates : 'no hay fechas'
+    net_total_leaves : "Licencias totales netas"
+    enable_carry_forward  : 'Habilitar Arrastre'
+    reset_employee_leaves_for : 'Perdí mi licencia del empleado para'
+    full_leave_reset : 'Perdí mi licencia completa'
+    reset_leave_count_for_all : 'Restablecer Deja Conde para todos los empleados'
+    reset_count_msg  : 'Esto restablecerá contar con licencia para todos los empleados'
+    dept_leave_reset : 'Departamento Deja Restablecer'
+    reset_employee_leave_dept_wise : 'Restablecer los empleados Deja Departamento Sabio'
+    reset_employee_leave_for_each_emp : 'Perdí mi licencia del empleado para cada empleado'
+    add_and_edit_employee_leave_types : 'Agregar y editar tipos de empleados dejan'
+    attendance_reports : 'los informes de asistencia.'
+    leave_application : "Solicitud de licencias"
+    approve_deny : "Aprobar / Denegar"
+    manager_name : "Nombre del Jefe"
+    leave_start_date : "Fecha inicial de licencia"
+    leave_end_date : "Fecha final de licencia"
+    leave_count : 'deja conde'
+    deny : "Denegar"
+    mini_report : 'Mini Informes'
+    add_leave_type: 'Añadir nuevos tipos de licencia'
+    enable_automatic_reset : 'Habilitar el restablecimiento automático'
+    leave_reset_period : 'Deja período de reposición (meses)'
+    rest_period        : 'Período de reposición (meses)'
+    count_begin_date : 'Conde Fecha de inicio'
+    apply_or_check_status : 'Aplicar o comprobar el estado de'
+    warn_notice : "Lo sentimos, no puedes solicitar una licencia sin un reporte del Jefe. Por favor, comuníquese con él."
+    manual_leave_reset : 'Manual Deja Restablecer'
+    reset_employee_leave_manually : 'Empleados restablecer Agregar manualmente'
+    leave_reset_settings : 'Deja Restablecer configuración'
+    configure_automatic_leave_reset : 'Configurar los ajustes automáticos dejar restablecer'
+    reset_all : 'restablecer todos'
+    department_reset : 'Departamento Restablecer'
+    reset_emp_leave_count_by_dept : 'Perdí mi número de empleados ausencias por departamentos'
+    individual_reset : 'Restablecer individuales'
+    reset_emp_leave_count_ind : 'Empleado restablecer dejar cuentan individualmente.'
+    info: 'info'
+    manager_remark : 'gerente de Observación'
+    cancel_leave : "Cancelar licencia"
+    attendance_date : "Fecha de Asistencia"
+    automatic_reset : 'restablecimiento automático'
+    configure_auto_leave_reset: 'Configurar restablecimiento automático Deja empleados'
+    manual_reset : 'reset manual'
+    leave_count_reset_sucessfull : 'Deja contar rearme con éxito para todos los empleados'
+    leave_code: 'Código de la licencia'
+    max_leave: 'Cantidad máxima de licencias'
+    edit_leave_types : "Editar tipos de licencia"
 
-      flash1: 'Tipo de Licencia guardada'
-      flash2: 'Tipo de Licencia actualizada'
-      flash3: 'Tipo de licencia eliminada exitosamente'
-      flash4: 'Asistencia registrada'
-      flash5: 'Solicitud de licencia creada'
-      flash6: 'Licencia aprobada para'
-      flash7: 'Licencia denegada para'
-      flash8: 'Solicitud de licencia eliminada'
-      flash9: 'Lo siento! No se puede eliminar un tipo de licencia con la entrada de dejar'
-      flash10: 'Lo sentimos dejar aprovado no se pueden eliminar'
-      flash11: 'Deja rearme con éxito'
-      flash12: 'Departamento Sabio Deja rearme con éxito'
+    flash1: 'Tipo de Licencia guardada'
+    flash2: 'Tipo de Licencia actualizada'
+    flash3: 'Tipo de licencia eliminada exitosamente'
+    flash4: 'Asistencia registrada'
+    flash5: 'Solicitud de licencia creada'
+    flash6: 'Licencia aprobada para'
+    flash7: 'Licencia denegada para'
+    flash8: 'Solicitud de licencia eliminada'
+    flash9: 'Lo siento! No se puede eliminar un tipo de licencia con la entrada de dejar'
+    flash10: 'Lo sentimos dejar aprovado no se pueden eliminar'
+    flash11: 'Deja rearme con éxito'
+    flash12: 'Departamento Sabio Deja rearme con éxito'
 
-      leave_app:
-        send_message : "Enviar mensajes al Jefe de este empleado"
-        pending_approval : "Aprobación pendiente"
+    leave_app:
+      send_message : "Enviar mensajes al Jefe de este empleado"
+      pending_approval : "Aprobación pendiente"
 
-      index:
-        add_edit_leave_type : "Agregar y editar tipos de licencia."
-        new_leaves : "Nuevas licencias"
- 
-  
+    index:
+      add_edit_leave_type : "Agregar y editar tipos de licencia."
+      new_leaves : "Nuevas licencias"
+
+
 #Sms Controller
-    sms:
-      sms_text : "SMS"
-      departments : 'departamentos'
-      employees : 'empleados'
-      settings: 'Configuración'
-      sms_sent: 'SMS enviados exitosamente a los estudiantes seleccionados y sus guardianes'
-      sms_sent_selected_course: 'SMS enviados exitosamente a los estudiantes (guardianes) del curso seleccionado'
-      sms_sent_to_employee: 'SMS enviados exitosamente a los empleados seleccionados'
-      sent_to_selected_department : 'SMS enviados exitosamente a los empleados del departamento seleccionado'
-      
-      index:
-        sms_settings_page : 'Página de configuración SMS'
-        send_sms_to_students : 'Enviar SMS a los estudiantes'
-        sms_to_batches : 'Enviar SMS a Grupos'
-        sms_to_employees : 'Enviar SMS a Empleados'
-        sms_to_employee_department : 'Enviar SMS a Departamentos'
-        sms_to_all : 'Enviar SMS a todos'
-        exam_schedule_result : 'Calendario de Exámenes/Resultados'
-        msg1 : 'SMS enviados a Grupos y Departamentos'
-      
+  sms:
+    sms_text : "SMS"
+    departments : 'departamentos'
+    employees : 'empleados'
+    settings: 'Configuración'
+    sms_sent: 'SMS enviados exitosamente a los estudiantes seleccionados y sus guardianes'
+    sms_sent_selected_course: 'SMS enviados exitosamente a los estudiantes (guardianes) del curso seleccionado'
+    sms_sent_to_employee: 'SMS enviados exitosamente a los empleados seleccionados'
+    sent_to_selected_department : 'SMS enviados exitosamente a los empleados del departamento seleccionado'
+
+    index:
+      sms_settings_page : 'Página de configuración SMS'
+      send_sms_to_students : 'Enviar SMS a los estudiantes'
+      sms_to_batches : 'Enviar SMS a Grupos'
+      sms_to_employees : 'Enviar SMS a Empleados'
+      sms_to_employee_department : 'Enviar SMS a Departamentos'
+      sms_to_all : 'Enviar SMS a todos'
+      exam_schedule_result : 'Calendario de Exámenes/Resultados'
+      msg1 : 'SMS enviados a Grupos y Departamentos'
+
 #news controller translation
-    news:
-      posted : 'Publicado el'
-      school_news : 'Noticias Escolares'
-      news : 'Noticias'
-      latest_announcement : 'Últimos anuncios'
-      user_deleted : 'usuario eliminado'
-      read_news : 'Leer noticias'
-      posted_on : 'Publicado el'
-      content : 'Contenido'
-      comments : 'Comentarios'
-      leave_comment : 'Dejar un comentario'
-      publish_news  : 'Publicar Noticias'
+  news:
+    posted : 'Publicado el'
+    school_news : 'Noticias Escolares'
+    news : 'Noticias'
+    latest_announcement : 'Últimos anuncios'
+    user_deleted : 'usuario eliminado'
+    read_news : 'Leer noticias'
+    posted_on : 'Publicado el'
+    content : 'Contenido'
+    comments : 'Comentarios'
+    leave_comment : 'Dejar un comentario'
+    publish_news  : 'Publicar Noticias'
 
-      flash1: 'Noticias agregadas!'
-      flash2: 'Noticia eliminada exitosamente'
-      flash3 : 'Noticias actualizadas!'
-      
-      index:
-        more_news : 'Mas Noticias'
-      all:
-        author : 'Autor'
-      search_news_ajax:
-        no_news : 'No se encontraron noticias'
-      view:
-        no_comments : 'No hay comentarios todavía.'
-        
+    flash1: 'Noticias agregadas!'
+    flash2: 'Noticia eliminada exitosamente'
+    flash3 : 'Noticias actualizadas!'
+
+    index:
+      more_news : 'Mas Noticias'
+    all:
+      author : 'Autor'
+    search_news_ajax:
+      no_news : 'No se encontraron noticias'
+    view:
+      no_comments : 'No hay comentarios todavía.'
+
 #user controller translation
-    user:
-      details_about_user : 'Información de usuario'
-      edit_user : "Editar usuario"
-      update_user_information : "Actualizar la información del usuario"
-      old_password : "Contraseña antigua"
-      new_password : "Nueva Contraseña"
-      confirm_password : "Confirmar contraseña"
-      make_new_admin_user : 'Hacer que el usuario admin nueva'
-      only_admin_user_can_created : 'Sólo usuario administrador puede crear'
-      change_password : 'Cambiar contraseña'
-      role : 'Rol'
-      help: "Ayuda!"
-      powered_by: 'Desarrollado por'
-      manage_users : 'Gestionar Usuarios'
-      detailed_about_user : 'Detalles acerca de los usuarios'
-      edit_privilege_text : "Editar privilegios"
-      faq : "Preguntas Frecuentes"
-      support : "Soporte"
-      welcome: "Bienvenido"
-      login_error_message: "Nombre de usuario o contraseña invalida"
-      logged_out: "Cerrar Sesión"
+  user:
+    details_about_user : 'Información de usuario'
+    edit_user : "Editar usuario"
+    update_user_information : "Actualizar la información del usuario"
+    old_password : "Contraseña antigua"
+    new_password : "Nueva Contraseña"
+    confirm_password : "Confirmar contraseña"
+    make_new_admin_user : 'Hacer que el usuario admin nueva'
+    only_admin_user_can_created : 'Sólo usuario administrador puede crear'
+    change_password : 'Cambiar contraseña'
+    role : 'Rol'
+    help: "Ayuda!"
+    powered_by: 'Desarrollado por'
+    manage_users : 'Gestionar Usuarios'
+    detailed_about_user : 'Detalles acerca de los usuarios'
+    edit_privilege_text : "Editar privilegios"
+    faq : "Preguntas Frecuentes"
+    support : "Soporte"
+    welcome: "Bienvenido"
+    login_error_message: "Nombre de usuario o contraseña invalida"
+    logged_out: "Cerrar Sesión"
 
-      flash1: 'El tiempo de restablecimiento ha expirado'
-      flash2: 'Vínculo de restablecimiento no válido'
-      flash3: 'Contraseña restablecida exitosamente. Use la nueva contraseña para entrar'
-      flash4: 'Falló la confirmación de la contraseña. Por favor, introduzca la contraseña de nuevo.'
-      flash5: 'Ha seguido un vínculo no válido. Por favor, inténtelo de nuevo.'
-      flash6 : 'Los campos de la contraseña no pueden estar en blanco!'
-      flash7 : 'La contraseña se ha actualizado exitosamente!'
-      flash8 : 'Confirmación de la contraseña ha fallado. Por favor, inténtelo de nuevo.'
-      flash9 : 'Contraseña cambiada exitosamente'
-      flash10 : 'La confirmación de la contraseña ha fallado. Por favor, inténtelo de nuevo.'
-      flash11 : 'La antigua contraseña que entró no es correcta. Por favor, introduzca una contraseña válida.'
-      flash12: 'Cuenta de usuario eliminada!'
-      flash13: 'Cuenta de usuario actualizada!'
-      flash14 : 'Perfil de usuario no encontrado.'
-      flash15 : 'Rol actualizado'
-      flash16 : 'Cuenta de usuario no creada!'
-      flash17 : 'Cuenta de usuario creada!'
-      flash18 : 'Un enlace para restablecer la contraseña se ha enviado al correo electronico'
-      flash19 : 'No hay ningún usuario con esa dirección de correo electrónico'
+    flash1: 'El tiempo de restablecimiento ha expirado'
+    flash2: 'Vínculo de restablecimiento no válido'
+    flash3: 'Contraseña restablecida exitosamente. Use la nueva contraseña para entrar'
+    flash4: 'Falló la confirmación de la contraseña. Por favor, introduzca la contraseña de nuevo.'
+    flash5: 'Ha seguido un vínculo no válido. Por favor, inténtelo de nuevo.'
+    flash6 : 'Los campos de la contraseña no pueden estar en blanco!'
+    flash7 : 'La contraseña se ha actualizado exitosamente!'
+    flash8 : 'Confirmación de la contraseña ha fallado. Por favor, inténtelo de nuevo.'
+    flash9 : 'Contraseña cambiada exitosamente'
+    flash10 : 'La confirmación de la contraseña ha fallado. Por favor, inténtelo de nuevo.'
+    flash11 : 'La antigua contraseña que entró no es correcta. Por favor, introduzca una contraseña válida.'
+    flash12: 'Cuenta de usuario eliminada!'
+    flash13: 'Cuenta de usuario actualizada!'
+    flash14 : 'Perfil de usuario no encontrado.'
+    flash15 : 'Rol actualizado'
+    flash16 : 'Cuenta de usuario no creada!'
+    flash17 : 'Cuenta de usuario creada!'
+    flash18 : 'Un enlace para restablecer la contraseña se ha enviado al correo electronico'
+    flash19 : 'No hay ningún usuario con esa dirección de correo electrónico'
 
-      
+
       # the action name
-      index:
-       manage_user : 'Gestionar Usuario'
-       search_user : 'Buscar usuario'
-       add_new : 'Agregar nuevo'
+    index:
+      manage_user : 'Gestionar Usuario'
+      search_user : 'Buscar usuario'
+      add_new : 'Agregar nuevo'
 
-      all:
-        select_a_role : 'seleccionar un rol'
-        all_users : "todos los usuarios"
+    all:
+      select_a_role : 'seleccionar un rol'
+      all_users : "todos los usuarios"
 
-      create:
-        create_user : "Crear usuario"
-        add_new_user : "Añadir Nuevo usuario"
+    create:
+      create_user : "Crear usuario"
+      add_new_user : "Añadir Nuevo usuario"
 
-      profile:
-        user_profile : 'Perfil de Usuario'
-        user_information : 'Información de usuario'
-        privilege : 'privilegio'
+    profile:
+      user_profile : 'Perfil de Usuario'
+      user_information : 'Información de usuario'
+      privilege : 'privilegio'
 
-      edit_privilege:
-        set_privilege: 'Configurar privilegios para'
-        ExaminationControl : "Control de Exámenes"
-        EnterResults : "Ingresar exámenes"
-        ViewResults : "Ver resultado"
-        Admission : "Admisión"
-        StudentsControl : "Control de Estudiantes"
-        ManageNews : "Gestionar noticias"
-        Timetable : "Horarios"
-        StudentAttendanceView : "Ver Asistencia de Estudiantes"
-        HrBasics : "Recurso Humano Básico"
-        AddNewBatch : "Anadir Nuevo Grupo"
-        SubjectMaster : "Gestión de asignaturas"
-        EventManagement : "Gestión de Eventos"
-        GeneralSettings : "Configuración General"
-        FinanceControl : "Control Financiero"
-        TimetableView : "Ver Horarios"
-        StudentAttendanceRegister : "Registro de Asistencia de Estudiantes"
-        EmployeeAttendance : "Asistencia de Empleados"
-        PayslipPowers : "Comprobante de pago"
-        EmployeeSearch : "Búsqueda de Empleados"
-        SMSManagement : "Gestión SMS"
-        Librarian : "Bibliotecario"
+    edit_privilege:
+      set_privilege: 'Configurar privilegios para'
+      ExaminationControl : "Control de Exámenes"
+      EnterResults : "Ingresar exámenes"
+      ViewResults : "Ver resultado"
+      Admission : "Admisión"
+      StudentsControl : "Control de Estudiantes"
+      ManageNews : "Gestionar noticias"
+      Timetable : "Horarios"
+      StudentAttendanceView : "Ver Asistencia de Estudiantes"
+      HrBasics : "Recurso Humano Básico"
+      AddNewBatch : "Anadir Nuevo Grupo"
+      SubjectMaster : "Gestión de asignaturas"
+      EventManagement : "Gestión de Eventos"
+      GeneralSettings : "Configuración General"
+      FinanceControl : "Control Financiero"
+      TimetableView : "Ver Horarios"
+      StudentAttendanceRegister : "Registro de Asistencia de Estudiantes"
+      EmployeeAttendance : "Asistencia de Empleados"
+      PayslipPowers : "Comprobante de pago"
+      EmployeeSearch : "Búsqueda de Empleados"
+      SMSManagement : "Gestión SMS"
+      Librarian : "Bibliotecario"
 
-      login: #action
-        remember_me: "Recuérdeme"
-        forgot_password: "Ayuda! He olvidado mi contraseña?"
-        login: "Iniciar sesión"
-        fedena_logo: "/images/application/app_fedena_logo.jpg"
-        
-      dashboard:
-        welcome: "Bienvenido"
-        to_dashboard: "al Inicio de GloboSchool"
-        admission_link_title: "Introduzca la información de los estudiantes en los registros de la institución"
-        student_link_title: "Buscar estudiantes actuales y ex estudiantes."
-        user_link_title: "Gestionar Usuarios"
-        news_link_title: "Ver o publicar las últimas noticias y anuncios de la institución"
-        exam_link_title: "Ver información y resultados  de exámenes"
-        timetable_link_title: "Módulo Gestión de Horarios"
-        attendance_link_title: "Gestionar la asistencia de los estudiantes"
-        setting_link_title: "Configurar la información básica de la institución"
-        hr_link_title: "Departamento de Gestión Humana"
-        finance_link_title: "Gestionar módulo de Finanzas"
-        library_link_title: " Módulo Gestión de Biblioteca"
-        sms_link_title: "        Maneja SMS módulo    "
-        logged_as: "Conectado como:"
-        log_out: "Cerrar sesión"
-        student_messages : "Mensajes de estudiantes"
-        student: "Información del estudiante"
-        users: "Gestionar usuario"
-        news: "Gestionar noticias"
-        exam: "Exámenes"
-        timetable: "Horarios"
-        attendance: "Asistencia"
-        settings: "Configuración"
-        hr: "Gestión Humana"
-        finance: "Finanzas"
-        library: ""
-        academic_report : "Reportes Academicos"
-        profile_detail : "Perfil del empleado"
-        view_your_profile : "Ver su perfil"
-        leave_management : "Gestión de Licencias"
-        leave_details : "Información de Licencias de empleados"
-        employee_messages : "Mensajes de Empleados"
-        human_resources : 'Gestión Humana'
-        my_profile : 'Mi Perfil'
-        campus_news : 'Noticias Institucionales'
-        reminders : 'Recordatorios'
-        leaves: 'Licencias'
-
-      forgot_password:
-        enter_email : "Ingrese su dirección de correo electrónico"
-        contact_admin : "Póngase en contacto con el administrador de Fedena para recuperar su contraseña"
-        
-      header_link:
-        logged_as: "Conectado como:"
-        messages: "Mensajes"
-        log_out: "Cerrar sesión"
-
-      minutes_ago:
-        one: 'Un minute antes'
-        other: '{{count}} minutos antes'
-
-#student_attendance controller translation
-    student_attendance:
-      index:
-        attendance_registered_for_students: 'Lista de asistencia de estudiantes'
-        attendance_report_for_students: 'Reporte de asistencia de estudiantes'
-
-      student:
-        mode: 'Modo'
-        
-#attendance_reports controller
-    attendance_reports:
-      select_a_month: 'Seleccionar un mes'
-      total_no_of_wrkng_days: 'Total días de trabajo'
-      total_no_of_wrkng_hours: 'Total horas de trabajo'
-      filter: 'Filtrar'
-      below: 'Abajo'
-      above: 'Arriba'
-      equals: 'es igual a'
-      no_reports: 'No hay Reportes'
-      no_reports_for_selectd_mnth: 'No hay Reportes para el mes seleccionado.'
-      no_report_for_given_period : "No hay Reportes para el periodo indicado"
-      filtered: 'Filtrado'
-
-      filter:
-        filtered_report: 'Reporte filtrado'
-      student_details:
-        detailed_report_for: 'Reporte detallado para'
-    
-#student controller translation
-    student:
-      field_name : 'Nombre del campo'
-      subject_details : 'Información de la asignatura'
-      mark : 'Nota'
-      enter_new_category : 'Introduzca nueva categoría'
-      edit_category : 'Editar categoría'
-      in: 'EN'
-      no_results_found: 'No se encontró resultados.'
-      student_deleted_successfully: 'Estudiante eliminado exitosamente!'
-      generate_tc: 'Generar Certificado de Estudios'
-      view_pdf : 'Ver PDF'
-      student_settings : 'Configuración de los estudiantes'
-      student_admission_no : 'De admisión de alumnos no.'
-      parent : 'Padre'
-      parent_personal_details : 'Datos Personales de los Padres'
-      relation : 'Relación'
-      education : 'Educación'
-      occupation : 'Ocupación'
-      parent_contact_details : 'Padres - Detalles de Contacto'
-      office_address_line1 : 'Oficina de Dirección Línea 1'
-      office_address_line2 : 'Oficina de Dirección Línea 2'
-      mobile_phone_no : 'Sin teléfono móvil.'
-      admission_no_of_last_stud : 'La admisión no. estudiante de último'
-      birth_place : 'L. Nacimiento'
-      mother_tongue : 'idioma materno'
-      religion : 'Religión'
-      address_line : 'Dirección'
-      phone : 'Teléfono'
-      parent_guardian_details_step2 : 'Paso 2 – Información de los Padres/Guardian'
-      emergency_contact_step3 : 'Paso 3 - Contacto de Emergencia'
-      birth_date : 'Fecha de Nacimiento'
-      year_of_admission : 'Año de ingreso'
-      present_student: 'Estudiantes presentes'
-      former_student: 'Ex estudiantes'
-      all_students : 'todos los estudiantes'
-      remove_student : 'Eliminar estudiante'
-      select_blood_group : 'Seleccione Grupo de Sangre'
-      address_line1 : 'Dirección Línea 1'
-      address_line2 : 'Dirección Línea 2'
-      enable_sms_feature : 'Habilitar las funciones de SMS'
-      parent_information: 'Información de los Padres'
-      edit_Parent_guardian_details: 'Editar información de los Padres/Guardián'
-      student_profile : 'Perfil del estudiante'
-      amount_to_be_paid : 'Cantidad a pagar'
-      has_paid_all_the_fees : 'Ha pagado todos los honorarios de los honorarios para el lote.'
-      transfer_certificate : 'Certificado de transferencia'
-      previous_details : 'Información previa'
-      previous_educational_details : 'Información de educación previa'
-      institution_name : 'Nombre de la Institución'
-      student_info: 'Información del Estudiante'
-      previous_year_result: 'Revisión de resultados en años previos'
-      class_sec: 'Clase/Sección'
-      reports_text : 'Reportes'
-      no_previous_data : 'No hay datos anteriores'
-      add_previous_data : 'Agregar datos anteriores'
-      group_tutor : 'Tutor de grupo'
-      immediate_contact : 'Contacto inmediato'
-      previous_institution : 'Institución previa'
-      report_center : "Centro de Reportes"
-      no_previous_subject : "No tema anterior Alta"
-      subject_wise_result: 'Revisión de resultados según Asignaturas'
-      weighted_scores: 'Puntajes ponderados'
-      upcoming_exams: 'Próximos Exámenes'
-      view_details: 'Ver información'
-      delete_student : 'Eliminar estudiante'
-      description1 : "Eliminar completamente al estudiante de la base de datos de la Institución. Utilice esta opción sólo si ha creado un estudiante por accidente y quiere eliminarlo por completo."
-      description2 : "Advertencia: Todos los registros del estudiante se eliminarán y no se podrán recuperar."
-      parent_info : 'Información de los Padres'
-      parents_profile : 'Perfil de los Padres'
-      recent_exams : 'Exámenes recientes'
-      final_report : 'Reporte final'
-      compare_past : 'Comparar con años anteriores'
-      exam_grouped : 'Exámenes agrupados'
-      archives : 'Archivos'
-      student_admission_done : 'La admisión del estudiante ha sido completada. El nombre de usuario es'
-      password_is : 'y la contraseña es'
-      select_one_of_the_guardians : 'Seleccionar uno de los guardianes como contacto de emergencia.'
-      max_size : 'Máximo 50 KB'
-      unknown : "Desconocido"
-
-      flash1: 'Campo adicional creado'
-      flash2: 'Información adicional actualizada'
-      flash3: 'Registro del estudiante actualizados exitosamente!'
-      flash4: 'Registro de los Padres actualizados!'
-      flash5: 'Información de Padres guardada para'
-      flash6: 'El Guardián ha sido eliminado'
-      flash7: 'La categoría del estudiante se ha guardado.'
-      flash8 : 'La información del estudiante se ha guardado exitosamente. Por favor, rellene la información los de Padres.'
-      flash9 : 'Registro del estudiante guardado para'
-      flash10 : 'Todos los registros se han eliminado para el estudiante con admisión No.'
-      flash11 : 'Por favor, seleccione un grupo.'
-      flash12 : 'Correo enviado a'
-      flash13: 'Se ha eliminado exitosamente!'
-      flash14: 'Lo siento! No se puede eliminar cuando las entradas existe en el detalle seleccionado'
-      flash15: 'Lo siento! No se puede eliminar estudiante cuando existe registro dependiente'
-
-        
-      admission1:
-        student_detail_step1 : 'Paso 1 – Información  del estudiante'
-        last_course: 'Último grado cursado'
-        
-
-      admission2:
-        click_here_to_skip: 'Hacer clic aquí para omitir'
-        add_another_guardian : 'Agregar otro guardian'
-        saved_message : 'Los siguientes guardianes se han guardado para'
-
-      admission3:
-        sms_part1 : 'La admisión del estudiante ha sido completada. El nombre de usuario es'
-        sms_part2 : 'y la contraseña es'
-
-      previous_data:
-        skip : 'Omitir'
-
-      previous_data_edit:
-        edit_previous_details : 'Editar detalles Anterior'
-
-      admission4:
-        step4 : 'Paso 4'
-        
-      profile:
-        student_information : 'Información del estudiante'
-        guardians: 'Guardianes'
-        sms_alerts : 'Alertas SMS'
-        contact_message : 'En caso de emergencias, comuníquese con:'
-        change_contact : 'Cambiar Contacto Inmediato'
-        add_guardian : 'Agregar Guardián'
-        no_guardian : 'Ningún guardián agregado todavía'
-        enabled : 'Habilitado'
-        disabled : 'Deshabilitado'
-        
-      reports:
-        current_year_report : 'Reporte del año actual'
-        grouped_exam_final_report : 'Reporte final de exámenes agrupados'
-        compare_grouped_exam_past : 'Comparar exámenes agrupados con años anteriores'
-        
-
-      fees:
-        paid_all : 'Ha ingresado todos los pagos del grupo.'
-        paid : 'PAGADO'
-        unpaid : 'NO PAGADO'
-
-      guardians:
-        add_guardian : 'Agregar Guardián'
-        parents_guardian : 'Padres/Guardián'
-        
-      add_guardian:
-        add_guardian_details : 'Agregar información del Guardián'
-        office : 'Oficina'
-
-      remove:
-        leaving_institution : 'Estudiante en proceso de retiro de la institución'
-        leaving_institution_message : 'Para los estudiantes que se retiran de la institución, utilice esta opción para eliminarlos de la lista de estudiantes activos y colocarlos en la lista de ex estudiantes.'
-        remove_student_records : 'Eliminar registros del estudiante'
-        remove_student_message : 'Eliminar completamente al estudiante de la base de datos de la Institución. Utilice esta opción sólo si ha creado un estudiante por accidente y quiere eliminarlo por completo'
-        reason : 'Causa'
-        student_left_message : 'El estudiante se ha retirado de la institución'
-
-      change_to_former:
-        description : 'Para los estudiantes que se retiran de la institución, utilice esta opción para eliminarlos de la lista de estudiantes activos y colocarlos en la lista de ex estudiantes.'
- 
-      edit_admission4:
-        enter_admission_details : 'Editar información de admisión'
-   
-      academic_report:
-        examination_wise_performance: 'Rendimiento según exámenes'
-        cumulative_performance: 'Rendimiento Acumulado'
-        examination_Name: 'Nombre del Examen'
-        
-      edit:
-        edit_details: 'Editar información'
-        necessary_field: 'Campo necesario'
-
- ## traslation for finance controller
-    finance:
-      additional : 'Menores'
-      fees_name: 'Nombre de la Tarifa'
-      fees_description: 'Descripción de la Tarifa'
-      fees_amount: 'Valor de la Tarifa'
-      student_category : 'Categoría del estudiante'
-      edit_particulars_for_fee : 'Editar las Tarifas Específicas correspondientes a Tarifas Menores'
-      fee_name : 'Nombre de la Tarifa'
-      fee_description : 'Descripción de la Tarifa'
-      fee_amount : 'Valor de la Tarifa'
-      edit_master_category_for_fee : 'Editar Categoría de Tarifas  Mayores'
-      created_date: 'Fecha creada'
-      no_categories_to_display : 'No hay categorías para mostrar'
-      add_particular: 'Añadir Específico'
-      make_asset_inactive : 'Inactivar Activos?'
-      asset : 'Activos'
-      created_at : 'Creado el'
-      fee_category : 'Categoría Tarifas'
-      create_new_category : 'Crear nueva categoría'
-      is_this_under_income : '¿Es esto un ingreso?'
-      are_you_sure_to_delete : '¿Está seguro de eliminar esta categoría de financiamiento?'
-      select_student_category : 'Seleccione Categoría Estudiantil'
-      fee_component : 'Componente Tarifas'
-      due_date_exceeded_collect_fine : 'La fecha límite se ha vencido. Por favor, pagar el valor de la multa.'
-      add_fine : 'Añadir multa'
-      set_fee_collection_date : 'Configurar fechas de Pago'
-      fee_collection_name : 'Nombre de las fechas de Pago'
-      no_fee_collection_exist : 'Lo siento! No existen Cobro'
-      select_fee_collection_date: 'Seleccionar fecha de Pago'
-      edit_fee_collection_date : 'Editar Fechas de Pago'
-      course_for_category : 'Destino de esta categoría'
-      master_fees_Category: 'Categoría Tarifas Mayores'
-      select_fee_category: 'Seleccione una categoría de tasas'
-      create_particular_for_master_fee : 'Particulares para crear Maestro categoría tasas'
-      master : 'Mayores'
-      create_using : 'Crear utilizando'
-      no_particulars : 'No se han agregado Específicos!'
-      fee_category_name: 'Nombre de la Categoría Tarifa'
-      fees_to_be_paid : 'Tarifa a ser pagada'
-      label : 'Etiqueta'
-      leave_field_blank : 'Dejar el campo en blanco si este va a ser reemplazado por otra categoría'
-      amount_to_pay : 'Valor a pagar'  
-      print_receipt : 'Imprimir recibo'
-      solve_this_liability: 'Gestionar este pasivo?'
-      liability : 'Pasivos'
-      create_master_category_for_fees : 'Crear categoría Maestro de Honorarios'
-      edit_particular_for_master_fee : 'Edición especial para la categoría master tasas'
-      no_discount_found : 'Lo siento! No hay descuentos encontrado'
-      no_fee_defaulters : 'No hay morosos'
-      fees_receipt_no : 'Número de recibo de pago'
-      create_automatic_transaction : 'Crear Transacción Automática'
-      edit_automatic_transaction: 'Editar transacción automática'
-      select_a_fees_category : 'Seleccionar Categoría de Tarifas'
-      select_fees_particulars: 'Seleccionar Tarifas Especificas'
-      total_deductions : 'Total Deducciones'
-      payslip_approved : 'Comprobante de pago aprobado!'
-      payslip_rejected : 'Recibo de pago rechazado!'
-      expense : 'Gasto'
-      salary_account : 'Cuenta de Nómina'
-      direct_expense : 'Gastos Directos'
-      direct_income : 'Ingreso Directo'
-      grand_total : 'Totalidad'
-      donations : 'Donaciones'
-      additional_fees: 'Tarifas Menores'
-      create_additional_fees: 'Crear Tarifas Menores'
-      delete_this_particular : 'Eliminar esta Tarifa Especifica?'
-      asset_liability_management : 'Gestión de Activos y Pasivos'
-      automatic_transactions : 'Transacciones automáticas'
-      finance_transactions : 'Transacciones Financieras'
-      fees_report: 'Reporte de Tarifas'
-      transaction_report: 'Reporte de transacciones'
-      finance_management : 'Gestión Financiera'
-      create_finance_category : 'Crear Categoría Financiera'
-      create_category : 'Crear categoría'
-      collection_details : 'Detalles de la colección'
-      transactions: 'Transacciones'
-      monthly_transactions : 'Transacciones Mensuales'
-      get_report : 'Obtener Reporte'
-      select_start_date : 'Seleccionar fecha de inicio'
-      select_end_date : 'Seleccionar fecha de finalización'
-      liability_form : 'Formulario de Pasivos'
-      creates_new_liability : 'Crear nuevo Pasivo'
-      finance_monthly_report: 'Reporte Financiero Mensual'
-      total_expenses : 'Total Gastos'
-      finance_academic_year_report: 'Reporte Financiero Anual'
-      total_income: 'Total Ingresos'
-      add_new_donation : 'Añadir nueva donación'
-      donors : 'Donantes'
-      donor_name : 'Nombre del Donante'
-      transaction_date : 'Fecha de la transacción'
-      donation_receipt: 'Donación de la recepción'
-      donor : 'Donante'
-      transaction_id : 'ID de la transacción'
-      credit: 'Crédito'
-      debit: 'Débito'
-      list_of_donors : 'Lista de los donantes'
-      asset_view : 'Ver Activos'
-      asset_name: 'Nombre de activo'
-      liability_view : 'Ver Pasivo'
-      liability_name : 'Nombre de responsabilidad'
-      edit_asset : "edición de activos"
-      edit_fee_discount : 'Editar Descuento Tarifa'
-      edit_liability: "edición de Responsabilidad"
-      employee_salary_report: 'Reporte de salario del empleado'
-      payslip_for : 'Comprobante de pago para'
-      payslip_generated_for: 'Comprobante de pago generado para'
-      create_expense : 'Crear gasto'
-      create_new_expense : 'Crear nuevos gastos'
-      expenses: 'Gastos'
-      edit_expense: 'Editar gasto'
-      expenses_list: 'Lista de gastos'
-      no_transaction_for_the_given_period: 'No hay Transacciones para el periodo indicado'
-      fees_collection_date: 'Fechas de Pago'
-      create_fee_collection: 'Crear Fecha de Pago'
-      creates_new_fee_collecting_dates : 'Crear nuevas fechas de Pago'
-      fees_defaulters_text : 'Morosos'
-      fee_discounts : 'Descuentos de tarifa'
-      view_discount : 'Ver descuento'
-      select_discount_type : 'Seleccione el tipo de descuento'
-      batch_wise : 'discontinua'
-      student_wise : 'estudiante inteligente'
-      category_wise: 'Categoría sabio'
-      create_discount : 'crear descuento'
-      create_fees: 'Crear Tarifas'
-      creates_master_fees_and_additional_fees : 'Crear Tarifas Mayores y Tarifas Menores'
-      master_fees: 'Categorias Mayores'
-      create_master_fees: 'Crear Categorias Mayores'
-      manage_fees: 'Gestionar tarifas'
-      fees_submission : 'Ingresar pagos'
-      fees_structure : 'Información de los Pagos'
-      fees_transaction_report: 'REPORTE DE TRANSACCIÓN DE TARIFAS'
-      select_fee_collection : 'Seleccione la recaudación de tarifas'
-      special_fees_for_student: 'Tarifas especiales para estudiantes'
-      select_fees_collection_date: 'Seleccionar fecha de pago'
-      create_new_income : 'Crear nuevo ingreso'
-      edit_income: 'Editar Ingreso'
-      incomes : 'Ingresos'
-      income_list: 'Lista de los ingresos'
-      manage_finance : 'gestión de las finanzas'
-      manage_expense_and_income : 'Administra los gastos y los ingresos'
-      expences_n_income : 'Gastos e Ingresos'
-      add_expense : 'Agregar gasto'
-      add_income : 'Añadir Ingresos'
-      show_transactions : 'Mostrar Transacciones'
-      compare_transactions : 'Comparar transacciones'
-      create_auto_transaction : 'Crear auto transacción'
-      donation : 'Donacion'
-      assets : 'Activos'
-      creates_new_assets : 'Crear nuevo Activo'
-      create_new_asset : 'Crear nuevo Activo'
-      create_new_liability : 'Crear un nuevo pasivo'
-      master_category : 'Categoría Mayor'
-      create_master_category : 'Crea la nueva categoría Máster'
-      create_particulars: 'Crear Específicos'
-      create_fee_discounts : 'Crear reducciones de los derechos'
-      view_for_master_fees_category: 'Ver Categoría Tarifas Mayores'
-      employee_payslips : 'Comprobante de pago para empleados'
-      employee_payslip_reject : 'Nómina de Empleados Rechazar'
-      transaction_comparision : 'las transacciones de comparación'
-      report_for_the_period_from : 'Reporte para el período desde'
-      fees_account : 'Cuenta Tarifas'
-      department_wise_salary_report : 'Reporte de Salario por Departamentos'
-      department_salary_report : 'Reporte de salario por departamentos'
-      employee_salary : 'Salario del Empleado'
-      fee_reciept: 'Recibo de pago'
-      fee_collection_dates : 'Fechas de Pago'
-      view_fee_collection_dates : 'Ver fechas de Pago'
-      fees_discount_succesfully_created : 'Descuento cuotas ha creado correctamente'
-      finance_transaction_report: 'Finanzas Informe de transacciones'
-      fees_discount_succesfully_updated : 'Descuento cuotas actualizado correctamente'
-      select_a_fees_particulars_that: 'Seleccionar las tarifas especificas que desea reemplazar'
-      finance_transactions_view: 'Ver transacciones financieras'
-      select_year: 'Seleccionar año'
-      payslip_rejected_for : 'Recibo de pago ha sido rechazado por'
-      does_not_belong_to_batch : 'no pertenece al grupo'
-      does_not_exist: 'no existe'
-      fee_submission_date_for : 'Fecha de ingreso de pago para'
-      has_been_published : 'ha sido publicado'
-      fees_submiting_date_starts_on : 'La fecha para ingresar pagos comienza el'
-      fees_submission_date : 'Fecha para ingresar pagos'
-      fees_due : 'Debido tasas'
-      invalid : 'inválido'
-      is_blank : 'está en blanco'
-      check_your: 'chequear sus'
-      fee_structure: 'Información de Pagos'
-      regards: 'se refiere a'
-      fees_category_cant_be_blank : 'Categoría de tasas no puede ser en blanco'
-      receipt_no : 'Recibo No'
-      batch_cant_be_blank : 'Lote no puede ser en blanco'
-      is_invalid_admission_no : 'no es válida número de admisión'
-      admission_cant_be_blank : 'La admisión no puede ser en blanco'
-      fees_category_cant_blank : 'Categoría honorarios no pueden ser Categoría blankFees no puede ser en blanco'
-      fee_discount_succesfully_created : 'Descuento cuotas ha creado correctamente '
-      no_particulars_to_display : 'No hay Tarifas específicas para mostrar'
-      student_fees_submission : 'Ingresar pagos de estudiantes'
-
-      flash1: 'Donación aceptada'
-      flash2: 'Por favor, crear una categoría para gastos!'
-      flash3: 'Gasto añadido a la contabilidad.'
-      flash4: 'Gasto editado exitosamente.'
-      flash5: 'Por favor, crear una categoría  para ingresos!'
-      flash6: 'Ingreso añadido a la contabilidad'
-      flash7: 'Ingreso editado exitosamente.'
-      flash8: 'El comprobante de pago ha sido aprobado'
-      flash9: 'Categoría creada, por favor, agregue tarifas especificas a esta categoría'
-      flash10: 'Los campos marcados con * no pueden estar vacíos'
-      flash11: 'La fecha de vencimiento debe ser posterior a la fecha  de finalización'
-      flash12: 'Fechas de pago actualizadas exitosamente'
-      flash13: 'Error: La fecha de vencimiento deberá ser posterior a  la fecha de finalización.'
-      flash14: 'Pagos satisfechos'
-      flash15: 'donación de'
-      flash16: 'Donación editado con éxito.'
-      flash17: 'Fecha de finalización debe ser posterior a la fecha de inicio!'
-      flash18: 'Transacción de financiamiento se han eliminado correctamente'
-      flash19: 'No puede pagar mayor cantidad de cuota total'
-      flash20: 'Descuento ya existe para el número de admisión'
-
-      index:
-        manage : 'Gestionar'
-        creates_expense_and_income : 'Crear gastos e ingresos'
-        creates_new_donations : 'Crear nuevas donaciones'
-        auto_transactions : 'Autotransacciones'
-        add_automatic_transactions : 'Agregar transacciones automáticas'
-        asset_liability : 'Activos y pasivos'
-        manage_assets_and_liabilities : 'Gestionar activos y pasivos'
-        export : 'Exportar'
-        creates_xml_import_file : 'Crear archivo XML'
-        manage_category : 'Gestionar Categoría'
-        create_master_category: 'Crear Categoría Mayor'
-        create_master_fees_particulars : 'Crear Específicos correspondientes a Categoria Mayor'
-        no_records_for_the_date: 'No hay registros para la fecha'
-        
-      fees_index:
-        collection : 'Pagos'
-        structure : 'Información'
-        displays_fees_structure_for_student : 'Muestra información de Pagos de estudiantes'
-        defaulters : 'Morosos'
-        students_with_fees_dues : 'Estudiantes con deudas'
-        submission : 'Ingresar'
-        create_aditional_fees: 'Crear Tarifas Menores'
-        fees_collection : 'Fechas de pago'
-
-      fees_create:
-        aditional : 'Menores'
-       
-      master_category_particulars:
-        delete_msg : 'Eliminar la Tarifa especifica?'
-
-      additional_fees_list:
-        delete_msg1: 'Eliminar esta categoría?'
-
-      fee_collection :
-        collection : 'Fecha'
-        displays_collection_dates : 'Muestra fechas de Pago'
-        
-      fees_submission_index :
-        fees_submission_by_course : 'Ingresar pagos por curso'
-        fees_submit_by_each_course : 'Ingresar pagos seleccionando cada curso'
-        fees_submit_for_student : 'Ingresar pagos a cada estudiante'
-        submitting_fees_by_search : 'Ingresar pagos buscando cada estudiante'
-
-      fees_defaulters :
-        students_fee_dues : 'Estudiantes con deudas'
-     
-      income_create :
-        create_income : 'Crear Ingreso'
-        
-      monthly_report :
-        monthly_report : 'Reporte Mensual'
-
-      compare_report :
-        compare_with : 'Comparar con'
-    
-      view_monthly_payslip :
-        view_monthly_payslips : 'Ver Comprobantes de pago Mensual'
-
-      payslip_index :
-        view_payslip : 'Ver Comprobantes de Pago'
-        view_employee_monthly_payslip : 'Ver comprobantes de Pago mensuales de los empleados'
-        
-      asset_liability :
-        manages_asset : 'Gestionar Activos'
-        manages_liability : 'Gestionar Pasivos'
-      
-      graph_for_compare_monthly_report:
-        for_the_period : 'Para el período'
-
-## traslation for xml controller
-    xml:
-      tally : 'Tally'
-      flash1: 'Configuración XML actualizada exitosamente'
-
-      index:
-        tally_settings : 'Configuración Tally'
-        change_ledger_settings_for_tally : 'Cambiar la configuración del  libro Mayor de Tally'
-        export_for_tally : 'Exportar a Tally'
-        creates_xml_import : 'Crear archivo XML para Tally'
-
-      settings:
-        ledger_name_correspond_salary : 'Nombre del Libro Correspondiente a Salario'
-        ledger_name_correspond_fees : 'Nombre del Libro correspondiente a Tarifas'
-        ledger_name_correspond_donation : 'Nombre del Libro correspondiente a Donaciones'
-      create_xml:
-        export_to_tally : 'Exportar a Tally'
-
-# translation for exams controller
-        
-# translation for grading level controller
-    grading_levels:
-      min_score : '% mínimo'
-      add_grades : 'Añadir desempeños'
-      add_new_grading_levels  : 'Agregar nuevos desempeños'
-
-      index:
-        grading : 'Desempeño'
-        levels : 'Niveles'
-        grading_levels : 'Desempeños'
-        
-# translation for exam controller
-    exam:
-      select_exam_group : "Seleccionar grupo de exámenes"
-      consolidated_report : "Reporte consolidado"
-      create_exam : "Crear examen"
-      exam_results_entry : 'Los resultados del examen de entrada'
-      exam_wise_report : 'Reportes Según Exámenes'
-      grouping : 'Agrupación'
-      exam_scheduled : 'Examen Programado'
-
-      flash1: 'Exámenes seleccionados agrupados exitosamente.'
-      flash2: 'Seleccionar un grupo y un examen para continuar.'
-      flash3: 'Parámetros no válidos.'
-      flash4: 'Seleccionar una asignatura para continuar'
-      flash5: 'No hay clases en el lote seleccionado'
-
-      index:
-        create_a_new_exam_and_enter_result : 'Crear nuevos exámenes, entre los resultados.'
-        create_additional_exams_and_edit_results : 'Crear exámenes adicionales, resultados Editar'
-        set_grading_levels: 'Configurar desempeños'
-        results : 'Resultados'
-        generates : 'Generar'
-        group_up_exams_for_specific_reports : 'Agrupar exámenes para Reportes específicos'
-        do_not : 'No'
-        academic : 'Académico'
-        consolidated : 'Consolidado'
-        average : 'Promedio'
-        connect : 'Conectar'
-        exam_management : "Gestión de examenes"
-        generate_exam_wise_report : "Generar reportes según exámenes"
-        generate_subject_wise_report : "Generar reportes según asignaturas"
-        marklist_for : "Lista de notas para"
-        average_mark : "Nota Promedio"
-        
-# exams controller
-    exams:
-      flash1: 'Información de exámenes actualizada exitosamente.'
-      flash2: 'El puntaje de los exámenes excede la nota máxima.'
-      flash3: 'Puntaje de exámenes actualizado.'
-      flash4: 'Niveles Garading no están ajustadas. Por favor, establece los niveles Garding.'
-# exam_groups controller
-    exam_groups:
-      view_exam_groups : "Ver grupos de exámenes"
-      publish_exam_result : 'Publicar resultado de examen'
-      flash1: 'Grupo de exámenes creado exitosamente.'
-      
-      index:
-        exam_groups : 'Grupos de Exámenes'
-        exam_group : 'Grupo de Exámenes'
-        connect : 'Conectar'
-        
-        
-#additional exam controller
-    additional_exam:
-      create_additional_exam:
-        create_additional_exams : 'Crear Exámenes adicionales'
-        cant_be_more_than_max_marks : 'no puede ser más que la nota máxima'
-        
-#additional exams controller
-    additional_exams:
-      for_additional_exam_group : "Para grupo exámenes adicionales"
-      flash1: 'Puntajes de examen adicional actualizado.'
-      flash3: 'Información de examen adicional actualizada exitosamente.'
-
-      show:
-        select_grade : 'Seleccionar desempeño'
-      
-#additional exam groups controller
-    additional_exam_groups:
-      flash1: 'Grupo de exámenes adicionales guardados exitosamente'
-      flash2: 'Grupo de exámenes adicionales actualizados exitosamente.'
-
-      edit:
-        edit_additional_exam_groups : "Editar grupos de exámenes adicionales"
-
-      index:
-        additional_exam_groups : "Grupos de exámenes adicionales"
-        resend_sms_notification : "Reenviar notificación SMS"
-
-      show:
-        view_additional_exam : "Ver examen adicional"
-        show_additional_exam_group : 'Grupo que muestra el examen adicional'
-
-    ## translation for timetable controller
-    timetable:
-      warning : 'Advertencia'
-      no_teacher_associated : 'Ningún profesor está asociado a esta asignatura'
-      time_table_is_being_generated : 'El Horario de clases está siendo generado. Por favor, permanecer en la  página'
-      no_timetable_entry_for_batch : 'No se ha entrado información al horario de grupo'
-      add_subjects : 'Añadir Temas'
-      swap_class : 'Intercambiar clase'
-      create_or_edit_timetable : 'Crear / Editar Horario'
-      view_timetable : 'Ver Horarios'
-      select_batch_to_edit : 'Seleccionar grupo para editar'
-      institutional : 'Institucional'
-      day : 'día'
-      cancelled : 'Cancelado.'
-      select_batch_to_view : 'Seleccionar el grupo para ver'
-      weekly_limit_reached : "Weekly subject limit reached"
-      class_overlap : "Clase solapamiento con lotes"
-      max_hour_exceeded_day : "Número máximo de horas por día superado"
-      max_hour_exceeded_week : "Número máximo de horas por semana superó"
-
-      flash1: 'El horario ya ha sido publicado'
-      flash2: 'Horario actualizado'
-      flash3: 'Horario publicado'
-      flash4: 'No hay entrada de calendario para la fecha seleccionada'
-     
-      index:
-        select_a_class_and_edit_the_timetable : 'Seleccionar una clase y editar el horario de esa clase'
-        select_a_class_timings_for_each_class : 'Seleccionar los intervalos de cada clase'
-        view_the_timetable_for_a_class : 'Ver el Horario de una clase'
-        generate_period_entry : 'Crear intervalo para un momento dado'
-        view_entire_timetable : 'Ver el horario completo de un día'
-
-      select_class2:
-        select_class_to_edit : 'Seleccionar una clase para editarla'
-
-      extra_class:
-        select_a_class : 'Seleccionar una clase'
-     
-        
- ## translation for weekday controller
-    weekday:
-      check_if_this_is_a_break : 'Comprobar si es un descanso'
-      alter_message: 'Esto alterará toda la información de los días de la semana de los horarios y de la Asistencia. Desea continuar cambiando los días de la semana?'
-      add_new_grading_level: 'Añadir nuevo nivel de calificación'
-      weekdays_modified : 'días de la semana modificado'
-      
-## translation for class timings controller
-    class_timings:
-      edit_class_timing_for : 'Editar intervalo de clase para'
-      is_a_break : 'Es un descanso'
-      confirm_msg : 'Esto eliminará  todos los  horarios asociados con esta clase. Desea proceder con la eliminación?'
-      add_new_class_timing_for : 'Agregar nuevo intervalo de clase para'
- 
- # partials w/o underscore (template "_footer.erb")
-      footer:
-        key: "Mi Copyright"
-        powered_by: 'Desarrollado por'
-      header_link:
-        logged_as: "Conectado como:"
-        messages: "Mensajes"
-        log_out: "Cerrar sesión"
-
-    # "layouts" is fixed
-    layouts:
-      # the layout name (template "main.erb")
-      calendar: "Calendario"
-      dashboard_text: "Inicio"
-      settings: "Configuración"
-      examination : 'Exámenes'
-      event_creation : 'Eventos'
-      human_resource : 'Gestión Humana'
-      finance : 'Finanzas'
-      user : 'Usuario'
-      timetable: "Horario"
-      news: "Noticias"
-      more: "Más ▼"
-      sms: "SMS"
-      logged_as: "Conectado como:"
+    login: #action
+      remember_me: "Recuérdeme"
+      forgot_password: "Ayuda! He olvidado mi contraseña?"
+      login: "Iniciar sesión"
       fedena_logo: "/images/application/app_fedena_logo.jpg"
+
+    dashboard:
+      welcome: "Bienvenido"
+      to_dashboard: "al Inicio de GloboSchool"
+      admission_link_title: "Introduzca la información de los estudiantes en los registros de la institución"
+      student_link_title: "Buscar estudiantes actuales y ex estudiantes."
+      user_link_title: "Gestionar Usuarios"
+      news_link_title: "Ver o publicar las últimas noticias y anuncios de la institución"
+      exam_link_title: "Ver información y resultados  de exámenes"
+      timetable_link_title: "Módulo Gestión de Horarios"
+      attendance_link_title: "Gestionar la asistencia de los estudiantes"
+      setting_link_title: "Configurar la información básica de la institución"
+      hr_link_title: "Departamento de Gestión Humana"
+      finance_link_title: "Gestionar módulo de Finanzas"
+      library_link_title: " Módulo Gestión de Biblioteca"
+      sms_link_title: "        Maneja SMS módulo    "
+      logged_as: "Conectado como:"
+      log_out: "Cerrar sesión"
+      student_messages : "Mensajes de estudiantes"
+      student: "Información del estudiante"
+      users: "Gestionar usuario"
+      news: "Gestionar noticias"
+      exam: "Exámenes"
+      timetable: "Horarios"
+      attendance: "Asistencia"
+      settings: "Configuración"
+      hr: "Gestión Humana"
+      finance: "Finanzas"
+      library: ""
+      academic_report : "Reportes Academicos"
+      profile_detail : "Perfil del empleado"
+      view_your_profile : "Ver su perfil"
+      leave_management : "Gestión de Licencias"
+      leave_details : "Información de Licencias de empleados"
+      employee_messages : "Mensajes de Empleados"
+      human_resources : 'Gestión Humana'
+      my_profile : 'Mi Perfil'
+      campus_news : 'Noticias Institucionales'
+      reminders : 'Recordatorios'
+      leaves: 'Licencias'
+
+    forgot_password:
+      enter_email : "Ingrese su dirección de correo electrónico"
+      contact_admin : "Póngase en contacto con el administrador de Fedena para recuperar su contraseña"
+
+    header_link:
+      logged_as: "Conectado como:"
       messages: "Mensajes"
       log_out: "Cerrar sesión"
-      ago: 'atras'
-      powered_by: 'Desarrollado por'
-      more_news : 'Mas Noticias'
 
-   
+    minutes_ago:
+      one: 'Un minute antes'
+      other: '{{count}} minutos antes'
+
+#student_attendance controller translation
+  student_attendance:
+    index:
+      attendance_registered_for_students: 'Lista de asistencia de estudiantes'
+      attendance_report_for_students: 'Reporte de asistencia de estudiantes'
+
+    student:
+      mode: 'Modo'
+
+#attendance_reports controller
+  attendance_reports:
+    select_a_month: 'Seleccionar un mes'
+    total_no_of_wrkng_days: 'Total días de trabajo'
+    total_no_of_wrkng_hours: 'Total horas de trabajo'
+    filter: 'Filtrar'
+    below: 'Abajo'
+    above: 'Arriba'
+    equals: 'es igual a'
+    no_reports: 'No hay Reportes'
+    no_reports_for_selectd_mnth: 'No hay Reportes para el mes seleccionado.'
+    no_report_for_given_period : "No hay Reportes para el periodo indicado"
+    filtered: 'Filtrado'
+
+    filter:
+      filtered_report: 'Reporte filtrado'
+    student_details:
+      detailed_report_for: 'Reporte detallado para'
+
+#student controller translation
+  student:
+    field_name : 'Nombre del campo'
+    subject_details : 'Información de la asignatura'
+    mark : 'Nota'
+    enter_new_category : 'Introduzca nueva categoría'
+    edit_category : 'Editar categoría'
+    in: 'EN'
+    no_results_found: 'No se encontró resultados.'
+    student_deleted_successfully: 'Estudiante eliminado exitosamente!'
+    generate_tc: 'Generar Certificado de Estudios'
+    view_pdf : 'Ver PDF'
+    student_settings : 'Configuración de los estudiantes'
+    student_admission_no : 'De admisión de alumnos no.'
+    parent : 'Padre'
+    parent_personal_details : 'Datos Personales de los Padres'
+    relation : 'Relación'
+    education : 'Educación'
+    occupation : 'Ocupación'
+    parent_contact_details : 'Padres - Detalles de Contacto'
+    office_address_line1 : 'Oficina de Dirección Línea 1'
+    office_address_line2 : 'Oficina de Dirección Línea 2'
+    mobile_phone_no : 'Sin teléfono móvil.'
+    admission_no_of_last_stud : 'La admisión no. estudiante de último'
+    birth_place : 'L. Nacimiento'
+    mother_tongue : 'idioma materno'
+    religion : 'Religión'
+    address_line : 'Dirección'
+    phone : 'Teléfono'
+    parent_guardian_details_step2 : 'Paso 2 – Información de los Padres/Guardian'
+    emergency_contact_step3 : 'Paso 3 - Contacto de Emergencia'
+    birth_date : 'Fecha de Nacimiento'
+    year_of_admission : 'Año de ingreso'
+    present_student: 'Estudiantes presentes'
+    former_student: 'Ex estudiantes'
+    all_students : 'todos los estudiantes'
+    remove_student : 'Eliminar estudiante'
+    select_blood_group : 'Seleccione Grupo de Sangre'
+    address_line1 : 'Dirección Línea 1'
+    address_line2 : 'Dirección Línea 2'
+    enable_sms_feature : 'Habilitar las funciones de SMS'
+    parent_information: 'Información de los Padres'
+    edit_Parent_guardian_details: 'Editar información de los Padres/Guardián'
+    student_profile : 'Perfil del estudiante'
+    amount_to_be_paid : 'Cantidad a pagar'
+    has_paid_all_the_fees : 'Ha pagado todos los honorarios de los honorarios para el lote.'
+    transfer_certificate : 'Certificado de transferencia'
+    previous_details : 'Información previa'
+    previous_educational_details : 'Información de educación previa'
+    institution_name : 'Nombre de la Institución'
+    student_info: 'Información del Estudiante'
+    previous_year_result: 'Revisión de resultados en años previos'
+    class_sec: 'Clase/Sección'
+    reports_text : 'Reportes'
+    no_previous_data : 'No hay datos anteriores'
+    add_previous_data : 'Agregar datos anteriores'
+    group_tutor : 'Tutor de grupo'
+    immediate_contact : 'Contacto inmediato'
+    previous_institution : 'Institución previa'
+    report_center : "Centro de Reportes"
+    no_previous_subject : "No tema anterior Alta"
+    subject_wise_result: 'Revisión de resultados según Asignaturas'
+    weighted_scores: 'Puntajes ponderados'
+    upcoming_exams: 'Próximos Exámenes'
+    view_details: 'Ver información'
+    delete_student : 'Eliminar estudiante'
+    description1 : "Eliminar completamente al estudiante de la base de datos de la Institución. Utilice esta opción sólo si ha creado un estudiante por accidente y quiere eliminarlo por completo."
+    description2 : "Advertencia: Todos los registros del estudiante se eliminarán y no se podrán recuperar."
+    parent_info : 'Información de los Padres'
+    parents_profile : 'Perfil de los Padres'
+    recent_exams : 'Exámenes recientes'
+    final_report : 'Reporte final'
+    compare_past : 'Comparar con años anteriores'
+    exam_grouped : 'Exámenes agrupados'
+    archives : 'Archivos'
+    student_admission_done : 'La admisión del estudiante ha sido completada. El nombre de usuario es'
+    password_is : 'y la contraseña es'
+    select_one_of_the_guardians : 'Seleccionar uno de los guardianes como contacto de emergencia.'
+    max_size : 'Máximo 50 KB'
+    unknown : "Desconocido"
+
+    flash1: 'Campo adicional creado'
+    flash2: 'Información adicional actualizada'
+    flash3: 'Registro del estudiante actualizados exitosamente!'
+    flash4: 'Registro de los Padres actualizados!'
+    flash5: 'Información de Padres guardada para'
+    flash6: 'El Guardián ha sido eliminado'
+    flash7: 'La categoría del estudiante se ha guardado.'
+    flash8 : 'La información del estudiante se ha guardado exitosamente. Por favor, rellene la información los de Padres.'
+    flash9 : 'Registro del estudiante guardado para'
+    flash10 : 'Todos los registros se han eliminado para el estudiante con admisión No.'
+    flash11 : 'Por favor, seleccione un grupo.'
+    flash12 : 'Correo enviado a'
+    flash13: 'Se ha eliminado exitosamente!'
+    flash14: 'Lo siento! No se puede eliminar cuando las entradas existe en el detalle seleccionado'
+    flash15: 'Lo siento! No se puede eliminar estudiante cuando existe registro dependiente'
+
+
+    admission1:
+      student_detail_step1 : 'Paso 1 – Información  del estudiante'
+      last_course: 'Último grado cursado'
+
+
+    admission2:
+      click_here_to_skip: 'Hacer clic aquí para omitir'
+      add_another_guardian : 'Agregar otro guardian'
+      saved_message : 'Los siguientes guardianes se han guardado para'
+
+    admission3:
+      sms_part1 : 'La admisión del estudiante ha sido completada. El nombre de usuario es'
+      sms_part2 : 'y la contraseña es'
+
+    previous_data:
+      skip : 'Omitir'
+
+    previous_data_edit:
+      edit_previous_details : 'Editar detalles Anterior'
+
+    admission4:
+      step4 : 'Paso 4'
+
+    profile:
+      student_information : 'Información del estudiante'
+      guardians: 'Guardianes'
+      sms_alerts : 'Alertas SMS'
+      contact_message : 'En caso de emergencias, comuníquese con:'
+      change_contact : 'Cambiar Contacto Inmediato'
+      add_guardian : 'Agregar Guardián'
+      no_guardian : 'Ningún guardián agregado todavía'
+      enabled : 'Habilitado'
+      disabled : 'Deshabilitado'
+
+    reports:
+      current_year_report : 'Reporte del año actual'
+      grouped_exam_final_report : 'Reporte final de exámenes agrupados'
+      compare_grouped_exam_past : 'Comparar exámenes agrupados con años anteriores'
+
+
+    fees:
+      paid_all : 'Ha ingresado todos los pagos del grupo.'
+      paid : 'PAGADO'
+      unpaid : 'NO PAGADO'
+
+    guardians:
+      add_guardian : 'Agregar Guardián'
+      parents_guardian : 'Padres/Guardián'
+
+    add_guardian:
+      add_guardian_details : 'Agregar información del Guardián'
+      office : 'Oficina'
+
+    remove:
+      leaving_institution : 'Estudiante en proceso de retiro de la institución'
+      leaving_institution_message : 'Para los estudiantes que se retiran de la institución, utilice esta opción para eliminarlos de la lista de estudiantes activos y colocarlos en la lista de ex estudiantes.'
+      remove_student_records : 'Eliminar registros del estudiante'
+      remove_student_message : 'Eliminar completamente al estudiante de la base de datos de la Institución. Utilice esta opción sólo si ha creado un estudiante por accidente y quiere eliminarlo por completo'
+      reason : 'Causa'
+      student_left_message : 'El estudiante se ha retirado de la institución'
+
+    change_to_former:
+      description : 'Para los estudiantes que se retiran de la institución, utilice esta opción para eliminarlos de la lista de estudiantes activos y colocarlos en la lista de ex estudiantes.'
+
+    edit_admission4:
+      enter_admission_details : 'Editar información de admisión'
+
+    academic_report:
+      examination_wise_performance: 'Rendimiento según exámenes'
+      cumulative_performance: 'Rendimiento Acumulado'
+      examination_Name: 'Nombre del Examen'
+
+    edit:
+      edit_details: 'Editar información'
+      necessary_field: 'Campo necesario'
+
+ ## traslation for finance controller
+  finance:
+    additional : 'Menores'
+    fees_name: 'Nombre de la Tarifa'
+    fees_description: 'Descripción de la Tarifa'
+    fees_amount: 'Valor de la Tarifa'
+    student_category : 'Categoría del estudiante'
+    edit_particulars_for_fee : 'Editar las Tarifas Específicas correspondientes a Tarifas Menores'
+    fee_name : 'Nombre de la Tarifa'
+    fee_description : 'Descripción de la Tarifa'
+    fee_amount : 'Valor de la Tarifa'
+    edit_master_category_for_fee : 'Editar Categoría de Tarifas  Mayores'
+    created_date: 'Fecha creada'
+    no_categories_to_display : 'No hay categorías para mostrar'
+    add_particular: 'Añadir Específico'
+    make_asset_inactive : 'Inactivar Activos?'
+    asset : 'Activos'
+    created_at : 'Creado el'
+    fee_category : 'Categoría Tarifas'
+    create_new_category : 'Crear nueva categoría'
+    is_this_under_income : '¿Es esto un ingreso?'
+    are_you_sure_to_delete : '¿Está seguro de eliminar esta categoría de financiamiento?'
+    select_student_category : 'Seleccione Categoría Estudiantil'
+    fee_component : 'Componente Tarifas'
+    due_date_exceeded_collect_fine : 'La fecha límite se ha vencido. Por favor, pagar el valor de la multa.'
+    add_fine : 'Añadir multa'
+    set_fee_collection_date : 'Configurar fechas de Pago'
+    fee_collection_name : 'Nombre de las fechas de Pago'
+    no_fee_collection_exist : 'Lo siento! No existen Cobro'
+    select_fee_collection_date: 'Seleccionar fecha de Pago'
+    edit_fee_collection_date : 'Editar Fechas de Pago'
+    course_for_category : 'Destino de esta categoría'
+    master_fees_Category: 'Categoría Tarifas Mayores'
+    select_fee_category: 'Seleccione una categoría de tasas'
+    create_particular_for_master_fee : 'Particulares para crear Maestro categoría tasas'
+    master : 'Mayores'
+    create_using : 'Crear utilizando'
+    no_particulars : 'No se han agregado Específicos!'
+    fee_category_name: 'Nombre de la Categoría Tarifa'
+    fees_to_be_paid : 'Tarifa a ser pagada'
+    label : 'Etiqueta'
+    leave_field_blank : 'Dejar el campo en blanco si este va a ser reemplazado por otra categoría'
+    amount_to_pay : 'Valor a pagar'
+    print_receipt : 'Imprimir recibo'
+    solve_this_liability: 'Gestionar este pasivo?'
+    liability : 'Pasivos'
+    create_master_category_for_fees : 'Crear categoría Maestro de Honorarios'
+    edit_particular_for_master_fee : 'Edición especial para la categoría master tasas'
+    no_discount_found : 'Lo siento! No hay descuentos encontrado'
+    no_fee_defaulters : 'No hay morosos'
+    fees_receipt_no : 'Número de recibo de pago'
+    create_automatic_transaction : 'Crear Transacción Automática'
+    edit_automatic_transaction: 'Editar transacción automática'
+    select_a_fees_category : 'Seleccionar Categoría de Tarifas'
+    select_fees_particulars: 'Seleccionar Tarifas Especificas'
+    total_deductions : 'Total Deducciones'
+    payslip_approved : 'Comprobante de pago aprobado!'
+    payslip_rejected : 'Recibo de pago rechazado!'
+    expense : 'Gasto'
+    salary_account : 'Cuenta de Nómina'
+    direct_expense : 'Gastos Directos'
+    direct_income : 'Ingreso Directo'
+    grand_total : 'Totalidad'
+    donations : 'Donaciones'
+    additional_fees: 'Tarifas Menores'
+    create_additional_fees: 'Crear Tarifas Menores'
+    delete_this_particular : 'Eliminar esta Tarifa Especifica?'
+    asset_liability_management : 'Gestión de Activos y Pasivos'
+    automatic_transactions : 'Transacciones automáticas'
+    finance_transactions : 'Transacciones Financieras'
+    fees_report: 'Reporte de Tarifas'
+    transaction_report: 'Reporte de transacciones'
+    finance_management : 'Gestión Financiera'
+    create_finance_category : 'Crear Categoría Financiera'
+    create_category : 'Crear categoría'
+    collection_details : 'Detalles de la colección'
+    transactions: 'Transacciones'
+    monthly_transactions : 'Transacciones Mensuales'
+    get_report : 'Obtener Reporte'
+    select_start_date : 'Seleccionar fecha de inicio'
+    select_end_date : 'Seleccionar fecha de finalización'
+    liability_form : 'Formulario de Pasivos'
+    creates_new_liability : 'Crear nuevo Pasivo'
+    finance_monthly_report: 'Reporte Financiero Mensual'
+    total_expenses : 'Total Gastos'
+    finance_academic_year_report: 'Reporte Financiero Anual'
+    total_income: 'Total Ingresos'
+    add_new_donation : 'Añadir nueva donación'
+    donors : 'Donantes'
+    donor_name : 'Nombre del Donante'
+    transaction_date : 'Fecha de la transacción'
+    donation_receipt: 'Donación de la recepción'
+    donor : 'Donante'
+    transaction_id : 'ID de la transacción'
+    credit: 'Crédito'
+    debit: 'Débito'
+    list_of_donors : 'Lista de los donantes'
+    asset_view : 'Ver Activos'
+    asset_name: 'Nombre de activo'
+    liability_view : 'Ver Pasivo'
+    liability_name : 'Nombre de responsabilidad'
+    edit_asset : "edición de activos"
+    edit_fee_discount : 'Editar Descuento Tarifa'
+    edit_liability: "edición de Responsabilidad"
+    employee_salary_report: 'Reporte de salario del empleado'
+    payslip_for : 'Comprobante de pago para'
+    payslip_generated_for: 'Comprobante de pago generado para'
+    create_expense : 'Crear gasto'
+    create_new_expense : 'Crear nuevos gastos'
+    expenses: 'Gastos'
+    edit_expense: 'Editar gasto'
+    expenses_list: 'Lista de gastos'
+    no_transaction_for_the_given_period: 'No hay Transacciones para el periodo indicado'
+    fees_collection_date: 'Fechas de Pago'
+    create_fee_collection: 'Crear Fecha de Pago'
+    creates_new_fee_collecting_dates : 'Crear nuevas fechas de Pago'
+    fees_defaulters_text : 'Morosos'
+    fee_discounts : 'Descuentos de tarifa'
+    view_discount : 'Ver descuento'
+    select_discount_type : 'Seleccione el tipo de descuento'
+    batch_wise : 'discontinua'
+    student_wise : 'estudiante inteligente'
+    category_wise: 'Categoría sabio'
+    create_discount : 'crear descuento'
+    create_fees: 'Crear Tarifas'
+    creates_master_fees_and_additional_fees : 'Crear Tarifas Mayores y Tarifas Menores'
+    master_fees: 'Categorias Mayores'
+    create_master_fees: 'Crear Categorias Mayores'
+    manage_fees: 'Gestionar tarifas'
+    fees_submission : 'Ingresar pagos'
+    fees_structure : 'Información de los Pagos'
+    fees_transaction_report: 'REPORTE DE TRANSACCIÓN DE TARIFAS'
+    select_fee_collection : 'Seleccione la recaudación de tarifas'
+    special_fees_for_student: 'Tarifas especiales para estudiantes'
+    select_fees_collection_date: 'Seleccionar fecha de pago'
+    create_new_income : 'Crear nuevo ingreso'
+    edit_income: 'Editar Ingreso'
+    incomes : 'Ingresos'
+    income_list: 'Lista de los ingresos'
+    manage_finance : 'gestión de las finanzas'
+    manage_expense_and_income : 'Administra los gastos y los ingresos'
+    expences_n_income : 'Gastos e Ingresos'
+    add_expense : 'Agregar gasto'
+    add_income : 'Añadir Ingresos'
+    show_transactions : 'Mostrar Transacciones'
+    compare_transactions : 'Comparar transacciones'
+    create_auto_transaction : 'Crear auto transacción'
+    donation : 'Donacion'
+    assets : 'Activos'
+    creates_new_assets : 'Crear nuevo Activo'
+    create_new_asset : 'Crear nuevo Activo'
+    create_new_liability : 'Crear un nuevo pasivo'
+    master_category : 'Categoría Mayor'
+    create_master_category : 'Crea la nueva categoría Máster'
+    create_particulars: 'Crear Específicos'
+    create_fee_discounts : 'Crear reducciones de los derechos'
+    view_for_master_fees_category: 'Ver Categoría Tarifas Mayores'
+    employee_payslips : 'Comprobante de pago para empleados'
+    employee_payslip_reject : 'Nómina de Empleados Rechazar'
+    transaction_comparision : 'las transacciones de comparación'
+    report_for_the_period_from : 'Reporte para el período desde'
+    fees_account : 'Cuenta Tarifas'
+    department_wise_salary_report : 'Reporte de Salario por Departamentos'
+    department_salary_report : 'Reporte de salario por departamentos'
+    employee_salary : 'Salario del Empleado'
+    fee_reciept: 'Recibo de pago'
+    fee_collection_dates : 'Fechas de Pago'
+    view_fee_collection_dates : 'Ver fechas de Pago'
+    fees_discount_succesfully_created : 'Descuento cuotas ha creado correctamente'
+    finance_transaction_report: 'Finanzas Informe de transacciones'
+    fees_discount_succesfully_updated : 'Descuento cuotas actualizado correctamente'
+    select_a_fees_particulars_that: 'Seleccionar las tarifas especificas que desea reemplazar'
+    finance_transactions_view: 'Ver transacciones financieras'
+    select_year: 'Seleccionar año'
+    payslip_rejected_for : 'Recibo de pago ha sido rechazado por'
+    does_not_belong_to_batch : 'no pertenece al grupo'
+    does_not_exist: 'no existe'
+    fee_submission_date_for : 'Fecha de ingreso de pago para'
+    has_been_published : 'ha sido publicado'
+    fees_submiting_date_starts_on : 'La fecha para ingresar pagos comienza el'
+    fees_submission_date : 'Fecha para ingresar pagos'
+    fees_due : 'Debido tasas'
+    invalid : 'inválido'
+    is_blank : 'está en blanco'
+    check_your: 'chequear sus'
+    fee_structure: 'Información de Pagos'
+    regards: 'se refiere a'
+    fees_category_cant_be_blank : 'Categoría de tasas no puede ser en blanco'
+    receipt_no : 'Recibo No'
+    batch_cant_be_blank : 'Lote no puede ser en blanco'
+    is_invalid_admission_no : 'no es válida número de admisión'
+    admission_cant_be_blank : 'La admisión no puede ser en blanco'
+    fees_category_cant_blank : 'Categoría honorarios no pueden ser Categoría blankFees no puede ser en blanco'
+    fee_discount_succesfully_created : 'Descuento cuotas ha creado correctamente '
+    no_particulars_to_display : 'No hay Tarifas específicas para mostrar'
+    student_fees_submission : 'Ingresar pagos de estudiantes'
+
+    flash1: 'Donación aceptada'
+    flash2: 'Por favor, crear una categoría para gastos!'
+    flash3: 'Gasto añadido a la contabilidad.'
+    flash4: 'Gasto editado exitosamente.'
+    flash5: 'Por favor, crear una categoría  para ingresos!'
+    flash6: 'Ingreso añadido a la contabilidad'
+    flash7: 'Ingreso editado exitosamente.'
+    flash8: 'El comprobante de pago ha sido aprobado'
+    flash9: 'Categoría creada, por favor, agregue tarifas especificas a esta categoría'
+    flash10: 'Los campos marcados con * no pueden estar vacíos'
+    flash11: 'La fecha de vencimiento debe ser posterior a la fecha  de finalización'
+    flash12: 'Fechas de pago actualizadas exitosamente'
+    flash13: 'Error: La fecha de vencimiento deberá ser posterior a  la fecha de finalización.'
+    flash14: 'Pagos satisfechos'
+    flash15: 'donación de'
+    flash16: 'Donación editado con éxito.'
+    flash17: 'Fecha de finalización debe ser posterior a la fecha de inicio!'
+    flash18: 'Transacción de financiamiento se han eliminado correctamente'
+    flash19: 'No puede pagar mayor cantidad de cuota total'
+    flash20: 'Descuento ya existe para el número de admisión'
+
+    index:
+      manage : 'Gestionar'
+      creates_expense_and_income : 'Crear gastos e ingresos'
+      creates_new_donations : 'Crear nuevas donaciones'
+      auto_transactions : 'Autotransacciones'
+      add_automatic_transactions : 'Agregar transacciones automáticas'
+      asset_liability : 'Activos y pasivos'
+      manage_assets_and_liabilities : 'Gestionar activos y pasivos'
+      export : 'Exportar'
+      creates_xml_import_file : 'Crear archivo XML'
+      manage_category : 'Gestionar Categoría'
+      create_master_category: 'Crear Categoría Mayor'
+      create_master_fees_particulars : 'Crear Específicos correspondientes a Categoria Mayor'
+      no_records_for_the_date: 'No hay registros para la fecha'
+
+    fees_index:
+      collection : 'Pagos'
+      structure : 'Información'
+      displays_fees_structure_for_student : 'Muestra información de Pagos de estudiantes'
+      defaulters : 'Morosos'
+      students_with_fees_dues : 'Estudiantes con deudas'
+      submission : 'Ingresar'
+      create_aditional_fees: 'Crear Tarifas Menores'
+      fees_collection : 'Fechas de pago'
+
+    fees_create:
+      aditional : 'Menores'
+
+    master_category_particulars:
+      delete_msg : 'Eliminar la Tarifa especifica?'
+
+    additional_fees_list:
+      delete_msg1: 'Eliminar esta categoría?'
+
+    fee_collection :
+      collection : 'Fecha'
+      displays_collection_dates : 'Muestra fechas de Pago'
+
+    fees_submission_index :
+      fees_submission_by_course : 'Ingresar pagos por curso'
+      fees_submit_by_each_course : 'Ingresar pagos seleccionando cada curso'
+      fees_submit_for_student : 'Ingresar pagos a cada estudiante'
+      submitting_fees_by_search : 'Ingresar pagos buscando cada estudiante'
+
+    fees_defaulters :
+      students_fee_dues : 'Estudiantes con deudas'
+
+    income_create :
+      create_income : 'Crear Ingreso'
+
+    monthly_report :
+      monthly_report : 'Reporte Mensual'
+
+    compare_report :
+      compare_with : 'Comparar con'
+
+    view_monthly_payslip :
+      view_monthly_payslips : 'Ver Comprobantes de pago Mensual'
+
+    payslip_index :
+      view_payslip : 'Ver Comprobantes de Pago'
+      view_employee_monthly_payslip : 'Ver comprobantes de Pago mensuales de los empleados'
+
+    asset_liability :
+      manages_asset : 'Gestionar Activos'
+      manages_liability : 'Gestionar Pasivos'
+
+    graph_for_compare_monthly_report:
+      for_the_period : 'Para el período'
+
+## traslation for xml controller
+  xml:
+    tally : 'Tally'
+    flash1: 'Configuración XML actualizada exitosamente'
+
+    index:
+      tally_settings : 'Configuración Tally'
+      change_ledger_settings_for_tally : 'Cambiar la configuración del  libro Mayor de Tally'
+      export_for_tally : 'Exportar a Tally'
+      creates_xml_import : 'Crear archivo XML para Tally'
+
+    settings:
+      ledger_name_correspond_salary : 'Nombre del Libro Correspondiente a Salario'
+      ledger_name_correspond_fees : 'Nombre del Libro correspondiente a Tarifas'
+      ledger_name_correspond_donation : 'Nombre del Libro correspondiente a Donaciones'
+    create_xml:
+      export_to_tally : 'Exportar a Tally'
+
+# translation for exams controller
+
+# translation for grading level controller
+  grading_levels:
+    min_score : '% mínimo'
+    add_grades : 'Añadir desempeños'
+    add_new_grading_levels  : 'Agregar nuevos desempeños'
+
+    index:
+      grading : 'Desempeño'
+      levels : 'Niveles'
+      grading_levels : 'Desempeños'
+
+# translation for exam controller
+  exam:
+    select_exam_group : "Seleccionar grupo de exámenes"
+    consolidated_report : "Reporte consolidado"
+    create_exam : "Crear examen"
+    exam_results_entry : 'Los resultados del examen de entrada'
+    exam_wise_report : 'Reportes Según Exámenes'
+    grouping : 'Agrupación'
+    exam_scheduled : 'Examen Programado'
+
+    flash1: 'Exámenes seleccionados agrupados exitosamente.'
+    flash2: 'Seleccionar un grupo y un examen para continuar.'
+    flash3: 'Parámetros no válidos.'
+    flash4: 'Seleccionar una asignatura para continuar'
+    flash5: 'No hay clases en el lote seleccionado'
+
+    index:
+      create_a_new_exam_and_enter_result : 'Crear nuevos exámenes, entre los resultados.'
+      create_additional_exams_and_edit_results : 'Crear exámenes adicionales, resultados Editar'
+      set_grading_levels: 'Configurar desempeños'
+      results : 'Resultados'
+      generates : 'Generar'
+      group_up_exams_for_specific_reports : 'Agrupar exámenes para Reportes específicos'
+      do_not : 'No'
+      academic : 'Académico'
+      consolidated : 'Consolidado'
+      average : 'Promedio'
+      connect : 'Conectar'
+      exam_management : "Gestión de examenes"
+      generate_exam_wise_report : "Generar reportes según exámenes"
+      generate_subject_wise_report : "Generar reportes según asignaturas"
+      marklist_for : "Lista de notas para"
+      average_mark : "Nota Promedio"
+
+# exams controller
+  exams:
+    flash1: 'Información de exámenes actualizada exitosamente.'
+    flash2: 'El puntaje de los exámenes excede la nota máxima.'
+    flash3: 'Puntaje de exámenes actualizado.'
+    flash4: 'Niveles Garading no están ajustadas. Por favor, establece los niveles Garding.'
+# exam_groups controller
+  exam_groups:
+    view_exam_groups : "Ver grupos de exámenes"
+    publish_exam_result : 'Publicar resultado de examen'
+    flash1: 'Grupo de exámenes creado exitosamente.'
+
+    index:
+      exam_groups : 'Grupos de Exámenes'
+      exam_group : 'Grupo de Exámenes'
+      connect : 'Conectar'
+
+
+#additional exam controller
+  additional_exam:
+    create_additional_exam:
+      create_additional_exams : 'Crear Exámenes adicionales'
+      cant_be_more_than_max_marks : 'no puede ser más que la nota máxima'
+
+#additional exams controller
+  additional_exams:
+    for_additional_exam_group : "Para grupo exámenes adicionales"
+    flash1: 'Puntajes de examen adicional actualizado.'
+    flash3: 'Información de examen adicional actualizada exitosamente.'
+
+    show:
+      select_grade : 'Seleccionar desempeño'
+
+#additional exam groups controller
+  additional_exam_groups:
+    flash1: 'Grupo de exámenes adicionales guardados exitosamente'
+    flash2: 'Grupo de exámenes adicionales actualizados exitosamente.'
+
+    edit:
+      edit_additional_exam_groups : "Editar grupos de exámenes adicionales"
+
+    index:
+      additional_exam_groups : "Grupos de exámenes adicionales"
+      resend_sms_notification : "Reenviar notificación SMS"
+
+    show:
+      view_additional_exam : "Ver examen adicional"
+      show_additional_exam_group : 'Grupo que muestra el examen adicional'
+
+    ## translation for timetable controller
+  timetable:
+    warning : 'Advertencia'
+    no_teacher_associated : 'Ningún profesor está asociado a esta asignatura'
+    time_table_is_being_generated : 'El Horario de clases está siendo generado. Por favor, permanecer en la  página'
+    no_timetable_entry_for_batch : 'No se ha entrado información al horario de grupo'
+    add_subjects : 'Añadir Temas'
+    swap_class : 'Intercambiar clase'
+    create_or_edit_timetable : 'Crear / Editar Horario'
+    view_timetable : 'Ver Horarios'
+    select_batch_to_edit : 'Seleccionar grupo para editar'
+    institutional : 'Institucional'
+    day : 'día'
+    cancelled : 'Cancelado.'
+    select_batch_to_view : 'Seleccionar el grupo para ver'
+    weekly_limit_reached : "Weekly subject limit reached"
+    class_overlap : "Clase solapamiento con lotes"
+    max_hour_exceeded_day : "Número máximo de horas por día superado"
+    max_hour_exceeded_week : "Número máximo de horas por semana superó"
+
+    flash1: 'El horario ya ha sido publicado'
+    flash2: 'Horario actualizado'
+    flash3: 'Horario publicado'
+    flash4: 'No hay entrada de calendario para la fecha seleccionada'
+
+    index:
+      select_a_class_and_edit_the_timetable : 'Seleccionar una clase y editar el horario de esa clase'
+      select_a_class_timings_for_each_class : 'Seleccionar los intervalos de cada clase'
+      view_the_timetable_for_a_class : 'Ver el Horario de una clase'
+      generate_period_entry : 'Crear intervalo para un momento dado'
+      view_entire_timetable : 'Ver el horario completo de un día'
+
+    select_class2:
+      select_class_to_edit : 'Seleccionar una clase para editarla'
+
+    extra_class:
+      select_a_class : 'Seleccionar una clase'
+
+
+ ## translation for weekday controller
+  weekday:
+    check_if_this_is_a_break : 'Comprobar si es un descanso'
+    alter_message: 'Esto alterará toda la información de los días de la semana de los horarios y de la Asistencia. Desea continuar cambiando los días de la semana?'
+    add_new_grading_level: 'Añadir nuevo nivel de calificación'
+    weekdays_modified : 'días de la semana modificado'
+
+## translation for class timings controller
+  class_timings:
+    edit_class_timing_for : 'Editar intervalo de clase para'
+    is_a_break : 'Es un descanso'
+    confirm_msg : 'Esto eliminará  todos los  horarios asociados con esta clase. Desea proceder con la eliminación?'
+    add_new_class_timing_for : 'Agregar nuevo intervalo de clase para'
+
+ # partials w/o underscore (template "_footer.erb")
+    footer:
+      key: "Mi Copyright"
+      powered_by: 'Desarrollado por'
+    header_link:
+      logged_as: "Conectado como:"
+      messages: "Mensajes"
+      log_out: "Cerrar sesión"
+
+    # "layouts" is fixed
+  layouts:
+      # the layout name (template "main.erb")
+    calendar: "Calendario"
+    dashboard_text: "Inicio"
+    settings: "Configuración"
+    examination : 'Exámenes'
+    event_creation : 'Eventos'
+    human_resource : 'Gestión Humana'
+    finance : 'Finanzas'
+    user : 'Usuario'
+    timetable: "Horario"
+    news: "Noticias"
+    more: "Más ▼"
+    sms: "SMS"
+    logged_as: "Conectado como:"
+    fedena_logo: "/images/application/app_fedena_logo.jpg"
+    messages: "Mensajes"
+    log_out: "Cerrar sesión"
+    ago: 'atras'
+    powered_by: 'Desarrollado por'
+    more_news : 'Mas Noticias'
+
+
     # for shared partials called like: render :template => "shared/user"
     # where "shared" is the directory name
-    shared:
+  shared:
       # partial name w/o underscore (template "_user.erb")
-      user:
-        key: "Foo"
+    user:
+      key: "Foo"
 
     # the full mailer name
-    blog_comment_mailer:
+  blog_comment_mailer:
       # the method name (does not include "deliver")
-      comment_notification:
-        subject: "New Comment"
+    comment_notification:
+      subject: "New Comment"
