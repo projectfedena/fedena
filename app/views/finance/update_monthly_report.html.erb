@@ -87,7 +87,16 @@
         <td class="col-3" align="right"><%=@transactions_fees%></td>
         <td class="col-3"> - </td>
       </tr>
- 
+      <% FedenaPlugin::FINANCE_CATEGORY.each do |category| %>
+      <tr class="tr-<%=cycle('even','odd')%>">
+        <td class="col-1"><%= index+=1 %></td>
+          <td class="col-2"><%= link_to "#{category[:category_name]} Account" , category[:destination].merge(:start => @start_date,:end => @end_date)%> </td>
+        <td></td>
+        <td class="col-3" align="right"><%=@category_transaction_totals["#{category[:category_name]}"]%></td>
+        <td class="col-3"> - </td>
+      </tr>
+      <% end %>
+      
       <% @other_transactions.each_with_index do |t,i| %>
         <tr class="tr-<%= cycle("even","odd") %>">
           <td class ="col-1"><%=i+index+1%></td>

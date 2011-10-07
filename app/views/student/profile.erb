@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<div id="inner-tab-menu">
+<div id="nav">
   <ul>
     <% if permitted_to? :reports,:student %>
       <li><%= link_to "#{t('reports_text')}", :controller => 'student',
@@ -53,6 +53,17 @@
       <li><%= link_to "#{t('delete')}", :controller => 'student',
           :action => 'remove', :id => @student.id %></li>
     <% end %>
+    <li>
+      <a href="#" class="drops" id="link_one">More &#9660;</a>
+      <ul id="box_one" class="scriptaculously" style="display:none;">
+        <% if @sms_module.include?('Finance') and permitted_to? :fees, :student%>
+          <li><%= link_to "Fees", :controller => 'student',:action => 'fees', :id => @student.id %></li>
+        <% end %>
+        <% FedenaPlugin::ADDITIONAL_LINKS[:student_profile_more_menu].each do |mod| %>
+          <li><%= link_to "#{mod[:title]}",mod[:destination].merge(:id=>@student.id) %></li>
+        <% end %>
+      </ul>
+    </li>
   </ul>
 </div>
 
@@ -64,7 +75,7 @@
 
     <div id="profile_picture_display">
       <% if @student.photo.file? %>
-      <%= image_tag @student.photo.url %>
+        <%= image_tag @student.photo.url %>
       <% else %>
         <%= image_tag "master_student/profile/default_student.png" %>
       <% end %>
@@ -111,7 +122,9 @@
           </td></tr>
 
       <% end  %>
-
+      <% FedenaPlugin::REGISTERED_HOOKS[:student_profile].each do |mod| %>
+        <%= render :partial=>mod.camelize.constantize.send("student_profile_hook"),:locals=>{:student=>@student} %>
+      <% end %>
       <% if @sms_module.include?('SMS') %>
         <% if @sms_setting.application_sms_active %>
           <tr class="odd left"><td><%= t('sms_alerts') %></td><td class="right"><%= @student.is_sms_enabled?? "Enabled":"Disabled" %></td></tr>
