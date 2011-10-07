@@ -32,6 +32,7 @@ class Employee < ActiveRecord::Base
   has_many    :apply_leaves
   has_many    :monthly_payslips
   has_many    :employee_salary_structures
+  has_many    :finance_transactions, :as => :payee
 
   validates_format_of     :email, :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,   :allow_blank=>true,
     :message => "must be a valid email address"
@@ -64,7 +65,7 @@ class Employee < ActiveRecord::Base
     else
       changes_to_be_checked = ['employee_number','first_name','last_name','email']
       check_changes = self.changed & changes_to_be_checked
-      self.user.role = "Employee"
+#      self.user.role ||= "Employee"
       unless check_changes.blank?
         self.user.username = self.employee_number if check_changes.include?('employee_number')
         self.user.first_name = self.first_name if check_changes.include?('first_name')

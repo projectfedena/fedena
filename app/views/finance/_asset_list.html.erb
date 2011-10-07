@@ -21,7 +21,8 @@
   <tr class="tr-head">
     <td ><%= t('asset') %></td>
     <td><%= t('created_at') %></td>
-     <td></td>
+    <td>Total Amount</td>
+    <td></td>
   </tr>
 
   <% @assets.each do |a| %>
@@ -29,6 +30,8 @@
       <tr class="inactive">
         <td class="col-3"><%=link_to a.title+" ( inactive )" ,:action=>"each_asset_view",:id => a.id%></td>
         <td class="col-3"><%=link_to a.created_at.strftime("%d-%m-%Y"),:action =>"each_asset_view",:id => a.id%></td>
+        <td class="col-3"><%=  @currency_type + " "%><%= a.amount%></td>
+
         <td class="col-1">
           <%= link_to_remote t('edit'), :url => { :action => 'edit_asset', :id => a.id } %> |
           <%= link_to_remote t('delete'), :url => { :action => 'delete_asset', :id => a.id } %>
@@ -39,6 +42,7 @@
       <tr class="tr-<%= cycle('odd', 'even')%> ">
         <td class="col-3"><%=link_to a.title ,:action=>"each_asset_view",:id => a.id%></td>
         <td class="col-3"><%=link_to a.created_at.strftime("%d-%m-%Y"),:action =>"each_asset_view",:id => a.id%></td>
+        <td class="col-3"><%=  @currency_type + " "%><%= a.amount%></td>
         <td class="col-1">
           <%= link_to_remote t('edit'), :url => { :action => 'edit_asset', :id => a.id } %> |
           <%= link_to_remote t('delete'), :url => { :action => 'delete_asset', :id => a.id },:confirm=>t('delete_confirm_msg') %>

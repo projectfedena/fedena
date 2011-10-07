@@ -18,17 +18,36 @@
 #under the License. -%>
 
 
-<% if @students_result.nil? %>
-  <div id="no_result"><%= t('no_users') %></div>
-<%else%>
-  <% @students_result.each do |t| %>
-    <div id="ajax_result">
-      <% link_value = t.full_name %>
-      <%= link_to link_value, :controller => "finance", :action => "fees_structure_dates", :id => t.id %><br/>
-      <small><%= t('batch') %>: <%= t.batch.full_name%></small>
-      <small><br/><%= t('adm_no.') %><%= t.admission_no %></small> <%= @st.to_s %>
-    </div>
-  <%end%>
-<%end%>
+<table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+  <% unless @students_result.nil? %>
+    <tr class="tr-head">
+      <td>
+        Sl no.
+      </td>
+      <td>
+        Student Name
+      </td>
+      <td>
+        Batch
+      </td>
+      <td>
+        Admission No
+      </td>
+    </tr>
+    <tr class="tr-blank"></tr>
 
-  
+    <% @students_result.each_with_index do |t, i| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-5"><%= i+1 %></td>
+        <td class="col-3"><%=  link_to t.full_name, :action => "fees_structure_dates", :id => t.id %></td>
+        <td class="col-3"><%= t.batch.full_name %></td>
+        <td class="col-1"><%= t.admission_no %></td></tr>
+
+    <% end %>
+  <% else %>
+    <tr class="tr-<%= cycle('odd', 'even') %>">
+      <td class="col-2">No users found</td>
+    </tr>
+  <% end %>
+</table>
+

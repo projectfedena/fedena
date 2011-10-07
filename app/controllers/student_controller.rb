@@ -63,7 +63,7 @@ class StudentController < ApplicationController
           recipients = []
           message = "#{t('student_admission_done')} #{@student.admission_no} #{t('password_is')} #{@student.admission_no}123"
           if sms_setting.student_sms_active
-            recipients.push @student.phone2 unless @student.phone2.nil?
+            recipients.push @student.phone2 unless @student.phone2.blank?
           end
           unless recipients.empty?
             sms = SmsManager.new(message,recipients)
@@ -421,32 +421,28 @@ class StudentController < ApplicationController
     if params[:option] == "active"
       if params[:query].length>= 3
         @students = Student.find(:all,
-          :conditions => "(first_name LIKE \"#{params[:query]}%\"
-                       OR middle_name LIKE \"#{params[:query]}%\"
-                       OR last_name LIKE \"#{params[:query]}%\"
-                       OR (concat(first_name, \" \", middle_name) LIKE \"#{params[:query]}%\")
-                       OR (concat(first_name, \" \", middle_name, \" \", last_name) LIKE \"#{params[:query]}%\")
-                       OR admission_no = '#{params[:query]}'
-                       OR (concat(first_name, \" \", last_name) LIKE \"#{params[:query]}%\"))",
+          :conditions => ["first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
+                            OR admission_no = ? OR (concat(first_name, \" \", last_name) LIKE ? ) ",
+                         "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
+                         "#{params[:query]}", "#{params[:query]}" ],
           :order => "batch_id asc,first_name asc") unless params[:query] == ''
       else
         @students = Student.find(:all,
-          :conditions => "(admission_no = '#{params[:query]}')",
+         :conditions => ["admission_no = ? " , params[:query]],
           :order => "batch_id asc,first_name asc") unless params[:query] == ''
       end
       render :layout => false
     else
       if params[:query].length>= 3
         @archived_students = ArchivedStudent.find(:all,
-          :conditions => "(first_name LIKE \"#{params[:query]}%\"
-                       OR middle_name LIKE \"#{params[:query]}%\"
-                       OR last_name LIKE \"#{params[:query]}%\"
-                       OR admission_no = '#{params[:query]}'
-                       OR (concat(first_name, \" \", last_name) LIKE \"#{params[:query]}%\"))",
+          :conditions => ["first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
+                            OR admission_no = ? OR (concat(first_name, \" \", last_name) LIKE ? ) ",
+                         "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
+                         "#{params[:query]}", "#{params[:query]}" ],
           :order => "batch_id asc,first_name asc") unless params[:query] == ''
       else
         @archived_students = ArchivedStudent.find(:all,
-          :conditions => "(admission_no = '#{params[:query]}')",
+          :conditions => ["admission_no = ? " , params[:query]],
           :order => "batch_id asc,first_name asc") unless params[:query] == ''
       end
       render :partial => "search_ajax"

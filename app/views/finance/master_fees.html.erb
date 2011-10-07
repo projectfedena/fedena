@@ -70,7 +70,9 @@
       </div>
     </div>
     <div id="fee_collection_dates"></div>
-<%#= render :partial => "master_category_list" %>
-    <div id="categories"></div>
+      
+    <div id="categories">   
+      <%= render :partial => "master_category_list" unless params[:batch_id].blank? %>
+    </div>
   </div>
 </div>

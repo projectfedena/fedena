@@ -28,12 +28,12 @@
 
   <% if @user.admin? %>
     <div class="button-box">
-      <%= link_to "<div class ='button-label'><p>#{t('admission')}</p></div>", {:controller => "student", :action => "admission1"},
-        :class => "option_buttons", :id => "admission_button", :title => "#{t('admission_link_title')}"%>
+      <%= link_to '<div class ="button-label"><p>Admission</p></div>', {:controller => "student", :action => "admission1"},
+        :class => "option_buttons", :id => "admission_button", :title => "Enter Students admission details into the school records"%>
     </div>
     <div class="button-box">
-      <%= link_to "<div class ='button-label'><p>#{t('student_details')}</p></div>", {:controller => "student", :action => "index"},
-        :class => "option_buttons", :id => "student_details_button", :title => t('student_link_title')%>
+      <%= link_to '<div class ="button-label"><p>Student Details</p></div>', {:controller => "student", :action => "index"},
+        :class => "option_buttons", :id => "student_details_button", :title => "Search for existing and former students"%>
     </div>
     <div class="button-box">
       <%= link_to "<div class ='button-label'><p> #{t('manage_users')} </p></div>", {:controller => "user", :action => "index"},
@@ -45,8 +45,8 @@
 
     </div>
     <div class="button-box">
-      <%= link_to "<div class ='button-label'><p>#{t('examinations')}</p></div>", {:controller => "exam", :action => "index"},
-        :class => "option_buttons", :id => "examinations_button",:title => t('exam_link_title') %>
+      <%= link_to '<div class ="button-label"><p>Examinations</p></div>', {:controller => "exam", :action => "index"},
+        :class => "option_buttons", :id => "examinations_button",:title => "          Manage Examinations" %>
     </div>
     <div class="button-box">
       <%= link_to "<div class ='button-label'><p>#{t('timetable')}</p></div>", {:controller => "timetable", :action => "index"},
@@ -160,8 +160,9 @@
     <%else%>
       <% if @config.include?('HR') %>
         <div class="button-box">
-          <%= link_to "<div class ='button-label'><p>#{t('leaves')}</p></div>", {:controller => "employee_attendance", :action => "leaves",:id => @employee.id},
-            :class => "option_buttons", :id => "leaves_button", :title => "#{t('leave_details')}" unless @employee.nil?%>
+          <%= link_to "<div class ='button-label'><p>Leave</p></div>", {:controller => "employee_attendance", :action => "leaves",:id => @employee.id},
+            :class => "option_buttons", :id => "leaves_button", :title => "Employee leave details." unless @employee.nil?%>
+
         </div>
       <%end%>
     <%end%>
@@ -251,7 +252,14 @@
     <% end %>
 
   <% end %>
-
+  
+  <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
+      <% if permitted_to? "#{mod[:dashboard_menu][:action]}".to_sym,"#{mod[:dashboard_menu][:controller]}".to_sym %>
+      <div class="button-box">
+        <%= link_to "<div class =\"button-label\"><p>#{mod[:dashboard_menu][:title]}</p></div>", {:controller => "#{mod[:dashboard_menu][:controller]}", :action => "#{mod[:dashboard_menu][:action]}"}, mod[:dashboard_menu][:options] %>
+      </div>
+    <% end %>
+  <% end %>
 
 </div>
 

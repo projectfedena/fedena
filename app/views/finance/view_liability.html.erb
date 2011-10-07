@@ -25,6 +25,11 @@
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
+<div id="inner-tab-menu">
+  <ul>
+      <li><%= link_to 'PDF Report',{ :controller => 'finance', :action => 'liability_pdf'}, :target=>'_blank' %></li>
+  </ul>
+</div>
 <div id="page-yield">
   <div id="liability_list"><%= render :partial => "liability_list" %> </div>
   <div id="modal-box" style="display:none;"></div>

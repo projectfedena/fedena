@@ -38,10 +38,10 @@
         <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('particulars') %></td><td class="col-pdf"> <%= t('amount') %></td></tr>
         <% i = 0  %>
         <% c= 'even' %>
-        <% @fee_particulars.each_with_index do |fee,i| %>
+        <% @fee_particulars.each do |fee| %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf"><%= i+1 %></td>
-            <td class="col-pdf"><%= shorten_string(fee.name,20) %></td>
+            <td class="col-pdf"><%= i+=1 %></td>
+            <td class="col-pdf"><%= fee.name %></td>
             <td class="col-pdf">&nbsp;<%= @currency_type.to_s + " " +fee.amount.to_s %></td>
           </tr>
           <% total_fees += fee.amount %>
@@ -56,27 +56,24 @@
           </tr>
           <% @batch_discounts.each do |d| %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-              <td class="col-1"><%= i+1 %></td>
+              <td class="col-1"><%= i+=1 %></td>
               <td class="col-2"><%= shorten_string(d.name,20) %></td>
               <td class="col-6"><%= d.discount%> %</td>
             </tr>
-            <% i += 1 %>
           <% end %>
           <% @student_discounts.each do |d| %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-              <td class="col-1"><%= i+1 %></td>
+              <td class="col-1"><%= i+=1 %></td>
               <td class="col-2"><%= shorten_string(d.name,20) %></td>
               <td class="col-6"><%= d.discount%> %</td>
             </tr>
-            <% i += 1 %>
           <% end %>
           <% @category_discounts.each do |d| %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-              <td class="col-1"><%= i+1 %></td>
+              <td class="col-1"><%= i+=1 %></td>
               <td class="col-2"><%= shorten_string(d.name,20) %></td>
               <td class="col-6"><%= d.discount%> %</td>
             </tr>
-            <% i += 1 %>
           <% end %>
           <tr class="tr-blank"></tr>
           <tr class="tr-blank"></tr>

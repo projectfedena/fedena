@@ -20,7 +20,7 @@
     margin:0px auto;
 }
 .box{
-    width:750px;
+    width: 954px;
     margin:0px auto;
 }
 
@@ -101,6 +101,7 @@ td.col-4{
 }
 
 #score-table{
-    width: 772px;
+    margin: 0 auto;
     overflow: auto;
+    width: 100%;
 }

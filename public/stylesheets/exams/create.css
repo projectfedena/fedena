@@ -41,3 +41,7 @@
 .submit_button:hover{
     background:  #373B3F;
 }
+
+div.fieldWithErrors{
+    display: inline;
+}

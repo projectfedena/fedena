@@ -1,7 +1,7 @@
 
 .submit_button {
     margin-top:25px;
-    margin-left:150px;
+    margin-left:210px;
     padding: 7px 10px;
     color: #fff;
     background: #27292B;
@@ -62,4 +62,8 @@
     margin:20px 0 10px 100px;
     font-variant: small-caps;
     font-weight: bold;
+}
+.errorExplanation p{
+    font-size: 13px;
+    text-align: center;
 }

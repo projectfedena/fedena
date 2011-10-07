@@ -17,6 +17,7 @@
 #limitations under the License.
 
 class ExamGroupsController < ApplicationController
+  before_filter :login_required
   before_filter :initial_queries
   before_filter :protect_other_student_data
   before_filter :restrict_employees_from_exam
@@ -74,8 +75,8 @@ class ExamGroupsController < ApplicationController
         flash[:notice] = "#{t('flash_msg4')}"
         redirect_to :controller => 'user', :action => 'dashboard'
       end
-    end
-    @exam_group.destroy
+    end 
+   flash[:notice] = "Exam group deleted successfully." if @exam_group.destroy
     redirect_to batch_exam_groups_path(@batch)
   end
 

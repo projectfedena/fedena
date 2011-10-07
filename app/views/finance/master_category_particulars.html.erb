@@ -25,25 +25,17 @@
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
+<div id="inner-tab-menu">
+  <ul>
+      <li><%= link_to_remote 'Create Particulars', :url => { :action => 'fees_particulars_new',:category_id=>params[:id]} %></li>
+  </ul>
+</div>
 <div id="page-yield">
 
   <div id="message"></div>
 
   <div class="box">
-  <div class="link-box">
-    <div class="link-heading">
-     <%= link_to_remote "#{t('create_category')}", :url => { :action => 'master_category_new'} %>
-    </div>
-    <div class="link-descr"> <%= t('create_master_category') %></div>
-  </div>
-
-  <div class="link-box">
-    <div class="link-heading">
-      <%= link_to_remote "#{t('create_particulars')}", :url => { :action => 'fees_particulars_new',:category_id=>params[:id]} %>
-    </div>
-    <div class="link-descr"><%= t('create_particulars') %></div>
-  </div>
-
+ 
   <div id="modal-box" style="display:none;"></div>
   <%= @a %>
   

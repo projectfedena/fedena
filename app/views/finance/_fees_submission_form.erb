@@ -16,8 +16,11 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
+<% unless flash[:notice].nil? %>
+  <div id="errorExplanation" class="errorExplanation"><p>There were problems with the following fields:</p><ul><li><%= flash[:notice] %></li></ul></div>
+<% end %>
 
-<%if @financefee.transaction_id.nil?%>
+<%if @financefee.transaction_id.nil? and @fine.nil?%>
   <%= render :partial => "student_fine_submission" %>
 <% end %>
 
@@ -37,8 +40,8 @@
       <% @fee_particulars.each do |fee| %>
         <tr class="tr-<%= cycle("odd","even") %>">
           <td class="col-1"><%= i +=1 %></td>
-          <td class="col-2"><%= shorten_string(fee.name,20) %></td>
-          <td class="col-6"><%= fee.amount%></td>
+          <td class="col-2"><%= fee.name %></td>
+          <td class="col-6"><%= fee.amount %></td>
         </tr>
         <% total_fees += fee.amount %>
       <% end %>
@@ -105,12 +108,26 @@
         </tr>
         <% total_fees += @fine.to_f %>
       <% end %>
+      <% unless @financefee.transaction_id.nil? %>
+
+        <% @trans = FinanceTransaction.find(@financefee.transaction_id) %>
+        <% unless @trans.nil? %>
+          <% if @trans.fine_included %>
+            <tr class="tr-<%= cycle("odd","even") %>">
+              <td class="col-1"><%= @fee_particulars.size+@paid_fees.size+1 %></td>
+              <td class="col-2"><span>Fine</span></td>
+              <td class="col-6"><%= @trans.fine_amount %></td>
+            </tr>
+          <% end %>
+          <% total_fees += @trans.fine_amount.to_f %>
+        <% end %>
+      <% end %>
       <% unless @paid_fees.nil? %>
         <tr class="tr-blank"></tr>
         <tr class="tr-blank"></tr>
         <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
-        <td class="col-1" ></td>
-        <td class="col-1" colspan="2" ><span><%= t('payment_done') %> </span></td>
+          <td class="col-1" ></td>
+          <td class="col-1" colspan="2" ><span>Payment Done</span></td>
         </tr>
 
         <% paid = 0 %>
@@ -124,20 +141,7 @@
         <% end %>
         <% total_fees -= paid %>
       <% end %>
-      <% unless @financefee.transaction_id.nil? %>
 
-        <% @trans = FinanceTransaction.find(@financefee.transaction_id) %>
-        <% unless @trans.nil? %>
-          <% if @trans.fine_included %>
-            <tr class="tr-<%= cycle("odd","even") %>">
-              <td class="col-1"><%= @fee_particulars.size+@paid_fees.size+1 %></td>
-              <td class="col-2"><span><%= t('fine') %> </span></td>
-              <td class="col-6"><%= @trans.fine_amount %></td>
-            </tr>
-          <% end %>
-          <% total_fees += @trans.fine_amount.to_f %>
-        <% end %>
-      <% end %>
       <tr class="tr-blank"></tr>
       <tr class="tr-blank"></tr>
       <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">

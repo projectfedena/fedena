@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-   <img src="/images/show_finance.png" alt="" />
+  <img src="/images/show_finance.png" alt="" />
   <h1><%= t('finance_text') %></h1>
   <h3><%= t('department_wise_payslip') %></h3>
   <div id="app-back-button">
@@ -52,52 +52,57 @@
   <div id="payslip">
     <% if request.post? %>
       <% if  @payslips[:monthly_payslips].present? or @payslips[:individual_payslip_category].present? %>
-      <% grouped_monthly_payslips = @payslips[:monthly_payslips] unless @payslips[:monthly_payslips].blank?%>
-      <% grouped_individual_payslip_categories = @payslips[:individual_payslip_category]  unless @payslips[:individual_payslip_category].blank?%>
-      <table id="listing" width="100%">
-        <tr class="tr-head">
-          <td><%= t('sl_no') %></td>
-          <td><%= t('employee_text') %></td>
-          <td><%= t('employee_no') %></td>
-          <td><%= t('net_salary') %></td>
-          <td><%= t('payslip_status') %></td>
-          <td></td>
-        </tr>
-        <% total_salary = 0 %>
-        <% total_employees = 0 %>
-        <% unless  grouped_monthly_payslips.blank? %>
-          <% grouped_monthly_payslips.each_with_index do |(empid,payslip),i| %>
-            <tr class="tr-<%=cycle('odd','even')%>">
-              <% if payslip and payslip.first and payslip.first.active_or_archived_employee %>
-                <td class="col-1">  <%=  i+1 %></td>
-                <td class="col-1">  <%= payslip.first.active_or_archived_employee.full_name %></td>
-                <td class="col-1">  <%= payslip.first.active_or_archived_employee.employee_number %></td>
-                <% grouped_individual_payslip_category = nil %>
-                <% unless grouped_individual_payslip_categories.blank? %>
-                  <% grouped_individual_payslip_category = grouped_individual_payslip_categories[empid] unless grouped_individual_payslip_categories[empid].nil? %>
+        <% grouped_monthly_payslips = @payslips[:monthly_payslips] unless @payslips[:monthly_payslips].blank?%>
+        <% grouped_individual_payslip_categories = @payslips[:individual_payslip_category]  unless @payslips[:individual_payslip_category].blank?%>
+        <table id="listing" width="100%">
+          <tr class="tr-head">
+            <td>Sl</td>
+            <td>Employee</td>
+            <td>Employee No.</td>
+            <td>Net Salary</td>
+            <td>Payslip status</td>
+            <td></td>
+          </tr>
+          <% total_salary = 0 %>
+          <%  total_approved_salary = 0 %>
+          <% total_employees = 0 %>
+          <% i=0 %>
+          <% unless  grouped_monthly_payslips.blank? %>
+            <% grouped_monthly_payslips.each do |(empid,payslip)| %>
+              <tr class="tr-<%=cycle('odd','even')%>">
+                <% if payslip and payslip.first and payslip.first.active_or_archived_employee %>
+                  <td class="col-1">  <%=  i+=1 %></td>
+                  <td class="col-1">  <%= payslip.first.active_or_archived_employee.full_name %></td>
+                  <td class="col-1">  <%= payslip.first.active_or_archived_employee.employee_number %></td>
+                  <% grouped_individual_payslip_category = nil %>
+                  <% unless grouped_individual_payslip_categories.blank? %>
+                    <% grouped_individual_payslip_category = grouped_individual_payslip_categories[empid] unless grouped_individual_payslip_categories[empid].nil? %>
+                  <% end %>
+
+                  <% emp_payslip = Employee.calculate_salary(payslip,grouped_individual_payslip_category) %>
+                  <td class="col-1">  <%="%.2f" %emp_payslip[:net_amount] unless emp_payslip.nil? %></td>
+                  <td class="col-1">  <%= payslip.first.status_as_text %></td>
+                  <td class="col-5"><%= link_to "View",{:action=>"view_employee_payslip",:id=>payslip.first.employee_id,:salary_date=>params[:payslip][:salary_date]} %></td>
                 <% end %>
-
-                <% emp_payslip = Employee.calculate_salary(payslip,grouped_individual_payslip_category) %>
-                <td class="col-1">  <%="%.2f" %emp_payslip[:net_amount] unless emp_payslip.nil? %></td>
-                <td class="col-1">  <%= payslip.first.status_as_text %></td>
-                <td class="col-5"><%= link_to "#{t('view')}",{:action=>"view_employee_payslip",:id=>payslip.first.employee_id,:salary_date=>params[:payslip][:salary_date]} %></td>
-              <% end %>
-              <% total_salary +=  emp_payslip[:net_amount].to_f unless emp_payslip.nil?  %>
-              <% total_employees = i+1 %>
-            </tr>
+                <% total_salary +=  emp_payslip[:net_amount].to_f unless emp_payslip.nil?  %>
+                <% total_approved_salary +=  emp_payslip[:net_amount].to_f if  !emp_payslip.nil? and payslip.first.is_approved  %>
+                <% total_employees = i %>
+              </tr>
+            <% end %>
           <% end %>
-        <% end %>
-        <tr class="tr-head">
-          <td class="col-1" colspan="2"><%= t('total_employees') %>: </td>
-          <td class="col-1"><%= total_employees %> </td>
-          <td class="col-1"><%= t('total_salary') %> : </td>
-          <td class="col-1" colspan="3"><%="%.2f" %total_salary %></td>
-        </tr>
+          <tr class="tr-head">
+            <td class="col-1">Total employees: </td>
+            <td class="col-1"><%= total_employees %> </td>
+            <td class="col-1">Total salary : </td>
+            <td class="col-1"><%="%.2f" %total_salary %></td>
+            <td class="col-1">Approved salary : </td>
+            <td class="col-1"><%="%.2f" %total_approved_salary %></td>
+          </tr>
 
-      </table>
-   <% else %>
-    <div class="no-data"><%= t('no_payslip_found') %></div>
-    <% end %>
+        </table>
+      <% else %>
+        <div class="no-data">No Payslips found.</div>
+      <% end %>
     <% end %>
   </div>
 

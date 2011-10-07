@@ -98,3 +98,16 @@ container-head .sl_no,
 .user_button:hover{
     background:  #373B3F;
 }
+
+#batchs1 .label-field-pair{
+    width: 450px;
+    margin: 0 auto;
+}
+
+#batchs1 #student{
+    text-align: center;
+}
+#batchs1 #student .user_button{
+    display: inline-block;
+    float: none;
+}

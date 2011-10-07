@@ -47,10 +47,8 @@
 }
 
 #information{
-    height:100px;
-    width:614px;
+    min-height:100px;
     margin-left:0px;
-    padding-left:50px
 }
 
 #no_result{

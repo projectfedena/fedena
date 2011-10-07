@@ -814,7 +814,7 @@ tr.tr-blank{
     clear : both;
     background: url(/images/foot.png) repeat-x;
     width:100%;
-     margin-top:-66px;
+     margin-top:15px;
 }
 #footer_logo {
     height:66px;

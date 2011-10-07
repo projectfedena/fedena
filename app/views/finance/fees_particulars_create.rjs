@@ -2,6 +2,7 @@ unless @error
 	page.replace_html 'form-errors', :text => ''
   page << "Modalbox.hide();"
  	page.replace_html 'categories', :partial => 'master_particulars_list'
+  page.replace_html 'flash_box', :text => "<div id='flash_notice'>Particulars created successfully.</div>"
 else
 	page.replace_html 'form-errors', :partial => 'errors', :object => @finance_fee_particulars
   page.visual_effect(:highlight, 'form-errors')

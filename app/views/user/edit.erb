@@ -76,7 +76,7 @@
                 ["#{t('admin')}"], :selected => @user.role_name %>
             <%  else %>
               <%= select :user, :role,
-                ["#{t('admin')}","#{t('employee_text')}"], :selected => @user.role_name %>
+                ['Admin'], :selected => @user.role_name %>
             <% end  %>
 
           </div>

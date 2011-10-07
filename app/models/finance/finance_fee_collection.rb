@@ -19,10 +19,12 @@
 class FinanceFeeCollection < ActiveRecord::Base
   belongs_to :batch
   has_many :finance_fees, :foreign_key =>"fee_collection_id",:dependent=>:destroy
+  has_many :finance_transactions, :through => :finance_fees
   has_many :students, :through => :finance_fees
   has_many :fee_collection_particulars ,:dependent=>:destroy
   has_many :fee_collection_discounts   ,:dependent=>:destroy
   belongs_to :fee_category,:class_name => "FinanceFeeCategory"
+
 
   validates_presence_of :name,:start_date,:fee_category_id,:end_date,:due_date
 
@@ -114,6 +116,11 @@ class FinanceFeeCollection < ActiveRecord::Base
   def fees_particulars(student)
     FeeCollectionParticular.find_all_by_finance_fee_collection_id(self.id,
       :conditions => ["((student_category_id IS NULL AND admission_no IS NULL )OR(student_category_id = '#{student.student_category_id}'AND admission_no IS NULL) OR (student_category_id IS NULL AND admission_no = '#{student.admission_no}')) and is_deleted=0"])
+  end
+
+  def transaction_total(start_date,end_date)
+    trans = self.finance_transactions(:conditions=>"transaction_date >= '#{start_date}' AND transaction_date <= '#{end_date}'")
+    total = trans.map{|t|t.amount}.sum
   end
 
 

@@ -55,6 +55,7 @@ class PayrollController < ApplicationController
   end
 
   def delete_category
+    if params[:id]
     employees = EmployeeSalaryStructure.find(:all ,:conditions=>"payroll_category_id = #{params[:id]}")
     if employees.empty?
       PayrollCategory.find(params[:id]).destroy
@@ -63,6 +64,9 @@ class PayrollController < ApplicationController
       redirect_to :action => "add_category"
     else
       flash[:notice]="#{t('flash4')}"
+      redirect_to :action => "add_category"
+    end
+    else
       redirect_to :action => "add_category"
     end
   end

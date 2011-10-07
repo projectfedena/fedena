@@ -66,11 +66,12 @@
           <% total_salary = 0 %>
           <%  total_approved_salary = 0 %>
           <% total_employees = 0 %>
+          <% i=0 %>
           <% unless  grouped_monthly_payslips.blank? %>
-            <% grouped_monthly_payslips.each_with_index do |(empid,payslip),i| %>
+            <% grouped_monthly_payslips.each do |(empid,payslip)| %>
               <tr class="tr-<%=cycle('odd','even')%>">
                 <% if payslip and payslip.first and payslip.first.active_or_archived_employee %>
-                  <td class="col-1">  <%=  i+1 %></td>
+                  <td class="col-1">  <%=  i+=1 %></td>
                   <td class="col-1">  <%= payslip.first.active_or_archived_employee.full_name %></td>
                   <td class="col-1">  <%= payslip.first.active_or_archived_employee.employee_number %></td>
                   <% grouped_individual_payslip_category = nil %>
@@ -85,7 +86,7 @@
                 <% end %>
                 <% total_salary +=  emp_payslip[:net_amount].to_f unless emp_payslip.nil?  %>
                 <% total_approved_salary +=  emp_payslip[:net_amount].to_f if  !emp_payslip.nil? and payslip.first.is_approved  %>
-                <% total_employees = i+1 %>
+                <% total_employees = i %>
               </tr>
             <% end %>
           <% end %>

@@ -77,7 +77,7 @@
         <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
           <td class="col-1" ></td>
           <td class="col-1" colspan="2"><span><%= t('discount') %></span></td>
-          
+
         </tr>
         <% @batch_discounts.each do |d| %>
           <tr class="tr-<%= cycle("odd","even") %>">
@@ -131,6 +131,20 @@
         </tr>
         <% total_fees += @fine.to_f %>
       <% end %>
+      <% unless @financefee.transaction_id.nil? %>
+
+        <% @trans = FinanceTransaction.find_by_id(@financefee.transaction_id) %>
+        <% unless @trans.nil? %>
+          <% if @trans.fine_included %>
+            <tr class="tr-<%= cycle("odd","even") %>">
+              <td class="col-1"><%= i+= 1 %></td>
+              <td class="col-2">Fine</td>
+              <td class="col-6"><%= @trans.fine_amount %></td>
+            </tr>
+            <% total_fees += @trans.fine_amount.to_f %>
+          <% end %>
+        <% end %>
+      <% end %>
       <% unless @paid_fees.nil? %>
         <tr class="tr-blank"></tr>
         <tr class="tr-blank"></tr>
@@ -150,20 +164,7 @@
         <% total_fees -= paid %>
       <% end %>
 
-      <% unless @financefee.transaction_id.nil? %>
 
-        <% @trans = FinanceTransaction.find_by_id(@financefee.transaction_id) %>
-        <% unless @trans.nil? %>
-          <% if @trans.fine_included %>
-            <tr class="tr-<%= cycle("odd","even") %>">
-              <td class="col-1"><%= i+= 1 %></td>
-              <td class="col-2"><%= t('fine') %></td>
-              <td class="col-6"><%= @trans.fine_amount %></td>
-            </tr>
-            <% total_fees += @trans.fine_amount.to_f %>
-          <% end %>
-        <% end %>
-      <% end %>
       <tr class="tr-blank"></tr>
       <tr class="tr-blank"></tr>
       <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">

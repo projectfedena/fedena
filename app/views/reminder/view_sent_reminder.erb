@@ -35,9 +35,9 @@
 
 
 <div id="page-yield">
-<% recipient_user = User.find(@sent_reminder.recipient)  %>
+<% recipient_user = @sent_reminder.to_user  %>
 <div id="reminder-body">
-<div id="reminder-from">To: <%= recipient_user.full_name %></div>
+<div id="reminder-from">To: <%= recipient_user.nil? ? "User Unavailabale" : recipient_user.full_name %></div>
 
 <div id="reminder-date"><%= t('sent_on') %>: <%= I18n.l(@sent_reminder.created_at,:format=>"%A, %d %B, %Y") %></div>
 

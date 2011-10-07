@@ -22,7 +22,7 @@
   <h1><%= t('messages') %></h1>
   <h3><%= t('inbox') %></h3>
   <div id="app-back-button">
-  <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
@@ -67,9 +67,13 @@
 
       <% @reminders.each do |ur| %>
         <% if ur.is_read %>
-          <% sender_user = User.find(ur.sender)  %>
+          <% sender_user = ur.user  %>
           <tr class="tr-read-<%= cycle('odd', 'even') %>">
-            <td class="col-3"><%= link_to "#{sender_user.first_name}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <% unless sender_user.nil? %>
+              <td class="col-3"><%= link_to "#{sender_user.first_name}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <% else %>
+              <td class="col-3"><%= link_to "User Unavailable", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <% end %>
             <td class="col-3"><%= link_to "#{ur.subject}",  :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
             <td class="col-1"><%= link_to "#{ur.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
 
@@ -79,9 +83,13 @@
 
 
 
-          <% sender_user = User.find(ur.sender)  %>
+          <% sender_user = ur.user  %>
           <tr class="tr-<%= cycle('odd', 'even') %>">
-            <td class="col-3"><%= link_to "#{sender_user.first_name}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <% unless sender_user.nil? %>
+              <td class="col-3"><%= link_to "#{sender_user.first_name}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <% else %>
+              <td class="col-3"><%= link_to "User Unavailable", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+            <% end %>
             <td class="col-2"><%= link_to "#{ur.subject}",  :controller=>"reminder", :action=>"view_reminder",  :id2=>ur.id %></td>
             <td class="col-1"><%= link_to "#{ur.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_reminder", :id2=>ur.id %></td>
           </tr>

@@ -658,7 +658,11 @@ authorization do
       #graph-------------
       :graph_for_update_monthly_report,
 
-      :view_employee_payslip
+      :view_employee_payslip,
+      :income_list_pdf,
+      :expense_list_pdf,
+      :asset_pdf,
+      :liability_pdf
     ]
     has_permission_on [:xml],
       :to => [
@@ -792,7 +796,7 @@ authorization do
       :employee_wise_leave_reset,
       :leave_history,
       :update_leave_history
-      ]
+    ]
   end
 
   role :employee_attendance do
@@ -1379,7 +1383,11 @@ authorization do
       #graph-------------
       :graph_for_update_monthly_report,
 
-      :view_employee_payslip
+      :view_employee_payslip,
+      :income_list_pdf,
+      :expense_list_pdf,
+      :asset_pdf,
+      :liability_pdf
 
     ]
         
@@ -1706,7 +1714,7 @@ authorization do
       :show_previous_details,
       :fees,
       :fee_details
-       ]
+    ]
     has_permission_on [:news],
       :to => [
       :index,

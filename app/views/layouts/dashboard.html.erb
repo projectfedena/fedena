@@ -38,19 +38,22 @@
 
     <script type="text/javascript">
       /***********************************************
-       * Dynamic Countdown script- © Dynamic Drive (http://www.dynamicdrive.com)
-       * This notice MUST stay intact for legal use
-       * Visit http://www.dynamicdrive.com/ for this script and 100s more.
-       ***********************************************/
+      * Dynamic Countdown script- © Dynamic Drive (http://www.dynamicdrive.com)
+      * This notice MUST stay intact for legal use
+      * Visit http://www.dynamicdrive.com/ for this script and 100s more.
+      ***********************************************/
       var anylinkmenu1={divclass:'anylinkmenu', inlinestyle:'', linktarget:''} //First menu variable. Make sure "anylinkmenu1" is a unique name!
       anylinkmenu1.items = [
-        ["<%= t('calendar') %>", "/calendar"],
-        ["<%= t('examination')%>", "/exam"],
-        ["<%= t('news')%>", "/news"],
-        ["<%= t('event_creation')%>", "/event"],
-        ["<%= t('human_resource')%>", "/employee/hr"],
-        ["<%= t('finance')%>", "/finance/index"],
-        ["<%= t('user')%>", "/user"],
+      ["Calendar", "/calendar"],
+      ["Examination", "/exam"],
+      ["News", "/news"],
+      ["Event Creation", "/event"],
+      ["Human Resource", "/employee/hr"],
+      ["Finance", "/finance/index"],
+      <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
+        <%= "['#{mod[:more_menu][:title]}','/#{mod[:more_menu][:controller]}/#{mod[:more_menu][:action].gsub("index","")}'],"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym %>
+      <% end %>
+      ["Users", "/user"],
       ]
       anylinkmenu.init("menuanchorclass");
     </script>
@@ -59,6 +62,25 @@
   <body>
     <div id="header_bg">
       <div id="header">
+        <div id="main-menu">
+          <%= link_to "Dashboard", :controller => "user", :action => "dashboard" %>
+          <% this_user = User.find(session[:user_id]) if session[:user_id] %>
+          <%  if this_user.student? || this_user.employee? %>
+            <%= link_to "Calendar", :controller => "calendar" %>
+          <% end %>
+          <%= link_to "Students", :controller => "student", :action => "index" \
+            if this_user.admin? %>
+          <%= link_to "Attendance", :controller => "student_attendance", :action => "index" \
+            if this_user.admin? %>
+          <%= link_to "Settings", :controller => "configuration", :action => "index" \
+            if this_user.admin? %> <!--
+          <%= link_to "News", :controller => "news", :action => "index" \
+            if this_user.admin? %> -->
+          <%= link_to "Timetable", :controller => "timetable", :action => "index" \
+            if this_user.admin? %>
+          <% if this_user.admin? %>
+            <a href="#" class="menuanchorclass" rel="anylinkmenu1">More ▼</a>
+          <% end %>
 
         <div id="outer-header-link">
           <div class="language">
@@ -77,27 +99,12 @@
             <%= link_to t('log_out'), :controller => 'user', :action => 'logout' %>  &nbsp;&nbsp;
           </div>
         </div>
-        <div id="outer-main-menu">
-          <div id="main-menu">
-            <%= link_to t('dashboard_text'), :controller => "user", :action => "dashboard" %>
-            <% this_user = User.find(session[:user_id]) if session[:user_id] %>
-            <%  if this_user.student? || this_user.employee? %>
-              <%= link_to t('calendar'), :controller => "calendar" %>
-            <% end %>
-            <%= link_to t('students'), :controller => "student", :action => "index" \
-              if this_user.admin? %>
-            <%= link_to t('attendance'), :controller => "student_attendance", :action => "index" \
-              if this_user.admin? %>
-            <%= link_to t('settings'), :controller => "configuration", :action => "index" \
-              if this_user.admin? %> <!--
-            <%= link_to t('news'), :controller => "news", :action => "index" \
-              if this_user.admin? %> -->
-            <%= link_to t('timetable'), :controller => "timetable", :action => "index" \
-              if this_user.admin? %>
-            <% if this_user.admin? %>
-              <a href="#" class="menuanchorclass" rel="anylinkmenu1"><%=  t('more') %></a>
-            <% end %>
-          </div>
+        <div id="header_link" >
+          Logged in as:
+          <%= link_to this_user.first_name, :controller => 'user', :action => 'profile',
+            :id => this_user.username %> &nbsp;|&nbsp;
+          <%= link_to "Messages",:controller => "reminder", :action => "index" %>(<%= render  :partial => 'layouts/reminder_count' %>)&nbsp;|&nbsp;
+          <%= link_to 'Log out', :controller => 'user', :action => 'logout' %>  &nbsp;&nbsp;
         </div>
       </div>
     </div>
@@ -110,7 +117,7 @@
           <% else %>
 
             <div class="fed_logo">
-              <img src="<%= t('fedena_logo') %>"/>
+              <img src="/images/application/app_fedena_logo.jpg"/>
             </div>
           <% end %>
         </div>
@@ -138,7 +145,7 @@
     <div id="footer">
       <div id="footer_logo">
         <div id="powered_by">
-          <%= t('powered_by') %> <a href="http://www.foradian.com/" target="_blank">Foradian</a>
+          Powered by <a href="http://www.projectfedena.org/" target="_blank">Fedena</a>
         </div>
         <a href="http://www.projectfedena.org/"  target="_blank" class="footer-logo"></a>
       </div>

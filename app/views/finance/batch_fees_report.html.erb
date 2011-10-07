@@ -36,22 +36,16 @@
       <div class="fees-table-expenses"> <%= t('amount') %> </div>
       <div class="fees-table-date"> <%= t('date') %> </div>
     </div>
-    <% @fees.each do |f| %>
-      <% unless f.transaction.nil? %>
-        <% trans = FinanceTransaction.find(:all, :conditions => ["FIND_IN_SET(id,\"#{f.transaction_id}\") and created_at >= '#{@start_date}' and created_at <= '#{@end_date}'and category_id ='#{3}'"]) %>
-        <% unless trans.nil? %>
-            <% trans.each do |t| %>
+    <% @transaction.each do |f| %>
+     
           <div class="list<%=cycle('odd', 'even')%>">
-            <% student = f.student %>
-            <% student ||= ArchivedStudent.find_by_former_id(f.student_id) %>
+            <% student = f.student_payee %>
               <div class="fees-table-description"><%= "#{student.full_name}- (#{student.batch.full_name})" %></div>
-              <div class="fees-table-income"> <%= t.amount %> </div>
-              <div class="fees-table-date"> <%= t.created_at.strftime("%m-%d-%Y") %> </div>
+              <div class="fees-table-income"> <%= f.amount %> </div>
+              <div class="fees-table-date"> <%= f.transaction_date.strftime("%m-%d-%Y") %> </div>
             </div>
-            <% total += t.amount %>
-          <% end %>
-        <% end %>
-      <% end %>
+            <% total += f.amount %>
+      
     <% end %>
     <div class="fees-th">
       <div class="fees-table-description"><%= t('total_fees') %></div>

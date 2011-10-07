@@ -17,25 +17,28 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<% unless @defaulters.empty? %>
-<div id="application-list">
-  <div class="container-head">
-    <div class="sl_no"><%= t('admission_no') %></div>
-    <div class="name"><%= t('student_name') %></div>
-    <div class="extender"></div>
-  </div>
-  <%@defaulters.each_with_index do |s,i|%>
-    <%if s.check_fees_paid(@date) == false %>
-      <div class="container<%= cycle('odd', 'even')%> ">
-        <div class="sl_no "><%= s.admission_no %></div>
-        <div class="name"> <%=s.full_name%></div>
-        <div class="small"> <%= link_to t('pay_fees'),:action => "pay_fees_defaulters",:id => s.id,:date => @date.id %> </div>
-      </div>
-    <%end%>
-  <%end%>
-<%= link_to " ► #{t('pdf_report')}",
-        {:controller => "finance", :action => "fee_defaulters_pdf", :batch_id => @batch.id, :date => @date.id},:target => '_blank', :class=> 'user_button' %>
-</div>
+
+<% if @defaulters.empty? %>
+  <p class="flash-msg">No Defaulters</p>
 <% else %>
-  <h4><%= t('no_fee_defaulters') %></h4>
+  <table align="center" width="100%" cellpadding="1" cellspacing="1" id="listing">
+    <tr class="tr-head">
+      <td>Sl no.</td>
+      <td>Admission No.</td>
+      <td>Students Name</td>
+      <td></td>
+    </tr>
+    <%@defaulters.each_with_index do |s,i| %>
+      <%if s.check_fees_paid(@date) == false %>
+        <tr class="tr-<%= cycle('odd', 'even')%>">
+          <td class="col-5"><%= i+1 %></td>
+          <td class="col-1"><%= s.admission_no %></td>
+          <td class="col-7"><%= s.full_name %></td>
+          <td class="col-1"><%= link_to "► Pay Fees", {:action => "pay_fees_defaulters",:id => s.id,:date => @date.id } ,:class=>'submit_button'  %></td>
+        </tr>
+      <%end%>
+    <% end %>
+  </table>
+  <%= link_to " ► PDF Report",
+    {:controller => "finance", :action => "fee_defaulters_pdf", :batch_id => @batch.id, :date => @date.id},:target => '_blank', :class=> 'user_button' %>
 <% end %>

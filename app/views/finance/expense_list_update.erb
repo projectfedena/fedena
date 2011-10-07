@@ -25,7 +25,12 @@
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
-
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "PDF report",
+            {:controller => "finance", :action => "expense_list_pdf", :start_date => @start_date, :end_date=>@end_date},:target => '_blank' %></li>
+  </ul>
+</div>
 <div id="page-yield">
   <% unless @expenses.empty? %>
     <br />

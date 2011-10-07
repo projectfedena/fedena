@@ -67,16 +67,15 @@
           <%= link_to "► #{t('view_profile')}",{:controller => "employee", :action => "profile", :id => @employee.id }, :class => "user_button" unless @employee.nil?%>
         <% end %>
       <% end %>
-      <%#= link_to "► Edit",{:controller => "user", :action => "edit", :id => @user.username }, :class => "user_button"%>
       <%= link_to "#{t('change_password')}", {:controller => "user", :action => "user_change_password", :id =>@user.username}, :class => "user_button" %>
-      <%# unless @current_user.id == @user.id %>
-        <%#= link_to "► Delete", { :controller => "user", :action => "delete", :id => @user.username}, :class => "user_button", :confirm=>"Are you sure you want to delete this USER?" %>
-      <%# end %>
       <% unless @user.admin %>
         <% unless @user.role_name == 'Student' %>
           <%= link_to "► #{t('edit_privilege_text')}", {:controller => "user", :action => "edit_privilege", :id => @user.username } ,:class => "user_button" %>
-      
+
         <% end %>
+      <% end %>
+      <% if @user.admin and @current_user.id != @user.id and @employee.nil? %>
+      <%= link_to "► Delete", { :controller => "user", :action => "delete", :id => @user.username}, :class => "user_button", :confirm=>"Are you sure you want to delete this USER?" %>
       <% end %>
     </div>
   <% end %>

@@ -22,9 +22,10 @@ class FinanceTransactionCategory < ActiveRecord::Base
 
 
   validates_presence_of :name
+  validates_uniqueness_of  :name
 
   named_scope :expense_categories, :conditions => "is_income = false AND name NOT LIKE 'Salary'and deleted = 0"
-  named_scope :income_categories, :conditions => "is_income = true AND name NOT LIKE 'Fee' AND name NOT LIKE 'Donation' and deleted = 0"
+  named_scope :income_categories, :conditions => "is_income = true AND name NOT IN ('Fee','Salary','Donation','Library','Hostel','Transport') and deleted = 0"
 
 #  def self.expense_categories
 #    FinanceTransactionCategory.all(:conditions => "is_income = false AND name NOT LIKE 'Salary'")

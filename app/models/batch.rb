@@ -27,6 +27,8 @@ class Batch < ActiveRecord::Base
   has_many :fee_category , :class_name => "FinanceFeeCategory"
   has_many :elective_groups
   has_many :additional_exam_groups
+  has_many :finance_fee_collections
+  has_many :finance_transactions, :through => :students
 
   has_and_belongs_to_many :graduated_students, :class_name => 'Student', :join_table => 'batch_students'
 

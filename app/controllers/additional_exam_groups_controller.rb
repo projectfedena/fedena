@@ -17,9 +17,11 @@
 #limitations under the License.
 
 class AdditionalExamGroupsController < ApplicationController
+  before_filter :login_required
   before_filter :initial_queries
   filter_access_to :all
   in_place_edit_for :additional_exam_group, :name
+  
 
 
   in_place_edit_for :additional_exam, :maximum_marks

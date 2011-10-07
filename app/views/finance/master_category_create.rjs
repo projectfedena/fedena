@@ -1,7 +1,6 @@
 if @error.nil?
 	page.replace_html 'form-errors', :text => ''
-	page.replace_html 'flash_box', :text => '<div id="flash_notice">
-  Master Category Created Successfully </div>'
+	page.replace_html 'flash_box', :text => '<div id="flash_notice">Master Category Created Successfully </div>'
   page << "Modalbox.hide();"
  # page.replace_html 'categories', :partial =>'master_category_list'
 else

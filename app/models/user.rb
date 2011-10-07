@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     :message => "must contain only letters, numbers, and underscores"
   validates_format_of     :email, :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,
     :message => "must be a valid email address"
-  validates_presence_of   :role
+  validates_presence_of   :role , :on=>:create
   validates_presence_of   :email, :on=>:create
   validates_presence_of   :password, :on => :create
   
@@ -38,12 +38,12 @@ class User < ActiveRecord::Base
   def before_save
     self.salt = random_string(8) if self.salt == nil
     self.hashed_password = Digest::SHA1.hexdigest(self.salt + self.password) unless self.password.nil?
-
-    self.admin, self.student, self.employee = false, false, false
-
-    self.admin    = true if self.role == 'Admin'
-    self.student  = true if self.role == 'Student'
-    self.employee = true if self.role == 'Employee'
+    if self.new_record?
+      self.admin, self.student, self.employee = false, false, false
+      self.admin    = true if self.role == 'Admin'
+      self.student  = true if self.role == 'Student'
+      self.employee = true if self.role == 'Employee'
+    end
   end
 
   def full_name

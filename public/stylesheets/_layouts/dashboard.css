@@ -425,8 +425,8 @@ body > #content_wrapper {
 
 
 #footer {
-    /* position : relative;
-    margin-top : -33px; */
+    /* position : relative;*/
+    margin-top :15px;
     height : 66px;
     clear : both;
     background: url(/images/foot.png) repeat-x;

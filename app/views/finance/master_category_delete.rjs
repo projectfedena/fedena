@@ -1,1 +1,2 @@
 page.replace_html 'categories', :partial => 'master_category_list'
+page.replace_html 'flash_box', :text => "<div id='flash_notice'>Category deleted successfully.</div>"

@@ -147,8 +147,8 @@
 .profile_top_banner{
     position:absolute;
     float:right;
-    padding-left:525px;
-    margin-top:-12px;
+    padding-left:528px;
+    margin-top:-10px;
     
 }
 #student_profile_heading{
@@ -177,4 +177,42 @@
 }
 .user_button:hover{
    background:  #373B3F;
+}
+
+.odd{
+    height:auto;
+    background: #eff3fe;
+
+    margin-right:5px;
+}
+.odd td{
+
+    font-weight:bold;
+    padding:10px 10px 10px 10px;
+   border-top:1px solid #bdcfff;
+    border-bottom:1px solid #bdcfff;
+}
+.right{
+    width: 450px;
+    color:#000000;
+    text-align: left;
+}
+.left{
+    width: 250px;
+    color:#548ab2;
+    text-align: right;
+}
+.even{
+
+    height:auto;
+
+    background: #dae6ff;
+    margin-right:5px;
+}
+.even td{
+
+    font-weight:bold;
+    border-top:1px solid #bdcfff;
+    border-bottom:1px solid #bdcfff;
+    padding:10px 10px 10px 10px;
 }

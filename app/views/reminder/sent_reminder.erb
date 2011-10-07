@@ -64,7 +64,7 @@
     
       <% unless @sent_reminders == [] %>
         <% @sent_reminders.each do |r| %>
-          <% recipient_user = User.find_by_id(r.recipient)  %>
+          <% recipient_user = r.to_user %>
           <% unless recipient_user.nil?  %>
           <tr class="tr-read-<%= cycle('odd', 'even') %>">
           <td class="col-3"><%= link_to "#{recipient_user.first_name}", :controller=>"reminder", :action=>"view_sent_reminder",:id2=>r.id %></td>

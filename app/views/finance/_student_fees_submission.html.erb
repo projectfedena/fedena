@@ -29,7 +29,7 @@
 
 <br />
 <%= error_messages_for "financefee" ,:header_message => nil%>
-<%if @financefee.transaction_id.nil?%>
+<%if @financefee.transaction_id.nil? and @fine.nil?%>
   <%= render :partial => "fine_submission" %>
 <% end %>
 <div id="register">
@@ -68,81 +68,64 @@
       <% end %>
 
       <% unless @total_discount == 0 %>
-      <tr class="tr-blank"></tr>
-      <tr class="tr-blank"></tr>
-      <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
-        <td class="col-1" ></td>
-        <td class="col-1" colspan="2"><span><%= t('discount') %> </span></td>
-      </tr>
-      <% @batch_discounts.each do |d| %>
-        <tr class="tr-<%= cycle("odd","even") %>">
-          <td class="col-1"><%= i+1 %></td>
-          <td class="col-2"><%= shorten_string(d.name,20) %></td>
-          <td class="col-6"><%= d.discount%> %</td>
+        <tr class="tr-blank"></tr>
+        <tr class="tr-blank"></tr>
+        <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
+          <td class="col-1" ></td>
+          <td class="col-1" colspan="2"><span>Discount</span></td>
         </tr>
-        <% i += 1 %>
-      <% end %>
-      <% @student_discounts.each do |d| %>
-        <tr class="tr-<%= cycle("odd","even") %>">
-          <td class="col-1"><%= i+1 %></td>
-          <td class="col-2"><%= shorten_string(d.name,20) %></td>
-          <td class="col-6"><%= d.discount%> %</td>
+        <% @batch_discounts.each do |d| %>
+          <tr class="tr-<%= cycle("odd","even") %>">
+            <td class="col-1"><%= i+1 %></td>
+            <td class="col-2"><%= shorten_string(d.name,20) %></td>
+            <td class="col-6"><%= d.discount%> %</td>
+          </tr>
+          <% i += 1 %>
+        <% end %>
+        <% @student_discounts.each do |d| %>
+          <tr class="tr-<%= cycle("odd","even") %>">
+            <td class="col-1"><%= i+1 %></td>
+            <td class="col-2"><%= shorten_string(d.name,20) %></td>
+            <td class="col-6"><%= d.discount%> %</td>
+          </tr>
+          <% i += 1 %>
+        <% end %>
+        <% @category_discounts.each do |d| %>
+          <tr class="tr-<%= cycle("odd","even") %>">
+            <td class="col-1"><%= i+1 %></td>
+            <td class="col-2"><%= shorten_string(d.name,20) %></td>
+            <td class="col-6"><%= d.discount%> %</td>
+          </tr>
+          <% i += 1 %>
+        <% end %>
+        <tr class="tr-blank"></tr>
+        <tr class="tr-blank"></tr>
+
+        <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
+          <td class="col-8" colspan="2" >Total Discount</td>
+          <td class="col-6" ><%= "#{@total_discount} %" %></td>
         </tr>
-        <% i += 1 %>
-      <% end %>
-      <% @category_discounts.each do |d| %>
-        <tr class="tr-<%= cycle("odd","even") %>">
-          <td class="col-1"><%= i+1 %></td>
-          <td class="col-2"><%= shorten_string(d.name,20) %></td>
-          <td class="col-6"><%= d.discount%> %</td>
+
+        <tr class="tr-blank"></tr>
+        <tr class="tr-blank"></tr>
+        <% total_fees = (total_fees - ((total_fees*@total_discount)/100)) %>
+        <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
+          <td class="col-8" colspan="2" >Total Fee</td>
+          <td class="col-6" ><%= total_fees %></td>
         </tr>
-        <% i += 1 %>
+
       <% end %>
-      <tr class="tr-blank"></tr>
-      <tr class="tr-blank"></tr>
-
-      <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
-        <td class="col-8" colspan="2" ><%= t('total_discount') %> </td>
-        <td class="col-6" ><%= "#{@total_discount} %" %></td>
-      </tr>
 
       <tr class="tr-blank"></tr>
       <tr class="tr-blank"></tr>
-      <% total_fees = (total_fees - ((total_fees*@total_discount)/100)) %>
-      <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
-        <td class="col-8" colspan="2" ><%= t('total_fees') %> </td>
-        <td class="col-6" ><%= total_fees %></td>
-      </tr>
 
-    <% end %>
-
-      <tr class="tr-blank"></tr>
-      <tr class="tr-blank"></tr>
-      
       <% unless @fine.nil? %>
         <tr class="tr-<%= cycle("odd","even") %>">
           <td class="col-1"><%= i+=1 %></td>
-          <td class="col-2"><span><%= t('fien') %> </span></td>
+          <td class="col-2"><span>1Fine</span></td>
           <td class="col-6"><%= @fine.to_f %></td>
         </tr>
         <% total_fees += @fine.to_f %>
-      <% end %>
-      <% unless @paid_fees.nil? %>
-        <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
-        <td class="col-1" ></td>
-        <td class="col-1" colspan="2" ><span><%= t('payment_done') %> </span></td>
-        
-      </tr>
-        <% paid = 0 %>
-        <% @paid_fees.each do |p| %>
-          <% paid += p.amount.to_f %>
-          <tr class="tr-<%= cycle("odd","even") %>">
-            <td class="col-1"><%= i+=1 %></td>
-            <td class="col-2"><%= t('partial_payment_on') %> <%= p.transaction_date %></td>
-            <td class="col-6">-<%= p.amount.to_f %></td>
-          </tr>
-        <% end %>
-        <% total_fees -= paid %>
       <% end %>
 
       <% unless @financefee.transaction_id.nil? %>
@@ -159,6 +142,29 @@
           <% end %>
         <% end %>
       <% end %>
+
+      <tr class="tr-blank"></tr>
+      <tr class="tr-blank"></tr>
+
+    <% unless @paid_fees.nil? %>
+        <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
+          <td class="col-1" ></td>
+          <td class="col-1" colspan="2" ><span>Payment Done</span></td>
+
+        </tr>
+        <% paid = 0 %>
+        <% @paid_fees.each do |p| %>
+          <% paid += p.amount.to_f %>
+          <tr class="tr-<%= cycle("odd","even") %>">
+            <td class="col-1"><%= i+=1 %></td>
+            <td class="col-2">2Partial Payment on <%= p.transaction_date %></td>
+            <td class="col-6">-<%= p.amount.to_f %></td>
+          </tr>
+        <% end %>
+        <% total_fees -= paid %>
+      <% end %>
+
+
       <tr class="tr-blank"></tr>
       <tr class="tr-blank"></tr>
       <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">

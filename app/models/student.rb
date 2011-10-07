@@ -27,7 +27,7 @@ class Student < ActiveRecord::Base
   has_one    :student_previous_data
   has_many   :student_previous_subject_mark
   has_many   :guardians, :foreign_key => 'ward_id', :dependent => :destroy
-  has_many   :finance_transactions
+  has_many   :finance_transactions, :as => :payee
   has_many   :attendances
   has_many   :finance_fees
   has_many   :fee_category ,:class_name => "FinanceFeeCategory"

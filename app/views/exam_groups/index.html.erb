@@ -52,8 +52,12 @@
 
     <table id="listing" width="100%">
       <tr class="tr-head">
-        <td><%= t('exam_name') %></td>
-        <td><%= t('actions') %></td>
+        <td>Exam name</td>
+        <td> Action <%= image_tag("loader.gif",
+                :align => "absmiddle",
+                :border => 0,
+                :id => "loader",
+                :style =>"display: none;" ) %></td>
       </tr>
       <% @config = Configuration.available_modules %>
       <% @exam_groups.each do |exam_group| %>
@@ -91,11 +95,7 @@
               <% end  %>
 
               <span id="publish-notice-<%=exam_group.id%>"></span>
-              <%= image_tag("loader.gif",
-                :align => "absmiddle",
-                :border => 0,
-                :id => "loader",
-                :style =>"display: none;" ) %>
+              
             </small> </td>
         </tr>
       <% end %>

@@ -109,22 +109,6 @@
     background:  #373B3F;
 }
 
-.submit_button2 {
-    padding: 6px 8px;
-    color: #fff;
-    background: #27292B;
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    font-weight: bold;
-    font-size: 14px;
-    border:none;
-    font-family: arial;
-    cursor:pointer;
-}
-.submit_button2:hover{
-    background:  #373B3F;
-}
-
 .label-field-pair1 label {
     color : #444;
     display : block;
@@ -144,7 +128,24 @@
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     padding: 5px;
+    float: left;
 }
+
+.label-field-pair1 .submit_button2 {
+    background: none repeat scroll 0 0 #27292B;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px 8px;
+}
+.label-field-pair1 .submit_button2:hover {
+    background: none repeat scroll 0 0 #373B3F;
+}
+
 .text-input-bg  {
     float:left;
     margin:0 0 0 40px;
@@ -156,12 +157,14 @@
 
 
 .fine_info{
-    float:right;
-    height:28px;
-    width:670px;
-    margin-bottom:10px;
+     float: right;
+    height: 50px;
+    overflow: hidden;
+    width: auto;
 }
-
+.label-field-pair1 {
+    overflow: hidden;
+}
 .text-input-bg1 {
     background:none repeat scroll 0 0 transparent;
     float:left;

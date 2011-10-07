@@ -18,17 +18,17 @@
 #under the License. -%>
 
 <% if @due_date.to_date < Date.today %>
-<% form_remote_for :fine, :url => {:action => 'update_student_fine_ajax' } do |form| %>
-<div class="fine_info">
-     <div class="label-field-pair1">
-       <label> <%= t('due_date_exceeded_collect_fine') %>:</label>
-    <div class="text-input-bg1"><%= form.text_field :fee, :value=>'' %>
-    </div>
-     </div>
-  <%= form.hidden_field :student, :value => @student.id %>
-  <%= form.hidden_field :date, :value => @date.id %>
+  <% form_remote_for :fine, :url => {:action => 'update_student_fine_ajax' } do |form| %>
+    <div class="fine_info">
+      <div class="label-field-pair1">
+        <label> Due date has been exceeded. Please collect fine amount:</label>
+        <div class="text-input-bg1"><%= form.text_field :fee, :value=>'' %>
+        </div>
+        <%= form.hidden_field :student, :value => @student.id %>
+        <%= form.hidden_field :date, :value => @date.id %>
 
- <%=   submit_tag t('add_fine'),:class=>'submit_button2' %>
-</div>
-<% end %>
+        <%=   submit_tag "Add Fine",:class=>'submit_button2' %>
+      </div>
+    </div>
+  <% end %>
 <% end %>

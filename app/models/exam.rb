@@ -29,6 +29,7 @@ class Exam < ActiveRecord::Base
 
   validates_presence_of :maximum_marks
   validates_presence_of :minimum_marks
+  validates_numericality_of :minimum_marks, :maximum_marks, :greater_than_or_equal_to => 0,:allow_nil=>true
 
   has_many :exam_scores
   has_many :archived_exam_scores
@@ -43,10 +44,11 @@ class Exam < ActiveRecord::Base
   def validate
     errors.add_to_base("Minimum marks can't be more than max marks.") \
       if minimum_marks and maximum_marks and minimum_marks > maximum_marks
+    errors.add_to_base("Minimum marks can't be more than max marks.") \
+      if minimum_marks and maximum_marks and minimum_marks > maximum_marks
     unless self.start_time.nil? or self.end_time.nil?
       errors.add_to_base("End time can not be before the start time")if self.end_time < self.start_time
     end
-    
   end
 
   def before_save

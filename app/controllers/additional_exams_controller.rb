@@ -17,6 +17,7 @@
 #limitations under the License.
 
 class AdditionalExamsController < ApplicationController
+  before_filter :login_required
   before_filter :query_data
   filter_access_to :all
 
