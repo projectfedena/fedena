@@ -6,35 +6,35 @@ es: # locale
         first_name: "Primer nombre"
         admission_no: "Admisión número"
         admission_date: "Fecha de admisión"
-        batch_id : "Lote"
-        date_of_birth : "Fecha de nacimiento"
-        gender : "Género"
+        batch_id: "Lote"
+        date_of_birth: "Fecha de nacimiento"
+        gender: "Género"
 
       student_additional_field:
-        name : "Nombre"
+        name: "Nombre"
 
       user:
         username: "Nombre de usuario"
-        email : "E-mail"
-        password : "contraseña"
-        role : "papel"
+        email: "E-mail"
+        password: "contraseña"
+        role: "papel"
         password_rst_msg: "Puede restablecer la contraseña utilizando el siguiente enlace"
         password_rst_msg1: "Gracias por usar fedena.com"
 
       course:
-        course_name : "Nombre del curso"
-        section_name : "Nombre de la sección"
-        code : "Código"
-        sort_order : "La orden de clasificacion"
+        course_name: "Nombre del curso"
+        section_name: "Nombre de la sección"
+        code: "Código"
+        sort_order: "La orden de clasificacion"
 
       additional_exam:
-        start_time : "Hora de inicio"
-        end_time : "Hora de finalización"
-        minimum_marks : "Marcas mínimas"
+        start_time: "Hora de inicio"
+        end_time: "Hora de finalización"
+        minimum_marks: "Marcas mínimas"
 
       additional_exam_group:
-        name : "Nombre"
-        students_list : "Lista de Estudiantes"
+        name: "Nombre"
+        students_list: "Lista de Estudiantes"
 
       additional_field:
         name: "Nombre"
@@ -52,11 +52,11 @@ es: # locale
         name: "Nombre"
 
       event:
-        title : 'Título'
+        title: 'Título'
 
       exam:
-        start_time : "Hora de inicio"
-        end_time : "Hora de finalización"
+        start_time: "Hora de inicio"
+        end_time: "Hora de finalización"
 
       exam_group:
         name: "Nombre"
@@ -86,14 +86,14 @@ es: # locale
         max_weekly_classes: "Máximo Clases semanales"
 
       asset:
-        amount : "Cantidad"
+        amount: "Cantidad"
 
       finance_donation:
         donor: "Donante"
 
       finance_fee_category:
         name: "Nombre"
-        batch_id : "Lote"
+        batch_id: "Lote"
 
 
       finance_fee_collection:
@@ -101,70 +101,70 @@ es: # locale
 
       finance_fee_particulars:
         name: "Nombre"
-        amount : "Cantidad"
+        amount: "Cantidad"
 
       finance_transaction:
-        title : "Título"
-        amount : "Cantidad"
-        transaction_date : "Fecha de la transacción"
-        category : "Categoría"
-        amount : "Cantidad"
+        title: "Título"
+        amount: "Cantidad"
+        transaction_date: "Fecha de la transacción"
+        category: "Categoría"
+        amount: "Cantidad"
 
       finance_transaction_category:
         name : "Nombre"
 
       finance_transaction_trigger:
-        percentage : "Porcentaje"
+        percentage: "Porcentaje"
 
       liablility:
-        amount : "Cantidad"
+        amount: "Cantidad"
 
       apply_leave:
-        employee_leave_types_id : "Tipos de empleados Agregar"
-        start_date : "Fecha de inicio"
-        end_date : "Fecha de finalización"
-        reason : "Razón"
+        employee_leave_types_id: "Tipos de empleados Agregar"
+        start_date: "Fecha de inicio"
+        end_date: "Fecha de finalización"
+        reason: "Razón"
 
       bank_field:
-        name : "Nombre"
+        name: "Nombre"
 
       employee:
         employee_category_id: "Categoría de empleado"
         employee_number: "No. de empleado"
-        first_name : "Primer Nombre"
+        first_name: "Primer Nombre"
         employee_position_id: "Posición del empleado"
         employee_department_id: "Empleado del Departamento de"
         employee_grade_id: "Los empleados de grado"
         date_of_birth: "Fecha de Nacimiento"
 
       employee_attendance:
-        employee_id : "Empleado"
-        employee_leave_type_id : "Tipo de empleado Deje"
+        employee_id: "Empleado"
+        employee_leave_type_id: "Tipo de empleado Deje"
 
       employee_category:
-        name : "Nombre"
+        name: "Nombre"
 
       employee_department:
-        name : "Nombre"
+        name: "Nombre"
 
       employee_grade:
-        name : "Nombre"
-        priority : "Prioridad"
+        name: "Nombre"
+        priority: "Prioridad"
 
       employee_leave_type:
-        name : "Nombre"
-        code : "Código"
-        max_leave_count : "Conde Deja máximo"
+        name: "Nombre"
+        code: "Código"
+        max_leave_count: "Conde Deja máximo"
 
       employee_position:
-        name : "Nombre"
+        name: "Nombre"
         employee_category_id: "Categoría del empleado"
 
       monthly_payslip:
-        salary_date : "Fecha de salario"
+        salary_date: "Fecha de salario"
 
       payroll_category:
-        name : "Nombre"
+        name: "Nombre"
 
 
     errors:
@@ -194,8 +194,8 @@ es: # locale
         too_short: "es demasiado corto (el mínimo es {{count}} caracteres)"
         wrong_length: "es de longitud errada (debe ser {{count}} caracteres)"
         errors_found: 'A raíz de los errores se encontraron'
-        cannot_delete_subjects : 'No se pueden eliminar las asignaturas'
-        weekly_limit_reached : 'Limite semanal alcanzado.'
+        cannot_delete_subjects: 'No se pueden eliminar las asignaturas'
+        weekly_limit_reached: 'Limite semanal alcanzado.'
         class_overlap : 'Intercambio de clases.'
         max_hour_exceeded_day : 'El número máximo de horas por día se ha superado.'
         max_hour_exceeded_week : 'El número máximo de horas por semana se ha superado'
@@ -2224,10 +2224,8 @@ es: # locale
     more_news : 'Mas Noticias'
 
 
-    # for shared partials called like: render :template => "shared/user"
-    # where "shared" is the directory name
   shared:
-      # partial name w/o underscore (template "_user.erb")
+
     user:
       key: "Foo"
 
