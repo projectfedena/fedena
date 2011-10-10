@@ -25,13 +25,14 @@ class ApplicationController < ActionController::Base
   before_filter :message_user
   before_filter :set_user_language
 
-  before_filter :dev_mode
+#  before_filter :dev_mode
 
-  def dev_mode
-    if Rails.env == "development"
-     ActiveSupport::Dependencies.load_file "fedena_transport.rb"
-   end
-  end
+
+#  def dev_mode
+#    if Rails.env == "development"
+#     ActiveSupport::Dependencies.load_file "fedena_transport.rb"
+#   end
+#  end
 
 
     def set_language

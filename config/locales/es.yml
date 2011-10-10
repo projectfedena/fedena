@@ -703,6 +703,7 @@ es: # locale
   pay_fees : 'Realizar Pagos'
   fees_paid : 'Pagos Realizados'
   details : "Información"
+  employee_id : "ID del empleado"
 
   flash_msg1: 'Grupo de exámenes actualizado exitosamente.'
   flash_msg2: 'Lo sentimos'
@@ -956,7 +957,6 @@ es: # locale
     max_period_per_week : 'Máximo de períodos por semana'
     employee_admission : "Admisión de empleados"
     select_department: 'Seleccionar departamento'
-    employee_id : "ID del empleado"
     not_selected : "no seleccionado"
     edit_employee_information : "Editar Información del Empleado"
     line_1 : "Línea 1"
@@ -1419,7 +1419,7 @@ es: # locale
     flash6 : 'Los campos de la contraseña no pueden estar en blanco!'
     flash7 : 'La contraseña se ha actualizado exitosamente!'
     flash8 : 'Confirmación de la contraseña ha fallado. Por favor, inténtelo de nuevo.'
-    flash9 : 'Contraseña cambiada exitosamente'
+    flash9 : 'Contraseña cambiada exitosamente.'
     flash10 : 'La confirmación de la contraseña ha fallado. Por favor, inténtelo de nuevo.'
     flash11 : 'La antigua contraseña que entró no es correcta. Por favor, introduzca una contraseña válida.'
     flash12: 'Cuenta de usuario eliminada!'
@@ -1932,6 +1932,12 @@ es: # locale
     fee_discount_succesfully_created : 'Descuento cuotas ha creado correctamente '
     no_particulars_to_display : 'No hay Tarifas específicas para mostrar'
     student_fees_submission : 'Ingresar pagos de estudiantes'
+    there_were_pblm: "Hubo problemas con los campos siguientes:"
+    total_amount: "Monto total de"
+    students_name: "Nombre del estudiante"
+    no_defaulters: "no morosos"
+    due_date_has_been_exceeded: "Fecha de vencimiento se ha superado. Por favor, recoja monto de la multa:"
+
 
     flash1: 'Donación aceptada'
     flash2: 'Por favor, crear una categoría para gastos!'

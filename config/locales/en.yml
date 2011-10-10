@@ -695,6 +695,7 @@ en: # locale
   pay_fees: "Pay Fees"
   fees_paid: "Fees Paid"
   details: "Details"
+  employee_id: "Employee ID"
     
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"
@@ -945,7 +946,6 @@ en: # locale
     max_period_per_week: "Max period per week"
     employee_admission: "Employee admission"
     select_department: "Select department"
-    employee_id: "Employee ID"
     not_selected: "not selected"
     edit_employee_information: "Edit Employee Information"
     line_1: "Line 1"
@@ -1412,7 +1412,7 @@ en: # locale
     flash6: "Password fields cannot be blank!"
     flash7: "Password has been updated successfully!"
     flash8: "Password confirmation failed. Please try again."
-    flash9: "Password changed successfully"
+    flash9: "Password changed successfully."
     flash10: "Password confirmation failed. Please try again."
     flash11: "The old password you entered is incorrect. Please enter valid password."
     flash12: "User account deleted!"
@@ -1917,6 +1917,12 @@ en: # locale
     fee_discount_succesfully_created: "Fees Discount Successfully created"
     no_particulars_to_display: "No particulars to display"
     student_fees_submission: "Student fees submission"
+    there_were_pblm: "There were problems with the following fields:"
+    total_amount: "Total Amount"
+    students_name: "Students Name"
+    no_defaulters: "No Defaulters"
+    due_date_has_been_exceeded: "Due date has been exceeded. Please collect fine amount:"
+
 
     flash1: "Donation accepted"
     flash2: "Please create category for expense!"

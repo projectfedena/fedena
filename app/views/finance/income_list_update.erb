@@ -27,7 +27,7 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "PDF report",
+    <li><%= link_to "#{t('pdf_report')}",
             {:controller => "finance", :action => "income_list_pdf", :start_date => @start_date, :end_date=>@end_date},:target => '_blank' %></li>
   </ul>
 </div>
@@ -35,10 +35,10 @@
   <div id="page-yield">
     <table id="listing">
       <tr class="tr-head">
-        <td>Name</td>
-        <td>Description</td>
-        <td>Amount</td>
-        <td>Transaction Date</td>
+        <td><%= t('name') %></td>
+        <td><%= t('description') %></td>
+        <td><%= t('amount') %></td>
+        <td><%= t('transaction_date') %></td>
         <td></td>
       </tr>
       <% @incomes.each do |d| %>
@@ -47,7 +47,7 @@
           <td class="col-3"><%= d.description %></td>
           <td class="col-3"><%= d.amount %></td>
           <td class="col-3"><%= d.transaction_date.strftime("%d-%m-%y") unless d.transaction_date.nil?%></td>
-          <td class="col-3"><small><%= link_to "Edit",:action=>'income_edit',:id=>d.id %></small> | <small><%= link_to "Delete",:action=>'delete_transaction',:id=>d.id %></small></td>
+          <td class="col-3"><small><%= link_to "#{t('edit_text')}",:action=>'income_edit',:id=>d.id %></small> | <small><%= link_to "#{t('delete')}",:action=>'delete_transaction',:id=>d.id %></small></td>
         </tr>
       <% end %>
 
@@ -56,5 +56,5 @@
 <% else %>
   <br />
   <br />
-  <p class="flash-msg">No Transactions for the given period.</p>
+  <p class="flash-msg"><%= t('no_transaction_for_the_given_period') %></p>
 <% end %>

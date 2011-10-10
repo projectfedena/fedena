@@ -19,13 +19,13 @@
 
 
 <% if @defaulters.empty? %>
-  <p class="flash-msg">No Defaulters</p>
+  <p class="flash-msg"><%= t('no_defaulters') %></p>
 <% else %>
   <table align="center" width="100%" cellpadding="1" cellspacing="1" id="listing">
     <tr class="tr-head">
-      <td>Sl no.</td>
-      <td>Admission No.</td>
-      <td>Students Name</td>
+      <td><%= t('sl_no') %></td>
+      <td><%= t('admission_no') %></td>
+      <td><%= t('students_name') %></td>
       <td></td>
     </tr>
     <%@defaulters.each_with_index do |s,i| %>
@@ -34,11 +34,11 @@
           <td class="col-5"><%= i+1 %></td>
           <td class="col-1"><%= s.admission_no %></td>
           <td class="col-7"><%= s.full_name %></td>
-          <td class="col-1"><%= link_to "► Pay Fees", {:action => "pay_fees_defaulters",:id => s.id,:date => @date.id } ,:class=>'submit_button'  %></td>
+          <td class="col-1"><%= link_to "► #{t('pay_fees')}", {:action => "pay_fees_defaulters",:id => s.id,:date => @date.id } ,:class=>'submit_button'  %></td>
         </tr>
       <%end%>
     <% end %>
   </table>
-  <%= link_to " ► PDF Report",
+  <%= link_to " ► #{t('pdf_report')}",
     {:controller => "finance", :action => "fee_defaulters_pdf", :batch_id => @batch.id, :date => @date.id},:target => '_blank', :class=> 'user_button' %>
 <% end %>

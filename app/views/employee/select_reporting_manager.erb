@@ -22,16 +22,16 @@
         <% unless @employee.blank? %>
         <tr class="tr-head">
           <td>
-            Sl no.
+           <%= t('sl_no') %>
           </td>
           <td>
-            Employee Name
+            <%= t('employee_name') %>
           </td>
           <td>
-            Employee ID
+            <%= t('employee_id') %>
           </td>
           <td>
-            Employee dept
+            <%= t('employee_department') %>
           </td>
         </tr>
         <tr class="tr-blank"></tr>
@@ -46,7 +46,7 @@
           <% end %>
           <% else %>
         <tr class="tr-<%= cycle('odd', 'even') %>">
-          <td class="col-2">No employee found</td>
+          <td class="col-2"><%= t('no_employee_found') %></td>
         </tr>
       <% end %>
     </table>

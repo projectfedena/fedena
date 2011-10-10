@@ -49,16 +49,16 @@
       ***********************************************/
       var anylinkmenu1={divclass:'anylinkmenu', inlinestyle:'', linktarget:''} //First menu variable. Make sure "anylinkmenu1" is a unique name!
       anylinkmenu1.items = [
-      ["Calendar", "/calendar"],
-      ["Examination", "/exam"],
-      ["News", "/news"],
-      ["Event Creation", "/event"],
-      ["Human Resource", "/employee/hr"],
-      ["Finance", "/finance/index"],
+      ["<%= t('calendar') %>", "/calendar"],
+      ["<%= t('examination') %>", "/exam"],
+      ["<%= t('news') %>", "/news"],
+      ["<%= t('event_creation') %>", "/event"],
+      ["<%= t('human_resource') %>", "/employee/hr"],
+      ["<%= t('finance') %>", "/finance/index"],
       <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
         <%= "['#{mod[:more_menu][:title]}','/#{mod[:more_menu][:controller]}/#{mod[:more_menu][:action].gsub("index","")}'],"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym %>
       <% end %>
-      ["Users", "/user"],
+      ["<%= t('user') %>", "/user"],
       ]
       anylinkmenu.init("menuanchorclass");
     </script>

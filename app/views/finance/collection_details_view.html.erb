@@ -76,12 +76,12 @@
   <div class="particulars">
     <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
       <tr class="tr-head">
-        <td>Sl no.</td>
-        <td>Particulars</td>
-        <td>Student Category</td>
-        <td>Student Name</td>
-        <td>Amount ( <%=currency  %> )</td>
-        <td>Created Date</td>
+        <td><%= t('sl_no') %></td>
+        <td><%= t('particulars') %></td>
+        <td><%= t('student_category') %></td>
+        <td><%= t('student_name') %></td>
+        <td><%= t('amount') %>( <%=currency  %> )</td>
+        <td><%= t('created_date') %></td>
       </tr>
       <tr class="tr-blank"></tr>
 
@@ -97,7 +97,7 @@
           <td class="col-3">
             <%unless fees.admission_no.nil?%>
               <%  student =  Student.find_by_admission_no(fees.admission_no)%>
-              <%= student.nil? ? "N.A." : "#{student.first_name} (#{student.admission_no})" %>
+              <%= student.nil? ? "#{t('n_a')}" : "#{student.first_name} (#{student.admission_no})" %>
             <% else %> - <% end %>
           </td>
           <td class="col-3"><%= fees.amount%></td>

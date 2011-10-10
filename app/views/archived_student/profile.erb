@@ -72,22 +72,22 @@
   <div id="new_profile_info_top">
     <div class="profile_top_banner"><%= image_tag "master_student/profile/topbanner.png" %></div>
     <table width="700">
-      <tr class="odd left"><td>Admission Date</td><td class="right"><%= @archived_student.admission_date.strftime("%d %b, %Y") unless @archived_student.admission_date.nil? %></td></tr>
-      <tr class="even left"><td>Date of birth</td><td class="right"><%= @archived_student.date_of_birth.strftime("%d %b, %Y") unless @archived_student.date_of_birth.nil? %></td></tr>
-      <tr class="odd left"><td>Blood group</td><td class="right"><%= @archived_student.blood_group %></td></tr>
-      <tr class="even left"><td>Gender</td><td class="right"><%= @archived_student.gender_as_text %></td></tr>
-      <tr class="odd left"><td>Nationality</td><td class="right"><%= @archived_student.nationality.name unless @archived_student.nationality_id.nil? %></td></tr>
-      <tr class="even left"><td>Language</td><td class="right"><%= @archived_student.language %></td></tr>
-      <tr class="odd left"><td>Category</td><td class="right"><%= @archived_student.student_category.name unless @archived_student.student_category.nil? %></td></tr>
-      <tr class="even left"><td>Religion</td><td class="right"><%= @archived_student.religion %></td></tr>
-      <tr class="odd left"><td>Address</td><td class="right"><%= @archived_student.address_line1%>, <%=  @archived_student.address_line2 %></td></tr>
-      <tr class="even left"><td>City</td><td class="right"><%= @archived_student.city %></td></tr>
-      <tr class="odd left"><td>State</td><td class="right"><%= @archived_student.state %></td></tr>
-      <tr class="even left"><td>Country</td><td class="right"><%= @archived_student.country.name unless @archived_student.country_id.nil? %></td></tr>
-      <tr class="odd left"><td>Phone</td><td class="right"><%= @archived_student.phone1 %></td></tr>
-      <tr class="even left"><td>Mobile</td><td class="right"><%= @archived_student.phone2 %></td></tr>
-      <tr class="odd left"><td>Email</td><td class="right"><%= @archived_student.email %></td></tr>
-      <tr class="even left"><td>Reason for leaving</td><td class="right"><%= @archived_student.status_description %></td></tr>
+      <tr class="odd left"><td><%= t('admission_date') %></td><td class="right"><%= @archived_student.admission_date.strftime("%d %b, %Y") unless @archived_student.admission_date.nil? %></td></tr>
+      <tr class="even left"><td><%= t('date_of_birth') %></td><td class="right"><%= @archived_student.date_of_birth.strftime("%d %b, %Y") unless @archived_student.date_of_birth.nil? %></td></tr>
+      <tr class="odd left"><td><%= t('blood_group') %></td><td class="right"><%= @archived_student.blood_group %></td></tr>
+      <tr class="even left"><td><%= t('gender') %></td><td class="right"><%= @archived_student.gender_as_text %></td></tr>
+      <tr class="odd left"><td><%= t('nationality') %></td><td class="right"><%= @archived_student.nationality.name unless @archived_student.nationality_id.nil? %></td></tr>
+      <tr class="even left"><td><%= t('language') %></td><td class="right"><%= @archived_student.language %></td></tr>
+      <tr class="odd left"><td><%= t('category') %></td><td class="right"><%= @archived_student.student_category.name unless @archived_student.student_category.nil? %></td></tr>
+      <tr class="even left"><td><%= t('religion') %></td><td class="right"><%= @archived_student.religion %></td></tr>
+      <tr class="odd left"><td><%= t('address') %></td><td class="right"><%= @archived_student.address_line1%>, <%=  @archived_student.address_line2 %></td></tr>
+      <tr class="even left"><td><%= t('city') %></td><td class="right"><%= @archived_student.city %></td></tr>
+      <tr class="odd left"><td><%= t('state') %></td><td class="right"><%= @archived_student.state %></td></tr>
+      <tr class="even left"><td><%= t('country') %></td><td class="right"><%= @archived_student.country.name unless @archived_student.country_id.nil? %></td></tr>
+      <tr class="odd left"><td><%= t('phone') %></td><td class="right"><%= @archived_student.phone1 %></td></tr>
+      <tr class="even left"><td><%= t('mobile') %></td><td class="right"><%= @archived_student.phone2 %></td></tr>
+      <tr class="odd left"><td><%= t('email') %></td><td class="right"><%= @archived_student.email %></td></tr>
+      <tr class="even left"><td><%= t('reason_for_leaving') %></td><td class="right"><%= @archived_student.status_description %></td></tr>
     </table>
     <div class="extender"></div>
   </div>
