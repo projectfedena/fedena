@@ -707,6 +707,7 @@ es: # locale
   employee_id : "ID del empleado"
   dashboard_text: "Inicio"
   connect : 'Conectar'
+  fee_name : 'Nombre de la Tarifa'
 
   flash_msg1: 'Grupo de exámenes actualizado exitosamente.'
   flash_msg2: 'Lo sentimos'
@@ -1747,7 +1748,6 @@ es: # locale
     fees_amount: 'Valor de la Tarifa'
     student_category : 'Categoría del estudiante'
     edit_particulars_for_fee : 'Editar las Tarifas Específicas correspondientes a Tarifas Menores'
-    fee_name : 'Nombre de la Tarifa'
     fee_description : 'Descripción de la Tarifa'
     fee_amount : 'Valor de la Tarifa'
     edit_master_category_for_fee : 'Editar Categoría de Tarifas  Mayores'

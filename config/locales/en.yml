@@ -699,6 +699,7 @@ en: # locale
   employee_id: "Employee ID"
   dashboard_text: "Dashboard"
   connect: "Connect"
+  fee_name: "Fee name"
     
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"
@@ -1732,7 +1733,6 @@ en: # locale
     fees_amount: "Fees Amount"
     student_category: "Student Category"
     edit_particulars_for_fee: "Edit Particulars for Additional Fees"
-    fee_name: "Fee name"
     fee_description: "Fee description"
     fee_amount: "Fee amount"
     edit_master_category_for_fee: "Edit Master Category for Fees"
