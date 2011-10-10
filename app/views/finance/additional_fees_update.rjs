@@ -3,6 +3,6 @@ if @error.nil?
   page << "Modalbox.hide();"
   page.replace_html 'particulars', :partial => 'additional_fees_list'
 else
-	page.replace_html 'form-errors', :partial => 'errors', :locals=>{:objects=> [@finance_fee_category ,@collection_date]  }
+	page.replace_html 'form-errors', :partial => 'additional_fees_errors', :locals=>{:objects=> [@finance_fee_category ,@collection_date]  }
   page.visual_effect(:highlight, 'form-errors')
 end

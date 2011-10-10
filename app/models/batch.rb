@@ -76,4 +76,7 @@ class Batch < ActiveRecord::Base
   def elective_batch_subject(elect_group)
     Subject.find_all_by_batch_id_and_elective_group_id(self.id,elect_group,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"])
   end
+  def has_own_weekday
+    Weekday.find_all_by_batch_id(self.id).present?
+  end
 end

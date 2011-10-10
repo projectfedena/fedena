@@ -60,6 +60,7 @@ en: # locale
 
       grading_level:
         name: "Name"
+        min_score: "Minimum Score"
 
       guardian:
         first_name: "First Name"
@@ -390,7 +391,7 @@ en: # locale
   dec: "Dec"
   reject: "Reject"
   are_you_completely_sure: "Are you completely sure?"
-  common: "común"
+  common: "common"
   done: "Done"
   home: "Home"
   general: "General"
@@ -696,6 +697,8 @@ en: # locale
   fees_paid: "Fees Paid"
   details: "Details"
   employee_id: "Employee ID"
+  dashboard_text: "Dashboard"
+  connect: "Connect"
     
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"
@@ -1926,6 +1929,11 @@ en: # locale
     assets_report: "Assets Report"
     finance_expense_report: "Finance Expense Report"
     finance_income_report: "Finance Income Report"
+    particulars_created_successfully: "Particulars created successfully."
+    particulars_deleted_successfully: "Particulars deleted successfully"
+    category_deleted_successfully: "Category deleted successfully"
+    master_category_created_sucessfully: "Master Category Created Successfully"
+    discount_created_successfully: "Discount created successfully."
 
 
     flash1: "Donation accepted"
@@ -1948,6 +1956,10 @@ en: # locale
     flash18: "Finance Transaction Successfully Deleted"
     flash19: "Cannot pay amount greater than total fee"
     flash20: "Discount already exists for admission number"
+    flash21: "Category edited successfully."
+    flash22: "Particulars edited successfully."
+    flash23: "Amount to be paid should not be negative"
+    flash24: "Fine amount should not be negative"
 
     index:
       manage: "Manage"
@@ -2047,12 +2059,12 @@ en: # locale
     min_score: "Min Score"
     add_grades: "Add grades"
     add_new_grading_levels: "Add New Grading Levels"
+    edit_grading_levels: "Edit grading levels"
     index:
       grading: "Grading"
       levels: "Levels"
       grading_levels: "Grading Levels"
-      edit_grading_levels: "Edit grading levels"
-
+      
 # translation for exam controller
   exam:
     select_exam_group: "Select Exam Group"
@@ -2080,7 +2092,6 @@ en: # locale
       academic: "Academic"
       consolidated: "Consolidated"
       average: "Average"
-      connect: "Connect"
       exam_management: "Exam Management"
       generate_exam_wise_report: "Generates exam wise reports"
       generate_subject_wise_report: "Generates subject wise reports"
@@ -2093,17 +2104,18 @@ en: # locale
     flash2: "Exam score exceeds Maximum Mark."
     flash3: "Exam scores updated."
     flash4: "Garading Levels are not set. Please set Garding Levels."
+    flash5: "Exam deleted successfully."
 # exam_groups controller
   exam_groups:
     view_exam_groups: "View Exam Groups"
     publish_exam_result: "Publish Exam Result"
     flash1: "Exam group created successfully."
     flash2: "Updated exam group successfully."
+    flash3: "Exam group deleted successfully"
 
     index:
       exam_groups: "Exam Groups"
       exam_group: "exam Group"
-      connect: "Connect"
         
      
 #additional exam controller
@@ -2196,7 +2208,6 @@ en: # locale
   layouts:
       # the layout name (template "main.erb")
     calendar: "Calendar"
-    dashboard_text: "Dashboard"
     settings: "Settings"
     examination: "Examination"
     event_creation: "Event Creation"

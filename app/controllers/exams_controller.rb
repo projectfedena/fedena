@@ -81,7 +81,7 @@ class ExamsController < ApplicationController
     @employee_subjects=[]
     @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id} if @current_user.employee?
     @exam = Exam.find params[:id], :include => :exam_group
-    unless @employee_subjects.include?("#{@exam.subject_id}") or @current_user.admin? or @current_user.privileges.map{|p| p.id}.include?(1) or @current_user.privileges.map{|p| p.id}.include?(2)
+    unless @employee_subjects.include?(@exam.subject_id) or @current_user.admin? or @current_user.privileges.map{|p| p.name}.include?('ExaminationControl') or @current_user.privileges.map{|p| p.name}.include?('EnterResults')
       flash[:notice] = "#{t('flash_msg6')}"
       redirect_to :controller=>"user", :action=>"dashboard"
     end
@@ -117,8 +117,8 @@ class ExamsController < ApplicationController
       event = Event.find(@exam.event_id)
       event.destroy
       batch_event.destroy
-             flash[:notice] = "Exam deleted successfully."
-end
+      flash[:notice] = "#{t('flash5')}"
+    end
     redirect_to [@batch, @exam_group]
   end
 

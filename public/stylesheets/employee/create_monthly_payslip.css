@@ -234,3 +234,24 @@ ul{
 .new_category{
     overflow: hidden;
 }
+
+#employee_profile_heading {
+    width:100%;
+    margin:0px auto;
+}
+#employee_main_info {
+    float:left;
+    width:400px;
+}
+#employee_main_info h3 {
+    margin:0;
+    padding:0;
+    margin-top:20px;
+}
+#employee_main_info h4 {
+    margin:0;
+    padding:0;
+    color:#b00;
+    margin-top:10px;
+    margin-bottom: 20px;
+}

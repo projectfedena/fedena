@@ -31,7 +31,7 @@
 
   <tr class="odd left"><td><%= t('manager') %></td><td class="right">
       <% if @current_user.admin? %>
-        <%= link_to @reporting_manager.to_s, :url => {:controller=> "employee", :action=> "profile", :id=>@employee.reporting_manager_id} %>
+        <%= link_to @reporting_manager.to_s, :controller=> "employee", :action=> "profile", :id=>@employee.reporting_manager_id %>
       <% else %>
         <%= @reporting_manager %>
       <% end %>

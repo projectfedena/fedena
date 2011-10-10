@@ -54,7 +54,7 @@
 
         <% @individual_payslip_category.each do |pc| %>
           <% unless pc.is_deduction == false %>
-            <% @individual_category_deductionable = @individual_category_deductionable + pc.amount.to_ %>i
+            <% @individual_category_deductionable = @individual_category_deductionable + pc.amount.to_i %>
           <% end %>
         <% end %>
 

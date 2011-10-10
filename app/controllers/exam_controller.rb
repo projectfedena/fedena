@@ -449,7 +449,11 @@ class ExamController < ApplicationController
   end
 
   def create_exam
-    @course= Course.active
+    if current_user.admin
+      @course= Course.active
+    elsif current_user.employee
+      @course= current_user.employee_record.subjects.all(:group => 'batch_id').map{|x|x.batch.course}
+    end
   end
 
   def update_batch_ex_result

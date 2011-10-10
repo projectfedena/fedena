@@ -558,7 +558,7 @@ class EmployeeController < ApplicationController
     @gender = "Female" if @employee.gender == false
     @status = "Active"
     @status = "Inactive" if @employee.status == false
-    @reporting_manager = Employee.find(@employee.reporting_manager_id).first_name unless @employee.reporting_manager_id.nil?
+    @reporting_manager = Employee.find(@employee.reporting_manager_id).full_name unless @employee.reporting_manager_id.nil?
     exp_years = @employee.experience_year
     exp_months = @employee.experience_month
     date = Date.today
@@ -1445,11 +1445,7 @@ class EmployeeController < ApplicationController
 
     @net_amount = @net_non_deductionable_amount - @net_deductionable_amount
     
-    render :pdf => 'individual_payslip_pdf',
-      :margin => {    :top=> 10,
-      :bottom => 10,
-      :left=> 30,
-      :right => 30}
+    render :pdf => 'individual_payslip_pdf'
     #    respond_to do |format|
     #      format.pdf { render :layout => false }
     #    end

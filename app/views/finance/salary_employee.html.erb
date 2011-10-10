@@ -39,7 +39,7 @@
     <tr class="tr-blank"></tr>
     <% amount=0 %>
     <% monthly_payslips = @payslips[:monthly_payslips].group_by(&:salary_date) %>
-    <% individual_categories = @payslips[:individual_categories].group_by(&:employee_id) %>
+    <% individual_categories = @payslips[:individual_categories].group_by(&:employee_id) unless @payslips[:individual_categories].blank? %>
     <% i = 0 %>
     <% monthly_payslips.each do |(salary_date,payslip)| %>
       <% emp_payslip = payslip.group_by(&:employee_id) %>

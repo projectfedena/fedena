@@ -1,2 +1,2 @@
 	page.replace_html 'categories', :partial => 'master_particulars_list'
-  page.replace_html 'flash_box', :text => "<div id='flash_notice'>Particulars deleted successfully.</div>"
+  page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('particulars_deleted_successfully')}.</p>"

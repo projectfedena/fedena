@@ -167,14 +167,24 @@ class Student < ActiveRecord::Base
   end
 
   def check_fees_paid(date)
-    category = FinanceFeeCategory.find(date.fee_category_id)
-    particulars = category.fees(self)
+    particulars = date.fees_particulars(self)
     total_fees=0
     financefee = date.fee_transactions(self.id)
+    batch_discounts = BatchFeeCollectionDiscount.find_all_by_finance_fee_collection_id(date.id)
+    student_discounts = StudentFeeCollectionDiscount.find_all_by_finance_fee_collection_id_and_receiver_id(date.id,self.id)
+    category_discounts = StudentCategoryFeeCollectionDiscount.find_all_by_finance_fee_collection_id_and_receiver_id(date.id,self.student_category_id)
+    total_discount = 0
+    total_discount += batch_discounts.map{|s| s.discount}.sum unless batch_discounts.nil?
+    total_discount += student_discounts.map{|s| s.discount}.sum unless student_discounts.nil?
+    total_discount += category_discounts.map{|s| s.discount}.sum unless category_discounts.nil?
+    if total_discount > 100
+      total_discount = 100
+    end
     particulars.map { |s|  total_fees += s.amount.to_f}
+    total_fees -= total_fees*(total_discount/100)
     paid_fees_transactions = FinanceTransaction.find(:all,:select=>'amount,fine_amount',:conditions=>"FIND_IN_SET(id,\"#{financefee.transaction_id}\")") unless financefee.nil?
     paid_fees = 0
-    paid_fees_transactions.map { |m| paid_fees += m.amount.to_f - m.fine_amount.to_f } unless paid_fees_transactions.nil?
+    paid_fees_transactions.map { |m| paid_fees += (m.amount.to_f - m.fine_amount.to_f) } unless paid_fees_transactions.nil?
     amount_pending = total_fees.to_f - paid_fees.to_f
     if amount_pending == 0
       return true

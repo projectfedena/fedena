@@ -30,9 +30,9 @@ class ClassTiming < ActiveRecord::Base
     errors.add(:end_time, "should be later than start time.") \
       if self.start_time > self.end_time \
       unless self.start_time.nil? or self.end_time.nil?
-    start_overlap = !ClassTiming.find(:first, :conditions=>["start_time < ? and end_time > ? and batch_id #{self.batch_id.nil? ? 'is null' : '='+ self.batch_id.to_s}", self.start_time,self.start_time]).nil?
-    end_overlap = !ClassTiming.find(:first, :conditions=>["start_time < ? and end_time > ? and batch_id #{self.batch_id.nil? ? 'is null' : '='+ self.batch_id.to_s}", self.end_time,self.end_time]).nil?
-    between_overlap = !ClassTiming.find(:first, :conditions=>["start_time < ? and end_time > ? and batch_id #{self.batch_id.nil? ? 'is null' : '='+ self.batch_id.to_s}",self.end_time, self.start_time]).nil?
+    start_overlap = !ClassTiming.find(:first, :conditions=>["id != #{self.id} and start_time < ? and end_time > ? and batch_id #{self.batch_id.nil? ? 'is null' : '='+ self.batch_id.to_s}", self.start_time,self.start_time]).nil?
+    end_overlap = !ClassTiming.find(:first, :conditions=>["id != #{self.id} and start_time < ? and end_time > ? and batch_id #{self.batch_id.nil? ? 'is null' : '='+ self.batch_id.to_s}", self.end_time,self.end_time]).nil?
+    between_overlap = !ClassTiming.find(:first, :conditions=>["id != #{self.id} and start_time < ? and end_time > ? and batch_id #{self.batch_id.nil? ? 'is null' : '='+ self.batch_id.to_s}",self.end_time, self.start_time]).nil?
     errors.add(:start_time, "overlaps existing class timing.") if start_overlap
     errors.add(:end_time, "overlaps existing class timing.") if end_overlap
     errors.add_to_base("Class timing overlaps with existing class timing.") if between_overlap

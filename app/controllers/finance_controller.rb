@@ -555,6 +555,7 @@ class FinanceController < ApplicationController
 
   def update_asset
     @asset = Asset.find(params[:id])
+    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     
     render :update do |page|
       if @asset.update_attributes(params[:asset])
@@ -642,7 +643,7 @@ class FinanceController < ApplicationController
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'categories', :partial => 'master_category_list'
-        page.replace_html 'flash_box', :text => "<div id='flash_notice'>Category edited successfully.</div>"
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash21')}</p>"
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @finance_fee_category
         page.visual_effect(:highlight, 'form-errors')
@@ -659,6 +660,7 @@ class FinanceController < ApplicationController
   end
   def master_category_particulars_edit
     @finance_fee_particulars= FinanceFeeParticulars.find(params[:id])
+    @student_categories = StudentCategory.active
     respond_to do |format|
       format.js { render :action => 'master_category_particulars_edit' }
     end
@@ -673,7 +675,7 @@ class FinanceController < ApplicationController
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'categories', :partial => 'master_particulars_list'
-        page.replace_html 'flash_box', :text => "<div id='flash_notice'>Particulars edited successfully.</div>"
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash22')}</p>"
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @feeparticulars
         page.visual_effect(:highlight, 'form-errors')
@@ -1518,7 +1520,7 @@ class FinanceController < ApplicationController
     @fee = FinanceFee.find_all_by_fee_collection_id(@date.id)
     @fee.reject!{|s| s.student.batch_id != @batch.id}
     @students = @fee.map{|x| Student.find(x.student_id)}
-    @defaulters = @students.reject{|s| s.check_fees_paid(@date)==true}
+    @defaulters = @students.reject{|s| s.check_fees_paid(@date)}
     render :update do |page|
       page.replace_html "student", :partial => "student_defaulters"
     end
@@ -1595,7 +1597,7 @@ class FinanceController < ApplicationController
         flash[:notice] = "#{t('flash19')}"
         end
       else
-        flash[:notice] = 'Amount to be paid should not be negative'
+        flash[:notice] = "#{t('flash23')}"
       end
     
     end
@@ -1617,7 +1619,7 @@ class FinanceController < ApplicationController
       end
       total_fees += @fine unless @fine.nil?
     else
-      flash[:notice] = 'Fine amount should not be negative'
+      flash[:notice] = "#{t('flash24')}"
     end
     redirect_to  :action => "pay_fees_defaulters", :id=> @student.id, :date=> @date.id, :fine => @fine
   end

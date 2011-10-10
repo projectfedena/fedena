@@ -17,7 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<label class="head_label"><%= t('edit_particular_for_master_fee ') %><span></span></label>
+<label class="head_label"><%= t('edit_particular_for_master_fee') %><span></span></label>
 
 
 <div id="grading-levels-form">
@@ -27,30 +27,43 @@
     <div id="form-errors"></div>
 
     <div class="label-field-pair">
-      <div class="label-container"> <%= f.label :"#{t('name')}" %></div>
+      <div class="label-container"> <%= f.label "#{t('name')}" %></div>
       <div class="input-container"><%= f.text_field :name %></div>
     </div>
 
     <div class="label-field-pair">
-      <div class="label-container"><%= f.label :"#{t('description')}" %></div>
+      <div class="label-container"><%= f.label "#{t('description')}" %></div>
       <div class="input-container"><%= f.text_field :description %></div>
     </div>
-    <div class="label-field-pair2">
-      <div class="label-container2"><label><%= t('create_using') %></label></div>
-      <div class="input-container2">
-        <%= radio_button("#{t('particulars')}","#{t('select')}","#{t('all')}",:checked => true) %><%= t('all') %><br />
-        <%= radio_button("#{t('particulars')}","#{t('select')}","#{t('category')}",
-          {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
-            :with => "'select_value='+value")}"}) %> <%= t('student_category') %>
+    <% if @finance_fee_particulars.admission_no.nil? %>
+      <div class="label-field-pair2">
+        <div class="label-container2"><label><%= t('create_using') %></label></div>
+        <div class="input-container2">
 
+          <% unless @finance_fee_particulars.student_category_id.nil? %>
+            <%= radio_button("#{t('particulars')}","#{t('select')}","#{t('all')}",{:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
+                :with => "'select_value='+value")}"}) %>All<br />
+            <%= radio_button("#{t('particulars')}","#{t('select')}","#{t('category')}",
+              {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
+                :with => "'select_value='+value")}",:checked => true}) %> <%= t('student_category') %>
+          <% else %>
+            <%= radio_button("#{t('particulars')}","#{t('select')}","#{t('all')}",{:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
+                :with => "'select_value='+value")}", :checked => true}) %><%= t('all') %><br />
+            <%= radio_button("#{t('particulars')}","#{t('select')}","#{t('category')}",
+              {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
+                :with => "'select_value='+value")}"}) %><%= t('student_category') %>
+          <% end %>
+        </div>
       </div>
+    <% end %>
+
+
+    <div id="student">
+      <%= render :partial => 'student_category_particulars', :lacals=>{ :student_categories=> @student_categories} unless @finance_fee_particulars.student_category_id.nil? %>
     </div>
 
-
-    <div id="student"></div>
-
     <div class="label-field-pair">
-      <div class="label-container"><%= f.label :"#{t('amount')}" %></div>
+      <div class="label-container"><%= f.label "#{t('amount')}" %></div>
       <div class="input-container"> <%= f.text_field :amount %></div>
     </div>
 

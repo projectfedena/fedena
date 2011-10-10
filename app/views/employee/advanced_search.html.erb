@@ -275,7 +275,7 @@
 
 
       <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
-        <% unless @employees1.empty? %>
+        <% unless @employees1.empty? and @employees2.empty? %>
           <tr class="tr-head">
             <td>
              <%= t('sl_no') %>

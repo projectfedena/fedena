@@ -63,6 +63,7 @@ es: # locale
 
       grading_level:
         name: "Nombre"
+        min_score: "puntuación mínima"
 
       guardian:
         first_name: "Primer nombre"
@@ -397,7 +398,7 @@ es: # locale
   nov           : "Nov"
   dec           : "Dici"
   are_you_completely_sure : "¿Está usted completamente seguro?"
-  common: "Common"
+  common: "común"
   done : "hecho"
   home : "Inicio"
   general : "General"
@@ -704,6 +705,8 @@ es: # locale
   fees_paid : 'Pagos Realizados'
   details : "Información"
   employee_id : "ID del empleado"
+  dashboard_text: "Inicio"
+  connect : 'Conectar'
 
   flash_msg1: 'Grupo de exámenes actualizado exitosamente.'
   flash_msg2: 'Lo sentimos'
@@ -1941,6 +1944,11 @@ es: # locale
     assets_report: "Informe activos"
     finance_expense_report: "Finanzas Informe de gastos"
     finance_income_report: "Finanzas Informe de ingresos"
+    particulars_created_successfully: "Datos creado correctamente."
+    particulars_deleted_successfully: "Datos eliminado con éxito"
+    category_deleted_successfully: "Categoría eliminado con éxito"
+    master_category_created_sucessfully: "Categoría maestro creado con éxito"
+    discount_created_successfully: "Descuento creado correctamente."
 
 
     flash1: 'Donación aceptada'
@@ -1963,6 +1971,10 @@ es: # locale
     flash18: 'Transacción de financiamiento se han eliminado correctamente'
     flash19: 'No puede pagar mayor cantidad de cuota total'
     flash20: 'Descuento ya existe para el número de admisión'
+    flash21: "Categoría editado correctamente."
+    flash22: "Datos editado correctamente."
+    flash23: "Cantidad a pagar no debe ser negativo"
+    flash24: "Monto de la multa no debe ser negativo"
 
     index:
       manage : 'Gestionar'
@@ -2059,6 +2071,7 @@ es: # locale
     min_score : '% mínimo'
     add_grades : 'Añadir desempeños'
     add_new_grading_levels  : 'Agregar nuevos desempeños'
+    edit_grading_levels: "Modificar los niveles de clasificación"
 
     index:
       grading : 'Desempeño'
@@ -2092,7 +2105,6 @@ es: # locale
       academic : 'Académico'
       consolidated : 'Consolidado'
       average : 'Promedio'
-      connect : 'Conectar'
       exam_management : "Gestión de examenes"
       generate_exam_wise_report : "Generar reportes según exámenes"
       generate_subject_wise_report : "Generar reportes según asignaturas"
@@ -2105,17 +2117,19 @@ es: # locale
     flash2: 'El puntaje de los exámenes excede la nota máxima.'
     flash3: 'Puntaje de exámenes actualizado.'
     flash4: 'Niveles Garading no están ajustadas. Por favor, establece los niveles Garding.'
+    flash5: "Examen eliminado con éxito."
 # exam_groups controller
   exam_groups:
     view_exam_groups : "Ver grupos de exámenes"
     publish_exam_result : 'Publicar resultado de examen'
-    flash1: 'Grupo de exámenes creado exitosamente.'
+    flash1: "Grupo de examen ha creado correctamente."
+    flash2: "Actualizado grupo de examen con éxito."
+    flash3: "Grupo de examen eliminado con éxito"
 
     index:
       exam_groups : 'Grupos de Exámenes'
       exam_group : 'Grupo de Exámenes'
-      connect : 'Conectar'
-
+     
 
 #additional exam controller
   additional_exam:
@@ -2214,7 +2228,6 @@ es: # locale
   layouts:
       # the layout name (template "main.erb")
     calendar: "Calendario"
-    dashboard_text: "Inicio"
     settings: "Configuración"
     examination : 'Exámenes'
     event_creation : 'Eventos'

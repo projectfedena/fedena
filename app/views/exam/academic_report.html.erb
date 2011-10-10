@@ -49,13 +49,13 @@
           <% if exam_group.exam_type == "MarksAndGrades" %>
             <td class="col-3"><% unless @exam.nil?  %>
                 <%  unless exam_score.nil? %>
-                  <%= exam_score.marks%> / <%= @exam.maximum_marks  %> [ <%= exam_score.grading_level.name %> ]
+                  <%= exam_score.marks%>/<%= @exam.maximum_marks  %>[<%= exam_score.grading_level.name %>]
                 <% end %>
               <%  end %></td>
           <% elsif exam_group.exam_type == "Marks" %>
             <td class="col-3"> <% unless @exam.nil? %>
                 <% unless exam_score.nil? %>
-                  <%= exam_score.marks %> / <%= @exam.maximum_marks  %>
+                  <%= exam_score.marks %>/<%= @exam.maximum_marks  %>
                 <% end %>
               <% end %></td>
           <% else %>
@@ -93,7 +93,7 @@
     </tr>
   </table>
   <% if @mmg == @g %>
-    <h4> <%= t('total_marks') %> = <%="%.2f" %@marks_total %> | Aggregate % = <%="%.2f" %((@marks_total*100)/(@max_total  == 0 ? 1 : @max_total)) %> </h4>
+    <h4> <%= t('total_marks') %> = <%="%.2f" %@marks_total %> | <%= t('aggregate') %> % = <%="%.2f" %((@marks_total*100)/(@max_total  == 0 ? 1 : @max_total)) %> </h4>
   <% end %>
 
   <div class="extender"></div>

@@ -906,7 +906,8 @@ authorization do
       :profile,
       :view_all,
       :employees_list,
-      :advanced_search
+      :advanced_search,
+      :hr
     ]
   end
 
@@ -1847,5 +1848,7 @@ authorization do
       :update,
       :destroy
     ]
+    has_permission_on [:attendances], :to => [:index, :list_subject, :show, :new, :create, :edit,:update, :destroy]
+    has_permission_on [:attendance_reports], :to => [:index, :subject, :mode, :show, :year, :report, :filter, :student_details,:report_pdf,:filter_report_pdf]
   end
 end
