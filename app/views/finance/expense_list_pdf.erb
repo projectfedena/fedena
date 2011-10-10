@@ -22,18 +22,18 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2>Finance Expense Report</h2>
+  <h2><%= t('finance_expense_report') %></h2>
   <div class="hor_line"></div>
 
 
   <div class="extender"> </div>
   <div class="report">
     <div id ="main_info">
-      <h4> <%= "From ( #{@start_date}) to ( #{@end_date})" %></h4>
+      <h4> <%= "#{t('from')} ( #{@start_date}) #{t('to')} ( #{@end_date})" %></h4>
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="table-header"><td class="col-pdf">Sl no.</td><td class="col-pdf"> Name </td><td class="col-pdf"> Description </td><td class="col-pdf"><%= "Amount( #{currency})" %></td><td class="col-pdf"> Transaction Date</td></tr>
+        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"> <%= t('name') %> </td><td class="col-pdf"><%= t('description') %> </td><td class="col-pdf"><%= "#{t('amount')}( #{currency})" %></td><td class="col-pdf"> <%= t('transaction_date') %></td></tr>
         <% index = 0 %>
         <% total = 0 %>
         <% i = 0 %>
@@ -52,7 +52,7 @@
 
         <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"></td>
-            <td class="col-pdf" colspan="2">Grand Total</td>
+            <td class="col-pdf" colspan="2"><%= t('grand_total') %></td>
             <td class="col-pdf" colspan="2"><%= total %></td>
           </tr>
 

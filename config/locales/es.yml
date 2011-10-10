@@ -1937,6 +1937,10 @@ es: # locale
     students_name: "Nombre del estudiante"
     no_defaulters: "no morosos"
     due_date_has_been_exceeded: "Fecha de vencimiento se ha superado. Por favor, recoja monto de la multa:"
+    liabilities_report: "pasivos Informe"
+    assets_report: "Informe activos"
+    finance_expense_report: "Finanzas Informe de gastos"
+    finance_income_report: "Finanzas Informe de ingresos"
 
 
     flash1: 'Donación aceptada'

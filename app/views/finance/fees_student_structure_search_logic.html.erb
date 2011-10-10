@@ -22,16 +22,16 @@
   <% unless @students_result.nil? %>
     <tr class="tr-head">
       <td>
-        Sl no.
+       <%= t('sl_no') %>
       </td>
       <td>
-        Student Name
+        <%= t('student_name') %>
       </td>
       <td>
-        Batch
+       <%= t('batch') %>
       </td>
       <td>
-        Admission No
+        <%= t('admission_no') %>
       </td>
     </tr>
     <tr class="tr-blank"></tr>
@@ -46,7 +46,7 @@
     <% end %>
   <% else %>
     <tr class="tr-<%= cycle('odd', 'even') %>">
-      <td class="col-2">No users found</td>
+      <td class="col-2"><%= t('no_users') %></td>
     </tr>
   <% end %>
 </table>

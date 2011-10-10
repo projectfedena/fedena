@@ -1922,6 +1922,10 @@ en: # locale
     students_name: "Students Name"
     no_defaulters: "No Defaulters"
     due_date_has_been_exceeded: "Due date has been exceeded. Please collect fine amount:"
+    liabilities_report: "Liabilities Report"
+    assets_report: "Assets Report"
+    finance_expense_report: "Finance Expense Report"
+    finance_income_report: "Finance Income Report"
 
 
     flash1: "Donation accepted"

@@ -27,7 +27,7 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "PDF report",
+    <li><%= link_to "#{t('pdf_report')}",
             {:controller => "finance", :action => "expense_list_pdf", :start_date => @start_date, :end_date=>@end_date},:target => '_blank' %></li>
   </ul>
 </div>

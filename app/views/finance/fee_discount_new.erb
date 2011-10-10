@@ -45,7 +45,7 @@
 <div id="form-errors"></div>
     <div id="batch">
     <div class="label-field-pair"><label><%= t('select_discount_type') %> : </label>
-        <div class="text-input-bg"> <%= select("id",:id,[["#{t('batch')}","#{t('batch_wise')}"],["#{t('student_category')}","#{t('category_wise')}"],["#{t('student_text')}","#{t('student_wise')}"]],
+        <div class="text-input-bg"> <%= select("id",:id,[["#{t('batch')}","batch_wise"],["#{t('student_category')}","category_wise"],["#{t('student_text')}","student_wise"]],
             {:prompt => "#{t('select_discount_type')}"},
             {:onChange => "#{remote_function(:url => {:action => "load_discount_create_form"}, :with => "'type='+value")}"})%> </div>
    </div>
