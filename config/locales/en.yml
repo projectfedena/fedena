@@ -305,7 +305,6 @@ en: # locale
   courses_text: "Courses"
   batch: "Batch"
   delete_text: "Delete"
-  delete: "Delete"
   admission_number: "Admission number"
   all: "All"
   select: "Select"
@@ -313,7 +312,6 @@ en: # locale
   status: "Status"
   present: "Present"
   former: "Former"
-  search: "Search"
   search_text: "Search"
   category: "Category"
   pdf_report: "PDF Report"
@@ -323,7 +321,6 @@ en: # locale
   total_mark: "Total mark"
   total_marks: "Total marks"
   save_and_proceed: "Save & Proceed"
-  edit: "Edit"
   save: "Save"
   setting: "Setting"
   active: "Active"
@@ -363,7 +360,6 @@ en: # locale
   n_a: "N.A"
   batches_text: "Batches"
   delete_confirm_msg: "Are You Sure?"
-  new: "New"
   new_text: "New"
   and: "and"
   wise: "wise"
@@ -478,7 +474,6 @@ en: # locale
   personal_details: "Personal Details"
   attendance_register: "Attendance register"
   attendance_report: "Attendance Report"
-  payslip: "Payslip"
   approve_payslip: "Approve Payslip"
   view_all: "View all"
   advanced: "Advanced"
@@ -573,7 +568,6 @@ en: # locale
   fine: "Fine"
   payment_done: "Payment Done"
   partial_payment_on: "Partial Payment on"
-  profile: "Profile"
   profile_text: "Profile"
   messages: "Messages"
   reminder_text: "Reminder"
@@ -700,7 +694,7 @@ en: # locale
   dashboard_text: "Dashboard"
   connect: "Connect"
   fee_name: "Fee name"
-  more: "more"
+  more: "More ▼"
   employee_profile: "Employee Profile"
   contact: "Contact"
   personal: "Personal"
@@ -1137,7 +1131,7 @@ en: # locale
   msg1: "SMS sent across batches and empoloyee departments"
   posted: "Posted"
   school_news: "School News"
-  news: "News"
+  news_text: "News"
   latest_announcement: "Latest announcements"
   user_deleted: "User Deleted"
   read_news: "Read news"
@@ -1678,6 +1672,12 @@ en: # locale
   is_a_break: "Is a break"
   confirm_msg: "This will delete all timetable entried assosciated with this class timing , proceed with deletion?"
   add_new_class_timing_for: "Add new class timing for"
+  calendar: "Calendar"
+  settings: "Settings"
+  examination: "Examination"
+  event_creations: "Event Creation"
+  fedena_logo: "/images/application/app_fedena_logo.jpg"
+  key: "My Copyright"
 
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"
@@ -1924,37 +1924,6 @@ en: # locale
     flash2: "Timetable updated"
     flash3: "Time table Published"
     flash4: "No timetable entry for selected date"
-   
- # partials w/o underscore (template "_footer.erb")
-    footer:
-      key: "My Copyright"
-    header_link:
-      messages: "Messages"
-      log_out: "Log out"
-      logged_as: "Logged in as:"
-
-    # "layouts" is fixed
-  layouts:
-      # the layout name (template "main.erb")
-    calendar: "Calendar"
-    settings: "Settings"
-    examination: "Examination"
-    event_creation: "Event Creation"
-    human_resource: "Human Resource"
-    finance: "Finance"
-    user: "User"
-    timetable: "Timetable"
-    news: "News"
-    more: "More ▼"
-    sms: "SMS"
-    logged_as: "Logged in as:"
-    fedena_logo: "/images/application/app_fedena_logo.jpg"
-    messages: "Messages"
-    log_out: "Log out"
-    ago: "ago"
-    powered_by: "Powered by"
-    more_news: "More News"
-    
 
   shared:
     user:
