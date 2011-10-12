@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/student_details/student_details_logo.jpg" />
-  <h1><%= t('student.student_info') %></h1>
-  <h3><%= t('student.student_profile') %></h3>
+  <h1><%= t('student_info') %></h1>
+  <h3><%= t('student_profile') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -29,17 +29,17 @@
 <div id="inner-tab-menu">
   <ul>
 
-    <li><%= link_to "#{t('student.reports')}", :controller => 'archived_student',
+    <li><%= link_to "#{t('reports_text')}", :controller => 'archived_student',
         :action => 'reports', :id => @archived_student %></li>
 
 
-    <li><%= link_to "#{t('student.profile.guardians')}", :controller => "archived_student",
+    <li><%= link_to "#{t('guardians_text')}", :controller => "archived_student",
         :action => "guardians", :id => @archived_student.id %></li>
 
 
 <%#*<li><%= link_to "Delete", :controller => 'archived_student',%>
 <%#*:action => 'delete', :id => @archived_student.id %><%#</li>%>
-    <li><%= link_to "#{t('student.generate_tc')}",
+    <li><%= link_to "#{t('generate_tc')}",
         {:controller => "student", :action => "generate_tc_pdf", :id => @archived_student.admission_no},:target => '_blank' %></li>
 
   </ul>

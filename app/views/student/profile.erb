@@ -39,7 +39,7 @@
       <% end %>
     <% end %>
     <% if permitted_to? :guardians,:student %>
-      <li><%= link_to "#{t('guardians')}", :controller => "student",
+      <li><%= link_to "#{t('guardians_text')}", :controller => "student",
           :action => "guardians", :id => @student.id %></li>
     <% end %>
     <% if permitted_to? :email,:student %>
@@ -50,14 +50,14 @@
       <%  end %>
     <%  end %>
     <% if permitted_to? :remove, :student or permitted_to? :admission1, :student %>
-      <li><%= link_to "#{t('delete')}", :controller => 'student',
+      <li><%= link_to "#{t('delete_text')}", :controller => 'student',
           :action => 'remove', :id => @student.id %></li>
     <% end %>
     <li>
-      <a href="#" class="drops" id="link_one">More &#9660;</a>
+      <a href="#" class="drops" id="link_one"><%= t('more') %> &#9660;</a>
       <ul id="box_one" class="scriptaculously" style="display:none;">
         <% if @sms_module.include?('Finance') and permitted_to? :fees, :student%>
-          <li><%= link_to "Fees", :controller => 'student',:action => 'fees', :id => @student.id %></li>
+          <li><%= link_to "#{t('fees_text')}", :controller => 'student',:action => 'fees', :id => @student.id %></li>
         <% end %>
         <% FedenaPlugin::ADDITIONAL_LINKS[:student_profile_more_menu].each do |mod| %>
           <li><%= link_to "#{mod[:title]}",mod[:destination].merge(:id=>@student.id) %></li>

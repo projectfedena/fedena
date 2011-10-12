@@ -24,7 +24,7 @@
 <% end %>
 <% unless @weekly_holidays.nil? %>
   <% @weekly_holidays.each do |d| %>
-    <%= d.config_value %><%= link_to "#{t('delete')}", :action=>"delete", :id=>d.id  %>
+    <%= d.config_value %><%= link_to "#{t('delete_text')}", :action=>"delete", :id=>d.id  %>
     
   <% end %>
 <% end %>

@@ -20,8 +20,8 @@
 
 <div id="content-header">
   <img src="/images/show_settings.png" />
-  <h1><%= t('configuration') %></h1>
-  <h3><%= t('configuration') %> <%= t('home') %></h3>
+  <h1><%= t('configuration_text') %></h1>
+  <h3><%= t('configuration_text') %> <%= t('home') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -38,34 +38,34 @@
     <% if permitted_to? :create, :courses %>
       <div class="link-box">
         <div class="link-heading"><%= link_to "#{t('manage_course_batch')}", courses_path %></div>
-        <div class="link-descr"><%= t('link_desc1') %></div>
+        <div class="link-descr"><%= t('add_a_new_course_or_batch') %></div>
       </div>
     <% end %>
 
     <% if permitted_to? :settings, :configuration %>
       <div class="link-box">
         <div class="link-heading"><%= link_to "#{t('manage_student_category')}", :controller => "student", :action => "categories" %></div>
-        <div class="link-descr"><%= t('link_desc6') %></div>
+        <div class="link-descr"><%= t('add_student_category') %></div>
       </div>
     <% end %>
     <% if permitted_to? :index, :subjects %>
       <div class="link-box">
         <div class="link-heading"><%= link_to "#{t('manage_subject')}", subjects_path %></div>
-        <div class="link-descr"><%= t('link_desc2') %></div>
+        <div class="link-descr"><%= t('manage_subjects_corresponding') %></div>
       </div>
     <% end %>
 
     <% if permitted_to? :settings, :configuration %>
       <div class="link-box">
         <div class="link-heading"><%= link_to "#{t('general_settings')}", :action => "settings" %></div>
-        <div class="link-descr"><%= t('link_desc3') %></div>
+        <div class="link-descr"><%= t('set_some_general_configuration') %></div>
       </div>
     <% end %>
 
     <% if permitted_to? :settings, :configuration %>
       <div class="link-box">
         <div class="link-heading"><%= link_to "#{t('add_admission_additional_detail')}", :controller=>"student", :action => "add_additional_details" %></div>
-        <div class="link-descr"><%= t('link_desc4') %></div>
+        <div class="link-descr"><%= t('set_some_additional_details') %></div>
       </div>
     <% end %>
 
@@ -74,7 +74,7 @@
       <% if @config.include?('SMS') %>
         <div class="link-box">
           <div class="link-heading"><%= link_to "#{t('sms_module')}", :controller=>"sms", :action => "index" %></div>
-          <div class="link-descr"><%= t('link_desc5') %></div>
+          <div class="link-descr"><%= t('enable_or_disable_sms_settings') %></div>
         </div>
       <% end %>
     <% end %>

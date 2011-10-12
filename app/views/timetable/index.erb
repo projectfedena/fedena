@@ -74,8 +74,8 @@
     </div>
     <%  if permitted_to? :edit,:timetable%>
       <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('create')} #{t('weekdays_text')}", :controller => "weekday", :action => "index" %></div>
-        <div class="link-descr"><%= t('create') %> <%= t('weekdays_text') %></div>
+        <div class="link-heading"><%= link_to "#{t('create_text')} #{t('weekdays_text')}", :controller => "weekday", :action => "index" %></div>
+        <div class="link-descr"><%= t('create_text') %> <%= t('weekdays_text') %></div>
       </div>
     <% end %>
     <div class="extender"></div>

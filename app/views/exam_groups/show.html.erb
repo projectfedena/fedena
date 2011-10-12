@@ -80,8 +80,8 @@
               <td class="col-1"><%= in_place_editor_field :exam, :maximum_marks,{},{:cols=>1} %></td>
               <td class="col-1"><%= in_place_editor_field :exam, :minimum_marks,{},{:cols=>1} %></td>
               <td class="col-1">
-                <small><%= link_to t('edit'), edit_exam_group_exam_path(@exam_group, exam) %></small>
-                <small><%= link_to t('delete'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
+                <small><%= link_to t('edit_text'), edit_exam_group_exam_path(@exam_group, exam) %></small>
+                <small><%= link_to t('delete_text'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
               </td>
             </tr>
           <% end %>
@@ -99,8 +99,8 @@
               <% @exam = exam %>
               <td class="col-3"><%= link_to exam.subject.name, [@exam_group, exam] %></td>
               <td class="col-1">
-                <small><%= link_to t('edit'), edit_exam_group_exam_path(@exam_group, exam) %></small>
-                <small><%= link_to t('delete'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
+                <small><%= link_to t('edit_text'), edit_exam_group_exam_path(@exam_group, exam) %></small>
+                <small><%= link_to t('delete_text'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
               </td>
             </tr>
           <% end %>

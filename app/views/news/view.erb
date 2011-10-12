@@ -19,7 +19,7 @@
 
 <div id="content-header">
   <img src="/images/show_news/show_news_logo.png" />
-  <h1><%= t('news') %></h1>
+  <h1><%= t('news_text') %></h1>
   <h3><%= t('read_news') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -42,11 +42,11 @@
 
   <% if @current_user.admin? %>
     
-      <%= link_to "► #{t('edit')} #{t('news')}",
+      <%= link_to "► #{t('edit_text')} #{t('news_text')}",
         {:controller => "news",  :action => "edit", :id => @news.id }, :class => "edit_button"%>
     
   <div id="">
-      <%= link_to "► #{t('delete')} #{t('news')}",
+      <%= link_to "► #{t('delete_text')} #{t('news_text')}",
         { :controller => "news", :action => "delete", :id => @news.id },
         :confirm => "#{t('delete_confirm_msg')}", :class => "delete_button" %>
      

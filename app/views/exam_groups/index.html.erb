@@ -71,8 +71,8 @@
             <%= link_to exam_group.name, [@batch, exam_group] %>
             <% if @current_user.admin? or @user_privileges.map{|p| p.name}.include?('ExaminationControl') or @user_privileges.map{|p| p.name}.include?('EnterResults') %>
               <span><small>
-                  <%= link_to("#{t('delete')}", [@batch, exam_group], :method => 'delete', :confirm => "#{t('delete_confirm_msg')}") if exam_group.removable? %>
-                  <s><%= "#{t('delete')}" unless exam_group.removable? %></s>
+                  <%= link_to("#{t('delete_text')}", [@batch, exam_group], :method => 'delete', :confirm => "#{t('delete_confirm_msg')}") if exam_group.removable? %>
+                  <s><%= "#{t('delete_text')}" unless exam_group.removable? %></s>
                 </small></span>
             <% end %>
           </td>

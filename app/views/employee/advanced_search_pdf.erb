@@ -29,7 +29,7 @@
   <div class="extender"> </div>
   <div class="report">
     <div id ="main_info">
-      <h4> <%= "Employee "+@searched_for.camelcase unless @searched_for.nil?%></h4>
+      <h4> <%= "#{t('employee_text')} "+@searched_for.camelcase unless @searched_for.nil?%></h4>
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">

@@ -29,8 +29,8 @@
   <div class="extender"> </div>
   <div class="report">
     <div id ="main_info">
-      <h4> <%= "Name : #{@student.full_name} " %></h4>
-      <h4> <%= "Admission no : #{@student.admission_no}" %></h4>
+      <h4> <%= "#{t('name')}: #{@student.full_name} " %></h4>
+      <h4> <%= "#{t('admission_no')} : #{@student.admission_no}" %></h4>
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">

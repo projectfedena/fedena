@@ -47,11 +47,11 @@
         <td class="col-3"><%= I18n.l(fees.created_at,:format=>"%m-%d-%Y") %></td>
         <td class="col-1">
           <%  unless @additional_category.check_fee_collection_for_additional_fees == false %>
-            <span class="small"> <%= link_to_remote t('delete'), :confirm=>t('fees_defaulters.delete_this_particular'),:url => { :action => 'add_particulars_delete',:id => fees.id} %></span>
-            <span class="small"> <%= link_to_remote t('edit'), :url => { :action => 'add_particulars_edit',:id => fees.id} %></span>
+            <span class="small"> <%= link_to_remote t('delete_text'), :confirm=>t('fees_defaulters.delete_this_particular'),:url => { :action => 'add_particulars_delete',:id => fees.id} %></span>
+            <span class="small"> <%= link_to_remote t('edit_text'), :url => { :action => 'add_particulars_edit',:id => fees.id} %></span>
           <% else %>
-            <span class="small-strike"><%= t('delete') %></span>
-            <span class="small-strike"><%= t('edit') %></span>
+            <span class="small-strike"><%= t('delete_text') %></span>
+            <span class="small-strike"><%= t('edit_text') %></span>
           <% end %>
         </td>
       </tr>

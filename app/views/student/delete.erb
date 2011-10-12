@@ -33,7 +33,7 @@
     <p><%= t('description1') %></p>
 
     <p class="warning">(<%= t('description2') %>)</p>
-    <%= link_to "► #{t('delete')}",
+    <%= link_to "► #{t('delete_text')}",
       { :action => 'destroy', :id => @student.id }, :class => 'delete-button', :confirm => "#{t('are_you_completely_sure')}" %>
   </div>
 

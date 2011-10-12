@@ -21,7 +21,7 @@
   <div class="comment-details">
     <div class="commenter"><%= @cmnt.author.present? ? @cmnt.author.first_name : "User Deleted" %></div>
     <% if permitted_to? :delete_comment , :news %>
-    <div class="delete-comment"><%= link_to_remote  "#{t('delete')}", :url => { :controller => 'news', :action => 'delete_comment', :id => @cmnt } %></div>
+    <div class="delete-comment"><%= link_to_remote  "#{t('delete_text')}", :url => { :controller => 'news', :action => 'delete_comment', :id => @cmnt } %></div>
     <%end%>
     <div class="comment-posted-at"><%= t('posted') %><%= time_ago_in_words(@cmnt.created_at) %> <%= t('ago') %></div>
   </div>

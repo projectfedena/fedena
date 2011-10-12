@@ -120,14 +120,14 @@
       <div class="button-pair">
       <% if permitted_to? :edit_guardian,:student %>
         <div class="parent-edit-button">
-          <%= link_to "► #{t('edit')}",
+          <%= link_to "► #{t('edit_text')}",
             :controller => 'student', :action => 'edit_guardian', :id => p.id %>
         </div>
       <%  end %>
       <% if permitted_to? :del_guardian,:student %>
         <%  if @student.guardians.size > 1 %>
           <div class="parent-edit-button">
-            <%= link_to "► #{t('delete')}",
+            <%= link_to "► #{t('delete_text')}",
               {:controller => 'student', :action => 'del_guardian', :id => p.id },
               {:confirm => "#{t('are_you_completely_sure')}"} %>
           </div>

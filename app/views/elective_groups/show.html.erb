@@ -54,15 +54,15 @@
           <li id="subject-<%= subject.id %>" class="list<%= cycle('even','odd')%>" >
             <div class="category-name"><%= subject.name %></div>
             <div class="category-code"><%= subject.code %></div>
-            <div class="category-edit"><%= link_to_remote("#{t('edit')} ",
+            <div class="category-edit"><%= link_to_remote("#{t('edit_text')} ",
                 :url => { :controller=>"subjects",:action => 'edit', :id =>subject,:id2=>@elective_group},
                 :method => 'get' ) %> </div>
-            <div class="category-delete"><%= link_to_remote('delete',
+            <div class="category-delete"><%= link_to_remote('delete_text',
                 :url => subject_path(subject),
                 :method => 'delete',
-                :confirm => t('are_you_sure'),
+                :confirm => t('delete_confirm_msg'),
                 :update => "subject-#{subject.id}") %> </div>
-            <div class="category-assign"><%= link_to " #{t('index.assign_student')}", :controller=>"student", :action=>"electives",:id=>@batch,:id2=>subject.id%>
+            <div class="category-assign"><%= link_to " #{t('assign_student')}", :controller=>"student", :action=>"electives",:id=>@batch,:id2=>subject.id%>
             </div>
           </li>
         <% end %>

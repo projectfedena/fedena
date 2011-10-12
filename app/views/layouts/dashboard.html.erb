@@ -44,16 +44,16 @@
       ***********************************************/
       var anylinkmenu1={divclass:'anylinkmenu', inlinestyle:'', linktarget:''} //First menu variable. Make sure "anylinkmenu1" is a unique name!
       anylinkmenu1.items = [
-      ["<%= t('calendar') %>", "/calendar"],
+      ["<%= t('calendar_text') %>", "/calendar"],
       ["<%= t('examination') %>", "/exam"],
-      ["<%= t('news') %>", "/news"],
-      ["<%= t('event_creation') %>", "/event"],
+      ["<%= t('news_text') %>", "/news"],
+      ["<%= t('event_creations') %>", "/event"],
       ["<%= t('human_resource') %>", "/employee/hr"],
-      ["<%= t('finance') %>", "/finance/index"],
+      ["<%= t('finance_text') %>", "/finance/index"],
       <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
         <%= "['#{mod[:more_menu][:title]}','/#{mod[:more_menu][:controller]}/#{mod[:more_menu][:action].gsub("index","")}'],"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym %>
       <% end %>
-      ["<%= t('user') %>", "/user"],
+      ["<%= t('user_text') %>", "/user"],
       ]
       anylinkmenu.init("menuanchorclass");
     </script>
@@ -91,9 +91,9 @@
             if this_user.admin? %>
           <%= link_to "#{t('settings')}", :controller => "configuration", :action => "index" \
             if this_user.admin? %> <!--
-          <%= link_to "#{t('news')}", :controller => "news", :action => "index" \
+          <%= link_to "#{t('news_text')}", :controller => "news", :action => "index" \
             if this_user.admin? %> -->
-          <%= link_to "#{t('timetable')}", :controller => "timetable", :action => "index" \
+          <%= link_to "#{t('timetable_text')}", :controller => "timetable", :action => "index" \
             if this_user.admin? %>
           <% if this_user.admin? %>
             <a href="#" class="menuanchorclass" rel="anylinkmenu1"><%= t('more') %></a>
@@ -117,7 +117,7 @@
         </div>
         <div id="sidebar_news_area">
           <% if action_name == "dashboard" %>
-            <%= link_to "#{t('news')}", { :controller => "news", :action => "index" }, :id => 'news_feed_top_img' %>
+            <%= link_to "#{t('news_text')}", { :controller => "news", :action => "index" }, :id => 'news_feed_top_img' %>
             <div id="news_feed">
               <% @dash_news.each do |n| %>
                 <div class="sidebar_news_item<%= cycle("0", "1") %>">

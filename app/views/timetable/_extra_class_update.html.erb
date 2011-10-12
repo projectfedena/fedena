@@ -26,4 +26,4 @@
   <% if @config.include?('HR') %>
  <div class="category-emp"><%= @period.employee.first_name unless @period.employee_id.nil? %></div>
 <% end  %>
- <div class="category-edit"><%= link_to_remote("#{t('edit')}", :url => {:action=>'extra_class_edit', :id=>@period.id})  %></div>
+ <div class="category-edit"><%= link_to_remote("#{t('edit_text')}", :url => {:action=>'extra_class_edit', :id=>@period.id})  %></div>

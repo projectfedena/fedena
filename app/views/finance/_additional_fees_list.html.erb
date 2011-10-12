@@ -32,11 +32,11 @@
           <td class="col-1"><%= i+1 %></td>
           <td class="col-2"><%= link_to_remote fees.name,:url => {:action => 'additional_particulars',:id => fees.id }%>
             <%  unless fees.check_fee_collection_for_additional_fees == false %>
-              <span class="small"> <%= link_to_remote t('delete'),:confirm=>"#{t('delete_confirm_msg')}", :url => { :action => 'additional_fees_delete',:id => fees.id} %></span>
+              <span class="small"> <%= link_to_remote t('delete_text'),:confirm=>"#{t('delete_confirm_msg')}", :url => { :action => 'additional_fees_delete',:id => fees.id} %></span>
             <% else %>
-              <span class="small-strike"><%= t('delete') %></span>
+              <span class="small-strike"><%= t('delete_text') %></span>
             <% end %>
-            <span class="small"> <%= link_to_remote t('edit'), :url => { :action => 'additional_fees_edit',:id => fees.id} %></span>
+            <span class="small"> <%= link_to_remote t('edit_text'), :url => { :action => 'additional_fees_edit',:id => fees.id} %></span>
           </td>
           <td class="col-3"><%= shorten_string(fees.batch.full_name,20) unless fees.batch.nil?%> </td>
           <td class="col-3"><%= I18n.l(fees.created_at,:format=>"%m-%d-%Y") %></td>

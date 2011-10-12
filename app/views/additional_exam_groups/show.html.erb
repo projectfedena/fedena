@@ -35,7 +35,7 @@
       <% end  %>
     <% end %>
     <% if permitted_to? :new, :additional_exams %>
-      <li><%= link_to "#{t('new')}", new_additional_exam_group_additional_exam_path(@additional_exam_group) %></li>
+      <li><%= link_to "#{t('new_text')}", new_additional_exam_group_additional_exam_path(@additional_exam_group) %></li>
     <% end %>
   </ul>
 </div>
@@ -75,8 +75,8 @@
             <td class="col-1"><%= in_place_editor_field :additional_exam, :maximum_marks,{},{:cols=>1} %></td>
             <td class="col-1"><%= in_place_editor_field :additional_exam, :minimum_marks,{},{:cols=>1} %></td>
             <td class="col-1">
-              <small><%= link_to "#{t('edit')}", edit_additional_exam_group_additional_exam_path(@additional_exam_group, additional_exam) %></small>
-              <small><%= link_to "#{t('delete')}", [@additional_exam_group, additional_exam], :method => 'delete', :confirm => "#{t('.are_you_sure')}" %></small>
+              <small><%= link_to "#{t('edit_text')}", edit_additional_exam_group_additional_exam_path(@additional_exam_group, additional_exam) %></small>
+              <small><%= link_to "#{t('delete_text')}", [@additional_exam_group, additional_exam], :method => 'delete', :confirm => "#{t('delete_confirm_msg')}" %></small>
             </td>
           </tr>
         <% end %>
@@ -92,8 +92,8 @@
             <% @exam = exam %>
             <td class="col-3"><%= link_to exam.subject.name, [@additional_exam_group, exam] %></td>
             <td class="col-1">
-              <small><%= link_to "#{t('edit')}", edit_additional_exam_group_additional_exam_path(@additional_exam_group, exam) %></small>
-              <small><%= link_to "#{t('delete')}", [@additional_exam_group, exam], :method => 'delete', :confirm => "#{t('.are_you_sure')}" %></small>
+              <small><%= link_to "#{t('edit_text')}", edit_additional_exam_group_additional_exam_path(@additional_exam_group, exam) %></small>
+              <small><%= link_to "#{t('delete_text')}", [@additional_exam_group, exam], :method => 'delete', :confirm => "#{t('delete_confirm_msg')}" %></small>
             </td>
           </tr>
         <% end %>

@@ -100,7 +100,7 @@
     <%end%>
       <% if @current_user.admin? %>
     <li>
-      <%= link_to "#{t('delete')}" ,:action=>'remove',:id=>@employee.id %>
+      <%= link_to "#{t('delete_text')}" ,:action=>'remove',:id=>@employee.id %>
     </li>
       <% end %>
   </ul>

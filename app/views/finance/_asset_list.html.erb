@@ -33,8 +33,8 @@
         <td class="col-3"><%=  @currency_type + " "%><%= a.amount%></td>
 
         <td class="col-1">
-          <%= link_to_remote t('edit'), :url => { :action => 'edit_asset', :id => a.id } %> |
-          <%= link_to_remote t('delete'), :url => { :action => 'delete_asset', :id => a.id } %>
+          <%= link_to_remote t('edit_text'), :url => { :action => 'edit_asset', :id => a.id } %> |
+          <%= link_to_remote t('delete_text'), :url => { :action => 'delete_asset', :id => a.id } %>
         </td>
 
       </tr>
@@ -44,8 +44,8 @@
         <td class="col-3"><%=link_to a.created_at.strftime("%d-%m-%Y"),:action =>"each_asset_view",:id => a.id%></td>
         <td class="col-3"><%=  @currency_type + " "%><%= a.amount%></td>
         <td class="col-1">
-          <%= link_to_remote t('edit'), :url => { :action => 'edit_asset', :id => a.id } %> |
-          <%= link_to_remote t('delete'), :url => { :action => 'delete_asset', :id => a.id },:confirm=>t('delete_confirm_msg') %>
+          <%= link_to_remote t('edit_text'), :url => { :action => 'edit_asset', :id => a.id } %> |
+          <%= link_to_remote t('delete_text'), :url => { :action => 'delete_asset', :id => a.id },:confirm=>t('delete_confirm_msg') %>
         </td>
 
       </tr>

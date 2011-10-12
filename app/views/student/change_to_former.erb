@@ -38,7 +38,7 @@
 
   <div id="remove-student">
     <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
-    <p><%= t('description') %></p>
+    <p><%= t('description_for_students_leaving') %></p>
 
     <% remote_form_for :remove do |f| %>
       <div class="label-field-pair">
@@ -47,7 +47,7 @@
       </div>
 
       <div id="submit-button">
-        <%= submit_tag "► #{t('delete')}" %>
+        <%= submit_tag "► #{t('delete_text')}" %>
       </div>
 
     <% end %>

@@ -25,22 +25,22 @@
 
 
    <div class="label-field-pair">
-    <div class="label-container"><%= form.label :"#{t('category')}" %></div>
+    <div class="label-container"><%= form.label "#{t('category')}" %></div>
     <div class="input-container"><%= form.select :finance_category_id, @categories.map { |c| [c.name, c.id] } %></div>
    </div>
 
 <div class="label-field-pair">
-    <div class="label-container"><%= form.label :"#{t('percentage')}" %></div>
+    <div class="label-container"><%= form.label "#{t('percentage')}" %></div>
     <div class="input-container"><%= form.text_field :percentage %></div>
    </div>
 
 <div class="label-field-pair">
-     <div class="label-container"><%= form.label :"#{t('title')}" %></div>
+     <div class="label-container"><%= form.label "#{t('title')}" %></div>
     <div class="input-container"><%= form.text_field :title %></div>
    </div>
 
 <div class="label-field-pair">
-    <div class="label-container"> <%= form.label :"#{t('description')}"%></div>
+    <div class="label-container"> <%= form.label "#{t('description')}"%></div>
     <div class="input-container"> <%= form.text_field :description %></div>
    </div>
 

@@ -23,8 +23,8 @@
     <% @departments.each do |d| %>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="department-name"><%= d.name %>(<%= d.code %>)</div>
-        <div class="department-edit"><%= link_to "#{t('edit')}", :action => "edit_department", :id=>d.id %></div>
-        <div class="department-edit"><%= link_to "#{t('delete')}", {:action => "delete_department", :id=>d.id}, :confirm => "#{t('delete_confirm_msg')}" %></div>
+        <div class="department-edit"><%= link_to "#{t('edit_text')}", :action => "edit_department", :id=>d.id %></div>
+        <div class="department-edit"><%= link_to "#{t('delete_text')}", {:action => "delete_department", :id=>d.id}, :confirm => "#{t('delete_confirm_msg')}" %></div>
       </li>
     <% end %>
       <% unless @inactive_departments.empty? %>
@@ -32,8 +32,8 @@
     <%- @inactive_departments.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="department-name"><%= c.name %> (<%= c.code %>)</div>
-        <div class="department-edit"><%= link_to "#{t('edit')}", {:action => "edit_department", :id=>c.id} %></div>
-        <div class="department-edit"><%= link_to "#{t('delete')}", {:action => "delete_department", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}" %></div>
+        <div class="department-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_department", :id=>c.id} %></div>
+        <div class="department-edit"><%= link_to "#{t('delete_text')}", {:action => "delete_department", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}" %></div>
       </li>
      <% end %>
      <% end %>

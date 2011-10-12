@@ -28,7 +28,7 @@
 <div id="inner-tab-menu">
   <ul>
     <% if permitted_to? :new, :additional_exam_groups %>
-      <li><%= link_to "#{t('new')}", new_batch_additional_exam_group_path(@batch) %></li>
+      <li><%= link_to "#{t('new_text')}", new_batch_additional_exam_group_path(@batch) %></li>
     <% end %>
   </ul>
 </div>
@@ -58,8 +58,8 @@
           <td class="col-2">
             <%= link_to exam_group.name, [@batch, exam_group] %>
             <span><small>
-                <%= link_to("#{t('delete')}", [@batch, exam_group], :method => 'delete', :confirm => "#{t('are_you_sure')}") if exam_group.removable? %>
-                <s><%= "#{t('delete')}" unless exam_group.removable? %></s>
+                <%= link_to("#{t('delete_text')}", [@batch, exam_group], :method => 'delete', :confirm => "#{t('are_you_sure')}") if exam_group.removable? %>
+                <s><%= "#{t('delete_text')}" unless exam_group.removable? %></s>
               </small></span>
           </td>
           <td class="col-2"><small>

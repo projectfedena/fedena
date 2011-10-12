@@ -27,12 +27,12 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "#{t('new')}", new_course_batch_path(@course) %> </li>
+    <li><%= link_to "#{t('new_text')}", new_course_batch_path(@course) %> </li>
         <% if permitted_to? :edit, :course %>
-    <li><%= link_to "#{t('edit')}", edit_course_path(@course) if permitted_to? :edit, :course %></li>
+    <li><%= link_to "#{t('edit_text')}", edit_course_path(@course) if permitted_to? :edit, :course %></li>
         <%  end %>
     <% if permitted_to? :destroy, :course %>
-      <li><%= link_to("#{t('delete')}", course_path(@course), :method => 'delete', :confirm => "#{t('delete_confirm_msg')}") %></li>
+      <li><%= link_to("#{t('delete_text')}", course_path(@course), :method => 'delete', :confirm => "#{t('delete_confirm_msg')}") %></li>
     <%  end %>
   </ul>
 </div>

@@ -36,20 +36,20 @@
         <div class="category-name"><%= subject.name %></div>
         <div class="opt">
           <div class="category-code"><%= subject.code %></div>
-          <div class="category-edit"><%= link_to_remote(t('edit'),
+          <div class="category-edit"><%= link_to_remote(t('edit_text'),
               :url => { :controller=>"subjects",:action => 'edit', :id =>subject,:id2=>@elective_group},
               :method => 'get' ) %> </div>
           <div class="category-delete">
             <% @subject_exams= Exam.find_by_subject_id(subject.id) %>
             <% @subject_timetable = TimetableEntry.find_all_by_subject_id(subject.id) %>
             <% if @subject_exams.blank? and @subject_timetable.blank?%>
-             <%= link_to_remote(t('delete'),
+             <%= link_to_remote(t('delete_text'),
                 :url => subject_path(subject),
                 :method => 'delete',
                 :confirm => t('delete_confirm_msg'),
                 :update => "subject-#{subject.id}") %>
             <% else %>
-              <s><%= t('delete') %></s>
+              <s><%= t('delete_text') %></s>
             <% end %>
           </div>
           <% unless subject.elective_group_id.nil? %>
@@ -81,20 +81,20 @@
           <div class="category-name"><%= subject.name %></div>
           <div class="opt">
             <div class="category-code"><%= subject.code %></div>
-            <div class="category-edit"><%= link_to_remote( t('edit'),
+            <div class="category-edit"><%= link_to_remote( t('edit_text'),
                 :url => { :controller=>"subjects",:action => 'edit', :id =>subject,:id2=>@elective_group},
                 :method => 'get' ) %> </div>
             <div class="category-delete">
               <% @subject_exams= Exam.find_by_subject_id(subject.id) %>
               <% @subject_timetable = TimetableEntry.find_by_subject_id(subject.id) %>
               <% if @subject_exams.nil? and @subject_timetable.nil?%>
-               <%= link_to_remote( t('delete'),
+               <%= link_to_remote( t('delete_text'),
                   :url => subject_path(subject),
                   :method => 'delete',
-                  :confirm =>  t('are_you_sure'),
+                  :confirm =>  t('delete_confirm_msg'),
                   :update => "subject-#{subject.id}") %>
               <% else %>
-                <s><%= t('delete') %></s>
+                <s><%= t('delete_text') %></s>
               <% end %>
             </div>
             <% unless subject.elective_group_id.nil? %>

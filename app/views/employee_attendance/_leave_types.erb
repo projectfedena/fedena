@@ -27,8 +27,8 @@
     <%- @leave_types.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="leave-type-name"><%= c.name %>-<%= c.code %></div>
-        <div class="leave-type-edit"><%= link_to "#{t('edit')}", {:action => "edit_leave_types", :id=>c.id} %></div>
-        <div class="leave-type-edit"><%= link_to "#{t('delete')}", {:action => "delete_leave_types", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}"  %></div>
+        <div class="leave-type-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_leave_types", :id=>c.id} %></div>
+        <div class="leave-type-edit"><%= link_to "#{t('delete_text')}", {:action => "delete_leave_types", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}"  %></div>
         <div class="leave-type-edit"><%= "#{t('Inactive')}" unless c.status == true %></div>
         </li>
      <% end %>
@@ -37,8 +37,8 @@
       <%- @inactive_leave_types.each do |c| -%>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="leave-type-name"><%= c.name %>-<%= c.code %> </div>
-          <div class="leave-type-edit"><%= link_to "#{t('edit')}", {:action => "edit_leave_types", :id=>c.id} %></div>
-          <div class="leave-type-edit"><%= link_to "#{t('delete')}", {:action => "delete_leave_types", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}" %></div>
+          <div class="leave-type-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_leave_types", :id=>c.id} %></div>
+          <div class="leave-type-edit"><%= link_to "#{t('delete_text')}", {:action => "delete_leave_types", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}" %></div>
         </li>
       <% end %>
     <% end %>

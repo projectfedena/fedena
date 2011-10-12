@@ -54,7 +54,7 @@
 
       <div class="label-field-pair">
         <label for="employee_joining_date"><%= t('joining_date') %></label>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'employee[joining_date]', I18n.l(Date.today,:format=>:default),
+        <div class="text-input-bg"><%= calendar_date_select_tag 'employee[joining_date]', I18n.l(Date.today,:format=>:normal),
             :year_range => 25.years.ago..0.years.from_now %></div>
       </div>
       <hr class="label-underline"></hr>
@@ -86,7 +86,7 @@
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
         <label for="dob"><%= t('date_of_birth') %><span class="necessary-field">*</span></label>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'employee[date_of_birth]', I18n.l(Date.today-10.years,:format=>:default),
+        <div class="text-input-bg"><%= calendar_date_select_tag 'employee[date_of_birth]', I18n.l(Date.today-10.years,:format=>:normal),
             :year_range => 70.years.ago..4.years.ago %></div>
       </div>
       <hr class="label-underline"></hr>
@@ -131,7 +131,7 @@
       <div class="label-field-pair">
         <label for="employee_total-experience"><%= t('total_exp') %></label>
         <div class="text-input-bg"><%= select :employee, :experience_year, (0..20),{:prompt=>"#{t('year')}"} %>
-          <%= select :employee, :experience_month, (0..11),{:prompt=>"#{t('student_attendance.student.month')}"} %></div>
+          <%= select :employee, :experience_month, (0..11),{:prompt=>"#{t('month')}"} %></div>
       </div>
       <hr class="label-underline"></hr>
 
@@ -178,7 +178,7 @@
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
         <label for="employee_blood"><%= t('blood_group') %></label>
-        <div class="text-input-bg"><%= select :employee, :blood_group, ["Unknown","A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],{:prompt=> "#{t('student.admission1.unknown')}"} %></div>
+        <div class="text-input-bg"><%= select :employee, :blood_group, ["Unknown","A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],{:prompt=> "#{t('unknown')}"} %></div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">

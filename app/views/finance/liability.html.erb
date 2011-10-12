@@ -30,7 +30,7 @@
   <div class="box">
   <div class="link-box">
     <div class="link-heading">
-      <%= link_to_function("#{t('create')}") { |page|
+      <%= link_to_function("#{t('create_text')}") { |page|
         page.replace_html 'modal-box', :partial => 'create_liability_form'
         page << "Modalbox.show($('modal-box'), {title: '#{t('create_new_liability')}', width: 500});"
       } %>

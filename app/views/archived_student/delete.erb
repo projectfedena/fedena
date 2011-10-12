@@ -20,7 +20,7 @@
 <div id="content-header">
    <img src="/images/student_details/student_details_logo.jpg" />
   <h1><%= t('students') %></h1>
-  <h3><%= t('student.remove_student') %></h3>
+  <h3><%= t('remove_student') %></h3>
   <div id="app-back-button">
       <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -29,11 +29,11 @@
 <div id="page-yield">
 
   <div id="delete-student">
-    <h4><%= t('student.delete_student') %></h4>
+    <h4><%= t('delete_student') %></h4>
     <p><%= t('student.description1') %>.</p>
 
     <p class="warning">(<%= t('student.description2') %>.)</p>
-    <%= link_to "►#{t('delete')}", { :action => 'destroy', :id =>params[:id]}, :confirm => "#{t('are_you_sure')}", :class=> 'user_button' %>
+    <%= link_to "►#{t('delete_text')}", { :action => 'destroy', :id =>params[:id]}, :confirm => "#{t('are_you_sure')}", :class=> 'user_button' %>
   </div>
 
 </div>

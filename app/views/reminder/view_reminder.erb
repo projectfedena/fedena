@@ -30,7 +30,7 @@
   <ul>
      <li><%= link_to "#{t('back_to_inbox')}", :controller=>"reminder", :action=>"index"%></li>
     <li><%= link_to "#{t('mark_as_unread')}" ,:controller=> "reminder", :action=>"mark_unread", :id2=>@new_reminder.id%></li>
-    <li><%= link_to "#{t('delete')}", {:controller=>"reminder", :action=>"delete_reminder_by_recipient", :id2=>@new_reminder.id}, :confirm=>"#{t('delete_confirm_msg')}" %></li>
+    <li><%= link_to "#{t('delete_text')}", {:controller=>"reminder", :action=>"delete_reminder_by_recipient", :id2=>@new_reminder.id}, :confirm=>"#{t('delete_confirm_msg')}" %></li>
   </ul>
 </div>
 

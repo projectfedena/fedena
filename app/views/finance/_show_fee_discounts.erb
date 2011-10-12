@@ -50,9 +50,9 @@
       <td class="col-3"><%= f.discount %></td>
       <% if @discount_edit %>
       <td class="col-1">
-        <div class="edit"><%= link_to_remote "#{t('edit')}", :url => {:action => 'edit_fee_discount', :id => f.id} %> |&nbsp; </div>
+        <div class="edit"><%= link_to_remote "#{t('edit_text')}", :url => {:action => 'edit_fee_discount', :id => f.id} %> |&nbsp; </div>
 
-        <div class="delete"><%= link_to_remote "#{t('delete')}", :url => {:action => 'delete_fee_discount', :id => f.id} %></div>
+        <div class="delete"><%= link_to_remote "#{t('delete_text')}", :url => {:action => 'delete_fee_discount', :id => f.id} %></div>
       </td>
         <% end %>
     </tr>

@@ -39,7 +39,7 @@
         <% if @total_leave_count == 0 %>
 
         <% else %>
-        <span class="new-leaves-count">  <li><b><%= link_to_remote "New leaves (#{@total_leave_count})",
+        <span class="new-leaves-count">  <li><b><%= link_to_remote "#{t('new_leaves')} (#{@total_leave_count})",
                 :update => "application-list-2",
                 :url => {:action => "new_leave_applications", :id=>@employee.id} %></b></li></span>
             <% end %>
@@ -98,7 +98,7 @@
       
 
       <div id="submit-button">
-        <%=  submit_tag("► #{t('create')}") %>
+        <%=  submit_tag("► #{t('create_text')}") %>
       </div>
     <% end %>
     <div class="extender"></div>

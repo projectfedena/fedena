@@ -27,7 +27,7 @@
     <div id="form-errors"></div>
 
     <div class="label-field-pair">
-      <div class="label-container"><label><%= t('fees') %> <%= t('master') %> <%= t('category') %></label> </div>
+      <div class="label-container"><label><%= t('fees_text') %> <%= t('master') %> <%= t('category') %></label> </div>
     <div class="input-container"><%= f.select :finance_fee_category_id, @fees_categories.map { |c| ["#{c.name} - #{c.batch.full_name}", c.id] },:selected=>params[:category_id].to_i%></div>
    </div>
 
@@ -76,7 +76,7 @@
    </div>
 
 
-  <%=  submit_tag "► #{t('create')}",:class=>'submit_button' %>
+  <%=  submit_tag "► #{t('create_text')}",:class=>'submit_button' %>
 
 <% end %>
 </div>

@@ -87,7 +87,7 @@
 <div id="content-header">
   <img src="/images/reminder/reminder_small.png" />
   <h1><%= t('messages') %></h1>
-  <h3><%= t('create') %>/<%= t('new') %></h3>
+  <h3><%= t('create_text') %>/<%= t('new_text') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -102,7 +102,7 @@
     <% end %>
 
     <li><%= link_to "#{t('sent')}", :controller=>"reminder", :action=>"sent_reminder" %></li>
-    <li><%= link_to "#{t('create')}", :controller=>"reminder", :action=>"create_reminder" %></li>
+    <li><%= link_to "#{t('create_text')}", :controller=>"reminder", :action=>"create_reminder" %></li>
   </ul>
 </div>
 

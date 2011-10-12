@@ -89,7 +89,7 @@
         <a href="#" class="drops" id="link_three"><%= "#{t('all_employee')}" %><%= "(#{@all_employee_total_leave_count})"  %> ▼ </a>
         <ul id="box_three" class="scriptaculously" style="display:none;">
           <!-- no new leave applications of any employee -->
-          <li><%= link_to_remote "#{t('new')}(#{@all_employee_total_leave_count})",
+          <li><%= link_to_remote "#{t('new_text')}(#{@all_employee_total_leave_count})",
               :update => "application-list",
               :url => {:controller=>"employee_attendance",:action => "all_employee_new_leave_applications", :id=>@employee.id} %></li>
           <li><%= link_to_remote "#{t('employee.hr.all_records')}",
@@ -128,7 +128,7 @@
         <div class="text-input-bg"><%= select :leave_apply, :employee_leave_types_id, @leave_types.map {|s| [s.name, s.id]},:prompt => "Select" %></div>
       </div>
       <div class="label-field-pair">
-        <label for="create_user" id="create_user_option"><%= t('.half_day') %></label>
+        <label for="create_user" id="create_user_option"><%= t('half_day') %></label>
         <div class="text-input-bg"><%= check_box_tag :is_half_day, :checked => false %></div>
       </div>
 
@@ -147,7 +147,7 @@
 
 
       <div id="submit-button">
-        <%=  submit_tag("► #{t('create')}") %>
+        <%=  submit_tag("► #{t('create_text')}") %>
       </div>
     <% end %>
     <div class="extender"></div>

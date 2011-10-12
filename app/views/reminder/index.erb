@@ -34,7 +34,7 @@
       <li><%= link_to "#{t('inbox')}", :controller=>"reminder", :action=>"index"%></li>
     <% end %>
     <li><%= link_to "#{t('sent')}", :controller=>"reminder", :action=>"sent_reminder"%></li>
-    <li><%= link_to "#{t('create')}", :controller=>"reminder", :action=>"create_reminder"%></li>
+    <li><%= link_to "#{t('create_text')}", :controller=>"reminder", :action=>"create_reminder"%></li>
   </ul>
 </div>
 
@@ -72,7 +72,7 @@
             <% unless sender_user.nil? %>
               <td class="col-3"><%= link_to "#{sender_user.first_name}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
             <% else %>
-              <td class="col-3"><%= link_to "User Unavailable", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+              <td class="col-3"><%= link_to "#{t('user_unavailable')}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
             <% end %>
             <td class="col-3"><%= link_to "#{ur.subject}",  :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
             <td class="col-1"><%= link_to "#{ur.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
@@ -88,7 +88,7 @@
             <% unless sender_user.nil? %>
               <td class="col-3"><%= link_to "#{sender_user.first_name}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
             <% else %>
-              <td class="col-3"><%= link_to "User Unavailable", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
+              <td class="col-3"><%= link_to "#{t('user_unavailable')}", :controller=>"reminder", :action=>"view_reminder",:id2=>ur.id %></td>
             <% end %>
             <td class="col-2"><%= link_to "#{ur.subject}",  :controller=>"reminder", :action=>"view_reminder",  :id2=>ur.id %></td>
             <td class="col-1"><%= link_to "#{ur.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_reminder", :id2=>ur.id %></td>

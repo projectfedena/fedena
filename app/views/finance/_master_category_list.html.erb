@@ -32,11 +32,11 @@
         <td class="col-1"><%= i+1 %></td>
         <td class="col-1"><%= link_to  fees.name, :action => 'master_category_particulars',:id => fees.id %>
           <%  unless fees.check_fee_collection == false %>
-            <span class="small"> <%= link_to_remote t('delete'), :url => { :action => 'master_category_delete',:id => fees.id} %></span>
+            <span class="small"> <%= link_to_remote t('delete_text'), :url => { :action => 'master_category_delete',:id => fees.id} %></span>
           <% else %>
-            <span class="small-strike"><%= t('delete') %></span>
+            <span class="small-strike"><%= t('delete_text') %></span>
           <% end %>
-          <span class="small"> <%= link_to_remote t('edit'), :url => { :action => 'master_category_edit',:id => fees.id} %></span>
+          <span class="small"> <%= link_to_remote t('edit_text'), :url => { :action => 'master_category_edit',:id => fees.id} %></span>
         </td>
         <td class="col-1"><%  unless fees.batch.nil? %>
             <%=shorten_string(fees.batch.full_name,20)%>

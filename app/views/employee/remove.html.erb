@@ -71,7 +71,7 @@
 
     <p class="warning">(Warning: All records will be deleted for the student and cannot be recovered.)</p>
     <%= link_to image_tag('/images/buttons/delete.png', :border => 0),
-      { :action => 'destroy', :id => @employee.id }, :confirm => "#{t('are_you_sure')}" %>
+      { :action => 'destroy', :id => @employee.id }, :confirm => "#{t('delete_confirm_msg')}" %>
   </div>
     -->
 

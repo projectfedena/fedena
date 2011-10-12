@@ -38,9 +38,9 @@
   <div class="extender"></div>
     <%= f.submit "► #{t('update')}", :class => 'submit-button' %>
   <% end %>
-    <div id="delete-button"><%= link_to_remote("► #{t('delete')}",
+    <div id="delete-button"><%= link_to_remote("► #{t('delete_text')}",
           :url => attendance_path(@absentee),
           :method =>'delete',
-          :confirm => "#{t('are_you_sure')}") %></div>
+          :confirm => "#{t('delete_confirm_msg')}") %></div>
 
 </div>

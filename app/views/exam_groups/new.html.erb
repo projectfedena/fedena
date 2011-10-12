@@ -49,7 +49,7 @@
       <%= error_messages_for :exam_group %>
       <% form_remote_for :exam_option, :url => {:controller=>'exam',:action => 'update_exam_form',:batch=>@batch} do |form| %>
         <div class="label-field-pair">
-          <label for="exam_name"><%= t('new') %></label>
+          <label for="exam_name"><%= t('new_text') %></label>
           <% if params[:ename].nil?  %>
           <% @ename = "" %>
           <% else %>
@@ -59,7 +59,7 @@
         </div>
         <div class="label-field-pair">
           <label for="exam_type"><%= t('exam_type') %></label>
-          <div class="text-input-bg"><%= select :exam_option,:exam_type,[["Marks"],[t('grades'), "Grades"],[t('marks_and_grades'),"MarksAndGrades"]] %></div>
+          <div class="text-input-bg"><%= select :exam_option,:exam_type,[[t('marks'),"Marks"],[t('grades'), "Grades"],[t('marks_and_grades'),"MarksAndGrades"]] %></div>
         </div>
         <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
         <%  #  form.submit("Save") %>

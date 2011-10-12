@@ -40,13 +40,13 @@
           :url => edit_class_timing_path(class_timing), :method => 'get' ) %> |
     <% @tt = PeriodEntry.find_all_by_class_timing_id(class_timing.id ) %>
   <% if @tt.empty? %>
-    <%= link_to_remote("#{t('delete')}",
+    <%= link_to_remote("#{t('delete_text')}",
                 :url => class_timing_path(class_timing),
                 :method => 'delete',
                 :confirm => "#{t('confirm_msg')}",
                 :update => "class-timing-#{class_timing.id}") %>
               <% else %>
-          <s><%= t('delete') %></s>
+          <s><%= t('delete_text') %></s>
         <% end %></small></td>
     </tr>
   <% end %>

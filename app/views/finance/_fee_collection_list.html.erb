@@ -37,9 +37,9 @@
       <td class="col-3"><%= f.end_date %></td>
       <td class="col-3"><%= f.due_date %></td>
       <td class="col-1">
-        <div class="edit"><%= link_to_remote t('edit'), :url => {:action => 'fee_collection_edit', :id => f.id} %></div>
+        <div class="edit"><%= link_to_remote t('edit_text'), :url => {:action => 'fee_collection_edit', :id => f.id} %></div>
         <% unless f.check_fee_category == false %>
-          <div class="delete"><%= link_to_remote t('delete'), :url => {:action => 'fee_collection_delete', :id => f.id} %></div>
+          <div class="delete"><%= link_to_remote t('delete_text'), :url => {:action => 'fee_collection_delete', :id => f.id} %></div>
         <% end %>
       </td>
    </tr>

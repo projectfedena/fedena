@@ -24,7 +24,7 @@
   <label for="student_grade"><%= t('select_recipient') %></label>
   <div class ="scrolable" >
     <div class="scroll-inside">
-      <div class="hover"><%= link_to "#{t('select_all')}  <span> Add </span>", '#', :onClick => "add_all_recipient('#{string}')", :class=> 'all' %>
+      <div class="hover"><%= link_to "#{t('select_all')}  <span>#{t('add')}</span>", '#', :onClick => "add_all_recipient('#{string}')", :class=> 'all' %>
        
       </div>
       <% @to_users.each do |t| %>

@@ -32,9 +32,9 @@
       <tr id="grading-level-<%= grade.id %>" class="tr-<%= cycle('odd', 'even') %>">
         <td class="col-2"><%= grade.name %></td>
         <td class="col-2"><%= grade.min_score %></td>
-        <td class="col-1"><small><%= link_to_remote(t('edit'),
+        <td class="col-1"><small><%= link_to_remote(t('edit_text'),
               :url => edit_grading_level_path(grade), :method => 'get' ) %>
-            | <%= link_to_remote(t('delete'),
+            | <%= link_to_remote(t('delete_text'),
               :url => grading_level_path(grade),
               :method => 'delete',
               :confirm => t('delete_confirm_msg'),

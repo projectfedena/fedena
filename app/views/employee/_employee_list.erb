@@ -30,7 +30,7 @@
         <% if @emp_sub_assoc.nil? %>
           <div class="remove"><%= link_to_remote "#{t('assign')}", :url => {:action => "assign_employee", :id => e.id, :id1=>@subject.id}, :update => "department-select" %></div>
         <% else %>
-          <div class="remove"><%= link_to_remote "#{t('delete')}", :url => {:action => "remove_employee", :id => e.id, :id1=>@subject.id}, :update => "department-select" %></div>
+          <div class="remove"><%= link_to_remote "#{t('delete_text')}", :url => {:action => "remove_employee", :id => e.id, :id1=>@subject.id}, :update => "department-select" %></div>
         <% end %>
       </li>
      

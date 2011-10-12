@@ -54,7 +54,7 @@
         <% end %>
         <div class="name_list<%=cycle('odd', 'even')%>"><li>
             <label><%= check_box_tag "user[privilege_ids][]", privilege.id, @user.privileges.include?(privilege),:class=>'right'%>
-              <div class="att_list_names"> <%= privilege.name.underscore.gsub(/_/, ' ').capitalize %> </div> </label>
+              <div class="att_list_names"> <%= t(privilege.name) %> </div> </label>
           </li></div>
       <% end %>
       <div class="user_submit_button1">

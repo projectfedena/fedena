@@ -30,7 +30,7 @@
   <div class="box">
   <% form_remote_for :extra_class do |f| %>
   <div class="label-field-pair">
-    <label for="student_date_of_birth"><%= t('select') %> <%= t('date') %></label>
+    <label for="student_date_of_birth"><%= t('select') %> <%= t('date_text') %></label>
     <div class="text-input-bg">
       <%= calendar_date_select_tag 'extra_class[date]',
         I18n.localize(Date.today, :format=>:default) , :year_range => 40.years.ago..0.years.ago %>

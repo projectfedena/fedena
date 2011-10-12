@@ -48,8 +48,8 @@
     <%- @deductionable_categories.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= c.name %></div>
-        <div class="category-edit"><%= link_to "#{t('edit')}", {:action => "edit_category", :id=>c.id} %></div>
-        <div class="category-edit"><%= link_to "#{t('delete')}", {:action => "delete_category", :id=>c.id}, :confirm => "#{t('delete_confirm_msg')}" %></div>
+        <div class="category-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_category", :id=>c.id} %></div>
+        <div class="category-edit"><%= link_to "#{t('delete_text')}", {:action => "delete_category", :id=>c.id}, :confirm => "#{t('delete_confirm_msg')}" %></div>
         <% unless c.status == false %>
           <div class="category-edit"><%= link_to_remote "#{t('inactivate')}", :url => {:action => "inactivate_category", :id => c.id},
               :confirm=>"#{t('inactivate_confirm')}",

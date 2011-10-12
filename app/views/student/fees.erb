@@ -64,7 +64,7 @@
   </div>
   <ul id="category-list">
     <% unless @dates.empty? %>
-      <li class="listheading"> <div class="category-name"><%= t('fees') %> </div> </li>
+      <li class="listheading"> <div class="category-name"><%= t('fees_text') %> </div> </li>
     <% end %>
     <%- @dates.each do |d| -%>
       <li class="list<%=cycle('odd', 'even')%>">

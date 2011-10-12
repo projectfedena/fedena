@@ -39,9 +39,9 @@
     <div class="news_search_add">
       <div id="news_bg">
         <form name="s1form" action="" style="display:inline;">
-          <h2><%= t('search') + ' ' + t('news') %></h2>
+          <h2><%= t('search_text') + ' ' + t('news_text') %></h2>
           <%= text_field_tag("query", params['query'], :autocomplete => 'off') %>
-          <div id="go"><%= submit_tag "", :value =>"#{t('search')}", :controller=> 'news', :action=>"index" %></div>
+          <div id="go"><%= submit_tag "", :value =>"#{t('search_text')}", :controller=> 'news', :action=>"index" %></div>
         </form>
         <div class="extender2"></div>
       </div>

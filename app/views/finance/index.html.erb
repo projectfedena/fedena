@@ -31,7 +31,7 @@
   <div class="box">
 
   <div class="link-box">
-    <div class="link-heading"><%= link_to "#{t('fees')}", :action => "fees_index" %> </div>
+    <div class="link-heading"><%= link_to "#{t('fees_text')}", :action => "fees_index" %> </div>
     <div class="link-descr"><%= t('manage_fees') %></div>
   </div>
 
@@ -56,7 +56,7 @@
   </div>
   <% unless @hr.nil? %>
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('payslip')}", :action => "payslip_index" %></div>
+      <div class="link-heading"><%= link_to "#{t('payslip_text')}", :action => "payslip_index" %></div>
       <div class="link-descr"><%= t('employee_payslips') %></div>
     </div>
   <% end %>

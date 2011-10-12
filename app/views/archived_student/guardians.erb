@@ -19,8 +19,8 @@
 
 <div id="content-header">
   <img src="/images/student_details/student_details_logo.jpg" />
-  <h1><%= t('student.parent_info') %></h1>
-  <h3><%= t('student.parents_profile') %></h3>
+  <h1><%= t('parent_info') %></h1>
+  <h3><%= t('parents_profile') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -113,7 +113,7 @@
       <% if permitted_to? :del_guardian,:student %>
         <%  if @archived_student.archived_guardians.size > 1 %>
           <div class="parent-edit-button">
-            <%= link_to "► #{t('delete')}",
+            <%= link_to "► #{t('delete_text')}",
               {:controller => 'student', :action => 'del_guardian', :id => p.id },
               {:confirm => "#{t('are_you_completely_sure')}"} %>
           </div>

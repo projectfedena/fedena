@@ -53,7 +53,7 @@
           <% total_amount+= l.amount%>
         <% end %>
         <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-          <td class="col-pdf" colspan="3"><%= 'Grand Total' %></td>
+          <td class="col-pdf" colspan="3"><%= t('grand_total') %></td>
           <td class="col-pdf" colspan="1"><%=  @currency_type + " "%><%= total_amount%></td>
         </tr>
       </table>

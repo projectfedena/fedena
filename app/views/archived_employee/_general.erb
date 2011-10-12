@@ -19,7 +19,7 @@
 
 
 <div class="profile_top_banner"><%= image_tag "master_student/profile/topbanner.png" %></div>
-<div class="profile_info_label_top"><%= t('employee.joining_date') %></div>
+<div class="profile_info_label_top"><%= t('joining_date') %></div>
 <div class="profile_info_text_top"><%= I18n.l(@employee.joining_date, :format=>"%d %b,%Y")%></div>
 
 <div class="profile_info_label_top2"><%= t('department') %></div>
@@ -40,7 +40,7 @@
 
 
 
-<div class="profile_info_label_top2"><%= t('employee.job_title') %></div>
+<div class="profile_info_label_top2"><%= t('job_title') %></div>
 <div class="profile_info_text_top2"> <%= @employee.job_title %> </div>
 
 <div class="profile_info_label_top"><%= t('manager') %></div>
@@ -54,7 +54,7 @@
 
 
 
-<div class="profile_info_label_top2"><%= t('student.admission1.gender') %></div>
+<div class="profile_info_label_top2"><%= t('gender') %></div>
 <div class="profile_info_text_top2"> <%= @gender %> </div>
 
 <div class="profile_info_label_top"><%= t('status') %></div>
@@ -63,14 +63,14 @@
 
 
 
-<div class="profile_info_label_top2"><%= t('employee.admission1.qualification') %></div>
+<div class="profile_info_label_top2"><%= t('qualification') %></div>
 <div class="profile_info_text_top2"><%= @employee.qualification %> </div>
 
 
-<div class="profile_info_label_top"><%= t('employee.admission1.total_exp') %></div>
+<div class="profile_info_label_top"><%= t('total_exp') %></div>
 <div class="profile_info_text_top"><%= @total_years.to_s+"Years "+@total_months.to_s+"Months" %> </div>
 
-<div class="profile_info_label_top2"><%= t('employee.admission1.exp_info') %></div>
+<div class="profile_info_label_top2"><%= t('exp_info') %></div>
 <div class="profile_info_text_top2"><%= @employee.experience_detail %> </div>
 <div class="extender"></div>
 <div class="edit-pdf-group">
