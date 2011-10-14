@@ -22,6 +22,8 @@ module ApplicationHelper
     ["#{controller.controller_path}/#{controller.action_name}"].each do |ss|
       stylesheets << ss
     end
+    plugin_css_overrides = FedenaPlugin::CSS_OVERRIDES["#{controller.controller_path}_#{controller.action_name}"]
+    stylesheets << plugin_css_overrides.collect{|p| "plugin_css/#{p}"}
   end
 
   def observe_fields(fields, options)
@@ -56,8 +58,8 @@ module ApplicationHelper
   end
 
   def pdf_image_tag(image, options = {})
-  options[:src] = File.expand_path(RAILS_ROOT) + "/public/images"+ image
-  tag(:img, options)
-end
+    options[:src] = File.expand_path(RAILS_ROOT) + "/public/images"+ image
+    tag(:img, options)
+  end
   
 end

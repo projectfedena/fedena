@@ -44,16 +44,20 @@
       ***********************************************/
       var anylinkmenu1={divclass:'anylinkmenu', inlinestyle:'', linktarget:''} //First menu variable. Make sure "anylinkmenu1" is a unique name!
       anylinkmenu1.items = [
-      ["<%= t('calendar_text') %>", "/calendar"],
-      ["<%= t('examination') %>", "/exam"],
-      ["<%= t('news_text') %>", "/news"],
-      ["<%= t('event_creations') %>", "/event"],
-      ["<%= t('human_resource') %>", "/employee/hr"],
-      ["<%= t('finance_text') %>", "/finance/index"],
-      <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
-        <%= "['#{mod[:more_menu][:title]}','/#{mod[:more_menu][:controller]}/#{mod[:more_menu][:action].gsub("index","")}'],"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym %>
+      <% if @current_user.admin %>
+      ["Calendar", "/calendar"],
+      ["Examination", "/exam"],
+      ["News", "/news"],
+      ["Event Creation", "/event"],
+      ["Human Resource", "/employee/hr"],
+      ["Finance", "/finance/index"],
+      ["Users", "/user"],
       <% end %>
-      ["<%= t('user_text') %>", "/user"],
+      <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
+        <% unless mod[:more_menu].blank? %>
+          <%= "['#{mod[:more_menu][:title]}','/#{mod[:more_menu][:controller]}/#{mod[:more_menu][:action].gsub("index","")}'],"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym  %>
+        <% end %>
+      <% end %>
       ]
       anylinkmenu.init("menuanchorclass");
     </script>
@@ -95,10 +99,14 @@
             if this_user.admin? %> -->
           <%= link_to "#{t('timetable_text')}", :controller => "timetable", :action => "index" \
             if this_user.admin? %>
-          <% if this_user.admin? %>
-            <a href="#" class="menuanchorclass" rel="anylinkmenu1"><%= t('more') %></a>
+           <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
+            <% unless mod[:top_bar].blank? %>
+              <% if permitted_to? "#{mod[:top_bar][:action]}".to_sym,"#{mod[:top_bar][:controller]}".to_sym %>
+                <%= link_to mod[:top_bar][:title], {:controller => "#{mod[:top_bar][:controller]}", :action => "#{mod[:top_bar][:action]}"} %>
+              <% end %>
+            <% end %>
           <% end %>
-
+            <a href="#" class="menuanchorclass" rel="anylinkmenu1"><%= t('more') %></a>
       </div>
     </div>
     </div>

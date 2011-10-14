@@ -37,6 +37,10 @@
     <%= javascript_include_tag 'modalbox' %>
 <%#= javascript_include_tag 'popup' %>
 
+    <% FedenaPlugin::REGISTERED_HOOKS[:application_layout_header].each do |mod| %>
+      <%= render :partial=>mod.camelize.constantize.send("application_layout_header") %>
+    <% end %>
+
     <%= calendar_date_select_includes 'red' %>
 
     <%= javascript_include_tag "calendar_date_select/locale/#{I18n.locale}.js" %>
@@ -49,21 +53,25 @@
       ***********************************************/
       var anylinkmenu1={divclass:'anylinkmenu', inlinestyle:'', linktarget:''} //First menu variable. Make sure "anylinkmenu1" is a unique name!
       anylinkmenu1.items = [
-      ["<%= t('calendar_text') %>", "/calendar"],
-      ["<%= t('examination') %>", "/exam"],
-      ["<%= t('news_text') %>", "/news"],
-      ["<%= t('event_creations') %>", "/event"],
-      ["<%= t('human_resource') %>", "/employee/hr"],
-      ["<%= t('finance_text') %>", "/finance/index"],
-      <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
-        <%= "['#{mod[:more_menu][:title]}','/#{mod[:more_menu][:controller]}/#{mod[:more_menu][:action].gsub("index","")}'],"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym %>
+      <% if @current_user.admin %>
+      ["Calendar", "/calendar"],
+      ["Examination", "/exam"],
+      ["News", "/news"],
+      ["Event Creation", "/event"],
+      ["Human Resource", "/employee/hr"],
+      ["Finance", "/finance/index"],
+      ["Users", "/user"],
       <% end %>
-      ["<%= t('user_text') %>", "/user"],
+      <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
+        <% unless mod[:more_menu].blank? %>
+          <%= "['#{mod[:more_menu][:title]}','/#{mod[:more_menu][:controller]}/#{mod[:more_menu][:action].gsub("index","")}'],"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym  %>
+        <% end %>
+      <% end %>
       ]
       anylinkmenu.init("menuanchorclass");
     </script>
   </head>
-
+ 
   <body>
     <div id="header_bg">
       <div id="header">
@@ -84,9 +92,17 @@
           </div>
         </div>
         <div id="outer-main-menu">
-          <div id="main-menu">
+        <div id="main-menu">
             <%= link_to t('dashboard_text'), :controller => "user", :action => "dashboard" %>
 
+           <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
+            <% unless mod[:top_bar].blank? %>
+              <% if permitted_to? "#{mod[:top_bar][:action]}".to_sym,"#{mod[:top_bar][:controller]}".to_sym %>
+                <%= link_to mod[:top_bar][:title], {:controller => "#{mod[:top_bar][:controller]}", :action => "#{mod[:top_bar][:action]}"} %>
+              <% end %>
+            <% end %>
+          <% end %>
+            <a href="#" class="menuanchorclass" rel="anylinkmenu1">More ▼</a>
             <%  if this_user.student? || this_user.employee? %>
               <%= link_to t('calendar'), :controller => "calendar" %>
             <% end %>

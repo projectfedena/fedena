@@ -164,7 +164,7 @@ class FinanceTransaction < ActiveRecord::Base
 
   def update_auto_transaction
     FinanceTransaction.find_all_by_master_transaction_id(self.id).each do |f|
-        f.destroy
+      f.destroy
     end
     if self.master_transaction_id == 0
       trigger = FinanceTransactionTrigger.find(:all,:conditions=>['finance_category_id = ?',self.category_id])
@@ -184,8 +184,17 @@ class FinanceTransaction < ActiveRecord::Base
 
   def delete_auto_transaction
     FinanceTransaction.find_all_by_master_transaction_id(self.id).each do |f|
-        f.destroy
+      f.destroy
     end
+  end
+
+  def self.total_transaction_amount(transaction_category,start_date,end_date)
+    amount = 0
+    transaction_category_id = FinanceTransactionCategory.find_by_name("#{transaction_category}").id
+    transactions = FinanceTransaction.find(:all,
+      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{transaction_category_id}'"])
+    transactions.each {|transaction| amount += transaction.amount}
+    amount
   end
 
 end

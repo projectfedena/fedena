@@ -25,7 +25,7 @@
   <h1><%= t('employee_profile') %></h1>
   <h3><%= t('details') %></h3>
   <div id="app-back-button">
-   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
@@ -88,7 +88,7 @@
     <% if permitted_to? :timetable, :employee %>
       <% unless @employee.subjects.empty? %>
         <li><%= link_to        "#{t('timetable_text')}", :controller=>"employee", :action=>"timetable", :id=>@employee.id %></li>
-        <% end %>
+      <% end %>
     <%end%>
 
     <% if current_username == profile_employee_no %>
@@ -98,11 +98,19 @@
         <li><%= link_to        "#{t('reminder_text')}(#{@new_reminder_count.size})", :controller=>"reminder", :action=>"index"%></li>
       <% end %>
     <%end%>
-      <% if @current_user.admin? %>
-    <li>
+    <% if @current_user.admin? %>
+      <li>
       <%= link_to "#{t('delete_text')}" ,:action=>'remove',:id=>@employee.id %>
+      </li>
+    <% end %>
+    <li>
+      <a href="#" class="drops" id="link_four">More &#9660;</a>
+          <ul id="box_four" class="scriptaculously" style="display:none;">
+        <% FedenaPlugin::ADDITIONAL_LINKS[:employee_profile_more_menu].each do |mod| %>
+          <li><%= link_to "#{mod[:title]}",mod[:destination].merge(:id=>@employee.id) %></li>
+        <% end %>
+      </ul>
     </li>
-      <% end %>
   </ul>
 
 </div>
@@ -138,7 +146,7 @@
     <div class="extender"></div>
 
   </div>
-  
+
 
 
 
@@ -146,5 +154,5 @@
     <%=   render :partial => "general" %>
 
   </div>
-    <div class="extender"> </div>
+  <div class="extender"> </div>
 </div>

@@ -32,8 +32,8 @@ body {
 /* Top menu style */
 
 #main-menu {
-   float: left;
-    height: 25px;
+    float : left;
+    height : 60px; width : 600px;
 }
 #main-menu a {
     background : #fff;
@@ -41,7 +41,7 @@ body {
     display : block;
     font-size : 0.8em;
     float : left;
-    height : 17px; width : 75px;
+    height : 17px; width : 83px;
     margin : 38px 5px 0 0;
     padding : 5px 0 0 0;
     text-align : center;

@@ -61,20 +61,20 @@ body {
 
 #main-menu {
     float : left;
-    height : 25px;
+    height : 60px; width : 600px;
 
 }
 #main-menu a {
-    background: none repeat scroll 0 0 #FFFFFF;
-    color: #BB0000;
-    display: block;
-    float: left;
-    font-size: 0.8em;
-    height: 17px;
-    margin: 3px 5px 0 0;
-    padding: 5px 5px 0;
-    text-align: center;
-    text-decoration: none;
+    background : #fff;
+    color : #b00;
+    display : block;
+    font-size : 0.8em;
+    float : left;
+    height : 17px; width : 83px;
+    margin : 38px 5px 0 0;
+    padding : 5px 0 0 0;
+    text-align : center;
+    text-decoration : none;
 }
 #main-menu a:hover {
     text-decoration : underline;

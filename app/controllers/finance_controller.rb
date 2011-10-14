@@ -276,6 +276,10 @@ class FinanceController < ApplicationController
     @salary = MonthlyPayslip.total_employees_salary(@start_date, @end_date)#Employee.total_employees_salary(employees, @start_date, @end_date)
     @donations_total = FinanceTransaction.donations_triggers(@start_date,@end_date)
     @grand_total = FinanceTransaction.grand_total(@start_date,@end_date)
+    @category_transaction_totals = {}
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+      @category_transaction_totals["#{category[:category_name]}"] =   FinanceTransaction.total_transaction_amount(category[:category_name],@start_date,@end_date)
+    end
     @graph = open_flash_chart_object(960, 500, "graph_for_update_monthly_report?start_date=#{@start_date}&end_date=#{@end_date}")
   end
   
