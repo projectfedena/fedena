@@ -452,16 +452,15 @@ class FinanceController < ApplicationController
     other_conditions += " AND employee_grade_id = '#{params[:employee_grade_id]}'" unless params[:employee_grade_id] == ""
     if params[:query].length>= 3
       @employee = Employee.find(:all,
-        :conditions => "(first_name LIKE \"#{params[:query]}%\"
-                       OR middle_name LIKE \"#{params[:query]}%\"
-                       OR last_name LIKE \"#{params[:query]}%\"
-                       OR employee_number LIKE \"#{params[:query]}%\"
-                       OR (concat(first_name, \" \", last_name) LIKE \"#{params[:query]}%\"))" + other_conditions,
-
+        :conditions => ["(first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
+                       OR employee_number LIKE ? OR (concat(first_name, \" \", last_name) LIKE ?))" + other_conditions,
+                       "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
+                       "#{params[:query]}", "#{params[:query]}"],
         :order => "first_name asc") unless params[:query] == ''
     else
       @employee = Employee.find(:all,
-        :conditions => "(employee_number LIKE \"#{params[:query]}%\")" + other_conditions,:order => "first_name asc") unless params[:query] == ''
+        :conditions => ["(employee_number LIKE ?)" + other_conditions,"#{params[:query]}%"],
+        :order => "first_name asc") unless params[:query] == ''
     end
     render :layout => false
   end
@@ -809,7 +808,7 @@ class FinanceController < ApplicationController
             Reminder.create(:sender=>@user.id, :recipient=>s.id, :subject=> subject,
               :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
           end
-          Event.create(:title=> "#{t('fees_due')}", :description =>@additional_category.name, :start_date => @due_date, :end_date => @due_date, :is_due => true)
+          Event.create(:title=> "Fees Due", :description =>@additional_category.name, :start_date => @due_date.to_datetime, :end_date => @due_date.to_datetime, :is_due => true, :origin => @collection_date)
         else
           @batches.each do |b|
             @students = Student.find_all_by_batch_id(b.id)
@@ -819,7 +818,7 @@ class FinanceController < ApplicationController
                 :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
             end
           end
-          Event.create(:title=> "#{t('fees_due')}", :description =>@additional_category.name, :start_date => @due_date, :end_date => @due_date, :is_due => true)
+          Event.create(:title=> "Fees Due", :description =>@additional_category.name, :start_date => @due_date.to_datetime, :end_date => @due_date.to_datetime, :is_due => true, :origin => @collection_date)
         end
         flash[:notice] = "#{t('flash9')}"
         redirect_to(:action => "add_particulars" ,:id => @collection_date.id)
@@ -848,6 +847,7 @@ class FinanceController < ApplicationController
 
     if @finance_fee_category.update_attributes(:name =>params[:finance_fee_category][:name], :description =>params[:finance_fee_category][:description])
       if @collection_date.update_attributes(:start_date=>params[:additional_fees][:start_date], :end_date=>params[:additional_fees][:end_date],:due_date=>params[:additional_fees][:due_date])
+        @collection_date.event.update_attributes(:start_date=>@collection_date.due_date.to_datetime, :end_date=>@collection_date.due_date.to_datetime)
         @additional_categories = FinanceFeeCategory.find(:all, :conditions =>["is_deleted = '#{false}' and is_master = '#{false}' and batch_id = '#{@finance_fee_category.batch_id}'"])
         #        page.replace_html 'form-errors', :text => ''
         #        page << "Modalbox.hide();"
@@ -1060,8 +1060,8 @@ class FinanceController < ApplicationController
                 :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
             end
           end
-          Event.create(:title=> "#{t('fees_due')}", :description =>fee_category_name, :start_date => @finance_fee_collection.due_date, :end_date => @finance_fee_collection.due_date, :is_due => true)
-
+          new_event =  Event.create(:title=> "#{t('fees_due')}", :description =>fee_category_name, :start_date => @finance_fee_collection.due_date.to_datetime, :end_date => @finance_fee_collection.due_date.to_datetime, :is_due => true , :origin=>@finance_fee_collection)
+          BatchEvent.create(:event_id => new_event.id, :batch_id => b.id )
         else
           @error = true
         end
@@ -1096,6 +1096,7 @@ class FinanceController < ApplicationController
     render :update do |page|
       if params[:finance_fee_collection][:due_date].to_date >= params[:finance_fee_collection][:end_date].to_date
         if @finance_fee_collection.update_attributes(params[:finance_fee_collection])
+          @finance_fee_collection.event.update_attributes(:start_date=> @finance_fee_collection.due_date.to_datetime, :end_date=> @finance_fee_collection.due_date.to_datetime)
           @finance_fee_collections = FinanceFeeCollection.all(:conditions => ["is_deleted = '#{false}' and batch_id = '#{@finance_fee_collection.batch_id}'"])
           flash[:notice]="#{t('')}"
           page.replace_html 'form-errors', :text => ''
@@ -1453,9 +1454,15 @@ class FinanceController < ApplicationController
   def fees_student_structure_search_logic # student search fees structure
     query = params[:query]
     unless query.length < 3
-      @students_result = Student.first_name_or_last_name_or_admission_no_begins_with query unless query == ""
+      @students_result = Student.find(:all,
+          :conditions => ["first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
+                         OR admission_no = ? OR (concat(first_name, \" \", last_name) LIKE ? ) ",
+                         "#{query}%","#{query}%","#{query}%","#{query}", "#{query}" ],
+          :order => "batch_id asc,first_name asc") unless query == ''
     else
-      @students_result = Student.admission_no_begins_with query unless query == ""
+      @students_result = Student.find(:all,
+          :conditions => ["admission_no = ? " , query],
+          :order => "batch_id asc,first_name asc") unless query == ''
     end
     render :layout => false
   end
@@ -1517,7 +1524,7 @@ class FinanceController < ApplicationController
   def fees_defaulters_students
     @batch   = Batch.find(params[:batch_id])
     @date = FinanceFeeCollection.find(params[:date])
-    @fee = FinanceFee.find_all_by_fee_collection_id(@date.id)
+    @fee = @date.finance_fees
     @fee.reject!{|s| s.student.batch_id != @batch.id}
     @students = @fee.map{|x| Student.find(x.student_id)}
     @defaulters = @students.reject{|s| s.check_fees_paid(@date)}

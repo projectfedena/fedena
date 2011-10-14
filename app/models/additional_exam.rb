@@ -23,7 +23,7 @@ class AdditionalExam < ActiveRecord::Base
   belongs_to :additional_exam_group
   belongs_to :subject
 
-  belongs_to :event
+  has_one :event, :as => :origin
   has_many :additional_exam_scores
   before_destroy :removable?
 
@@ -45,7 +45,11 @@ class AdditionalExam < ActiveRecord::Base
     self.weightage = 0 if self.weightage.nil?
   end
 
-  def after_save
+  def after_create
+    create_exam_event
+  end
+
+  def after_update
     update_exam_event
   end
 
@@ -56,14 +60,15 @@ class AdditionalExam < ActiveRecord::Base
 
 
   private
-  def update_exam_event
-    if self.event.nil?
+  def create_exam_event
+    if self.event.blank?
       new_event = Event.create do |e|
         e.title       = "Additional Exam"
         e.description = "#{self.additional_exam_group.name} for #{self.subject.batch.full_name} , Subject : #{self.subject.name}"
         e.start_date  = self.start_time
         e.end_date    = self.end_time
         e.is_exam     = true
+        e.origin      = self
       end
       batch_event = BatchEvent.create do |be|
         be.event_id = new_event.id
@@ -71,8 +76,10 @@ class AdditionalExam < ActiveRecord::Base
       end
       #self.event_id = new_event.id
       self.update_attributes(:event_id=>new_event.id)
-    else
-      self.event.update_attributes(:start_date => self.start_time, :end_date => self.end_time)
     end
+  end
+
+  def update_exam_event
+      self.event.update_attributes(:start_date => self.start_time, :end_date => self.end_time) unless self.event.blank?
   end
 end

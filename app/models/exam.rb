@@ -25,8 +25,8 @@ class Exam < ActiveRecord::Base
   before_destroy :removable?
   before_save :update_exam_group_date
 
-  belongs_to :event
-
+  has_one :event ,:as=>:origin
+  
   validates_presence_of :maximum_marks
   validates_presence_of :minimum_marks
   validates_numericality_of :minimum_marks, :maximum_marks, :greater_than_or_equal_to => 0,:allow_nil=>true
@@ -56,7 +56,11 @@ class Exam < ActiveRecord::Base
     #update_exam_group_date
   end
 
-  def after_save
+  def after_create
+    create_exam_event
+  end
+
+  def after_update
     update_exam_event
   end
 
@@ -79,14 +83,15 @@ class Exam < ActiveRecord::Base
     group.update_attribute(:exam_date, self.start_time.to_date) if !group.exam_date.nil? and self.start_time.to_date < group.exam_date
   end
 
-  def update_exam_event
-    if self.event.nil?
+  def create_exam_event
+    if self.event.blank?
       new_event = Event.create do |e|
         e.title       = "Exam"
         e.description = "#{self.exam_group.name} for #{self.subject.batch.full_name} - #{self.subject.name}"
         e.start_date  = self.start_time
         e.end_date    = self.end_time
         e.is_exam     = true
+        e.origin      = self
       end
       batch_event = BatchEvent.create do |be|
         be.event_id = new_event.id
@@ -94,9 +99,10 @@ class Exam < ActiveRecord::Base
       end
       #self.event_id = new_event.id
       self.update_attributes(:event_id=>new_event.id)
-    else
-      self.event.update_attributes(:start_date => self.start_time, :end_date => self.end_time)
     end
   end
 
+  def update_exam_event
+    self.event.update_attributes(:start_date => self.start_time, :end_date => self.end_time) unless self.event.blank?
+  end
 end

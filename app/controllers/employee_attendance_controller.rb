@@ -251,15 +251,14 @@ class EmployeeAttendanceController < ApplicationController
     other_conditions += " AND employee_grade_id = '#{params[:employee_grade_id]}'" unless params[:employee_grade_id] == ""
     unless params[:query].length < 3
       @employee = Employee.find(:all,
-        :conditions => "(first_name LIKE \"#{params[:query]}%\"
-                       OR middle_name LIKE \"#{params[:query]}%\"
-                       OR last_name LIKE \"#{params[:query]}%\"
-                       OR employee_number LIKE '#{params[:query]}%'
-                       OR (concat(first_name, \" \", last_name) LIKE \"#{params[:query]}%\"))" + other_conditions,
+        :conditions => ["(first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
+                       OR employee_number LIKE ? OR (concat(first_name, \" \", last_name) LIKE ?))" + other_conditions,
+                       "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
+                       "#{params[:query]}", "#{params[:query]}"],
         :order => "first_name asc") unless params[:query] == ''
     else
       @employee = Employee.find(:all,
-        :conditions => "employee_number = '#{params[:query]}'" + other_conditions,
+        :conditions => ["employee_number = ? "+ other_conditions, "#{params[:query]}%"],
         :order => "first_name asc") unless params[:query] == ''
     end
     render :layout => false

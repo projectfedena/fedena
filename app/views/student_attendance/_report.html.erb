@@ -38,10 +38,10 @@
   <%  if @config.config_value == 'Daily' %>
     <%= t('total_working_days') %> : <%= working_days %>
 <% else %>
-  <%= t('total_working_hours') %> : <%= working_days %>
-<% end %>|<%= t('total_present') %> : <%= total = (working_days - leaves).to_f %> |
+  Total working hours : <%= working_days %> 
+<% end %>|Total Present : <%= total = (working_days - leaves).to_f %> |
 <% percentage =  (total/working_days)*100 unless working_days == 0 %>
-<%= t('percentage') %> : <%= percentage.round.to_f unless percentage.nil? %>
+Percentage : <%= percentage.round unless percentage.nil? %>
 </div>
 <% unless table_id.empty? %>
   <table id="listing" align="center" width="80%">

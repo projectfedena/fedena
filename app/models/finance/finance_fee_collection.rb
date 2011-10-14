@@ -24,6 +24,7 @@ class FinanceFeeCollection < ActiveRecord::Base
   has_many :fee_collection_particulars ,:dependent=>:destroy
   has_many :fee_collection_discounts   ,:dependent=>:destroy
   belongs_to :fee_category,:class_name => "FinanceFeeCategory"
+  has_one :event, :as => :origin
 
 
   validates_presence_of :name,:start_date,:fee_category_id,:end_date,:due_date
@@ -50,6 +51,10 @@ class FinanceFeeCollection < ActiveRecord::Base
   def check_transaction(transactions)
     transactions.finance_fees_id.nil? ? false : true
    
+  end
+
+  def fee_table
+    self.finance_fees
   end
 
   def self.shorten_string(string, count)
