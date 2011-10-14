@@ -1517,6 +1517,7 @@ en: # locale
   does_not_exist: "does not exist"
   fee_submission_date_for: "Fee submission date for"
   has_been_published: "has been published"
+  has_been_updated: "has been updated"
   fees_submiting_date_starts_on: "Fees submitting date starts on"
   fees_submission_date: "Fees submission date"
   fees_due: "Fees Due"

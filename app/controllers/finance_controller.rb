@@ -1052,7 +1052,7 @@ class FinanceController < ApplicationController
           @students = Student.find_all_by_batch_id(b.id)
           @students.each do |s|
             body = "<p><b>#{t('fee_submission_date_for')}<i>"+fee_category_name+"</i>#{t('has_been_published')}</b><br /><br/>
-                                Start date :"+@finance_fee_collection.start_date.to_s+"<br />"+
+                                #{t('start_date')} :"+@finance_fee_collection.start_date.to_s+"<br />"+
               " #{t('end_date')} :"+@finance_fee_collection.end_date.to_s+"<br />"+
               " #{t('due_date')} :"+@finance_fee_collection.due_date.to_s+"<br /><br /><br />"+
               " #{t('check_your')}  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>#{t('fee_structure')}</a> <br/><br/><br/>
@@ -1096,11 +1096,29 @@ class FinanceController < ApplicationController
 
   
   def fee_collection_update
+    @user = current_user
     @finance_fee_collection = FinanceFeeCollection.find params[:id]
     render :update do |page|
       if params[:finance_fee_collection][:due_date].to_date >= params[:finance_fee_collection][:end_date].to_date
         if @finance_fee_collection.update_attributes(params[:finance_fee_collection])
           @finance_fee_collection.event.update_attributes(:start_date=> @finance_fee_collection.due_date.to_datetime, :end_date=> @finance_fee_collection.due_date.to_datetime)
+          fee_category_name = @finance_fee_collection.fee_category.name
+          subject = "#{t('fees_submission_date')}"
+          @students = Student.find_all_by_batch_id(@finance_fee_collection.batch_id)
+          @students.each do |s|
+            body = "<p><b>#{t('fee_submission_date_for')}<i>"+fee_category_name+"</i>#{t('has_been_updated')}</b><br /><br/>
+                                #{t('start_date')} :"+@finance_fee_collection.start_date.to_s+"<br />"+
+              " #{t('end_date')} :"+@finance_fee_collection.end_date.to_s+"<br />"+
+              " #{t('due_date')} :"+@finance_fee_collection.due_date.to_s+"<br /><br /><br />"+
+              " #{t('check_your')}  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>#{t('fee_structure')}</a> <br/><br/><br/>
+                               #{t('regards')},<br/>"+@user.full_name.capitalize
+
+            unless s.has_paid_fees == 1
+              FinanceFee.create(:student_id => s.id,:fee_collection_id => @finance_fee_collection.id)
+              Reminder.create(:sender=>@user.id, :recipient=>s.user.id, :subject=> subject,
+                :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
+            end
+          end
           @finance_fee_collections = FinanceFeeCollection.all(:conditions => ["is_deleted = '#{false}' and batch_id = '#{@finance_fee_collection.batch_id}'"])
           flash[:notice]="#{t('')}"
           page.replace_html 'form-errors', :text => ''

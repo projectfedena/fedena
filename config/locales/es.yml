@@ -1522,6 +1522,7 @@ es: # locale
   does_not_exist: "no existe"
   fee_submission_date_for: "Cuota de la fecha de presentación de"
   has_been_published: "Se ha publicado"
+  has_been_updated: "Se ha actualizado"
   fees_submiting_date_starts_on: "La presentación de cargos se inicia en la fecha"
   fees_submission_date: "Honorarios fecha de presentación"
   fees_due: "Debido tasas"
