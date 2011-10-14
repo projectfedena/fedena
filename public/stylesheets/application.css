@@ -43,10 +43,13 @@ body {
     -moz-border-radius:6px;
     -webkit-border-radius:6px;
 }
-
+#outer-main-menu {
+    float: left;
+}
 #outer-header-link {
     height: 35px;
-    width: 988px;
+    width: 450px;
+    float: right;
 }
 
 #header_link {
@@ -61,8 +64,7 @@ body {
 
 #main-menu {
     float : left;
-    height : 60px; width : 600px;
-
+    height : 60px; width : 530px;
 }
 #main-menu a {
     background : #fff;
