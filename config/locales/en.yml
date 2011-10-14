@@ -118,6 +118,7 @@ en: # locale
 
       liablility:
         amount: "Amount"
+        title:  "Title"
 
       apply_leave:
         employee_leave_types_id: "Employee Leave Types"

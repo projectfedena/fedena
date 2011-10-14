@@ -118,6 +118,7 @@ es: # locale
 
       liablility:
         amount: "Cantidad"
+        title:  "Título"
 
       apply_leave:
         employee_leave_types_id: "Tipos de empleados Agregar"

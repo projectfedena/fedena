@@ -54,13 +54,13 @@
       var anylinkmenu1={divclass:'anylinkmenu', inlinestyle:'', linktarget:''} //First menu variable. Make sure "anylinkmenu1" is a unique name!
       anylinkmenu1.items = [
 <% if @current_user.admin %>
-      ["Calendar", "/calendar"],
-      ["Examination", "/exam"],
-      ["News", "/news"],
-      ["Event Creation", "/event"],
-      ["Human Resource", "/employee/hr"],
-      ["Finance", "/finance/index"],
-      ["Users", "/user"],
+      ["<%= t('calendar_text') %>", "/calendar"],
+      ["<%= t('examination') %>", "/exam"],
+      ["<%= t('news_text') %>", "/news"],
+      ["<%= t('event_creations') %>", "/event"],
+      ["<%= t('human_resource') %>", "/employee/hr"],
+      ["<%= t('finance_text') %>", "/finance/index"],
+      ["<%= t('user_text') %>", "/user"],
 <% end %>
 <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
   <% unless mod[:more_menu].blank? %>
@@ -97,7 +97,7 @@
 
 
             <%  if this_user.student? || this_user.employee? %>
-              <%= link_to t('calendar'), :controller => "calendar" %>
+              <%= link_to t('calendar_text'), :controller => "calendar" %>
             <% end %>
             <%= link_to t('students'), :controller => "student", :action => "index" \
               if this_user.admin? %>
