@@ -1628,7 +1628,7 @@ en: # locale
   generate_subject_wise_report: "Generates subject wise reports"
   marklist_for: "Marklist for"
   average_mark: "Average Mark"
-  exam_groups: "Exam Groups"
+  exam_groups_text: "Exam Groups"
   exam_group: "exam Group"
   view_exam_groups: "View Exam Groups"
   publish_exam_result: "Publish Exam Result"

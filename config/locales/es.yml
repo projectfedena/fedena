@@ -1633,7 +1633,7 @@ es: # locale
   generate_subject_wise_report: "Genera informes sujetos sabios"
   marklist_for: "Marklist para"
   average_mark: "Media"
-  exam_groups: "Grupos examen"
+  exam_groups_text: "Grupos examen"
   exam_group: "Grupo de examen"
   view_exam_groups: "Ver grupos de examen"
   publish_exam_result: "Publicar resultado de un examen"
