@@ -698,7 +698,7 @@ es: # locale
   dashboard_text: "Inicio"
   connect: "Conectar"
   fee_name: "Cuota de nombre"
-  more: "Más ▼"
+  more: "Más"
   employee_profile: "Perfil de los empleados"
   contact: "Contacto"
   personal: "Personal"

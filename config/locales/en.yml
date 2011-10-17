@@ -693,7 +693,7 @@ en: # locale
   dashboard_text: "Dashboard"
   connect: "Connect"
   fee_name: "Fee name"
-  more: "More ▼"
+  more: "More"
   employee_profile: "Employee Profile"
   contact: "Contact"
   personal: "Personal"
