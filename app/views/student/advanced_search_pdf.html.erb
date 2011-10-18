@@ -18,9 +18,9 @@
 #under the License. -%>
 
 
+<% index = 0 %>
 
-
-<% @students.in_groups_of(15,false).each do |students| %>
+<% @students.in_groups_of(25,false).each do |students| %>
   <div class="page">
     <div class="hor_line"></div>
     <h2>Student-Advanced search</h2>
@@ -34,10 +34,10 @@
     <div class="report">
       <table id="pdf-table" width="100%" cellspacing="0">
         <% c= 'odd' %>
-        <tr class="table-header"><td class="col-pdf">Sl no.</td><td class="col-pdf">Name</td><td class="col-pdf"> Batch</td><td class="col-pdf">Admission Number</td><td class="col-pdf">Date Of Birth</td></tr>
+        <tr class="table-header"><td class="col-pdf">Sl no.</td><td class="col-pdf">Name</td><td class="col-pdf"> Batch</td><td class="col-pdf">Ad. No.</td><td class="col-pdf">Date Of Birth</td></tr>
         <% students.each.each_with_index do |student,i| %>
           <tr class="<%= cycle((["odd","even"]-[c]).first,c) %>">
-            <td class="col-pdf"><%= i+1 %></td>
+            <td class="col-pdf"><%= index+=1 %></td>
             <td class="col-pdf"><%= student.full_name %></td>
             <td class="col-pdf"><%= student.batch.full_name %></td>
             <td class="col-pdf"><%= student.admission_no %></td>
