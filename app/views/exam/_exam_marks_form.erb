@@ -22,21 +22,21 @@
   <%= f.error_messages %>
 
   <div class="label-field-pair">
-    <%= t('name') %>
+    <%= f.label :name,t('name') %>
     <div class="text-input-bg"><%= f.text_field :name, :value=>@name %></div>
   </div>
   <div class="label-field-pair">
-    <%= t('exam_type')%>
+    <%= f.label :exam_type, t('exam_type')%>
     <%= f.hidden_field :exam_type,:value=>@type %>
     <div class="text-input-bg"><%= f.text_field :exam_type, :value=>@type,:disabled=>true %>
     </div><%= link_to "#{t('change_type')}", new_batch_exam_group_path(@batch,:ename=>@name),:class=>"type_link" %>
   </div>
   <div class="label-field-pair">
-    <%= t('max_mark') %>
+    <%= f.label :maximum_marks, t('max_mark') %>
     <div class="text-input-bg"><%= f.text_field :maximum_marks %></div>
   </div>
   <div class="label-field-pair">
-    <%= t('max_mark') %>
+    <%= f.label :minimum_marks, t('min_mark') %>
     <div class="text-input-bg"> <%= f.text_field :minimum_marks %></div>
   </div>
 

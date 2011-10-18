@@ -77,6 +77,11 @@ class Exam < ActiveRecord::Base
     return 0
   end
 
+  def before_validation
+    self.maximum_marks = 0 if self.maximum_marks.blank?
+    self.minimum_marks = 0 if self.minimum_marks.blank?
+  end
+
   private
   def update_exam_group_date
     group = self.exam_group

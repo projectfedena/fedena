@@ -1546,9 +1546,7 @@ class FinanceController < ApplicationController
   def fees_defaulters_students
     @batch   = Batch.find(params[:batch_id])
     @date = FinanceFeeCollection.find(params[:date])
-    @fee = @date.finance_fees
-    @fee.reject!{|s| s.student.batch_id != @batch.id}
-    @students = @fee.map{|x| Student.find(x.student_id)}
+    @students = @date.students.all(:conditions=> "batch_id = #{@batch.id}")
     @defaulters = @students.reject{|s| s.check_fees_paid(@date)}
     render :update do |page|
       page.replace_html "student", :partial => "student_defaulters"

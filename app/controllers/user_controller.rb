@@ -212,6 +212,7 @@ class UserController < ApplicationController
 
   def logout
     session[:user_id] = nil
+    session[:language] = nil
     flash[:notice] = "#{t('logged_out')}"
     redirect_to :controller => 'user', :action => 'login'
   end

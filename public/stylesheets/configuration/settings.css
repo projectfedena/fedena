@@ -26,3 +26,6 @@ form{
     margin: 0 auto;
     width: 560px;
 }
+.label-field-pair label{
+    width: 240px !important;
+}

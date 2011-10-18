@@ -364,9 +364,8 @@ def update_multiple_timetable_entries2
 
     #check for overlapping classes
     overlap = TimetableEntry.find(:first,
-      :conditions => "weekday_id = #{tte.weekday_id} AND
-                                               class_timing_id = #{tte.class_timing_id} AND
-                                               employee_id = #{employee.id}")
+      :conditions => "weekday_id = #{tte.weekday_id} AND class_timing_id = #{tte.class_timing_id} AND timetable_entries.employee_id = #{employee.id}", \
+                     :joins=>"INNER JOIN subjects ON timetable_entries.subject_id = subjects.id INNER JOIN batches ON subjects.batch_id = batches.id AND batches.is_active = 1 AND batches.is_deleted = 0")
     unless overlap.nil?
       errors["messages"] << "#{t('class_overlap')}: #{overlap.batch.full_name}."
     end
