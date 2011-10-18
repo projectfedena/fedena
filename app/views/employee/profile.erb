@@ -107,7 +107,7 @@
       <a href="#" class="drops" id="link_four">More &#9660;</a>
           <ul id="box_four" class="scriptaculously" style="display:none;">
         <% FedenaPlugin::ADDITIONAL_LINKS[:employee_profile_more_menu].each do |mod| %>
-          <li><%= link_to "#{mod[:title]}",mod[:destination].merge(:id=>@employee.id) %></li>
+          <li><%= link_to "#{t(mod[:title])}",mod[:destination].merge(:id=>@employee.id) %></li>
         <% end %>
       </ul>
     </li>

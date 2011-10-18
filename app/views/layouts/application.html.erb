@@ -64,7 +64,7 @@
 <% end %>
 <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
   <% unless mod[:more_menu].blank? %>
-    <%= "['#{mod[:more_menu][:title]}','/#{mod[:more_menu][:controller]}/#{mod[:more_menu][:action].gsub("index","")}'],"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym  %>
+    <%= "['#{t(mod[:more_menu][:title])}','/#{mod[:more_menu][:controller]}/#{mod[:more_menu][:action].gsub("index","")}'],"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym  %>
   <% end %>
 <% end %>
   ]
@@ -113,7 +113,7 @@
               <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
                 <% unless mod[:top_bar].blank? %>
                   <% if permitted_to? "#{mod[:top_bar][:action]}".to_sym,"#{mod[:top_bar][:controller]}".to_sym %>
-                    <%= link_to mod[:top_bar][:title], {:controller => "#{mod[:top_bar][:controller]}", :action => "#{mod[:top_bar][:action]}"} %>
+                    <%= link_to "#{t(mod[:top_bar][:title])}", {:controller => "#{mod[:top_bar][:controller]}", :action => "#{mod[:top_bar][:action]}"} %>
                   <% end %>
                 <% end %>
               <% end %>

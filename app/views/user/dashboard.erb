@@ -257,7 +257,7 @@
     <% unless mod[:dashboard_menu].blank? %>
       <% if permitted_to? "#{mod[:dashboard_menu][:action]}".to_sym,"#{mod[:dashboard_menu][:controller]}".to_sym %>
         <div class="button-box">
-          <%= link_to "<div class =\"button-label\"><p>#{mod[:dashboard_menu][:title]}</p></div>", {:controller => "#{mod[:dashboard_menu][:controller]}", :action => "#{mod[:dashboard_menu][:action]}"}, mod[:dashboard_menu][:options] %>
+          <%= link_to "<div class =\"button-label\"><p>#{t(mod[:dashboard_menu][:title])}</p></div>", {:controller => "#{mod[:dashboard_menu][:controller]}", :action => "#{mod[:dashboard_menu][:action]}"}, mod[:dashboard_menu][:options] %>
         </div>
       <% end %>
     <% end %>

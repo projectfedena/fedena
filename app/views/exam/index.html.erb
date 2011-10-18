@@ -72,7 +72,7 @@
   <%#  if permitted_to? :index,:online_exam %>
       <div class="link-box">
         <div class="link-heading"><%= link_to "#{mod[:title]}",mod[:destination] %></div>
-        <div class="link-descr"><%= mod[:description] %></div>
+        <div class="link-descr"><%= t("mod[:description]") %></div>
       <% end %>
 <%# end %>
     </div>
