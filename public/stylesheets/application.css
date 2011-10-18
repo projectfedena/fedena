@@ -18,7 +18,7 @@ body {
 }
 #header_link {
     color : #fff;
-    height : 40px;
+    height : 22px;
     float: right;
     font-size : 0.9em;
     padding : 10px 0 0 0;
@@ -47,8 +47,8 @@ body {
     float: left;
 }
 #outer-header-link {
-    height: 35px;
-    width: 450px;
+    height: 32px;
+    width: 100%;
     float: right;
 }
 
@@ -64,7 +64,7 @@ body {
 
 #main-menu {
     float : left;
-    height : 60px; width : 530px;
+    height : 27px; width : 530px;
 }
 #main-menu a {
     background : #fff;
@@ -73,7 +73,7 @@ body {
     font-size : 0.8em;
     float : left;
     height : 17px; width : 83px;
-    margin : 38px 5px 0 0;
+    margin : 6px 5px 0 0;
     padding : 5px 0 0 0;
     text-align : center;
     text-decoration : none;

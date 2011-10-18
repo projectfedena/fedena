@@ -1138,6 +1138,7 @@ es: # locale
   posted: "Publicado"
   school_news: "Noticias de la Escuela"
   news_text: "Noticias"
+  calender_text: "Calendario"
   latest_announcement: "Últimos anuncios"
   user_deleted: "Usuario eliminado"
   read_news: "Lea las noticias"
