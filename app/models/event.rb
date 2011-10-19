@@ -36,7 +36,7 @@ class Event < ActiveRecord::Base
     flag = false
     base = self.origin
     unless base.blank?
-      if base.batch_id.present?
+      if base.respond_to?('batch_id')
         if base.batch_id == student.batch_id
           finance = base.fee_table
           if finance.present?
@@ -45,7 +45,10 @@ class Event < ActiveRecord::Base
         end
       end
     end
-    flag = true if self.user_event.present?
+    user_id = self.user_event.user_id if self.user_event.present?
+    unless user_id.nil?
+      flag = true if student.user.id == user_id
+    end
     return flag
   end
 
