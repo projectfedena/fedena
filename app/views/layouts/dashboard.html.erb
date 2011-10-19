@@ -87,7 +87,7 @@
           <%= link_to "#{t('dashboard_text')}", :controller => "user", :action => "dashboard" %>
           <% this_user = User.find(session[:user_id]) if session[:user_id] %>
           <%  if this_user.student? || this_user.employee? %>
-            <%= link_to "#{t('calender_text')}", :controller => "calendar" %>
+            <%= link_to "#{t('calendar_text')}", :controller => "calendar" %>
           <% end %>
           <%= link_to "#{t('students')}", :controller => "student", :action => "index" \
             if this_user.admin? %>

@@ -160,8 +160,8 @@
     <%else%>
       <% if @config.include?('HR') %>
         <div class="button-box">
-          <%= link_to "<div class ='button-label'><p>Leave</p></div>", {:controller => "employee_attendance", :action => "leaves",:id => @employee.id},
-            :class => "option_buttons", :id => "leaves_button", :title => "Employee leave details." unless @employee.nil?%>
+          <%= link_to "<div class ='button-label'><p>#{t('leaves')}</p></div>", {:controller => "employee_attendance", :action => "leaves",:id => @employee.id},
+            :class => "option_buttons", :id => "leaves_button", :title => "#{t('leave_details')}." unless @employee.nil?%>
 
         </div>
       <%end%>
