@@ -1683,6 +1683,14 @@ class FinanceController < ApplicationController
     @batchs = Batch.find(:all)
     @grand_total = FinanceTransaction.grand_total(@start_date,@end_date)
     @grand_total2 = FinanceTransaction.grand_total(@start_date2,@end_date2)
+    @category_transaction_totals = {}
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+      @category_transaction_totals["#{category[:category_name]}"] =   FinanceTransaction.total_transaction_amount(category[:category_name],@start_date,@end_date)
+    end
+    @category_transaction_totals2 = {}
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+      @category_transaction_totals2["#{category[:category_name]}"] =   FinanceTransaction.total_transaction_amount(category[:category_name],@start_date2,@end_date2)
+    end
     @graph = open_flash_chart_object(960, 500, "graph_for_compare_monthly_report?start_date=#{@start_date}&end_date=#{@end_date}&start_date2=#{@start_date2}&end_date2=#{@end_date2}")
   end
  
@@ -1743,7 +1751,7 @@ class FinanceController < ApplicationController
     expense = FinanceTransaction.total_other_trans(start_date,end_date)[1]
     #    other_transactions = FinanceTransaction.find(:all,
     #      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id !='#{3}' and category_id !='#{2}'and category_id !='#{1}'"])
-
+   
 
     x_labels = []
     data = []
@@ -1769,18 +1777,27 @@ class FinanceController < ApplicationController
       largest_value = fees if largest_value < fees
     end
 
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+      c =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)
+     unless c <= 0
+       x_labels << "#{category[:category_name]}"
+      data << c
+      largest_value = c if largest_value < c
+    end
+     end
+
     unless income <= 0
       x_labels << "Other Income"
       data << income
       largest_value = income if largest_value < income
     end
     unless expense <= 0
-      x_labels << "expense"
+      x_labels << "Other expense"
       data << expense
       largest_value = expense if largest_value < expense
     end
 
-
+    
     #    other_transactions.each do |trans|
     #      x_labels << trans.title
     #      if trans.category.is_income? and trans.master_transaction_id == 0
@@ -1883,7 +1900,18 @@ class FinanceController < ApplicationController
       largest_value = fees2 if largest_value < fees2
     end
        
-   
+   FedenaPlugin::FINANCE_CATEGORY.each do |category|
+      c1 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)
+      c2 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date2,end_date2)
+
+      unless c1 <= 0 and c2 <= 0
+      x_labels << "#{category[:category_name]}"
+      data << c1
+      data2 << c2
+      largest_value = c1 if largest_value < c1
+      largest_value = c2 if largest_value < c2
+    end
+     end
 
     unless income <= 0 and income2 <= 0
       x_labels << "Other Income"
