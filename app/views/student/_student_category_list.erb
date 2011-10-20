@@ -22,7 +22,7 @@
       <% @student_categories.each do |c| %>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= c.name %></div>
-        <div class="category-edit"><%= link_to_remote "#{t('edit_text')}", :url => { :action => 'category_edit', :id => c.id } %> </div><div class="category-delete"><%= link_to_remote "#{t('delete')}", :url => { :action => 'category_delete', :id => c.id } %></div>
+        <div class="category-edit"><%= link_to_remote "#{t('edit_text')}", :url => { :action => 'category_edit', :id => c.id } %> </div><div class="category-delete"><%= link_to_remote "#{t('delete_text')}", :url => { :action => 'category_delete', :id => c.id } %></div>
       </li>
      <% end %>
 
