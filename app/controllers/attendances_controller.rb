@@ -51,7 +51,12 @@ class AttendancesController < ApplicationController
     else
       @sub =Subject.find params[:subject_id]
       @batch = @sub.batch_id
-      @students = Student.find_all_by_batch_id(@batch)
+      unless @sub.elective_group_id.nil?
+        elective_student_ids = StudentsSubject.find_all_by_subject_id(@sub.id).map { |x| x.student_id }
+        @students = Student.find_all_by_batch_id(@batch, :conditions=>"id IN (#{elective_student_ids.split.join(',')})")
+      else
+        @students = Student.find_all_by_batch_id(@batch)
+      end
       @dates = PeriodEntry.find_all_by_batch_id_and_subject_id(@batch,@sub.id,  :conditions =>{:month_date => start_date..end_date},:order=>'month_date ASC')
     end
     respond_to do |format|
