@@ -26,6 +26,9 @@ class FedenaPlugin
         if plugin_details[:name].camelize.constantize.respond_to? "application_layout_header"
           REGISTERED_HOOKS[:application_layout_header] << plugin_details[:name]
         end
+         if plugin_details[:name].camelize.constantize.respond_to? "general_settings_form"
+          REGISTERED_HOOKS[:general_settings_form] << plugin_details[:name]
+        end
       end
     end
   end

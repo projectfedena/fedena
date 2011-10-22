@@ -76,7 +76,7 @@
         </div>
       </div>
 
-       <div class="label-field-pair">
+      <div class="label-field-pair">
         <label for="configuration_student_attendance_type"><%= "#{t('language') } " %></label>
         <div class="text-input-bg">
           <%= select :configuration, :locale, Language.translation_available.map{|lan| [lan.name, lan.code]},
@@ -102,6 +102,11 @@
           <%= select :configuration, :network_state, [["#{t('online')}","Online"],["#{t('offline')}","Offline"]],:selected =>@config[:network_state] %>
         </div>
       </div>
+
+      <% FedenaPlugin::REGISTERED_HOOKS[:general_settings_form].each do |mod| %>
+        <%= render :partial=>mod.camelize.constantize.send("general_settings_form") %>
+      <% end %>
+
       <div class="extender"></div>
       <br/>
       <% if @config[:admission_number_auto_increment] == '1' %>
