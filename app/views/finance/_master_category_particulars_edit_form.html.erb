@@ -41,15 +41,15 @@
         <div class="input-container2">
 
           <% unless @finance_fee_particulars.student_category_id.nil? %>
-            <%= radio_button("#{t('particulars')}","#{t('select')}","#{t('all')}",{:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
-                :with => "'select_value='+value")}"}) %>All<br />
-            <%= radio_button("#{t('particulars')}","#{t('select')}","#{t('category')}",
+            <%= radio_button("particulars","select","all",{:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
+                :with => "'select_value='+value")}"}) %><%= t('all') %><br />
+            <%= radio_button("particulars","select","category",
               {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
                 :with => "'select_value='+value")}",:checked => true}) %> <%= t('student_category') %>
           <% else %>
-            <%= radio_button("#{t('particulars')}","#{t('select')}","#{t('all')}",{:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
+            <%= radio_button("particulars'","select","all",{:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
                 :with => "'select_value='+value")}", :checked => true}) %><%= t('all') %><br />
-            <%= radio_button("#{t('particulars')}","#{t('select')}","#{t('category')}",
+            <%= radio_button("particulars","select","category",
               {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
                 :with => "'select_value='+value")}"}) %><%= t('student_category') %>
           <% end %>

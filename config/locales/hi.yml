@@ -117,6 +117,10 @@ hi:
       finance_transaction_trigger:
         percentage: "प्रतिशतता"
 
+      fee_collection_particular:
+        name: "नाम"
+        amount: "राशि"
+
       liablility:
         amount: "राशि"
         title: "शीर्षक"
@@ -502,7 +506,6 @@ hi:
   register: "रजिस्टर"
   report: "रिपोर्ट"
   no_users: "कोई प्रयोक्ताओं ने पाया"
-  student: "छात्र"
   student_details: "छात्र विवरण"
   examinations: "परीक्षा"
   reset: "रीसेट करें"

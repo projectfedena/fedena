@@ -24,7 +24,7 @@
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= c.name %></div>
         <div class="category-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_additional_details", :id=>c.id} %></div>
-        <div class="category-edit"><%= link_to  "#{t('delete_text')}", {:action => "delete_additional_details", :id=>c.id}, :confirm => "#{t('.delete_confirm_msg')}" %></div>
+        <div class="category-edit"><%= link_to  "#{t('delete_text')}", {:action => "delete_additional_details", :id=>c.id}, :confirm => "#{t('delete_confirm_msg')}" %></div>
       </li>
      <% end %>
     <% unless @inactive_additional_details.empty? %>

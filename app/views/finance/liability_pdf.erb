@@ -31,7 +31,7 @@
     <% total_amount = 0 %>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="table-header"><td class="col-pdf">Sl no.</td><td class="col-pdf"> Liability </td><td class="col-pdf"> Created At </td><td class="col-pdf"> Total Amount </td></tr>
+        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('liability') %></td><td class="col-pdf"><%= t('created_at') %> </td><td class="col-pdf"><%= t('total_amount') %></td></tr>
         <% i = 0  %>
         <% c= 'even' %>
         <% @liabilities.each do |l| %>

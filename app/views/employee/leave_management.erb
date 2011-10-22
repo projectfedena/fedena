@@ -92,7 +92,7 @@
           <li><%= link_to_remote "#{t('new_text')}(#{@all_employee_total_leave_count})",
               :update => "application-list",
               :url => {:controller=>"employee_attendance",:action => "all_employee_new_leave_applications", :id=>@employee.id} %></li>
-          <li><%= link_to_remote "#{t('employee.hr.all_records')}",
+          <li><%= link_to_remote "#{t('all_records')}",
               :update => "application-list",
               :url => {:controller=>"employee",:action => "all_employee_leave_applications", :id=>@employee.id} %></li>
         </ul>

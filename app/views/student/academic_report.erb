@@ -64,7 +64,7 @@
               <% unless examres.grading.nil? %>
                 <div class="subject-results-grade"><%= examres.grading.name %></div>
               <% else %>
-                <div class="subject-results-grade">NA</div>
+                <div class="subject-results-grade"><%= t('n_a') %></div>
               <% end %>
               <div class="subject-results-precentage"><%= examres.percentage_marks %></div>
             </div>

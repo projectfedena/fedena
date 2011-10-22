@@ -64,7 +64,7 @@
       </ul>
 
       <% unless @old_batches.empty? %>
-        <h4>Archives</h4>
+        <h4><%= t('archives') %></h4>
         <ul>
           <% @old_batches.each do |b| %>
           <% unless @grouped_exams.empty? %>

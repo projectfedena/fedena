@@ -116,6 +116,10 @@ es: # locale
       finance_transaction_trigger:
         percentage: "Porcentaje"
 
+      fee_collection_particular:
+        name: "Nombre"
+        amount: "Cantidad"
+
       liablility:
         amount: "Cantidad"
         title:  "Título"
@@ -495,7 +499,6 @@ es: # locale
   total_leaves_taken: "Total de hojas tomadas"
   cancel: "Cancelar"
   select_the_department: "Seleccione el departamento"
-  search: "Búsqueda"
   emp_id: "Emp ID"
   approve: "Aprobar"
   apply: "Aplicar"
@@ -506,7 +509,6 @@ es: # locale
   register: "Registro"
   report: "Informe"
   no_users: "No se encontraron usuarios"
-  student: "Estudiante"
   student_details: "Detalles de los estudiantes"
   examinations: "Exámenes"
   reset: "Reajustar"

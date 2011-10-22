@@ -34,7 +34,7 @@
 
         <% selected_dept = params[:payslip].blank? ? "" : params[:payslip][:department_id].blank? ? "" : params[:payslip][:department_id] %>
         <% selected_salary_date = params[:payslip].blank? ? "" : params[:payslip][:salary_date].blank? ? "" : params[:payslip][:salary_date] %>
-        <div class="text-input-bg"> <%= f.select :department_id, [["#{t('all_departments')}","#{t('all')}"]] + @departments.map { |c| [c.name, c.id] }, {:selected=>selected_dept.to_i,:prompt => "#{t('select_department')}"}
+        <div class="text-input-bg"> <%= f.select :department_id, [["#{t('all_departments')}","All"]] + @departments.map { |c| [c.name, c.id] }, {:selected=>selected_dept.to_i,:prompt => "#{t('select_department')}"}
         %>
         </div></div>
       <div class="label-field-pair">

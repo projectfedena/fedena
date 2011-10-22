@@ -64,7 +64,7 @@
     border:none;
     font-family: arial;
     cursor:pointer;
-    margin: 4px auto 0;
+    margin: 20px auto 0;
 }
 .submit_button:hover{
     background:  #373B3F;
@@ -178,8 +178,8 @@
 
 .fine_info{
     float:right;
-    height:28px;
-    width:670px;
+    height:36px;
+    width:710px;
 
 }
 
@@ -200,7 +200,7 @@
 .name{
     color: #999999;
     float: left;
-    width: 160px;
+    width: 220px;
     font-weight: bold;
     font-size: 13px;
 }

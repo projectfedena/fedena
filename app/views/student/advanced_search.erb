@@ -102,7 +102,7 @@
       <div class="label-field-pair">
         <label for="student_grade"><%= t('admission_date') %></label>
         <div class="text-input-bg">
-          <%= select :advv_search,:doa_option,["#{t('equal_to')}","#{t('less_than')}","#{t('greater_than')}"],{:prompt=>"#{t('option')}"},
+          <%= select :advv_search,:doa_option,[["#{t('equal_to')}","equal_to"],["#{t('less_than')}","less_than"],["#{t('greater_than')}","greater_than"]],{:prompt=>"#{t('option')}"},
             {:onChange => "#{remote_function(:url => {:action => "list_doa_year"},
             :with=>"'doa_option='+value",
             :before => "Element.show('loader')",
@@ -123,7 +123,7 @@
       <div class="label-field-pair">
         <label for="student_birth_date"><%= t('birth_date') %></label>
         <div class="text-input-bg">
-          <%= select :advv_search,:dob_option,["#{t('equal_to')}","#{t('less_than')}","#{t('greater_than')}"],{:prompt=>"#{t('option')}"},
+          <%= select :advv_search,:dob_option,[["#{t('equal_to')}","equal_to"],["#{t('less_than')}","less_than"],["#{t('greater_than')}","greater_than"]],{:prompt=>"#{t('option')}"},
             {:onChange => "#{remote_function(:url => {:action => "list_dob_year"},
             :with=>"'dob_option='+value",
             :before => "Element.show('loader')",
@@ -156,7 +156,7 @@
       </div>
 
 
-      <%= f.submit "#{t('search')}", :class=>'submit' %>
+      <%= f.submit "#{t('search_text')}", :class=>'submit' %>
     <% end %>
   </div>
   <% unless @students.nil? %>
@@ -175,7 +175,7 @@
 
         <%= link_to "►#{t('search_again')}", {:action=>"advanced_search"}%>
         <% unless @students.empty? %>
-          <%= link_to "► View PDF report",   {:action => "advanced_search_pdf", :search=> params[:search],:advv_search=>params[:advv_search],:adv_search=>params[:adv_search]}, :target => '_blank' , :class=> 'submit_button' %>
+          <%= link_to "► #{t('view')} #{t('pdf_report')}",   {:action => "advanced_search_pdf", :search=> params[:search],:advv_search=>params[:advv_search],:adv_search=>params[:adv_search]}, :target => '_blank' , :class=> 'submit_button' %>
         <% end %>
       </div>
       <div class="extender"></div>

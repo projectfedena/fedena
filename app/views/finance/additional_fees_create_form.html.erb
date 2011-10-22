@@ -41,7 +41,7 @@
    </div>
        <div class="label-field-pair">
     <div class="label-container"><label><%= t('batch') %> : </label></div>
-    <div class="input-container"><%= form.select :batch_id, @batches.map { |c| [c.full_name, c.id] },:prompt => "Select Batch"  %></div>
+    <div class="input-container"><%= form.select :batch_id, @batches.map { |c| [c.full_name, c.id] },:prompt => "#{t('select_batch')}"  %></div>
    </div>
        <div class="label-field-pair">
     <div class="label-container"><label><%= t('start_date') %> <span class="necessary-field">*</span> :</label> </div>

@@ -118,7 +118,7 @@
               <% paid += p.amount.to_f %>
               <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
                 <td class="col-pdf"><%= i+=1 %></td>
-                <td class="col-pdf"><%= "Partial Payment done on " + p.transaction_date.to_s %></td>
+                <td class="col-pdf"><%= "#{t('partial_payment_on')}" + p.transaction_date.to_s %></td>
                 <td class="col-pdf"><%= "-"+@currency_type.to_s + " " +(p.amount.to_s) %></td>
               </tr>
 

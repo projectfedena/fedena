@@ -40,7 +40,7 @@
  <div class="label-field-pair">
     <label for="reason"> <%= t('select_student_category') %>:</label>
     <div class="text-input-bg">
-      <%= form.select(:receiver_id, @student_categories.map { |item| [item.name, item.id] },{:prompt=>"Select Student Category"})%></div>
+      <%= form.select(:receiver_id, @student_categories.map { |item| [item.name, item.id] },{:prompt=>"#{t('select_student_category')}"})%></div>
  </div>
 
 

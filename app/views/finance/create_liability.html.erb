@@ -28,7 +28,7 @@
 <div id="page-yield">
 
   <div class="link-heading">
-    <%= link_to_function("#{t('create')}") { |page|
+    <%= link_to_function("#{t('create_text')}") { |page|
       page.replace_html 'modal-box', :partial => 'create_liability_form'
       page << "Modalbox.show($('modal-box'), {title: '#{t('creates_new_liability')}', width: 500});"
     } %>

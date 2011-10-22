@@ -628,34 +628,34 @@ class StudentController < ApplicationController
         end
       end
       @searched_for = ''
-      @searched_for += '<span>Name: </span>' + params[:search][:first_name_or_middle_name_or_last_name_like].to_s unless params[:search][:first_name_or_middle_name_or_last_name_like].empty?
-      @searched_for += ' <span>Admission no.: </span>' + params[:search][:admission_no_equals].to_s unless params[:search][:admission_no_equals].empty?
+      @searched_for += "<span>#{t('name')}: </span>" + params[:search][:first_name_or_middle_name_or_last_name_like].to_s unless params[:search][:first_name_or_middle_name_or_last_name_like].empty?
+      @searched_for += " <span>#{t('admission_no')}: </span>" + params[:search][:admission_no_equals].to_s unless params[:search][:admission_no_equals].empty?
       unless params[:advv_search][:course_id].empty?
         course = Course.find(params[:advv_search][:course_id])
         batch = Batch.find(params[:search][:batch_id_equals]) unless (params[:search][:batch_id_equals]).blank?
-        @searched_for += ' <span>Course: </span>' + course.full_name
-        @searched_for += ' <span>Batch: </span>' + batch.full_name unless batch.nil?
+        @searched_for += "<span>#{t('course_text')}: </span>" + course.full_name
+        @searched_for += "<span>#{t('batch')}: </span>" + batch.full_name unless batch.nil?
       end
-      @searched_for += ' <span>Category: </span>' + StudentCategory.find(params[:search][:student_category_id_equals]).name.to_s unless params[:search][:student_category_id_equals].empty?
+      @searched_for += "<span>#{t('category')}: </span>" + StudentCategory.find(params[:search][:student_category_id_equals]).name.to_s unless params[:search][:student_category_id_equals].empty?
       unless  params[:search][:gender_equals].empty?
         if  params[:search][:gender_equals] == 'm'
-          @searched_for += " <span>Gender: </span>male"
+          @searched_for += "<span>#{t('gender')}: </span>#{t('male')}"
         elsif  params[:search][:gender_equals] == 'f'
-          @searched_for += " <span>Gender: </span>female"
+          @searched_for += " <span>#{t('gender')}: </span>#{t('female')}"
         else
-          @searched_for += " <span>Gender: </span>All"
+          @searched_for += " <span>#{t('gender')}: </span>#{t('all')}"
         end
       end
-      @searched_for += '<span> Blood group: </span>' + params[:search][:blood_group_like].to_s unless params[:search][:blood_group_like].empty?
-      @searched_for += '<span> Nationality: </span>' + Country.find(params[:search][:nationality_id_equals]).name.to_s unless params[:search][:nationality_id_equals].empty?
-      @searched_for += '<span> Year of admission: </span>' +  params[:advv_search][:doa_option].to_s + ' '+ params[:adv_search][:admission_date_year].to_s unless  params[:advv_search][:doa_option].empty?
-      @searched_for += '<span> Year of birth: </span>' +  params[:advv_search][:dob_option].to_s + ' ' + params[:adv_search][:birth_date_year].to_s unless  params[:advv_search][:dob_option].empty?
+      @searched_for += "<span>#{t('blood_group')}: </span>" + params[:search][:blood_group_like].to_s unless params[:search][:blood_group_like].empty?
+      @searched_for += "<span>#{t('nationality')}: </span>" + Country.find(params[:search][:nationality_id_equals]).name.to_s unless params[:search][:nationality_id_equals].empty?
+      @searched_for += "<span>#{t('year_of_admission')}: </span>" +  params[:advv_search][:doa_option].to_s + ' '+ params[:adv_search][:admission_date_year].to_s unless  params[:advv_search][:doa_option].empty?
+      @searched_for += "<span>#{t('year_of_birth')}: </span>" +  params[:advv_search][:dob_option].to_s + ' ' + params[:adv_search][:birth_date_year].to_s unless  params[:advv_search][:dob_option].empty?
       if params[:search][:is_active_equals]=="true"
-        @searched_for += "<span> Present students</span>"
+        @searched_for += "<span>#{t('present_student')}</span>"
       elsif params[:search][:is_active_equals]=="false"
-        @searched_for += "<span> Former students</span> "
+        @searched_for += "<span>#{t('former_student')}</span>"
       else
-        @searched_for += "<span> All students</span>"
+        @searched_for += "<span>#{t('all_students')}</span>"
       end
     end
   end
@@ -780,34 +780,34 @@ class StudentController < ApplicationController
 
   def advanced_search_pdf
     @searched_for = ''
-    @searched_for += '<span>Name: </span>' + params[:search][:first_name_or_middle_name_or_last_name_like].to_s unless params[:search][:first_name_or_middle_name_or_last_name_like].empty?
-    @searched_for += ' <span>Admission no.: </span>' + params[:search][:admission_no_equals].to_s unless params[:search][:admission_no_equals].empty?
+    @searched_for += "<span>#{t('name')}</span>" + params[:search][:first_name_or_middle_name_or_last_name_like].to_s unless params[:search][:first_name_or_middle_name_or_last_name_like].empty?
+    @searched_for += "<span>#{t('admission_no')}</span>" + params[:search][:admission_no_equals].to_s unless params[:search][:admission_no_equals].empty?
     unless params[:advv_search][:course_id].empty?
       course = Course.find(params[:advv_search][:course_id])
       batch = Batch.find(params[:search][:batch_id_equals]) unless (params[:search][:batch_id_equals]).blank?
-      @searched_for += ' <span>Course: </span>' + course.full_name
-      @searched_for += ' <span>Batch: </span>' + batch.full_name unless batch.nil?
+      @searched_for += "<span>#{t('course_text')}</span>" + course.full_name
+      @searched_for += "<span>#{t('batch')}</span>" + batch.full_name unless batch.nil?
     end
-    @searched_for += ' <span>Category: </span>' + StudentCategory.find(params[:search][:student_category_id_equals]).name.to_s unless params[:search][:student_category_id_equals].empty?
+    @searched_for += "<span>#{t('category')}</span>" + StudentCategory.find(params[:search][:student_category_id_equals]).name.to_s unless params[:search][:student_category_id_equals].empty?
     unless  params[:search][:gender_equals].empty?
       if  params[:search][:gender_equals] == 'm'
-        @searched_for += " <span>Gender: </span>male"
+        @searched_for += "<span>#{t('gender')}</span>#{t('male')}"
       elsif  params[:search][:gender_equals] == 'f'
-        @searched_for += " <span>Gender: </span>female"
+        @searched_for += "<span>#{t('gender')}</span>#{t('female')}"
       else
-        @searched_for += " <span>Gender: </span>All"
+        @searched_for += "<span>#{t('gender')}</span>#{t('all')}"
       end
     end
-    @searched_for += '<span> Blood group: </span>' + params[:search][:blood_group_like].to_s unless params[:search][:blood_group_like].empty?
-    @searched_for += '<span> Nationality: </span>' + Country.find(params[:search][:nationality_id_equals]).name.to_s unless params[:search][:nationality_id_equals].empty?
-    @searched_for += '<span> Year of admission: </span>' +  params[:advv_search][:doa_option].to_s + ' '+ params[:adv_search][:admission_date_year].to_s unless  params[:advv_search][:doa_option].empty?
-    @searched_for += '<span> Year of birth: </span>' +  params[:advv_search][:dob_option].to_s + ' ' + params[:adv_search][:birth_date_year].to_s unless  params[:advv_search][:dob_option].empty?
+    @searched_for += "<span>#{t('blood_group')}</span>" + params[:search][:blood_group_like].to_s unless params[:search][:blood_group_like].empty?
+    @searched_for += "<span>#{t('nationality')}</span>" + Country.find(params[:search][:nationality_id_equals]).name.to_s unless params[:search][:nationality_id_equals].empty?
+    @searched_for += "<span>#{t('year_of_admission')}:</span>" +  params[:advv_search][:doa_option].to_s + ' '+ params[:adv_search][:admission_date_year].to_s unless  params[:advv_search][:doa_option].empty?
+    @searched_for += "<span>#{t('year_of_birth')}:</span>" +  params[:advv_search][:dob_option].to_s + ' ' + params[:adv_search][:birth_date_year].to_s unless  params[:advv_search][:dob_option].empty?
     if params[:search][:is_active_equals]=="true"
-      @searched_for += "<span> Present students</span>"
+      @searched_for += "<span>#{t('present_student')}</span>"
     elsif params[:search][:is_active_equals]=="false"
-      @searched_for += "<span> Former students</span>"
+      @searched_for += "<span>#{t('former_student')}</span>"
     else
-      @searched_for += "<span> All students</span>"
+      @searched_for += "<span>#{t('all_students')}</span>"
     end
 
     unless params[:advv_search][:course_id].empty?

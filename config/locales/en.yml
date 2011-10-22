@@ -116,6 +116,10 @@ en: # locale
       finance_transaction_trigger:
         percentage: "Percentage"
 
+      fee_collection_particular:
+        name: "Name"
+        amount: "Amount"
+
       liablility:
         amount: "Amount"
         title:  "Title"
@@ -502,7 +506,6 @@ en: # locale
   register: "Register"
   report: "Report"
   no_users: "No users found"
-  student: "Student"
   student_details: "Student Details"
   examinations: "Examinations"
   reset: "Reset"

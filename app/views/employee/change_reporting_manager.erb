@@ -73,10 +73,10 @@
       :url=> {:action=>'update_reporting_manager_name'} %>
 
       <div id="advanced-options">
-        <div class="employee-search-options"><%= select :employee, :department_id, @departments.map {|s| [s.name, s.id]}, :prompt => "#{t('search.select_department')}" %></div>
-        <div class="employee-search-options"><%= select :employee, :category_id,   @categories.map {|s| [s.name, s.id]},  :prompt => "#{t('search.select_category')}" %></div>
-        <div class="employee-search-options"><%= select :employee, :position_id,   @positions.map {|s| [s.name, s.id]},   :prompt => "#{t('search.select_position')}" %></div>
-        <div class="employee-search-options"><%= select :employee, :grade_id,      @grades.map {|s| [s.name, s.id]},      :prompt => "#{t('search.select_grade')}" %></div>
+        <div class="employee-search-options"><%= select :employee, :department_id, @departments.map {|s| [s.name, s.id]}, :prompt => "#{t('select_department')}" %></div>
+        <div class="employee-search-options"><%= select :employee, :category_id,   @categories.map {|s| [s.name, s.id]},  :prompt => "#{t('select_category')}" %></div>
+        <div class="employee-search-options"><%= select :employee, :position_id,   @positions.map {|s| [s.name, s.id]},   :prompt => "#{t('select_position')}" %></div>
+        <div class="employee-search-options"><%= select :employee, :grade_id,      @grades.map {|s| [s.name, s.id]},      :prompt => "#{t('select_grade')}" %></div>
         <div class="extender"></div>
       </div>
     </div>
