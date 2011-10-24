@@ -1705,6 +1705,9 @@ es: # locale
   minmarks_cant_be_more_than_maxmarks: "las marcas de mínimo no puede ser más que las marcas máx."
   end_time_cannot_before_start_time: "Hora de finalización no puede ser anterior a la hora de inicio"
   can_not_be_before_the_start_time: "no puede ser antes de la hora de inicio"
+  start_date_cant_be_after_end_date: "la fecha de inicio no puede ser después de la fecha de finalización"
+  start_date_cant_be_after_due_date: "la fecha de inicio no puede ser después de la fecha de vencimiento"
+  end_date_cant_be_after_due_date: "fecha de finalización no puede ser después de la fecha de vencimiento"
 
   flash_msg1: "Actualizado grupo de examen adicional con éxito."
   flash_msg2: "Triste"

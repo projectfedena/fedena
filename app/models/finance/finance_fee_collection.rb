@@ -33,9 +33,9 @@ class FinanceFeeCollection < ActiveRecord::Base
 
   def validate
     unless self.start_date.nil? or self.end_date.nil?
-      errors.add_to_base("start date cant be after end date") if self.start_date > self.end_date
-      errors.add_to_base("start date cant be after due date") if self.start_date > self.due_date
-      errors.add_to_base("end date cant be after due date") if self.end_date > self.due_date
+      errors.add_to_base("#{t('start_date_cant_be_after_end_date')}") if self.start_date > self.end_date
+      errors.add_to_base("#{t('start_date_cant_be_after_due_date')}") if self.start_date > self.due_date
+      errors.add_to_base("#{t('end_date_cant_be_after_due_date')}") if self.end_date > self.due_date
     else
     end
   end

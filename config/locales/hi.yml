@@ -1699,6 +1699,9 @@ hi:
   minmarks_cant_be_more_than_maxmarks: "न्यूनतम निशान अधिकतम निशान से अधिक नहीं हो सकता."
   end_time_cannot_before_start_time: "समाप्ति समय प्रारंभ समय से पहले नहीं किया जा सकता है."
   can_not_be_before_the_start_time: "समय से पहले शुरू नहीं किया जा सकता है"
+  start_date_cant_be_after_end_date: "आरंभ तिथि समाप्ति तिथि के बाद खिचड़ी भाषा"
+  start_date_cant_be_after_due_date: "आरंभ तिथि नियत तारीख के बाद खिचड़ी भाषा"
+  end_date_cant_be_after_due_date: "समाप्ति तिथि नियत तारीख के बाद खिचड़ी भाषा"
 
   flash_msg1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक नवीनीकृत|"
   flash_msg2: "क्षमा करें"

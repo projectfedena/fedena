@@ -1699,6 +1699,9 @@ en: # locale
   minmarks_cant_be_more_than_maxmarks: "Minimum marks can't be more than max marks."
   end_time_cannot_before_start_time: "End time can not be before the start time"
   can_not_be_before_the_start_time: "can not be before the start time"
+  start_date_cant_be_after_end_date: "start date cant be after end date"
+  start_date_cant_be_after_due_date: "start date cant be after due date"
+  end_date_cant_be_after_due_date: "end date cant be after due date"
 
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"
