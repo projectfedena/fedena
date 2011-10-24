@@ -1699,6 +1699,8 @@ en: # locale
   configuration:
     flash1: "Invalid Extention. Image must be .JPG"
     flash2: "File too large. File size should be less than 1 MB"
+    daily_text: "Daily"
+    subject_wise_text: "SubjectWise"
 
 #courses controller translation
   courses:

@@ -2,6 +2,7 @@ es: # locale
   activerecord:
     attributes:
 
+        
       student:
         first_name: "Primer nombre"
         admission_no: "Admisión número"
@@ -1703,6 +1704,9 @@ es: # locale
   configuration:
     flash1: "Extensión no válida. La imagen debe ser. JPG"
     flash2: "Archivo demasiado grande. Tamaño del archivo debe ser inferior a 1 MB"
+    daily_text: "Diario"
+    subject_wise_text: "SubjectWise"
+
 
 #courses controller translation
   courses:

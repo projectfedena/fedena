@@ -59,7 +59,7 @@
 }
 
 .submit_button {
-    margin-left: 210px;
+    margin-right: 240px;
     padding: 7px 10px;
     color: #fff;
     background: #27292B;
@@ -72,7 +72,7 @@
     cursor:pointer;
     margin-top: 10px;
     margin-bottom:20px;
-
+    float: right;
 }
 .submit_button:hover{
     background:  #373B3F;

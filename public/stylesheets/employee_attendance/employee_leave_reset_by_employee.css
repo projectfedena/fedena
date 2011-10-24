@@ -30,7 +30,6 @@
 
 #search_textbox input{
     background : #eee;
-    float:left;
     border : 1px solid #c6c6c6;
     margin : -5px 0 0 10px;
     width : 180px;
@@ -68,10 +67,9 @@
 }
 
 .advanced_options{
-    margin-left:3px;
+    margin-left:304px;
     margin-top:5px;
     width:600px;
-    float:left;
 }
 
 
@@ -86,11 +84,10 @@
 
 .advanced-options-select {
     background : #fff url(../../images/form_bg/smalltextbox.jpg) no-repeat;
-    height : 28px;
+    height : 43px;
     width : 150px;
-    float:left;
 }
 #form-content{
     width:300px;
-    float:left;
+    margin-left: 200px;
 }

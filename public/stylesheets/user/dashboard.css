@@ -1,6 +1,6 @@
 #content_header {
     padding-left:20px;
-    height:137px;
+    height:150px;
     background:#fff url(../../images/fedena_user/dashboard/content_header_img.jpg) bottom no-repeat;
 }
 #content_header h1 {
@@ -10,7 +10,7 @@
     color:#999;
 }
 #content_header h3 {
-    margin:0px;
+    margin-top:0px;
     padding:0px;
     color:#b00;
 }
