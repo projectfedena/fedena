@@ -125,3 +125,6 @@
 .label-field-pair input, .label-field-pair textarea{
     width:300px;
 }
+#inner-tab-menu ul li {
+    width: 173px;
+}

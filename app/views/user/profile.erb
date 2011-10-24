@@ -75,7 +75,7 @@
         <% end %>
       <% end %>
       <% if @user.admin and @current_user.id != @user.id and @employee.nil? %>
-      <%= link_to "► #{t('delete_text')}", { :controller => "user", :action => "delete", :id => @user.username}, :class => "user_button", :confirm=>"Are you sure you want to delete this USER?" %>
+      <%= link_to "► #{t('delete_text')}", { :controller => "user", :action => "delete", :id => @user.username}, :class => "user_button", :confirm=>"#{t('are_you_sure_to_delete_user')}" %>
       <% end %>
     </div>
   <% end %>

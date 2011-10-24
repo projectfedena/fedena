@@ -109,14 +109,14 @@
             <td class="col-2"><%= t.title %> </td>
             <td></td>
             <td class="col-3" align="right"><%=  t.amount%></td>
-            <td class="col-3"><%= I18n.l(t.transaction_date:format=>"%m-%d-%Y")%></td>
+            <td class="col-3"><%= t.transaction_date%></td>
             <%income_total +=t.amount%>
 
           <%else%>
             <td class="col-2"><%= t.title %> </td>
             <td class="col-3" align="right"><%=  t.amount%></td>
             <td></td>
-            <td class="col-3"><%=I18n.l(t.transaction_date:format=>"%m-%d-%Y")%></td>
+            <td class="col-3"><%=  t.transaction_date%></td>
 
             <%expenses_total +=t.amount%>
           <%end%>

@@ -38,12 +38,14 @@ en: # locale
 
       attendance:
         student_id: "Student ID"
+        reason: "Reason"
 
       batch:
         name: "Name"
 
       class_timing:
         name: "Name"
+        start_time: "Start time"
 
       elective_group:
         name: "name"
@@ -88,7 +90,12 @@ en: # locale
 
       asset:
         amount: "Amount"
+        title: "Title"
 
+      liability:
+        amount: "Amount"
+        title: "Title"
+        
       finance_donation:
         donor: "Donor"
 
@@ -371,7 +378,6 @@ en: # locale
   remove_all: "remove All"
   select_all: "Select All"
   total: "Total"
-  all_text: "All"
   teacher: "Teacher"
   total_average: "Total Average"
   continue: "Continue"
@@ -523,6 +529,7 @@ en: # locale
   ok: "OK"
   student_report: "Student Report"
   select_mode: "Select a mode"
+  please_select_mode: "Please select mode"
   select_a_subject: "Select a subject"
   all_subjects: "All Subjects"
   edit_attendance_for: "Edit attendance for"
@@ -998,7 +1005,6 @@ en: # locale
   reason: "Reason"
   remove_record: "Remove employee records"
   remove_record_msg: "Completely delete employee's records from the Institution's databases. Use this option only if you created the employee record by accident and want to remove it completely."
-  confirm: "This will also unassign employee from all his current subjects , Do you want to proceed ?"
   change_reporting_manager: "Change  reporting manager"
   below_listed_employees: "Below listed Employees are under this Manager. Please select and alternative manager "
   selected_new_manager: "Selected  New Manager"
@@ -1682,6 +1688,17 @@ en: # locale
   event_creations: "Event Creation"
   fedena_logo: "/images/application/app_fedena_logo.jpg"
   key: "My Copyright"
+  are_you_sure_to_delete_the_user: "Are you sure you want to delete this USER?"
+  manage_examinations: "Manage Examinations"
+  invalid_parameters: "Invalid parameters."
+  is_same_as_end_time: "is same as end time"
+  class_time_overlaps_with_existing: "Class timing overlaps with existing class timing"
+  overlap_existing_class_timing: "overlaps existing class timing"
+  should_be_later: "should be later than start time"
+  attendance_before_the_date_of_admission: "Attendance before the date of admission"
+  minmarks_cant_be_more_than_maxmarks: "Minimum marks can't be more than max marks."
+  end_time_cannot_before_start_time: "End time can not be before the start time"
+  can_not_be_before_the_start_time: "can not be before the start time"
 
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"

@@ -68,7 +68,7 @@ class StudentAttendanceController < ApplicationController
         end
       else
         render :update do |page|
-          page.replace_html 'error-container', :text => '<div id="errorExplanation" class="errorExplanation"><p>Please select mode.</p></div>'
+          page.replace_html 'error-container', :text => "<div id='errorExplanation' class='errorExplanation'><p>#{t('please_select_mode')}.</p></div>"
         end
         return
       end

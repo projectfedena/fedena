@@ -36,7 +36,7 @@
       <td class="col-1"><%= class_timing.name %></td>
       <td class="col-3"><%= class_timing.start_time.strftime("%I:%M %p") unless class_timing.start_time.nil? %></td>
       <td class="col-3"><%= class_timing.end_time.strftime("%I:%M %p") unless class_timing.end_time.nil? %></td>
-      <td class="col-3"><small><%= link_to_remote("#{t('edit')}",
+      <td class="col-3"><small><%= link_to_remote("#{t('edit_text')}",
           :url => edit_class_timing_path(class_timing), :method => 'get' ) %> |
     <% @tt = PeriodEntry.find_all_by_class_timing_id(class_timing.id ) %>
   <% if @tt.empty? %>

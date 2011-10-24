@@ -33,3 +33,6 @@
 #page-yield{
     margin: 0;
 }
+#inner-tab-menu ul li {
+    width: 173px;
+}

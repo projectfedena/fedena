@@ -45,7 +45,7 @@ class NewsController < ApplicationController
 
   def delete
     @news = News.find(params[:id]).destroy
-    flash[:notice] = "#{"flash2"}"
+    flash[:notice] = "#{t('flash2')}"
     redirect_to :controller => 'news', :action => 'index'
   end
 
@@ -57,7 +57,7 @@ class NewsController < ApplicationController
   def edit
     @news = News.find(params[:id])
     if request.post? and @news.update_attributes(params[:news])
-      flash[:notice] = "#{"flash3"}"
+      flash[:notice] = "#{t('flash3')}"
       redirect_to :controller => 'news', :action => 'view', :id => @news.id
     end
   end

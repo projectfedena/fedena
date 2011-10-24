@@ -32,7 +32,7 @@
       <tr class="odd"><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= @employee.employee_department.name unless @employee.employee_department.name.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('category') %></td><td class="col-pdf"><%= @employee.employee_category.name unless @employee.employee_category.name.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('position') %></td><td class="col-pdf"><%= @employee.employee_position.name unless @employee.employee_position.name.nil? %></td></tr>
-      <tr class="even"><td class="col-pdf"><%= t('employee.job_title') %></td><td class="col-pdf"><%= @employee.job_title unless @employee.job_title.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf"><%= t('job_title') %></td><td class="col-pdf"><%= @employee.job_title unless @employee.job_title.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('manager') %></td><td class="col-pdf"><%= @reporting_manager unless @reporting_manager.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('gender') %></td><td class="col-pdf"><%= @gender unless @gender.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('status') %></td><td class="col-pdf"><%= @status unless @status.nil? %></td></tr>
@@ -53,8 +53,8 @@
   <div id="personal_info">
     <table id="pdf-table" width="100%" cellspacing="0">
       <tr class="odd"><td class="col-pdf"><%= t('date_of_birth') %></td><td class="col-pdf"><%= @employee.date_of_birth unless @employee.date_of_birth.nil? %></td></tr>
-      <tr class="even"><td class="col-pdf"><%= t('employee.marital_status') %></td><td class="col-pdf"><%= @employee.marital_status unless @employee.marital_status.nil? %></td></tr>
-      <tr class="odd"><td class="col-pdf"><%= t('employee.no_of_children') %></td><td class="col-pdf"><%= @employee.children_count unless @employee.children_count.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf"><%= t('marital_status') %></td><td class="col-pdf"><%= @employee.marital_status unless @employee.marital_status.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf"><%= t('no_of_children') %></td><td class="col-pdf"><%= @employee.children_count unless @employee.children_count.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('father_name') %></td><td class="col-pdf"><%= @employee.father_name unless @employee.father_name.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('mother_name') %></td><td class="col-pdf"><%= @employee.mother_name unless @employee.mother_name.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('spouse_name') %></td><td class="col-pdf"><%= @employee.husband_name unless @employee.husband_name.nil? %></td></tr>

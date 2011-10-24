@@ -19,7 +19,7 @@
 
 
 <% string = @to_users.inject('') { |arr, u| arr + u.to_s + ',' }.chomp(',') %>
-<% add = '<span> Add </span>' %>
+<% add = "<span>#{t('add')}</span>" %>
 <div class="label-field-pair">
   <label for="student_grade"><%= t('select_recipient') %></label>
   <div class ="scrolable" >

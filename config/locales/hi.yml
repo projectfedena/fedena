@@ -39,6 +39,7 @@ hi:
 
       attendance:
         student_id: "छात्र आईडी"
+        reason: "कारण"
 
       batch:
         name: "नाम"
@@ -89,6 +90,11 @@ hi:
 
       asset:
         amount: "राशि"
+        title: "शीर्षक"
+
+      liability:
+        amount: "राशि"
+        title: "शीर्षक"
 
       finance_donation:
         donor: "दाता"
@@ -523,6 +529,7 @@ hi:
   ok: "ठीक है"
   student_report: "छात्र रिपोर्ट"
   select_mode: "एक मोड का चयन करें"
+  please_select_mode: "मोड का चयन करें"
   select_a_subject: "एक विषय चुनें"
   all_subjects: "सभी विषयों"
   edit_attendance_for: "के लिए उपस्थिति संपादित करें"
@@ -1681,6 +1688,17 @@ hi:
   event_creations: "इवेंट निर्माण"
   fedena_logo: "Images / / अनुप्रयोग / app_fedena_logo.jpg"
   key: "मेरे कॉपीराइट"
+  are_you_sure_to_delete_user: "क्या आप सुनिश्चित हैं कि आप इस प्रयोक्ता को हटाना चाहते हैं?"
+  manage_examinations: "परीक्षा प्रबंधित"
+  invalid_parameters: "अमान्य पैरामीटर."
+  is_same_as_end_time: "अंत समय के रूप में ही है"
+  class_time_overlaps_with_existing: "मौजूदा वर्ग के समय के साथ क्लास समय overlaps"
+  overlap_existing_class_timing: "overlaps के वर्ग मौजूदा समय"
+  should_be_later: "आरंभ समय से बाद में किया जाना चाहिए"
+  attendance_before_the_date_of_admission: "प्रवेश की तारीख से पहले उपस्थिति"
+  minmarks_cant_be_more_than_maxmarks: "न्यूनतम निशान अधिकतम निशान से अधिक नहीं हो सकता."
+  end_time_cannot_before_start_time: "समाप्ति समय प्रारंभ समय से पहले नहीं किया जा सकता है."
+  can_not_be_before_the_start_time: "समय से पहले शुरू नहीं किया जा सकता है"
 
   flash_msg1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक नवीनीकृत|"
   flash_msg2: "क्षमा करें"

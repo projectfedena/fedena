@@ -235,3 +235,6 @@
 table#listing .tr-odd, table#listing .tr-even{
     font-weight: 700 !important;
 }
+#inner-tab-menu ul li {
+    width: 173px;
+}

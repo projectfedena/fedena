@@ -42,12 +42,12 @@ class Exam < ActiveRecord::Base
   end
 
   def validate
-    errors.add_to_base("Minimum marks can't be more than max marks.") \
+    errors.add_to_base("#{t('minmarks_cant_be_more_than_maxmarks')}") \
       if minimum_marks and maximum_marks and minimum_marks > maximum_marks
-    errors.add_to_base("Minimum marks can't be more than max marks.") \
+    errors.add_to_base("#{t('minmarks_cant_be_more_than_maxmarks')}") \
       if minimum_marks and maximum_marks and minimum_marks > maximum_marks
     unless self.start_time.nil? or self.end_time.nil?
-      errors.add_to_base("End time can not be before the start time")if self.end_time < self.start_time
+      errors.add_to_base("#{t('end_time_cannot_before_start_time')}")if self.end_time < self.start_time
     end
   end
 

@@ -37,7 +37,7 @@
 
     <div class="label-field-pair">
       <label for="email_recipients"><%= t('recipient') %></label>
-      <div class="text-input-bg"><%= select 'email', 'recipients', ['Students', 'Guardians', 'Students & Guardians'] %></div>
+      <div class="text-input-bg"><%= select 'email', 'recipients', [["#{t('students')}","Students"], ["#{t('guardians')}","Guardians"], ["#{t('students')} & #{t('guardians')}","Students & Guardians"]] %></div>
     </div>
 
     <div class="message-area">

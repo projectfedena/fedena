@@ -56,7 +56,7 @@
       <tr class="tr-head">
         <td><%= t('exam_name') %></td>
         <% if @current_user.admin? or @user_privileges.map{|p| p.name}.include?('ExaminationControl') or @user_privileges.map{|p| p.name}.include?('EnterResults') %>
-          <td> <%= t('action') %> <%= image_tag("loader.gif",
+          <td> <%= t('actions') %> <%= image_tag("loader.gif",
               :align => "absmiddle",
               :border => 0,
               :id => "loader",

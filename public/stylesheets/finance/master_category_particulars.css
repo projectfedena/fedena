@@ -181,3 +181,6 @@
     text-align: center;
     width: 142px;
 }
+table#listing td.col-4 {
+    width: 28%;
+}

@@ -39,7 +39,7 @@
 <% end %>
 <h4><%= t('garduating_batch') %>: <%= @batch.full_name %></h4>
 <% form_for :graduate do |f| %>
-  <%= t('index.graduation_message') %>
+  <%= t('graduation_message') %>
      <div class="label-field-pair">
           <label for="subject_id"><%= t('status_description') %> : </label>
           <div class="text-input-bg"><%= f.text_field 'status_description' %></div>

@@ -80,7 +80,7 @@
     border:none;
     font-family: arial;
     cursor:pointer;
-    margin-top:4px;
+    margin-top:25px;
 }
 .submit_button:hover{
     background:  #373B3F;
@@ -109,7 +109,7 @@
 
 #fee-defaulters{
     float: right;
-    width:600px;
+    width:741px;
 }
 
 .label-field-pair {
@@ -153,7 +153,7 @@
 
 
 h5{
-    width:380px;
+    width:480px;
     float: left;
 }
 
@@ -161,7 +161,7 @@ h5{
 .name{
     color: #999999;
     float: left;
-    width: 160px;
+    width: 212px;
     font-weight: bold;
     font-size: 13px;
 }

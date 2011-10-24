@@ -300,7 +300,7 @@ class ExamController < ApplicationController
       end
     else
       if params[:type].nil?
-        flash[:notice] = "Invalid parameters."
+        flash[:notice] = "#{t('invalid_parameters')}"
         redirect_to :action=>'grouped_exam_report' and return
       end
     end

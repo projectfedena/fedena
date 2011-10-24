@@ -31,7 +31,7 @@
     <%= submit_tag "#{t('filter')}",:class=>'submit_button'  %>
     <div class="label-field-pair1">
       <label><%= t('filter') %>:</label>
-      <div class="text-input-bg1"><%= f.select :range, ["#{t('below')}", "#{t('above')}", "#{t('equals')}"] %></div>
+      <div class="text-input-bg1"><%= f.select :range, [["#{t('below')}","Below"], ["#{t('above')}","Above"], ["#{t('equals')}","Equals"]] %></div>
       <div class="text-input-bg1"><%= f.text_field :value %></div></div>
   <% end %>
   <div class="label-field-pair">

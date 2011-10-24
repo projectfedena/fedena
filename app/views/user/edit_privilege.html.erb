@@ -34,7 +34,7 @@
   <div id="list">
 
     <div class="sel-list">
-      <%=  t('select') %>: <%= link_to_function "#{t('all_text')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+      <%=  t('select') %>: <%= link_to_function "#{t('all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
       <%= link_to_function "#{t('none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
     </div>
 

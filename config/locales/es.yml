@@ -39,12 +39,14 @@ es: # locale
 
       attendance:
         student_id: "Identificación del estudiante"
+        reason: "Razón"
 
       batch:
         name: "Nombre"
 
       class_timing:
         name: "Nombre"
+        start_time: "Hora de inicio"
 
       elective_group:
         name: "nombre"
@@ -89,6 +91,11 @@ es: # locale
 
       asset:
         amount: "Cantidad"
+        title: "Título"
+
+      liability:
+        amount: "Cantidad"
+        title: "Título"
 
       finance_donation:
         donor: "Donante"
@@ -527,6 +534,7 @@ es: # locale
   ok: "Aceptar"
   student_report: "Estudiantes Informe"
   select_mode: "Seleccione un modo de"
+  please_select_mode: "Por favor, seleccione el modo"
   select_a_subject: "Seleccione un tema"
   all_subjects: "Todas las materias"
   edit_attendance_for: "Edición de asistencia para"
@@ -1003,7 +1011,6 @@ es: # locale
   reason: "Razón"
   remove_record: "Eliminar los registros de empleados"
   remove_record_msg: "Eliminar por completo los registros de empleados de las bases de datos de la Institución. Utilice esta opción sólo si ha creado el registro del empleado por accidente y desea eliminarlo por completo."
-  confirm: "Esto también anular la asignación de los empleados de todos sus temas de actualidad, ¿Desea continuar?"
   change_reporting_manager: "Cambiar la presentación de informes gerente"
   below_listed_employees: "Los empleados se enumeran a continuación están bajo esta Manager. Por favor, gerente de seleccionar y alternativa"
   selected_new_manager: "Gerente de Nuevos seleccionados"
@@ -1687,6 +1694,17 @@ es: # locale
   event_creations: "Creación de eventos"
   fedena_logo: "/ Images / application / app_fedena_logo.jpg"
   key: "Mis derechos de autor"
+  are_you_sure_to_delete_user: "¿Está seguro que desea eliminar este usuario?"
+  manage_examinations: "administrar los exámenes"
+  invalid_parameters: "Parámetros no válidos."
+  is_same_as_end_time: "es el mismo que del tiempo del fin"
+  class_time_overlaps_with_existing: "se superpone con la sincronización de tiempo de clase de clase existentes"
+  overlap_existing_class_timing: "coincidencias existentes de tiempo de clase"
+  should_be_later: "debe ser posterior al tiempo de inicio"
+  attendance_before_the_date_of_admission: "La asistencia antes de la fecha de admisión"
+  minmarks_cant_be_more_than_maxmarks: "las marcas de mínimo no puede ser más que las marcas máx."
+  end_time_cannot_before_start_time: "Hora de finalización no puede ser anterior a la hora de inicio"
+  can_not_be_before_the_start_time: "no puede ser antes de la hora de inicio"
 
   flash_msg1: "Actualizado grupo de examen adicional con éxito."
   flash_msg2: "Triste"

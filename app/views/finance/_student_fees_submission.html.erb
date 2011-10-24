@@ -157,8 +157,8 @@
           <% paid += p.amount.to_f %>
           <tr class="tr-<%= cycle("odd","even") %>">
             <td class="col-1"><%= i+=1 %></td>
-            <td class="col-2">2<%= t('partial_payment_on') %> <%= p.transaction_date %></td>
-            <td class="col-6">-<%= p.amount.to_f %></td>
+            <td class="col-2"><%= t('partial_payment_on') %> <%= p.transaction_date %></td>
+            <td class="col-6"><%= p.amount.to_f %></td>
           </tr>
         <% end %>
         <% total_fees -= paid %>

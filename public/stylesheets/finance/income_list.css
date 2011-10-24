@@ -21,4 +21,6 @@
     width:750px;
     margin:0px auto;
 }
-
+.label-field-pair label {
+    width: 243px;
+}

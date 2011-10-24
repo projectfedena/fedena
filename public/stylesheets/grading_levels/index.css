@@ -4,7 +4,7 @@
 }
 
 .label-field-pair label { 
-    width:100px;
+    width:108px;
 }
 
 #grading-levels {
@@ -22,7 +22,7 @@
     font-size:14px;
     font-weight:bold;
     padding:7px;
-    margin-left: 50px;
+    margin-left: 162px;
 }
 .submit_button:hover{
     background:  #373B3F;

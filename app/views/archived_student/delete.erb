@@ -30,10 +30,10 @@
 
   <div id="delete-student">
     <h4><%= t('delete_student') %></h4>
-    <p><%= t('student.description1') %>.</p>
+    <p><%= t('description1') %>.</p>
 
-    <p class="warning">(<%= t('student.description2') %>.)</p>
-    <%= link_to "►#{t('delete_text')}", { :action => 'destroy', :id =>params[:id]}, :confirm => "#{t('are_you_sure')}", :class=> 'user_button' %>
+    <p class="warning">(<%= t('description2') %>.)</p>
+    <%= link_to "►#{t('delete_text')}", { :action => 'destroy', :id =>params[:id]}, :confirm => "#{t('delete_confirm_msg')}", :class=> 'user_button' %>
   </div>
 
 </div>

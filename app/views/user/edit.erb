@@ -70,13 +70,13 @@
 
             <% if @current_user.role_name == "Admin"  and @current_user.username == @user.username  %>
               <%= select :user, :role,
-                ["#{t('admin')}"], :selected => @user.role_name %>
+                [["#{t('admin')}","Admin"]], :selected => @user.role_name %>
             <% elsif @user.username == "admin" %>
               <%= select :user, :role,
-                ["#{t('admin')}"], :selected => @user.role_name %>
+                [["#{t('admin')}","Admin"]], :selected => @user.role_name %>
             <%  else %>
               <%= select :user, :role,
-                ['Admin'], :selected => @user.role_name %>
+                [["#{t('admin')}","Admin"]], :selected => @user.role_name %>
             <% end  %>
 
           </div>

@@ -48,7 +48,7 @@
           <td class="col-3"><%= d.description %></td>
           <td class="col-3"><%= d.amount %></td>
           <td class="col-3"><%= d.transaction_date.strftime("%d-%m-%y") unless d.transaction_date.nil?%></td>
-          <td class="col-3"><small><%= link_to "#{t('edit_text')}",{:action=>'expense_edit',:id=>d.id},:class=>'edit_link' %></small> | <small><%= link_to "Delete",:action=>'delete_transaction',:id=>d.id %></small></td>
+          <td class="col-3"><small><%= link_to "#{t('edit_text')}",{:action=>'expense_edit',:id=>d.id},:class=>'edit_link' %></small> | <small><%= link_to "#{t('delete_text')}",:action=>'delete_transaction',:id=>d.id %></small></td>
         </tr>
       <% end %>
 

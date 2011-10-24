@@ -60,3 +60,6 @@ p{
     border:1px solid #EFDC86;
     margin-bottom: 10px;
 }
+#inner-tab-menu ul li {
+    width: 134px;
+}

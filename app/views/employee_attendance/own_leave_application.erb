@@ -59,9 +59,9 @@
          <li class="list<%= cycle('odd','even') %>"><div class="category-name"><%= t('reason') %>:</div>
       <%= @applied_leave.reason %></li>
          <li class="list<%= cycle('odd','even') %>"><div class="category-name"><%= t('status') %>:</div>
-      <%= "Approved" if @applied_leave.approved == true and @applied_leave.viewed_by_manager == true %>
-        <%= "Denied" if @applied_leave.approved == false and @applied_leave.viewed_by_manager == true %>
-        <%= "Pending approval" if @applied_leave.approved == false and @applied_leave.viewed_by_manager == false %>
+      <%= "#{t('approved')}" if @applied_leave.approved == true and @applied_leave.viewed_by_manager == true %>
+        <%= "#{t('denied')}" if @applied_leave.approved == false and @applied_leave.viewed_by_manager == true %>
+        <%= "#{t('pending_approval')}" if @applied_leave.approved == false and @applied_leave.viewed_by_manager == false %>
          </li>
             <li class="list<%= cycle('odd','even') %>"><div class="category-name"><%= t('manager_remark') %>:</div>
       <%= @applied_leave.manager_remark %></li>

@@ -106,3 +106,6 @@
     text-decoration:none;
     color:black;
 }
+#inner-tab-menu ul li {
+    width: 173px;
+}
