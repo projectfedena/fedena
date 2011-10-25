@@ -2,7 +2,7 @@
 hi:
   activerecord:
     attributes:
-
+        
       student:
         first_name: "प्रथम नाम"
         admission_no: "प्रवेश संख्या"
@@ -389,7 +389,7 @@ hi:
   apr: "अप्रैल"
   may: "मई"
   jun: "जून"
-  jul: "जुला|"
+  jul: "जुलाई"
   aug: "अगस्त"
   sep: "सित|"
   oct: "अक्टूबर"
@@ -933,7 +933,7 @@ hi:
   select_manager_msg: "इस पर क्लिक करके प्रबंधक का चयन करें और तब अद्यतन!"
   individual_employee: "व्यक्तिगत कर्मचारी"
   hr_setting: "मानव संसाधन की स्थापना"
-  payslip_text: "Payslip"
+  payslip_text: "वेतन पर्ची"
   no_dates_found: "कोई तिथी को पाया"
   management: "प्रबंधन"
   hr: "मानव संसाधन"
@@ -1717,6 +1717,7 @@ hi:
   other_income: "अन्य आय"
   other_expense: "अन्य व्यय"
   students_marks: "छात्र के निशान"
+  online_exam: "ऑनलाइन परीक्षा"
 
   flash_msg1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक नवीनीकृत|"
   flash_msg2: "क्षमा करें"

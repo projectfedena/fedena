@@ -1,7 +1,7 @@
 en: # locale
   activerecord:
     attributes:
-
+  
       student:
         first_name: "First name"
         admission_no: "Admission number"
@@ -1717,6 +1717,7 @@ en: # locale
   other_income: "Other Income"
   other_expense: "Other expense"
   students_marks: "Student's marks"
+  online_exam: "Online Exam"
 
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"

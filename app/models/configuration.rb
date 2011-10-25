@@ -18,7 +18,8 @@
 
 class Configuration < ActiveRecord::Base
 
-  STUDENT_ATTENDANCE_TYPE_OPTIONS = ["#{t('daily_text')}", "#{t('subject_wise_text')}"]
+#  STUDENT_ATTENDANCE_TYPE_OPTIONS = [["#{t('daily_text')}", "Daily"], ["#{t('subject_wise_text')}", "SubjectWise"]]
+
   NETWORK_STATES                   = ['Online','Offline']
   LOCALES = []
   Dir.glob("#{RAILS_ROOT}/config/locales/*.yml").each do |file|

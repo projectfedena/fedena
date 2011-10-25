@@ -56,7 +56,7 @@
       <div class="label-field-pair">
         <label for="configuration_student_attendance_type"><%= t('student_attendance_type') %></label>
         <div class="text-input-bg">
-          <%= select :configuration, :student_attendance_type, Configuration::STUDENT_ATTENDANCE_TYPE_OPTIONS,
+          <%= select :configuration, :student_attendance_type, [["#{t('daily_text')}", "Daily"], ["#{t('subject_wise_text')}", "SubjectWise"]],
             :selected => @config[:student_attendance_type] %>
         </div>
       </div>

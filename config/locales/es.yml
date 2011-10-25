@@ -1723,6 +1723,7 @@ es: # locale
   other_income: "Otros ingresos"
   other_expense: "Otros gastos"
   students_marks: "las marcas del Estudiante"
+  online_exam: "Examen en línea"
 
   flash_msg1: "Actualizado grupo de examen adicional con éxito."
   flash_msg2: "Triste"
