@@ -25,8 +25,7 @@ class Subject < ActiveRecord::Base
   has_many :employees ,:through => :employees_subjects
   validates_presence_of :name, :max_weekly_classes, :code,:batch_id
   validates_numericality_of :max_weekly_classes
-  validates_uniqueness_of :code, :case_sensitive => false, :scope=>:batch_id
-
+  validates_uniqueness_of :code, :case_sensitive => false, :scope=>[:batch_id,:is_deleted] ,:if=> 'is_deleted == false'
   named_scope :for_batch, lambda { |b| { :conditions => { :batch_id => b.to_i, :is_deleted => false } } }
   named_scope :without_exams, :conditions => { :no_exams => false, :is_deleted => false }
 
