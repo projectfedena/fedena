@@ -80,6 +80,7 @@ table#attendance{
 }
 .tr-head{
     color:#990A10;
+    height: 40px;
 }
 .td-mark{
     width:20px;
@@ -146,12 +147,12 @@ table.table{
 .td-mark .date{
     position: relative;
     left: -172px;
-    top: -82px;
+    top: -73px;
 }
 .td-name .date{
     position: relative;
     left: -77px;
-    top: -82px;
+    top: -73px;
 }
 .td-mark .date span,.td-name .date span{
     display: none;
