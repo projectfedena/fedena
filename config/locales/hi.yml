@@ -1983,3 +1983,6 @@ hi:
       # the method name (does not include "deliver")
     comment_notification:
       subject: "नई टिप्पणी"
+
+
+  exam_groups_text: "परीक्षा समूह"
