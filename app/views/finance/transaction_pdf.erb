@@ -60,7 +60,15 @@
           <td class="col-pdf"></td>
           <td class="col-pdf">&nbsp;<%= @transactions_fees %></td>
         </tr>
-        <% i+= 2 %>
+        <% FedenaPlugin::FINANCE_CATEGORY.each do |category| %>
+      <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+        <td class="col-pdf"><%= index+=1 %></td>
+          <td class="col-pdf"><%= "#{t(category[:category_name]+'_account')}"%> </td>
+         <td class="col-pdf"></td>
+        <td class="col-pdf"><%=  @category_transaction_totals["#{category[:category_name]}"]%></td>
+      </tr>
+      <% end %>
+      <% i+= 2 %>
         <%  @other_transactions.each_with_index do |t,i| %>
             <% if i == 19 %>
               <% i= 0 %>

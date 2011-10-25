@@ -41,26 +41,38 @@ class FinanceTransaction < ActiveRecord::Base
   def self.grand_total(start_date,end_date)
     fee_id = FinanceTransactionCategory.find_by_name("Fee").id
     donation_id = FinanceTransactionCategory.find_by_name("Donation").id
-    cat_names = ['Fee','Salary','Donation','Library','Hostel','Transport']
-    fixed_cat_ids = FinanceTransactionCategory.find(:all,:conditions=>{:name=>cat_names}).collect(&:id)
+    cat_names = ['Fee','Salary','Donation']
+    plugin_name = []
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+      cat_names << "#{category[:category_name]}"
+      plugin_name << "#{category[:category_name]}"
+    end
+    fixed_categories = FinanceTransactionCategory.find(:all,:conditions=>{:name=>cat_names})
+    fixed_cat_ids = fixed_categories.collect(&:id)
+    fixed_transactions = FinanceTransaction.find(:all ,
+      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id IN (#{fixed_cat_ids.join(",")})"])
     other_transactions = FinanceTransaction.find(:all ,
       :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id NOT IN (#{fixed_cat_ids.join(",")})"])
-    transactions_fees = FinanceTransaction.find(:all,
-      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{fee_id}'"])
+#    transactions_fees = FinanceTransaction.find(:all,
+#      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{fee_id}'"])
     employees = Employee.find(:all)
-    donations = FinanceTransaction.find(:all,
-      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{donation_id}'"])
+#    donations = FinanceTransaction.find(:all,
+#      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{donation_id}'"])
     trigger = FinanceTransactionTrigger.find(:all)
     hr = Configuration.find_by_config_value("HR")
     income_total = 0
     expenses_total = 0
     fees_total =0
     salary = 0
-
+     
     unless hr.nil?
       salary = Employee.total_employees_salary(employees, start_date, end_date)
       expenses_total += salary
     end
+
+    transactions_fees = fixed_transactions.reject{|tr|tr.category_id != fee_id}
+    donations = fixed_transactions.reject{|tr|tr.category_id != donation_id}
+
     donations.each do |d|
       if d.master_transaction_id == 0
         income_total +=d.amount
@@ -72,6 +84,19 @@ class FinanceTransaction < ActiveRecord::Base
     transactions_fees.each do |fees|
       income_total +=fees.amount
       fees_total += fees.amount
+    end
+
+    # plugin transactions
+      plugin_name.each do |p|
+      cat_id = fixed_categories.reject!{|cat|cat.name.downcase != p.downcase}.first.id
+      transactions_plugin = fixed_transactions.reject{|tr|tr.category_id != cat_id}
+      transactions_plugin.each do |t|
+      if t.category.is_income?
+        income_total +=t.amount
+      else
+        expenses_total +=t.amount
+      end
+    end
     end
     
     other_transactions.each do |t|

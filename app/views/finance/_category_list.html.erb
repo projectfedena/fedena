@@ -18,22 +18,25 @@
 #under the License. -%>
 
 
-
-<% @categories.each do |cat| %>
+<% c = 'even' %>
+<% @fixed_categories.each do |cat| %>
   <div class="container<%= cycle('odd', 'even')%> ">
     <div class="title"> <%= cat.name %></div>
-    <%unless (cat.id == 1 or cat.id ==2 or cat.id ==3) %>
+  </div>
+<% end %>
+<% @other_categories.each do |cat| %>
+  <div class="container<%= cycle('odd', 'even')%> ">
+    <div class="title"> <%= cat.name %></div>
       <div class="edit"><%= link_to_remote t('edit_text'), :url => { :action => 'category_edit', :id => cat.id } %></div>
       <div class="edit">
         <% transaction = FinanceTransaction.find(:all, :conditions=>{:category_id=>cat.id}) %>
         <% if transaction.blank? %>
         <%= link_to_remote t('delete_text'), :url => { :action => 'category_delete', :id => cat.id } , :confirm=>"#{t('are_you_sure_to_delete')}" %>
         <% else %>
-        
+
         <%= link_to_remote "<s>#{t('delete_text')}</s>", :url => { :action => '', :id => "" } %>
           <% end %>
       </div>
-    <%end %>
   </div>
 <% end %>
 <div id="modal-box" style="display:none;"></div>

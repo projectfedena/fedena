@@ -25,8 +25,12 @@ class FinanceController < ApplicationController
   end
   
   def automatic_transactions
+   @cat_names = ["'Fee'","'Salary'"]
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+     @cat_names << "'#{category[:category_name]}'"
+    end
     @triggers = FinanceTransactionTrigger.all
-    @categories = FinanceTransactionCategory.find(:all ,:conditions => ["name NOT IN ('Fee','Salary','Transport','Library','Hostel') and is_income=1 and deleted=0 "])
+    @categories = FinanceTransactionCategory.find(:all ,:conditions => ["name NOT IN (#{@cat_names.join(',')}) and is_income=1 and deleted=0 "])
   end
   
   def donation
@@ -133,9 +137,13 @@ class FinanceController < ApplicationController
   end
 
   def income_edit
+    @cat_names = ["'Fee'","'Salary'","'Donation'"]
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+     @cat_names << "'#{category[:category_name]}'"
+    end
     @transaction = FinanceTransaction.find(params[:id])
     @transaction.user_id = @current_user.id
-    @categories = FinanceTransactionCategory.all(:conditions => "is_income=true and name NOT IN ('Fee','Salary','Donation','Library','Hostel','Transport')")
+    @categories = FinanceTransactionCategory.all(:conditions => "is_income=true and name NOT IN (#{@cat_names.join(',')})")
     if request.post? and @transaction.update_attributes(params[:transaction])
       flash[:notice] = "#{t('flash7')}"
       redirect_to :action=> 'income_list'
@@ -179,6 +187,8 @@ class FinanceController < ApplicationController
 
   def categories
     @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false},:order=>'name asc')
+    @fixed_categories = @categories.reject{|c|!c.is_fixed}
+    @other_categories = @categories.reject{|c|c.is_fixed}
   end
 
   def category_new
@@ -236,8 +246,12 @@ class FinanceController < ApplicationController
             
 
   def transaction_trigger_edit
+    @cat_names = ["'Fee'","'Salary'"]
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+     @cat_names << "'#{category[:category_name]}'"
+    end
     @transaction_trigger = FinanceTransactionTrigger.find(params[:id])
-    @categories = FinanceTransactionCategory.find(:all ,:conditions => "name NOT IN ('Salary','Fee','Transport','Library','Hostel')")
+    @categories = FinanceTransactionCategory.find(:all ,:conditions => "name NOT IN (#{@cat_names.join(',')})")
   end
 
   def transaction_trigger_update
@@ -298,6 +312,10 @@ class FinanceController < ApplicationController
     @salary = Employee.total_employees_salary(employees, @start_date, @end_date)
     @donations_total = FinanceTransaction.donations_triggers(@start_date,@end_date)
     @grand_total = FinanceTransaction.grand_total(@start_date,@end_date)
+    @category_transaction_totals = {}
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+      @category_transaction_totals["#{category[:category_name]}"] =   FinanceTransaction.total_transaction_amount(category[:category_name],@start_date,@end_date)
+    end
     render :pdf => 'transaction_pdf'        
   end
 
@@ -333,7 +351,8 @@ class FinanceController < ApplicationController
 
   def donations_report
     month_date
-    @donations = FinanceTransaction.find(:all,:order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_name ='Donation'"])
+    category_id = FinanceTransactionCategory.find_by_name("Donation").id
+    @donations = FinanceTransaction.find(:all,:order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id ='#{category_id}'"])
     
   end
 
@@ -2280,7 +2299,12 @@ class FinanceController < ApplicationController
   end
 
   def fixed_category_name
-    @cat_names = ['Fee','Salary','Donation','Library','Hostel','Transport']
+    @cat_names = ['Fee','Salary','Donation']
+    @plugin_cat = []
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+     @cat_names << "#{category[:category_name]}"
+     @plugin_cat << "#{category[:category_name]}"
+    end
     @fixed_cat_ids = FinanceTransactionCategory.find(:all,:conditions=>{:name=>@cat_names}).collect(&:id)
   end
 end
