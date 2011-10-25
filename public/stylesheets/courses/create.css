@@ -20,3 +20,14 @@
 .submit_button:hover{
     background:  #373B3F;
 }
+.label-container1
+{
+    color: #444444;
+    display: block;
+    float: left;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    padding-top: 10px;
+    width: 200px;
+}

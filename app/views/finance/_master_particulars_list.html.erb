@@ -50,7 +50,7 @@
         <td class="col-2">
           <span class="small"> <%= link_to_remote "#{t('edit_text')}", :url => { :action => 'master_category_particulars_edit',:id => fees.id} %></span>
     <%#  unless @finance_fee_category.check_fee_collection == false %>
-          <span class="small"> <%= link_to_remote t('delete_text'),:confirm=>"#{t('master_category_particulars.delete_msg')}", :url => { :action => 'master_category_particulars_delete',:id => fees.id} %></span>
+          <span class="small"> <%= link_to_remote t('delete_text'),:confirm=>"#{t('delete_msg')}", :url => { :action => 'master_category_particulars_delete',:id => fees.id} %></span>
     <%# else %>
     <%#*<span class="small-strike">delete</span>%>
     <%# end %>
