@@ -70,7 +70,7 @@
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= link_to "#{d.name}", :action=>:fee_details, :id=>@student.id, :id2=>d.id %></div>
         <div class="due-date"><%= d.due_date %></div>
-        <% paid = @student.check_fees_paid(d)  %>
+        <% paid = @student.check_fee_pay(d)  %>
         <div class="category-edit"><%= (paid) ? "PAID" : "UNPAID - #{d.student_fee_balance(@student)}" %></div>
       </li>
     <% end %>

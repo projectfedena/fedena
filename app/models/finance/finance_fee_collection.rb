@@ -54,7 +54,7 @@ class FinanceFeeCollection < ActiveRecord::Base
   end
 
   def fee_table
-    self.finance_fees
+    self.finance_fees.all(:conditions=>"is_paid = 0")
   end
 
   def self.shorten_string(string, count)

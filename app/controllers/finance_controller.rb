@@ -1058,7 +1058,7 @@ class FinanceController < ApplicationController
               " #{t('check_your')}  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>#{t('fee_structure')}</a> <br/><br/><br/>
                                #{t('regards')},<br/>"+@user.full_name.capitalize
 
-            unless s.has_paid_fees == 1
+            unless s.has_paid_fees == true
               FinanceFee.create(:student_id => s.id,:fee_collection_id => @finance_fee_collection.id)
               Reminder.create(:sender=>@user.id, :recipient=>s.user.id, :subject=> subject,
                 :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
@@ -1113,8 +1113,7 @@ class FinanceController < ApplicationController
               " #{t('check_your')}  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>#{t('fee_structure')}</a> <br/><br/><br/>
                                #{t('regards')},<br/>"+@user.full_name.capitalize
 
-            unless s.has_paid_fees == 1
-              FinanceFee.create(:student_id => s.id,:fee_collection_id => @finance_fee_collection.id)
+            unless s.has_paid_fees == true
               Reminder.create(:sender=>@user.id, :recipient=>s.user.id, :subject=> subject,
                 :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
             end
@@ -1248,7 +1247,8 @@ class FinanceController < ApplicationController
           tid=transaction.id
         end
 
-        @financefee.update_attribute(:transaction_id, tid)
+        is_paid = (params[:fees][:fees_paid].to_f == params[:total_fees].to_f) ? true : false
+        @financefee.update_attributes(:transaction_id=>tid, :is_paid=>is_paid)
     
         @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{tid}\")")
       else
@@ -1458,13 +1458,14 @@ class FinanceController < ApplicationController
           else
             tid=transaction.id
           end
-          @financefee.update_attribute(:transaction_id, tid)
+          is_paid = (params[:fees][:fees_paid].to_f == params[:total_fees].to_f) ? true : false
+          @financefee.update_attributes(:transaction_id=>tid, :is_paid=>is_paid)
         flash[:notice] = "#{t('flash14')}"
         else
         flash[:notice] = "#{t('flash19')}"
         end
       else
-        flash[:notice] = 'Amount to be paid should not be negative'
+        flash[:notice] = "#{t('flash23')}"
       end
     end
     redirect_to  :action => "fees_student_search"
@@ -1547,7 +1548,7 @@ class FinanceController < ApplicationController
     @batch   = Batch.find(params[:batch_id])
     @date = FinanceFeeCollection.find(params[:date])
     @students = @date.students.all(:conditions=> "batch_id = #{@batch.id}")
-    @defaulters = @students.reject{|s| s.check_fees_paid(@date)}
+    @defaulters = @students.reject{|s| s.check_fee_pay(@date)}
     render :update do |page|
       page.replace_html "student", :partial => "student_defaulters"
     end
@@ -1615,7 +1616,8 @@ class FinanceController < ApplicationController
             tid=transaction.id
           end
 
-          @financefee.update_attribute(:transaction_id, tid)
+          is_paid = (params[:fees][:fees_paid].to_f == params[:total_fees].to_f) ? true : false
+          @financefee.update_attributes(:transaction_id=>tid, :is_paid=>is_paid)
 
           @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{tid}\")")
         flash[:notice] = "#{t('flash14')}"

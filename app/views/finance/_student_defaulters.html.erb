@@ -29,7 +29,7 @@
       <td></td>
     </tr>
     <%@defaulters.each_with_index do |s,i| %>
-      <%if s.check_fees_paid(@date) == false %>
+      <%if s.check_fee_pay(@date) == false %>
         <tr class="tr-<%= cycle('odd', 'even')%>">
           <td class="col-5"><%= i+1 %></td>
           <td class="col-1"><%= s.admission_no %></td>

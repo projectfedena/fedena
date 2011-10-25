@@ -54,7 +54,7 @@
           <% @fee_particulars.each do |p| %>
             <% total_fees += p.amount %>
           <% end %>
-          <% if s.check_fees_paid(@date) == false %>
+          <% if s.check_fee_pay(@date) == false %>
               <% i += 1  %>
               <% c =cycle('even','odd ') %>
             <tr class="<%= "#{c}" %>">

@@ -913,7 +913,6 @@ class StudentController < ApplicationController
     @dates = FinanceFeeCollection.find_all_by_batch_id(@student.batch ,:joins=>'INNER JOIN finance_fees ON finance_fee_collections.id = finance_fees.fee_collection_id',:conditions=>"finance_fees.student_id = #{@student.id} and finance_fee_collections.is_deleted = 0")
     if request.post?
       @student.update_attributes(:has_paid_fees=>params[:fee][:has_paid_fees]) unless params[:fee].nil?
-      @student.has_paid_fees = params[:fee][:has_paid_fees]
     end
   end
 
