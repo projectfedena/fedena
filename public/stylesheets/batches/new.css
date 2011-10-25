@@ -17,9 +17,9 @@
     background:  #373B3F;
 }
 .label-field-pair {
-    height:40px;
+    height:55px;
     padding-top:3px;
-    width:600px;
+    width:520px;
     overflow:hidden;
 }
 .label-field-pair label {
@@ -31,4 +31,35 @@
     margin:0 0 10px;
     padding-top:10px;
     width:250px;
+}
+.input-container
+{
+    float:right;
+}
+#batch_name
+{
+    margin-right: 20px;
+}
+.new_batch
+{
+    margin-top: 20px;
+    margin-left: 200px;
+}
+#import_subjects
+{
+    float: right;
+    margin-right: 220px;
+    margin-top:10px;
+}
+#import_fees
+{
+    float: right;
+    margin-right: 220px;
+    margin-top:10px;
+}
+.label-container
+{
+    margin-top: 0px;
+    width:250px;
+    float: left;
 }
