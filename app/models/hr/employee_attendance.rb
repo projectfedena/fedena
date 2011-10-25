@@ -25,7 +25,7 @@ class EmployeeAttendance < ActiveRecord::Base
 
   def validate
      if self.attendance_date.to_date < self.employee.joining_date.to_date
-     errors.add(:employee_attendance,"Date marked is earlier than joining date ")
+     errors.add(:employee_attendance,"#{t('date_marked_is_earlier_than_joining_date')}")
     end
   end
   

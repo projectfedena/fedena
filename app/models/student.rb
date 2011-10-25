@@ -62,11 +62,11 @@ class Student < ActiveRecord::Base
     :message=>'must be less than 500 KB.',:if=> Proc.new { |p| p.photo_file_name_changed? }
 
   def validate
-    errors.add(:date_of_birth, "can't be a future date.") if self.date_of_birth >= Date.today \
+    errors.add(:date_of_birth, "#{t('cant_be_a_future_date')}.") if self.date_of_birth >= Date.today \
       unless self.date_of_birth.nil?
-    errors.add(:gender, 'attribute is invalid.') unless ['m', 'f'].include? self.gender.downcase \
+    errors.add(:gender, "#{t('model_errors.student.error2')}.") unless ['m', 'f'].include? self.gender.downcase \
       unless self.gender.nil?
-    errors.add(:admission_no, 'can\'t be zero') if self.admission_no=='0'
+    errors.add(:admission_no, "#{t('model_errors.student.error3')}.") if self.admission_no=='0'
     
   end
 

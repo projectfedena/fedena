@@ -35,7 +35,7 @@ class StudentCategory < ActiveRecord::Base
 
   def check_dependence
     if Student.find_all_by_student_category_id(self.id).blank?
-       errors.add_to_base( "Category is in use. Can not delete")
+       errors.add_to_base( "#{t('category_is_in_use')}")
        return false
     end
 

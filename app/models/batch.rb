@@ -42,7 +42,7 @@ class Batch < ActiveRecord::Base
   named_scope :deleted,{:conditions => { :is_deleted => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
 
   def validate
-    errors.add(:start_date, 'should be before end date.') \
+    errors.add(:start_date, "#{t('should_be_before_end_date')}.") \
       if self.start_date > self.end_date \
       if self.start_date and self.end_date
   end

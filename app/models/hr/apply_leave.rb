@@ -28,30 +28,30 @@ class ApplyLeave < ActiveRecord::Base
   def check_leave_count
 
     unless self.start_date.nil? or self.end_date.nil?
-      errors.add_to_base(" End date can't be before start date") if self.end_date < self.start_date
+      errors.add_to_base("#{t('end_date_cant_before_start_date')}") if self.end_date < self.start_date
 
     end
     unless self.start_date.nil? or self.end_date.nil? or self.employee_leave_types_id.nil?
       leave = EmployeeLeave.find_by_employee_id(self.employee_id, :conditions=> "employee_leave_type_id = '#{self.employee_leave_types_id}'")
       leave_required = (self.end_date.to_date-self.start_date.to_date).numerator+1
       if self.start_date.to_date < self.employee.joining_date.to_date
-        errors.add_to_base(" Date marked is before join date ")
+        errors.add_to_base("#{t('date_marked_is_before_join_date')}")
 
       else
         if leave.leave_taken.to_f == leave.leave_count.to_f
-          errors.add_to_base("You have already availed all available leave ")
+          errors.add_to_base("#{t('you_have_already_availed')}")
 
         else
           if self.is_half_day == true
             new_leave_count = (leave_required)/2
             if leave.leave_taken.to_f+new_leave_count.to_f > leave.leave_count.to_f
-              errors.add_to_base("No of leaves exeeds maximum allowed leaves")
+              errors.add_to_base("#{t('no_of_leaves_exceeded_max_allowed')}")
 
             end
           else
             new_leave_count = leave_required.to_f
             if leave.leave_taken.to_f+new_leave_count.to_f > leave.leave_count.to_f
-              errors.add_to_base("No of leaves exeeds maximum allowed leaves")
+              errors.add_to_base("#{t('no_of_leaves_exceeded_max_allowed')}")
 
             end
           end

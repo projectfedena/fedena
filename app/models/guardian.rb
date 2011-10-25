@@ -23,7 +23,7 @@ class Guardian < ActiveRecord::Base
   validates_presence_of :first_name, :relation
 
   def validate
-    errors.add(:dob, "cannot be a future date.") if self.dob > Date.today unless self.dob.nil?
+    errors.add(:dob, "#{t('cant_be_a_future_date')}.") if self.dob > Date.today unless self.dob.nil?
   end
 
   def is_immediate_contact?
