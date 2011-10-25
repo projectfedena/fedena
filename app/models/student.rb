@@ -40,9 +40,9 @@ class Student < ActiveRecord::Base
   validates_uniqueness_of :admission_no
   validates_presence_of :gender
   validates_format_of     :email, :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,   :allow_blank=>true,
-    :message => "must be a valid email address"
+    :message => "#{t('must_be_a_valid_email_address')}"
   validates_format_of     :admission_no, :with => /^[A-Z0-9_-]*$/i,
-    :message => "must contain only letters, numbers, hyphen, and  underscores"
+    :message => "#{t('must_contain_only_letters')}"
 
   validates_associated :user
   before_validation :create_user_and_validate

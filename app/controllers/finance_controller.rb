@@ -761,7 +761,7 @@ class FinanceController < ApplicationController
           end
         else
           @error = true
-          @finance_fee_particulars.errors.add(:admission_no," is blank")
+          @finance_fee_particulars.errors.add(:admission_no,"#{t('is_blank')}")
         end
       else
         @error = true unless @finance_fee_particulars.save
@@ -812,7 +812,7 @@ class FinanceController < ApplicationController
             Reminder.create(:sender=>@user.id, :recipient=>s.id, :subject=> subject,
               :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
           end
-          Event.create(:title=> "Fees Due", :description =>@additional_category.name, :start_date => @due_date.to_datetime, :end_date => @due_date.to_datetime, :is_due => true, :origin => @collection_date)
+          Event.create(:title=> "#{t('fees_due')}", :description =>@additional_category.name, :start_date => @due_date.to_datetime, :end_date => @due_date.to_datetime, :is_due => true, :origin => @collection_date)
         else
           @batches.each do |b|
             @students = Student.find_all_by_batch_id(b.id)
@@ -822,7 +822,7 @@ class FinanceController < ApplicationController
                 :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
             end
           end
-          Event.create(:title=> "Fees Due", :description =>@additional_category.name, :start_date => @due_date.to_datetime, :end_date => @due_date.to_datetime, :is_due => true, :origin => @collection_date)
+          Event.create(:title=> "#{t('fees_due')}", :description =>@additional_category.name, :start_date => @due_date.to_datetime, :end_date => @due_date.to_datetime, :is_due => true, :origin => @collection_date)
         end
         flash[:notice] = "#{t('flash9')}"
         redirect_to(:action => "add_particulars" ,:id => @collection_date.id)
@@ -1232,7 +1232,7 @@ class FinanceController < ApplicationController
     unless params[:fees][:fees_paid].to_f < 0
       unless params[:fees][:fees_paid].to_f > params[:total_fees].to_f
         transaction = FinanceTransaction.new
-        (total_fees > params[:fees][:fees_paid].to_f ) ? transaction.title = "Receipt No. (partial) F#{@financefee.id}" :  transaction.title = "Receipt No. F#{@financefee.id}"
+        (total_fees > params[:fees][:fees_paid].to_f ) ? transaction.title = "#{t('receipt_no')}. (#{t('partial')}) F#{@financefee.id}" :  transaction.title = "#{t('receipt_no')}. F#{@financefee.id}"
         transaction.category = FinanceTransactionCategory.find_by_name("Fee")
         transaction.payee = @student
         transaction.amount = params[:fees][:fees_paid].to_f
@@ -1253,11 +1253,11 @@ class FinanceController < ApplicationController
         @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{tid}\")")
       else
         @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
-        @financefee.errors.add_to_base("Cannot pay amount greater than total fee")
+        @financefee.errors.add_to_base("#{t('flash19')}")
       end
     else
       @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
-      @financefee.errors.add_to_base("Amount to be paid should not be negative")
+      @financefee.errors.add_to_base("#{t('flash23')}")
     end
     render :update do |page|
       page.replace_html "student", :partial => "student_fees_submission"
@@ -1312,7 +1312,7 @@ class FinanceController < ApplicationController
       unless params[:fine][:fee].to_f < 0
         @fine = (params[:fine][:fee])
       else
-        @financefee.errors.add_to_base("Fine amount should not be negative")
+        @financefee.errors.add_to_base("#{t('flash24')}")
       end
       @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted IS NOT NULL"])
       @fee_particulars = @date.fees_particulars(@student)
@@ -1399,7 +1399,7 @@ class FinanceController < ApplicationController
       @fine = (params[:fine][:fee])
       flash[:notice] = nil
     else
-      flash[:notice] = "Fine amount should not be negative"
+      flash[:notice] = "#{t('flash24')}"
     end
 
     @due_date = @fee_collection.due_date

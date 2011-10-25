@@ -1724,6 +1724,15 @@ es: # locale
   other_expense: "Otros gastos"
   students_marks: "las marcas del Estudiante"
   online_exam: "Examen en línea"
+  donation_from: "Donación de"
+  must_be_positive: "debe ser positivo"
+  not_specified: "no especificada"
+  student_category_cant_be_blank: "Categoría Estudiantes no pueden ser en blanco"
+  student_admission_no_cant_be_blank: "número de admisión de estudiantes no puede ser en blanco"
+  must_be_a_valid_email_address: "Debe ser una dirección válida de correo electrónico"
+  must_contain_only_letters: "debe contener sólo letras, números, guiones y guiones bajos"
+  partial: "parcial"
+
 
   flash_msg1: "Actualizado grupo de examen adicional con éxito."
   flash_msg2: "Triste"

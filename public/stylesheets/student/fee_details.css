@@ -41,3 +41,6 @@ table#listing td.col-8 {
     width: 10%;
     text-align: right;
 }
+#inner-tab-menu ul li {
+    width: 152px;
+}
