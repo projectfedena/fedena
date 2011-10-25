@@ -87,6 +87,7 @@ hi:
       subject:
         name: "नाम"
         max_weekly_classes: "अधिकतम साप्ताहिक श्रेणी"
+        code: "कोड"
 
       asset:
         amount: "राशि"
@@ -175,6 +176,16 @@ hi:
       monthly_payslip:
         salary_date: "वेतन तिथि"
       payroll_category:
+        name: "नाम"
+
+
+      fee_discount:
+        name: "नाम"
+        discount: "डिस्काउंट"
+        type: "Tipo"
+
+      student_fee_discount:
+        receiver: "रिसीवर"
         name: "नाम"
 
     errors:
@@ -565,7 +576,6 @@ hi:
   edit_additional_details: "अतिरिक्त विवरण संपादित करें"
   elective: "निर्वाचित"
   elective_group: "इलैक्टिव समूह"
-  message: "संदेश"
   examination_results: "परीक्षा परिणाम"
   fee_status: "शुल्क स्थिति"
   fees_text: "फीस"
@@ -860,7 +870,7 @@ hi:
   inactive_fields: "निष्क्रिय फील्ड्स"
   fax: "फैक्स"
   employee_name: "कर्मचारी का नाम"
-  message: "कोई कर्मचारी इस श्रेणी के अंतर्गत जोडी गयी"
+  message1: "कोई कर्मचारी इस श्रेणी के अंतर्गत जोडी गयी"
   payslip_generated_on: "Payslip पर उत्पन्न"
   employee_settings: "कर्मचारी सेटिंग्स"
   employee_department: "कर्मचारी विभाग"

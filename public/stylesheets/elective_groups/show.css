@@ -85,7 +85,7 @@
     float : left;
 }
 #category-list li div.category-name {
-    width:285px;
+    width:191px;
     font-weight: bold;
     font-size:13px;
 }
@@ -104,7 +104,7 @@
 }
 #category-list li div.category-assign{
     font-size : 0.9em;
-    width : 110px;
+    width : 183px;
 }
 #category-list li div a {
     color : #000;

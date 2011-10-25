@@ -57,7 +57,7 @@
             <div class="category-edit"><%= link_to_remote("#{t('edit_text')} ",
                 :url => { :controller=>"subjects",:action => 'edit', :id =>subject,:id2=>@elective_group},
                 :method => 'get' ) %> </div>
-            <div class="category-delete"><%= link_to_remote('delete_text',
+            <div class="category-delete"><%= link_to_remote("#{t('delete_text')}",
                 :url => subject_path(subject),
                 :method => 'delete',
                 :confirm => t('delete_confirm_msg'),

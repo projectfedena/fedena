@@ -103,7 +103,7 @@
     background : #eee;
     border : 1px solid #c6c6c6;
     margin : 5px 0 0 10px;
-    width : 50px;
+    width : 30px;
     height:17px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
@@ -188,4 +188,7 @@
 input#particulars_select_category{
     margin-left: 15px;
     margin-right: 3px;
+}
+table#listing td.col-4 {
+    width: 26%;
 }

@@ -32,34 +32,14 @@
     padding-top:10px;
     width:250px;
 }
-.input-container
-{
-    float:right;
-}
-#batch_name
-{
-    margin-right: 20px;
-}
-.new_batch
-{
-    margin-top: 20px;
-    margin-left: 200px;
-}
-#import_subjects
-{
-    float: right;
-    margin-right: 220px;
-    margin-top:10px;
-}
-#import_fees
-{
-    float: right;
-    margin-right: 220px;
-    margin-top:10px;
-}
-.label-container
-{
-    margin-top: 0px;
-    width:250px;
-    float: left;
+.label-container{
+    color:#444444;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:10px;
+    width:242px;
+
 }
