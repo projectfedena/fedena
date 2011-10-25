@@ -1720,6 +1720,9 @@ es: # locale
   no_of_leaves_exceeded_max_allowed: "No deja de hojas máximo permitido exeeds"
   date_marked_is_earlier_than_joining_date: "fecha marcada es anterior a la Fecha de incorporación"
   should_be_greater_than_max_period: "debe ser mayor que los períodos máximos por día"
+  other_income: "Otros ingresos"
+  other_expense: "Otros gastos"
+  students_marks: "las marcas del Estudiante"
 
   flash_msg1: "Actualizado grupo de examen adicional con éxito."
   flash_msg2: "Triste"

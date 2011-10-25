@@ -506,14 +506,14 @@ class ExamController < ApplicationController
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 5;
-    bargraph.text = "Student's marks"
+    bargraph.text = "#{t('students_marks')}"
     bargraph.values = data
 
     bargraph2 = BarFilled.new
     bargraph2.width = 1;
     bargraph2.colour = '#5E4725';
     bargraph2.dot_size = 5;
-    bargraph2.text = "Class average"
+    bargraph2.text = "#{t('class_average')}"
     bargraph2.values = data2
 
     x_axis = XAxis.new
@@ -524,7 +524,7 @@ class ExamController < ApplicationController
 
     title = Title.new(student.full_name)
 
-    x_legend = XLegend.new("Subjects")
+    x_legend = XLegend.new("#{t('subjects_text')}")
     x_legend.set_style('{font-size: 14px; color: #778877}')
 
     y_legend = YLegend.new("Marks")

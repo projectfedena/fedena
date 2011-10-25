@@ -1714,6 +1714,9 @@ en: # locale
   no_of_leaves_exceeded_max_allowed: "No of leaves exeeds maximum allowed leaves"
   date_marked_is_earlier_than_joining_date: "Date marked is earlier than joining date"
   should_be_greater_than_max_period: "should be greater than Maximum periods per day"
+  other_income: "Other Income"
+  other_expense: "Other expense"
+  students_marks: "Student's marks"
 
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"

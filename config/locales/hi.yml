@@ -1714,6 +1714,9 @@ hi:
   no_of_leaves_exceeded_max_allowed: "पत्तियों exeeds अधिकतम अनुमति दी पत्तियों का कोई"
   date_marked_is_earlier_than_joining_date: "चिह्नित तिथि कार्यग्रहण तिथि से पहले है."
   should_be_greater_than_max_period: "प्रति दिन अधिकतम अवधि की तुलना में अधिक से अधिक होना चाहिए"
+  other_income: "अन्य आय"
+  other_expense: "अन्य व्यय"
+  students_marks: "छात्र के निशान"
 
   flash_msg1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक नवीनीकृत|"
   flash_msg2: "क्षमा करें"

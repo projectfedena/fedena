@@ -1760,19 +1760,19 @@ class FinanceController < ApplicationController
     unless hr.nil?
       salary = Employee.total_employees_salary(employees,start_date,end_date)
       unless salary <= 0
-        x_labels << "Salary"
+        x_labels << "#{t('salary')}"
         data << salary-(salary*2)
         largest_value = salary if largest_value < salary
       end
     end
     unless donations_total <= 0
-      x_labels << "Donations"
+      x_labels << "#{t('donations')}"
       data << donations_total
       largest_value = donations_total if largest_value < donations_total
     end
 
     unless fees <= 0
-      x_labels << "Fees"
+      x_labels << "#{t('fees_text')}"
       data << fees
       largest_value = fees if largest_value < fees
     end
@@ -1787,12 +1787,12 @@ class FinanceController < ApplicationController
      end
 
     unless income <= 0
-      x_labels << "Other Income"
+      x_labels << "#{t('other_income')}"
       data << income
       largest_value = income if largest_value < income
     end
     unless expense <= 0
-      x_labels << "Other expense"
+      x_labels << "#{t('other_expense')}"
       data << expense
       largest_value = expense if largest_value < expense
     end
@@ -1814,7 +1814,7 @@ class FinanceController < ApplicationController
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 3;
-    bargraph.text = "Amount"
+    bargraph.text = "#{t('amount')}"
     bargraph.values = data
 
     x_axis = XAxis.new
@@ -1823,7 +1823,7 @@ class FinanceController < ApplicationController
     y_axis = YAxis.new
     y_axis.set_range(largest_value-(largest_value*2),largest_value,largest_value/5)
 
-    title = Title.new("Finance Transaction")
+    title = Title.new("#{t('finance_transactions')}")
 
     x_legend = XLegend.new("Examination name")
     x_legend.set_style('{font-size: 14px; color: #778877}')
@@ -1877,7 +1877,7 @@ class FinanceController < ApplicationController
       salary = Employee.total_employees_salary(employees,start_date,end_date)
       salary2 = Employee.total_employees_salary(employees,start_date2,end_date2)
       unless salary <= 0 and salary2 <= 0
-        x_labels << "Salary"
+        x_labels << "#{t('salary')}"
         data << salary-(salary*2)
         data2 << salary2-(salary2*2)
         largest_value = salary if largest_value < salary
@@ -1885,7 +1885,7 @@ class FinanceController < ApplicationController
       end
     end
     unless donations_total <= 0 and donations_total2 <= 0
-      x_labels << "Donations"
+      x_labels << "#{t('donations')}"
       data << donations_total
       data2 << donations_total2
       largest_value = donations_total if largest_value < donations_total
@@ -1893,7 +1893,7 @@ class FinanceController < ApplicationController
     end
 
     unless fees <= 0 and fees2 <= 0
-      x_labels << "Fees"
+      x_labels << "#{t('fees_text')}"
       data << fees
       data2 << fees2
       largest_value = fees if largest_value < fees
@@ -1914,7 +1914,7 @@ class FinanceController < ApplicationController
      end
 
     unless income <= 0 and income2 <= 0
-      x_labels << "Other Income"
+      x_labels << "#{t('other_income')}"
       data << income
       data2 << income2
       largest_value = income if largest_value < income
@@ -1922,7 +1922,7 @@ class FinanceController < ApplicationController
     end
 
     unless expense <= 0 and expense2 <= 0
-      x_labels << "Other Expense"
+      x_labels << "#{t('other_expense')}"
       data << expense-(expense*2)
       data2 << expense2-(expense2*2)
       largest_value = expense if largest_value < expense
@@ -1958,13 +1958,13 @@ class FinanceController < ApplicationController
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 3;
-    bargraph.text = "For the period #{start_date}-#{end_date}"
+    bargraph.text = "#{t('for_the_period')} #{start_date}-#{end_date}"
     bargraph.values = data
     bargraph2 = BarFilled.new()
     bargraph2.width = 1;
     bargraph2.colour = '#000000';
     bargraph2.dot_size = 3;
-    bargraph2.text = "For the period #{start_date2}-#{end_date2}"
+    bargraph2.text = "#{t('for_the_period')} #{start_date2}-#{end_date2}"
     bargraph2.values = data2
 
     x_axis = XAxis.new
@@ -1973,7 +1973,7 @@ class FinanceController < ApplicationController
     y_axis = YAxis.new
     y_axis.set_range(largest_value-(largest_value*2),largest_value,largest_value/5)
 
-    title = Title.new("Finance Transaction")
+    title = Title.new("#{t('finance_transactions')}")
 
     x_legend = XLegend.new("Examination name")
     x_legend.set_style('{font-size: 14px; color: #778877}')
@@ -2023,30 +2023,30 @@ class FinanceController < ApplicationController
       salary = Employee.total_employees_salary(employees,start_date,end_date)
     end
     unless salary <= 0
-      x_labels << "Salary"
+      x_labels << "#{t('salary')}"
       data << salary-(salary*2)
       largest_value = salary if largest_value < salary
     end
     unless donations_total <= 0
-      x_labels << "Donations"
+      x_labels << "#{t('donations')}"
       data << donations_total
       largest_value = donations_total if largest_value < donations_total
     end
 
     unless fees <= 0
-      x_labels << "Fees"
+      x_labels << "#{t('fees_text')}"
       data << fees
       largest_value = fees if largest_value < fees
     end
 
     unless income <= 0
-      x_labels << "Other Income"
+      x_labels << "#{t('other_income')}"
       data << income
       largest_value = income if largest_value < income
     end
         
     unless expense <= 0
-      x_labels << "expense"
+      x_labels << "#{t('other_expense')}"
       data << expense
       largest_value = expense if largest_value < expense
     end
@@ -2067,7 +2067,7 @@ class FinanceController < ApplicationController
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 3;
-    bargraph.text = "Amount"
+    bargraph.text = "#{t('amount')}"
     bargraph.values = data
 
     x_axis = XAxis.new
@@ -2076,7 +2076,7 @@ class FinanceController < ApplicationController
     y_axis = YAxis.new
     y_axis.set_range(largest_value-(largest_value*2),largest_value,largest_value/5)
 
-    title = Title.new("Finance Transaction")
+    title = Title.new("#{t('finance_transactions')}")
 
     x_legend = XLegend.new("Examination name")
     x_legend.set_style('{font-size: 14px; color: #778877}')
