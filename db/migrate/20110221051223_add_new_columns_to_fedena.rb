@@ -38,5 +38,11 @@ class AddNewColumnsToFedena < ActiveRecord::Migration
 
   def self.create_default
     Configuration.create :config_key => "Locale", :config_value=>"es"
+    Configuration.create :config_key => "NetworkState", :config_value=>"Online"
+    Configuration.create :config_key => "FinancialYearStartDate", :config_value=>Date.today
+    Configuration.create :config_key => "FinancialYearEndDate", :config_value=>Date.today+1.year
+    Configuration.create :config_key => "AutomaticLeaveReset", :config_value => "0"
+    Configuration.create :config_key => "LeaveResetPeriod", :config_value => "4"
+    Configuration.create :config_key => "LastAutoLeaveReset", :config_value => nil
   end
 end
