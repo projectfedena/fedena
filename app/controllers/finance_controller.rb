@@ -2275,7 +2275,9 @@ class FinanceController < ApplicationController
     unless @fee_discount.update_attributes(params[:fee_discount])
       @error = true
     else
-      @discounts = FinanceFeeCategory.find(@fee_discount.finance_fee_category_id).fee_discounts
+      @fee_category = @fee_discount.finance_fee_category
+      @discounts = @fee_category.fee_discounts
+      @fee_category.is_collection_open ? @discount_edit = false : @discount_edit = true
     end
   end
 
