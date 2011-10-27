@@ -150,10 +150,21 @@
 }
 .each_batch{
     font-size: 12px;
-    /*overflow:auto;
-    width:205px; */
+    overflow:auto;
+    width:205px; 
 
 }
+.each_batch input{
+    float:left;
+    width:auto;
+}
+.each_batch label {
+    float: left;
+    margin-left: 10px;
+    margin-top: -6px;
+    width: auto;
+}
+
 
 .batches {
     height: 183px;
