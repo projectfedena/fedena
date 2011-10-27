@@ -206,7 +206,7 @@ class EventController < ApplicationController
             unless student_user.nil?
               Reminder.create(:sender => current_user.id,:recipient=>student_user.id,
                 :subject=>"#{t('new_event')} : #{event.title}",
-                :body=>" #{t('event_description')} : #{event.description} <br/> #{t('start_date')}: " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/>  #{t('.end_date')}: " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
+                :body=>" #{t('event_description')} : #{event.description} <br/> #{t('start_date')}: " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/>  #{t('end_date')}: " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
             end
           end
         end
@@ -219,7 +219,7 @@ class EventController < ApplicationController
             emp_user = e.user
             Reminder.create(:sender => current_user.id,:recipient=>emp_user.id,
               :subject=>"#{t('new_event')} : #{event.title}",
-              :body=>" #{t('event_description')}  : #{event.description} <br/>  #{t('start_date')}: " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/> #{t('.end_date')} : " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
+              :body=>" #{t('event_description')}  : #{event.description} <br/>  #{t('start_date')}: " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/> #{t('end_date')} : " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
           end
         end
       end
