@@ -41,7 +41,7 @@
     </div>
     <div class="label-field-pair">
       <label for="category"><%= t('category') %> :</label>
-      <div class="text-input-bg"><%= select :transaction, :category_id, @categories.map { |c| [c.name, c.id] },:prompt=>'Select a category' %></div>
+      <div class="text-input-bg"><%= select :transaction, :category_id, @categories.map { |c| [c.name, c.id] },:prompt=>t('select_a_category') %></div>
     </div>
 
     <%=  submit_tag "► #{t('save')}",:class=>'submit_button' %>
