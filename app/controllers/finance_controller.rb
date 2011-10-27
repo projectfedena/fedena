@@ -1118,18 +1118,19 @@ class FinanceController < ApplicationController
   def fee_collection_update
     @user = current_user
     @finance_fee_collection = FinanceFeeCollection.find params[:id]
+    events = @finance_fee_collection.event
     render :update do |page|
-      if params[:finance_fee_collection][:due_date].to_date >= params[:finance_fee_collection][:end_date].to_date
+      if params[:finance_fee_collection][:due_date].to_date == params[:finance_fee_collection][:end_date].to_date
         if @finance_fee_collection.update_attributes(params[:finance_fee_collection])
-          @finance_fee_collection.event.update_attributes(:start_date=> @finance_fee_collection.due_date.to_datetime, :end_date=> @finance_fee_collection.due_date.to_datetime)
+          events.update_attributes(:start_date=> @finance_fee_collection.due_date.to_datetime, :end_date=> @finance_fee_collection.due_date.to_datetime) unless events.blank?
           fee_category_name = @finance_fee_collection.fee_category.name
           subject = "#{t('fees_submission_date')}"
           @students = Student.find_all_by_batch_id(@finance_fee_collection.batch_id)
           @students.each do |s|
             body = "<p><b>#{t('fee_submission_date_for')} <i>"+fee_category_name+"</i> #{t('has_been_updated')}</b> <br /><br/>
-                                #{t('start_date')} : "+@finance_fee_collection.start_date.to_s+"<br />"+
-              " #{t('end_date')} : "+@finance_fee_collection.end_date.to_s+" <br />"+
-              " #{t('due_date')} : "+@finance_fee_collection.due_date.to_s+" <br /><br /><br />"+
+                                start_date: "+@finance_fee_collection.start_date.to_s+"<br />"+
+              "end_date: "+@finance_fee_collection.end_date.to_s+" <br />"+
+              "due_date: "+@finance_fee_collection.due_date.to_s+" <br /><br /><br />"+
               " #{t('check_your')}  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>#{t('fee_structure')}</a> <br/><br/><br/>
                                #{t('regards')}, <br/>"+@user.full_name.capitalize
 
@@ -1148,7 +1149,7 @@ class FinanceController < ApplicationController
           page.visual_effect(:highlight, 'form-errors')
         end
       else
-        page.replace_html 'form-errors', :text => "<div id='error-box'><ul><li>#{t('flash13')} .</li></ul></div>"
+        page.replace_html 'form-errors', :text => "<div id='error-box'><ul><li>#{t('flash_msg15')} .</li></ul></div>"
         flash[:notice]=""
         
       end

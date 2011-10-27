@@ -1753,6 +1753,7 @@ en: # locale
   flash_msg12: "Leave Reset Successfull"
   flash_msg13: "Category edited successfully."
   flash_msg14: "Particulars edited successfully."
+  flash_msg15: "Error : Due date must be after End date."
 
 #configuration controller translation
   configuration:
@@ -1933,7 +1934,6 @@ en: # locale
     flash10: "Fields with * cannot be empty"
     flash11: "Due date should be after End date"
     flash12: "Fee Collection updated successfully"
-    flash13: "Error : Due date must be after End date."
     flash14: "Fees Paid"
     flash15: "Donation from"
     flash16: "Donation edited successfully."
