@@ -246,8 +246,8 @@ en: # locale
       long: "%A, %d. %B %Y, %H:%M Uhr"
       time: "%H:%M"
 
-    am: "vormittags"
-    pm: "nachmittags"
+    am: "AM"
+    pm: "PM"
 
   datetime:
     distance_in_words:
@@ -1736,6 +1736,8 @@ en: # locale
   must_be_a_valid_email_address: "must be a valid email address"
   must_contain_only_letters: "must contain only letters, numbers, hyphen, and  underscores"
   partial: "partial"
+  student_category_updated_succesfully: "Student category updated succesfully"
+  student_category_deleted_succesfully: "Student category deleted succesfully"
 
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"

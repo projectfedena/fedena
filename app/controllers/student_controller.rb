@@ -571,16 +571,19 @@ class StudentController < ApplicationController
       @student_category.empty_students
     end
     @student_categories = StudentCategory.active
+    flash[:notice] = "#{t('student_category_deleted_succesfully')}"
   end
 
   def category_edit
     @student_category = StudentCategory.find(params[:id])
+    
   end
 
   def category_update
     @student_category = StudentCategory.find(params[:id])
     @student_category.update_attribute(:name, params[:name])
     @student_categories = StudentCategory.active
+     flash[:notice] = "#{t('student_category_updated_succesfully')}"
   end
 
   def view_all
