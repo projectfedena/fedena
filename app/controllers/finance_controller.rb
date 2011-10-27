@@ -423,7 +423,7 @@ class FinanceController < ApplicationController
     privilege = Privilege.find(18)
     hr = privilege.users
     subject = "#{t('payslip_rejected')}"
-    body = "#{t('payslip_rejected_for')}"+ employee.first_name+" "+ employee.last_name+ "(#{t('employee_number')} : #{employee.employee_number})" +" #{t('for_the_month')} #{params[:id2].to_date.strftime("%B %Y")}"
+    body = "#{t('payslip_rejected_for')} "+ employee.first_name+" "+ employee.last_name+ " (#{t('employee_number')} : #{employee.employee_number})" +" #{t('for_the_month')} #{params[:id2].to_date.strftime("%B %Y")}"
     hr.each do |f|
       Reminder.create(:sender=>current_user.id, :recipient=>f.id, :subject=> subject,
         :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
@@ -819,10 +819,10 @@ class FinanceController < ApplicationController
           :fee_category_id => @additional_category.id
         )
         body = "<p>#{t('fee_submission_date_for')} "+@additional_category.name+" #{t('has_been_published')} <br />
-                               #{t('fees_submiting_date_starts_on')}<br />
-                               #{t('start_date')} :"+@collection_date.start_date.to_s+"<br />"+
-          "#{t('end_date')} :"+@collection_date.end_date.to_s+"<br />"+
-          "#{t('due_date')} :"+@collection_date.due_date.to_s
+                               #{t('fees_submiting_date_starts_on')}< br />
+                               #{t('start_date')} : "+@collection_date.start_date.to_s+" <br />"+
+          "#{t('end_date')} : "+@collection_date.end_date.to_s+" <br />"+
+          "#{t('due_date')} : "+@collection_date.due_date.to_s
         subject = "#{t('fees_submission_date')}"
         @due_date = @collection_date.due_date.strftime("%Y-%b-%d") +  " 00:00:00"
         unless batch.empty?
@@ -1070,12 +1070,12 @@ class FinanceController < ApplicationController
         if @finance_fee_collection.save
           @students = Student.find_all_by_batch_id(b.id)
           @students.each do |s|
-            body = "<p><b>#{t('fee_submission_date_for')}<i>"+fee_category_name+"</i>#{t('has_been_published')}</b><br /><br/>
-                                #{t('start_date')} :"+@finance_fee_collection.start_date.to_s+"<br />"+
-              " #{t('end_date')} :"+@finance_fee_collection.end_date.to_s+"<br />"+
-              " #{t('due_date')} :"+@finance_fee_collection.due_date.to_s+"<br /><br /><br />"+
+            body = "<p><b>#{t('fee_submission_date_for')} <i>"+fee_category_name+"</i> #{t('has_been_published')} </b><br /><br/>
+                                #{t('start_date')} : "+@finance_fee_collection.start_date.to_s+" <br />"+
+              " #{t('end_date')} :"+@finance_fee_collection.end_date.to_s+" <br /> "+
+              " #{t('due_date')} :"+@finance_fee_collection.due_date.to_s+" <br /><br /><br /> "+
               " #{t('check_your')}  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>#{t('fee_structure')}</a> <br/><br/><br/>
-                               #{t('regards')},<br/>"+@user.full_name.capitalize
+                               #{t('regards')}, <br/>"+@user.full_name.capitalize
 
             unless s.has_paid_fees == true
               FinanceFee.create(:student_id => s.id,:fee_collection_id => @finance_fee_collection.id)
@@ -1125,12 +1125,12 @@ class FinanceController < ApplicationController
           subject = "#{t('fees_submission_date')}"
           @students = Student.find_all_by_batch_id(@finance_fee_collection.batch_id)
           @students.each do |s|
-            body = "<p><b>#{t('fee_submission_date_for')}<i>"+fee_category_name+"</i>#{t('has_been_updated')}</b><br /><br/>
-                                #{t('start_date')} :"+@finance_fee_collection.start_date.to_s+"<br />"+
-              " #{t('end_date')} :"+@finance_fee_collection.end_date.to_s+"<br />"+
-              " #{t('due_date')} :"+@finance_fee_collection.due_date.to_s+"<br /><br /><br />"+
+            body = "<p><b>#{t('fee_submission_date_for')} <i>"+fee_category_name+"</i> #{t('has_been_updated')}</b> <br /><br/>
+                                #{t('start_date')} : "+@finance_fee_collection.start_date.to_s+"<br />"+
+              " #{t('end_date')} : "+@finance_fee_collection.end_date.to_s+" <br />"+
+              " #{t('due_date')} : "+@finance_fee_collection.due_date.to_s+" <br /><br /><br />"+
               " #{t('check_your')}  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>#{t('fee_structure')}</a> <br/><br/><br/>
-                               #{t('regards')},<br/>"+@user.full_name.capitalize
+                               #{t('regards')}, <br/>"+@user.full_name.capitalize
 
             unless s.has_paid_fees == true
               Reminder.create(:sender=>@user.id, :recipient=>s.user.id, :subject=> subject,
