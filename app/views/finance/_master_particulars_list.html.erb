@@ -43,6 +43,7 @@
           <%unless fees.admission_no.nil?%>
             <%  student =  Student.find_by_admission_no(fees.admission_no)%>
             <%= student.nil? ? "N.A." : student.full_name %>
+            (<%= student.nil? ? "N.A." : student.admission_no %>)
           <% else %> - <% end %>
         </td>
         <td class="col-3"><%= fees.amount%></td>
