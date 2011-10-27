@@ -18,7 +18,7 @@
 
 class Configuration < ActiveRecord::Base
 
-#  STUDENT_ATTENDANCE_TYPE_OPTIONS = [["#{t('daily_text')}", "Daily"], ["#{t('subject_wise_text')}", "SubjectWise"]]
+  STUDENT_ATTENDANCE_TYPE_OPTIONS = [["#{t('daily_text')}", "Daily"], ["#{t('subject_wise_text')}", "SubjectWise"]]
 
   NETWORK_STATES                   = ['Online','Offline']
   LOCALES = []
