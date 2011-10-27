@@ -65,9 +65,9 @@
     <% unless @current_user.admin? %>
         <% if reporting_manager.nil?  %>
     <p class="flash-msg"><%= t('warn_notice') %> </p>
-</div>
 <% end %>
 <% end %>
+  </div>
  <% unless reporting_manager.nil? and not @current_user.admin? %>
   <div id="application-list">
     <div class="heading"><%= t('apply_for_a_leave') %></div>
