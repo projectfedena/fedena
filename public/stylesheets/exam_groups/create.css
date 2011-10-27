@@ -130,3 +130,6 @@
     color:#990a10;
     text-decoration:none;
 }
+.fieldWithErrors{
+    display: inline-block;
+}
