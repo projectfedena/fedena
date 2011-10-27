@@ -1501,7 +1501,7 @@ hi:
   income_list: "आय सूची"
   manage_finance: "वित्त प्रबंधित"
   manage_expense_and_income: "खर्च और आय का प्रबंध"
-  expences_n_income: "Expences और आय"
+  expences_n_income: "व्यय और आय"
   add_expense: "खर्च जोड़ें"
   add_income: "आय में जोड़ें"
   show_transactions: "शो लेनदेन"
