@@ -103,8 +103,17 @@
     background : #eee;
     border : 1px solid #c6c6c6;
     margin : 5px 0 0 10px;
-    width : 30px;
-    height:17px;
+    width : auto;
+    height:auto;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+}
+.opt input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 0 0 10px;
+    width : 50px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     padding: 5px;
@@ -137,7 +146,6 @@
     margin-left:200px;
     width:213px;
 }
-
 .each_batch{
     font-size: 12px;
     /*overflow:auto;

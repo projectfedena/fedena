@@ -50,6 +50,8 @@
 
 
 table{
+    width:970px;
+    margin:0 auto;
     background: #c3d9ff;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;

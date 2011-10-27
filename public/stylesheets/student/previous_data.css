@@ -36,18 +36,18 @@
 }
 
 .save-proceed-button input{
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    background:#27292B none repeat scroll 0 0;
-    color:#FFFFFF;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
-    margin-left:250px;
-    margin-top:8px;
-    padding:7px 10px;
-    border:none;
-    cursor:pointer;
+    background: none repeat scroll 0 0 #27292B;
+    border: medium none;
+    border-radius: 10px 10px 10px 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 209px;
+    margin-top: 8px;
+    padding: 7px 10px;
 }
 .sub-heading{
     background:#9E0F15;
@@ -66,20 +66,19 @@
     border: none;
 }
 .skip{
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    background:#27292B none repeat scroll 0 0;
-    color:#FFFFFF;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
-    margin-right:80px;
-    margin-top:30px;
-    padding:8px 10px;
-    border:none;
-    cursor:pointer;
+    background: none repeat scroll 0 0 #27292B;
+    border: medium none;
+    border-radius: 10px 10px 10px 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: right;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 69px;
+    margin-top: 8px;
+    padding: 8px 10px;
     text-decoration: none;
-    float:right;
 }
 .save-button{
     position:relative;
