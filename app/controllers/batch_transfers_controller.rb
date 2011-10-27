@@ -69,6 +69,7 @@ class BatchTransfersController < ApplicationController
         @stu = Student.find_all_by_batch_id(@batch.id)
         if @stu.empty?
           @batch.update_attribute :is_active, false
+          @batch.employees_subjects.destroy_all
 #          flash[:notice]="Graduated selected students successfully."
 #          redirect_to :controller=>'batch_transfers' and return
         end

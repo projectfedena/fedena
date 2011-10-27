@@ -23,6 +23,7 @@ class Batch < ActiveRecord::Base
   has_many :archived_students
   has_many :grading_levels, :conditions => { :is_deleted => false }
   has_many :subjects, :conditions => { :is_deleted => false }
+  has_many :employees_subjects, :through =>:subjects
   has_many :exam_groups
   has_many :fee_category , :class_name => "FinanceFeeCategory"
   has_many :elective_groups
@@ -57,6 +58,7 @@ class Batch < ActiveRecord::Base
   
   def inactivate
     update_attribute(:is_deleted, true)
+    self.employees_subjects.destroy_all
   end
 
   def grading_level_list
