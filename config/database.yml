@@ -1,7 +1,7 @@
 development:
       host: localhost
       adapter: mysql
-      database: fedena2.1_i18n
+      database: fedena_ultimate
       port: 3306
       username: root
       password: foradian
@@ -17,7 +17,7 @@ test: &test
 production:
       host: localhost
       adapter: mysql
-      database: fedena2.1_i18n
+      database: fedena_ultimate
       port: 3306
       username: root
       password: foradian
