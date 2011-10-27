@@ -31,6 +31,7 @@ class Subject < ActiveRecord::Base
 
   def inactivate
     update_attribute(:is_deleted, true)
+    self.employees_subjects.destroy_all
   end
 
 end
