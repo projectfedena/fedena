@@ -39,7 +39,7 @@
     <li>
       <a href="#" class="drops" id="link_one"><%= t('manage') %> &#9660;</a>
       <ul id="box_one" class="scriptaculously" style="display:none;">
-        <li><%= link_to "#{t('subject_text')}", :controller=>"batch_transfers", :action=>'subject_transfer', :id=>@batch %></li>
+        <li><%= link_to "#{t('subject')}", :controller=>"batch_transfers", :action=>'subject_transfer', :id=>@batch %></li>
         <li><%= link_to "#{t('electives')}", batch_elective_groups_path(@batch) %></li>
         <li><%= link_to "#{t('assign_tutor')}",:action=>'assign_tutor', :id=>@batch %></li>
       </ul>
