@@ -30,8 +30,7 @@ class ApplicationController < ActionController::Base
 
   def dev_mode
     if Rails.env == "development"
-     ActiveSupport::Dependencies.load_file "fedena_transport.rb"
-     ActiveSupport::Dependencies.load_file "fedena_moodle.rb"
+     
    end
   end
 
