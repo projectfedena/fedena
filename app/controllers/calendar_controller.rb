@@ -226,6 +226,7 @@ class CalendarController < ApplicationController
     first_day = @date.beginning_of_month.to_time
     last_day = @date.end_of_month.to_time
     not_common_exam_event = Event.find_all_by_is_common_and_is_holiday_and_is_exam(false,false,true, :conditions => ["(start_date >= ? and end_date <= ?) or (start_date <= ? and end_date <= ?)  or (start_date>=? and end_date>=?) or (start_date<=? and end_date>=?) ", first_day, last_day, first_day,last_day, first_day,last_day,first_day,last_day])
+    not_common_exam_event.reject! { |x|x.origin.nil?  }
     @student_batch_exam_event_array = []
     if @user.student == true
       user_student = @user.student_record
@@ -367,6 +368,7 @@ class CalendarController < ApplicationController
       end
 
       if e.is_common ==false and e.is_holiday==false and e.is_exam ==true  # not_common_exam_event
+        unless e.origin.nil?
         build_student_events_hash(e,'student_batch_exam',@user.student_record.batch_id,@show_month) if @user.student?
         if @user.employee?
           build_common_events_hash(e,'student_batch_exam',@show_month)
@@ -380,6 +382,7 @@ class CalendarController < ApplicationController
               @notifications['student_batch_exam'] << d.to_date unless student_batch_exam_event.nil?
             end
           end
+        end
         end
       end
 
