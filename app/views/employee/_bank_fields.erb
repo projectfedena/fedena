@@ -23,8 +23,8 @@
     <%- @bank_details.each do |c| -%>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= c.name %></div>
-        <div class="category-edit"><%= link_to "► #{t('edit_text')}", {:action => "edit_bank_details", :id=>c.id} %></div>
-        <div class="category-edit"><%= link_to "► #{t('delete_text')}", {:action => "delete_bank_details", :id=>c.id}, :confirm => "#{t('delete_confirm_msg')}" %></div>
+        <div class="category-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_bank_details", :id=>c.id} %></div>
+        <div class="category-edit"><%= link_to "#{t('delete_text')}", {:action => "delete_bank_details", :id=>c.id}, :confirm => "#{t('delete_confirm_msg')}" %></div>
       </li>
     <% end %>
     <% unless @inactive_bank_details.empty? %>
@@ -32,8 +32,8 @@
       <%- @inactive_bank_details.each do |c| -%>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="category-name"><%= c.name %></div>
-          <div class="category-edit"><%= link_to "► #{t('edit_text')}", {:action => "edit_bank_details", :id=>c.id} %></div>
-          <div class="category-edit"><%= link_to "► #{t('delete_text')}", {:action => "delete_bank_details", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}" %></div>
+          <div class="category-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_bank_details", :id=>c.id} %></div>
+          <div class="category-edit"><%= link_to "#{t('delete_text')}", {:action => "delete_bank_details", :id=>c.id},:confirm=>"#{t('delete_confirm_msg')}" %></div>
         </li>
       <% end %>
     <% end %>

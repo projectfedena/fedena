@@ -18,21 +18,21 @@
 #under the License. -%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
     <%= stylesheet_link_tag(['application', '_styles/ui.all'])%>
     <%= stylesheet_link_tag(*get_stylesheets) %>
-     <%= stylesheet_link_tag  "_layouts/pdf" %>
+    <%= stylesheet_link_tag  "_layouts/pdf" %>
     <link rel="stylesheet" type="text/css" href="<%="#{RAILS_ROOT}/public/stylesheets/_layouts/pdf.css" %>" media="all" />
     <link rel="stylesheet" type="text/css" href="<%="#{RAILS_ROOT}//public/stylesheets/#{get_stylesheets}.css"%>" media="all" />
     <link rel="stylesheet" type="text/css" href="<%= "#{RAILS_ROOT}/public/stylesheets/_styles/ui.all.css"%>" media="all" />
-     
-     
+
+
   </head>
   <body>
-    
+
     <%= yield %>
 
   </body>
