@@ -1857,6 +1857,7 @@ es: # locale
     flash40: "No puedo empleado de grado se actualizará"
     flash41: "El empleado está asignado actualmente a mismo tema en el calendario"
     flash42: "Por favor, asignar a otro empleado en inorden calendario para eliminar esta asociación"
+    flash43: "Ninguno de los empleados en este departamento"
 
 #payroll translation
   payroll:

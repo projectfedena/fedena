@@ -1852,6 +1852,7 @@ en: # locale
     flash40: "Employee grade cant be updated"
     flash41: "The employee is currently assigned to same subject in timetable"
     flash42: "Please assign another employee in timetable inorder to remove this association"
+    flash43: "No employees found in this department"
 
 #payroll translation
   payroll:
