@@ -203,7 +203,7 @@ class FinanceTransaction < ActiveRecord::Base
 
   def student_payee
     stu = self.payee
-    stu ||= ArchivedStudent.find_by_former_id(self.payee.id)
+    stu ||= ArchivedStudent.find_by_former_id(self.payee_id)
   end
 
 
