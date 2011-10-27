@@ -47,7 +47,7 @@
     </div>
       <% @batches.each do |f| %>
         <div class="each_batch">
-          <%= check_box_tag "finance_fee_category[batch_id][]", f.id %> <%= f.full_name %>
+          <%= check_box_tag "finance_fee_category[batch_id][]", f.id %> <label><%= f.full_name %></label>
         </div>
       <% end %></div>
     </div>
