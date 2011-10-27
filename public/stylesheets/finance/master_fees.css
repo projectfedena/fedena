@@ -151,7 +151,7 @@
 .each_batch{
     font-size: 12px;
     overflow:auto;
-    width:205px; 
+    width:auto;
 
 }
 .each_batch input{
