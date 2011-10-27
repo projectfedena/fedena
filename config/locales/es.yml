@@ -1755,6 +1755,9 @@ es: # locale
   flash_msg9: "Nombre del examen no puede estar vacío"
   flash_msg10: "Nuevo examen ha creado correctamente."
   flash_msg11: "Tamaño de la imagen de archivo demasiado grande. Por favor, sube una imagen con un tamaño de menos de 250 KB."
+  flash_msg12: "Deja rearme con éxito"
+  flash_msg13: "Categoría editado correctamente."
+  flash_msg14: "Datos editado correctamente."
 
 #configuration controller translation
   configuration:
@@ -1874,7 +1877,6 @@ es: # locale
     flash8: "Deja de aplicación eliminada"
     flash9: "¡Lo siento! No se puede eliminar un tipo de licencia con la entrada de dejar"
     flash10: "Lo sentimos dejar aprovado no se pueden eliminar"
-    flash11: "Deja rearme con éxito"
     flash12: "Departamento Sabio Deja rearme con éxito"
 
 #news controller translation
@@ -1945,8 +1947,6 @@ es: # locale
     flash18: "Transacción de financiamiento se han eliminado correctamente"
     flash19: "No puede pagar mayor cantidad de cuota total"
     flash20: "Descuento ya existe para el número de admisión"
-    flash21: "Categoría editado correctamente."
-    flash22: "Datos editado correctamente."
     flash23: "Cantidad a pagar no debe ser negativo"
     flash24: "Monto de la multa no debe ser negativo"
 

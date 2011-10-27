@@ -665,7 +665,7 @@ class FinanceController < ApplicationController
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'categories', :partial => 'master_category_list'
-        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash21')}</p>"
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg13')}</p>"
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @finance_fee_category
         page.visual_effect(:highlight, 'form-errors')
@@ -697,7 +697,7 @@ class FinanceController < ApplicationController
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'categories', :partial => 'master_particulars_list'
-        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash22')}</p>"
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg14')}</p>"
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @feeparticulars
         page.visual_effect(:highlight, 'form-errors')

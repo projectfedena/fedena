@@ -1748,6 +1748,9 @@ en: # locale
   flash_msg9: "Exam name can't be blank"
   flash_msg10: "New exam created successfully."
   flash_msg11: "Image file size too large. Please upload an image with size less than 250KB."
+  flash_msg12: "Leave Reset Successfull"
+  flash_msg13: "Category edited successfully."
+  flash_msg14: "Particulars edited successfully."
 
 #configuration controller translation
   configuration:
@@ -1866,7 +1869,6 @@ en: # locale
     flash8: "Leave application deleted"
     flash9: "Sorry! Cannot delete a leave type with leave entry"
     flash10: "Sorry aproved leave cannot be deleted"
-    flash11: "Leave Reset Successfull"
     flash12: "Department Wise Leave Reset Successfull"
 
 #news controller translation
@@ -1937,8 +1939,6 @@ en: # locale
     flash18: "Finance Transaction Successfully Deleted"
     flash19: "Cannot pay amount greater than total fee"
     flash20: "Discount already exists for admission number"
-    flash21: "Category edited successfully."
-    flash22: "Particulars edited successfully."
     flash23: "Amount to be paid should not be negative"
     flash24: "Fine amount should not be negative"
 

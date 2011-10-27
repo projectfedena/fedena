@@ -57,9 +57,9 @@ class EmployeeAttendanceController < ApplicationController
       @leave_count.each do |e|
         e.delete
       end
-            flash[:notice] = t('.flash3')
+            flash[:notice] = t('flash3')
     else
-            flash[:notice] = t('flash11')
+            flash[:notice] = "#{t('flash_msg12')}"
     end
     redirect_to :action => "add_leave_types"
     
@@ -345,7 +345,7 @@ class EmployeeAttendanceController < ApplicationController
       end
     end
     render :update do |page|
-            flash.now[:notice]=t('flash11')
+            flash.now[:notice]= "#{t('flash_msg12')}"
       page.replace_html "list", :partial => 'employee_reset_sucess'
     end
   end
