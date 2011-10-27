@@ -187,5 +187,8 @@
 }
 
 .no-data{
-        margin-left:160px;
+    margin-left:160px;
+}
+table#listing td.col-1 {
+    width: 9%;
 }
