@@ -20,6 +20,7 @@ class AddNewColumnsToFedena < ActiveRecord::Migration
     change_column :finance_fees, :transaction_id, :string
     change_column :finance_fee_structure_elements, :amount, :decimal, :precision =>15, :scale => 2
     change_column :finance_fee_particulars, :amount, :decimal, :precision =>15, :scale => 2
+    create_default
   end
 
   def self.down
@@ -44,5 +45,5 @@ class AddNewColumnsToFedena < ActiveRecord::Migration
     Configuration.create :config_key => "AutomaticLeaveReset", :config_value => "0"
     Configuration.create :config_key => "LeaveResetPeriod", :config_value => "4"
     Configuration.create :config_key => "LastAutoLeaveReset", :config_value => nil
-  end
+end
 end
