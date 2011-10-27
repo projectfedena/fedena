@@ -49,7 +49,7 @@
             <div class="month">
               <% exam = ExamScore.new() %>
               <% @aggr =  exam.batch_wise_aggregate(@student,b)  %>
-              <h4> <%= b.name %> |<%= t('aggregate') %> : <%="%.2f" %@aggr.to_f unless @aggr== 'nil' or @aggr.nil? %></h4>
+              <h4> <%= b.course.full_name+" "+b.name %> |<%= t('aggregate') %> : <%="%.2f" %@aggr.to_f unless @aggr== 'nil' or @aggr.nil? %></h4>
             </div>
             <div class="extender"></div>
           </div>
