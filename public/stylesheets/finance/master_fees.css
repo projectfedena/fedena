@@ -1,4 +1,6 @@
-
+.options{
+    float:left;
+}
 .link-box {
     float: left;
     height: 80px;

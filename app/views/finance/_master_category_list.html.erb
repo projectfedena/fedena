@@ -24,6 +24,7 @@
       <td><%= t('fees_name') %></td>
       <td><%= t('batch') %> <%= t('name') %></td>
       <td><%= t('created_date') %> </td>
+      <td><%= t('select') %> </td>
     </tr>
     <tr class="tr-blank"></tr>
 
@@ -31,12 +32,6 @@
       <tr class="tr-<%= cycle("odd","even") %>">
         <td class="col-1"><%= i+1 %></td>
         <td class="col-1"><%= link_to  fees.name, :action => 'master_category_particulars',:id => fees.id %>
-          <%  unless fees.check_fee_collection == false %>
-            <span class="small"> <%= link_to_remote t('delete_text'), :url => { :action => 'master_category_delete',:id => fees.id} %></span>
-          <% else %>
-            <span class="small-strike"><%= t('delete_text') %></span>
-          <% end %>
-          <span class="small"> <%= link_to_remote t('edit_text'), :url => { :action => 'master_category_edit',:id => fees.id} %></span>
         </td>
         <td class="col-1"><%  unless fees.batch.nil? %>
             <%=shorten_string(fees.batch.full_name,20)%>
@@ -44,6 +39,15 @@
             <%= t('all') %>
           <% end %></td>
         <td class="col-1"><%= I18n.l(fees.created_at,:format=>"%m-%d-%Y") %></td>
+        <td class="col-1"><%  unless fees.check_fee_collection == false %>
+            <div class="options">
+              <span class="small"> <%= link_to_remote t('delete_text'), :url => { :action => 'master_category_delete',:id => fees.id} %></span>
+            <% else %>
+              <span class="small-strike"><%= t('delete_text') %></span>
+            <% end %>
+            <span class="small"> <%= link_to_remote t('edit_text'), :url => { :action => 'master_category_edit',:id => fees.id} %></span>
+          </div>
+        </td>
       </tr>
     <% end %>
 
