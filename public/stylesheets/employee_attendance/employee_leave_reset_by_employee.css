@@ -37,6 +37,7 @@
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     padding: 4px 0 0 5px;
+    float: left;
 }
 
 #search_textbox input:focus{
@@ -67,9 +68,10 @@
 }
 
 .advanced_options{
-    margin-left:304px;
+    margin-left:3px;
     margin-top:5px;
     width:600px;
+    float: left;
 }
 
 
@@ -86,8 +88,9 @@
     background : #fff url(../../images/form_bg/smalltextbox.jpg) no-repeat;
     height : 43px;
     width : 150px;
+    float: left;
 }
 #form-content{
     width:300px;
-    margin-left: 200px;
+    float: left;
 }
