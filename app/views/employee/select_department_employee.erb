@@ -28,6 +28,10 @@
 
 
 <div id="page-yield">
+  
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
 
     <div class="drop-down-box">
       <label for="category_prefix"><%= t('select_a_department') %></label>
