@@ -1084,7 +1084,7 @@ class FinanceController < ApplicationController
                 :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
             end
           end
-          new_event =  Event.create(:title=> "#{t('fees_due')}", :description =>fee_category_name, :start_date => @finance_fee_collection.due_date.to_datetime, :end_date => @finance_fee_collection.due_date.to_datetime, :is_due => true , :origin=>@finance_fee_collection)
+          new_event =  Event.create(:title=> "#{t('fees_due')}", :description =>params[:finance_fee_collection][:name], :start_date => @finance_fee_collection.due_date.to_datetime, :end_date => @finance_fee_collection.due_date.to_datetime, :is_due => true , :origin=>@finance_fee_collection)
           BatchEvent.create(:event_id => new_event.id, :batch_id => b.id )
         else
           @error = true
@@ -1120,9 +1120,9 @@ class FinanceController < ApplicationController
     @finance_fee_collection = FinanceFeeCollection.find params[:id]
     events = @finance_fee_collection.event
     render :update do |page|
-      if params[:finance_fee_collection][:due_date].to_date == params[:finance_fee_collection][:end_date].to_date
+      if params[:finance_fee_collection][:due_date].to_date >= params[:finance_fee_collection][:end_date].to_date
         if @finance_fee_collection.update_attributes(params[:finance_fee_collection])
-          events.update_attributes(:start_date=> @finance_fee_collection.due_date.to_datetime, :end_date=> @finance_fee_collection.due_date.to_datetime) unless events.blank?
+          events.update_attributes(:start_date=> @finance_fee_collection.due_date.to_datetime, :end_date=> @finance_fee_collection.due_date.to_datetime, :description=>params[:finance_fee_collection][:name]) unless events.blank?
           fee_category_name = @finance_fee_collection.fee_category.name
           subject = "#{t('fees_submission_date')}"
           @students = Student.find_all_by_batch_id(@finance_fee_collection.batch_id)
