@@ -201,7 +201,7 @@ class Student < ActiveRecord::Base
   end
 
   def check_fee_pay(date)
-    date.finance_fees(:conditions=>"student_id = #{self.id}").is_paid
+    date.finance_fees.first(:conditions=>"student_id = #{self.id}").is_paid
   end
 
   def self.next_admission_no
