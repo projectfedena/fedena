@@ -1516,7 +1516,7 @@ class FinanceController < ApplicationController
     @student_fees = FinanceFee.find_all_by_student_id(@student.id,:select=>'fee_collection_id')
     @student_dates = ""
     @student_fees.map{|s| @student_dates += s.fee_collection_id.to_s + ","}
-    @dates = FinanceFeeCollection.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@student_dates}\")")
+    @dates = FinanceFeeCollection.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@student_dates}\") and is_deleted = 0")
   end
 
   def fees_structure_for_student
