@@ -1044,7 +1044,7 @@ class FinanceController < ApplicationController
   end
 
   def fee_collection_new
-    @fee_categories = FinanceFeeCategory.find(:all , :conditions => ["is_master = '#{1}' and is_deleted = '#{false}'"], :group => :name)
+    @fee_categories = FinanceFeeCategory.common_active
     @finance_fee_collection = FinanceFeeCollection.new
     @fee_categories.reject!{|x|x.fee_particulars.blank? }
   end
@@ -2132,14 +2132,14 @@ class FinanceController < ApplicationController
 
   def load_discount_create_form
     if params[:type]== "batch_wise"
-      @fee_categories = FinanceFeeCategory.find(:all , :conditions => ["is_master = '#{1}' and is_deleted = '#{false}'"], :group => :name)
+      @fee_categories = FinanceFeeCategory.common_active
       @fee_discount = BatchFeeDiscount.new
       render :update do |page|
         page.replace_html "form-box", :partial => "batch_wise_discount_form"
         page.replace_html 'form-errors', :text =>""
       end
     elsif params[:type]== "category_wise"
-      @fee_categories = FinanceFeeCategory.find(:all , :conditions => ["is_master = '#{1}' and is_deleted = '#{false}'"], :group => :name)
+      @fee_categories = FinanceFeeCategory.common_active
       @student_categories = StudentCategory.active
       render :update do |page|
         page.replace_html "form-box", :partial => "category_wise_discount_form"
@@ -2156,7 +2156,7 @@ class FinanceController < ApplicationController
 
   def load_discount_batch
     @course = Course.find(params[:id])
-    @batches = @course.batches(:conditions=>"is_deleted = 0")
+    @batches = @course.batches.active
     render :update do |page|
       page.replace_html "batch-box", :partial => "fee_discount_batch_list"
     end
