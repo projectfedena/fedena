@@ -53,11 +53,11 @@ class FinanceTransaction < ActiveRecord::Base
       :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id IN (#{fixed_cat_ids.join(",")})"])
     other_transactions = FinanceTransaction.find(:all ,
       :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id NOT IN (#{fixed_cat_ids.join(",")})"])
-#    transactions_fees = FinanceTransaction.find(:all,
-#      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{fee_id}'"])
+    #    transactions_fees = FinanceTransaction.find(:all,
+    #      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{fee_id}'"])
     employees = Employee.find(:all)
-#    donations = FinanceTransaction.find(:all,
-#      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{donation_id}'"])
+    #    donations = FinanceTransaction.find(:all,
+    #      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{donation_id}'"])
     trigger = FinanceTransactionTrigger.find(:all)
     hr = Configuration.find_by_config_value("HR")
     income_total = 0
@@ -87,16 +87,19 @@ class FinanceTransaction < ActiveRecord::Base
     end
 
     # plugin transactions
-      plugin_name.each do |p|
-      cat_id = fixed_categories.reject!{|cat|cat.name.downcase != p.downcase}.first.id
-      transactions_plugin = fixed_transactions.reject{|tr|tr.category_id != cat_id}
-      transactions_plugin.each do |t|
-      if t.category.is_income?
-        income_total +=t.amount
-      else
-        expenses_total +=t.amount
+    plugin_name.each do |p|
+      category = fixed_categories.reject!{|cat|cat.name.downcase != p.downcase}
+      unless category.blank?
+        cat_id = category.first.id
+        transactions_plugin = fixed_transactions.reject{|tr|tr.category_id != cat_id}
+        transactions_plugin.each do |t|
+          if t.category.is_income?
+            income_total +=t.amount
+          else
+            expenses_total +=t.amount
+          end
+        end
       end
-    end
     end
     
     other_transactions.each do |t|
