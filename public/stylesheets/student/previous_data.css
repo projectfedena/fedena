@@ -39,13 +39,14 @@
     background: none repeat scroll 0 0 #27292B;
     border: medium none;
     border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
     color: #FFFFFF;
     cursor: pointer;
     float: left;
     font-family: arial;
     font-size: 14px;
     font-weight: bold;
-    margin-left: 209px;
+    margin-left: 199px;
     margin-top: 8px;
     padding: 7px 10px;
 }
@@ -69,6 +70,7 @@
     background: none repeat scroll 0 0 #27292B;
     border: medium none;
     border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
     color: #FFFFFF;
     cursor: pointer;
     float: right;
