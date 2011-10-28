@@ -33,7 +33,7 @@
 <div id="nav">
   <ul>
     <li>
-      <a href="#" class="drops" id="link_one"><%= t('employee.profile.profile') %> &#9660;</a>
+      <a href="#" class="drops" id="link_one"><%= t('profile_text') %> &#9660;</a>
       <ul id="box_one" class="scriptaculously" style="display:none;">
         <li><%= link_to_remote "#{t('general')}", :url => {:action => "profile_general", :id => @employee.id}, :update => "profile-infos" %></li>
         <li><%= link_to_remote "#{t('personal')}", :url => {:action => "profile_personal", :id => @employee.id}, :update => "profile-infos" %></li>
