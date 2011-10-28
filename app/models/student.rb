@@ -248,7 +248,7 @@ class Student < ActiveRecord::Base
         exam_score_attributes.delete "student_id"
         exam_score_attributes["student_id"]= archived_student.id
         ArchivedExamScore.create(exam_score_attributes)
-        s.delete
+        s.destroy
       end
       #
     end
@@ -269,4 +269,4 @@ class Student < ActiveRecord::Base
   end
 
 
-  end
+end

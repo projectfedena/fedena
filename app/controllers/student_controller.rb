@@ -44,6 +44,7 @@ class StudentController < ApplicationController
     @application_sms_enabled = SmsSetting.find_by_settings_key("ApplicationEnabled")
     @last_admitted_student = Student.find(:last)
     @config = Configuration.find_by_config_key('AdmissionNumberAutoIncrement')
+    @categories = StudentCategory.active
     if request.post?
       if @config.config_value.to_i == 1
         @exist = Student.find_by_admission_no(params[:student][:admission_no])
