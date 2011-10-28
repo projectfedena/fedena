@@ -25,6 +25,13 @@ class FinanceFeeParticulars < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 10
   
-  
+  def deleted_category
+    flag = false
+    category = self.student_category
+    unless category.blank?
+      flag = true if category.is_deleted
+    end
+    return flag
+  end
 
 end

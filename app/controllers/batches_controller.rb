@@ -69,15 +69,20 @@ class BatchesController < ApplicationController
         fee_msg = []
         fee_msg << "<ol>"
         course = @batch.course
-        all_batches = Batch.find_all_by_course_id(course.id,:conditions=>'is_deleted = 0')
-        all_batches.reject! {|b| b.is_deleted?}
+        all_batches = Batch.find_all_by_course_id(course.id,:conditions=>'is_deleted = 0',:order=>'id asc')
+        all_batches.reject! {|b| b.fee_category.blank?}
         @previous_batch = all_batches[all_batches.size-2]
         categories = FinanceFeeCategory.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false and is_master=true')
         categories.each do |c|
+          particulars = c.fee_particulars(:conditions=>"admission_no IS NULL AND student_id IS NULL AND is_deleted = 0")
+          particulars.reject!{|pt|pt.deleted_category}
+          batch_discounts = BatchFeeDiscount.find_all_by_finance_fee_category_id(c.id)
+          category_discounts = StudentCategoryFeeDiscount.find_all_by_finance_fee_category_id(c.id)
+          unless particulars.blank? and batch_discounts.blank? and category_discounts.blank?
           new_category = FinanceFeeCategory.new(:name=>c.name,:description=>c.description,:batch_id=>@batch.id,:is_deleted=>false,:is_master=>true)
           if new_category.save
             fee_msg << "<li>#{c.name}</li>"
-            c.fee_particulars.each do |p|
+            particulars.each do |p|
               new_particular = FinanceFeeParticulars.new(:name=>p.name,:description=>p.description,:amount=>p.amount,:student_category_id=>p.student_category_id,\
                   :admission_no=>p.admission_no,:student_id=>p.student_id)
               new_particular.finance_fee_category_id = new_category.id
@@ -85,9 +90,30 @@ class BatchesController < ApplicationController
                 err += "<li>#{t('particular')} #{p.name} #{t('import_failed')}.</li>"
               end
             end
+            batch_discounts.each do |disc|
+              discount_attributes = disc.attributes
+              discount_attributes.delete "type"
+              discount_attributes.delete "finance_fee_category_id"
+              discount_attributes["finance_fee_category_id"]= new_category.id
+              unless BatchFeeDiscount.create(discount_attributes)
+                err += "<li>#{t('discount')} #{disc.name} #{t('import_failed')}.</li>"
+              end
+            end
+            category_discounts.each do |disc|
+              discount_attributes = disc.attributes
+              discount_attributes.delete "type"
+              discount_attributes.delete "finance_fee_category_id"
+              discount_attributes["finance_fee_category_id"]= new_category.id
+              unless StudentCategoryFeeDiscount.create(discount_attributes)
+                err += "<li>#{t('discount')} #{disc.name} #{t('import_failed')}.</li>"
+              end
+            end
           else
             err += "<li>#{t('category')}#{c.name}#{t('import_failed')}.</li>"
           end
+        else
+          err += "<li>#{t('category')}#{c.name}#{t('import_failed')}.</li>"
+        end
         end
         fee_msg << "</ol>"
       end
@@ -147,9 +173,9 @@ class BatchesController < ApplicationController
     @batch = Batch.find_by_id(params[:batch_id])
     @employees = Employee.find_all_by_employee_department_id(params[:department_id])
     unless @batch.employee_id.blank?
-    @assigned_emps = @batch.employee_id.split(',')
+      @assigned_emps = @batch.employee_id.split(',')
     else
-    @assigned_emps = []
+      @assigned_emps = []
     end
     @assigned_emps.push(params[:id].to_s)
     @batch.update_attributes :employee_id => @assigned_emps.join(",")

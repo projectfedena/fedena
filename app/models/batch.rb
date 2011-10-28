@@ -32,6 +32,8 @@ class Batch < ActiveRecord::Base
   has_many :finance_transactions, :through => :students
   has_many :batch_events
   has_many :events , :through =>:batch_events
+  has_many :batch_fee_discounts , :foreign_key => 'receiver_id'
+  has_many :student_category_fee_discounts , :foreign_key => 'receiver_id'
 
   has_and_belongs_to_many :graduated_students, :class_name => 'Student', :join_table => 'batch_students'
 
