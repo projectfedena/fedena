@@ -1758,6 +1758,7 @@ es: # locale
   flash_msg12: "Deja rearme con éxito"
   flash_msg13: "Categoría editado correctamente."
   flash_msg14: "Datos editado correctamente."
+  flash_msg15: "Error: La fecha de vencimiento debe ser posterior a la fecha de finalización."
 
 #configuration controller translation
   configuration:
@@ -1858,6 +1859,7 @@ es: # locale
     flash41: "El empleado está asignado actualmente a mismo tema en el calendario"
     flash42: "Por favor, asignar a otro empleado en inorden calendario para eliminar esta asociación"
     flash43: "Ninguno de los empleados en este departamento"
+    flash44: "No se puede eliminar al empleado cuando existe cambio de uso dependecy a la opción anterior."
 
 #payroll translation
   payroll:

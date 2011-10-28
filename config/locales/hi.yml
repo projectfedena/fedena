@@ -221,29 +221,29 @@ hi:
 
   date:
     formats:
-      default: "%, ई% मीटर, वाई%"
-      normal: "% बी% ई% वाई"
-      short: "% ई| % ख"
-      month_year: "% बी% वाई"
-      long: "% एक% ई% बी, वाई%"
-      only_day: "% ई"
-      month: "% बी"
-      day: "%"
-      mont: "% D"
-      day_mon: "%% D"
+      default: "%e,%m,%Y"
+      normal: "%B %e, %Y"
+      short: "%e. %b"
+      month_year: "%B %Y"
+      long: "%A, %e %B, %Y"
+      only_day: "%e"
+      month: "%B"
+      day: "%a"
+      mont: "%d"
+      day_mon: "%a %d"
       
-  day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
-  abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]
-  month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
-  abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+  day_names: [रविवार, सोमवार, मंगलवार, बुधवार, गुरुवार, शुक्रवार, शनिवार]
+  abbr_day_names: [रवि, ​​सोम, मंगल, बुध, गुरु, शुक्र, शनि]
+  month_names: [~, जनवरी, फरवरी, मार्च, अप्रैल, मई, जून, जुलाई, अगस्त, सितंबर, अक्टूबर, नवम्बर, दिसम्बर]
+  abbr_month_names: [~, जनवरी, फ़रवरी, मार्च, अप्रैल, मई, जून, जुलाई, अगस्त, सितम्बर, अक्टूबर, नवम्बर, दिसम्बर]
   order: [ :day, :month, :year ]
 
   time:
     formats:
-      default: "% एक% मृ %% बी वाई, एच%:% एम UHR"
-      short: "% मृ % बी, एच%:% एम UHR"
-      long: "% एक% मृ %% बी वाई, एच%:% एम UHR"
-      time: "एच:%% एम"
+      default: "%A, %d. %B %Y, %H:%M Uhr"
+      short: "%d. %B, %H:%M Uhr"
+      long: "%A, %d. %B %Y, %H:%M Uhr"
+      time: "%H:%M"
 
     am: "vormittags"
     pm: "nachmittags"
@@ -1752,6 +1752,7 @@ hi:
   flash_msg12: "सफल रीसेट छोड़ दो"
   flash_msg13: "श्रेणी सफलतापूर्वक संपादित|"
   flash_msg14: "ब्योरे सफलतापूर्वक संपादित|"
+  flash_msg15: "त्रुटि: नियत दिनांक समाप्ति तिथि के बाद होना चाहिए."
 
 #configuration controller translation
   configuration:
@@ -1851,6 +1852,7 @@ hi:
     flash41: "कर्मचारी वर्तमान समय सारिणी में एक ही विषय को सौंपा है"
     flash42: "समय सारिणी inorder में एक और कर्मचारी असाइन करने के लिए इस संघ को दूर करें"
     flash43: "कोई कर्मचारी इस विभाग में नहीं पाए जाते हैं"
+    flash44: "कर्मचारी नहीं हटा जब dependecy मौजूद प्रयोग पूर्व विकल्प को बदलने कर सकते."
 
 #payroll translation
   payroll:
