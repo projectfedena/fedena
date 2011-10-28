@@ -33,6 +33,7 @@ class Employee < ActiveRecord::Base
   has_many    :monthly_payslips
   has_many    :employee_salary_structures
   has_many    :finance_transactions, :as => :payee
+  has_many    :employee_attendances
 
   validates_format_of     :email, :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,   :allow_blank=>true,
     :message => "#{t('must_be_a_valid_email_address')}"
@@ -269,6 +270,22 @@ class Employee < ActiveRecord::Base
       return  ArchivedEmployee.find(:first,:conditions=>"former_id=#{id}")
     else
       return employee
+    end
+  end
+
+  def has_dependency
+    flag = false
+    flag = true if self.monthly_payslips.present?
+    flag = true if self.employee_salary_structures.present?
+    flag = true if self.employees_subjects.present?
+    flag = true if self.apply_leaves.present?
+    flag = true if self.finance_transactions.present?
+    flag = true if self.timetable_entries.present?
+    flag = true if self.employee_attendances.present?
+    if flag
+      return true
+    else
+      return false
     end
   end
 end

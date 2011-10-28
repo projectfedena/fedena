@@ -28,6 +28,10 @@
 
 <div id="page-yield">
 
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
   <div id="student-details">
     <h4> <%= @employee.first_name %> |  <%= t('employee_number') %>  : <%= @employee.employee_number %> | Department : <%= @employee.employee_department.name %> </h4>
   </div>

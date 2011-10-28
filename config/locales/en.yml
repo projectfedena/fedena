@@ -1853,6 +1853,7 @@ en: # locale
     flash41: "The employee is currently assigned to same subject in timetable"
     flash42: "Please assign another employee in timetable inorder to remove this association"
     flash43: "No employees found in this department"
+    flash44: "Cannot delete the employee when dependecy exists. Use change to former option"
 
 #payroll translation
   payroll:
