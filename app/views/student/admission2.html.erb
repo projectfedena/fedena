@@ -73,7 +73,7 @@
         <hr class="sub-heading"></hr>
 
         <div class="label-field-pair">
-          <label for="parent_detail_name"><%= t('first_name') %></label>
+          <label for="parent_detail_name"><%= t('first_name') %><span class="necessary-field">*</span></label>
           <div class="text-input-bg"><%= f.text_field :first_name %></div>
         </div>
 
@@ -87,7 +87,7 @@
         <hr class="label-underline"></hr>
 
         <div class="label-field-pair">
-          <label for="parent_detail_relation"><%= t('relation') %></label>
+          <label for="parent_detail_relation"><%= t('relation') %><span class="necessary-field">*</span></label>
           <div class="text-input-bg"><%= f.text_field :relation %></div>
         </div>
 
