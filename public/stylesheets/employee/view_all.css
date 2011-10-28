@@ -19,3 +19,7 @@
 .label-field-pair{
     margin:0 auto;
 }
+
+.label-field-pair label {
+    width: 234px;
+}
