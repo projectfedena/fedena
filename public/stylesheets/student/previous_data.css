@@ -42,11 +42,11 @@
     -moz-border-radius: 10px 10px 10px 10px;
     color: #FFFFFF;
     cursor: pointer;
-    float: left;
+    float: right;
     font-family: arial;
     font-size: 14px;
     font-weight: bold;
-    margin-left: 199px;
+    margin-right: 73px;
     margin-top: 8px;
     padding: 7px 10px;
 }
@@ -73,11 +73,10 @@
     -moz-border-radius: 10px 10px 10px 10px;
     color: #FFFFFF;
     cursor: pointer;
-    float: right;
+    float: left;
     font-family: arial;
     font-size: 14px;
     font-weight: bold;
-    margin-right: 69px;
     margin-top: 8px;
     padding: 8px 10px;
     text-decoration: none;
