@@ -19,7 +19,7 @@
 }
 
 .radio_button{width:400px; margin-top:0px; height:25px;color:#555; float:left; font-size:13px;}
-#information{height:auto;width:816px;margin:0px auto;padding-left:0px; margin-top:30px;}
+#information{height:auto;width:100%;margin:0px auto;padding-left:0px; margin-top:30px;}
 #no_result{font-weight:bold;color:#b00}
 #ajax_result {padding:10px 0 10px 0;width:204px;float:left;}
 #ajax_result a{color:#000;font-weight:bold; text-decoration:none;}
