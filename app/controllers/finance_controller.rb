@@ -1128,9 +1128,9 @@ class FinanceController < ApplicationController
           @students = Student.find_all_by_batch_id(@finance_fee_collection.batch_id)
           @students.each do |s|
             body = "<p><b>#{t('fee_submission_date_for')} <i>"+fee_category_name+"</i> #{t('has_been_updated')}</b> <br /><br/>
-                                start_date: "+@finance_fee_collection.start_date.to_s+"<br />"+
-              "end_date: "+@finance_fee_collection.end_date.to_s+" <br />"+
-              "due_date: "+@finance_fee_collection.due_date.to_s+" <br /><br /><br />"+
+                                #{t('start_date')} : "+@finance_fee_collection.start_date.to_s+"<br />"+
+              " #{t('end_date')} : "+@finance_fee_collection.end_date.to_s+" <br />"+
+              " #{t('due_date')} : "+@finance_fee_collection.due_date.to_s+" <br /><br /><br />"+
               " #{t('check_your')}  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>#{t('fee_structure')}</a> <br/><br/><br/>
                                #{t('regards')}, <br/>"+@user.full_name.capitalize
 
