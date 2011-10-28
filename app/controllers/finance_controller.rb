@@ -1140,7 +1140,7 @@ class FinanceController < ApplicationController
             end
           end
           @finance_fee_collections = FinanceFeeCollection.all(:conditions => ["is_deleted = '#{false}' and batch_id = '#{@finance_fee_collection.batch_id}'"])
-          flash[:notice]="#{t('')}"
+          flash[:notice]="#{t('finance.flash12')}"
           page.replace_html 'form-errors', :text => ''
           page << "Modalbox.hide();"
           page.replace_html 'fee_collection_dates', :partial => 'fee_collection_list'
