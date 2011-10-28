@@ -30,7 +30,7 @@ class Configuration < ActiveRecord::Base
 
   def validate
     if self.config_key == "StudentAttendanceType"
-      errors.add_to_base("#{t('student_attendance_type_should_be_one')} #{STUDENT_ATTENDANCE_TYPE_OPTIONS}") unless STUDENT_ATTENDANCE_TYPE_OPTIONS.include?(self.config_value.to_s)
+      errors.add_to_base("#{t('student_attendance_type_should_be_one')} #{STUDENT_ATTENDANCE_TYPE_OPTIONS}") unless Configuration::STUDENT_ATTENDANCE_TYPE_OPTIONS.collect{|d| d[1] == self.config_value}.include?(true)
     end
     if self.config_key == "NetworkState"
       errors.add_to_base("#{t('network_state_should_be_one')} #{NETWORK_STATES}") unless NETWORK_STATES.include?(self.config_value)
