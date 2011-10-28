@@ -262,7 +262,7 @@ class CalendarController < ApplicationController
     @user = current_user
     @date = params[:id].to_date
     finance_due_check = Event.find_all_by_is_due(true,true, :conditions => " events.start_date >= '#{@date.strftime("%Y-%m-%d 00:00:00")}' AND events.start_date <= '#{@date.strftime("%Y-%m-%d 23:59:59")}'")
-    finance_due_check.reject!{|x| x.origin.is_deleted }
+    finance_due_check.reject!{|x| !x.is_active_event }
     if @user.student?
       finance_due_check.reject!{|x| !x.is_student_event(@user.student_record) }
     elsif @user.employee?
@@ -331,7 +331,7 @@ class CalendarController < ApplicationController
       end
       #finance dues
       if e.is_due == true
-        unless e.origin.is_deleted
+        if e.is_active_event
           if @user.admin?
             build_common_events_hash(e,'finance_due',@show_month)
           elsif @user.student?

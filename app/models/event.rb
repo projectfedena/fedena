@@ -56,6 +56,22 @@ class Event < ActiveRecord::Base
    return true if self.user_event.present?
    false
   end
+
+  def is_active_event
+    flag = false
+    unless self.origin.nil?
+      if self.origin.respond_to?('is_deleted')
+        unless self.origin.is_deleted
+          flag = true
+        end
+      else
+        flag = true
+      end 
+    else
+      flag = true
+    end
+    return flag
+  end
     
   class << self
     def is_a_holiday?(day)
