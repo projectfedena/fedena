@@ -118,7 +118,9 @@
                   <% end %>
                 <% end %>
               <% end %>
-              <a href="#" class="menuanchorclass" rel="anylinkmenu1"><%= t('more') %> ▼</a>
+              <%  if this_user.admin %>
+                <a href="#" class="menuanchorclass" rel="anylinkmenu1"><%= t('more') %> ▼</a>
+              <% end %>
             <% end %>
           </div>
         </div>
