@@ -92,3 +92,13 @@
     margin-bottom: 2px;
     width: 257px;
 }
+
+#MB_frame .label-field-pair select {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #C6C6C6;
+    border-radius: 10px 10px 10px 10px;
+    height: 31px;
+    margin: 5px 11px 0;
+    padding: 5px;
+    width: 216px;
+}
