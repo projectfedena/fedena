@@ -528,7 +528,7 @@ class EmployeeController < ApplicationController
         :order => "employee_department_id asc,first_name asc") unless params[:query] == ''
     else
       @employee = Employee.find(:all,
-        :conditions => ["employee_number = ? "+ other_conditions, "#{params[:query]}%"],
+        :conditions => ["(employee_number = ? )"+ other_conditions, "#{params[:query]}"],
         :order => "employee_department_id asc,first_name asc") unless params[:query] == ''
     end
     render :layout => false
