@@ -31,16 +31,17 @@
     <% @master_categories.each_with_index do |fees,i| %>
       <tr class="tr-<%= cycle("odd","even") %>">
         <td class="col-1"><%= i+1 %></td>
-        <td class="col-1"><%= link_to  fees.name, :action => 'master_category_particulars',:id => fees.id %>
+        <td class="col-4"><%= link_to  fees.name, :action => 'master_category_particulars',:id => fees.id %>
         </td>
-        <td class="col-1"><%  unless fees.batch.nil? %>
+        <td class="col-7"><%  unless fees.batch.nil? %>
             <%=shorten_string(fees.batch.full_name,20)%>
           <% else %>
             <%= t('all') %>
           <% end %></td>
-        <td class="col-1"><%= I18n.l(fees.created_at,:format=>"%m-%d-%Y") %></td>
-        <td class="col-1"><%  unless fees.check_fee_collection == false %>
-            <div class="options">
+        <td class="col-7"><%= I18n.l(fees.created_at,:format=>"%m-%d-%Y") %></td>
+        <td class="col-7">
+          <div class="options">
+            <%  unless fees.check_fee_collection == false %>
               <span class="small"> <%= link_to_remote t('delete_text'), :url => { :action => 'master_category_delete',:id => fees.id} %></span>
             <% else %>
               <span class="small-strike"><%= t('delete_text') %></span>
