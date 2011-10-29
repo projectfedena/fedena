@@ -1037,7 +1037,7 @@ class FinanceController < ApplicationController
 
   def fee_collection_batch_update
     @fee_category = FinanceFeeCategory.find_all_by_name(params[:id], :conditions=>['is_deleted is false'])
-    @fee_category.reject!{|x| x.batch.students.blank? or x.batch.is_deleted?}
+    @fee_category.reject!{|x| x.batch.students.blank? or x.batch.is_deleted? or x.fee_particulars.blank?}
     render :update do |page|
       page.replace_html "batchs" ,:partial => "fee_collection_batchs"
     end
@@ -1046,7 +1046,6 @@ class FinanceController < ApplicationController
   def fee_collection_new
     @fee_categories = FinanceFeeCategory.common_active
     @finance_fee_collection = FinanceFeeCollection.new
-    @fee_categories.reject!{|x|x.fee_particulars.blank? }
   end
 
   def fee_collection_create
