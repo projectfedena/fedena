@@ -153,6 +153,7 @@
 
         </tr>
         <% paid = 0 %>
+        <% i = 0 %>
         <% @paid_fees.each do |p| %>
           <% paid += p.amount.to_f %>
           <tr class="tr-<%= cycle("odd","even") %>">
