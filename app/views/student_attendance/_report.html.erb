@@ -41,7 +41,7 @@
  <%= t('total_working_hours') %>: <%= working_days %>
 <% end %>|<%= t('total_present') %> : <%= total = (working_days - leaves).to_f %> |
 <% percentage =  (total/working_days)*100 unless working_days == 0 %>
-<%= t('percentage') %>: <%= percentage.round unless percentage.nil? %>
+<%= t('percentage') %>: <%= "%.2f" %(percentage) unless percentage.nil? %>
 </div>
 <% unless table_id.empty? %>
   <table id="listing" align="center" width="80%">
