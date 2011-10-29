@@ -30,7 +30,7 @@
       <div id ="main_info">
         <div class="info"><div class="info-label"><%= t('name') %></div> <div class="info-data"><span>:</span><%= @employee.full_name.upcase %></div></div>
         <div class="info"><div class="info-label"><%= t('employee_number') %></div> <div class="info-data"><span>:</span><%= @employee.employee_number %></div></div>
-        <div class="info"><div class="info-label"><%= t('grade') %></div> <div class="info-data"><span>:</span><%= EmployeeGrade.find(@employee.employee_grade_id).name %></div></div>
+        <div class="info"><div class="info-label"><%= t('grade') %></div> <div class="info-data"><span>:</span><%= EmployeeGrade.find(@employee.employee_grade_id).name unless @employee.employee_grade_id.nil? %></div></div>
         <div class="info"><div class="info-label"><%= t('category') %></div> <div class="info-data"><span>:</span><%=  EmployeeCategory.find(@employee.employee_category_id).name %></div></div>
         <div class="info"><div class="info-label"><%= t('department') %></div> <div class="info-data"><span>:</span><%= @employee.employee_department.name %></div></div>
         <div class="info"><div class="info-label">J<%= t('joining_date') %></div> <div class="info-data"><span>:</span><%= I18n.l(@employee.joining_date,:format=>:dmy) %></div></div>

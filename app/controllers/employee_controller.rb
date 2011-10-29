@@ -1349,7 +1349,7 @@ class EmployeeController < ApplicationController
     @department = EmployeeDepartment.find(@employee.employee_department_id).name
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     @category = EmployeeCategory.find(@employee.employee_category_id).name
-    @grade = EmployeeGrade.find(@employee.employee_grade_id).name
+    @grade = EmployeeGrade.find(@employee.employee_grade_id).name unless @employee.employee_grade_id.nil?
     @position = EmployeePosition.find(@employee.employee_position_id).name
     @salary_date = Date.parse(params[:id2])
     @monthly_payslips = MonthlyPayslip.find_all_by_salary_date(@salary_date,
@@ -1405,7 +1405,7 @@ class EmployeeController < ApplicationController
     @department = EmployeeDepartment.find(@employee.employee_department_id).name
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     @category = EmployeeCategory.find(@employee.employee_category_id).name
-    @grade = EmployeeGrade.find(@employee.employee_grade_id).name
+    @grade = EmployeeGrade.find(@employee.employee_grade_id).name unless @employee.employee_grade_id.nil?
     @position = EmployeePosition.find(@employee.employee_position_id).name
     @salary_date = Date.parse(params[:id2])
     @monthly_payslips = MonthlyPayslip.find_all_by_salary_date(@salary_date,
