@@ -151,3 +151,8 @@
 .submit_button:hover{
     background:  #373B3F;
 }
+
+.text-input-bg span{
+    display: block;
+    padding: 9px 0 0 10px;
+}
