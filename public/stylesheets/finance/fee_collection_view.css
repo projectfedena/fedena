@@ -156,3 +156,8 @@
     display: block;
     padding: 9px 0 0 10px;
 }
+
+table#listing {
+    padding: 20px;
+    width: 100%;
+}
