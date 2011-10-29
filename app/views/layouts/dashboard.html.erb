@@ -54,6 +54,9 @@
       ["<%= t('finance_text') %>", "/finance/index"],
       ["<%= t('user_text') %>", "/user"],
 <% end %>
+<%  if @current_user.student? || @current_user.employee? %>
+      ["<%= t('calendar_text') %>", "/calendar"],
+<% end %>
 <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
   <% unless mod[:more_menu].blank? %>
     <%= "['#{t("#{mod[:more_menu][:title]}")}','/#{mod[:more_menu][:controller]}/#{mod[:more_menu][:action].gsub("index","")}'],"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym  %>
@@ -100,16 +103,14 @@
             if this_user.admin? %> -->
           <%= link_to "#{t('timetable_text')}", :controller => "timetable", :action => "index" \
             if this_user.admin? %>
-          <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
-            <% unless mod[:top_bar].blank? %>
-              <% if permitted_to? "#{mod[:top_bar][:action]}".to_sym,"#{mod[:top_bar][:controller]}".to_sym %>
-                <%= link_to "#{t(mod[:top_bar][:title])}", {:controller => "#{mod[:top_bar][:controller]}", :action => "#{mod[:top_bar][:action]}"} %>
-              <% end %>
-            <% end %>
-          <% end %>
-          <%  if this_user.admin %>
+           <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
+             <% unless mod[:top_bar].blank? %>
+               <% if permitted_to? "#{mod[:top_bar][:action]}".to_sym,"#{mod[:top_bar][:controller]}".to_sym %>
+                 <%= link_to "#{t(mod[:top_bar][:title])}", {:controller => "#{mod[:top_bar][:controller]}", :action => "#{mod[:top_bar][:action]}"} %>
+               <% end %>
+             <% end %>
+           <% end %>
             <a href="#" class="menuanchorclass" rel="anylinkmenu1"><%= t('more') %> ▼</a>
-          <% end %>
         </div>
       </div>
     </div>
