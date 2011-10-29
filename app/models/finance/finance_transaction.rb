@@ -66,7 +66,7 @@ class FinanceTransaction < ActiveRecord::Base
      
     unless hr.nil?
       salary = MonthlyPayslip.total_employees_salary(start_date, end_date)
-      expenses_total += salary
+      expenses_total += salary[:total_salary].to_f
     end
 
     transactions_fees = fixed_transactions.reject{|tr|tr.category_id != fee_id}
