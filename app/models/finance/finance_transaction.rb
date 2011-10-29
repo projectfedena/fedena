@@ -55,7 +55,6 @@ class FinanceTransaction < ActiveRecord::Base
       :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id NOT IN (#{fixed_cat_ids.join(",")})"])
     #    transactions_fees = FinanceTransaction.find(:all,
     #      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{fee_id}'"])
-    employees = Employee.find(:all)
     #    donations = FinanceTransaction.find(:all,
     #      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{donation_id}'"])
     trigger = FinanceTransactionTrigger.find(:all)
@@ -66,7 +65,7 @@ class FinanceTransaction < ActiveRecord::Base
     salary = 0
      
     unless hr.nil?
-      salary = Employee.total_employees_salary(employees, start_date, end_date)
+      salary = MonthlyPayslip.total_employees_salary(start_date, end_date)
       expenses_total += salary
     end
 
