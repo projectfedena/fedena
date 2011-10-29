@@ -74,7 +74,7 @@ class BatchesController < ApplicationController
         @previous_batch = all_batches[all_batches.size-2]
         categories = FinanceFeeCategory.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false and is_master=true')
         categories.each do |c|
-          particulars = c.fee_particulars(:conditions=>"admission_no IS NULL AND student_id IS NULL AND is_deleted = 0")
+          particulars = c.fee_particulars.all(:conditions=>"admission_no IS NULL AND student_id IS NULL AND is_deleted = 0")
           particulars.reject!{|pt|pt.deleted_category}
           batch_discounts = BatchFeeDiscount.find_all_by_finance_fee_category_id(c.id)
           category_discounts = StudentCategoryFeeDiscount.find_all_by_finance_fee_category_id(c.id)
@@ -94,6 +94,8 @@ class BatchesController < ApplicationController
               discount_attributes = disc.attributes
               discount_attributes.delete "type"
               discount_attributes.delete "finance_fee_category_id"
+              discount_attributes.delete "receiver_id"
+              discount_attributes["receiver_id"]= @batch.id
               discount_attributes["finance_fee_category_id"]= new_category.id
               unless BatchFeeDiscount.create(discount_attributes)
                 err += "<li>#{t('discount')} #{disc.name} #{t('import_failed')}.</li>"
