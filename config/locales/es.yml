@@ -154,6 +154,9 @@ es: # locale
       employee_attendance:
         employee_id: "Empleado"
         employee_leave_type_id: "Tipo de empleado Deje"
+        reason: "Razón"
+        attendance_date: "Fecha de la asistencia"
+        employee_attendance: "Asistencia de los empleados"
 
       employee_category:
         name: "Nombre"

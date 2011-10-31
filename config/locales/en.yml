@@ -153,6 +153,9 @@ en: # locale
       employee_attendance:
         employee_id: "Employee"
         employee_leave_type_id: "Employee Leave Type"
+        reason: "Reason"
+        attendance_date: "Attendance Date"
+        employee_attendance: "Employee Attendance"
 
       employee_category:
         name: "Name"
