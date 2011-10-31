@@ -20,7 +20,7 @@ class EmployeeController < ApplicationController
   before_filter :login_required,:configuration_settings_for_hr
   filter_access_to :all
   before_filter :protect_other_employee_data, :only => [:individual_payslip_pdf,:timetable,:timetable_pdf,:profile_payroll_details,\
-      :view_attendance,:view_payslip ]
+      :view_attendance,:view_payslip, :profile_pdf, :profile ]
   #    prawnto :prawn => {:left_margin => 25, :right_margin => 25}
  
   def add_category
