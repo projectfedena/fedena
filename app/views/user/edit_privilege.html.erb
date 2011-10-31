@@ -43,6 +43,7 @@
       <% for privilege in Privilege.find(:all) %>
         <%    hr = Configuration.find_by_config_value("HR") %>
         <%  finance = Configuration.find_by_config_value("Finance") %>
+        <%  sms = Configuration.find_by_config_value("SMS") %>
         <%  if hr.nil?  %>
           <% if privilege.id ==9 or  privilege.id ==17 or privilege.id ==18 or privilege.id ==19 %>
             <% next %>
@@ -50,6 +51,11 @@
         <% end %>
         <%  if finance.nil?  %>
           <% if privilege.id ==14  %>
+            <% next %>
+          <% end %>
+        <% end %>
+        <%  if sms.nil?  %>
+          <% if privilege.id ==20  %>
             <% next %>
           <% end %>
         <% end %>
