@@ -72,7 +72,6 @@ class BatchesController < ApplicationController
         all_batches = Batch.find_all_by_course_id(course.id,:conditions=>'is_deleted = 0',:order=>'id asc')
         all_batches.reject! {|b| b.fee_category.blank?}
         @previous_batch = all_batches[all_batches.size-1]
-        render :text=>@previous_batch.name and return
         categories = FinanceFeeCategory.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false and is_master=true')
         categories.each do |c|
           particulars = c.fee_particulars.all(:conditions=>"admission_no IS NULL AND student_id IS NULL AND is_deleted = 0")
