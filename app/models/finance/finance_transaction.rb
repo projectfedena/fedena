@@ -87,7 +87,7 @@ class FinanceTransaction < ActiveRecord::Base
 
     # plugin transactions
     plugin_name.each do |p|
-      category = fixed_categories.reject!{|cat|cat.name.downcase != p.downcase}
+      category = fixed_categories.reject{|cat|cat.name.downcase != p.downcase}
       unless category.blank?
         cat_id = category.first.id
         transactions_plugin = fixed_transactions.reject{|tr|tr.category_id != cat_id}
