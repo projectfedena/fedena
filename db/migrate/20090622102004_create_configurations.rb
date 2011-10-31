@@ -17,7 +17,7 @@ class CreateConfigurations < ActiveRecord::Migration
     Configuration.create :config_key => "InstitutionPhoneNo", :config_value => ""
     Configuration.create :config_key => "StudentAttendanceType", :config_value => "Daily"
     Configuration.create :config_key => "CurrencyType", :config_value => "$"
-    Configuration.create :config_key => "Locale", :config_value=>"es"
+    Configuration.create :config_key => "Locale", :config_value=>"en"
     #Configuration.create :config_key => "ExamResultType", :config_value => "Marks"
     Configuration.create :config_key => "AdmissionNumberAutoIncrement", :config_value => "1"
     Configuration.create :config_key => "EmployeeNumberAutoIncrement", :config_value => "1"
