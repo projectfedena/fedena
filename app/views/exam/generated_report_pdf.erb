@@ -57,7 +57,7 @@
             <% i= 0 %>
             <tr class="page-break"><td colspan="3"></td></tr>
 
-                <tr class="table-header"><td class="col-pdf"><%= t('subject') %></td><td class="col-pdf"><%= t('marks_obtained') %> </td><td class="col-pdf"><%= t('max_marks') %></td><td class="col-pdf"><%= t('percentage') %>(%)</td></tr>
+                <tr class="table-header"><td class="col-pdf"><%= t('subject') %></td><td class="col-pdf"><%= t('marks_obtained') %> </td><td class="col-pdf"><%= t('max_mark') %></td><td class="col-pdf"><%= t('percentage') %>(%)</td></tr>
 
           <% end %>
               <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
@@ -68,7 +68,7 @@
               </tr>
             <% end %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-              <td class="col-pdf"><%= "Total" %></td>
+              <td class="col-pdf"><%= t('total') %></td>
               <td class="col-pdf"> <%= total_marks %> </td>
               <td class="col-pdf"><%= total_max_marks %></td>
               <td class="col-pdf"><%= @total_percentage %></td>
@@ -91,7 +91,7 @@
             <% end %>
 
           <% else %>
-            <tr class="table-header"><td class="col-pdf"><%= t('subject') %></td><td class="col-pdf"> <%= t('grade') %> </td><td class="col-pdf"><%= t('marks_obtained') %></td><td class="col-pdf"><%= t('max_marks') %></td><td class="col-pdf"><%= t('percentage') %>(%) </td></tr>
+            <tr class="table-header"><td class="col-pdf"><%= t('subject') %></td><td class="col-pdf"> <%= t('grade') %> </td><td class="col-pdf"><%= t('marks_obtained') %></td><td class="col-pdf"><%= t('max_mark') %></td><td class="col-pdf"><%= t('percentage') %>(%) </td></tr>
             <% total_marks = 0 %>
             <% total_max_marks = 0 %>
             <% @exam_group.exams.each do |exam| %>
@@ -115,7 +115,7 @@
               </tr>
             <% end %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-              <td class="col-pdf"><%= 'Total' %></td>
+              <td class="col-pdf"><%= t('total') %></td>
               <td class="col-pdf"> <%= "-" %> </td>
               <td class="col-pdf"> <%= total_marks %> </td>
               <td class="col-pdf"> <%= total_max_marks %> </td>
