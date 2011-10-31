@@ -25,9 +25,9 @@ class FinanceController < ApplicationController
   end
   
   def automatic_transactions
-   @cat_names = ["'Fee'","'Salary'"]
+    @cat_names = ["'Fee'","'Salary'"]
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
-     @cat_names << "'#{category[:category_name]}'"
+      @cat_names << "'#{category[:category_name]}'"
     end
     @triggers = FinanceTransactionTrigger.all
     @categories = FinanceTransactionCategory.find(:all ,:conditions => ["name NOT IN (#{@cat_names.join(',')}) and is_income=1 and deleted=0 "])
@@ -139,7 +139,7 @@ class FinanceController < ApplicationController
   def income_edit
     @cat_names = ["'Fee'","'Salary'","'Donation'"]
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
-     @cat_names << "'#{category[:category_name]}'"
+      @cat_names << "'#{category[:category_name]}'"
     end
     @transaction = FinanceTransaction.find(params[:id])
     @transaction.user_id = @current_user.id
@@ -200,6 +200,8 @@ class FinanceController < ApplicationController
     render :update do |page|
       if @finance_category.save
         @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false})
+        @fixed_categories = @categories.reject{|c|!c.is_fixed}
+        @other_categories = @categories.reject{|c|c.is_fixed}
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'category-list', :partial => 'category_list'
@@ -225,6 +227,8 @@ class FinanceController < ApplicationController
     @finance_category = FinanceTransactionCategory.find(params[:id])
     @finance_category.update_attributes(params[:finance_category])
     @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false})
+    @fixed_categories = @categories.reject{|c|!c.is_fixed}
+    @other_categories = @categories.reject{|c|c.is_fixed}
   end
 
   def transaction_trigger_create
@@ -248,7 +252,7 @@ class FinanceController < ApplicationController
   def transaction_trigger_edit
     @cat_names = ["'Fee'","'Salary'"]
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
-     @cat_names << "'#{category[:category_name]}'"
+      @cat_names << "'#{category[:category_name]}'"
     end
     @transaction_trigger = FinanceTransactionTrigger.find(params[:id])
     @categories = FinanceTransactionCategory.find(:all ,:conditions => "name NOT IN (#{@cat_names.join(',')})")
@@ -477,8 +481,8 @@ class FinanceController < ApplicationController
       @employee = Employee.find(:all,
         :conditions => ["(first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
                        OR employee_number LIKE ? OR (concat(first_name, \" \", last_name) LIKE ?))" + other_conditions,
-                       "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
-                       "#{params[:query]}", "#{params[:query]}"],
+          "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
+          "#{params[:query]}", "#{params[:query]}"],
         :order => "first_name asc") unless params[:query] == ''
     else
       @employee = Employee.find(:all,
@@ -1360,17 +1364,17 @@ class FinanceController < ApplicationController
   def search_logic                 #student search (fees submission)
     query = params[:query]
     if query.length>= 3
-        @students_result = Student.find(:all,
-          :conditions => ["first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
+      @students_result = Student.find(:all,
+        :conditions => ["first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
                             OR admission_no = ? OR (concat(first_name, \" \", last_name) LIKE ? ) ",
-                         "#{query}%","#{query}%","#{query}%",
-                         "#{query}", "#{query}" ],
-          :order => "batch_id asc,first_name asc") unless query == ''
-      else
-        @students_result = Student.find(:all,
-         :conditions => ["admission_no = ? " , query],
-          :order => "batch_id asc,first_name asc") unless query == ''
-      end
+          "#{query}%","#{query}%","#{query}%",
+          "#{query}", "#{query}" ],
+        :order => "batch_id asc,first_name asc") unless query == ''
+    else
+      @students_result = Student.find(:all,
+        :conditions => ["admission_no = ? " , query],
+        :order => "batch_id asc,first_name asc") unless query == ''
+    end
     render :layout => false
   end
 
@@ -1463,7 +1467,7 @@ class FinanceController < ApplicationController
       unless params[:fees][:fees_paid].to_f < 0
         unless params[:fees][:fees_paid].to_f> params[:total_fees].to_f
           transaction = FinanceTransaction.new
-        transaction.title = "#{t('receipt_no')}. F#{@financefee.id}"
+          transaction.title = "#{t('receipt_no')}. F#{@financefee.id}"
           transaction.category = FinanceTransactionCategory.find_by_name("Fee")
           transaction.payee = @student
           transaction.finance = @financefee
@@ -1480,9 +1484,9 @@ class FinanceController < ApplicationController
           end
           is_paid = (params[:fees][:fees_paid].to_f == params[:total_fees].to_f) ? true : false
           @financefee.update_attributes(:transaction_id=>tid, :is_paid=>is_paid)
-        flash[:notice] = "#{t('flash14')}"
+          flash[:notice] = "#{t('flash14')}"
         else
-        flash[:notice] = "#{t('flash19')}"
+          flash[:notice] = "#{t('flash19')}"
         end
       else
         flash[:notice] = "#{t('flash23')}"
@@ -1498,14 +1502,14 @@ class FinanceController < ApplicationController
     query = params[:query]
     unless query.length < 3
       @students_result = Student.find(:all,
-          :conditions => ["first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
+        :conditions => ["first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
                          OR admission_no = ? OR (concat(first_name, \" \", last_name) LIKE ? ) ",
-                         "#{query}%","#{query}%","#{query}%","#{query}", "#{query}" ],
-          :order => "batch_id asc,first_name asc") unless query == ''
+          "#{query}%","#{query}%","#{query}%","#{query}", "#{query}" ],
+        :order => "batch_id asc,first_name asc") unless query == ''
     else
       @students_result = Student.find(:all,
-          :conditions => ["admission_no = ? " , query],
-          :order => "batch_id asc,first_name asc") unless query == ''
+        :conditions => ["admission_no = ? " , query],
+        :order => "batch_id asc,first_name asc") unless query == ''
     end
     render :layout => false
   end
@@ -1620,7 +1624,7 @@ class FinanceController < ApplicationController
       unless params[:fees][:fees_paid].to_f < 0
         unless params[:fees][:fees_paid].to_f> params[:total_fees].to_f
           transaction = FinanceTransaction.new
-        transaction.title = "#{t('receipt_no')}. F#{@financefee.id}"
+          transaction.title = "#{t('receipt_no')}. F#{@financefee.id}"
           transaction.category = FinanceTransactionCategory.find_by_name("Fee")
           transaction.payee = @student
           transaction.finance = @financefee
@@ -1640,10 +1644,10 @@ class FinanceController < ApplicationController
           @financefee.update_attributes(:transaction_id=>tid, :is_paid=>is_paid)
 
           @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{tid}\")")
-        flash[:notice] = "#{t('flash14')}"
+          flash[:notice] = "#{t('flash14')}"
           redirect_to  :action => "fees_defaulters"
         else
-        flash[:notice] = "#{t('flash19')}"
+          flash[:notice] = "#{t('flash19')}"
         end
       else
         flash[:notice] = "#{t('flash23')}"
@@ -1801,12 +1805,12 @@ class FinanceController < ApplicationController
 
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
       c =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)
-     unless c <= 0
-       x_labels << "#{category[:category_name]}"
-      data << c
-      largest_value = c if largest_value < c
+      unless c <= 0
+        x_labels << "#{category[:category_name]}"
+        data << c
+        largest_value = c if largest_value < c
+      end
     end
-     end
 
     unless income <= 0
       x_labels << "#{t('other_income')}"
@@ -1922,18 +1926,18 @@ class FinanceController < ApplicationController
       largest_value = fees2 if largest_value < fees2
     end
        
-   FedenaPlugin::FINANCE_CATEGORY.each do |category|
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
       c1 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)
       c2 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date2,end_date2)
 
       unless c1 <= 0 and c2 <= 0
-      x_labels << "#{category[:category_name]}"
-      data << c1
-      data2 << c2
-      largest_value = c1 if largest_value < c1
-      largest_value = c2 if largest_value < c2
+        x_labels << "#{category[:category_name]}"
+        data << c1
+        data2 << c2
+        largest_value = c1 if largest_value < c1
+        largest_value = c2 if largest_value < c2
+      end
     end
-     end
 
     unless income <= 0 and income2 <= 0
       x_labels << "#{t('other_income')}"
@@ -2305,8 +2309,8 @@ class FinanceController < ApplicationController
     @cat_names = ['Fee','Salary','Donation']
     @plugin_cat = []
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
-     @cat_names << "#{category[:category_name]}"
-     @plugin_cat << "#{category[:category_name]}"
+      @cat_names << "#{category[:category_name]}"
+      @plugin_cat << "#{category[:category_name]}"
     end
     @fixed_cat_ids = FinanceTransactionCategory.find(:all,:conditions=>{:name=>@cat_names}).collect(&:id)
   end
