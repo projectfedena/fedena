@@ -1745,6 +1745,8 @@ es: # locale
   must_be_a_valid_email_address: "Debe ser una dirección válida de correo electrónico"
   must_contain_only_letters: "debe contener sólo letras, números, guiones y guiones bajos"
   partial: "parcial"
+  years: "Años"
+  months: "Meses"
 
 
   flash_msg1: "Actualizado grupo de examen adicional con éxito."

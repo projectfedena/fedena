@@ -1741,6 +1741,8 @@ en: # locale
   partial: "partial"
   student_category_updated_succesfully: "Student category updated succesfully"
   student_category_deleted_succesfully: "Student category deleted succesfully"
+  years: "Years"
+  months: "Months"
 
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"

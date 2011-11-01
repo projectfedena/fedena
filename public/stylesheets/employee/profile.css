@@ -393,7 +393,7 @@ html>body #nav ul.scriptaculously{/*ie shit*/
 
 #nav ul li ul li{
     background-color:#9D0E00;
-    font-size:1.3em;
+    font-size:1.1em;
     width:60px;
     height:1.5em;
     padding-bottom:5px;
@@ -449,7 +449,7 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     padding:7px 12px;
     border:none;
     text-align:center;
-    width:70px;
+    width:91px;
     cursor:pointer;
     float:left;
     margin-right:20px;
@@ -489,7 +489,7 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     padding:7px 12px;
     border:none;
     text-align:center;
-    width:120px;
+    width:111px;
     cursor:pointer;
     float:left;
 }

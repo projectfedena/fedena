@@ -153,6 +153,9 @@ hi:
       employee_attendance:
         employee_id: "कर्मचारी"
         employee_leave_type_id: "कर्मचारी छोड़ दो प्रकार"
+        reason: "कारण"
+        attendance_date: "उपस्थिति तिथि"
+        employee_attendance: "कर्मचारी उपस्थिति "
 
       employee_category:
         name: "नाम"
@@ -1738,6 +1741,8 @@ hi:
   must_be_a_valid_email_address: "एक मान्य ईमेल पता होना चाहिए."
   must_contain_only_letters: "केवल अक्षर, संख्या, हाइफ़न, और अंडरस्कोर शामिल होना चाहिए."
   partial: "आंशिक"
+  years: "वर्षों"
+  months: "महीने"
 
   flash_msg1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक नवीनीकृत|"
   flash_msg2: "क्षमा करें"
