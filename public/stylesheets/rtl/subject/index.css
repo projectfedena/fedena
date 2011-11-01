@@ -1,0 +1,55 @@
+
+#subject-list {
+    height : auto; width : 600px;
+    margin : 40px auto;
+}
+#subject-list ul {
+    height : auto; width : auto;
+    margin : 20px 0 0 0;
+}
+#subject-list ul li.even {
+    background :#EEF2FD;
+    border-top:1px solid #BECFFB;
+    height : 1.5em; width : auto;
+    list-style-type : none;
+    padding : 0.5em 2em 0 0;
+    
+}
+#subject-list ul li.odd {
+    background : #E4EBFE;
+    border-top:1px solid #BECFFB;
+    height : 1.5em; width : auto;
+    list-style-type : none;
+    padding : 0.5em 2em 0 0;
+
+}
+.sub_name{
+    float : right;
+    width : 400px;
+    font-size:13px;
+    font-weight:bold;
+}
+.edit-link,
+.delete-link {
+    float : right;
+    font-size : 0.9em;
+    margin : 0 10px 0 0;
+}
+.edit-link a,
+.delete-link a {
+    color : #000;
+    text-decoration:none;
+    font-size:14px;
+}
+.edit-link a:hover,
+.delete-link a:hover {
+    color : #d00;
+    text-decoration:underline;
+    font-size:14px;
+}
+#class-select {
+    height : 80px;
+    width:450px;
+    margin :0px auto;
+    margin-bottom:30px;
+}

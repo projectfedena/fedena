@@ -1,0 +1,51 @@
+
+#old-courses {
+    float : right;
+    height : auto; width : 350px;
+}
+
+.old-course-checkbox {
+    height : 25px;
+    padding : 0 30px 0 0;
+}
+
+#submit-button-old-courses {
+    clear : both;
+    margin : 20px 0 0 0;
+    padding : 0 50px 0 0;
+}
+
+#new-courses {
+    float : left;
+    height : auto; width : 350px;
+}
+
+#new-courses p {
+    margin : 0;
+    font-weight : bold;
+}
+
+#new-courses ul {
+    margin : 20px 0 0 0;
+    padding : 0;
+}
+
+#new-courses li {
+    list-style-type : none;
+    height : 25px;
+}
+
+#add-class-link {
+    padding : 20px 0 20px 0;
+}
+
+#add-class-link a {
+    color : #b00;
+    font-weight : bold;
+}
+
+.submit-area {
+    clear : both;
+    margin : 0 40px 0 0;
+    padding : 20px 0 0 0;
+}

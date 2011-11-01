@@ -1,0 +1,406 @@
+
+body {
+    font-family:Arial;
+    margin:0;
+    padding:0px;
+}
+.extender {
+    height:1px;
+    clear:both;
+}
+#header_bg {
+    height : 60px;
+    background : #b00 url(../../../images/application/app_layout_header_bg.jpg) repeat;
+}
+#header {
+    width : 980px; height : 60px;
+    margin:0 auto;
+}
+#header_link {
+    color : #fff;
+    height : 40px;
+    float: left;
+    font-size : 0.9em;
+    padding : 10px 0 0 0;
+}
+#header a {
+    text-decoration:none;
+    color:#fff;
+    text-decoration:underline
+}
+
+/* Top menu style */
+
+#main-menu {
+    float : right;
+    height : 60px; width : 500px;
+   
+}
+#main-menu a {
+    background : #fff;
+    color : #b00;
+    display : block;
+    font-size : 0.8em;
+    float : right;
+    height : 17px; width : 75px;
+    margin : 38px 0 0 5px;
+    padding : 5px 0 0 0;
+    text-align : center;
+    text-decoration : none;
+}
+#main-menu a:hover {
+    text-decoration : underline;
+}
+
+p.flash-msg {
+    background-color : #fff1ab;
+    padding : 5px;
+    text-align : center;
+    font-size:13px;
+    font-weight:600;
+    border:1px solid #EFDC86;
+}
+#content_wrapper {
+    width:980px;
+    margin:0 auto;
+    background-color:#fff;
+}
+#side_bar {
+    width:200px;
+    float:right;
+}
+#fedena_logo {
+    margin-top:30px;
+    height:107px;
+    background:#fff url(../../../images/application/app_fedena_logo.jpg) center center no-repeat;
+}
+#content {
+    width:980px;
+    float:right;
+}
+
+#footer {
+    height:33px;
+    background:#b00 url(../../../images/application/app_layout_footer_bg.jpg) repeat;
+}
+#footer #footer_links {
+    height:33px;width:614px;
+    margin:0 auto;
+    text-align:center;
+    padding-top:5px;
+    color:#fff;
+    padding-right:114px;
+}
+#footer #footer_links a,
+#footer_links span {
+    color:#fff;
+    width:100px;
+    float:right;
+    text-decoration:none;
+}
+
+/* Content header for all pages */
+
+#content-header {
+    height:100px;
+    background:#fff url(../../../images/examination/header_underline_rtl.jpg) bottom no-repeat;
+}
+#content-header img {
+    margin:0;
+    border:0;
+    padding:20px 15px 0 0;
+    float:right;
+}
+#content-header h1 {
+    margin:0px;
+    padding:25px 100px 0 0;
+    color:#999;
+    display:block;
+    font-size: 22px;
+}
+#content-header h3 {
+    margin:0px;
+    padding:0 100px 0 0;
+    color:#b00;
+    font-size: 17px;
+}
+#app-back-button {
+    float:left;
+    margin-top:-30px;
+    position:relative;
+}
+#app-back-button a {
+    margin:0;
+    padding:0;
+    float:left
+}
+#app-back-button a img {
+    height:37px;
+    margin:0;
+    padding:0;
+    width:138px;
+     margin-left:10px;
+}
+
+#page-yield {
+    margin : 30px 0;
+}
+
+/* News block */
+
+#news_feed {
+    width:157px;
+    margin:0 auto;
+    background:#fff url(../../../images/fedena_user/dashboard/news_feed_bg.jpg) repeat;
+}
+#news_feed small {
+    padding-top:0px;
+    color:#b00;
+}
+#news_feed_top_img {
+    margin:0 auto;
+    margin-top:25px;
+    height:36px;width:157px;
+    background:#fff url(../../../images/fedena_user/dashboard/dash_news_top.jpg) no-repeat;
+    display: block;
+}
+#news_feed_bottom_img a {
+    display:block;
+    height:28px;width:157px;
+    text-indent:-2000px;
+}
+
+.sidebar_news_item0 {
+    margin-right:5px;
+    padding:10px;
+    background-color:#fff;
+    width:127px;
+}
+.sidebar_news_item1 {
+    margin-right:5px;
+    padding:10px;
+    background-color:#ddd;
+    width:127px;
+}
+.sidebar_news_item0 h5,
+.sidebar_news_item1 h5 {
+    margin:0;padding:0;
+}
+.sidebar_news_item0 h5 a,
+.sidebar_news_item1 h5 a {
+    text-decoration:none;color:#222;
+}
+
+#sidebar_news_area {
+    float:right;
+}
+
+/* For google chrome */
+
+input[type="text"],
+input[type="password"],
+textarea,
+select
+{
+    outline: none;
+}
+
+/* Shifting footer to bottom of the page */
+
+html, body, #content_wrapper {
+    height: 100%;
+}
+body > #content_wrapper {
+    height: auto;
+    min-height: 90%;
+}
+#content {
+    padding-bottom: 33px;
+}
+#footer {
+    position : relative;
+    margin-top : -33px;
+    height : 33px;
+    clear : both;
+}
+
+/* Default class for drop down menus */
+.anylinkmenu {
+    position : absolute;
+    right : 0;
+    top : 0;
+    margin : 0;
+    visibility : hidden;
+    border : 1px solid black;
+    border-bottom-width : 0;
+    font: normal 0.9em Arial;
+    line-height: 18px;
+    z-index: 100; /* zIndex should be greater than that of shadow's below */
+    background: #b00 url(../../../images/application/app_layout_header_bg.jpg) repeat;
+    width: 125px; /* default width for menu */
+}
+
+.anylinkmenu ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.anylinkmenu ul li a{
+    width: 100%;
+    display: block;
+    text-indent: 3px;
+    border-bottom: 1px solid black;
+    padding: 2px 0;
+    text-decoration: none;
+    text-indent: 5px;
+}
+.anylinkmenu a {
+    color : #fff;
+}
+.anylinkmenu a:hover { /*hover background color*/
+    background: black;
+    color: white;
+}
+
+/* Alternate multi-column class for drop down menus */
+
+.anylinkmenucols {
+    position: absolute;
+    width: 350px;
+    right: 0;
+    top: 0;
+    visibility: hidden;
+    border: 1px solid black;
+    padding: 10px;
+    font: normal 12px Verdana;
+    z-index: 100; /*zIndex should be greater than that of shadow's below*/
+    background: #E9E9E9;
+}
+.anylinkmenucols li {
+    padding-bottom: 3px;
+}
+.anylinkmenucols .column {
+    float: right;
+    padding: 3px 8px;
+    margin-left: 5px;
+    background: #E0E0E0;
+}
+.anylinkmenucols .column ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.anylinkshadow {
+    display : none;
+}
+
+/* Form styling */
+
+.label-field-pair {
+    height : 40px;
+    width : 600px;
+    padding-top: 3px;
+}
+.text-input-bg {
+    background : transparent;
+    height : 28px;
+    width : 250px;
+    float:right;
+}
+.label-field-pair label {
+    color : #444;
+    display : block;
+    font-size: 14px;
+    margin : 0 0 10px 0;
+    float:right;
+    width:200px;
+    padding-top: 10px;
+    font-weight: 600;
+
+}
+.label-field-pair input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 10px 0 0;
+    width : 205px;
+    height:17px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+}
+.text-input-bg select {
+    background-color : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 10px 0 0;
+    width : 215px;
+    height:27px;
+    padding:3px 6px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+}
+.label-checkbox-pair {
+    float : right;
+    padding : 30px 10px 0 0;
+    width : 250px;
+}
+
+/* Validation error messages */
+
+.fieldWithErrors input{
+    border : 1px solid #b00;
+    
+}
+.errorExplanation {
+    background-color : #ffb1b1;
+    border : 1px solid #b00;
+    height : auto; width : 510px;
+    margin : 20px 50px 40px 0;
+    padding : 10px 20px 20px 0;
+}
+.errorExplanation h2 {
+    margin : 0;
+    font-size : 1em;
+    font-weight : normal;
+    padding : 0;
+}
+.errorExplanation p {
+    margin : 5px 0 0 0;
+}
+
+/* Inner tab menu */
+
+#inner-tab-menu {
+    height : 1.5em;
+    margin : 0;
+    padding : 0;
+}
+#inner-tab-menu ul {
+    float : left;
+    margin : 0 0 0 10px;
+    padding : 0;
+}
+#inner-tab-menu ul li {
+    background-color : #9d0e00;
+    color : #fff;
+    float : right;
+    font-size : 0.9em;
+    height : 1.5em;
+    list-style-type : none;
+    margin : 0 10px 0 0;
+    padding : 0;
+    text-align : center;
+    width : 100px;
+}
+#inner-tab-menu ul li a {
+    color : #fff;
+    text-decoration : none;
+}
+#inner-tab-menu ul li a:hover {
+    color : #fff;
+    text-decoration : underline;
+}
+.label-field-pair input:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}

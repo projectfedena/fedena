@@ -1,0 +1,50 @@
+
+#users {
+    height : auto;
+    padding : 80px 10px 0 0;
+    width : 960px;
+}
+
+.users {
+    background : #fff url(../../../images/student_details/ajax_result_underline.jpg) bottom right no-repeat;
+    float : right;
+    padding : 10px 0 10px 0px;
+    text-decoration : none;
+    width : 204px;
+}
+.users a {
+    color : #000;
+    font-weight : bold;
+    text-decoration : none;
+}
+.users a:hover {
+    text-decoration : underline;
+    color:#d00;
+}
+.users-on-one-line{
+    background:#FFFFFF url(../../../images/student_details/ajax_result_underline.jpg) repeat-x scroll right bottom;
+    margin-bottom:20px;
+    overflow:auto;
+    width:816px;
+}
+.label-field-pair{
+  width:300px;
+  float:right;
+}
+#student_user,#employee_user{
+  width:300px;
+  float:right;
+}
+#user_no_result{
+    color:#d00;
+    font-weight: bold;
+    width:200px;
+    margin: 0px auto;
+}
+.all-user{
+    margin-right:200px;
+    overflow: hidden;
+}
+img{
+    padding-top:10px;
+}

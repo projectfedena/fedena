@@ -140,6 +140,7 @@ td a.event{
 #tooltip_box{
     margin-top:100px;
     width:200px;
+    float:right;
 }
 .title{
     color:#000;
@@ -188,4 +189,19 @@ td a.event{
 .delete:hover{
     color:#BB0000;
     text-decoration: none;
+}
+.legend-icon{
+    width:12px;
+    height:12px;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    margin:4px 3px 3px 3px;
+    float:left;
+}
+.calendar-legend{
+    width:12px;
+    height:12px;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    margin:2px;
 }

@@ -1,0 +1,155 @@
+
+
+#page-yield {
+    width:800px;
+    margin: 0 auto;
+    float: right;
+    overflow: hidden;
+}
+
+
+
+.hor_line{
+    width:800px;
+    background: #333333;
+    height: 1px;
+}
+
+h2.heading{
+    text-align: center;
+    margin:5px;
+}
+#main_info{
+    margin-top: 20px;
+   
+}
+#main_info h4{
+    color: #555555;
+    margin-top: 2px;
+    font-weight: normal;
+}
+
+#main_info h2{
+    margin-bottom: 2px;
+    font-weight: normal;
+
+}
+
+
+.odd{
+    height:auto;
+    background: #EEEEEE;
+    
+}
+
+.even{
+    
+    height:auto;
+    background: #fff;
+    
+    
+}
+tr.even{
+   
+}
+
+tr.odd{
+  
+}
+
+.even td{ 
+  padding: 12px 15px 12px 12px;
+   border: 1px solid #ADACAB;
+   border-bottom: 0px solid #ADACAB;
+}
+
+.odd td{
+  padding: 12px 15px 12px 12px;
+  border: 1px solid #ADACAB;
+  border-bottom: 0px solid #ADACAB;
+  
+}
+.table-header td{
+  padding: 12px 15px 12px 12px;
+  border-top: 1px solid #ADACAB;
+  color: #97080e;
+  background: #BCBCBA;
+}
+
+table#pdf-table{
+ border: 1px solid #ADACAB;
+ border-right:  0px solid #ADACAB;
+ border-collapse:collapse
+}
+
+
+#page-extender{
+    width:100%;
+    height :180px;
+
+}
+#page-extender1{
+    width:100%;
+    height :500px;
+
+}
+
+.report{
+    margin: 0 auto;
+}
+
+#signature{
+    text-align: left;
+    width: 700px;
+    margin: 0 auto;
+    color: #999999;
+    font-size: 18px;
+}
+
+
+#page-yield h2{
+    text-align: center;
+}
+
+
+.page-break td{
+    height: 400px;
+    border: 1px solid #fff;
+    border-bottom: 1px solid #ADACAB;
+}
+
+
+.info-label{
+    float: right;
+    color: #555555;
+    font-size: 13px;
+    width: 140px;
+}
+
+.info-data{
+    float: right;
+    color: #32323A;
+    font-size: 13px;
+}
+
+.info-data span{
+    color: #555555;
+}
+
+
+.info{
+    width:700px;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+
+#pdf-info{
+    min-height: 900px;
+    margin-top: 20px;
+}
+
+
+#pdf-footer{
+ margin-top: -50px !important;
+}
+

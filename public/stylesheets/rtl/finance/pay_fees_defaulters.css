@@ -1,0 +1,264 @@
+.text-input-bg {
+    float : right;
+    margin : 0 40px 0 0;
+}
+#fees-table{
+    padding-top:30px;
+}
+
+.fees_paid{
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px 10px 10px 10px;
+    background:none repeat scroll 0 0 #27292B;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    height:16px;
+    margin-right:270px;
+    margin-top:30px;
+    padding:7px 10px;
+    width:135px;
+}
+.fees_paid:hover{
+    background:  #373B3F;
+}
+.fees-th {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    border-top: 1px solid #C4D2FE;
+    font-size: 0.9em;
+    height: 1.5em;
+    font-variant:small-caps;
+    font-weight: bold;
+    padding: 0.5em 0 0 0;
+    width:600px;
+}
+.fees-tr {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    font-size:0.9em;
+    height: 1.5em;
+    padding: 0.5em 0 0 0;
+    width:600px;
+}
+.fees-table-particulars {
+    float:right;
+    padding: 0 60px 0 0;
+    width: 180px;
+}
+.fees-table-amount {
+    float:right;
+    width: 80px;
+    padding: 0 140px 0 0;
+    text-align:left;
+}
+.edit-link{
+
+    float : right;
+    font-size : 0.9em;
+    margin : 0 10px 0 0;
+}
+.delete-link {
+    float : right;
+    font-size : 0.9em;
+    margin : 0 10px 0 0;
+}
+.edit-link a,
+.delete-link a {
+    color : #000;
+}
+
+.submit_button {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin-top:25px;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.submit_button2 {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin-right:10px;
+    margin-top:10px;
+
+}
+.submit_button2:hover{
+    background:  #373B3F;
+}
+
+
+
+#fee-defaulters{
+    float: left;
+    width:741px;
+}
+
+.label-field-pair {
+    height : 40px;
+    width : 100px;
+    padding-top: 3px;
+    float:right;
+
+}
+
+.text-input-bg {
+    background : transparent;
+    height : 28px;
+    width : 100px;
+    float:right;
+    margin: 0 auto;
+}
+
+.label-field-pair label {
+    color : #444;
+    display : block;
+    font-size: 14px;
+    margin : 0 0 10px 0;
+    float:right;
+    width:70px;
+    padding-top: 10px;
+    font-weight: 600;
+}
+
+.label-field-pair input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 10px 10px 0 0;
+    width : 70px;
+    height:17px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+    float:right;
+}
+
+
+h5{
+    width:480px;
+    float: right;
+}
+
+
+.name{
+    color: #999999;
+    float: right;
+    width: 212px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.val {
+    width: 400px;
+    color: #bb0000;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.val span{
+    margin-left:12px;
+    color: black;
+}
+
+#listing{
+    margin-top:50px;
+}
+
+
+.label-field-pair2 label {
+    color : #444;
+    display : block;
+    font-size: 14px;
+    float:right;
+    width:700px;
+    padding-top: 10px;
+    font-weight: 600;
+
+}
+label-field-pair2 {
+    float: left;
+}
+
+.text-input-bg2 {
+    float:right;
+    background:none repeat scroll 0 0 transparent;
+    float:right;
+    height:28px;
+    width:130px;
+}
+.label-field-pair2 input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 10px 0 0;
+    width : 100px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+    float: right;
+}
+.label-field-pair2 input:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+.pay_fees{
+    text-align: left;
+    margin-top:10px;
+    /* margin-right: 29px; */
+}
+
+td span{
+   color: #990A10;
+}
+
+table#listing td.col-8 {
+    padding: 5px 10px 5px 5px;
+    width: 10%;
+    text-align: left;
+}
+
+
+a.user_button{
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin-top:4px;
+    margin-right: 806px
+}
+
+
+table#listing td a {
+    color: #fff;
+    text-decoration: none;
+    text-align: left;
+}
+
+table#listing td a:hover {
+    color: #fff;
+    text-decoration: none;
+    background:  #373B3F;
+}

@@ -1,0 +1,46 @@
+#student_profile_heading {
+    background-color: #FFF1AB;
+    border: 1px solid #EFDF95;
+    clear: both;
+    height: 25px;
+    margin: 0 0 40px;
+    padding: 2px 190px 0 0;
+}
+
+#student_main_info span.name {
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: 30px 0 0;
+    padding-left: 20px;
+}
+
+#student_main_info span.course {
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 10px 0 0;
+    padding-left: 20px;
+}
+
+#student_main_info span.adm {
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 5px 0 0;
+    padding: 0;
+}
+
+td span{
+   color: #990A10;
+}
+
+table#listing td.col-8 {
+    padding: 5px 10px 5px 5px;
+    width: 10%;
+    text-align: left;
+}
+#inner-tab-menu ul li {
+    width: 152px;
+}

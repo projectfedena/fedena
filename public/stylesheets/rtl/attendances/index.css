@@ -1,0 +1,221 @@
+#register{
+    background: #C3D9FF;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    margin-top:20px;
+    margin-bottom:50px;
+}
+.box-1{
+    width: 948px;
+    padding:16px;
+    overflow:auto;
+}
+.box-2{
+    height:400px;
+    overflow:auto;
+    width: 965px;
+}
+.header{
+    width:420px;
+    margin:0px auto;
+    margin-bottom:20px;
+    padding-top:15px;
+}
+.next a{
+    float:right;
+    -moz-border-radius:40px;
+    -webkit-border-radius:40px;
+    width:25px;
+    height:25px;
+    padding:5px;
+    background: #fff;
+    text-align:left;
+    color:#121212;
+    font-size:22px;
+    text-decoration:none;
+    outline:none;
+    display:block;
+}
+.prev a{
+    float:right;
+    -moz-border-radius:40px;
+    -webkit-border-radius:40px;
+    width:25px;
+    height:25px;
+    padding:5px;
+    background: #fff;
+    text-align:right;
+    color:#121212;
+    font-size:22px;
+    text-decoration:none;
+    outline:none;
+    display:block;
+}
+.next a:hover, .prev a:hover{
+    color: #9B0C12;
+}
+.month{
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    width:300px;
+    background: #fff;
+    padding:5px 0 5px 0;
+    text-align:center;
+    float:right;
+    font-size:20px;
+    color:#121212;
+    font-weight:bold;
+    margin:0 20px 0 20px;
+}
+table#attendance{
+
+}
+.tr-odd{
+    background: #fff;
+    padding:5px;
+}
+.tr-even{
+    background: #f1f6ff;
+    padding:5px;
+}
+.tr-head{
+    color:#990A10;
+    height: 40px;
+}
+.td-mark{
+    width:20px;
+    text-align:center;
+
+
+}
+.td-name{
+    padding:5px;
+    color:#2D2D2D;
+    padding-right:23px;
+    font-weight:bold;
+    width:40px;
+    font-size:12px;
+    height:25px;
+    cursor:pointer;
+}
+.head-td-name{
+    background: #fff;
+    padding-right:30px;
+    color:#990A10;
+    font-weight:bold;
+    font-size:13px;
+    overflow:hidden;
+    width:47px;
+}
+.head-td-date{
+    color:#990A10;
+    font-size:11px;
+    background: #f1f6ff;
+    font-weight:bold;
+    width:20px;
+    text-align: center;
+
+}
+.head-td-date .day{
+    text-align:center;
+    min-width:20px;
+    padding:3px 1px;
+}
+.head-td-date .date{
+    background: #fff;
+    padding:2px;
+    text-align:center;
+    color:#2D2D2D;
+}
+.td-mark a.absent{
+    text-decoration: none;
+    color:#990A10;
+    font-size:12px;
+    font-weight:bold;
+}
+.tr-odd .td-mark a.present{
+    color:#fff;
+    padding:5px;
+}
+.tr-even .td-mark a.present{
+    color:#f1f6ff;
+    padding:5px;
+}
+table.table{
+
+}
+.td-mark .date{
+    position: relative;
+    right: -172px;
+    top: -73px;
+}
+.td-name .date{
+    position: relative;
+    right: -77px;
+    top: -73px;
+}
+.td-mark .date span,.td-name .date span{
+    display: none;
+    color: #FFFFFF;
+}
+.td-mark:hover .date span{
+    display: block;
+    position: absolute;
+    min-width: 100px;
+    background-color: #fff;
+    border:4px solid #c3d9ff;
+    min-height: 40px;
+    right: 50px;
+    top: -10px;
+    color: #FFFFFF;
+    padding: 5px;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    padding-top:10px;
+    color:#990A10;
+    font-weight:bold;
+}
+.active{
+    background:#FEFFAF;
+}
+.tr-even .active a.present, .tr-odd .active a.present{
+    color:#FEFFAF;
+}
+.td-mark:hover .date span div{
+    color:#000;
+}
+.td-mark:hover,.td-mark:hover a.present{
+    background:#C3D9FF;
+    color:#C3D9FF;
+}
+.td-name:hover .date span{
+    display: block;
+    position: absolute;
+    min-width: 89px;
+    background-color: #fff;
+    border:4px solid #c3d9ff;
+    min-height: 40px;
+    right: 50px;
+    top: -10px;
+    color: #FFFFFF;
+    padding: 5px;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    padding-top:10px;
+    color:#990A10;
+    font-weight:bold;
+}
+
+#MB_frame .submit-button {
+    -moz-border-radius:8px 8px 8px 8px;
+    -webkit-border-radius:8px 8px 8px 8px;
+    background:none repeat scroll 0 0 #27292B;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    float:right;
+    font-size:14px;
+    font-weight:bold;
+    margin:0 210px 0 0;
+    padding:6px 8px;
+}

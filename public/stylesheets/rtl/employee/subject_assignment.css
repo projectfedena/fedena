@@ -1,0 +1,85 @@
+
+#subjects1{
+    height:80px;
+    width:250px;
+    float:right;
+}
+
+#form-content{
+    height:90px;
+    width:600px;
+    margin:0 70px 0 0;
+}
+
+#department-select{
+    padding:0px;
+    margin:0px;
+}
+
+#department-select .label-field-pair{
+    margin:0 200px 0 0;
+}
+
+#department-list {
+    clear : both;
+    padding : 0px 40px 10px 0;
+    width:650px;
+    margin:0px auto;
+}
+
+#department-list .listodd{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 5em 0 0;
+}
+
+#department-list .listeven{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 30em;
+    list-style-type : none;
+    padding : 0.5em 5em 0 0;
+}
+
+#department-list li.heading {
+    background : none;
+    font-weight : bold;
+    list-style-type : none;
+    color : #444;
+    height : 1.5em; width : 30em;
+    padding : 0.5em 5em 0 0;
+}
+#department-list li div {
+    float : right;
+}
+#department-list li div.department-name {
+    width : 350px;
+    font-weight:bold;
+    font-size:13px;
+}
+#department-list li div.remove{
+    font-size : 0.9em;
+    width : 50px;
+}
+#department-list li div a {
+    color : #000;
+    text-decoration:none;
+    font-size:14px;
+}
+#department-list li div a:hover {
+    color : #d00;
+    text-decoration:underline;
+}
+
+.errorExplanation {
+    -moz-border-radius: 10px 10px 10px 10px;
+    background: url("/images/_global/error.png") no-repeat scroll 10px 14px #FFDEDF;
+    height: auto;
+    margin: 20px 185px 20px auto;
+    padding: 10px 20px 20px 0;
+    width: 541px;
+}

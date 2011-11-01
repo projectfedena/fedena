@@ -19,19 +19,19 @@
 
 <div id="calendar-legend">
   <div id="legend-entry">
-    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#000000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-symbol"> <div class="legend-icon" style='background:#000000;'></div></div>
     <div id="legend-text"><%= t('events') %></div>
   </div>
   <div id="legend-entry">
-    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#0C6C92; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-symbol"> <div class="legend-icon" style='background:#0C6C92;'></div></div>
     <div id="legend-text"><%= t('examinations') %></div>
   </div>
   <div id="legend-entry">
-    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#00b400; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-symbol"> <div class="legend-icon" style='background:#00b400;'></div></div>
     <div id="legend-text"><%= t('holidays') %></div>
   </div>
   <div id="legend-entry">
-    <div id="legend-symbol"> <div style='width:12px;height:12px;background:#b40000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:4px 3px 3px 3px; float:left;'></div></div>
+    <div id="legend-symbol"> <div class="legend-icon" style='background:#b40000;'></div></div>
     <div id="legend-text"><%= t('dues') %></div>
   </div>
 </div>
@@ -83,23 +83,23 @@
                   <span><%= dt  %></span></div>
                 <div class="link-group">
                   <% if @events.include?("#{@show_month.year}-#{@show_month.month}-#{dt}".to_date) %>
-                    <%= link_to_remote("<div style='width:12px;height:12px;background:#000000; -moz-border-radius:2px; -webkit-border-radius:2px; margin:2px;'></div>", {:url => {:action => "#"}}, {:onmouseover =>remote_function(
+                    <%= link_to_remote("<div class='calendar-legend' style='background:#000000;'></div>", {:url => {:action => "#"}}, {:onmouseover =>remote_function(
                           :url => { :action => :show_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
                         :class=>"event"}) %>
                   <% end %>
                   <% if @holiday_event.include?("#{@show_month.year}-#{@show_month.month}-#{dt}".to_date) %>
-                    <%= link_to_remote("<div style='width:12px;height:12px;background:#00b400; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}}, {:onmouseover =>remote_function(
+                    <%= link_to_remote("<div class='calendar-legend' style='background:#00b400;'></div>", {:url => {:action => "#"}}, {:onmouseover =>remote_function(
                           :url => { :action => :show_holiday_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
                         :class=>"event"}) %>
                   <% end %>
                   <% if @notifications['student_batch_exam'].include?("#{@show_month.year}-#{@show_month.month}-#{dt}".to_date) %>
-                    <%= link_to_remote("<div style='width:12px;height:12px;background:#0C6C92; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                    <%= link_to_remote("<div class='calendar-legend' style='background:#0C6C92;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
                           :url => { :action => :show_exam_event_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
                         :class=>"event"}) %>
                   <% end %>
                   <% if @user.admin? or @user.student? %>
                     <% if @notifications['finance_due'].include?("#{@show_month.year}-#{@show_month.month}-#{dt}".to_date) %>
-                      <%= link_to_remote("<div style='width:12px;height:12px;background:#b40000; -moz-border-radius:2px;  -webkit-border-radius:2px;margin:2px;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
+                      <%= link_to_remote("<div class='calendar-legend' style='background:#b40000;'></div>", {:url => {:action => "#"}} , {:onmouseover =>remote_function(
                             :url => { :action => :show_due_tooltip, :id=>Date.parse("#{@show_month.year}-#{@show_month.month}-#{dt}") },:before => "Element.show('loader')",:success => "Element.hide('loader')"),
                           :class=>"event"}) %>
                     <% end %>

@@ -1,0 +1,48 @@
+
+#instructions {
+    color: #484848;
+    width:200px;
+    text-align: justify;
+    float: left;
+    background-color:#ffc;
+    padding:20px;
+    border:3px solid #bbb;
+    font-size:95%;
+}
+#grade-table {
+    width:350px;
+    float:right;
+    margin-top:20px;
+}
+.grade-tr {
+    width:350px;
+    height:35px;
+}
+.grade-td1 {
+    height:30px;
+    float:right;
+    margin-right:40px;
+    background:#fff url(../../../images/_input_bg/text-tiny.png) no-repeat;
+}
+.grade-td1 input {
+    margin-right:7px;
+    margin-top:5px;
+    border:none;
+    background:transparent;
+}
+.grade-td2 {
+    height:30px;
+    width:50px;
+    margin-right:50px;
+    float:right;
+    padding-top:5px;
+}
+#submit-area {
+    margin : 30px 100px 0 0;
+}
+#dynamic-form {
+    border: 1px dotted;
+    float: left;
+    margin: 20px 0 0 0;
+    width: 400px;
+}

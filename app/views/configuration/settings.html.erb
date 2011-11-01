@@ -79,7 +79,7 @@
       <div class="label-field-pair">
         <label for="configuration_student_attendance_type"><%= "#{t('language') } " %></label>
         <div class="text-input-bg">
-          <%= select :configuration, :locale, Language.translation_available.map{|lan| [lan.name, lan.code]},
+          <%= select :configuration, :locale, available_language_options,
             :selected => @config[:locale] %>
         </div>
       </div>
@@ -93,7 +93,7 @@
       <div class="label-field-pair">
         <label for="configuration_currency_type"><%= t('upload_logo') %></label>
         <div class="text-input-bg">
-          <%= file_field 'upload', 'datafile' %>
+          <%= file_field 'upload', 'datafile', :size=>12 %>
         </div>
       </div>
       <div class="label-field-pair">

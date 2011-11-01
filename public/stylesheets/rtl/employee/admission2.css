@@ -1,0 +1,89 @@
+
+#form-contents{
+    padding:0 10px 0 10px;
+}
+
+#home-address{
+    width:400px;
+}
+
+#home-address-label{
+    color:#BB0000;
+    font-weight:bold;
+    margin-bottom:20px;
+    text-decoration:underline;
+}
+
+.label-fields{
+    margin:0 0 20px 0;
+}
+
+.div-labels{
+    float:right;
+    color : #444;
+    font-weight : bold;
+    padding:4px 0 0 0;
+}
+
+
+
+.text-input-bg1 select {
+    background-color : #eee;
+    border : 0;
+    margin : 5px 10px 0 0;
+    width : 210px;
+}
+
+
+#office-address{
+    width:400px;
+}
+
+#office-address-label{
+    color:#BB0000;
+    font-weight:bold;
+    margin-bottom:20px;
+    text-decoration:underline;
+}
+
+#contact-details{
+    width:400px;
+}
+
+#contact-details-label{
+    color:#BB0000;
+    font-weight:bold;
+    margin-bottom:20px;
+    text-decoration:underline;
+}
+
+.save-proceed-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+
+    margin-right:220px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+.sub-heading{
+    background:#9E0F15;
+    height: 1px;
+    border: none;
+    margin-bottom: 15px;
+}
+.span-sub-heading{
+    font-weight: bold;
+    padding-top:10px;
+}
+.label-underline{
+    background:  #eeeeee;
+    height: 1px;
+    border: none;
+}

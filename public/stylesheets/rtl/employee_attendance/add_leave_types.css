@@ -1,0 +1,110 @@
+#form-content{
+    height:150px;
+    width:675px;
+    margin:0 20px 0 0;
+    width:750px;
+}
+
+.box{
+    width: 450px;
+    margin: 0 auto;
+}
+
+#submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-right:210px;
+    margin-top:10px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+
+.leave-type-list {
+    clear : both;
+    padding : 80px 40px 0 0;
+    width:600px;
+    margin:auto;
+}
+
+.leave-type-list .listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 32em;
+    list-style-type : none;
+    padding : 0.5em 3em 0 0;
+}
+
+.leave-type-list .listodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 32em;
+    list-style-type : none;
+    padding : 0.5em 3em 0 0;
+}
+
+.leave-type-list li.heading {
+    background : none;
+    font-weight : bold;
+}
+.leave-type-list li div {
+    float : right;
+}
+.leave-type-list li div.leave-type-name {
+    width : 350px;
+    font-weight:bold;
+    font-size:13px;
+}
+.leave-type-list li div.leave-type-edit,
+.category-list li div.category-delete {
+    font-size : 0.9em;
+    width : 48px;
+}
+.leave-type-list li div a {
+    color : #000;
+    font-size: 14px;
+    text-decoration:none;
+}
+.leave-type-list li div a:hover {
+    color : #d00;
+    text-decoration:underline;
+}
+
+
+.leave-type-list .listheading {
+    background:none repeat scroll 0 0 #BECFFB;
+    border-bottom:2px solid #BECFFB;
+    color:#444444;
+    height:1.5em;
+    list-style-type:none;
+    padding:0.5em 1em 0 0;
+    width:34em;
+}
+
+.label-radio-pair  {
+    height:40px;
+    padding-top:3px;
+    padding:10px 0px 0 0;
+    width:600px;
+}
+.status{
+    color:#444444;
+    display:block;
+    float:right;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:3px;
+    width:206px;
+}
+
+.check_box{
+    margin-top: 7px;
+}

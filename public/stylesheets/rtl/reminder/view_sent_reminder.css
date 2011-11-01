@@ -1,0 +1,38 @@
+#reminder-body{
+    margin:0 50px 0 0;
+}
+
+#reminder-from{
+    margin:0 0 15px 0;
+    font-size:18px;
+    font-weight:bold;
+}
+
+#reminder-date{
+    float:left;
+    color:#c9c9c9;
+    font-weight:bold;
+    font-size:16px;
+}
+
+#reminder-subject{
+    margin:0 0 20px 0;
+    font-weight:bold;
+    color:#9e0f15;
+    font-size:16px;
+}
+
+#reminder-message{
+    background:#eeeeee;
+    padding:20px;
+    text-align:justify;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-size:15px;
+}
+#page-yield{
+    margin: 0;
+}
+#inner-tab-menu ul li {
+    width: 173px;
+}

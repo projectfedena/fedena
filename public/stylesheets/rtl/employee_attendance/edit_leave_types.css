@@ -1,0 +1,56 @@
+#form-content{
+    height:150px;
+    width:675px;
+    margin:0 20px 0 0;
+    width:750px;
+}
+
+#submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:10px 210px 0 auto;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+
+.box{
+    width: 450px;
+    margin: 0 auto;
+}
+
+.label-radio-pair{
+    width:250px;
+    height:80px;
+    float:right;
+}
+
+.label-radio-pair p{margin:0;padding:0;color:#444444;font-weight:bold;}
+.label-radio-pair input{
+    margin:15px 25px 0 0;
+}
+
+.label-radio-pair  {
+    height:40px;
+    padding-top:3px;
+    padding:10px 0px 0 0;
+    width:600px;
+}
+.status{
+    color:#444444;
+    display:block;
+    float:right;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:3px;
+    width:206px;
+}
+.check_box{
+    margin-top: 7px;
+}

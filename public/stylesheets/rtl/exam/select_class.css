@@ -1,0 +1,10 @@
+
+.label-field-pair {
+    margin-right : 100px;
+}
+.submit-button {
+    float: right;
+    height: 60px; width: 285px;
+    margin: 0 30px 0 0;
+    padding: 30px 20px 0 0;
+}

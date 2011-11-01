@@ -1,0 +1,35 @@
+
+#form_content {
+    margin : 0 50px 0 0;
+}
+#submit_area {
+    width : 165px;
+    height : 30px;
+    margin : 30px 200px 0 0;
+}
+
+#exams-list {
+    margin : 50px 0 0 0;
+}
+#exams-list ul {
+    margin : 0 50px 0 0;
+    padding : 0;
+    width : 550px;
+}
+#exams-list ul li {
+    background : #fff url(../../../images/_global/list-bg-repeat.jpg) repeat;
+    font-size : 0.9em;
+    height : 1.5em;
+    list-style-type : none;
+    padding : 0.5em 40px 0 0;
+}
+#exams-list ul li div {
+    float : right;
+    margin : 0 0 0 10px;
+}
+#exams-list ul li .exam-name {
+    width : 400px;
+}
+#exams-list ul li .exam-manage-links a {
+    color : #000;
+}

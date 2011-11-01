@@ -1,0 +1,152 @@
+
+#admission1_form {padding-right:50px;}
+#edit_form {height:50px;margin-bottom:30px;padding:0;background:#fff url(../../../images/admission/edit_form_underline.jpg) bottom right no-repeat;}
+#edit_form img {width:22px;height:27px;float:right;margin:0;border:0;padding:8px 0 0 0;}
+#edit_form h4  {margin:0;padding:10px 40px 0 0;}
+
+#autofill_area .label_field_pair {padding-left:65px;}
+
+
+.label_field_pair {
+    height:40px;
+    padding-top:3px;
+    width:600px;
+}
+.label_field_pair label {
+    color:#444444;
+    display:block;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:10px;
+    padding-top:10px;
+
+}
+.employee_gender_value {
+    float:right;
+    padding-top:5px;
+    width:300px;
+}
+.label_field_pair label.label_for_employee_gender {float:right; display:inline; width:200px;}
+.label_field_pair label.employee_status {float:right; display:inline; width:200px;}
+.label_field_pair label.label_for_gender {font-weight:normal;display:inline;}
+.label_field_pair label.label_for_status {font-weight:normal;display:inline;}
+
+#name_field_block {clear:both;padding-bottom:20px;}
+#name_field_block .text_input_bg {float:right;width:190px;height:28px;background:#fff url(../../../images/master_student/admission1/text_input_190px.png) no-repeat;margin-left:5px;margin-bottom:10px;}
+#name_field_block label {font-weight:bold;display:block;margin-bottom:10px;}
+#name_field_block input {width:170px;height:28px;background:transparent;border:0;color:#000;font-weight:bold;padding-right:10px;padding-top:5px;}
+
+.text_input_bg {width:230px;height:28px;background:#fff url(../../../images/master_student/admission1/text_input.png) no-repeat;margin-bottom:20px;}
+.select_input_bg {width:230px;height:28px;background:#fff url(../../../images/master_student/admission1/text_input.png) no-repeat;margin-bottom:20px;}
+.label_field_pair input {
+    width:210px;height:28px;
+    background:transparent;
+    border:none;
+    padding-right:10px;
+    padding-top:5px;
+}
+.label_field_pair select {
+    background : #eee;
+    height:auto; width:220px;
+    border : none;
+    margin :5px 5px 0 0;
+}
+.label_field_pair .label_for_gender {margin:0;display:block;float:right;padding-top:5px;padding-left:10px;padding-right:10px;}
+.label_field_pair .label_for_status {margin:0;display:block;float:right;padding-top:5px;padding-left:10px;padding-right:10px;}
+#employee_gender_true,
+#employee_gender_false {margin:0;padding:0;width:20px;display:inline;margin-bottom:10px;display:block;float:right;}
+#employee_status_true,
+#employee_status_false {margin:0;padding:0;width:20px;display:inline;margin-bottom:10px;display:block;float:right;}
+
+
+#create_user {display:inline;}
+#address_text_area {width:232px;height:162px;background:#fff url(../../../images/admission/address_area_bg.jpg) no-repeat;margin-bottom:40px;}
+#master_student_address, #parent_detail_office_address {padding-right:10px;padding-top:5px;width:222px;height:162px;border:none;background:transparent;color:#b00;font-weight:bold;}
+#create_user_option {display:inline;margin:0px;padding:0px;}
+
+.submit_button {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-right:270px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+.submit_button:hover{
+    background: #373b3f;
+}
+.submit_button3 {margin-top:30px;margin-right:50px;float:right;}
+.text_display {width:230px;height:28px;background:#fff url(../../../images/admission/text_input.jpg) no-repeat;margin-bottom:20px;color:#b00;font-weight:bold;padding-right:10px;padding-top:3px;}
+
+.necessary-field {
+    color : #f00;
+    font-size : 1.1em;
+}
+#necessary-field-notification {
+    font-weight : bold;
+    padding : 10px 0 30px 0;
+}
+input#employee_image_file{
+    height: 24px;
+}
+.sub-heading{
+    background:#9E0F15;
+    height: 1px;
+    border: none;
+    margin-bottom: 15px;
+}
+.span-sub-heading{
+    font-weight: bold;
+    padding-top:10px;
+}
+.label-underline{
+    background:  #eeeeee;
+    height: 1px;
+    border: none;
+}
+
+.label-field-pair-text-area{
+    height:110px;
+    padding-top:3px;
+    width:600px;
+}
+
+.label-field-pair-text-area label{
+    color:#444444;
+    display:block;
+    float:right;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:10px;
+    width:200px;
+}
+
+.textarea-input-bg {
+    background:none repeat scroll 0 0 transparent;
+    float:right;
+}
+
+.label-field-pair-text-area textarea {
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px;
+    background:none repeat scroll 0 0 #EEEEEE;
+    border:1px solid #C6C6C6;
+    margin:5px 10px 0 0;
+    padding:5px;
+}
+
+.text-input-bg select#employee_experience_year,select#employee_experience_month{
+    width:75px;
+    float:right;
+}
+
+input#employee_photo{
+    height: 28px;
+}

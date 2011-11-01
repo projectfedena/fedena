@@ -1,0 +1,42 @@
+#pdf-header{
+    width:800px;
+    padding-top: 30px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.logo{
+    height: 120px;
+    width:120px;
+    float: right;
+}
+
+.header-content{
+    color: #97080e;
+    font-weight: bold;
+    font-size: 25px;
+    float: right;
+    width: 600px;
+    height: 110px;
+    text-align: center;
+}
+
+.header-content p{
+    margin-top: 3px;
+    margin-bottom: 2px;
+}
+
+#pdf-footer{
+    text-align: left;
+    width: 700px;
+    padding-left: 100px;
+    padding: 50px;
+    margin: 0 auto;
+    color: #999999;
+    font-size: 18px;
+
+}
+
+#page-yield {
+    margin-top: 30px !important;
+}

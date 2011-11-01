@@ -1,0 +1,254 @@
+#student_profile_heading {
+    background-color:#FFF1AB;
+    border:1px solid #EFDF95;
+    clear:both;
+    height:25px;
+    margin:0 0 40px;
+    padding:2px 190px 0 0;
+}
+#student_main_info {
+    float:right;
+    text-align:center;
+}
+#student_main_info span.name {
+    margin:0;
+    color:#000;
+    font-size:14px;
+    font-weight: 600;
+    letter-spacing:.5px;
+    padding-left:20px;
+    margin-top:30px;
+}
+#student_main_info span.course {
+    margin : 0;
+    font-size:14px;
+    padding-left:20px;
+    font-weight: 600;
+    color : #000;
+    margin-top : 10px;
+}
+#student_main_info span.adm {
+    font-size:14px;
+    margin : 0;
+    font-weight: 600;
+    padding : 0;
+    color : #000;
+    margin-top : 5px;
+}
+.profile_info_label_top {
+    padding-top:15px;
+    padding-bottom:5px;
+    height:25px;
+    width:150px;
+    text-align:left;
+    padding-left:20px;
+    float:right;
+    font-weight:bold;
+    color:#548ab2;
+    background: #eff3fe;
+    border-top:1px solid #bdcfff;
+    margin-left:5px;
+}
+.profile_info_label_top2 {
+    padding-top:15px;
+    padding-bottom:5px;
+    height:25px;
+    width:150px;
+    text-align:left;
+    padding-left:20px;
+    float:right;
+    font-weight:bold;
+    color:#548ab2;
+    background: #dae6ff;
+    border-top:1px solid #bdcfff;
+    margin-left:5px;
+}
+.profile_info_label_top {
+    padding-top:15px;
+    padding-bottom:5px;
+    height:25px;
+    width:150px;
+    text-align:left;
+    padding-left:20px;
+    float:right;
+    font-weight:bold;
+    color:#548ab2;
+}
+.user_button {
+    margin-top:40px;
+    margin-right:270px;
+}
+
+.parent-del-button {
+    margin : 20px 600px 40px 0;
+}
+.profile_top_banner{
+    position:absolute;
+    float:left;
+    padding-right:525px;
+    margin-top:-12px;
+
+}
+.parent-edit-button{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    margin-right:10px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    width:70px;
+    cursor:pointer;
+    float:right;
+}
+.parent-edit-button:hover{
+    background: #373B3F;
+}
+.parent-edit-button a{
+    color:#fff;
+    text-decoration: none;
+}
+#guardians-links span{
+    font-weight:600;
+    color:#444444;
+    margin-bottom: 10px;
+    display:block;
+    text-decoration: underline;
+}
+.button-pair{
+    width:220px;
+    margin:20px auto;
+}
+#inner-tab-menu ul li {
+    background-color:#9D0E00;
+    color:#FFFFFF;
+    float:right;
+    font-size:14px;
+    height:1.5em;
+    list-style-type:none;
+    margin:0 10px 0 0;
+    padding:0 5px;
+    text-align:center;
+    width:100px;
+}
+#new_profile_info_top {
+    margin:30px auto;
+    width:697px;
+
+}
+
+
+#category-list {
+    clear : both;
+    padding : 10px 0px 40px 0;
+    width:808px;
+    margin:0px auto;
+}
+
+#category-list .listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 750px;
+    list-style-type : none;
+    padding : 0.5em 5em 0 0;
+}
+
+#category-list .listodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 750px;
+    list-style-type : none;
+    padding : 0.5em 5em 0 0;
+}
+
+#category-list li.heading {
+    background : none;
+    font-weight : bold;
+    list-style-type : none;
+    color : #444;
+    height : 1.5em; width : 30em;
+    padding : 0.5em 5em 0 0;
+}
+#category-list li div {
+    float : right;
+}
+#category-list li div.category-name {
+    width : 350px;
+    font-weight: bold;
+    font-size:14px;
+}
+#category-list li div.category-edit,
+#category-list li div.category-delete {
+    font-size : 14px;
+    width : 129px;
+
+}
+#category-list li div a {
+    color : #000;
+    font-size:14px;
+    text-decoration: none;
+}
+#category-list li div a:hover {
+    color : #d00;
+    text-decoration: underline;
+}
+
+#category-list .listheading {
+    background:none repeat scroll 0 0 #BECFFB;
+    border-bottom:2px solid #BECFFB;
+    color:#444444;
+    height:1.5em;
+    list-style-type:none;
+    padding:0.5em 5em 0 0;
+    width:750px;
+}
+
+.fees{
+    float: right;
+    margin-right: 190px;
+}
+.user_button  {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    text-decoration: none;
+    margin:0 20px 0 auto;
+}
+.user_button:hover{
+    background:  #373B3F;
+}
+
+#category-list li div.due-date{
+    float: right;
+    width: 200px;
+    font-size: 14px;
+}
+
+#category-list li div.category-name a {
+    font-size: 14px;
+    width: 350px;
+    color: #444444;
+    font-weight: normal;
+}
+
+#category-list li div.category-name a:hover {
+    color: #BB0000;
+    font-weight: normal;
+}
+#inner-tab-menu ul li {
+    width: 150px;
+}

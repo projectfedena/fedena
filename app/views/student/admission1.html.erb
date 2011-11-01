@@ -240,7 +240,7 @@
         <hr class="sub-heading"></hr>
         <div class="label-field-pair">
           <label for="student_image_file"><%= t('upload_photo') %> (<%= t('max_size') %>)</label>
-          <div class="text-input-bg"><%= s.file_field :photo %></div>
+          <div class="text-input-bg"><%= s.file_field :photo, :size=>12 %></div>
 
         </div>
       </div>

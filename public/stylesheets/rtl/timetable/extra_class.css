@@ -1,0 +1,126 @@
+.submit-button{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-right:210px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+.submit-button:hover{
+    background:  #373B3F;
+}
+
+.box{
+    width: 550px;
+    margin: 0 auto;
+}
+.submit-button2{
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:12px;
+    font-weight:bold;
+    padding:2px 4px;
+    border:none;
+    cursor:pointer;
+    margin: -3px;
+}
+.submit-button2:hover{
+    background:  #373B3F;
+}
+
+#category-list {
+    clear : both;
+    padding : 10px 0px 40px 0;
+    width:600px;
+    margin:0px auto;
+}
+
+#category-list .listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : auto; width : 550px;
+    list-style-type : none;
+    padding : 0.5em 2em 0 0;
+    overflow: hidden;
+}
+
+#category-list .listodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : 1.5em; width : 550px;
+    list-style-type : none;
+    padding : 0.5em 2em 0 0;
+}
+
+#category-list li.heading {
+    background : none;
+    font-weight : bold;
+    list-style-type : none;
+    color : #444;
+    height : 1.5em; width : 550px;
+    padding : 0.5em 5em 0 0;
+}
+#category-list li div {
+    float : right;
+}
+#category-list li div.category-num {
+    width : 80px;
+    font-size:13px;
+}
+#category-list li div.category-name {
+    width : 268px;
+    font-weight: bold;
+    font-size:13px;
+}
+#category-list li div.category-edit{
+    float:left;
+    font-size : 0.9em;
+}
+#category-list li div.category-emp {
+    padding-right: 44px;
+    font-size : 0.9em;
+    width : 110px;
+
+}
+#category-list li div a {
+    color : #000;
+    font-size:14px;
+    text-decoration: none;
+}
+#category-list li div a:hover {
+    color : #d00;
+    text-decoration: underline;
+}
+
+.text-input-bg2 select {
+    -moz-border-radius:5px 5px 5px 5px;
+    -webkit-border-radius:5px;
+    background-color:#EEEEEE;
+    border:1px solid #C6C6C6;
+    height:23px;
+    margin:-4px -2px;
+    padding:0 5px;
+    width:200px;
+}
+
+.text-input-bg3 select {
+    -moz-border-radius:5px 5px 5px 5px;
+    -webkit-border-radius:5px;
+    background-color:#EEEEEE;
+    border:1px solid #C6C6C6;
+    height:23px;
+    margin:-4px -2px;
+    padding:0 5px;
+    width:100px;
+}

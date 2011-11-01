@@ -1,0 +1,178 @@
+#current-changed-manager{
+    border-bottom:3px solid #eeeeee;
+    margin:0 50px 25px 0;
+}
+
+#current-manager-outer{
+    margin:10px 0 10px 0;
+}
+
+#current-manager{
+    width:250px;
+    float:right;
+    font-weight:bold;
+}
+
+#current-manager-name{
+    float:right;
+    font-weight:bold;
+    color:#BB0000;
+}
+
+#changed-manager-outer{
+    margin:10px 0 10px 0;
+}
+
+#changed-manager{
+    width:250px;
+    float:right;
+    font-weight:bold;
+    margin-top:7px;
+
+}
+
+#changed-manager-name{
+
+    float:right;
+    font-weight:bold;
+    color:#BB0000;
+    margin-top:7px;
+}
+
+#changed-manager-name .not-selected{
+    color:#9d9d9d;
+}
+
+#update-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-right:30px;
+    margin-top:0px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+
+#search-options{
+    margin:0 50px 25px 0;
+    border-bottom:3px solid #eeeeee;
+    padding-bottom:25px;
+}
+
+#search-outer{
+    margin:10px 0 10px 0;
+}
+
+#search-label{
+    width:250px;
+    float:right;
+    font-weight:bold;
+    margin:12px 0 0 0;
+}
+
+#search-text-box{
+    float:right;
+    background : #fff url(../../../images/form_bg/text-input-bg.png) no-repeat;
+    height : 28px;
+    width : 230px;
+    margin:10px 0 25px 0;
+}
+
+#search-text-box input {
+    background : transparent;
+    border : 0;
+    margin : 5px 10px 0 0;
+    width : 210px;
+}
+
+.employee-search-options{
+    float:right;
+    background : #fff url(../../../images/form_bg/smalltextbox.jpg) no-repeat;
+    height : 28px;
+    width : 150px;
+    margin:0 0 0 20px;
+}
+
+.employee-search-options select {
+    background : transparent;
+    border : 0;
+    margin : 5px 10px 0 0;
+    width : 135px;
+}
+
+#information{
+    min-height:100px;
+    width:930px;
+    margin-right:0px;
+    padding-right:50px
+}
+
+#no_result{
+    font-weight:bold;
+    color:#b00
+}
+
+#ajax_result {
+    padding:10px 0 10px 0;
+    text-decoration:none;
+    width:204px;
+    float:right;
+    background:#fff url(../../../images/student_details/ajax_result_underline.jpg) bottom right no-repeat
+}
+#ajax_result a{
+    color:#000;
+    font-weight:bold
+}
+
+
+#list {
+    margin:20px auto;
+    width:400px;
+}
+#list li {
+    padding:6px 50px 0 0;
+    list-style-type:none;
+}
+#list li label input {
+    margin-left:10px;
+}
+.name_listodd{
+    background:#E4EBFE;
+    height:30px;
+    width:400px;
+    border-top:1px solid #C2CEEF;
+}
+.name_listeven{
+    background:#DAE6FF;
+    height:30px;
+    width:400px;
+    border-top:1px solid #C2CEEF;
+}
+.att_list_number {
+    display:inline;
+    font-weight: 600;
+    font-size: 13px;
+    float: left;
+    text-align: right;
+    margin-left: 25px;
+}
+.att_list_name {
+    display:inline;
+    font-weight: 600;
+    font-size: 13px;
+    float: right;
+    text-align: right;
+}
+
+#list_content{
+    padding-bottom: 20px;
+}
+
+
+
+

@@ -1,0 +1,81 @@
+#search-area {
+    width:600px;
+    height:70px;
+    margin-right:50px;
+}
+#searchbox {
+    width:491px;
+    float:right;
+}
+#searchbox label {
+    width:210px;
+    color:#555;
+    font-size:16px;
+    padding:12px 35px 0 0;
+    float:right;
+    font-weight: bold;
+}
+#searchbox input {
+    background : #eee;
+    float:right;
+    border : 1px solid #c6c6c6;
+    margin : 8px 10px 0 0;
+    width : 180px;
+    height:22px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 4px 5px 0 0;
+}
+#option-links {
+    float:left;
+    width:150px;
+    margin-right:10px;
+    padding-top:20px;
+}
+#option-links a {
+    display:block;
+    height:20px;
+    font-weight:bold;
+    color:#000;
+}
+#user_information {
+    height:auto;
+    margin:0px auto;
+    padding-right:0;
+    width:816px
+}
+#user_no_result {
+    font-weight:bold;
+    color:#b00;
+}
+#user_ajax_result {
+    float:right;
+    padding:10px 0;
+    width:204px;
+}
+#user_ajax_result a {
+    color:#000;
+    font-weight:bold;
+    text-decoration:none
+}
+#user_ajax_result a:hover {
+    color:#d00;
+    text-decoration:underline;
+}
+
+#flash_notice_manage_users {
+    color:red;
+    background-color:#eee;
+    clear:both;
+}
+.users-on-one-line {
+    background : #fff url(../../../images/student_details/ajax_result_underline.jpg) bottom right repeat-x;
+    overflow: auto;
+    width:816px;
+    margin-bottom: 20px;
+}
+#searchbox input:focus{
+    border:1px solid #d00;
+    background: none;
+
+}

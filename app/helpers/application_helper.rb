@@ -18,11 +18,12 @@
 
 module ApplicationHelper
   def get_stylesheets
+    @direction = (rtl?) ? 'rtl/' : ''
     stylesheets = [] unless stylesheets
-    ["#{controller.controller_path}/#{controller.action_name}"].each do |ss|
+    ["#{@direction}#{controller.controller_path}/#{controller.action_name}"].each do |ss|
       stylesheets << ss
     end
-    plugin_css_overrides = FedenaPlugin::CSS_OVERRIDES["#{controller.controller_path}_#{controller.action_name}"]
+    plugin_css_overrides = FedenaPlugin::CSS_OVERRIDES["#{@direction}#{controller.controller_path}_#{controller.action_name}"]
     stylesheets << plugin_css_overrides.collect{|p| "plugin_css/#{p}"}
   end
 
@@ -60,6 +61,18 @@ module ApplicationHelper
   def pdf_image_tag(image, options = {})
     options[:src] = File.expand_path(RAILS_ROOT) + "/public/images"+ image
     tag(:img, options)
+  end
+
+  def available_language_options
+    options = []
+    AVAILABLE_LANGUAGES.each do |locale, language|
+      options << [language, locale]
+    end
+    options.sort_by { |o| o[0] }
+  end
+
+  def rtl?
+    @rtl ||= RTL_LANGUAGES.include? I18n.locale
   end
   
 end

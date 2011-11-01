@@ -1,0 +1,32 @@
+.submit_button {
+    margin-top:20px;
+    margin-right:210px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    float:right;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.box{
+    width:750px;
+    margin:0px auto;
+}
+
+.errorExplanation {
+    -moz-border-radius:10px 10px 10px 10px;
+    background:url("/images/_global/error.png") no-repeat scroll 10px 14px #FFDEDF;
+    height:auto;
+    margin:20px 0;
+    padding:10px 20px 20px 0;
+    width:510px;
+}

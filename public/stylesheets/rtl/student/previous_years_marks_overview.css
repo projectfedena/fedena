@@ -1,0 +1,22 @@
+
+#results-table {
+    font-size: 0.9em;
+    margin: 30px 0 0 0;
+}
+.results-table-th,
+.results-table-tr {
+    background: #e7eeff;
+    border-bottom: 1px solid #C4D2FE;
+    border-top: 1px solid #C4D2FE;
+    padding: 0.5em 0;
+}
+.results-table-th {
+    font-size: 0.9em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.course-name {
+    float: right;
+    padding: 0 30px 0 0;
+    width: 170px;
+}

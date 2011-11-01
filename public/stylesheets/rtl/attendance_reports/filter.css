@@ -1,0 +1,29 @@
+.label-field-pair label {
+    color:#444444;
+    display:block;
+    float:right;
+    font-size:14px;
+    font-weight:600;
+    margin:0 100px 10px;
+    padding-top:10px;
+    width:250px;
+}
+
+.submit_button {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+    float: right;
+    margin-right:400px;
+    margin-top:10px;
+}
+.submit_button:hover{
+    background: #373b3f;
+}

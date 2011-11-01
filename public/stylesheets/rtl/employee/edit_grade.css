@@ -1,0 +1,55 @@
+
+#form-content{
+    height:150px;
+    width:600px;
+    margin:0 70px 0 0;
+}
+
+.status{
+    color : #444444;
+    font-weight : bold;
+    margin : 0 5px 10px 0;
+}
+
+#radio-buttons{
+    margin:0;
+}
+
+#submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px 210px;
+    float:right;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    width:128px;
+    cursor:pointer;
+}
+form{
+    width:600px;
+    margin:auto;
+}
+
+
+.label-checkbox-pair  {
+    height:40px;
+    padding-top:3px;
+    padding:10px 0px 0 0;
+    width:600px;
+}
+.status{
+    color:#444444;
+    display:block;
+    float:right;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:3px;
+    width:206px;
+}

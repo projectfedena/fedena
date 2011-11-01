@@ -19,16 +19,17 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<html dir="<%= (rtl?) ? 'rtl' : 'ltr' %>">
   <head>
+    <% @direction = (rtl?) ? 'rtl/' : '' %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
     <title><%= @title %></title>
     <link rel="icon" href="/favicon.ico" type="image/ico" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/ico" />
 
-    <%= stylesheet_link_tag(['_layouts/dashboard', '_styles/ui.all'])%>
+    <%= stylesheet_link_tag([@direction+'_layouts/dashboard', @direction+'_styles/ui.all'])%>
     <%= stylesheet_link_tag(*get_stylesheets) %>
-    <%= stylesheet_link_tag 'modalbox' %>
+    <%= stylesheet_link_tag @direction+'modalbox' %>
 
     <%= javascript_include_tag :defaults, :cache => 'cache/javascripts/all' %>
     <%= javascript_include_tag 'scripts/anylinkmenu', 'scripts/nicetitle', 'droplicious' %>
@@ -71,13 +72,6 @@
     <div id="header_bg">
       <div id="header">
         <div id="outer-header-link">
-          <div class="language">
-            <%= select :configuration, :locale,  Language.translation_available.map{|lan| [lan.name, lan.code]},{:selected=>"#{I18n.locale}"},
-              {:onchange => "#{remote_function(
-              :url => { :controller=>'application',:action => 'set_language' },
-              :with => "'language='+value"  )}"}%>
-
-          </div>
           <div id="header_link" >
             <%= t('logged_as') %>
             <% this_user = User.find(session[:user_id]) if session[:user_id] %>

@@ -1,0 +1,70 @@
+
+
+#page-yield {
+    width:800px;
+    margin: 0 auto;
+    float: right;
+    overflow: hidden;
+}
+
+
+
+.hor_line{
+    width:800px;
+    background: #ADACAB;
+    height: 1px;
+}
+
+#student_main_info h4{
+    color: #555555;
+    margin-top: 2px;
+    font-weight: normal;
+}
+
+#student_main_info h2{
+    margin-bottom: 2px;
+    font-weight: normal;
+
+}
+
+
+.odd{
+    height:auto;
+    background: #EEEEEE;
+    
+}
+
+.even{
+    
+    height:auto;
+    background: #fff;
+    
+    
+}
+
+.even td{
+   
+   padding: 12px 15px 12px 12px;
+  border-right:  1px solid #ADACAB;
+  border-bottom: 1px solid #ADACAB;
+}
+
+.odd td{
+  padding: 12px 15px 12px 12px;
+  border-right:  1px solid #ADACAB;
+  border-bottom: 1px solid #ADACAB;
+
+}
+
+table#pdf-table{
+   border: 1px solid #ADACAB;
+   border-right: 0px solid #ADACAB;
+}
+
+
+
+
+
+
+
+

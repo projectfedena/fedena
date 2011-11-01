@@ -1,0 +1,25 @@
+#employee_list {
+    clear : both;
+    margin-top : 20px;
+    padding : 0px;
+}
+#employee_name {
+    background : #fff url(../../../images/student_details/ajax_result_underline.jpg) bottom right no-repeat;
+    float : right;
+    padding : 10px 0 10px 10px;
+    text-decoration : none;
+    width : 230px;
+}
+#employee_name a {
+    color : #000;
+    font-weight : bold;
+    text-decoration : none;
+}
+
+.label-field-pair{
+    margin:0 auto;
+}
+
+.label-field-pair label {
+    width: 234px;
+}

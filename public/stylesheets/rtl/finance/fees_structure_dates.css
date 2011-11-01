@@ -1,0 +1,87 @@
+.fees-th {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    border-top: 1px solid #C4D2FE;
+    font-size: 0.9em;
+    height: 1.5em;
+    font-variant:small-caps;
+    font-weight: bold;
+    padding: 0.5em 0 0 0;
+    width:600px;
+}
+.fees-tr {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    font-size:0.9em;
+    height: 1.5em;
+    padding: 0.5em 0 0 0;
+    width:600px;
+}
+.fees-table-particulars {
+    float:right;
+    padding: 0 60px 0 0;
+    width: 180px;
+}
+.fees-table-amount {
+    float:right;
+    width: 80px;
+    padding: 0 140px 0 0;
+    text-align:left;
+}
+
+.user_button {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin: 10px auto;
+    text-decoration: none;
+    float: right;
+    margin-right: 400px;
+}
+.user_button:hover{
+    background:  #373B3F;
+}
+
+
+.name{
+    color: #999999;
+    float: right;
+    width: 202px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.val {
+    width: 400px;
+    color: #bb0000;
+    font-weight: bold;
+     font-size: 13px;
+}
+
+.val span{
+    margin-left:12px;
+    color: black;
+}
+
+#listing{
+    margin-top: 10px;
+
+}
+
+
+td span{
+   color: #990A10;
+}
+
+table#listing td.col-8 {
+    padding: 5px 10px 5px 5px;
+    width: 10%;
+    text-align: left;
+}

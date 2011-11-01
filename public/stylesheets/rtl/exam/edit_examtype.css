@@ -1,0 +1,41 @@
+
+#page-yield {
+    margin-top:50px;
+}
+#form-content {
+    width:700px;
+    height:100px;
+    padding-right:80px;
+}
+.label-check-pair {
+    width:285px;
+    float:right;
+    padding-right:10px;
+    padding-top:30px;
+    height:50px;
+}
+.label-check-pair label {
+    font-weight:bold;
+    display:block;
+    color:#444;
+    margin-bottom:10px;
+    display:inline;
+}
+.submit-area input {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-right:170px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+form{
+    width:450px;
+    margin:0px auto;
+}

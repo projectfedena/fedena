@@ -44,6 +44,7 @@ class ConfigurationController < ApplicationController
     
       Configuration.set_config_values(params[:configuration])
       Configuration.save_institution_logo(params[:upload]) unless params[:upload].nil?
+      session[:language] = nil unless session[:language].nil?
 
       flash[:notice] = "#{t('flash_msg8')}"
       redirect_to :action => "settings"  and return

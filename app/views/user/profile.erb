@@ -50,6 +50,14 @@
 
     <div class="profile_info_label2"><%= t('email') %></div>
     <div class="profile_info_text2"> <%= @user.email %> </div>
+
+    <% if @current_user.id == @user.id %>
+      <div class="profile_info_label"><%= t('language') %></div>
+      <div class="profile_info_text"> <%= select :configuration, :locale, available_language_options ,{:selected=>"#{I18n.locale}"},
+          {:onchange => "#{remote_function(
+          :url => { :controller=>'application',:action => 'set_language' },
+          :with => "'language='+value"  )}"}%> </div>
+    <% end %>
     <div class="extender"></div>
   </div>
 
@@ -75,7 +83,7 @@
         <% end %>
       <% end %>
       <% if @user.admin and @current_user.id != @user.id and @employee.nil? %>
-      <%= link_to "► #{t('delete_text')}", { :controller => "user", :action => "delete", :id => @user.username}, :class => "user_button", :confirm=>"#{t('are_you_sure_to_delete_user')}" %>
+        <%= link_to "► #{t('delete_text')}", { :controller => "user", :action => "delete", :id => @user.username}, :class => "user_button", :confirm=>"#{t('are_you_sure_to_delete_user')}" %>
       <% end %>
     </div>
   <% end %>

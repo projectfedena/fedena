@@ -1,0 +1,34 @@
+#submit-button input {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    margin-right:210px;
+    margin-top:30px;
+    padding:7px 12px;
+    border:none;
+    text-align:center;
+    width:90px;
+    cursor:pointer;
+}
+
+
+.box{
+    margin: 0 auto;
+    width: 550px;
+}
+
+.check_box{
+    padding-right: 10px;
+}
+
+
+.label-field-pair {
+    height: 55px;
+    padding-top: 3px;
+    width: 600px;
+}

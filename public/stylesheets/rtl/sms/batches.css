@@ -1,0 +1,95 @@
+
+.link-box {
+    margin:10px 40px;
+    width:270px;
+    float:right;
+    height:80px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+.link-descr {
+    margin-top:5px;
+    color:#666;
+    text-align:justify;
+    font-size:14px;
+}
+
+.submit_button {
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px 10px 10px 10px;
+    background:none repeat scroll 0 0 #27292B;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-right:250px;
+    margin-top:5px;
+    padding:7px 10px;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.name_listodd{
+    background:#E4EBFE;
+    height:auto;
+    width:600px;
+    border-top:1px solid #C2CEEF;
+    padding-bottom:5px;
+}
+.name_listeven{
+    background:#DAE6FF;
+    height:30px;
+    width:600px;
+    border-top:1px solid #C2CEEF;
+}
+.att_list_names {
+    display:inline;
+    font-weight: 600;
+    font-size: 13px;
+}
+label {display:inline;}
+
+#list {
+    margin:20px;
+    width:400px;
+}
+#list li {
+    padding:6px 50px 0 0;
+    list-style-type:none;
+}
+#list li label input {
+    margin-left:10px;
+}
+
+.text-input-bg  {
+    background:none repeat scroll 0 0 transparent;
+    float:right;
+    height:75px;
+    width:282px;
+}
+
+.text-input-bg textarea  {
+    -moz-border-radius:10px 10px 10px 10px;
+    background-color:#EEEEEE;
+    border:1px solid #C6C6C6;
+    height:60px;
+    margin:5px 0px 0 0;
+    padding:3px 6px;
+    width:250px;
+    margin-right: 160px;
+}
+
+.text-input-bg textarea:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+
+.box{
+    margin: 0 auto;
+    width: 600px;
+}

@@ -1,0 +1,43 @@
+default: "en"
+available:
+  ar: "العربية"
+  en: "English"
+  es: "Español"
+  hi: "हिंदी"
+  
+fallbacks:
+  en-GB:
+    - :en
+  en-US:
+    - :en
+  en_shaw:
+    - :en
+    - :en-GB
+    - :en-US
+  en_pirate:
+    - :en
+    - :en-GB
+    - :en-US
+  en_1337:
+    - :en
+    - :en-GB
+    - :en-US
+  sv:
+    - :sv-SE
+  he:
+    - :he-IL
+  es-AR:
+    - :es
+  es-CL:
+    - :es
+  gl:
+    - :gl-ES
+  zh:
+    - :zh-CN
+    - :zh-TW
+  ur-PK:
+    - :ur
+rtl:
+  - :ar
+  - :he
+  - :ur

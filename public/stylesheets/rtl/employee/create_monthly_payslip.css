@@ -1,0 +1,257 @@
+.payslip-field-pair {
+    float : right;
+    min-height : 40px;
+    width : 470px;
+    margin:0 0px 0 0;
+}
+.payslip-input-bg {
+    height : 28px;
+    width : 200px;
+    float:left;
+}
+
+.payslip-field-pair label {
+    color : #444;
+    display : block;
+    font-weight : bold;
+    margin : 5px 0 0 0;
+    float:right;
+    max-width: 250px;
+    font-size:14px;
+}
+.payslip-field-pair input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 10px 0 0;
+    width : 150px;
+    height:17px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+}
+.payslip-field-pair input:focus {
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+.payslip-field-pair-extra {
+    float : right;
+    height : 40px;
+    width : 370px;
+    margin:0 0px 0 0;
+}
+
+.payslip-field-pair-extra label {
+    color : #444;
+    display : block;
+    font-weight : bold;
+    margin : 5px 0 0 0;
+    float:right;
+}
+.payslip-field-pair-extra input {
+    background : transparent;
+    border : 0;
+    margin : 5px 10px 0 0;
+    width : 135px;
+}
+
+#submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-right:280px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+#form-content{
+    width:500px;
+    float:right
+}
+
+#add-payslip-category-link{
+    padding-right:80px;
+}
+
+#add-payslip-category-link a{
+    color:#000;
+}
+
+#individual-payslip-categories{
+    float:right;
+    width:400px;
+}
+
+
+#new-payslip-category-list {
+    clear : both;
+    padding :0px;
+    margin:0px;
+}
+
+#new-payslip-category-list li {
+    background : #fff url(../../../images/_global/list-bg-repeat.jpg) repeat;
+    color : #444;
+    height : 1.5em; width :290px;
+    list-style-type : none;
+    padding :0px;
+}
+
+#new-payslip-category-list li.heading {
+    background : none;
+    font-weight : bold;
+}
+#new-payslip-category-list li div {
+    float : right;
+}
+#new-payslip-category-list li div.category-name {
+    width : 230px;
+}
+#new-payslip-category-list li div.category-edit,
+#new-payslip-category-list li div.category-delete {
+    font-size : 0.9em;
+    width : 50px;
+}
+#new-payslip-category-list li div a {
+    color : #000;
+}
+
+.new-category-field-pair {
+    height : 80px;
+    width : 250px;
+    margin-right:30px;
+}
+
+.new-category-field-pair label {
+    color : #444;
+    display : block;
+    font-weight : bold;
+    margin : 0 0 10px 0;
+}
+.new-category-field-pair input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 10px 0 0;
+    width : 205px;
+    height:17px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+}
+.new-category-field-pair input:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+
+.new-category-checkbox-pair{
+    width:250px;
+    margin-right:30px;
+}
+
+#new-category-submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-right:70px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+
+.category-remove{
+    width:15px;
+    float:left;
+    margin:1px 15px 0 0;
+}
+
+.amount-data{
+    margin:4px 5px 0 0;
+}
+
+
+
+.name{
+    color: #999999;
+    float: right;
+    width: 100px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.val {
+    color: #bb0000;
+    font-weight: bold;
+    font-size: 13px;
+    float: right;
+}
+
+.val span{
+    margin-left:12px;
+    color: black;
+}
+
+.box{
+    width: 600px;
+    margin:0 auto;
+}
+ul{
+
+}
+
+.del-button {
+    float:right;
+    margin:0 18px 0 0;
+    width:10px;
+}
+
+#add-payslip-category-link  a{
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    text-decoration: none;
+}
+#add-payslip-category-link  a:hover{
+    background:  #373B3F;
+}
+
+
+.new_category{
+    overflow: hidden;
+}
+
+#employee_profile_heading {
+    width:100%;
+    margin:0px auto;
+}
+#employee_main_info {
+    float:right;
+    width:400px;
+}
+#employee_main_info h3 {
+    margin:0;
+    padding:0;
+    margin-top:20px;
+}
+#employee_main_info h4 {
+    margin:0;
+    padding:0;
+    color:#b00;
+    margin-top:10px;
+    margin-bottom: 20px;
+}

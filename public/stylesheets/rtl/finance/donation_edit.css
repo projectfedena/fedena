@@ -1,0 +1,76 @@
+#user_create_form {
+    height:30px;
+     width:22px;
+    margin-bottom:20px;
+    margin-top:20px;
+    padding:0;
+    background:#fff url(../../../images/create_users/underline_image.jpg) bottom right no-repeat;
+}
+
+#create_user_form {
+    margin:0 auto;
+    width:450px;
+}
+.label_field {
+    width:285px;
+    float:right;
+}
+.label_field label {
+    font-weight:bold;
+    display:block;
+    color:#444;
+    margin-bottom:10px;
+}
+.text_field_bg {
+    width:230px;
+    height:28px;
+    background:#fff url(../../../images/fedena_user/create_user/text_input.png) no-repeat;
+    margin-bottom:20px;
+}
+.label_field input {
+    width:215px;
+    height:28px;
+    background:transparent;
+    border:none;
+    padding-right:10px;
+    padding-top:5px;
+}
+.label_field select {
+    width:230px;
+    height:28px;
+}
+.user_submit_button {
+    margin-top:20px;
+    margin-right:45px;
+}
+.necessary-field {
+    color : #f00;
+    font-size : 1.1em;
+}
+#necessary-field-notification {
+    font-weight : bold;
+    padding : 10px 0 10px 0;
+}
+
+.submit_button {
+    margin-top:15px;
+    margin-right:210px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.box{
+    width:550px;
+    margin:0px auto;
+}

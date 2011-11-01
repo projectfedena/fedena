@@ -54,3 +54,7 @@
     color : #d00;
     text-decoration: underline;
 }
+#update_batch{
+    float:left;
+    width:800px;
+}

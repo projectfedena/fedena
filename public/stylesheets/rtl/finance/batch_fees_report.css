@@ -1,0 +1,85 @@
+#fees-table{
+    padding-top:10px;
+}
+.fees-th {
+    background: none repeat scroll 0 0 #BECFFB;
+    border-bottom: 1px solid #BECFFB;
+    font-weight: normal;
+    height: 1.5em;
+    list-style-type: none;
+    padding: 0.5em 1em 0 0;
+    width: 700px;
+}
+.fees-tr {
+    background-color: #E7EEFF;
+    border-bottom: 1px solid #C4D2FE;
+    font-size:0.9em;
+    height: auto;
+    padding: 0.5em 0 0 0;
+    width:700px;
+    overflow: hidden;
+}
+.fees-table-description {
+    float:right;
+    padding: 0 60px 0 0;
+    width: 362px;
+}
+.fees-table-head-desc {
+    float:right;
+    padding: 0 60px 0 0;
+    width: 254px;
+}
+.fees-table-expenses {
+    float:right;
+    width: 80px;
+    padding: 0 41px 0 0;
+    text-align:left;
+}
+.fees-table-income {
+    float:right;
+    width: 120px;
+    padding: 0 0px 0 0;
+    text-align:left;
+}
+.fees-table-date {
+    float:left;
+    width: 80px;
+    text-align:center;
+    margin-left: 40px;
+}
+
+.listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : auto;
+    width : 700px;
+    list-style-type : none;
+    padding: 10px 16px 10px 0;
+    font-size: 14px;
+    overflow: hidden;
+
+}
+
+.listodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    height : auto;
+    width : 700px;
+    list-style-type : none;
+    padding: 10px 16px 10px 0;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.fees-table-description p{
+    display: block;
+    float:right;
+    padding: 0 0px 0 0;
+    width: 254px;
+    margin: 0px;
+}
+.transaction-report-title{
+    margin-right:200px;
+}

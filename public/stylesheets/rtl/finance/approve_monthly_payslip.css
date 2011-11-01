@@ -1,0 +1,38 @@
+#approve{
+    width:80px;
+    margin-top:30px;
+}
+
+.approve a{
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px;
+    background:none repeat scroll 0 0 #27292B;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:7px 10px;
+    text-align: center;
+    text-decoration: none;
+    color:#FFFFFF;
+}
+.approve:hover a{
+    background:  #373B3F;
+}
+
+.approved{
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px;
+    background:none repeat scroll 0 0 #27292B;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:7px 10px;
+    text-align: center;
+    text-decoration: none;
+    color:#FFFFFF;
+    width:135px
+}
+.box{
+    width:550px;
+    margin:0px auto;
+}

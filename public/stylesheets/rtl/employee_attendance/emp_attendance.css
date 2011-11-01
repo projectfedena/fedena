@@ -1,0 +1,98 @@
+#attendance-report{
+    width:705px;
+    margin-right:135px;
+}
+
+.type_name-odd{
+    width:680px;
+    background : #DAE6FF;
+    font-weight:bold;
+    padding-right:25px;
+    height:28px;
+    padding-top:12px;
+    font-size:14px;
+}
+.type_name-even{
+    width:680px;
+    background : #EFF3FE;
+    font-weight:bold;
+    padding-right:25px;
+    height:28px;
+    padding-top:12px;
+    font-size:14px;
+}
+
+.date-odd{
+    width:505px;
+    background : #DAE6FF;
+    padding-right:200px;
+
+    height:28px;
+    padding-top:12px;
+}
+.date-even{
+    width:505px;
+    background : #EFF3FE;
+    padding-right:200px;
+
+    height:28px;
+    padding-top:12px;
+}
+
+.attendance-stats{
+    margin-top:30px;
+    width:705px;
+    font-size:14px;
+}
+
+.user_button{
+    width: 270px;
+    margin:20px 400px;
+}
+
+.user_button a {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    text-decoration: none;
+
+}
+.user_button a:hover{
+    background:  #373B3F;
+}
+
+.type_nameodd {
+    background: none repeat scroll 0 0 #EFF3FE;
+    border-top: 1px solid #BDCFFF;
+    font-weight: bold;
+    height: 28px;
+    padding-right: 25px;
+    padding-top: 12px;
+    width: 680px;
+}
+
+.type_nameeven {
+    background: none repeat scroll 0 0 #DAE6FF;
+    border-top: 1px solid #BDCFFF;
+    font-weight: bold;
+    height: 28px;
+    padding-right: 25px;
+    padding-top: 12px;
+    width: 680px;
+}
+.count {
+    float: right;
+    height: auto;
+    width: 300px;
+}
+
+.total {
+    float: right;
+    height: auto;
+    width: 185px;
+}

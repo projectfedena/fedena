@@ -1,0 +1,162 @@
+#form-contents{
+    padding:0 10px 0 10px;
+    width:500px;
+    float:right;
+}
+
+#bank-details{
+    width:400px;
+}
+
+#bank-details-label{
+    color:#BB0000;
+    font-weight:bold;
+    margin-bottom:20px;
+    text-decoration:underline;
+}
+
+.label-fields{
+    margin:0 0 20px 0;
+}
+
+.div-labels{
+    float:right;
+    color : #444;
+    font-weight : bold;
+    padding:10px 0 0 0;
+}
+
+
+
+.text-input-bg1 select {
+    background-color : #eee;
+    border : 0;
+    margin : 5px 10px 0 0;
+    width : 210px;
+}
+
+.save-proceed-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-right:170px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+.sub-heading{
+    background:#9E0F15;
+    height: 1px;
+    border: none;
+    margin: 0 10px 15px 10px;
+}
+.span-sub-heading{
+    font-weight: bold;
+    padding-top:10px;
+    padding-right:10px;
+}
+.label-underline{
+    background:  #eeeeee;
+    height: 1px;
+    border: none;
+}
+.skip{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:80px;
+    margin-top:30px;
+    padding:8px 10px;
+    border:none;
+    cursor:pointer;
+    text-decoration: none;
+    float:left;
+}
+.save-button{
+    position:relative;
+}
+.ajax-subject{
+    width:400px;
+    float: right;
+}
+#subject{
+    margin-top:25px;
+}
+#save-proceed-button{
+    width:300px;
+}
+.ajax-subject a{
+    color:#9B1017;
+    font-weight:bold;
+}
+
+
+li div.sub-name {
+    float:right;
+    font-size:13px;
+    font-weight:bold;
+    width:174px;
+}
+
+
+li div.sub-mark {
+    float : right;
+    font-size : 0.9em;
+    width : 50px;
+
+}
+
+li div.prev_subject{
+    float: right;
+    width: 250px;
+
+}
+
+li{
+    width: 300px;
+}
+
+
+.name{
+    color: #999999;
+    float: right;
+    width: 160px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.val {
+    color: #bb0000;
+    font-weight: bold;
+    font-size: 13px;
+    float: right;
+    width: 50px;
+}
+
+.val span{
+    margin-left:12px;
+    color: black;
+}
+
+.box{
+    width: 600px;
+    margin:0 auto;
+}
+ul{
+
+}
+
+.delete{
+    float: right;
+    margin-top: -2px;
+    margin-right: 5px;
+}

@@ -1,0 +1,36 @@
+#asset-body{
+    margin:0 50px 0 0;
+}
+#asset-created_at{
+    margin:0 0 25px 0;
+    color:#c9c9c9;
+    font-weight:bold;
+}
+
+#asset-date{
+    margin:0 0 20px 0;
+    font-weight:bold;
+    color:#9e0f15;
+    font-size:14px;
+}
+
+
+#asset-amt{
+    margin:0 0 20px 0;
+    font-weight:bold;
+    color:#9e0f15;
+    font-size:18px;
+}
+
+#asset-description{
+    background:#eeeeee;
+    padding:18px;
+    text-align:justify;
+}
+
+
+#asset-title{
+    margin:0 0 15px 0;
+    font-size:20px;
+    font-weight:bold;
+}
