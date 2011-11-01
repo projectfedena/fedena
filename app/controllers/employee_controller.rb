@@ -953,7 +953,7 @@ class EmployeeController < ApplicationController
     if TimetableEntry.find_all_by_subject_id_and_employee_id(@subject.id,params[:id]).blank?
       EmployeesSubject.find_by_employee_id_and_subject_id(params[:id], params[:id1]).destroy
     else
-      flash.now[:warn_notice]="<p>#{t('flash41')}</p> <p>#{t('flash42')}</p> "
+      flash.now[:warn_notice]="<p>#{t('employee.flash41')}</p> <p>#{t('employee.flash42')}</p> "
     end
     @assigned_employee = EmployeesSubject.find_all_by_subject_id(@subject.id)
     render :partial =>"select_department"
@@ -1203,7 +1203,7 @@ class EmployeeController < ApplicationController
         end
       end
     end
-    render :text => "<p>#{t('salary_slip_for_month')}: #{salary_date.strftime("%B")}.<br/><b>NOTE:</b> #{t('employees_salary_generated_manually')}</p>"
+    render :text => "<p>#{t('salary_slip_for_month')}: #{salary_date.strftime("%B")}.<br/><b>#{t('note')}:</b> #{t('employees_salary_generated_manually')}</p>"
   end
 
   def payslip_revert_date_select
