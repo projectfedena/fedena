@@ -23,8 +23,8 @@ module ApplicationHelper
     ["#{@direction}#{controller.controller_path}/#{controller.action_name}"].each do |ss|
       stylesheets << ss
     end
-    plugin_css_overrides = FedenaPlugin::CSS_OVERRIDES["#{@direction}#{controller.controller_path}_#{controller.action_name}"]
-    stylesheets << plugin_css_overrides.collect{|p| "plugin_css/#{p}"}
+    plugin_css_overrides = FedenaPlugin::CSS_OVERRIDES["#{controller.controller_path}_#{controller.action_name}"]
+    stylesheets << plugin_css_overrides.collect{|p| "#{@direction}plugin_css/#{p}"}
   end
 
   def observe_fields(fields, options)
