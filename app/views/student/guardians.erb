@@ -71,7 +71,7 @@
 
       <a name="guardian-details-id-<%= p.id %>"> </a>
       <div id="new_profile_info_top">
-        <div class="profile_top_banner"><%= image_tag "master_student/profile/topbanner.png" %></div>
+        <div class="profile_top_banner"><%= image_tag("master_student/profile/topbanner.png") unless rtl? %></div>
         <div class="profile_info_label"><%= t('name') %></div>
         <div class="profile_info_text">
           <%= p.first_name %> <%= p.last_name %>

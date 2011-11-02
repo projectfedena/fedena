@@ -18,7 +18,7 @@
 #under the License. -%>
 
 
-<div class="profile_top_banner"><%= image_tag "master_student/profile/topbanner.png" %></div>
+<div class="profile_top_banner"><%= image_tag("master_student/profile/topbanner.png") unless rtl? %></div>
 <div class="profile_info_label_top"><%= t('joining_date') %></div>
 <div class="profile_info_text_top"><%= I18n.l(@employee.joining_date, :format=>"%d %b,%Y")%></div>
 
