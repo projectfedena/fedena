@@ -232,10 +232,10 @@ class FinanceController < ApplicationController
   end
 
   def transaction_trigger_create
-    @trigger = FinanceTransactionTrigger.new(params[:transaction_trigger])
-    @triggers = FinanceTransactionTrigger.all
+    @trigger = FinanceTransactionTrigger.new(params[:transaction_trigger])    
     render :update do |page|
       if @trigger.save
+        @triggers = FinanceTransactionTrigger.all
         page.replace_html 'transaction-triggers-list', :partial => 'transaction_triggers_list'
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
