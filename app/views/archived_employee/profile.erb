@@ -77,8 +77,8 @@
   <div id="employee_profile_heading">
 
     <div id="profile_picture_display">
-      <% unless @employee.photo_data.blank? %>
-        <img src="<%= url_for(:controller=>"archived_employee", :action => "show", :id => @employee.id) %>"  />
+      <% if @employee.photo.file? %>
+       <%= image_tag @employee.photo.url %>
       <% else %>
         <%= image_tag "HR/default_employee.png" %>
       <% end %>
