@@ -459,7 +459,7 @@ authorization do
 
   role :general_settings do
     has_permission_on [:configuration], :to => [:index,:settings,:permissions]
-    has_permission_on [:student], :to => [:add_additional_details, :delete_additional_details, :edit_additional_details, :categories ]
+    has_permission_on [:student], :to => [:add_additional_details, :delete_additional_details, :edit_additional_details, :categories,:category_delete,:category_delete,:category_update ]
   end
 
   role :finance_control do
