@@ -28,9 +28,9 @@
 
 <div id="page-yield">
 
-  <%donations_total=0%>
   <%donations_income=0%>
   <%donations_expenses=0%>
+
   <table id="listing">
     <tr class="tr-head">
       <td><%= t('description') %></td>
@@ -44,31 +44,31 @@
         <% if d.master_transaction_id == 0  %>
           <td></td>
           <td class="col-2"><%=d.amount %></td>
+          <% donations_income+= d.amount %>
         <% else %>
           <td class="col-2"><%=d.amount.to_f %></td>
+          <% donations_expenses+= d.amount %>
           <td></td>
         <% end %>
         <td class="col-2"><%=d.transaction_date.strftime("%m-%d-%Y") %></td>
       </tr>
-      <!-- <%# unless @trigger.nil? %>
-  <%# @trigger.each do |trigger|   %>
-  <%#donations_expenses += trigger.amount.to_f %>
-  <%#*<div class="fees-tr<%= cycle('','-odd') %>">%>
-  <%#*<div class="fees-table-description"><%=trigger.title+"("+trigger.description.to_s+")"  %></div>%>
-  <%#*<div class="fees-table-expenses"><%=trigger.amount.to_f %></div>%>
-  <%#*</div>%>
-
-  <%# end %>
-  <%# end %> -->
     <% end %>
-    <%donations_total=donations_income-donations_expenses %>
+
+    <%  donations_total=donations_income-donations_expenses %>
     <tr class="tr-head">
       <td><%= t('total') %></td>
-      <%= '<td></td>' if donations_income > donations_expenses %>
-      <td <%='colspan="2"' if donations_income<donations_expenses%> ><%=donations_total%></td>
+      <%  if donations_income > donations_expenses %>
         <td></td>
+        <td> <%= donations_total %></td>
+        <%  %>
+      <% else %>
+        <td> <%= donations_total %></td>
         <td></td>
+      <% end %>
+      <td></td>
     </tr>
+
+
 
   </table>
 </div>
