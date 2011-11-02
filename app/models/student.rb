@@ -21,7 +21,7 @@ class Student < ActiveRecord::Base
   belongs_to :batch
   belongs_to :student_category
   belongs_to :nationality, :class_name => 'Country'
-  belongs_to :user,:dependent=>:destroy,:autosave=>true
+  belongs_to :user,:dependent=>:destroy
 
   has_one    :immediate_contact
   has_one    :student_previous_data
@@ -261,12 +261,15 @@ class Student < ActiveRecord::Base
     flag = true unless self.graduated_batches.blank?
     flag = true unless self.attendances.blank?
     flag = true unless self.finance_fees.blank?
-    if flag
-      return true
-    else
-      return false
+    plugin_dependencies = FedenaPlugin.check_dependency(self,"permanant")
+    plugin_dependencies.each do |k,v|
+      flag=true unless  v.blank?
     end
+    return flag
   end
 
+  def former_dependency
+   plugin_dependencies = FedenaPlugin.check_dependency(self,"permanant")
+  end
 
 end

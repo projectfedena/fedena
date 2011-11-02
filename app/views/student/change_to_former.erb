@@ -35,24 +35,28 @@
   </div>
 
   <div class="extender"> </div>
+  <% if @has_dependency %>
+    <% @dependency.each do |k,v| %>
+     <%= render :partial=>k.classify.constantize.send("student_dependency_hook") %>
+  <% end %>
+  <% else %>
+    <div id="remove-student">
+      <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
+      <p><%= t('description_for_students_leaving') %></p>
 
-  <div id="remove-student">
-    <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
-    <p><%= t('description_for_students_leaving') %></p>
+      <% remote_form_for :remove do |f| %>
+        <div class="label-field-pair">
+          <label for="remove_descr"><%= t('reason_for_leaving') %></label>
+          <div class="text-input-bg"><%= f.text_field :status_description %></div>
+        </div>
 
-    <% remote_form_for :remove do |f| %>
-      <div class="label-field-pair">
-        <label for="remove_descr"><%= t('reason_for_leaving') %></label>
-        <div class="text-input-bg"><%= f.text_field :status_description %></div>
-      </div>
+        <div id="submit-button">
+          <%= submit_tag "► #{t('delete_text')}" %>
+        </div>
 
-      <div id="submit-button">
-        <%= submit_tag "► #{t('delete_text')}" %>
-      </div>
-
-    <% end %>
-  </div><br />
-  <br/>
-  <div id="tc-generate"></div>
-
+      <% end %>
+    </div><br />
+    <br/>
+    <div id="tc-generate"></div>
+  <% end %>
 </div>

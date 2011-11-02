@@ -4,6 +4,7 @@ class FedenaPlugin
   ADDITIONAL_LINKS = Hash.new{|k,v| k[v] = []}
   REGISTERED_HOOKS = Hash.new{|k,v| k[v] = []}
   FINANCE_CATEGORY = []
+  DEPENDENCY = Hash.new
   CSS_OVERRIDES = Hash.new{|k,v| k[v] = []}
 
   def self.register=(plugin_details)
@@ -31,5 +32,15 @@ class FedenaPlugin
         end
       end
     end
+  end
+
+  def self.check_dependency(record,action)
+    AVAILABLE_MODULES.each do |mod|
+      modu = mod[:name].classify.constantize
+      if modu.respond_to?("dependency_check")
+        DEPENDENCY["#{mod[:name]}"] = modu.send("dependency_check",record,action)
+      end      
+    end
+    DEPENDENCY
   end
 end

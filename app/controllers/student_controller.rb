@@ -251,6 +251,11 @@ class StudentController < ApplicationController
   end
 
   def change_to_former
+    @dependency = @student.former_dependency
+    @has_dependency = false
+    @dependency.each do |k,v|
+      @has_dependency = true unless  v.blank?
+    end
     if request.post?
       @student.archive_student(params[:remove][:status_description])
       render :update do |page|
