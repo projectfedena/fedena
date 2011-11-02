@@ -18,7 +18,8 @@
 
 class AttendancesController < ApplicationController
   filter_access_to :all
-  before_filter :only_assigned_employee_allowed
+  before_filter :only_assigned_employee_allowed, :except => 'index'
+  before_filter :only_privileged_employee_allowed, :only => 'index'
   def index
     @batches = Batch.active
     @config = Configuration.find_by_config_key('StudentAttendanceType')
@@ -172,4 +173,17 @@ def destroy
     format.js { render :action => 'update' }
   end
 end
+
+  def only_privileged_employee_allowed
+    @privilege = @current_user.privileges.map{|p| p.id}
+    if @current_user.employee?
+      @employee_subjects= @current_user.employee_record.subjects
+      if @employee_subjects.empty? and !@privilege.include?(16)
+          flash[:notice] = "#{t('flash_msg4')}"
+          redirect_to :controller => 'user', :action => 'dashboard'
+      else
+        @allow_access = true
+      end
+    end
+  end
 end

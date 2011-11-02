@@ -186,7 +186,7 @@
       <% @employee_subjects= @user.employee_record.subject_ids  %>
       <% if @employee_subjects.empty?%>
        
-        <% if permitted_to? :index, :student_attendance or  permitted_to? :index, :attendances and @employee_subjects.present? %>
+        <% if permitted_to? :index, :student_attendance or  permitted_to? :index, :attendances and @employee_subjects.present? or @user.privileges.map{|p| p.id}.include?(8) or @user.privileges.map{|p| p.id}.include?(16) %>
           <div class="button-box">
             <%= link_to "<div class ='button-label'><p>#{t('attendance')}</p></div>", {:controller => "student_attendance", :action => "index"},
               :class => "option_buttons", :id => "student_attendance_button", :title => t('attendance_link_title') %>

@@ -59,10 +59,10 @@ class ApplicationController < ActionController::Base
 
  
   def only_assigned_employee_allowed
+    @privilege = @current_user.privileges.map{|p| p.id}
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects
-      privilege = @current_user.privileges.map{|p| p.id}
-      if @employee_subjects.empty? and !privilege.include?(8) and !privilege.include?(16)
+      if @employee_subjects.empty? and !@privilege.include?(8) and !@privilege.include?(16)
           flash[:notice] = "#{t('flash_msg4')}"
           redirect_to :controller => 'user', :action => 'dashboard'
       else

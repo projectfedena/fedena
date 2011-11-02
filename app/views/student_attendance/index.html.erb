@@ -36,7 +36,7 @@
   <div id="box">
 
 
-      <% if permitted_to? :index, :attendances or @allow_access == true%>
+      <% if permitted_to? :index, :attendances and (@employee_subjects.present? or @privilege.include?(16) or @current_user.admin?) %>
         <div class="link-box">
           <div class="link-heading"><%= link_to "#{t('attendance_register')}", :controller => 'attendances', :action => 'index'  %></div>
           <div class="link-descr"><%= t('attendance_registered_for_students') %></div>
