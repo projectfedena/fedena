@@ -22,7 +22,7 @@ class Employee < ActiveRecord::Base
   belongs_to  :employee_grade
   belongs_to  :employee_department
   belongs_to  :nationality, :class_name => 'Country'
-  belongs_to  :user, :dependent=>:destroy,:autosave=>true
+  belongs_to  :user, :dependent=>:destroy 
   
   has_many :employees_subjects
   has_many :subjects ,:through => :employees_subjects
@@ -219,8 +219,8 @@ class Employee < ActiveRecord::Base
       employee_additional_details.each do |g|
         g.archive_employee_additional_detail(archived_employee.id)
       end
-      self.user.delete
-      self.delete
+      self.user.destroy
+      self.destroy
     end
   end
  
@@ -282,10 +282,19 @@ class Employee < ActiveRecord::Base
     flag = true if self.finance_transactions.present?
     flag = true if self.timetable_entries.present?
     flag = true if self.employee_attendances.present?
+    plugin_dependencies = FedenaPlugin.check_dependency(self,"permanant")
+    plugin_dependencies.each do |k,v|
+      flag=true unless  v.blank?
+    end
     if flag
       return true
     else
       return false
     end
   end
+
+  def former_dependency
+   plugin_dependencies = FedenaPlugin.check_dependency(self,"permanant")
+  end
+  
 end

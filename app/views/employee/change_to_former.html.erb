@@ -18,36 +18,41 @@
 #under the License. -%>
 
 <div id="content-header">
-    <img src="/images/HR/show_hr.png" alt="" />
+  <img src="/images/HR/show_hr.png" alt="" />
   <h1><%= t('employee_text') %></h1>
   <h3><%= t('leaving_school') %></h3>
   <div id="app-back-button">
-   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
 <div id="page-yield">
 
   <div id="student-details">
-<h4> <%= @employee.first_name %> | <%= t('employee_number') %>  : <%= @employee.employee_number %> | <%= t('department') %> : <%= @employee.employee_department.name %> </h4>
+    <h4> <%= @employee.first_name %> | <%= t('employee_number') %>  : <%= @employee.employee_number %> | <%= t('department') %> : <%= @employee.employee_department.name %> </h4>
   </div>
 
   <div class="extender"> </div>
-
-  <div id="remove-student">
-    <p><%= t('paragraph') %></p>
-
-    <% form_for :remove do |f| %>
-      <div class="label-field-pair">
-        <label for="remove_descr"><%= t('reason_for_leaving') %></label>
-        <div class="text-input-bg"><%= f.text_field :status_description %></div>
-      </div>
-
-      <div id="submit-button">
-        <%= submit_tag "► #{t('delete_text')}",:class=>'submit_button' %>
-      </div>
-
+  <% if @has_dependency %>
+    <% @dependency.each do |k,v| %>
+      <%= render :partial=>k.classify.constantize.send("employee_dependency_hook") %>
     <% end %>
-  </div>
+  <% else %>
+    <div id="remove-student">
+      <p><%= t('paragraph') %></p>
+
+      <% form_for :remove do |f| %>
+        <div class="label-field-pair">
+          <label for="remove_descr"><%= t('reason_for_leaving') %></label>
+          <div class="text-input-bg"><%= f.text_field :status_description %></div>
+        </div>
+
+        <div id="submit-button">
+          <%= submit_tag "► #{t('delete_text')}",:class=>'submit_button' %>
+        </div>
+
+      <% end %>
+    </div>
+  <% end %>
 
 </div>

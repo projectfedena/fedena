@@ -235,8 +235,8 @@ class Student < ActiveRecord::Base
     archived_student.photo = self.photo
     if archived_student.save
       guardian = self.guardians
-      self.user.delete unless self.user.blank?
-      self.delete
+      self.user.destroy unless self.user.blank?
+      self.destroy
       guardian.each do |g|
         g.archive_guardian(archived_student.id)
       end
