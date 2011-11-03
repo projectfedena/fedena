@@ -63,8 +63,8 @@ class BatchesController < ApplicationController
         msg << "</ol>"
       end
       flash[:subject_import] = msg unless msg.nil?
-
       err = ""
+      err1 = "<span style = 'margin-left:15px;font-size:15px,margin-bottom:20px;'><b>Following problems occured while saving this batch</b></span>"
       unless params[:import_fees].nil?
         fee_msg = []
         fee_msg << "<ol>"
@@ -79,47 +79,47 @@ class BatchesController < ApplicationController
           batch_discounts = BatchFeeDiscount.find_all_by_finance_fee_category_id(c.id)
           category_discounts = StudentCategoryFeeDiscount.find_all_by_finance_fee_category_id(c.id)
           unless particulars.blank? and batch_discounts.blank? and category_discounts.blank?
-          new_category = FinanceFeeCategory.new(:name=>c.name,:description=>c.description,:batch_id=>@batch.id,:is_deleted=>false,:is_master=>true)
-          if new_category.save
-            fee_msg << "<li>#{c.name}</li>"
-            particulars.each do |p|
-              new_particular = FinanceFeeParticulars.new(:name=>p.name,:description=>p.description,:amount=>p.amount,:student_category_id=>p.student_category_id,\
-                  :admission_no=>p.admission_no,:student_id=>p.student_id)
-              new_particular.finance_fee_category_id = new_category.id
-              unless new_particular.save
-                err += "<li>#{t('particular')} #{p.name} #{t('import_failed')}.</li>"
+            new_category = FinanceFeeCategory.new(:name=>c.name,:description=>c.description,:batch_id=>@batch.id,:is_deleted=>false,:is_master=>true)
+            if new_category.save
+              fee_msg << "<li>#{c.name}</li>"
+              particulars.each do |p|
+                new_particular = FinanceFeeParticulars.new(:name=>p.name,:description=>p.description,:amount=>p.amount,:student_category_id=>p.student_category_id,\
+                    :admission_no=>p.admission_no,:student_id=>p.student_id)
+                new_particular.finance_fee_category_id = new_category.id
+                unless new_particular.save
+                  err += "<li> #{t('particular')} #{p.name} #{t('import_failed')}.</li>"
+                end
               end
-            end
-            batch_discounts.each do |disc|
-              discount_attributes = disc.attributes
-              discount_attributes.delete "type"
-              discount_attributes.delete "finance_fee_category_id"
-              discount_attributes.delete "receiver_id"
-              discount_attributes["receiver_id"]= @batch.id
-              discount_attributes["finance_fee_category_id"]= new_category.id
-              unless BatchFeeDiscount.create(discount_attributes)
-                err += "<li>#{t('discount')} #{disc.name} #{t('import_failed')}.</li>"
+              batch_discounts.each do |disc|
+                discount_attributes = disc.attributes
+                discount_attributes.delete "type"
+                discount_attributes.delete "finance_fee_category_id"
+                discount_attributes.delete "receiver_id"
+                discount_attributes["receiver_id"]= @batch.id
+                discount_attributes["finance_fee_category_id"]= new_category.id
+                unless BatchFeeDiscount.create(discount_attributes)
+                  err += "<li> #{t('discount ')} #{disc.name} #{t('import_failed')}.</li>"
+                end
               end
-            end
-            category_discounts.each do |disc|
-              discount_attributes = disc.attributes
-              discount_attributes.delete "type"
-              discount_attributes.delete "finance_fee_category_id"
-              discount_attributes["finance_fee_category_id"]= new_category.id
-              unless StudentCategoryFeeDiscount.create(discount_attributes)
-                err += "<li>#{t('discount')} #{disc.name} #{t('import_failed')}.</li>"
+              category_discounts.each do |disc|
+                discount_attributes = disc.attributes
+                discount_attributes.delete "type"
+                discount_attributes.delete "finance_fee_category_id"
+                discount_attributes["finance_fee_category_id"]= new_category.id
+                unless StudentCategoryFeeDiscount.create(discount_attributes)
+                  err += "<li>  #{t(' discount ')} #{disc.name} #{t(' import_failed')}.</li><br/>"
+                end
               end
+            else
+              err += "<li>  #{t('category')} #{c.name} #{t('import_failed')}.</li>"
             end
           else
-            err += "<li>#{t('category')}#{c.name}#{t('import_failed')}.</li>"
+            err += "<li>  #{t('category')} #{c.name} #{t('import_failed')}.</li>"
           end
-        else
-          err += "<li>#{t('category')}#{c.name}#{t('import_failed')}.</li>"
-        end
         end
         fee_msg << "</ol>"
       end
-      flash[:warn_notice] =  err unless err.empty?
+      flash[:warn_notice] =  err1 + err unless err.empty?
       flash[:fees_import] =  fee_msg unless fee_msg.nil?
       
       redirect_to [@course, @batch]

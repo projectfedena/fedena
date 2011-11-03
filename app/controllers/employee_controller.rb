@@ -1595,7 +1595,7 @@ class EmployeeController < ApplicationController
       @has_dependency = true unless  v.blank?
     end
     if request.post?
-      flash[:notice]=t('flash32')
+      flash[:notice]= "#{t('flash32')}  #{@employee.employee_number}"
       EmployeesSubject.destroy_all(:employee_id=>@employee.id)
       @employee.archive_employee(params[:remove][:status_description])
       redirect_to :action => "hr"
