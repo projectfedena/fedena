@@ -52,12 +52,12 @@ function make_ajax_calls(tte_id, emp_sub_id){
     if (selected_divs.length == 0) {
         <%= remote_function(:update => "timetable",
                         :url => {:action => "update_multiple_timetable_entries2"},
-                        :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_id") %>
+                        :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_id", :success => "clear_selected_divs()") %>
     }
     else if (selected_divs.length == 1) {
         <%= remote_function(:update => "timetable",
                           :url => {:action => "update_multiple_timetable_entries2"},
-                          :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_id") %>
+                          :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_id", :success => "clear_selected_divs()") %>
         if (selected_divs[0] == tte_id) selected_divs.pop();
     }
     else {
@@ -69,13 +69,13 @@ function make_ajax_calls(tte_id, emp_sub_id){
             tte_list = selected_divs.join(',');
             <%= remote_function(:update => "timetable",
                           :url => {:action => "update_multiple_timetable_entries2"},
-                          :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_list") %>
+                          :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_list", :success => "clear_selected_divs()") %>
             selected_divs = [];
         }
         else
             <%= remote_function(:update => "timetable",
                           :url => {:action => "update_multiple_timetable_entries2"},
-                          :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_id") %>
+                          :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_id", :success => "clear_selected_divs()") %>
     }
 }
 </script>
