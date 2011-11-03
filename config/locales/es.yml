@@ -225,7 +225,7 @@ es: # locale
 
   date:
     formats:
-      default: "%e,%m,%Y"
+      default: "%e-%m-%Y"
       normal: "%B %e, %Y"
       short: "%e. %b"
       month_year: "%B %Y"
