@@ -79,7 +79,6 @@ class FinanceController < ApplicationController
   def expense_create
     flash[:notice]=nil
     @expense = FinanceTransaction.new(params[:transaction])
-    @expense.user_id = @current_user.id
     @categories = FinanceTransactionCategory.expense_categories
     if @categories.empty?
       flash[:notice] = "#{t('flash2')}"
@@ -91,7 +90,6 @@ class FinanceController < ApplicationController
 
   def expense_edit
     @transaction = FinanceTransaction.find(params[:id])
-    @transaction.user_id = @current_user.id
     @categories = FinanceTransactionCategory.all(:conditions =>"name != 'Salary' and is_income = false" )
     if request.post? and @transaction.update_attributes(params[:transaction])
       flash[:notice] = "#{t('flash4')}"
@@ -122,7 +120,6 @@ class FinanceController < ApplicationController
   def income_create
     flash[:notice]=nil
     @income = FinanceTransaction.new(params[:transaction])
-    @income.user_id = @current_user.id
     @categories = FinanceTransactionCategory.income_categories
     if @categories.empty?
       flash[:notice] = "#{t('flash5')}"
@@ -142,7 +139,6 @@ class FinanceController < ApplicationController
       @cat_names << "'#{category[:category_name]}'"
     end
     @transaction = FinanceTransaction.find(params[:id])
-    @transaction.user_id = @current_user.id
     @categories = FinanceTransactionCategory.all(:conditions => "is_income=true and name NOT IN (#{@cat_names.join(',')})")
     if request.post? and @transaction.update_attributes(params[:transaction])
       flash[:notice] = "#{t('flash7')}"
@@ -1473,7 +1469,6 @@ class FinanceController < ApplicationController
           transaction.finance = @financefee
           transaction.fine_included = true  unless params[:fine].nil?
           transaction.amount = params[:fees][:fees_paid].to_f
-          transaction.user_id = @current_user.id
           transaction.fine_amount = params[:fine].to_f
           transaction.transaction_date = Date.today
           transaction.save
