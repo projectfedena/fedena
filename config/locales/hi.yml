@@ -1794,6 +1794,7 @@ hi:
   elective_groups:
     flash1: "नई वैकल्पिक समूह बनाया|"
     flash2: "वैकल्पिक समूह हटाए गए|"
+    flash3: "इलैक्टिव समूह सफलतापूर्वक अपडेट!"
 
 #subject controller translation
   subjects:

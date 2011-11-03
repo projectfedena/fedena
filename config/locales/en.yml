@@ -1794,6 +1794,7 @@ en: # locale
   elective_groups:
     flash1: "New elective group created."
     flash2: "Deleted elective group."
+    flash3: "Elective group updated successfully!"
 
 #subject controller translation
   subjects:

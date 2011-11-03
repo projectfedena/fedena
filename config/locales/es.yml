@@ -1800,6 +1800,7 @@ es: # locale
   elective_groups:
     flash1: "Grupo electivo nueva creación."
     flash2: "Eliminados grupo electivo."
+    flash3: "Grupo electivo actualizado con éxito!"
 
 #subject controller translation
   subjects:

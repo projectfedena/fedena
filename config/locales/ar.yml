@@ -1791,6 +1791,7 @@ ar: # locale
   elective_groups:
     flash1: "المجموعة الاختيارية الجديدة التي تم إنشاؤها."
     flash2: "حذف مجموعة اختيارية."
+    flash3: "مجموعة اختيارية تحديثها بنجاح!"
 
 #subject controller translation
   subjects:
