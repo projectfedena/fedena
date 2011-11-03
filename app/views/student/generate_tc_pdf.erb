@@ -42,14 +42,14 @@
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"><%= t('admission_date') %></td>
-            <td class="col-pdf"><%= @student.admission_date.strftime("%d %B %Y") %></td>
+            <td class="col-pdf"><%= I18n.l(@student.admission_date,:format=>:normal) %></td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"><%= t('date_of_birth') %></td>
-            <td class="col-pdf"><%= @student.date_of_birth.strftime("%d %B %Y") %></td>
+            <td class="col-pdf"><%= I18n.l(@student.date_of_birth,:format=>:normal) %></td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf">Last attended course</td>
+            <td class="col-pdf"><%= t('last_course') %></td>
             <td class="col-pdf"><%= @student.batch.full_name %></td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
