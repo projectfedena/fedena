@@ -14,7 +14,7 @@ class AddNewColumnsToFedena < ActiveRecord::Migration
     add_column :finance_transactions, :transaction_date, :date
     add_column :finance_transactions, :fine_amount, :decimal, :default =>0
     add_column :finance_transactions, :master_transaction_id, :integer, :default =>0
-    add_column :finance_transactions, :user_id, :integer
+    #add_column :finance_transactions, :user_id, :integer
     change_column :finance_donations, :amount, :decimal, :precision =>15, :scale => 2
     add_column :finance_donations, :transaction_date, :date
     change_column :finance_fees, :transaction_id, :string
@@ -29,12 +29,12 @@ class AddNewColumnsToFedena < ActiveRecord::Migration
     remove_column :monthly_payslips, :is_rejected
     remove_column :monthly_payslips, :rejector_id
     remove_column :monthly_payslips, :reason
-    remove_column :employee_leave_types
-    remove_column :finance_transactions
-    remove_column :finance_transactions
-    remove_column :finance_transactions
-    remove_column :finance_transactions
-    remove_column :finance_donations
+    remove_column :employee_leave_types, :carry_forward
+    remove_column :finance_transactions, :transaction_date
+    remove_column :finance_transactions, :fine_amount
+    remove_column :finance_transactions, :master_transaction_id
+
+    remove_column :finance_donations, :transaction_date
   end
 
   def self.create_default
