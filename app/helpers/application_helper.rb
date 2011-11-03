@@ -72,7 +72,7 @@ module ApplicationHelper
   end
 
   def rtl?
-    @rtl ||= RTL_LANGUAGES.include? I18n.locale
+    @rtl ||= RTL_LANGUAGES.include? I18n.locale.to_sym
   end
   
 end
