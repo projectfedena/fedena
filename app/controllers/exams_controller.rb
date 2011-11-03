@@ -20,7 +20,8 @@ class ExamsController < ApplicationController
   before_filter :login_required
   before_filter :query_data
   before_filter :protect_other_student_data
-  before_filter :restrict_employees_from_exam
+  before_filter :restrict_employees_from_exam, :except=>[:edit, :destroy]
+  before_filter :restrict_employees_from_exam_edit, :only=>[:edit, :destroy]
   filter_access_to :all
 
   def new
@@ -163,4 +164,14 @@ class ExamsController < ApplicationController
     @course = @batch.course
   end
 
+  def restrict_employees_from_exam_edit
+    if @current_user.employee?
+      if !@current_user.privileges.map{|p| p.id}.include?(1)
+        flash[:notice] = "#{t('flash_msg4')}"
+        redirect_to :back
+      else
+        @allow_for_exams = true
+      end
+    end
+  end
 end
