@@ -37,7 +37,7 @@
     </div>
     <div class="button-box">
       <%= link_to "<div class ='button-label'><p> #{t('manage_users')} </p></div>", {:controller => "user", :action => "index"},
-        :class => "option_buttons", :id => "manage_users_button", :title => t('user_link_title') %>
+        :class => "option_buttons", :id => "manage_users_button", :title =>t('user_link_title') %>
     </div>
     <div class="button-box">
       <%= link_to "<div class ='button-label'><p>#{t('manage_news')}</p></div>", {:controller => "news", :action => "index"},
@@ -46,7 +46,7 @@
     </div>
     <div class="button-box">
       <%= link_to "<div class ='button-label'><p>#{t('examinations')}</p></div>", {:controller => "exam", :action => "index"},
-        :class => "option_buttons", :id => "examinations_button",:title => "#{t('manage_examinations')}" %>
+        :class => "option_buttons", :id => "examinations_button",:title => "          #{t('manage_examinations')}" %>
     </div>
     <div class="button-box">
       <%= link_to "<div class ='button-label'><p>#{t('timetable_text')}</p></div>", {:controller => "timetable", :action => "index"},
