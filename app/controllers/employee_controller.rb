@@ -991,11 +991,7 @@ class EmployeeController < ApplicationController
         @weekday_timetable[tte.weekday.weekday] << tte
       end
     end
-    render :pdf=>'timetable_pdf',
-      :margin => {  :top=> 10,
-      :bottom => 10,
-      :left=> 30,
-      :right => 30}
+    render :pdf=>'timetable_pdf'
 
   end
   #HR Management special methods...
