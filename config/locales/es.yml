@@ -1747,6 +1747,7 @@ es: # locale
   partial: "parcial"
   years: "Años"
   months: "Meses"
+  following_pblm_occured_while_saving_the_batch: "A raíz de los problemas al guardar este lote"
 
 
   flash_msg1: "Actualizado grupo de examen adicional con éxito."

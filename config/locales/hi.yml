@@ -1743,6 +1743,7 @@ hi:
   partial: "आंशिक"
   years: "वर्षों"
   months: "महीने"
+  following_pblm_occured_while_saving_the_batch: "के बाद समस्याओं हो गई, जबकि इस बैच की बचत"
 
   flash_msg1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक नवीनीकृत|"
   flash_msg2: "क्षमा करें"

@@ -1743,6 +1743,7 @@ en: # locale
   student_category_deleted_succesfully: "Student category deleted succesfully"
   years: "Years"
   months: "Months"
+  following_pblm_occured_while_saving_the_batch: "Following problems occured while saving this batch"
 
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"

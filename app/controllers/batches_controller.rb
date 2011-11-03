@@ -64,7 +64,7 @@ class BatchesController < ApplicationController
       end
       flash[:subject_import] = msg unless msg.nil?
       err = ""
-      err1 = "<span style = 'margin-left:15px;font-size:15px,margin-bottom:20px;'><b>Following problems occured while saving this batch</b></span>"
+      err1 = "<span style = 'margin-left:15px;font-size:15px,margin-bottom:20px;'><b>#{t('following_pblm_occured_while_saving_the_batch')}</b></span>"
       unless params[:import_fees].nil?
         fee_msg = []
         fee_msg << "<ol>"
