@@ -1,5 +1,5 @@
 <% this_user = User.find(session[:user_id]) if session[:user_id] %>
-<% arrow_dir = rtl? "◀" : "▶" %>
+<% arrow_dir = rtl? ? "◀" : "▶" %>
 <ul id="main-menu">
   <li><%= link_to t('dashboard_text'), :controller => "user", :action => "dashboard" %></li>
   <li><%= link_to t('students'), :controller => "student", :action => "index" \
