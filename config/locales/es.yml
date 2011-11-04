@@ -729,7 +729,7 @@ es: # locale
   user_privilege: "Privilegios de usuario"
   pay_fees: "Pagar tarifas"
   fees_paid: "Tarifa pagada"
-  details: "Detalles"
+  details: "Información"
   employee_id: "ID del empleado"
   dashboard_text: "Inicio"
   connect: "Conectar"
