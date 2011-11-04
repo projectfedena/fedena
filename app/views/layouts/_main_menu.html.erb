@@ -149,7 +149,16 @@
       <li><%= link_to "#{t('user_text')}" , :controller => "user", :action=>"index" %></li>
       <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
         <% unless mod[:more_menu].blank? %>
-          <li><%= link_to "#{t(mod[:more_menu][:title])}",:controller => "#{mod[:more_menu][:controller]}", :action=>"#{mod[:more_menu][:action]}"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym  %></li>
+          <% arrow = mod[:sub_menus].present? ? " <span class='right-arrow'>▶</span>" : "" %>
+          <li><%= link_to "#{t(mod[:more_menu][:title])}#{arrow}",:controller => "#{mod[:more_menu][:controller]}", :action=>"#{mod[:more_menu][:action]}"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym  %>
+            <% unless mod[:sub_menus].blank? %>
+              <ul class="level-2">
+                <% mod[:sub_menus].each do |submenu| %>
+                  <li><%= link_to "#{t(submenu[:title])}",:controller => "#{submenu[:controller]}", :action=>"#{submenu[:action]}"  if permitted_to? "#{submenu[:action]}".to_sym,"#{submenu[:controller]}".to_sym  %></li>
+                <% end %>
+              </ul>
+            <% end %>
+          </li>
         <% end %>
       <% end %>
     </ul>
