@@ -207,6 +207,16 @@ es: # locale
       student_category_fee_collection_discount:
         receiver_id: "Receptor"
 
+      individual_payslip_category:
+        amount: "Cantidad"
+
+      batch_fee_collection_discount:
+        receiver_id: "Receptor"
+
+      batch_fee_discount:
+        receiver_id: "Receptor"
+        name: "Nombre"
+
     errors:
       template:
         header:
