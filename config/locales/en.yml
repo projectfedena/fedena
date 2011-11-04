@@ -19,6 +19,9 @@ en: # locale
         password: "password"
         role: "role"
 
+      user_event:
+        user_id: "User"
+
       course:
         course_name: "Course name"
         section_name: "Section name"

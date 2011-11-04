@@ -20,6 +20,9 @@ hi:
         password: "पासवर्ड"
         role: "भूमिका"
 
+      user_event:
+        user_id: "उपयोगकर्ता"
+
       course:
         course_name: "कोर्स का नाम"
         section_name: "अनुभाग नाम"
