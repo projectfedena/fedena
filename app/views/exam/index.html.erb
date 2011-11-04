@@ -69,12 +69,12 @@
     <!--online exam-->
 
     <% FedenaPlugin::ADDITIONAL_LINKS[:online_exam_index_link].each do |mod| %>
-  <%#  if permitted_to? :index,:online_exam %>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t("#{mod[:title]}")}",mod[:destination] %></div>
-        <div class="link-descr"><%= "#{t("#{mod[:description]}")}" %></div>
+      <%  if permitted_to? "#{mod[:destination][:action]}".to_sym,"#{mod[:destination][:controller]}".to_sym %>
+        <div class="link-box">
+          <div class="link-heading"><%= link_to "#{t("#{mod[:title]}")}",mod[:destination] %></div>
+          <div class="link-descr"><%= "#{t("#{mod[:description]}")}" %></div>
+        <% end %>
       <% end %>
-<%# end %>
     </div>
 
     <div class="extender"></div>
