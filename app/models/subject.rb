@@ -35,7 +35,7 @@ class Subject < ActiveRecord::Base
   end
 
   def lower_day_grade
-    subjects = Subject.find_all_elective_group_id(self.elective_group_id) unless self.elective_group_id.nil?
+    subjects = Subject.find_all_by_elective_group_id(self.elective_group_id) unless self.elective_group_id.nil?
     selected_employee = nil
     subjects.each do |subject|
       employees = subject.employees
@@ -51,7 +51,7 @@ class Subject < ActiveRecord::Base
   end
 
   def lower_week_grade
-    subjects = Subject.find_all_elective_group_id(self.elective_group_id) unless self.elective_group_id.nil?
+    subjects = Subject.find_all_by_elective_group_id(self.elective_group_id) unless self.elective_group_id.nil?
     selected_employee = nil
     subjects.each do |subject|
       employees = subject.employees
