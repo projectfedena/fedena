@@ -87,10 +87,20 @@
       <tr class="odd left"><td><%= t('phone') %></td><td class="right"><%= @archived_student.phone1 %></td></tr>
       <tr class="even left"><td><%= t('mobile') %></td><td class="right"><%= @archived_student.phone2 %></td></tr>
       <tr class="odd left"><td><%= t('email') %></td><td class="right"><%= @archived_student.email %></td></tr>
+      <% unless  @additional_fields.empty? %>
+        <% @additional_fields.each do |field| %>
+          <% p =cycle('2',' ') %>
+          <tr class="odd left">
+            <td><%= field.name %></td>
+            <td class="right">
+              <% detail = StudentAdditionalDetails.find_by_additional_field_id_and_student_id(field.id,@archived_student.former_id) %>
+              <%= detail.additional_info unless detail.nil? %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
       <tr class="even left"><td><%= t('reason_for_leaving') %></td><td class="right"><%= @archived_student.status_description %></td></tr>
     </table>
     <div class="extender"></div>
   </div>
-
-
 </div>

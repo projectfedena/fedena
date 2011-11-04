@@ -22,6 +22,7 @@ class ArchivedStudentController < ApplicationController
     def profile
         @current_user = current_user
         @archived_student = ArchivedStudent.find(params[:id])
+        @additional_fields = StudentAdditionalField.all(:conditions=>"status = true")
     end
 
     def show
