@@ -263,12 +263,18 @@ class Student < ActiveRecord::Base
     flag = true unless self.finance_fees.blank?
     plugin_dependencies = FedenaPlugin.check_dependency(self,"permanant")
     plugin_dependencies.each do |k,v|
-      flag=true unless  v.blank?
+      if v.kind_of?(Array)
+        flag=true unless  v.blank?
+      else
+         v.each do |h,a|
+           flag=true unless  a.blank?
+         end
+      end
     end
     return flag
   end
 
   def former_dependency
-   plugin_dependencies = FedenaPlugin.check_dependency(self,"permanant")
+   plugin_dependencies = FedenaPlugin.check_dependency(self,"former")
   end
 end
