@@ -195,8 +195,8 @@ en: # locale
     errors:
       template:
         header:
-          one: "1 error prohibited this {{model}} from being saved"
-          other: "{{count}} errors prohibited this {{model}} from being saved"
+          one: "1 error prohibited this from being saved"
+          other: "{{count}} errors prohibited this from being saved"
         body: "there were problems with the following fields:"
       messages:
         accepted: "must be accepted"

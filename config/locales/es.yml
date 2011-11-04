@@ -191,8 +191,8 @@ es: # locale
     errors:
       template:
         header:
-          one: "1 error impidió {{model}} que fuera guardado"
-          other: "{{count}} errores impidieron {{model}} que fueran guardados"
+          one: "1 error impidió que fuera guardado"
+          other: "{{count}} errores impidieron que fueran guardados"
         body: "Hubo problemas con los siguientes campos:"
       messages:
         accepted: "debe ser aceptado "
@@ -480,7 +480,7 @@ es: # locale
   date_of_birth: "Fecha de nacimiento"
   gender: "Genero"
   male: "Hombre"
-  female: "Mujer"
+  female: "Femenino"
   first_name: "Primer nombre"
   middle_name: "Segundo nombre"
   last_name: "Apellidos"
