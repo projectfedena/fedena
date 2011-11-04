@@ -46,6 +46,8 @@ hi:
 
       class_timing:
         name: "नाम"
+        start_time: "प्रारंभ समय"
+        end_time: "समाप्ति समय"
 
       elective_group:
         name: "नाम"

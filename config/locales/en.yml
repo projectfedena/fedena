@@ -46,6 +46,7 @@ en: # locale
       class_timing:
         name: "Name"
         start_time: "Start time"
+        end_time: "End time"
 
       elective_group:
         name: "name"
