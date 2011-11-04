@@ -32,40 +32,12 @@
     <%= stylesheet_link_tag @direction+'modalbox' %>
 
     <%= javascript_include_tag :defaults, :cache => 'cache/javascripts/all' %>
-    <%= javascript_include_tag 'scripts/anylinkmenu', 'scripts/nicetitle', 'droplicious' %>
+    <%= javascript_include_tag 'scripts/nicetitle', 'droplicious' %>
     <%= javascript_include_tag "fckeditor/fckeditor" %>
     <%= javascript_include_tag 'prototype' %>
     <%= javascript_include_tag 'builder' %>
     <%= javascript_include_tag 'modalbox' %>
 
-    <script type="text/javascript">
-      /***********************************************
-       * Dynamic Countdown script- © Dynamic Drive (http://www.dynamicdrive.com)
-       * This notice MUST stay intact for legal use
-       * Visit http://www.dynamicdrive.com/ for this script and 100s more.
-       ***********************************************/
-      var anylinkmenu1={divclass:'anylinkmenu', inlinestyle:'', linktarget:''} //First menu variable. Make sure "anylinkmenu1" is a unique name!
-      anylinkmenu1.items = [
-<% if @current_user.admin %>
-      ["<%= t('calendar_text') %>", "/calendar"],
-      ["<%= t('examination') %>", "/exam"],
-      ["<%= t('news_text') %>", "/news"],
-      ["<%= t('event_creations') %>", "/event"],
-      ["<%= t('human_resource') %>", "/employee/hr"],
-      ["<%= t('finance_text') %>", "/finance/index"],
-      ["<%= t('user_text') %>", "/user"],
-<% end %>
-<%  if @current_user.student? || @current_user.employee? %>
-      ["<%= t('calendar_text') %>", "/calendar"],
-<% end %>
-<% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
-  <% unless mod[:more_menu].blank? %>
-    <%= "['#{t("#{mod[:more_menu][:title]}")}','/#{mod[:more_menu][:controller]}/#{mod[:more_menu][:action].gsub("index","")}'],"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym  %>
-  <% end %>
-<% end %>
-  ]
-  anylinkmenu.init("menuanchorclass");
-    </script>
   </head>
 
   <body>
@@ -81,27 +53,8 @@
             <%= link_to t('log_out'), :controller => 'user', :action => 'logout' %>  &nbsp;&nbsp;
           </div>
         </div>
-        <div id="main-menu">
-          <%= link_to "#{t('dashboard_text')}", :controller => "user", :action => "dashboard" %>
-          <% this_user = User.find(session[:user_id]) if session[:user_id] %>
-          <%= link_to "#{t('students')}", :controller => "student", :action => "index" \
-            if this_user.admin? %>
-          <%= link_to "#{t('attendance')}", :controller => "student_attendance", :action => "index" \
-            if this_user.admin? %>
-          <%= link_to "#{t('settings')}", :controller => "configuration", :action => "index" \
-            if this_user.admin? %> <!--
-          <%= link_to "#{t('news_text')}", :controller => "news", :action => "index" \
-            if this_user.admin? %> -->
-          <%= link_to "#{t('timetable_text')}", :controller => "timetable", :action => "index" \
-            if this_user.admin? %>
-           <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
-             <% unless mod[:top_bar].blank? %>
-               <% if permitted_to? "#{mod[:top_bar][:action]}".to_sym,"#{mod[:top_bar][:controller]}".to_sym %>
-                 <%= link_to "#{t(mod[:top_bar][:title])}", {:controller => "#{mod[:top_bar][:controller]}", :action => "#{mod[:top_bar][:action]}"} %>
-               <% end %>
-             <% end %>
-           <% end %>
-            <a href="#" class="menuanchorclass" rel="anylinkmenu1"><%= t('more') %> ▼</a>
+        <div id="outer-main-menu">
+          <%= render :partial=>"layouts/main_menu" %>
         </div>
       </div>
     </div>

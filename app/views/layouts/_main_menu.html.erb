@@ -1,0 +1,157 @@
+<% this_user = User.find(session[:user_id]) if session[:user_id] %>
+<ul id="main-menu">
+  <li><%= link_to t('dashboard_text'), :controller => "user", :action => "dashboard" %></li>
+  <li><%= link_to t('students'), :controller => "student", :action => "index" \
+      if this_user.admin? %></li>
+  <li><%= link_to "#{t('attendance')} ▼", :controller => "student_attendance", :action => "index" \
+      if this_user.admin? %>
+    <ul class="level-1">
+      <% if permitted_to? :index, :attendances and (@current_user.employee_record.subjects.present? or @current_user.privileges.map{|p| p.name}.include?("StudentAttendanceRegister") or @current_user.admin?) %>
+        <li><%= link_to "#{t('attendance_register')}", :controller => 'attendances', :action => 'index'  %></li>
+      <% end %>
+      <% if permitted_to? :index, :attendance_reports or permitted_to? :index, :attendances%>
+        <li><%= link_to "#{t('attendance_report')}", :controller => "attendance_reports", :action => "index" %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li><%= link_to "#{t('settings')} ▼", :controller => "configuration", :action => "index" \
+      if this_user.admin? %>
+    <ul class="level-1">
+      <% if permitted_to? :create, :courses %>
+        <li><%= link_to "#{t('manage_course_batch')}", courses_path %></li>
+      <% end %>
+      <% if permitted_to? :settings, :configuration %>
+        <li><%= link_to "#{t('manage_student_category')}", :controller => "student", :action => "categories" %></li>
+      <% end %>
+      <% if permitted_to? :index, :subjects %>
+        <li><%= link_to "#{t('manage_subject')}", subjects_path %></li>
+      <% end %>
+      <% if permitted_to? :settings, :configuration %>
+        <li><%= link_to "#{t('general_settings')}", :action => "settings" %></li>
+      <% end %>
+      <% if permitted_to? :settings, :configuration %>
+        <li><%= link_to "#{t('add_admission_additional_detail')}", :controller=>"student", :action => "add_additional_details" %></li>
+      <% end %>
+      <% if permitted_to? :index, :sms %>
+        <% @config = Configuration.available_modules %>
+        <% if @config.include?('SMS') %>
+          <li><%= link_to "#{t('sms_module')}", :controller=>"sms", :action => "index" %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </li> <!--
+  <li><%= link_to t('news_text'), :controller => "news", :action => "index" \
+    if this_user.admin? %></li> -->
+  <li><%= link_to "#{t('timetable_text')} <span class='down-arrow'>▼</span>", :controller => "timetable", :action => "index" \
+      if this_user.admin? %>
+    <ul class="level-1">
+      <%if permitted_to? :edit,:timetable%>
+        <% @config = Configuration.available_modules %>
+        <% if @config.include?('HR') %>
+          <li><%= link_to "#{t('create_or_edit_timetable')}", :action => "select_class2" %></li>
+        <% else %>
+          <li><%= link_to "#{t('create_or_edit_timetable')}", :action => "select_class" %></li>
+        <% end %>
+        <li><%= link_to "#{t('set_class_timings')}", :controller => "class_timings", :action => "index"   %></li>
+      <%  end%>
+      <%  if permitted_to? :view,:timetable%>
+        <li><%= link_to "#{t('view_timetable')}", :action => "view" %></li>
+      <%  end%>
+      <%  if permitted_to? :edit,:timetable%>
+        <% @config = Configuration.get_config_value('StudentAttendanceType') %>
+        <% if @config == 'SubjectWise' %>
+          <li><%= link_to "#{t('swap_class')}", :action => "extra_class" %></li>
+        <%  end %>
+      <%  end %>
+      <li><%= link_to "#{t('institutional')} #{t('timetable_text')}", :action => "timetable" %></li>
+      <%  if permitted_to? :edit,:timetable%>
+        <li><%= link_to "#{t('create_text')} #{t('weekdays_text')}", :controller => "weekday", :action => "index" %></li>
+      <% end %>
+    </ul>
+  </li>
+  <% if this_user.admin? %>
+    <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
+      <% unless mod[:top_bar].blank? %>
+        <% if permitted_to? "#{mod[:top_bar][:action]}".to_sym,"#{mod[:top_bar][:controller]}".to_sym %>
+          <%= link_to "#{t(mod[:top_bar][:title])}", {:controller => "#{mod[:top_bar][:controller]}", :action => "#{mod[:top_bar][:action]}"} %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <li><a href="#"><%= t('more') %> ▼</a>
+    <ul class="level-1">
+      <li><%= link_to "#{t('calendar_text')}" , :controller => "calendar", :action=>"index" %></li>
+      <li><%= link_to "#{t('examination')} <span class='right-arrow'>▶</span>" , :controller => "exam", :action=>"index" %>
+        <ul class="level-2">
+          <%  if permitted_to? :index,:grading_levels %>
+            <li><%= link_to "#{t('set_grading_levels')}" ,:controller=>'grading_levels',:action=>'index' %> </li>
+          <% end %>
+          <% @employee_subjects=[] %>
+          <% @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id} if @current_user.employee?  %>
+          <%  if (permitted_to? :create_exam,:exam and @allow_for_exams == true and !@current_user.privileges.map{|p| p.name}.include?("ViewResults")) or @current_user.admin? or !@employee_subjects.empty? or (@current_user.privileges.map{|p| p.name}.include?("ExaminationControl")) or @current_user.privileges.map{|p| p.name}.include?("EnterResults") %>
+            <li><%= link_to "#{t('exam_management')}" , :controller => "exam",:action=>'create_exam' %>  </li>
+          <% end %>
+          <%  if permitted_to? :create_additional_exam,:additional_exam %>
+            <li><%= link_to "#{t('additional_exams_text')}" ,:controller=>'additional_exam' , :action=>'create_additional_exam' %></li>
+          <% end %>
+          <li><%= link_to "#{t('exam_wise_report')}" , :controller => "exam",:action=>'exam_wise_report' %></li>
+          <li><%= link_to "#{t('subject_wise_report')}" , :controller => "exam",:action=>'subject_wise_report' %> </li>
+          <li><%= link_to "#{t('grouped_exam_reports')}" , :controller => "exam",:action=>'grouped_exam_report' %></li>
+          <% FedenaPlugin::ADDITIONAL_LINKS[:online_exam_index_link].each do |mod| %>
+            <li><%= link_to "#{t("#{mod[:title]}")}",mod[:destination] %></li>
+          <% end %>
+        </ul>
+      </li>
+      <li><%= link_to "#{t('news_text')}" , :controller => "news", :action=>"index" %></li>
+      <li><%= link_to "#{t('event_creations')}" , :controller => "event", :action=>"index" %></li>
+      <li><%= link_to "#{t('human_resource')} <span class='right-arrow'>▶</span>" , :controller => "employee", :action=>"hr" %>
+        <ul class="level-2">
+          <% if permitted_to? :settings, :employee %>
+            <li><%= link_to "#{t('setting')}", :controller=>"employee", :action=>"settings"%></li>
+          <%end%>
+          <% if permitted_to? :employee_management, :employee %>
+            <li><%= link_to "#{t('employee_management_text')}", :controller=>"employee", :action=>"employee_management"%></li>
+          <%end%>
+          <% if permitted_to? :employee_attendance, :employee %>
+            <li><%= link_to "#{t('employee_leave_management')}", :controller=>"employee", :action=>"employee_attendance" %></li>
+          <%end%>
+          <% if permitted_to? :payslip, :employee %>
+            <li><%= link_to  "#{t('create_payslip')}", :controller=>"employee", :action=>"payslip" %></li>
+          <%end%>
+          <% if permitted_to? :search, :employee %>
+            <li><%= link_to "#{t('employee_search')}", :controller=>"employee", :action=>"search" %></li>
+          <%end%>
+          <% if permitted_to? :department_payslip, :employee %>
+            <li><%= link_to "#{t('employee_payslip')}", :controller=>"employee", :action=>"department_payslip" %></li>
+          <% end %>
+          <% finance = Configuration.available_modules %>
+          <% unless finance.include?("Finance") %>
+            <% if permitted_to? :payslip_approve, :employee %>
+              <li><%= link_to "#{t('one_click_aprove_payslip')}", :controller=>"employee", :action=>"payslip_approve" %></li>
+            <%end%>
+          <%end%>
+        </ul>
+      </li>
+      <li><%= link_to "#{t('finance_text')} <span class='right-arrow'>▶</span>" , :controller => "finance", :action=>"index" %>
+        <ul class="level-2">
+          <li><%= link_to "#{t('fees_text')}", :controller => "finance", :action => "fees_index" %> </li>
+          <li><%= link_to "#{t('category')}", :controller => "finance", :action => "categories" %> </li>
+          <li><%= link_to "#{t('transactions')}", :controller => "finance", :action => "transactions" %> </li>
+          <li><%= link_to "#{t('donations')}", :controller => "finance", :action => "donation" %></li>
+          <li><%= link_to "#{t('automatic_transactions')}", :controller => "finance", :action => "automatic_transactions" %></li>
+          <% unless @hr.nil? %>
+            <li><%= link_to "#{t('payslip_text')}", :controller => "finance", :action => "payslip_index" %></li>
+          <% end %>
+          <li><%= link_to "#{t('asset_liability_management')}", :controller => "finance", :action => "asset_liability" %></li>
+          <li><%= link_to "#{t('export')}",:controller => 'xml', :action => "index" %></li>
+        </ul>
+      </li>
+      <li><%= link_to "#{t('user_text')}" , :controller => "user", :action=>"index" %></li>
+      <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
+        <% unless mod[:more_menu].blank? %>
+          <li><%= link_to "#{t(mod[:more_menu][:title])}",:controller => "#{mod[:more_menu][:controller]}", :action=>"#{mod[:more_menu][:action]}"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym  %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </li>
+</ul>

@@ -64,22 +64,116 @@ body {
 
 #main-menu {
     float : left;
-    height : 27px; width : 530px;
+    height : 27px; width : 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
-#main-menu a {
+#main-menu li{
+    float: left;
+}
+#main-menu li a {
     background : #fff;
     color : #b00;
     display : block;
     font-size : 0.8em;
     float : left;
-    height : 17px; width : 83px;
+    height : 17px; width : auto;
     margin : 6px 5px 0 0;
-    padding : 5px 0 0 0;
+    padding : 5px 10px 0 10px;
     text-align : center;
     text-decoration : none;
 }
-#main-menu a:hover {
+#main-menu li a:hover {
     text-decoration : underline;
+}
+#main-menu li ul.level-1{
+    margin: 0;
+    padding: 0;
+    width : 140px;
+    list-style-type: none;
+    position: absolute;
+    top: 60px;
+    z-index: 999;
+    visibility : hidden;
+    border : 1px solid black;
+    border-bottom-width : 0;
+    font: normal 0.9em Arial;
+    line-height: 18px;
+    background: #b00 url(../../images/application/app_layout_header_bg.jpg) repeat;
+}
+#main-menu li:hover ul.level-1{
+    visibility: visible;
+}
+#main-menu li ul.level-1 li{
+    overflow: hidden;
+}
+#main-menu li ul.level-1 li a{
+    width: 100%;
+    display: block;
+    text-indent: 3px;
+    border-bottom: 1px solid black;
+    padding: 2px 0;
+    text-decoration: none;
+    text-indent: 5px;
+    background: none;
+    color: #ffffff;
+    width: 140px;
+    font-size: 14px;
+    text-align: left;
+    margin: 0;
+    float: left;
+}
+#main-menu li ul.level-1 li a:hover{
+    background: #000000;
+    text-decoration: none;
+}
+#main-menu li ul.level-1 li ul.level-2{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 140px;
+    top: auto;
+    visibility: hidden;
+    width: 140px;
+    list-style-type: none;
+    z-index: 999;
+    border : 1px solid black;
+    border-bottom-width : 0;
+    font: normal 0.9em Arial;
+    line-height: 18px;
+    background: #b00 url(../../images/application/app_layout_header_bg.jpg) repeat;
+}
+#main-menu li ul.level-1 li:hover ul.level-2{
+    visibility: visible;
+}
+#main-menu li ul.level-1 li{
+    overflow: hidden;
+}
+#main-menu li ul.level-1 li ul.level-2 li a{
+    width: 100%;
+    display: block;
+    text-indent: 3px;
+    border-bottom: 1px solid black;
+    padding: 2px 0;
+    text-decoration: none;
+    text-indent: 5px;
+    background: none;
+    color: #ffffff;
+    width: 140px;
+    font-size: 14px;
+    text-align: left;
+    margin: 0;
+    float: left;
+}
+#main-menu li ul.level-1 li ul.level-2 li a:hover{
+    background: #000000;
+    text-decoration: none;
+}
+#main-menu li ul li span.right-arrow{
+    float:right;
+    font-size: 12px;
+    padding-right: 2px;
 }
 
 p.flash-msg {
