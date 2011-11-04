@@ -31,7 +31,7 @@
    <%= f.label "#{t('exam_type')}" %>
     <%= f.hidden_field :exam_type,:value=>@type %>
     <div class="text-input-bg">
-    <%= f.text_field :exam_type, :value=>@type,:disabled=>true %>
+    <%= f.text_field :exam_type, :value=>@type=='Marks' ? t('marks_and_grades') : t('marks'),:disabled=>true %>
     </div>  <%= link_to "#{t('change_type')}", new_batch_exam_group_path(@batch,:ename=>@name),:class=>"type_link" %>
   </div>
   <h4>
@@ -42,7 +42,7 @@
     <tr class="tr-head">
       <td><%= t('subject_name') %></td>
       <td><%= t('start_time') %></td>
-      <td><%= t('end_name') %></td>
+      <td><%= t('end_time') %></td>
       <td><%= t('do_not_create') %></td>
     </tr>
 
