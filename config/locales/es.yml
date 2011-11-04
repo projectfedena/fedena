@@ -103,6 +103,7 @@ es: # locale
 
       finance_donation:
         donor: "Donante"
+        amount: "Cantidad"
 
       finance_fee_category:
         name: "Nombre"
@@ -110,6 +111,10 @@ es: # locale
 
       finance_fee_collection:
         name: "Nombre"
+        start_date: "Fecha inicial"
+        end_date: "Fecha final"
+        due_date: "Vencimiento"
+        fee_category_id: "Categoría de tarifas"
 
       finance_fee_particulars:
         name: "Nombre"
@@ -191,6 +196,16 @@ es: # locale
       student_fee_discount:
         receiver: "Receptor"
         name: "Nombre"
+
+      student_fee_collection_discount:
+        receiver_id: "Receptor"
+
+      student_category_fee_discount:
+        receiver_id: "Receptor"
+        name: "Nombre"
+
+      student_category_fee_collection_discount:
+        receiver_id: "Receptor"
 
     errors:
       template:
