@@ -34,4 +34,36 @@ class Subject < ActiveRecord::Base
     self.employees_subjects.destroy_all
   end
 
+  def lower_day_grade
+    subjects = Subject.find_all_elective_group_id(self.elective_group_id) unless self.elective_group_id.nil?
+    selected_employee = nil
+    subjects.each do |subject|
+      employees = subject.employees
+      employees.each do |employee|
+        if selected_employee.nil?
+          selected_employee = employee
+        else
+          selected_employee = employee if employee.employee_grade.max_hours_per_day < selected_employee.employee_grade.max_hours_per_day
+        end
+      end
+    end
+    return selected_employee
+  end
+
+  def lower_week_grade
+    subjects = Subject.find_all_elective_group_id(self.elective_group_id) unless self.elective_group_id.nil?
+    selected_employee = nil
+    subjects.each do |subject|
+      employees = subject.employees
+      employees.each do |employee|
+        if selected_employee.nil?
+          selected_employee = employee
+        else
+          selected_employee = employee if employee.employee_grade.max_hours_per_week  < selected_employee.employee_grade.max_hours_per_week
+        end
+      end
+    end
+    return selected_employee
+  end
+
 end

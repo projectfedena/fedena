@@ -371,10 +371,12 @@ def update_multiple_timetable_entries2
     end
 
     # check for max_hour_day exceeded
+    employee = subject.lower_day_grade unless subject.elective_group_id.nil?
     errors["messages"] << "#{t('max_hour_exceeded_day')}" \
       if employee.max_hours_per_day <= TimetableEntry.count(:conditions => "timetable_entries.employee_id = #{employee.id} AND weekday_id = #{tte.weekday_id}",:joins=>"INNER JOIN subjects ON timetable_entries.subject_id = subjects.id INNER JOIN batches ON subjects.batch_id = batches.id AND batches.is_active = 1 AND batches.is_deleted = 0") unless employee.max_hours_per_day.nil?
 
     # check for max hours per week
+    employee = subject.lower_week_grade unless subject.elective_group_id.nil?
     errors["messages"] << "#{t('max_hour_exceeded_week')}" \
       if employee.max_hours_per_week <= TimetableEntry.count(:conditions => "timetable_entries.employee_id = #{employee.id}",:joins=>"INNER JOIN subjects ON timetable_entries.subject_id = subjects.id INNER JOIN batches ON subjects.batch_id = batches.id AND batches.is_active = 1 AND batches.is_deleted = 0") unless employee.max_hours_per_week.nil?
 
