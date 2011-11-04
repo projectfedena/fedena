@@ -1376,7 +1376,7 @@ en: # locale
   add_guardian_details: "Add Guardian Details"
   office: "Office"
   leaving_institution: "Student leaving institution"
-  leaving_institution_message: "'For students leaving the Institution, use this option to remove them from the list of active students and place them in the former students list."
+  leaving_institution_message: "For students leaving the Institution, use this option to remove them from the list of active students and place them in the former students list."
   remove_student_records: "Remove student records"
   remove_student_message: "Completely delete student's records from the Institution's databases. Use this option only if you created the student record by accident and want to remove it completely"
   student_left_message: "Student has left the school"
