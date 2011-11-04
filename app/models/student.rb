@@ -271,5 +271,4 @@ class Student < ActiveRecord::Base
   def former_dependency
    plugin_dependencies = FedenaPlugin.check_dependency(self,"permanant")
   end
-
 end

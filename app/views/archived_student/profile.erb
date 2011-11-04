@@ -93,7 +93,7 @@
           <tr class="odd left">
             <td><%= field.name %></td>
             <td class="right">
-              <% detail = StudentAdditionalDetails.find_by_additional_field_id_and_student_id(field.id,@archived_student.former_id) %>
+              <% detail = @archived_student.additional_detail(field.id) %>
               <%= detail.additional_info unless detail.nil? %>
             <% end %>
           </td>
