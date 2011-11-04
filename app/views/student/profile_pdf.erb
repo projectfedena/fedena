@@ -42,7 +42,7 @@
       <tr class="even"><td class="col-pdf"><%= t('course_text') %></td><td class="col-pdf"><%= @student.batch.course.full_name unless @student.batch.course.full_name.nil? %></td></tr>
       <tr class="odd"><td><%= t('date_of_birth') %></td><td class="right"><%= I18n.l(@student.date_of_birth,:format=>:normal) unless @student.date_of_birth.nil? %></td></tr>
       <tr class="even"><td><%= t('blood_group') %></td><td class="right"><%= @student.blood_group %></td></tr>
-      <tr class="odd"><td><%= t('gender') %></td><td class="right"><%= @student.gender_as_text %></td></tr>
+      <tr class="odd"><td><%= t('gender') %></td><td class="right"><%= t("#{@student.gender_as_text.downcase}") %></td></tr>
       <tr class="even"><td><%= t('nationality') %></td><td class="right"><%= @student.nationality.name unless @student.nationality_id.nil? %></td></tr>
       <tr class="odd"><td><%= t('language') %></td><td class="right"><%= @student.language %></td></tr>
 
