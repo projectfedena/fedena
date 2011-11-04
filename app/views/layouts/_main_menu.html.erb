@@ -1,4 +1,5 @@
 <% this_user = User.find(session[:user_id]) if session[:user_id] %>
+<% arrow_dir = rtl? "◀" : "▶" %>
 <ul id="main-menu">
   <li><%= link_to t('dashboard_text'), :controller => "user", :action => "dashboard" %></li>
   <li><%= link_to t('students'), :controller => "student", :action => "index" \
@@ -81,7 +82,7 @@
   <li><a href="#"><%= t('more') %> ▼</a>
     <ul class="level-1">
       <li><%= link_to "#{t('calendar_text')}" , :controller => "calendar", :action=>"index" %></li>
-      <li><%= link_to "#{t('examination')} <span class='right-arrow'>▶</span>" , :controller => "exam", :action=>"index" %>
+      <li><%= link_to "#{t('examination')} <span class='right-arrow'>#{arrow_dir}</span>" , :controller => "exam", :action=>"index" %>
         <ul class="level-2">
           <%  if permitted_to? :index,:grading_levels %>
             <li><%= link_to "#{t('set_grading_levels')}" ,:controller=>'grading_levels',:action=>'index' %> </li>
@@ -104,7 +105,7 @@
       </li>
       <li><%= link_to "#{t('news_text')}" , :controller => "news", :action=>"index" %></li>
       <li><%= link_to "#{t('event_creations')}" , :controller => "event", :action=>"index" %></li>
-      <li><%= link_to "#{t('human_resource')} <span class='right-arrow'>▶</span>" , :controller => "employee", :action=>"hr" %>
+      <li><%= link_to "#{t('human_resource')} <span class='right-arrow'>#{arrow_dir}</span>" , :controller => "employee", :action=>"hr" %>
         <ul class="level-2">
           <% if permitted_to? :settings, :employee %>
             <li><%= link_to "#{t('setting')}", :controller=>"employee", :action=>"settings"%></li>
@@ -132,7 +133,7 @@
           <%end%>
         </ul>
       </li>
-      <li><%= link_to "#{t('finance_text')} <span class='right-arrow'>▶</span>" , :controller => "finance", :action=>"index" %>
+      <li><%= link_to "#{t('finance_text')} <span class='right-arrow'>#{arrow_dir}</span>" , :controller => "finance", :action=>"index" %>
         <ul class="level-2">
           <li><%= link_to "#{t('fees_text')}", :controller => "finance", :action => "fees_index" %> </li>
           <li><%= link_to "#{t('category')}", :controller => "finance", :action => "categories" %> </li>
@@ -149,7 +150,7 @@
       <li><%= link_to "#{t('user_text')}" , :controller => "user", :action=>"index" %></li>
       <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
         <% unless mod[:more_menu].blank? %>
-          <% arrow = mod[:sub_menus].present? ? " <span class='right-arrow'>▶</span>" : "" %>
+          <% arrow = mod[:sub_menus].present? ? " <span class='right-arrow'>#{arrow_dir}</span>" : "" %>
           <li><%= link_to "#{t(mod[:more_menu][:title])}#{arrow}",:controller => "#{mod[:more_menu][:controller]}", :action=>"#{mod[:more_menu][:action]}"  if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym  %>
             <% unless mod[:sub_menus].blank? %>
               <ul class="level-2">
