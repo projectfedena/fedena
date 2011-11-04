@@ -32,12 +32,7 @@
       <li><%= link_to "#{t('reports_text')}", :controller => 'student',
           :action => 'reports', :id => @student %></li>
     <%end%>
-    <% if @sms_module.include?('Finance') %>
-      <% if permitted_to? :fees, :student %>
-        <li><%= link_to "#{t('fees_text')}", :controller => 'student',
-            :action => 'fees', :id => @student.id %></li>
-      <% end %>
-    <% end %>
+   
     <% if permitted_to? :guardians,:student %>
       <li><%= link_to "#{t('guardians_text')}", :controller => "student",
           :action => "guardians", :id => @student.id %></li>
