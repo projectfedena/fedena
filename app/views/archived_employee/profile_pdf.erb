@@ -34,8 +34,8 @@
       <tr class="odd"><td class="col-pdf"><%= t('position') %></td><td class="col-pdf"><%= @employee.employee_position.name unless @employee.employee_position.name.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('job_title') %></td><td class="col-pdf"><%= @employee.job_title unless @employee.job_title.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('manager') %></td><td class="col-pdf"><%= @reporting_manager unless @reporting_manager.nil? %></td></tr>
-      <tr class="even"><td class="col-pdf"><%= t('gender') %></td><td class="col-pdf"><%= @gender unless @gender.nil? %></td></tr>
-      <tr class="odd"><td class="col-pdf"><%= t('status') %></td><td class="col-pdf"><%= @status unless @status.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf"><%= t('gender') %></td><td class="col-pdf"><%= t("#{@gender.downcase}") unless @gender.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf"><%= t('status') %></td><td class="col-pdf"><%= t("#{@status.downcase}") unless @status.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('qualification') %></td><td class="col-pdf"><%= @employee.qualification unless @employee.qualification.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('total_exp') %></td><td class="col-pdf"><%= @total_years.to_s+"Years "+@total_months.to_s+"Months" unless @total_years.nil? or @total_months.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('exp_info') %></td><td class="col-pdf"><%= @employee.experience_detail unless @employee.experience_detail.nil? %></td></tr>
