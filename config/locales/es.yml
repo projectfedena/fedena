@@ -52,6 +52,7 @@ es: # locale
 
       event:
         title: "Título"
+        end_time: "Hora final"
 
       exam:
         start_time: "Hora inicial"
@@ -852,15 +853,15 @@ es: # locale
   common_eve: "Evento común"
   my_course_event: "Mis eventos del Curso"
   my_department_event: "Mis eventos del departamento"
-  event_creation: "Step 1 – Creación de evento"
+  event_creation: "Paso 1 – Creación de evento"
   associated: "Asiciado"
   my: "My"
   create_event: "Crear evento"
-  confirmation: "Step 2 - Confirmación"
+  confirmation: "Paso 2 - Confirmación"
   other_event: "Otros eventos"
   no_event_scheduled: "No hay otros eventos programados"
   common_to_all_message: "Este evento es común en todos los cursos y departamentos"
-  edit_event: "Step 1 - Editar evento"
+  edit_event: "Paso 1 - Editar evento"
   update_event: "Actualizar evento"
   position: "Posición"
   general_details: "Detalles generales"

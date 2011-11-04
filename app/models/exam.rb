@@ -92,7 +92,7 @@ class Exam < ActiveRecord::Base
     if self.event.blank?
       new_event = Event.create do |e|
         e.title       = "#{t('exam_text')}"
-        e.description = "#{self.exam_group.name} for #{self.subject.batch.full_name} - #{self.subject.name}"
+        e.description = "#{self.exam_group.name} #{t('for')} #{self.subject.batch.full_name} - #{self.subject.name}"
         e.start_date  = self.start_time
         e.end_date    = self.end_time
         e.is_exam     = true

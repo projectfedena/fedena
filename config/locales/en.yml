@@ -52,6 +52,7 @@ en: # locale
 
       event:
         title: "Title"
+        end_time: "End time"
 
       exam:
         start_time: "Start Time"

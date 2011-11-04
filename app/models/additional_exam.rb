@@ -63,8 +63,8 @@ class AdditionalExam < ActiveRecord::Base
   def create_exam_event
     if self.event.blank?
       new_event = Event.create do |e|
-        e.title       = "Additional Exam"
-        e.description = "#{self.additional_exam_group.name} for #{self.subject.batch.full_name} , Subject : #{self.subject.name}"
+        e.title       = "#{t('additional_exams_text')}"
+        e.description = "#{self.additional_exam_group.name} #{t('for')} #{self.subject.batch.full_name} , #{t('subject')} : #{self.subject.name}"
         e.start_date  = self.start_time
         e.end_date    = self.end_time
         e.is_exam     = true
