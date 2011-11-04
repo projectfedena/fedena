@@ -43,7 +43,7 @@
 
    <div class="label-field-pair">
       <label for="category_name"><%= "#{t('employee_category')}" %></label>
-      <div class="text-input-bg"><%= select :position, :employee_category_id, @categories.map {|s| [s.name, s.id]}, :prompt => "Select" %></div>
+      <div class="text-input-bg"><%= select :position, :employee_category_id, @categories.map {|s| [s.name, s.id]}, :prompt => "#{t('select')}" %></div>
     </div>
 
     <div class="label-checkbox-pair">
