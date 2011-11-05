@@ -19,7 +19,7 @@
 class User < ActiveRecord::Base
   attr_accessor :password, :role, :old_password, :new_password, :confirm_password
 
-  validates_uniqueness_of :username, :email
+  validates_uniqueness_of :username #, :email
   validates_length_of     :username, :within => 1..20
   validates_length_of     :password, :within => 4..40, :allow_nil => true
   validates_format_of     :username, :with => /^[A-Z0-9_-]*$/i,
