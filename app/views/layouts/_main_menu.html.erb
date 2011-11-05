@@ -28,7 +28,7 @@
         <li><%= link_to "#{t('manage_subject')}", subjects_path %></li>
       <% end %>
       <% if permitted_to? :settings, :configuration %>
-        <li><%= link_to "#{t('general_settings')}", :action => "settings" %></li>
+        <li><%= link_to "#{t('general_settings')}", :controller => "configuration", :action => "settings" %></li>
       <% end %>
       <% if permitted_to? :settings, :configuration %>
         <li><%= link_to "#{t('add_admission_additional_detail')}", :controller=>"student", :action => "add_additional_details" %></li>
