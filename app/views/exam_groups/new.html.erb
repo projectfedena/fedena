@@ -55,7 +55,7 @@
         <%= error_messages_for :exam_group %>
         <% form_remote_for :exam_option, :url => {:controller=>'exam',:action => 'update_exam_form',:batch=>@batch} do |form| %>
           <div class="label-field-pair">
-            <label for="exam_name"><%= t('new_text') %></label>
+            <label for="exam_name"><%= t('exam_name') %></label>
             <% if params[:ename].nil?  %>
               <% @ename = "" %>
             <% else %>

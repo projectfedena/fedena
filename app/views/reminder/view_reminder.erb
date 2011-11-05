@@ -41,7 +41,7 @@
   <% end %>
 
   <div id="reminder-body">
-    <div id="reminder-from"><%= t('from') %>: <%= @sender.nil? ? "User Unavailable" : @sender.full_name %></div>
+    <div id="reminder-from"><%= t('from') %>: <%= @sender.nil? ? "#{t('user_unavailable')}" : @sender.full_name %></div>
     <div id="reminder-date"><%= t('sent_on') %>: <%= I18n.l(@new_reminder.created_at,:format=>"%A, %d %B, %Y") %></div>
     <div id="reminder-subject"><%= t('subject') %>: <%= @new_reminder.subject %></div>
     <div id="reminder-message"><strong><%= t('message') %>:</strong><br /><br /><%=h @new_reminder.body %></div>
