@@ -745,7 +745,7 @@ class EmployeeController < ApplicationController
     @new_payslip_category = IndividualPayslipCategory.find_all_by_employee_id_and_salary_date(@employee.id,nil)
     @individual = IndividualPayslipCategory.find_all_by_employee_id_and_salary_date(@employee.id,Date.today)
     @user = current_user
-    privilege = Privilege.find(14)
+    privilege = Privilege.find_by_name("FinanceControl")
     finance_manager = privilege.users
     subject = t('payslip_generated')
     body = "#{t('payslip_generated_for')}  "+@employee.first_name+" "+@employee.last_name+". #{t('kindly_approve')}"
@@ -1062,7 +1062,7 @@ class EmployeeController < ApplicationController
       individual_payslip_category.each do |c|
         IndividualPayslipCategory.update(c.id, :salary_date=>start_date)
       end
-      privilege = Privilege.find(14)
+      privilege = Privilege.find_by_name("FinanceControl")
       finance_manager = privilege.users
       subject = "#{t('rejected_payslip_regenerated')}"
       body = "#{t('payslip_has_been_generated_for')}"+@employee.first_name+" "+@employee.last_name + " (#{t('employee_number')} :#{@employee.employee_number})" + " #{t('for_the_month')} #{salary_date.to_date.strftime("%B %Y")}. #{t('kindly_approve')}"

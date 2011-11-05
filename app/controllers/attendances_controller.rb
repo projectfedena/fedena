@@ -28,7 +28,7 @@ class AttendancesController < ApplicationController
   def list_subject
     @batch = Batch.find(params[:batch_id])
     @subjects = @batch.subjects
-    if @current_user.employee? and @allow_access ==true and !@current_user.privileges.map{|m| m.id}.include?(16)
+    if @current_user.employee? and @allow_access ==true and !@current_user.privileges.map{|m| m.name}.include?("StudentAttendanceRegister")
       @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
     end
     render(:update) do |page|
@@ -175,10 +175,10 @@ def destroy
 end
 
   def only_privileged_employee_allowed
-    @privilege = @current_user.privileges.map{|p| p.id}
+    @privilege = @current_user.privileges.map{|p| p.name}
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects
-      if @employee_subjects.empty? and !@privilege.include?(16)
+      if @employee_subjects.empty? and !@privilege.include?("StudentAttendanceRegister")
           flash[:notice] = "#{t('flash_msg4')}"
           redirect_to :controller => 'user', :action => 'dashboard'
       else

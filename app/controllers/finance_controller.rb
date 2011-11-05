@@ -420,7 +420,7 @@ class FinanceController < ApplicationController
     dates.each do |d|
       d.reject(current_user.id, params[:payslip_reject][:reason])
     end
-    privilege = Privilege.find(18)
+    privilege = Privilege.find_by_name("PayslipPowers")
     hr = privilege.users
     subject = "#{t('payslip_rejected')}"
     body = "#{t('payslip_rejected_for')} "+ employee.first_name+" "+ employee.last_name+ " (#{t('employee_number')} : #{employee.employee_number})" +" #{t('for_the_month')} #{params[:id2].to_date.strftime("%B %Y")}"

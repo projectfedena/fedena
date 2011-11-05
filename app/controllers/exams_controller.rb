@@ -27,7 +27,7 @@ class ExamsController < ApplicationController
   def new
     @exam = Exam.new
     @subjects = @batch.subjects
-    if @current_user.employee? and  !@current_user.privileges.map{|m| m.id}.include?(1)
+    if @current_user.employee? and  !@current_user.privileges.map{|m| m.name}.include?("ExaminationControl")
       @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
       if @subjects.blank?
         flash[:notice] = "#{t('flash_msg4')}"
@@ -44,7 +44,7 @@ class ExamsController < ApplicationController
       redirect_to [@batch, @exam_group]
     else
       @subjects = @batch.subjects
-      if @current_user.employee? and  !@current_user.privileges.map{|m| m.id}.include?(1)
+      if @current_user.employee? and  !@current_user.privileges.map{|m| m.name}.include?("ExaminationControl")
         @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
       end
       render 'new'
@@ -54,7 +54,7 @@ class ExamsController < ApplicationController
   def edit
     @exam = Exam.find params[:id], :include => :exam_group
     @subjects = @exam_group.batch.subjects
-    if @current_user.employee?  and !@current_user.privileges.map{|m| m.id}.include?(1)
+    if @current_user.employee?  and !@current_user.privileges.map{|m| m.name}.include?("ExaminationControl")
       @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
       unless @subjects.map{|m| m.id}.include?(@exam.subject_id)
         flash[:notice] = "#{t('flash_msg4')}"
@@ -71,7 +71,7 @@ class ExamsController < ApplicationController
       redirect_to [@exam_group, @exam]
     else
       @subjects = @batch.subjects
-      if @current_user.employee? and  !@current_user.privileges.map{|m| m.id}.include?(1)
+      if @current_user.employee? and  !@current_user.privileges.map{|m| m.name}.include?("ExaminationControl")
         @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
       end
       render 'edit'
@@ -105,7 +105,7 @@ class ExamsController < ApplicationController
 
   def destroy
     @exam = Exam.find params[:id], :include => :exam_group
-    if @current_user.employee?  and !@current_user.privileges.map{|m| m.id}.include?(1)
+    if @current_user.employee?  and !@current_user.privileges.map{|m| m.name}.include?("ExaminationControl")
       @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
       unless @subjects.map{|m| m.id}.include?(@exam.subject_id)
         flash[:notice] = "#{t('flash_msg4')}"
@@ -166,7 +166,7 @@ class ExamsController < ApplicationController
 
   def restrict_employees_from_exam_edit
     if @current_user.employee?
-      if !@current_user.privileges.map{|p| p.id}.include?(1)
+      if !@current_user.privileges.map{|p| p.name}.include?("ExaminationControl")
         flash[:notice] = "#{t('flash_msg4')}"
         redirect_to :back
       else

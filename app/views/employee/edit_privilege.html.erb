@@ -43,12 +43,12 @@
         <%    hr = Configuration.find_by_config_value("HR") %>
         <%  finance = Configuration.find_by_config_value("Finance") %>
         <%  if hr.nil?  %>
-          <% if privilege.id ==9 or  privilege.id ==17 or privilege.id ==19 %>
+          <% if privilege.name =="HrBasics" or  privilege.name =="EmployeeAttendance" or privilege.name =="EmployeeSearch" %>
             <% next %>
           <% end %>
         <% end %>
         <%  if finance.nil?  %>
-          <% if privilege.id ==14 or  privilege.id ==18 %>
+          <% if privilege.name =="FinanceControl" or  privilege.name =="PayslipPowers" %>
             <% next %>
           <% end %>
         <% end %>

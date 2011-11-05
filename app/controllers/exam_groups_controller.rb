@@ -77,7 +77,7 @@ class ExamGroupsController < ApplicationController
     @exam_group = ExamGroup.find(params[:id], :include => :exams)
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id}
-      if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.id}.include?(1) and !@current_user.privileges.map{|p| p.id}.include?(2)
+      if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.name}.include?("ExaminationControl") and !@current_user.privileges.map{|p| p.name}.include?("EnterResults")
         flash[:notice] = "#{t('flash_msg4')}"
         redirect_to :controller => 'user', :action => 'dashboard'
       end
@@ -91,7 +91,7 @@ class ExamGroupsController < ApplicationController
     if @current_user.employee?
       @user_privileges = @current_user.privileges
       @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id}
-      if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.id}.include?(1) and !@current_user.privileges.map{|p| p.id}.include?(2)
+      if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.name}.include?("ExaminationControl") and !@current_user.privileges.map{|p| p.name}.include?("EnterResults")
         flash[:notice] = "#{t('flash_msg4')}"
         redirect_to :controller => 'user', :action => 'dashboard'
       end

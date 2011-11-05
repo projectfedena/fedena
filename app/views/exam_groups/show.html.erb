@@ -69,7 +69,7 @@
             :style =>"display: none;" ) %></span></h4></div>
     <% @employee_subjects=[] %>
     <% @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id} if @current_user.employee?  %>
-    <% privilege = Privilege.find_by_id(2) %>
+    <% privilege = Privilege.find_by_name("EnterResults") %>
     <% unless @exam_group.exam_type == 'Grades' %>
       <table id="listing">
         <tr class="tr-head">
@@ -107,7 +107,7 @@
           <td><%= t('manage') %></td>
         </tr>
         <% @exam_group.exams.each do |exam| %>
-          <% if @employee_subjects.include?("#{exam.subject.id}") or @current_user.admin?  or @current_user.privileges.map{|p| p.id}.include?(1) or @current_user.privileges.map{|p| p.id}.include?(2) %>
+          <% if @employee_subjects.include?("#{exam.subject.id}") or @current_user.admin?  or @current_user.privileges.map{|p| p.name}.include?("ExaminationControl") or @current_user.privileges.map{|p| p.name}.include?("EnterResults") %>
             <tr class="tr-<%= cycle('odd', 'even') %>">
               <% @exam = exam %>
               <td class="col-3"><%= link_to exam.subject.name, [@exam_group, exam] %></td>

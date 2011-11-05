@@ -59,10 +59,10 @@ class ApplicationController < ActionController::Base
 
  
   def only_assigned_employee_allowed
-    @privilege = @current_user.privileges.map{|p| p.id}
+    @privilege = @current_user.privileges.map{|p| p.name}
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects
-      if @employee_subjects.empty? and !@privilege.include?(8) and !@privilege.include?(16)
+      if @employee_subjects.empty? and !@privilege.include?("StudentAttendanceView") and !@privilege.include?("StudentAttendanceRegister")
           flash[:notice] = "#{t('flash_msg4')}"
           redirect_to :controller => 'user', :action => 'dashboard'
       else
@@ -74,7 +74,7 @@ class ApplicationController < ActionController::Base
   def restrict_employees_from_exam
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects
-      if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.id}.include?(1) and !@current_user.privileges.map{|p| p.id}.include?(2) and !@current_user.privileges.map{|p| p.id}.include?(3)
+      if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.name}.include?("ExaminationControl") and !@current_user.privileges.map{|p| p.name}.include?("EnterResults") and !@current_user.privileges.map{|p| p.name}.include?("ViewResults")
         flash[:notice] = "#{t('flash_msg4')}"
         redirect_to :controller => 'user', :action => 'dashboard'
       else
@@ -86,7 +86,7 @@ class ApplicationController < ActionController::Base
   def block_unauthorised_entry
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects
-      if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.id}.include?(1)
+      if @employee_subjects.empty? and !@current_user.privileges.map{|p| p.name}.include?("ExaminationControl")
         flash[:notice] = "#{t('flash_msg4')}"
         redirect_to :controller => 'user', :action => 'dashboard'
       else
