@@ -49,22 +49,22 @@
       <%if permitted_to? :edit,:timetable%>
         <% @config = Configuration.available_modules %>
         <% if @config.include?('HR') %>
-          <li><%= link_to "#{t('create_or_edit_timetable')}", :action => "select_class2" %></li>
+          <li><%= link_to "#{t('create_or_edit_timetable')}", :controller => "timetable", :action => "select_class2" %></li>
         <% else %>
-          <li><%= link_to "#{t('create_or_edit_timetable')}", :action => "select_class" %></li>
+          <li><%= link_to "#{t('create_or_edit_timetable')}", :controller => "timetable", :action => "select_class" %></li>
         <% end %>
         <li><%= link_to "#{t('set_class_timings')}", :controller => "class_timings", :action => "index"   %></li>
       <%  end%>
       <%  if permitted_to? :view,:timetable%>
-        <li><%= link_to "#{t('view_timetable')}", :action => "view" %></li>
+        <li><%= link_to "#{t('view_timetable')}", :controller => "timetable", :action => "view" %></li>
       <%  end%>
       <%  if permitted_to? :edit,:timetable%>
         <% @config = Configuration.get_config_value('StudentAttendanceType') %>
         <% if @config == 'SubjectWise' %>
-          <li><%= link_to "#{t('swap_class')}", :action => "extra_class" %></li>
+          <li><%= link_to "#{t('swap_class')}", :controller => "timetable", :action => "extra_class" %></li>
         <%  end %>
       <%  end %>
-      <li><%= link_to "#{t('institutional')} #{t('timetable_text')}", :action => "timetable" %></li>
+      <li><%= link_to "#{t('institutional')} #{t('timetable_text')}", :controller => "timetable", :action => "timetable" %></li>
       <%  if permitted_to? :edit,:timetable%>
         <li><%= link_to "#{t('create_text')} #{t('weekdays_text')}", :controller => "weekday", :action => "index" %></li>
       <% end %>
