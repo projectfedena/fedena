@@ -127,7 +127,7 @@
           <tr class="odd left"><td><%= t('sms_alerts') %></td><td class="right"><%= @student.is_sms_enabled?? "Enabled":"Disabled" %></td></tr>
         <% end  %>
       <% end  %>
-      <tr class="even left"><td><%= t('contact_message') %> :</td><td class="right">
+      <tr class="even left"><td><%= t('contact_message') %></td><td class="right">
           <%= link_to @immediate_contact.full_name, :controller => "student", :action => "guardians", :id => @student.id \
             unless @immediate_contact.nil? %><%= "(" + @immediate_contact.mobile_phone + ")" if @immediate_contact and !@immediate_contact.mobile_phone.empty? %>
           <% if @current_user.admin? %>
