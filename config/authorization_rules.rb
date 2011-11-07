@@ -1809,7 +1809,16 @@ authorization do
       :delete_reminder_by_sender,
       :delete_reminder_by_recipient,
       :view_reminder,
-      :mark_unread ]
+      :mark_unread ]  
+  end
+
+  role :subject_attendance do
+    has_permission_on [:attendances], :to => [:index, :list_subject, :show, :new, :create, :edit,:update, :destroy]
+    has_permission_on [:attendance_reports], :to => [:index, :subject, :mode, :show, :year, :report, :filter, :student_details,:report_pdf,:filter_report_pdf]
+    
+  end
+
+  role :subject_exam do
     has_permission_on [:exam],
       :to => [
       :index,
@@ -1848,16 +1857,6 @@ authorization do
       :update,
       :destroy
     ]
-    has_permission_on [:attendances], :to => [:index, :list_subject, :show, :new, :create, :edit,:update, :destroy]
-    has_permission_on [:attendance_reports], :to => [:index, :subject, :mode, :show, :year, :report, :filter, :student_details,:report_pdf,:filter_report_pdf]
   end
-
-  role :subject_attendance do
-    
-  end
-
-  role :subject_exam do
-
-  end
-
+  
 end
