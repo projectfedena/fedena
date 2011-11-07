@@ -46,7 +46,7 @@
           <hr class="sub-heading"></hr>
           <div class="label-field-pair">
             <label><%= t('date_of_birth') %></label>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'employee[date_of_birth]', @employee.date_of_birth,
+        <div class="text-input-bg"><%= calendar_date_select_tag 'employee[date_of_birth]', I18n.l(@employee.date_of_birth,:format=>:normal),
             :year_range => 70.years.ago..4.years.ago %></div>
       </div>
             <div class="extender"></div>

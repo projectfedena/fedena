@@ -1,7 +1,7 @@
 .payroll-field-pair {
     float : left;
     height : 40px;
-    width : 600px;
+    width : 460px;
     margin:0 0 0 50px;
 }
 .payroll-input-bg {
@@ -33,7 +33,7 @@
     font-size:14px;
     font-weight:bold;
     margin:0px auto;
-    margin-left:180px;
+    margin-left:284px;
     margin-top:20px;
     padding:7px 12px;
     border:none;
