@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
       employee = employee_record
       unless employee.nil?
       if employee.subjects.present?
-      prv << :subject_attendance
+      prv << :subject_attendance if Configuration.get_config_value('StudentAttendanceType') == 'SubjectWise'
       prv << :subject_exam
       end
       end
