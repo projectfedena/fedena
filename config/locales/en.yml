@@ -1775,6 +1775,13 @@ en: # locale
   years: "Years"
   months: "Months"
   following_pblm_occured_while_saving_the_batch: "Following problems occured while saving this batch"
+  
+  placement_activities_privilege: "Placement Activities"
+  hostel_admin_privilege: "Hostel Admin"
+  group_create_privilege: "Group Create"
+  transport_admin_privilege: "Transport Admin"
+  task_management_privilege: "Task Management"
+
 
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"

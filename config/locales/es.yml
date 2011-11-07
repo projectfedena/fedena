@@ -1773,6 +1773,11 @@ es: # locale
   months: "Meses"
   following_pblm_occured_while_saving_the_batch: "A raíz de los problemas al guardar este lote"
 
+  placement_activities_privilege: "Las actividades de colocación"
+  hostel_admin_privilege: "Hostel Administración"
+  group_create_privilege: "Crear grupo"
+  transport_admin_privilege: "Transporte de administración"
+  task_management_privilege: "Tarea de gestión"
 
   flash_msg1: "Grupo de exámenes adicionales actualizados con éxito."
   flash_msg2: "Lo sentimos"

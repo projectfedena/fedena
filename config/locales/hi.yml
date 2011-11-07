@@ -1749,6 +1749,12 @@ hi:
   years: "वर्षों"
   months: "महीने"
   following_pblm_occured_while_saving_the_batch: "के बाद समस्याओं हो गई, जबकि इस बैच की बचत"
+  placement_activities_privilege: "नियुक्ति क्रियाएँ"
+  hostel_admin_privilege: "हॉस्टल व्यवस्थापक"
+  group_create_privilege: "समूह बनाएँ"
+  transport_admin_privilege: "परिवहन व्यवस्थापक"
+  task_management_privilege: "कार्य प्रबंध"
+  student_attendance_register_privilege: "छात्र उपस्थिति रजिस्टर"
 
   flash_msg1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक नवीनीकृत|"
   flash_msg2: "क्षमा करें"
