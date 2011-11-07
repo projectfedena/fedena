@@ -18,7 +18,9 @@
 #under the License. -%>
 
 
-<div class="profile_top_banner"><%= image_tag("master_student/profile/topbanner.png") unless rtl? %></div>
+<div class="profile_top_banner">
+  <span class="profile"><%= t('details') %></span>
+  <%= rtl? ? image_tag("master_student/profile/topbanner_rtl.png") : image_tag("master_student/profile/topbanner.png") %></div>
 <div class="profile_info_label_top"><%= t('joining_date') %></div>
 <div class="profile_info_text_top"><%= I18n.l(@employee.joining_date, :format=>"%d %b,%Y")%></div>
 
@@ -74,10 +76,10 @@
 <div class="profile_info_text_top2"><%= @employee.experience_detail %> </div>
 <div class="extender"></div>
 <div class="edit-pdf-group">
-      <% if permitted_to?  :profile_pdf , :employee %>
-  <div class="pdf">
-    <%= link_to " ► #{t('pdf_report')}",
-      {:controller => "archived_employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
-  </div>
+  <% if permitted_to?  :profile_pdf , :employee %>
+    <div class="pdf">
+      <%= link_to " ► #{t('pdf_report')}",
+        {:controller => "archived_employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
+    </div>
   <% end %>
 </div>

@@ -70,7 +70,9 @@
   </div>
 
   <div id="new_profile_info_top">
-    <div class="profile_top_banner"><%= image_tag("master_student/profile/topbanner.png") unless rtl? %></div>
+    <div class="profile_top_banner">
+      <span class="profile"><%= t('details') %></span>
+      <%= rtl? ? image_tag("master_student/profile/topbanner_rtl.png") : image_tag("master_student/profile/topbanner.png") %></div>
     <table width="700">
       <tr class="odd left"><td><%= t('admission_date') %></td><td class="right"><%= I18n.l(@archived_student.admission_date,:format=>"%d %b, %Y") unless @archived_student.admission_date.nil? %></td></tr>
       <tr class="even left"><td><%= t('date_of_birth') %></td><td class="right"><%= I18n.l(@archived_student.date_of_birth,:format=>"%d %b, %Y") unless @archived_student.date_of_birth.nil? %></td></tr>

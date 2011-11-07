@@ -22,7 +22,7 @@
   <h1><%= t('parent_info') %></h1>
   <h3><%= t('parents_profile') %></h3>
   <div id="app-back-button">
-      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
@@ -71,7 +71,9 @@
 
       <a name="guardian-details-id-<%= p.id %>"> </a>
       <div id="new_profile_info_top">
-        <div class="profile_top_banner"><%= image_tag("master_student/profile/topbanner.png") unless rtl? %></div>
+        <div class="profile_top_banner">
+          <span class="profile"><%= t('details') %></span>
+          <%= rtl? ? image_tag("master_student/profile/topbanner_rtl.png") : image_tag("master_student/profile/topbanner.png") %></div>
         <div class="profile_info_label"><%= t('name') %></div>
         <div class="profile_info_text">
           <%= p.first_name %> <%= p.last_name %>
@@ -118,21 +120,21 @@
         <div class="extender"></div>
       </div>
       <div class="button-pair">
-      <% if permitted_to? :edit_guardian,:student %>
-        <div class="parent-edit-button">
-          <%= link_to "► #{t('edit_text')}",
-            :controller => 'student', :action => 'edit_guardian', :id => p.id %>
-        </div>
-      <%  end %>
-      <% if permitted_to? :del_guardian,:student %>
-        <%  if @student.guardians.size > 1 %>
+        <% if permitted_to? :edit_guardian,:student %>
           <div class="parent-edit-button">
-            <%= link_to "► #{t('delete_text')}",
-              {:controller => 'student', :action => 'del_guardian', :id => p.id },
-              {:confirm => "#{t('are_you_completely_sure')}"} %>
+            <%= link_to "► #{t('edit_text')}",
+              :controller => 'student', :action => 'edit_guardian', :id => p.id %>
           </div>
         <%  end %>
-      <% end %>
+        <% if permitted_to? :del_guardian,:student %>
+          <%  if @student.guardians.size > 1 %>
+            <div class="parent-edit-button">
+              <%= link_to "► #{t('delete_text')}",
+                {:controller => 'student', :action => 'del_guardian', :id => p.id },
+                {:confirm => "#{t('are_you_completely_sure')}"} %>
+            </div>
+          <%  end %>
+        <% end %>
       </div>
 
       <div class="extender"></div>

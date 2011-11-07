@@ -146,8 +146,8 @@
 .profile_top_banner{
     position:absolute;
     float:left;
-    padding-right:525px;
-    margin-top:-12px;
+    padding-right:528px;
+    margin-top:-10px;
     
 }
 #student_profile_heading{
@@ -348,11 +348,11 @@ html>body #nav ul.scriptaculously{/*ie shit*/
 
 }
 .profile{
-   -moz-transform: rotate(37deg);  /* FF3.5+ */
-    -o-transform: rotate(37deg);  /* Opera 10.5 */
-    -webkit-transform: rotate(37deg);  /* Saf3.1+, Chrome */
-    -ms-transform: rotate(37deg);  /* IE9 */
-    transform: rotate(37deg);
+   -moz-transform: rotate(-37deg);  /* FF3.5+ */
+    -o-transform: rotate(-37deg);  /* Opera 10.5 */
+    -webkit-transform: rotate(-37deg);  /* Saf3.1+, Chrome */
+    -ms-transform: rotate(-37deg);  /* IE9 */
+    transform: rotate(-37deg);
     background: transparent/9;
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; /* IE8 $ IE9*/
     zoom: 1;
@@ -362,6 +362,8 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     font-weight: 200;
     /*padding-left: 95px;
     padding-top: 11px;*/
-    width:53px;
-    height: 250px
+    width: 128px;
+    padding-top: 27px;
+    text-align: center;
+    height: 250px;
 }

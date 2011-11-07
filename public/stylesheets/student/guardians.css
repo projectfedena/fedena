@@ -202,3 +202,23 @@
     text-align:center;
     width:143px;
 }
+.profile{
+   -moz-transform: rotate(37deg);  /* FF3.5+ */
+    -o-transform: rotate(37deg);  /* Opera 10.5 */
+    -webkit-transform: rotate(37deg);  /* Saf3.1+, Chrome */
+    -ms-transform: rotate(37deg);  /* IE9 */
+    transform: rotate(37deg);
+    background: transparent/9;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; /* IE8 $ IE9*/
+    zoom: 1;
+    color: #FFFFFF;
+    font-size: 21px;
+    position: absolute;
+    font-weight: 200;
+    /*padding-left: 95px;
+    padding-top: 11px;*/
+    width: 128px;
+    padding-top: 27px;
+    text-align: center;
+    height: 250px
+}

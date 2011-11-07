@@ -146,8 +146,8 @@
 .profile_top_banner{
     position:absolute;
     float:right;
-    padding-left:525px;
-    margin-top:-12px;
+    padding-left:528px;
+    margin-top:-10px;
     
 }
 #student_profile_heading{
@@ -362,6 +362,8 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     font-weight: 200;
     /*padding-left: 95px;
     padding-top: 11px;*/
-    width:53px;
+    width: 128px;
+    padding-top: 27px;
+    text-align: center;
     height: 250px
 }

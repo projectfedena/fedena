@@ -19,8 +19,8 @@
 
 
 <div class="profile_top_banner">
-<span class="profile"><%= t('details') %></span>
-<%= image_tag("master_student/profile/topbanner.png") unless rtl? %></div>
+  <span class="profile"><%= t('details') %></span>
+  <%= rtl? ? image_tag("master_student/profile/topbanner_rtl.png") : image_tag("master_student/profile/topbanner.png") %></div>
 
 <table width="700">
   <tr class="odd left"><td><%= t('joining_date') %></td><td class="right"><%= I18n.l(@employee.joining_date,:format=>:normal)%></td></tr>
@@ -37,25 +37,25 @@
       <% else %>
         <%= @reporting_manager %>
       <% end %>
-  <% if permitted_to? :change_reporting_manager, :employee %>
-      <%= link_to "#{t('change')}", :controller=> "employee", :action=> "change_reporting_manager", :id=>@employee.id %>
-    <%end%></td></tr>
+      <% if permitted_to? :change_reporting_manager, :employee %>
+        <%= link_to "#{t('change')}", :controller=> "employee", :action=> "change_reporting_manager", :id=>@employee.id %>
+      <%end%></td></tr>
   <tr class="even left"><td><%= t('gender') %></td><td class="right"><%= t("#{@gender.downcase}") %></td></tr>
   <tr class="odd left"><td><%= t('status') %></td><td class="right"><%= t("#{@status.downcase}") %></td></tr>
   <tr class="even left"><td><%= t('qualification') %></td><td class="right"><%= @employee.qualification %></td></tr>
   <tr class="odd left"><td><%= t('total_exp') %></td><td class="right"><%= @total_years.to_s+" #{t('years')} "+@total_months.to_s+" #{t('months')}" %></td></tr>
   <tr class="even left"><td><%= t('exp_info') %></td><td class="right"><%= @employee.experience_detail %></td></tr>
 </table>
-  <div class="edit-pdf-group">
-    <% if permitted_to? :change_reporting_manager, :employee %>
-      <div class="edit">
-        <%= link_to "► #{t('edit_text')}",  :controller => "employee", :action => "edit1", :id =>@employee.id %>
-      </div>
-    <%end%>
-    <% if permitted_to?  :profile_pdf , :employee %>
-      <div class="pdf">
-        <%= link_to " ► #{t('pdf_report')}",
-          {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
-      </div>
-    <% end %>
-  </div>
+<div class="edit-pdf-group">
+  <% if permitted_to? :change_reporting_manager, :employee %>
+    <div class="edit">
+      <%= link_to "► #{t('edit_text')}",  :controller => "employee", :action => "edit1", :id =>@employee.id %>
+    </div>
+  <%end%>
+  <% if permitted_to?  :profile_pdf , :employee %>
+    <div class="pdf">
+      <%= link_to " ► #{t('pdf_report')}",
+        {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
+    </div>
+  <% end %>
+</div>
