@@ -1936,8 +1936,8 @@ es: # locale
     flash15: "Rol actualizado"
     flash16: "Cuenta de usuario no creada!"
     flash17: "Cuenta de usuario creada! "
-    flash18: "Un link para restaurar la contraseña ha sido enviado al email"
-    flash19: "No existen usuarios ese email"
+    flash18: "Enlace de restablecimiento de contraseña ha sido enviada a su correo electrónico"
+    flash19: "No existe el usuario con nombre de usuario"
 
 #student controller translation
   student:

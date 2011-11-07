@@ -1939,8 +1939,8 @@ en: # locale
     flash15: "Role updated"
     flash16: "User account not created!"
     flash17: "User account created! "
-    flash18: "Reset Password link emailed to"
-    flash19: "No user exists with email address"
+    flash18: "Reset Password link has been send to your email"
+    flash19: "No user exists with username"
     
 #student controller translation
   student:
