@@ -3,72 +3,77 @@
 <% @modules = Configuration.available_modules %>
 <ul id="main-menu">
   <li><%= link_to t('dashboard_text'), :controller => "user", :action => "dashboard" %></li>
-  <li><%= link_to t('students'), :controller => "student", :action => "index" \
-      if this_user.admin? %></li>
-  <li><%= link_to "#{t('attendance')} ▼", :controller => "student_attendance", :action => "index" \
-      if this_user.admin? %>
-    <ul class="level-1">
-      <% if permitted_to? :index, :attendances %>
-        <li><%= link_to "#{t('attendance_register')}", :controller => 'attendances', :action => 'index'  %></li>
-      <% end %>
-      <% if permitted_to? :index, :attendance_reports or permitted_to? :index, :attendances%>
-        <li><%= link_to "#{t('attendance_report')}", :controller => "attendance_reports", :action => "index" %></li>
-      <% end %>
-    </ul>
-  </li>
-  <li><%= link_to "#{t('settings')} ▼", :controller => "configuration", :action => "index" \
-      if this_user.admin? %>
-    <ul class="level-1">
-      <% if permitted_to? :create, :courses %>
-        <li><%= link_to "#{t('manage_course_batch')}", courses_path %></li>
-      <% end %>
-      <% if permitted_to? :settings, :configuration %>
-        <li><%= link_to "#{t('manage_student_category')}", :controller => "student", :action => "categories" %></li>
-      <% end %>
-      <% if permitted_to? :index, :subjects %>
-        <li><%= link_to "#{t('manage_subject')}", subjects_path %></li>
-      <% end %>
-      <% if permitted_to? :settings, :configuration %>
-        <li><%= link_to "#{t('general_settings')}", :controller => "configuration", :action => "settings" %></li>
-      <% end %>
-      <% if permitted_to? :settings, :configuration %>
-        <li><%= link_to "#{t('add_admission_additional_detail')}", :controller=>"student", :action => "add_additional_details" %></li>
-      <% end %>
-      <% if permitted_to? :index, :sms %>
-        <% if @modules.include?('SMS') %>
-          <li><%= link_to "#{t('sms_module')}", :controller=>"sms", :action => "index" %></li>
+  <% if permitted_to? :index, :student %>
+    <li><%= link_to t('students'), :controller => "student", :action => "index" %></li>
+  <% end %>
+  <% if permitted_to? :index, :student_attendance %>
+    <li><%= link_to "#{t('attendance')} ▼", :controller => "student_attendance", :action => "index" %>
+      <ul class="level-1">
+        <% if permitted_to? :index, :attendances %>
+          <li><%= link_to "#{t('attendance_register')}", :controller => 'attendances', :action => 'index'  %></li>
         <% end %>
-      <% end %>
-    </ul>
-  </li> <!--
+        <% if permitted_to? :index, :attendance_reports or permitted_to? :index, :attendances%>
+          <li><%= link_to "#{t('attendance_report')}", :controller => "attendance_reports", :action => "index" %></li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+  <% if permitted_to? :index, :configuration %>
+    <li><%= link_to "#{t('settings')} ▼", :controller => "configuration", :action => "index" %>
+      <ul class="level-1">
+        <% if permitted_to? :create, :courses %>
+          <li><%= link_to "#{t('manage_course_batch')}", courses_path %></li>
+        <% end %>
+        <% if permitted_to? :settings, :configuration %>
+          <li><%= link_to "#{t('manage_student_category')}", :controller => "student", :action => "categories" %></li>
+        <% end %>
+        <% if permitted_to? :index, :subjects %>
+          <li><%= link_to "#{t('manage_subject')}", subjects_path %></li>
+        <% end %>
+        <% if permitted_to? :settings, :configuration %>
+          <li><%= link_to "#{t('general_settings')}", :controller => "configuration", :action => "settings" %></li>
+        <% end %>
+        <% if permitted_to? :settings, :configuration %>
+          <li><%= link_to "#{t('add_admission_additional_detail')}", :controller=>"student", :action => "add_additional_details" %></li>
+        <% end %>
+        <% if permitted_to? :index, :sms %>
+          <% if @modules.include?('SMS') %>
+            <li><%= link_to "#{t('sms_module')}", :controller=>"sms", :action => "index" %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+  <!--
   <li><%= link_to t('news_text'), :controller => "news", :action => "index" \
     if this_user.admin? %></li> -->
-  <li><%= link_to "#{t('timetable_text')} <span class='down-arrow'>▼</span>", :controller => "timetable", :action => "index" \
-      if this_user.admin? %>
-    <ul class="level-1">
-      <%if permitted_to? :edit,:timetable%>
-        <% if @modules.include?('HR') %>
-          <li><%= link_to "#{t('create_or_edit_timetable')}", :controller => "timetable", :action => "select_class2" %></li>
-        <% else %>
-          <li><%= link_to "#{t('create_or_edit_timetable')}", :controller => "timetable", :action => "select_class" %></li>
-        <% end %>
-        <li><%= link_to "#{t('set_class_timings')}", :controller => "class_timings", :action => "index"   %></li>
-      <%  end%>
-      <%  if permitted_to? :view,:timetable%>
-        <li><%= link_to "#{t('view_timetable')}", :controller => "timetable", :action => "view" %></li>
-      <%  end%>
-      <%  if permitted_to? :edit,:timetable%>
-        <% @attendance_type = Configuration.get_config_value('StudentAttendanceType') %>
-        <% if @attendance_type == 'SubjectWise' %>
-          <li><%= link_to "#{t('swap_class')}", :controller => "timetable", :action => "extra_class" %></li>
+  <% if permitted_to? :index, :timetable %>
+    <li><%= link_to "#{t('timetable_text')} <span class='down-arrow'>▼</span>", :controller => "timetable", :action => "index" %>
+      <ul class="level-1">
+        <%if permitted_to? :edit,:timetable%>
+          <% if @modules.include?('HR') %>
+            <li><%= link_to "#{t('create_or_edit_timetable')}", :controller => "timetable", :action => "select_class2" %></li>
+          <% else %>
+            <li><%= link_to "#{t('create_or_edit_timetable')}", :controller => "timetable", :action => "select_class" %></li>
+          <% end %>
+          <li><%= link_to "#{t('set_class_timings')}", :controller => "class_timings", :action => "index"   %></li>
+        <%  end%>
+        <%  if permitted_to? :view,:timetable%>
+          <li><%= link_to "#{t('view_timetable')}", :controller => "timetable", :action => "view" %></li>
+        <%  end%>
+        <%  if permitted_to? :edit,:timetable%>
+          <% @attendance_type = Configuration.get_config_value('StudentAttendanceType') %>
+          <% if @attendance_type == 'SubjectWise' %>
+            <li><%= link_to "#{t('swap_class')}", :controller => "timetable", :action => "extra_class" %></li>
+          <%  end %>
         <%  end %>
-      <%  end %>
-      <li><%= link_to "#{t('institutional')} #{t('timetable_text')}", :controller => "timetable", :action => "timetable" %></li>
-      <%  if permitted_to? :edit,:timetable%>
-        <li><%= link_to "#{t('create_text')} #{t('weekdays_text')}", :controller => "weekday", :action => "index" %></li>
-      <% end %>
-    </ul>
-  </li>
+        <li><%= link_to "#{t('institutional')} #{t('timetable_text')}", :controller => "timetable", :action => "timetable" %></li>
+        <%  if permitted_to? :edit,:timetable%>
+          <li><%= link_to "#{t('create_text')} #{t('weekdays_text')}", :controller => "weekday", :action => "index" %></li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
   <% if this_user.admin? %>
     <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
       <% unless mod[:top_bar].blank? %>
@@ -99,7 +104,9 @@
             <li><%= link_to "#{t('subject_wise_report')}" , :controller => "exam",:action=>'subject_wise_report' %> </li>
             <li><%= link_to "#{t('grouped_exam_reports')}" , :controller => "exam",:action=>'grouped_exam_report' %></li>
             <% FedenaPlugin::ADDITIONAL_LINKS[:online_exam_index_link].each do |mod| %>
-              <li><%= link_to "#{t("#{mod[:title]}")}",mod[:destination] %></li>
+              <%  if permitted_to? "#{mod[:destination][:action]}".to_sym,"#{mod[:destination][:controller]}".to_sym %>
+                <li><%= link_to "#{t("#{mod[:title]}")}",mod[:destination] %></li>
+              <% end %>
             <% end %>
           </ul>
         </li>
