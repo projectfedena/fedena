@@ -291,6 +291,9 @@ class UserController < ApplicationController
   def edit_privilege
     @privileges = Privilege.find(:all)
     @user = User.find_by_username(params[:id])
+    @finance = Configuration.find_by_config_value("Finance")
+    @sms = Configuration.find_by_config_value("SMS")
+    @hr = Configuration.find_by_config_value("HR")
     if request.post?
       new_privileges = params[:user][:privilege_ids] if params[:user]
       new_privileges ||= []

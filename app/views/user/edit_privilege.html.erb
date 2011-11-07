@@ -38,23 +38,19 @@
       <%= link_to_function "#{t('none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
     </div>
 
-
     <% form_for :user do |form| %>
       <% for privilege in Privilege.find(:all) %>
-        <%    hr = Configuration.find_by_config_value("HR") %>
-        <%  finance = Configuration.find_by_config_value("Finance") %>
-        <%  sms = Configuration.find_by_config_value("SMS") %>
-        <%  if hr.nil?  %>
+        <%  if @hr.blank?  %>
           <% if privilege.name =="HrBasics" or  privilege.name =="EmployeeAttendance" or privilege.name =="PayslipPowers" or privilege.name =="EmployeeSearch" %>
             <% next %>
           <% end %>
         <% end %>
-        <%  if finance.nil?  %>
+        <%  if @finance.blank?  %>
           <% if privilege.name =="FinanceControl" %>
             <% next %>
           <% end %>
         <% end %>
-        <%  if sms.nil?  %>
+        <%  if @sms.blank?  %>
           <% if privilege.name =="SMSManagement" %>
             <% next %>
           <% end %>
