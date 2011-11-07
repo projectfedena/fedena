@@ -337,7 +337,7 @@ es: # locale
     batch_transfers:
       errors_found: "Se encontró el siguiente error"
 
-  sl_no: "No."
+  sl_no: "Sl No."
   name: "Nombre"
   adm_no: "No. de Adm"
   view_profile: "Ver Perfil"
