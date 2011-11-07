@@ -84,12 +84,19 @@ class User < ActiveRecord::Base
   def role_symbols
     prv = []
     @privilge_symbols ||= privileges.map { |privilege| prv << privilege.name.underscore.to_sym }
-   
+
     if admin?
       return [:admin] + prv
     elsif student?
       return [:student] + prv
     elsif employee?
+      employee = employee_record
+      unless employee.nil?
+      if employee.subjects.present?
+      prv << :subject_attendance
+      prv << :subject_exam
+      end
+      end
       return [:employee] + prv
     else
       return prv
