@@ -29,7 +29,7 @@
     <%= f.label "#{t('exam_type')}" %>
     <%= f.hidden_field :exam_type,:value=>@type %>
     <%= f.hidden_field :students_list,:value=>@students_list %>
-    <div class="text-input-bg"><%= f.text_field :exam_type, :value=>@type,:disabled=>true %>
+    <div class="text-input-bg"><%= f.text_field :exam_type, :value=>@type=='Marks' ? t('marks') : t('marks_and_grades'),:disabled=>true %>
     </div><%= link_to "#{t('change_type')}", new_batch_additional_exam_group_path(@batch,:ename=>@name),:class=>"type_link" %>
   </div>
   <div class="label-field-pair">

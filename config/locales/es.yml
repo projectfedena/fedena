@@ -1228,7 +1228,7 @@ es: # locale
   user_profile: "Perfil de usuario"
   user_information: "Información de usuario"
   privilege: "privilegio"
-  to_dashboard: "al Panel de Globoschool"
+  to_dashboard: "al Panel de Fedena"
   admission_link_title: "Ingresar detalles de admisión de estudiantes."
   student_link_title: "Buscar en los registros de estudiantes presentes y antiguos."
   user_link_title: "         Gestionar usuarios         "
