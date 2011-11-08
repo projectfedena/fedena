@@ -4,7 +4,7 @@
   <% if permitted_to? :index, :student %>
     <li><%= link_to t('students'), :controller => "student", :action => "index" %></li>
   <% end %>
-  <% if permitted_to? :index, :student_attendance %>
+  <% if permitted_to? :index, :attendance_reports or permitted_to? :index, :attendances %>
     <li><%= link_to "#{t('attendance')} ▼", :controller => "student_attendance", :action => "index" %>
       <ul class="level-1">
         <% if permitted_to? :index, :attendances %>
