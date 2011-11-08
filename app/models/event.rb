@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   named_scope :exams, :conditions => {:is_exam => true}
   has_many :batch_events, :dependent => :destroy
   has_many :employee_department_events, :dependent => :destroy
-  has_one :user_event, :dependent => :destroy
+  has_many :user_events, :dependent => :destroy
   belongs_to :origin , :polymorphic => true
 
   def validate
@@ -45,16 +45,19 @@ class Event < ActiveRecord::Base
         end
       end
     end
-    user_id = self.user_event.user_id if self.user_event.present?
-    unless user_id.nil?
-      flag = true if student.user.id == user_id
+    user_events = self.user_events if self.user_events.present?
+    unless user_events.nil?
+      flag = true if user_events.map{|x|x.user_id }.include?(student.user.id)
     end
     return flag
   end
 
-  def is_employee_event
-   return true if self.user_event.present?
-   false
+  def is_employee_event(user)
+    user_events = self.user_events if self.user_events.present?
+    unless user_events.nil?
+      return true if user_events.map{|x|x.user_id }.include?(user.id)
+    end
+    return false
   end
 
   def is_active_event

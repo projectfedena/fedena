@@ -266,7 +266,7 @@ class CalendarController < ApplicationController
     if @user.student?
       finance_due_check.reject!{|x| !x.is_student_event(@user.student_record) }
     elsif @user.employee?
-      finance_due_check.reject!{|x| !x.is_employee_event }
+      finance_due_check.reject!{|x| !x.is_employee_event(@user) }
     end
     @finance_due = []
     finance_due_check.each do |h|
@@ -340,7 +340,7 @@ class CalendarController < ApplicationController
               build_common_events_hash(e,'finance_due',@show_month)
             end
           elsif @user.employee?
-            if e.is_employee_event
+            if e.is_employee_event(@user)
               build_common_events_hash(e,'finance_due',@show_month)
             end
           end
