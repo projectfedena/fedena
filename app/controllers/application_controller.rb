@@ -38,8 +38,8 @@ class ApplicationController < ActionController::Base
   def set_variables
     unless @current_user.nil?
       @attendance_type = Configuration.get_config_value('StudentAttendanceType') unless @current_user.student?
+      @modules = Configuration.available_modules
     end
-    @modules = Configuration.available_modules
   end
 
 
