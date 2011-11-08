@@ -97,6 +97,9 @@ class ApplicationController < ActionController::Base
   
   def initialize
     @title = 'Fedena'
+    @attendance_type = Configuration.get_config_value('StudentAttendanceType')
+    @modules = Configuration.available_modules
+    @this_user = User.find(session[:user_id]) if session[:user_id]
   end
 
   def message_user

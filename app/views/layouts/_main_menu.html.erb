@@ -1,6 +1,4 @@
-<% this_user = User.find(session[:user_id]) if session[:user_id] %>
 <% arrow_dir = rtl? ? "◀" : "▶" %>
-<% @modules = Configuration.available_modules %>
 <ul id="main-menu">
   <li><%= link_to t('dashboard_text'), :controller => "user", :action => "dashboard" %></li>
   <% if permitted_to? :index, :student %>
@@ -46,7 +44,7 @@
   <% end %>
   <!--
   <li><%= link_to t('news_text'), :controller => "news", :action => "index" \
-    if this_user.admin? %></li> -->
+    if @this_user.admin? %></li> -->
   <% if permitted_to? :index, :timetable %>
     <li><%= link_to "#{t('timetable_text')} <span class='down-arrow'>▼</span>", :controller => "timetable", :action => "index" %>
       <ul class="level-1">
@@ -62,7 +60,6 @@
           <li><%= link_to "#{t('view_timetable')}", :controller => "timetable", :action => "view" %></li>
         <%  end%>
         <%  if permitted_to? :edit,:timetable%>
-          <% @attendance_type = Configuration.get_config_value('StudentAttendanceType') %>
           <% if @attendance_type == 'SubjectWise' %>
             <li><%= link_to "#{t('swap_class')}", :controller => "timetable", :action => "extra_class" %></li>
           <%  end %>
@@ -74,7 +71,7 @@
       </ul>
     </li>
   <% end %>
-  <% if this_user.admin? %>
+  <% if @this_user.admin? %>
     <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
       <% unless mod[:top_bar].blank? %>
         <% if permitted_to? "#{mod[:top_bar][:action]}".to_sym,"#{mod[:top_bar][:controller]}".to_sym %>
@@ -136,8 +133,7 @@
             <% if permitted_to? :department_payslip, :employee %>
               <li><%= link_to "#{t('employee_payslip')}", :controller=>"employee", :action=>"department_payslip" %></li>
             <% end %>
-            <% finance = Configuration.available_modules %>
-            <% unless finance.include?("Finance") %>
+            <% unless @modules.include?("Finance") %>
               <% if permitted_to? :payslip_approve, :employee %>
                 <li><%= link_to "#{t('one_click_aprove_payslip')}", :controller=>"employee", :action=>"payslip_approve" %></li>
               <%end%>
@@ -153,8 +149,7 @@
             <li><%= link_to "#{t('transactions')}", :controller => "finance", :action => "transactions" %> </li>
             <li><%= link_to "#{t('donations')}", :controller => "finance", :action => "donation" %></li>
             <li><%= link_to "#{t('automatic_transactions')}", :controller => "finance", :action => "automatic_transactions" %></li>
-            <% @hr = Configuration.find_by_config_value("HR") %>
-            <% unless @hr.nil? %>
+            <% if @modules.include?("HR") %>
               <li><%= link_to "#{t('payslip_text')}", :controller => "finance", :action => "payslip_index" %></li>
             <% end %>
             <li><%= link_to "#{t('asset_liability_management')}", :controller => "finance", :action => "asset_liability" %></li>
@@ -162,7 +157,7 @@
           </ul>
         </li>
       <% end %>
-      <% if this_user.admin? %>
+      <% if @this_user.admin? %>
         <li><%= link_to "#{t('user_text')}" , :controller => "user", :action=>"index" %></li>
       <% end %>
       <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
