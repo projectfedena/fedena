@@ -45,7 +45,7 @@ class Event < ActiveRecord::Base
         end
       end
     end
-    user_events = self.user_events if self.user_events.present?
+    user_events = self.user_events
     unless user_events.nil?
       flag = true if user_events.map{|x|x.user_id }.include?(student.user.id)
     end
@@ -53,7 +53,7 @@ class Event < ActiveRecord::Base
   end
 
   def is_employee_event(user)
-    user_events = self.user_events if self.user_events.present?
+    user_events = self.user_events
     unless user_events.nil?
       return true if user_events.map{|x|x.user_id }.include?(user.id)
     end
