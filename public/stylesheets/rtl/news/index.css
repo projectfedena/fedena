@@ -69,9 +69,8 @@
 }
 #go input {
     height:28px;
-    width:77px;
-    margin:6px 10px 0 0;
-    padding:0 0 2px 0;
+    width:auto;
+    padding:5px 10px;
     background: #313236;
     color:#fff;
     font-weight: bold;

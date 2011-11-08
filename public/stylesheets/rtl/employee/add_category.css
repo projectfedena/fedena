@@ -21,10 +21,10 @@
     float:right;
     margin-top:10px;
     margin-right: 210px;
-    padding:7px 9px;
+    padding:7px 10px;
     border:none;
     text-align:center;
-    width:80px;
+    width:auto;
     cursor:pointer;
 }
 

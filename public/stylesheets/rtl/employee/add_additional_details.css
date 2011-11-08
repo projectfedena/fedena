@@ -27,10 +27,10 @@
     float:right;
     margin-top:20px;
     margin-right: 210px;
-    padding:7px 12px;
+    padding:7px 10px;
     border:none;
     text-align:center;
-    width:90px;
+    width:auto;
     cursor:pointer;
 }
 

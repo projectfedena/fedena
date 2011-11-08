@@ -27,9 +27,9 @@
     float:right;
     border:none;
     text-align:center;
-    width:128px;
+    width:auto;
     cursor:pointer;
-    padding:7px 12px;
+    padding:7px 10px;
 }
 
 .label-checkbox-pair  {

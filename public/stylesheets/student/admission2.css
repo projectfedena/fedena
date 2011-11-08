@@ -60,7 +60,7 @@
     font-family:arial;
     font-size:14px;
     font-weight:bold;
-    padding:7px 12px 7px 8px;
+    padding:7px 10px;
     border:none;
     cursor:pointer;
 }
@@ -125,7 +125,7 @@ ul#parents-list li.listeven {
     font-family:arial;
     font-size:14px;
     font-weight:bold;
-    padding:8px 12px 8px 8px;
+    padding:7px 10px;
 }
 #add-more-parent a{
     color:#fff;
@@ -142,7 +142,7 @@ ul#parents-list li.listeven {
     font-family:arial;
     font-size:14px;
     font-weight:bold;
-    padding:8px 12px 8px 8px;
+    padding:7px 10px;
 }
 #skip a{
     color:#fff;

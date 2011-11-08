@@ -74,7 +74,7 @@ a.user_button{
     border:none;
     text-align:center;
     text-decoration: none;
-    width:70px;
+    width:auto;
     cursor:pointer;
 }
 a.user_button:hover{

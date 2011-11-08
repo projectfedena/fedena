@@ -37,7 +37,7 @@
     border:none;
     float:left;
     text-align:center;
-    width:120px;
+    width:auto;
     cursor:pointer;
     text-decoration: none;
     color:#fff;
@@ -60,7 +60,7 @@
     border:none;
     float:left;
     text-align:center;
-    width:137px;
+    width:auto;
     cursor:pointer;
     text-decoration: none;
     color:#fff;
@@ -138,7 +138,7 @@
     border:none;
     float:left;
     text-align:center;
-    width:120px;
+    width:auto;
     cursor:pointer;
 }
 

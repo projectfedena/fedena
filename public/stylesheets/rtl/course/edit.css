@@ -21,10 +21,10 @@
     margin:0px auto;
     margin-right:200px;
     margin-top:30px;
-    padding:7px 12px;
+    padding:7px 10px;
     border:none;
     text-align:center;
-    width:90px;
+    width:auto;
     cursor:pointer;
 }
 .fieldWithErrors{

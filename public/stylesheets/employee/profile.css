@@ -422,10 +422,10 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     font-weight:bold;
     margin:0px auto;
     margin-top:30px;
-    padding:7px 12px;
+    padding:7px 10px;
     border:none;
     text-align:center;
-    width:120px;
+    width:auto;
     cursor:pointer;
 }
 
@@ -446,10 +446,10 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     font-weight:bold;
     margin:0px;
     margin-top:30px;
-    padding:7px 12px;
+    padding:7px 10px;
     border:none;
     text-align:center;
-    width:91px;
+    width:auto;
     cursor:pointer;
     float:left;
     margin-right:20px;
@@ -486,10 +486,10 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     font-weight:bold;
     margin:0px;
     margin-top:30px;
-    padding:7px 12px;
+    padding:7px 10px;
     border:none;
     text-align:center;
-    width:111px;
+    width:auto;
     cursor:pointer;
     float:left;
 }

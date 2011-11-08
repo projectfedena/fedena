@@ -73,7 +73,7 @@ textarea#email_message:focus{
     font-size:14px;
     font-weight:bold;
     margin:30px 0 0 270px;
-    width:100px;
+    width:auto;
     padding:7px 10px;
     border:none;
     cursor:pointer;

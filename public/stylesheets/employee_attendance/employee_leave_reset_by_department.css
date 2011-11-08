@@ -41,11 +41,11 @@ label {display:inline;}
     font-weight:bold;
     margin:30px auto;
     margin-right:20px;
-    padding:7px 12px;
+    padding:7px 10px;
     border:none;
     text-align:center;
     text-decoration: none;
-    width:100px;
+    width:auto;
     cursor:pointer;
 }
 .label_field_pair {

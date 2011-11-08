@@ -38,7 +38,7 @@
     border:none;
     text-align:center;
     text-decoration: none;
-    width:100px;
+    width:auto;
     cursor:pointer;
 }
 .necessary-field {

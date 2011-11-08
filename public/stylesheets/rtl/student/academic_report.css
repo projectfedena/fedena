@@ -63,7 +63,7 @@
     padding:7px 12px;
     border:none;
     text-align:center;
-    width:150px;
+    width:auto;
     cursor:pointer;
 }
 #pdf-view-button a{

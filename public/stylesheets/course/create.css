@@ -10,10 +10,10 @@
     margin:0px auto;
     margin-left:200px;
     margin-top:30px;
-    padding:7px 12px;
+    padding:7px 10px;
     border:none;
     text-align:center;
-    width:80px;
+    width:auto;
     cursor:pointer;
 }
 #course-list {
