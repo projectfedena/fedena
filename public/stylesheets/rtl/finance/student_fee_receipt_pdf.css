@@ -130,5 +130,8 @@ td.col-8 {
     text-align: left;
 }
 
+tr.paid *{
+   font-weight: bold;
+}
 
 

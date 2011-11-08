@@ -250,3 +250,20 @@ table#listing td.col-8 {
     width: 10%;
     text-align: right;
 }
+
+.pay_fees_buttons{
+    clear: both;
+
+}
+
+.pay_fees_buttons a{
+    float: right !important;
+    margin: 18px 10px 0 !important;
+}
+.pay_fees_buttons input{
+    float: right;
+}
+
+.pay_fees .label-field-pair2{
+    float: right;
+}

@@ -1194,7 +1194,7 @@ class FinanceController < ApplicationController
     @financefee = @student.finance_fee_by_date @date
     @due_date = @fee_collection.due_date
     unless @financefee.transaction_id.blank?
-      @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
+      @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
     end
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted = false"])
     @fee_particulars = @date.fees_particulars(@student)
@@ -1293,7 +1293,7 @@ class FinanceController < ApplicationController
     @due_date = @fee_collection.due_date
     
     unless @financefee.transaction_id.blank?
-      @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
+      @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
     end
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted = false"])
     @fee_particulars = @date.fees_particulars(@student)
@@ -1607,7 +1607,7 @@ class FinanceController < ApplicationController
     end
     
     unless @financefee.transaction_id.blank?
-      @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
+      @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
     end
     total_fees = 0
     @fee_particulars.each do |p|

@@ -146,7 +146,7 @@
       <tr class="tr-blank"></tr>
       <tr class="tr-blank"></tr>
 
-    <% unless @paid_fees.nil? %>
+      <% unless @paid_fees.nil? %>
         <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
           <td class="col-1" ></td>
           <td class="col-1" colspan="2" ><span><%= t('payment_done') %> </span></td>
@@ -183,7 +183,13 @@
                 </div>
                 <%= hidden_field_tag :total_fees, total_fees %>
               </div>
-              <%= submit_tag "► #{t('pay_fees')}",:class=>'submit_button' %>
+              <div class="pay_fees_buttons">
+                <%= submit_tag "► #{t('pay_fees')}",:class=>'submit_button' %>
+
+                <%= link_to "► #{t('print_receipt')}",
+                  {:controller => "finance", :action => "student_fee_receipt_pdf", :id => @student.id, :id2=>@date.id},:target => '_blank', :class=> 'user_button' unless @trans.nil? %>
+              </div>
+
             <% else %>
               <h4><%= t('fees_paid') %></h4>
             <% end %>

@@ -22,7 +22,11 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2><%= t('fee_reciept') %></h2>
+  <% if @financefee.is_paid %>
+    <h2><%= t('fee_reciept') %></h2>
+  <% else %>
+    <h2><%= t('partial_payment_receipt') %></h2>
+  <% end %>
   <div class="hor_line"></div>
 
 
@@ -35,13 +39,14 @@
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('particulars') %></td><td class="col-pdf"> <%= t('amount') %></td></tr>
+        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('particulars') %></td><td class="col-pdf"><%= t('receipt_no') %></td><td class="col-pdf"> <%= t('amount') %></td></tr>
         <% i = 0  %>
         <% c= 'even' %>
         <% @fee_particulars.each do |fee| %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"><%= i+=1 %></td>
             <td class="col-pdf"><%= fee.name %></td>
+            <td class="col-pdf"></td>
             <td class="col-pdf">&nbsp;<%= @currency_type.to_s + " " +fee.amount.to_s %></td>
           </tr>
           <% total_fees += fee.amount %>
@@ -52,12 +57,13 @@
           <tr class="tr-blank"></tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-1" ></td>
-            <td class="col-1" colspan="2"><span><%= t('discount') %></span></td>
+            <td class="col-1" colspan="3"><span><%= t('discount') %></span></td>
           </tr>
           <% @batch_discounts.each do |d| %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-1"><%= i+=1 %></td>
               <td class="col-2"><%= shorten_string(d.name,20) %></td>
+              <td class="col-2"></td>
               <td class="col-6"><%= d.discount%> %</td>
             </tr>
           <% end %>
@@ -65,6 +71,7 @@
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-1"><%= i+=1 %></td>
               <td class="col-2"><%= shorten_string(d.name,20) %></td>
+              <td class="col-2"></td>
               <td class="col-6"><%= d.discount%> %</td>
             </tr>
           <% end %>
@@ -72,6 +79,7 @@
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-1"><%= i+=1 %></td>
               <td class="col-2"><%= shorten_string(d.name,20) %></td>
+              <td class="col-2"></td>
               <td class="col-6"><%= d.discount%> %</td>
             </tr>
           <% end %>
@@ -79,7 +87,7 @@
           <tr class="tr-blank"></tr>
 
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-8" colspan="2" ><%= t('total_discount') %></td>
+            <td class="col-8" colspan="3" ><%= t('total_discount') %></td>
             <td class="col-6" ><%= "#{@total_discount} %" %></td>
           </tr>
 
@@ -87,7 +95,7 @@
           <tr class="tr-blank"></tr>
           <% total_fees = (total_fees - ((total_fees*@total_discount)/100)) %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-8" colspan="2" ><%= t('total_fees') %></td>
+            <td class="col-8" colspan="3" ><%= t('total_fees') %></td>
             <td class="col-6" ><%= total_fees %></td>
           </tr>
 
@@ -102,6 +110,7 @@
             <tr class="<%= cycle((["odd","even"]-[c]).first,c) %>">
               <td class="col-pdf"><%= i+=1 %></td>
               <td class="col-pdf"><span><%= t('fine') %></span></td>
+              <td class="col-pdf"></td>
               <td class="col-pdf">&nbsp;<%= @currency_type.to_s + " " +(@trans.fine_amount.to_f).to_s %></td>
             </tr>
             <%  total_fees = total_fees+@trans.fine_amount.to_f %>
@@ -111,15 +120,16 @@
             <tr class="tr-blank"></tr>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-1" ></td>
-              <td class="col-1" colspan="2"><span><%= t('payment_done') %></span></td>
+              <td class="col-1" colspan="3"><span><%= t('payment_done') %></span></td>
             </tr>
             <% paid = 0 %>
             <% x = 0  %>
             <% @paid_fees.each do |p| %>
               <% paid += p.amount.to_f %>
-              <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %> <%= "paid" if @paid_fees.last.id.to_i == p.id.to_i and @financefee.is_paid == false%>">
                 <td class="col-pdf"><%= x+=1 %></td>
                 <td class="col-pdf"><%= "#{t('partial_payment_on')}" + p.transaction_date.to_s %></td>
+                <td class="col-pdf"><%= p.receipt_no unless p.receipt_no.nil?%></td>
                 <td class="col-pdf"><%= "-"+@currency_type.to_s + " " +(p.amount.to_s) %></td>
               </tr>
 
@@ -128,7 +138,7 @@
           <% end %>
         <% end %>
         <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-          <td colspan="2" class="col-8"><%= t('amount_to_pay') %></td>
+          <td colspan="3" class="col-8"><%= t('amount_to_pay') %></td>
           <td class="col-pdf">&nbsp;<%= @currency_type.to_s + " " + total_fees.to_s  %></td>
         </tr>
       </table>

@@ -1556,6 +1556,7 @@ es: # locale
   department_salary_report: "Reporte de salario por departamentos"
   employee_salary: "Salario de empleado"
   fee_reciept: "Recibo"
+  partial_payment_receipt: "Recibo de pago parcial"
   fee_collection_dates: "Fechas de pago"
   view_fee_collection_dates: "Ver fechas de pago"
   fees_discount_succesfully_created: "Descuento creado con éxito"

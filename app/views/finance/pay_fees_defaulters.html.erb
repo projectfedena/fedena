@@ -177,7 +177,13 @@
                   </div>
                   <%= hidden_field_tag :total_fees, total_fees %>
                 </div>
-                <%= submit_tag "►#{t('pay_fees')}",:class=>'submit_button' %>
+                <div class="pay_fees_buttons">
+                  <%= submit_tag "►#{t('pay_fees')}",:class=>'submit_button' %>
+
+                  <%= link_to "► #{t('print_receipt')}",
+                    {:controller => "finance", :action => "student_fee_receipt_pdf", :id => @student.id, :id2=>@date.id},:target => '_blank', :class=> 'user_button' unless @trans.nil? %>
+                </div>
+
               <% else %>
                 <h4><%= t('fees_paid') %></h4>
               <% end %>

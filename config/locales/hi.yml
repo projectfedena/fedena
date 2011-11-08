@@ -1535,6 +1535,7 @@ hi:
   department_salary_report: "विभाग वेतन रिपोर्ट"
   employee_salary: "कर्मचारी वेतन"
   fee_reciept: "फ़ीस रसीद"
+  partial_payment_receipt: "आंशिक भुगतान रसीद"
   fee_collection_dates: "शुल्क संग्रह प्रस्थान"
   view_fee_collection_dates: "देखें शुल्क संग्रह तिथियाँ"
   fees_discount_succesfully_created: "शुल्क डिस्काउंट सफलतापूर्वक बनाया गया"

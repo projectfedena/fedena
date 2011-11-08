@@ -1528,6 +1528,7 @@ ar: # locale
   department_salary_report: "تقرير قسم الراتب"
   employee_salary: "راتب الموظف"
   fee_reciept: "رسوم الإيصال"
+  partial_payment_receipt: "الدفع الجزئي الإيصا"
   fee_collection_dates: "جمع الرسوم التواريخ"
   view_fee_collection_dates: "عرض جمع الرسوم التواريخ"
   fees_discount_succesfully_created: "رسوم مخفضة إنشاء بنجاح"
