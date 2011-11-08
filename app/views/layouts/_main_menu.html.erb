@@ -44,7 +44,7 @@
   <% end %>
   <!--
   <li><%= link_to t('news_text'), :controller => "news", :action => "index" \
-    if @this_user.admin? %></li> -->
+    if @current_user.admin? %></li> -->
   <% if permitted_to? :index, :timetable %>
     <li><%= link_to "#{t('timetable_text')} <span class='down-arrow'>▼</span>", :controller => "timetable", :action => "index" %>
       <ul class="level-1">
@@ -71,7 +71,7 @@
       </ul>
     </li>
   <% end %>
-  <% if @this_user.admin? %>
+  <% if @current_user.admin? %>
     <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
       <% unless mod[:top_bar].blank? %>
         <% if permitted_to? "#{mod[:top_bar][:action]}".to_sym,"#{mod[:top_bar][:controller]}".to_sym %>
@@ -157,7 +157,7 @@
           </ul>
         </li>
       <% end %>
-      <% if @this_user.admin? %>
+      <% if @current_user.admin? %>
         <li><%= link_to "#{t('user_text')}" , :controller => "user", :action=>"index" %></li>
       <% end %>
       <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>

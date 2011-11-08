@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
   before_filter { |c| Authorization.current_user = c.current_user }
   before_filter :message_user
   before_filter :set_user_language
+  before_filter :set_variables
 
   before_filter :dev_mode
 
@@ -31,11 +32,18 @@ class ApplicationController < ActionController::Base
   def dev_mode
     if Rails.env == "development"
      
-   end
+    end
+  end
+
+  def set_variables
+    unless @current_user.nil?
+      @attendance_type = Configuration.get_config_value('StudentAttendanceType') unless @current_user.student?
+    end
+    @modules = Configuration.available_modules
   end
 
 
-    def set_language
+  def set_language
     session[:language] = params[:language]
     render :update do |page|
       page.reload
@@ -63,8 +71,8 @@ class ApplicationController < ActionController::Base
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects
       if @employee_subjects.empty? and !@privilege.include?("StudentAttendanceView") and !@privilege.include?("StudentAttendanceRegister")
-          flash[:notice] = "#{t('flash_msg4')}"
-          redirect_to :controller => 'user', :action => 'dashboard'
+        flash[:notice] = "#{t('flash_msg4')}"
+        redirect_to :controller => 'user', :action => 'dashboard'
       else
         @allow_access = true
       end
@@ -96,10 +104,7 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize
-    @title = 'Fedena'
-    @attendance_type = Configuration.get_config_value('StudentAttendanceType')
-    @modules = Configuration.available_modules
-    @this_user = User.find(session[:user_id]) if session[:user_id]
+    @title = 'Fedena'  
   end
 
   def message_user
@@ -123,14 +128,14 @@ class ApplicationController < ActionController::Base
   protected
   def login_required
     unless session[:user_id]
-    session[:back_url] = request.url
-    redirect_to '/'
+      session[:back_url] = request.url
+      redirect_to '/'
     end
   end
 
   def check_if_loggedin
     if session[:user_id]
-    redirect_to :controller => 'user', :action => 'dashboard'
+      redirect_to :controller => 'user', :action => 'dashboard'
     end
   end
 
@@ -256,7 +261,7 @@ class ApplicationController < ActionController::Base
   end
 
 
- private
+  private
   def set_user_language
     lan = Configuration.find_by_config_key("Locale")
     I18n.default_locale = lan.config_value
