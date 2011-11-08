@@ -29,6 +29,7 @@ class FinanceTransaction < ActiveRecord::Base
   after_create  :create_auto_transaction
   after_update  :update_auto_transaction
   after_destroy :delete_auto_transaction
+  after_create :add_voucher_or_receipt_number
 
   def self.report(start_date,end_date,page)
     cat_names = ['Fee','Salary','Donation','Library','Hostel','Transport']
@@ -223,5 +224,36 @@ class FinanceTransaction < ActiveRecord::Base
     transactions.each {|transaction| amount += transaction.amount}
     amount
   end
-
+  
+  def add_voucher_or_receipt_number
+    if self.category.is_income and self.master_transaction_id == 0
+      last_transaction = FinanceTransaction.last(:conditions=>"receipt_no IS NOT NULL")
+      last_receipt_no = last_transaction.receipt_no unless last_transaction.nil?
+      unless last_receipt_no.nil?
+        receipt_split = last_receipt_no.to_s.scan(/[A-Z]+|\d+/i)
+        if receipt_split[1].blank?
+          receipt_number = receipt_split[0].next
+        else
+          receipt_number = receipt_split[0]+receipt_split[1].next
+        end
+      else
+        receipt_number = "1"
+      end
+      self.update_attributes(:receipt_no=>receipt_number)
+    else
+      last_transaction = FinanceTransaction.last(:conditions=>"voucher_no IS NOT NULL")
+      last_voucher_no = last_transaction.voucher_no unless last_transaction.nil?
+      unless last_voucher_no.nil?
+        voucher_split = last_voucher_no.to_s.scan(/[A-Z]+|\d+/i)
+        if voucher_split[1].blank?
+          voucher_number = voucher_split[0].next
+        else
+          voucher_number = voucher_split[0]+voucher_split[1].next
+        end
+      else
+        voucher_number = "1"
+      end
+      self.update_attributes(:voucher_no=>voucher_number)
+    end
+  end
 end
