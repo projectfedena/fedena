@@ -78,12 +78,12 @@
       <%  unless @previous_subject.nil? %>
         <% @previous_subject.each  do |p| %>
 
-          <li><div class="name"><%= p.subject %></div>
-            <div class="val"><span>:</span><%= p.mark %></div>
-            <div class="delete"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
+          <li><div><span class="name"><%= p.subject %></span>
+            <span class="val"><span>:</span><%= p.mark %></span>
+            <span class="delete"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
                 :url => {:action => "delete_previous_subject", :id => p.id},
 
-                :update => "added_subjects"%></div></li>
+                :update => "added_subjects"%></span></div></li>
 
         <% end %>
       <% end %>
