@@ -1262,7 +1262,7 @@ en: # locale
   forgot_password: "Help! I've Forgotten my Password?"
   login: "Login"
   fedena_logo: "/images/application/app_fedena_logo.jpg"
-  enter_email: "Enter your email address"
+  enter_email: "Enter your username"
   contact_admin: "Contact Fedena Administrator to recover your password"
   logged_as: "Logged in as:"
   messages: "Messages"

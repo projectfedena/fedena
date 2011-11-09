@@ -1259,7 +1259,7 @@ es: # locale
   forgot_password: "Ayuda! He olvidado mi contraseña?"
   login: "Iniciar sesión"
   fedena_logo: "/images/application/app_fedena_logo.jpg"
-  enter_email: "Ingresar su emails"
+  enter_email: "Introduzca su nombre de usuario"
   contact_admin: "Contacte el administrador Globoschool para recuperar su contraseña"
   logged_as: "Ingresó como:"
   messages: "Mensajes"
