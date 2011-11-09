@@ -1872,7 +1872,7 @@ es: # locale
     flash19: "Dirección y detalles de contacto guardados para"
     flash20: "Dirección del empleado guardada para"
     flash21: "Detalles de empleado guardados para"
-    flash22: "Detalles bancarios guardados para"
+    flash22: "Datos de contacto actualizados para"
     flash23: "Detalles bancarios actualizados"
     flash24: "Detalles bancarios guardados para"
     flash25: "Administrador de reportes guardado"

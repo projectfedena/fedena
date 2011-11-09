@@ -1877,7 +1877,7 @@ en: # locale
     flash19: "address and contact details saved for"
     flash20: "Employee address  details saved for"
     flash21: "Employee contact details saved for"
-    flash22: "Bank details saved for"
+    flash22: "Contact details updated for"
     flash23: "bank details updated"
     flash24: "Bank details saved for"
     flash25: "employee reporting manager saved"
