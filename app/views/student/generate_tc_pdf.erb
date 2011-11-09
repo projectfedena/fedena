@@ -58,7 +58,7 @@
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"><%= t('gender') %></td>
-            <td class="col-pdf"><%= @student.gender_as_text %></td>
+            <td class="col-pdf"><%= "#{t(@student.gender_as_text.downcase)}" %></td>
           </tr>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"><%= t('nationality') %></td>
@@ -71,13 +71,13 @@
 
           <% if @father %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf"><%= t('father') %></td>
+            <td class="col-pdf"><%= t('father_name') %></td>
             <td class="col-pdf"><%= @father.full_name %></td>
           </tr>
 
                 <% elsif @mother %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf"><%= t('mother') %></td>
+            <td class="col-pdf"><%= t('mother_name') %></td>
             <td class="col-pdf"><%= @mother.full_name %></td>
           </tr>
 

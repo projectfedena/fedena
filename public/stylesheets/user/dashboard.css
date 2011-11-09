@@ -124,8 +124,9 @@ div.nicetitle p { margin: 0; padding: 0 3px; }
 
 .button-label p {
  text-align: center;
- margin-left: -13px;
+ margin-left: -1px;
  text-decoration: none;
+ width: 173px;
 }
 
 .button-box a {

@@ -49,7 +49,7 @@
   </div>
     <% end %>
   <div class="link-box">
-    <div class="link-heading"> <%= link_to "Remove student records", :controller => "student", :action => "delete", :id => @student.id %> </div>
+    <div class="link-heading"> <%= link_to "#{t('remove_student_records')}", :controller => "student", :action => "delete", :id => @student.id %> </div>
     <div class="link-descr"><%= t('remove_student_message') %></div>
   </div>
 
