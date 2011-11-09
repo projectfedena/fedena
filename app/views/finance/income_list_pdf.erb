@@ -33,7 +33,7 @@
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"> <%= t('name') %> </td><td class="col-pdf"> <%= t('description') %> </td><td class="col-pdf"><%= "#{t('amount')}( #{currency})" %></td><td class="col-pdf"> <%= t('transaction_date') %></td></tr>
+        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"> <%= t('name') %> </td><td class="col-pdf"> <%= t('description') %> </td><td class="col-pdf"> <%= t('receipt_no') %> </td><td class="col-pdf"><%= "#{t('amount')}( #{currency})" %></td><td class="col-pdf"> <%= t('transaction_date') %></td></tr>
         <% index = 0 %>
         <% total = 0 %>
         <% i = 0 %>
@@ -44,6 +44,7 @@
             <td class="col-pdf"><%= index+=1 %></td>
             <td class="col-pdf"><%= d.title %></td>
             <td class="col-pdf"><%= d.description %></td>
+            <td class="col-pdf"><%= d.receipt_no %></td>
             <td class="col-pdf"><%= d.amount %></td>
             <td class="col-pdf"><%= d.transaction_date.strftime("%d-%m-%y") unless d.transaction_date.nil?%></td>
           </tr>

@@ -1581,6 +1581,8 @@ es: # locale
   regards: "se refiere a"
   fees_category_cant_be_blank: "La categoría no puede estar en blanco"
   receipt_no: "Recibo No"
+  voucher_no: "N º de vales"
+  receipt_or_voucher_no: "Recibo / Voucher No."
   batch_cant_be_blank: "El grupo no puede estar en blanco"
   is_invalid_admission_no: "es un número de admisión invalido"
   admission_cant_be_blank: "El número de admisión ni puede estar en blanco"

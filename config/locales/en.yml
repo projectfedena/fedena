@@ -1584,6 +1584,8 @@ en: # locale
   regards: "regards"
   fees_category_cant_be_blank: "Fee category cant be blank"
   receipt_no: "Receipt No"
+  voucher_no: "Voucher No"
+  receipt_or_voucher_no: "Receipt / Voucher No"
   batch_cant_be_blank: "Batch cant be blank"
   is_invalid_admission_no: "is invalid admission number"
   admission_cant_be_blank: "Admission cant be blank"

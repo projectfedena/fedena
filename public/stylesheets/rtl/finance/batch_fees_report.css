@@ -8,7 +8,7 @@
     height: 1.5em;
     list-style-type: none;
     padding: 0.5em 1em 0 0;
-    width: 700px;
+    width: 835px;
 }
 .fees-tr {
     background-color: #E7EEFF;
@@ -34,12 +34,14 @@
     width: 80px;
     padding: 0 41px 0 0;
     text-align:left;
+    height: 16px;
 }
 .fees-table-income {
     float:right;
     width: 120px;
     padding: 0 0px 0 0;
     text-align:left;
+    height: 16px;
 }
 .fees-table-date {
     float:left;
@@ -53,7 +55,7 @@
     border-bottom:1px solid #BECFFB;
     color : #444;
     height : auto;
-    width : 700px;
+    width : 835px;
     list-style-type : none;
     padding: 10px 16px 10px 0;
     font-size: 14px;
@@ -66,7 +68,7 @@
     border-bottom:1px solid #BECFFB;
     color : #444;
     height : auto;
-    width : 700px;
+    width : 835px;
     list-style-type : none;
     padding: 10px 16px 10px 0;
     font-size: 14px;
@@ -82,4 +84,11 @@
 }
 #transaction-report-title{
     margin-right:200px;
+}
+.fees-table-receipt-no{
+    float:left;
+    width: 120px;
+    padding: 0 0 0 0px;
+    text-align:center;
+    height: 16px;
 }

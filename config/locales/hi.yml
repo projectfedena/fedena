@@ -1560,6 +1560,8 @@ hi:
   regards: "का संबंध है"
   fees_category_cant_be_blank: "शुल्क वर्ग कठबोली रिक्त हो"
   receipt_no: "कोई रसीद"
+  voucher_no: "वाउचर संख्या"
+  receipt_or_voucher_no: "रसीद / वाउचर संख्या"
   batch_cant_be_blank: "बैच कठबोली खाली रहना"
   is_invalid_admission_no: "अवैध प्रवेश संख्या है"
   admission_cant_be_blank: "प्रवेश हो कठबोली रिक्त"

@@ -1553,6 +1553,8 @@ ar: # locale
   regards: "فيما يتعلق"
   fees_category_cant_be_blank: "فئة الرسم يكون غير قادر على فارغة"
   receipt_no: "لا تسلم"
+  voucher_no: "عدد القسائ"
+  receipt_or_voucher_no: "تسلم / القسيمة رقم"
   batch_cant_be_blank: "الدفعة يكون غير قادر على فارغة"
   is_invalid_admission_no: "قبول عدد غير صالح"
   admission_cant_be_blank: "تكون غير قادر على قبول فارغة"
