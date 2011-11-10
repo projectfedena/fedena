@@ -1,11 +1,11 @@
 <% arrow_dir = rtl? ? "◀" : "▶" %>
 <ul id="main-menu">
-  <li><%= link_to t('dashboard_text'), :controller => "user", :action => "dashboard" %></li>
+  <li class="a"><%= link_to t('dashboard_text'), :controller => "user", :action => "dashboard" %></li>
   <% if permitted_to? :index, :student %>
-    <li><%= link_to t('students'), :controller => "student", :action => "index" %></li>
+    <li class="a"><%= link_to t('students'), :controller => "student", :action => "index" %></li>
   <% end %>
   <% if permitted_to? :index, :attendance_reports or permitted_to? :index, :attendances %>
-    <li><%= link_to "#{t('attendance')} ▼", :controller => "student_attendance", :action => "index" %>
+    <li class="a"><%= link_to "#{t('attendance')} ▼", :controller => "student_attendance", :action => "index" %>
       <ul class="level-1">
         <% if permitted_to? :index, :attendances %>
           <li><%= link_to "#{t('attendance_register')}", :controller => 'attendances', :action => 'index'  %></li>
@@ -17,7 +17,7 @@
     </li>
   <% end %>
   <% if permitted_to? :index, :configuration %>
-    <li><%= link_to "#{t('settings')} ▼", :controller => "configuration", :action => "index" %>
+    <li class="a"><%= link_to "#{t('settings')} ▼", :controller => "configuration", :action => "index" %>
       <ul class="level-1">
         <% if permitted_to? :create, :courses %>
           <li><%= link_to "#{t('manage_course_batch')}", courses_path %></li>
@@ -46,7 +46,7 @@
   <li><%= link_to t('news_text'), :controller => "news", :action => "index" \
     if @current_user.admin? %></li> -->
   <% if permitted_to? :index, :timetable %>
-    <li><%= link_to "#{t('timetable_text')} <span class='down-arrow'>▼</span>", :controller => "timetable", :action => "index" %>
+    <li class="a"><%= link_to "#{t('timetable_text')} <span class='down-arrow'>▼</span>", :controller => "timetable", :action => "index" %>
       <ul class="level-1">
         <%if permitted_to? :edit,:timetable%>
           <% if @modules.include?('HR') %>
@@ -80,7 +80,7 @@
       <% end %>
     <% end %>
   <% end %>
-  <li><a href="#"><%= t('more') %> ▼</a>
+  <li class="a"><a href="#"><%= t('more') %> ▼</a>
     <ul class="level-1">
       <li><%= link_to "#{t('calendar_text')}" , :controller => "calendar", :action=>"index" %></li>
       <% if permitted_to? :index, :exam %>

@@ -69,7 +69,7 @@ body {
     padding: 0;
     list-style-type: none;
 }
-#main-menu li{
+#main-menu li.a{
     float: left;
 }
 #main-menu li a {
@@ -90,7 +90,7 @@ body {
 #main-menu li ul.level-1{
     margin: 0;
     padding: 0;
-    width : 140px;
+    width : auto;
     list-style-type: none;
     position: absolute;
     top: 60px;
@@ -118,7 +118,7 @@ body {
     text-indent: 5px;
     background: none;
     color: #ffffff;
-    width: 140px;
+    width: 100%;
     font-size: 14px;
     text-align: left;
     margin: 0;
@@ -132,10 +132,10 @@ body {
     margin: -1px 0 0 0;
     padding: 0;
     position: absolute;
-    left: 140px;
+    left: 135px;
     top: auto;
     visibility: hidden;
-    width: 140px;
+    width: 200px;
     list-style-type: none;
     z-index: 999;
     border : 1px solid black;
@@ -160,7 +160,7 @@ body {
     text-indent: 5px;
     background: none;
     color: #ffffff;
-    width: 140px;
+    width: 200px;
     font-size: 14px;
     text-align: left;
     margin: 0;

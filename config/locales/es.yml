@@ -45,6 +45,8 @@ es: # locale
 
       batch:
         name: "Nombre"
+        start_date: "Fecha inicial"
+        end_date: "Fecha final"
 
       class_timing:
         name: "Nombre"
@@ -560,7 +562,7 @@ es: # locale
   select_month_and_year: "Seleccionar un mes & año"
   total_working_days: "Total días de trabajo"
   total_working_hours: "Total horas de trabajo"
-  total_present: "Total actual"
+  total_present: "Total presentes"
   full_day: "Día completo"
   afternoon: "Tarde"
   forenoon: "Medio día"

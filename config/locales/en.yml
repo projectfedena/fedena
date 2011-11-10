@@ -45,6 +45,8 @@ en: # locale
 
       batch:
         name: "Name"
+        start_date: "Start date"
+        end_date: "End Date"
 
       class_timing:
         name: "Name"
