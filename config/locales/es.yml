@@ -560,7 +560,7 @@ es: # locale
   select_month_and_year: "Seleccionar un mes & año"
   total_working_days: "Total días de trabajo"
   total_working_hours: "Total horas de trabajo"
-  total_present: "Total presentes"
+  total_present: "Total actual"
   full_day: "Día completo"
   afternoon: "Tarde"
   forenoon: "Medio día"
