@@ -31,7 +31,7 @@
     background : #EEF2FD;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    min-height : 1.5em; width : 30em;
+    min-height : 1.5em; width : 33em;
     overflow: auto;
     list-style-type : none;
     padding : 0.5em 0 0 3em;
@@ -41,7 +41,7 @@
     background : #DFEAFF;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    min-height : 1.5em; width : 30em;
+    min-height : 1.5em; width : 33em;
     overflow: auto;
     list-style-type : none;
     padding : 0.5em 0 0 3em;
@@ -66,7 +66,7 @@
 #category-list li div.category-edit,
 #category-list li div.category-delete {
     font-size : 0.9em;
-    width : 65px;
+    width : 88px;
 
 }
 #category-list li div a {
