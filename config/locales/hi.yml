@@ -1752,6 +1752,7 @@ hi:
   years: "वर्षों"
   months: "महीने"
   following_pblm_occured_while_saving_the_batch: "के बाद समस्याओं हो गई, जबकि इस बैच की बचत"
+  academic_year: "शैक्षिक वर्ष"
   placement_activities_privilege: "नियुक्ति क्रियाएँ"
   hostel_admin_privilege: "हॉस्टल व्यवस्थापक"
   group_create_privilege: "समूह बनाएँ"
