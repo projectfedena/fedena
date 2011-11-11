@@ -46,7 +46,7 @@ class ElectiveGroupsController < ApplicationController
   def update
     @elective_group = ElectiveGroup.find(params[:id])
     if @elective_group.update_attributes(params[:elective_group])
-      flash[:notice] = "#{t('flash1')}"
+      flash[:notice] = "#{t('flash3')}"
       #redirect_to [@batch, @elective_group]
       redirect_to batch_elective_groups_path(@batch)
     else
