@@ -40,9 +40,11 @@ class SubjectsController < ApplicationController
         @subjects = @subject.batch.normal_batch_subject
         @normal_subjects = @subject
         @elective_groups = ElectiveGroup.find_all_by_batch_id(@batch.id)
+        flash[:notice] = "Subject created successfully!"
       else
         @elective_group = params[:subject][:elective_group_id].to_i
         @subjects = @subject.batch.elective_batch_subject(@elective_group)
+        flash[:notice] = "Elective subject created successfully!"
       end
     else
       @error = true
@@ -64,9 +66,11 @@ class SubjectsController < ApplicationController
     if @subject.update_attributes(params[:subject])
       if params[:subject][:elective_group_id] == ""
         @subjects = @subject.batch.normal_batch_subject
+        flash[:notice] = "Subject updated successfully!"
       else
         elect_group = params[:subject][:elective_group_id].to_i
         @subjects = @subject.batch.elective_batch_subject(elect_group)
+        flash[:notice] = "Elective subject updated successfully!"
       end
     else
       @error = true
