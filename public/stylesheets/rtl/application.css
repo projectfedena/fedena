@@ -132,7 +132,7 @@ body {
     margin: -1px 0 0 0;
     padding: 0;
     position: absolute;
-    right: 135px;
+    right: 133px;
     top: auto;
     visibility: hidden;
     width: 200px;
@@ -452,7 +452,7 @@ body > #content_wrapper {
     -webkit-border-radius:10px;
     height : auto; width : 510px;
     margin : 20px auto;
-    padding : 10px 20px 20px 0;
+    padding: 15px 0 19px 47px;
 }
 .errorExplanation h2 {
     margin : 5px 20px 0 0;
