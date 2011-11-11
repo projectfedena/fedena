@@ -61,6 +61,8 @@ hi:
       exam:
         start_time: "प्रारंभ समय"
         end_time: "समाप्ति समय"
+        minimum_marks: "न्यूनतम निशान"
+        maximum_marks: "अधिकतम निशान"
 
       exam_group:
         name: "नाम"

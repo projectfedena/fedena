@@ -63,6 +63,8 @@ en: # locale
       exam:
         start_time: "Start Time"
         end_time: "End Time"
+        minimum_marks: "Minimum marks"
+        maximum_marks: "Maximum marks"
 
       exam_group:
         name: "Name"
