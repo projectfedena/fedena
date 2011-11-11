@@ -29,7 +29,6 @@ class ExamController < ApplicationController
     @batch = Batch.find(params[:batch])
     @name = params[:exam_option][:name]
     @type = params[:exam_option][:exam_type]
-
     unless @name == ''
       @exam_group = ExamGroup.new
       @normal_subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>"no_exams = false AND elective_group_id IS NULL AND is_deleted = false")

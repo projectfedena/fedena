@@ -31,11 +31,20 @@ class ExamGroup < ActiveRecord::Base
   validates_associated :exams
   
   def removable?
-   self.exams.reject{|e| e.removable?}.empty?
+    self.exams.reject{|e| e.removable?}.empty?
   end
 
   def before_save
-    self.exam_date = self.exam_date || Date.today
+    self.exam_date = self.exam_date || Date.today 
+  end
+
+  def before_validation
+    if self.exam_type.downcase == "grades"
+      self.exams.each do |ex|
+        ex.maximum_marks = 0
+        ex.minimum_marks = 0
+      end
+    end
   end
 
   def batch_average_marks(marks)

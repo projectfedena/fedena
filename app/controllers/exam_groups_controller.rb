@@ -51,6 +51,7 @@ class ExamGroupsController < ApplicationController
   def create
     @exam_group = ExamGroup.new(params[:exam_group])
     @exam_group.batch_id = @batch.id
+    @type = @exam_group.exam_type
     if @exam_group.save
       flash[:notice] =  "#{t('flash1')}"
       redirect_to batch_exam_groups_path(@batch)
