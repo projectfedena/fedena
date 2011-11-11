@@ -73,7 +73,7 @@ class AdditionalExamsController < ApplicationController
   def create
     @additional_exam = @additional_exam_group.additional_exams.build(params[:additional_exam])
     if @additional_exam.save
-      flash[:notice] = "#{t('flash2')}"
+      flash[:notice] = "#{t('flash_msg10')}"
       redirect_to [@batch, @additional_exam_group]
     else
       @subjects = @batch.subjects
