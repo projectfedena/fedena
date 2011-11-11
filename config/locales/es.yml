@@ -356,7 +356,7 @@ es: # locale
   guardian: "Guardián"
   course_text: "Curso"
   courses_text: "Cursos"
-  batch: "grupo"
+  batch: "Grupo"
   delete_text: "Eliminar"
   admission_number: "Número de Admisión"
   all: "Todos"
