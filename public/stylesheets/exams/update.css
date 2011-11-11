@@ -28,7 +28,7 @@
 
 .submit_button {
     margin-top:10px;
-    margin-left: 180px;
+    margin-left: 260px;
     padding: 7px 10px;
     color: #fff;
     background: #27292B;
@@ -42,4 +42,15 @@
 }
 .submit_button:hover{
     background:  #373B3F;
+}
+div.fieldWithErrors{
+    display: inline;
+}
+form.edit_exam{
+    margin: 0 auto;
+    width: 500px;
+}
+.necessary-field {
+    color: red;
+    font-size: 1.1em;
 }

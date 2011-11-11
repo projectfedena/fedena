@@ -47,23 +47,23 @@
       <% form_for [@exam_group, @exam] do |f| %>
         <%= error_messages_for :exam %>
         <div class="label-field-pair">
-          <label for="subject_id"><%= t('subject') %></label>
+          <label for="subject_id"><%= t('subject') %><span class="necessary-field">*</span></label>
           <div class="text-input-bg"><%= f.select :subject_id, @subjects.map { |s| [s.name, s.id]} %></div>
         </div>
         <div class="label-field-pair">
-          <label for="subject_start_time"><%= t('start_time') %></label>
+          <label for="subject_start_time"><%= t('start_time') %><span class="necessary-field">*</span></label>
           <div class="text-input-bg"> <%= f.calendar_date_select :start_time %></div>
         </div>
         <div class="label-field-pair">
-          <label for="subject_end_time"><%= t('end_time') %></label>
+          <label for="subject_end_time"><%= t('end_time') %><span class="necessary-field">*</span></label>
           <div class="text-input-bg"> <%= f.calendar_date_select :end_time %></div>
         </div>
         <div class="label-field-pair">
-          <label for="subject_maximum_marks"><%= t('max_mark') %></label>
+          <label for="subject_maximum_marks"><%= t('max_mark') %><span class="necessary-field">*</span></label>
           <div class="text-input-bg"><%= f.text_field :maximum_marks %></div>
         </div>
         <div class="label-field-pair">
-          <label for="subject_minimum_marks"><%= t('min_mark') %></label>
+          <label for="subject_minimum_marks"><%= t('min_mark') %><span class="necessary-field">*</span></label>
           <div class="text-input-bg"> <%= f.text_field :minimum_marks %></div>
         </div>
         <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
