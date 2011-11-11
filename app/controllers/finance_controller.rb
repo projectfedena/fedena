@@ -1996,10 +1996,10 @@ class FinanceController < ApplicationController
 
     title = Title.new("#{t('finance_transactions')}")
 
-    x_legend = XLegend.new("Examination name")
+    x_legend = XLegend.new("#{t('examination_name')}")
     x_legend.set_style('{font-size: 14px; color: #778877}')
 
-    y_legend = YLegend.new("Marks")
+    y_legend = YLegend.new("#{t('marks')}")
     y_legend.set_style('{font-size: 14px; color: #770077}')
 
     chart = OpenFlashChart.new
@@ -2099,10 +2099,10 @@ class FinanceController < ApplicationController
 
     title = Title.new("#{t('finance_transactions')}")
 
-    x_legend = XLegend.new("Examination name")
+    x_legend = XLegend.new("#{t('examination_name')}")
     x_legend.set_style('{font-size: 14px; color: #778877}')
 
-    y_legend = YLegend.new("Marks")
+    y_legend = YLegend.new("#{t('marks')}")
     y_legend.set_style('{font-size: 14px; color: #770077}')
 
     chart = OpenFlashChart.new
@@ -2289,7 +2289,7 @@ class FinanceController < ApplicationController
     end
     render :update do |page|
       page.replace_html "discount-box", :partial => "show_fee_discounts"
-      page.replace_html "flash-notice", :text => "<p class='flash-msg'>Discount deleted successfully.</p>"
+      page.replace_html "flash-notice", :text => "<p class='flash-msg'>#{t('discount_deleted_successfully')}.</p>"
     end
 
   end

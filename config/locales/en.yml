@@ -1781,6 +1781,7 @@ en: # locale
   months: "Months"
   following_pblm_occured_while_saving_the_batch: "Following problems occured while saving this batch"
   academic_year: "Academic year"
+  discount_deleted_successfully: "Discount deleted successfully"
   placement_activities_privilege: "Placement Activities"
   hostel_admin_privilege: "Hostel Admin"
   group_create_privilege: "Group Create"

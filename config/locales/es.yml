@@ -1778,6 +1778,7 @@ es: # locale
   months: "Meses"
   following_pblm_occured_while_saving_the_batch: "A raíz de los problemas al guardar este lote"
   academic_year: "Año académico"
+  discount_deleted_successfully: "Descuento eliminado con éxito"
   placement_activities_privilege: "Las actividades de colocación"
   hostel_admin_privilege: "Hostel Administración"
   group_create_privilege: "Crear grupo"
