@@ -527,7 +527,7 @@ class ExamController < ApplicationController
     x_legend = XLegend.new("#{t('subjects_text')}")
     x_legend.set_style('{font-size: 14px; color: #778877}')
 
-    y_legend = YLegend.new("Marks")
+    y_legend = YLegend.new("#{t('marks')}")
     y_legend.set_style('{font-size: 14px; color: #770077}')
 
     chart = OpenFlashChart.new
@@ -574,10 +574,10 @@ class ExamController < ApplicationController
 
     title = Title.new(subject.name)
 
-    x_legend = XLegend.new("Examination name")
+    x_legend = XLegend.new("#{t('examination_Name')}")
     x_legend.set_style('{font-size: 14px; color: #778877}')
 
-    y_legend = YLegend.new("Marks")
+    y_legend = YLegend.new("#{t('marks')}")
     y_legend.set_style('{font-size: 14px; color: #770077}')
 
     chart = OpenFlashChart.new
@@ -620,10 +620,10 @@ class ExamController < ApplicationController
 
     title = Title.new(student.full_name)
 
-    x_legend = XLegend.new("Academic year")
+    x_legend = XLegend.new("#{t('academic_year')}")
     x_legend.set_style('{font-size: 14px; color: #778877}')
 
-    y_legend = YLegend.new("Total marks")
+    y_legend = YLegend.new("#{t('total_marks')}")
     y_legend.set_style('{font-size: 14px; color: #770077}')
 
     chart = OpenFlashChart.new
