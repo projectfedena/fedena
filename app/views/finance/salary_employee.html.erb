@@ -50,7 +50,7 @@
         <% employee_id = payslip.first.active_or_archived_employee.class.to_s=="ArchivedEmployee" ?  payslip.first.active_or_archived_employee.former_id :  payslip.first.active_or_archived_employee.id %>
         <tr class="tr-<%= cycle("even","odd") %>">
           <td class ="col-1"><%=i+1%></td>
-          <td class="col-2"><%= link_to payslip.first.active_or_archived_employee.full_name + " - " , :action => 'employee_payslip_monthly_report',:id2 => salary_date.to_date,:id =>employee_id %> <%=salary_date.strftime("%B,%Y")%> </td>
+          <td class="col-2"><%= link_to payslip.first.active_or_archived_employee.full_name + " - " , :action => 'employee_payslip_monthly_report',:id2 => salary_date.to_date,:id =>employee_id %> <%= I18n.l(salary_date,:format=>"%B,%Y")%> </td>
           <%  amount = Employee.calculate_salary(payslip,individual_payslip_category)[:net_amount]%>
           <td class="col-3" align="right"> <%=  amount  %> </td>
           <td class="col-3"> <%=salary_date %> </td>
