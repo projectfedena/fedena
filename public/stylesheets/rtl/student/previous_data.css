@@ -50,6 +50,21 @@
     margin-top: 8px;
     padding: 7px 10px;
 }
+.save-proceed-button1 input{
+    background: none repeat scroll 0 0 #27292B;
+    border: medium none;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: -10px;
+    margin-top: 8px;
+    padding: 7px 10px;
+}
 .sub-heading{
     background:#9E0F15;
     height: 1px;

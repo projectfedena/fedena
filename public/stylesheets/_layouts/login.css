@@ -34,7 +34,6 @@ body {
 
 #submit_area input {
     background:#312d2a;
-    width:145px;
     height:38px;
     float:right;
     margin-right:14px;
@@ -46,6 +45,7 @@ body {
     cursor:pointer;
     -moz-border-radius:12px;
     -webkit-border-radius:12px;
+    padding: 7px 10px;
 
 }
 #submit_area input:hover{
