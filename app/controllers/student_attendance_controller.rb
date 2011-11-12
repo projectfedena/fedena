@@ -30,6 +30,9 @@ class StudentAttendanceController < ApplicationController
     @student = Student.find(params[:id])
     @batch = Batch.find(@student.batch_id)
     @subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>'is_deleted = false')
+    @electives = @subjects.map{|x|x unless x.elective_group_id.nil?}.compact
+    @electives.reject! { |z| z.students.include?(@student)  }
+    @subjects -= @electives
 
     if request.post?
       @detail_report = []

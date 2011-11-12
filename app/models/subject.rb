@@ -23,6 +23,8 @@ class Subject < ActiveRecord::Base
   has_many :timetable_entries,:foreign_key=>'subject_id'
   has_many :employees_subjects
   has_many :employees ,:through => :employees_subjects
+  has_many :students_subjects
+  has_many :students, :through => :students_subjects
   validates_presence_of :name, :max_weekly_classes, :code,:batch_id
   validates_numericality_of :max_weekly_classes
   validates_uniqueness_of :code, :case_sensitive => false, :scope=>[:batch_id,:is_deleted] ,:if=> 'is_deleted == false'
