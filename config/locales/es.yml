@@ -78,6 +78,7 @@ es: # locale
 
       news:
         title: "Título"
+        content: "contenido"
 
       news_comment:
         content: "contenido"

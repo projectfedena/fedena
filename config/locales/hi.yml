@@ -76,6 +76,7 @@ hi:
 
       news:
         title: "शीर्षक"
+        content: "सामग्री"
 
       news_comment:
         content: "सामग्री"
