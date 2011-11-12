@@ -23,7 +23,7 @@
     <div class="linker2">
 <%= link_to_remote "#{t('select_all')}", :url => { :controller=>'batch_transfers',:action => 'assign_all_previous_batch_subjects', :id => @batch} %>
 </div>
-    <h4 style="width:300px;"><%= t('normal_subject') %></h4>
+    <h4 style="width:300px;"><%= t('normal_subjects') %></h4>
   <% @previous_batch_normal_subject.each do |sub| %>
     <li id="prev-subject-name-<%=sub.id%>" class="list<%=cycle('odd', 'even')%>">
      <div class="category-name"> <%= sub.name %> </div>

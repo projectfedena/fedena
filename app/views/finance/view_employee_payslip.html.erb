@@ -28,7 +28,7 @@
 <div id="page-yield">
   <ul class="item-list">
     <li class="heading"><%= @monthly_payslips.first.active_or_archived_employee.full_name %></li>
-    <li class="heading"><%= t('payslip_generated_on') %><%= params[:salary_date] %> <span class="red">(<%= t('status') %>: <%=  @monthly_payslips.first.status_as_text %>)</span></li>
+    <li class="heading"><%= t('payslip_generated_on') %> <%= params[:salary_date] %> <span class="red">(<%= t('status') %>: <%=  @monthly_payslips.first.status_as_text %>)</span></li>
   </ul>
   <ul class="item-list">
     <li class="heading1"><%= t('salary') %></li>
