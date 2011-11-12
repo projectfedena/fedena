@@ -146,9 +146,7 @@ authorization do
       :to => [
       :index,
       :show,
-      :save_scores,
-      :edit,
-      :update
+      :save_scores
     ]
     has_permission_on [:additional_exam],
       :to =>[
@@ -169,9 +167,7 @@ authorization do
       :to => [
       :index,
       :show,
-      :save_additional_scores,
-      :edit,
-      :update
+      :save_additional_scores
     ]
   end
 
@@ -1849,13 +1845,29 @@ authorization do
     ]
     has_permission_on [:exams],
       :to => [
-      :new,
-      :create,
       :show,
-      :save_scores,
-      :edit,
-      :update,
-      :destroy
+      :save_scores
+    ]
+    has_permission_on [:additional_exam],
+      :to =>[
+      :create_additional_exam,
+      :update_batch,
+      :publish
+    ]
+    has_permission_on [:additional_exam_groups],
+      :to =>[
+      :index,
+      :show,
+      :set_additional_exam_minimum_marks,
+      :set_additional_exam_maximum_marks,
+      :set_additional_exam_weightage,
+      :set_additional_exam_group_name
+    ]
+    has_permission_on [:additional_exams],
+      :to => [
+      :index,
+      :show,
+      :save_additional_scores
     ]
   end
   

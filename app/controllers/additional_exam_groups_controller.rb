@@ -48,7 +48,6 @@ class AdditionalExamGroupsController < ApplicationController
 
   def show
     @additional_exam_group = AdditionalExamGroup.find(params[:id], :include => :additional_exams)
-    @user_privileges = @current_user.privileges
   end
 
   def create

@@ -34,11 +34,8 @@
             :success => "Element.hide('loader')") %></li>
       <% end  %>
     <% end %>
-    <% user_allowed = (@current_user.admin? or @user_privileges.map{|p| p.name}.include?('ExaminationControl')) ? true : false %>
-    <% if user_allowed %>
-      <%  if permitted_to? :new,:exams %>
-        <li><%= link_to "#{t('new_text')}", new_exam_group_exam_path(@exam_group) %></li>
-      <% end %>
+    <% if permitted_to? :new,:exams %>
+      <li><%= link_to "#{t('new_text')}", new_exam_group_exam_path(@exam_group) %></li>
     <% end %>
   </ul>
 </div>
@@ -58,10 +55,11 @@
     </div>
 
     <div class="update_msg">
-      <h4>
-        <%= in_place_editor_field :exam_group, :name if user_allowed %>
-        <%= "<span>"+@exam_group.name+"</span>" unless user_allowed %>
-      </h4>
+      <% if permitted_to? :edit, :exams %>
+        <h4><%= in_place_editor_field :exam_group, :name %></h4>
+      <% else %>
+        <h4><span><%= @exam_group.name %></span></h4>
+      <% end %>
 
       <h4><span id="publish-notice-<%=@exam_group.id%>"><%= image_tag("loader.gif",:align => "absmiddle",
             :border => 0,
@@ -76,7 +74,9 @@
           <td><%= t('subject') %></td>
           <td><%= t('max_mark') %></td>
           <td><%= t('min_mark') %></td>
+          <% if permitted_to? :edit, :exams %>
           <td><%= t('manage') %></td>
+          <% end %>
         </tr>
         <% @exam_group.exams.each do |exam| %>
 
@@ -84,18 +84,18 @@
             <tr class="tr-<%= cycle('odd', 'even') %>">
               <% @exam = exam %>
               <td class="col-2"><%= link_to exam.subject.name, [@exam_group, exam] %></td>
-              <td class="col-1">
-                <%= in_place_editor_field :exam, :maximum_marks,{},{:cols=>1} if user_allowed%>
-                <%= "<span>"+exam.maximum_marks.to_s+"</span>" unless user_allowed %>
-              </td>
-              <td class="col-1">
-                <%= in_place_editor_field :exam, :minimum_marks,{},{:cols=>1} if user_allowed %>
-                <%= "<span>"+exam.minimum_marks.to_s+"</span>" unless user_allowed %>
-              </td>
-              <td class="col-1">
-                <small><%= link_to t('edit_text'), edit_exam_group_exam_path(@exam_group, exam) %></small>
-                <small><%= link_to t('delete_text'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
-              </td>
+
+              <% if permitted_to? :edit, :exams %>
+                <td class="col-1"><%= in_place_editor_field :exam, :maximum_marks,{},{:cols=>1} %></td>
+                <td class="col-1"><%= in_place_editor_field :exam, :minimum_marks,{},{:cols=>1} %></td>
+                <td class="col-1">
+                  <small><%= link_to t('edit_text'), edit_exam_group_exam_path(@exam_group, exam) %></small>
+                  <small><%= link_to t('delete_text'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
+                </td>
+              <% else %>
+                <td class="col-1"><span><%= exam.maximum_marks %></span></td>
+                <td class="col-1"><span><%= exam.minimum_marks %></span></td>
+              <% end %>
             </tr>
           <% end %>
         <% end %>
@@ -104,17 +104,21 @@
       <table id="listing" width="100%">
         <tr class="tr-head">
           <td><%= t('subject') %></td>
+          <% if permitted_to? :edit, :exams %>
           <td><%= t('manage') %></td>
+          <% end %>
         </tr>
         <% @exam_group.exams.each do |exam| %>
           <% if @employee_subjects.include?("#{exam.subject.id}") or @current_user.admin?  or @current_user.privileges.map{|p| p.name}.include?("ExaminationControl") or @current_user.privileges.map{|p| p.name}.include?("EnterResults") %>
             <tr class="tr-<%= cycle('odd', 'even') %>">
               <% @exam = exam %>
               <td class="col-3"><%= link_to exam.subject.name, [@exam_group, exam] %></td>
+              <% if permitted_to? :edit, :exams %>
               <td class="col-1">
                 <small><%= link_to t('edit_text'), edit_exam_group_exam_path(@exam_group, exam) %></small>
                 <small><%= link_to t('delete_text'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
               </td>
+              <% end %>
             </tr>
           <% end %>
         <% end %>

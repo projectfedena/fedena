@@ -53,10 +53,9 @@
       <%= link_to t('exams_text'), batch_additional_exam_groups_path(@batch) %> &raquo;
       <%= @additional_exam_group.name %>
     </div>
-    <% user_allowed = (@current_user.admin? or @user_privileges.map{|p| p.name}.include?('ExaminationControl')) ? true : false %>
 
     <div class="update_msg">
-      <% if user_allowed %>
+      <% if permitted_to? :edit, :additional_exams %>
       <h4><%= in_place_editor_field :additional_exam_group, :name %></h4>
       <% else %>
       <h4><span><%= @additional_exam_group.name %></span></h4>
@@ -73,23 +72,25 @@
           <td><%= t('subject') %></td>
           <td><%= t('max_mark') %></td>
           <td><%= t('min_mark') %></td>
+          <% if permitted_to? :edit, :additional_exams %>
           <td><%= t('manage') %></td>
+          <% end %>
         </tr>
         <% @additional_exam_group.additional_exams.each do |additional_exam| %>
           <tr class="tr-<%= cycle('odd', 'even') %>">
             <% @additional_exam = additional_exam %>
             <td class="col-2"><%= link_to additional_exam.subject.name, [@additional_exam_group, additional_exam] %></td>
-            <% if user_allowed %>
+            <% if permitted_to? :edit, :additional_exams %>
             <td class="col-1"><%= in_place_editor_field :additional_exam, :maximum_marks,{},{:cols=>1} %></td>
             <td class="col-1"><%= in_place_editor_field :additional_exam, :minimum_marks,{},{:cols=>1} %></td>
-            <% else %>
-            <td class="col-1"><%= additional_exam.maximum_marks %></td>
-            <td class="col-1"><%= additional_exam.minimum_marks %></td>
-            <% end %>
             <td class="col-1">
               <small><%= link_to "#{t('edit_text')}", edit_additional_exam_group_additional_exam_path(@additional_exam_group, additional_exam) %></small>
               <small><%= link_to "#{t('delete_text')}", [@additional_exam_group, additional_exam], :method => 'delete', :confirm => "#{t('delete_confirm_msg')}" %></small>
             </td>
+            <% else %>
+              <td class="col-1"><span><%= additional_exam.maximum_marks %></span></td>
+              <td class="col-1"><span><%= additional_exam.minimum_marks %></span></td>
+            <% end %>
           </tr>
         <% end %>
       </table>
@@ -97,16 +98,20 @@
       <table id="listing" width="100%">
         <tr class="tr-head">
           <td><%= t('subject') %></td>
+          <% if permitted_to? :edit, :additional_exams %>
           <td><%= t('manage') %></td>
+          <% end %>
         </tr>
         <% @additional_exam_group.additional_exams.each do |exam| %>
           <tr class="tr-<%= cycle('odd', 'even') %>">
             <% @exam = exam %>
             <td class="col-3"><%= link_to exam.subject.name, [@additional_exam_group, exam] %></td>
+            <% if permitted_to? :edit, :additional_exams %>
             <td class="col-1">
               <small><%= link_to "#{t('edit_text')}", edit_additional_exam_group_additional_exam_path(@additional_exam_group, exam) %></small>
               <small><%= link_to "#{t('delete_text')}", [@additional_exam_group, exam], :method => 'delete', :confirm => "#{t('delete_confirm_msg')}" %></small>
             </td>
+            <% end %>
           </tr>
         <% end %>
       </table>
