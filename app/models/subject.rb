@@ -45,7 +45,7 @@ class Subject < ActiveRecord::Base
         if selected_employee.nil?
           selected_employee = employee
         else
-          selected_employee = employee if employee.max_hours_per_day < selected_employee.max_hours_per_day
+          selected_employee = employee if employee.max_hours_per_day.to_i < selected_employee.max_hours_per_day.to_i
         end
       end
     end
@@ -61,7 +61,7 @@ class Subject < ActiveRecord::Base
         if selected_employee.nil?
           selected_employee = employee
         else
-          selected_employee = employee if employee.max_hours_per_week  < selected_employee.max_hours_per_week
+          selected_employee = employee if employee.max_hours_per_week.to_i  < selected_employee.max_hours_per_week.to_i
         end
       end
     end
