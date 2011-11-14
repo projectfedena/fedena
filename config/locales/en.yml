@@ -1891,7 +1891,7 @@ en: # locale
     flash22: "Contact details updated for"
     flash23: "bank details updated"
     flash24: "Bank details saved for"
-    flash25: "employee reporting manager saved"
+    flash25: "Employee reporting manager saved"
     flash26: "Reporting manager successfully changed"
     flash27: "salary slip generated for"
     flash28: "salary slip  already generated for"
