@@ -68,7 +68,7 @@
 }
 
 .advanced_options{
-    margin-right:90px;
+    margin-right:0;
     margin-top:5px;
     width:600px;
     float: right;
@@ -88,9 +88,9 @@
     background : #fff url(../../../images/form_bg/smalltextbox.jpg) no-repeat;
     height : 43px;
     width : 150px;
-    float: none;
+    float: right;
 }
 #form-content{
     width:300px;
-    float: none;
+    float: right;
 }
