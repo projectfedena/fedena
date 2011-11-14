@@ -33,7 +33,7 @@
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="odd"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
+        <tr class="odd"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('employee_number') %></td><td class="col-pdf"><%= t('joining_date') %></td></tr>
         <% i=0 %>
         <% @employees1.each do |employee1| %>
         <% c =cycle('even','odd ') %>
@@ -51,7 +51,7 @@
               <td class="col-pdf"><%= employee1.first_name %></td>
               <td class="col-pdf"><%= employee1.employee_department.name %></td>
               <td class="col-pdf"><%= employee1.employee_number%></td>
-              <td class="col-pdf"><%= employee1.joining_date.strftime("%d %b, %Y") %></td>
+              <td class="col-pdf"><%= I18n.l(employee1.joining_date,:format=>"%d %b, %Y") %></td>
             </tr>
             <% end %>
 
@@ -72,7 +72,7 @@
               <td class="col-pdf"><%= employee2.first_name %></td>
               <td class="col-pdf"><%= employee2.employee_department.name %></td>
               <td class="col-pdf"><%= employee2.employee_number%></td>
-              <td class="col-pdf"><%= I18n.l(employee2.joining_date,:format=>:dmy) %></td>
+              <td class="col-pdf"><%= I18n.l(employee2.joining_date,:format=>"%d %b, %Y") %></td>
             </tr>
             <% end %>
             <% end %>
