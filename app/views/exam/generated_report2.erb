@@ -60,7 +60,7 @@
                 <% elsif exam_group.exam_type == 'Grades'%>
                   <%= exam_score.nil? ? '-' : (exam_score.grading_level || '-') %>
                 <% else %>
-                  <%= exam_score.nil? ? '-' : exam_score = ""  ? '-' + "[#{(exam_score.grading_level || "-")}]": "#{(exam_score.marks || "-")}" +"/"+exam.maximum_marks.to_s+"[#{(exam_score.grading_level || "-")}]" %>
+                  <%= exam_score.nil? ? '-' : "#{(exam_score.marks || "-")}" +"/"+exam.maximum_marks.to_s+"[#{(exam_score.grading_level || "-")}]" %>
                 <% end %>
               <% else %>
                 <%= "#{t('n_a')}" %>
