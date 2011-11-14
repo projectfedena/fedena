@@ -90,7 +90,7 @@ body {
 #main-menu li ul.level-1{
     margin: 0;
     padding: 0;
-    width : auto;
+    width : 160px;
     list-style-type: none;
     position: absolute;
     top: 60px;
@@ -106,6 +106,7 @@ body {
     visibility: visible;
 }
 #main-menu li ul.level-1 li{
+    width: 100%;
     overflow: hidden;
 }
 #main-menu li ul.level-1 li a{
@@ -113,16 +114,17 @@ body {
     display: block;
     text-indent: 3px;
     border-bottom: 1px solid black;
-    padding: 2px 0;
+    padding: 2px 3px 2px 2px;
     text-decoration: none;
-    text-indent: 5px;
+    text-indent: 0;
     background: none;
     color: #ffffff;
-    width: 100%;
-    font-size: 14px;
+    width: 155px;
+    font-size: 13px;
     text-align: left;
     margin: 0;
     float: left;
+    height: auto;
 }
 #main-menu li ul.level-1 li a:hover{
     background: #000000;
@@ -132,10 +134,10 @@ body {
     margin: -1px 0 0 0;
     padding: 0;
     position: absolute;
-    left: 135px;
+    left: 160px;
     top: auto;
     visibility: hidden;
-    width: 200px;
+    width: 160px;
     list-style-type: none;
     z-index: 999;
     border : 1px solid black;
@@ -147,7 +149,8 @@ body {
 #main-menu li ul.level-1 li:hover ul.level-2{
     visibility: visible;
 }
-#main-menu li ul.level-1 li{
+#main-menu li ul.level-1 li ul.level-2 li{
+    width: 100%;
     overflow: hidden;
 }
 #main-menu li ul.level-1 li ul.level-2 li a{
@@ -155,16 +158,17 @@ body {
     display: block;
     text-indent: 3px;
     border-bottom: 1px solid black;
-    padding: 2px 0;
+    padding: 2px 3px 2px 2px;
     text-decoration: none;
-    text-indent: 5px;
+    text-indent: 0;
     background: none;
     color: #ffffff;
-    width: 200px;
-    font-size: 14px;
+    width: 155px;
+    font-size: 13px;
     text-align: left;
     margin: 0;
     float: left;
+    height: auto;
 }
 #main-menu li ul.level-1 li ul.level-2 li a:hover{
     background: #000000;

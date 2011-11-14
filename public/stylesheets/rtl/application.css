@@ -69,7 +69,7 @@ body {
     padding: 0;
     list-style-type: none;
 }
-#main-menu li{
+#main-menu li.a{
     float: right;
 }
 #main-menu li a {
@@ -90,7 +90,7 @@ body {
 #main-menu li ul.level-1{
     margin: 0;
     padding: 0;
-    width : auto;
+    width : 160px;
     list-style-type: none;
     position: absolute;
     top: 60px;
@@ -100,12 +100,13 @@ body {
     border-bottom-width : 0;
     font: normal 0.9em Arial;
     line-height: 18px;
-    background: #b00 url(../../images/application/app_layout_header_bg.jpg) repeat;
+    background: #b00 url(../../../images/application/app_layout_header_bg.jpg) repeat;
 }
 #main-menu li:hover ul.level-1{
     visibility: visible;
 }
 #main-menu li ul.level-1 li{
+    width: 100%;
     overflow: hidden;
 }
 #main-menu li ul.level-1 li a{
@@ -113,16 +114,17 @@ body {
     display: block;
     text-indent: 3px;
     border-bottom: 1px solid black;
-    padding: 2px 0;
+    padding: 2px 2px 2px 3px;
     text-decoration: none;
-    text-indent: 5px;
+    text-indent: 0;
     background: none;
     color: #ffffff;
-    width: 100%;
-    font-size: 14px;
+    width: 155px;
+    font-size: 13px;
     text-align: right;
     margin: 0;
     float: right;
+    height: auto;
 }
 #main-menu li ul.level-1 li a:hover{
     background: #000000;
@@ -132,22 +134,23 @@ body {
     margin: -1px 0 0 0;
     padding: 0;
     position: absolute;
-    right: 133px;
+    right: 160px;
     top: auto;
     visibility: hidden;
-    width: 200px;
+    width: 160px;
     list-style-type: none;
     z-index: 999;
     border : 1px solid black;
     border-bottom-width : 0;
     font: normal 0.9em Arial;
     line-height: 18px;
-    background: #b00 url(../../images/application/app_layout_header_bg.jpg) repeat;
+    background: #b00 url(../../../images/application/app_layout_header_bg.jpg) repeat;
 }
 #main-menu li ul.level-1 li:hover ul.level-2{
     visibility: visible;
 }
-#main-menu li ul.level-1 li{
+#main-menu li ul.level-1 li ul.level-2 li{
+    width: 100%;
     overflow: hidden;
 }
 #main-menu li ul.level-1 li ul.level-2 li a{
@@ -155,16 +158,17 @@ body {
     display: block;
     text-indent: 3px;
     border-bottom: 1px solid black;
-    padding: 2px 0;
+    padding: 2px 2px 2px 3px;
     text-decoration: none;
-    text-indent: 5px;
+    text-indent: 0;
     background: none;
     color: #ffffff;
-    width: 200px;
-    font-size: 14px;
+    width: 155px;
+    font-size: 13px;
     text-align: right;
     margin: 0;
     float: right;
+    height: auto;
 }
 #main-menu li ul.level-1 li ul.level-2 li a:hover{
     background: #000000;
