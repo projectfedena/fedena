@@ -13,6 +13,7 @@
 .label-checkbox-pair {
     height : 50px;
     margin-right : 30px;
+    padding: 0 0 0 10px;
 }
 .submit-button{
     width:100px;
@@ -27,7 +28,7 @@
     float:right;
     font-size:14px;
     font-weight:bold;
-    margin:0 170px 0 0;
+    margin:0 211px 0 0;
     padding:5px;
 }
 
