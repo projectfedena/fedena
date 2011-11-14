@@ -776,7 +776,7 @@ class EmployeeController < ApplicationController
         individual_payslip_category.each do |c|
           IndividualPayslipCategory.update(c.id, :salary_date=>start_date)
         end
-        flash[:notice] = "#{@employee.first_name} #{t('flash28')}  #{params[:salary_date]}"
+        flash[:notice] = "#{@employee.first_name} #{t('flash27')} #{params[:salary_date]}"
         redirect_to :controller => "employee", :action => "select_department_employee"
       else #else for if payslip_exists == []
         individual_payslips_generated = IndividualPayslipCategory.find_all_by_employee_id_and_salary_date(@employee.id,nil)
@@ -785,7 +785,7 @@ class EmployeeController < ApplicationController
             i.delete
           end
         end
-        flash[:notice] = "<b>ERROR:</b>#{@employee.first_name}#{t('flash29')}#{params[:salary_date]}"
+        flash[:notice] = "#{@employee.first_name} #{t('flash28')} #{params[:salary_date]}"
         redirect_to :controller => "employee", :action => "select_department_employee"
       end
     end
