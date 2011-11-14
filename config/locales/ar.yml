@@ -1,4 +1,4 @@
-ar: # locale
+ar:
   activerecord:
     attributes:
 
@@ -18,6 +18,9 @@ ar: # locale
         email: "البريد الإلكتروني"
         password: "كلمة السر"
         role: "دور"
+
+      user_event:
+        user_id: "المستخدم"
 
       course:
         course_name: "بالطبع اسم"
@@ -42,20 +45,26 @@ ar: # locale
 
       batch:
         name: "اسم"
+        start_date: "تاريخ البدء"
+        end_date: "نهاية التاريخ"
 
       class_timing:
         name: "اسم"
         start_time: "وقت البدء"
+        end_time: "نهاية الوقت"
 
       elective_group:
         name: "اسم"
 
       event:
         title: "لقب"
+        end_time: "نهاية الوقت"
 
       exam:
         start_time: "بدء التوقيت"
         end_time: "نهاية دوام"
+        minimum_marks: "الحد الأدنى من علامات"
+        maximum_marks: "أقصى علامات"
 
       exam_group:
         name: "اسم"
@@ -69,6 +78,7 @@ ar: # locale
 
       news:
         title: "لقب"
+        content: "محتوى"
 
       news_comment:
         content: "محتوى"
@@ -99,6 +109,7 @@ ar: # locale
 
       finance_donation:
         donor: "المانح"
+        amount: "كمية"
 
       finance_fee_category:
         name: "اسم"
@@ -106,6 +117,10 @@ ar: # locale
 
       finance_fee_collection:
         name: "اسم"
+        start_date: "تاريخ البدء"
+        end_date: "نهاية التاريخ"
+        due_date: "يرجع تاريخ"
+        fee_category_id: "فئة الرسم"
 
       finance_fee_particulars:
         name: "اسم"
@@ -191,11 +206,32 @@ ar: # locale
         receiver: "المتلقي"
         name: "اسم"
 
+      student_fee_collection_discount:
+        receiver_id: "المتلقي"
+
+      student_category_fee_discount:
+        receiver_id: "المتلقي"
+        name: "اسم"
+
+      student_category_fee_collection_discount:
+        receiver_id: "المتلقي"
+
+      individual_payslip_category:
+        amount: "كمية"
+
+      batch_fee_collection_discount:
+        receiver_id: "المتلقي"
+
+      batch_fee_discount:
+        receiver_id: "المتلقي"
+        name: "اسم"
+
+
     errors:
       template:
         header:
-          one: "1 الخطأ ممنوع {{model}} من يتم حفظها"
-          other: "{{count}} الأخطاء يحظر هذا {{model}} من يتم حفظها"
+          one: "1 الخطأ ممنوع من يتم حفظها"
+          other: "{{count}} أخطاء ممنوع من يتم حفظها"
         body: "كانت هناك مشاكل مع الحقول التالية :"
       messages:
         accepted: "يجب أن تكون مقبولة"
@@ -224,7 +260,7 @@ ar: # locale
 
   date:
     formats:
-      default: "ه ٪ م ٪ ، Y ٪"
+      default: "البريد ٪ ٪ ٪ M - Y"
       normal: "ه ٪ B ، Y ٪"
       short: "٪ ه. ب ٪"
       month_year: "Y ٪ B ٪"
@@ -241,7 +277,8 @@ ar: # locale
     month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
     abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
     order: [ :day, :month, :year ]
-    
+
+
   time:
     formats:
       default: "A ٪ ، د. ٪ B ٪ Y ، H : ٪ M UHR"
@@ -984,28 +1021,28 @@ ar: # locale
   step_4: "الخطوة -- 4"
   set_privilege: "تعيين الامتياز"
   set_privilege_for: "تعيين امتيازات لل"
-  ExaminationControl: "فحص التحكم"
-  EnterResults: "أدخل النتيجة"
-  ViewResults: "عرض النتيجة"
-  Admission: "قبول"
-  StudentsControl: "طلاب التحكم"
-  ManageNews: "إدارة الأخبار"
-  Timetable: "الجدول الزمني"
-  StudentAttendanceView: "طالب الحضور الشخصي"
-  HrBasics: "أساسيات ساعة"
-  AddNewBatch: "إضافة دفعة جديدة"
-  SubjectMaster: "الموضوع الرئيسي"
-  EventManagement: "إدارة الحدث"
-  GeneralSettings: "إعدادات عامة"
-  FinanceControl: "الرقابة المالية"
-  TimetableView: "عرض الجدول الزمني"
-  StudentAttendanceRegister: "سجل حضور الطالب"
-  EmployeeAttendance: "الموظف الحضور"
-  PayslipPowers: "قسيمة الدفع القوى"
-  EmployeeSearch: "الموظف البحث"
-  SMSManagement: "إدارة SMS"
-  ManageTimetable: "إدارة الجدول الزمني"
-  Librarian: "أمين المكتبة"
+  examination_control_privilege: "فحص التحكم"
+  enter_results_privilege: "أدخل النتيجة"
+  view_results_privilege: "عرض النتيجة"
+  admission_privilege: "قبول"
+  students_control_privilege: "طلاب التحكم"
+  manage_news_privilege: "إدارة الأخبار"
+  timetable_privilege: "الجدول الزمني"
+  student_attendance_view_privilege: "طالب الحضور الشخصي"
+  hr_basics_privilege: "أساسيات ساعة"
+  add_new_batch_privilege: "إضافة دفعة جديدة"
+  subject_master_privilege: "الموضوع الرئيسي"
+  event_management_privilege: "إدارة الحدث"
+  general_settings_privilege: "إعدادات عامة"
+  finance_control_privilege: "الرقابة المالية"
+  timetable_view_privilege: "عرض الجدول الزمني"
+  student_attendance_register_privilege: "سجل حضور الطالب"
+  employee_attendance_privilege: "الموظف الحضور"
+  payslip_powers_privilege: "قسيمة الدفع القوى"
+  employee_search_privilege: "الموظف البحث"
+  sms_management_privilege: "إدارة SMS"
+  manage_timetable_privilege: "إدارة الجدول الزمني"
+  librarian_privilege: "أمين المكتبة"
   select_reporting_manager: "حدد مدير التقارير"
   step_5: "خطوة -- 5"
   selected_manager: "اختيار مدير"
@@ -1050,17 +1087,17 @@ ar: # locale
   add_edit_employee_position: "إضافة وتحرير الوظيفة موظف"
   add_edit_employee_department: "إضافة وتحرير قسم الموظفين"
   add_edit_employee_grade: "إضافة وتحرير الصف الموظف"
-  add_edit_bank_detail: " date:إضافة وتحرير الضفة التفاصيل"
+  add_edit_bank_detail: "إضافة وتحرير الضفة التفاصيل"
   add_edit_additional_detail: "إضافة وتحرير مزيد من التفاصيل عن أشكال قبول الموظف"
   payslip_settings: "إعدادات قسيمة الدفع"
   earnings: "أرباح"
   inactivate: "تعطيل"
   inactivate_confirm: "هل أنت متأكد من أنك تريد تعطيل هذه الفئة؟"
-  activate: " date:تفعيل"
+  activate: "تفعيل"
   activate_confirm: "هل أنت متأكد أنك تريد تفعيل هذا التصنيف؟"
   earnings_msg: "أي موظف السجل الرواتب الفئة غير موجودة deductionable"
   deduction_msg: "أي موظف السجل الرواتب فئة deductionable وجد"
-  index: " date:مؤشر"
+  index: "مؤشر"
   data_saved_for: "البيانات المحفوظة لل"
   is_deduction: "هو الخصم؟"
   percentage_of: "النسبة المئوية لل"
@@ -1231,7 +1268,7 @@ ar: # locale
   forgot_password: "مساعدة! لقد نسيت كلمة السر؟"
   login: "دخول"
   fedena_logo: "/ صور / التطبيق / app_fedena_logo.jpg"
-  enter_email: "أدخل عنوان البريد الالكتروني"
+  enter_email: "أدخل اسم المستخدم الخاص بك"
   contact_admin: "الاتصال Fedena المسؤول لاستعادة كلمة السر"
   logged_as: "تسجيل الدخول على النحو التالي :"
   messages: "رسائل"
@@ -1355,7 +1392,7 @@ ar: # locale
   add_guardian_details: "إضافة تفاصيل الجارديان"
   office: "مكتب"
   leaving_institution: "طالب ترك المؤسسة"
-  leaving_institution_message: "&quot;وبالنسبة للطلاب ترك المؤسسة ، واستخدام هذا الخيار لإزالتها من قائمة الطلاب النشط ووضعها في قائمة الطلاب السابقين."
+  leaving_institution_message: "للطلاب ترك المؤسسة ، واستخدام هذا الخيار لإزالتها من قائمة الطلاب النشط ووضعها في قائمة الطلاب السابقين."
   remove_student_records: "إزالة سجلات الطلاب"
   remove_student_message: "حذف تماما سجلات الطالب من قواعد بيانات المؤسسة. استخدام هذا الخيار فقط إذا قمت بإنشاء سجل الطالب عن طريق الصدفة وتريد إزالته تماما"
   student_left_message: "وقد غادر الطلاب المدرسة"
@@ -1528,7 +1565,7 @@ ar: # locale
   department_salary_report: "تقرير قسم الراتب"
   employee_salary: "راتب الموظف"
   fee_reciept: "رسوم الإيصال"
-  partial_payment_receipt: "الدفع الجزئي الإيصا"
+  partial_payment_receipt: "الدفع الجزئي الإيصال"
   fee_collection_dates: "جمع الرسوم التواريخ"
   view_fee_collection_dates: "عرض جمع الرسوم التواريخ"
   fees_discount_succesfully_created: "رسوم مخفضة إنشاء بنجاح"
@@ -1553,8 +1590,8 @@ ar: # locale
   regards: "فيما يتعلق"
   fees_category_cant_be_blank: "فئة الرسم يكون غير قادر على فارغة"
   receipt_no: "لا تسلم"
-  voucher_no: "عدد القسائ"
-  receipt_or_voucher_no: "تسلم / القسيمة رقم"
+  voucher_no: "لا قسيمة"
+  receipt_or_voucher_no: "تسلم / قسيمة رقم"
   batch_cant_be_blank: "الدفعة يكون غير قادر على فارغة"
   is_invalid_admission_no: "قبول عدد غير صالح"
   admission_cant_be_blank: "تكون غير قادر على قبول فارغة"
@@ -1744,33 +1781,17 @@ ar: # locale
   partial: "جزئي"
   student_category_updated_succesfully: "فئة الطالب تحديثها بنجاح"
   student_category_deleted_succesfully: "فئة الطالب حذف بنجاح"
+  years: "سنة"
+  months: "أشهر"
+  following_pblm_occured_while_saving_the_batch: "حدثت المشاكل التالية مع توفير هذه الدفعة"
+  academic_year: "سنة دراسية"
+  discount_deleted_successfully: "الخصم حذف بنجاح"
   placement_activities_privilege: "التنسيب الأنشطة"
   hostel_admin_privilege: "نزل الادارية"
   group_create_privilege: "المجموعة إنشاء"
   transport_admin_privilege: "مسؤول النقل"
   task_management_privilege: "مهمة إدارة"
-  examination_control_privilege: "فحص التحكم"
-  enter_results_privilege: "أدخل النتيجة"
-  view_results_privilege: "عرض النتيجة"
-  admission_privilege: "قبول"
-  students_control_privilege: "طلاب التحكم"
-  manage_news_privilege: "إدارة الأخبار"
-  timetable_privilege: "الجدول الزمني"
-  student_attendance_view_privilege: "طالب الحضور الشخصي"
-  hr_basics_privilege: "أساسيات ساعة"
-  add_new_batch_privilege: "إضافة دفعة جديدة"
-  subject_master_privilege: "الموضوع الرئيسي"
-  event_management_privilege: "إدارة الحدث"
-  general_settings_privilege: "إعدادات عامة"
-  finance_control_privilege: "الرقابة المالية"
-  timetable_view_privilege: "عرض الجدول الزمني"
-  student_attendance_register_privilege: "سجل حضور الطالب"
-  employee_attendance_privilege: "الموظف الحضور"
-  payslip_powers_privilege: "قسيمة الدفع القوى"
-  employee_search_privilege: "الموظف البحث"
-  sms_management_privilege: "إدارة SMS"
-  manage_timetable_privilege: "إدارة الجدول الزمني"
-  librarian_privilege: "أمين المكتبة"
+
 
   flash_msg1: "تحديث إضافية المجموعة الامتحان بنجاح."
   flash_msg2: "آسف"
@@ -1865,7 +1886,7 @@ ar: # locale
     flash19: "عنوان وتفاصيل الاتصال لحفظ"
     flash20: "تفاصيل العنوان الموظف المحفوظة ل"
     flash21: "تفاصيل الاتصال الموظف المحفوظة ل"
-    flash22: "التفاصيل المصرفية لحفظ"
+    flash22: "تحديث تفاصيل الاتصال لل"
     flash23: "التفاصيل المصرفية المحدثة"
     flash24: "التفاصيل المصرفية لحفظ"
     flash25: "موظف مدير التقارير المحفوظة"
@@ -1935,8 +1956,8 @@ ar: # locale
     flash15: "دور المحدثة"
     flash16: "لم يتم إنشاء حساب مستخدم!"
     flash17: "إنشاء حساب مستخدم!"
-    flash18: "إعادة تعيين كلمة المرور عبر البريد الالكتروني على الرابط"
-    flash19: "أي مستخدم مع وجود عنوان بريد إلكتروني"
+    flash18: "تم إعادة تعيين كلمة المرور الارتباط إرسالها إلى البريد الإلكتروني الخاص بك"
+    flash19: "أي مستخدم موجود مع اسم المستخدم"
 
 #student controller translation
   student:
