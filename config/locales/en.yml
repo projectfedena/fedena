@@ -543,6 +543,7 @@ en: # locale
   percentage: "Percentage"
   pending: "Pending"
   approved: "Approved"
+  rejected: "Rejected"
   denied: "Denied"
   select_employee: "Select Employee"
   remarks: "Remarks"

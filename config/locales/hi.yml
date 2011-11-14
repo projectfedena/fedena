@@ -516,6 +516,7 @@ hi:
   percentage: "प्रतिशतता"
   pending: "अपूर्ण"
   approved: "अनुमोदित"
+  rejected: "अस्वीकृत"
   denied: "वंचित"
   select_employee: "कर्मचारी चयन करें"
   remarks: "टिप्पणियाँ"

@@ -540,6 +540,7 @@ es: # locale
   percentage: "Porcentaje"
   pending: "Pendiente"
   approved: "Aprobado"
+  rejected: "Rechazado"
   denied: "Negado"
   select_employee: "Seleccionar empleado"
   remarks: "Observaciones"
