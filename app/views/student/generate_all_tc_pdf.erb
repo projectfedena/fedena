@@ -1,0 +1,136 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+  <% @students.each do |student| %>
+
+<div id="page-yield">
+
+      <div class="hor_line"></div>
+      <h2><%= t('transfer_certificate') %></h2>
+      <div class="hor_line"></div>
+
+
+      <div class="extender"> </div>
+      <div class="report">
+
+        <div id="pdf-info">
+          <table id="pdf-table" width="100%" cellspacing="0">
+            <% c= 'odd' %>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('name') %></td>
+              <td class="col-pdf"> <%= student.full_name  %> </td>
+            </tr>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('admission_no') %></td>
+              <td class="col-pdf"><%= student.admission_no %></td>
+            </tr>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('admission_date') %></td>
+              <td class="col-pdf"><%= I18n.l(student.admission_date,:format=>:normal) %></td>
+            </tr>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('date_of_birth') %></td>
+              <td class="col-pdf"><%= I18n.l(student.date_of_birth,:format=>:normal) %></td>
+            </tr>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('last_course') %></td>
+              <td class="col-pdf"><%= student.batch.full_name %></td>
+            </tr>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('blood_group') %></td>
+              <td class="col-pdf"><%= student.blood_group %></td>
+            </tr>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('gender') %></td>
+              <td class="col-pdf"><%= "#{t(student.gender_as_text.downcase)}" %></td>
+            </tr>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('nationality') %></td>
+              <td class="col-pdf"><%= student.nationality.name %></td>
+            </tr>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('language') %></td>
+              <td class="col-pdf"><%= student.language %></td>
+            </tr>
+
+            <% if @father %>
+              <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+                <td class="col-pdf"><%= t('father_name') %></td>
+                <td class="col-pdf"><%= @father.full_name %></td>
+              </tr>
+
+            <% elsif @mother %>
+              <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+                <td class="col-pdf"><%= t('mother_name') %></td>
+                <td class="col-pdf"><%= @mother.full_name %></td>
+              </tr>
+
+            <% else %>
+              <% unless @immediate_contact.nil? %>
+                <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+                  <td class="col-pdf"><%= @immediate_contact.relation %></td>
+                  <td class="col-pdf"><%= @immediate_contact.full_name %></td>
+                </tr>
+
+              <% end %>
+            <% end %>
+            <% unless student.student_category.nil? %>
+              <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+                <td class="col-pdf"><%= t('category') %></td>
+                <td class="col-pdf"><%= student.student_category.name %></td>
+              </tr>
+            <% end %>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('religion') %></td>
+              <td class="col-pdf"><%= student.religion %></td>
+            </tr>
+
+
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('address') %></td>
+              <td class="col-pdf"><%= student.address_line1 %><br/><%= student.address_line2 %></td>
+            </tr>
+
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('city') %></td>
+              <td class="col-pdf"><%= student.city %></td>
+            </tr>
+
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('state') %></td>
+              <td class="col-pdf"><%= student.state %></td>
+            </tr>
+
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('country') %></td>
+              <td class="col-pdf"><%= student.country.name %></td>
+            </tr>
+
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf"><%= t('reason_for_leaving') %></td>
+              <td class="col-pdf"><%= student.status_description %></td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+
+</div>
+  <% end %>

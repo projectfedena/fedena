@@ -286,10 +286,7 @@ class StudentController < ApplicationController
     @ids = params[:stud]
     @students = @ids.map { |st_id| ArchivedStudent.find(st_id) }
     
-    
-    respond_to do |format|
-      format.pdf { render :layout => false }
-    end
+    render :pdf=>'generate_all_tc_pdf'
   end
 
   def destroy
