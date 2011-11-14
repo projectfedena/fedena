@@ -1831,12 +1831,14 @@ ar:
     flash4: "دفعة حذف بنجاح."
     flash5: "غير قادر على حذف Batch.Please حذف جميع الطلاب"
     flash6: "غير قادر على حذف Batch.Please حذف جميع المواد الدراسية"
+    flash7: "لا مواضيع موجودة في دفعات سابقة."
 
 #batch_transfer controller translation
   batch_transfers:
     flash1: "طلاب Trasferred بنجاح"
     flash2: "تخرج الطلاب المختارة بنجاح"
     flash3: "وقد سبق هذا الموضوع مع اسم"
+    flash4: "لا مواضيع موجودة في دفعات سابقة."
 
 #elective controller translation
   elective_groups:

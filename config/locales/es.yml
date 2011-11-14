@@ -1826,12 +1826,14 @@ es: # locale
     flash4: "Grupo eliminado con éxito."
     flash5: "Imposible eliminar este grupo. Por favor eliminar todos los estudiantes"
     flash6: "Imposible eliminar el grupo. Por favor eliminar todas las asignaturas"
+    flash7: "Ninguno de los sujetos se encuentran en lotes anteriores."
 
 #batch_transfer controller translation
   batch_transfers:
     flash1: "Estudiantes transferidos con éxito"
     flash2: "Los estudiantes se graduaron con éxito"
     flash3: "Ya tiene una asignatura con ese nombre"
+    flash4: "Ninguno de los sujetos se encuentran en lotes anteriores."
 
 #elective controller translation
   elective_groups:

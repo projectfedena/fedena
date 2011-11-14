@@ -92,11 +92,17 @@ class BatchTransfersController < ApplicationController
     all_batches.reject! {|b| b.is_deleted?}
     all_batches.reject! {|b| b.subjects.empty?}
     @previous_batch = all_batches[all_batches.size-2]
+    unless @previous_batch.blank?
     @previous_batch_normal_subject = @previous_batch.normal_batch_subject
     @elective_groups = @previous_batch.elective_groups
     @previous_batch_electives = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"])
     render(:update) do |page|
       page.replace_html 'previous-batch-subjects', :partial=>"previous_batch_subjects"
+    end
+    else
+      render(:update) do |page|
+        page.replace_html 'msg', :text=>"<p class='flash-msg'>#{t('batch_transfers.flash4')}</p>"
+      end
     end
   end
 

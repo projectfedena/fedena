@@ -1830,12 +1830,14 @@ en: # locale
     flash4: "Batch deleted successfully."
     flash5: "Unable to delete Batch.Please delete all Students"
     flash6: "Unable to delete Batch.Please delete all Subjects"
+    flash7: "No subjects found in previous batches."
 
 #batch_transfer controller translation
   batch_transfers:
     flash1: "Trasferred students successfully"
     flash2: "Graduated selected students successfully"
     flash3: "Already has the subject with name"
+    flash4: "No subjects found in previous batches."
 
 #elective controller translation
   elective_groups:

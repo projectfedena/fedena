@@ -41,6 +41,7 @@ class BatchesController < ApplicationController
         all_batches.reject! {|b| b.is_deleted?}
         all_batches.reject! {|b| b.subjects.empty?}
         @previous_batch = all_batches[all_batches.size-2]
+        unless @previous_batch.blank?
         subjects = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false')
         subjects.each do |subject|
           if subject.elective_group_id.nil?
@@ -61,6 +62,10 @@ class BatchesController < ApplicationController
           msg << "<li>#{subject.name}</li>"
         end
         msg << "</ol>"
+        else
+          msg = nil
+          flash[:no_subject_error] = "#{t('flash7')}"
+        end
       end
       flash[:subject_import] = msg unless msg.nil?
       err = ""

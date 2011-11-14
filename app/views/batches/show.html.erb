@@ -60,6 +60,10 @@
     <div class="flash-msg" style="text-align: left;"><%= t('subject_transfer_message') %>:<br /> <%= flash[:subject_import].join("")%></div>
   <% end %>
 
+  <% unless flash[:no_subject_error].nil? %>
+    <div class="flash-msg"><%= flash[:no_subject_error] %></div>
+  <% end %>
+
   <% unless flash[:fees_import].nil? %>
     <div class="flash-msg" style="text-align: left;"><%= t('fee_import_message') %>:<br /> <%= flash[:fees_import].join("")%></div>
   <% end %>

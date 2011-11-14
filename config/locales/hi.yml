@@ -1802,12 +1802,14 @@ hi:
     flash4: "बैच को सफलतापूर्वक नष्ट कर दिया|"
     flash5: "हटाना बैच.कृपया सभी छात्रों को हटाने के करने में असमर्थ"
     flash6: "हटाना बैच.कृपया सभी विषय हटाने के करने में असमर्थ"
+    flash7: "पिछले बैचों में कोई विषय नहीं मिला."
 
 #batch_transfer controller translation
   batch_transfers:
     flash1: "सफलतापूर्वक Trasferred छात्रों"
     flash2: "स्नातक की उपाधि प्राप्त चयनित छात्रों को सफलतापूर्वक"
     flash3: "पहले से ही नाम के साथ इस विषय है"
+    flash4: "पिछले बैचों में कोई विषय नहीं मिला."
 
 #elective controller translation
   elective_groups:
