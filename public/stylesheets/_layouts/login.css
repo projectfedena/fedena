@@ -36,7 +36,7 @@ body {
     background:#312d2a;
     height:38px;
     float:right;
-    margin-right:54px;
+    margin-right:58px;
     margin-top:55px;
     border:none;
     color:#fff;
@@ -45,7 +45,7 @@ body {
     cursor:pointer;
     -moz-border-radius:12px;
     -webkit-border-radius:12px;
-    padding: 7px 10px;
+    padding: 7px 11px;
 
 }
 #submit_area input:hover{
@@ -60,10 +60,10 @@ body {
 
 #notice {
     padding:0;
-    width:350px;
+    width:336px;
     float:right;
-    margin-top:-32px;
-    margin-right:211px;
+    margin-top:-40px;
+    margin-right:218px;
     padding:2px;
     border:1px solid #999;
     background-color:#fff1ab;
