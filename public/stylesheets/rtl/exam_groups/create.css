@@ -20,8 +20,12 @@
     margin:0px auto;
 }
 .box{
-    width:750px;
+    width:100%;
     margin:0px auto;
+}
+.exam-basic-details{
+    margin: 0 auto;
+    width: 550px;
 }
 .submit_button {
     margin-top: 25px;

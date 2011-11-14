@@ -20,6 +20,7 @@
 <% form_for [@batch, @exam_group] do |f| %>
 
   <%= f.error_messages %>
+<div class="exam-basic-details">
   <div class="label-field-pair">
     <%= f.label "#{t('name')}" %>
      <div class="label-field-pair"> <div class="text-input-bg">
@@ -34,6 +35,7 @@
     <%= text_field_tag "" , t(@type.underscore),:disabled=>true %>
     </div>  <%= link_to "#{t('change_type')}", new_batch_exam_group_path(@batch,:ename=>@name),:class=>"type_link" %>
   </div>
+</div>
   <h4>
     <%= t('enter_exam_related_details') %>:
   </h4>

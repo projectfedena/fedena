@@ -20,6 +20,7 @@
 <% form_for [@batch, @exam_group] do |f| %>
 
   <%= f.error_messages %>
+<div class="exam-basic-details">
 
   <div class="label-field-pair">
     <%= f.label :name,t('name') %>
@@ -40,6 +41,7 @@
     <div class="text-input-bg"> <%= f.text_field :minimum_marks %></div>
   </div>
 
+</div>
 <h4> <%= t('enter_exam_related_details') %>:</h4>
 
   <table width="100%" id="listing">
