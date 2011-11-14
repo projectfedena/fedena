@@ -212,3 +212,9 @@ table.table{
     padding:5px;
     width:150px;
 }
+.label-field-pair input {
+    margin: 5px 0 0 5px;
+}
+.label-checkbox-pair {
+    padding: 0 0 0 0;
+}

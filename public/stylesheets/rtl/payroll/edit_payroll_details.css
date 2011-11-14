@@ -41,7 +41,7 @@
     font-family:arial;
     font-size:14px;
     font-weight:bold;
-    margin-right:270px;
+    margin-right:403px;
     margin-top:30px;
     padding:7px 10px;
     border:none;
@@ -66,6 +66,7 @@
     height: 1px;
     border: none;
     margin-right: 140px;
+    width: 474px;
 }
 
 #employee_profile_heading {
