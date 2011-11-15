@@ -512,6 +512,7 @@ class FinanceController < ApplicationController
 
   def update_liability
     @liability = Liability.find(params[:id])
+    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     
     render :update do |page|
       if @liability.update_attributes(params[:liability])
