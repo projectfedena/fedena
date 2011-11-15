@@ -185,3 +185,12 @@
     margin-right:200px;
     width:199px;
 }
+table#listing td.col-1 {
+   width: 2%;
+}
+table#listing td.col-3 {
+    width: 21%;
+}
+table#listing td.col-2 {
+    padding: 2px 19px 5px 10px;
+}

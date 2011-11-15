@@ -115,7 +115,7 @@
     font-size: 14px;
     margin : 0 0 10px 0;
     float:right;
-    width:410px;
+    width:476px;
     padding-top: 10px;
     font-weight: 600;
 
@@ -123,8 +123,8 @@
 .label-field-pair1 input {
     background : #eee;
     border : 1px solid #c6c6c6;
-    margin : 0px 10px 0 0;
-    width : 100px;
+    margin : 0px 1px 0 0;
+    width : 117px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     padding: 5px;
@@ -184,7 +184,7 @@
     display : block;
     font-size: 14px;
     float:right;
-    width:700px;
+    width:340px;
     padding-top: 10px;
     font-weight: 600;
 
@@ -266,4 +266,7 @@ table#listing td.col-8 {
 
 .pay_fees .label-field-pair2{
     float: left;
+}
+table#listing td.col-6 {
+    width: 6%;
 }

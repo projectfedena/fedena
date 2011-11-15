@@ -44,7 +44,7 @@
         </td>
         <td class="col-1" align="right"><%= fees.amount%></td>
         <td class="col-3"><%= I18n.l(fees.created_at,:format=>"%m-%d-%Y") %></td>
-        <td class="col-1">
+        <td class="col-3">
           <%  unless @additional_category.check_fee_collection_for_additional_fees == false %>
             <span class="small"> <%= link_to_remote t('delete_text'), :confirm=>t('delete_this_particular'),:url => { :action => 'add_particulars_delete',:id => fees.id} %></span>
             <span class="small"> <%= link_to_remote t('edit_text'), :url => { :action => 'add_particulars_edit',:id => fees.id} %></span>
