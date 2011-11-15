@@ -278,7 +278,7 @@ class UserController < ApplicationController
           flash[:notice] = "#{t('flash3')}"
           redirect_to :action => 'index'
         else
-          flash[:notice] = "#{t('flash4')}"
+          flash[:notice] = "#{t('user.flash4')}"
           redirect_to :action => 'set_new_password', :id => user.reset_password_code
         end
       else

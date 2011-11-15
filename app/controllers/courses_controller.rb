@@ -74,7 +74,7 @@ class CoursesController < ApplicationController
        flash[:notice]="#{t('flash3')}"
       redirect_to :action=>'manage_course'
     else
-      flash[:warn_notice]="<p>#{t('flash4')}</p>"
+      flash[:warn_notice]="<p>#{t('courses.flash4')}</p>"
       redirect_to :action=>'manage_course'
     end
   

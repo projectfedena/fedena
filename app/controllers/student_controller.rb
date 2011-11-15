@@ -346,7 +346,7 @@ class StudentController < ApplicationController
     @student = Student.find(@parent.ward_id)
     @countries = Country.all
     if request.post? and @parent.update_attributes(params[:parent_detail])
-      flash[:notice] = "#{t('flash4')}"
+      flash[:notice] = "#{t('student.flash4')}"
       redirect_to :controller => "student", :action => "guardians", :id => @student.id
     end
   end

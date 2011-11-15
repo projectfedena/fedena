@@ -156,8 +156,8 @@ class BatchesController < ApplicationController
       flash[:notice] = "#{t('flash4')}"
       redirect_to @course
     else
-      flash[:warn_notice] = "<p>#{t('flash5')}</p>" unless @batch.students.empty?
-      flash[:warn_notice] = "<p>#{t('flash6')}</p>" unless @batch.subjects.empty?
+      flash[:warn_notice] = "<p>#{t('batches.flash5')}</p>" unless @batch.students.empty?
+      flash[:warn_notice] = "<p>#{t('batches.flash6')}</p>" unless @batch.subjects.empty?
       redirect_to [@course, @batch]
     end
   end
