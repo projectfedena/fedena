@@ -100,7 +100,7 @@ body {
     border-bottom-width : 0;
     font: normal 0.9em Arial;
     line-height: 18px;
-    background: #b00 url(../../images/application/app_layout_header_bg.jpg) repeat;
+    background: #b00 url(../images/application/app_layout_header_bg.jpg) repeat;
 }
 #main-menu li:hover ul.level-1{
     visibility: visible;
@@ -144,7 +144,7 @@ body {
     border-bottom-width : 0;
     font: normal 0.9em Arial;
     line-height: 18px;
-    background: #b00 url(../../images/application/app_layout_header_bg.jpg) repeat;
+    background: #b00 url(../images/application/app_layout_header_bg.jpg) repeat;
 }
 #main-menu li ul.level-1 li:hover ul.level-2{
     visibility: visible;
