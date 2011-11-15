@@ -294,7 +294,7 @@ class Employee < ActiveRecord::Base
   end
 
   def former_dependency
-   plugin_dependencies = FedenaPlugin.check_dependency(self,"permanant")
+   plugin_dependencies = FedenaPlugin.check_dependency(self,"former")
   end
   
 end
