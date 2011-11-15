@@ -2003,6 +2003,9 @@ en: # locale
     flash20: "Discount already exists for admission number"
     flash23: "Amount to be paid should not be negative"
     flash24: "Fine amount should not be negative"
+    flash25: "Donation deleted successfully"
+    flash26: "Additional fees updated successfully"
+    flash27: "Additional fees deleted successfully"
 
     
 ## traslation for xml controller

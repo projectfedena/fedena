@@ -62,6 +62,7 @@ class FinanceController < ApplicationController
     if  @donation.destroy
       @transaction.destroy
       redirect_to :action => 'donors'
+      flash[:notice] = "#{t('flash25')}"
     end
   end
 
@@ -862,6 +863,7 @@ class FinanceController < ApplicationController
     respond_to do |format|
       format.js { render :action => 'additional_fees_edit' }
     end
+    flash[:notice] = "#{t('flash26')}"
   end
 
   def additional_fees_update
@@ -898,6 +900,7 @@ class FinanceController < ApplicationController
     @additional_categories = FinanceFeeCategory.find(:all, :conditions =>["is_deleted = '#{false}' and is_master = '#{false}' and batch_id = '#{@finance_fee_category.batch_id}'"])
     respond_to do |format|
       format.js { render :action => 'additional_fees_delete' }
+      flash[:notice] = "#{t('flash27')}"
     end
   end
 

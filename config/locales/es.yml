@@ -1999,6 +1999,9 @@ es: # locale
     flash20: "El descuento ya existe para el número de admisión"
     flash23: "La cantidad a pagar no puede ser negativa"
     flash24: "La cantidad de la multa no debe ser negativa"
+    flash25: "Donación eliminado con éxito"
+    flash26: "Los honorarios adicionales actualizado correctamente"
+    flash27: "Los honorarios adicionales eliminado con éxito"
 
 
 ## traslation for xml controller

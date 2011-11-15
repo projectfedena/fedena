@@ -27,6 +27,7 @@
 </div>
 
 <div id="page-yield">
+  <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
   <h4> <%= t('list_of_donors') %> </h4>
   <table id="listing">
     <tr class="tr-head">
