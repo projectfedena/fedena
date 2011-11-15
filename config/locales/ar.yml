@@ -260,16 +260,16 @@ ar:
 
   date:
     formats:
-      default: "البريد ٪ ٪ ٪ M - Y"
-      normal: "ه ٪ B ، Y ٪"
-      short: "٪ ه. ب ٪"
-      month_year: "Y ٪ B ٪"
-      long: "A ه ٪ ٪ ، B ٪ ، Y ٪"
-      only_day: "ه ٪"
-      month: "٪ B"
-      day: "٪ في"
-      mont: "٪ د"
-      day_mon: "٪ ٪ لد"
+      default: "%e-%m-%Y"
+      normal: "%B %e, %Y"
+      short: "%e. %b"
+      month_year: "%B %Y"
+      long: "%A, %e %B, %Y"
+      only_day: "%e"
+      month: "%B"
+      day: "%a"
+      mont: "%d"
+      day_mon: "%a %d"
 
 
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
@@ -281,10 +281,10 @@ ar:
 
   time:
     formats:
-      default: "A ٪ ، د. ٪ B ٪ Y ، H : ٪ M UHR"
-      short: "٪ د. B ٪ ، H : ٪ M UHR"
-      long: "A ٪ ، د. ٪ B ٪ Y ، H : ٪ M UHR"
-      time: "H ٪ : M ٪"
+      default: "%A, %d. %B %Y, %H:%M Uhr"
+      short: "%d. %B, %H:%M Uhr"
+      long: "%A, %d. %B %Y, %H:%M Uhr"
+      time: "%H:%M"
 
     am: "AM"
     pm: "PM"
