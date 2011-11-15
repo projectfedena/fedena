@@ -2002,6 +2002,7 @@ es: # locale
     flash25: "Donación eliminado con éxito"
     flash26: "Los honorarios adicionales actualizado correctamente"
     flash27: "Los honorarios adicionales eliminado con éxito"
+    flash28: "La responsabilidad ha creado correctamente"
 
 
 ## traslation for xml controller

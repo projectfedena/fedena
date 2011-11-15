@@ -497,11 +497,13 @@ class FinanceController < ApplicationController
       if @liability.save
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('finance.flash28')}</p>"
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @liability
         page.visual_effect(:highlight, 'form-errors')
       end
     end
+    
   end
 
   def edit_liability

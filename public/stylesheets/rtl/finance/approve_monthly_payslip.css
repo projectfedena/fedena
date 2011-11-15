@@ -14,6 +14,7 @@
     text-align: center;
     text-decoration: none;
     color:#FFFFFF;
+    margin-left: 210px;
 }
 .approve:hover a{
     background:  #373B3F;
@@ -30,7 +31,8 @@
     text-align: center;
     text-decoration: none;
     color:#FFFFFF;
-    width:135px
+    width:135px;
+    margin-left: 210px;
 }
 .box{
     width:550px;

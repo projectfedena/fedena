@@ -2006,6 +2006,7 @@ en: # locale
     flash25: "Donation deleted successfully"
     flash26: "Additional fees updated successfully"
     flash27: "Additional fees deleted successfully"
+    flash28: "Liability created successfully"
 
     
 ## traslation for xml controller

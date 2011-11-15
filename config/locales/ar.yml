@@ -2006,6 +2006,7 @@ ar:
     flash25: "التبرع حذف بنجاح"
     flash26: "رسوم إضافية لتحديث بنجاح"
     flash27: "رسوم إضافية حذف بنجاح"
+    flash28: "المسؤولية بنجاح إنشاء"
 
 ## traslation for xml controller
   xml:
