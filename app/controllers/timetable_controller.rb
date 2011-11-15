@@ -102,7 +102,7 @@ def extra_class
     @period_entry = PeriodEntry.find_all_by_month_date_and_batch_id(@date,@batch.id)
     render (:update) do |page|
       if @period_entry.blank?
-        flash[:notice] = "#{t('flash4')}"
+        flash[:notice] = "#{t('flash_msg16')}"
         page.replace_html 'extra-class-form', :partial=>"no_period_entry"
       else
         page.replace_html 'extra-class-form', :partial => "extra_class_form"

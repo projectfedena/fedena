@@ -1808,6 +1808,7 @@ en: # locale
   flash_msg13: "Category edited successfully."
   flash_msg14: "Particulars edited successfully."
   flash_msg15: "Error : Due date must be after End date."
+  flash_msg16: "No timetable entry for selected date"
 
 #configuration controller translation
   configuration:
@@ -2044,8 +2045,7 @@ en: # locale
     flash1: "Timetable has already been published"
     flash2: "Timetable updated"
     flash3: "Time table Published"
-    flash4: "No timetable entry for selected date"
-
+    
   shared:
     user:
       key: "Foo"

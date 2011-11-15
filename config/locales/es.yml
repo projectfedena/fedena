@@ -1804,6 +1804,7 @@ es: # locale
   flash_msg13: "Categoría editada correctamente."
   flash_msg14: "Datos editados correctamente."
   flash_msg15: "Error: La fecha de vencimiento debe ser posterior a la fecha de finalización."
+  flash_msg16: "No hay información en el horario para la fecha seleccionada"
 
 #configuration controller translation
   configuration:
@@ -2040,8 +2041,7 @@ es: # locale
     flash1: "El horario ya ha sido publicado"
     flash2: "Horario actualizado"
     flash3: "Horario publicado"
-    flash4: "No hay información en el horario para la fecha seleccionada"
-
+    
   shared:
     user:
       key: "Foo"
