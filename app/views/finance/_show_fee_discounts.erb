@@ -52,7 +52,7 @@
       <td class="col-1">
         <div class="edit"><%= link_to_remote "#{t('edit_text')}", :url => {:action => 'edit_fee_discount', :id => f.id} %> |&nbsp; </div>
 
-        <div class="delete"><%= link_to_remote "#{t('delete_text')}", :url => {:action => 'delete_fee_discount', :id => f.id} %></div>
+        <div class="delete"><%= link_to_remote "#{t('delete_text')}",:confirm=>"#{t('delete_confirm_msg')}",:url => {:action => 'delete_fee_discount', :id => f.id} %></div>
       </td>
         <% end %>
     </tr>
