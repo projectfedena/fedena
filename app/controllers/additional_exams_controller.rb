@@ -102,6 +102,7 @@ class AdditionalExamsController < ApplicationController
     if @additional_exam.destroy
       event.destroy
       batch_event.destroy
+      flash[:notice] = "#{t('flash2')}"
     end
     redirect_to [@batch, @additional_exam_group]
   end

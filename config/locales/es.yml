@@ -2030,6 +2030,7 @@ es: # locale
 #additional exams controller
   additional_exams:
     flash1: "Puntaje de exámenes adicionales actualizados."
+    flash2: "Examen adicional eliminado con éxito."
     flash3: "Examen adicional actualizado con éxito."
 
 #additional exam groups controller

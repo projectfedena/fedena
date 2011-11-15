@@ -2034,6 +2034,7 @@ en: # locale
 #additional exams controller
   additional_exams:
     flash1: "Additional exam scores updated."
+    flash2: "Additional exam deleted successfully."
     flash3: "Updated additional exam details successfully."
 
 #additional exam groups controller

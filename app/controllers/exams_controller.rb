@@ -115,7 +115,7 @@ class ExamsController < ApplicationController
     if @exam.destroy
       batch_id = @exam.exam_group.batch_id
       batch_event = BatchEvent.find_by_event_id_and_batch_id(@exam.event_id,batch_id)
-      event = Event.find(@exam.event_id)
+      event = Event.find_by_id(@exam.event_id)
       event.destroy
       batch_event.destroy
       flash[:notice] = "#{t('flash5')}"

@@ -2034,6 +2034,7 @@ ar:
 #additional exams controller
   additional_exams:
     flash1: "نتائج الامتحان إضافية محدثة."
+    flash2: "الامتحان بنجاح حذف إضافية."
     flash3: "تحديث تفاصيل إضافية الامتحان بنجاح."
 
 #additional exam groups controller

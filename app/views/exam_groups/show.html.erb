@@ -90,7 +90,11 @@
                 <td class="col-1"><%= in_place_editor_field :exam, :minimum_marks,{},{:cols=>1} %></td>
                 <td class="col-1">
                   <small><%= link_to t('edit_text'), edit_exam_group_exam_path(@exam_group, exam) %></small>
+                  <% if @exam.removable? %>
                   <small><%= link_to t('delete_text'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
+                  <% else %>
+                    <small><s><%= t('delete_text') %></s></small>
+                  <% end %>
                 </td>
               <% else %>
                 <td class="col-1"><span><%= exam.maximum_marks %></span></td>

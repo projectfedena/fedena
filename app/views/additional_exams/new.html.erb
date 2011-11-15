@@ -89,6 +89,9 @@
           <div class="text-input-bg"><%= f.calendar_date_select :end_time %></div>
         </div>
 
+        <%= f.hidden_field :maximum_marks, :value=>0 %>
+        <%= f.hidden_field :minimum_marks, :value=>0 %>
+
         <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
 
       <% end %>

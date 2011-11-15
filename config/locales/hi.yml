@@ -2007,6 +2007,7 @@ hi:
 #additional exams controller
   additional_exams:
     flash1: "अतिरिक्त परीक्षा स्कोर अपडेट किया गया|"
+    flash2: "अतिरिक्त परीक्षा सफलतापूर्वक नष्ट कर दिया है|"
     flash3: "अतिरिक्त परीक्षा विवरण सफलतापूर्वक नवीनीकृत|"
 
 #additional exam groups controller
