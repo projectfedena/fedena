@@ -15,6 +15,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
+<% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
 <% unless @particulars.empty? %>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">
@@ -45,7 +46,7 @@
         <td class="col-3"><%= I18n.l(fees.created_at,:format=>"%m-%d-%Y") %></td>
         <td class="col-1">
           <%  unless @additional_category.check_fee_collection_for_additional_fees == false %>
-            <span class="small"> <%= link_to_remote t('delete_text'), :confirm=>t('fees_defaulters.delete_this_particular'),:url => { :action => 'add_particulars_delete',:id => fees.id} %></span>
+            <span class="small"> <%= link_to_remote t('delete_text'), :confirm=>t('delete_this_particular'),:url => { :action => 'add_particulars_delete',:id => fees.id} %></span>
             <span class="small"> <%= link_to_remote t('edit_text'), :url => { :action => 'add_particulars_edit',:id => fees.id} %></span>
           <% else %>
             <span class="small-strike"><%= t('delete_text') %></span>

@@ -1031,6 +1031,7 @@ class FinanceController < ApplicationController
     @additional_category =@collection_date.fee_category
     @particulars = FeeCollectionParticular.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_collection_id = '#{@collection_date.id}' "])
     render :update do |page|
+      flash[:notice]= "#{t('particulars_deleted_successfully')}"
       page.replace_html 'particulars', :partial => 'additional_particulars_list'
     end
   end
