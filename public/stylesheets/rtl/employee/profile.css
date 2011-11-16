@@ -241,18 +241,18 @@
 }
 
 .date-odd{
-    width:505px;
+    width:473px;
     background : #EFF3FE;
     border-top:1px solid #BDCFFF;
-    padding-right:200px;
+    padding-right:232px;
     height:28px;
     padding-top:12px;
 }
 .date-even{
-    width:505px;
+    width:473px;
     background : #DAE6FF;
     border-top:1px solid #BDCFFF;
-    padding-right:200px;
+    padding-right:232px;
     height:28px;
     padding-top:12px;
 }
@@ -532,7 +532,7 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     cursor:pointer;
 }
 .total{
-    width: 185px;
+    width: 210px;
     height: auto;
     float: right;
 

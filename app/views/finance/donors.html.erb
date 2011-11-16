@@ -18,11 +18,11 @@
 #under the License. -%>
 
 <div id="content-header">
-   <img src="/images/show_finance.png" alt="" />
-   <h1><%= t('donations') %></h1>
-   <h3><%=t('donors')  %></h3>
+  <img src="/images/show_finance.png" alt="" />
+  <h1><%= t('donations') %></h1>
+  <h3><%=t('donors')  %></h3>
   <div id="app-back-button">
-   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
@@ -37,15 +37,15 @@
       <td><%= t('created_at') %></td>
       <td></td>
     </tr>
-<% @donations.each do |d| %>
-  <tr class="tr-<%= cycle('odd','even') %>">
-  <td class="col-3"><%= link_to d.donor,:action=>'donation_receipt',:id=>d.id %></td>
-  <td class="col-3"><%= d.description %></td>
-  <td class="col-3"><%= d.amount %></td>
-<td class="col-3"><%= d.transaction_date.strftime("%d-%m-%y") unless d.transaction_date.nil?%></td>
- <td class="col-3 links_class"><%= link_to t('edit_text'), :action => 'donation_edit', :id => d.id %>  |  <%= link_to t('delete_text'), :action => 'donation_delete',  :id=> d.id , :confirm => t('delete_confirm_msg')%></td>
-    </tr>
-<% end %>
+    <% @donations.each do |d| %>
+      <tr class="tr-<%= cycle('odd','even') %>">
+        <td class="col-3"><%= link_to d.donor,:action=>'donation_receipt',:id=>d.id %></td>
+        <td class="col-3"><%= d.description %></td>
+        <td class="col-3"><%= d.amount %></td>
+        <td class="col-3"><%= d.transaction_date.strftime("%d-%m-%y") unless d.transaction_date.nil?%></td>
+        <td class="col-3 links_class"><%= link_to t('edit_text'), :action => 'donation_edit', :id => d.id %>  |  <%= link_to t('delete_text'), {:action => 'donation_delete', :id=> d.id} , :confirm => t('delete_confirm_msg') %></td>
+      </tr>
+    <% end %>
 
   </table>
 </div>
