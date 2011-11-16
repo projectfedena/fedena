@@ -36,7 +36,7 @@
         <td class="col-3"><%=  @currency_type + " "%><%= l.amount%></td>
         <td class="col-1">
           <%= link_to_remote "#{t('edit_text')}", :url => { :action => 'edit_liability', :id => l.id } %> |
-          <%= link_to_remote "#{t('delete_text')}", :url => { :action => 'delete_liability', :id => l.id } %></td>
+          <%= link_to_remote "#{t('delete_text')}", :url => { :action => 'delete_liability', :id => l.id } ,:confirm=>t('delete_confirm_msg')%></td>
       </tr>
     <% else %>
       <tr class="tr-<%= cycle('odd', 'even')%> ">

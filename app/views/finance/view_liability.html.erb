@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-   <img src="/images/show_finance.png" alt="" />
+  <img src="/images/show_finance.png" alt="" />
   <h1><%= t('asset_liability_management') %></h1>
   <h3><%= t('liability_view') %></h3>
   <div id="app-back-button">
@@ -27,10 +27,13 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-      <li><%= link_to "#{t('pdf_report')}",{ :controller => 'finance', :action => 'liability_pdf'}, :target=>'_blank' %></li>
+    <li><%= link_to "#{t('pdf_report')}",{ :controller => 'finance', :action => 'liability_pdf'}, :target=>'_blank' %></li>
   </ul>
 </div>
 <div id="page-yield">
+  <div id="flash_box">
+  </div>
+  <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
   <div id="liability_list"><%= render :partial => "liability_list" %> </div>
   <div id="modal-box" style="display:none;"></div>
 </div>

@@ -34,7 +34,7 @@
 
         <td class="col-1">
           <%= link_to_remote t('edit_text'), :url => { :action => 'edit_asset', :id => a.id } %> |
-          <%= link_to_remote t('delete_text'), :url => { :action => 'delete_asset', :id => a.id } %>
+          <%= link_to_remote t('delete_text'), :url => { :action => 'delete_asset', :id => a.id } ,:confirm=>t('delete_confirm_msg')%>
         </td>
 
       </tr>

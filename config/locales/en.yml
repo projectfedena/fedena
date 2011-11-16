@@ -1791,7 +1791,7 @@ en: # locale
   group_create_privilege: "Group Create"
   transport_admin_privilege: "Transport Admin"
   task_management_privilege: "Task Management"
-
+  
 
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"
@@ -1809,6 +1809,15 @@ en: # locale
   flash_msg14: "Particulars edited successfully."
   flash_msg15: "Error : Due date must be after End date."
   flash_msg16: "No timetable entry for selected date"
+  flash_msg17: "Automatic transaction created successfully"
+  flash_msg18: "Automatic transaction updated successfully"
+  flash_msg19: "Automatic transaction deleted successfully"
+  flash_msg20: "Asset created successfully"
+  flash_msg21: "Asset updated successfully"
+  flash_msg22: "Asset deleted successfully"
+  flash_msg23:  "Liability created successfully"
+  flash_msg24:  "Liability updated successfully"
+  flash_msg25:  "Liability deleted successfully"
 
 #configuration controller translation
   configuration:
@@ -2006,9 +2015,8 @@ en: # locale
     flash25: "Donation deleted successfully"
     flash26: "Additional fees updated successfully"
     flash27: "Additional fees deleted successfully"
-    flash28: "Liability created successfully"
-
     
+
 ## traslation for xml controller
   xml:
     flash1: "XML settings updated successfully"

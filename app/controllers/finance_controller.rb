@@ -236,6 +236,8 @@ class FinanceController < ApplicationController
         page.replace_html 'transaction-triggers-list', :partial => 'transaction_triggers_list'
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg17')}</p>"
+
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @trigger
         page.visual_effect(:highlight, 'form-errors')
@@ -262,6 +264,7 @@ class FinanceController < ApplicationController
     @triggers = FinanceTransactionTrigger.all
     render :update do |page|
       page.replace_html 'transaction-triggers-list', :partial => 'transaction_triggers_list'
+      page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg18')}</p>"
     end
   end
 
@@ -271,6 +274,7 @@ class FinanceController < ApplicationController
     @triggers = FinanceTransactionTrigger.all
     render :update do |page|
       page.replace_html 'transaction-triggers-list', :partial => 'transaction_triggers_list'
+      page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg19')}</p>"
     end
   end
 
@@ -497,7 +501,7 @@ class FinanceController < ApplicationController
       if @liability.save
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
-        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('finance.flash28')}</p>"
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg23')}</p>"
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @liability
         page.visual_effect(:highlight, 'form-errors')
@@ -519,6 +523,7 @@ class FinanceController < ApplicationController
         @liabilities = Liability.find(:all,:conditions => 'is_deleted = 0')
         page.replace_html "liability_list", :partial => "liability_list"
         page << "Modalbox.hide();"
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg24')}</p>"
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @liability
         page.visual_effect(:highlight, 'form-errors')
@@ -541,8 +546,10 @@ class FinanceController < ApplicationController
     @liability = Liability.find(params[:id])
     @liability.update_attributes(:is_deleted => true)
     @liabilities = Liability.find(:all ,:conditions => 'is_deleted = 0')
+    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     render :update do |page|
       page.replace_html "liability_list", :partial => "liability_list"
+      page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg25')}</p>"
     end
   end
 
@@ -557,6 +564,8 @@ class FinanceController < ApplicationController
       if @asset.save
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg20')}</p>"
+
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @asset
         page.visual_effect(:highlight, 'form-errors')
@@ -588,6 +597,7 @@ class FinanceController < ApplicationController
         @assets = Asset.find(:all,:conditions => 'is_deleted = 0')
         page.replace_html "asset_list", :partial => "asset_list"
         page << "Modalbox.hide();"
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg21')}</p>"
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @asset
         page.visual_effect(:highlight, 'form-errors')
@@ -599,8 +609,10 @@ class FinanceController < ApplicationController
     @asset = Asset.find(params[:id])
     @asset.update_attributes(:is_deleted => true)
     @assets = Asset.all(:conditions => 'is_deleted = 0')
+    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     render :update do |page|
       page.replace_html "asset_list", :partial => "asset_list"
+      page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg22')}</p>"
     end
   end
 

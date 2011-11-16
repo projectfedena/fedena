@@ -1805,6 +1805,15 @@ es: # locale
   flash_msg14: "Datos editados correctamente."
   flash_msg15: "Error: La fecha de vencimiento debe ser posterior a la fecha de finalización."
   flash_msg16: "No hay información en el horario para la fecha seleccionada"
+  flash_msg17: "automática de transacciones creado con éxito"
+  flash_msg18: "operación automática actualizado con éxito"
+  flash_msg19: "operación automática de borrado con éxito"
+  flash_msg20: "Activos creado con éxito"
+  flash_msg21: "Activo actualizado con éxito"
+  flash_msg22: "Activos eliminado con éxito"
+  flash_msg23: "La responsabilidad ha creado correctamente"
+  flash_msg24: "Responsabilidad actualizado correctamente"
+  flash_msg25: "Responsabilidad eliminado con éxito"
 
 #configuration controller translation
   configuration:
@@ -2002,8 +2011,7 @@ es: # locale
     flash25: "Donación eliminado con éxito"
     flash26: "Los honorarios adicionales actualizado correctamente"
     flash27: "Los honorarios adicionales eliminado con éxito"
-    flash28: "La responsabilidad ha creado correctamente"
-
+    
 
 ## traslation for xml controller
   xml:
