@@ -46,7 +46,7 @@
     <%= calendar_date_select_includes 'red' %>
 
     <%= javascript_include_tag "calendar_date_select/locale/#{I18n.locale}.js" %>
-    
+    <%= yield :head %>
   </head>
 
   <body>
