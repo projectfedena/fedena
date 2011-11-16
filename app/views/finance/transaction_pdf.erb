@@ -29,7 +29,7 @@
   <div class="extender"> </div>
   <div class="report">
     <div id ="main_info">
-      <h4> <%= "#{t('from')}( #{@start_date})#{t('to')}( #{@end_date})" %></h4>
+      <h4> <%= "#{t('from')} ( #{@start_date}) #{t('to')} ( #{@end_date})" %></h4>
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
@@ -98,8 +98,8 @@
         <% end %>
         <% if @grand_total >= 0 %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf"><%= index+=1 %></td>
-            <td class="col-pdf"><%= t('grand_total') %></td>
+            <td class="col-pdf"></td>
+            <td class="col-pdf1"><%= t('grand_total') %></td>
             <td class="col-pdf"></td>
             <td class="col-pdf">&nbsp;<%= @grand_total %></td>
           </tr>
@@ -107,7 +107,7 @@
         <%  else %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"></td>
-            <td class="col-pdf"><%= t('grand_total') %></td>
+            <td class="col-pdf1"><%= t('grand_total') %></td>
             <td class="col-pdf">&nbsp;<%= @grand_total * -1 %></td>
             <td class="col-pdf"></td>
           </tr>
