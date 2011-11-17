@@ -1818,6 +1818,9 @@ en: # locale
   flash_msg23:  "Liability created successfully"
   flash_msg24:  "Liability updated successfully"
   flash_msg25:  "Liability deleted successfully"
+  flash_msg26:  "Grading level was successfully created."
+  flash_msg27:  "Grading level was successfully updated."
+  flash_msg28:  "Grading level was successfully deleted."
 
 #configuration controller translation
   configuration:

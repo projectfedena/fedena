@@ -1,1 +1,2 @@
 page.hide "grading-level-#{@grading_level.id}"
+page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg28')}</p>"

@@ -1818,6 +1818,9 @@ ar:
   flash_msg23 : "المسؤولية بنجاح إنشاء"
   flash_msg24 : "المسؤولية المحدثة بنجاح"
   flash_msg25 : "المسؤولية حذف بنجاح"
+  flash_msg26:  "تم بنجاح إنشاء مستوى الدرجات."
+  flash_msg27:  "تم تحديث بنجاح مستوى الدرجات."
+  flash_msg28:   "تم حذف بنجاح على مستوى الدرجات." 
 
 #configuration controller translation
   configuration:

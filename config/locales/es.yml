@@ -1814,6 +1814,9 @@ es: # locale
   flash_msg23: "La responsabilidad ha creado correctamente"
   flash_msg24: "Responsabilidad actualizado correctamente"
   flash_msg25: "Responsabilidad eliminado con éxito"
+  flash_msg26: "el nivel de calificación se ha creado correctamente."
+  flash_msg27: "el nivel de calificación se ha actualizado correctamente."
+  flash_msg28: "el nivel de calificación se ha eliminado correctamente."
 
 #configuration controller translation
   configuration:
