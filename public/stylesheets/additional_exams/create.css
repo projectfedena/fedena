@@ -26,7 +26,7 @@
 
 .submit_button {
     margin-top:20px;
-    margin-left:180px;
+    margin-left:406px;
     padding: 7px 10px;
     color: #fff;
     background: #27292B;
@@ -40,4 +40,10 @@
 }
 .submit_button:hover{
     background:  #373B3F;
+}
+.label-field-pair {
+    margin-left: 253px;
+}
+.label-field-pair label {
+    width: 142px;
 }
