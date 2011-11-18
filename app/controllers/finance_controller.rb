@@ -202,6 +202,8 @@ class FinanceController < ApplicationController
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'category-list', :partial => 'category_list'
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg35')}</p>"
+
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @finance_category
         page.visual_effect(:highlight, 'form-errors')
@@ -213,6 +215,8 @@ class FinanceController < ApplicationController
     @finance_category = FinanceTransactionCategory.find(params[:id])
     @finance_category.update_attributes(:deleted => true)
     @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false})
+    @fixed_categories = @categories.reject{|c|!c.is_fixed}
+    @other_categories = @categories.reject{|c|c.is_fixed}
   end
 
   def category_edit
@@ -1035,6 +1039,7 @@ class FinanceController < ApplicationController
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'particulars', :partial => 'additional_particulars_list'
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg32')}</p>"
       else
         page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @finance_fee_particulars
         page.visual_effect(:highlight, 'form-errors')
@@ -1049,7 +1054,7 @@ class FinanceController < ApplicationController
     @additional_category =@collection_date.fee_category
     @particulars = FeeCollectionParticular.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_collection_id = '#{@collection_date.id}' "])
     render :update do |page|
-      flash[:notice]= "#{t('particulars_deleted_successfully')}"
+      page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('particulars_deleted_successfully')}</p>"
       page.replace_html 'particulars', :partial => 'additional_particulars_list'
     end
   end
@@ -1158,10 +1163,10 @@ class FinanceController < ApplicationController
             end
           end
           @finance_fee_collections = FinanceFeeCollection.all(:conditions => ["is_deleted = '#{false}' and batch_id = '#{@finance_fee_collection.batch_id}'"])
-          flash[:notice]="#{t('finance.flash12')}"
           page.replace_html 'form-errors', :text => ''
           page << "Modalbox.hide();"
           page.replace_html 'fee_collection_dates', :partial => 'fee_collection_list'
+          page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('finance.flash12')}</p>"
         else
           page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @finance_fee_collection
           page.visual_effect(:highlight, 'form-errors')

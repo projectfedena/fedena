@@ -2,6 +2,8 @@ if @error.nil?
 	page.replace_html 'form-errors', :text => ''
   page.replace_html 'class-timings-list', :partial => 'show_batch_timing'
   page << "Modalbox.hide();"
+  page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg29')}</p>"
+
 else
 	page.replace_html 'form-errors', :partial => 'errors', :object => @class_timing
   page.visual_effect(:highlight, 'form-errors')

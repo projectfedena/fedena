@@ -28,30 +28,31 @@
 
 <div id="page-yield">
 
+  <div id="flash_box"></div>
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-    
-    <div class="label-field-pair">
-   <label ><%= t('select_a_batch') %>:</label>
- <div class="text-input-bg">
-  <%= select :batch, :id,
-    @batches.map {|b| [b.full_name, b.id] },
-    {:prompt => "#{t('common')}"},
-    {:onchange => "#{remote_function(
-    :url => { :action => 'show' },
-    :with => "'batch_id='+value",
-    :before => "Element.show('loader')",
-    :success => "Element.hide('loader')"
-    )}"} %>
-  <%= image_tag("loader.gif", :align => "absmiddle", :border => 0, :id => "loader", :style =>"display: none;" ) %>
-</div></div>
 
-<div id="class-timings-list"><%= render :partial => "show_batch_timing" %></div>
-<div id="modal-box" style="display:none;"></div>
+  <div class="label-field-pair">
+    <label ><%= t('select_a_batch') %>:</label>
+    <div class="text-input-bg">
+      <%= select :batch, :id,
+        @batches.map {|b| [b.full_name, b.id] },
+        {:prompt => "#{t('common')}"},
+        {:onchange => "#{remote_function(
+        :url => { :action => 'show' },
+        :with => "'batch_id='+value",
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')"
+        )}"} %>
+      <%= image_tag("loader.gif", :align => "absmiddle", :border => 0, :id => "loader", :style =>"display: none;" ) %>
+    </div></div>
 
-<div class="extender"></div>
- </div>
+  <div id="class-timings-list"><%= render :partial => "show_batch_timing" %></div>
+  <div id="modal-box" style="display:none;"></div>
+
+  <div class="extender"></div>
+</div>
 
 
 

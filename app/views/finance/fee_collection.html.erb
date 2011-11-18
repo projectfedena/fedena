@@ -18,27 +18,29 @@
 #under the License. -%>
 
 <div id="content-header">
-    <img src="/images/show_finance.png" alt="" />
-    <h1><%= t('finance_text') %></h1>
-    <h3><%= t('fees_collection_date') %></h3>
+  <img src="/images/show_finance.png" alt="" />
+  <h1><%= t('finance_text') %></h1>
+  <h3><%= t('fees_collection_date') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <div id="page-yield">
+  <div id="flash_box"></div>
+  <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
   <div class="box">
-  <div id ="message"></div>
-  <div class ="link-box">
-    <div class="link-heading">
-      <%= link_to_remote "#{t('create_fee_collection')}", :url => { :action => 'fee_collection_new'} %>
+    <div id ="message"></div>
+    <div class ="link-box">
+      <div class="link-heading">
+        <%= link_to_remote "#{t('create_fee_collection')}", :url => { :action => 'fee_collection_new'} %>
+      </div>
+      <div class="link-descr"><%= t('creates_new_fee_collecting_dates') %> </div>
     </div>
-    <div class="link-descr"><%= t('creates_new_fee_collecting_dates') %> </div>
-  </div>
-  <div class="link-box">
-    <div class="link-heading"><%= link_to "#{t('view')}",:action => "fee_collection_view" %></div>
-    <div class="link-descr"><%= t('displays_collection_dates') %></div>
-  </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('view')}",:action => "fee_collection_view" %></div>
+      <div class="link-descr"><%= t('displays_collection_dates') %></div>
+    </div>
 
-  <div id="modal-box" style="display:none;"></div>
-</div>
+    <div id="modal-box" style="display:none;"></div>
+  </div>
 </div>

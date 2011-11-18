@@ -18,36 +18,37 @@
 #under the License. -%>
 
 <div id="content-header">
-    <img src="/images/show_finance.png" alt="" />
-    <h1><%= t('additional_fees') %></h1>
-    <h3><%= t('create_additional_fees') %></h3>
+  <img src="/images/show_finance.png" alt="" />
+  <h1><%= t('additional_fees') %></h1>
+  <h3><%= t('create_additional_fees') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <div id="page-yield">
+  <div id="flash_box"></div>
   <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
   <div id="message"></div>
   <br/>
 
   <div id="particular-box">
- <div class="name"><%= t('category_name') %></div><div class="val"><span>:</span><%= @additional_category.name %></div>
- <div class="name"><%= t('description') %></div><div class="val"><span>:</span><%= @additional_category.description %></div>
+    <div class="name"><%= t('category_name') %></div><div class="val"><span>:</span><%= @additional_category.name %></div>
+    <div class="name"><%= t('description') %></div><div class="val"><span>:</span><%= @additional_category.description %></div>
 
 
-  <% unless @additional_category.batch.nil? %>
- <div class="name"><%= t('course_text') %></div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
-  <% else %>
-  <div class="name"><%= t('course_text') %></div><div class="val"><span>:</span>ALL</div>
-  <% end %>
-<div class="name"><%= t('start_date') %></div><div class="val"><span>:</span><%= @collection_date.start_date %></div>
-<div class="name"><%= t('end_date') %></div><div class="val"><span>:</span><%= @collection_date.end_date%></div>
-<div class="name"><%= t('due_date') %></div><div class="val"><span>:</span><%= @collection_date.due_date%></div>
+    <% unless @additional_category.batch.nil? %>
+      <div class="name"><%= t('course_text') %></div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
+    <% else %>
+      <div class="name"><%= t('course_text') %></div><div class="val"><span>:</span>ALL</div>
+    <% end %>
+    <div class="name"><%= t('start_date') %></div><div class="val"><span>:</span><%= @collection_date.start_date %></div>
+    <div class="name"><%= t('end_date') %></div><div class="val"><span>:</span><%= @collection_date.end_date%></div>
+    <div class="name"><%= t('due_date') %></div><div class="val"><span>:</span><%= @collection_date.due_date%></div>
 
-<br />
+    <br />
 
 
-  <div id="particulars"><%= render :partial => 'fees_particulars_list' %></div>
+    <div id="particulars"><%= render :partial => 'fees_particulars_list' %></div>
   </div>
 
   <div id="modal-box" style="display:none;"></div>

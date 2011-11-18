@@ -1817,6 +1817,15 @@ es: # locale
   flash_msg26: "el nivel de calificación se ha creado correctamente."
   flash_msg27: "el nivel de calificación se ha actualizado correctamente."
   flash_msg28: "el nivel de calificación se ha eliminado correctamente."
+  flash_msg29: "el tiempo de clase se ha creado correctamente."
+  flash_msg30: "Clase de tiempo actualizado correctamente."
+  flash_msg31: "el tiempo de clase eliminado con éxito."
+  flash_msg32: "Datos actualizados correctamente"
+  flash_msg33: "la recaudación de tarifas ha creado correctamente"
+  flash_msg34: "cobro eliminado con éxito"
+  flash_msg35: "categoría de Finanzas ha creado correctamente"
+  flash_msg36: "categoría de Finanzas actualizado correctamente"
+  flash_msg37: "categoría de Finanzas ha eliminado correctamente"
 
 #configuration controller translation
   configuration:

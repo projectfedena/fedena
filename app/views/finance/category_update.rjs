@@ -1,1 +1,2 @@
 page.replace_html 'category-list', :partial => 'category_list'
+page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg36')}</p>"
