@@ -2079,3 +2079,12 @@ en: # locale
       # the method name (does not include "deliver")
     comment_notification:
       subject: "New Comment"
+
+## Translations for the autosuggest menu.
+autosuggest_menu:
+ search_employees: "Search employees"
+ search_students: "Search students"
+ employee_admission: "Employee Admission"
+ student_admission: "Student Admission"
+ 
+ 

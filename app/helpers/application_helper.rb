@@ -74,5 +74,22 @@ module ApplicationHelper
   def rtl?
     @rtl ||= RTL_LANGUAGES.include? I18n.locale.to_sym
   end
-  
+  def autosuggest_menuitems
+    menu_items = []   
+    default = [
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.student_admission'),:value => {:controller => :student,:action => :admission1}}, 
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.employee_admission'),:value =>{:controller => :employee,:action => :admission1}}				 
+              ]
+    (default + FedenaPlugin::ADDITIONAL_LINKS[:autosuggest_menuitems]).each do |plugin_menu_item|
+      link = plugin_menu_item[:value]
+      if permitted_to? link[:action],link[:controller]
+        menu_items << {
+          :menu_type => plugin_menu_item[:menu_type],
+          :label => plugin_menu_item[:label],
+          :value => url_for(plugin_menu_item[:value])
+        }
+      end
+    end
+    menu_items.to_json
+  end
 end

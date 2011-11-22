@@ -13,6 +13,7 @@ class FedenaPlugin
       ADDITIONAL_LINKS[:student_profile_more_menu] << plugin_details[:student_profile_more_menu] unless plugin_details[:student_profile_more_menu].blank?
       ADDITIONAL_LINKS[:employee_profile_more_menu] << plugin_details[:employee_profile_more_menu] unless plugin_details[:employee_profile_more_menu].blank?
       ADDITIONAL_LINKS[:online_exam_index_link] << plugin_details[:online_exam_index_link] unless plugin_details[:online_exam_index_link].blank?
+      ADDITIONAL_LINKS[:autosuggest_menuitems] << plugin_details[:autosuggest_menuitems] unless plugin_details[:autosuggest_menuitems].blank?
       FINANCE_CATEGORY << plugin_details[:finance] unless plugin_details[:finance].blank?
       unless plugin_details[:css_overrides].blank?
         plugin_details[:css_overrides].each do |css|
@@ -27,7 +28,7 @@ class FedenaPlugin
         if plugin_details[:name].camelize.constantize.respond_to? "application_layout_header"
           REGISTERED_HOOKS[:application_layout_header] << plugin_details[:name]
         end
-         if plugin_details[:name].camelize.constantize.respond_to? "general_settings_form"
+        if plugin_details[:name].camelize.constantize.respond_to? "general_settings_form"
           REGISTERED_HOOKS[:general_settings_form] << plugin_details[:name]
         end
         if plugin_details[:name].camelize.constantize.respond_to? "dashboard_layout_left_sidebar"

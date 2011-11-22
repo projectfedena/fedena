@@ -31,7 +31,8 @@
     <%= stylesheet_link_tag(*get_stylesheets) %>
     <%= stylesheet_link_tag @direction+'modalbox' %>
     <%= stylesheet_link_tag @direction+'popup.css' %>
-
+    <%= stylesheet_link_tag 'autosuggest-menu.css' %>
+    
     <%= javascript_include_tag :defaults, :cache => 'cache/javascripts/all' %>
     <%= javascript_include_tag 'scripts/nicetitle', 'droplicious' %>
     <%= javascript_include_tag "fckeditor/fckeditor" %>
@@ -47,6 +48,9 @@
 
     <%= javascript_include_tag "calendar_date_select/locale/#{I18n.locale}.js" %>
     <%= yield :head %>
+    <%= javascript_include_tag 'jquery/jquery.min.js' %>
+    <%= javascript_include_tag 'jquery/jquery-ui.min.js'%>
+    <%= javascript_include_tag 'jquery/jquery.hotkeys.js'%>
   </head>
 
   <body>
@@ -65,7 +69,9 @@
         <div id="outer-main-menu">
           <%= render :partial=>"layouts/main_menu" %>
         </div>
-
+        <div id="outer-autosuggest-menu">
+          <%= render :partial => "layouts/autosuggest_menu" %>
+        </div>
       </div>
     </div>
 

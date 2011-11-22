@@ -133,3 +133,13 @@ div.nicetitle p { margin: 0; padding: 0 3px; }
 
  text-decoration: none;
 }
+#outer-autosuggest-menu{
+float: left;
+margin-left: 130px;
+margin-top: 6px;
+width: 245px;
+}
+#autosuggest_menu_input{
+width: 300px;
+height: 14px;
+}
