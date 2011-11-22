@@ -179,6 +179,16 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+  
+  def limit_employee_profile_access
+      unless params[:id] == @current_user.id
+      priv = @current_user.privileges.map{|p| p.name}
+      unless current_user.admin? or priv.include?("HrBasics") or priv.include?("EmployeeSearch")
+        flash[:notice] = "#{t('flash_msg5')}"
+        redirect_to :controller=>"user", :action=>"dashboard"
+      end
+      end
+  end
 
   def protect_other_employee_data
     if current_user.employee?
