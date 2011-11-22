@@ -2081,10 +2081,10 @@ en: # locale
       subject: "New Comment"
 
 ## Translations for the autosuggest menu.
-autosuggest_menu:
- search_employees: "Search employees"
- search_students: "Search students"
- employee_admission: "Employee Admission"
- student_admission: "Student Admission"
+  autosuggest_menu:
+   search_employees: "Search employees"
+   search_students: "Search students"
+   employee_admission: "Employee Admission"
+   student_admission: "Student Admission"
  
  
