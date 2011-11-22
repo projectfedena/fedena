@@ -803,7 +803,8 @@ authorization do
       :search,
       :search_ajax,
       :employee_leave_count_edit,
-      :employee_leave_count_update
+      :employee_leave_count_update,
+      :view_attendance
     ]
     has_permission_on [:employee_attendances],
       :to => [
