@@ -30,7 +30,12 @@ class AttendanceReportsController < ApplicationController
     @batch = Batch.find params[:batch_id]
 
     if @current_user.employee? and @allow_access ==true
-      @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
+      role_symb = @current_user.role_symbols
+      if role_symb.include?(:student_attendance_view) or role_symb.include?(:student_attendance_register)
+        @subjects= Subject.find(:all,:conditions=>"batch_id = '#{@batch.id}' ")
+      else
+        @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
+      end
     else
       @subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>'is_deleted = false')
     end
@@ -204,10 +209,10 @@ class AttendanceReportsController < ApplicationController
     end
     render :pdf => 'report_pdf'
              
-#    render :layout=>'pdf'
-#    respond_to do |format|
-#      format.pdf { render :layout => false }
-#    end
+    #    render :layout=>'pdf'
+    #    respond_to do |format|
+    #      format.pdf { render :layout => false }
+    #    end
   end
 
   def filter_report_pdf
@@ -236,8 +241,8 @@ class AttendanceReportsController < ApplicationController
             
 
 
-#    respond_to do |format|
-#      format.pdf { render :layout => false }
-#    end
+    #    respond_to do |format|
+    #      format.pdf { render :layout => false }
+    #    end
   end
 end
