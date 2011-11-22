@@ -60,7 +60,13 @@
               </div>
               <div class="bottom">
                 <div class="subject">
-                  <%= t.subject.code unless t.subject_id.nil? %>
+                  <% unless t.subject_id.nil? %>
+                  <% unless t.subject.elective_group_id.nil?   %>
+                    <%= shorten_string(t.subject.elective_group.name.to_s,10) %>
+                  <% else %>
+                    <%= t.subject.code  %>
+                  <% end %>
+                  <% end %>
                 </div>
                 <% if @config.include?('HR') %>
                   <% unless t.employee.nil? %>
