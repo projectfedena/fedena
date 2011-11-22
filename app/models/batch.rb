@@ -85,4 +85,12 @@ class Batch < ActiveRecord::Base
   def has_own_weekday
     Weekday.find_all_by_batch_id(self.id).present?
   end
+
+  def allow_exam_acess(user)
+    flag = true
+    if user.employee? and user.role_symbols.include?(:subject_exam)
+     flag = false if user.employee_record.subjects.all(:conditions=>"batch_id = '#{self.id}'").blank?
+    end
+    return flag
+  end
 end

@@ -28,7 +28,7 @@
 
 <div id="inner-tab-menu">
   <ul>
-    <%  if permitted_to? :index,:exam_groups %>
+    <%  if permitted_to? :index,:exam_groups and @batch.allow_exam_acess(@current_user)%>
       <li><%= link_to "#{t('exams_text')}", batch_exam_groups_path(@batch) %> </li>
     <% end %>
 
