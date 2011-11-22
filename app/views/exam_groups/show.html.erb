@@ -75,7 +75,7 @@
           <td><%= t('max_mark') %></td>
           <td><%= t('min_mark') %></td>
           <% if permitted_to? :edit, :exams %>
-          <td><%= t('manage') %></td>
+            <td><%= t('manage') %></td>
           <% end %>
         </tr>
         <% @exam_group.exams.each do |exam| %>
@@ -89,9 +89,13 @@
                 <td class="col-1"><%= in_place_editor_field :exam, :maximum_marks,{},{:cols=>1} %></td>
                 <td class="col-1"><%= in_place_editor_field :exam, :minimum_marks,{},{:cols=>1} %></td>
                 <td class="col-1">
-                  <small><%= link_to t('edit_text'), edit_exam_group_exam_path(@exam_group, exam) %></small>
+                  <% unless @exam_group.result_published %>
+                    <small><s><%= t('edit_text') %></s></small>
+                  <% else %>
+                    <small><%= link_to t('edit_text'), edit_exam_group_exam_path(@exam_group, exam) %></small>
+                  <% end %>
                   <% if @exam.removable? %>
-                  <small><%= link_to t('delete_text'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
+                    <small><%= link_to t('delete_text'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
                   <% else %>
                     <small><s><%= t('delete_text') %></s></small>
                   <% end %>
@@ -109,7 +113,7 @@
         <tr class="tr-head">
           <td><%= t('subject') %></td>
           <% if permitted_to? :edit, :exams %>
-          <td><%= t('manage') %></td>
+            <td><%= t('manage') %></td>
           <% end %>
         </tr>
         <% @exam_group.exams.each do |exam| %>
@@ -118,14 +122,14 @@
               <% @exam = exam %>
               <td class="col-3"><%= link_to exam.subject.name, [@exam_group, exam] %></td>
               <% if permitted_to? :edit, :exams %>
-              <td class="col-1">
-                <small><%= link_to t('edit_text'), edit_exam_group_exam_path(@exam_group, exam) %></small>
-                <% if @exam.removable? %>
-                <small><%= link_to t('delete_text'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
-                <% else %>
-                  <small><s><%= t('delete_text') %></s></small>
-                <% end %>                
-              </td>
+                <td class="col-1">
+                  <small><%= link_to t('edit_text'), edit_exam_group_exam_path(@exam_group, exam) %></small>
+                  <% if @exam.removable? %>
+                    <small><%= link_to t('delete_text'), [@exam_group, exam], :method => 'delete', :confirm => t('delete_confirm_msg') %></small>
+                  <% else %>
+                    <small><s><%= t('delete_text') %></s></small>
+                  <% end %>
+                </td>
               <% end %>
             </tr>
           <% end %>

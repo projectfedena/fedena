@@ -56,7 +56,7 @@ class ExamController < ApplicationController
   
     else
       render(:update) do |page|
-                page.replace_html 'flash', :text=>"<div class='errorExplanation'><p>#{t('flash_msg9')}</p></div>"
+        page.replace_html 'flash', :text=>"<div class='errorExplanation'><p>#{t('flash_msg9')}</p></div>"
       end
     end
   end
@@ -74,8 +74,8 @@ class ExamController < ApplicationController
         students.each do |s|
           student_user = s.user
           Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
-                    :subject=>"#{t('exam_scheduled')}",
-                    :body=>"#{@exam_group.name} #{t('has_been_scheduled')}  <br/> #{t('view_calendar')}")
+            :subject=>"#{t('exam_scheduled')}",
+            :body=>"#{@exam_group.name} #{t('has_been_scheduled')}  <br/> #{t('view_calendar')}")
         end
       end
     end
@@ -83,49 +83,51 @@ class ExamController < ApplicationController
       ExamGroup.update(@exam_group.id,:is_published=>true) if params[:status] == "schedule"
       ExamGroup.update(@exam_group.id,:result_published=>true) if params[:status] == "result"
       sms_setting = SmsSetting.new()
-      if sms_setting.application_sms_active and sms_setting.exam_result_schedule_sms_active
-        students = @batch.students
-        students.each do |s|
-          guardian = s.immediate_contact
-          recipients = []
-          if s.is_sms_enabled
-            if sms_setting.student_sms_active
-              recipients.push s.phone2 unless s.phone2.nil?
-            end
-            if sms_setting.parent_sms_active
-              unless guardian.nil?
-                recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
+      @conf = Configuration.available_modules
+      if @conf.include?('SMS')
+        if sms_setting.application_sms_active and sms_setting.exam_result_schedule_sms_active
+          students = @batch.students
+          students.each do |s|
+            guardian = s.immediate_contact
+            recipients = []
+            if s.is_sms_enabled
+              if sms_setting.student_sms_active
+                recipients.push s.phone2 unless s.phone2.nil?
+              end
+              if sms_setting.parent_sms_active
+                unless guardian.nil?
+                  recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
+                end
+              end
+              @message = "#{@exam_group.name} #{t('exam_timetable_published')}" if params[:status] == "schedule"
+              @message = "#{@exam_group.name} #{t('exam_result_published')}" if params[:status] == "result"
+              unless recipients.empty?
+                sms = SmsManager.new(@message,recipients)
+                sms.send_sms
               end
             end
-                        @message = "#{@exam_group.name} #{t('exam_timetable_published')}" if params[:status] == "schedule"
-                        @message = "#{@exam_group.name} #{t('exam_result_published')}" if params[:status] == "result"
-            unless recipients.empty?
-              sms = SmsManager.new(@message,recipients)
-              sms.send_sms
-            end
           end
+          @sms_setting_notice = "#{t('exam_schedule_published')}" if params[:status] == "schedule"
+          @sms_setting_notice = "#{t('result_has_been_published')}" if params[:status] == "result"
+        else
+          @sms_setting_notice = "#{t('exam_schedule_published_no_sms')}" if params[:status] == "schedule"
+          @sms_setting_notice = "#{t('exam_result_published_no_sms')}" if params[:status] == "result"
         end
       else
-        @conf = Configuration.available_modules
-        if @conf.include?('SMS')
-                    @sms_setting_notice = "#{t('exam_schedule_published_no_sms')}" if params[:status] == "schedule"
-                    @sms_setting_notice = "#{t('exam_result_published_no_sms')}" if params[:status] == "result"
-        else
-                    @sms_setting_notice = "#{t('exam_schedule_published')}" if params[:status] == "schedule"
-                    @sms_setting_notice = "#{t('result_has_been_published')}" if params[:status] == "result"
-        end
+        @sms_setting_notice = "#{t('exam_schedule_published')}" if params[:status] == "schedule"
+        @sms_setting_notice = "#{t('result_has_been_published')}" if params[:status] == "result"
       end
       if params[:status] == "result"
         students = @batch.students
         students.each do |s|
           student_user = s.user
           Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
-                        :subject=>"#{t('result_published')}",
-                        :body=>"#{@exam_group.name} #{t('result_has_been_published')}  <br/>#{t('view_reports')}")
+            :subject=>"#{t('result_published')}",
+            :body=>"#{@exam_group.name} #{t('result_has_been_published')}  <br/>#{t('view_reports')}")
         end
       end
     else
-            @no_exam_notice = "#{t('exam_scheduling_not_done')}"
+      @no_exam_notice = "#{t('exam_scheduling_not_done')}"
     end
   end
 
@@ -144,7 +146,7 @@ class ExamController < ApplicationController
       else
         GroupedExam.delete_all(:batch_id=>@batch.id)
       end
-            flash[:notice]="#{t('flash1')}"
+      flash[:notice]="#{t('flash1')}"
     end
   end
 
@@ -166,12 +168,12 @@ class ExamController < ApplicationController
   def generated_report
     if params[:student].nil?
       if params[:exam_report].nil? or params[:exam_report][:exam_group_id].empty?
-                flash[:notice] = "#{t('flash2')}"
+        flash[:notice] = "#{t('flash2')}"
         redirect_to :action=>'exam_wise_report' and return
       end
     else
       if params[:exam_group].nil?
-                flash[:notice] = "#{t('flash3')}"
+        flash[:notice] = "#{t('flash3')}"
         redirect_to :action=>'exam_wise_report' and return
       end
     end
@@ -256,7 +258,7 @@ class ExamController < ApplicationController
       @students = @batch.students
       @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
     else
-            flash[:notice] = "#{t('flash4')}"
+      flash[:notice] = "#{t('flash4')}"
       redirect_to :action=>'subject_wise_report'
     end
   end
@@ -294,7 +296,7 @@ class ExamController < ApplicationController
   def generated_report4
     if params[:student].nil?
       if params[:exam_report].nil? or params[:exam_report][:batch_id].empty?
-                flash[:notice] = "#{t('select_a_batch_to_continue')}"
+        flash[:notice] = "#{t('select_a_batch_to_continue')}"
         redirect_to :action=>'grouped_exam_report' and return
       end
     else
@@ -309,7 +311,7 @@ class ExamController < ApplicationController
       @batch = Batch.find(params[:exam_report][:batch_id])
       @student = @batch.students.first
       if @student.blank?
-                flash[:notice] = "#{t('flash5')}"
+        flash[:notice] = "#{t('flash5')}"
         redirect_to :action=>'grouped_exam_report' and return
       end
       if @type == 'grouped'
