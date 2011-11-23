@@ -124,7 +124,32 @@ module ApplicationHelper
                {:menu_type => 'link' ,:label => t('autosuggest_menu.asset'),:value =>{:controller => :finance,:action => :asset}},
                {:menu_type => 'link' ,:label => t('autosuggest_menu.view_assets'),:value =>{:controller => :finance,:action => :view_asset}},
                {:menu_type => 'link' ,:label => t('autosuggest_menu.liability'),:value =>{:controller => :finance,:action => :liability}},
-               {:menu_type => 'link' ,:label => t('autosuggest_menu.view_liability'),:value =>{:controller => :finance,:action => :view_liability}}
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.view_liability'),:value =>{:controller => :finance,:action => :view_liability}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.tally_settings'),:value =>{:controller => :xml,:action => :settings}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.export_for_tally'),:value =>{:controller => :xml,:action => :create_xml}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.manage_users'),:value =>{:controller => :user,:action => :index}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.view_users'),:value =>{:controller => :user,:action => :all}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.add_users'),:value =>{:controller => :user,:action => :create}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.timetable'),:value =>{:controller => :timetable,:action => :index}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.create_timetable'),:value =>{:controller => :timetable,:action => :select_class2}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.set_class_timings'),:value =>{:controller => :class_timings,:action => :index}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.view_timetables'),:value =>{:controller => :timetable,:action => :view}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.institutional_timetable'),:value =>{:controller => :timetable,:action => :timetable}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.create_weekdays'),:value =>{:controller => :weekday,:action => :index}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.configuartion_home'),:value =>{:controller => :configuration,:action => :index}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.manage_course'),:value =>{:controller => :courses,:action => :manage_course}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.manage_batch'),:value =>{:controller => :courses,:action => :manage_batches}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.add_course'),:value =>{:controller => :courses,:action => :new}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.batch_transfers'),:value =>{:controller => :batch_transfers,:action => :index}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.manage_student_category'),:value =>{:controller => :student,:action => :categories}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.manage_subjects'),:value =>{:controller => :subjects,:action => :index}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.general_settings'),:value =>{:controller => :configuration,:action => :settings}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.add_admission_additional_detail'),:value =>{:controller => :student,:action => :add_additional_details}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.student_attendance'),:value =>{:controller => :student_attendance,:action => :index}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.attendance_register'),:value =>{:controller => :attendances,:action => :index}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.attendance_report'),:value =>{:controller => :attendance_reports,:action => :index}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.view_students'),:value =>{:controller => :student,:action => :view_all}},
+               {:menu_type => 'link' ,:label => t('autosuggest_menu.student_advanced_search'),:value =>{:controller => :student,:action => :advanced_search}}
               ]
     (default + FedenaPlugin::ADDITIONAL_LINKS[:autosuggest_menuitems]).each do |plugin_menu_item|
       link = plugin_menu_item[:value]
