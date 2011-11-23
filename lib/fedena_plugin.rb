@@ -13,6 +13,7 @@ class FedenaPlugin
       ADDITIONAL_LINKS[:student_profile_more_menu] << plugin_details[:student_profile_more_menu] unless plugin_details[:student_profile_more_menu].blank?
       ADDITIONAL_LINKS[:employee_profile_more_menu] << plugin_details[:employee_profile_more_menu] unless plugin_details[:employee_profile_more_menu].blank?
       ADDITIONAL_LINKS[:online_exam_index_link] << plugin_details[:online_exam_index_link] unless plugin_details[:online_exam_index_link].blank?
+      ADDITIONAL_LINKS[:instant_fees_index_link] << plugin_details[:instant_fees_index_link] unless plugin_details[:instant_fees_index_link].blank?
       ADDITIONAL_LINKS[:autosuggest_menuitems] << plugin_details[:autosuggest_menuitems] unless plugin_details[:autosuggest_menuitems].blank?
       FINANCE_CATEGORY << plugin_details[:finance] unless plugin_details[:finance].blank?
       unless plugin_details[:css_overrides].blank?
