@@ -40,7 +40,7 @@
     <div class="input-container"><%= form.text_field :description %></div>
    </div>
        <div class="label-field-pair">
-    <div class="label-container"><label><%= t('batch') %> : </label></div>
+    <div class="label-container"><label><%= t('batch') %> <span class="necessary-field">*</span> : </label></div>
     <div class="input-container"><%= form.select :batch_id, @batches.map { |c| [c.full_name, c.id] },:prompt => "#{t('select_batch')}"  %></div>
    </div>
        <div class="label-field-pair">
