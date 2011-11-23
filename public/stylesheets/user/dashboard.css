@@ -134,8 +134,8 @@ div.nicetitle p { margin: 0; padding: 0 3px; }
  text-decoration: none;
 }
 #outer-autosuggest-menu{
-float: left;
-margin-left: 130px;
+float: right;
+margin-right: 94px;
 margin-top: 6px;
 width: 245px;
 }

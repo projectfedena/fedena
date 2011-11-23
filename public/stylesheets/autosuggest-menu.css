@@ -44,10 +44,12 @@
     color: #bb0000;
 }
 #autosuggest_menu_input{
+    background: url("../../images/search_icon.png") no-repeat scroll 310px 50% #FFFFFF;
     border: 1px solid #C6C6C6;
     border-radius: 1px 1px 1px 1px;
     font-size: 13px;
     padding: 2px;
+    padding-right: 25px;
 }
 li.ui-menu-item a.action{
 border-left: 2px solid #bb0000;
