@@ -759,40 +759,6 @@ authorization do
       :activate_category,
       :delete_category,
       :inactivate_category ]
-    has_permission_on [:employee_attendance],
-      :to => [
-      :add_leave_types,
-      :register,
-      :report,
-      :leave_management,
-      :edit_leave_types,
-      :delete_leave_types,
-      :update_attendance_form,
-      :update_attendance_report,
-      :individual_leave_application,
-      :all_employee_new_leave_application,
-      :all_employee_leave_application,
-      :update_employees_select,
-      :leave_list,
-      :leave_app,
-      :emp_attendance,
-      :employee_attendance_pdf,
-      :manual_reset,
-      :employee_leave_reset_all,
-      :update_employee_leave_reset_all,
-      :leave_reset_settings,
-      :employee_leave_reset_by_department,
-      :list_department_leave_reset,
-      :update_department_leave_reset,
-      :employee_leave_reset_by_employee,
-      :employee_search_ajax,
-      :employee_view_all,
-      :employees_list,
-      :employee_leave_details,
-      :employee_wise_leave_reset,
-      :leave_history,
-      :update_leave_history
-    ]
   end
 
   role :employee_attendance do
