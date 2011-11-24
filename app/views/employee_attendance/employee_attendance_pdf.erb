@@ -37,23 +37,29 @@
     </div>
     <div id="pdf-info">
       <% c='even' %>
-        <table id="pdf-table" width="100%" cellspacing="0">
-          <tr class="table-header"><td class="col-pdf"><%= t('leave_types') %></td><td class="col-pdf">Dates</td></tr>
-      <% @leave_types.each do |lt| %>
-        <% leave_count = EmployeeLeave.find_by_employee_leave_type_id_and_employee_id(lt.id, @employee.id) %>
-        <% unless leave_count.reset_date.nil? %>
-          <% @report = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id, lt.id, :conditions=> ["attendance_date >= '#{leave_count.reset_date}'"]) %>
-        <% else %>
-          <% @report = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id, lt.id) %>
-        <% end %>
+      <table id="pdf-table" width="100%" cellspacing="0">
+        <tr class="table-header"><td class="col-pdf"><%= t('leave_types') %></td><td class="col-pdf">Dates</td></tr>
+        <% @leave_types.each do |lt| %>
+          <% leave_count = EmployeeLeave.find_by_employee_leave_type_id_and_employee_id(lt.id, @employee.id) %>
+          <% unless leave_count.reset_date.nil? %>
+            <% @report = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id, lt.id, :conditions=> ["attendance_date >= '#{leave_count.reset_date}'"]) %>
+          <% else %>
+            <% @report = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id, lt.id) %>
+          <% end %>
           <% if @report == [] %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>"><td class="col-pdf"><%= lt.name %></td><td class="col-pdf"><%= t('no_dates') %></td></tr>
           <% else %>
+            <% i = 0 %>
             <% @report.each do |r| %>
+              <% if i == 22 %>
+                <% i= 0 %>
+                <tr class="page-break"><td colspan="2"></td></tr>
+              <% end %>
               <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
                 <td class="col-pdf"><%= lt.name %></td>
                 <td class="col-pdf"><%= r.attendance_date.strftime("%B %d, %Y") %></td>
               </tr>
+              <% i = i + 1 %>
             <%  end %>
           <% end %>
         <% end %>
