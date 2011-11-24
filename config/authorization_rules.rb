@@ -406,7 +406,7 @@ authorization do
   role :add_new_batch do
     has_permission_on [:configuration], :to => [:index]
     has_permission_on [:courses], :to => [:index,:manage_course, :manage_batches,:find_course, :new, :create,:destroy,:edit,:update, :show, :update_batch]
-    has_permission_on [:batches], :to => [:index, :new, :create,:destroy,:edit,:update, :show, :init_data]
+    has_permission_on [:batches], :to => [:index, :new, :create,:destroy,:edit,:update, :show, :init_data,:assign_tutor,:update_employees,:assign_employee]
     has_permission_on [:subjects], :to => [:index, :new, :create,:destroy,:edit,:update, :show]
     has_permission_on [:student], :to => [:electives, :assign_students, :unassign_students, :assign_all_students, :unassign_all_students, :profile, :guardians, :show_previous_details]
     has_permission_on [:batch_transfers],
