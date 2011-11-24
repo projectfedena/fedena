@@ -2125,7 +2125,7 @@ hi:
     view_timetables: "देखें timetables"
     institutional_timetable: "संस्थागत समय सारिणी"
     create_weekdays: "कार्यदिवस बनाएँ"
-    configuartion_home: "Configuaration होम"
+    settings: "सेटिंग्स"
     manage_course: "कोर्स प्रबंधित"
     manage_batch: "बैच प्रबंधित"
     add_course: "कोर्स में जोड़ें"

@@ -2146,7 +2146,7 @@ es: # locale
     view_timetables: "Ver horarios"
     institutional_timetable: "Horario institucional"
     create_weekdays: "Crear lunes a viernes"
-    configuartion_home: "Configuaration Inicio"
+    settings: "Configuración"
     manage_course: "Administrar curso"
     manage_batch: "Administrar lotes"
     add_course: "Agregar curso"

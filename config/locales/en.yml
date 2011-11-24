@@ -2150,7 +2150,7 @@ en: # locale
    view_timetables: "View Timetables"
    institutional_timetable: "Institutional Timetable"
    create_weekdays: "Create Weekdays"
-   configuartion_home: "Configuaration Home"
+   settings: "Settings"
    manage_course: "Manage Course"
    manage_batch: "Manage Batch"
    add_course: "Add Course"
