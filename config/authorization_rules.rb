@@ -1852,8 +1852,7 @@ authorization do
     has_permission_on [:additional_exam],
       :to =>[
       :create_additional_exam,
-      :update_batch,
-      :publish
+      :update_batch
     ]
     has_permission_on [:additional_exam_groups],
       :to =>[

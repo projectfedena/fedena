@@ -50,7 +50,9 @@
     <table id="listing" width="100%">
       <tr class="tr-head">
         <td><%= t('exam_name') %></td>
-        <td><%= t('actions') %></td>
+        <% if permitted_to? :publish, :additional_exam %>
+      <td><%= t('actions') %></td>    
+      <% end %>
       </tr>
       <% @config = Configuration.available_modules %>
       <% @additional_exam_groups.each do |exam_group| %>
@@ -62,6 +64,7 @@
                 <s><%= "#{t('delete_text')}" unless exam_group.removable? %></s>
               </small></span>
           </td>
+          <% if permitted_to? :publish, :additional_exam %>
           <td class="col-2"><small>
               <% unless exam_group.is_published %>
                 <%= link_to_remote("#{t('publish_exam_schedule')}",:url=>{:controller=>'additional_exam',:action=>'publish',:id=>exam_group.id,:status=>"schedule"},
@@ -69,7 +72,8 @@
                   :success => "Element.hide('loader')")  %>
               <% else  %>
                 <%  unless  exam_group.result_published  %>
-                  <%= t('schedule_published') %>. <% if @config.include?('SMS') %>
+                  <%= t('schedule_published') %>
+                  <% if @config.include?('SMS') %>
                     <%= link_to_remote "#{t('resend')}",:url=>{:controller=>'additional_exam',:action=>'publish',:id=>exam_group.id,:status=>"schedule"},
                       :before => "Element.show('loader')",
                       :success => "Element.hide('loader')"  %>  <%= t('sms_notification') %>.<br />
@@ -85,6 +89,7 @@
                   <% end  %>
                 <% end  %>
               <% end  %>
+              <% end %>
 
               <span id="publish-notice-<%=exam_group.id%>"></span>
               <%= image_tag("loader.gif",
