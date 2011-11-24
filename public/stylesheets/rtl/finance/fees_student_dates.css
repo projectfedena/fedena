@@ -85,6 +85,7 @@
     font-family: arial;
     cursor:pointer;
     margin: 18px 0 0;
+    margin-left:10px;
 }
 .submit_button:hover{
     background:  #373B3F;
@@ -140,8 +141,11 @@
     font-family: arial;
     font-size: 14px;
     font-weight: bold;
+    margin-right: 15px;
     padding: 6px 8px;
+    width: 87px;
 }
+
 .label-field-pair1 .submit_button2:hover {
     background: none repeat scroll 0 0 #373B3F;
 }
@@ -157,7 +161,7 @@
 
 
 .fine_info{
-     float: left;
+    float: left;
     height: 50px;
     overflow: hidden;
     width: auto;
@@ -242,13 +246,13 @@ table#listing td a:hover{
 
 
 td span{
-   color: #990A10;
+    color: #990A10;
 }
 
 table#listing td.col-8 {
-    padding: 5px 10px 5px 5px;
-    width: 10%;
+    padding: 5px 10px 5px 15px;
     text-align: left;
+    width: 10%;
 }
 
 .pay_fees_buttons{
