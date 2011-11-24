@@ -19,7 +19,7 @@
 
 
 <div id="content-header">
-    <img src="/images/show_settings.png" />
+  <img src="/images/show_settings.png" />
   <h1><%= t('students') %></h1>
   <h3><%= t('categories') %></h3>
   <div id="app-back-button">
@@ -28,7 +28,8 @@
 </div>
 
 <div id="page-yield">
- <% unless flash[:notice].nil? %>
+  <div id="flash_box"></div>
+  <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
   <div id="student-category-form">

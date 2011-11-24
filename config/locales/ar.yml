@@ -1830,6 +1830,10 @@ ar:
   flash_msg35 : "خلقت فئة المالية بنجاح"
   flash_msg36 : "التمويل الفئة المحدثة بنجاح"
   flash_msg37 : "التمويل الفئة حذف بنجاح"
+  flash_msg39 : "تعيين الطلاب بنجاح"
+  flash_msg40 : "تعيين جميع الطلاب بنجاح"
+  flash_msg41 : "إزالة الطلاب بنجاح"
+  flash_msg42 : "إزالة جميع الطلاب بنجاح"
 
 #configuration controller translation
   configuration:

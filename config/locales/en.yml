@@ -1830,6 +1830,10 @@ en: # locale
   flash_msg35: "Finance category created successfully"
   flash_msg36: "Finance category updated successfully"
   flash_msg37: "Finance category deleted successfully"
+  flash_msg39: "Assign students successfully"
+  flash_msg40: "Assign all students successfully"
+  flash_msg41: "Remove students successfully"
+  flash_msg42: "Remove all students successfully"
 
 #configuration controller translation
   configuration:

@@ -580,7 +580,6 @@ class StudentController < ApplicationController
       @student_category.empty_students
     end
     @student_categories = StudentCategory.active
-    flash[:notice] = "#{t('student_category_deleted_succesfully')}"
   end
 
   def category_edit
@@ -592,7 +591,6 @@ class StudentController < ApplicationController
     @student_category = StudentCategory.find(params[:id])
     @student_category.update_attribute(:name, params[:name])
     @student_categories = StudentCategory.active
-     flash[:notice] = "#{t('student_category_updated_succesfully')}"
   end
 
   def view_all
@@ -883,6 +881,7 @@ class StudentController < ApplicationController
     @elective_subject = Subject.find(params[:id2])
     render(:update) do |page|
       page.replace_html "stud_#{params[:id]}", :partial=> 'unassign_students'
+      page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg39')}</p>"
     end
   end
 
@@ -896,6 +895,7 @@ class StudentController < ApplicationController
     @elective_subject = Subject.find(params[:id2])
     render(:update) do |page|
       page.replace_html 'category-list', :partial=>"all_assign"
+      page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg40')}</p>"
     end
   end
 
@@ -905,6 +905,7 @@ class StudentController < ApplicationController
     @elective_subject = Subject.find(params[:id2])
     render(:update) do |page|
       page.replace_html "stud_#{params[:id]}", :partial=> 'assign_students'
+      page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg41')}</p>"
     end
   end
 
@@ -918,6 +919,7 @@ class StudentController < ApplicationController
     @elective_subject = Subject.find(params[:id2])
     render(:update) do |page|
       page.replace_html 'category-list', :partial=>"all_assign"
+      page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg42')}</p>"
     end
   end
 

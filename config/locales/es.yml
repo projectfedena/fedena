@@ -1826,6 +1826,10 @@ es: # locale
   flash_msg35: "categoría de Finanzas ha creado correctamente"
   flash_msg36: "categoría de Finanzas actualizado correctamente"
   flash_msg37: "categoría de Finanzas ha eliminado correctamente"
+  flash_msg39: "Asignar a los estudiantes con éxito"
+  flash_msg40: "Asignar a todos los estudiantes con éxito"
+  flash_msg41: "Eliminar a los estudiantes con éxito"
+  flash_msg42: "Eliminar todos los estudiantes con éxito"
 
 #configuration controller translation
   configuration:
