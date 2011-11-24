@@ -1,7 +1,7 @@
 
 .submit_button {
     margin-top:25px;
-    margin-right:210px;
+    margin-right:477px;
     padding: 7px 10px;
     color: #fff;
     background: #27292B;
@@ -66,4 +66,7 @@
 .errorExplanation p{
     font-size: 13px;
     text-align: center;
+}
+.label-field-pair {
+    margin-left: 265px;
 }
