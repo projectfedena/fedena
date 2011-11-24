@@ -94,6 +94,7 @@ class FinanceController < ApplicationController
     @categories = FinanceTransactionCategory.all(:conditions =>"name != 'Salary' and is_income = false" )
     if request.post? and @transaction.update_attributes(params[:transaction])
       flash[:notice] = "#{t('flash4')}"
+      redirect_to  :action=>:expense_list
     end
   end
 
