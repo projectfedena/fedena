@@ -26,9 +26,11 @@
   </div>
 </div>
 <div id="inner-tab-menu">
+  <% if permitted_to? :index, :course %>
   <ul>
     <li><%= link_to t('course_text'), courses_path %></li>
   </ul>
+  <% end %>
 </div>
 <div id="page-yield">
   <div id="flash_box">

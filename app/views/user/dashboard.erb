@@ -194,7 +194,7 @@
         <%end%>
 
 
-        <% if permitted_to? :index, :exam and (@user.privileges.map{|p| p.name}.include?("StudentAttendanceRegister") or @user.privileges.map{|p| p.name}.include?("EnterResults") or @user.privileges.map{|p| p.name}.include?("ViewResults")) %>
+        <% if permitted_to? :index, :exam and (@user.privileges.map{|p| p.name}.include?("ExaminationControl") or @user.privileges.map{|p| p.name}.include?("EnterResults") or @user.privileges.map{|p| p.name}.include?("ViewResults")) %>
           <div class="button-box">
             <%= link_to "<div class ='button-label'><p>#{t('examinations')}</p></div>", {:controller => "exam", :action => "index"},
               :class => "option_buttons", :id => "examinations_button",:title => t('exam_link_title') %>
