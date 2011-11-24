@@ -1,4 +1,3 @@
-
 #category-list{
     margin:40px auto;
 width:400px;
@@ -22,7 +21,7 @@ width:400px;
     height : 1.5em;
     list-style-type : none;
     padding : 0.5em 10px 0 0;
-    
+
     width:400px;
 }
 .containereven a{
@@ -36,7 +35,7 @@ width:400px;
     height : 1.5em;
     list-style-type : none;
     padding : 0.5em 10px 0 0;
-    
+
     width:400px;
 }
 .containerodd a{
@@ -90,6 +89,10 @@ width:400px;
 }
 .submit_button:hover{
     background:  #373B3F;
+}
+.options{
+    width:auto;
+    float:left;
 }
 
 

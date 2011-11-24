@@ -91,5 +91,9 @@ width:400px;
 .submit_button:hover{
     background:  #373B3F;
 }
+.options{
+    width:auto;
+    float:right;
+}
 
 
