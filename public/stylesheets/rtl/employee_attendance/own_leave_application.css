@@ -15,7 +15,7 @@
     background : #EEF2FD;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 30em;
+    height : 1.5em; width : 33em;
     list-style-type : none;
     padding : 0.5em 5em 0 0;
 }
@@ -24,7 +24,7 @@
     background : #DFEAFF;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 30em;
+    height : 1.5em; width : 33em;
     list-style-type : none;
     padding : 0.5em 5em 0 0;
 }
@@ -33,7 +33,7 @@
     float : right;
 }
 #category-list li div.category-name {
-    width : 150px;
+    width : 235px;
     font-weight: bold;
     font-size:13px;
 }
@@ -71,7 +71,7 @@
     border:none;
     font-family: arial;
     cursor:pointer;
-    margin: 0 390px;
+    margin: 0 447px;
     text-decoration: none;
 }
 .cancel_button:hover{

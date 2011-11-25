@@ -36,44 +36,44 @@ h2.heading{
 .odd{
     height:auto;
     background: #EEEEEE;
-    
+
 }
 
 .even{
-    
+
     height:auto;
     background: #fff;
-    
-    
+
+
 }
 tr.even{
-   border: 1px solid #ADACAB;
+    border: 1px solid #ADACAB;
 }
 
 tr.odd{
-   border: 1px solid #ADACAB;
+    border: 1px solid #ADACAB;
 }
 
 .even td{
-   
-  padding: 12px 15px 12px 12px;
-  border: 1px solid #ADACAB;
-  border-left: 0px solid #fff;
-  border-top: 0px solid #fff;
- 
+
+    padding: 12px 15px 12px 12px;
+    border: 1px solid #ADACAB;
+    border-left: 0px solid #fff;
+    border-top: 0px solid #fff;
+
 }
 
 .odd td{
-  padding: 12px 15px 12px 12px;
-  border: 1px solid #ADACAB;
-  border-left: 0px solid #fff;
-  border-top: 0px solid #fff;
- 
+    padding: 12px 15px 12px 12px;
+    border: 1px solid #ADACAB;
+    border-left: 0px solid #fff;
+    border-top: 0px solid #fff;
+
 }
 
 table#pdf-table{
- border-top: 1px solid #ADACAB;
- border-collapse:collapse
+    border-top: 1px solid #ADACAB;
+    border-collapse:collapse
 }
 
 
@@ -111,6 +111,9 @@ table#pdf-table{
     height: 300px;
     border: 1px solid #fff;
     border-bottom: 1px solid #ADACAB;
+}
+.col-pdf1{
+ color: #990A10;
 }
 
 

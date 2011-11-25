@@ -39,16 +39,16 @@
       </div>
       <div id="pdf-info">
         <table id="pdf-table" width="100%" cellspacing="0">
-          <tr class="odd"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('total') %></td><td class="col-pdf"><%= t('percentage') %></td></tr>
+          <tr class="odd"><td class="col-pdf1"><%= t('name') %></td><td class="col-pdf1"><%= t('total') %></td><td class="col-pdf1"><%= t('percentage') %></td></tr>
           <% @students.each_with_index do |student,i| %>
             <% c =cycle('even','odd ') %>
             <% if i==22 %>
               <% i= 0 %>
               <tr class="page-break"><td colspan="3"></td></tr>
               <% if c == 'even' %>
-                <tr class="odd"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('total') %></td><td class="col-pdf"><%= t('percentage') %></td></tr>
+                <tr class="odd"><td class="col-pdf1"><%= t('name') %></td><td class="col-pdf1"><%= t('total') %></td><td class="col-pdf1"><%= t('percentage') %></td></tr>
               <% else %>
-                <tr class="even"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('total') %></td><td class="col-pdf"><%= t('percentage') %></td></tr>
+                <tr class="even"><td class="col-pdf1"><%= t('name') %></td><td class="col-pdf1"><%= t('total') %></td><td class="col-pdf1"><%= t('percentage') %></td></tr>
               <% end %>
             <% end %>
             <% leaves =0 %>
