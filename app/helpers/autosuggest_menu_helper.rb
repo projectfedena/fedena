@@ -31,9 +31,9 @@ module AutosuggestMenuHelper
       {:menu_type => 'link' ,:label => t('autosuggest_menu.additional_fees'),:value =>{:controller => :finance,:action => :additional_fees}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.view_additional_fees'),:value =>{:controller => :finance,:action => :additional_fees_list}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.create_additional_fees'),:value =>{:controller => :finance,:action => :additional_fees_create_form}},
-      {:menu_type => 'link' ,:label => t('autosuggest_menu.fees_collection'),:value =>{:controller => :finance,:action => :fee_collection}},
-      {:menu_type => 'link' ,:label => t('autosuggest_menu.fees_submission_by_course'),:value =>{:controller => :finance,:action => :fees_submission_batch}},
-      {:menu_type => 'link' ,:label => t('autosuggest_menu.fees_submission_for_each_student'),:value =>{:controller => :finance,:action => :fees_student_search}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.fee_collection'),:value =>{:controller => :finance,:action => :fee_collection}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.fee_submission_by_course'),:value =>{:controller => :finance,:action => :fees_submission_batch}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.fee_submission_for_each_student'),:value =>{:controller => :finance,:action => :fees_student_search}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.finance_categories'),:value =>{:controller => :finance,:action => :categories}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.transactions'),:value =>{:controller => :finance,:action => :transactions}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.add_expense'),:value =>{:controller => :finance,:action => :expense_create}},
@@ -61,7 +61,7 @@ module AutosuggestMenuHelper
       {:menu_type => 'link' ,:label => t('autosuggest_menu.view_timetables'),:value =>{:controller => :timetable,:action => :view}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.institutional_timetable'),:value =>{:controller => :timetable,:action => :timetable}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.create_weekdays'),:value =>{:controller => :weekday,:action => :index}},
-      {:menu_type => 'link' ,:label => t('autosuggest_menu.configuartion_home'),:value =>{:controller => :configuration,:action => :index}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.settings'),:value =>{:controller => :configuration,:action => :index}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.manage_course'),:value =>{:controller => :courses,:action => :manage_course}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.manage_batch'),:value =>{:controller => :courses,:action => :manage_batches}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.add_course'),:value =>{:controller => :courses,:action => :new}},
@@ -74,7 +74,16 @@ module AutosuggestMenuHelper
       {:menu_type => 'link' ,:label => t('autosuggest_menu.attendance_register'),:value =>{:controller => :attendances,:action => :index}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.attendance_report'),:value =>{:controller => :attendance_reports,:action => :index}},
       {:menu_type => 'link' ,:label => t('autosuggest_menu.view_students'),:value =>{:controller => :student,:action => :view_all}},
-      {:menu_type => 'link' ,:label => t('autosuggest_menu.student_advanced_search'),:value =>{:controller => :student,:action => :advanced_search}}
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.student_advanced_search'),:value =>{:controller => :student,:action => :advanced_search}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.create_fees'),:value =>{:controller => :finance,:action => :fees_create}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.fee_defaulters'),:value =>{:controller => :finance,:action => :fees_defaulters}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.fee_structure'),:value =>{:controller => :finance,:action => :fees_student_structure_search}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.messages'),:value =>{:controller => :reminder,:action => :index}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.sent_messages'),:value =>{:controller => :reminder,:action => :sent_reminder}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.create_messages'),:value =>{:controller => :reminder,:action => :create_reminder}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.change_password'),:value =>{:controller => :user,:action => :change_password}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.employee_advanced_search'),:value =>{:controller => :employee,:action => :advanced_search}},
+      {:menu_type => 'link' ,:label => t('autosuggest_menu.view_employees'),:value =>{:controller => :employee,:action => :view_all}}
     ]
     (default + FedenaPlugin::ADDITIONAL_LINKS[:autosuggest_menuitems]).each do |plugin_menu_item|
       link = plugin_menu_item[:value]

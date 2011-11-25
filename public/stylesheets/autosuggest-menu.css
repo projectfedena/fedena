@@ -43,7 +43,7 @@
     color: #bb0000;
 }
 #autosuggest_menu_input{
-    background: url("../../images/search_icon.png") no-repeat scroll 310px 50% #FFFFFF;
+    background: url("../../images/search.png") no-repeat scroll 310px 50% #FFFFFF;
     border: 1px solid #C6C6C6;
     border-radius: 1px 1px 1px 1px;
     font-size: 13px;
