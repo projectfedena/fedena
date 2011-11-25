@@ -76,20 +76,23 @@ class AdditionalExamController < ApplicationController
     @batch =  @additional_exam_group.batch
     @sms_setting_notice = ""
     @no_exam_notice = ""
-  if params[:status] == "schedule"
-    students=@additional_exam_group.students
-    students.each do |s|
-      student_user = s.user
-      unless student_user.nil?
-        Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
-          :subject=>"Additional Exam Scheduled",          :body=>"#{@additional_exam_group.name} #{t('has_been_scheduled')} <br/> #{t('view_calendar')}")
+    if params[:status] == "schedule"
+      students=@additional_exam_group.students
+      students.each do |s|
+        student_user = s.user
+        unless student_user.nil?
+          Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
+            :subject=>"Additional Exam Scheduled",          :body=>"#{@additional_exam_group.name} #{t('has_been_scheduled')} <br/> #{t('view_calendar')}")
+        end
       end
     end
-  end
     unless @additional_exams.empty?
       AdditionalExamGroup.update( @additional_exam_group.id,:is_published=>true) if params[:status] == "schedule"
       AdditionalExamGroup.update( @additional_exam_group.id,:result_published=>true) if params[:status] == "result"
       sms_setting = SmsSetting.new()
+      @conf = Configuration.available_modules
+      if @conf.include?('SMS')
+
       if sms_setting.application_sms_active and sms_setting.exam_result_schedule_sms_active
         students = @additional_exam_group.students
         students.each do |s|
@@ -112,42 +115,40 @@ class AdditionalExamController < ApplicationController
           end
         end
       else
-        @conf = Configuration.available_modules
-        if @conf.include?('SMS')
-          @sms_setting_notice = "#{t('exam_schedule_published_no_sms')}" if params[:status] == "schedule"
-          @sms_setting_notice = "#{t('exam_result_published_no_sms')}" if params[:status] == "result"
-        else
-          @sms_setting_notice = "#{t('exam_schedule_published')}" if params[:status] == "schedule"
-          @sms_setting_notice = "#{t('exam_result_published')}" if params[:status] == "result"
-        end
-      end
-      if params[:status] == "result"
-        students = @additional_exam_group.students
-        students.each do |s|
-          student_user = s.user
-          Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
-            :subject=>"#{t('result_published')}",
-            :body=>"#{ @additional_exam_group.name} #{t('result_has_been_published')} <br/> #{t('view_reports')}")
-        end
+        @sms_setting_notice = "#{t('exam_schedule_published')}" if params[:status] == "schedule"
+        @sms_setting_notice = "#{t('exam_result_published')}" if params[:status] == "result"
       end
     else
-      @no_exam_notice = "#{t('exam_scheduling_not_done')}"
+      @sms_setting_notice = "#{t('exam_schedule_published_no_sms')}" if params[:status] == "schedule"
+      @sms_setting_notice = "#{t('exam_result_published_no_sms')}" if params[:status] == "result"
+  end
+  if params[:status] == "result"
+    students = @additional_exam_group.students
+    students.each do |s|
+      student_user = s.user
+      Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
+        :subject=>"#{t('result_published')}",
+        :body=>"#{ @additional_exam_group.name} #{t('result_has_been_published')} <br/> #{t('view_reports')}")
     end
   end
+else
+  @no_exam_notice = "#{t('exam_scheduling_not_done')}"
+end
+end
 
-  def create_additional_exam
-    @course= Course
-  end
+def create_additional_exam
+@course= Course
+end
 
-  def update_batch
-    @batch = Batch.find_all_by_course_id(params[:course_name], :conditions => { :is_deleted => false})
+def update_batch
+@batch = Batch.find_all_by_course_id(params[:course_name], :conditions => { :is_deleted => false})
 
-    render(:update) do |page|
-      page.replace_html 'update_batch', :partial=>'update_batch'
-    end
+render(:update) do |page|
+  page.replace_html 'update_batch', :partial=>'update_batch'
+end
 
-  end
-  #REPORTS
+end
+#REPORTS
 
 end
 
