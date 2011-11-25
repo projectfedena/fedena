@@ -17,8 +17,8 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
- <div id="content-header">
-    <img src="/images/show_settings.png" />
+<div id="content-header">
+  <%= image_tag("/images/show_settings.png") %>
   <h1><%= t('batch_transfer') %></h1>
   <h3><%= t('graduation') %></h3>
   <div id="app-back-button">
@@ -28,42 +28,42 @@
 
 
 <div id="page-yield">
-   <% unless flash[:notice].nil? %>
+  <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
   <% unless @id_lists.blank?  %>
-<%= link_to "#{t('generate_tc_for_all')}",
-        {:controller => "student", :action => "generate_all_tc_pdf", :stud => @id_lists},:target => '_blank',:class=>'user_button' %>
-<br />
-<br />
-<% end %>
-<h4><%= t('garduating_batch') %>: <%= @batch.full_name %></h4>
-<% form_for :graduate do |f| %>
-  <%= t('graduation_message') %>
-     <div class="label-field-pair">
-          <label for="subject_id"><%= t('status_description') %> : </label>
-          <div class="text-input-bg"><%= f.text_field 'status_description' %></div>
-        </div>
-
-
-<p><%= t('uncheck_message') %>.</p>
-<ul id="category-list">
-  <li class="listheading">
-      <div class="heading-no"><%= t('adm_no') %></div>
-    <div class="category-name"><%= t('name') %></div>
-  </li>
-  <% @batch.students.each do |student| %>
-  <li class="list<%=cycle('odd', 'even')%>">
-  <div class="category-delete"><%= student.admission_no %></div>
-    <div class="category-name"><%= student.full_name %></div>
-    <div class="category-edit"><%= check_box_tag 'graduate[students][]', student.id, true %></div>
-</li>
+    <%= link_to "#{t('generate_tc_for_all')}",
+      {:controller => "student", :action => "generate_all_tc_pdf", :stud => @id_lists},:target => '_blank',:class=>'user_button' %>
+    <br />
+    <br />
   <% end %>
-</ul>
+  <h4><%= t('garduating_batch') %>: <%= @batch.full_name %></h4>
+  <% form_for :graduate do |f| %>
+    <%= t('graduation_message') %>
+    <div class="label-field-pair">
+      <label for="subject_id"><%= t('status_description') %> : </label>
+      <div class="text-input-bg"><%= f.text_field 'status_description' %></div>
+    </div>
 
-  <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
 
-<% end %>
+    <p><%= t('uncheck_message') %>.</p>
+    <ul id="category-list">
+      <li class="listheading">
+        <div class="heading-no"><%= t('adm_no') %></div>
+        <div class="category-name"><%= t('name') %></div>
+      </li>
+      <% @batch.students.each do |student| %>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <div class="category-delete"><%= student.admission_no %></div>
+          <div class="category-name"><%= student.full_name %></div>
+          <div class="category-edit"><%= check_box_tag 'graduate[students][]', student.id, true %></div>
+        </li>
+      <% end %>
+    </ul>
 
-   <div class="extender"></div>
-  </div>
+    <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
+
+  <% end %>
+
+  <div class="extender"></div>
+</div>

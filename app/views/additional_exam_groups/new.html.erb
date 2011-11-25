@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('additional_exams_text') %></h1>
   <h3><%= t('new_exam') %></h3>
   <div id="app-back-button">
@@ -61,19 +61,19 @@
           <label for="exam_type"><%= t('exam_type') %></label>
           <div class="text-input-bg"><%= select :exam_option,:exam_type,[[t('marks'),'Marks'],[t('grades'),'Grades'],[t('marks_and_grades'),'MarksAndGrades']] %></div>
         </div>
-      <div id="list">
-  <div class="sel-list">
-<%= t('select') %>: <%= link_to_function t('all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
-<%= link_to_function "#{t('none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
-</div>
-        <% @students.each do |student| %>
+        <div id="list">
+          <div class="sel-list">
+            <%= t('select') %>: <%= link_to_function t('all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+            <%= link_to_function "#{t('none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+          </div>
+          <% @students.each do |student| %>
 
-          <div class="name_list<%=cycle('odd', 'even')%>"><li>
-              <label><%= check_box_tag "students_list[]", student.id, false,:class=>'right' %>
-                <div class="att_list_names"><%= student.full_name %></div> </label>
-            </li>  </div>
-        <% end %>
-      </div>
+            <div class="name_list<%=cycle('odd', 'even')%>"><li>
+                <label><%= check_box_tag "students_list[]", student.id, false,:class=>'right' %>
+                  <div class="att_list_names"><%= student.full_name %></div> </label>
+              </li>  </div>
+          <% end %>
+        </div>
         <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
         <%  #  form.submit("Save") %>
       <%end%>

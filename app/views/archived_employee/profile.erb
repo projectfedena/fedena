@@ -21,11 +21,11 @@
 <% profile_employee_no = @employee.employee_number %>
 
 <div id="content-header">
-  <img src="/images/HR/show_hr.png" alt="" />
+  <%= image_tag("/images/HR/show_hr.png") %>
   <h1><%= t('employee_profile') %></h1>
   <h3><%= t('details') %></h3>
   <div id="app-back-button">
-   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
@@ -49,7 +49,7 @@
         <a href="#" class="drops" id="link_two"><%= t('salary') %> &#9660;</a>
         <ul id="box_two" class="scriptaculously" style="display:none;">
           <li><%= link_to_remote "#{t('payroll_text')}", :url => {:action => "profile_payroll_details", :id => @employee.id}, :update => "profile-infos" %></li>
-         </ul>
+        </ul>
       </li>
     <%else%>
       <% if permitted_to? :payslip, :employee %>
@@ -78,7 +78,7 @@
 
     <div id="profile_picture_display">
       <% if @employee.photo.file? %>
-       <%= image_tag @employee.photo.url %>
+        <%= image_tag @employee.photo.url %>
       <% else %>
         <%= image_tag "HR/default_employee.png" %>
       <% end %>
@@ -96,7 +96,7 @@
     <div class="extender"></div>
 
   </div>
-  
+
 
 
 
@@ -104,5 +104,5 @@
     <%=   render :partial => "general" %>
 
   </div>
-    <div class="extender"> </div>
+  <div class="extender"> </div>
 </div>

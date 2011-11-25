@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('batches_text') %></h1>
   <h3><%= "#{t('new_elective')}" %></h3>
   <div id="app-back-button">
@@ -36,20 +36,20 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-    
-<div class="bread_crumb">
-        <%= link_to t('course_text'), courses_path %> &raquo;
-        <%= link_to @course.full_name, @course %> &raquo;
-        <%= link_to "#{t('batch')} #{@batch.name}", [@course, @batch] %> &raquo;
-        <%= link_to "#{t('electives')}", batch_elective_groups_path(@batch) %> &raquo;
-         <%= t('new_text') %>
-        </div>
+
+  <div class="bread_crumb">
+    <%= link_to t('course_text'), courses_path %> &raquo;
+    <%= link_to @course.full_name, @course %> &raquo;
+    <%= link_to "#{t('batch')} #{@batch.name}", [@course, @batch] %> &raquo;
+    <%= link_to "#{t('electives')}", batch_elective_groups_path(@batch) %> &raquo;
+    <%= t('new_text') %>
+  </div>
   <div class="box">
 
 
     <% form_for [@batch, @elective_group] do |f| %>
-    <%= f.error_messages :header_message => nil %>
-    
+      <%= f.error_messages :header_message => nil %>
+
       <div class="label-field-pair">
         <div class="label-container"> <%= f.label "#{t('name')}" %></div>
         <div class="input-container"><%= f.text_field :name %></div>

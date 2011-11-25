@@ -21,31 +21,31 @@
 <script src="/javascripts/jquery-ui.min.js" type="text/javascript"></script>
 
 <script>
-$jq = jQuery.noConflict();
-$jq(document).ready(function() {
-  $jq("#salary_date").datepicker({dateFormat: 'yy-mm-dd'});
-});
+  $jq = jQuery.noConflict();
+  $jq(document).ready(function() {
+    $jq("#salary_date").datepicker({dateFormat: 'yy-mm-dd'});
+  });
 </script>
 
- <div id="content-header">
- <img src="/images/HR/show_hr.png" alt="" />
+<div id="content-header">
+  <%= image_tag("/images/HR/show_hr.png") %>
   <h1><%= t('monthly_payslip') %></h1>
   <h3><%= t('edit_text') %></h3>
-    <div id="app-back-button">
-   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
-    </div>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
+</div>
 
-  <div id="page-yield">
+<div id="page-yield">
 
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
   <% form_for :manage_payroll do |s| %>
-  <% @categories.each do |c| %>
-        <%- val = MonthlyPayslip.find_by_employee_id_and_payroll_category_id(@employee, c) -%>
-        <% @date=val.salary_date %>
+    <% @categories.each do |c| %>
+      <%- val = MonthlyPayslip.find_by_employee_id_and_payroll_category_id(@employee, c) -%>
+      <% @date=val.salary_date %>
 
       <li> <%= c.name %> : <%= s.text_field :amount, :index => c.id, :value => (val.nil? ? 0 : val.amount) %> </li>
 
@@ -58,4 +58,4 @@ $jq(document).ready(function() {
     <%= submit_tag "#{t('update')}" %>
   <% end %>
 
-  </div>
+</div>

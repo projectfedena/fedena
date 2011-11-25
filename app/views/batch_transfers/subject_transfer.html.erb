@@ -17,8 +17,8 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
- <div id="content-header">
-  <img src="/images/examination/show_exam.png" alt="Exam" />
+<div id="content-header">
+  <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('students') %></h1>
   <h3><%= t('assign_subject') %></h3>
   <div id="app-back-button">
@@ -28,56 +28,56 @@
 
 
 <div id="page-yield">
-   <% unless flash[:notice].nil? %>
+  <% unless flash[:notice].nil? %>
     <p  class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-    <div id="errors"></div>
-<div id="msg"></div>
-<div class="linker">
-<%= link_to_remote "#{t('add_normal_subject')}", :url => { :action => 'new_subject', :id => @batch} %> |
-<%= link_to "#{t('add_elective')}", batch_elective_groups_path(@batch) %> |
-<%= link_to_remote "#{t('assign_old_batch_subject')}", :url => { :controller=>'batch_transfers',:action => 'get_previous_batch_subjects', :id => @batch} %>
-</div>
-    <div id="previous-batch-subjects"></div>
+  <div id="errors"></div>
+  <div id="msg"></div>
+  <div class="linker">
+    <%= link_to_remote "#{t('add_normal_subject')}", :url => { :action => 'new_subject', :id => @batch} %> |
+    <%= link_to "#{t('add_elective')}", batch_elective_groups_path(@batch) %> |
+    <%= link_to_remote "#{t('assign_old_batch_subject')}", :url => { :controller=>'batch_transfers',:action => 'get_previous_batch_subjects', :id => @batch} %>
+  </div>
+  <div id="previous-batch-subjects"></div>
 
-<div id="subjects">
-<% unless @normal_subjects.empty? %>
+  <div id="subjects">
+    <% unless @normal_subjects.empty? %>
 
-  <ul id="category-list">
-    <h4><%= t('normal_subjects') %></h4>
-  <% @normal_subjects.each do |sub| %>
-    <li id="subject-<%=sub.id%>" class="list<%=cycle('odd', 'even')%>">
-      <div class="category-name"> <%= sub.name %></div>
-       <div class="category-code"><%= sub.code %></div>
-    </li>
-  <% end %>
-    </ul>
-<% end %>
-
-
-<% unless @elective_groups.empty? %>
-  <% @elective_groups.each do |eg| %>
-    <% unless @elective_subjects.empty? %>
-    <ul id="category-list">
-      <h4><%= eg.name %>:</h4>
-      <% @elective_subjects.each do |elect| %>
-        <% if elect.elective_group_id == eg.id %>
-          <li id="elect-<%=elect.id%>" class="list<%=cycle('odd', 'even')%>">
-          <div class="category-name"> <%= elect.name %></div>
-           <div class="category-code"><%= elect.code %></div>
+      <ul id="category-list">
+        <h4><%= t('normal_subjects') %></h4>
+        <% @normal_subjects.each do |sub| %>
+          <li id="subject-<%=sub.id%>" class="list<%=cycle('odd', 'even')%>">
+            <div class="category-name"> <%= sub.name %></div>
+            <div class="category-code"><%= sub.code %></div>
           </li>
         <% end %>
-      <% end %>
-          </ul>
+      </ul>
     <% end %>
-  <% end %>
-<% end %>
-    </div>
 
 
-
-
- <div id="modal-box" style="display:none;"></div>
-
-   <div class="extender"></div>
+    <% unless @elective_groups.empty? %>
+      <% @elective_groups.each do |eg| %>
+        <% unless @elective_subjects.empty? %>
+          <ul id="category-list">
+            <h4><%= eg.name %>:</h4>
+            <% @elective_subjects.each do |elect| %>
+              <% if elect.elective_group_id == eg.id %>
+                <li id="elect-<%=elect.id%>" class="list<%=cycle('odd', 'even')%>">
+                  <div class="category-name"> <%= elect.name %></div>
+                  <div class="category-code"><%= elect.code %></div>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
+
+
+
+
+  <div id="modal-box" style="display:none;"></div>
+
+  <div class="extender"></div>
+</div>

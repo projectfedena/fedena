@@ -17,8 +17,8 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
- <div id="content-header">
-    <img src="/images/show_settings.png" />
+<div id="content-header">
+  <%= image_tag("/images/show_settings.png") %>
   <h1><%= t('batch_transfer') %></h1>
   <h3><%= t('home') %></h3>
   <div id="app-back-button">
@@ -26,18 +26,18 @@
   </div>
 </div>
 
- 
+
 <div id="page-yield">
-   <% unless flash[:notice].nil? %>
+  <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
- <div class="label-field-pair">
-<label><%= t('select_a_course') %>:
-<%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader", :style =>"display: none;" ) %>
-   </label>
-   <div class="text-input-bg">
-  <%= select :courses, :name,
+  <div class="label-field-pair">
+    <label><%= t('select_a_course') %>:
+      <%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader", :style =>"display: none;" ) %>
+    </label>
+    <div class="text-input-bg">
+      <%= select :courses, :name,
         Course.active.map {|b| [b.course_name, b.id]},
         {:prompt => "#{t('select_a_course')}"},
         {:onChange => "#{remote_function(:url => {:action => "update_batch"},
@@ -45,10 +45,10 @@
         :before => "Element.show('loader')",
         :success => "Element.hide('loader')"
         )}"} %>
-</div></div>
+    </div></div>
 
-<div id="update_batch"></div>
+  <div id="update_batch"></div>
 
-<div class="extender"></div>
+  <div class="extender"></div>
 
- </div>
+</div>
