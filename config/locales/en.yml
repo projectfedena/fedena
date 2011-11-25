@@ -1937,6 +1937,7 @@ en: # locale
     flash42: "Please assign another employee in timetable inorder to remove this association"
     flash43: "No employees found in this department"
     flash44: "Cannot delete the employee when dependecy exists. Use change to former option"
+    flash45: "Payslip Date cant be generated before joining date"
 
 #payroll translation
   payroll:
