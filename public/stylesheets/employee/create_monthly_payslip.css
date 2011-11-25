@@ -255,3 +255,12 @@ ul{
     margin-top:10px;
     margin-bottom: 20px;
 }
+
+.errorExplanation {
+    background: url("/images/_global/error.png") no-repeat scroll 10px 14px #FFDEDF;
+    border-radius: 10px 10px 10px 10px;
+    height: auto;
+    margin: 20px auto;
+    padding: 16px 0 20px 50px;
+    width: 510px;
+}

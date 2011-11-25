@@ -43,6 +43,9 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
+  <% unless flash[:warn_notice].nil? %>
+    <div id="errorExplanation" class="errorExplanation"><%= flash[:warn_notice] %> </div>
+  <% end %>
   <div id="form-content">
     <% form_for :manage_payroll do |s| %>
 
