@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/admission/admission_page_logo.jpg" />
+  <%= image_tag("/images/admission/admission_page_logo.jpg") %>
   <h1><%= t('academic_reports') %></h1>
   <h3> <%= @student.full_name %> </h3>
   <div id="app-back-button">
@@ -38,7 +38,7 @@
         <%= link_to ">", :controller=>"student", :action=>"academic_report", :id=>@next_student.id %>
       </div>
     <% end %>
-    
+
     <% @subjects.each do |s| %>
 
       <div class="subject-report">

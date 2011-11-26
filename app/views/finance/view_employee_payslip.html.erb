@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/HR/show_hr.png" alt="" />
+  <%= image_tag("/images/HR/show_hr.png") %>
   <h1><%= t('finance_text') %></h1>
   <h3><%= t('employee_payslip') %></h3>
   <div id="app-back-button">
@@ -92,9 +92,9 @@
 </div>
 <div class="pdf-report">
   <% if @monthly_payslips.first.is_approved == false and @monthly_payslips.first.is_rejected == false%>
-      <%= link_to "#{t('approve')}", {:controller=>"finance", :action=>"employee_payslip_approve",:id =>@monthly_payslips.first.employee_id,:id2 => params[:salary_date] } %>
+    <%= link_to "#{t('approve')}", {:controller=>"finance", :action=>"employee_payslip_approve",:id =>@monthly_payslips.first.employee_id,:id2 => params[:salary_date] } %>
     <%= link_to_remote "#{t('reject')}",:url=>{:controller => "finance", :action => "employee_payslip_reject_form", :id=> @monthly_payslips.first.employee_id, :id2=>params[:salary_date]}, :confirm=>"#{t('delete_confirm_msg')}" %>
-<% end %>
+  <% end %>
 
   <%= link_to "#{t('pdf_report')}", :controller=>"employee", :action=>"employee_individual_payslip_pdf", :id=>params[:id], :id2=>params[:salary_date], :format=>'pdf', :target=>"_blank" %>
 </div>

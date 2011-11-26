@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/student_details/student_details_logo.jpg" />
+  <%= image_tag("/images/student_details/student_details_logo.jpg") %>
   <h1><%= t('student_text') %></h1>
   <h3><%= t('advanced_search_text') %></h3>
   <div id="app-back-button">
@@ -180,7 +180,7 @@
       </div>
       <div class="extender"></div>
       <div class="searched_for">
-          <%= @searched_for %>
+        <%= @searched_for %>
       </div>
 
 
@@ -188,10 +188,10 @@
         <% unless @students.empty? %>
           <tr class="tr-head">
             <td>
-             <%= t('sl_no') %>
+              <%= t('sl_no') %>
             </td>
             <td>
-             <%= t('first_name') %>
+              <%= t('first_name') %>
             </td>
             <td><%= t('batch') %></td>
             <td><%= t('adm_no') %></td>

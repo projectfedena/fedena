@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/show_finance.png" alt="" />
+  <%= image_tag("/images/show_finance.png") %>
   <h1><%= t('finance_text') %></h1>
   <h3><%= t('export_to_tally') %></h3>
   <div id="app-back-button">
@@ -27,20 +27,20 @@
 </div>
 <div id="page-yield">
   <div class="box">
-<div class="label-field-pair">
-  <% form_for :tally do |f| %>
-    <label for="student_grade"><%= t('start_date') %></label>
-    <div class="text-input-bg"><%= calendar_date_select_tag 'xml[start_date]',I18n.l(Date.today,:format=>"%e-%m-%Y"),
-        :year_range => 1.years.ago..1.years.from_now %>
-    </div>
-  </div>
-  <div class="label-field-pair">
-    <label for="student_grade"><%= t('end_date') %></label>
-    <div class="text-input-bg"><%= calendar_date_select_tag 'xml[end_date]', I18n.l(Date.today,:format=>"%e-%m-%Y"),
-        :year_range => 1.years.ago..1.years.from_now %>
-    </div>
-  </div>
-<%= submit_tag "► #{t('save_changes')}",:class=>'submit_button' %>
-<% end %>
+    <div class="label-field-pair">
+      <% form_for :tally do |f| %>
+        <label for="student_grade"><%= t('start_date') %></label>
+        <div class="text-input-bg"><%= calendar_date_select_tag 'xml[start_date]',I18n.l(Date.today,:format=>"%e-%m-%Y"),
+            :year_range => 1.years.ago..1.years.from_now %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="student_grade"><%= t('end_date') %></label>
+        <div class="text-input-bg"><%= calendar_date_select_tag 'xml[end_date]', I18n.l(Date.today,:format=>"%e-%m-%Y"),
+            :year_range => 1.years.ago..1.years.from_now %>
+        </div>
+      </div>
+      <%= submit_tag "► #{t('save_changes')}",:class=>'submit_button' %>
+    <% end %>
   </div>
 </div>

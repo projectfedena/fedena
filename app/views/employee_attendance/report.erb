@@ -18,11 +18,11 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/attendence/attendence.png" alt="" />
+  <%= image_tag("/images/attendence/attendence.png") %>
   <h1><%= t('employee_attendance_text') %></h1>
   <h3><%= t('reports_text') %></h3>
   <div id="app-back-button">
-   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
@@ -36,12 +36,12 @@
     <div class="label-field-pair">
       <label for="employee_department_select"><%= t('select_the_department') %></label>
       <div class="text-input-bg"><%= select :employee_department, :department_id, @departments.map {|c| [c.name, c.id]},
-                                              {:prompt => "#{t('select_a_department')}"},
-                                              {:onChange => "#{remote_function(:url => {:action => "update_attendance_report"},
-                                              :with => "'department_id='+value")}"} %></div>
+          {:prompt => "#{t('select_a_department')}"},
+          {:onChange => "#{remote_function(:url => {:action => "update_attendance_report"},
+          :with => "'department_id='+value")}"} %></div>
     </div>
   <% end %>
 
-<div id="attendance_report"> </div>
+  <div id="attendance_report"> </div>
 
 </div>

@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-    <img src="/images/attendence/attendence.png" alt="" />
+  <%= image_tag("/images/attendence/attendence.png") %>
   <h1><%= t('automatic_reset') %></h1>
   <h3><%= t('configure_auto_leave_reset') %></h3>
   <div id="app-back-button">
@@ -37,22 +37,22 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
-    <div class="box">
-      <%= error_messages_for 'leave_type' %>
+  <div class="box">
+    <%= error_messages_for 'leave_type' %>
 
-      <div class="label-field-pair">
-          <label for="category_name"><%= t('enable_automatic_reset') %></label>
-          <div class="check_box"><%= check_box_tag "auto_reset",:checked => false %></div>
-        </div>
-
-      <div class="label-field-pair">
-          <label for="category_name"><%= t('rest_period') %></label>
-          <div class="text-input-bg"><%= text_field_tag :code %></div>
-        </div>
-
-      <div id="submit-button">
-          <%=submit_tag("► #{t('save')}") %>
-        </div>
+    <div class="label-field-pair">
+      <label for="category_name"><%= t('enable_automatic_reset') %></label>
+      <div class="check_box"><%= check_box_tag "auto_reset",:checked => false %></div>
     </div>
+
+    <div class="label-field-pair">
+      <label for="category_name"><%= t('rest_period') %></label>
+      <div class="text-input-bg"><%= text_field_tag :code %></div>
+    </div>
+
+    <div id="submit-button">
+      <%=submit_tag("► #{t('save')}") %>
+    </div>
+  </div>
 
 </div>

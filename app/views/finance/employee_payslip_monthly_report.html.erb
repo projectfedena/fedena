@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/show_finance.png" alt="Finance" />
+<%= image_tag("/images/show_finance.png") %>
   <h1><%= t('employee_salary_report') %></h1>
   <h3><%= t('payslip_for') %><%= @monthly_payslips.first.active_or_archived_employee.full_name %> on <%= @salary_date %></h3>
   <div id="app-back-button">

@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
   <h3><%= t('grading_levels_text') %></h3>
   <div id="app-back-button">
@@ -27,9 +27,9 @@
 </div>
 <div id="inner-tab-menu">
   <% if permitted_to? :index, :course %>
-  <ul>
-    <li><%= link_to t('course_text'), courses_path %></li>
-  </ul>
+    <ul>
+      <li><%= link_to t('course_text'), courses_path %></li>
+    </ul>
   <% end %>
 </div>
 <div id="page-yield">

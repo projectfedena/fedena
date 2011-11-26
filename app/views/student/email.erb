@@ -18,11 +18,11 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/student_details/student_details_logo.jpg" />
+  <%= image_tag("/images/student_details/student_details_logo.jpg") %>
   <h1><%= t('students') %></h1>
   <h3><%= t('send_email') %></h3>
   <div id="app-back-button">
-   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
@@ -45,25 +45,25 @@
 
   <% form_for :email do |f| %>
 
-  <div class="label-field-pair">
-    <label for="email_subject"><%= t('subject') %></label>
-    <div class="text-input-bg"><%= f.text_field 'subject' %></div>
-  </div>
+    <div class="label-field-pair">
+      <label for="email_subject"><%= t('subject') %></label>
+      <div class="text-input-bg"><%= f.text_field 'subject' %></div>
+    </div>
 
-  <div class="label-field-pair">
-    <label for="email_recipients"><%= t('recipients') %></label>
-    <div class="text-input-bg"><%= select 'email', 'recipients', [["#{t('student_text')}","Student"], ["#{t('guardian')}","Guardian"], ["#{t('student_text')} & #{t('guardian')}","Student & Guardian"]] %></div>
-  </div>
+    <div class="label-field-pair">
+      <label for="email_recipients"><%= t('recipients') %></label>
+      <div class="text-input-bg"><%= select 'email', 'recipients', [["#{t('student_text')}","Student"], ["#{t('guardian')}","Guardian"], ["#{t('student_text')} & #{t('guardian')}","Student & Guardian"]] %></div>
+    </div>
 
-  <div class="message-area">
-    <br/>
-    <label for="email_message"><%= t('message') %></label>
-    <%= f.text_area 'message' %>
-  </div>
+    <div class="message-area">
+      <br/>
+      <label for="email_message"><%= t('message') %></label>
+      <%= f.text_area 'message' %>
+    </div>
 
-  <div class="submit-area">
-    <%= submit_tag '' , :value => "►#{t('create_text')}" %>
-  </div>
+    <div class="submit-area">
+      <%= submit_tag '' , :value => "►#{t('create_text')}" %>
+    </div>
 
   <% end %>
 

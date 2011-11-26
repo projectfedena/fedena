@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/student_details/student_details_logo.jpg" />
+  <%= image_tag("/images/student_details/student_details_logo.jpg") %>
   <h1><%= t('students') %></h1>
   <h3><%= t('previous_marks_overview') %></h3>
   <div id="app-back-button">
@@ -82,72 +82,72 @@
           <div class="extender"></div>
         </div>
       </div>
-    <div id="score-table">
-      <table id="listing" width="100%">
-        <tr class="tr-head">
-          <td><%= t('subject') %></td>
-          <% @exam_groups.each do |exam_group| %>
-            <td><%= exam_group.name %></td>
-          <% end %>
-          <td><%= t('total') %></td>
-        </tr>
-
-        <% @subjects.each do |subject| %>
-          <tr class="tr-<%= cycle('odd', 'even') %>">
-            <td class="col-2" ><%= subject.name %></td>
-            <% @mmg = 1;@g = 1 %>
-
+      <div id="score-table">
+        <table id="listing" width="100%">
+          <tr class="tr-head">
+            <td><%= t('subject') %></td>
             <% @exam_groups.each do |exam_group| %>
-
-              <% @exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id) %>
-              <% exam_score = ExamScore.find_by_student_id(@student.id, :conditions=>{:exam_id=>@exam.id})unless @exam.nil? %>
-              <% unless exam_score.nil?  %>
-                <% if exam_group.exam_type == "MarksAndGrades" %>
-                  <td class="col-3"><% unless @exam.nil?  %>
-                      <%= exam_score.marks || "-" %>/<%= @exam.maximum_marks %>|<%= exam_score.grading_level || "-" %></td>
-                  <% end  %>
-                <% elsif exam_group.exam_type == "Marks" %>
-                  <td class="col-3"><%= exam_score.marks || "-" unless @exam.nil? %>/<%= @exam.maximum_marks unless @exam.nil?%></td>
-                <% else %>
-                  <td class="col-3"><%= exam_score.grading_level || "-" unless exam_score.nil? %></td>
-                  <% @g = 0 %>
-                <% end %>
-              <% else %>
-                <td></td>
-              <% end %>
+              <td><%= exam_group.name %></td>
             <% end %>
-            <% total_score = ExamScore.new() %>
-            <% if @mmg == @g %>
-              <td class="col-1"><%= total_score.grouped_exam_subject_total(subject,@student,@type,b) %></td>
-            <% else %>
-              <td class="col-1">-</td>
-            <% end %>
+            <td><%= t('total') %></td>
           </tr>
 
-        <% end %>
-        <tr class="tr-head">
-          <td><%= t('total') %></td>
-          <% @max_total = 0 %>
-          <% @marks_total = 0 %>
+          <% @subjects.each do |subject| %>
+            <tr class="tr-<%= cycle('odd', 'even') %>">
+              <td class="col-2" ><%= subject.name %></td>
+              <% @mmg = 1;@g = 1 %>
 
-          <% @exam_groups.each do |exam_group| %>
-            <% if exam_group.exam_type == "MarksAndGrades" %>
-              <td><%= exam_group.total_marks(@student)[0] %></td>
-            <% elsif exam_group.exam_type == "Marks" %>
-              <td><%= exam_group.total_marks(@student)[0] %></td>
-            <% else %>
-              <td>-</td>
-            <% end %>
-            <% unless exam_group.exam_type == "Grades" %>
-              <% @max_total = @max_total + exam_group.total_marks(@student)[1] %>
-              <% @marks_total = @marks_total + exam_group.total_marks(@student)[0] %>
-            <% end %>
+              <% @exam_groups.each do |exam_group| %>
+
+                <% @exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id) %>
+                <% exam_score = ExamScore.find_by_student_id(@student.id, :conditions=>{:exam_id=>@exam.id})unless @exam.nil? %>
+                <% unless exam_score.nil?  %>
+                  <% if exam_group.exam_type == "MarksAndGrades" %>
+                    <td class="col-3"><% unless @exam.nil?  %>
+                        <%= exam_score.marks || "-" %>/<%= @exam.maximum_marks %>|<%= exam_score.grading_level || "-" %></td>
+                    <% end  %>
+                  <% elsif exam_group.exam_type == "Marks" %>
+                    <td class="col-3"><%= exam_score.marks || "-" unless @exam.nil? %>/<%= @exam.maximum_marks unless @exam.nil?%></td>
+                  <% else %>
+                    <td class="col-3"><%= exam_score.grading_level || "-" unless exam_score.nil? %></td>
+                    <% @g = 0 %>
+                  <% end %>
+                <% else %>
+                  <td></td>
+                <% end %>
+              <% end %>
+              <% total_score = ExamScore.new() %>
+              <% if @mmg == @g %>
+                <td class="col-1"><%= total_score.grouped_exam_subject_total(subject,@student,@type,b) %></td>
+              <% else %>
+                <td class="col-1">-</td>
+              <% end %>
+            </tr>
+
           <% end %>
-          <td></td>
-        </tr>
-        <tr></tr>
-      </table>
-       </div>
+          <tr class="tr-head">
+            <td><%= t('total') %></td>
+            <% @max_total = 0 %>
+            <% @marks_total = 0 %>
+
+            <% @exam_groups.each do |exam_group| %>
+              <% if exam_group.exam_type == "MarksAndGrades" %>
+                <td><%= exam_group.total_marks(@student)[0] %></td>
+              <% elsif exam_group.exam_type == "Marks" %>
+                <td><%= exam_group.total_marks(@student)[0] %></td>
+              <% else %>
+                <td>-</td>
+              <% end %>
+              <% unless exam_group.exam_type == "Grades" %>
+                <% @max_total = @max_total + exam_group.total_marks(@student)[1] %>
+                <% @marks_total = @marks_total + exam_group.total_marks(@student)[0] %>
+              <% end %>
+            <% end %>
+            <td></td>
+          </tr>
+          <tr></tr>
+        </table>
+      </div>
       <br />
       <% @additional_exam_groups = AdditionalExamGroup.find_all_by_batch_id(b) %>
       <% @additional_exam_groups.each do |additional_exam_group| %>

@@ -18,11 +18,11 @@
 #under the License. -%>
 
 <div id="content-header">
-    <img src="/images/show_settings.png" />
+  <%= image_tag("/images/show_settings.png") %>
   <h1><%= t('student_settings') %></h1>
   <h3><%= t('add_additional_details') %></h3>
   <div id="app-back-button">
-     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
@@ -32,36 +32,36 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
-    <%- form_for :additional_field do |c| -%>
+  <%- form_for :additional_field do |c| -%>
 
-      <%= error_messages_for 'additional_field' %>
-      <div id="form-content">
-        <div class="label-field-pair">
-          <label for="category_name"><%= t('name') %></label>
-          <div class="text-input-bg"> <%= c.text_field :name %> </div>
-        </div>
+    <%= error_messages_for 'additional_field' %>
+    <div id="form-content">
+      <div class="label-field-pair">
+        <label for="category_name"><%= t('name') %></label>
+        <div class="text-input-bg"> <%= c.text_field :name %> </div>
+      </div>
 
-        <div class="label-checkbox-pair">
-          <label class="status" for="status"><%= t('status') %></label>
-          <div id="radio-buttons">
-            <%= c.radio_button  "status", "true", :checked => "checked" %>
-            <label class="label_for_status" for="add_grade_status_true"><%= t('active') %></label>
+      <div class="label-checkbox-pair">
+        <label class="status" for="status"><%= t('status') %></label>
+        <div id="radio-buttons">
+          <%= c.radio_button  "status", "true", :checked => "checked" %>
+          <label class="label_for_status" for="add_grade_status_true"><%= t('active') %></label>
 
-            <%= c.radio_button  "status", "false" %>
-            <label class="label_for_status" for="add_grade_status_false"><%= t('inactive') %></label>
-          </div>
-        </div>
-
-        <div id="submit-button">
-          <%=submit_tag("► #{t('create_text')}") %>
+          <%= c.radio_button  "status", "false" %>
+          <label class="label_for_status" for="add_grade_status_false"><%= t('inactive') %></label>
         </div>
       </div>
 
-
-    <%- end -%>
-
-    <div id="category-list">
-      <%= render :partial => "additional_fields" %>
+      <div id="submit-button">
+        <%=submit_tag("► #{t('create_text')}") %>
+      </div>
     </div>
+
+
+  <%- end -%>
+
+  <div id="category-list">
+    <%= render :partial => "additional_fields" %>
+  </div>
 
 </div>

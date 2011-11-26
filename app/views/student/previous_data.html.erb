@@ -18,8 +18,8 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/admission/admission_page_logo.jpg" />
- <h1><%= t('admission') %></h1>
+  <%= image_tag("/images/admission/admission_page_logo.jpg") %>
+  <h1><%= t('admission') %></h1>
   <h3><%= t('previous_details') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
@@ -31,13 +31,13 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-     <%= error_messages_for 'previous_data' %>
+  <%= error_messages_for 'previous_data' %>
 
 
   <% form_for :student_previous_details do |a| %>
   <%#= error_messages_for 'employee_bank_details' %>
 
-   <span class="span-sub-heading"><%= t('previous_educational_details') %></span>
+    <span class="span-sub-heading"><%= t('previous_educational_details') %></span>
     <hr class="sub-heading"></hr>
     <div id="form-contents">
       <%= a.hidden_field :student_id, :value => @student.id %>
@@ -71,19 +71,19 @@
   <% end %>
   <div class="ajax-subject">
     <ul id="added-subjects">
-<%  unless @previous_subject.nil? %>
-<% @previous_subject.each  do |p| %>
+      <%  unless @previous_subject.nil? %>
+        <% @previous_subject.each  do |p| %>
 
-<li><div class="name"><%= p.subject %></div>
-  <div class="val"><span>:</span><%= p.mark %></div>
-  <div class="delete"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
+          <li><div class="name"><%= p.subject %></div>
+            <div class="val"><span>:</span><%= p.mark %></div>
+            <div class="delete"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
                 :url => {:action => "delete_previous_subject", :id => p.id},
 
                 :update => "added_subjects"%></div>
-</li>
+          </li>
 
-<% end %>
-  <% end %>
+        <% end %>
+      <% end %>
     </ul>
     <%= link_to_remote "#{t('add_subject')}", :url=>{:controller=>"student",:action=>"previous_subject", :id=>@student.id}%>
     <div id="subject">

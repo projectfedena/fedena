@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-  <img src="/images/manage_news/manage_news_logo.png" />
+  <%= image_tag("/images/manage_news/manage_news_logo.png") %>
   <h1><%= t('event_text') %></h1>
   <h3><%= t('confirmation') %></h3>
   <div id="app-back-button">
@@ -26,104 +26,104 @@
   </div>
 </div>
 <div id="page-yield">
-<% unless flash[:notice].nil? %>
+  <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
 
-    <div class="detail-box">
-      <div class="label">  <%= t('title') %> :</div>
-      <div class="description">
-        <%= @event.title %>
-      </div>
-    <div class="extender"></div>
-      <div class="label"><%= t('description') %>:</div>
-      <div class="description">
-        <%= @event.description %>
-      </div>
-    <div class="extender"></div>
-      <div class="label">
-         <%= t('start_date') %> :</div>
-      <div class="description">
-        <%= @event.start_date %>
-      </div>
-    <div class="extender"></div>
-      <div class="label"><%= t('end_date') %>:</div>
-      <div class="description">
-        <%= @event.end_date %>
-      </div>
-    <div class="extender"></div>
+  <div class="detail-box">
+    <div class="label">  <%= t('title') %> :</div>
+    <div class="description">
+      <%= @event.title %>
     </div>
-   
-    
-    <div class="other-events">
-      <div class="head"><%= t('other_event') %></div>
-<% if  @other_events.empty? %>
- <%= t('no_event_scheduled') %>...
-<% end %>
+    <div class="extender"></div>
+    <div class="label"><%= t('description') %>:</div>
+    <div class="description">
+      <%= @event.description %>
+    </div>
+    <div class="extender"></div>
+    <div class="label">
+      <%= t('start_date') %> :</div>
+    <div class="description">
+      <%= @event.start_date %>
+    </div>
+    <div class="extender"></div>
+    <div class="label"><%= t('end_date') %>:</div>
+    <div class="description">
+      <%= @event.end_date %>
+    </div>
+    <div class="extender"></div>
+  </div>
 
-<% unless @other_events.empty? %>
-  <% if "#{@event.start_date.year}-#{@event.start_date.month}-#{@event.start_date.day}".to_date == "#{@event.end_date.year}-#{@event.end_date.month}-#{@event.end_date.day}".to_date %>
-    <% @other_events.each do |h| %>
-      <% if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date %>
-        <% if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{@event.start_date.year}-#{@event.start_date.month}-#{@event.start_date.day}".to_date %>
-          <div class="date"><%= "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date %></div><div class="title"><%= h.title %></div>
+
+  <div class="other-events">
+    <div class="head"><%= t('other_event') %></div>
+    <% if  @other_events.empty? %>
+      <%= t('no_event_scheduled') %>...
+    <% end %>
+
+    <% unless @other_events.empty? %>
+      <% if "#{@event.start_date.year}-#{@event.start_date.month}-#{@event.start_date.day}".to_date == "#{@event.end_date.year}-#{@event.end_date.month}-#{@event.end_date.day}".to_date %>
+        <% @other_events.each do |h| %>
+          <% if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date %>
+            <% if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{@event.start_date.year}-#{@event.start_date.month}-#{@event.start_date.day}".to_date %>
+              <div class="date"><%= "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date %></div><div class="title"><%= h.title %></div>
+            <% end %>
+          <% else %>
+            <% ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d| %>
+              <% if d == "#{@event.start_date.year}-#{@event.start_date.month}-#{@event.start_date.day}".to_date %>
+                <div class="date"> <%= d %></div><div class="title"><%= h.title %></div>
+              <% end %>
+            <% end %>
+          <% end %>
         <% end %>
       <% else %>
-        <% ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d| %>
-          <% if d == "#{@event.start_date.year}-#{@event.start_date.month}-#{@event.start_date.day}".to_date %>
-          <div class="date"> <%= d %></div><div class="title"><%= h.title %></div>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
-  <% else %>
-    <% ("#{@event.start_date.year}-#{@event.start_date.month}-#{@event.start_date.day}".to_date.."#{@event.end_date.year}-#{@event.end_date.month}-#{@event.end_date.day}".to_date).each do |er| %>
-      <% @other_events.each do |h| %>
-        <% if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date %>
-          <% if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == er %>
-           <div class="date"> <%= "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date %></div><div class="title"><%= h.title %></div>
-          <% end %>
-        <% else %>
-          <% ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d| %>
-            <% if d == er %>
-              <div class="date"><%= d %></div><div class="title"><%= h.title %></div>
+        <% ("#{@event.start_date.year}-#{@event.start_date.month}-#{@event.start_date.day}".to_date.."#{@event.end_date.year}-#{@event.end_date.month}-#{@event.end_date.day}".to_date).each do |er| %>
+          <% @other_events.each do |h| %>
+            <% if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == "#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date %>
+              <% if "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date == er %>
+                <div class="date"> <%= "#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date %></div><div class="title"><%= h.title %></div>
+              <% end %>
+            <% else %>
+              <% ("#{h.start_date.year}-#{h.start_date.month}-#{h.start_date.day}".to_date.."#{h.end_date.year}-#{h.end_date.month}-#{h.end_date.day}".to_date).each do |d| %>
+                <% if d == er %>
+                  <div class="date"><%= d %></div><div class="title"><%= h.title %></div>
+                <% end %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
       <% end %>
     <% end %>
-  <% end %>
-<% end %>
 
 
 
-</div>
-    <div class="extra">
-      <% if @event.is_common == false %>
+  </div>
+  <div class="extra">
+    <% if @event.is_common == false %>
 
-        <div><%= render :partial=>"event_batch" %></div>
+      <div><%= render :partial=>"event_batch" %></div>
 
-        <% @config = Configuration.available_modules%>
-        <div id="select-option"></div>
-        <% if @config.include?("HR") %>
+      <% @config = Configuration.available_modules%>
+      <div id="select-option"></div>
+      <% if @config.include?("HR") %>
         <div><%= render :partial=>"event_department" %></div>
-        <% end %>
-
-        <div id="select-options"></div>
-
-
-      <% else %>
-
-        => <%= t('common_to_all_message') %><br/><br/>
-
       <% end %>
 
-    <% unless @command == 'edit' %>
-    <%= link_to "► #{t('confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create'%>  <%= link_to "► #{t('cancel')}", { :action=>"cancel_event" , :id=>@event.id },  :class=> 'create' %>
+      <div id="select-options"></div>
+
+
     <% else %>
-    <%= link_to "► #{t('confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create'%>  <%= link_to "►  #{t('cancel')}", { :action=>"edit_event" , :id=>@event.id },  :class=> 'create' %>
+
+      => <%= t('common_to_all_message') %><br/><br/>
+
     <% end %>
-    </div>
+
+    <% unless @command == 'edit' %>
+      <%= link_to "► #{t('confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create'%>  <%= link_to "► #{t('cancel')}", { :action=>"cancel_event" , :id=>@event.id },  :class=> 'create' %>
+    <% else %>
+      <%= link_to "► #{t('confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create'%>  <%= link_to "►  #{t('cancel')}", { :action=>"edit_event" , :id=>@event.id },  :class=> 'create' %>
+    <% end %>
+  </div>
 </div>
-    
+
