@@ -1,3 +1,4 @@
+
 ar:
   activerecord:
     attributes:
@@ -1267,7 +1268,6 @@ ar:
   remember_me: "تذكرنى"
   forgot_password: "مساعدة! لقد نسيت كلمة السر؟"
   login: "دخول"
-  fedena_logo: "/ صور / التطبيق / app_fedena_logo.jpg"
   enter_email: "أدخل اسم المستخدم الخاص بك"
   contact_admin: "الاتصال Fedena المسؤول لاستعادة كلمة السر"
   logged_as: "تسجيل الدخول على النحو التالي :"
@@ -1739,7 +1739,6 @@ ar:
   settings: "إعدادات"
   examination: "فحص"
   event_creations: "الحدث الخلق"
-  fedena_logo: "/ صور / التطبيق / app_fedena_logo.jpg"
   key: "حقوق الطبع والنشر الخاصة بي"
   are_you_sure_to_delete_the_user: "هل أنت متأكد أنك تريد حذف هذا المستخدم؟"
   manage_examinations: "إدارة الامتحانات"
