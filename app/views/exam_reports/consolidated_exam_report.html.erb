@@ -1,0 +1,109 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Exams</h1>
+  <h3>Consolidated Report</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "PDF Report",{:controller => "exam_reports", :action => "consolidated_exam_report_pdf", :exam_group => @exam_group.id},:target => '_blank' %></li>
+  </ul>
+</div>
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+    <h4><%= @exam_group.batch.name %> | <%= @exam_group.name %></h4>
+    <div class="students-table">
+      <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+        <tr class="tr-head">
+          <td>Name</td>
+          <% @exam_group.exams.each do |exam| %>
+            <td><%= Subject.find(exam.subject_id).code %><%= "(" + exam.maximum_marks.to_s + ")"  unless exam.maximum_marks.nil? %></td>
+          <% end %>
+          <td>Percentage(%)</td> 
+        </tr>
+        <% if @archived_students.present? %>
+        <% @archived_students.each do |student|%>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-2"><%= student.full_name %></td>
+            <% total_marks = 0 %>
+            <% total_max_marks = 0 %>
+            <% @exam_group.exams.each do |exam| %>
+              <% exam_score = ArchivedExamScore.find_by_student_id_and_exam_id(student.id,exam.id) %>
+              <% unless @exam_group.exam_type == "Grades" %>
+                <td class="col-3">
+                  <% if @exam_group.exam_type == "MarksAndGrades" %>
+                   <%= exam_score.nil? ? '-' :  "#{(exam_score.marks || "-")}" + "(#{(exam_score.grading_level || "-")})" %>
+                  <% else %>
+                    <%= exam_score.nil? ? '-' : exam_score.marks || "-" %>
+                  <% end %>
+                </td>
+                <% total_marks = total_marks+(exam_score.marks || 0) unless exam_score.nil?  %>
+                <% total_max_marks = total_max_marks+exam.maximum_marks unless exam_score.nil? %>
+              <% else %>
+                <td class="col-3"><%= exam_score.nil? ? '-' : exam_score.grading_level || "-" %></td>
+              <% end %>
+            <% end %>
+
+            <td class="col-4"><% percentage = total_marks*100/total_max_marks.to_f unless total_max_marks == 0%>
+              <%= "%.2f" %percentage unless total_max_marks == 0 %></td>
+          </tr>
+        <% end %>
+        <% end %>
+        <% if @active_students.present? %>
+        <% @active_students.each do |student|%>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-2"><%= student.full_name %></td>
+            <% total_marks = 0 %>
+            <% total_max_marks = 0 %>
+            <% @exam_group.exams.each do |exam| %>
+              <% exam_score = ExamScore.find_by_student_id_and_exam_id(student.id,exam.id) %>
+              <% unless @exam_group.exam_type == "Grades" %>
+                <td class="col-3">
+                  <% if @exam_group.exam_type == "MarksAndGrades" %>
+                   <%= exam_score.nil? ? '-' :  "#{(exam_score.marks || "-")}" + "(#{(exam_score.grading_level || "-")})" %>
+                  <% else %>
+                    <%= exam_score.nil? ? '-' : exam_score.marks || "-" %>
+                  <% end %>
+                </td>
+                <% total_marks = total_marks+(exam_score.marks || 0) unless exam_score.nil?  %>
+                <% total_max_marks = total_max_marks+exam.maximum_marks unless exam_score.nil? %>
+              <% else %>
+                <td class="col-3"><%= exam_score.nil? ? '-' : exam_score.grading_level || "-" %></td>
+              <% end %>
+            <% end %>
+
+            <td class="col-4"><% percentage = total_marks*100/total_max_marks.to_f unless total_max_marks == 0%>
+              <%= "%.2f" %percentage unless total_max_marks == 0 %></td>
+          </tr>
+        <% end %>
+        <% end %>
+      </table></div>
+    <div class="extender"></div>
+  </div>
+</div>

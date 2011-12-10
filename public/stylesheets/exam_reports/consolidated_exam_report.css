@@ -1,0 +1,24 @@
+.students-table {
+    width: 960px;
+    overflow: auto;
+
+}
+
+
+.user_button  {
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin: 0 auto;
+    text-decoration: none;
+}
+.user_button:hover{
+    background:  #373B3F;
+}

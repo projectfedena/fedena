@@ -1,0 +1,13 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<%= select :exam_report, :batch_id,
+        @batches.map {|b| [b.full_name, b.id]},
+        {:prompt => 'Select a batch'},
+        {:onChange => "#{remote_function(:url => {:controller => "exam",:action => "list_exam_types"},
+        :with => "'batch_id='+value",
+        :before => "Element.show('loader')",
+        :success => "Element.hide('loader')"
+        )}"} %>

@@ -2,6 +2,7 @@ authorization do
 
   #custom - privileges
   role :examination_control do
+    includes :archived_exam_reports
     has_permission_on [:exam],
       :to => [
       :index,
@@ -112,6 +113,7 @@ authorization do
   end
 
   role :enter_results  do
+    includes :archived_exam_reports
     has_permission_on [:exam],
       :to => [
       :index,
@@ -172,6 +174,7 @@ authorization do
   end
 
   role :view_results  do
+    includes :archived_exam_reports
     has_permission_on [:exam], :to => [:index,
       :exam_wise_report,
       :list_exam_types,
@@ -189,20 +192,6 @@ authorization do
       :generated_report4,
       :generated_report4_pdf
     ]
-    has_permission_on [:examination_result],
-      :to => [
-      :load_results,
-      :load_one_sub_result,
-      :load_all_sub_result,
-      :update_examtypes,
-      :update_subjects,
-      :update_one_subject,
-      :update_exams,
-      :update_one_sub_exams,
-      :one_sub_pdf,
-      :all_sub_pdf,
-      :view_all_subs,
-      :view_one_sub ]
   end
 
   role :admission do
@@ -880,6 +869,7 @@ authorization do
 
   # admin privileges
   role :admin do
+    includes :archived_exam_reports
     has_permission_on [:user],  :to => [:edit_privilege]
     has_permission_on [:weekday], :to => [:index, :week, :create]
     has_permission_on [:event],
@@ -1127,31 +1117,6 @@ authorization do
       :query_data
     ]
 
-    has_permission_on [:examination_result],
-      :to => [
-      :add,
-      :add_results,
-      :save,
-      :update_subjects,
-      :update_one_subject,
-      :update_exams,
-      :update_one_sub_exams,
-      :load_results,
-      :load_one_sub_result,
-      :load_all_sub_result,
-      :update_examtypes,
-      :one_sub_pdf,
-      :all_sub_pdf,
-      :view_all_subs,
-      :view_one_sub,
-      :academic_report_course,
-      :all_academic_report,
-      :list_students_by_course,
-      :exam_wise_report,
-      :load_examtypes,
-      :load_course_all_student,
-      :exam_report
-    ]
     has_permission_on [:finance],
       :to => [
       :index,
@@ -1650,12 +1615,6 @@ authorization do
   role :student do
     has_permission_on [:course], :to => [:view]
     has_permission_on [:exam], :to => [:generated_report, :generated_report4_pdf, :graph_for_generated_report, :academic_report, :previous_years_marks_overview,:previous_years_marks_overview_pdf, :graph_for_previous_years_marks_overview, :generated_report3, :graph_for_generated_report3 ,:generated_report4]
-    has_permission_on [:examination_result],
-      :to => [
-      :load_results,
-      :load_one_sub_result,
-      :one_sub_pdf,
-      :view_one_sub ]
     has_permission_on [:student],
       :to => [
       :exam_report,
@@ -1836,5 +1795,16 @@ authorization do
       :save_additional_scores
     ]
   end
-  
+
+  role :archived_exam_reports do
+    has_permission_on [:exam_reports],
+      :to => [
+      :archived_exam_wise_report,
+      :consolidated_exam_report,
+      :consolidated_exam_report_pdf,
+      :archived_batches_exam_report,
+      :archived_batches_exam_report_pdf,
+      :graph_for_archived_batches_exam_report
+    ]
+  end
 end
