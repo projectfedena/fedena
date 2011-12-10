@@ -21,7 +21,7 @@ class FedenaPlugin
           CSS_OVERRIDES["#{css[:controller]}_#{css[:action]}"] << plugin_details[:name]
         end
       end
-      Authorization::AUTH_DSL_FILES << "#{RAILS_ROOT}/vendor/plugins/#{plugin_details[:name]}/#{plugin_details[:auth_file]}"
+      Authorization::AUTH_DSL_FILES << "#{RAILS_ROOT}/vendor/plugins/#{plugin_details[:name]}/#{plugin_details[:auth_file]}" unless plugin_details[:auth_file].blank?
       if defined? plugin_details[:name].camelize.constantize
         if plugin_details[:name].camelize.constantize.respond_to? "student_profile_hook"
           REGISTERED_HOOKS[:student_profile] << plugin_details[:name]
