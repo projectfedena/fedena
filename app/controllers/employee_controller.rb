@@ -1608,7 +1608,7 @@ class EmployeeController < ApplicationController
     unless employee.has_dependency
       employee_subject=EmployeesSubject.destroy_all(:employee_id=>employee.id)
       employee.destroy
-      flash[:notice] = "#{t('flash33')}#{employee.employee_number}."
+      flash[:notice] = "#{t('flash46')}#{employee.employee_number}."
       redirect_to :controller => 'user', :action => 'dashboard'
     else
       flash[:notice] = "#{t('flash44')}"
