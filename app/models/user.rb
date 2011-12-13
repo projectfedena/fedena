@@ -92,15 +92,20 @@ class User < ActiveRecord::Base
     elsif employee?
       employee = employee_record
       unless employee.nil?
-      if employee.subjects.present?
-      prv << :subject_attendance if Configuration.get_config_value('StudentAttendanceType') == 'SubjectWise'
-      prv << :subject_exam
-      end
+        if employee.subjects.present?
+          prv << :subject_attendance if Configuration.get_config_value('StudentAttendanceType') == 'SubjectWise'
+          prv << :subject_exam
+        end
       end
       return [:employee] + prv
     else
       return prv
     end
+  end
+
+  def clear_cache
+    Rails.cache.delete("user_main_menu#{self.id}")
+    Rails.cache.delete("user_autocomplete_menu#{self.id}")
   end
   
 end

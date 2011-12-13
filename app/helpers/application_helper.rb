@@ -75,4 +75,10 @@ module ApplicationHelper
     @rtl ||= RTL_LANGUAGES.include? I18n.locale.to_sym
   end
 
+  def main_menu
+    Rails.cache.fetch("user_main_menu#{session[:user_id]}"){
+      render :partial=>'layouts/main_menu'
+    }
+  end
+
 end

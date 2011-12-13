@@ -34,28 +34,28 @@ class UserController < ApplicationController
     @users = User.all
   end
   
-    def list_user
+  def list_user
     if params[:user_type] == 'Admin'
-            @users = User.find(:all, :conditions => {:admin => true}, :order => 'first_name ASC')
-            render(:update) do |page|
-                page.replace_html 'users', :partial=> 'users'
-                page.replace_html 'employee_user', :text => ''
-                page.replace_html 'student_user', :text => ''
-            end
+      @users = User.find(:all, :conditions => {:admin => true}, :order => 'first_name ASC')
+      render(:update) do |page|
+        page.replace_html 'users', :partial=> 'users'
+        page.replace_html 'employee_user', :text => ''
+        page.replace_html 'student_user', :text => ''
+      end
     elsif params[:user_type] == 'Employee'
-            render(:update) do |page|
-                hr = Configuration.find_by_config_value("HR")
-                unless hr.nil?
-                    page.replace_html 'employee_user', :partial=> 'employee_user'
-                    page.replace_html 'users', :text => ''
-                    page.replace_html 'student_user', :text => ''
-                else
-                    @users = User.find_all_by_employee(1)
-                    page.replace_html 'users', :partial=> 'users'
-                    page.replace_html 'employee_user', :text => ''
-                    page.replace_html 'student_user', :text => ''
-                end
-            end
+      render(:update) do |page|
+        hr = Configuration.find_by_config_value("HR")
+        unless hr.nil?
+          page.replace_html 'employee_user', :partial=> 'employee_user'
+          page.replace_html 'users', :text => ''
+          page.replace_html 'student_user', :text => ''
+        else
+          @users = User.find_all_by_employee(1)
+          page.replace_html 'users', :partial=> 'users'
+          page.replace_html 'employee_user', :text => ''
+          page.replace_html 'student_user', :text => ''
+        end
+      end
     elsif params[:user_type] == 'Student'
       render(:update) do |page|
         page.replace_html 'student_user', :partial=> 'student_user'
@@ -90,20 +90,20 @@ class UserController < ApplicationController
 
   def change_password
     
-        if request.post?
-            @user = current_user
-            if User.authenticate?(@user.username, params[:user][:old_password])
-                if params[:user][:new_password] == params[:user][:confirm_password]
-                    @user.password = params[:user][:new_password]
-                    @user.update_attributes(:password => @user.password,
-                        :role => @user.role_name
-                    )
+    if request.post?
+      @user = current_user
+      if User.authenticate?(@user.username, params[:user][:old_password])
+        if params[:user][:new_password] == params[:user][:confirm_password]
+          @user.password = params[:user][:new_password]
+          @user.update_attributes(:password => @user.password,
+            :role => @user.role_name
+          )
           flash[:notice] = "#{t('flash9')}"
-                    redirect_to :action => 'dashboard'
-                else
+          redirect_to :action => 'dashboard'
+        else
           flash[:warn_notice] = "<p>#{t('flash10')}</p>"
-                end
-            else
+        end
+      else
         flash[:warn_notice] = "<p>#{t('flash11')}</p>"
       end
     end
@@ -211,6 +211,8 @@ class UserController < ApplicationController
   end
 
   def logout
+    Rails.cache.delete("user_main_menu#{session[:user_id]}")
+    Rails.cache.delete("user_autocomplete_menu#{session[:user_id]}")
     session[:user_id] = nil
     session[:language] = nil
     flash[:notice] = "#{t('logged_out')}"
@@ -268,11 +270,12 @@ class UserController < ApplicationController
 
   def set_new_password
     if request.post?
-     user = User.find_by_reset_password_code(params[:id],:conditions=>"reset_password_code IS NOT NULL")
+      user = User.find_by_reset_password_code(params[:id],:conditions=>"reset_password_code IS NOT NULL")
       if user
         if params[:set_new_password][:new_password] === params[:set_new_password][:confirm_password]
           user.password = params[:set_new_password][:new_password]
           user.update_attributes(:password => user.password, :reset_password_code => nil, :reset_password_code_until => nil, :role => user.role_name)
+          user.clear_cache
           #User.update(user.id, :password => params[:set_new_password][:new_password],
           # :reset_password_code => nil, :reset_password_code_until => nil)
           flash[:notice] = "#{t('flash3')}"
@@ -298,7 +301,7 @@ class UserController < ApplicationController
       new_privileges = params[:user][:privilege_ids] if params[:user]
       new_privileges ||= []
       @user.privileges = Privilege.find_all_by_id(new_privileges)
-
+      @user.clear_cache
       flash[:notice] = "#{t('flash15')}"
       redirect_to :action => 'profile',:id => @user.username
     end
