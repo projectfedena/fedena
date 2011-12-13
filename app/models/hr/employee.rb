@@ -284,13 +284,15 @@ class Employee < ActiveRecord::Base
     flag = true if self.employee_attendances.present?
     plugin_dependencies = FedenaPlugin.check_dependency(self,"permanant")
     plugin_dependencies.each do |k,v|
-      flag=true unless  v.blank?
+      if v.kind_of?(Array)
+        flag=true unless  v.blank?
+      else
+         v.each do |h,a|
+           flag=true unless  a.blank?
+         end
+      end
     end
-    if flag
-      return true
-    else
-      return false
-    end
+    return flag
   end
 
   def former_dependency

@@ -1931,6 +1931,7 @@ es: # locale
     flash43: "Ninguno de los empleados en este departamento"
     flash44: "No se puede eliminar al empleado cuando existe cambio de uso dependecy a la opción anterior."
     flash45: "Fecha de Nómina no puede ser generada antes de incorporarse a la fecha"
+    flash46: "Empleado eliminado con éxito."
 
 #payroll translation
   payroll:

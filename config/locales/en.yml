@@ -1936,6 +1936,7 @@ en: # locale
     flash43: "No employees found in this department"
     flash44: "Cannot delete the employee when dependecy exists. Use change to former option"
     flash45: "Payslip Date cant be generated before joining date"
+    flash46: "Employee deleted successfully."
 
 #payroll translation
   payroll:
