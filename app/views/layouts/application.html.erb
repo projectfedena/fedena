@@ -46,7 +46,7 @@
 
     <%= calendar_date_select_includes 'red' %>
 
-    <%= javascript_include_tag "calendar_date_select/locale/#{I18n.locale}.js" %>
+    <%= javascript_include_tag "calendar_date_select/locale/#{I18n.locale}.js" unless I18n.locale==:en %>
     <%= yield :head %>
     <%= javascript_include_tag 'jquery/jquery.min.js' %>
     <%= javascript_include_tag 'jquery/jquery-ui.min.js'%>
