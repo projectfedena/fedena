@@ -61,7 +61,7 @@
             <%= t('logged_as') %>
             <%= link_to @current_user.first_name, :controller => 'user', :action => 'profile',
               :id => @current_user.username %> &nbsp;|&nbsp;
-            <%= link_to t('messages'),:controller => "reminder", :action => "index" %>(<%= render :partial => 'layouts/reminder_count' %>)&nbsp;|&nbsp;
+            <%= link_to t('messages'),:controller => "reminder", :action => "index" %><%= render :partial => 'layouts/reminder_count' %>&nbsp;|&nbsp;
             <%= link_to t('log_out'), :controller => 'user', :action => 'logout' %>  &nbsp;&nbsp;
           </div>
         </div>
