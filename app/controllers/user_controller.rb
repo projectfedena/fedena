@@ -275,7 +275,7 @@ class UserController < ApplicationController
         if params[:set_new_password][:new_password] === params[:set_new_password][:confirm_password]
           user.password = params[:set_new_password][:new_password]
           user.update_attributes(:password => user.password, :reset_password_code => nil, :reset_password_code_until => nil, :role => user.role_name)
-          user.clear_cache
+          user.clear_menu_cache
           #User.update(user.id, :password => params[:set_new_password][:new_password],
           # :reset_password_code => nil, :reset_password_code_until => nil)
           flash[:notice] = "#{t('flash3')}"
@@ -301,7 +301,7 @@ class UserController < ApplicationController
       new_privileges = params[:user][:privilege_ids] if params[:user]
       new_privileges ||= []
       @user.privileges = Privilege.find_all_by_id(new_privileges)
-      @user.clear_cache
+      @user.clear_menu_cache
       flash[:notice] = "#{t('flash15')}"
       redirect_to :action => 'profile',:id => @user.username
     end

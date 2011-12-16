@@ -45,6 +45,7 @@ class ApplicationController < ActionController::Base
 
   def set_language
     session[:language] = params[:language]
+    @current_user.clear_menu_cache
     render :update do |page|
       page.reload
     end

@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def clear_cache
+  def clear_menu_cache
     Rails.cache.delete("user_main_menu#{self.id}")
     Rails.cache.delete("user_autocomplete_menu#{self.id}")
   end
