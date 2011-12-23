@@ -496,7 +496,7 @@ class EmployeeController < ApplicationController
     if request.post?
       @employee = Employee.find(params[:id])
       Employee.update(@employee, :reporting_manager_id => params[:employee][:reporting_manager_id])
-      flash[:notice]=t('flash27')
+      flash[:notice]=t('flash26')
       redirect_to :action => "profile", :id=>@employee.id
     end
   end
