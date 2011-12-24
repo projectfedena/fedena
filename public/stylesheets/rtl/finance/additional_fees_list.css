@@ -120,3 +120,12 @@
     margin-right:200px;
     width:199px;
 }
+table#listing td.col-1 {
+    width: 1%;
+}
+table#listing td.col-3 {
+    width: 7;
+}
+table#listing td.col-2 {
+    width: 28%;
+}

@@ -930,7 +930,7 @@ ar:
   line_1: "السطر 1"
   line_2: "السطر 2"
   employee_management_text: "موظف الإدارة"
-  histroy: "تاريخ"
+  history: "تاريخ"
   all_employee: "جميع الموظفين"
   student_leaving_school: "طالب ترك المدرسة"
   search_by_name: "البحث عن طريق الاسم"

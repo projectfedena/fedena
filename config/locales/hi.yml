@@ -903,7 +903,7 @@ hi:
   line_1: "पंक्ति 1"
   line_2: "पंक्ति 2"
   employee_management_text: "कर्मचारी प्रबंध"
-  histroy: "इतिहास"
+  history: "इतिहास"
   all_employee: "सभी कर्मचारी"
   student_leaving_school: "छात्र छोड़ने स्कूल"
   search_by_name: "नाम से ढूंढें"

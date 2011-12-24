@@ -130,7 +130,7 @@
                 <td class="col-pdf"><%= x+=1 %></td>
                 <td class="col-pdf"><%= "#{t('partial_payment_on')}" + p.transaction_date.to_s %></td>
                 <td class="col-pdf"><%= p.receipt_no unless p.receipt_no.nil?%></td>
-                <td class="col-pdf"><%= "-"+@currency_type.to_s + " " +(p.amount.to_s) %></td>
+                <td class="col-pdf"><%= @currency_type.to_s + " " +(p.amount.to_s) %></td>
               </tr>
 
             <% end %>

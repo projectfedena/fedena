@@ -131,3 +131,7 @@ table#listing .tr-even .inplaceeditor-form .editor_field:focus{
 #inner-tab-menu ul li {
     width: 206px;
 }
+.flash_color
+{
+    background-color: #FFF1AB;
+}

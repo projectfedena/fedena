@@ -926,7 +926,7 @@ es: # locale
   line_1: "Linea 1"
   line_2: "Linea 2"
   employee_management_text: "Gestión de empleados"
-  histroy: "Historicos"
+  history: "Historicos"
   all_employee: "Todos los empleados"
   student_leaving_school: "Retiro de estudiante"
   search_by_name: "Buscar por nombre"

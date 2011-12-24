@@ -71,8 +71,9 @@
     border:none;
     font-family: arial;
     cursor:pointer;
-    margin: 0 447px;
+    margin: 1 447px;
     text-decoration: none;
+    margin-left: 455px;
 }
 .cancel_button:hover{
     background:  #373B3F;
