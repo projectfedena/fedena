@@ -167,3 +167,6 @@ table#class-timings-list td.col-6{
 .linker{
     margin-bottom: 5px;
 }
+.time-select-field select {
+    visibility: visible !important;
+}

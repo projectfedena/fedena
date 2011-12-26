@@ -54,7 +54,7 @@ class AttendancesController < ApplicationController
       @batch = @sub.batch_id
       unless @sub.elective_group_id.nil?
         elective_student_ids = StudentsSubject.find_all_by_subject_id(@sub.id).map { |x| x.student_id }
-        @students = Student.find_all_by_batch_id(@batch, :conditions=>"id IN (#{elective_student_ids.split.join(',')})")
+        @students = Student.find_all_by_batch_id(@batch, :conditions=>"FIND_IN_SET(id,\"#{elective_student_ids.split.join(',')}\")")
       else
         @students = Student.find_all_by_batch_id(@batch)
       end

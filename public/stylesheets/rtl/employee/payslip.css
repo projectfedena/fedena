@@ -40,3 +40,7 @@
     width:700px;
     margin:auto;
 }
+#ui-datepicker-div
+{
+    visibility: hidden;
+}

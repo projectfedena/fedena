@@ -13,7 +13,7 @@
 .label-checkbox-pair {
     height : 50px;
     margin-left : 30px;
-     padding: 0 0 0 10px;
+    padding: 0 0 0 10px;
 }
 .submit-button{
     width:100px;
@@ -166,4 +166,7 @@ table#class-timings-list td.col-6{
 
 .linker{
     margin-bottom: 5px;
+}
+.time-select-field select {
+    visibility: visible !important;
 }
