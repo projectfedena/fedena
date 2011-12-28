@@ -43,7 +43,8 @@ class FedenaPlugin
     AVAILABLE_MODULES.each do |mod|
       modu = mod[:name].classify.constantize
       if modu.respond_to?("dependency_check")
-        DEPENDENCY["#{mod[:name]}"] = modu.send("dependency_check",record,action)
+        data = modu.send("dependency_check",record,action)
+        DEPENDENCY["#{mod[:name]}"] = modu.send("dependency_check",record,action) unless data.blank?
       end      
     end
     DEPENDENCY
