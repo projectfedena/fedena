@@ -68,11 +68,12 @@ class Employee < ActiveRecord::Base
       check_changes = self.changed & changes_to_be_checked
 #      self.user.role ||= "Employee"
       unless check_changes.blank?
-        self.user.username = self.employee_number if check_changes.include?('employee_number')
-        self.user.first_name = self.first_name if check_changes.include?('first_name')
-        self.user.last_name = self.last_name if check_changes.include?('last_name')
-        self.user.email = self.email.to_s if check_changes.include?('email')
-        check_user_errors(self.user)
+        emp_user = self.user
+        emp_user.username = self.employee_number if check_changes.include?('employee_number')
+        emp_user.first_name = self.first_name if check_changes.include?('first_name')
+        emp_user.last_name = self.last_name if check_changes.include?('last_name')
+        emp_user.email = self.email.to_s if check_changes.include?('email')
+        emp_user.save if check_user_errors(self.user)
       end
     end
   end
