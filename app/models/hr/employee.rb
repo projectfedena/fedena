@@ -79,10 +79,10 @@ class Employee < ActiveRecord::Base
   end
 
   def check_user_errors(user)
-    unless user.valid?
+   unless user.valid?
       user.errors.each{|attr,msg| errors.add(attr.to_sym,"#{msg}")}
     end
-    return false unless user.errors.blank?
+    user.errors.blank?
   end
 
   def image_file=(input_data)
