@@ -71,7 +71,7 @@ class Employee < ActiveRecord::Base
         self.user.username = self.employee_number if check_changes.include?('employee_number')
         self.user.first_name = self.first_name if check_changes.include?('first_name')
         self.user.last_name = self.last_name if check_changes.include?('last_name')
-        self.user.email ||= self.email.to_s if check_changes.include?('email')
+        self.user.email = self.email.to_s if check_changes.include?('email')
         check_user_errors(self.user)
       end
     end
