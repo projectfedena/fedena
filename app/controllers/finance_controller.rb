@@ -830,7 +830,7 @@ class FinanceController < ApplicationController
       :description => params[:additional_fees][:description],
       :batch_id => params[:additional_fees][:batch_id]
     )
-    if params[:additional_fees][:due_date] >= params[:additional_fees][:end_date]
+    if params[:additional_fees][:due_date].to_date >= params[:additional_fees][:end_date].to_date
       if @additional_category.save && params[:additional_fees][:start_date].strip.length!=0 && params[:additional_fees][:due_date].strip.length!=0 && params[:additional_fees][:end_date].strip.length!=0
         @collection_date = FinanceFeeCollection.create(
           :name => @additional_category.name,
