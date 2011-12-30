@@ -64,7 +64,7 @@
         <td class="col-2"><%= @details.month_date.to_date %></td>
         <td class="col-3">
           <% if detail_report.forenoon and detail_report.afternoon %>
-            <%= t('fullday') %>
+            <%= t('full_day') %>
           <% elsif detail_report.afternoon %>
             <%= t('afternoon') %>
           <% elsif detail_report.forenoon %>
