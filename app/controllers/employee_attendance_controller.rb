@@ -84,7 +84,6 @@ class EmployeeAttendanceController < ApplicationController
   def update_employee_leave_reset_all
     @leave_count = EmployeeLeave.all
     @leave_count.each do |e|
-      attendance = EmployeeAttendance.find_all_by_employee_id(e.employee_id, :conditions=> "employee_leave_type_id = '#{e.employee_leave_type_id }' and attendance_date >= '#{Date.today.strftime('%Y-%m-%d')}'" )
       @leave_type = EmployeeLeaveType.find_by_id(e.employee_leave_type_id)
       if @leave_type.status
         default_leave_count = @leave_type.max_leave_count
@@ -96,48 +95,15 @@ class EmployeeAttendanceController < ApplicationController
             available_leave = balance_leave.to_f
             available_leave += default_leave_count.to_f
             leave_taken = 0
-            unless attendance.blank?
-              attendance.each do |a|
-                if a.is_half_day
-                  leave_taken += (0.5).to_f
-
-                else
-                  leave_taken += (1).to_f
-                                     
-                end
-              end
-            end
             e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
           else
             available_leave = default_leave_count.to_f
             leave_taken = 0
-            unless attendance.blank?
-              attendance.each do |a|
-                if a.is_half_day
-                  leave_taken += (0.5).to_f
-
-                else
-                  leave_taken += (1).to_f
-
-                end
-              end
-            end
             e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
           end
         else
           available_leave = default_leave_count.to_f
           leave_taken = 0
-          unless attendance.blank?
-            attendance.each do |a|
-              if a.is_half_day
-                leave_taken += (0.5).to_f
-
-              else
-                leave_taken += (1).to_f
-                                
-              end
-            end
-          end
           e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
         end
       end
@@ -171,7 +137,7 @@ class EmployeeAttendanceController < ApplicationController
     @employee.each do |e|
       @leave_count = EmployeeLeave.find_all_by_employee_id(e)
       @leave_count.each do |c|
-        attendance = EmployeeAttendance.find_all_by_employee_id(e, :conditions=> "employee_leave_type_id = '#{c.employee_leave_type_id }' and attendance_date >= '#{Date.today.strftime('%Y-%m-%d')}'" )
+        #attendance = EmployeeAttendance.find_all_by_employee_id(e, :conditions=> "employee_leave_type_id = '#{c.employee_leave_type_id }' and attendance_date >= '#{Date.today.strftime('%Y-%m-%d')}'" )
         @leave_type = EmployeeLeaveType.find_by_id(c.employee_leave_type_id)
         if @leave_type.status
           default_leave_count = @leave_type.max_leave_count
@@ -183,48 +149,26 @@ class EmployeeAttendanceController < ApplicationController
               available_leave = balance_leave.to_f
               available_leave += default_leave_count.to_f
               leave_taken = 0
-              unless attendance.blank?
-                attendance.each do |a|
-                  if a.is_half_day
-                    leave_taken += (0.5).to_f
-
-                  else
-                    leave_taken += (1).to_f
-
-                  end
-                end
-              end
+#              unless attendance.blank?
+#                attendance.each do |a|
+#                  if a.is_half_day
+#                    leave_taken += (0.5).to_f
+#
+#                  else
+#                    leave_taken += (1).to_f
+#
+#                  end
+#                end
+#              end
               c.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
             else
               available_leave = default_leave_count.to_f
               leave_taken = 0
-              unless attendance.blank?
-                attendance.each do |a|
-                  if a.is_half_day
-                    leave_taken += (0.5).to_f
-
-                  else
-                    leave_taken += (1).to_f
-
-                  end
-                end
-              end
               c.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
             end
           else
             available_leave = default_leave_count.to_f
             leave_taken = 0
-            unless attendance.blank?
-              attendance.each do |a|
-                if a.is_half_day
-                  leave_taken += (0.5).to_f
-
-                else
-                  leave_taken += (1).to_f
-
-                end
-              end
-            end
             c.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
           end
         end
@@ -286,7 +230,7 @@ class EmployeeAttendanceController < ApplicationController
     @employee = Employee.find_by_id(params[:id])
     @leave_count = EmployeeLeave.find_all_by_employee_id(@employee.id)
     @leave_count.each do |e|
-      attendance = EmployeeAttendance.find_all_by_employee_id(@employee.id, :conditions=> "employee_leave_type_id = '#{e.employee_leave_type_id }' and attendance_date >= '#{Date.today.strftime('%Y-%m-%d')}'" )
+      #attendance = EmployeeAttendance.find_all_by_employee_id(@employee.id, :conditions=> "employee_leave_type_id = '#{e.employee_leave_type_id }' and attendance_date >= '#{Date.today.strftime('%Y-%m-%d')}'" )
       @leave_type = EmployeeLeaveType.find_by_id(e.employee_leave_type_id)
       if @leave_type.status
         default_leave_count = @leave_type.max_leave_count
@@ -298,48 +242,15 @@ class EmployeeAttendanceController < ApplicationController
             available_leave = balance_leave.to_f
             available_leave += default_leave_count.to_f
             leave_taken = 0
-            unless attendance.blank?
-              attendance.each do |a|
-                if a.is_half_day
-                  leave_taken += (0.5).to_f
-                                    
-                else
-                  leave_taken += (1).to_f
-                                    
-                end
-              end
-            end
             e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
           else
             available_leave = default_leave_count.to_f
             leave_taken = 0
-            unless attendance.blank?
-              attendance.each do |a|
-                if a.is_half_day
-                  leave_taken += (0.5).to_f
-                                    
-                else
-                  leave_taken += (1).to_f
-                                    
-                end
-              end
-            end
             e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
           end
         else
           available_leave = default_leave_count.to_f
           leave_taken = 0
-          unless attendance.blank?
-            attendance.each do |a|
-              if a.is_half_day
-                leave_taken += (0.5).to_f
-
-              else
-                leave_taken += (1).to_f
-
-              end
-            end
-          end
           e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
         end
       end
