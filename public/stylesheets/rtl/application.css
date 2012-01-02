@@ -325,7 +325,7 @@ body > #content_wrapper {
 /* Default class for drop down menus */
 .anylinkmenu {
     position : absolute;
-/*     right : 0;*/
+    /*     right : 0;*/
     top : 0;
     margin : 0;
     visibility : hidden;
@@ -821,7 +821,7 @@ table#listing td.col-5{
 }
 table#listing td.col-6{
     text-align: left;
-   width:13%;
+    width:13%;
     padding: 5px;
     padding-right:10px;
 }
@@ -891,11 +891,11 @@ tr.tr-blank{
     margin-bottom: 10px;
 }
 .bread_crumb a {
-   color:#000;
+    color:#000;
     text-decoration: none;
 }
 .bread_crumb a:hover {
-   color:#bb0000;
+    color:#bb0000;
     text-decoration: underline;
 }
 #error-box {
@@ -914,7 +914,7 @@ tr.tr-blank{
     clear : both;
     background: url(/../images/foot.png) repeat-x;
     width:100%;
-     margin-top:15px;
+    margin-top:15px;
 }
 #footer_logo {
     height:66px;
@@ -954,4 +954,14 @@ tr.tr-blank{
     color:#fff;
     font-size:14px;
     text-decoration:underline;
+}
+#outer-autosuggest-menu{
+    float: left;
+    margin-left: 94px;
+    margin-top: 6px;
+    width: 245px;
+}
+#autosuggest_menu_input{
+    width: 300px;
+    height: 14px;
 }
