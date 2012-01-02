@@ -51,8 +51,6 @@ module AutosuggestMenuHelper
         {:menu_type => 'link' ,:label => 'autosuggest_menu.view_assets',:value =>{:controller => :finance,:action => :view_asset}},
         {:menu_type => 'link' ,:label => 'autosuggest_menu.liability',:value =>{:controller => :finance,:action => :liability}},
         {:menu_type => 'link' ,:label => 'autosuggest_menu.view_liability',:value =>{:controller => :finance,:action => :view_liability}},
-        {:menu_type => 'link' ,:label => 'autosuggest_menu.tally_settings',:value =>{:controller => :xml,:action => :settings}},
-        {:menu_type => 'link' ,:label => 'autosuggest_menu.export_for_tally',:value =>{:controller => :xml,:action => :create_xml}},
         {:menu_type => 'link' ,:label => 'autosuggest_menu.manage_users',:value =>{:controller => :user,:action => :index}},
         {:menu_type => 'link' ,:label => 'autosuggest_menu.view_users',:value =>{:controller => :user,:action => :all}},
         {:menu_type => 'link' ,:label => 'autosuggest_menu.add_users',:value =>{:controller => :user,:action => :create}},
