@@ -445,7 +445,7 @@ class EmployeeAttendanceController < ApplicationController
   def individual_leave_applications
     @employee = Employee.find(params[:id])
     @pending_applied_leaves = ApplyLeave.find_all_by_employee_id(@employee.id, :conditions=> "approved = false AND viewed_by_manager = false", :order=>"start_date DESC")
-    @applied_leaves = ApplyLeave.paginate(:page => params[:page],  :conditions=>[ "employee_id = '#{@employee.id}'"], :order=>"start_date DESC")
+    @applied_leaves = ApplyLeave.paginate(:page => params[:page],:per_page=>10 , :conditions=>[ "employee_id = '#{@employee.id}'"], :order=>"start_date DESC")
     render :partial => "individual_leave_applications"
   end
 
@@ -477,7 +477,7 @@ class EmployeeAttendanceController < ApplicationController
     @employee = Employee.find(params[:employee_id])
 
     @all_pending_applied_leaves = ApplyLeave.find_all_by_employee_id(params[:employee_id], :conditions=> "approved = false AND viewed_by_manager = false", :order=>"start_date DESC")
-    @all_applied_leaves = ApplyLeave.paginate(:page => params[:page],  :conditions=> ["employee_id = '#{@employee.id}'"], :order=>"start_date DESC")
+    @all_applied_leaves = ApplyLeave.paginate(:page => params[:page], :per_page=>10, :conditions=> ["employee_id = '#{@employee.id}'"], :order=>"start_date DESC")
     render :update do |page|
       page.replace_html "all-application-view", :partial => "all_leave_application_lists"
     end

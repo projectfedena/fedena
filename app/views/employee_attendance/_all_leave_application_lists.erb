@@ -60,6 +60,6 @@
         <% end %>
       <% end %>
     <% end %>
-  <% else %>
-  <% end %>
-</table>
+  </table>
+  <%= will_paginate @all_applied_leaves ,:params => {:employee_id => @employee.id},:renderer => 'RemoteLinkRenderer'  %>
+<% end %>

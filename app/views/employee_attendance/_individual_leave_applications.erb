@@ -72,7 +72,7 @@
       <% end %>
     <% end %>
   </table>
-  <%#= will_paginate @applied_leaves %>
+  <%= will_paginate @applied_leaves %>
   <% posted_params = params %>
   <% posted_params.delete(:page) %>
   <% posted_params.delete(:authenticity_token) %>
@@ -82,5 +82,5 @@
   <% posted_params.each{|k,v| @url_params = @url_params.to_s+k.to_s+"="+v.to_s+"&"}  %>
   <%= will_paginate @applied_leaves,:renderer => 'RemoteLinkRenderer',:remote=>{:update=>'application-list'} %>
 <% else %>
-  <span><%= t('no_leave_application ') %></span>
+  <span><%= t('no_leave_application') %></span>
 <% end %>
