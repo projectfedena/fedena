@@ -162,14 +162,14 @@
     float: left;
     margin-left: 10px;
     margin-top: -6px;
-    width: auto;
+    width: 205px;
 }
 
 
 .batches {
     height: 183px;
     overflow: auto;
-    width: 233px;
+    width: 250px;
     float: left;
 }
 .label-field-pair {
