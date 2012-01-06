@@ -35,7 +35,7 @@
     <% @finance_fee_particulars_list.each_with_index do |fees, i| %>
       <tr class="tr-<%= cycle("odd","even") %>">
         <td class="col-1"><%= i+1 %></td>
-        <td class="col-2"><%= shorten_string(fees.name,35) %></td>
+        <td class="col-2"><%= shorten_string(fees.name,50) %></td>
         <td class="col-3"><%= StudentCategory.find(fees.student_category_id).name unless fees.student_category_id.nil? %></td>
         <td class="col-3">
           <%unless fees.admission_no.nil?%>
