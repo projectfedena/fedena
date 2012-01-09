@@ -30,7 +30,7 @@
 
   <% @finance_fee_collections.each do |f| %>
     <tr class="tr-<%= cycle('odd', 'even')%> ">
-      <td class="col-2"><%= link_to "#{shorten_string(f.name,35)}" ,:action=>:collection_details_view, :id=>f.id %></td>
+      <td class="col-2"><%= link_to "#{f.name}" ,:action=>:collection_details_view, :id=>f.id %></td>
       <td class="col-3"><%= f.start_date %></td>
       <td class="col-3"><%= f.end_date %></td>
       <td class="col-3"><%= f.due_date %></td>

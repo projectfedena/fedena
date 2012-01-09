@@ -158,7 +158,7 @@ class BatchTransfersController < ApplicationController
     @previous_batch = all_batches[all_batches.size-2]
     subjects = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false')
     subjects.each do |subject|
-      sub_exists = Subject.find_by_batch_id_and_name(batch.id,subject.name)
+      sub_exists = Subject.find_by_batch_id_and_name(batch.id,subject.name, :conditions => { :is_deleted => false})
       if sub_exists.nil?
         if subject.elective_group_id.nil?
           Subject.create(:name=>subject.name,:code=>subject.code,:batch_id=>batch.id,:no_exams=>subject.no_exams,
