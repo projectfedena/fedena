@@ -965,7 +965,7 @@ class FinanceController < ApplicationController
             end
           else
             @error = true
-            err = err + "#{a}#{t('does_not_exist')}<br />"
+            err = err + "#{a} #{t('does_not_exist')}<br />"
           end
         end
         @finance_fee_particulars.errors.add(:admission_no," #{t('invalid')} : <br />" + err) if @error==true

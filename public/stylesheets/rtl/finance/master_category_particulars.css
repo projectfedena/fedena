@@ -182,5 +182,8 @@
     width: 142px;
 }
 table#listing td.col-4 {
-    width: 28%;
+    width: 36%;
+}
+table#listing td.col-1 {
+    width: 2%;
 }

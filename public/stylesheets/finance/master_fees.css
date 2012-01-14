@@ -24,7 +24,7 @@
 }
 .small{
     font-size: 11px;
-    float:right;
+    float:left;
     width:35px;
 }
 .small-strike {
@@ -35,7 +35,7 @@
 }
 
 .box{
-    width:920px;
+    width:965px;
     margin:0px auto;
 }
 
@@ -211,5 +211,8 @@ input#particulars_select_category{
     margin-right: 3px;
 }
 table#listing td.col-4 {
-    width: 26%;
+    width: 36%;
+}
+table#listing td.col-1 {
+    width: 2%;
 }

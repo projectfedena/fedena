@@ -33,7 +33,7 @@
     <% @particulars.each_with_index do |fees,i| %>
       <tr class="tr-<%= cycle("odd","even") %>">
         <td class="col-1"><%= i+1 %></td>
-        <td class="col-4"><%= fees.name %></td>
+        <td class="col-4"><%= shorten_string(fees.name,80) %></td>
         <td class="col-3">
           <%unless fees.student_category_id.nil?%>
             <%= StudentCategory.find(fees.student_category_id).name%>
@@ -48,7 +48,7 @@
         </td>
         <td class="col-3"><%= fees.amount%></td>
         <td class="col-3"><%= fees.created_at.strftime("%m-%d-%Y") %></td>
-        <td class="col-2">
+        <td class="col-3">
           <span class="small"> <%= link_to_remote "#{t('edit_text')}", :url => { :action => 'master_category_particulars_edit',:id => fees.id} %></span>
     <%#  unless @finance_fee_category.check_fee_collection == false %>
           <span class="small"> <%= link_to_remote t('delete_text'),:confirm=>"#{t('delete_msg')}", :url => { :action => 'master_category_particulars_delete',:id => fees.id} %></span>

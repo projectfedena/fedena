@@ -22,7 +22,7 @@
 <div id="page-yield">
 
   <div class="hor_line"></div>
-  <h2><%= "#{t('student_wise_report_for')} "+@exam_group.name+", #{t('batch')}:"+@batch.name %></h2>
+  <h2><%= "#{t('student_wise_report_for')} "+@exam_group.name+", #{t('batch')}:"+@batch.full_name %></h2>
   <div class="hor_line"></div>
 
   <% @students.each_with_index do |student,i| %>
