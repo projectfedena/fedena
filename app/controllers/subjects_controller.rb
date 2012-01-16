@@ -85,6 +85,7 @@ class SubjectsController < ApplicationController
    else
     @error_text = "#{t('cannot_delete_subjects')}"
     end
+     flash[:notice] = "Subject Deleted successfully!"
   end
 
   def show

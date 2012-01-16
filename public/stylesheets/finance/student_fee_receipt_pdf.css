@@ -133,5 +133,8 @@ td.col-8 {
 tr.paid *{
    font-weight: bold;
 }
-
+.space
+{
+    margin-left: 60px;
+}
 

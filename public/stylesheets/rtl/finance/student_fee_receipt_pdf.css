@@ -134,4 +134,7 @@ tr.paid *{
    font-weight: bold;
 }
 
-
+.space
+{
+    margin-left: 60px;
+}

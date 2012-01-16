@@ -1,3 +1,4 @@
 if @error_text.nil?
 page.hide "subject-#{@subject.id}"
+page.replace_html 'flash-box', :text=>"<p class='flash-msg'>#{flash[:notice]}</p>" unless flash[:notice].nil?
 end
