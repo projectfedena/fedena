@@ -16,9 +16,9 @@
 #under the License. -%>
 
 <br/>
-  <div class="linker"><%= link_to_remote "#{t('add_particular')}", :url => { :action => 'add_particulars_new',:id => @collection_date.id} %></div>
+<div class="linker"><%= link_to_remote "#{t('add_particular')}", :url => { :action => 'add_particulars_new',:id => @collection_date.id} %></div>
 <br/>
-<% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
+
 <% unless @particulars.empty? %>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">
