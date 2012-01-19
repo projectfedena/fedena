@@ -189,7 +189,7 @@ class StudentController < ApplicationController
     end
     if request.post?
       params[:student_additional_details].each_pair do |k, v|
-        StudentAdditionalDetails.create(:student_id => params[:id],
+        StudentAdditionalDetail.create(:student_id => params[:id],
           :additional_field_id => k,:additional_info => v['additional_info'])
       end
       flash[:notice] = "#{t('flash9')} #{@student.first_name} #{@student.last_name}."
@@ -200,7 +200,7 @@ class StudentController < ApplicationController
   def edit_admission4
     @student = Student.find(params[:id])
     @additional_fields = StudentAdditionalField.find(:all, :conditions=> "status = true")
-    @additional_details = StudentAdditionalDetails.find_all_by_student_id(@student)
+    @additional_details = StudentAdditionalDetail.find_all_by_student_id(@student)
     
     if @additional_details.empty?
       redirect_to :controller => "student",:action => "admission4" , :id => @student.id
@@ -208,12 +208,12 @@ class StudentController < ApplicationController
     if request.post?
    
       params[:student_additional_details].each_pair do |k, v|
-        row_id=StudentAdditionalDetails.find_by_student_id_and_additional_field_id(@student.id,k)
+        row_id=StudentAdditionalDetail.find_by_student_id_and_additional_field_id(@student.id,k)
         unless row_id.nil?
-          additional_detail = StudentAdditionalDetails.find_by_student_id_and_additional_field_id(@student.id,k)
-          StudentAdditionalDetails.update(additional_detail.id,:additional_info => v['additional_info'])
+          additional_detail = StudentAdditionalDetail.find_by_student_id_and_additional_field_id(@student.id,k)
+          StudentAdditionalDetail.update(additional_detail.id,:additional_info => v['additional_info'])
         else
-          StudentAdditionalDetails.create(:student_id=>@student.id,:additional_field_id=>k,:additional_info=>v['additional_info'])
+          StudentAdditionalDetail.create(:student_id=>@student.id,:additional_field_id=>k,:additional_info=>v['additional_info'])
         end
       end
       flash[:notice] = "#{t('student_text')} #{@student.first_name} #{t('flash2')}"
@@ -238,7 +238,7 @@ class StudentController < ApplicationController
   end
 
   def delete_additional_details
-    students = StudentAdditionalDetails.find(:all ,:conditions=>"additional_field_id = #{params[:id]}")
+    students = StudentAdditionalDetail.find(:all ,:conditions=>"additional_field_id = #{params[:id]}")
     if students.blank?
       StudentAdditionalField.find(params[:id]).destroy
       @additional_details = StudentAdditionalField.find(:all)

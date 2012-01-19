@@ -76,7 +76,7 @@
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td><%= field.name %></td>
             <td class="right">
-              <% detail = StudentAdditionalDetails.find_by_additional_field_id_and_student_id(field.id,@student.id) %>
+              <% detail = StudentAdditionalDetail.find_by_additional_field_id_and_student_id(field.id,@student.id) %>
               <%= detail.additional_info unless detail.nil? %>
             <% end %>
           </td>

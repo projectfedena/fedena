@@ -148,7 +148,7 @@
           <tr class="odd left">
             <td><%= field.name %></td>
             <td class="right">
-              <% detail = StudentAdditionalDetails.find_by_additional_field_id_and_student_id(field.id,@student.id) %>
+              <% detail = StudentAdditionalDetail.find_by_additional_field_id_and_student_id(field.id,@student.id) %>
               <%= detail.additional_info unless detail.nil? %>
             <% end %>
           </td>
@@ -156,7 +156,7 @@
         <tr class="odd left">
           <td></td>
           <td class="right">
-            <% detail = StudentAdditionalDetails.find_all_by_student_id(@student.id) %>
+            <% detail = StudentAdditionalDetail.find_all_by_student_id(@student.id) %>
             <% unless detail.blank? %>
               <span> (<%= link_to "#{t('edit_additional_details')}", :controller => 'student', :action => 'edit_admission4', :id => @student.id %>)</span>
             <% else %>

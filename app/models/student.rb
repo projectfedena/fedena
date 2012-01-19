@@ -33,6 +33,7 @@ class Student < ActiveRecord::Base
   has_many   :fee_category ,:class_name => "FinanceFeeCategory"
   has_many   :students_subjects
   has_many   :subjects ,:through => :students_subjects
+  has_many   :student_additional_details
 
   has_and_belongs_to_many :graduated_batches, :class_name => 'Batch', :join_table => 'batch_students'
 

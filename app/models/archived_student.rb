@@ -59,6 +59,6 @@ class ArchivedStudent < ActiveRecord::Base
   end
 
   def additional_detail(additional_field)
-    StudentAdditionalDetails.find_by_additional_field_id_and_student_id(additional_field,self.former_id)
+    StudentAdditionalDetail.find_by_additional_field_id_and_student_id(additional_field,self.former_id)
   end
 end

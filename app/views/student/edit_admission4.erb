@@ -40,7 +40,7 @@
     
      
           <% @additional_fields.each do |additional| %>
-<% @student_additional_detail = StudentAdditionalDetails.find_by_student_id_and_additional_field_id(@student.id,additional.id) %>
+<% @student_additional_detail = StudentAdditionalDetail.find_by_student_id_and_additional_field_id(@student.id,additional.id) %>
           <div class="label-field-pair">
             <label><%= additional.name %></label>
             <div class="text-input-bg"><%= a.text_field :additional_info,:index => additional.id, :value => (@student_additional_detail.nil? ? "" : @student_additional_detail.additional_info)%></div>
