@@ -146,7 +146,7 @@
 #category-list {
     clear : both;
     padding : 10px 0px 40px 0;
-    width:808px;
+    width:842px;
     margin:0px auto;
 }
 
@@ -154,7 +154,7 @@
     background : #EEF2FD;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 750px;
+    height : 2.5em; width : 750px;
     list-style-type : none;
     padding : 0.5em 5em 0 0;
 }
@@ -163,7 +163,7 @@
     background : #DFEAFF;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 750px;
+    height : 2.5em; width : 750px;
     list-style-type : none;
     padding : 0.5em 5em 0 0;
 }
@@ -180,7 +180,7 @@
     float : right;
 }
 #category-list li div.category-name {
-    width : 350px;
+    width : 378px;
     font-weight: bold;
     font-size:14px;
 }
@@ -234,7 +234,7 @@
 
 #category-list li div.due-date{
     float: right;
-    width: 200px;
+    width: 139px;
     font-size: 14px;
 }
 
