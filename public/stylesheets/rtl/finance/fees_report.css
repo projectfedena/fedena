@@ -1,5 +1,5 @@
 #fees-table{
-   padding-top: 10px;
+    padding-top: 10px;
 }
 .fees-th {
     background: none repeat scroll 0 0 #BECFFB;
@@ -7,8 +7,8 @@
     font-weight: normal;
     height: 1.5em;
     list-style-type: none;
-    padding: 0.5em 1em 0 0;
-    width: 600px;
+    padding: 0.5em 1em  0;
+    width: 100%;
 }
 .fees-tr {
     background-color: #E7EEFF;
@@ -16,7 +16,7 @@
     font-size:0.9em;
     height: 1.5em;
     padding: 0.5em 0 0 0;
-    width:600px;
+    width:100%;
 }
 .fees-table-description {
     float:right;
@@ -28,21 +28,32 @@
 .fees-table-head-desc {
     float:right;
     padding: 0 60px 0 0;
-    width: 317px;
+    width: 700px;
 }
 .fees-table-expenses {
-    float:right;
+    float:left;
     width: 80px;
     padding: 0 77px 0 0;
     text-align:left;
     color: #444444;
+    padding-left: 38px;
+    margin-top: -19px;
+}
+.fees-table-expenses1 {
+    float:left;
+    width: 80px;
+    padding: 0 0 0 77px;
+    text-align:right;
+    color: #444444;
+    padding-right: 38px;
 }
 .fees-table-income {
-    float:right;
-    width: 154px;
+    float:left;
+    width: 935px;
     padding: 0 0 0 0;
     text-align:left;
     color: #444444;
+    margin-top: -21px;
 }
 .fees-table-date {
     float:left;
@@ -55,18 +66,20 @@
     background : #EEF2FD;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 600px;
+    height : auto;
+    width : 100%;
     list-style-type : none;
-    padding: 10px 16px 0 0;
+    padding: 10px 16px  0;
     font-size: 14px;
-    
+
 }
 
 .listodd{
     background : #DFEAFF;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 600px;
+    height : auto;
+    width : 100%;
     list-style-type : none;
     padding: 10px 16px 0 0;
     font-size: 14px;
@@ -74,13 +87,11 @@
 }
 
 .fees-table-description a{
-    width: 254px;
     text-decoration: none;
     color: #444444;
 }
 
 .fees-table-description a:hover{
-    width: 254px;
     text-decoration: none;
     color: #BB0000;
 }
