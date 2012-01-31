@@ -10,7 +10,7 @@ body {
 }
 #header_bg {
     height : 60px;
-    background : #b00 url(../../images/application/app_layout_header_bg.jpg) repeat;
+    background : #b00 url(../../images/application/app_layout_header_bg.png) repeat;
 }
 #header {
     width : 980px; height : 60px;
