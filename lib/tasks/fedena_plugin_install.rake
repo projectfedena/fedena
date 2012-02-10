@@ -7,6 +7,7 @@ namespace :fedena do
        Rake::Task["#{m[:name]}:install"].execute
     end
    Rake::Task["db:migrate"].execute
+   Rake::Task["db:seed"].execute
   end
  end 
 end
