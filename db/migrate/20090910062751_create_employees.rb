@@ -58,19 +58,11 @@ class CreateEmployees < ActiveRecord::Migration
 
       t.timestamps
     end
-    create_default
   end
 
 
   def self.down
     drop_table :employees
   end
-
-
-    def self.create_default
-     Employee.create :employee_number => 'admin',:joining_date => Date.today,:first_name => 'Fedena',:last_name => 'Administrator',
-       :employee_department_id => 1,:employee_grade_id => 1,:employee_position_id => 1,:employee_category_id => 1,:status => true,:nationality_id =>'76', :date_of_birth => Date.today-365
-     execute "UPDATE users SET admin=1,employee=0 where id = 1"
-    end
 
 end

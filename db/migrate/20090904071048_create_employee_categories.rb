@@ -5,14 +5,10 @@ class CreateEmployeeCategories < ActiveRecord::Migration
       t.string :prefix
       t.boolean :status
     end
-    create_default
   end
 
   def self.down
     drop_table :employee_categories
   end
 
-   def self.create_default
-     EmployeeCategory.create :name => 'Fedena Admin',:prefix => 'Admin',:status => true
-  end
 end
