@@ -1,4 +1,4 @@
-class StudentsSubject < ActiveRecord::Migration
+class CreateStudentsSubject < ActiveRecord::Migration
   def self.up
     create_table :students_subjects do |t|
       t.references :student
