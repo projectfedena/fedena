@@ -629,7 +629,7 @@ class FinanceController < ApplicationController
 
   def master_fees
     @finance_fee_category = FinanceFeeCategory.new
-    @finance_fee_particular = FinanceFeeParticulars.new
+    @finance_fee_particular = FinanceFeeParticular.new
     @batchs = Batch.active
     @master_categories = FinanceFeeCategory.find(:all,:conditions=> ["is_deleted = '#{false}' and is_master = 1 and batch_id=?",params[:batch_id]]) unless params[:batch_id].blank?
     @student_categories = StudentCategory.active
@@ -696,13 +696,13 @@ class FinanceController < ApplicationController
 
   def master_category_particulars
     @finance_fee_category = FinanceFeeCategory.find(params[:id])
-    @particulars = FinanceFeeParticulars.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
+    @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
     #    respond_to do |format|
     #      format.js { render :action => 'master_category_particulars' }
     #    end
   end
   def master_category_particulars_edit
-    @finance_fee_particulars= FinanceFeeParticulars.find(params[:id])
+    @finance_fee_particulars= FinanceFeeParticular.find(params[:id])
     @student_categories = StudentCategory.active
     respond_to do |format|
       format.js { render :action => 'master_category_particulars_edit' }
@@ -710,11 +710,11 @@ class FinanceController < ApplicationController
   end
 
   def master_category_particulars_update
-    @feeparticulars = FinanceFeeParticulars.find( params[:id])
+    @feeparticulars = FinanceFeeParticular.find( params[:id])
     render :update do |page|
       if @feeparticulars.update_attributes(params[:finance_fee_particulars])
         @finance_fee_category = FinanceFeeCategory.find(@feeparticulars.finance_fee_category_id)
-        @particulars = FinanceFeeParticulars.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
+        @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'categories', :partial => 'master_particulars_list'
@@ -729,10 +729,10 @@ class FinanceController < ApplicationController
     #    end
   end
   def master_category_particulars_delete
-    @feeparticulars = FinanceFeeParticulars.find( params[:id])
+    @feeparticulars = FinanceFeeParticular.find( params[:id])
     @feeparticulars.update_attributes(:is_deleted => true )
     @finance_fee_category = FinanceFeeCategory.find(@feeparticulars.finance_fee_category_id)
-    @particulars = FinanceFeeParticulars.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
+    @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
     respond_to do |format|
       format.js { render :action => 'master_category_particulars' }
     end
@@ -750,7 +750,7 @@ class FinanceController < ApplicationController
   def show_master_categories_list
     unless params[:id].nil?
       @finance_fee_category = FinanceFeeCategory.new
-      @finance_fee_particular = FinanceFeeParticulars.new
+      @finance_fee_particular = FinanceFeeParticular.new
       @batches = Batch.find params[:id] unless params[:id] == ""
       @master_categories = FinanceFeeCategory.find(:all,:conditions=> ["is_deleted = '#{false}' and is_master = 1 and batch_id=?",params[:id]])
       @student_categories = StudentCategory.active
@@ -766,7 +766,7 @@ class FinanceController < ApplicationController
     @fees_categories = FinanceFeeCategory.find(:all ,:conditions=> "is_deleted = 0 and is_master = 1")
     @fees_categories.reject!{|f|f.batch.is_deleted or !f.batch.is_active }
     @student_categories = StudentCategory.active
-    @finance_fee_particulars = FinanceFeeParticulars.new
+    @finance_fee_particulars = FinanceFeeParticular.new
     respond_to do |format|
       format.js { render :action => 'fees_particulars_new' }
     end
@@ -774,7 +774,7 @@ class FinanceController < ApplicationController
 
   def fees_particulars_create
     @error = false
-    @finance_fee_particulars = FinanceFeeParticulars.new(params[:finance_fee_particulars])
+    @finance_fee_particulars = FinanceFeeParticular.new(params[:finance_fee_particulars])
     unless (params[:finance_fee_particulars][:finance_fee_category_id]).blank?
       @fee_category = FinanceFeeCategory.find(@finance_fee_particulars.finance_fee_category_id)
       if params[:particulars][:select].to_s == 'student'
@@ -797,7 +797,7 @@ class FinanceController < ApplicationController
           unless @error
             admission_no.each do |a|
               posted_params["admission_no"] = a.to_s
-              @error = true unless @finance_fee_particulars = FinanceFeeParticulars.create(posted_params)
+              @error = true unless @finance_fee_particulars = FinanceFeeParticular.create(posted_params)
             end
           end
         else
@@ -809,7 +809,7 @@ class FinanceController < ApplicationController
       end
     end
     @finance_fee_category = FinanceFeeCategory.find( @finance_fee_particulars .finance_fee_category_id)
-    @particulars = FinanceFeeParticulars.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
+    @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
     
   end
 

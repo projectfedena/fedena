@@ -88,7 +88,7 @@ class BatchesController < ApplicationController
             if new_category.save
               fee_msg << "<li>#{c.name}</li>"
               particulars.each do |p|
-                new_particular = FinanceFeeParticulars.new(:name=>p.name,:description=>p.description,:amount=>p.amount,:student_category_id=>p.student_category_id,\
+                new_particular = FinanceFeeParticular.new(:name=>p.name,:description=>p.description,:amount=>p.amount,:student_category_id=>p.student_category_id,\
                     :admission_no=>p.admission_no,:student_id=>p.student_id)
                 new_particular.finance_fee_category_id = new_category.id
                 unless new_particular.save

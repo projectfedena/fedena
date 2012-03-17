@@ -16,7 +16,7 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
-class FinanceFeeParticulars < ActiveRecord::Base
+class FinanceFeeParticular < ActiveRecord::Base
 
   belongs_to :finance_fee_category
   belongs_to :student_category
