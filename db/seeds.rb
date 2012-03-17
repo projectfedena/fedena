@@ -44,29 +44,6 @@ FinanceTransactionCategory.create(:name => 'Salary', :description => ' ', :is_in
 FinanceTransactionCategory.create(:name => 'Donation', :description => ' ', :is_income => true)
 FinanceTransactionCategory.create(:name => 'Fee', :description => ' ', :is_income => true)
 
-
-Privilege.create :name => 'ExaminationControl' , :description => 'Examination Control'
-Privilege.create :name => 'EnterResults' , :description => 'Enter Results'
-Privilege.create :name => 'ViewResults' , :description => 'View Results'
-Privilege.create :name => 'Admission' , :description => 'Admission'
-Privilege.create :name => 'StudentsControl' , :description => 'Students Control'
-Privilege.create :name => 'ManageNews' , :description => 'Manage News'
-Privilege.create :name => 'ManageTimetable' , :description => 'Manage Timetable'
-Privilege.create :name => 'StudentAttendanceView' , :description => 'Student Attendance View'
-Privilege.create :name => 'HrBasics' , :description => 'Hr Basics'
-Privilege.create :name => 'AddNewBatch' , :description => 'Add New Batch'
-Privilege.create :name => 'SubjectMaster' , :description => 'Subject Master'
-Privilege.create :name => 'EventManagement' , :description => 'Event Management'
-Privilege.create :name => 'GeneralSettings' , :description => 'General Settings'
-Privilege.create :name => 'FinanceControl' , :description => 'Finance Control'
-Privilege.create :name => 'TimetableView' , :description => 'Timetable View'
-Privilege.create :name => 'StudentAttendanceRegister' , :description => 'Student Attendance Register'
-Privilege.create :name => 'EmployeeAttendance' , :description => 'Employee Attendance'
-Privilege.create :name => 'PayslipPowers' , :description => 'Payslip Powers'
-Privilege.create :name => 'EmployeeSearch' , :description => 'Employee Search'
-Privilege.create :name => 'SMSManagement' , :description => 'Sms Management'
-
-
 Weekday.create :batch_id=>"", :weekday=>"1"
 Weekday.create :batch_id=>"", :weekday=>"2"
 Weekday.create :batch_id=>"", :weekday=>"3"
