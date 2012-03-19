@@ -55,13 +55,15 @@ class ApplicationController < ActionController::Base
   if Rails.env.production?
     rescue_from ActiveRecord::RecordNotFound do |exception|
       flash[:notice] = "#{t('flash_msg2')} , #{exception} ."
+      logger.info "[FedenaRescue] AR-Record_Not_Found #{exception.to_s}"
+      log_error exception
       redirect_to :controller=>:user ,:action=>:dashboard
     end
 
     rescue_from NoMethodError do |exception|
       flash[:notice] = "#{t('flash_msg3')}"
       logger.info "[FedenaRescue] No method error #{exception.to_s}"
-      logger.info exception.backtrace
+      log_error exception
       redirect_to :controller=>:user ,:action=>:dashboard
     end
   end
@@ -182,15 +184,15 @@ class ApplicationController < ActionController::Base
   end
   
   def limit_employee_profile_access
-      unless @current_user.employee
+    unless @current_user.employee
       unless params[:id] == @current_user.employee_record.id
-      priv = @current_user.privileges.map{|p| p.name}
-      unless current_user.admin? or priv.include?("HrBasics") or priv.include?("EmployeeSearch")
-        flash[:notice] = "#{t('flash_msg5')}"
-        redirect_to :controller=>"user", :action=>"dashboard"
+        priv = @current_user.privileges.map{|p| p.name}
+        unless current_user.admin? or priv.include?("HrBasics") or priv.include?("EmployeeSearch")
+          flash[:notice] = "#{t('flash_msg5')}"
+          redirect_to :controller=>"user", :action=>"dashboard"
+        end
       end
-      end
-      end
+    end
   end
 
   def protect_other_employee_data
