@@ -774,7 +774,7 @@ class FinanceController < ApplicationController
 
   def fees_particulars_create
     @error = false
-    @finance_fee_particulars = FinanceFeeParticular.new(params[:finance_fee_particulars])
+    @finance_fee_particulars = FinanceFeeParticular.new(params[:finance_fee_particular])
     unless (params[:finance_fee_particular][:finance_fee_category_id]).blank?
       @fee_category = FinanceFeeCategory.find(@finance_fee_particulars.finance_fee_category_id)
       if params[:particulars][:select].to_s == 'student'
