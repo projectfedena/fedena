@@ -19,5 +19,5 @@
 
 <div class="label-field-pair">
     <div class="label-container"><label><%= t('student_category') %>:</label></div>
-   <div class="input-container"> <%= select :finance_fee_particulars,:student_category_id, @student_categories.map { |c| [c.name, c.id] },
+   <div class="input-container"> <%= select :finance_fee_particular,:student_category_id, @student_categories.map { |c| [c.name, c.id] },
       {:prompt => "#{t('select_category')}" }%></div></div>
