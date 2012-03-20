@@ -702,7 +702,7 @@ class FinanceController < ApplicationController
     #    end
   end
   def master_category_particulars_edit
-    @finance_fee_particulars= FinanceFeeParticular.find(params[:id])
+    @finance_fee_particular= FinanceFeeParticular.find(params[:id])
     @student_categories = StudentCategory.active
     respond_to do |format|
       format.js { render :action => 'master_category_particulars_edit' }
@@ -766,7 +766,7 @@ class FinanceController < ApplicationController
     @fees_categories = FinanceFeeCategory.find(:all ,:conditions=> "is_deleted = 0 and is_master = 1")
     @fees_categories.reject!{|f|f.batch.is_deleted or !f.batch.is_active }
     @student_categories = StudentCategory.active
-    @finance_fee_particulars = FinanceFeeParticular.new
+    @finance_fee_particular = FinanceFeeParticular.new
     respond_to do |format|
       format.js { render :action => 'fees_particulars_new' }
     end

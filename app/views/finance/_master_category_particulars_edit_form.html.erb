@@ -22,7 +22,7 @@
 
 <div id="grading-levels-form">
 
-  <% form_remote_for  @finance_fee_particulars,:url=>{:action=>'master_category_particulars_update',:id => @finance_fee_particulars.id}  do |f| %>
+  <% form_remote_for  @finance_fee_particular,:url=>{:action=>'master_category_particulars_update',:id => @finance_fee_particular.id}  do |f| %>
 
     <div id="form-errors"></div>
 
@@ -35,12 +35,12 @@
       <div class="label-container"><%= f.label "#{t('description')}" %></div>
       <div class="input-container"><%= f.text_field :description %></div>
     </div>
-    <% if @finance_fee_particulars.admission_no.nil? %>
+    <% if @finance_fee_particular.admission_no.nil? %>
       <div class="label-field-pair2">
         <div class="label-container2"><label><%= t('create_using') %></label></div>
         <div class="input-container2">
 
-          <% unless @finance_fee_particulars.student_category_id.nil? %>
+          <% unless @finance_fee_particular.student_category_id.nil? %>
             <%= radio_button("particulars","select","all",{:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
                 :with => "'select_value='+value")}"}) %><%= t('all') %><br />
             <%= radio_button("particulars","select","category",
@@ -59,7 +59,7 @@
 
 
     <div id="student">
-      <%= render :partial => 'student_category_particulars', :lacals=>{ :student_categories=> @student_categories} unless @finance_fee_particulars.student_category_id.nil? %>
+      <%= render :partial => 'student_category_particulars', :lacals=>{ :student_categories=> @student_categories} unless @finance_fee_particular.student_category_id.nil? %>
     </div>
 
     <div class="label-field-pair">
