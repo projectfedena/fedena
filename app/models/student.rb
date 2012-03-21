@@ -51,9 +51,7 @@ class Student < ActiveRecord::Base
   before_validation :create_user_and_validate
 
   has_attached_file :photo,
-    :styles => {
-    :thumb=> "100x100#",
-    :small  => "150x150>"},
+    :styles => {:original=> "125x125#"},
     :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
     :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension"
 
