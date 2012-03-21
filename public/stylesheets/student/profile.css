@@ -9,6 +9,12 @@
     margin-left:50px;
     border:8px solid #EFEFD1;
 }
+#profile_picture_display img {
+    width:125px;
+    height:125px;
+    /*padding-top:25px;
+    padding-left:32px;*/
+}
 #student_main_info {
     float:left;
     margin-left:50px;
