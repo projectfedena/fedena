@@ -174,13 +174,11 @@ p.flash-msg {
     float:left;
 }
 #fedena_logo {
-    margin-top:30px;
-    height:107px;
-    /*background:#fff url(../../images/application/app_fedena_logo.jpg) center center no-repeat;*/
+    width: 157px;
+    text-align: center;
+    margin-top: 30px;
 }
-.fed_logo{
-    padding-left:30px;
-}
+
 #content {
     width:770px;
     float:left;

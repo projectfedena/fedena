@@ -19,11 +19,7 @@
 
 <div id="wrapper">
   <div id="top_logo">
-    <% if FileTest.exists?("#{RAILS_ROOT}/public/uploads/image/institute_logo.jpg") %>
-      <%= image_tag  "/uploads/image/institute_logo.jpg" ,:width => "155",  :height=>"107" %>
-    <% else %>
-        <%= image_tag("/images/application/app_fedena_logo.jpg") %>
-    <% end %>
+    <%= image_tag current_school_detail.logo.url %>
   </div>
 
   <div id="help_top">
@@ -41,7 +37,7 @@
             :maxlength => 40%>
         </div>
 
-          <label for="password"><%= t('password') %></label>
+        <label for="password"><%= t('password') %></label>
         <div id="password_textbox_bg">
           <%= form.password_field :password %>
         </div>
@@ -68,20 +64,20 @@
       :controller => "user",
       :action => "forgot_password" %>
 
-</div>
-<div class="clearfooter"></div>
+  </div>
+  <div class="clearfooter"></div>
 </div>
 
-    <div id="footer">
-      <div id="footer_logo">
-            <div id="powered_by">
-          <%= t('powered_by') %> <a href="http://www.foradian.com/" target="_blank">Fedena</a>
-        </div>
-          <a href="http://www.projectfedena.org/" target="_blank" class="footer-logo"></a>
-
-      </div>
+<div id="footer">
+  <div id="footer_logo">
+    <div id="powered_by">
+      <%= t('powered_by') %> <a href="http://www.foradian.com/" target="_blank">Fedena</a>
     </div>
+    <a href="http://www.projectfedena.org/" target="_blank" class="footer-logo"></a>
+
+  </div>
+</div>
 
 <script type="text/javascript">
-document.getElementById('user_username').focus();
- </script>
+  document.getElementById('user_username').focus();
+</script>

@@ -195,8 +195,8 @@ p.flash-msg {
 }
 #side_bar { float:left; width:200px; }
 #fedena_logo {
-    background: #fff url(../../images/application/app_fedena_logo.jpg) center center no-repeat;
-    height: 107px;
+    width: 157px;
+    text-align: center;
     margin-top: 30px;
 }
 #content { float: left; width: 980px; }

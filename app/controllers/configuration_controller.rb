@@ -28,23 +28,17 @@ class ConfigurationController < ApplicationController
         'StudentAttendanceType', 'CurrencyType', 'ExamResultType', 'AdmissionNumberAutoIncrement','EmployeeNumberAutoIncrement', \
         'NetworkState','Locale','FinancialYearStartDate','FinancialYearEndDate']
 
+    @school_detail = SchoolDetail.first || SchoolDetail.new
     if request.post?
-
-      unless params[:upload].nil?
-        @temp_file=params[:upload][:datafile]
-        unless FILE_EXTENSIONS.include?(File.extname(@temp_file.original_filename).downcase)
-          flash[:notice] = "#{t('flash1')}"
-          redirect_to :action => "settings"  and return
-        end
-        if @temp_file.size > FILE_MAXIMUM_SIZE_FOR_FILE
-          flash[:notice] = "#{t('flash2')}"
-          redirect_to :action => "settings" and return
-        end
-      end
-    
       Configuration.set_config_values(params[:configuration])
-      Configuration.save_institution_logo(params[:upload]) unless params[:upload].nil?
       session[:language] = nil unless session[:language].nil?
+      @school_detail.logo = params[:school_detail][:school_logo] if params[:school_detail].present?
+      unless @school_detail.save
+        @config = Configuration.get_multiple_configs_as_hash ['InstitutionName', 'InstitutionAddress', 'InstitutionPhoneNo', \
+            'StudentAttendanceType', 'CurrencyType', 'ExamResultType', 'AdmissionNumberAutoIncrement','EmployeeNumberAutoIncrement', \
+            'NetworkState','Locale','FinancialYearStartDate','FinancialYearEndDate']
+        return
+      end
       @current_user.clear_menu_cache
       flash[:notice] = "#{t('flash_msg8')}"
       redirect_to :action => "settings"  and return

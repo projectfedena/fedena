@@ -32,6 +32,7 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
+  <%= error_messages_for :school_detail %>
 
   <% form_for(:configuration,:html=> {:multipart=>true}) do |c| %>
     <div class="box">
@@ -93,7 +94,7 @@
       <div class="label-field-pair">
         <label for="configuration_currency_type"><%= t('upload_logo') %></label>
         <div class="text-input-bg">
-          <%= file_field 'upload', 'datafile', :size=>12 %>
+          <%= file_field 'school_detail','school_logo', :size=>12 %>
         </div>
       </div>
       <div class="label-field-pair">

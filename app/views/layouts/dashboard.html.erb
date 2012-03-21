@@ -1,24 +1,24 @@
 <%-# Fedena
-#Copyright 2010 Foradian Technologies Private Limited
-#
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
-#
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
-#
-#  http://www.apache.org/licenses/LICENSE-2.0
-#
-#Unless required by applicable law or agreed to in writing,
-#software distributed under the License is distributed on an
-#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-#KIND, either express or implied.  See the License for the
-#specific language governing permissions and limitations
-#under the License. -%>
+   #Copyright 2010 Foradian Technologies Private Limited
+   #
+   #This product includes software developed at
+   #Project Fedena - http://www.projectfedena.org/
+   #
+   #Licensed under the Apache License, Version 2.0 (the "License");
+   #you may not use this file except in compliance with the License.
+   #You may obtain a copy of the License at
+   #
+   #  http://www.apache.org/licenses/LICENSE-2.0
+   #
+   #Unless required by applicable law or agreed to in writing,
+   #software distributed under the License is distributed on an
+   #"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   #KIND, either express or implied.  See the License for the
+   #specific language governing permissions and limitations
+   #under the License. -%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html dir="<%= (rtl?) ? 'rtl' : 'ltr' %>">
   <head>
     <% @direction = (rtl?) ? 'rtl/' : '' %>
@@ -50,13 +50,13 @@
           <div id="header_link" >
             <%= t('logged_as') %>
             <%= link_to @current_user.first_name, :controller => 'user', :action => 'profile',
-              :id => @current_user.username %> &nbsp;|&nbsp;
+                :id => @current_user.username %> &nbsp;|&nbsp;
             <%= link_to t('messages'), :controller => "reminder", :action => "index" %><%= render :partial =>'layouts/reminder_count'%>&nbsp;|&nbsp;
             <%= link_to t('log_out'), :controller => 'user', :action => 'logout' %>  &nbsp;&nbsp;
           </div>
         </div>
         <div id="outer-main-menu">
-                    <%= main_menu %>
+          <%= main_menu %>
         </div>
         <div id="outer-autosuggest-menu">
           <%= render :partial => "layouts/autosuggest_menu" %>
@@ -67,14 +67,7 @@
     <div id="content_wrapper" >
       <div id="side_bar">
         <div id="fedena_logo">
-          <% if FileTest.exists?("#{RAILS_ROOT}/public/uploads/image/institute_logo.jpg") %>
-            <%= image_tag  "/uploads/image/institute_logo.jpg" ,:width => "155",  :height=>"107" %>
-          <% else %>
-
-            <div class="fed_logo">
-              <img src="/images/application/app_fedena_logo.jpg"/>
-            </div>
-          <% end %>
+          <%= image_tag current_school_detail.logo.url %>
         </div>
         <div id="sidebar_news_area">
           <% if action_name == "dashboard" %>
