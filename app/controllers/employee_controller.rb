@@ -180,7 +180,7 @@ class EmployeeController < ApplicationController
       flash[:notice]=t('flash3')
       redirect_to :action => "add_grade"
     else
-      flash[:notice]=t('flash11')
+      flash[:notice]=t('flash4')
       redirect_to :action => "add_grade"
     end
   end
