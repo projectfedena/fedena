@@ -45,7 +45,7 @@
     <% unless @reporting_employees.empty? %>
       <% if @total_leave_count == 0 %>
         <li>
-          <a href="#" class="drops" id="link_two"><%= "#{t('employee.hr.my_emp')}" %> ▼</a>
+          <a href="#" class="drops" id="link_two"><%= "#{t('my_emp')}" %> ▼</a>
           <ul id="box_two" class="scriptaculously" style="display:none;">
             <!-- no new leave applications of any employee -->
             <li><%= link_to_remote "#{t('all_leaves')}",
