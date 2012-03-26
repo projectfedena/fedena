@@ -18,6 +18,7 @@
 #under the License. -%>
 
 <ul id="category-list">
+  <% unless @additional_details.empty? and @inactive_additional_details.empty? %>
 <% unless @additional_details.empty? %>
   <li class="listheading"><div class="category-name"><%= t('active_fields') %></div></li>
     <%- @additional_details.each do |c| -%>
@@ -26,6 +27,7 @@
         <div class="category-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_additional_details", :id=>c.id} %></div>
         <div class="category-edit"><%= link_to  "#{t('delete_text')}", {:action => "delete_additional_details", :id=>c.id}, :confirm => "#{t('delete_confirm_msg')}" %></div>
       </li>
+     <% end %>
      <% end %>
     <% unless @inactive_additional_details.empty? %>
       <li class="listheading"><div class="category-name"> <%= t('inactive_fields') %></div></li>
