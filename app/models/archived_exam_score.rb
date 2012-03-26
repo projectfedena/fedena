@@ -48,7 +48,7 @@ class ArchivedExamScore < ActiveRecord::Base
         exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id)
         unless exam.nil?
           exam_score = ArchivedExamScore.find_by_student_id(student.id, :conditions=>{:exam_id=>exam.id})
-          total_marks = total_marks+exam_score.marks unless exam_score.nil?
+          total_marks = total_marks+ (exam_score.marks || 0) unless exam_score.nil?
         end
       end
     end

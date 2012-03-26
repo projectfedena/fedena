@@ -127,7 +127,7 @@ class ExamGroup < ActiveRecord::Base
     max_total = 0
     exams.each do |exam|
       exam_score = ArchivedExamScore.find_by_exam_id_and_student_id(exam.id,student.id)
-      total_marks = total_marks + exam_score.marks unless exam_score.nil?
+      total_marks = total_marks + (exam_score.marks || 0 ) unless exam_score.nil?
       max_total = max_total + exam.maximum_marks unless exam_score.nil?
     end
     result = [total_marks,max_total]
