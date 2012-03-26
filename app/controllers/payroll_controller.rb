@@ -125,7 +125,7 @@ class PayrollController < ApplicationController
         end
         
       end
-      flash[:notice] = "#{t('data_saved_for')}#{@employee.first_name}"
+      flash[:notice] = "#{t('data_saved_for')} #{@employee.first_name}"
       redirect_to :controller => "employee", :action => "profile", :id=> @employee.id
     end
   end
