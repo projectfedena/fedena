@@ -473,7 +473,7 @@ class StudentController < ApplicationController
     @parent_info = Guardian.new(params[:parent_detail])
     @countries = Country.all
     if request.post? and @parent_info.save
-      flash[:notice] = "#{t('flash5')} #{@parent_info.ward_id}"
+      flash[:notice] = "#{t('flash5')} #{@parent_info.ward.full_name}"
       redirect_to :controller => "student" , :action => "admission3_1", :id => @parent_info.ward_id
     end
   end
