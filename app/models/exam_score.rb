@@ -24,7 +24,7 @@ class ExamScore < ActiveRecord::Base
   before_save :calculate_grade
 
   def calculate_percentage
-    percentage = self.marks.to_i * 100 / self.exam.maximum_marks
+    percentage = self.marks.to_f * 100 / self.exam.maximum_marks.to_f
   end
 
   def grouped_exam_subject_total(subject,student,type,batch = "")
