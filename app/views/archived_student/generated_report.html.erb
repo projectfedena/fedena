@@ -69,18 +69,21 @@
           <td class="col-1"> <%= es.exam.subject.name %></td>
           <% if @exam_group.exam_type == 'Marks' %>
             <td class="col-1"><%= es.marks %></td>
-            <% total_marks_attained = total_marks_attained+es.marks %>
+            <% marks = es.marks.nil? ? 0 : es.marks  %>
+            <% total_marks_attained = total_marks_attained + marks %>
             <td class="col-1"><%= es.exam.maximum_marks %></td>
             <% total_max_marks = total_max_marks+es.exam.maximum_marks%>
             <td class="col-1"><%= es.calculate_percentage %></td>
           <% elsif @exam_group.exam_type == 'Grades' %>
-            <td class="col-1"><%= es.grading_level.name %></td>
+            <% grading_level = es.grading_level.nil? ? '-' : es.grading_level.name %>
+            <td class="col-1"><%= grading_level %></td>
           <% else %>
             <td class="col-1"><%= es.marks %></td>
-            <% total_marks_attained = total_marks_attained+es.marks %>
+            <% marks = es.marks.nil? ? 0 : es.marks %>
+            <% total_marks_attained = total_marks_attained + marks %>
             <td class="col-1"><%= es.exam.maximum_marks %></td>
             <% total_max_marks = total_max_marks+es.exam.maximum_marks%>
-            <td class="col-1"><%= es.grading_level.name %></td>
+            <td class="col-1"><%= grading_level %></td>
             <td class="col-1"><%= es.calculate_percentage %></td>
           <% end %>
         </tr>

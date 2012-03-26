@@ -56,7 +56,7 @@
           <% else %>
             <td class="col-2"><%= exam_score.nil? ? '-' : exam_score.marks %></td>
             <td class="col-2"><%= exam_score.nil? ? '-' : exam.maximum_marks %></td>
-            <td class="col-2"><%= exam_score.nil? ? '-' : exam_score.grading_level.name %></td>
+            <td class="col-2"><%= exam_score.nil? ? '-' : exam_score.grading_level.nil? ? '-' : exam_score.grading_level.name  %></td>
           <% end %>
         </tr>
       <% end %>

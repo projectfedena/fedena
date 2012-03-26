@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_variables
 
   before_filter :dev_mode
+  include CustomInPlaceEditing
 
 
   def dev_mode

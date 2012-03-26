@@ -49,7 +49,7 @@
           <% if exam_group.exam_type == "MarksAndGrades" %>
             <td class="col-3"><% unless @exam.nil?  %>
                 <%  unless exam_score.nil? %>
-                  <%= exam_score.marks%> | <%= @exam.maximum_marks  %> | <%= exam_score.grading_level.name %>
+                  <%= exam_score.marks%> | <%= @exam.maximum_marks  %> | <%= exam_score.grading_level.nil? ? '-' : exam_score.grading_level.name  %>
                 <% end %>
               <%  end %></td>
           <% elsif exam_group.exam_type == "Marks" %>
@@ -59,7 +59,7 @@
                 <% end %>
               <% end %></td>
           <% else %>
-            <td class="col-3"><%= exam_score.grading_level.name unless exam_score.nil? %></td>
+            <td class="col-3"><%= exam_score.grading_level.nil? ? '-' : exam_score.grading_level.name unless exam_score.nil? %></td>
             <% @g = 0 %>
           <% end %>
         <% end %>

@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-<%= image_tag("/images/examination/show_exam.png") %>
+  <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
   <h3><%= t('grouping') %></h3>
   <div id="app-back-button">
@@ -31,12 +31,15 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-
+  <div class="sel-list">
+    <%= t('select') %>: <%= link_to_function t('all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+    <%= link_to_function t('none'), "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+  </div>
   <div class="box">
     <h4><%= t('connect_exams') %></h4>
-      <div id="list_content">
+    <div id="list_content">
       <div id="list">
-         <% unless @exam_groups.empty? %>
+        <% unless @exam_groups.empty? %>
 
           <% form_for :exam_grouping do |f| %>
             <% @exam_groups.each do |e| %>
@@ -44,10 +47,10 @@
                 <% already_grouped = GroupedExam.find_by_batch_id_and_exam_group_id(@batch.id,e) %>
                 <% if already_grouped.nil? %>
                   <li>
-                    <label><%= check_box_tag "exam_grouping[exam_group_ids][]", e.id %>
+                    <label><%= check_box_tag "exam_grouping[exam_group_ids][]", e.id,:html => {:class=>"right"} %>
                       <div class="att_list_names"><%= e.name %></div></label></li>
                 <% else %>
-                  <li><label><%= check_box_tag "exam_grouping[exam_group_ids][]", e.id, :checked=>true %><div class="att_list_names"> <%= e.name %></div></label></li>
+                  <li><label><%= check_box_tag "exam_grouping[exam_group_ids][]", e.id,true,:class => "right" %><div class="att_list_names"> <%= e.name %></div></label></li>
                 <% end %>
               </div>
             <% end %>

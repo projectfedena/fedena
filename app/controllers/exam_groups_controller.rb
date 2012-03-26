@@ -18,15 +18,15 @@
 
 class ExamGroupsController < ApplicationController
   before_filter :login_required
+  filter_access_to :all
   before_filter :initial_queries
   before_filter :protect_other_student_data
   before_filter :restrict_employees_from_exam
   before_filter :protect_other_batch_exams, :only => [:show, :index]
-  in_place_edit_for :exam_group, :name
-  filter_access_to :all
-  in_place_edit_for :exam, :maximum_marks
-  in_place_edit_for :exam, :minimum_marks
-  in_place_edit_for :exam, :weightage
+  in_place_edit_with_validation_for :exam_group, :name
+  in_place_edit_with_validation_for :exam, :maximum_marks
+  in_place_edit_with_validation_for :exam, :minimum_marks
+  in_place_edit_with_validation_for :exam, :weightage
 
   def index
     @exam_groups = @batch.exam_groups

@@ -42,8 +42,9 @@ class SubjectsController < ApplicationController
         @elective_groups = ElectiveGroup.find_all_by_batch_id(@batch.id)
         flash[:notice] = "Subject created successfully!"
       else
-        @elective_group = params[:subject][:elective_group_id].to_i
-        @subjects = @subject.batch.elective_batch_subject(@elective_group)
+        @batch = @subject.batch
+        @elective_groups = ElectiveGroup.find_all_by_batch_id(@batch.id, :conditions =>{:is_deleted=>false})
+        @subjects = @subject.batch.normal_batch_subject
         flash[:notice] = "Elective subject created successfully!"
       end
     else

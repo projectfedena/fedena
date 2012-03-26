@@ -42,7 +42,10 @@
         </div>
 
   <p><%= t('uncheck_message') %>.</p>
-
+  <div class="sel-list">
+    <%= t('select') %>: <%= link_to_function t('all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+    <%= link_to_function t('none'), "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+  </div>
     <ul id="category-list">
         <li class="listheading">
       <div class="heading-no"><%= t('adm_no') %></div>
@@ -52,7 +55,7 @@
   <li class="list<%=cycle('odd', 'even')%>">
      <div class="category-number"><%= student.admission_no %></div>
     <div class="category-name"><%= student.full_name %></div>
-    <div class="category-edit"><%= check_box_tag 'transfer[students][]', student.id, true %></div>
+    <div class="category-edit"><%= check_box_tag 'transfer[students][]', student.id, true,:class=>"right" %></div>
 </li>
   <% end %>
 </ul>
