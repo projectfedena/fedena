@@ -18,18 +18,20 @@
 #under the License. -%>
 
 <ul id="category-list">
+  <% unless @bank_details.empty? and @inactive_bank_details.empty? %>
   <% unless @bank_details.empty? %>
     <li class="listheading"><div class="category-name"><%= t('active_bank_field') %></div></li>
-    <%- @bank_details.each do |c| -%>
+    <% @bank_details.each do |c| %>
       <li class="list<%=cycle('odd', 'even')%>">
         <div class="category-name"><%= c.name %></div>
         <div class="category-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_bank_details", :id=>c.id} %></div>
         <div class="category-edit"><%= link_to "#{t('delete_text')}", {:action => "delete_bank_details", :id=>c.id}, :confirm => "#{t('delete_confirm_msg')}" %></div>
       </li>
     <% end %>
+    <% end %>
     <% unless @inactive_bank_details.empty? %>
       <li class="listheading"><div class="category-name"><%= t('inactive_bank_field') %></div></li>
-      <%- @inactive_bank_details.each do |c| -%>
+      <% @inactive_bank_details.each do |c| %>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="category-name"><%= c.name %></div>
           <div class="category-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_bank_details", :id=>c.id} %></div>
