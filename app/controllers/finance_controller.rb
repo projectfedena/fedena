@@ -309,17 +309,16 @@ class FinanceController < ApplicationController
   
   def transaction_pdf
     fixed_category_name
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     @hr = Configuration.find_by_config_value("HR")
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
     @transactions = FinanceTransaction.find(:all,
       :order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'"])
+    #@other_transactions = FinanceTransaction.report(@start_date,@end_date,params[:page])
     @other_transactions = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
       :order => 'transaction_date')
     @transactions_fees = FinanceTransaction.total_fees(@start_date,@end_date)
-    employees = Employee.find(:all)
-    @salary = Employee.total_employees_salary(employees, @start_date, @end_date)
+    @salary = MonthlyPayslip.total_employees_salary(@start_date, @end_date)[:total_salary]#Employee.total_employees_salary(employees, @start_date, @end_date)
     @donations_total = FinanceTransaction.donations_triggers(@start_date,@end_date)
     @grand_total = FinanceTransaction.grand_total(@start_date,@end_date)
     @category_transaction_totals = {}
