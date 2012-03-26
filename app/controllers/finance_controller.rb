@@ -325,7 +325,7 @@ class FinanceController < ApplicationController
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
       @category_transaction_totals["#{category[:category_name]}"] =   FinanceTransaction.total_transaction_amount(category[:category_name],@start_date,@end_date)
     end
-    render :pdf => 'transaction_pdf'        
+    render :pdf => 'transaction_pdf'  ,:show_as_html => true
   end
 
   def salary_department
@@ -415,12 +415,13 @@ class FinanceController < ApplicationController
 
   def employee_payslip_approve
     dates = MonthlyPayslip.find_all_by_salary_date_and_employee_id(Date.parse(params[:id2]),params[:id])
-
     dates.each do |d|
-      d.approve(current_user.id)
+      d.approve(current_user.id,params[:payslip_accept][:remark])
     end
     flash[:notice] = "#{t('flash8')}"
-    redirect_to :action => "view_employee_payslip",:id=>params[:id],:salary_date=>params[:id2]
+    render :update do |page|
+      page.reload
+    end
   end
   def employee_payslip_reject
     dates = MonthlyPayslip.find_all_by_salary_date_and_employee_id(Date.parse(params[:id2]),params[:id])
@@ -439,6 +440,14 @@ class FinanceController < ApplicationController
     end
     render :update do |page|
       page.reload
+    end
+  end
+
+  def employee_payslip_accept_form
+    @id1 = params[:id]
+    @id2 = params[:id2]
+    respond_to do |format|
+      format.js { render :action => 'accept' }
     end
   end
 

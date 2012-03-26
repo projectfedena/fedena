@@ -42,7 +42,7 @@
         <%  unless @hr.nil? %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"><%= index+=1 %></td>
-            <td class="col-pdf"><%= t('salary') %></td>
+            <td class="col-pdf2"><%= t('salary') %></td>
             <td class="col-pdf">&nbsp;<%= @salary %></td>
             <td class="col-pdf"></td>
           </tr>
@@ -50,20 +50,20 @@
         <% end %>
         <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
           <td class="col-pdf"><%= index+=1 %></td>
-          <td class="col-pdf"><%= t('donations') %></td>
+          <td class="col-pdf2"><%= t('donations') %></td>
           <td class="col-pdf"></td>
           <td class="col-pdf">&nbsp;<%= @donations_total %></td>
         </tr>
         <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
           <td class="col-pdf"><%= index+=1 %></td>
-          <td class="col-pdf"><%= t('fees_account') %></td>
+          <td class="col-pdf2"><%= t('fees_account') %></td>
           <td class="col-pdf"></td>
           <td class="col-pdf">&nbsp;<%= @transactions_fees %></td>
         </tr>
         <% FedenaPlugin::FINANCE_CATEGORY.each do |category| %>
       <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
         <td class="col-pdf"><%= index+=1 %></td>
-          <td class="col-pdf"><%= "#{t(category[:category_name]+'_account')}"%> </td>
+          <td class="col-pdf2"><%= "#{t(category[:category_name]+'_account')}"%> </td>
          <td class="col-pdf"></td>
         <td class="col-pdf"><%=  @category_transaction_totals["#{category[:category_name]}"]%></td>
       </tr>
@@ -79,7 +79,7 @@
           <% if t.category.is_income? %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-pdf"><%= index+=1 %></td>
-              <td class="col-pdf"> <%= t.title %> </td>
+              <td class="col-pdf2"> <%= t.title %> </td>
               <td class="col-pdf"></td>
               <td class="col-pdf">&nbsp;<%= t.amount %></td>
             </tr>
@@ -88,7 +88,7 @@
           <% else %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-pdf"><%= index+=1 %></td>
-              <td class="col-pdf"> <%= t.title %> </td>
+              <td class="col-pdf2"> <%= t.title %> </td>
               <td class="col-pdf">&nbsp;<%= t.amount %></td>
               <td class="col-pdf"></td>
             </tr>

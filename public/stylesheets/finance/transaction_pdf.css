@@ -124,5 +124,9 @@ table#pdf-table{
 .col-pdf1
 {color: #97080e;}
 
+.col-pdf{
+  text-align: right;
+}
+
 
 
