@@ -101,14 +101,14 @@
             <td class="col-pdf"></td>
             <td class="col-pdf1"><%= t('grand_total') %></td>
             <td class="col-pdf"></td>
-            <td class="col-pdf">&nbsp;<%= @grand_total %></td>
+            <td class="col-pdf">&nbsp;<%= sprintf("%.2f",@grand_total) %></td>
           </tr>
 
         <%  else %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"></td>
             <td class="col-pdf1"><%= t('grand_total') %></td>
-            <td class="col-pdf">&nbsp;<%= @grand_total * -1 %></td>
+            <td class="col-pdf">&nbsp;<%= sprintf("%.2f",@grand_total * -1) %></td>
             <td class="col-pdf"></td>
           </tr>
 

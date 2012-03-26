@@ -123,11 +123,11 @@
         <td class="col-2"><%= t('grand_total') %></td>
         <% if @grand_total >= 0 %>
           <td></td>
-          <td class="col-3" align="right"><%= @grand_total%></td>
+          <td class="col-3" align="right"><%= sprintf("%.2f",@grand_total)%></td>
           
         <% else %>
           
-          <td class="col-3" align="right"><%= @grand_total * -1 %></td>
+          <td class="col-3" align="right"><%= sprintf("%.2f",@grand_total * -1) %></td>
           <td></td>
         <% end %>
           <td></td>
