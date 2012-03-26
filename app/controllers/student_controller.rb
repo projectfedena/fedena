@@ -691,11 +691,11 @@ class StudentController < ApplicationController
 
   def list_doa_year
     doa_option = params[:doa_option]
-    if doa_option == "equal to"
+    if doa_option == "Equal to"
       render :update do |page|
         page.replace_html 'doa_year', :partial=>"equal_to_select"
       end
-    elsif doa_option == "less than"
+    elsif doa_option == "Less than"
       render :update do |page|
         page.replace_html 'doa_year', :partial=>"less_than_select"
       end
@@ -735,11 +735,11 @@ class StudentController < ApplicationController
 
   def list_dob_year
     dob_option = params[:dob_option]
-    if dob_option == "equal to"
+    if dob_option == "Equal to"
       render :update do |page|
         page.replace_html 'dob_year', :partial=>"equal_to_select_dob"
       end
-    elsif dob_option == "less than"
+    elsif dob_option == "Less than"
       render :update do |page|
         page.replace_html 'dob_year', :partial=>"less_than_select_dob"
       end

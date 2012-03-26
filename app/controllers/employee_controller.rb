@@ -1478,11 +1478,11 @@ class EmployeeController < ApplicationController
 
   def list_doj_year
     doj_option = params[:doj_option]
-    if doj_option == "equal to"
+    if doj_option == "equal_to"
       render :update do |page|
         page.replace_html 'doj_year', :partial=>"equal_to_select"
       end
-    elsif doj_option == "less than"
+    elsif doj_option == "less_than"
       render :update do |page|
         page.replace_html 'doj_year', :partial=>"less_than_select"
       end
@@ -1522,11 +1522,11 @@ class EmployeeController < ApplicationController
 
   def list_dob_year
     dob_option = params[:dob_option]
-    if dob_option == "equal to"
+    if dob_option == "equal_to"
       render :update do |page|
         page.replace_html 'dob_year', :partial=>"equal_to_select_dob"
       end
-    elsif dob_option == "less than"
+    elsif dob_option == "less_than"
       render :update do |page|
         page.replace_html 'dob_year', :partial=>"less_than_select_dob"
       end
