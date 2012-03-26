@@ -1,0 +1,2 @@
+page.replace_html 'modal-box', :partial => 'accept_form'
+page << "Modalbox.show($('modal-box'), {title: '#{t('employee_payslip_accept')}', width: 500});"

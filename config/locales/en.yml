@@ -396,6 +396,8 @@ en: # locale
   add: "Add"
   none: "None"
   submit: "Submit"
+  remark: "Remark"
+  employee_payslip_accept: "Employee Payslip Accept"
   manage: "Manage"
   admission: "Admission"
   type: "Type"

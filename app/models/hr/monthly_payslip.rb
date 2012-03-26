@@ -25,9 +25,10 @@ class MonthlyPayslip < ActiveRecord::Base
   belongs_to :approver ,:class_name => 'User'
   belongs_to :rejector ,:class_name => 'User'
 
-  def approve(user_id)
+  def approve(user_id,remark)
     self.is_approved = true
     self.approver_id = user_id
+    self.remark = remark
     self.save
   end
 
