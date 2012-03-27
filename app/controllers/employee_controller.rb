@@ -186,8 +186,8 @@ class EmployeeController < ApplicationController
   end
 
   def add_bank_details
-    @bank_details = BankField.find(:all,:order => "name asc",:conditions=>'status = 1')
-    @inactive_bank_details = BankField.find(:all,:order => "name asc",:conditions=>'status = 0')
+    @bank_details = BankField.find(:all,:order => "name asc",:conditions=>{:status => true})
+    @inactive_bank_details = BankField.find(:all,:order => "name asc",:conditions=>{:status => false})
     @bank_field = BankField.new(params[:bank_field])
     if request.post? and @bank_field.save
       flash[:notice] =t('flash11')
