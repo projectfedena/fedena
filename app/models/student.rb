@@ -34,8 +34,8 @@ class Student < ActiveRecord::Base
   has_many   :students_subjects
   has_many   :subjects ,:through => :students_subjects
   has_many   :student_additional_details
-
-  has_and_belongs_to_many :graduated_batches, :class_name => 'Batch', :join_table => 'batch_students'
+  has_many   :batch_students
+  
 
   named_scope :active, :conditions => { :is_active => true }
 
@@ -118,6 +118,10 @@ class Student < ActiveRecord::Base
     return 'Male' if gender.downcase == 'm'
     return 'Female' if gender.downcase == 'f'
     nil
+  end
+
+  def graduated_batches
+    self.batch_students.map{|bt| bt.batch}
   end
 
   def all_batches
@@ -267,15 +271,15 @@ class Student < ActiveRecord::Base
       if v.kind_of?(Array)
         flag=true unless  v.blank?
       else
-         v.each do |h,a|
-           flag=true unless  a.blank?
-         end
+        v.each do |h,a|
+          flag=true unless  a.blank?
+        end
       end
     end
     return flag
   end
 
   def former_dependency
-   plugin_dependencies = FedenaPlugin.check_dependency(self,"former")
+    plugin_dependencies = FedenaPlugin.check_dependency(self,"former")
   end
 end

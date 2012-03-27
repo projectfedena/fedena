@@ -55,7 +55,7 @@ class ArchivedStudent < ActiveRecord::Base
 
   def graduated_batches
    # SELECT * FROM `batches` INNER JOIN `batch_students` ON `batches`.id = `batch_students`.batch_id
-    Batch.find(:all,:conditions=> 'batch_students.student_id = ' + self.former_id, :joins =>'INNER JOIN `batch_students` ON `batches`.id = `batch_students`.batch_id' )
+    Batch.find(:all,:conditions=> ["batch_students.student_id = #{former_id.to_i}"], :joins =>'INNER JOIN batch_students ON batches.id = batch_students.batch_id' )
   end
 
   def additional_detail(additional_field)

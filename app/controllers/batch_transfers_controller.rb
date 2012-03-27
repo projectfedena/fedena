@@ -33,7 +33,7 @@ class BatchTransfersController < ApplicationController
     unless params[:transfer][:students].nil?
       students = Student.find(params[:transfer][:students])
       students.each do |s|
-        s.graduated_batches << s.batch
+        s.batch_students.create(:batch_id => s.batch.id)
         s.update_attribute(:batch_id, params[:transfer][:to])
         s.update_attribute(:has_paid_fees,0)
       end
