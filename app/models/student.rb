@@ -226,6 +226,10 @@ class Student < ActiveRecord::Base
     total
   end
 
+  def has_associated_fee_particular?(fee_category)
+    fee_category.fee_particulars.find_all_by_admission_no(admission_no).count > 0 ? true :false
+  end
+
   def archive_student(status)
     self.update_attributes(:is_active => false, :status_description => status)
     student_attributes = self.attributes

@@ -104,6 +104,10 @@ class FinanceFeeCategory < ActiveRecord::Base
     collection.reject!{ |c|c.no_transaction_present } unless collection.nil?
     collection.present?
   end
+
+  def have_common_particular?
+     self.fee_particulars.find_all_by_student_category_id_and_admission_no(nil,nil).count > 0 ? true : false
+  end
   
   
 end

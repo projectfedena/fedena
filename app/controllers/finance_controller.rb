@@ -1106,6 +1106,9 @@ class FinanceController < ApplicationController
         )
         if @finance_fee_collection.save
           @students = Student.find_all_by_batch_id(b.id)
+          unless fee_category.have_common_particular?
+            @students = @students.select{|stu| stu.has_associated_fee_particular?(fee_category)}
+          end
           @students.each do |s|
             body = "<p><b>#{t('fee_submission_date_for')} <i>"+fee_category_name+"</i> #{t('has_been_published')} </b><br /><br/>
                                 #{t('start_date')} : "+@finance_fee_collection.start_date.to_s+" <br />"+
