@@ -772,9 +772,9 @@ class FinanceController < ApplicationController
 
   def fees_particulars_new
     @fees_categories = FinanceFeeCategory.find(:all ,:conditions=> "is_deleted = 0 and is_master = 1")
+    @fees_categories = FinanceFeeCategory.common_active
     @fees_categories.reject!{|f|f.batch.is_deleted or !f.batch.is_active }
     @student_categories = StudentCategory.active
-    @finance_fee_particular = FinanceFeeParticular.new
     respond_to do |format|
       format.js { render :action => 'fees_particulars_new' }
     end
@@ -782,44 +782,48 @@ class FinanceController < ApplicationController
 
   def fees_particulars_create
     @error = false
-    @finance_fee_particulars = FinanceFeeParticular.new(params[:finance_fee_particular])
-    unless (params[:finance_fee_particular][:finance_fee_category_id]).blank?
-      @fee_category = FinanceFeeCategory.find(@finance_fee_particulars.finance_fee_category_id)
+    finance_fee_categories = FinanceFeeCategory.find_all_by_id(params[:finance_fee_particular][:finance_fee_category_ids].reject{|cat| cat.empty?}.map{|cat| cat.to_i})
+    batches = finance_fee_categories.map{|ffc| ffc.batch}
+    posted_params = params[:finance_fee_particular]
+    posted_admission_no = params[:finance_fee_particular][:admission_no]
+    posted_params.delete("finance_fee_category_ids")
+    finance_fee_categories.each do |ffc|
+      @finance_fee_particular = ffc.fee_particulars.new(posted_params)
       if params[:particulars][:select].to_s == 'student'
-        unless params[:finance_fee_particular][:admission_no].blank?
-          posted_params = params[:finance_fee_particular]
-          admission_no = posted_params[:admission_no].split(",")
+        unless posted_admission_no.empty?
+          all_admission_no = admission_no = posted_admission_no.split(",")
           posted_params.delete "admission_no"
-          admission_no.each do |a|
+          all_students = batches.map{|batch| batch.students.map{|stu| stu.admission_no}}.flatten
+          rejected_admission_no = admission_no.select{|adm| !all_students.include? adm}
+          unless (rejected_admission_no.empty?)
+            @error = true
+            @finance_fee_particular.errors.add_to_base("#{rejected_admission_no.join(',')} #{t('does_not_belong_to_batch')} #{batches.map{|batch| batch.full_name}.join(',')}")
+          end
+          selected_admission_no = all_admission_no.select{|adm| ffc.batch.students.all.map{|stu| stu.admission_no}.include? adm}
+          selected_admission_no.each do |a|
             s = Student.find_by_admission_no(a)
-            unless s.nil?
-              unless (s.batch_id == @fee_category.batch_id)
-                @error = true
-                @finance_fee_particulars.errors.add_to_base("#{a} #{t('does_not_belong_to_batch')} #{@fee_category.batch.full_name}")
-              end
-            else
+            if s.nil?
               @error = true
-              @finance_fee_particulars.errors.add_to_base("#{a} #{t('does_not_exist')}")
+              @finance_fee_particular.errors.add_to_base("#{a} #{t('does_not_exist')}")
             end
           end
           unless @error
-            admission_no.each do |a|
+            selected_admission_no.each do |a|
               posted_params["admission_no"] = a.to_s
-              @error = true unless @finance_fee_particulars = FinanceFeeParticular.create(posted_params)
+              @error = true unless @finance_fee_particular = ffc.fee_particulars.create(posted_params)
             end
           end
         else
           @error = true
-          @finance_fee_particulars.errors.add(:admission_no,"#{t('is_blank')}")
+          @finance_fee_particular.errors.add(:admission_no,"#{t('is_blank')}")
         end
       else
-        @error = true unless @finance_fee_particulars.save
+        @error = true unless @finance_fee_particular.save
       end
     end
-    @finance_fee_category = FinanceFeeCategory.find( @finance_fee_particulars .finance_fee_category_id)
-    @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
-    
+    @particulars = FinanceFeeParticular.all(:conditions => {:is_deleted => false,:finance_fee_category_id => finance_fee_categories.map{|ffc| ffc.id}})
   end
+
 
   def additional_fees_create_form
     @batches = Batch.active

@@ -64,7 +64,6 @@
 
 
   </table>
-  <%= will_paginate @particulars %>
 <% else %>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">
@@ -73,4 +72,4 @@
   </table>
 
 <% end%>
-<%= link_to "#{t('back')}",{:action => 'master_fees', :batch_id=> @finance_fee_category.batch_id },:class=>'user_button' %>
+<%= link_to "#{t('back')}",{:action => 'master_fees' },:class=>'user_button' %>

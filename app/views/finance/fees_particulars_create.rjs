@@ -4,6 +4,6 @@ unless @error
  	page.replace_html 'categories', :partial => 'master_particulars_list'
   page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('particulars_created_successfully')}</p>"
 else
-	page.replace_html 'form-errors', :partial => 'errors', :object => @finance_fee_particulars
+	page.replace_html 'form-errors', :partial => 'errors', :object => @finance_fee_particular
   page.visual_effect(:highlight, 'form-errors')
 end

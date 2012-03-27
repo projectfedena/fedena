@@ -1576,7 +1576,7 @@ en: # locale
   finance_transactions_view: "Finance Transactions View"
   select_year: "Select Year"
   payslip_rejected_for: "Payslip has been rejected for"
-  does_not_belong_to_batch: "does not belong to Batch"
+  does_not_belong_to_batch: "does not belong to any selected batch"
   does_not_exist: "does not exist"
   fee_submission_date_for: "Fee submission date for"
   has_been_published: "has been published"

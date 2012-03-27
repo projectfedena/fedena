@@ -216,3 +216,8 @@ table#listing td.col-4 {
 table#listing td.col-1 {
     width: 2%;
 }
+#multiple_select{
+    min-height: auto;
+    max-height: 100px;
+    overflow: auto;
+}
