@@ -77,6 +77,35 @@ class ExamGroup < ActiveRecord::Base
     #   return total_max_marks if marks == 'percentage'
   end
 
+  def archived_batch_average_marks(marks)
+    batch = self.batch
+    exams = self.exams
+    batch_students = ArchivedStudent.find_all_by_batch_id(self.batch.id)
+    total_students_marks = 0
+    #   total_max_marks = 0
+    students_attended = []
+    exams.each do |exam|
+      batch_students.each do |student|
+        exam_score = ArchivedExamScore.find_by_student_id_and_exam_id(student.id,exam.id)
+        unless exam_score.nil?
+          unless exam_score.marks.nil?
+            total_students_marks = total_students_marks+exam_score.marks
+            unless students_attended.include? student.id
+              students_attended.push student.id
+            end
+          end
+        end
+      end
+      #      total_max_marks = total_max_marks+exam.maximum_marks
+    end
+    unless students_attended.size == 0
+      batch_average_marks = total_students_marks/students_attended.size
+    else
+      batch_average_marks = 0
+    end
+    return batch_average_marks if marks == 'marks'
+  end
+
   def batch_average_percentage
     
   end
