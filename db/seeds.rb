@@ -22,12 +22,12 @@ end
 
 
 [
-  {"name" => "A"   ,"min_score" => "" },
-  {"name" => "B"   ,"min_score" => ""},
-  {"name" => "C"   ,"min_score" => ""},
-  {"name" => "D"   ,"min_score" => "Daily"},
-  {"name" => "E"   ,"min_score" => "$"},
-  {"name" => "F"   ,"min_score" => "en"}
+  {"name" => "A"   ,"min_score" => 0 },
+  {"name" => "B"   ,"min_score" => 0},
+  {"name" => "C"   ,"min_score" => 0},
+  {"name" => "D"   ,"min_score" => 0},
+  {"name" => "E"   ,"min_score" => 0},
+  {"name" => "F"   ,"min_score" => 0}
 ].each do |param|
   GradingLevel.find_or_create_by_name(param)
 end
