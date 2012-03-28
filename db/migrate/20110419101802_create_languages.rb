@@ -11,4 +11,9 @@ class CreateLanguages < ActiveRecord::Migration
   def self.down
     drop_table :languages
   end
+
+  def self.create_default
+    Language.create :name   => 'English',:code =>'en'
+    Language.create :name   => 'Spanish',:code =>'es'
+  end
 end
