@@ -175,7 +175,8 @@ class FinanceTransaction < ActiveRecord::Base
 
   def self.incomes(start_date,end_date)
     incomes = FinanceTransaction.find(:all, :select=>'finance_transactions.*', :joins=>' INNER JOIN finance_transaction_categories ON finance_transaction_categories.id = finance_transactions.category_id',\
-        :conditions => ["finance_transaction_categories.is_income = 1 and finance_transaction_categories.id != 2 and finance_transaction_categories.id != 3 and transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}' "])
+        :conditions => ["finance_transaction_categories.is_income = 1 and transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}' "])
+    incomes = incomes.reject{|income| (income.category.is_fixed or income.master_transaction_id != 0)}
     incomes
   end
 

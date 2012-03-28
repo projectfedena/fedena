@@ -17,7 +17,7 @@
 #limitations under the License.
 
 class FinanceTransactionCategory < ActiveRecord::Base
-  has_many :finance_transactions
+  has_many :finance_transactions,:class_name => 'FinanceTransaction', :foreign_key => 'category_id'
   has_one  :trigger, :class_name => "FinanceTransactionTrigger", :foreign_key => "category_id"
 
 
@@ -50,6 +50,10 @@ class FinanceTransactionCategory < ActiveRecord::Base
     end
     return true if cat_names.include?(self.name.downcase)
     return false
+  end
+
+  def total_income(start_date,end_date)
+    self.finance_transactions.find(:all,:conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}' and master_transaction_id=0"]).map{|ft| ft.amount}.sum
   end
 
 end
