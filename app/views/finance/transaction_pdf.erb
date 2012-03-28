@@ -76,7 +76,7 @@
               <tr class="page-break"><td colspan="3"></td></tr>
               <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('particulars') %></td><td class="col-pdf"><%= "#{t('expenses')}( #{currency})" %></td><td class="col-pdf"><%=  "#{t('income')}( #{currency})" %></td></tr>
             <% end %>
-          <% if t.category.is_income? %>
+          <% if t.category.is_income? and t.master_transaction_id == 0 %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-pdf"><%= index+=1 %></td>
               <td class="col-pdf2"> <%= t.title %> </td>

@@ -325,7 +325,7 @@ class FinanceController < ApplicationController
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
       @category_transaction_totals["#{category[:category_name]}"] =   FinanceTransaction.total_transaction_amount(category[:category_name],@start_date,@end_date)
     end
-    render :pdf => 'transaction_pdf'  ,:show_as_html => true
+    render :pdf => 'transaction_pdf'
   end
 
   def salary_department
