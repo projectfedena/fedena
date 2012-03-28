@@ -105,7 +105,7 @@
       <% @other_transactions.each_with_index do |t,i| %>
         <tr class="tr-<%= cycle("even","odd") %>">
           <td class ="col-1"><%=i+index+1%></td>
-          <% if t.category.is_income? %>
+          <% if t.category.is_income? and t.master_transaction_id == 0%>
             <td class="col-2"><%= t.title %> </td>
             <td></td>
             <td class="col-3" align="right"><%=  t.amount%></td>
