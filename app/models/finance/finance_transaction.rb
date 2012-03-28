@@ -103,7 +103,7 @@ class FinanceTransaction < ActiveRecord::Base
     end
     
     other_transactions.each do |t|
-      if t.category.is_income?
+      if t.category.is_income? and t.master_transaction_id == 0
         income_total +=t.amount
       else
         expenses_total +=t.amount
