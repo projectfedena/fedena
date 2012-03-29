@@ -69,11 +69,11 @@ User.connection.execute "UPDATE users SET admin=1,employee=0 where id = 1"
 end
 
 [
-  {"batch_id" => ""          ,"weekday" => "1" },
-  {"batch_id" => ""          ,"weekday" => "2"},
-  {"batch_id" => ""          ,"weekday" => "3"},
-  {"batch_id" => ""          ,"weekday" => "4"},
-  {"batch_id" => ""          ,"weekday" => "5"}
+  {"batch_id" => nil          ,"weekday" => "1" },
+  {"batch_id" => nil          ,"weekday" => "2"},
+  {"batch_id" => nil          ,"weekday" => "3"},
+  {"batch_id" => nil          ,"weekday" => "4"},
+  {"batch_id" => nil          ,"weekday" => "5"}
 ].each do |param|
   Weekday.find_or_create_by_batch_id_and_weekday(param)
 end
