@@ -986,14 +986,16 @@ class EmployeeController < ApplicationController
     @employee = Employee.find(params[:id])
     @weekday = ["#{t('sun')}", "#{t('mon')}", "#{t('tue')}", "#{t('wed')}", "#{t('thu')}", "#{t('fri')}", "#{t('sat')}"]
     @employee_subjects = @employee.subjects
-    @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id .nil? ? sub:sub.elective_group.subjects.first}
+    @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
     @subject_timetable_entries = @employee_timetable_subjects.map{|esub| esub.timetable_entries}
     @employee_subjects_ids = @employee_subjects.map {|sub| sub.id}
     @weekday_timetable = Hash.new
     @subject_timetable_entries.each do  |subtt|
       subtt.each do |tte|
-        @weekday_timetable[tte.weekday.weekday] ||=[]
-        @weekday_timetable[tte.weekday.weekday] << tte
+        if tte.employee_id == @employee.id
+          @weekday_timetable[tte.weekday.weekday] ||=[]
+          @weekday_timetable[tte.weekday.weekday] << tte
+        end
       end
     end
     render :pdf=>'timetable_pdf'
