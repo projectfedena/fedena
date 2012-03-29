@@ -272,12 +272,18 @@ class FinanceController < ApplicationController
 
   def transaction_trigger_update
     @transaction_trigger = FinanceTransactionTrigger.find(params[:id])
-    @transaction_trigger.update_attributes(params[:transaction_trigger])
-    
-    @triggers = FinanceTransactionTrigger.all
     render :update do |page|
-      page.replace_html 'transaction-triggers-list', :partial => 'transaction_triggers_list'
-      page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg18')}</p>"
+      if @transaction_trigger.update_attributes(params[:transaction_trigger])
+        @triggers = FinanceTransactionTrigger.all
+        page.replace_html 'transaction-triggers-list', :partial => 'transaction_triggers_list'
+        page.replace_html 'form-errors', :text => ''
+        page << "Modalbox.hide();"
+        page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg17')}</p>"
+
+      else
+        page.replace_html 'form-errors', :partial => 'class_timings/errors', :object => @transaction_trigger
+        page.visual_effect(:highlight, 'form-errors')
+      end
     end
   end
 

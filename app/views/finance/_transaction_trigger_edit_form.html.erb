@@ -20,9 +20,8 @@
 <label class="head_label"><%= t('edit_automatic_transaction') %><span></span></label>
 
 <% form_remote_for :transaction_trigger,
-    :url => {:action => 'transaction_trigger_update',:id=>@transaction_trigger.id},
-    :complete => 'Modalbox.hide();return false;' do |form| %>
-
+    :url => {:action => 'transaction_trigger_update',:id=>@transaction_trigger.id} do |form| %>
+<div id="form-errors"></div>
 
    <div class="label-field-pair">
     <div class="label-container"><%= form.label "#{t('category')}" %></div>
