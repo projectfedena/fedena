@@ -1,4 +1,8 @@
-
+.sel-list {
+    margin-left: 650px;
+    margin-bottom: 2px;
+    width: 300px;
+}
 #category-list {
     clear : both;
     padding : 10px 0 40px 0px;
@@ -51,14 +55,16 @@ font-weight:bold;
 width:204px;
 }
 #category-list li div.category-name {
-    width : 250px;
+    font-size: 13px;
     font-weight: bold;
-    font-size:13px;
+    width: 250px;
 }
 #category-list li div.category-number {
-    width : 173px;
+    float: left;
+    font-size: 13px;
     font-weight: bold;
-    font-size:13px;
+    margin-left: -30px;
+    width: 201px;
 }
 #category-list li div.category-edit,
 #category-list li div.category-delete {

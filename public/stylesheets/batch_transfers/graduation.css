@@ -1,4 +1,8 @@
-
+.sel-list {
+    margin-left:650px;
+    margin-bottom: 2px;
+    width: 300px;
+}
 #category-list {
     clear : both;
     padding : 10px 0 40px 0px;
@@ -46,15 +50,15 @@
     float : left;
 }
 #category-list li div.category-name {
-    width : 250px;
+    font-size: 13px;
     font-weight: bold;
-    font-size:13px;
+    margin-left: 111px;
+    width: 250px;
 }
-#category-list li div.category-edit,
-#category-list li div.category-delete {
-    font-size : 0.9em;
-    width : 50px;
-
+#category-list li div.category-edit, #category-list li div.category-delete {
+    font-size: 0.9em;
+    margin-left: -33px;
+    width: 85px;
 }
 #category-list li div a {
     color : #000;
