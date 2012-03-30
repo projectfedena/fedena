@@ -57,7 +57,8 @@
                     <%= tte.subject.batch.course.full_name %>
                   </div>
                   <div class="employee">
-                    <%= tte.subject.elective_group.nil? ? tte.subject.code : (tte.subject.elective_group.subjects.select { |subs| @employee_subjects_ids.include?(subs.id.to_s)  }).first.code %>
+                    <% subject = tte.subject.elective_group.nil? ? tte.subject : (tte.subject.elective_group.subjects.select { |subs| @employee_subjects_ids.include?(subs.id.to_s)  }).first %>
+                    <%= subject.code unless subject.nil? %>
                   </div>
 
                 </div>
