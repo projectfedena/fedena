@@ -25,10 +25,18 @@
   <% form_remote_for  :finance_fee_particular,:url =>{:action => 'fees_particulars_create'}  do |f| %>
 
     <div id="form-errors"></div>
-
     <div class="label-field-pair">
-      <div class="label-container"><label><%= t('fees_text') %> <%= t('master') %> <%= t('category') %></label> </div>
-    <div class="input-container"><%= f.select(:finance_fee_category_ids, @fees_categories.map { |c| ["#{c.name} - #{c.batch.full_name}", c.id] },{:prompt => "Select Categories"},{:multiple => true,:size => 5}) %></div>
+      <div class="label-container"><label><%= t('select_a_category') %> :</label></div>
+      <div class="categories">
+        <div class="sel-list">
+          <%= t('select') %>: <%= link_to_function t('all'), "$$('input.MB_focusable').each(function(checkbox) { checkbox.checked = true; });" %>,
+          <%= link_to_function t('none'), "$$('input.MB_focusable').each(function(checkbox) { checkbox.checked = false; });" %>
+        </div>
+        <% @fees_categories.each do |c| %>
+          <div class="each_category">
+            <%= check_box_tag "finance_fee_particular[finance_fee_category_ids][]", c.id %> <label><%= "#{c.name} - #{c.batch.full_name}" %></label>
+          </div>
+        <% end %></div>
     </div>
 
     <div class="label-field-pair">

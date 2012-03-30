@@ -165,6 +165,31 @@
     width: 205px;
 }
 
+.each_category{
+    font-size: 12px;
+    overflow:auto;
+    width:auto;
+
+}
+.each_category input{
+    float:left;
+    width:auto;
+}
+
+.each_category label {
+    float: right;
+    margin-left: 22px;
+    margin-top: -26px;
+    width: 178px;
+}
+.categories {
+    height: 100px;
+    overflow: auto;
+    max-width: 220px;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
 .batches {
     height: 183px;
