@@ -983,7 +983,7 @@ class EmployeeController < ApplicationController
   end
 
   def timetable_pdf
-    @employee = Employee.find(params[:id])
+   @employee = Employee.find(params[:id])
     @weekday = ["#{t('sun')}", "#{t('mon')}", "#{t('tue')}", "#{t('wed')}", "#{t('thu')}", "#{t('fri')}", "#{t('sat')}"]
     @employee_subjects = @employee.subjects
     @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
