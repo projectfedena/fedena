@@ -47,7 +47,7 @@
         <tr class="tr-<%= cycle('odd','even') %>">
           <td class="name"><%= i.title %></td>
           <td class="description"><%= i.description %></td>
-          <td class="amount"><%= i.amount %></td>
+          <td class="amount"><%= (i.master_transaction_id == 0 and i.category.is_income == true) ?  i.amount : "-#{i.amount}" %></td>
           <td class="transaction_date"><%= i.transaction_date.strftime("%d-%m-%y") %></td>
           <td class="receipt_no"><%= i.receipt_no %></td>
           <td><small><%= link_to "#{t('edit_text')}",:action=>'income_edit',:id=>i.id %></small> | <small><%= link_to "#{t('delete_text')}",:action=>'delete_transaction',:id=>i.id %></small></td>

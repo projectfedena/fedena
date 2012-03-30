@@ -172,22 +172,21 @@ class FinanceController < ApplicationController
   def income_list_update
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
-    @income_categories = FinanceTransaction.incomes(@start_date,@end_date).map{|income| income.category}.uniq
+    @incomes = FinanceTransaction.incomes(@start_date,@end_date)
   end
 
   def income_details
     @start_date = params[:start].to_date
     @end_date = params[:end].to_date
     @income_category = FinanceTransactionCategory.find(params[:id])
-    @incomes = @income_category.finance_transactions.find(:all,:conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}' and master_transaction_id=0"])
+    @incomes = @income_category.finance_transactions.find(:all,:conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'"])
   end
 
   def income_list_pdf
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
-    @income_category = FinanceTransactionCategory.find(params[:id])
-    @incomes = @income_category.finance_transactions.find(:all,:conditions =>  ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}' and master_transaction_id=0"])
+    @incomes = FinanceTransaction.incomes(@start_date,@end_date)
     render :pdf => 'income_list_pdf'
   end
 
@@ -308,8 +307,8 @@ class FinanceController < ApplicationController
     @transactions = FinanceTransaction.find(:all,
       :order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'"])
     #@other_transactions = FinanceTransaction.report(@start_date,@end_date,params[:page])
-    @other_transactions = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
-      :order => 'transaction_date')
+    @other_transaction_categories = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
+      :order => 'transaction_date').map{|ft| ft.category}.uniq
     @transactions_fees = FinanceTransaction.total_fees(@start_date,@end_date)
     @salary = MonthlyPayslip.total_employees_salary(@start_date, @end_date)#Employee.total_employees_salary(employees, @start_date, @end_date)
     @donations_total = FinanceTransaction.donations_triggers(@start_date,@end_date)
