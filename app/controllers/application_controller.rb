@@ -205,7 +205,7 @@ class ApplicationController < ActionController::Base
       #      privilege.push p.privilege_id
       #    end
       #    unless privilege.include?('9') or privilege.include?('14') or privilege.include?('17') or privilege.include?('18') or privilege.include?('19')
-      unless params[:id].to_i == employee.id
+      unless params[:id].to_i == employee.id or current_user.role_symbols.include? "payslip_powers".to_sym
         flash[:notice] = "#{t('flash_msg5')}"
         redirect_to :controller=>"user", :action=>"dashboard"
       end

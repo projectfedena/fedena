@@ -846,7 +846,9 @@ authorization do
     ]
     has_permission_on [:payroll],
       :to => [
+      :profile_payroll_details,
       :edit_payroll_details,
+      :view_payroll_details,
       :activate_category,
       :inactivate_category ]
   end
