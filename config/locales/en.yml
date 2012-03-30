@@ -707,6 +707,7 @@ en: # locale
   view_reports: "Please view reports for your result"
   exam_scheduling_not_done: "Exam scheduling not done yet."
   select_a_batch_to_continue: "Select a batch to continue"
+  flash_student_notice: "No students found in the batch."
   to: "To"
   from: "From"
   password: "Password"

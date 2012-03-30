@@ -180,7 +180,11 @@ class ExamController < ApplicationController
     if params[:student].nil?
       @exam_group = ExamGroup.find(params[:exam_report][:exam_group_id])
       @batch = @exam_group.batch
-      @student = @batch.students.first
+      @student = @batch.students.first unless @batch.students.empty?
+      if @student.nil?
+        flash[:notice] = "#{t('flash_student_notice')}"
+        redirect_to :action => 'exam_wise_report' and return
+      end
       general_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>"elective_group_id IS NULL")
       student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@batch.id}")
       elective_subjects = []
