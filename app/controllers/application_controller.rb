@@ -108,7 +108,9 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize
-    @title = 'Fedena'  
+    @title = 'Fedena'
+    comp_title = YAML.load_file(File.join(RAILS_ROOT,"config","company_name.yml"))
+    @comp_title= comp_title['company_name']['name']
   end
 
   def message_user
