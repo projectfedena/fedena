@@ -1,4 +1,14 @@
-
+#form-errors{
+    width:457px;
+}
+#error-box {
+    background: url("/images/_global/error.png") no-repeat scroll 10px 14px #FFDEDF;
+    border-radius: 10px 10px 10px 10px;
+    height: auto;
+    margin: 18px auto 18px 0;
+    padding: 1px 0 1px 20px;
+    width: 457px;
+}
 
 #fee-collections-list ul {
     padding-top : 50px;
