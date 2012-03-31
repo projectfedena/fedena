@@ -581,6 +581,7 @@ en: # locale
   monthly: "Monthly"
   ok: "OK"
   student_report: "Student Report"
+  academic_report: "Academic Report"
   select_mode: "Select a mode"
   please_select_mode: "Please select mode"
   select_a_subject: "Select a subject"
