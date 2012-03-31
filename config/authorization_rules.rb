@@ -750,6 +750,10 @@ authorization do
       :activate_category,
       :delete_category,
       :inactivate_category ]
+    has_permission_on [:employee_attendance],
+      :to => [
+      :leave_app
+    ]
   end
 
   role :employee_attendance do
