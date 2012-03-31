@@ -29,7 +29,7 @@
 
 <br />
 <%= error_messages_for "financefee" ,:header_message => nil%>
-<%if @financefee.transaction_id.nil? and @fine.nil?%>
+<%if @fine.nil?%>
   <%= render :partial => "fine_submission" %>
 <% end %>
 <div id="register">
