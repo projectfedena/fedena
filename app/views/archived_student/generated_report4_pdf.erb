@@ -93,7 +93,7 @@
     </div>
     <% if @mmg == @g %>
       <% percentage = (@marks_total*100/@max_total.to_f)  unless @max_total==0 %>
-      <h4><%= t('total_marks') %> = <%= @marks_total %> | <%= t('aggregate') %> % = <%= sprintf("%.2f",percentage)  %> </h4>
+      <h4><%= t('total_marks') %> = <%= @marks_total %> | <%= t('aggregate') %> % = <%= percentage.nil? ? '-' : sprintf("%.2f",percentage)  %> </h4>
     <% end %>
   </div>
 
