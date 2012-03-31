@@ -93,62 +93,64 @@ class AdditionalExamController < ApplicationController
       @conf = Configuration.available_modules
       if @conf.include?('SMS')
 
-      if sms_setting.application_sms_active and sms_setting.exam_result_schedule_sms_active
-        students = @additional_exam_group.students
-        students.each do |s|
-          guardian = s.immediate_contact
+        if sms_setting.application_sms_active and sms_setting.exam_result_schedule_sms_active
+          students = @additional_exam_group.students
+          students.each do |s|
+            guardian = s.immediate_contact
 
-          recipients = []
-          if s.is_sms_enabled
-            if sms_setting.student_sms_active
-              recipients.push s.phone2 unless s.phone2.nil?
-            end
-            if sms_setting.parent_sms_active
-              recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
-            end
-            @message = "#{@additional_exam_group.name} #{t(' exam_timetable_published')}." if params[:status] == "schedule"
-            @message = "#{@additional_exam_group.name} #{t('exam_result_published')}." if params[:status] == "result"
-            unless recipients.empty?
-              sms = SmsManager.new(@message,recipients)
-              sms.send_sms
+            recipients = []
+            if s.is_sms_enabled
+              if sms_setting.student_sms_active
+                recipients.push s.phone2 unless s.phone2.nil?
+              end
+              if sms_setting.parent_sms_active
+                recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
+              end
+              @message = "#{@additional_exam_group.name} #{t(' exam_timetable_published')}." if params[:status] == "schedule"
+              @message = "#{@additional_exam_group.name} #{t('exam_result_published')}." if params[:status] == "result"
+              unless recipients.empty?
+                sms = SmsManager.new(@message,recipients)
+                sms.send_sms
+              end
             end
           end
+        else
+          @sms_setting_notice = "#{t('exam_schedule_published')}" if params[:status] == "schedule"
+          @sms_setting_notice = "#{t('exam_result_published')}" if params[:status] == "result"
         end
       else
-        @sms_setting_notice = "#{t('exam_schedule_published')}" if params[:status] == "schedule"
-        @sms_setting_notice = "#{t('exam_result_published')}" if params[:status] == "result"
+        @sms_setting_notice = "#{t('exam_schedule_published_no_sms')}" if params[:status] == "schedule"
+        @sms_setting_notice = "#{t('exam_result_published_no_sms')}" if params[:status] == "result"
+      end
+      if params[:status] == "result"
+        students = @additional_exam_group.students
+        students.each do |s|
+          student_user = s.user
+          Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
+            :subject=>"#{t('result_published')}",
+            :body=>"#{ @additional_exam_group.name} #{t('result_has_been_published')} <br/> #{t('view_reports')}")
+        end
       end
     else
-      @sms_setting_notice = "#{t('exam_schedule_published_no_sms')}" if params[:status] == "schedule"
-      @sms_setting_notice = "#{t('exam_result_published_no_sms')}" if params[:status] == "result"
-  end
-  if params[:status] == "result"
-    students = @additional_exam_group.students
-    students.each do |s|
-      student_user = s.user
-      Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
-        :subject=>"#{t('result_published')}",
-        :body=>"#{ @additional_exam_group.name} #{t('result_has_been_published')} <br/> #{t('view_reports')}")
+      @no_exam_notice = "#{t('exam_scheduling_not_done')}"
     end
   end
-else
-  @no_exam_notice = "#{t('exam_scheduling_not_done')}"
-end
-end
 
-def create_additional_exam
-@course= Course
-end
+  def create_additional_exam
+    @course= Course
+  end
 
-def update_batch
-@batch = Batch.find_all_by_course_id(params[:course_name], :conditions => { :is_deleted => false})
+  def update_batch
+    course = Course.find(params[:course_name])
+    @batch = course.batches.active
 
-render(:update) do |page|
-  page.replace_html 'update_batch', :partial=>'update_batch'
-end
 
-end
-#REPORTS
+    render(:update) do |page|
+      page.replace_html 'update_batch', :partial=>'update_batch'
+    end
+
+  end
+  #REPORTS
 
 end
 
