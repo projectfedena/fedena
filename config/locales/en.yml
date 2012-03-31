@@ -582,6 +582,7 @@ en: # locale
   ok: "OK"
   student_report: "Student Report"
   academic_report: "Academic Report"
+  are_you_sure_to_delete_user: "Are you sure want to delete this user?"
   select_mode: "Select a mode"
   please_select_mode: "Please select mode"
   select_a_subject: "Select a subject"
