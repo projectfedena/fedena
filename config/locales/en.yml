@@ -1599,7 +1599,7 @@ en: # locale
   batch_cant_be_blank: "Batch cant be blank"
   is_invalid_admission_no: "is invalid admission number"
   admission_cant_be_blank: "Admission cant be blank"
-  fees_category_cant_blank: "Fees Category cant be blankFees Category cant be blank"
+  fees_category_cant_blank: "Fees Category cant be blank."
   fee_discount_succesfully_created: "Fees Discount Successfully created"
   no_particulars_to_display: "No particulars to display"
   student_fees_submission: "Student fees submission"
