@@ -31,7 +31,6 @@
   <h4><%= @student.full_name %></h4>
   <div class="box">
     <% @all_batches.each do |b| %>
-      <%  @type = params[:type] %>
       <%   if @type == 'grouped' %>
         <%   @grouped_exams = GroupedExam.find_all_by_batch_id(b.id) %>
         <%   @exam_groups = [] %>
@@ -81,7 +80,7 @@
               <% unless exam_score.nil?  %>
                 <% if exam_group.exam_type == "MarksAndGrades" %>
                   <td class="col-3"><% unless @exam.nil?  %>
-                      <%= exam_score.marks %> | <%= @exam.maximum_marks %> | <%= exam_score.grading_level.name %></td>
+                      <%= exam_score.marks %> | <%= @exam.maximum_marks %> | <%= exam_score.grading_level.nil? ? '-' : exam_score.grading_level.name %></td>
                   <% end  %>
                 <% elsif exam_group.exam_type == "Marks" %>
                   <td class="col-3"><%= exam_score.marks unless @exam.nil? %> | <%= @exam.maximum_marks unless @exam.nil?%></td>
