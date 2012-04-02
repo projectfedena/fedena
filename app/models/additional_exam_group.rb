@@ -27,6 +27,8 @@ class AdditionalExamGroup < ActiveRecord::Base
 
   attr_accessor :maximum_marks, :minimum_marks, :weightage
 
+  validates_presence_of :name
+
   def before_save
     self.exam_date = self.exam_date || Date.today
   end

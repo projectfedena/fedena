@@ -19,6 +19,8 @@
 class AdditionalExam < ActiveRecord::Base
   validates_presence_of :start_time
   validates_presence_of :end_time
+  validates_presence_of :maximum_marks
+  validates_presence_of :minimum_marks
 
   belongs_to :additional_exam_group
   belongs_to :subject
