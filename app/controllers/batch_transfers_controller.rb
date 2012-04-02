@@ -80,7 +80,7 @@ class BatchTransfersController < ApplicationController
 
   def subject_transfer
     @batch = Batch.find(params[:id])
-    @elective_groups = @batch.elective_groups
+    @elective_groups = @batch.elective_groups.all(:conditions => {:is_deleted => false})
     @normal_subjects = @batch.normal_batch_subject
     @elective_subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"])
   end
