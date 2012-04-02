@@ -22,10 +22,6 @@
     <%= image_tag current_school_detail.logo.url %>
   </div>
 
-  <div id="help_top">
-    <div id="help_link"><a href="http://www.projectfedena.org/forum/" target="_blank"><%= t('help') %>!</a></div>
-  </div>
-
   <div id="login_area_bg">
 
     <% form_for :user do |form| %>
@@ -71,9 +67,11 @@
 <div id="footer">
   <div id="footer_logo">
     <div id="powered_by">
-      <%= t('powered_by') %> <a href="http://www.foradian.com/" target="_blank"><%= @comp_title %></a>
+      <%= t('powered_by') %> <a href=<%= "#{@comp_web_url}" %> target="_blank"><%= @comp_title %></a>
     </div>
-    <a href="http://www.projectfedena.org/" target="_blank" class="footer-logo"></a>
+    <% unless @yaml_setting %>
+      <a href="http://www.projectfedena.org/" target="_blank" class="footer-logo"></a>
+    <% end %>
 
   </div>
 </div>

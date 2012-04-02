@@ -32,7 +32,7 @@
     <%= stylesheet_link_tag @direction+'modalbox' %>
     <%= stylesheet_link_tag @direction+'popup.css' %>
     <%= stylesheet_link_tag @direction+'autosuggest-menu.css' %>
-    
+
     <%= javascript_include_tag :defaults, :cache => 'cache/javascripts/all' %>
     <%= javascript_include_tag 'scripts/nicetitle', 'droplicious' %>
     <%= javascript_include_tag "fckeditor/fckeditor" %>
@@ -101,9 +101,11 @@
     <div id="footer">
       <div id="footer_logo">
         <div id="powered_by">
-          <%= t('powered_by') %> <a href="http://www.foradian.com/" target="_blank"><%= @comp_title %></a>
+          <%= t('powered_by') %> <a href=<%= "#{@comp_web_url}" %> target="_blank"><%= @comp_title %></a>
         </div>
-        <a href="http://www.projectfedena.org/" target="_blank" class="footer-logo"></a>
+        <% unless @yaml_setting %>
+          <a href="http://www.projectfedena.org/" target="_blank" class="footer-logo"></a>
+        <% end %>
       </div>
     </div>
   </body>
