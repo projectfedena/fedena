@@ -33,7 +33,7 @@
   <% end %>
 
 
-  <% form_for :employee_additional_details do |a| %>
+  <% form_for :employee_additional_details,:id => @employee.id do |a| %>
   <%= error_messages_for 'employee_additional_details' %>
 
       <span class="span-sub-heading"><%= t('additional_detail') %></span>

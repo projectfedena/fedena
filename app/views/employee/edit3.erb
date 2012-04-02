@@ -33,7 +33,7 @@
   <% end %>
 
 
-  <% form_for :employee_bank_details do |a| %>
+  <% form_for :employee_bank_details,:id => @employee.id do |a| %>
   <%= error_messages_for 'employee_bank_details' %>
 
       <span class="span-sub-heading"><%= t('bank_info') %></span>

@@ -37,7 +37,7 @@
   <% end %>
 
 
-    <% form_for :employee, :url => {:action => 'edit_personal'}, :html => {:multipart => true} do |a| %>
+    <% form_for :employee, :url => {:action => 'edit_personal',:id => @employee.id}, :html => {:multipart => true} do |a| %>
 
     <%= error_messages_for 'employee' %>
 
