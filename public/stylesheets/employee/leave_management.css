@@ -297,7 +297,7 @@ html>body #nav ul.scriptaculously{/*ie shit*/
 	font-weight:normal;
 	text-decoration:none;
 	color:white;
-    width:100px;
+    width:110px;
     height:1.5em;
     display:block;
 	/*padding:10px 10px 0 10px;*/
@@ -315,6 +315,7 @@ html>body #nav ul.scriptaculously{/*ie shit*/
 	text-align:center;
 	list-style:none;
 	margin:0 0 0 0;
+        margin-right: 10px;
 	padding:0;
 	list-style:none;
 	font-size:0.9em;
@@ -334,6 +335,7 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     padding : 0;
     text-align : center;
     width : 100px;
+    margin-left: 15px;
 }
 
 #nav ul li ul li{
