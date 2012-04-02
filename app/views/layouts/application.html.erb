@@ -101,9 +101,9 @@
     <div id="footer">
       <div id="footer_logo">
         <div id="powered_by">
-          <%= t('powered_by') %> <a href=<%= "#{@comp_web_url}" %> target="_blank"><%= @comp_title %></a>
+          <%= t('powered_by') %> <a href=<%= "#{FEDENA_SETTINGS[:company_url]}" %> target="_blank"><%= FEDENA_SETTINGS[:company_name] %></a>
         </div>
-        <% unless @yaml_setting %>
+        <% if USER_SETTINGS.blank? %>
           <a href="http://www.projectfedena.org/" target="_blank" class="footer-logo"></a>
         <% end %>
       </div>

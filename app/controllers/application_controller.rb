@@ -109,11 +109,6 @@ class ApplicationController < ActionController::Base
   
   def initialize
     @title = 'Fedena'
-    @yaml_setting = File.exists?("#{RAILS_ROOT}/config/company_details.yml")
-    comp_details = @yaml_setting == true ? YAML.load_file(File.join(RAILS_ROOT,"config","company_details.yml")) : {}
-    @comp_title=  @yaml_setting == true ? comp_details['company_details']['name'] : 'Fedena'
-    @comp_web_url = @yaml_setting == true ? comp_details['company_details']['url'] : "http://www.projectfedena.org/"
-
   end
 
   def message_user
