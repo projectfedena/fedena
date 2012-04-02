@@ -45,7 +45,7 @@
 
 
 
-  <% form_for :employee do |a| %>
+  <% form_for :employee,:id => @employee.id do |a| %>
     <%= error_messages_for  'employee' %>
 
     <div id="admission1_form">
