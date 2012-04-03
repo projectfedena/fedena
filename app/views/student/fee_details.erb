@@ -65,7 +65,7 @@
       <% @fee_particulars.each do |fee| %>
         <tr class="tr-<%= cycle("odd","even") %>">
           <td class="col-1"><%= i+=1 %></td>
-          <td class="col-2"><%= shorten_string(fee.name,60) %></td>
+          <td class="col-2"><%= fee.name %></td>
           <td class="col-6"><%= fee.amount%></td>
         </tr>
         <% total_fees += fee.amount %>
@@ -82,7 +82,7 @@
         <% @batch_discounts.each do |d| %>
           <tr class="tr-<%= cycle("odd","even") %>">
             <td class="col-1"><%= i+1 %></td>
-            <td class="col-2"><%= shorten_string(d.name,20) %></td>
+            <td class="col-2"><%= d.name %></td>
             <td class="col-6"><%= d.discount%> %</td>
           </tr>
           <% i += 1 %>
@@ -90,7 +90,7 @@
         <% @student_discounts.each do |d| %>
           <tr class="tr-<%= cycle("odd","even") %>">
             <td class="col-1"><%= i+1 %></td>
-            <td class="col-2"><%= shorten_string(d.name,20) %></td>
+            <td class="col-2"><%= d.name %></td>
             <td class="col-6"><%= d.discount%> %</td>
           </tr>
           <% i += 1 %>
@@ -98,7 +98,7 @@
         <% @category_discounts.each do |d| %>
           <tr class="tr-<%= cycle("odd","even") %>">
             <td class="col-1"><%= i+1 %></td>
-            <td class="col-2"><%= shorten_string(d.name,20) %></td>
+            <td class="col-2"><%= d.name %></td>
             <td class="col-6"><%= d.discount%> %</td>
           </tr>
           <% i += 1 %>
