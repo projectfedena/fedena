@@ -17,7 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
- <div id="content-header">
+<div id="content-header">
   <%= image_tag("/images/show_settings.png") %>
   <h1><%= t('batch_transfer') %></h1>
   <h3><%= t('transfer') %></h3>
@@ -28,41 +28,38 @@
 
 
 <div id="page-yield">
-   <% unless flash[:notice].nil? %>
+  <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
-<p><%= t('transferring_batch') %>: <%= @batch.full_name %></p>
+  <p><%= t('transferring_batch') %>: <%= @batch.full_name %></p>
 
-<% form_for :transfer, :url => { :controller => 'batch_transfers', :action => 'transfer', :id => @batch.id } do |f| %>
+  <% form_for :transfer, :url => { :controller => 'batch_transfers', :action => 'transfer', :id => @batch.id } do |f| %>
 
-<div class="label-field-pair">
-          <label for="subject_id"><%= t('transfer_to') %> </label>
-          <div class="text-input-bg"><%= select :transfer, :to, @batches.map{ |b| [b.full_name, b.id] } %></div>
-        </div>
+    <div class="label-field-pair">
+      <label for="subject_id"><%= t('transfer_to') %> </label>
+      <div class="text-input-bg"><%= select :transfer, :to, @batches.map{ |b| [b.full_name, b.id] } %></div>
+    </div>
 
-  <p><%= t('uncheck_message') %>.</p>
-  <div class="sel-list">
-    <%= link_to_function t('all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
-    <%= link_to_function t('none'), "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
-  </div>
+    <p><%= t('uncheck_message') %>.</p>
+
     <ul id="category-list">
-        <li class="listheading">
-      <div class="heading-no"><%= t('adm_no') %></div>
-    <div class="category-name"><%= t('name') %></div>
-  </li>
-  <% @batch.students.each do |student| %>
-  <li class="list<%=cycle('odd', 'even')%>">
-     <div class="category-number"><%= student.admission_no %></div>
-    <div class="category-name"><%= student.full_name %></div>
-    <div class="category-edit"><%= check_box_tag 'transfer[students][]', student.id, true,:class=>"right" %></div>
-</li>
+      <li class="listheading">
+        <div class="heading-no"><%= t('adm_no') %></div>
+        <div class="category-name"><%= t('name') %></div>
+      </li>
+      <% @batch.students.each do |student| %>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <div class="category-number"><%= student.admission_no %></div>
+          <div class="category-name"><%= student.full_name %></div>
+          <div class="category-edit"><%= check_box_tag 'transfer[students][]', student.id, true,:class=>"right" %></div>
+        </li>
+      <% end %>
+    </ul>
+
+    <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
+
   <% end %>
-</ul>
 
- <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
-
-<% end %>
-
-   <div class="extender"></div>
-  </div>
+  <div class="extender"></div>
+</div>
