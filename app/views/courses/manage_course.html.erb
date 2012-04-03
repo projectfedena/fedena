@@ -52,7 +52,7 @@
 
       <% @courses.each do |course| %>
         <li class="list<%=cycle('odd', 'even')%>">
-          <div class="category-name"><%= link_to course.full_name, course %></div>
+          <div class="category-name"><%= link_to course.full_name, course_path(course) %></div>
           <div class="category-edit"><%= link_to "#{t('edit_text')}", edit_course_path(course) if permitted_to? :edit, :courses %></div><div class="category-delete">   <%= link_to(t('delete_text'), course_path(course), :method => 'delete', :confirm => "#{t('delete_confirm_msg')}") if permitted_to? :destroy, :courses %></div>
         </li>
       <% end %>
