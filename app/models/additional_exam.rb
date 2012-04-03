@@ -25,6 +25,9 @@ class AdditionalExam < ActiveRecord::Base
   belongs_to :additional_exam_group
   belongs_to :subject
 
+  validates_numericality_of :minimum_marks, :greater_than_or_equal_to => 0,:allow_nil=>true
+  validates_numericality_of :maximum_marks, :greater_than => 0,:allow_nil=>true
+  
   has_one :event, :as => :origin
   has_many :additional_exam_scores
   before_destroy :removable?

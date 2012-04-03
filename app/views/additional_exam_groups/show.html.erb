@@ -85,12 +85,12 @@
             <% if permitted_to? :edit, :additional_exams %>
               <td class="col-1">
                 <div id =<%="additional_exam_maximum_marks_#{@additional_exam.id}_edit"%>>
-                  <%= in_place_editor_field :additional_exam, :maximum_marks,{},{:cols=>1} %>
+                  <%= in_place_editor_field :additional_exam, :maximum_marks%>
                 </div>
               </td>
               <td class="col-1">
                 <div id =<%="additional_exam_minimum_marks_#{@additional_exam.id}_edit"%>>
-                  <%= in_place_editor_field :additional_exam, :minimum_marks,{},{:cols=>1} %>
+                  <%= in_place_editor_field :additional_exam, :minimum_marks %>
                 </div>
               </td>
               <td class="col-1">
