@@ -129,8 +129,13 @@ table#listing .tr-even .inplaceeditor-form .editor_field:focus{
 
 }
 #inner-tab-menu ul li {
-    width: 206px;
+    min-width: 50px;
+    width: auto;
+    padding-left: 10px;
+    padding-left: 10px;
 }
+
+
 .flash_color
 {
     background-color: #FFF1AB;
