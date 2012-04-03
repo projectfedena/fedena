@@ -419,7 +419,7 @@ class FinanceController < ApplicationController
     dates = MonthlyPayslip.find_all_by_salary_date(Date.parse(params[:date]), :conditions=>["is_rejected is false"])
 
     dates.each do |d|
-      d.approve(current_user.id)
+      d.approve(current_user.id,"Approved")
     end
     flash[:notice] = "#{t('flash8')}"
     redirect_to :action => "index"
