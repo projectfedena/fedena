@@ -56,7 +56,9 @@
 
     <div class="update_msg">
       <% if permitted_to? :edit, :additional_exams %>
-        <h4><%= in_place_editor_field :additional_exam_group, :name %></h4>
+        <div id =<%="additional_exam_group_name_#{@additional_exam_group.id}_edit"%>>
+          <h4><%= in_place_editor_field :additional_exam_group, :name %></h4>
+        </div>
       <% else %>
         <h4><span><%= @additional_exam_group.name %></span></h4>
       <% end %>
@@ -81,10 +83,18 @@
             <% @additional_exam = additional_exam %>
             <td class="col-2"><%= link_to additional_exam.subject.name, [@additional_exam_group, additional_exam] %></td>
             <% if permitted_to? :edit, :additional_exams %>
-              <td class="col-1"><%= in_place_editor_field :additional_exam, :maximum_marks,{},{:cols=>1} %></td>
-              <td class="col-1"><%= in_place_editor_field :additional_exam, :minimum_marks,{},{:cols=>1} %></td>
               <td class="col-1">
-                <small><%= link_to "#{t('edit_text')}", edit_additional_exam_group_additional_exam_path(@additional_exam_group, additional_exam) %></small>/
+                <div id =<%="additional_exam_maximum_marks_#{@additional_exam.id}_edit"%>>
+                  <%= in_place_editor_field :additional_exam, :maximum_marks,{},{:cols=>1} %>
+                </div>
+              </td>
+              <td class="col-1">
+                <div id =<%="additional_exam_minimum_marks_#{@additional_exam.id}_edit"%>>
+                  <%= in_place_editor_field :additional_exam, :minimum_marks,{},{:cols=>1} %>
+                </div>
+              </td>
+              <td class="col-1">
+                <small><%= link_to "#{t('edit_text')}", edit_additional_exam_group_additional_exam_path(@additional_exam_group, additional_exam) %></small> | 
                 <% if @additional_exam.removable? %>
                   <small><%= link_to "#{t('delete_text')}", [@additional_exam_group, additional_exam], :method => 'delete', :confirm => "#{t('delete_confirm_msg')}" %></small>
                 <% else %>
