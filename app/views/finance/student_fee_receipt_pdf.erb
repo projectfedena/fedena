@@ -39,15 +39,20 @@
     </div>
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('particulars') %></td><td class="col-pdf"><%= t('receipt_no') %></td><td class="col-pdf"> <%= t('amount') %></td></tr>
+        <tr class="table-header">
+          <td class="col-pdf1"><%= t('sl_no') %></td>
+          <td class="col-pdf2"><%= t('particulars') %></td>
+          <td class="col-pdf3"><%= t('receipt_no') %></td>
+          <td class="col-pdf4"> <%= t('amount') %></td>
+        </tr>
         <% i = 0  %>
         <% c= 'even' %>
         <% @fee_particulars.each do |fee| %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf"><%= i+=1 %></td>
-            <td class="col-pdf"><%= fee.name %></td>
-            <td class="col-pdf"></td>
-            <td class="col-pdf">&nbsp;<%= @currency_type.to_s + " " +fee.amount.to_s %></td>
+            <td class="col-pdf1"><%= i+=1 %></td>
+            <td class="col-pdf2"><%= fee.name %></td>
+            <td class="col-pdf3"></td>
+            <td class="col-pdf4">&nbsp;<%= @currency_type.to_s + " " +fee.amount.to_s %></td>
           </tr>
           <% total_fees += fee.amount %>
         <% end %>
@@ -107,10 +112,10 @@
           <% @trans = FinanceTransaction.find(@financefee.transaction_id) %>
           <% if @trans.fine_included %>
             <tr class="<%= cycle((["odd","even"]-[c]).first,c) %>">
-              <td class="col-pdf"></td>
-              <td class="col-pdf"><span><%= t('fine') %></span></td>
-              <td class="col-pdf"></td>
-              <td class="col-pdf">&nbsp;<%= @currency_type.to_s + " " +(@trans.fine_amount.to_f).to_s %></td>
+              <td class="col-pdf1"></td>
+              <td class="col-pdf2"><span><%= t('fine') %></span></td>
+              <td class="col-pdf3"></td>
+              <td class="col-pdf4">&nbsp;<%= @currency_type.to_s + " " +(@trans.fine_amount.to_f).to_s %></td>
             </tr>
             <%  total_fees = total_fees+@trans.fine_amount.to_f %>
           <% end %>
@@ -125,10 +130,10 @@
             <% @paid_fees.each do |p| %>
               <% paid += p.amount.to_f %>
               <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %> <%= "paid" if @paid_fees.last.id.to_i == p.id.to_i and @financefee.is_paid == false%>">
-                <td class="col-pdf"><%= x+=1 %></td>
-                <td class="col-pdf"><%= "#{t('partial_payment_on')}" + p.transaction_date.to_s %></td>
-                <td class="col-pdf"><%= p.receipt_no unless p.receipt_no.nil?%></td>
-                <td class="col-pdf"><%= @currency_type.to_s + " " +(p.amount.to_s) %></td>
+                <td class="col-pdf1"><%= x+=1 %></td>
+                <td class="col-pdf2"><%= "#{t('partial_payment_on')}" + p.transaction_date.to_s %></td>
+                <td class="col-pdf3"><%= p.receipt_no unless p.receipt_no.nil?%></td>
+                <td class="col-pdf4"><%= @currency_type.to_s + " " +(p.amount.to_s) %></td>
               </tr>
 
             <% end %>

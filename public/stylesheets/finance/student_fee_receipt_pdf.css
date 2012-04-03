@@ -137,4 +137,15 @@ tr.paid *{
 {
     margin-left: 60px;
 }
-
+.col-pdf1{
+    width: 10%;
+}
+.col-pdf2{
+    width: 45%;
+}
+.col-pdf3{
+    width: 15%;
+}
+.col-pdf4{
+    width: 30%;
+}
