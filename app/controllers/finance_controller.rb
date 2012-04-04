@@ -1754,9 +1754,9 @@ class FinanceController < ApplicationController
     fixed_category_name
     @hr = Configuration.find_by_config_value("HR")
     @start_date = (params[:start_date]).to_date
-    @end_date = (params[:end_date]).to_date + 1
+    @end_date = (params[:end_date]).to_date
     @start_date2 = (params[:start_date2]).to_date
-    @end_date2 = (params[:end_date2]).to_date + 1
+    @end_date2 = (params[:end_date2]).to_date
     @transactions = FinanceTransaction.find(:all,
       :order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'"])
     @transactions2 = FinanceTransaction.find(:all,
