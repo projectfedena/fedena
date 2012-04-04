@@ -20,6 +20,8 @@
   <div id="errorExplanation" class="errorExplanation"><p><%= t('there_were_pblm') %></p><ul><li><%= flash[:notice] %></li></ul></div>
 <% end %>
 
+<% unless flash[:warning].nil? %><p class="flash-msg"><%= flash[:warning] %></p><% end %>
+
 <%if @financefee.transaction_id.nil? and @fine.nil?%>
   <%= render :partial => "student_fine_submission" %>
 <% end %>
@@ -114,7 +116,7 @@
         <% unless @trans.nil? %>
           <% if @trans.fine_included %>
             <tr class="tr-<%= cycle("odd","even") %>">
-              <td class="col-1"><%= @fee_particulars.size+@paid_fees.size+1 %></td>
+              <td class="col-1"><%#= @fee_particulars.size+@paid_fees.size+1 %></td>
               <td class="col-2"><span><%= t('fine') %></span></td>
               <td class="col-6"><%= @trans.fine_amount %></td>
             </tr>

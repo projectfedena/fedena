@@ -1505,9 +1505,19 @@ class FinanceController < ApplicationController
     @student = Student.find(params[:student])
     @date = @fee_collection = FinanceFeeCollection.find(params[:date])
     @financefee = @date.fee_transactions(@student.id)
-    
+
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted IS NOT NULL"])
     @fee_particulars = @date.fees_particulars(@student)
+    @batch_discounts = BatchFeeCollectionDiscount.find_all_by_finance_fee_collection_id(@fee_collection.id)
+    @student_discounts = StudentFeeCollectionDiscount.find_all_by_finance_fee_collection_id_and_receiver_id(@fee_collection.id,@student.id)
+    @category_discounts = StudentCategoryFeeCollectionDiscount.find_all_by_finance_fee_collection_id_and_receiver_id(@fee_collection.id,@student.student_category_id)
+    @total_discount = 0
+    @total_discount += @batch_discounts.map{|s| s.discount}.sum unless @batch_discounts.nil?
+    @total_discount += @student_discounts.map{|s| s.discount}.sum unless @student_discounts.nil?
+    @total_discount += @category_discounts.map{|s| s.discount}.sum unless @category_discounts.nil?
+    if @total_discount > 100
+      @total_discount = 100
+    end
     total_fees = 0
     @fee_particulars.each do |p|
       total_fees += p.amount
@@ -1515,7 +1525,9 @@ class FinanceController < ApplicationController
     unless params[:fine].nil?
       total_fees += params[:fine].to_f
     end
-  
+    unless @financefee.transaction_id.blank?
+      @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
+    end
     if request.post?
       unless params[:fees][:fees_paid].to_f < 0
         unless params[:fees][:fees_paid].to_f> params[:total_fees].to_f
@@ -1536,7 +1548,10 @@ class FinanceController < ApplicationController
           end
           is_paid = (params[:fees][:fees_paid].to_f == params[:total_fees].to_f) ? true : false
           @financefee.update_attributes(:transaction_id=>tid, :is_paid=>is_paid)
-          flash[:notice] = "#{t('flash14')}"
+          unless @financefee.transaction_id.blank?
+            @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
+          end
+          flash[:warning] = "#{t('flash14')}"
         else
           flash[:notice] = "#{t('flash19')}"
         end
@@ -1544,7 +1559,9 @@ class FinanceController < ApplicationController
         flash[:notice] = "#{t('flash23')}"
       end
     end
-    redirect_to  :action => "fees_student_search"
+    render :update do |page|
+      page.replace_html "fee_submission", :partial => "fees_submission_form"
+    end
   end
 
 
