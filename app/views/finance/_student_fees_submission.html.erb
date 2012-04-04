@@ -125,7 +125,11 @@
           <td class="col-2"><span>1<%= t('fine') %> </span></td>
           <td class="col-6"><%= @fine.to_f %></td>
         </tr>
-        <% total_fees += @fine.to_f %>
+        <% unless @financefee.is_paid? == true %>
+          <% total_fees += @fine.to_f %>
+        <% else %>
+          <% total_fees = @fine %>
+        <% end %>
       <% end %>
 
       <% unless @financefee.transaction_id.nil? %>

@@ -1300,7 +1300,11 @@ class FinanceController < ApplicationController
       total_fees += p.amount
     end
     unless params[:fine].nil?
-      total_fees += params[:fine].to_f
+      unless @financefee.is_paid == true
+        total_fees += params[:fine].to_f
+      else
+        total_fees = params[:fine].to_f
+      end
     end
     unless params[:fees][:fees_paid].to_f < 0
       unless params[:fees][:fees_paid].to_f > params[:total_fees].to_f
