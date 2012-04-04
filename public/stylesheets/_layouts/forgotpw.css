@@ -7,7 +7,6 @@ body {
 #top_logo {
     margin:0 auto;
     height:143px; width:156px;
-    background:#fff url(../../images/login/fedena_logo.jpg) no-repeat;
 }
 #top_logo h1 {
     text-indent:-9999px;
