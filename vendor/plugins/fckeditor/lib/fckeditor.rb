@@ -23,6 +23,8 @@ module Fckeditor
       cols = options[:cols].nil? ? '' : "cols='"+options[:cols]+"'"
       rows = options[:rows].nil? ? '' : "rows='"+options[:rows]+"'"
       
+      lang = options[:lang].nil? ? 'en' : options[:lang]
+      langdir = options[:lang].nil? ? 'ltr' : options[:langdir]
       width = options[:width].nil? ? '100%' : options[:width]
       height = options[:height].nil? ? '100%' : options[:height]
       
@@ -30,20 +32,23 @@ module Fckeditor
       
       if options[:ajax]
         inputs = "<input type='hidden' id='#{id}_hidden' name='#{object}[#{field}]'>\n" <<
-                 "<textarea id='#{id}' #{cols} #{rows} name='#{id}'>#{value}</textarea>\n"
+          "<textarea id='#{id}' #{cols} #{rows} name='#{id}'>#{value}</textarea>\n"
       else 
         inputs = "<textarea id='#{id}' #{cols} #{rows} name='#{object}[#{field}]'>#{value}</textarea>\n"
       end
       
-       js_path = "#{ActionController::Base.relative_url_root}/javascripts"
+      js_path = "#{ActionController::Base.relative_url_root}/javascripts"
       base_path = "#{js_path}/fckeditor/"
       return inputs <<
         javascript_tag("var oFCKeditor = new FCKeditor('#{id}', '#{width}', '#{height}', '#{toolbarSet}');\n" <<
-                       "oFCKeditor.BasePath = \"#{base_path}\"\n" <<
-                       "oFCKeditor.Config['CustomConfigurationsPath'] = '#{js_path}/fckcustom.js';\n" <<
-                       "oFCKeditor.ReplaceTextarea();\n")
+          "oFCKeditor.BasePath = \"#{base_path}\"\n" <<
+          "oFCKeditor.Config['CustomConfigurationsPath'] = '#{js_path}/fckcustom.js';\n" <<
+          "oFCKeditor.Config['AutoDetectLanguage']=false;\n"<<
+          "oFCKeditor.Config['DefaultLanguage']='#{lang}';\n"<<
+          "oFCKeditor.Config['ContentLangDirection']= '#{langdir}' ;\n"<<
+          "oFCKeditor.ReplaceTextarea();\n"
+      )
     end
-    
     def fckeditor_form_remote_tag(options = {})
       editors = options[:editors]
       before = ""

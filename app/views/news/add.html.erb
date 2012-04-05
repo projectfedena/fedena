@@ -42,7 +42,7 @@
 
       <div class="news_label_field">
         <label for="news_content"><%= t('content') %></label>
-        <div id="news_content_text_field_bg"><%= fckeditor_textarea :news, :content %></div>
+        <div id="news_content_text_field_bg"><%= fckeditor_textarea :news, :content,:lang => I18n.locale,:langdir => (rtl? ? 'rtl' : 'ltr') %></div>
       </div>
     </div>
 
