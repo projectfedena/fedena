@@ -381,7 +381,7 @@ class FinanceController < ApplicationController
   def fees_report
     month_date
     fees_id = FinanceTransactionCategory.find_by_name('Fee').id
-    @fee_collection = FinanceFeeCollection.find(:all,:joins=>"INNER JOIN finance_fees ON finance_fees.fee_collection_id = finance_fee_collections.id INNER JOIN finance_transactions ON finance_transactions.finance_id = finance_fees.id and finance_transactions.transaction_date >= '#{@start_date}' AND finance_transactions.transaction_date <= '#{@end_date}'and finance_transactions.category_id ='#{fees_id}'",:group=>"finance_fee_collections.id")
+    @fee_collection = FinanceFeeCollection.find(:all,:joins=>"INNER JOIN finance_fees ON finance_fees.fee_collection_id = finance_fee_collections.id INNER JOIN finance_transactions ON finance_transactions.finance_id = finance_fees.id AND finance_transactions.transaction_date >= '#{@start_date}' AND finance_transactions.transaction_date <= '#{@end_date}' AND finance_transactions.category_id = #{fees_id}",:group=>"finance_fee_collections.id")
     
   end
 
@@ -389,7 +389,7 @@ class FinanceController < ApplicationController
     month_date
     @fee_collection = FinanceFeeCollection.find(params[:id])
     @batch = @fee_collection.batch
-    @transaction = @fee_collection.finance_transactions(:conditions=>"transaction_date >= '#{@start_date}' AND transaction_date <= '#{@end_date}'")
+    @transaction = @fee_collection.finance_transactions.all(:conditions=>"transaction_date >= '#{@start_date}' AND transaction_date <= '#{@end_date}'")
   end
 
   def student_fees_structure

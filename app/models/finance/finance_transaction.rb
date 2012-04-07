@@ -116,12 +116,8 @@ class FinanceTransaction < ActiveRecord::Base
   def self.total_fees(start_date,end_date)
     fee_id = FinanceTransactionCategory.find_by_name("Fee").id
     fees = 0
-    transactions_fees = FinanceTransaction.find(:all,
-      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{fee_id}'"])
-    transactions_fees.each do |f|
-      fees += f.amount
-    end
-    fees
+    fees = FinanceTransaction.find(:all,
+      :conditions => ["transaction_date >= '#{start_date.to_date}' and transaction_date <= '#{end_date.to_date}'and category_id ='#{fee_id}'"]).map{|ft| ft.amount}.sum
   end
 
   def self.total_other_trans(start_date,end_date)

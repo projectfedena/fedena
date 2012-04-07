@@ -124,7 +124,7 @@ class FinanceFeeCollection < ActiveRecord::Base
   end
 
   def transaction_total(start_date,end_date)
-    trans = self.finance_transactions(:conditions=>"transaction_date >= '#{start_date}' AND transaction_date <= '#{end_date}'")
+    trans = self.finance_transactions.all(:conditions=>"transaction_date >= '#{start_date}' AND transaction_date <= '#{end_date}'")
     total = trans.map{|t|t.amount}.sum
   end
   
