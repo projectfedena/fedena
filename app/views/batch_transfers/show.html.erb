@@ -47,6 +47,10 @@
       <li class="listheading">
         <div class="heading-no"><%= t('adm_no') %></div>
         <div class="category-name"><%= t('name') %></div>
+        <div class="sel-list">
+          <%= link_to_function t('all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
+          <%= link_to_function t('none'), "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+        </div>
       </li>
       <% @batch.students.each do |student| %>
         <li class="list<%=cycle('odd', 'even')%>">
