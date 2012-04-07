@@ -1405,7 +1405,7 @@ class EmployeeController < ApplicationController
   end
   def employee_individual_payslip_pdf
     @employee = Employee.find(:first,:conditions=>"id=#{params[:id]}")
-    @employee ||= ArchivedEmployee.find(:first,:conditions=>"id=#{params[:id]}")
+    @employee ||= ArchivedEmployee.find(:first,:conditions=>"former_id=#{params[:id]}")
     @department = EmployeeDepartment.find(@employee.employee_department_id).name
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     @category = EmployeeCategory.find(@employee.employee_category_id).name
