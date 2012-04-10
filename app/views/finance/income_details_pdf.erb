@@ -1,0 +1,64 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+
+<div id="page-yield">
+
+  <div class="hor_line"></div>
+  <h2><%= t('finance_income_report') %></h2>
+  <div class="hor_line"></div>
+
+
+  <div class="extender"> </div>
+  <div class="report">
+    <div id ="main_info">
+      <h4> <%= "#{t('from')} ( #{@start_date})#{t('to')} ( #{@end_date})" %></h4>
+    </div>
+    <div id="pdf-info">
+      <table id="pdf-table" width="100%" cellspacing="0">
+        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"> <%= t('name') %> </td><td class="col-pdf"> <%= t('description') %> </td><td class="col-pdf"> <%= t('receipt_no') %> </td><td class="col-pdf"><%= "#{t('amount')}( #{currency})" %></td><td class="col-pdf"> <%= t('transaction_date') %></td></tr>
+        <% index = 0 %>
+        <% total = 0 %>
+        <% i = 0 %>
+        <% c= 'even' %>
+        <% income_total = expense_total = 0 %>
+        <% @incomes.each do |d| %>
+          <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+            <td class="col-pdf"><%= index+=1 %></td>
+            <td class="col-pdf"><%= d.title %></td>
+            <td class="col-pdf"><%= d.description %></td>
+            <td class="col-pdf"><%= d.receipt_no %></td>
+            <td class="col-pdf"><%= (d.category.is_income == true and d.master_transaction_id == 0) ? d.amount : "-#{d.amount}" %></td>
+            <td class="col-pdf"><%= d.transaction_date.strftime("%d-%m-%y") unless d.transaction_date.nil?%></td>
+          </tr>
+        <% (d.category.is_income == true and d.master_transaction_id == 0) ? income_total += d.amount : expense_total += d.amount %>
+        <% end %>
+        <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+            <td class="col-pdf"></td>
+            <td class="col-pdf" colspan="3"><%= t('grand_total') %></td>
+            <td class="col-pdf" colspan="2"><%= (income_total - expense_total).to_f %></td>
+          </tr>
+
+      </table>
+    </div>
+
+  </div>
+
+</div>

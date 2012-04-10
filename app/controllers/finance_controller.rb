@@ -190,6 +190,14 @@ class FinanceController < ApplicationController
     render :pdf => 'income_list_pdf'
   end
 
+  def income_details_pdf
+    @start_date = params[:start_date].to_date
+    @end_date = params[:end_date].to_date
+    @income_category = FinanceTransactionCategory.find(params[:id])
+    @incomes = @income_category.finance_transactions.find(:all,:conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'"])
+    render :pdf => 'income_details_pdf'
+  end
+
   def categories
     @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false},:order=>'name asc')
     @fixed_categories = @categories.reject{|c|!c.is_fixed}
