@@ -32,7 +32,7 @@
       <li><%= link_to "#{t('reports_text')}", :controller => 'student',
           :action => 'reports', :id => @student %></li>
     <%end%>
-   
+
     <% if permitted_to? :guardians,:student %>
       <li><%= link_to "#{t('guardians_text')}", :controller => "student",
           :action => "guardians", :id => @student.id %></li>
@@ -106,10 +106,11 @@
 <%#*<tr class="even left"><td></td><td class="right"><%= @student.address_line2%>
       <tr class="even left"><td><%= t('city') %></td><td class="right"><%= @student.city %></td></tr>
       <tr class="odd left"><td><%= t('state') %></td><td class="right"><%= @student.state %></td></tr>
-      <tr class="even left"><td><%= t('country') %></td><td class="right"><%= @student.country.name unless @student.country_id.nil? %></td></tr>
-      <tr class="odd left"><td><%= t('phone') %></td><td class="right"><%= @student.phone1 %></td></tr>
-      <tr class="even left"><td><%= t('mobile') %></td><td class="right"><%= @student.phone2 %></td></tr>
-      <tr class="odd left"><td><%= t('email') %></td><td class="right"><%= @student.email %></td></tr>
+      <tr class="even left"><td><%= t('zip') %></td><td class="right"><%= @student.pin_code %></td></tr>
+      <tr class="odd left"><td><%= t('country') %></td><td class="right"><%= @student.country.name unless @student.country_id.nil? %></td></tr>
+      <tr class="even left"><td><%= t('phone') %></td><td class="right"><%= @student.phone1 %></td></tr>
+      <tr class="odd left"><td><%= t('mobile') %></td><td class="right"><%= @student.phone2 %></td></tr>
+      <tr class="even left"><td><%= t('email') %></td><td class="right"><%= @student.email %></td></tr>
       <% unless @student.batch.employee_id.nil? %>
         <% @assigned_employees = Employee.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@student.batch.employee_id}\")")  %>
         <tr class="even left"><td><%= t('group_tutor') %>(s) :</td><td class="right">

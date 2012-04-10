@@ -51,11 +51,12 @@
       <tr class="even"><td><%= t('address') %></td><td class="right"><%= @student.address_line1%>, <%=  @student.address_line2 %></td></tr>
       <tr class="odd"><td><%= t('city') %></td><td class="right"><%= @student.city %></td></tr>
       <tr class="even"><td><%= t('state') %></td><td class="right"><%= @student.state %></td></tr>
-      <tr class="odd"><td><%= t('country') %></td><td class="right"><%= @student.country.name unless @student.country_id.nil? %></td></tr>
-      <tr class="even"><td><%= t('phone') %></td><td class="right"><%= @student.phone1 %></td></tr>
-      <tr class="odd"><td><%= t('mobile') %></td><td class="right"><%= @student.phone2 %></td></tr>
-      <tr class="even"><td><%= t('email') %></td><td class="right"><%= @student.email %></td></tr>
-      <tr class="odd"><td><%= t('group_tutor') %></td><td class="right">
+      <tr class="odd"><td><%= t('zip') %></td><td class="right"><%= @student.pin_code %></td></tr>
+      <tr class="even"><td><%= t('country') %></td><td class="right"><%= @student.country.name unless @student.country_id.nil? %></td></tr>
+      <tr class="odd"><td><%= t('phone') %></td><td class="right"><%= @student.phone1 %></td></tr>
+      <tr class="even"><td><%= t('mobile') %></td><td class="right"><%= @student.phone2 %></td></tr>
+      <tr class="odd"><td><%= t('email') %></td><td class="right"><%= @student.email %></td></tr>
+      <tr class="even"><td><%= t('group_tutor') %></td><td class="right">
           <% unless @student.batch.employee_id.nil? %>
             <% @assigned_employees = Employee.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@student.batch.employee_id}\")")  %>
 
