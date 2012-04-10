@@ -74,33 +74,26 @@
           </tr>
         <% end %>
         <% i+= 2 %>
-        <%  @other_transactions.each_with_index do |t,i| %>
+        <% @other_transaction_categories.each_with_index do |t,i| %>
+          <% income = t.total_income(@start_date,@end_date) %>
+          <% expense = t.total_expense(@start_date,@end_date) %>
           <% if i == 19 %>
             <% i= 0 %>
             <% c= 'even' %>
             <tr class="page-break"><td colspan="3"></td></tr>
             <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('particulars') %></td><td class="col-pdf"><%= "#{t('expenses')}( #{currency})" %></td><td class="col-pdf"><%=  "#{t('income')}( #{currency})" %></td></tr>
           <% end %>
-          <% if t.category.is_income? and t.master_transaction_id == 0 %>
-            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-              <td class="col-pdf"><%= index+=1 %></td>
-              <td class="col-pdf2"> <%= t.title %> </td>
-              <td class="col-pdf3"></td>
-              <td class="col-pdf3">&nbsp;<%= t.amount %></td>
-            </tr>
-            <% i+= 1 %>
-            <% income_total +=t.amount %>
-          <% else %>
-            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-              <td class="col-pdf"><%= index+=1 %></td>
-              <td class="col-pdf2"> <%= t.title %> </td>
-              <td class="col-pdf3">&nbsp;<%= t.amount %></td>
-              <td class="col-pdf3"></td>
-            </tr>
-            <% i+= 1 %>
-            <% expenses_total +=t.amount %>
-          <% end %>
+          <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+            <td class="col-pdf"><%= index+=1 %></td>
+            <td class="col-pdf2"> <%= t.name %> </td>
+            <td class="col-pdf3"><%= expense %></td>
+            <td class="col-pdf3">&nbsp;<%= income %></td>
+          </tr>
+          <% i+= 1 %>
+          <%income_total +=income %>
+          <%expenses_total +=expense %>
         <% end %>
+
         <% if @grand_total >= 0 %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"></td>
