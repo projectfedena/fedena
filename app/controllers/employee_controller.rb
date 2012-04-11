@@ -968,7 +968,7 @@ class EmployeeController < ApplicationController
     @employee = Employee.find(params[:id])
     @weekday = ["#{t('sun')}", "#{t('mon')}", "#{t('tue')}", "#{t('wed')}", "#{t('thu')}", "#{t('fri')}", "#{t('sat')}"]
     @employee_subjects = @employee.subjects
-    @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
+    @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects}.flatten!
     @subject_timetable_entries = @employee_timetable_subjects.map{|esub| esub.timetable_entries}
     @employee_subjects_ids = @employee_subjects.map {|sub| sub.id}
     @weekday_timetable = Hash.new
@@ -983,10 +983,10 @@ class EmployeeController < ApplicationController
   end
 
   def timetable_pdf
-   @employee = Employee.find(params[:id])
+    @employee = Employee.find(params[:id])
     @weekday = ["#{t('sun')}", "#{t('mon')}", "#{t('tue')}", "#{t('wed')}", "#{t('thu')}", "#{t('fri')}", "#{t('sat')}"]
     @employee_subjects = @employee.subjects
-    @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
+    @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects}.flatten!
     @subject_timetable_entries = @employee_timetable_subjects.map{|esub| esub.timetable_entries}
     @employee_subjects_ids = @employee_subjects.map {|sub| sub.id}
     @weekday_timetable = Hash.new
@@ -1328,6 +1328,15 @@ class EmployeeController < ApplicationController
 
   #PDF methods
 
+  def view_employee_payslip_pdf
+    @employee = Employee.find(:first,:conditions => {:id => params[:id]})
+    @employee ||= ArchivedEmployee.find(:first,:conditions => {:former_id => params[:id]})
+    @monthly_payslips = MonthlyPayslip.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],params[:salary_date]],:include=>:payroll_category)
+    @individual_payslips =  IndividualPayslipCategory.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],params[:salary_date]])
+    @salary  = Employee.calculate_salary(@monthly_payslips, @individual_payslips)
+    @salary_date = params[:salary_date] if params[:salary_date]
+  end
+
   def department_payslip_pdf
     @department = EmployeeDepartment.find(params[:department])
     @employees = Employee.find_all_by_employee_department_id(@department.id)
@@ -1413,11 +1422,11 @@ class EmployeeController < ApplicationController
     @position = EmployeePosition.find(@employee.employee_position_id).name
     @salary_date = Date.parse(params[:id2])
     @monthly_payslips = MonthlyPayslip.find_all_by_salary_date(@salary_date,
-      :conditions=> "employee_id =#{@employee.id}",
+      :conditions=> "employee_id =#{params[:id]}",
       :order=> "payroll_category_id ASC")
 
     @individual_payslip_category = IndividualPayslipCategory.find_all_by_salary_date(@salary_date,
-      :conditions=>"employee_id =#{@employee.id}",
+      :conditions=>"employee_id =#{params[:id]}",
       :order=>"id ASC")
     @individual_category_non_deductionable = 0
     @individual_category_deductionable = 0
