@@ -856,7 +856,8 @@ authorization do
       :edit_payroll_details,
       :view_payroll_details,
       :activate_category,
-      :inactivate_category ]
+      :inactivate_category,
+      :update_dependent_fields]
   end
 
   role :employee_search do
