@@ -94,7 +94,7 @@ class BatchTransfersController < ApplicationController
     @previous_batch = all_batches[all_batches.size-2]
     unless @previous_batch.blank?
     @previous_batch_normal_subject = @previous_batch.normal_batch_subject
-    @elective_groups = @previous_batch.elective_groups
+    @elective_groups = @previous_batch.elective_groups.all(:conditions => {:is_deleted => false})
     @previous_batch_electives = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"])
     render(:update) do |page|
       page.replace_html 'previous-batch-subjects', :partial=>"previous_batch_subjects"
