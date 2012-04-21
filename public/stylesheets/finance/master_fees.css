@@ -168,7 +168,7 @@
 .each_category{
     font-size: 12px;
     overflow:auto;
-    width:auto;
+    width:213px;;
 
 }
 .each_category input{
@@ -178,8 +178,7 @@
 
 .each_category label {
     float: right;
-    margin-left: 15px;
-    margin-top: -6px;
+    margin-top: -7px;
     width: 178px;
 }
 .categories {
