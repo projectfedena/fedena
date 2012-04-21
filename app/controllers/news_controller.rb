@@ -36,6 +36,8 @@ class NewsController < ApplicationController
   def add_comment
     @cmnt = NewsComment.new(params[:comment])
     @cmnt.author = current_user
+    @cmnt.is_approved =true if @current_user.privileges.include?(Privilege.find_by_name('ManageNews')) || @current_user.admin?
+    @config = Configuration.find_by_config_key('EnableNewsCommentModeration')
     @cmnt.save
   end
 
@@ -81,5 +83,16 @@ class NewsController < ApplicationController
     @current_user = current_user
     @news = News.find(params[:id])
     @comments = @news.comments
+    @is_moderator = @current_user.privileges.include?(Privilege.find_by_name('ManageNews')) || @current_user.admin?
+    @config = Configuration.find_by_config_key('EnableNewsCommentModeration')
+  end
+
+  def comment_approved
+    @comment = NewsComment.find(params[:id])
+    status=@comment.is_approved ? false : true
+    @comment.update_attributes(:is_approved=>status)
+    render :update do |page|
+      page.reload
+    end
   end
 end

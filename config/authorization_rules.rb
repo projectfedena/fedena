@@ -337,6 +337,7 @@ authorization do
       :all,
       :delete,
       :delete_comment,
+      :comment_approved,
       :edit,
       :search_news_ajax,
       :view ]
@@ -1351,6 +1352,7 @@ authorization do
       :all,
       :delete,
       :delete_comment,
+      :comment_approved,
       :edit,
       :search_news_ajax,
       :view ]

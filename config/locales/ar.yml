@@ -1790,6 +1790,7 @@ ar:
   group_create_privilege: "المجموعة إنشاء"
   transport_admin_privilege: "مسؤول النقل"
   task_management_privilege: "مهمة إدارة"
+  waiting_to_approve: "في انتظار الموافقة على"
 
   flash_msg1: "تحديث إضافية المجموعة الامتحان بنجاح."
   flash_msg2: "آسف"

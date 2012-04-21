@@ -1794,6 +1794,7 @@ en: # locale
   group_create_privilege: "Group Create"
   transport_admin_privilege: "Transport Admin"
   task_management_privilege: "Task Management"
+  waiting_to_approve: "Waiting To Approve"
   
 
   flash_msg1: "Updated additional exam group successfully."

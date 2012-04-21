@@ -1789,6 +1789,7 @@ de: # locale
   group_create_privilege: "Gruppe erstellen"
   transport_admin_privilege: "Transportverwalter"
   task_management_privilege: "Augabenverwaltung"
+  waiting_to_approve: "Waiting to Genehmigen"
   
 
   flash_msg1: "Zusätzliche Prüfungsgruppe erfolgreich aktualisiert."

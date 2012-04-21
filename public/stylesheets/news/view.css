@@ -98,10 +98,11 @@
 }
 .comment-details .comment-posted-at {
     float: right;
+   padding-left: 10px;
 }
 .comment-details .delete-comment {
     float: right;
-    margin: 0 0 0 20px;
+    margin: 0 0 0 4px;
 }
 .comment-content {
 
@@ -141,6 +142,10 @@
     width:auto;
     cursor:pointer;
 }
-
+.approve
+{
+    float: right;
+    width: 220px;
+}
 
 

@@ -1762,7 +1762,8 @@ hi:
   transport_admin_privilege: "परिवहन व्यवस्थापक"
   task_management_privilege: "कार्य प्रबंध"
   student_attendance_register_privilege: "छात्र उपस्थिति रजिस्टर"
-
+  waiting_to_approve: "स्वीकृत प्रतीक्षा कर रहा है "
+  
   flash_msg1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक नवीनीकृत|"
   flash_msg2: "क्षमा करें"
   flash_msg3: "क्षमा करें, कोई त्रुटि हुई है| संपर्क व्यवस्थापक कृपया|"

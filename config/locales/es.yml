@@ -1786,6 +1786,7 @@ es: # locale
   group_create_privilege: "Crear grupo"
   transport_admin_privilege: "Transporte de administración"
   task_management_privilege: "Tarea de gestión"
+  waiting_to_approve: "Esperando a aprobar"
 
   flash_msg1: "Grupo de exámenes adicionales actualizados con éxito."
   flash_msg2: "Lo sentimos"
