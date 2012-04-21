@@ -1660,7 +1660,8 @@ authorization do
       :all,
       :search_news_ajax,
       :view,
-      :add_comment ]
+      :add_comment,
+      :delete_comment]
     has_permission_on [:subject], :to => [:index,:list_subjects]
     has_permission_on [:timetable], :to => [:student_view,:update_timetable_view]
     has_permission_on [:attendance], :to => [:student_report]
