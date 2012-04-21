@@ -40,7 +40,7 @@
       <%= sanitize @news.content , :tags => %w[b i a h1 h2 h3 u li ol strike p img font span sup sub tr td table th tbody thead], :attributes => %w[href src style border cellspacing cellpadding]%>
     </div>
 
-  <% if @current_user.admin? %>
+  <% if @is_moderator %>
     
       <%= link_to "► #{t('edit_text')} #{t('news_text')}",
         {:controller => "news",  :action => "edit", :id => @news.id }, :class => "edit_button"%>
