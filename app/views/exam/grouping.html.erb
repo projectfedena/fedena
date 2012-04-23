@@ -45,7 +45,7 @@
             <% @exam_groups.each do |e| %>
               <div class="name_list<%=cycle('odd', 'even')%>">
                 <% already_grouped = GroupedExam.find_by_batch_id_and_exam_group_id(@batch.id,e) %>
-                <% already_grouped = already_grouped.nil? %>
+                <% already_grouped = already_grouped.present? %>
                 <li><label><%= check_box_tag "exam_grouping[exam_group_ids][]", e.id,already_grouped,:class=>"right"%><div class="att_list_names"> <%= e.name %></div></label></li>
               </div>
             <% end %>
