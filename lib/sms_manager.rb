@@ -8,7 +8,9 @@ class SmsManager
   def initialize(message, recipients)
     @recipients = recipients
     @message = URI.encode(message)
-    @config = YAML.load_file(File.join(RAILS_ROOT,"config","sms_settings.yml"))
+    if File.exists?("#{RAILS_ROOT}/config/sms_settings.yml")
+      @config = YAML.load_file(File.join(RAILS_ROOT,"config","sms_settings.yml"))
+    end
     unless @config.blank?
       @sendername = @config['sms_settings']['sendername']
       @sms_url = @config['sms_settings']['host_url']
