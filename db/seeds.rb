@@ -92,3 +92,8 @@ end
   SmsSetting.find_or_create_by_settings_key(param)
 end
 
+
+Privilege.all.each do |p|
+p.update_attributes(:description=> p.name.underscore+"_privilege")
+end
+

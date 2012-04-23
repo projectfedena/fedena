@@ -19,7 +19,7 @@ class AddFieldsToPrivilege < ActiveRecord::Migration
     Privilege.create :name => 'ManageTimetable' , :description => 'manage_timetable_privilege'
     Privilege.create :name => 'StudentAttendanceView' , :description => 'student_attendance_view_privilege'
     Privilege.create :name => 'HrBasics' , :description => 'hr_basics_privilege'
-    Privilege.create :name => 'AddNewBatch' , :description => 'hr_basics_privilege'
+    Privilege.create :name => 'AddNewBatch' , :description => 'add_new_batch_privilege'
     Privilege.create :name => 'SubjectMaster' , :description => 'subject_master_privilege'
     Privilege.create :name => 'EventManagement' , :description => 'event_management_privilege'
     Privilege.create :name => 'GeneralSettings' , :description => 'general_settings_privilege'
