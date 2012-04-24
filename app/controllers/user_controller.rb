@@ -62,6 +62,12 @@ class UserController < ApplicationController
         page.replace_html 'users', :text => ''
         page.replace_html 'employee_user', :text => ''
       end
+    elsif params[:user_type] == "Parent"
+      render(:update) do |page|
+        page.replace_html 'student_user', :partial=> 'parent_user'
+        page.replace_html 'users', :text => ''
+        page.replace_html 'employee_user', :text => ''
+      end
     elsif params[:user_type] == ''
       @users = ""
       render(:update) do |page|
@@ -85,6 +91,15 @@ class UserController < ApplicationController
     @student = Student.find_all_by_batch_id(batch, :conditions => { :is_active => true },:order =>'first_name ASC')
     @users = @student.collect { |student| student.user}
     @users.delete(nil)
+    render(:update) {|page| page.replace_html 'users', :partial=> 'users'}
+  end
+
+  def list_parent_user
+    batch = params[:batch_id]
+    @guardian = Guardian.find(:all, :select=>'guardians.*',:joins=>'INNER JOIN students ON students.id = guardians.ward_id', :conditions => 'students.batch_id = ' + batch + ' AND is_active=1',:order =>'first_name ASC')
+    users = @guardian.collect { |student| student.user}
+    users.compact!
+    @users  = users.paginate(:page=>params[:page],:per_page=>20)
     render(:update) {|page| page.replace_html 'users', :partial=> 'users'}
   end
 
@@ -163,7 +178,12 @@ class UserController < ApplicationController
     @user = current_user
     @config = Configuration.available_modules
     @employee = @user.employee_record if ['employee','admin'].include?(@user.role_name.downcase)
-    @student = @user.student_record  if @user.role_name.downcase == 'student'
+    if @user.student?
+        @student = Student.find_by_admission_no(@user.username)
+    end
+    if @user.parent?
+      @student = Student.find_by_admission_no(@user.username[1..@user.username.length])
+    end
     @dash_news = News.find(:all, :limit => 5)
   end
 
@@ -228,6 +248,8 @@ class UserController < ApplicationController
     unless @user.nil?
       @employee = Employee.find_by_employee_number(@user.username)
       @student = Student.find_by_admission_no(@user.username)
+      @ward  = @user.parent_record if @user.parent
+
     else
       flash[:notice] = "#{t('flash14')}"
       redirect_to :action => 'dashboard'
@@ -251,18 +273,18 @@ class UserController < ApplicationController
 
   def search_user_ajax
     unless params[:query].nil? or params[:query].empty? or params[:query] == ' '
-      if params[:query].length>= 3
-        @user = User.first_name_or_last_name_or_username_begins_with params[:query].split
-        #      @user = User.find(:all,
-        #                :conditions => "(first_name LIKE \"#{params[:query]}%\"
-        #                       OR username LIKE \"#{params[:query]}%\"
-        #                       OR last_name LIKE \"#{params[:query]}%\"
-        #                       OR (concat(first_name, \" \", last_name) LIKE \"#{params[:query]}%\"))",
-        #                :order => "role_name asc,first_name asc") unless params[:query] == ''
-      else
-        @user = User.first_name_or_last_name_or_username_equals params[:query].split
-      end
-      @user = @user.sort_by { |u1| [u1.role_name,u1.full_name] } unless @user.nil?
+      #      if params[:query].length>= 3
+      #        @user = User.first_name_or_last_name_or_username_begins_with params[:query].split
+      @user = User.find(:all,
+        :conditions => "(first_name LIKE \"#{params[:query]}%\"
+                       OR last_name LIKE \"#{params[:query]}%\"
+                       OR (concat(first_name, \" \", last_name) LIKE \"#{params[:query]}%\")
+                       OR username LIKE \"#{params[:query]}%\")",
+        :order => "first_name asc") unless params[:query] == ''
+      #      else
+      #        @user = User.first_name_or_last_name_or_username_equals params[:query].split
+      #      end
+      #      @user = @user.sort_by { |u1| [u1.role_name,u1.full_name] } unless @user.nil?
     else
       @user = ''
     end

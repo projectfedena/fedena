@@ -76,7 +76,7 @@
       </div>
     <% end %>
 
-  <% elsif @user.student? %>
+  <% elsif @user.student? or @user.parent?%>
 
      <div class="button-box">
       <%= link_to "<div class ='button-label'><p>#{t('my_profile')}</p></div>", {:controller => "student", :action => "profile", :id => @student.id},

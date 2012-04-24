@@ -85,7 +85,7 @@ class Student < ActiveRecord::Base
       return false unless errors.blank?
     else
       self.user.role = "Student"
-      changes_to_be_checked = ['admission_no','first_name','last_name','email']
+      changes_to_be_checked = ['admission_no','first_name','last_name','email','immediate_contact_id']
       check_changes = self.changed & changes_to_be_checked
       unless check_changes.blank?
         self.user.username = self.admission_no if check_changes.include?('admission_no')
@@ -94,6 +94,11 @@ class Student < ActiveRecord::Base
         self.user.email = self.email if check_changes.include?('email')
         check_user_errors(self.user)
       end
+
+     if check_changes.include?('immediate_contact_id') or check_changes.include?('admission_no')
+        Guardian.shift_user(self)
+      end
+      
     end
     self.email = "noreply#{self.admission_no}@fedena.com" if self.email.blank?
     return false unless errors.blank?
@@ -240,7 +245,9 @@ class Student < ActiveRecord::Base
     archived_student = ArchivedStudent.new(student_attributes)
     archived_student.photo = self.photo
     if archived_student.save
+      parent = Guardian.find_by_id(self.immediate_contact_id)
       guardian = self.guardians
+      parent.user.delete
       self.user.destroy unless self.user.blank?
       self.destroy
       guardian.each do |g|

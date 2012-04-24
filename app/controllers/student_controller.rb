@@ -257,9 +257,9 @@ class StudentController < ApplicationController
       if v.kind_of?(Array)
         @has_dependency = true unless  v.blank?
       else
-         v.each do |h,a|
-           @has_dependency = true unless  a.blank?
-         end
+        v.each do |h,a|
+          @has_dependency = true unless  a.blank?
+        end
       end
     end
     if request.post?
@@ -293,12 +293,12 @@ class StudentController < ApplicationController
     student = Student.find(params[:id])
     #user = User.destroy_all(:username => student.admission_no) unless user.nil?
     unless student.check_dependency
-    student.user.destroy unless student.user.nil?
-    Student.destroy(params[:id])
-    flash[:notice] = "#{t('flash10')}. #{student.admission_no}."
-    redirect_to :controller => 'user', :action => 'dashboard'
+      student.user.destroy unless student.user.nil?
+      Student.destroy(params[:id])
+      flash[:notice] = "#{t('flash10')}. #{student.admission_no}."
+      redirect_to :controller => 'user', :action => 'dashboard'
     else
-    flash[:warn_notice] = "#{t('flash15')}"
+      flash[:warn_notice] = "#{t('flash15')}"
       redirect_to  :action => 'remove', :id=>student.id
     end
   end
@@ -346,6 +346,17 @@ class StudentController < ApplicationController
     @student = Student.find(@parent.ward_id)
     @countries = Country.all
     if request.post? and @parent.update_attributes(params[:parent_detail])
+      if @parent.email.blank?
+        @parent.email= "noreplyp#{@parent.ward.admission_no}@fedena.com"
+        @parent.save
+      end
+      if @parent.id  == @student.immediate_contact_id
+        unless @parent.user.nil?
+          User.update(@parent.user.id, :first_name=> @parent.first_name, :last_name=> @parent.last_name, :email=> @parent.email, :role =>"Parent")
+        else
+          @parent.create_guardian_user
+        end
+      end
       flash[:notice] = "#{t('student.flash4')}"
       redirect_to :controller => "student", :action => "guardians", :id => @student.id
     end
@@ -432,12 +443,12 @@ class StudentController < ApplicationController
         @students = Student.find(:all,
           :conditions => ["first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
                             OR admission_no = ? OR (concat(first_name, \" \", last_name) LIKE ? ) ",
-                         "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
-                         "#{params[:query]}", "#{params[:query]}" ],
+            "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
+            "#{params[:query]}", "#{params[:query]}" ],
           :order => "batch_id asc,first_name asc") unless params[:query] == ''
       else
         @students = Student.find(:all,
-         :conditions => ["admission_no = ? " , params[:query]],
+          :conditions => ["admission_no = ? " , params[:query]],
           :order => "batch_id asc,first_name asc") unless params[:query] == ''
       end
       render :layout => false
@@ -446,8 +457,8 @@ class StudentController < ApplicationController
         @archived_students = ArchivedStudent.find(:all,
           :conditions => ["first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?
                             OR admission_no = ? OR (concat(first_name, \" \", last_name) LIKE ? ) ",
-                         "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
-                         "#{params[:query]}", "#{params[:query]}" ],
+            "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
+            "#{params[:query]}", "#{params[:query]}" ],
           :order => "batch_id asc,first_name asc") unless params[:query] == ''
       else
         @archived_students = ArchivedStudent.find(:all,

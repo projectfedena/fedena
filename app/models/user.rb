@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
       self.admin    = true if self.role == 'Admin'
       self.student  = true if self.role == 'Student'
       self.employee = true if self.role == 'Employee'
+      self.parent = true if self.role == 'Parent'
     end
   end
 
@@ -78,6 +79,7 @@ class User < ActiveRecord::Base
     return "Admin" if self.admin?
     return "Student" if self.student?
     return "Employee" if self.employee?
+    return "Parent" if self.parent?
     return nil
   end
   
@@ -98,6 +100,8 @@ class User < ActiveRecord::Base
         end
       end
       return [:employee] + prv
+      elsif parent?
+      return [:parent] + prv
     else
       return prv
     end
@@ -106,6 +110,10 @@ class User < ActiveRecord::Base
   def clear_menu_cache
     Rails.cache.delete("user_main_menu#{self.id}")
     Rails.cache.delete("user_autocomplete_menu#{self.id}")
+  end
+
+  def parent_record
+    Student.find_by_admission_no(self.username[1..self.username.length])
   end
   
 end

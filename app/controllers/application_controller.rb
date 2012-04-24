@@ -166,8 +166,10 @@ class ApplicationController < ActionController::Base
   end
 
   def protect_other_student_data
-    if current_user.student?
-      student = current_user.student_record
+    if current_user.student? or current_user.parent?
+      student = current_user.student_record if current_user.student?
+      student = current_user.parent_record if current_user.parent?
+#      render :text =>student.id and return
       unless params[:id].to_i == student.id or params[:student].to_i == student.id
         flash[:notice] = "#{t('flash_msg5')}"
         redirect_to :controller=>"user", :action=>"dashboard"

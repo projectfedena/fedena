@@ -39,7 +39,7 @@
     <div id="register">
       <%  @type = params[:type] %>
       <% this_user = User.find(session[:user_id]) if session[:user_id] %>
-      <% unless this_user.student? %>
+      <% unless this_user.student? or this_user.parent?  %>
         <div class="header">
           <div class="prev">
             <%= link_to '◄',:action=>'previous_years_marks_overview',:student=>@student.previous_student,:type=>@type  %>

@@ -43,7 +43,7 @@
           end %>
         </div>
         <div id="skip">
-          <%= link_to "► #{t('finish')}", {:controller => "student", :action => "admission3", :id => @student.id } %>
+            <%= link_to "► #{t('finish')}", {:controller => "student", :action => "admission3", :id => @student.id } %>
         </div>
         <script type="text/javascript">
           Event.observe(window, 'load', function() { $('admission1_form').hide(); });
@@ -122,7 +122,7 @@
 
         <br/>
 
-          <span class="span-sub-heading"><%= t("parent") %> - <%= t('contact_details') %></span>
+        <span class="span-sub-heading"><%= t("parent") %> - <%= t('contact_details') %></span>
 
         <hr class="sub-heading"></hr>
 
@@ -186,42 +186,42 @@
             <div class="text-input-bg"> <%= select :guardian, :country_id, Country.all.map {|c| [c.name, c.id]}, :selected => @student.country_id %> </div>
           <% else %>
             <div class="text-input-bg"> <%= select :guardian, :country_id, Country.all.map {|c| [c.name, c.id]}, :selected => 76 %> </div>
-            <% end %>
-          </div>
-
-          <hr class="label-underline"></hr>
-
-          <div class="label-field-pair">
-            <label for="parent_detail_office_phone1"><%= t('phone') %> 1</label>
-            <div class="text-input-bg"><%= f.text_field :office_phone1 %></div>
-          </div>
-
-          <hr class="label-underline"></hr>
-
-          <div class="label-field-pair">
-            <label for="parent_detail_office_phone2"><%= t('phone') %> 2</label>
-            <div class="text-input-bg"><%= f.text_field :office_phone2 %></div>
-          </div>
-
-          <hr class="label-underline"></hr>
-
-          <div class="label-field-pair">
-            <label for="parent_detail_mob_phone"><%= t('mobile') %></label>
-            <div class="text-input-bg"><%= f.text_field :mobile_phone %></div>
-          </div>
-
-          <hr class="label-underline"></hr>
-
+          <% end %>
         </div>
 
-        <div class="extender">
-          <%= submit_tag "", :value => " ► #{t('finish')}",  :name => "commit", :class => "submit_button3" %>
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="parent_detail_office_phone1"><%= t('phone') %> 1</label>
+          <div class="text-input-bg"><%= f.text_field :office_phone1 %></div>
         </div>
-        <div id="skip">
-          <%= link_to "► #{t('click_here_to_skip')}", {:controller => "student", :action => "admission3", :id => @student.id } %>
+
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="parent_detail_office_phone2"><%= t('phone') %> 2</label>
+          <div class="text-input-bg"><%= f.text_field :office_phone2 %></div>
         </div>
+
+        <hr class="label-underline"></hr>
+
+        <div class="label-field-pair">
+          <label for="parent_detail_mob_phone"><%= t('mobile') %></label>
+          <div class="text-input-bg"><%= f.text_field :mobile_phone %></div>
+        </div>
+
+        <hr class="label-underline"></hr>
 
       </div>
-    <% end %>
 
-  </div>
+      <div class="extender">
+        <%= submit_tag "", :value => " ► #{t('finish')}",  :name => "commit", :class => "submit_button3" %>
+      </div>
+      <div id="skip">
+        <%= link_to "► #{t('click_here_to_skip')}", {:controller => "student", :action => "admission3", :id => @student.id } %>
+      </div>
+
+    </div>
+  <% end %>
+
+</div>

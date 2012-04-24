@@ -279,6 +279,7 @@ authorization do
       :fees,
       :fee_details,
       :admission3_1,
+      :admission3_2,
       :immediate_contact2
     ]
     has_permission_on [:archived_student],
@@ -699,6 +700,7 @@ authorization do
       :admission3,
       :edit3,
       :admission3_1,
+      :admission3_2,
       :edit3_1,
       :admission4,
       :change_reporting_manager,
@@ -1435,6 +1437,7 @@ authorization do
       :unassign_all_students,
       :edit_admission4,
       :admission3_1,
+      :admission3_2,
       :show_previous_details,
       :fees,
       :fee_details
@@ -1595,6 +1598,7 @@ authorization do
       :delete_bank_details,
       :admission3,
       :admission3_1,
+      :admission3_2,
       :add_additional_details,
       :edit_additional_details,
       :delete_additional_details,
@@ -1629,6 +1633,47 @@ authorization do
 
   # student- privileges
   role :student do
+    has_permission_on [:course], :to => [:view]
+    has_permission_on [:exam], :to => [:generated_report, :generated_report4_pdf, :graph_for_generated_report, :academic_report, :previous_years_marks_overview,:previous_years_marks_overview_pdf, :graph_for_previous_years_marks_overview, :generated_report3, :graph_for_generated_report3 ,:generated_report4]
+    has_permission_on [:student],
+      :to => [
+      :exam_report,
+      :show,
+      :academic_pdf,
+      :profile,
+      :guardians,
+      :list_students_by_course,
+      :academic_report,
+      :previous_years_marks_overview,
+      :previous_years_marks_overview_pdf,
+      :reports,
+      :student_annual_overview,
+      :subject_wise_report,
+      :graph_for_previous_years_marks_overview,
+      :graph_for_student_annual_overview,
+      :graph_for_subject_wise_report_for_one_subject,
+      :graph_for_exam_report,
+      :graph_for_academic_report,
+      :show_previous_details,
+      :fees,
+      :fee_details
+    ]
+    has_permission_on [:news],
+      :to => [
+      :index,
+      :all,
+      :search_news_ajax,
+      :view,
+      :add_comment,
+      :delete_comment]
+    has_permission_on [:subject], :to => [:index,:list_subjects]
+    has_permission_on [:timetable], :to => [:student_view,:update_timetable_view]
+    has_permission_on [:attendance], :to => [:student_report]
+    has_permission_on [:student_attendance], :to => [:index, :student, :month]
+    has_permission_on [:finance], :to => [:student_fees_structure]
+  end
+
+  role :parent do
     has_permission_on [:course], :to => [:view]
     has_permission_on [:exam], :to => [:generated_report, :generated_report4_pdf, :graph_for_generated_report, :academic_report, :previous_years_marks_overview,:previous_years_marks_overview_pdf, :graph_for_previous_years_marks_overview, :generated_report3, :graph_for_generated_report3 ,:generated_report4]
     has_permission_on [:student],
