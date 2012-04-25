@@ -245,9 +245,7 @@ class Student < ActiveRecord::Base
     archived_student = ArchivedStudent.new(student_attributes)
     archived_student.photo = self.photo
     if archived_student.save
-      parent = Guardian.find_by_id(self.immediate_contact_id)
       guardian = self.guardians
-      parent.user.delete
       self.user.destroy unless self.user.blank?
       self.destroy
       guardian.each do |g|

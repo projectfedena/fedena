@@ -38,20 +38,25 @@ class Guardian < ActiveRecord::Base
   def archive_guardian(archived_student)
     guardian_attributes = self.attributes
     guardian_attributes.delete "id"
+    guardian_attributes.delete "user_id"
     guardian_attributes["ward_id"] = archived_student
-    self.delete if ArchivedGuardian.create(guardian_attributes)
+    self.destroy if ArchivedGuardian.create(guardian_attributes)
   end
 
-  def create_guardian_user
+  def guardian_user
+    User.find_by_username "p"+self.ward.admission_no
+  end
+
+  def create_guardian_user(student)
     user = User.new do |u|
       u.first_name = self.first_name
       u.last_name = self.last_name
-      u.username = "p"+self.ward.admission_no.to_s
-      u.password = "p#{self.ward.admission_no.to_s}123"
+      u.username = "p"+student.admission_no.to_s
+      u.password = "p#{student.admission_no.to_s}123"
       u.role = 'Parent'
-      u.email = ( email == '' or User.find_by_email(self.email) ) ? "noreplyp#{self.ward.admission_no.to_s}@fedena.com" :self.email.to_s
-    end
-    user.save
+      u.email = ( email == '' or User.find_by_email(self.email) ) ? "noreplyp#{student.admission_no.to_s}@fedena.com" :self.email.to_s
+    end 
+    self.update_attributes(:user_id => user.id) if user.save
   end
 
  
@@ -62,7 +67,7 @@ class Guardian < ActiveRecord::Base
       parent_user.destroy if parent_user.present?
     end
     current_guardian =  student.immediate_contact
-    current_guardian.create_guardian_user if  current_guardian.present?
+    current_guardian.create_guardian_user(student) if  current_guardian.present?
   end
 
   

@@ -354,7 +354,7 @@ class StudentController < ApplicationController
         unless @parent.user.nil?
           User.update(@parent.user.id, :first_name=> @parent.first_name, :last_name=> @parent.last_name, :email=> @parent.email, :role =>"Parent")
         else
-          @parent.create_guardian_user
+          @parent.create_guardian_user(@student)
         end
       end
       flash[:notice] = "#{t('student.flash4')}"

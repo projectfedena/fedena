@@ -97,7 +97,7 @@ class UserController < ApplicationController
   def list_parent_user
     batch = params[:batch_id]
     @guardian = Guardian.find(:all, :select=>'guardians.*',:joins=>'INNER JOIN students ON students.id = guardians.ward_id', :conditions => 'students.batch_id = ' + batch + ' AND is_active=1',:order =>'first_name ASC')
-    users = @guardian.collect { |student| student.user}
+    users = @guardian.collect { |g| g.guardian_user}
     users.compact!
     @users  = users.paginate(:page=>params[:page],:per_page=>20)
     render(:update) {|page| page.replace_html 'users', :partial=> 'users'}
