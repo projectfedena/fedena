@@ -177,9 +177,12 @@
 }
 
 .each_category label {
-    float: right;
+    float: left;
     margin-top: -7px;
     width: 178px;
+    font-size:13px;
+    font-weight: normal;
+    margin-left: 8px;
 }
 .categories {
     height: 100px;
