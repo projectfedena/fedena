@@ -63,7 +63,7 @@
         <label for="user_email"><%= t('email') %><span class="necessary-field">*</span></label>
         <div class="text-input-bg"><%= u.text_field :email, :value => @user.email, :disabled => true %></div>
       </div>
-      <% unless @user.role_name == "Student"  %>
+      <% unless @user.role_name == "Student" or @user.role_name == "Parent" %>
         <div class="label-field-pair">
           <label for="user_role"><%= t('role') %></label>
           <div class="text-input-bg">

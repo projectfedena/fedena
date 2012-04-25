@@ -43,10 +43,6 @@ class Guardian < ActiveRecord::Base
     self.destroy if ArchivedGuardian.create(guardian_attributes)
   end
 
-  def guardian_user
-    User.find_by_username "p"+self.ward.admission_no
-  end
-
   def create_guardian_user(student)
     user = User.new do |u|
       u.first_name = self.first_name

@@ -267,7 +267,8 @@ class CalendarController < ApplicationController
     finance_due_check = Event.find_all_by_is_due(true,true, :conditions => " events.start_date >= '#{@date.strftime("%Y-%m-%d 00:00:00")}' AND events.start_date <= '#{@date.strftime("%Y-%m-%d 23:59:59")}'")
     finance_due_check.reject!{|x| !x.is_active_event }
     if @user.student? or @user.parent?
-      finance_due_check.reject!{|x| !x.is_student_event(@user.student_record) }
+      finance_due_check.reject!{|x| !x.is_student_event(@user.student_record) } if @user.student
+      finance_due_check.reject!{|x| !x.is_student_event(@user.parent_record) } if @user.parent
     elsif @user.employee?
       finance_due_check.reject!{|x| !x.is_employee_event(@user) }
     end

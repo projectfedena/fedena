@@ -64,28 +64,28 @@
 
   <% if @current_user.admin? %>
     <div class="submit-buttons">
-      <% if @user.role_name == "Employee" %>
+
+      <% if @user.role_name == 'Employee' %>
         <% if @config.include?('HR') %>
           <%= link_to "► #{t('view_profile')}",{:controller => "employee", :action => "profile", :id => @employee.id }, :class => "user_button" unless @employee.nil?%>
         <% end %>
-      <% elsif @user.role_name == "Student" %>
+      <% elsif @user.role_name == 'Student' %>
         <%= link_to "► #{t('view_profile')}",{:controller => "student", :action => "profile", :id => @student.id }, :class => "user_button"%>
+      <% elsif @user.role_name == 'Parent' %>
+        <%= link_to "►#{t('view')} #{t('student_profile')}",{:controller => "student", :action => "profile", :id => @ward.id }, :class => "user_button"%>
       <% else %>
         <% if @config.include?('HR') %>
           <%= link_to "► #{t('view_profile')}",{:controller => "employee", :action => "profile", :id => @employee.id }, :class => "user_button" unless @employee.nil?%>
         <% end %>
       <% end %>
-      <% if @user.role_name ==  "Employee" %>
-        <%= link_to "► #{t('edit')}",{:controller => "user", :action => "edit", :id => @user.username }, :class => "user_button"%>
-      <% elsif @user.role_name == "Parent" %>
-
-        <%= link_to "► #{t('edit_text')}",{:controller => "student", :action => "edit_guardian", :id => @ward.id }, :class => "user_button"%>
-        <%= link_to "► #{t('view_profile')}",{:controller => "student", :action => "profile", :id => @ward.id }, :class => "user_button"%>
-      <% end %>
+      <%= link_to "#{t('change_password')}", {:controller => "user", :action => "user_change_password", :id =>@user.username}, :class => "user_button" %>
       <% unless @user.admin %>
-        <% if @user.role_name == "Employee" %>
-          <%= link_to "► #{t('edit') + ' ' + t('privilege')}", {:controller => "user", :action => "edit_privilege", :id => @user.username } ,:class => "user_button" %>
+        <% unless @user.role_name == 'Student' or @user.role_name == 'Parent' %>
+          <%= link_to "► #{t('edit_privilege_text')}", {:controller => "user", :action => "edit_privilege", :id => @user.username } ,:class => "user_button" %>
         <% end %>
+      <% end %>
+      <% if @user.admin and @current_user.id != @user.id and @employee.nil? %>
+        <%= link_to "► #{t('delete_text')}", { :controller => "user", :action => "delete", :id => @user.username}, :class => "user_button", :confirm=>"#{t('are_you_sure_to_delete_user')}" %>
       <% end %>
     </div>
 
