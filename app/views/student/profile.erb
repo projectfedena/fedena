@@ -55,7 +55,9 @@
           <li><%= link_to "#{t('fees_text')}", :controller => 'student',:action => 'fees', :id => @student.id %></li>
         <% end %>
         <% FedenaPlugin::ADDITIONAL_LINKS[:student_profile_more_menu].each do |mod| %>
-          <li><%= link_to "#{t(mod[:title])}",mod[:destination].merge(:id=>@student.id) %></li>
+          <% if permitted_to? "#{mod[:destination][:action]}".to_sym,"#{mod[:destination][:controller]}".to_sym  %>
+            <li><%= link_to "#{t(mod[:title])}",mod[:destination].merge(:id=>@student.id) %></li>
+          <% end %>
         <% end %>
       </ul>
     </li>
