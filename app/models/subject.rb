@@ -32,7 +32,7 @@ class Subject < ActiveRecord::Base
   named_scope :without_exams, :conditions => { :no_exams => false, :is_deleted => false }
 
   def inactivate
-    update_attribute(:is_deleted, true)
+    update_attributes(:is_deleted => true)
     self.employees_subjects.destroy_all
   end
 
