@@ -17,13 +17,12 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<% unless @report.empty? %>
-  <% working_days = @report.size %>
-
+<% if @academic_days > 0 %>
   <% form_for :filter, :url => {:action=> 'filter'} do |f| %>
     <%= f.hidden_field :batch , :value=> @batch.id %>
     <%= f.hidden_field :start_date , :value=> @start_date %>
     <%= f.hidden_field :end_date , :value=> @end_date %>
+    <%= f.hidden_field  :report_type, :value=>@mode %>
     <% unless params[:subject_id].nil? %>
       <%= f.hidden_field :subject , :value=> params[:subject_id] %>
     <% end %>
@@ -37,56 +36,39 @@
   <div class="label-field-pair">
     <label>
       <%  if @config.config_value == 'Daily' %>
-        <%= "#{t('total_no_of_wrkng_days')} = " + working_days.to_s %>
+        <%= "#{t('total_no_of_wrkng_days')} = " + @academic_days.to_s %>
       <% else %>
-        <%= "#{t('total_no_of_wrkng_hours')}= " + working_days.to_s %>
+        <%= "#{t('total_no_of_wrkng_hours')}= " + @academic_days.to_s %>
 
       <% end  %>
     </label>
   </div>
-
   <table id="listing" align="center" width="80%">
     <tr class="tr-head">
       <td>
         <%= t('name') %>
       </td>
       <td>
-         <%= t('total') %>
+        <%= t('total') %>
       </td>
       <td>
-         <%= t('percentage') %>(%)
+        <%= t('percentage') %>(%)
       </td>
     </tr>
     <tr class="blank"></tr>
     <% @students.each do |student| %>
-
-      <% leaves =0 %>
-      <% @report.each do |report| %>
-        <% @attendance = Attendance.find_by_student_id_and_period_table_entry_id(student.id, report.id) %>
-        <% unless @attendance.nil? %>
-          <% if @config.config_value == 'Daily' %>
-            <% leaves += 0.5 if @attendance.forenoon %>
-            <% leaves += 0.5 if @attendance.afternoon %>
-          <% else %>
-            <% leaves += 1 %>
-          <% end %>
-        <% end %>
-      <% end %>
-      <% total = (working_days - leaves).to_f %>
-      <% percentage =  (total/working_days)*100 unless working_days == 0 %>
-
       <tr class="tr-<%= cycle('odd', 'even') %>">
         <td class="col-2"><%= link_to student.full_name, {:controller => "attendance_reports", :action => "student_details", :id => student.id } %></td>
-        <td class="col-3"> <%= total %></td>
-        <td class="col-3"><%= percentage.round(2)unless percentage.nil? %></td>
+        <td class="col-3"> <%= @leaves[student.id]['total'] %></td>
+        <td class="col-3"><%= @leaves[student.id]['percent'].round(2) unless @leaves[student.id]['percent'].nil? %></td>
       </tr>
-
     <% end %>
   </table>
   <% form_for :filter, :url => {:action=> 'report_pdf'} do |f| %>
     <%= f.hidden_field :batch , :value=> @batch.id %>
     <%= f.hidden_field :start_date , :value=> @start_date %>
     <%= f.hidden_field :end_date , :value=> @end_date %>
+    <%= f.hidden_field :report_type , :value=> @mode %>
     <% unless params[:subject_id].nil? %>
       <%= f.hidden_field :subject , :value=> params[:subject_id] %>
     <% end %>

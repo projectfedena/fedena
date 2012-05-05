@@ -1,0 +1,43 @@
+<div id="content-header">
+  <%= image_tag("/images/examination/show_exam.png") %>
+  <h1>Class Designations</h1>
+  <h3>Manage Class Designations</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+
+  <div id="flash"></div>
+
+  <div id="errors">
+    <%= error_messages_for 'class_designation' %>
+  </div>
+  <div id="class_form">
+    <% remote_form_for :class_designation,:url=>{:action=>"create_class_designation"} do |c| %>
+
+      <div id="form-content">
+        <div class="label-field-pair">
+          <label for="name">Name</label>
+          <div class="text-input-bg"><%= c.text_field :name %></div>
+        </div>
+          <div class="label-field-pair">
+            <label for="marks">CGPA</label>
+            <div class="text-input-bg"><%= c.text_field :cgpa %></div>
+          </div>
+
+        <div class="extender"></div>
+
+        <div id="submit-button">
+          <%=submit_tag("► #{t('create_text')}") %>
+        </div>
+
+
+      </div>
+    <% end %>
+  </div>
+  <div id="category-list">
+    <%= render :partial=>"class_designations" %>
+  </div>
+
+</div>

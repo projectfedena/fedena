@@ -17,6 +17,7 @@
 #limitations under the License.
 
 class AttendancesController < ApplicationController
+  before_filter :login_required
   filter_access_to :all
   before_filter :only_assigned_employee_allowed, :except => 'index'
   before_filter :only_privileged_employee_allowed, :only => 'index'
@@ -48,37 +49,126 @@ class AttendancesController < ApplicationController
     if @config.config_value == 'Daily'
       @batch = Batch.find(params[:batch_id])
       @students = Student.find_all_by_batch_id(@batch.id)
-      @dates = PeriodEntry.find_all_by_batch_id(@batch.id, :conditions =>{:month_date => start_date..end_date}, :order=>'month_date asc')
+      #      @dates = ((@batch.end_date.to_date > @today.end_of_month) ? (@today.beginning_of_month..@today.end_of_month) : (@today.beginning_of_month..@batch.end_date.to_date))
+      @dates=@batch.working_days(@today)
     else
       @sub =Subject.find params[:subject_id]
-      @batch = @sub.batch_id
+      @batch=Batch.find(@sub.batch_id)
       unless @sub.elective_group_id.nil?
         elective_student_ids = StudentsSubject.find_all_by_subject_id(@sub.id).map { |x| x.student_id }
         @students = Student.find_all_by_batch_id(@batch, :conditions=>"FIND_IN_SET(id,\"#{elective_student_ids.split.join(',')}\")")
       else
         @students = Student.find_all_by_batch_id(@batch)
       end
-      @dates = PeriodEntry.find_all_by_batch_id_and_subject_id(@batch,@sub.id,  :conditions =>{:month_date => start_date..end_date},:order=>'month_date ASC')
+      @dates=Timetable.tte_for_range(@batch,@today,@sub)
+      @dates_key=@dates.keys - @batch.holiday_event_dates
     end
     respond_to do |format|
       format.js { render :action => 'show' }
     end
   end
 
+  def subject_wise_register
+    @sub =Subject.find params[:subject_id]
+    @batch=Batch.find(@sub.batch_id)
+    @today = params[:next].present? ? params[:next].to_date : Date.today
+    unless @sub.elective_group_id.nil?
+      elective_student_ids = StudentsSubject.find_all_by_subject_id(@sub.id).map { |x| x.student_id }
+      @students = Student.find_all_by_batch_id(@batch, :conditions=>"FIND_IN_SET(id,\"#{elective_student_ids.split.join(',')}\")")
+    else
+      @students = Student.find_all_by_batch_id(@batch)
+    end
+    subject_leaves = SubjectLeave.by_month_batch_subject(@today,@batch.id,@sub.id).group_by(&:student_id)
+    @leaves = Hash.new
+    @students.each do |student|
+      @leaves[student.id] = Hash.new(false)
+      unless subject_leaves[student.id].nil?
+        subject_leaves[student.id].group_by(&:month_date).each do |m,mleave|
+          @leaves[student.id]["#{m}"]={}
+          mleave.group_by(&:class_timing_id).each do |ct,ctleave|
+            ctleave.each do |leave|
+              @leaves[student.id]["#{m}"][ct] = leave.id
+            end
+          end
+        end
+      end
+    end
+    @dates=Timetable.tte_for_range(@batch,@today,@sub)
+    @translated=Hash.new
+    @translated['name']=t('name')
+    (0..6).each do |i|
+      @translated[Date::ABBR_DAYNAMES[i].to_s]=t(Date::ABBR_DAYNAMES[i].downcase)
+    end
+    (1..12).each do |i|
+      @translated[Date::MONTHNAMES[i].to_s]=t(Date::MONTHNAMES[i].downcase)
+    end
+    respond_to do |fmt|
+      fmt.json {render :json=>{'leaves'=>@leaves,'students'=>@students,'dates'=>@dates,'batch'=>@batch,'today'=>@today,'translated'=>@translated}}
+    end
+  end
+
+  def daily_register
+    @batch = Batch.find(params[:batch_id])
+    @today = params[:next].present? ? params[:next].to_date : Date.today
+    @students = @batch.students.with_full_name_only@leaves = Hash.new
+    attendances = Attendance.by_month_and_batch(@today,params[:batch_id]).group_by(&:student_id)
+    @students.each do |student|
+      @leaves[student.id] = Hash.new(false)
+      unless attendances[student.id].nil?
+        attendances[student.id].each do |attendance|
+          @leaves[student.id]["#{attendance.month_date}"] = attendance.id
+        end
+      end
+    end
+    #    @dates=((@batch.end_date.to_date > @today.end_of_month) ? (@today.beginning_of_month..@today.end_of_month) : (@today.beginning_of_month..@batch.end_date.to_date))
+    @dates=@batch.working_days(@today)
+    @holidays = []
+    @translated=Hash.new
+    @translated['name']=t('name')
+    (0..6).each do |i|
+      @translated[Date::ABBR_DAYNAMES[i].to_s]=t(Date::ABBR_DAYNAMES[i].downcase)
+    end
+    (1..12).each do |i|
+      @translated[Date::MONTHNAMES[i].to_s]=t(Date::MONTHNAMES[i].downcase)
+    end
+    respond_to do |fmt|
+      fmt.json {render :json=>{'leaves'=>@leaves,'students'=>@students,'dates'=>@dates,'holidays'=>@holidays,'batch'=>@batch,'today'=>@today, 'translated'=>@translated}}
+      #      format.js { render :action => 'show' }
+    end
+  end
+  
   def new
     @config = Configuration.find_by_config_key('StudentAttendanceType')
-    @absentee = Attendance.new
-    @student = Student.find(params[:id2])
-    @period_entry_id = params[:id]
+    if @config.config_value=='Daily'
+      @student = Student.find(params[:id])
+      @month_date = params[:date]
+      @absentee = Attendance.new
+    else
+      @student = Student.find(params[:id]) unless params[:id].nil?
+      @student ||= Student.find(params[:subject_leave][:student_id])
+      @subject_leave=SubjectLeave.new
+    end
     respond_to do |format|
       format.js { render :action => 'new' }
     end
   end
 
   def create
-    @absentee = Attendance.new(params[:attendance])
-    @student = Student.find(params[:attendance][:student_id])
-    @period_entry = PeriodEntry.find(params[:attendance][:period_table_entry_id],:order=>'month_date asc')
+    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    if @config.config_value=="SubjectWise"
+      @student = Student.find(params[:subject_leave][:student_id])
+      @tte=TimetableEntry.find(params[:timetable_entry])
+      @absentee = SubjectLeave.new(params[:subject_leave])
+      @absentee.subject_id=params[:subject_leave][:subject_id]
+      @absentee.employee_id=@tte.employee_id
+      #      @absentee.subject_id=@tte.subject_id
+      @absentee.class_timing_id=@tte.class_timing_id
+      @absentee.batch_id = @student.batch_id
+      
+    else
+      @student = Student.find(params[:attendance][:student_id])
+      @absentee = Attendance.new(params[:attendance])
+    end
     respond_to do |format|
       if @absentee.save
         sms_setting = SmsSetting.new()
@@ -99,88 +189,75 @@ class AttendancesController < ApplicationController
             sms.send_sms
           end
         end
-        @batch = @student.batch
-        @students = Student.find_all_by_batch_id(@batch.id)
-        unless params[:next].nil?
-          @today = params[:next].to_date
-        else
-          @today = Date.today
-        end
-        start_date = @today.beginning_of_month
-        end_date = @today.end_of_month
-        @dates = PeriodEntry.find_all_by_batch_id(@batch.id, :conditions =>{:month_date => start_date..end_date},:order=>'month_date ASC')
         format.js { render :action => 'create' }
       else
         @error = true
         format.html { render :action => "new" }
         format.js { render :action => 'create' }
+      end
     end
   end
-end
 
-def edit
-  @config = Configuration.find_by_config_key('StudentAttendanceType')
-  @absentee = Attendance.find params[:id]
-  @student = Student.find(@absentee.student_id)
-  respond_to do |format|
-    format.html { }
-    format.js { render :action => 'edit' }
-  end
-end
-
-def update
-
-  @absentee = Attendance.find params[:id]
-  @student = Student.find(@absentee.student_id)
-  @period_entry = PeriodEntry.find @absentee.period_table_entry_id
-
-    if @absentee.update_attributes(params[:attendance])
-      @batch = @student.batch
-      @students = Student.find_all_by_batch_id(@batch.id)
-      unless params[:next].nil?
-        @today = params[:next].to_date
-      else
-        @today = Date.today
-      end
-      start_date = @today.beginning_of_month
-      end_date = @today.end_of_month
-      @dates = PeriodEntry.find_all_by_batch_id(@batch.id, :conditions =>{:month_date => start_date..end_date},:order=>'month_date ASC')
+  def edit
+    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    if @config.config_value=='Daily'
+      @absentee = Attendance.find params[:id]
     else
-      @error = true
+      @absentee = SubjectLeave.find params[:id]
+    end
+    @student = Student.find(@absentee.student_id)
+    respond_to do |format|
+      format.html { }
+      format.js { render :action => 'edit' }
+    end
   end
-  respond_to do |format|
+
+  def update
+    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    if @config.config_value=='Daily'
+      @absentee = Attendance.find params[:id]
+      @student = Student.find(@absentee.student_id)
+      if @absentee.update_attributes(params[:attendance])
+      else
+        @error = true
+      end
+    else
+      @absentee = SubjectLeave.find params[:id]
+      @student = Student.find(@absentee.student_id)
+      if @absentee.update_attributes(params[:subject_leave])
+      else
+        @error = true
+      end
+    end
+    respond_to do |format|
       format.js { render :action => 'update' }
     end
-end
-
-
-def destroy
-  @absentee = Attendance.find params[:id]
-  @absentee.delete
-  @student = Student.find(@absentee.student_id)
-  @period_entry = PeriodEntry.find @absentee.period_table_entry_id
-  respond_to do |format|
-    @batch = @student.batch
-    @students = Student.find_all_by_batch_id(@batch.id)
-    unless params[:next].nil?
-      @today = params[:next].to_date
-    else
-      @today = Date.today
-    end
-    start_date = @today.beginning_of_month
-    end_date = @today.end_of_month
-    @dates = PeriodEntry.find_all_by_batch_id(@batch.id, :conditions =>{:month_date => start_date..end_date},:order=>'month_date ASC')
-    format.js { render :action => 'update' }
   end
-end
+
+
+  def destroy
+    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    if @config.config_value=='Daily'
+      @absentee = Attendance.find params[:id]
+    else
+      @absentee = SubjectLeave.find params[:id]
+      @tte_entry = TimetableEntry.find_by_subject_id_and_class_timing_id(@absentee.subject_id,@absentee.class_timing_id)
+      sub=Subject.find @absentee.subject_id
+    end
+    @absentee.delete
+    @student = Student.find(@absentee.student_id)
+    respond_to do |format|
+      format.js { render :action => 'update' }
+    end
+  end
 
   def only_privileged_employee_allowed
     @privilege = @current_user.privileges.map{|p| p.name}
     if @current_user.employee?
       @employee_subjects= @current_user.employee_record.subjects
       if @employee_subjects.empty? and !@privilege.include?("StudentAttendanceRegister")
-          flash[:notice] = "#{t('flash_msg4')}"
-          redirect_to :controller => 'user', :action => 'dashboard'
+        flash[:notice] = "#{t('flash_msg4')}"
+        redirect_to :controller => 'user', :action => 'dashboard'
       else
         @allow_access = true
       end

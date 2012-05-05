@@ -22,7 +22,7 @@ class ClassTimingsController < ApplicationController
 
   def index
     @batches = Batch.active
-    @class_timings = ClassTiming.find(:all,:conditions => { :batch_id => nil}, :order =>'start_time ASC')
+    @class_timings = ClassTiming.find(:all,:conditions => { :batch_id => nil,:is_deleted=>false}, :order =>'start_time ASC')
   end
 
   def new
@@ -81,9 +81,9 @@ class ClassTimingsController < ApplicationController
   def show
     @batch = nil
     if params[:batch_id] == ''
-      @class_timings = ClassTiming.find(:all, :conditions=>["batch_id is null"])
+      @class_timings = ClassTiming.find(:all, :conditions=>["batch_id is null and is_deleted = false"])
     else
-      @class_timings = ClassTiming.for_batch(params[:batch_id])
+      @class_timings = ClassTiming.active_for_batch(params[:batch_id])
       @batch = Batch.find params[:batch_id] unless params[:batch_id] == ''
     end
     respond_to do |format|
@@ -93,7 +93,7 @@ class ClassTimingsController < ApplicationController
 
   def destroy
     @class_timing = ClassTiming.find params[:id]
-    @class_timing.destroy
+    @class_timing.update_attribute(:is_deleted,true)
   end
 
 end

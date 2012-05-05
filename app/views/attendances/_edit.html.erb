@@ -22,25 +22,37 @@
 
 <div id="ajax-edit">
   <br/>
-  <% form_remote_for @absentee do |f| %>
-  <div class="label-field-pair">
-      <label for="reason"> <%= t('reason') %></label>
-      <div class="text-input-bg"><%= f.text_field :reason %></div>
-    </div>
-    <% if @config.config_value == 'Daily' %>
-    <div class="label-checkbox-pair">
+  <% if @config.config_value == 'Daily' %>
+    <% form_remote_for @absentee do |f| %>
+      <div class="label-field-pair">
+        <label for="reason"> <%= t('reason') %></label>
+        <div class="text-input-bg"><%= f.text_field :reason %></div>
+      </div>
+      <div class="label-checkbox-pair">
         <label><%= f.check_box :forenoon %><%= t('forenoon') %></label>
-    </div>
-    <div class="label-checkbox-pair">
+      </div>
+      <div class="label-checkbox-pair">
         <label><%= f.check_box :afternoon %><%= t('afternoon') %></label>
-    </div>
+      </div>
+      <div class="extender"></div>
+      <%= f.submit "► #{t('update')}", :class => 'submit-button' %>
     <% end %>
-  <div class="extender"></div>
-    <%= f.submit "► #{t('update')}", :class => 'submit-button' %>
-  <% end %>
     <div id="delete-button"><%= link_to_remote("► #{t('delete_text')}",
-          :url => attendance_path(@absentee),
-          :method =>'delete',
-          :confirm => "#{t('delete_confirm_msg')}") %></div>
-
+        :url => attendance_path(@absentee),
+        :method =>'delete',
+        :confirm => "#{t('delete_confirm_msg')}") %></div>
+  <% else %>
+    <% form_remote_for @absentee,:url=>{:controller=>"attendances",:action=>'update'} do |f| %>
+      <div class="label-field-pair">
+        <label for="reason"> <%= t('reason') %></label>
+        <div class="text-input-bg"><%= f.text_field :reason %></div>
+      </div>
+      <div class="extender"></div>
+      <%= f.submit "► #{t('update')}", :class => 'submit-button' %>
+    <% end %>
+    <div id="delete-button"><%= link_to_remote("► #{t('delete_text')}",
+        :url => attendance_path(@absentee),
+        :method =>'delete',
+        :confirm => "#{t('delete_confirm_msg')}") %></div>
+  <% end %>
 </div>

@@ -1,0 +1,122 @@
+<div id="timetable">
+  <div id="box">
+    <table border="0" align="center" width="100%" id="table" cellspacing="0"  >
+      <tr>
+        <td><div class="blank"></div></td>
+        <td><div class="blank"></div></td>
+        <% @class_timing.each do |ct| %>
+          <td class="td"><div class="top"><%= ct.start_time.strftime("%I:%M%p")  unless ct.start_time.nil? %> - <%= ct.end_time.strftime("%I:%M%p")  unless ct.end_time.nil? %></div></td>
+        <% end %>
+        <% @weekday.each do |wk| %>
+        <tr>
+          <td class="td"><div class="name"><%= t(Date::DAYNAMES[wk.day_of_week].downcase).upcase %></div></td>
+          <td class="td-blank"></td>
+          <% @class_timing.each do |ct| %>
+            <% @tte = @timetable[wk.id][ct.id] %>
+            <td class="td">
+              <div id="drop_<%= "#{wk.id}_#{ct.id}" %>"  class="drop"onClick="update_selected_divs('<%= "#{wk.id}_#{ct.id}" %>');">
+                <div class="tt-subject" id="subject_name_<%= @tte.id %>">
+                  <% if @tte.is_a? TimetableEntry  %>
+                    <div class="subject">
+                      <% unless @tte.subject.nil? %>
+                        <% unless @tte.subject.elective_group_id.nil?   %>
+                          <%= shorten_string(@tte.subject.elective_group.name.to_s,10) %>
+                        <% else %>
+                          <%= @tte.subject.code  %>
+                        <% end %>
+                        <span>
+                          <% unless @tte.subject.elective_group_id.nil?   %>
+                            <% @subj_in_elective = Subject.find_all_by_elective_group_id(@tte.subject.elective_group_id,:conditions=>'is_deleted = false')   %>
+                            <% @subj_in_elective.each do |s| %>
+                              <%= s.name unless s.nil? %>
+                              <% @sub_emp = EmployeesSubject.find_by_subject_id(s.id) %>
+                              <div class="emp-name"><%= @sub_emp.employee.full_name unless @sub_emp.nil? %></div>
+                            <% end %>
+                          <% else %>
+                            <%= @tte.subject.name unless @tte.subject.nil? %>
+                            <div class="emp-name"><%= @tte.employee.full_name unless @tte.employee.nil? %></div>
+                          <% end %>
+                        </span>
+                      <% end %>
+                    </div>
+                    <div class="employee"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
+                        :url => {:action => "delete_employee2", :id => @tte.id},
+                        :complete => "clear_selected_divs();",
+                        :before => "Element.show('loader')",
+                        :success => "Element.hide('loader')",
+                        :update => "timetable" \
+                        unless @tte.subject.nil?  -%>
+                      <% unless @tte.subject.nil? %>
+                        <% unless @tte.subject.elective_group_id.nil?   %>
+                          <%= t('elective') %>
+                        <% else %>
+                          <%= @tte.employee.first_name unless @tte.employee.nil? %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  <% else %>
+                    <div class="subject"></div>
+                    <div class="employee"></div>
+                  <% end %>
+                </div>
+              </div>
+              <%= drop_receiving_element("drop_#{wk.id}_#{ct.id}",
+                :accept => "employees_subject",
+                :onDrop => "function(draggable_element, droppable_element) { $(droppable_element).highlight(); make_ajax_calls('#{wk.id}_#{ct.id}', draggable_element.id.split('_').last()); }") -%>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tr>
+    </table>
+  </div>
+  <h4><%= t('add_subjects') %>/<%= t('employee_text') %></h4>
+  <div id="subjects-select">
+    <div class="label-field-pair">
+      <div class="text-input-bg">
+        <%  @ele_subjects.each do |s|  %>
+          <%  s.name = s.elective_group.name %>
+        <% end %>
+        <% @subjects= @subjects + @ele_subjects  %>
+        <%= select :timetable_entries, :subject_id, @subjects.map { |s| [s.name, s.id] },
+          {:prompt => "#{t('select_subject')}"},
+          {:onChange => "#{remote_function(:url => {:action => "update_employees"},
+          :with => "'subject_id='+value",
+          :update=>"employee-list",
+          :before => "Element.show('loader')",
+          :success => "Element.hide('loader')")}"} %>
+      </div>
+    </div>
+    <div id="employee-list"></div>
+  </div>
+</div>
+
+<% unless @validation_problems.nil? %>
+  <div id="errors">
+    <% @validation_problems.each do |tte_id, errors| %>
+      <% co_ordinate=tte_id.split("_") %>
+      <%  weekday=co_ordinate[0].to_i %>
+      <% class_timing=co_ordinate[1].to_i %>
+      <% tte = TimetableEntry.find_by_weekday_id_and_class_timing_id_and_batch_id_and_timetable_id(weekday,class_timing,@batch.id,@timetable.id) %>
+      <%# tte_id=tte.id %>
+
+      <div id="error_div_<%= tte_id %>" class="error-explanation">
+        <b><%= t('warning') %></b> :
+        <%- errors["messages"].each do |err| -%>
+          <%= err -%>
+        <%- end -%>
+        - On <%= Date::DAYNAMES[Weekday.find(weekday).day_of_week].capitalize %> (<%= ClassTiming.find(class_timing).name -%>)
+        <%= link_to_remote "#{t('continue')}", :url=> {:action=> "tt_entry_update2"},
+          :with   => "'&sub_id=#{errors["info"]["sub_id"]}' + '&tte_id=#{errors["info"]["tte_id"]}' + '&emp_id=#{errors["info"]["emp_id"]}' + '&timetable_id=#{@tt.id}' + '&batch_id=#{@batch.id}'",
+          :before => "Element.show('loader')",
+          :success => "Element.hide('loader')",
+          :update=> "timetable" -%> |
+        <%= link_to_remote "#{t('cancel')}", :url=>{:action=>"tt_entry_noupdate2"},
+          :before => "Element.show('loader')",
+          :success => "Element.hide('loader')",
+          :with   => "'emp_id=#{errors["info"]["emp_id"]}' + '&sub_id=#{errors["info"]["sub_id"]}' + '&tte_id=#{errors["info"]["tte_id"]}'+ '&timetable_id=#{@tt.id}'",
+          :update=> "error_div_#{tte_id}" -%>
+      </div>
+    <%- end -%>
+  </div>
+<%- end -%>

@@ -1,0 +1,74 @@
+#department-list {
+    clear : both;
+    padding : 10px 0 40px 0px;
+    width:650px;
+    margin:0px auto;
+}
+
+#department-list .listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    min-height : 1.5em; 
+    width : 33em;
+    list-style-type : none;
+    padding : 0.5em 0 0 2em;
+    overflow: hidden;
+}
+
+#department-list .listodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    min-height : 1.5em; width : 33em;
+    list-style-type : none;
+    padding : 0.5em 0 0 2em;
+    overflow: hidden;
+}
+
+#department-list li.heading {
+    background : none;
+    font-weight : bold;
+    list-style-type : none;
+    color : #444;
+    height : 1.5em; width : 30em;
+    padding : 0.5em 0 0 5em;
+}
+
+#department-list li div {
+    float : left;
+}
+#department-list li div.department-name {
+    width : 350px;
+    font-size:13px;
+    font-weight:bold;
+}
+#department-list li div.department-edit,
+#department-list li div.department-delete {
+    font-size : 0.9em;
+    width : 50px;
+}
+#department-list li div a {
+    color : #000;
+    text-decoration:none;
+    font-size:14px;
+}
+#department-list li div a:hover {
+    color : #d00;
+    text-decoration:underline;
+}
+
+#department-list .listheading {
+    background:none repeat scroll 0 0 #BECFFB;
+    border-bottom:2px solid #BECFFB;
+    color:#444444;
+    height:1.5em;
+    list-style-type:none;
+    padding:0.5em 0 0 1em;
+    width:34em;
+}
+#department-list .listheading div.department-edit{
+    font-weight: bold;
+    font-size: 13px;
+    width: 65px;
+}

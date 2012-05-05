@@ -85,9 +85,9 @@
       <%end%>
     <%end%>
 
-    <% if permitted_to? :timetable, :employee %>
+    <% if permitted_to? :employee_timetable, :timetable %>
       <% unless @employee.subjects.empty? %>
-        <li><%= link_to        "#{t('timetable_text')}", :controller=>"employee", :action=>"timetable", :id=>@employee.id %></li>
+        <li><%= link_to        "#{t('timetable_text')}", :controller=>"timetable", :action=>"employee_timetable", :id=>@employee.id %></li>
       <% end %>
     <%end%>
 

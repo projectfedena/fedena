@@ -122,6 +122,16 @@ table#pdf-table{
     border-bottom: 1px solid #ADACAB;
 }
 
+.electives{
+    margin-top: 15px;
+}
+.subject{
+    float: left;
+    width: 150px;
+}
+.employee{
 
-
-
+}
+.group_names{
+    font-weight: bold;
+}

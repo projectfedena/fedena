@@ -1,0 +1,107 @@
+#inner-tab-menu ul li {
+    padding: 0 10px;
+    width: auto;
+}
+.category-list li div {
+    float: left;
+}
+.category-list .heading {
+    background: none repeat scroll 0 0 #BECFFB;
+    border-bottom: 2px solid #BECFFB;
+    color: #444;
+    height: 1.5em;
+    list-style-type: none;
+    padding: 9px 0 0 45px;
+    font-weight: bold;
+    font-size: 13px;
+}
+.category-list .listodd {
+    background: #DFEAFF;
+    border-bottom: 1px solid #BECFFB;
+    color: #444;
+    min-height: 1.5em;
+    overflow: auto;
+    list-style-type: none;
+    padding: 9px 0 0 45px;
+}
+.category-list .listeven {
+    background: #EEF2FD;
+    border-bottom: 1px solid #BECFFB;
+    color: #444;
+    min-height: 1.5em;
+    overflow: auto;
+    list-style-type: none;
+    padding: 9px 0 0 45px;
+}
+.category-list .listodd ,.category-list .listeven{
+    height: auto;
+    overflow: hidden;
+    padding: 5px 0px 5px 5px;
+}
+.category-list li div{
+    font-size: 12px;
+    height: 1px;
+    text-decoration: none;
+
+}
+
+.category-subject-name{
+    width: 200px;
+    padding-top: 6px;
+}
+
+.category-employee-names{
+    width: auto;
+    margin-left: 15px;
+    padding-top: 6px;
+}
+.category-change{
+    width: 200px;
+}
+.category-employee-options,.category-employee-options select{
+    width: 200px;
+}
+#teacher_status{
+    width: 250px;
+    position: fixed;
+    right: 0px;
+    top: 150px;
+    font-size: 12px;
+    border: 1px solid #00CC00;
+    padding: 0px;
+    font-weight: bold;
+    overflow: scroll;
+    height: 510px;
+}
+.category-list li span{
+    float: right;
+    margin-right: 10px;
+    text-align: right;
+    width: 100px;
+}
+.category-list li span.deficit{
+    font-weight: bold;
+    color: #ff0000;
+}
+.category-list li span.ok{
+    font-weight: bold;
+    color: green;
+}
+
+.submit_button {
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+    margin-left: 240px;
+    margin-top:5px;
+}
+.submit_button:hover{
+    background: #373b3f;
+}

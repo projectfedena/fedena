@@ -75,7 +75,11 @@ class Event < ActiveRecord::Base
     end
     return flag
   end
-    
+
+  def dates
+    (start_date.to_date..end_date.to_date).to_a
+  end
+
   class << self
     def is_a_holiday?(day)
       return true if Event.holidays.count(:all, :conditions => ["start_date <=? AND end_date >= ?", day, day] ) > 0

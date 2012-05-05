@@ -1,0 +1,55 @@
+<div id="content-header">
+  <%= image_tag("/images/examination/show_exam.png") %>
+  <h1>Ranking Levels</h1>
+  <h3>Manage Ranking Levels</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+
+  <div id="flash"></div>
+
+  <div id="errors">
+    <%= error_messages_for 'ranking_level' %>
+  </div>
+  <div id="rank_form">
+    <% remote_form_for :ranking_level,:url=>{:action=>"create_ranking_level"} do |c| %>
+
+      <div id="form-content">
+        <div class="label-field-pair">
+          <label for="name">Name</label>
+          <div class="text-input-bg"><%= c.text_field :name %></div>
+        </div>
+        <% if Configuration.find_by_config_key("GPA").config_value=="1" %>
+          <div class="label-field-pair">
+            <label for="gpa">GPA Level</label>
+            <div class="text-input-bg"><%= c.text_field :gpa %></div>
+          </div>
+        <% end %>
+        <% if Configuration.find_by_config_key("CWA").config_value=="1" %>
+          <div class="label-field-pair">
+            <label for="marks">Marks</label>
+            <div class="text-input-bg"><%= c.text_field :marks %></div>
+          </div>
+        <% end %>
+        <div class="label-field-pair">
+          <label for="subject_count">Number of Subjects</label>
+          <div class="text-input-bg"><%= c.text_field :subject_count %></div>
+        </div>
+
+        <div class="extender"></div>
+
+        <div id="submit-button">
+          <%=submit_tag("► #{t('create_text')}") %>
+        </div>
+
+
+      </div>
+    <% end %>
+  </div>
+  <div id="category-list">
+    <%= render :partial=>"ranking_levels" %>
+  </div>
+
+</div>

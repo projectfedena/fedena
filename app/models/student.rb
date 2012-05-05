@@ -35,10 +35,12 @@ class Student < ActiveRecord::Base
   has_many   :subjects ,:through => :students_subjects
   has_many   :student_additional_details
   has_many   :batch_students
+  has_many   :subject_leaves
   
 
   named_scope :active, :conditions => { :is_active => true }
-
+  named_scope :with_full_name_only, :select=>"id, first_name"
+  
   validates_presence_of :admission_no, :admission_date, :first_name, :batch_id, :date_of_birth
   validates_uniqueness_of :admission_no
   validates_presence_of :gender

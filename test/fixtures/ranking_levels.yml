@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  gpa: 9.99
+  marks: 9.99
+  subject_count: 1
+  priority: 1
+
+two:
+  name: MyString
+  gpa: 9.99
+  marks: 9.99
+  subject_count: 1
+  priority: 1

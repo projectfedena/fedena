@@ -30,7 +30,14 @@ authorization do
       :consolidated_exam_report,
       :consolidated_exam_report_pdf,
       :subject_wise_report,
+      :subject_rank,
+      :batch_rank,
+      :student_batch_rank,
+      :student_batch_rank_pdf,
+      :student_subject_rank,
+      :student_subject_rank_pdf,
       :list_subjects,
+      :list_batch_subjects,
       :generated_report2,
       :generated_report2_pdf,
       :grouped_exam_report,
@@ -110,6 +117,23 @@ authorization do
       :destroy
 
     ]
+    has_permission_on [:ranking_levels],
+      :to => [
+      :index,
+      :create_ranking_level,
+      :edit_ranking_level,
+      :update_ranking_level,
+      :delete_ranking_level,
+      :change_priority
+    ]
+    has_permission_on [:class_designations],
+      :to => [
+      :index,
+      :create_class_designation,
+      :edit_class_designation,
+      :update_class_designation,
+      :delete_class_designation
+      ]
   end
 
   role :enter_results  do
@@ -127,7 +151,14 @@ authorization do
       :consolidated_exam_report,
       :consolidated_exam_report_pdf,
       :subject_wise_report,
+      :subject_rank,
+      :batch_rank,
+      :student_batch_rank,
+      :student_batch_rank_pdf,
+      :student_subject_rank,
+      :student_subject_rank_pdf,
       :list_subjects,
+      :list_batch_subjects,
       :generated_report2,
       :generated_report2_pdf,
       :grouped_exam_report,
@@ -184,7 +215,14 @@ authorization do
       :consolidated_exam_report,
       :consolidated_exam_report_pdf,
       :subject_wise_report,
+      :subject_rank,
+      :batch_rank,
+      :student_batch_rank,
+      :student_batch_rank_pdf,
+      :student_subject_rank,
+      :student_subject_rank_pdf,
       :list_subjects,
+      :list_batch_subjects,
       :generated_report2,
       :generated_report2_pdf,
       :grouped_exam_report,
@@ -349,36 +387,79 @@ authorization do
     has_permission_on [:class_timings], :to => [:index, :edit, :destroy, :show, :new, :create, :update]
     has_permission_on [:weekday], :to => [:index, :week, :create]
     has_permission_on [:timetable],
-      :to => [
-      :index,
-      :edit,
-      :delete_subject,
-      :select_class,
-      :tt_entry_update,
-      :tt_entry_noupdate,
-      :update_multiple_timetable_entries,
-      :update_timetable_view,
-      :generate,
-      :extra_class,
-      :extra_class_edit,
-      :list_employee_by_subject,
-      :save_extra_class,
-      :timetable,
-      :weekdays,
+      :to => [:index,
+      :new_timetable,
+      :update_timetable,
       :view,
-      :select_class2,
-      :edit2,
-      :update_employees,
-      :update_multiple_timetable_entries2,
-      :delete_employee2,
-      :tt_entry_update2,
-      :tt_entry_noupdate2,
-      :timetable_pdf
+      :edit_master,
+      :teachers_timetable,
+      :update_teacher_tt,
+      :update_timetable_view,
+      :destroy,
+      :employee_timetable,
+      :update_employee_tt,
+      :student_view,
+      :update_student_tt,
+      :weekdays,
+      :timetable,
+      :timetable_pdf,
+      :work_allotment
     ]
+    has_permission_on [:timetable_entries],
+      :to => [
+      :new,
+      :select_batch,
+      :new_entry,
+      :update_employees,
+      :delete_employee2,
+      :update_multiple_timetable_entries2,
+      :tt_entry_update2,
+      :tt_entry_noupdate2
+    ]
+    #    has_permission_on [:timetable],
+    #      :to => [
+    #      :index,
+    #      :edit,
+    #      :delete_subject,
+    #      :select_class,
+    #      :tt_entry_update,
+    #      :tt_entry_noupdate,
+    #      :update_multiple_timetable_entries,
+    #      :update_timetable_view,
+    #      :generate,
+    #      :extra_class,
+    #      :extra_class_edit,
+    #      :list_employee_by_subject,
+    #      :save_extra_class,
+    #      :timetable,
+    #      :weekdays,
+    #      :view,
+    #      :select_class2,
+    #      :edit2,
+    #      :update_employees,
+    #      :update_multiple_timetable_entries2,
+    #      :delete_employee2,
+    #      :tt_entry_update2,
+    #      :tt_entry_noupdate2,
+    #      :timetable_pdf
+    #    ]
   end
 
   role :timetable_view do
-    has_permission_on [:timetable], :to => [:index,:select_class,:view, :update_timetable_view, :timetable_pdf, :timetable]
+    has_permission_on [:timetable], :to => [:index,
+      :update_timetable,
+      :view,
+      :teachers_timetable,
+      :update_teacher_tt,
+      :update_timetable_view,
+      :employee_timetable,
+      :update_employee_tt,
+      :student_view,
+      :update_student_tt,
+      :timetable,
+      :timetable_pdf
+    ]
+    #    has_permission_on [:timetable], :to => [:index,:select_class,:view, :update_timetable_view, :timetable_pdf, :timetable]
   end
 
   role :student_attendance_view do
@@ -389,7 +470,7 @@ authorization do
 
   role :student_attendance_register do
     has_permission_on [:attendance], :to => [:index,:register,:register_attendance]
-    has_permission_on [:attendances], :to => [:index, :list_subject, :show, :new, :create, :edit,:update, :destroy]
+    has_permission_on [:attendances], :to => [:index, :list_subject, :show, :new, :create, :edit,:update, :destroy,:subject_wise_register,:daily_register]
     has_permission_on [:student_attendance], :to => [:index]
     has_permission_on [:attendance_reports], :to => [:index, :subject, :mode, :show, :year, :report, :filter, :student_details,:report_pdf,:filter_report_pdf]
   end
@@ -878,7 +959,8 @@ authorization do
   end
 
   role :employee_timetable_access do
-    has_permission_on [:employee], :to => [:timetable,:timetable_pdf]
+    has_permission_on [:timetable], :to => [:employee_timetable,:update_employee_tt,:timetable_pdf]
+    #    has_permission_on [:employee], :to => [:timetable,:timetable_pdf]
   end
 
   # admin privileges
@@ -919,7 +1001,9 @@ authorization do
       :edit,
       :destroy,
       :list_subject,
-      :update
+      :update,
+      :subject_wise_register,
+      :daily_register
     ]
     has_permission_on [:sms],  :to => [:index, :settings, :update_general_sms_settings, :students, :list_students, :batches, :sms_all, :employees, :list_employees, :departments, :all]
     has_permission_on [:sms_settings],  :to => [:index, :update_general_sms_settings]
@@ -1035,6 +1119,23 @@ authorization do
       :destroy
 
     ]
+    has_permission_on [:ranking_levels],
+      :to => [
+      :index,
+      :create_ranking_level,
+      :edit_ranking_level,
+      :update_ranking_level,
+      :delete_ranking_level,
+      :change_priority
+    ]
+    has_permission_on [:class_designations],
+      :to => [
+      :index,
+      :create_class_designation,
+      :edit_class_designation,
+      :update_class_designation,
+      :delete_class_designation
+      ]
     has_permission_on [:exam],
       :to => [
       :index,
@@ -1048,7 +1149,14 @@ authorization do
       :consolidated_exam_report,
       :consolidated_exam_report_pdf,
       :subject_wise_report,
+      :subject_rank,
+      :batch_rank,
+      :student_batch_rank,
+      :student_batch_rank_pdf,
+      :student_subject_rank,
+      :student_subject_rank_pdf,
       :list_subjects,
+      :list_batch_subjects,
       :generated_report2,
       :generated_report2_pdf,
       :generated_report3,
@@ -1472,33 +1580,64 @@ authorization do
       :delete,
       :edit,
       :list_subjects ]
+    #    has_permission_on [:timetable],
+    #      :to => [
+    #      :index,
+    #      :edit,
+    #      :delete_subject,
+    #      :select_class,
+    #      :tt_entry_update,
+    #      :tt_entry_noupdate,
+    #      :update_multiple_timetable_entries,
+    #      :view,
+    #      :update_timetable_view,
+    #      :tt_entry_noupdate2,
+    #      :select_class2,
+    #      :edit2,
+    #      :update_employees,
+    #      :update_multiple_timetable_entries2,
+    #      :delete_employee2,
+    #      :tt_entry_update2,
+    #      :generate,
+    #      :weekdays,
+    #      :extra_class,
+    #      :extra_class_edit,
+    #      :list_employee_by_subject,
+    #      :save_extra_class,
+    #      :timetable,
+    #      :timetable_pdf,
+    #      :work_allotment
+    #
+    #    ]
     has_permission_on [:timetable],
-      :to => [
-      :index,
-      :edit,
-      :delete_subject,
-      :select_class,
-      :tt_entry_update,
-      :tt_entry_noupdate,
-      :update_multiple_timetable_entries,
+      :to => [:index,
+      :new_timetable,
+      :update_timetable,
       :view,
+      :edit_master,
+      :teachers_timetable,
+      :update_teacher_tt,
       :update_timetable_view,
-      :tt_entry_noupdate2,
-      :select_class2,
-      :edit2,
-      :update_employees,
-      :update_multiple_timetable_entries2,
-      :delete_employee2,
-      :tt_entry_update2,
-      :generate,
+      :destroy,
+      :employee_timetable,
+      :update_employee_tt,
+      :student_view,
+      :update_student_tt,
       :weekdays,
-      :extra_class,
-      :extra_class_edit,
-      :list_employee_by_subject,
-      :save_extra_class,
       :timetable,
-      :timetable_pdf
-
+      :timetable_pdf,
+      :work_allotment
+    ]
+    has_permission_on [:timetable_entries],
+      :to => [
+      :new,
+      :select_batch,
+      :new_entry,
+      :update_employees,
+      :delete_employee2,
+      :update_multiple_timetable_entries2,
+      :tt_entry_update2,
+      :tt_entry_noupdate2
     ]
     has_permission_on [:weekdays],
       :to => [
@@ -1667,7 +1806,7 @@ authorization do
       :add_comment,
       :delete_comment]
     has_permission_on [:subject], :to => [:index,:list_subjects]
-    has_permission_on [:timetable], :to => [:student_view,:update_timetable_view]
+    has_permission_on [:timetable], :to => [:student_view, :update_student_tt]
     has_permission_on [:attendance], :to => [:student_report]
     has_permission_on [:student_attendance], :to => [:index, :student, :month]
     has_permission_on [:finance], :to => [:student_fees_structure]
@@ -1738,8 +1877,6 @@ authorization do
       :mark_unread,
       :view_payslip,
       :view_attendance,
-      :timetable,
-      :timetable_pdf,
       :update_monthly_payslip,
       :create_reminder_1,
       :select_employee_department,
@@ -1751,6 +1888,7 @@ authorization do
       :show,
       :profile_pdf
     ]
+    has_permission_on [:timetable],:to => [:employee_timetable,:update_employee_tt]
     has_permission_on [:news],
       :to => [
       :index,
@@ -1797,7 +1935,7 @@ authorization do
   end
 
   role :subject_attendance do
-    has_permission_on [:attendances], :to => [:index, :list_subject, :show, :new, :create, :edit,:update, :destroy]
+    has_permission_on [:attendances], :to => [:index, :list_subject, :show, :new, :create, :edit,:update, :destroy,:subject_wise_register]
     has_permission_on [:attendance_reports], :to => [:index, :subject, :mode, :show, :year, :report, :filter, :student_details,:report_pdf,:filter_report_pdf]
     
   end
@@ -1816,7 +1954,14 @@ authorization do
       :consolidated_exam_report,
       :consolidated_exam_report_pdf,
       :subject_wise_report,
+      :subject_rank,
+      :batch_rank,
+      :student_batch_rank,
+      :student_batch_rank_pdf,
+      :student_subject_rank,
+      :student_subject_rank_pdf,
       :list_subjects,
+      :list_batch_subjects,
       :generated_report2,
       :generated_report2_pdf,
       :grouped_exam_report,

@@ -1,0 +1,72 @@
+#timetable,#teacher{
+    padding: 10px;
+    background-color: #C3D9FF;
+    border-radius: 8px;
+}
+#teacher{
+border-right: none;
+width: 150px;
+border-top-right-radius: 0px;
+border-bottom-right-radius: 0px;
+}
+#timetable{
+border-top-left-radius: 0px;
+border-bottom-left-radius: 0px;
+border-left: none;
+padding-left: 0px;
+}
+#timetable-container{
+    font-weight: bold;
+/*    height: 450px;*/
+/*    overflow-y: scroll;*/
+}
+.batch{
+    height: 66px;
+}
+#weekday-header{
+
+    background-color: #fff;
+    height: 30px;
+    color: #990A10;
+    font-size: 12px;
+
+} 
+#timetable td{
+    text-align: center;
+}
+#period-count{
+    background-color: #fff;
+    height: 66px;
+    color: #990A10;
+    font-size: 12px;
+    font-weight: bold;
+}
+.batch_name{
+    background-color: #fff;
+    height: 30px;
+    color: #990A10;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0px 20px;
+}
+.tte{
+    padding: 8px;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #fff;
+}
+#table-viewer{
+/*    height:480px;*/
+    margin-left: 0px;
+    overflow-x: scroll;
+    width: 810px;
+    float: left;
+}
+.box{
+    width: 95%;
+    margin: 0 auto;
+    overflow-x: scroll;
+}
+.employee_list{
+    float: left;
+}

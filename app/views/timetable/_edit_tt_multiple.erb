@@ -24,7 +24,7 @@
 <% end %>
 <%- @subjects = Subject.find_all_by_batch_id(c_id, :conditions=>["elective_group_id IS NULL AND is_deleted = false"]) -%>
 <%- @ele_subjects = Subject.find_all_by_batch_id(c_id, :conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"], :group => "elective_group_id") -%>
-<%- @class_timing = ClassTiming.find_all_by_batch_id(c_id, :conditions => "is_break = false", :order =>'start_time ASC') -%>
+<%- @class_timing = ClassTiming.find_all_by_batch_id(c_id, :conditions => "is_break = false",:is_deleted=>false, :order =>'start_time ASC') -%>
 <% if @class_timing.empty? %>
   <% @class_timing = ClassTiming.default %>
 <% end %>

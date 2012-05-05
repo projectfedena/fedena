@@ -48,27 +48,19 @@ class WeekdayController < ApplicationController
     batch = params[:weekday][:batch_id]
     if request.post?
       new_weekdays = params[:weekdays]||[]
-      batch = params[:weekday][:batch_id].empty??  nil:params[:weekday][:batch_id]
-      old = Weekday.find_all_by_batch_id(batch)
+      batch = params[:weekday][:batch_id].empty??  nil :params[:weekday][:batch_id]
+      old = Weekday.find(:all,:conditions=>{:batch_id=>batch,:is_deleted=>false})
+      batch_id = params[:weekday][:batch_id].empty??  0 :params[:weekday][:batch_id]
       old_weekdays = old.map{|w| w.weekday}
       flash[:notice]  = ""
       (new_weekdays-old_weekdays).each do |new|
-        Weekday.create(:batch_id =>batch, :weekday=>new.to_s)
+        Weekday.add_day(batch_id, new)
       end
       (old_weekdays-new_weekdays).each do |week|
         weekday = Weekday.find_by_weekday(week.to_s,:conditions=>{:batch_id=>batch})
-        batches = batch.nil?? (Batch.active.reject {|b| !Weekday.for_batch(b.id).empty?} ): Batch.find_all_by_id(batch)
-        batches.each do |b|
-          (Date.today.to_date..b.end_date.to_date).each do |d|
-            if d.wday.to_s == weekday.weekday.to_s
-              period =PeriodEntry.find_all_by_month_date_and_batch_id(d,b.id)
-              period.each do |p| p.destroy  end
-            end
-          end
-    end
-        weekday.destroy
+        weekday.deactivate
       end
-    flash[:notice] = "#{t('weekdays_modified')}"
+      flash[:notice] = "#{t('weekdays_modified')}"
     end
     redirect_to :action => "index"
   end

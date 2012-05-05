@@ -40,6 +40,12 @@
     <%= f.label :minimum_marks, t('min_mark') %>
     <div class="text-input-bg"> <%= f.text_field :minimum_marks %></div>
   </div>
+  <% if @batch.grading_type=="GPA" %>
+  <div class="label-field-pair">
+    <%= f.label :is_final_exam, "Is Final Exam?" %>
+    <div class="text-input-bg"> <%= f.check_box :is_final_exam %></div>
+  </div>
+  <% end %>
 
 </div>
 <h4> <%= t('enter_exam_related_details') %>:</h4>

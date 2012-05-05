@@ -27,6 +27,15 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
+    @grade_types=[]
+    gpa = Configuration.find_by_config_key("GPA").config_value
+    if gpa == "1"
+      @grade_types << "GPA"
+    end
+    cwa = Configuration.find_by_config_key("CWA").config_value
+    if cwa == "1"
+      @grade_types << "CWA"
+    end
   end
 
   def manage_course
@@ -52,6 +61,15 @@ class CoursesController < ApplicationController
       flash[:notice] = "#{t('flash1')}"
       redirect_to :action=>'manage_course'
     else
+      @grade_types=[]
+    gpa = Configuration.find_by_config_key("GPA").config_value
+    if gpa == "1"
+      @grade_types << "GPA"
+    end
+    cwa = Configuration.find_by_config_key("CWA").config_value
+    if cwa == "1"
+      @grade_types << "CWA"
+    end
       render 'new'
     end
   end

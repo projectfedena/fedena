@@ -21,9 +21,9 @@
 <div id="grading-levels-form">
   <h4><%= @batch.full_name unless @batch.nil? %></h4>
 
-    <% form_remote_for @grading_level do |f| %>
+  <% form_remote_for @grading_level do |f| %>
 
-      <div id="form-errors"></div>
+    <div id="form-errors"></div>
 
     <% batch_id = (@batch.nil? ? nil : @batch.id) %>
     <%= f.hidden_field :batch_id, :value => batch_id %>
@@ -38,7 +38,19 @@
       <div class="input-field"><%= f.text_field :min_score %></div>
     </div>
 
-  <%= f.submit "► #{t('save')}", :class => 'submit_button' %>
+    <div class="label-field-pair">
+      <%= f.label :description, "Description" %>
+      <div class="input-field"><%= f.text_field :description %></div>
+    </div>
+
+    <% if @batch and @batch.grading_type=="GPA" %>
+    <div class="label-field-pair">
+      <%= f.label :credit_points, "Credit Points" %>
+      <div class="input-field"><%= f.text_field :credit_points %></div>
+    </div>
+    <% end %>
+
+    <%= f.submit "► #{t('save')}", :class => 'submit_button' %>
 
 
 

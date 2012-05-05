@@ -39,6 +39,18 @@
         <div class="link-descr"><%= t('set_grading_levels') %></div>
       </div>
     <% end %>
+    <%  if permitted_to? :index,:ranking_levels %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Ranking Levels" ,:controller=>'ranking_levels',:action=>'index' %> </div>
+        <div class="link-descr">Manage Ranking Levels</div>
+      </div>
+    <% end %>
+    <%  if permitted_to? :index,:class_designations %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Class Designations" ,:controller=>'class_designations',:action=>'index' %> </div>
+        <div class="link-descr">Manage Class Designations</div>
+      </div>
+    <% end %>
     <% @employee_subjects=[] %>
     <% @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id} if @current_user.employee?  %>
     <%  if (permitted_to? :create_exam,:exam and @allow_for_exams == true and !@current_user.privileges.map{|p| p.name}.include?("ViewResults")) or @current_user.admin? or !@employee_subjects.empty? or (@current_user.privileges.map{|p| p.name}.include?("ExaminationControl")) or @current_user.privileges.map{|p| p.name}.include?("EnterResults") %>
@@ -68,6 +80,14 @@
      <div class="link-box">
       <div class="link-heading"><%= link_to 'Archived Student Reports' , :controller=> "exam_reports",:action=>'archived_exam_wise_report' %></div>
       <div class="link-descr">Generates reports for Archived Students Exam wise</div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'Student Ranking per Subject' , :controller=> "exam",:action=>'subject_rank' %></div>
+      <div class="link-descr">Generates reports for Subject wise Student Rank</div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'Student Ranking per Batch' , :controller=> "exam",:action=>'batch_rank' %></div>
+      <div class="link-descr">Generates reports for Batch wise Overall Student Rank</div>
     </div>
 
     <!--online exam-->

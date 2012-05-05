@@ -1,0 +1,33 @@
+<% remote_form_for :ranking_level,:url=>{:action=>"update_ranking_level", :id=>@ranking_level.id} do |c| %>
+
+  <div id="form-content">
+    <div class="label-field-pair">
+      <label for="name">Name</label>
+      <div class="text-input-bg"><%= c.text_field :name %></div>
+    </div>
+    <% if Configuration.find_by_config_key("GPA").config_value=="1" %>
+      <div class="label-field-pair">
+        <label for="gpa">GPA Level</label>
+        <div class="text-input-bg"><%= c.text_field :gpa %></div>
+      </div>
+    <% end %>
+    <% if Configuration.find_by_config_key("CWA").config_value=="1" %>
+      <div class="label-field-pair">
+        <label for="marks">Marks</label>
+        <div class="text-input-bg"><%= c.text_field :marks %></div>
+      </div>
+    <% end %>
+    <div class="label-field-pair">
+      <label for="subject_count">Number of Subjects</label>
+      <div class="text-input-bg"><%= c.text_field :subject_count %></div>
+    </div>
+
+    <div class="extender"></div>
+
+    <div id="submit-button">
+      <%=submit_tag("► Save") %>
+    </div>
+
+
+  </div>
+<% end %>

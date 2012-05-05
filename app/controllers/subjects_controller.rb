@@ -54,6 +54,7 @@ class SubjectsController < ApplicationController
 
   def edit
     @subject = Subject.find params[:id]
+    @batch = @subject.batch
     @elective_group = ElectiveGroup.find params[:id2] unless params[:id2].nil?
     respond_to do |format|
       format.html { }

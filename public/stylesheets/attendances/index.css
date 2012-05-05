@@ -83,7 +83,9 @@ table#attendance{
     height: 40px;
 }
 .td-mark{
-    width:20px;
+    min-width:20px;
+    /*    width: auto;*/
+    width: 900px;
     text-align:center;
 
 
@@ -112,7 +114,8 @@ table#attendance{
     font-size:11px;
     background: #f1f6ff;
     font-weight:bold;
-    width:20px;
+    min-width:20px;
+    width:auto;
     text-align: center;
 
 }
@@ -218,4 +221,8 @@ table.table{
     font-weight:bold;
     margin:0 0 0 210px;
     padding:6px 8px;
+}
+
+a {
+    cursor: pointer;
 }

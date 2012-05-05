@@ -26,13 +26,19 @@ class Subject < ActiveRecord::Base
   has_many :students_subjects
   has_many :students, :through => :students_subjects
   validates_presence_of :name, :max_weekly_classes, :code,:batch_id
+  validates_presence_of :credit_hours, :if=>:check_grade_type
   validates_numericality_of :max_weekly_classes
   validates_uniqueness_of :code, :case_sensitive => false, :scope=>[:batch_id,:is_deleted] ,:if=> 'is_deleted == false'
   named_scope :for_batch, lambda { |b| { :conditions => { :batch_id => b.to_i, :is_deleted => false } } }
   named_scope :without_exams, :conditions => { :no_exams => false, :is_deleted => false }
 
+  def check_grade_type
+    batch = self.batch
+    batch.grading_type=="GPA" or batch.grading_type=="CWA"
+  end
+
   def inactivate
-    update_attributes(:is_deleted => true)
+    update_attributes(:is_deleted=>true)
     self.employees_subjects.destroy_all
   end
 

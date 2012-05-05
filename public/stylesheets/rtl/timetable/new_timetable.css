@@ -1,0 +1,40 @@
+.box{
+    width:750px;
+    margin:0px auto;
+}
+
+.submit_button {
+    margin-top:20px;
+    margin-right:210px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+.label-container1
+{
+    color: #444444;
+    display: block;
+    float: right;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    padding-top: 10px;
+    width: 200px;
+}
+#timetable_end_date_2i, #timetable_start_date_2i, #timetable_end_date_3i, #timetable_start_date_3i {
+    width: 55px;
+}
+#timetable_end_date_1i, #timetable_start_date_1i{
+    width: 65px;
+
+}

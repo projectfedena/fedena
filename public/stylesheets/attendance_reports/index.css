@@ -138,3 +138,7 @@
 .submit_button2:hover{
     background: #373b3f;
 }
+#report{
+    text-align: center;
+    font-weight: bold;
+}

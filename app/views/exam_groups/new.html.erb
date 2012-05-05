@@ -63,10 +63,17 @@
             <% end  %>
             <div class="text-input-bg"><%= form.text_field :name, :value=>@ename%></div>
           </div>
+      <% if @batch.grading_type=="GPA" or @batch.grading_type=="CWA" %>
+      <div class="label-field-pair">
+            <label for="exam_type"><%= t('exam_type') %></label>
+            <div class="text-input-bg"><%= select :exam_option,:exam_type,[[t('marks_and_grades'),"MarksAndGrades"]] %></div>
+          </div>
+      <% else %>
           <div class="label-field-pair">
             <label for="exam_type"><%= t('exam_type') %></label>
             <div class="text-input-bg"><%= select :exam_option,:exam_type,[[t('marks'),"Marks"],[t('grades'), "Grades"],[t('marks_and_grades'),"MarksAndGrades"]] %></div>
           </div>
+      <% end %>
           <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
           <%  #  form.submit("Save") %>
         <%end%>

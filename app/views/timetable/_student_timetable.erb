@@ -1,0 +1,69 @@
+<% unless  @all_timetable_entries.empty? %>
+<table border="0" align="center" width="100%" id="table" cellspacing="0"  >
+  <tr>
+    <td class="loader">
+      <%= image_tag("loader.gif",
+        :align => "absmiddle",
+        :border => 0,
+        :id => "loader",
+        :style =>"display: none;" ) %>
+      &nbsp;</td><!--timetable_td_tl -->
+    <td class="td-blank"></td>
+    <% @all_classtimings.each do |pt| %>
+      <td class="td"><div class="top"><%= pt.start_time.strftime("%I:%M%p")  unless pt.start_time.nil? %> - <%= pt.end_time.strftime("%I:%M%p")  unless pt.end_time.nil? %></div></td>
+    <% end %>
+  </tr> <!-- timetable_tr -->
+  <tr class="blank">
+    <td></td>
+    <td></td>
+    <% @all_classtimings.each do |pt| %>
+      <td></td>
+    <% end %>
+  </tr>
+  <%- @all_weekdays.each do |wk| -%>
+    <tr>
+      <td class="td">
+        <div class="name">
+          <%= t(Date::DAYNAMES[wk.day_of_week].downcase).upcase %>
+        </div>
+      </td>
+      <td class="td-blank">
+      </td>
+      <%- @all_classtimings.each do |ct| -%>
+        <td class="td">
+          <div class="drop">
+            <div class="tt-subject">
+              <div class="subject">
+                <%= formatted_timetable_cell (@timetable_entries[wk.id][ct.id]) unless @timetable_entries[wk.id][ct.id].blank? -%>
+                <% unless @timetable_entries[wk.id][ct.id].blank?   %>
+                 
+                <span>
+                  <% @tte= @timetable_entries[wk.id][ct.id] %>
+                        <% unless @tte.subject.elective_group_id.nil?   %>
+                          <% @subj_in_elective = Subject.find_all_by_elective_group_id(@tte.subject.elective_group_id,:conditions=>'is_deleted = false')   %>
+                          <% @subj_in_elective.each do |s| %>
+                            <%= s.name unless s.nil? %>
+                            <% @sub_emp = EmployeesSubject.find_by_subject_id(s.id) %>
+                            <div class="emp-name"><%= @sub_emp.employee.full_name unless @sub_emp.nil? %></div>
+                          <% end %>
+                        <% else %>
+                          <%= @tte.subject.name unless @tte.subject.nil? %>
+                          <div class="emp-name"><%= @tte.employee.full_name unless @tte.employee.nil? %></div>
+                        <% end %>
+                      </span>
+
+                <% end %>
+              </div>
+              <div class="employee">
+                <%= employee_name (@timetable_entries[wk.id][ct.id]) unless @timetable_entries[wk.id][ct.id].blank? -%>
+              </div>
+            </div>
+          </div>
+        </td>
+      <% end %>
+    </tr><!--timetable_tr -->
+  <% end %>
+</table>
+<% else %>
+  <%= t('no_entries_found') %>
+<% end %>

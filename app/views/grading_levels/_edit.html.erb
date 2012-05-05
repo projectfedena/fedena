@@ -23,17 +23,29 @@
 
   <% form_remote_for @grading_level do |f| %>
 
-<div id="form-errors"></div>
-
-  <div class="label-field-pair">
-    <div class="label-container"><%= f.label :"#{t('name')}" %></div>
-    <div class="input-container"> <%= f.text_field :name %></div>
-  </div>
+    <div id="form-errors"></div>
 
     <div class="label-field-pair">
-    <div class="label-container"><%= f.label :min_score, t('min_score') %></div>
-    <div class="input-container"> <%= f.text_field :min_score %></div>
-   </div>
+      <div class="label-container"><%= f.label :"#{t('name')}" %></div>
+      <div class="input-container"> <%= f.text_field :name %></div>
+    </div>
+
+    <div class="label-field-pair">
+      <div class="label-container"><%= f.label :min_score, t('min_score') %></div>
+      <div class="input-container"> <%= f.text_field :min_score %></div>
+    </div>
+
+    <div class="label-field-pair">
+      <%= f.label :description, "Description" %>
+      <div class="input-field"><%= f.text_field :description %></div>
+    </div>
+
+    <% if @batch and @batch.grading_type=="GPA" %>
+      <div class="label-field-pair">
+        <%= f.label :credit_points, "Credit Points" %>
+        <div class="input-field"><%= f.text_field :credit_points %></div>
+      </div>
+    <% end %>
 
     <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
 

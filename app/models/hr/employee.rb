@@ -52,6 +52,7 @@ class Employee < ActiveRecord::Base
     :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
     :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension"
 
+
   def create_user_and_validate
     self.email ||="noreply" + self.employee_number.to_s + "@fedena.com"
     if self.new_record?
@@ -99,7 +100,9 @@ class Employee < ActiveRecord::Base
   def max_hours_per_week
     self.employee_grade.max_hours_week unless self.employee_grade.blank?
   end
-
+  alias_method(:max_hours_day, :max_hours_per_day)
+  alias_method(:max_hours_week, :max_hours_per_week)
+  
   def next_employee
     next_st = self.employee_department.employees.first(:conditions => "id>#{self.id}",:order => "id ASC")
     next_st ||= employee_department.employees.first(:order => "id ASC")

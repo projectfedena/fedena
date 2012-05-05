@@ -242,6 +242,38 @@ class ExamController < ApplicationController
     #        end
   end
 
+  def subject_rank
+    @batches = Batch.active
+    @subjects = []
+  end
+
+  def list_batch_subjects
+    @subjects = Subject.find_all_by_batch_id(params[:batch_id],:conditions=>"is_deleted=false")
+    render(:update) do |page|
+      page.replace_html 'subject-select', :partial=>'rank_subject_select'
+    end
+  end
+
+  def student_subject_rank
+    unless params[:rank_report][:subject_id] == ""
+      @subject = Subject.find(params[:rank_report][:subject_id])
+      @batch = @subject.batch
+      @students = @batch.students
+      @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
+    else
+      flash[:notice] = "#{t('flash4')}"
+      redirect_to :action=>'subject_rank'
+    end
+  end
+
+  def student_subject_rank_pdf
+    @subject = Subject.find(params[:subject_id])
+    @batch = @subject.batch
+    @students = @batch.students
+    @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
+    render :pdf => 'student_subject_rank_pdf'
+  end
+
   def subject_wise_report
     @batches = Batch.active
     @subjects = []
@@ -277,6 +309,24 @@ class ExamController < ApplicationController
     #        respond_to do |format|
     #            format.pdf { render :layout => false }
     #        end
+  end
+
+  def student_batch_rank
+    if params[:batch_rank].nil? or params[:batch_rank][:batch_id].empty?
+      flash[:notice] = "#{t('select_a_batch_to_continue')}"
+      redirect_to :action=>'batch_rank' and return
+    else
+      @batch = Batch.find(params[:batch_rank][:batch_id])
+      @students = Student.find_all_by_batch_id(@batch.id)
+      @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
+    end
+  end
+
+  def student_batch_rank_pdf
+    @batch = Batch.find(params[:batch_id])
+    @students = Student.find_all_by_batch_id(@batch.id)
+    @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
+    render :pdf => "student_batch_rank_pdf"
   end
 
   def generated_report3

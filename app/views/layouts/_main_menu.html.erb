@@ -48,25 +48,30 @@
   <% if permitted_to? :index, :timetable %>
     <li class="a"><%= link_to "#{t('timetable_text')} <span class='down-arrow'>▼</span>", :controller => "timetable", :action => "index" %>
       <ul class="level-1">
-        <%if permitted_to? :edit,:timetable%>
-          <% if @modules.include?('HR') %>
-            <li><%= link_to "#{t('create_or_edit_timetable')}", :controller => "timetable", :action => "select_class2" %></li>
-          <% else %>
-            <li><%= link_to "#{t('create_or_edit_timetable')}", :controller => "timetable", :action => "select_class" %></li>
-          <% end %>
+        <%  if permitted_to? :new_timetable,:timetable%>
+          <li><%= link_to "#{t('create_timetable')}", :controller => "timetable", :action => "new_timetable" %></li>
+        <%  end%>
+        <%if permitted_to? :edit_master,:timetable%>
+          <li><%= link_to "#{t('edit_timetable')}", :controller => "timetable", :action => "edit_master" %></li>
+        <%  end%>
+        <%  if permitted_to? :index,:class_timings%>
           <li><%= link_to "#{t('set_class_timings')}", :controller => "class_timings", :action => "index"   %></li>
+        <%  end%>
+        <%  if permitted_to? :index,:weekdays%>
+          <li><%= link_to "#{t('set_weekdays')}", :controller => "weekday", :action => "index"   %></li>
         <%  end%>
         <%  if permitted_to? :view,:timetable%>
           <li><%= link_to "#{t('view_timetable')}", :controller => "timetable", :action => "view" %></li>
         <%  end%>
-        <%  if permitted_to? :edit,:timetable%>
-          <% if @attendance_type == 'SubjectWise' %>
-            <li><%= link_to "#{t('swap_class')}", :controller => "timetable", :action => "extra_class" %></li>
-          <%  end %>
-        <%  end %>
+        <%  if permitted_to? :view,:timetable%>
+          <li><%= link_to "#{t('teacher_timetable')}", :controller => "timetable", :action => "teachers_timetable" %></li>
+        <%  end%>
         <li><%= link_to "#{t('institutional')} #{t('timetable_text')}", :controller => "timetable", :action => "timetable" %></li>
         <%  if permitted_to? :edit,:timetable%>
           <li><%= link_to "#{t('create_text')} #{t('weekdays_text')}", :controller => "weekday", :action => "index" %></li>
+        <% end %>
+        <%if permitted_to? :work_allotment,:timetable%>
+          <li><%= link_to "#{t('work_allotment')}", :controller => "timetable", :action => "work_allotment" %></li>
         <% end %>
       </ul>
     </li>

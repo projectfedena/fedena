@@ -46,12 +46,22 @@
             <td class="col-pdf"><%= @weekday[d.weekday.to_i][0,3].upcase %></td>
 
             <% @class_timing.each do |pt1|  %>
-              <% tte = TimetableEntry.find_by_weekday_id_and_class_timing_id_and_batch_id(d.id, pt1.id, @batch.id) %>
+              <% tte = TimetableEntry.find_by_weekday_id_and_class_timing_id_and_batch_id_and_timetable_id(d.id, pt1.id, @batch.id,@master.id) %>
               <% unless tte.nil? %>
-                <% period = tte.subject.nil?? " ":tte.subject.code %>
+                <% unless tte.subject.elective_group_id.nil?   %>
+                  <% period = shorten_string(tte.subject.elective_group.name.to_s,10) %>
+                <% else %>
+                  <% period = tte.subject.nil?? " ":tte.subject.code %>
+                <% end %>
                 <% if Configuration.available_modules.include?('HR') %>
                   <% teacher = "\n("+tte.employee.employee_number+")"    unless tte.employee.nil? %>
-                  <td class="col-pdf"><%= period %><br/><%= teacher.to_s %></td>
+                  <td class="col-pdf"><%= period.upcase %><br/>
+                    <% unless tte.subject.elective_group_id.present?   %>
+                      <%= teacher.to_s %>
+                    <% else %>
+                      (<%= t('elective').upcase %>)
+                    <% end %>
+                  </td>
                 <% else %>
                   <td class="col-pdf"><%= period %></td>
                 <% end %>
@@ -60,10 +70,18 @@
               <% end %>
             <% end %>
           </tr>
-          <% end %>
+        <% end %>
       </table>
     </div>
 
+    <div class="electives">
+      <% @batch.elective_groups.each do |el| %>
+        <div class="group_names"><%= el.name %></div>
+        <% el.subjects.each do |sub| %>
+          <div class="subject"><%= sub.name %></div>
+          <div class="employee">: <%= sub.employees.collect{|e| e.full_name}.join(',') %></div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-
 </div>

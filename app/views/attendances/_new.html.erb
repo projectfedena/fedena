@@ -21,25 +21,42 @@
 
 <div id="ajax-edit">
   <br></br>
-  <% form_remote_for @absentee do |f| %>
-   <div id="form-errors"></div>
-    <%= f.hidden_field :student_id, :value => @student.id %>
-    <%= f.hidden_field :period_table_entry_id, :value => @period_entry_id %>
-    <div class="label-field-pair">
-      <label for="reason"><%= t('reason') %></label>
-      <div class="text-input-bg"><%= f.text_field :reason %></div>
-    </div>
-    <% if @config.config_value == 'Daily' %>
-      <div class="label-checkbox-pair">
-        <label><%= f.check_box :forenoon, :checked => true %><%= t('forenoon') %></label>
+  <% if @config.config_value == 'Daily' %>
+    <% form_remote_for @absentee do |f| %>
+      <div id="form-errors"></div>
+      <%= f.hidden_field :student_id, :value => @student.id %>
+      <%= f.hidden_field :month_date, :value => @month_date %>
+      <%= f.hidden_field :batch_id, :value => @student.batch_id %>
+      <div class="label-field-pair">
+        <label for="reason"><%= t('reason') %></label>
+        <div class="text-input-bg"><%= f.text_field :reason %></div>
+      </div>
+      <% if @config.config_value == 'Daily' %>
+        <div class="label-checkbox-pair">
+          <label><%= f.check_box :forenoon, :checked => true %><%= t('forenoon') %></label>
 
-      </div>
-      <div class="label-checkbox-pair">
-        <label><%= f.check_box :afternoon, :checked => true %><%= t('afternoon') %></label>
-      </div>
+        </div>
+        <div class="label-checkbox-pair">
+          <label><%= f.check_box :afternoon, :checked => true %><%= t('afternoon') %></label>
+        </div>
+      <% end %>
+      <div class="extender"></div>
+      <%= f.submit "► #{t('add')}", :class => 'submit-button', :confirm => "#{t('delete_confirm_msg')}" %>
     <% end %>
-  <div class="extender"></div>
-    <%= f.submit "► #{t('add')}", :class => 'submit-button', :confirm => "#{t('delete_confirm_msg')}" %>
+  <% else %>
+    <% form_remote_for @subject_leave,:url=>{:controller=>"attendances",:action=>'create'} do |f| %>
+      <div id="form-errors"></div>
+      <%= f.hidden_field :student_id, :value => @student.id %>
+      <%= f.hidden_field :month_date, :value => params[:date] %>
+      <%= f.hidden_field :subject_id, :value => params[:subject_id] %>
+      <%= hidden_field_tag :timetable_entry, params[:timetable_entry] %>
+      <div class="label-field-pair">
+        <label for="reason"><%= t('reason') %></label>
+        <div class="text-input-bg"><%= f.text_field :reason %></div>
+      </div>
+      <div class="extender"></div>
+      <%= f.submit "► #{t('add')}", :class => 'submit-button', :confirm => "#{t('delete_confirm_msg')}" %>
+    <% end %>
   <% end %>
-  
+
 </div>

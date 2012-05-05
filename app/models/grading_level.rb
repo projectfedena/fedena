@@ -20,6 +20,7 @@ class GradingLevel < ActiveRecord::Base
   belongs_to :batch
 
   validates_presence_of :name, :min_score
+  validates_presence_of :credit_points, :if=>:batch_has_gpa
   validates_uniqueness_of :name, :scope => [:batch_id, :is_deleted],:case_sensitive => false 
 
   default_scope :order => 'min_score desc'
@@ -28,6 +29,10 @@ class GradingLevel < ActiveRecord::Base
 
   def inactivate
     update_attribute :is_deleted, true
+  end
+
+  def batch_has_gpa
+    self.batch_id and self.batch.grading_type=="GPA"
   end
 
   def to_s

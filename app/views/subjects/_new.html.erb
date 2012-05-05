@@ -28,29 +28,35 @@
     <%= f.hidden_field :batch_id, :value => batch_id %>
     <%= f.hidden_field :elective_group_id, :value => elective_group_id %>
 
-      <div id="form-errors"></div>
-
-  <div class="label-field-pair">
-    <div class="label-container"><label><%= t('name') %></label></div>
-    <div class="input-container"> <%= f.text_field :name %></div>
-  </div>
+    <div id="form-errors"></div>
 
     <div class="label-field-pair">
-    <div class="label-container">  <label><%= t('code') %></label></div>
-    <div class="input-container"><%= f.text_field :code %></div>
-  </div>
-
-    <div class="label-field-pair">
-    <div class="label-container"><label><%= t('max_weekly_class') %></label></div>
-    <div class="input-container"> <%= f.text_field :max_weekly_classes %></div>
+      <div class="label-container"><label><%= t('name') %></label></div>
+      <div class="input-container"> <%= f.text_field :name %></div>
     </div>
 
-  <div class="label-field-pair">
-    <div class="label-container"><label><%= t('no_exam') %></label></div>
-    <div class="input-container"><%= f.check_box :no_exams %></div>
-  </div>
+    <div class="label-field-pair">
+      <div class="label-container">  <label><%= t('code') %></label></div>
+      <div class="input-container"><%= f.text_field :code %></div>
+    </div>
 
-   <%= f.submit  "", :value => "► #{t('save')}", :class => "submit_button" %>
+    <div class="label-field-pair">
+      <div class="label-container"><label><%= t('max_weekly_class') %></label></div>
+      <div class="input-container"> <%= f.text_field :max_weekly_classes %></div>
+    </div>
+    <% if @batch and (@batch.grading_type=="CWA" or @batch.grading_type=="GPA") %>
+      <div class="label-field-pair">
+        <div class="label-container"><label>Credit Hours</label></div>
+        <div class="input-container"> <%= f.text_field :credit_hours %></div>
+      </div>
+    <% end %>
+
+    <div class="label-field-pair">
+      <div class="label-container"><label><%= t('no_exam') %></label></div>
+      <div class="input-container"><%= f.check_box :no_exams %></div>
+    </div>
+
+    <%= f.submit  "", :value => "► #{t('save')}", :class => "submit_button" %>
 
   <% end %>
 </div>

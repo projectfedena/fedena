@@ -1,0 +1,132 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+<script type="text/javascript">
+
+  var selected_divs = new Array();
+
+  function update_selected_divs(id) {
+    var exists_in_list = 0;
+    for (x in selected_divs)
+      if(id == selected_divs[x]){
+        exists_in_list = 1;
+        selected_divs.splice(x, 1)
+        $('drop_' + id).className = "drop";
+      }
+    if(!exists_in_list){
+      $('drop_' + id).className = "selected_div";
+      selected_divs.push(id);
+    }
+  }
+
+  function clear_selected_divs() {
+    selected_divs = [];
+  }
+
+  function make_ajax_calls(tte_id, emp_sub_id){
+    if (selected_divs.length == 0) {
+<%= remote_function(:update => "timetable",
+  :url => {:action => "update_multiple_timetable_entries2"},
+  :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_id + '&timetable_id=' + #{@timetable.id}", :success => "clear_selected_divs()") %>
+    }
+    else if (selected_divs.length == 1) {
+<%= remote_function(:update => "timetable",
+  :url => {:action => "update_multiple_timetable_entries2"},
+  :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_id + '&timetable_id=' + #{@timetable.id}", :success => "clear_selected_divs()") %>
+      if (selected_divs[0] == tte_id) selected_divs.pop();
+    }
+    else {
+      var exists_in_list = 0;
+      for (x in selected_divs)
+        if(tte_id == selected_divs[x])
+          exists_in_list = 1;
+      if (exists_in_list) {
+        tte_list = selected_divs.join(',');
+<%= remote_function(:update => "timetable",
+  :url => {:action => "update_multiple_timetable_entries2"},
+  :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_list + '&timetable_id=' + #{@timetable.id}", :success => "clear_selected_divs()") %>
+        selected_divs = [];
+      }
+      else
+<%= remote_function(:update => "timetable",
+  :url => {:action => "update_multiple_timetable_entries2"},
+  :with => "'emp_sub_id=' + emp_sub_id + '&tte_ids=' + tte_id + '&timetable_id=' + #{@timetable.id}", :success => "clear_selected_divs()") %>
+      }
+    }
+</script>
+<div id="content-header">
+<%#= stylesheet_link_tag("timetable/new_timetable.css") %>
+  <%= image_tag("/images/show_timetable.png") %>
+  <h1><%= t('timetable_text') %></h1>
+  <h3><%= t('create_timetable') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+  <div class="box">
+    <% unless flash[:notice].nil? %>
+      <p class="flash-msg"> <%= flash[:notice] %> </p>
+    <% end %>
+
+    <div class="label-field-pair">
+      <%= hidden_field_tag :timetable_id,@timetable.id  %>
+      <label for="timetable_entry_course_id"><%= t('select_a_batch') %>
+        <%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader", :style =>"display: none;" ) %>
+      </label>
+      <div class="text-input-bg">
+        <%= select :batch, :id,
+          @batches.map {|b| [b.full_name, b.id] },
+          {:prompt => t('select_a_batch')},
+          {:onchange => "#{remote_function(
+          :url => { :action => 'new_entry' },
+          :with => "'batch_id='+value + '&timetable_id=' +#{@timetable.id}",
+          :before => "Element.show('loader')",
+          :success => "Element.hide('loader')"  )}"} %>
+      </div>
+    </div>
+    <div id="render_area">
+
+      <div>
+        <% if params[:edit].present? %>
+          <% form_remote_for @timetable,:url=>{:controller=>:timetable,:action=>:update} do |f| %>
+
+            <%= f.hidden_field :tt_id,:value=>@timetable.id %>
+            <div class="label-field-pair">
+              <label for="start_date"><%= t('start_date') %></label>
+              <div class="text-input-bg">
+                <%= f.date_select :start_date,:use_month_numbers=>true,:start_year=>1.years.ago.year,:end_year=>1.years.since.year,:order=>[:day,:month,:year],:include_blank => false%>
+              </div>
+            </div>
+
+            <div class="label-field-pair">
+              <label for="end_date"><%= t('end_date') %></label>
+              <div class="text-input-bg">
+                <%= f.date_select :end_date,:use_month_numbers=>true,:start_year=>1.years.ago.year,:end_year=>1.years.since.year,:order=>[:day,:month,:year],:include_blank => false %>
+              </div>
+            </div>
+            <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+</div>

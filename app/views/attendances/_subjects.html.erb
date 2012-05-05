@@ -24,10 +24,14 @@
     <%= select :subject, :id,
       @subjects.map {|b| [b.name, b.id] },
       {:prompt => "#{t('select_a_subject')}"},
+      {:onchange => "getjson(value);"} %>
+    <%#= select :subject, :id,
+      @subjects.map {|b| [b.name, b.id] },
+      {:prompt => "#{t('select_a_subject')}"},
       {:onchange => "#{remote_function(
       :url => { :action => 'show' },
       :with => "'subject_id='+value",
       :before => "Element.show('loader')",
-      :success => "Element.hide('loader')"  )}"} %>
+      :success => "Element.hide('loader')", :complete=>"getjson(value);"  )}"} %>
   </div>
 </div>

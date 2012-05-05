@@ -1,0 +1,55 @@
+<% unless  @all_timetable_entries.empty? %>
+  <div id="timetable-container">
+    <div class="employee_list">
+      <table id="teacher" cellspacing="1">
+        <tr id="weekday-header"><th></th></tr>
+        <tr id="period-count"><td></td></tr>
+        <% @all_teachers.each do |teacher| -%>
+          <% unless teacher.nil? %>
+            <tr class="batch">
+              <td class="batch_name"><%= "#{teacher.full_name} [ #{teacher.employee_number} ]"  %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
+    <div id="table-viewer">
+      <table id="timetable" cellspacing="1">
+        <tr id="weekday-header">
+  <%#*<th></th>%>
+          <% @all_weekdays.each do |weekday| -%>
+            <th colspan="<%= @all_classtimings.count %>"><%= t("#{Date::DAYNAMES[weekday.day_of_week].downcase}").upcase -%></th>
+          <% end -%>
+        </tr>
+        <tr id="period-count">
+  <%#*<td></td>%>
+          <% @all_weekdays.each do |weekday| -%>
+            <% @all_classtimings.each do |ct| -%>
+              <td class="tte">
+                <%= "#{ct.start_time.strftime("%I:%M%p")} - #{ct.end_time.strftime("%I:%M%p")}" -%>
+              </td>
+            <% end -%>
+          <% end -%>
+        </tr>
+        <% @all_teachers.each do |teacher| -%>
+          <% unless teacher.nil? %>
+            <tr class="batch">
+              <% @all_weekdays.each do |weekday| -%>
+                <% @all_classtimings.each do |ct| -%>
+                  <td class="tte">
+                    <%= formatted_timetable_cell_2(@timetable_entries[teacher.id][weekday.id][ct.id],teacher) unless @timetable_entries[teacher.id][weekday.id][ct.id].blank? -%>
+                    <div>
+                      <%= timetable_batch (@timetable_entries[teacher.id][weekday.id][ct.id]) unless @timetable_entries[teacher.id][weekday.id][ct.id].blank? -%>
+                    </div>
+                  </td>
+                <% end -%>
+              <% end -%>
+            </tr>
+          <% end -%>
+        <% end -%>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <div id="timetable-container"><%= t('no_entries_found') %></div>
+<% end %>

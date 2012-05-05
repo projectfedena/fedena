@@ -47,7 +47,7 @@
         <td class="td-blank"></td>
         <%- @class_timing.each do |pt1| -%>
           <td class="td">
-            <%- @tte = TimetableEntry.find_by_weekday_id_and_class_timing_id_and_batch_id(d.id, pt1.id, @batch.id) -%>
+            <%- @tte = TimetableEntry.find_by_weekday_id_and_class_timing_id_and_batch_id_and_timetable_id(d.id, pt1.id, @batch.id,@tt.id) -%>
             <% @config = Configuration.available_modules %>
             <div class="drop">
               <div class="tt-subject">
@@ -64,8 +64,7 @@
                     <% unless @tte.subject.nil? %>
                       <span>
                         <% unless @tte.subject.elective_group_id.nil?   %>
-                          <% @subj_in_elective = Subject.find_all_by_elective_group_id(@tte.subject.elective_group_id,:conditions=>'is_deleted = false')   %>
-                          <% @subj_in_elective.each do |s| %>
+                          <% @tte.subject.elective_group.subjects.each do |s| %>
                             <%= s.name unless s.nil? %>
                             <% @sub_emp = EmployeesSubject.find_by_subject_id(s.id) %>
                             <div class="emp-name"><%= @sub_emp.employee.full_name unless @sub_emp.nil? %></div>
@@ -84,7 +83,7 @@
                     <% unless @tte.nil? %>
                       <% unless @tte.subject.nil? %>
                         <% unless @tte.subject.elective_group_id.nil?   %>
-                         <%= t('elective') %>
+                          <%= t('elective') %>
                         <% else %>
                           <%= @tte.employee.first_name unless @tte.employee.nil? %>
                         <% end %>
@@ -103,4 +102,4 @@
 </div>
 
 <%= link_to " ► #{t('pdf_report')}",
-  {:controller => "timetable", :action => "timetable_pdf", :course_id => @batch.id},:target => '_blank', :class=> 'user_button' %>
+  {:controller => "timetable", :action => "timetable_pdf", :course_id => @batch.id, :timetable_id=>@tt.id},:target => '_blank', :class=> 'user_button' %>

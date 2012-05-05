@@ -34,6 +34,9 @@ class Batch < ActiveRecord::Base
   has_many :events , :through =>:batch_events
   has_many :batch_fee_discounts , :foreign_key => 'receiver_id'
   has_many :student_category_fee_discounts , :foreign_key => 'receiver_id'
+  has_many :attendances
+  has_many :subject_leaves
+  has_many :timetable_entries
 
   has_and_belongs_to_many :graduated_students, :class_name => 'Student', :join_table => 'batch_students'
 
@@ -84,7 +87,7 @@ class Batch < ActiveRecord::Base
     Subject.find_all_by_batch_id_and_elective_group_id(self.id,elect_group,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"])
   end
   def has_own_weekday
-    Weekday.find_all_by_batch_id(self.id).present?
+    Weekday.find_all_by_batch_id(self.id,:conditions=>{:is_deleted=>false}).present?
   end
 
   def allow_exam_acess(user)
@@ -94,4 +97,92 @@ class Batch < ActiveRecord::Base
     end
     return flag
   end
+
+  def is_a_holiday_for_batch?(day)
+    return true if Event.holidays.count(:all, :conditions => ["start_date <=? AND end_date >= ?", day, day] ) > 0
+    false
+  end
+
+  def holiday_event_dates
+    @common_holidays ||= Event.holidays.is_common
+    @batch_holidays=self.events(:all,:conditions=>{:is_holiday=>true})
+    all_holiday_events = @batch_holidays+@common_holidays
+    event_holidays = []
+    all_holiday_events.each do |event|
+      event_holidays+=event.dates
+    end
+    return event_holidays #array of holiday event dates
+  end
+
+
+  def working_days(date)
+    start=[]
+    start<<self.start_date.to_date
+    start<<date.beginning_of_month.to_date
+    stop=[]
+    stop<<self.end_date.to_date
+    stop<<date.end_of_month.to_date
+    all_days=start.max..stop.min
+    weekdays=Weekday.weekday_by_day(self.id).keys
+    holidays=holiday_event_dates
+    non_holidays=all_days.to_a-holidays
+    range=non_holidays.select{|d| weekdays.include? d.wday}
+  end
+
+  def academic_days
+    all_days=start_date.to_date..Date.today
+    weekdays=Weekday.weekday_by_day(self.id).keys
+    holidays=holiday_event_dates
+    non_holidays=all_days.to_a-holidays
+    range=non_holidays.select{|d| weekdays.include? d.wday}
+  end
+
+  def total_subject_hours(subject_id)
+    days=academic_days
+    count=0
+    unless subject_id == 0
+      subject=Subject.find subject_id
+      days.each do |d|
+        count=count+ Timetable.subject_tte(subject_id, d).count
+      end
+    else
+      days.each do |d|
+        count=count+ Timetable.tte_for_the_day(self,d).count
+      end
+    end
+    count
+  end
+
+  def subject_hours(starting_date,ending_date,subject_id)
+    unless subject_id == 0
+      subject=Subject.find(subject_id)
+      unless subject.elective_group.nil?
+        subject=subject.elective_group.subjects.first
+      end
+      #          Timetable.all(:conditions=>["('#{starting_date}' BETWEEN start_date AND end_date) OR ('#{ending_date}' BETWEEN start_date AND end_date) OR (start_date BETWEEN '#{starting_date}' AND #{ending_date}) OR (end_date BETWEEN '#{starting_date}' AND '#{ending_date}')"])
+      entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["((? BETWEEN start_date AND end_date) OR (? BETWEEN start_date AND end_date) OR (start_date BETWEEN ? AND ?) OR (end_date BETWEEN ? AND ?)) AND timetable_entries.subject_id = ? AND timetable_entries.batch_id = ?",starting_date,ending_date,starting_date,ending_date,starting_date,ending_date,subject.id,id]).group_by(&:timetable_id)
+    else
+      entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["((? BETWEEN start_date AND end_date) OR (? BETWEEN start_date AND end_date) OR (start_date BETWEEN ? AND ?) OR (end_date BETWEEN ? AND ?)) AND timetable_entries.batch_id = ?",starting_date,ending_date,starting_date,ending_date,starting_date,ending_date,id]).group_by(&:timetable_id)
+    end
+    timetable_ids=entries.keys
+    hsh2=Hash.new
+    holidays=holiday_event_dates
+    unless timetable_ids.nil?
+      timetables=Timetable.find(timetable_ids)
+      hsh = Hash.new
+      entries.each do |k,val|
+        hsh[k]=val.group_by(&:day_of_week)
+      end
+      timetables.each do |tt|
+        ([starting_date,start_date.to_date,tt.start_date].max..[tt.end_date,end_date.to_date,ending_date,Date.today].min).each do |d|
+          hsh2[d]=hsh[tt.id][d.wday] 
+        end
+      end
+    end
+    holidays.each do |h|
+      hsh2.delete(h)
+    end
+    hsh2
+  end
+
 end

@@ -1,0 +1,90 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+<div id="page-yield">
+  <div class="hor_line"></div>
+
+  <div class="extender"> </div>
+  <div class="report">
+    <div id ="main_info">
+      <h3>Subject Rankings - <%= @subject.name %></h3>
+      <h4>  <%= @batch.name %> - <%= @batch.course.full_name %> </h4>
+    </div>
+    <% ranks = [] %>
+    <% @exam_groups.each do |exam_group| %>
+      <% rank_exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
+      <% exam_scores = ExamScore.find_all_by_exam_id(rank_exam.id) %>
+      <% ordered_marks = exam_scores.map{|m| m.marks}.compact.uniq.sort.reverse %>
+      <% ranks << [exam_group.id,ordered_marks] %>
+    <% end %>
+    <div id="pdf-info">
+      <% c = 'even' %>
+      <table id="pdf-table" width="100%" cellspacing="0">
+        <tr class="table-header">
+          <td>Roll No.</td>
+          <td><%= t('name') %></td>
+          <% @exam_groups.each do |exam_group| %>
+            <td><%= exam_group.name %></td>
+          <% end %>
+        </tr>
+        <% i = 0 %>
+        <% @students.each do |student| %>
+          <% if i== 22 %>
+            <% i= 0 %>
+            <tr class="page-break"><td colspan="3"></td></tr>
+
+            <tr class="table-header">
+              <td>Roll No.</td>
+              <td><%= t('name') %></td>
+              <% @exam_groups.each do |exam_group| %>
+                <td><%= exam_group.name %></td>
+              <% end %>
+            </tr>
+
+          <% end %>
+          <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+            <td class="col-pdf"><%= student.class_roll_no.present? ? student.class_roll_no : "-" %></td>
+            <td class="col-pdf"><%= student.full_name %></td>
+            <% @exam_groups.each do |exam_group| %>
+              <% mark_list = [] %>
+              <% ranks.each do|rank| %>
+                <% if rank[0]==exam_group.id %>
+                  <% mark_list = rank[1] %>
+                <% end %>
+              <% end %>
+              <td class="col-pdf">
+                <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
+                <% exam_score = ExamScore.find_by_student_id(student.id,:conditions=>{:exam_id=>exam.id}) unless exam.nil? %>
+                <% unless exam.nil? %>
+                  <%= exam_score.nil? ? '-' : (mark_list.index(exam_score.marks) + 1) %>
+                <% else %>
+                  <%= "#{t('n_a')}" %>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+          <% i+=1 %>
+        <% end %>
+      </table>
+    </div>
+  </div>
+
+
+</div>

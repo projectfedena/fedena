@@ -1,9 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.resources :grading_levels
+  map.resources :ranking_levels, :collection => {:create_ranking_level=>[:get,:post], :edit_ranking_level=>[:get,:post], :update_ranking_level=>[:get,:post], :delete_ranking_level=>[:get,:post], :change_priority=>[:get,:post]}
+  map.resources :class_designations
+  map.resources :exam_reports, :collection => {:course_reports_index=>[:get,:post], :batch_reports_index=>[:get,:post]}
   map.resources :class_timings
   map.resources :subjects
-  map.resources :attendances
+  map.resources :attendances, :collection=>{:daily_register=>:get,:subject_wise_register=>:get}
   map.resources :employee_attendances
   map.resources :attendance_reports
 
@@ -21,10 +24,13 @@ ActionController::Routing::Routes.draw do |map|
     exam_group.resources :exams, :member => { :save_scores => :post }
   end
 
- map.resources :additional_exam_groups do |additional_exam_group|
+  map.resources :additional_exam_groups do |additional_exam_group|
     additional_exam_group.resources :additional_exams , :member => { :save_additional_scores => :post }
   end
 
+  map.resources :timetables do |timetable|
+    timetable.resources :timetable_entries
+  end
   map.root :controller => 'user', :action => 'login'
 
   map.connect ':controller/:action/:id'

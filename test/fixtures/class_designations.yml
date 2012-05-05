@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  cgpa: 9.99
+
+two:
+  name: MyString
+  cgpa: 9.99

@@ -53,6 +53,7 @@ class GradingLevelsController < ApplicationController
 
   def edit
     @grading_level = GradingLevel.find params[:id]
+    @batch = Batch.find(@grading_level.batch_id) unless @grading_level.batch_id.nil?
     respond_to do |format|
       format.html { }
       format.js { render :action => 'edit' }

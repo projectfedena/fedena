@@ -33,15 +33,15 @@ end
 end
 
 [
-  {"name" => "1"          ,"is_break" => false },
-  {"name" => "2"          ,"is_break" => false},
-  {"name" => "Interval"   ,"is_break" => true},
-  {"name" => "3"          ,"is_break" => false},
-  {"name" => "4"          ,"is_break" => false},
-  {"name" => "Lunch"      ,"is_break" => true},
-  {"name" => "5"          ,"is_break" => false},
-  {"name" => "6"          ,"is_break" => false},
-  {"name" => "7"          ,"is_break" => false}
+  {"name" => "1"          ,"is_break" => false   ,"is_deleted"=> false },
+  {"name" => "2"          ,"is_break" => false   ,"is_deleted"=> false },
+  {"name" => "Interval"   ,"is_break" => true    ,"is_deleted"=> false },
+  {"name" => "3"          ,"is_break" => false   ,"is_deleted"=> false },
+  {"name" => "4"          ,"is_break" => false   ,"is_deleted"=> false },
+  {"name" => "Lunch"      ,"is_break" => true    ,"is_deleted"=> false },
+  {"name" => "5"          ,"is_break" => false   ,"is_deleted"=> false },
+  {"name" => "6"          ,"is_break" => false   ,"is_deleted"=> false },
+  {"name" => "7"          ,"is_break" => false   ,"is_deleted"=> false }
 ].each do |param|
   ClassTiming.find_or_create_by_name(param)
 end
@@ -69,11 +69,11 @@ User.connection.execute "UPDATE users SET admin=1,employee=0 where id = 1"
 end
 
 [
-  {"batch_id" => nil          ,"weekday" => "1" },
-  {"batch_id" => nil          ,"weekday" => "2"},
-  {"batch_id" => nil          ,"weekday" => "3"},
-  {"batch_id" => nil          ,"weekday" => "4"},
-  {"batch_id" => nil          ,"weekday" => "5"}
+  {"batch_id" => nil          ,"weekday" => "1"     ,"day_of_week" => "1"   ,"is_deleted"=> false },
+  {"batch_id" => nil          ,"weekday" => "2"     ,"day_of_week" => "2"   ,"is_deleted"=> false },
+  {"batch_id" => nil          ,"weekday" => "3"     ,"day_of_week" => "3"   ,"is_deleted"=> false },
+  {"batch_id" => nil          ,"weekday" => "4"     ,"day_of_week" => "4"   ,"is_deleted"=> false },
+  {"batch_id" => nil          ,"weekday" => "5"     ,"day_of_week" => "5"   ,"is_deleted"=> false }
 ].each do |param|
   Weekday.find_or_create_by_batch_id_and_weekday(param)
 end

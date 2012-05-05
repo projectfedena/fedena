@@ -45,15 +45,19 @@
     <tr class="blank"></tr>
     <% @report.each do |r| %>
       <tr class="tr-<%= cycle('odd', 'even') %>">
-        <% @details = PeriodEntry.find(r.period_table_entry_id) %>
-        <td class="col-2"><%= @details.month_date.to_date %></td>
+  <%# @details = PeriodEntry.find(r.period_table_entry_id) %>
+        <td class="col-2"><%= r.month_date.to_date %></td>
         <td class="col-3">
-          <% if r.forenoon and r.afternoon %>
-            <%= "#{t('full_day')}" %>
-          <% elsif r.afternoon %>
-            <%= "#{t('afternoon')}" %>
-          <% elsif r.forenoon %>
-            <%= "#{t('forenoon')}" %>
+          <% if @config.config_value == 'Daily' %>
+            <% if r.forenoon and r.afternoon %>
+              <%= "#{t('full_day')}" %>
+            <% elsif r.afternoon %>
+              <%= "#{t('afternoon')}" %>
+            <% elsif r.forenoon %>
+              <%= "#{t('forenoon')}" %>
+            <% else %>
+              <%= "#{t('absent')}" %>
+            <% end %>
           <% else %>
             <%= "#{t('absent')}" %>
           <% end %>

@@ -103,6 +103,31 @@
           <%= select :configuration, :network_state, [["#{t('online')}","Online"],["#{t('offline')}","Offline"]],:selected =>@config[:network_state] %>
         </div>
       </div>
+      <div class="grades">
+        <div class="label-field-pair">
+          <label for="configuration_grading_systems">Include Grading Systems</label>
+        </div>
+        <div class="fee_category_scroll">
+          <div class="sel-list">
+            <%= t('select') %>: <%= link_to_function t('all'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
+            <%= link_to_function t('none'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
+          </div>
+          <div class="each_batch">
+            <% if @config[:gpa] == '1' %>
+              <%= check_box :configuration, :gpa, :checked => true,:class=>'batches_box' %> GPA
+            <% else %>
+              <%= check_box :configuration, :gpa, :checked => false,:class=>'batches_box' %> GPA
+            <% end %>
+          </div>
+          <div class="each_batch">
+            <% if @config[:cwa] == '1' %>
+              <%= check_box :configuration, :cwa, :checked => true,:class=>'batches_box' %> CWA
+            <% else %>
+              <%= check_box :configuration, :cwa, :checked => false,:class=>'batches_box' %> CWA
+            <% end %>
+          </div>
+        </div>
+      </div>
 
       <% FedenaPlugin::REGISTERED_HOOKS[:general_settings_form].each do |mod| %>
         <%= render :partial=>mod.camelize.constantize.send("general_settings_form") %>
