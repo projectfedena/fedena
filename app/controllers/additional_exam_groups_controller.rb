@@ -34,6 +34,7 @@ class AdditionalExamGroupsController < ApplicationController
   end
 
   def index
+    @sms_setting = SmsSetting.new
     @additional_exam_groups = @batch.additional_exam_groups
   end
 

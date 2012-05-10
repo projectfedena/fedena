@@ -84,7 +84,7 @@
                     :success => "Element.hide('loader')")  %>
                 <% else  %>
                   <%  unless  exam_group.result_published  %>
-                    <%= t('schedule_published') %><% if @config.include?('SMS') %>
+                    <%= t('schedule_published') %><% if @sms_setting.application_sms_active and @sms_setting.exam_result_schedule_sms_active %>
                       <%= link_to_remote "#{t('resend')}",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"schedule"},
                         :before => "Element.show('loader')",
                         :success => "Element.hide('loader')"  %> <%= t('sms_notification') %>.<br />
@@ -93,7 +93,7 @@
                       :before => "Element.show('loader')",
                       :success => "Element.hide('loader')")  %>
                   <% else %>
-                    <%= t('result_published') %>. <% if @config.include?('SMS') %>
+                    <%= t('result_published') %>. <% if @sms_setting.application_sms_active and @sms_setting.exam_result_schedule_sms_active %>
                       <%= link_to_remote "#{t('resend_sms_notification')}",:url=>{:controller=>'exam',:action=>'publish',:id=>exam_group.id,:status=>"result"},
                         :before => "Element.show('loader')",
                         :success => "Element.hide('loader')"  %>

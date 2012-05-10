@@ -83,39 +83,33 @@ class ExamController < ApplicationController
       ExamGroup.update(@exam_group.id,:is_published=>true) if params[:status] == "schedule"
       ExamGroup.update(@exam_group.id,:result_published=>true) if params[:status] == "result"
       sms_setting = SmsSetting.new()
-      @conf = Configuration.available_modules
-      if @conf.include?('SMS')
-        if sms_setting.application_sms_active and sms_setting.exam_result_schedule_sms_active
-          students = @batch.students
-          students.each do |s|
-            guardian = s.immediate_contact
-            recipients = []
-            if s.is_sms_enabled
-              if sms_setting.student_sms_active
-                recipients.push s.phone2 unless s.phone2.nil?
-              end
-              if sms_setting.parent_sms_active
-                unless guardian.nil?
-                  recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
-                end
-              end
-              @message = "#{@exam_group.name} #{t('exam_timetable_published')}" if params[:status] == "schedule"
-              @message = "#{@exam_group.name} #{t('exam_result_published')}" if params[:status] == "result"
-              unless recipients.empty?
-                sms = SmsManager.new(@message,recipients)
-                sms.send_sms
+      if sms_setting.application_sms_active and sms_setting.exam_result_schedule_sms_active
+        students = @batch.students
+        students.each do |s|
+          guardian = s.immediate_contact
+          recipients = []
+          if s.is_sms_enabled
+            if sms_setting.student_sms_active
+              recipients.push s.phone2 unless s.phone2.nil?
+            end
+            if sms_setting.parent_sms_active
+              unless guardian.nil?
+                recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
               end
             end
+            @message = "#{@exam_group.name} #{t('exam_timetable_published')}" if params[:status] == "schedule"
+            @message = "#{@exam_group.name} #{t('exam_result_published')}" if params[:status] == "result"
+            unless recipients.empty?
+              sms = SmsManager.new(@message,recipients)
+              sms.send_sms
+            end
           end
-          @sms_setting_notice = "#{t('exam_schedule_published')}" if params[:status] == "schedule"
-          @sms_setting_notice = "#{t('result_has_been_published')}" if params[:status] == "result"
-        else
-          @sms_setting_notice = "#{t('exam_schedule_published_no_sms')}" if params[:status] == "schedule"
-          @sms_setting_notice = "#{t('exam_result_published_no_sms')}" if params[:status] == "result"
         end
-      else
         @sms_setting_notice = "#{t('exam_schedule_published')}" if params[:status] == "schedule"
         @sms_setting_notice = "#{t('result_has_been_published')}" if params[:status] == "result"
+      else
+        @sms_setting_notice = "#{t('exam_schedule_published_no_sms')}" if params[:status] == "schedule"
+        @sms_setting_notice = "#{t('exam_result_published_no_sms')}" if params[:status] == "result"
       end
       if params[:status] == "result"
         students = @batch.students

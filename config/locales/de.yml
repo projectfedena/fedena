@@ -1191,6 +1191,8 @@ de: # locale
   employees: "Angestellte"
   settings: "Einstellungen"
   sms_sent: "SMS erfolgrich an ausgewählte Studenten und Ihre Vormünder gesendet"
+  sms_sending_failed_with_response: "SMS-Versand mit folgender Antwort fehlgeschlagen"
+  sms_configuration_not_found: "SMS-Konfigurationsdatei nicht gefunden."
   sms_sent_selected_course: "'SMS erfolgreich an Schüler(Vormünder) des ausgewählten Kurses gesendet"
   sms_sent_to_employee: "SMS erfolgreich an ausgewählte Angestellte gesendet"
   sent_to_selected_department: "SMS erfolgreich an die Angestellten der ausgewählten Abteilung gesendet"

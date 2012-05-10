@@ -125,10 +125,8 @@
       <% FedenaPlugin::REGISTERED_HOOKS[:student_profile].each do |mod| %>
         <%= render :partial=>mod.camelize.constantize.send("student_profile_hook"),:locals=>{:student=>@student} %>
       <% end %>
-      <% if @sms_module.include?('SMS') %>
-        <% if @sms_setting.application_sms_active %>
-          <tr class="odd left"><td><%= t('sms_alerts') %></td><td class="right"><%= @student.is_sms_enabled?? "Enabled":"Disabled" %></td></tr>
-        <% end  %>
+      <% if @sms_setting.application_sms_active %>
+        <tr class="odd left"><td><%= t('sms_alerts') %></td><td class="right"><%= @student.is_sms_enabled?? "Enabled":"Disabled" %></td></tr>
       <% end  %>
       <tr class="even left"><td><%= t('contact_message') %></td><td class="right">
           <%= link_to @immediate_contact.full_name, :controller => "student", :action => "guardians", :id => @student.id \

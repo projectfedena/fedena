@@ -70,13 +70,10 @@
     <% end %>
 
     <% if permitted_to? :index, :sms %>
-      <% @config = Configuration.available_modules %>
-      <% if @config.include?('SMS') %>
-        <div class="link-box">
-          <div class="link-heading"><%= link_to "#{t('sms_module')}", :controller=>"sms", :action => "index" %></div>
-          <div class="link-descr"><%= t('enable_or_disable_sms_settings') %></div>
-        </div>
-      <% end %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "#{t('sms_module')}", :controller=>"sms", :action => "index" %></div>
+        <div class="link-descr"><%= t('enable_or_disable_sms_settings') %></div>
+      </div>
     <% end %>
   </div>
 

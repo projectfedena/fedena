@@ -3,3 +3,4 @@ sms_settings:
  password: password
  sendername: sender
  host_url: http://yoursmsprovider.com/api
+ success_code: "success"

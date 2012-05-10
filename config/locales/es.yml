@@ -1188,6 +1188,8 @@ es: # locale
   employees: "empleados"
   settings: "Configuración"
   sms_sent: "SMS enviado con éxito a los estudiantes seleccionados y sus tutores"
+  sms_sending_failed_with_response: "El envío de SMS no con la respuesta "
+  sms_configuration_not_found: "Archivo de configuración de SMS que no se encuentra."
   sms_sent_selected_course: "&#39;SMS enviados con éxito a los estudiantes (tutores) de los cursos seleccionados"
   sms_sent_to_employee: "SMS enviados con éxito a los empleados seleccionados"
   sent_to_selected_department: "SMS enviados con éxito a los empleados del departamento seleccionado"

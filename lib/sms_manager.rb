@@ -16,10 +16,13 @@ class SmsManager
       @sms_url = @config['sms_settings']['host_url']
       @username = @config['sms_settings']['username']
       @password = @config['sms_settings']['password']
+      @success_code = @config['sms_settings']['success_code']
     end
   end
 
   def send_sms
+    return "#{t('sent_to_selected_department')}" if @config.blank?
+
     request = "#{@sms_url}?username=#{@username}&password=#{@password}&sendername=#{@sendername}&message=#{@message}&mobileno="
 
     cur_request = request
@@ -36,11 +39,20 @@ class SmsManager
     end
     cur_request
     #response_string = response.split
-    if response.body =~ /Your message is successfully/
+    
+    unless response.body.index(@success_code).nil?
+      #    if response.body =~ /Your message is successfully/
       sms_count = Configuration.find_by_config_key("TotalSmsCount")
       new_count = sms_count.config_value.to_i+@recipients.size
       Configuration.update(sms_count.id,:config_value=>new_count.to_s)
     end
+
+    if response.body.nil?
+      return 'sorry'
+    else
+      return response.body.index(@success_code).nil? ? response.body : '0000'
+    end
+
   end
 
 end

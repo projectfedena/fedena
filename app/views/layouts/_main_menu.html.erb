@@ -35,9 +35,7 @@
           <li><%= link_to "#{t('add_admission_additional_detail')}", :controller=>"student", :action => "add_additional_details" %></li>
         <% end %>
         <% if permitted_to? :index, :sms %>
-          <% if @modules.include?('SMS') %>
-            <li><%= link_to "#{t('sms_module')}", :controller=>"sms", :action => "index" %></li>
-          <% end %>
+          <li><%= link_to "#{t('sms_module')}", :controller=>"sms", :action => "index" %></li>
         <% end %>
       </ul>
     </li>

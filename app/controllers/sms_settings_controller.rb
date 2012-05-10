@@ -20,22 +20,17 @@ class SmsSettingsController < ApplicationController
   filter_access_to :all
   
   def index
-    @config = Configuration.available_modules
-    unless @config.include?('SMS')
-      redirect_to :controller=>"user" , :action=>"dashboard"
-    else
-      @application_sms_enabled = SmsSetting.find_by_settings_key("ApplicationEnabled")
-      @student_admission_sms_enabled = SmsSetting.find_by_settings_key("StudentAdmissionEnabled")
-      @exam_schedule_sms_enabled = SmsSetting.find_by_settings_key("ExamScheduleEnabled")
-      @result_publish_sms_enabled = SmsSetting.find_by_settings_key("ResultPublishEnabled")
-      @student_attendance_sms_enabled = SmsSetting.find_by_settings_key("AttendanceEnabled")
-      @news_events_sms_enabled = SmsSetting.find_by_settings_key("NewsEventsEnabled")
-      @parents_sms_enabled = SmsSetting.find_by_settings_key("ParentSmsEnabled")
-      @students_sms_enabled = SmsSetting.find_by_settings_key("StudentSmsEnabled")
-      if request.post?
-        SmsSetting.update(@application_sms_enabled.id,:is_enabled=>params[:sms_settings][:application_enabled])
-        redirect_to :action=>"index"
-      end
+    @application_sms_enabled = SmsSetting.find_by_settings_key("ApplicationEnabled")
+    @student_admission_sms_enabled = SmsSetting.find_by_settings_key("StudentAdmissionEnabled")
+    @exam_schedule_sms_enabled = SmsSetting.find_by_settings_key("ExamScheduleEnabled")
+    @result_publish_sms_enabled = SmsSetting.find_by_settings_key("ResultPublishEnabled")
+    @student_attendance_sms_enabled = SmsSetting.find_by_settings_key("AttendanceEnabled")
+    @news_events_sms_enabled = SmsSetting.find_by_settings_key("NewsEventsEnabled")
+    @parents_sms_enabled = SmsSetting.find_by_settings_key("ParentSmsEnabled")
+    @students_sms_enabled = SmsSetting.find_by_settings_key("StudentSmsEnabled")
+    if request.post?
+      SmsSetting.update(@application_sms_enabled.id,:is_enabled=>params[:sms_settings][:application_enabled])
+      redirect_to :action=>"index"
     end
   end
 

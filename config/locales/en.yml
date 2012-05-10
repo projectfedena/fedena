@@ -1196,6 +1196,8 @@ en: # locale
   employees: "employees"
   settings: "Settings"
   sms_sent: "SMS sent successfully to selected students and their guardians"
+  sms_sending_failed_with_response: "SMS sending failed with response "
+  sms_configuration_not_found: "SMS configuration file not found."
   sms_sent_selected_course: "'SMS sent successfully to students(guardians) of selected course"
   sms_sent_to_employee: "SMS sent successfully to selected employees"
   sent_to_selected_department: "SMS sent successfully to employees of selected department"

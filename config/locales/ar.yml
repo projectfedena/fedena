@@ -1192,6 +1192,8 @@ ar:
   employees: "الموظفين"
   settings: "إعدادات"
   sms_sent: "أرسل SMS بنجاح للطلاب وأولياء أمورهم مختارة"
+  sms_sending_failed_with_response: "فشل إرسال الرسائل القصيرة مع استجابة"
+  sms_configuration_not_found: "SMS ملف التكوين غير موجود."
   sms_sent_selected_course: "&#39;أرسل SMS بنجاح للطلاب (الأوصياء) بالطبع مختارة"
   sms_sent_to_employee: "أرسل SMS بنجاح لاختيار الموظفين"
   sent_to_selected_department: "أرسل SMS بنجاح لموظفي دائرة مختارة"

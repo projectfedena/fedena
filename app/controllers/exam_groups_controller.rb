@@ -29,6 +29,7 @@ class ExamGroupsController < ApplicationController
   in_place_edit_with_validation_for :exam, :weightage
 
   def index
+    @sms_setting = SmsSetting.new
     @exam_groups = @batch.exam_groups
     if @current_user.employee?
       @user_privileges = @current_user.privileges

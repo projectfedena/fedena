@@ -50,7 +50,7 @@
             <% next %>
           <% end %>
         <% end %>
-        <%  if @sms.blank?  %>
+        <%  if @sms_setting.application_sms_active  %>
           <% if privilege.name =="SMSManagement" %>
             <% next %>
           <% end %>
