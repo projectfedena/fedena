@@ -179,7 +179,7 @@ class UserController < ApplicationController
     @config = Configuration.available_modules
     @employee = @user.employee_record if ['employee','admin'].include?(@user.role_name.downcase)
     if @user.student?
-        @student = Student.find_by_admission_no(@user.username)
+      @student = Student.find_by_admission_no(@user.username)
     end
     if @user.parent?
       @student = Student.find_by_admission_no(@user.username[1..@user.username.length])
@@ -216,15 +216,26 @@ class UserController < ApplicationController
     end
   end
 
+
   def login
     @institute = Configuration.find_by_config_key("LogoName")
-    if request.post? and params[:user]
+    login_server = false
+    FedenaPlugin::AVAILABLE_MODULES.each do |mod|
+      modu = mod[:name].classify.constantize
+      if modu.respond_to?("login_hook")
+        session_user = modu.send("login_hook",self)
+        session[:user_id] = session_user if session_user.present?
+        login_server = true
+        redirect_to session[:back_url] || {:controller => 'user', :action => 'dashboard'} and return if session[:user_id]
+      end
+    end
+    if request.post? and params[:user] and login_server
       @user = User.new(params[:user])
       user = User.find_by_username @user.username
       if user and User.authenticate?(@user.username, @user.password)
         session[:user_id] = user.id
         flash[:notice] = "#{t('welcome')}, #{user.first_name} #{user.last_name}!"
-        redirect_to session[:back_url] || {:controller => 'user', :action => 'dashboard'}
+        redirect_to session[:back_url] || {:controller => 'user', :action => 'dashboard'} and return
       else
         flash[:notice] = "#{t('login_error_message')}"
       end
@@ -236,8 +247,12 @@ class UserController < ApplicationController
     Rails.cache.delete("user_autocomplete_menu#{session[:user_id]}")
     session[:user_id] = nil
     session[:language] = nil
+    FedenaPlugin::AVAILABLE_MODULES.each do |mod|
+      modu = mod[:name].classify.constantize
+      modu.send("logout_hook",self) and return  if modu.respond_to?("logout_hook")
+    end
     flash[:notice] = "#{t('logged_out')}"
-    redirect_to :controller => 'user', :action => 'login'
+    redirect_to :controller => 'user', :action => 'login' and return
   end
 
   def profile
