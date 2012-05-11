@@ -219,17 +219,7 @@ class UserController < ApplicationController
 
   def login
     @institute = Configuration.find_by_config_key("LogoName")
-    fedena_login = true
-    FedenaPlugin::AVAILABLE_MODULES.each do |mod|
-      modu = mod[:name].classify.constantize
-      if modu.respond_to?("login_hook")
-        session_user = modu.send("login_hook",self)
-        session[:user_id] = session_user if session_user.present?
-        fedena_login = false
-        redirect_to session[:back_url] || {:controller => 'user', :action => 'dashboard'} and return if session[:user_id]
-      end
-    end
-    if request.post? and params[:user] and fedena_login
+    if request.post? and params[:user]
       @user = User.new(params[:user])
       user = User.find_by_username @user.username
       if user and User.authenticate?(@user.username, @user.password)
@@ -247,10 +237,6 @@ class UserController < ApplicationController
     Rails.cache.delete("user_autocomplete_menu#{session[:user_id]}")
     session[:user_id] = nil
     session[:language] = nil
-    FedenaPlugin::AVAILABLE_MODULES.each do |mod|
-      modu = mod[:name].classify.constantize
-      modu.send("logout_hook",self) and return  if modu.respond_to?("logout_hook")
-    end
     flash[:notice] = "#{t('logged_out')}"
     redirect_to :controller => 'user', :action => 'login' and return
   end
