@@ -219,16 +219,21 @@ class UserController < ApplicationController
 
   def login
     @institute = Configuration.find_by_config_key("LogoName")
-    if request.post? and params[:user]
-      @user = User.new(params[:user])
-      user = User.find_by_username @user.username
-      if user and User.authenticate?(@user.username, @user.password)
-        session[:user_id] = user.id
-        flash[:notice] = "#{t('welcome')}, #{user.first_name} #{user.last_name}!"
-        redirect_to session[:back_url] || {:controller => 'user', :action => 'dashboard'} and return
-      else
-        flash[:notice] = "#{t('login_error_message')}"
+    available_login_authes = FedenaPlugin::AVAILABLE_MODULES.select{|m| m[:name].classify.constantize.respond_to?("login_hook")}
+    selected_login_hook = available_login_authes.first if available_login_authes.count>=1
+    if selected_login_hook
+      user = selected_login_hook[:name].classify.constantize.send("login_hook",self)
+    else
+      if request.post? and params[:user]
+        @user = User.new(params[:user])
+        user = User.find_by_username @user.username
+        user = nil unless User.authenticate?(@user.username, @user.password)
       end
+    end
+    if user.present?
+      successful_user_login(user)
+    elsif user.blank? and request.post?
+      flash[:notice] = "#{t('login_error_message')}"
     end
   end
 
@@ -238,7 +243,13 @@ class UserController < ApplicationController
     session[:user_id] = nil
     session[:language] = nil
     flash[:notice] = "#{t('logged_out')}"
-    redirect_to :controller => 'user', :action => 'login' and return
+    available_login_authes = FedenaPlugin::AVAILABLE_MODULES.select{|m| m[:name].classify.constantize.respond_to?("logout_hook")}
+    selected_logout_hook = available_login_authes.first if available_login_authes.count>=1
+    if selected_logout_hook
+      selected_logout_hook[:name].classify.constantize.send("logout_hook",self,"/")
+    else
+      redirect_to :controller => 'user', :action => 'login' and return
+    end    
   end
 
   def profile
@@ -339,6 +350,14 @@ class UserController < ApplicationController
     @employee ||= Employee.first if current_user.admin?
     @student = Student.find_by_admission_no(@user.username)
     render :partial=>'header_link'
+  end
+
+
+  private
+  def successful_user_login(user)
+    session[:user_id] = user.id
+    flash[:notice] = "#{t('welcome')}, #{user.first_name} #{user.last_name}!"
+    redirect_to session[:back_url] || {:controller => 'user', :action => 'dashboard'} and return
   end
 end
 
