@@ -31,9 +31,6 @@ class ApplicationController < ActionController::Base
 
 
   def dev_mode
-    CASClient::Frameworks::Rails::Filter.configure(
-      :cas_base_url => "#{request.protocol}#{request.host_with_port}/cas",
-      :enable_single_sign_out => true)
     if Rails.env == "development"
 
     end
