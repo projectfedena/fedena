@@ -231,7 +231,7 @@ class UserController < ApplicationController
       end
     end
     if user.present?
-      successful_user_login(user)
+      successful_user_login(user) and return
     elsif user.blank? and request.post?
       flash[:notice] = "#{t('login_error_message')}"
     end
@@ -357,7 +357,7 @@ class UserController < ApplicationController
   def successful_user_login(user)
     session[:user_id] = user.id
     flash[:notice] = "#{t('welcome')}, #{user.first_name} #{user.last_name}!"
-    redirect_to session[:back_url] || {:controller => 'user', :action => 'dashboard'} and return
+    redirect_to session[:back_url] || {:controller => 'user', :action => 'dashboard'}
   end
 end
 
