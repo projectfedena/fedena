@@ -1,6 +1,7 @@
 # Configure your SMS API settings
 require 'net/http'
 require 'yaml'
+require 'translator'
 
 class SmsManager
   attr_accessor :recipients, :message
@@ -21,7 +22,7 @@ class SmsManager
   end
 
   def send_sms
-    return "#{t('sent_to_selected_department')}" if @config.blank?
+    return "#{t('sms_configuration_not_found')}" if @config.blank?
 
     request = "#{@sms_url}?username=#{@username}&password=#{@password}&sendername=#{@sendername}&message=#{@message}&mobileno="
 
