@@ -31,8 +31,11 @@ class ApplicationController < ActionController::Base
 
 
   def dev_mode
+    CASClient::Frameworks::Rails::Filter.configure(
+      :cas_base_url => "#{request.protocol}#{request.host_with_port}/cas",
+      :enable_single_sign_out => true)
     if Rails.env == "development"
-     
+
     end
   end
 
@@ -169,7 +172,7 @@ class ApplicationController < ActionController::Base
     if current_user.student? or current_user.parent?
       student = current_user.student_record if current_user.student?
       student = current_user.parent_record if current_user.parent?
-#      render :text =>student.id and return
+      #      render :text =>student.id and return
       unless params[:id].to_i == student.id or params[:student].to_i == student.id
         flash[:notice] = "#{t('flash_msg5')}"
         redirect_to :controller=>"user", :action=>"dashboard"
