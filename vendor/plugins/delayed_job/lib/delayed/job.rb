@@ -31,6 +31,16 @@ module Delayed
     self.min_priority = nil
     self.max_priority = nil
 
+    # enable auto_scale if you want DJ to spin a worker when there's a
+    # new job to be done, and kill it when there's nothing else to do
+    cattr_accessor :auto_scale
+    self.auto_scale = false
+
+    # the auto_scale_manager is the class that knows how to scale workers
+    # up and down
+    cattr_accessor :auto_scale_manager
+    self.auto_scale_manager = :local
+
     # When a worker is exiting, make sure we don't have any locked jobs.
     def self.clear_locks!
       update_all("locked_by = null, locked_at = null", ["locked_by = ?", worker_name])
@@ -258,6 +268,9 @@ module Delayed
       self.run_at ||= self.class.db_time_now
     end
 
+    def after_create
+      Manager.scale_up if self.class.auto_scale && Manager.qty == 0
+    end
   end
 
   class EvaledJob

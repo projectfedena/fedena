@@ -1,3 +1,5 @@
+require 'rush'
+
 module Delayed
   class Worker
     SLEEP = 5
@@ -29,6 +31,8 @@ module Delayed
         end
 
         count = result.sum
+
+        Manager.scale_down if count.zero? && Job.auto_scale && Job.count == 0
 
         break if $exit
 
