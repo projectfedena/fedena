@@ -25,14 +25,14 @@ class FinanceTransaction < ActiveRecord::Base
   validates_presence_of :title,:amount,:transaction_date
   validates_presence_of :category,:message=>"#{t('not_specified')}."
   validates_numericality_of :amount, :greater_than_or_equal_to => 0, :message => "#{t('must_be_positive')}"
-
+  has_many :grn_items
   after_create  :create_auto_transaction
   after_update  :update_auto_transaction
   after_destroy :delete_auto_transaction
   after_create :add_voucher_or_receipt_number
 
   def self.report(start_date,end_date,page)
-    cat_names = ['Fee','Salary','Donation','Library','Hostel','Transport']
+    cat_names = ['Fee','Salary','Donation','Library','Hostel','Transport', 'Inventory']
     fixed_cat_ids = FinanceTransactionCategory.find(:all,:conditions=>{:name=>cat_names}).collect(&:id)
     self.find(:all,
       :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id NOT IN (#{fixed_cat_ids.join(",")})"],
@@ -121,7 +121,7 @@ class FinanceTransaction < ActiveRecord::Base
   end
 
   def self.total_other_trans(start_date,end_date)
-    cat_names = ['Fee','Salary','Donation','Library','Hostel','Transport']
+    cat_names = ['Fee','Salary','Donation','Library','Hostel','Transport','Inventory']
     fixed_cat_ids = FinanceTransactionCategory.find(:all,:conditions=>{:name=>cat_names}).collect(&:id)
     fees = 0
     transactions = FinanceTransaction.find(:all, :conditions => ["created_at >= '#{start_date}' and created_at <= '#{end_date}'and category_id NOT IN (#{fixed_cat_ids.join(",")})"])
