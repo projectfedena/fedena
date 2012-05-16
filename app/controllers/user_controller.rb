@@ -222,16 +222,18 @@ class UserController < ApplicationController
     available_login_authes = FedenaPlugin::AVAILABLE_MODULES.select{|m| m[:name].classify.constantize.respond_to?("login_hook")}
     selected_login_hook = available_login_authes.first if available_login_authes.count>=1
     if selected_login_hook
-      user = selected_login_hook[:name].classify.constantize.send("login_hook",self)
+      authenticated_user = selected_login_hook[:name].classify.constantize.send("login_hook",self)
     else
       if request.post? and params[:user]
         @user = User.new(params[:user])
         user = User.find_by_username @user.username
-        user = @user if !user.nil? and User.authenticate?(@user.username, @user.password)
+        if user.present? and User.authenticate?(@user.username, @user.password)
+          authenticated_user = user 
+        end
       end
     end
-    if user.present?
-      successful_user_login(user) and return
+    if authenticated_user.present?
+      successful_user_login(authenticated_user) and return
     elsif user.blank? and request.post?
       flash[:notice] = "#{t('login_error_message')}"
     end
