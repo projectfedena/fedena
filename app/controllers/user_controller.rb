@@ -227,7 +227,7 @@ class UserController < ApplicationController
       if request.post? and params[:user]
         @user = User.new(params[:user])
         user = User.find_by_username @user.username
-        user = nil unless User.authenticate?(@user.username, @user.password)
+        user = @user if !user.nil? and User.authenticate?(@user.username, @user.password)
       end
     end
     if user.present?
