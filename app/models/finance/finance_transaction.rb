@@ -32,7 +32,10 @@ class FinanceTransaction < ActiveRecord::Base
   after_create :add_voucher_or_receipt_number
 
   def self.report(start_date,end_date,page)
-    cat_names = ['Fee','Salary','Donation','Library','Hostel','Transport', 'Inventory']
+    cat_names = ['Fee','Salary','Donation']
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+      cat_names << "#{category[:category_name]}"
+    end
     fixed_cat_ids = FinanceTransactionCategory.find(:all,:conditions=>{:name=>cat_names}).collect(&:id)
     self.find(:all,
       :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id NOT IN (#{fixed_cat_ids.join(",")})"],
@@ -121,7 +124,10 @@ class FinanceTransaction < ActiveRecord::Base
   end
 
   def self.total_other_trans(start_date,end_date)
-    cat_names = ['Fee','Salary','Donation','Library','Hostel','Transport','Inventory']
+    cat_names = ['Fee','Salary','Donation']
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+      cat_names << "#{category[:category_name]}"
+    end
     fixed_cat_ids = FinanceTransactionCategory.find(:all,:conditions=>{:name=>cat_names}).collect(&:id)
     fees = 0
     transactions = FinanceTransaction.find(:all, :conditions => ["created_at >= '#{start_date}' and created_at <= '#{end_date}'and category_id NOT IN (#{fixed_cat_ids.join(",")})"])
