@@ -52,7 +52,7 @@ class EmployeeController < ApplicationController
       else
         flash[:warn_notice] = "<p>#{t('flash2')}</p>"
       end
-           
+      
     end
   end
 
@@ -746,16 +746,7 @@ class EmployeeController < ApplicationController
     @new_payslip_category = IndividualPayslipCategory.find_all_by_employee_id_and_salary_date(@employee.id,nil)
     @individual = IndividualPayslipCategory.find_all_by_employee_id_and_salary_date(@employee.id,Date.today)
     @user = current_user
-    privilege = Privilege.find_by_name("FinanceControl")
-    finance_manager = privilege.users
-    subject = t('payslip_generated')
-    body = "#{t('payslip_generated_for')}  "+@employee.first_name+" "+@employee.last_name+". #{t('kindly_approve')}"
-    finance_manager.each do |f|
-      Reminder.create(:sender=>@user.id, :recipient=>f.id, :subject=> subject,
-        :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
-    end
-
-    if request.post?
+    if request.post?    
       salary_date = Date.parse(params[:salary_date])
       unless salary_date.to_date < @employee.joining_date.to_date
         start_date = salary_date - ((salary_date.day - 1).days)
@@ -779,7 +770,6 @@ class EmployeeController < ApplicationController
             IndividualPayslipCategory.update(c.id, :salary_date=>start_date)
           end
           flash[:notice] = "#{@employee.first_name} #{t('flash27')} #{params[:salary_date]}"
-          redirect_to :controller => "employee", :action => "select_department_employee"
         else #else for if payslip_exists == []
           individual_payslips_generated = IndividualPayslipCategory.find_all_by_employee_id_and_salary_date(@employee.id,nil)
           unless individual_payslips_generated.nil?
@@ -788,8 +778,16 @@ class EmployeeController < ApplicationController
             end
           end
           flash[:notice] = "#{@employee.first_name} #{t('flash28')} #{params[:salary_date]}"
-          redirect_to :controller => "employee", :action => "select_department_employee"
         end
+        privilege = Privilege.find_by_name("FinanceControl")
+        finance_manager_ids = privilege.user_ids
+        subject = t('payslip_generated')
+        body = "#{t('payslip_generated_for')}  "+@employee.first_name+" "+@employee.last_name+". #{t('kindly_approve')}"    
+        Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => @user.id,
+            :recipient_ids => finance_manager_ids,
+            :subject=>subject,
+            :body=>body ))
+        redirect_to :controller => "employee", :action => "select_department_employee"
       else
         flash[:warn_notice] = "#{t('flash45')} #{params[:salary_date]}"
       end
@@ -1070,13 +1068,13 @@ class EmployeeController < ApplicationController
         IndividualPayslipCategory.update(c.id, :salary_date=>start_date)
       end
       privilege = Privilege.find_by_name("FinanceControl")
-      finance_manager = privilege.users
+      available_user_ids = privilege.user_ids
       subject = "#{t('rejected_payslip_regenerated')}"
       body = "#{t('payslip_has_been_generated_for')}"+@employee.first_name+" "+@employee.last_name + " (#{t('employee_number')} :#{@employee.employee_number})" + " #{t('for_the_month')} #{salary_date.to_date.strftime("%B %Y")}. #{t('kindly_approve')}"
-      finance_manager.each do |f|
-        Reminder.create(:sender=>@user.id, :recipient=>f.id, :subject=> subject,
-          :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
-      end
+      Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => @user.id,
+          :recipient_ids => available_user_ids,
+          :subject=>subject,
+          :body=>body ))
       flash[:notice] = "#{@employee.first_name} #{t('flash27')} #{params[:salary_date]}"
       redirect_to :controller => "employee", :action => "profile", :id=> @employee.id
       
@@ -1170,10 +1168,11 @@ class EmployeeController < ApplicationController
     end_date = start_date + 1.month
     employees = Employee.find(:all)
     unless(finance_manager.nil? and finance.nil?)
-      finance_manager.each do |f|
-        Reminder.create(:sender=>@user.id, :recipient=>f.id, :subject=> subject,
-          :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
-      end
+      finance_manager_ids = Privilege.find_by_name('FinanceControl').user_ids
+      Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => @user.id,
+          :recipient_ids => finance_manager_ids,
+          :subject=>subject,
+          :body=>body ))
       employees.each do|e|
         payslip_exists = MonthlyPayslip.find_all_by_employee_id(e.id,
           :conditions => ["salary_date >= ? and salary_date < ?", start_date, end_date])
