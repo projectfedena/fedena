@@ -53,7 +53,7 @@ class ExamController < ApplicationController
           page.replace_html 'flash', :text=>''
         end
       end
-  
+      
     else
       render(:update) do |page|
         page.replace_html 'flash', :text=>"<div class='errorExplanation'><p>#{t('flash_msg9')}</p></div>"
@@ -68,16 +68,14 @@ class ExamController < ApplicationController
     @sms_setting_notice = ""
     @no_exam_notice = ""
     if params[:status] == "schedule"
-      students = @batch.students
-
-      unless students.blank?
-        students.each do |s|
-          student_user = s.user
-          Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
-            :subject=>"#{t('exam_scheduled')}",
-            :body=>"#{@exam_group.name} #{t('has_been_scheduled')}  <br/> #{t('view_calendar')}")
-        end
-      end
+      students = Student.find_all_by_batch_id(@batch.id,:select => [:user_id])
+      available_user_ids = students.collect(&:user_id).compact
+      Delayed::Job.enqueue(
+        DelayedReminderJob.new( :sender_id  => current_user.id,
+          :recipient_ids => available_user_ids,
+          :subject=>"#{t('exam_scheduled')}",
+          :body=>"#{@exam_group.name} #{t('has_been_scheduled')}  <br/> #{t('view_calendar')}")
+      )
     end
     unless @exams.empty?
       ExamGroup.update(@exam_group.id,:is_published=>true) if params[:status] == "schedule"
@@ -112,13 +110,14 @@ class ExamController < ApplicationController
         @sms_setting_notice = "#{t('exam_result_published_no_sms')}" if params[:status] == "result"
       end
       if params[:status] == "result"
-        students = @batch.students
-        students.each do |s|
-          student_user = s.user
-          Reminder.create(:sender=> current_user.id,:recipient=>student_user.id,
+        students = Student.find_all_by_batch_id(@batch.id,:select => [:user_id])
+        available_user_ids = students.collect(&:user_id).compact
+        Delayed::Job.enqueue(
+          DelayedReminderJob.new( :sender_id  => current_user.id,
+            :recipient_ids => available_user_ids,
             :subject=>"#{t('result_published')}",
             :body=>"#{@exam_group.name} #{t('result_has_been_published')}  <br/>#{t('view_reports')}")
-        end
+        )
       end
     else
       @no_exam_notice = "#{t('exam_scheduling_not_done')}"
@@ -299,7 +298,7 @@ class ExamController < ApplicationController
     @students = @batch.students
     @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
     render :pdf => 'generated_report_pdf'
-          
+    
     #        respond_to do |format|
     #            format.pdf { render :layout => false }
     #        end
@@ -471,7 +470,7 @@ class ExamController < ApplicationController
     @all_batches = @student.all_batches
     render :pdf => 'previous_years_marks_overview_pdf',
       :orientation => 'Landscape'
-                        
+    
     
   end
 
