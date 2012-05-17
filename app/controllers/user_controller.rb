@@ -234,7 +234,7 @@ class UserController < ApplicationController
     end
     if authenticated_user.present?
       successful_user_login(authenticated_user) and return
-    elsif user.blank? and request.post?
+    elsif authenticated_user.blank? and request.post?
       flash[:notice] = "#{t('login_error_message')}"
     end
   end
