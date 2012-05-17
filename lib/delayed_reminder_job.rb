@@ -1,7 +1,5 @@
 class DelayedReminderJob
 
-  require 'reminder'
-
   def initialize(*args)
     opts = args.extract_options!
     @sender_id = opts[:sender_id]
