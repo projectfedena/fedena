@@ -70,7 +70,7 @@ class FinanceController < ApplicationController
     @donation = FinanceDonation.find(params[:id])
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     render :pdf => 'donation_receipt_pdf'
-          
+    
   end
 
   def donors
@@ -132,7 +132,7 @@ class FinanceController < ApplicationController
   end
 
   def monthly_income
-      
+    
   end
 
   def income_edit
@@ -452,13 +452,13 @@ class FinanceController < ApplicationController
       d.reject(current_user.id, params[:payslip_reject][:reason])
     end
     privilege = Privilege.find_by_name("PayslipPowers")
-    hr = privilege.users
+    hr_ids = privilege.user_ids
     subject = "#{t('payslip_rejected')}"
     body = "#{t('payslip_rejected_for')} "+ employee.first_name+" "+ employee.last_name+ " (#{t('employee_number')} : #{employee.employee_number})" +" #{t('for_the_month')} #{params[:id2].to_date.strftime("%B %Y")}"
-    hr.each do |f|
-      Reminder.create(:sender=>current_user.id, :recipient=>f.id, :subject=> subject,
-        :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
-    end
+    Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => current_user.id,
+        :recipient_ids => hr_ids,
+        :subject=>subject,
+        :body=>body ))
     render :update do |page|
       page.reload
     end
