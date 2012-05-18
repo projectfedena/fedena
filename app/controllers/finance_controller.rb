@@ -1129,22 +1129,24 @@ class FinanceController < ApplicationController
           unless fee_category.have_common_particular?
             @students = @students.select{|stu| stu.has_associated_fee_particular?(fee_category)}
           end
+          body = "<p><b>#{t('fee_submission_date_for')} <i>"+fee_category_name+"</i> #{t('has_been_published')} </b>
+             \n \n  #{t('start_date')} : "+@finance_fee_collection.start_date.to_s+" \n"+
+            " #{t('end_date')} :"+@finance_fee_collection.end_date.to_s+" \n "+
+            " #{t('due_date')} :"+@finance_fee_collection.due_date.to_s+" \n \n \n "+
+            " #{t('check_your')}  #{t('fee_structure')}"
+          recipient_ids = []
           @students.each do |s|
-            body = "<p><b>#{t('fee_submission_date_for')} <i>"+fee_category_name+"</i> #{t('has_been_published')} </b><br /><br/>
-                                #{t('start_date')} : "+@finance_fee_collection.start_date.to_s+" <br />"+
-              " #{t('end_date')} :"+@finance_fee_collection.end_date.to_s+" <br /> "+
-              " #{t('due_date')} :"+@finance_fee_collection.due_date.to_s+" <br /><br /><br /> "+
-              " #{t('check_your')}  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>#{t('fee_structure')}</a> <br/><br/><br/>
-                               #{t('regards')}, <br/>"+@user.full_name.capitalize
-
-            unless s.has_paid_fees == true
+            unless s.has_paid_fees
               FinanceFee.create(:student_id => s.id,:fee_collection_id => @finance_fee_collection.id)
-              Reminder.create(:sender=>@user.id, :recipient=>s.user.id, :subject=> subject,
-                :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
+              recipient_ids << s.user.id
             end
           end
           new_event =  Event.create(:title=> "#{t('fees_due')}", :description =>params[:finance_fee_collection][:name], :start_date => @finance_fee_collection.due_date.to_datetime, :end_date => @finance_fee_collection.due_date.to_datetime, :is_due => true , :origin=>@finance_fee_collection)
           BatchEvent.create(:event_id => new_event.id, :batch_id => b.id )
+          Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => @user.id,
+              :recipient_ids => recipient_ids,
+              :subject=>subject,
+              :body=>body ))
         else
           @error = true
         end
@@ -1184,20 +1186,22 @@ class FinanceController < ApplicationController
           events.update_attributes(:start_date=> @finance_fee_collection.due_date.to_datetime, :end_date=> @finance_fee_collection.due_date.to_datetime, :description=>params[:finance_fee_collection][:name]) unless events.blank?
           fee_category_name = @finance_fee_collection.fee_category.name
           subject = "#{t('fees_submission_date')}"
+          body = "<p><b>#{t('fee_submission_date_for')} <i>"+fee_category_name+"</i> #{t('has_been_updated')}</b> <br /><br/>
+                                #{t('start_date')} : "+@finance_fee_collection.start_date.to_s+"<br />"+
+            " #{t('end_date')} : "+@finance_fee_collection.end_date.to_s+" <br />"+
+            " #{t('due_date')} : "+@finance_fee_collection.due_date.to_s+" <br /><br /><br />"+
+            " #{t('check_your')} #{t('fee_structure')} <br/><br/><br/> "
+          recipient_ids = []
           @students = Student.find_all_by_batch_id(@finance_fee_collection.batch_id)
           @students.each do |s|
-            body = "<p><b>#{t('fee_submission_date_for')} <i>"+fee_category_name+"</i> #{t('has_been_updated')}</b> <br /><br/>
-                                #{t('start_date')} : "+@finance_fee_collection.start_date.to_s+"<br />"+
-              " #{t('end_date')} : "+@finance_fee_collection.end_date.to_s+" <br />"+
-              " #{t('due_date')} : "+@finance_fee_collection.due_date.to_s+" <br /><br /><br />"+
-              " #{t('check_your')}  <a href='../../finance/student_fees_structure/#{s.id}/#{@finance_fee_collection.id}'>#{t('fee_structure')}</a> <br/><br/><br/>
-                               #{t('regards')}, <br/>"+@user.full_name.capitalize
-
-            unless s.has_paid_fees == true
-              Reminder.create(:sender=>@user.id, :recipient=>s.user.id, :subject=> subject,
-                :body => body, :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
+            unless s.has_paid_fees
+              recipient_ids << s.user.id
             end
           end
+          Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => @user.id,
+              :recipient_ids => recipient_ids,
+              :subject=>subject,
+              :body=>body ))
           @finance_fee_collections = FinanceFeeCollection.all(:conditions => ["is_deleted = '#{false}' and batch_id = '#{@finance_fee_collection.batch_id}'"])
           page.replace_html 'form-errors', :text => ''
           page << "Modalbox.hide();"
