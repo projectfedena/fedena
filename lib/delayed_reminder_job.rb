@@ -3,7 +3,7 @@ class DelayedReminderJob
   def initialize(*args)
     opts = args.extract_options!
     @sender_id = opts[:sender_id]
-    @recipient_ids = Array(opts[:recipient_ids]).uniq
+    @recipient_ids = Array(opts[:recipient_ids]).flatten.uniq
     @subject = opts[:subject]
     @message = opts[:message]
     @body = opts[:body]
