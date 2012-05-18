@@ -33,17 +33,16 @@ class ReminderController < ApplicationController
     @departments = EmployeeDepartment.find(:all)
     @new_reminder_count = Reminder.find_all_by_recipient(@user.id, :conditions=>"is_read = false")
     unless params[:send_to].nil?
-    recipients_array = params[:send_to].split(",").collect{ |s| s.to_i }
-    @recipients = User.find(recipients_array)
+      recipients_array = params[:send_to].split(",").collect{ |s| s.to_i }
+      @recipients = User.find(recipients_array)
     end
     if request.post?
       unless params[:reminder][:body] == "" or params[:recipients] == ""
         recipients_array = params[:recipients].split(",").collect{ |s| s.to_i }
-        recipients_array.each do |r|
-          user = User.find(r)
-          Reminder.create(:sender => @user.id, :recipient => user.id, :subject=>params[:reminder][:subject],
-            :body=>params[:reminder][:body], :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
-        end
+        Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => @user.id,
+            :recipient_ids => recipients_array,
+            :subject=>params[:reminder][:subject],
+            :body=>params[:reminder][:body] ))
         flash[:notice] = "#{t('flash1')}"
         redirect_to :controller=>"reminder", :action=>"create_reminder"
       else
@@ -107,13 +106,13 @@ class ReminderController < ApplicationController
 
   def update_recipient_list
     if params[:recipients]
-    recipients_array = params[:recipients].split(",").collect{ |s| s.to_i }
-    @recipients = User.find(recipients_array)
-    render :update do |page|
-      page.replace_html 'recipient-list', :partial => 'recipient_list'
-    end
+      recipients_array = params[:recipients].split(",").collect{ |s| s.to_i }
+      @recipients = User.find(recipients_array)
+      render :update do |page|
+        page.replace_html 'recipient-list', :partial => 'recipient_list'
+      end
     else
-    redirect_to :controller=>:user,:action=>:dashboard
+      redirect_to :controller=>:user,:action=>:dashboard
     end
   end
 
@@ -177,17 +176,17 @@ class ReminderController < ApplicationController
 
   def send_reminder
     if params[:create_reminder]
-    unless params[:create_reminder][:message] == "" or params[:create_reminder][:to] == ""
-      Reminder.create(:sender=>params[:create_reminder][:from], :recipient=>params[:create_reminder][:to], :subject=>params[:create_reminder][:subject],
-        :body=>params[:create_reminder][:message] , :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
-      render(:update) do |page|
-        page.replace_html 'error-msg', :text=> "<p class='flash-msg'>#{t('your_message_sent')}</p>"
+      unless params[:create_reminder][:message] == "" or params[:create_reminder][:to] == ""
+        Reminder.create(:sender=>params[:create_reminder][:from], :recipient=>params[:create_reminder][:to], :subject=>params[:create_reminder][:subject],
+          :body=>params[:create_reminder][:message] , :is_read=>false, :is_deleted_by_sender=>false,:is_deleted_by_recipient=>false)
+        render(:update) do |page|
+          page.replace_html 'error-msg', :text=> "<p class='flash-msg'>#{t('your_message_sent')}</p>"
+        end
+      else
+        render(:update) do |page|
+          page.replace_html 'error-msg', :text=> "<p class='flash-msg'>#{t('enter_subject')}</p>"
+        end
       end
-    else
-      render(:update) do |page|
-        page.replace_html 'error-msg', :text=> "<p class='flash-msg'>#{t('enter_subject')}</p>"
-      end
-    end
     else
       redirect_to :controller=>:reminder
     end
