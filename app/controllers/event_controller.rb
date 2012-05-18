@@ -141,6 +141,9 @@ class EventController < ApplicationController
 
   def confirm_event
     event = Event.find(params[:id])
+    reminder_subject = "#{t('new_event')} : #{event.title}"
+    reminder_body = " #{t('event_description')} : #{event.description} <br/> #{t('start_date')} : " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/> #{t('end_date')} : " + event.end_date.strftime("%d/%m/%Y %I:%M %p")
+    reminder_recipient_ids = []
     if event.is_common == true
       if event.is_holiday == true
         @pe = PeriodEntry.find(:all, :conditions=>"month_date BETWEEN '" + event.start_date.strftime("%Y-%m-%d") + "' AND '" +  event.end_date.strftime("%Y-%m-%d") +"'")
@@ -151,11 +154,7 @@ class EventController < ApplicationController
         end
       end
       @users = User.find(:all)
-      @users.each do |u|
-        Reminder.create(:sender=> current_user.id,:recipient=>u.id,
-          :subject=>"#{t('new_event')} : #{event.title}",
-          :body=>"#{t('event_description')} : #{event.description} <br/> #{t('start_date')} : " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/> #{t('end_date')} : " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
-      end
+      reminder_recipient_ids << @users.map(&:id)
       sms_setting = SmsSetting.new()
       if sms_setting.application_sms_active and sms_setting.event_news_sms_active
         recipients = []
@@ -169,7 +168,7 @@ class EventController < ApplicationController
               end
               if sms_setting.parent_sms_active
                 unless guardian.nil?
-                recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
+                  recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
                 end
               end
             end
@@ -177,8 +176,8 @@ class EventController < ApplicationController
             employee = u.employee_record
             if sms_setting.employee_sms_active
               unless employee.nil?
-              recipients.push employee.mobile_phone unless employee.mobile_phone.nil?
-                end
+                recipients.push employee.mobile_phone unless employee.mobile_phone.nil?
+              end
             end
           end
         end
@@ -202,12 +201,7 @@ class EventController < ApplicationController
           end
           @batch_students = Student.find(:all, :conditions=>"batch_id = #{b.batch_id}")
           @batch_students.each do |s|
-            student_user = s.user
-            unless student_user.nil?
-              Reminder.create(:sender => current_user.id,:recipient=>student_user.id,
-                :subject=>"#{t('new_event')} : #{event.title}",
-                :body=>" #{t('event_description')} : #{event.description} <br/> #{t('start_date')}: " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/>  #{t('end_date')}: " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
-            end
+            reminder_recipient_ids << s.user_id
           end
         end
       end
@@ -216,14 +210,15 @@ class EventController < ApplicationController
         department_event.each do |d|
           @dept_emp = Employee.find(:all, :conditions=>"employee_department_id = #{d.employee_department_id}")
           @dept_emp.each do |e|
-            emp_user = e.user
-            Reminder.create(:sender => current_user.id,:recipient=>emp_user.id,
-              :subject=>"#{t('new_event')} : #{event.title}",
-              :body=>" #{t('event_description')}  : #{event.description} <br/>  #{t('start_date')}: " + event.start_date.strftime("%d/%m/%Y %I:%M %p") + " <br/> #{t('end_date')} : " + event.end_date.strftime("%d/%m/%Y %I:%M %p"))
+            reminder_recipient_ids << e.user_id
           end
         end
       end
     end
+    Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => current_user.id,
+        :recipient_ids => reminder_recipient_ids,
+        :subject=>reminder_subject,
+        :body=>reminder_body ))
     redirect_to :controller=>'calendar',:action=>'index'
   end
 
@@ -241,9 +236,9 @@ class EventController < ApplicationController
 
   def edit_event
     @event = Event.find_by_id(params[:id])
-   if request.post? and @event.update_attributes(params[:event])
-    redirect_to :action=>"show", :id=>@event.id, :cmd=>'edit'
-   end
+    if request.post? and @event.update_attributes(params[:event])
+      redirect_to :action=>"show", :id=>@event.id, :cmd=>'edit'
+    end
   end
 
 end
