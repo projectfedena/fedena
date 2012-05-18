@@ -8,7 +8,7 @@ class SmsManager
 
   def initialize(message, recipients)
     @recipients = recipients
-    @message = URI.encode(message)
+    @message = message
     if File.exists?("#{RAILS_ROOT}/config/sms_settings.yml")
       @config = YAML.load_file(File.join(RAILS_ROOT,"config","sms_settings.yml"))
     end
@@ -21,39 +21,31 @@ class SmsManager
     end
   end
 
-  def send_sms
-    return "#{t('sms_configuration_not_found')}" if @config.blank?
-
-    request = "#{@sms_url}?username=#{@username}&password=#{@password}&sendername=#{@sendername}&message=#{@message}&mobileno="
-
-    cur_request = request
-    @recipients.each do |recipient|
-      if cur_request.length > 1000
-        response = Net::HTTP.get_response(URI.parse(cur_request))
+  def perform
+    if @config.present?
+      message_log = SmsMessage.new(:body=> @message)
+      message_log.save
+      encoded_message = URI.encode(@message)
+      request = "#{@sms_url}?username=#{@username}&password=#{@password}&sendername=#{@sendername}&message=#{encoded_message}&mobileno="
+      @recipients.each do |recipient|
         cur_request = request
+        cur_request += "#{recipient}"
+        begin
+          response = Net::HTTP.get_response(URI.parse(cur_request))
+          if response.body
+            message_log.sms_logs.create(:mobile=>recipient,:gateway_response=>response.body)
+            if response.body.to_s =~ Regexp.new(@success_code)
+              sms_count = Configuration.find_by_config_key("TotalSmsCount")
+              new_count = sms_count.config_value.to_i + 1
+              sms_count.update_attributes(:config_value=>new_count)
+            end
+          end
+        rescue Timeout::Error => e
+          message_log.sms_logs.create(:mobile=>recipient,:gateway_response=>e.message)
+        rescue Errno::ECONNREFUSED => e
+          message_log.sms_logs.create(:mobile=>recipient,:gateway_response=>e.message)
+        end
       end
-      cur_request += ",#{recipient}"
     end
-
-    if request.length < cur_request.length
-      response = Net::HTTP.get_response(URI.parse(cur_request))
-    end
-    cur_request
-    #response_string = response.split
-    
-    unless response.body.index(@success_code).nil?
-      #    if response.body =~ /Your message is successfully/
-      sms_count = Configuration.find_by_config_key("TotalSmsCount")
-      new_count = sms_count.config_value.to_i+@recipients.size
-      Configuration.update(sms_count.id,:config_value=>new_count.to_s)
-    end
-
-    if response.body.nil?
-      return 'sorry'
-    else
-      return response.body.index(@success_code).nil? ? response.body : '0000'
-    end
-
   end
-
 end

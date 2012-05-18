@@ -77,24 +77,17 @@ class SmsController < ApplicationController
           end
           unless @recipients.empty?
             message = params[:send_sms][:message]
-            sms = SmsManager.new(message,@recipients)
-            response = sms.send_sms
-
-            render(:update) do |page|
-              if response == '0000'
-                page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sent')}</p>"
-              else
-                page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_failed_with_response')} : #{response}</p>"
-              end
+            sms = Delayed::Job.enqueue(SmsManager.new(message,@recipients))
+            render(:update) do |page| 
+              page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sent')}</p>"
               page.visual_effect(:highlight, 'status-message')
             end
-
           end
         end
       end
     end
   end
-
+  
   def list_students
     batch = Batch.find(params[:batch_id])
     @students = Student.find_all_by_batch_id(batch.id,:conditions=>'is_sms_enabled=true')
@@ -125,18 +118,11 @@ class SmsController < ApplicationController
           end
           unless @recipients.empty?
             message = params[:send_sms][:message]
-            sms = SmsManager.new(message,@recipients)
-            response = sms.send_sms
-
+            sms = Delayed::Job.enqueue(SmsManager.new(message,@recipients))
             render(:update) do |page|
-              if response == '0000'
-                page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sent_selected_course')}</p>"
-              else
-                page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_failed_with_response')} : #{response}</p>"
-              end
+              page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sent_selected_course')}</p>"
               page.visual_effect(:highlight, 'status-message')
             end
-
           end
         end
       end
@@ -164,8 +150,7 @@ class SmsController < ApplicationController
       end
       unless @recipients.empty?
         message = params[:send_sms][:message]
-        sms = SmsManager.new(message,@recipients)
-        sms.send_sms
+        Delayed::Job.enqueue(SmsManager.new(message,@recipients))
       end
     end
     emp_departments = EmployeeDepartment.find(:all)
@@ -179,14 +164,10 @@ class SmsController < ApplicationController
       end
       unless @recipients.empty?
         message = params[:send_sms][:message]
-        sms = SmsManager.new(message,@recipients)
-        response = sms.send_sms
+        Delayed::Job.enqueue(SmsManager.new(message,@recipients))
 
         render(:update) do |page|
-          if response == '0000'
-          else
-            page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_failed_with_response')} : #{response}</p>"
-          end
+          page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_failed_with_response')} : #{response}</p>"
           page.visual_effect(:highlight, 'status-message')
         end
       end
@@ -206,18 +187,11 @@ class SmsController < ApplicationController
           end
           unless @recipients.empty?
             message = params[:send_sms][:message]
-            sms = SmsManager.new(message,@recipients)
-            response = sms.send_sms
-
+            Delayed::Job.enqueue(SmsManager.new(message,@recipients))
             render(:update) do |page|
-              if response == '0000'
-                page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sent_to_employee')}</p>"
-              else
-                page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_failed_with_response')} : #{response}</p>"
-              end
+              page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sent_to_employee')}</p>"
               page.visual_effect(:highlight, 'status-message')
             end
-
           end
         end
       end
@@ -246,17 +220,10 @@ class SmsController < ApplicationController
           end
           unless @recipients.empty?
             message = params[:send_sms][:message]
-            sms = SmsManager.new(message,@recipients)
-            response = sms.send_sms
-
+            Delayed::Job.enqueue(SmsManager.new(message,@recipients))
             render(:update) do |page|
-              if response == '0000'
-                page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sent_to_selected_department')}</p>"
-              else
-                page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_failed_with_response')} : #{response}</p>"
-              end
+              page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sent_to_selected_department')}</p>"
               page.visual_effect(:highlight, 'status-message')
-
             end
           end
         end

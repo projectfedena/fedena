@@ -185,8 +185,7 @@ class AttendancesController < ApplicationController
             end
           end
           unless recipients.empty?
-            sms = SmsManager.new(message,recipients)
-            sms.send_sms
+            Delayed::Job.enqueue(SmsManager.new(message,recipients))
           end
         end
         format.js { render :action => 'create' }

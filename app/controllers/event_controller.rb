@@ -183,8 +183,7 @@ class EventController < ApplicationController
         end
         unless recipients.empty?
           message = "#{t('event_notification')}: #{event.title}.#{t('from')} : #{event.start_date} #{t('to')} #{event.end_date}"
-          sms = SmsManager.new(message,recipients)
-          sms.send_sms
+          Delayed::Job.enqueue(SmsManager.new(message,recipients))
         end
       end
     else
