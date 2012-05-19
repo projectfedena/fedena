@@ -39,7 +39,7 @@ class ClassTimingsController < ApplicationController
     respond_to do |format|
       if @class_timing.save
         @class_timing.batch.nil? ?
-          @class_timings = ClassTiming.find(:all,:conditions => { :batch_id => nil}, :order =>'start_time ASC') :
+          @class_timings = ClassTiming.find(:all,:conditions => { :batch_id => nil,:is_deleted=>false}, :order =>'start_time ASC') :
           @class_timings = ClassTiming.for_batch(@class_timing.batch_id)
       #  flash[:notice] = 'Class timing was successfully created.'
         format.html { redirect_to class_timing_url(@class_timing) }
