@@ -147,7 +147,12 @@ class TimetableEntriesController < ApplicationController
     end
     
     tte_from_batch_and_tt(@timetable.id)
-    render :partial => "new_entry"
+    render :update do |page|
+      page.replace_html "box", :partial=> "timetable_box"
+      page.replace_html "subjects-select", :partial=> "employee_select"
+      page.replace_html "error_div_#{params[:tte_id]}", :text => "#{t('done')}"
+    end
+#    render :partial => "new_entry"
   end
 
   def tt_entry_noupdate2

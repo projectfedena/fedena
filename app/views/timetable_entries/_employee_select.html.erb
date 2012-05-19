@@ -1,0 +1,16 @@
+<div class="label-field-pair">
+  <div class="text-input-bg">
+    <%  @ele_subjects.each do |s|  %>
+      <%  s.name = s.elective_group.name %>
+    <% end %>
+    <% @subjects= @subjects + @ele_subjects  %>
+    <%= select :timetable_entries, :subject_id, @subjects.map { |s| [s.name, s.id] },
+      {:prompt => "#{t('select_subject')}"},
+      {:onChange => "#{remote_function(:url => {:action => "update_employees"},
+      :with => "'subject_id='+value",
+      :update=>"employee-list",
+      :before => "Element.show('loader')",
+      :success => "Element.hide('loader')")}"} %>
+  </div>
+</div>
+<div id="employee-list"></div>
