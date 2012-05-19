@@ -42,6 +42,7 @@
                     <div class="employee"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
                         :url => {:action => "delete_employee2", :id => @tte.id},
                         :complete => "clear_selected_divs();",
+                        :confirm=>'remove entry?',
                         :before => "Element.show('loader')",
                         :success => "Element.hide('loader')",
                         :update => "timetable" \
@@ -98,7 +99,7 @@
       <%  weekday=co_ordinate[0].to_i %>
       <% class_timing=co_ordinate[1].to_i %>
       <% tte = TimetableEntry.find_by_weekday_id_and_class_timing_id_and_batch_id_and_timetable_id(weekday,class_timing,@batch.id,@timetable.id) %>
-      <%# tte_id=tte.id %>
+    <%# tte_id=tte.id %>
 
       <div id="error_div_<%= tte_id %>" class="error-explanation">
         <b><%= t('warning') %></b> :
