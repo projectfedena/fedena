@@ -153,14 +153,14 @@
       <hr class="sub-heading"></hr>
       <div class="label-field-pair">
         <label for="employee_martial_status"><%= t('marital_status') %></label>
-        <div class="text-input-bg"><%= select :employee, :marital_status, [["#{t('single')}","single"], ["#{t('married')}","married"],["#{t('divorced')}","divorced"]] %></div>
+        <div class="text-input-bg"><%= select :employee, :marital_status, [["#{t('single')}","single"], ["#{t('married')}","married"],["#{t('divorced')}","divorced"]], {}, {:onchange=>"hide_or_show_fields(this.value)"} %></div>
       </div>
       <hr class="label-underline"></hr>
-      <div class="label-field-pair">
+      <div class="label-field-pair hide-on-single">
         <label for="children_count"><%= t('no_of_children') %></label>
         <div class="text-input-bg"><%= a.text_field :children_count %></div>
       </div>
-      <hr class="label-underline"></hr>
+      <hr class="label-underline hide-on-single"></hr>
       <div class="label-field-pair">
         <label for="employee_father"><%= t('father_name') %></label>
         <div class="text-input-bg"><%= a.text_field :father_name %></div>
@@ -171,14 +171,14 @@
         <div class="text-input-bg"><%= a.text_field :mother_name %></div>
       </div>
       <hr class="label-underline"></hr>
-      <div class="label-field-pair">
+      <div class="label-field-pair hide-on-single">
         <label for="employee_spouse"><%= t('spouse_name') %></label>
         <div class="text-input-bg"><%= a.text_field :husband_name %></div>
       </div>
-      <hr class="label-underline"></hr>
+      <hr class="label-underline hide-on-single"></hr>
       <div class="label-field-pair">
         <label for="employee_blood"><%= t('blood_group') %></label>
-        <div class="text-input-bg"><%= select :employee, :blood_group, ["Unknown","A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"],{:prompt=> "#{t('unknown')}"} %></div>
+        <div class="text-input-bg"><%= select :employee, :blood_group, ["#{t('unknown')}","A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"] %></div>
       </div>
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
@@ -202,3 +202,24 @@
   <% end %>
 
 </div>
+
+<% content_for :head do %>
+  <script type="text/javascript">
+    document.observe("dom:loaded", function() {
+      hide_or_show_fields('single');
+    });
+    function hide_or_show_fields(value){
+      if(value == 'single'){
+        $$('.hide-on-single').each(function (elem){
+          elem.hide();
+        });
+      }
+      else{
+        $$('.hide-on-single').each(function (elem){
+          elem.show();
+        });
+      }
+    }
+
+  </script>
+<% end %>
