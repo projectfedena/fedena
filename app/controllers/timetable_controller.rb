@@ -72,11 +72,29 @@ class TimetableController < ApplicationController
       @tt=Timetable.find(params[:id])
       @error=false
       if params[:timetable][:"start_date(1i)"].present?
-        new_start = Date.civil(params[:timetable][:"start_date(1i)"].to_i,params[:timetable][:"start_date(2i)"].to_i,params[:timetable][:"start_date(3i)"].to_i)
+        date_start=[params[:timetable][:"start_date(1i)"].to_i,params[:timetable][:"start_date(2i)"].to_i,params[:timetable][:"start_date(3i)"].to_i]
+        unless Date::valid_date?(date_start[0],date_start[1],date_start[2]).nil?
+          new_start = Date.civil(date_start[0],date_start[1],date_start[2])
+        else
+          @timetable.errors.add_to_base('start_date_is_invalid')
+          @error=true
+          new_start=@tt.start_date
+        end
       else
         new_start=@tt.start_date
       end
-      new_end = Date.civil(params[:timetable][:"end_date(1i)"].to_i,params[:timetable][:"end_date(2i)"].to_i,params[:timetable][:"end_date(3i)"].to_i)
+      if params[:timetable][:"end_date(1i)"].present?
+        date_end=[params[:timetable][:"end_date(1i)"].to_i,params[:timetable][:"end_date(2i)"].to_i,params[:timetable][:"end_date(3i)"].to_i]
+        unless Date::valid_date?(date_end[0],date_end[1],date_end[2]).nil?
+          new_end = Date.civil(date_end[0],date_end[1],date_end[2])
+        else
+          @timetable.errors.add_to_base('end_date_is_invalid')
+          @error=true
+          new_end=@tt.end_date
+        end
+      else
+        new_end=@tt.end_date
+      end
       if new_end<new_start
         @error=true
         @timetable.errors.add_to_base('start_date_is_lower_than_today')
@@ -151,6 +169,7 @@ class TimetableController < ApplicationController
     @timetables=Timetable.all
     ## Prints out timetable of all teachers
     @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",Date.today,Date.today])
+    if @current
     @timetable_entries = Hash.new { |l, k| l[k] = Hash.new(&l.default_proc) }
     @all_timetable_entries = @current.timetable_entries.select{|t| t.batch.is_active}
     @all_batches = @all_timetable_entries.collect(&:batch).uniq#.sort!{|a,b| a.class_timing <=> b.class_timing}
@@ -173,6 +192,9 @@ class TimetableController < ApplicationController
       end
     end
     @all_teachers=@all_teachers.uniq
+    else
+      @all_timetable_entries=[]
+    end
   end
   #    if request.xhr?
   def update_teacher_tt
@@ -231,7 +253,6 @@ class TimetableController < ApplicationController
       end
       return
     end
-    @weekday = ["#{t('sun')}", "#{t('mon')}", "#{t('tue')}", "#{t('wed')}", "#{t('thu')}", "#{t('fri')}", "#{t('sat')}"]
     @class_timing = ClassTiming.for_batch(@batch.id)
     if @class_timing.empty?
       @class_timing = ClassTiming.default
@@ -240,19 +261,17 @@ class TimetableController < ApplicationController
     if @day.empty?
       @day = Weekday.default
     end
-    timetable_entries=TimetableEntry.find(:all,:conditions=>{:batch_id=>@batch.id,:timetable_id=>@tt.id},:include=>[:subject,:employee])
+    @timetable_entries=TimetableEntry.find(:all,:conditions=>{:batch_id=>@batch.id,:timetable_id=>@tt.id},:include=>[:subject,:employee])
     @timetable= Hash.new { |h, k| h[k] = Hash.new(&h.default_proc)}
-    timetable_entries.each do |tte|
+    @timetable_entries.each do |tte|
       @timetable[tte.weekday_id][tte.class_timing_id]=tte
     end
-    @subjects = Subject.find_all_by_batch_id(@batch.id)  #, :conditions=>["elective_group_id IS NULL AND is_deleted = false"])
-    @ele_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"], :group => "elective_group_id")
-
 
     render :update do |page|
       page.replace_html "timetable_view", :partial => "view_timetable"
     end
   end
+
   def destroy
     @timetable=Timetable.find(params[:id])
     if @timetable.destroy
@@ -636,7 +655,7 @@ class TimetableController < ApplicationController
   #  end
 
 
-  
+
 
   #methods given below are for timetable with HR module connected
 
@@ -769,8 +788,8 @@ class TimetableController < ApplicationController
   #    render :update => "error_div_#{params[:tte_id]}", :text => "#{t('cancelled')}"
   #  end
   #PDF Reports
-  
-  
+
+
 end
 class Hash
   def delete_blank
