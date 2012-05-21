@@ -44,13 +44,15 @@
         :style =>"display: none;" ) %>
       <div class="text-input-bg">
         <%= select :timetable_entry, :timetable_id, @timetables.map {|c| ["#{c.start_date.strftime("%d %b %Y")} - #{c.end_date.strftime("%d %b %Y")}", c.id]},
-          {:selected => @current.id, :prompt => t('select_a_tte')},
+          {:selected => @current.present? ? @current.id : nil, :prompt => t('select_a_tte')},
           {:onChange => "#{remote_function(:url => {:action => "update_student_tt"}, :with => "'timetable_id='+value+'&id='+#{@student.id}",       :before => "Element.show('loader')",
           :success => "Element.hide('loader')")}"} %>
       </div>
     </div>
   <% end %>
   <div id="box">
-    <%= render :partial=>'student_timetable' %>
+    <% if @current.present? %>
+      <%= render :partial=>'student_timetable' %>
+    <% end %>
   </div>
 </div>

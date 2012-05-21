@@ -9,7 +9,7 @@ class Timetable < ActiveRecord::Base
     end
     range=register_range(batch,date)
     holidays=batch.holiday_event_dates
-    entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["((? BETWEEN start_date AND end_date) OR (? BETWEEN start_date AND end_date) OR (start_date BETWEEN ? AND ?) OR (end_date BETWEEN ? AND ?)) AND timetable_entries.subject_id = ? AND timetable_entries.batch_id = ?",range.first,range.last,range.first,range.last,range.first,range.last,subject.id,batch.id])
+    entries = TimetableEntry.find(:all,:joins=>[:timetable, :weekday, :class_timing],:include=>:weekday,:conditions=>["((? BETWEEN start_date AND end_date) OR (? BETWEEN start_date AND end_date) OR (start_date BETWEEN ? AND ?) OR (end_date BETWEEN ? AND ?)) AND timetable_entries.subject_id = ? AND timetable_entries.batch_id = ? AND class_timings.is_deleted = false AND weekdays.is_deleted = false",range.first,range.last,range.first,range.last,range.first,range.last,subject.id,batch.id])
 #    entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["(timetables.start_date <= ? OR timetables.end_date >= ?) AND timetable_entries.subject_id = ? AND timetable_entries.batch_id = ?",range.first,range.last,subject.id,batch.id])
     timetable_ids=entries.collect(&:timetable_id).uniq
     hsh2=ActiveSupport::OrderedHash.new
@@ -33,7 +33,7 @@ class Timetable < ActiveRecord::Base
   end
 
   def self.tte_for_the_day(batch,date)
-    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timing],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?)  AND timetable_entries.batch_id = ?",date,date,batch.id], :order=>"class_timings.start_time")
+    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timing, :weekday],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?)  AND timetable_entries.batch_id = ? AND class_timings.is_deleted = false AND weekdays.is_deleted = false",date,date,batch.id], :order=>"class_timings.start_time")
     if entries.empty?
       today=[]
     else
@@ -43,7 +43,7 @@ class Timetable < ActiveRecord::Base
   end
 
   def self.employee_tte(employee,date)
-    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timing],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?) AND timetable_entries.employee_id = ? ",date,date,employee.id], :order=>"class_timings.start_time")
+    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timing, :weekday],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?) AND timetable_entries.employee_id = ? AND class_timings.is_deleted = false AND weekdays.is_deleted = false",date,date,employee.id], :order=>"class_timings.start_time")
     if entries.empty?
       today=[]
     else
@@ -57,7 +57,7 @@ class Timetable < ActiveRecord::Base
     unless subject.elective_group.nil?
       subject=subject.elective_group.subjects.first
     end
-    entries = TimetableEntry.find(:all,:joins=>:timetable,:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?)  AND timetable_entries.subject_id = ? ",date,date,subject.id])
+    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timig, :weekday],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?)  AND timetable_entries.subject_id = ? AND class_timings.is_deleted = false AND weekdays.is_deleted = false",date,date,subject.id])
     if entries.empty?
       today=[]
     else
@@ -65,7 +65,7 @@ class Timetable < ActiveRecord::Base
     end
     today
   end
-  
+
   def self.register_range(batch,date)
     start=[]
     start<<batch.start_date.to_date

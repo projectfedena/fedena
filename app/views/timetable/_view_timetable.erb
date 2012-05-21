@@ -43,57 +43,56 @@
     </tr>
     <%- @day.each do |d| -%>
       <tr>
-        <td class="td"><div class="name"><%= @weekday[d.weekday.to_i][0,3].upcase %></div></td>
+        <td class="td"><div class="name"><%= t(Date::DAYNAMES[d.day_of_week].downcase).upcase -%></div></td>
         <td class="td-blank"></td>
-        <%- @class_timing.each do |pt1| -%>
+        <%- @class_timing.each do |ct| -%>
           <td class="td">
-            <%- @tte = TimetableEntry.find_by_weekday_id_and_class_timing_id_and_batch_id_and_timetable_id(d.id, pt1.id, @batch.id,@tt.id) -%>
-            <% @config = Configuration.available_modules %>
             <div class="drop">
               <div class="tt-subject">
-                <div class="subject">
-                  <% unless @tte.nil? %>
-                    <% unless @tte.subject.nil? %>
-                      <% unless @tte.subject.elective_group_id.nil?   %>
-                        <%= shorten_string(@tte.subject.elective_group.name.to_s,10) %>
-                      <% else %>
-                        <%= @tte.subject.code  %>
-                      <% end %>
-                    <% end %>
-      <%#= @tte.subject.code unless @tte.subject.nil? %>
-                    <% unless @tte.subject.nil? %>
+                <% if  @timetable[d.id][ct.id].present? %>
+                  <% unless  @timetable[d.id][ct.id].subject.elective_group.nil? %>
+                    <div class="subject">
+                      <%= @timetable[d.id][ct.id].subject.elective_group.name %>
                       <span>
-                        <% unless @tte.subject.elective_group_id.nil?   %>
-                          <% @tte.subject.elective_group.subjects.each do |s| %>
-                            <%= s.name unless s.nil? %>
-                            <% @sub_emp = EmployeesSubject.find_by_subject_id(s.id) %>
-                            <div class="emp-name"><%= @sub_emp.employee.full_name unless @sub_emp.nil? %></div>
+                        <% @timetable[d.id][ct.id].subject.elective_group.subjects.each do |s| %>
+                          <%= s.name unless s.nil? %>
+                          <% @sub_emp = s.employees %>
+                          <% @sub_emp.each do |e| %>
+                            <div class="emp-name">
+                              <%= e.full_name unless @sub_emp.nil? %>
+                            </div>
                           <% end %>
-                        <% else %>
-                          <%= @tte.subject.name unless @tte.subject.nil? %>
-                          <div class="emp-name"><%= @tte.employee.full_name unless @tte.employee.nil? %></div>
                         <% end %>
                       </span>
-                    <%  end %>
-                  <%  end %>
-                </div>
-
-                <% if @config.include?('HR') %>
-                  <div class="employee">
-                    <% unless @tte.nil? %>
-                      <% unless @tte.subject.nil? %>
-                        <% unless @tte.subject.elective_group_id.nil?   %>
-                          <%= t('elective') %>
-                        <% else %>
-                          <%= @tte.employee.first_name unless @tte.employee.nil? %>
-                        <% end %>
+                    </div>
+                    <div class="employee">
+                      <%= t('elective') %>
+                    </div>
+                  <% else %>
+                    <div class="subject">
+                      <%= @timetable[d.id][ct.id].subject.code %>
+                      <span>
+                        <%= @timetable[d.id][ct.id].subject.name %>
+                        <div class="emp-name">
+                          <%= @timetable[d.id][ct.id].employee.full_name unless @timetable[d.id][ct.id].employee.nil? %>
+                        </div>
+                      </span>
+                    </div>
+                    <div class="employee">
+                      <% if @timetable[d.id][ct.id].employee.present? %>
+                        <%= @timetable[d.id][ct.id].employee.first_name %>
                       <% end %>
                     <% end %>
+                  </div>
+                <% else %>
+
+                  <div class="subject">
+                  </div>
+                  <div class="employee">
                   </div>
                 <% end %>
               </div>
             </div>
-
           </td><!--timetable_td -->
         <% end %>
       </tr><!--timetable_tr -->
