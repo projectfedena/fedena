@@ -22,6 +22,7 @@ class Guardian < ActiveRecord::Base
   belongs_to :user,:dependent=>:destroy, :autosave =>true
 
   validates_presence_of :first_name, :relation
+  before_destroy :immediate_contact_nil
 
   def validate
     errors.add(:dob, "#{t('cant_be_a_future_date')}.") if self.dob > Date.today unless self.dob.nil?
@@ -66,5 +67,9 @@ class Guardian < ActiveRecord::Base
     current_guardian.create_guardian_user(student) if  current_guardian.present?
   end
 
-  
+  def immediate_contact_nil
+    student = self.ward
+    student.update_attributes(:immediate_contact_id=>nil)
+  end
+    
 end
