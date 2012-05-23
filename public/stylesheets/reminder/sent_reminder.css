@@ -109,3 +109,40 @@
 #inner-tab-menu ul li {
     width: 173px;
 }
+table#listing .tr-read-odd, table#listing .tr-read-odd{
+    background: #ffffff;
+}
+table#listing .tr-read-even.active, table#listing .tr-read-odd.active{
+    background: #E1E6FF;
+}
+table#listing .tr-even.active, table#listing .tr-odd.active{
+    background: #E1E6FF;
+}
+.tr-select{
+    height: 40px;
+}
+.tr-select td{
+    float: none;
+}
+
+.submit_button {
+    padding: 7px 9px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    margin: 0;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+table#listing td.col-8 {
+    width: 6%;
+    padding: 5px;
+    text-align: center;
+}

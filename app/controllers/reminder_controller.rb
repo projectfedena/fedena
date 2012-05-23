@@ -191,4 +191,40 @@ class ReminderController < ApplicationController
       redirect_to :controller=>:reminder
     end
   end
+
+  def reminder_actions
+    @user = current_user
+    message_ids = params[:message_ids]
+    unless message_ids.nil?
+      message_ids.each do |msg_id|
+        msg = Reminder.find_by_id(msg_id)
+        if params[:reminder][:action] == 'delete'
+          Reminder.update(msg.id, :is_deleted_by_recipient => true)
+        elsif params[:reminder][:action] == 'read'
+          Reminder.update(msg.id, :is_read => true)
+        elsif params[:reminder][:action] == 'unread'
+          Reminder.update(msg.id, :is_read => false)
+        end
+      end
+    end
+    @reminders = Reminder.paginate(:page => params[:page], :conditions=>["recipient = '#{@user.id}' and is_deleted_by_recipient = false"], :order=>"created_at DESC")
+    @new_reminder_count = Reminder.find_all_by_recipient(@user.id, :conditions=>"is_read = false and is_deleted_by_recipient = false")
+
+    redirect_to :action=>:index, :page=>params[:page]
+  end
+
+  def sent_reminder_delete
+    @user = current_user
+    message_ids = params[:message_ids]
+    unless message_ids.nil?
+      message_ids.each do |msg_id|
+        msg = Reminder.find_by_id(msg_id)
+        Reminder.update(msg.id, :is_deleted_by_sender => true)
+      end
+    end
+    @sent_reminders = Reminder.paginate(:page => params[:page], :conditions=>["sender = '#{@user.id}' and is_deleted_by_sender = false"],  :order=>"created_at DESC")
+    @new_reminder_count = Reminder.find_all_by_recipient(@user.id, :conditions=>"is_read = false")
+
+    redirect_to :action=>:sent_reminder, :page=>params[:page]
+  end
 end

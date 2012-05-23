@@ -22,7 +22,7 @@
   <h1><%= t('messages') %></h1>
   <h3><%= t('sent') %></h3>
   <div id="app-back-button">
-  <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
@@ -47,40 +47,108 @@
 
 
   <div id="application-list">
-    <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
-      <tr class="tr-head">
-        <td>
-          <%= t('to') %>
-        </td>
-        <td>
-          <%= t('subject') %>
-        </td>
-        <td>
-          <%= t('date_text') %>
-        </td>
-      </tr>
-      <tr class="tr-blank"></tr>
+    <% form_for :reminder, :url=>{:controller=>'reminder', :action=>'sent_reminder_delete' }, :html=>{:onSubmit => "return confirm('Are you sure?')"} do |f| %>
+      <%= hidden_field_tag :page, (params[:page].nil? ? 1 : params[:page]) %>
+      <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+        <tr class="tr-select">
+          <td colspan="4" class="text-input-bg">
+            <%= f.submit "#{t('delete')}",:class=>'submit_button' %>
+          </td>
+        </tr>
+        <tr class="tr-head">
+          <td class="col-8"><%= check_box_tag "check_all", nil, false, {:class=>'check_all' } %></td>
+          <td>
+            <%= t('to') %>
+          </td>
+          <td>
+            <%= t('subject') %>
+          </td>
+          <td>
+            <%= t('date_text') %>
+          </td>
+        </tr>
+        <tr class="tr-blank"></tr>
 
-    
-      <% unless @sent_reminders == [] %>
-        <% @sent_reminders.each do |r| %>
-          <% recipient_user = r.to_user %>
-          <% unless recipient_user.nil?  %>
-          <tr class="tr-read-<%= cycle('odd', 'even') %>">
-          <td class="col-3"><%= link_to "#{recipient_user.first_name}", :controller=>"reminder", :action=>"view_sent_reminder",:id2=>r.id %></td>
-          <td class="col-2"><%= link_to "#{r.subject}",  :controller=>"reminder", :action=>"view_sent_reminder", :id2=>r.id %></td>
-          <td class="col-1"><%= link_to "#{r.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_sent_reminder", :id2=>r.id %></td>
-    </tr>
-    <% else %>
-          <tr class="tr-read-<%= cycle('odd', 'even') %>">
-          <td class="col-3"><%= t('user_unavailable') %></td>
-          <td class="col-2"><%= link_to "#{r.subject}",  :controller=>"reminder", :action=>"view_sent_reminder", :id2=>r.id %></td>
-          <td class="col-1"><%= link_to "#{r.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_sent_reminder", :id2=>r.id %></td>
-    </tr>
-    <% end %>
+
+        <% unless @sent_reminders == [] %>
+          <% @sent_reminders.each do |r| %>
+            <% recipient_user = r.to_user %>
+            <% unless recipient_user.nil?  %>
+              <tr class="tr-read-<%= cycle('odd', 'even') %>">
+                <td class="col-8"><%= check_box_tag "message_ids[]", r.id, false, {:class=>'message_check' } %></td>
+                <td class="col-4"><%= link_to "#{recipient_user.first_name}", :controller=>"reminder", :action=>"view_sent_reminder",:id2=>r.id %></td>
+                <td class="col-2"><%= link_to "#{r.subject}",  :controller=>"reminder", :action=>"view_sent_reminder", :id2=>r.id %></td>
+                <td class="col-1"><%= link_to "#{r.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_sent_reminder", :id2=>r.id %></td>
+              </tr>
+            <% else %>
+              <tr class="tr-read-<%= cycle('odd', 'even') %>">
+                <td class="col-8"><%= check_box_tag "message_ids[]", r.id, false, {:class=>'message_check' } %></td>
+                <td class="col-4"><%= t('user_unavailable') %></td>
+                <td class="col-2"><%= link_to "#{r.subject}",  :controller=>"reminder", :action=>"view_sent_reminder", :id2=>r.id %></td>
+                <td class="col-1"><%= link_to "#{r.created_at.strftime("%d-%m-%Y")}",  :controller=>"reminder", :action=>"view_sent_reminder", :id2=>r.id %></td>
+              </tr>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
-    </table>
+      </table>
+      <script type="text/javascript">
+        $$('.message_check').invoke('observe','click',function() {
+          if(this.checked == false){
+            $$('.check_all').first().checked = false
+            $(this).up('tr').removeClassName('active')
+          }
+          else{
+            $(this).up('tr').addClassName('active')
+          }
+
+        });
+        $$('.check_all').invoke('observe','click',function() {
+          field_value = this.checked
+          $$('.message_check').each(function(check){
+            check.checked = field_value;
+            if(check.checked == false){
+              $(check).up('tr').removeClassName('active')
+            }
+            else{
+              $(check).up('tr').addClassName('active')
+            }
+          })
+        });
+        $('application-list').observe('click', function (e)
+        {
+          var origin = e.element();
+          if (!origin) return;
+          if (!origin.nodeName) return;
+          if (origin.nodeName.toLowerCase() === 'input') {
+            if (e.shiftKey) {
+              var checkBoxes = $$('.message_check');
+              var last = checkBoxes.indexOf(lastSelected);
+              var first = checkBoxes.indexOf(origin);
+              if (-1 == last) {
+                lastSelected = origin;
+                return;
+              }
+
+              var start = Math.min(first, last);
+              var end = Math.max(first, last);
+
+              var chk = lastSelected.checked;
+              for (var i = start; i < end; ++i) {
+                checkBoxes[i].checked = chk;
+                if(chk == false){
+                  checkBoxes[i].up('tr').removeClassName('active')
+                }
+                else{
+                  checkBoxes[i].up('tr').addClassName('active')
+                }
+              }
+            } else {
+              lastSelected = origin;
+            }
+          }
+        });
+      </script>
+    <% end %>
     <%= will_paginate @sent_reminders %>
   </div>
 </div>
