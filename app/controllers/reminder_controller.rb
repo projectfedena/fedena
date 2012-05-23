@@ -199,7 +199,7 @@ class ReminderController < ApplicationController
       message_ids.each do |msg_id|
         msg = Reminder.find_by_id(msg_id)
         if params[:reminder][:action] == 'delete'
-          Reminder.update(msg.id, :is_deleted_by_recipient => true)
+          Reminder.update(msg.id, :is_deleted_by_recipient => true, :is_read => true)
         elsif params[:reminder][:action] == 'read'
           Reminder.update(msg.id, :is_read => true)
         elsif params[:reminder][:action] == 'unread'
