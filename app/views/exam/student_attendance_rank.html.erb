@@ -1,0 +1,105 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <%= image_tag("/images/examination/show_exam.png") %>
+  <h1><%= t('exams_text') %></h1>
+  <h3>Student Ranking per Attendance</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_attendance_rank_pdf", :batch_id=>@batch.id,:start_date=>@start_date,:end_date=>@end_date},:target => '_blank', :class=> 'user_button' %></li>
+  </ul>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+    <h4>Overall Rankings per Attendance : <%= @batch.name %> - <%= @batch.course.full_name %> | <%=@start_date%> - <%=@end_date%></h4>
+    <div id="score-table">
+      <% unless @students.empty? %>
+        <% working_days = @batch.find_working_days(@start_date,@end_date).count %>
+      <% unless working_days == 0 %>
+        <% ordered_percentages = [] %>
+        <% student_percentages = [] %>
+        <% @students.each do|student| %>
+          <% leaves = Attendance.find(:all,:conditions=>["student_id = ? and month_date >= ? and month_date <= ?",student.id,@start_date,@end_date]) %>
+          <% absents = 0 %>
+          <% unless leaves.empty? %>
+            <% leaves.each do|leave| %>
+              <% if leave.forenoon == true and leave.afternoon == true %>
+                <% absents = absents + 1 %>
+              <% else %>
+                <% absents = absents + 0.5 %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <% percentage = ((working_days.to_f - absents).to_f/working_days.to_f)*100 %>
+          <% ordered_percentages << percentage %>
+          <% student_percentages << [student.id,(working_days - absents),percentage] %>
+        <% end %>
+        <% ordered_percentages = ordered_percentages.compact.uniq.sort.reverse %>
+        <table id="listing" width="100%" cellpadding="1" cellspacing="1">
+          <tr class="tr-head">
+            <td>Sl No.</td>
+            <td><%= t('name') %></td>
+            <td>Roll No.</td>
+            <td>Working Days</td>
+            <td>Attended</td>
+            <td>Percentage</td>
+            <td>Rank</td>
+          </tr>
+          <% @students.each_with_index do |student,i| %>
+            <% stu_percentage = 0 %>
+            <% attended = 0 %>
+            <tr class="tr-<%= cycle('odd', 'even') %>">
+              <td class="col-1"><%= i+1 %></td>
+              <td class="col-2"><%= student.full_name %></td>
+              <td class="col-1"><%= student.class_roll_no.present? ? student.class_roll_no : "-" %></td>
+              <td class="col-1"><%= working_days %></td>
+
+              <% student_percentages.each do|student_percentage| %>
+                <% if student_percentage[0]==student.id %>
+                  <% attended = student_percentage[1] %>
+                  <% stu_percentage = student_percentage[2] %>
+                <% end %>
+              <% end %>
+              <td class="col-1"><%= attended %></td>
+              <td class="col-1"><%= "%.2f" %(stu_percentage) %></td>
+              <td class="col-1"><%= ordered_percentages.index(stu_percentage) + 1 %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <p class="flash-msg"> No Working Days for this Batch. </p>
+      <% end %>
+      <% else %>
+        <p class="flash-msg"> No students in this Batch. </p>
+      <% end %>
+    </div>
+    <div class="extender"></div>
+  </div>
+</div>

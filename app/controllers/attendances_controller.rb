@@ -174,7 +174,7 @@ class AttendancesController < ApplicationController
         sms_setting = SmsSetting.new()
         if sms_setting.application_sms_active and @student.is_sms_enabled and sms_setting.attendance_sms_active
           recipients = []
-          message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} #{@period_entry.month_date}"
+          message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} #{@absentee.month_date}"
           if sms_setting.student_sms_active
             recipients.push @student.phone2 unless @student.phone2.nil?
           end

@@ -1,0 +1,76 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <%= image_tag("/images/examination/show_exam.png") %>
+  <h1><%= t('exams_text') %></h1>
+  <h3>Combined Report</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="page-yield">
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  <div class="box">
+
+    <% form_for :combined_report, :url=>{:action=>'student_combined_report'} do |x| %>
+      <div class="label-field-pair">
+        <label for="student_course"><%= t('select_a_batch') %> :</label>
+        <div  class="text-input-bg">
+          <%= select :combined_report, :batch_id,
+            @batches.map {|b| [b.full_name, b.id]},
+            {:prompt => "#{t('select_a_batch')}"}%></div></div>
+      <div class="grades">
+        <div class="label-field-pair">
+          <label for="configuration_grading_systems">Class Designations :</label>
+        </div>
+        <div class="fee_category_scroll">
+          <div class="sel-list">
+            <%= t('select') %>: <%= link_to_function t('all'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
+            <%= link_to_function t('none'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
+          </div>
+          <% @class_designations.each do |d| %>
+            <div class="each_batch">
+              <%= check_box_tag "combined_report[designation_ids][]", d.id,false,:class=>'batches_box' %> <%= d.name %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <div class="grades">
+        <div class="label-field-pair">
+          <label for="configuration_grading_systems">Ranking Levels :</label>
+        </div>
+        <div class="fee_category_scroll">
+          <div class="sel-list">
+            <%= t('select') %>: <%= link_to_function t('all'), "$$('input.batches_box1').each(function(checkbox) { checkbox.checked = true; });" %>,
+            <%= link_to_function t('none'), "$$('input.batches_box1').each(function(checkbox) { checkbox.checked = false; });" %>
+          </div>
+          <% @ranking_levels.each do |r| %>
+            <div class="each_batch">
+              <%= check_box_tag "combined_report[level_ids][]", r.id,false,:class=>'batches_box1' %> <%= r.name %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <%= submit_tag "", :value => "► #{t('view')}", :class => "submit_button" %>
+    <% end %>
+    <div class="extender"></div>
+  </div></div>

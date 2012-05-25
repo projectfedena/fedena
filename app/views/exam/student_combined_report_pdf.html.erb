@@ -1,0 +1,162 @@
+<div id="page-yield">
+
+  <div class="hor_line"></div>
+  <h2 align="center">Combined Report</h2>
+  <h3 align="center">Batch : <%= @batch.full_name %></h3>
+  <div class="hor_line"></div>
+  <div class="extender"> </div>
+  <div class="report">
+    <div id="pdf-info">
+      <% unless @students.empty? %>
+        <% unless @designations.blank? %>
+          <% @designations.each do|designation| %>
+            <h4 align="center"><%= designation.name %></h4>
+            <% designated_students = [] %>
+            <% @students.each do|student| %>
+              <% marks = GroupedExamReport.find_all_by_student_id_and_score_type(student.id,"c") %>
+              <% unless marks.empty? %>
+                <% total = marks.map{|m| m.marks} %>
+                <% avg = (total.sum.to_f)/(total.count.to_f) %>
+                <% if @batch.grading_type=="GPA" %>
+                  <% classes = ClassDesignation.find(:all,:conditions=>["cgpa <= ?",avg],:order=>"cgpa DESC") %>
+                <% else %>
+                  <% classes = ClassDesignation.find(:all,:conditions=>["marks <= ?",avg],:order=>"marks DESC") %>
+                <% end %>
+                <% unless classes.empty? %>
+                  <% if classes.first.id == designation.id %>
+                    <% designated_students << [student,avg] %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <table id="pdf-table" width="100%" cellspacing="0">
+              <% c= 'even' %>
+              <% unless designated_students.empty? %>
+                <tr class="table-header">
+                  <td>Sl No.</td>
+                  <td>Roll No.</td>
+                  <td>Name</td>
+                  <% if @batch.grading_type == "CWA" %>
+                    <td>CWA</td>
+                  <% else %>
+                    <td>CGPA</td>
+                  <% end %>
+                </tr>
+                <% designated_students.each_with_index do|s,i| %>
+                  <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+                    <% st = s[0] %>
+                    <td class="col-pdf"><%= i+1 %></td>
+                    <td class="col-pdf"><%= st.class_roll_no.present? ? st.class_roll_no : "-" %></td>
+                    <td class="col-pdf"><%= st.full_name %></td>
+                    <td class="col-pdf"><%= "%.2f" %(s[1].to_f) %></td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr class="table-header">
+                  <td>No Students for this Class Designation.</td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+        <% end %>
+        <% unless @levels.blank? %>
+          <% @levels.each do|level| %>
+            <h4 align="center"><%= level.name %> Students</h4>
+            <% unless level.subject_count.nil? %>
+              <% scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"s"}) %>
+            <% else %>
+              <% scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"c"}) %>
+            <% end %>
+            <% if level.lower_limit==false %>
+              <% scores.reject!{|s| !((s.marks < level.gpa if s.student.batch.grading_type=="GPA") or (s.marks < level.marks))} %>
+            <% else %>
+              <% scores.reject!{|s| !((s.marks >= level.gpa if s.student.batch.grading_type=="GPA") or (s.marks >= level.marks))} %>
+            <% end %>
+            <% unless scores.empty? %>
+              <% unless level.subject_count.nil? %>
+                <% sub_count = level.subject_count %>
+                <% ranked_students =[] %>
+                <% @students.each do|student| %>
+                  <% student_scores = scores.dup %>
+                  <% student_scores.reject!{|s| !(s.student_id==student.id)} %>
+                  <% batch_ids = student_scores.collect(&:batch_id) %>
+                  <% batch_ids.each do|batch_id|%>
+                    <% unless batch_ids.empty? %>
+                      <% count = batch_ids.count(batch_id) %>
+                      <% if count >= sub_count %>
+                        <% flag=0 %>
+                        <% ranked_students.each do|r| %>
+                          <% if r[0]==student.id %>
+                            <% r[1] << batch_id %>
+                            <% flag=1 %>
+                          <% end %>
+                        <% end %>
+                        <% unless flag==1 %>
+                          <% ranked_students << [student.id,[batch_id]] %>
+                        <% end %>
+                      <% end %>
+                      <% batch_ids.delete(batch_id) %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <% ranked_students = [] %>
+                <% scores.each do|score| %>
+                  <% flag=0 %>
+                  <% ranked_students.each do|r| %>
+                    <% if r[0]==score.student_id %>
+                      <% r[1] << score.batch_id %>
+                      <% flag=1 %>
+                    <% end %>
+                  <% end %>
+                  <% unless flag==1 %>
+                    <% ranked_students << [score.student_id,[score.batch_id]] %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+            <table id="pdf-table" width="100%" cellspacing="0">
+              <% c= 'even' %>
+              <% unless ranked_students.empty? %>
+                <tr class="table-header">
+                  <td>Sl No.</td>
+                  <td>Roll No.</td>
+                  <td>Name</td>
+                  <% if @batch.grading_type == "CWA" %>
+                    <td>CWA</td>
+                  <% else %>
+                    <td>CGPA</td>
+                  <% end %>
+                  <td>Courses <%= level.name %></td>
+                </tr>
+                <% ranked_students.each_with_index do|r,ind| %>
+                  <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+                    <% stu = Student.find(r[0]) %>
+                    <% marks = GroupedExamReport.find_all_by_student_id_and_score_type(stu.id,"c") %>
+                    <% unless marks.empty? %>
+                      <% total = marks.map{|m| m.marks} %>
+                      <% avg = (total.sum.to_f)/(total.count.to_f) %>
+                    <% end %>
+                    <td class="col-pdf"><%= ind+1 %></td>
+                    <td class="col-pdf"><%= stu.class_roll_no.present? ? stu.class_roll_no : "-" %></td>
+                    <td class="col-pdf"><%= stu.full_name %></td>
+                    <td class="col-pdf"><%= avg.present? ? "%.2f" %(avg) : "-" %></td>
+                    <td class="col-pdf">
+                      <% batches = r[1] %>
+                      <%= Batch.find_all_by_id(batches).collect(&:full_name).join(", ") %>
+                    </td>
+                  </tr>
+                <% end %>
+              <% else %>
+                <tr class="table-header">
+                  <td>No Students for this Ranking Level.</td>
+                </tr>
+              <% end %>
+            </table>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

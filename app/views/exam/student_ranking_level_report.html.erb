@@ -1,0 +1,157 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <%= image_tag("/images/examination/show_exam.png") %>
+  <h1><%= t('exams_text') %></h1>
+  <h3>Ranking Level Report</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_ranking_level_report_pdf", :mode=>@mode, :report_type=>@report_type, :ranking_level_id=>@ranking_level.id, :batch_id=>params[:ranking_level_report][:batch_id], :course_id=>params[:ranking_level_report][:course_id], :subject_id=>params[:ranking_level_report][:subject_id]},:target => '_blank', :class=> 'user_button' %></li>
+  </ul>
+</div>
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+    <% if @mode=="batch" %>
+      <h4><%= @ranking_level.name %> Students : <%= @batch.full_name %> <%= " | Subject : "+@subject.name if @subject.present? %></h4>
+      <div id="score-table">
+        <% unless @scores.empty? %>
+          <% if @report_type=="subject" %>
+            <% ranked_students = Student.find_all_by_id(@scores.collect(&:student_id)) %>
+          <% else %>
+            <% unless @ranking_level.subject_count.nil? %>
+              <% sub_count = @ranking_level.subject_count %>
+              <% ranked_students = [] %>
+              <% @students.each do|student| %>
+                <% @student_scores = @scores.dup %>
+                <% @student_scores.reject!{|s| !(s.student_id==student.id)} %>
+                <% if @student_scores.count >= sub_count %>
+                  <% ranked_students << student %>
+                <% end %>
+              <% end %>
+            <% else %>
+              <% ranked_students = Student.find_all_by_id(@scores.collect(&:student_id)) %>
+            <% end %>
+          <% end %>
+          <% unless ranked_students.empty? %>
+            <table id="listing" width="100%" cellpadding="1" cellspacing="1">
+              <tr class="tr-head">
+                <td>Sl No.</td>
+                <td>Roll No.</td>
+                <td>Name</td>
+              </tr>
+              <tr class="tr-blank"></tr>
+              <% ranked_students.each_with_index do |s,i| %>
+                <tr class="tr-<%= cycle('odd', 'even') %>">
+                  <td class="col-1"><%= i+1 %></td>
+                  <td class="col-1"><%= s.class_roll_no.present? ? s.class_roll_no : "-" %></td>
+                  <td class="col-2"><%= s.full_name %></td>
+                </tr>
+              <% end %>
+            </table>
+          <% else %>
+            <p class="flash-msg"><%= "No #{@ranking_level.name} Students found." %></p>
+          <% end %>
+        <% else %>
+          <p class="flash-msg"><%= "No #{@ranking_level.name} Students found." %></p>
+        <% end %>
+      </div>
+    <% else %>
+      <h4><%= @ranking_level.name %> Students : <%= @course.full_name %></h4>
+      <div id="score-table">
+        <% unless @scores.empty? %>
+          <% unless @ranking_level.subject_count.nil? %>
+            <% sub_count = @ranking_level.subject_count %>
+            <% ranked_students = [] %>
+            <% unless @ranking_level.full_course==true %>
+              <% @students.each do|student| %>
+                <% @student_scores = @scores.dup %>
+                <% @student_scores.reject!{|s| !(s.student_id==student.id)} %>
+                <% batch_ids = @student_scores.collect(&:batch_id) %>
+                <% batch_ids.each do|batch_id|%>
+                  <% unless batch_ids.empty? %>
+                    <% count = batch_ids.count(batch_id) %>
+                    <% if count >= sub_count %>
+                      <% ranked_students << [student.id,batch_id] %>
+                    <% end %>
+                    <% batch_ids.delete(batch_id) %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% else %>
+              <% @students.each do|student| %>
+                <% @student_scores = @scores.dup %>
+                <% @student_scores.reject!{|s| !(s.student_id==student.id)} %>
+                <% if @student_scores.count >= sub_count %>
+                  <% ranked_students << [student.id,student.batch.id] %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <% ranked_students = [] %>
+            <% @scores.each do|score| %>
+              <% ranked_students << [score.student_id,score.batch_id] %>
+            <% end %>
+          <% end %>
+          <% unless ranked_students.empty? %>
+            <table id="listing" width="100%" cellpadding="1" cellspacing="1">
+              <tr class="tr-head">
+                <td>Sl No.</td>
+                <td>Roll No.</td>
+                <td>Name</td>
+                <td>Batch</td>
+                <% unless @ranking_level.full_course==true %>
+                  <td><%= "#{@ranking_level.name} Batch" %></td>
+                <% end %>
+              </tr>
+              <tr class="tr-blank"></tr>
+              <% ranked_students.each_with_index do |s,i| %>
+                <% stu = Student.find(s[0]) %>
+                <% batch = Batch.find(s[1]) %>
+                <tr class="tr-<%= cycle('odd', 'even') %>">
+                  <td class="col-1"><%= i+1 %></td>
+                  <td class="col-1"><%= stu.class_roll_no.present? ? stu.class_roll_no : "-" %></td>
+                  <td class="col-2"><%= stu.full_name %></td>
+                  <td class="col-2"><%= stu.batch.full_name %></td>
+                  <% unless @ranking_level.full_course==true %>
+                    <td class="col-2"><%= batch.full_name %></td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </table>
+          <% else %>
+            <p class="flash-msg"><%= "No #{@ranking_level.name} Students found." %></p>
+          <% end %>
+        <% else %>
+          <p class="flash-msg"><%= "No #{@ranking_level.name} Students found." %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

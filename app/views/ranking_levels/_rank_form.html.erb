@@ -21,6 +21,14 @@
       <label for="subject_count">Number of Subjects</label>
       <div class="text-input-bg"><%= c.text_field :subject_count %></div>
     </div>
+    <div class="label-field-pair">
+      <label for="subject_count">Is Lower Limit?</label>
+      <div class="text-input-bg"><%= c.check_box :lower_limit %></div>
+    </div>
+    <div class="label-field-pair">
+      <label for="subject_count">Consider Full Course Duration?</label>
+      <div class="text-input-bg"><%= c.check_box :full_course %></div>
+    </div>
 
     <div class="extender"></div>
 

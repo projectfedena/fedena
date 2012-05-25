@@ -1,0 +1,6 @@
+<div class="label-field-pair">
+        <label for="student_course">Select a Subject :</label>
+        <div  class="text-input-bg">
+          <%= select :ranking_level_report, :subject_id,
+            @subjects.map {|b| [b.name, b.id]},
+            {:prompt => "select a subject"}%></div></div>

@@ -40,26 +40,26 @@
   <div class="box">
     <h4>Overall Rankings : <%= @batch.name %> - <%= @batch.course.full_name %></h4>
     <div id="score-table">
-      <% unless @exam_groups.empty? %>
-        <% exams = Exam.find_all_by_exam_group_id(@exam_groups.collect(&:id)) %>
-        <% unless exams.empty? %>
-          <% student_scores=[] %>
-          <% ordered_scores=[] %>
+      <% unless @students.empty? %>
+        <% unless @grouped_exams.empty? %>
+          <% ordered_scores = [] %>
+          <% student_scores = [] %>
           <% @students.each do|student| %>
-            <% scores = ExamScore.find_all_by_student_id(student.id) %>
-            <% score=0 %>
-            <% unless scores.empty? %>
-              <% score = scores.map{|s| s.marks}.compact.sum %>
+            <% score = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(student.id,student.batch_id,"c") %>
+            <% marks = 0 %>
+            <% unless score.nil? %>
+              <% marks = score.marks %>
             <% end %>
-            <% student_scores << [student.id,score] %>
-            <% ordered_scores << score %>
+            <% ordered_scores << marks %>
+            <% student_scores << [student.id,marks] %>
           <% end %>
-          <% ordered_scores = ordered_scores.uniq.sort.reverse %>
+          <% ordered_scores = ordered_scores.compact.uniq.sort.reverse %>
           <table id="listing" width="100%" cellpadding="1" cellspacing="1">
             <tr class="tr-head">
               <td>Sl No.</td>
               <td><%= t('name') %></td>
               <td>Roll No.</td>
+              <td>Marks</td>
               <td>Rank</td>
             </tr>
             <% @students.each_with_index do |student,i| %>
@@ -73,15 +73,16 @@
                     <% marks = student_score[1] %>
                   <% end %>
                 <% end %>
+                <td class="col-1"><%= marks %></td>
                 <td class="col-1"><%= ordered_scores.index(marks) + 1 %></td>
               </tr>
             <% end %>
           </table>
         <% else %>
-          <p class="flash-msg"> No exams for this Batch. </p>
+          <p class="flash-msg"> No grouped exams for this Batch. </p>
         <% end %>
       <% else %>
-        <p class="flash-msg"> No exams for this Batch. </p>
+        <p class="flash-msg"> No Students for this Batch. </p>
       <% end %>
     </div>
     <div class="extender"></div>

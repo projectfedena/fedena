@@ -4,7 +4,12 @@
     <% @class_designations.each  do |designation| %>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="category-name"><%= designation.name %></div>
-          <div class="category-name"><%= designation.cgpa %></div>
+          <% if Configuration.find_by_config_key("GPA").config_value=="1" %>
+          <div class="category-marks"><%= designation.cgpa %></div>
+          <% end %>
+          <% if Configuration.find_by_config_key("CWA").config_value=="1" %>
+          <div class="category-marks"><%= designation.marks %></div>
+          <% end %>
           <div class="category-edit"><%= link_to_remote "#{t('edit_text')}", :url=>{:controller=>"class_designations",:action=>"edit_class_designation", :id=>designation.id}  if permitted_to? :edit_class_designation, :class_designations %></div><div class="category-delete">   <%= link_to_remote "Delete", :url=>{:controller=>"class_designations",:action=>"delete_class_designation", :id=>designation.id}, :confirm=>"Are you sure?" if permitted_to? :delete_class_designation, :class_designations %></div>
         </li>
       <% end %>

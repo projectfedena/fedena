@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  batch_id: 1
+  student_id: 1
+  marks: 9.99
+  type: MyString
+  subject_id: 1
+
+two:
+  batch_id: 1
+  student_id: 1
+  marks: 9.99
+  type: MyString
+  subject_id: 1

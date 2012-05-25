@@ -129,10 +129,18 @@ class ExamController < ApplicationController
     if request.post?
       unless params[:exam_grouping].nil?
         unless params[:exam_grouping][:exam_group_ids].nil?
-          GroupedExam.delete_all(:batch_id=>@batch.id)
-          exam_group_ids = params[:exam_grouping][:exam_group_ids]
-          exam_group_ids.each do |e|
-            GroupedExam.create(:exam_group_id=>e,:batch_id=>@batch.id)
+          weightages = params[:weightage]
+          total = 0
+          weightages.map{|w| total+=w.to_f}
+          unless total=="100".to_f
+            flash[:notice]="Sum of the weightages must be 100%"
+            return
+          else
+            GroupedExam.delete_all(:batch_id=>@batch.id)
+            exam_group_ids = params[:exam_grouping][:exam_group_ids]
+            exam_group_ids.each_with_index do |e,i|
+              GroupedExam.create(:exam_group_id=>e,:batch_id=>@batch.id,:weightage=>weightages[i])
+            end
           end
         end
       else
@@ -143,6 +151,152 @@ class ExamController < ApplicationController
   end
 
   #REPORTS
+
+  def list_batch_groups
+    unless params[:course_id]==""
+      @batch_groups = BatchGroup.find_all_by_course_id(params[:course_id])
+    else
+      @batch_groups = []
+    end
+    render(:update) do|page|
+      page.replace_html "batch_group_list", :partial=>"select_batch_group"
+    end
+  end
+
+  def generate_reports
+    @batch_groups = []
+    if request.post?
+      unless params[:report][:batch_group_id]==""
+        @batch_group = BatchGroup.find(params[:report][:batch_group_id])
+        @batches = @batch_group.batches
+        @batches.each do|batch|
+          grading_type = batch.grading_type
+          students = batch.students
+          grouped_exams = batch.exam_groups.reject{|e| !GroupedExam.exists?(:batch_id=>batch.id, :exam_group_id=>e.id)}
+          unless grouped_exams.empty?
+            subjects = batch.subjects(:conditions=>{:is_deleted=>false})
+            unless students.empty?
+              subject_marks=[]
+              exam_marks=[]
+              grouped_exams.each do|exam_group|
+                subjects.each do|subject|
+                  exam = Exam.find_by_exam_group_id_and_subject_id(exam_group.id,subject.id)
+                  unless exam.nil?
+                    students.each do|student|
+                      percentage = 0
+                      marks = 0
+                      score = ExamScore.find_by_exam_id_and_student_id(exam.id,student.id)
+                      if grading_type.nil? or grading_type=="Normal"
+                        unless score.nil? or score.marks.nil?
+                          percentage = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
+                          marks = score.marks.to_f
+                        end
+                      elsif grading_type=="GPA"
+                        unless score.nil? or score.grading_level_id.nil?
+                          percentage = (score.grading_level.credit_points.to_f)*((exam_group.weightage.to_f)/100)
+                          marks = (score.grading_level.credit_points.to_f) * (subject.credit_hours.to_f)
+                        end
+                      elsif grading_type=="CWA"
+                        unless score.nil? or score.marks.nil?
+                          percentage = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
+                          marks = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*(subject.credit_hours.to_f)
+                        end
+                      end
+                      flag=0
+                      subject_marks.each do|s|
+                        if s[0]==student.id and s[1]==subject.id
+                          s[2] << percentage.to_f
+                          flag=1
+                        end
+                      end
+                     
+                      unless flag==1
+                        subject_marks << [student.id,subject.id,[percentage.to_f]]
+                      end
+                      e_flag=0
+                      exam_marks.each do|e|
+                        if e[0]==student.id and e[1]==exam_group.id
+                          e[2] << marks.to_f
+                          if grading_type.nil? or grading_type=="Normal"
+                            e[3] << exam.maximum_marks.to_f
+                          elsif grading_type=="GPA" or grading_type=="CWA"
+                            e[3] << subject.credit_hours.to_f
+                          end
+                          e_flag = 1
+                        end
+                      end
+                      unless e_flag==1
+                        if grading_type.nil? or grading_type=="Normal"
+                          exam_marks << [student.id,exam_group.id,[marks.to_f],[exam.maximum_marks.to_f]]
+                        elsif grading_type=="GPA" or grading_type=="CWA"
+                          exam_marks << [student.id,exam_group.id,[marks.to_f],[subject.credit_hours.to_f]]
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+              subject_marks.each do|subject_mark|
+                student_id = subject_mark[0]
+                subject_id = subject_mark[1]
+                marks = subject_mark[2].sum.to_f
+                prev_marks = GroupedExamReport.find_by_student_id_and_subject_id_and_batch_id_and_score_type(student_id,subject_id,batch.id,"s")
+                unless prev_marks.nil?
+                  prev_marks.update_attributes(:marks=>marks)
+                else
+                  GroupedExamReport.create(:batch_id=>batch.id,:student_id=>student_id,:marks=>marks,:score_type=>"s",:subject_id=>subject_id)
+                end
+              end
+              exam_totals = []
+              exam_marks.each do|exam_mark|
+                student_id = exam_mark[0]
+                exam_group = ExamGroup.find(exam_mark[1])
+                score = exam_mark[2].sum
+                max_marks = exam_mark[3].sum
+                if grading_type.nil? or grading_type=="Normal"
+                  tot_score = (((score.to_f)/max_marks.to_f)*100)
+                  percent = (((score.to_f)/max_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
+                elsif grading_type=="GPA" or grading_type=="CWA"
+                  tot_score = ((score.to_f)/max_marks.to_f)
+                  percent = ((score.to_f)/max_marks.to_f)*((exam_group.weightage.to_f)/100)
+                end
+                prev_exam_score = GroupedExamReport.find_by_student_id_and_exam_group_id_and_score_type(student_id,exam_group.id,"e")
+                unless prev_exam_score.nil?
+                  prev_exam_score.update_attributes(:marks=>tot_score)
+                else
+                  GroupedExamReport.create(:batch_id=>batch.id,:student_id=>student_id,:marks=>tot_score,:score_type=>"e",:exam_group_id=>exam_group.id)
+                end
+                exam_flag=0
+                exam_totals.each do|total|
+                  if total[0]==student_id
+                    total[1] << percent.to_f
+                    exam_flag=1
+                  end
+                end
+                unless exam_flag==1
+                  exam_totals << [student_id,[percent.to_f]]
+                end
+              end
+              exam_totals.each do|exam_total|
+                student_id=exam_total[0]
+                total=exam_total[1].sum.to_f
+                prev_total_score = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(student_id,batch.id,"c")
+                unless prev_total_score.nil?
+                  prev_total_score.update_attributes(:marks=>total)
+                else
+                  GroupedExamReport.create(:batch_id=>batch.id,:student_id=>student_id,:marks=>total,:score_type=>"c")
+                end
+              end
+            end
+          end
+        end
+        flash[:notice]="Reports have been generated successfully."
+      else
+        flash[:notice]="Select a Batch Group to continue."
+        return
+      end
+    end
+  end
 
   def exam_wise_report
     @batches = Batch.active
@@ -223,10 +377,12 @@ class ExamController < ApplicationController
 
   def consolidated_exam_report
     @exam_group = ExamGroup.find(params[:exam_group])
+    @batch = @exam_group.batch
   end
 
   def consolidated_exam_report_pdf
     @exam_group = ExamGroup.find(params[:exam_group])
+    @batch = @exam_group.batch
     render :pdf => 'consolidated_exam_report_pdf',
       :page_size=> 'A3'
     #        respond_to do |format|
@@ -310,15 +466,466 @@ class ExamController < ApplicationController
     else
       @batch = Batch.find(params[:batch_rank][:batch_id])
       @students = Student.find_all_by_batch_id(@batch.id)
-      @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
+      @grouped_exams = GroupedExam.find_all_by_batch_id(@batch.id)
     end
   end
 
   def student_batch_rank_pdf
     @batch = Batch.find(params[:batch_id])
     @students = Student.find_all_by_batch_id(@batch.id)
-    @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
+    @grouped_exams = GroupedExam.find_all_by_batch_id(@batch.id)
     render :pdf => "student_batch_rank_pdf"
+  end
+  
+  def course_rank
+    @batch_groups = []
+  end
+
+  def batch_groups
+    unless params[:course_id]==""
+      @batch_groups = BatchGroup.find_all_by_course_id(params[:course_id])
+    else
+      @batch_groups = []
+    end
+    render(:update) do|page|
+      page.replace_html "batch_group_list", :partial=>"batch_groups"
+    end
+  end
+
+  def student_course_rank
+    if params[:course_rank].nil? or params[:course_rank][:batch_group_id].empty?
+      flash[:notice] = "Select a Batch Group to continue."
+      redirect_to :action=>'course_rank' and return
+    else
+      @batch_group = BatchGroup.find(params[:course_rank][:batch_group_id])
+      @batches = @batch_group.batches
+      @students = Student.find_all_by_batch_id(@batches)
+      @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
+    end
+  end
+
+  def student_course_rank_pdf
+    @batch_group = BatchGroup.find(params[:batch_group_id])
+    @batches = @batch_group.batches
+    @students = Student.find_all_by_batch_id(@batches)
+    @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
+    render :pdf => "student_course_rank_pdf"
+  end
+
+  def student_school_rank
+    @courses = Course.all(:conditions=>{:is_deleted=>false})
+    @batches = Batch.all(:conditions=>{:course_id=>@courses,:is_deleted=>false,:is_active=>true})
+    @students = Student.find_all_by_batch_id(@batches)
+    @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
+  end
+
+  def student_school_rank_pdf
+    @courses = Course.all(:conditions=>{:is_deleted=>false})
+    @batches = Batch.all(:conditions=>{:course_id=>@courses,:is_deleted=>false,:is_active=>true})
+    @students = Student.find_all_by_batch_id(@batches)
+    @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
+    render :pdf => "student_school_rank_pdf"
+  end
+
+  def student_attendance_rank
+    if params[:attendance_rank].nil? or params[:attendance_rank][:batch_id].empty?
+      flash[:notice] = "#{t('select_a_batch_to_continue')}"
+      redirect_to :action=>'attendance_rank' and return
+    else
+      if params[:attendance_rank][:start_date].to_date > params[:attendance_rank][:end_date].to_date
+        flash[:notice] = "Start Date cannot be greater than End Date."
+        redirect_to :action=>'attendance_rank' and return
+      else
+        @batch = Batch.find(params[:attendance_rank][:batch_id])
+        @students = Student.find_all_by_batch_id(@batch.id)
+        @start_date = params[:attendance_rank][:start_date].to_date
+        @end_date = params[:attendance_rank][:end_date].to_date
+      end
+    end
+  end
+
+  def student_attendance_rank_pdf
+    @batch = Batch.find(params[:batch_id])
+    @students = Student.find_all_by_batch_id(@batch.id)
+    @start_date = params[:start_date].to_date
+    @end_date = params[:end_date].to_date
+    render :pdf => "student_attendance_rank_pdf"
+  end
+
+  def ranking_level_report
+    @ranking_levels = RankingLevel.all
+  end
+
+  def select_mode
+    unless params[:mode].nil? or params[:mode]==""
+      if params[:mode] == "batch"
+        @batches = Batch.active
+        @batches.reject!{|b| !(b.grading_type=="GPA" or b.grading_type=="CWA")}
+        render(:update) do|page|
+          page.replace_html "course-batch", :partial=>"batch_select"
+        end
+      else
+        @courses = Course.active
+        @courses.reject!{|c| (Batch.exists?(:course_id=>c.id,:grading_type=>nil) or Batch.exists?(:course_id=>c.id,:grading_type=>"Normal"))}
+        render(:update) do|page|
+          page.replace_html "course-batch", :partial=>"course_select"
+        end
+      end
+    else
+      render(:update) do|page|
+        page.replace_html "course-batch", :text=>""
+      end
+    end
+  end
+
+  def select_batch_group
+    unless params[:course_id].nil? or params[:course_id]==""
+      @batch_groups = BatchGroup.find_all_by_course_id(params[:course_id])
+      render(:update) do|page|
+        page.replace_html "batch_groups", :partial=>"report_batch_groups"
+      end
+    else
+      render(:update) do|page|
+        page.replace_html "batch_groups", :text=>""
+      end
+    end
+  end
+
+  def select_type
+    unless params[:report_type].nil? or params[:report_type]=="" or params[:report_type]=="overall"
+      unless params[:batch_id].nil? or params[:batch_id]==""
+        @batch = Batch.find(params[:batch_id])
+        @subjects = Subject.find(:all,:conditions=>{:batch_id=>@batch.id,:is_deleted=>false})
+        render(:update) do|page|
+          page.replace_html "subject-select", :partial=>"subject_list"
+        end
+      else
+        render(:update) do|page|
+          page.replace_html "subject-select", :text=>""
+        end
+      end
+    else
+      render(:update) do|page|
+        page.replace_html "subject-select", :text=>""
+      end
+    end
+  end
+
+  def student_ranking_level_report
+    if params[:ranking_level_report].nil? or params[:ranking_level_report][:ranking_level_id]==""
+      flash[:notice]="Select a Ranking Level to continue."
+      redirect_to :action=>"ranking_level_report" and return
+    else
+      @ranking_level = RankingLevel.find(params[:ranking_level_report][:ranking_level_id])
+      if params[:ranking_level_report][:mode]==""
+        flash[:notice]="Select a Mode to continue."
+        redirect_to :action=>"ranking_level_report" and return
+      else
+        @mode = params[:ranking_level_report][:mode]
+        if params[:ranking_level_report][:mode]=="batch"
+          if params[:ranking_level_report][:batch_id]==""
+            flash[:notice]="Select a Batch to continue."
+            redirect_to :action=>"ranking_level_report" and return
+          else
+            @batch = Batch.find(params[:ranking_level_report][:batch_id])
+            if params[:ranking_level_report][:report_type]==""
+              flash[:notice]="Select a Report Type to continue."
+              redirect_to :action=>"ranking_level_report" and return
+            else
+              @report_type = params[:ranking_level_report][:report_type]
+              if params[:ranking_level_report][:report_type]=="subject"
+                if params[:ranking_level_report][:subject_id]==""
+                  flash[:notice]="Select a Subject to continue."
+                  redirect_to :action=>"ranking_level_report" and return
+                else
+                  @students = @batch.students(:conditions=>{:is_active=>true,:is_deleted=>true})
+                  @subject = Subject.find(params[:ranking_level_report][:subject_id])
+                  @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:batch_id=>@batch.id,:subject_id=>@subject.id,:score_type=>"s"})
+                  unless @scores.empty?
+                    if @batch.grading_type=="GPA"
+                      @scores.reject!{|s| !((s.marks < @ranking_level.gpa if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.gpa if @ranking_level.lower_limit==true))}
+                    else
+                      @scores.reject!{|s| !((s.marks < @ranking_level.marks if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.marks if @ranking_level.lower_limit==true))}
+                    end
+                  else
+                    flash[:notice]="No Grouped Exams found for this Batch."
+                    redirect_to :action=>"ranking_level_report" and return
+                  end
+                end
+              else
+                @students = @batch.students(:conditions=>{:is_active=>true,:is_deleted=>true})
+                unless @ranking_level.subject_count.nil?
+                  unless @ranking_level.full_course==true
+                    @subjects = @batch.subjects
+                    @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:batch_id=>@batch.id,:subject_id=>@subjects.collect(&:id),:score_type=>"s"})
+                  else
+                    @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"s"})
+                  end
+                  unless @scores.empty?
+                    if @batch.grading_type=="GPA"
+                      @scores.reject!{|s| !((s.marks < @ranking_level.gpa if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.gpa if @ranking_level.lower_limit==true))}
+                    else
+                      @scores.reject!{|s| !((s.marks < @ranking_level.marks if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.marks if @ranking_level.lower_limit==true))}
+                    end
+                  else
+                    flash[:notice]="No Grouped Exams found for this Batch."
+                    redirect_to :action=>"ranking_level_report" and return
+                  end
+                else
+                  unless @ranking_level.full_course==true
+                    @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:batch_id=>@batch.id,:score_type=>"c"})
+                  else
+                    @scores = []
+                    @students.each do|student|
+                      total_student_score = 0
+                      avg_student_score = 0
+                      marks = GroupedExamReport.find_all_by_student_id_and_score_type(student.id,"c")
+                      unless marks.empty?
+                        marks.map{|m| total_student_score+=m.marks}
+                        avg_student_score = total_student_score.to_f/marks.count.to_f
+                        marks.first.marks = avg_student_score
+                        @scores.push marks.first
+                      end
+                    end
+                  end
+                  unless @scores.empty?
+                    if @batch.grading_type=="GPA"
+                      @scores.reject!{|s| !((s.marks < @ranking_level.gpa if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.gpa if @ranking_level.lower_limit==true))}
+                    else
+                      @scores.reject!{|s| !((s.marks < @ranking_level.marks if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.marks if @ranking_level.lower_limit==true))}
+                    end
+                  else
+                    flash[:notice]="No Grouped Exams found for this Batch."
+                    redirect_to :action=>"ranking_level_report" and return
+                  end
+                end
+              end
+            end
+          end
+        else
+          if params[:ranking_level_report][:course_id]==""
+            flash[:notice]="Select a Course to continue."
+            redirect_to :action=>"ranking_level_report" and return
+          else
+            if params[:ranking_level_report][:batch_group_id]==""
+              flash[:notice]="Select a Batch Group to continue."
+              redirect_to :action=>"ranking_level_report" and return
+            else
+              @course = Course.find(params[:ranking_level_report][:course_id])
+              @batch_group = BatchGroup.find(params[:ranking_level_report][:batch_group_id])
+              @batches = @batch_group.batches
+              @students = Student.find_all_by_batch_id(@batches.collect(&:id))
+              unless @ranking_level.subject_count.nil?
+                @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"s"})
+              else
+                unless @ranking_level.full_course==true
+                  @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"c"})
+                else
+                  @scores = []
+                  @students.each do|student|
+                    total_student_score = 0
+                    avg_student_score = 0
+                    marks = GroupedExamReport.find_all_by_student_id_and_score_type(student.id,"c")
+                    unless marks.empty?
+                      marks.map{|m| total_student_score+=m.marks}
+                      avg_student_score = total_student_score.to_f/marks.count.to_f
+                      marks.first.marks = avg_student_score
+                      @scores.push marks.first
+                    end
+                  end
+                end
+              end
+              unless @scores.empty?
+                if @ranking_level.lower_limit==false
+                  @scores.reject!{|s| !((s.marks < @ranking_level.gpa if s.student.batch.grading_type=="GPA") or (s.marks < @ranking_level.marks))}
+                else
+                  @scores.reject!{|s| !((s.marks >= @ranking_level.gpa if s.student.batch.grading_type=="GPA") or (s.marks >= @ranking_level.marks))}
+                end
+              else
+                flash[:notice]="No Grouped Exams found for this Batch Group."
+                redirect_to :action=>"ranking_level_report" and return
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  def student_ranking_level_report_pdf
+    @ranking_level = RankingLevel.find(params[:ranking_level_id])
+    @mode = params[:mode]
+    if @mode=="batch"
+      @batch = Batch.find(params[:batch_id])
+      @report_type = params[:report_type]
+      if @report_type=="subject"
+        @students = @batch.students(:conditions=>{:is_active=>true,:is_deleted=>true})
+        @subject = Subject.find(params[:subject_id])
+        @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:batch_id=>@batch.id,:subject_id=>@subject.id,:score_type=>"s"})
+        if @batch.grading_type=="GPA"
+          @scores.reject!{|s| !((s.marks < @ranking_level.gpa if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.gpa if @ranking_level.lower_limit==true))}
+        else
+          @scores.reject!{|s| !((s.marks < @ranking_level.marks if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.marks if @ranking_level.lower_limit==true))}
+        end
+      else
+        @students = @batch.students(:conditions=>{:is_active=>true,:is_deleted=>true})
+        unless @ranking_level.subject_count.nil?
+          unless @ranking_level.full_course==true
+            @subjects = @batch.subjects
+            @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:batch_id=>@batch.id,:subject_id=>@subjects.collect(&:id),:score_type=>"s"})
+          else
+            @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"s"})
+          end
+          if @batch.grading_type=="GPA"
+            @scores.reject!{|s| !((s.marks < @ranking_level.gpa if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.gpa if @ranking_level.lower_limit==true))}
+          else
+            @scores.reject!{|s| !((s.marks < @ranking_level.marks if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.marks if @ranking_level.lower_limit==true))}
+          end
+        else
+          unless @ranking_level.full_course==true
+            @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:batch_id=>@batch.id,:score_type=>"c"})
+          else
+            @scores = []
+            @students.each do|student|
+              total_student_score = 0
+              avg_student_score = 0
+              marks = GroupedExamReport.find_all_by_student_id_and_score_type(student.id,"c")
+              unless marks.empty?
+                marks.map{|m| total_student_score+=m.marks}
+                avg_student_score = total_student_score.to_f/marks.count.to_f
+                marks.first.marks = avg_student_score
+                @scores.push marks.first
+              end
+            end
+          end
+          if @batch.grading_type=="GPA"
+            @scores.reject!{|s| !((s.marks < @ranking_level.gpa if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.gpa if @ranking_level.lower_limit==true))}
+          else
+            @scores.reject!{|s| !((s.marks < @ranking_level.marks if @ranking_level.lower_limit==false) or (s.marks >= @ranking_level.marks if @ranking_level.lower_limit==true))}
+          end
+        end
+      end
+    else
+      @course = Course.find(params[:course_id])
+      @batch_group = BatchGroup.find(params[:ranking_level_report][:batch_group_id])
+      @batches = @batch_group.batches
+      unless @ranking_level.subject_count.nil?
+        @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"s"})
+      else
+        unless @ranking_level.full_course==true
+          @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"c"})
+        else
+          @scores = []
+          @students.each do|student|
+            total_student_score = 0
+            avg_student_score = 0
+            marks = GroupedExamReport.find_all_by_student_id_and_score_type(student.id,"c")
+            unless marks.empty?
+              marks.map{|m| total_student_score+=m.marks}
+              avg_student_score = total_student_score.to_f/marks.count.to_f
+              marks.first.marks = avg_student_score
+              @scores.push marks.first
+            end
+          end
+        end
+      end
+      if @ranking_level.lower_limit==false
+        @scores.reject!{|s| !((s.marks < @ranking_level.gpa if s.student.batch.grading_type=="GPA") or (s.marks < @ranking_level.marks))}
+      else
+        @scores.reject!{|s| !((s.marks >= @ranking_level.gpa if s.student.batch.grading_type=="GPA") or (s.marks >= @ranking_level.marks))}
+      end
+    end
+    render :pdf=>"student_ranking_level_report_pdf"
+  end
+
+  def transcript
+    @batches = Batch.active.reject{|b| !(b.grading_type=="GPA" or b.grading_type=="CWA")}
+    @students = []
+  end
+
+  def student_transcript
+    if params[:transcript].nil? or params[:transcript][:student_id]==""
+      flash[:notice] = "Select a Student to continue."
+      redirect_to :action=>"transcript" and return
+    else
+      @student = Student.find(params[:transcript][:student_id])
+      @batch = @student.batch
+      @grade_type = @batch.grading_type
+      batch_ids = BatchStudent.find_all_by_student_id(@student.id).map{|b| b.batch_id}
+      batch_ids << @batch.id
+      @batches = Batch.find_all_by_id(batch_ids)
+    end
+  end
+
+  def student_transcript_pdf
+    @student = Student.find(params[:student_id])
+    @batch = @student.batch
+    @grade_type = @batch.grading_type
+    batch_ids = BatchStudent.find_all_by_student_id(@student.id).map{|b| b.batch_id}
+    batch_ids << @batch.id
+    @batches = Batch.find_all_by_id(batch_ids)
+    render :pdf=>"student_transcript_pdf"
+  end
+
+  def load_batch_students
+    unless params[:id].nil? or params[:id]==""
+      @batch = Batch.find(params[:id])
+      @students = @batch.students
+    else
+      @students = []
+    end
+    render(:update) do|page|
+      page.replace_html "student_selection", :partial=>"student_selection"
+    end
+  end
+
+  def combined_report
+    @batches = Batch.active.reject{|b| !(b.grading_type=="GPA" or b.grading_type=="CWA")}
+    @class_designations = ClassDesignation.all
+    @ranking_levels = RankingLevel.all.reject{|r| !(r.full_course==false)}
+  end
+
+  def student_combined_report
+    if params[:combined_report][:batch_id]=="" or (params[:combined_report][:designation_ids].blank? and params[:combined_report][:level_ids].blank?)
+      flash[:notice] = "Select a Batch and atleast one option to continue."
+      redirect_to :action=>"combined_report" and return
+    else
+      @batch = Batch.find(params[:combined_report][:batch_id])
+      @students = @batch.students
+      unless params[:combined_report][:designation_ids].blank?
+        @designations = ClassDesignation.find_all_by_id(params[:combined_report][:designation_ids])
+      end
+      unless params[:combined_report][:level_ids].blank?
+        @levels = RankingLevel.find_all_by_id(params[:combined_report][:level_ids])
+      end
+    end
+  end
+
+  def student_combined_report_pdf
+    @batch = Batch.find(params[:batch_id])
+    @students = @batch.students
+    unless params[:designations].blank?
+      @designations = ClassDesignation.find_all_by_id(params[:designations])
+    end
+    unless params[:levels].blank?
+      @levels = RankingLevel.find_all_by_id(params[:levels])
+    end
+    render :pdf=>"student_combined_report_pdf"
+  end
+
+
+
+  def select_report_type
+    unless params[:batch_id].nil? or params[:batch_id]==""
+      @batch = Batch.find(params[:batch_id])
+      render(:update) do|page|
+        page.replace_html "report_type_select", :partial=>"report_type_select"
+      end
+    else
+      render(:update) do|page|
+        page.replace_html "report_type_select", :text=>""
+      end
+    end
   end
 
   def generated_report3

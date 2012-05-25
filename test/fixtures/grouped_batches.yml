@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  batch_group_id: 1
+  batch_id: 1
+
+two:
+  batch_group_id: 1
+  batch_id: 1

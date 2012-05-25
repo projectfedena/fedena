@@ -1,0 +1,51 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <%= image_tag("/images/examination/show_exam.png") %>
+  <h1><%= t('exams_text') %></h1>
+  <h3>Report Center</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+    <% if Configuration.find_by_config_key("GPA").config_value=="1" or Configuration.find_by_config_key("CWA").config_value=="1" %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to 'Ranking Level Report' , :controller=> "exam",:action=>'ranking_level_report' %></div>
+        <div class="link-descr">Generates reports based on different Ranking Levels</div>
+      </div>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to 'View Transcripts' , :controller=> "exam",:action=>'transcript' %></div>
+        <div class="link-descr">Generates Student Transcripts</div>
+      </div>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to 'Combined Reports' , :controller=> "exam",:action=>'combined_report' %></div>
+        <div class="link-descr">Generates Combined Student Reports</div>
+      </div>
+    <% end %>
+  </div>
+</div>

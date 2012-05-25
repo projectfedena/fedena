@@ -77,6 +77,16 @@ class ExamGroup < ActiveRecord::Base
     #   return total_max_marks if marks == 'percentage'
   end
 
+  def weightage
+    grp = GroupedExam.find_by_batch_id_and_exam_group_id(self.batch.id,self.id)
+    unless grp.nil?
+      weight = grp.weightage
+    else
+      weight=0
+    end
+    return weight
+  end
+
   def archived_batch_average_marks(marks)
     batch = self.batch
     exams = self.exams

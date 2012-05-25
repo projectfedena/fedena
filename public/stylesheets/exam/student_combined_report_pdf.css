@@ -1,0 +1,143 @@
+#page-yield {
+    width:800px;
+    margin: 0 auto;
+
+    overflow: hidden;
+}
+.info1{
+    margin-top:-10px;
+    width:800px;
+    float:left;
+}
+.info-left{
+    float:left;
+}
+.info-right{
+    float:right;
+}
+.tr-blank{
+    height:  27px;
+}
+.hor_line{
+    width:800px;
+    background: #333333;
+    height: 1px;
+    margin-top:-10px;
+    float:left;
+}
+
+h2.heading{
+    text-align: center;
+    margin:5px;
+}
+
+
+#main_info h2{
+    margin-bottom: 2px;
+    font-weight: normal;
+
+}
+
+#main_info h4{
+    color: #555555;
+    margin-top: 18px;
+    font-weight: bold;
+}
+
+
+
+
+.odd{
+    height:auto;
+    background: #EEEEEE;
+
+}
+
+.even{
+
+    height:auto;
+    background: #fff;
+
+
+}
+tr.even{
+    border: 1px solid #ADACAB;
+}
+
+tr.odd{
+    border: 1px solid #ADACAB;
+}
+
+.even td{
+
+    padding: 12px 15px 12px 12px;
+    border: 1px solid #ADACAB;
+    border-left: 0px solid #fff;
+    border-top: 0px solid #fff;
+
+}
+
+.odd td{
+    padding: 12px 15px 12px 12px;
+    border: 1px solid #ADACAB;
+    border-left: 0px solid #fff;
+    border-top: 0px solid #fff;
+
+}
+
+.table-header td{
+    padding: 12px 15px 12px 12px;
+    border-top: 1px solid #ADACAB;
+    border-right: 1px solid #ADACAB;
+    border-left: 1px solid #ADACAB;
+    color: #97080e;
+    background: #EEEEEE;
+}
+#pdf-info{
+    float:left;
+    width:800px;
+}
+table#pdf-table{
+    border: 1px solid #ADACAB;
+    border-collapse:collapse
+}
+.header-content{
+    color: #97080e;
+    font-weight: bold;
+    font-size: 25px;
+    float: left;
+    width: 800px;
+    height: 110px;
+    text-align: center;
+}
+
+.header-content p{
+    margin-top: 3px;
+    margin-bottom: 2px;
+}
+
+.notes{
+    float:right;
+    width:750px;
+    font-size:15px;
+}
+.note{
+    float:left;
+    width:40px;
+    font-size:15px;
+    height:60px;
+}
+.note_text{
+    float:left;
+    margin-bottom:7px;
+}
+#pdf-footer{
+    text-align: right;
+    width: 1400px;
+    padding-right: 100px;
+    padding: 50px;
+    margin: 0 auto;
+    color: #999999;
+    font-size: 18px;
+
+}

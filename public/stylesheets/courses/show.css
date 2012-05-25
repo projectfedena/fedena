@@ -56,3 +56,6 @@
     color : #d00;
     text-decoration: underline;
 }
+#inner-tab-menu ul li {
+    width:120px;
+}

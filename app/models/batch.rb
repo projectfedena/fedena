@@ -20,6 +20,8 @@ class Batch < ActiveRecord::Base
   belongs_to :course
 
   has_many :students
+  has_many :grouped_exam_reports
+  has_many :grouped_batches
   has_many :archived_students
   has_many :grading_levels, :conditions => { :is_deleted => false }
   has_many :subjects, :conditions => { :is_deleted => false }
@@ -113,6 +115,33 @@ class Batch < ActiveRecord::Base
     end
     return event_holidays #array of holiday event dates
   end
+  
+  def return_holidays(start_date,end_date)
+    @common_holidays ||= Event.holidays.is_common
+    @batch_holidays=self.events(:all,:conditions=>{:is_holiday=>true})
+    all_holiday_events = @batch_holidays+@common_holidays
+    all_holiday_events.reject!{|h| !(h.start_date>=start_date and h.end_date<=end_date)}
+    event_holidays = []
+    all_holiday_events.each do |event|
+      event_holidays+=event.dates
+    end
+    return event_holidays #array of holiday event dates
+  end
+
+  def find_working_days(start_date,end_date)
+    start=[]
+    start<<self.start_date.to_date
+    start<<start_date.to_date
+    stop=[]
+    stop<<self.end_date.to_date
+    stop<<end_date.to_date
+    all_days=start.max..stop.min
+    weekdays=Weekday.weekday_by_day(self.id).keys
+    holidays=return_holidays(start_date,end_date)
+    non_holidays=all_days.to_a-holidays
+    range=non_holidays.select{|d| weekdays.include? d.wday}
+    return range
+  end
 
 
   def working_days(date)
@@ -152,6 +181,8 @@ class Batch < ActiveRecord::Base
     end
     count
   end
+
+  
 
   def subject_hours(starting_date,ending_date,subject_id)
     unless subject_id == 0

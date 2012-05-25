@@ -42,7 +42,7 @@
                     <div class="employee"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
                         :url => {:action => "delete_employee2", :id => @tte.id},
                         :complete => "clear_selected_divs();",
-                        :confirm=>'remove entry?',
+                        :confirm=>t("remove_entry_confirm"),
                         :before => "Element.show('loader')",
                         :success => "Element.hide('loader')",
                         :update => "timetable" \

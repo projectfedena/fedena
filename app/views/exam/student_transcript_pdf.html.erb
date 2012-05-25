@@ -1,0 +1,131 @@
+<div id="page-yield">
+
+  <div class="hor_line"></div>
+  <h2 align="center">Transcript of Academic Record</h2>
+  <div class="hor_line"></div>
+  <div class="extender"> </div>
+  <div class="report">
+    <div id ="main_info">
+      <div class="info1">
+        <div class="info-left">
+          <h4>Name : <%= @student.full_name %></h4>
+        </div>
+        <div class="info-right">
+          <h4>Roll No. : <%= @student.class_roll_no.present? ? @student.class_roll_no : "-" %></h4>
+        </div>
+      </div>
+      <div class="hor_line"></div>
+      <div class="info1">
+        <div class="info-left">
+          <h4>Course : <%= @student.batch.course.full_name %></h4>
+        </div>
+        <div class="info-right">
+          <h4>Batch : <%= @student.batch.name %></h4>
+        </div>
+      </div>
+      <div class="hor_line"></div>
+    </div>
+    <div id="pdf-info">
+      <% grades = [] %>
+      <% @batches.each do|batch| %>
+        <% exam_groups = batch.exam_groups.reject{|e| !GroupedExamReport.exists?(:student_id=>@student.id,:exam_group_id=>e.id)} %>
+        <% unless exam_groups.empty? %>
+          <h3><%= batch.full_name %></h3>
+          <% exam_groups.each do|exam_group| %>
+            <h4><%= exam_group.name %></h4>
+            <% exams = exam_group.exams %>
+            <% exam_score = [] %>
+            <% exams.each do |exam| %>
+              <% exam_score.push exam.exam_scores.find_by_student_id(@student.id) unless exam.exam_scores.find_by_student_id(@student.id).nil?  %>
+            <% end %>
+            <% if batch.grading_type=="CWA" %>
+              <% total_credits=0 %>
+              <% total_weighted_marks=0 %>
+              <table id="pdf-table" width="100%" cellspacing="0">
+                <% c= 'even' %>
+                <tr class="table-header">
+                  <td>Subject Code</td>
+                  <td>Subject Title</td>
+                  <td>Marks</td>
+                  <td>Credit</td>
+                  <td>Grade</td>
+                  <td>Weighted Marks</td>
+                </tr>
+                <% exam_score.each do |es| %>
+                  <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+                    <td class="col-pdf"> <%= es.exam.subject.code %></td>
+                    <td class="col-pdf"> <%= es.exam.subject.name %></td>
+                    <td class="col-pdf"><%= es.marks.present? ? mark=(es.marks.to_f/es.exam.maximum_marks.to_f)*100 : '-' %></td>
+                    <td class="col-pdf"><%= es.exam.subject.credit_hours %></td>
+                    <% total_credits = total_credits + es.exam.subject.credit_hours.to_f %>
+                    <td class="col-pdf"><%= es.grading_level.present? ? es.grading_level : "-" %></td>
+                    <% weighted_mark=0 %>
+                    <% weighted_mark = mark.to_f * es.exam.subject.credit_hours.to_f if es.marks.present? %>
+                    <% total_weighted_marks = total_weighted_marks + weighted_mark %>
+                    <td class="col-pdf"><%= weighted_mark %></td>
+                  </tr>
+                <% end %>
+                <tr class="table-header">
+                  <td colspan="3" align="right">Total</td>
+                  <td><%= total_credits %></td>
+                  <td>-</td>
+                  <td><%= total_weighted_marks %></td>
+                </tr>
+              </table>
+              <h5>Weighted Average = <%= "%.2f" %(total_weighted_marks.to_f/total_credits.to_f) %></h5>
+            <% else %>
+              <% total_credit_points=0 %>
+              <% total_credit_hours=0 %>
+              <table id="pdf-table" width="100%" cellspacing="0">
+                <% c='even' %>
+                <tr class="table-header">
+                  <td>Subject Code</td>
+                  <td>Subject Title</td>
+                  <td>Credits</td>
+                  <td>Grade</td>
+                  <td>Remarks</td>
+                </tr>
+                <% exam_score.each do |es| %>
+                  <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+                    <td class="col-pdf"> <%= es.exam.subject.code %></td>
+                    <td class="col-pdf"> <%= es.exam.subject.name %></td>
+                    <td class="col-pdf"><%= es.exam.subject.credit_hours %></td>
+                    <% total_credit_hours = total_credit_hours + es.exam.subject.credit_hours.to_f %>
+                    <td class="col-pdf"><%= es.grading_level.present? ? es.grading_level : "-" %></td>
+                    <% points=0 %>
+                    <% points = (es.grading_level.credit_points.to_f) * (es.exam.subject.credit_hours.to_f) if es.grading_level.present? %>
+                    <% total_credit_points = total_credit_points + points %>
+                    <td class="col-pdf"><%= es.grading_level.present? ? (es.grading_level.description.present? ? es.grading_level.description : "-") : "-" %></td>
+                  </tr>
+                <% end %>
+                <tr class="table-header">
+                  <td colspan="2" align="right">Total</td>
+                  <td><%= total_credit_hours %></td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+              </table>
+              <h5>Grade Point Average (GPA) = <%= "%.2f" %(total_credit_points.to_f/total_credit_hours.to_f) %></h5>
+            <% end %>
+          <% end %>
+          <% mark = GroupedExamReport.find_by_batch_id_and_student_id_and_score_type(batch.id,@student.id,"c").marks || 0 %>
+          <% grades << mark %>
+          <% if batch.grading_type=="CWA" %>
+            <h5>Combined Weighted Average = <%= mark==0 ? "-" : mark %></h5>
+          <% else %>
+            <h5>Batch wise Cumulative Grade Point Average = <%= mark==0 ? "-" : mark %></h5>
+          <% end %>
+        <% end %>
+      <% end %>
+      <% cgpa = (grades.sum.to_f)/(grades.count.to_f) %>
+      <% if @student.batch.grading_type=="GPA" %>
+        <% designations = ClassDesignation.find(:all,:conditions=>["cgpa <= ?",cgpa],:order=>"cgpa DESC") %>
+        <h4 align="center">Course wise Cumulative Grade Point Average (CGPA) = <span class="high"><%= "%.2f" %(cgpa) %></span></h4>
+      <% else %>
+        <% designations = ClassDesignation.find(:all,:conditions=>["marks <= ?",cgpa],:order=>"marks DESC") %>
+        <h4 align="center">Course wise Combined Weighted Average = <span class="high"><%= "%.2f" %(cgpa) %></span></h4>
+      <% end %>
+      <h4 align="center">Class Designation : <span class="high"><%= designations.empty? ? "-" : designations.first.name %></span></h4>
+    </div>
+  </div>
+</div>

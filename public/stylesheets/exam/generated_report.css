@@ -85,3 +85,11 @@
 #inner-tab-menu ul li{
  width: 150px;
 }
+table#listing td.col-1 {
+padding:5px 5px 5px 10px;
+width:5%;
+}
+table#listing td.col-2 {
+padding:5px 5px 5px 10px;
+width:1%;
+}

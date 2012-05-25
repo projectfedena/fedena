@@ -28,6 +28,7 @@
 <div id="inner-tab-menu">
   <ul>
     <li><%= link_to "#{t('new_text')}", new_course_batch_path(@course) %> </li>
+    <li><%= link_to "Group Batches", {:controller=>"courses", :action=>"grouped_batches", :id=>@course.id} %> </li>
     <% if permitted_to? :edit, :course %>
       <li><%= link_to "#{t('edit_text')}", edit_course_path(@course) if permitted_to? :edit, :course %></li>
     <%  end %>

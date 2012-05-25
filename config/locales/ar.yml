@@ -1844,6 +1844,9 @@ ar:
   edit_entries: "مقالات تحرير"
   timetable_deleted: "الجدول الزمني حذف بنجاح"
   delete_timetable: "هل أنت متأكد أنك تريد حذف هذا الجدول الزمني؟"
+  basestart_date_is_invalid: "تاريخ البدء غير صالح"
+  baseend_date_is_invalid: "تاريخ النهاية غير صالح"
+  remove_entry_confirm: "إزالة دخول؟"
 
   flash_msg1: "تحديث إضافية المجموعة الامتحان بنجاح."
   flash_msg2: "آسف"

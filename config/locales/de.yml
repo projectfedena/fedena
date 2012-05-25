@@ -1845,6 +1845,9 @@ de: # locale
   edit_entries: "Einträge bearbeiten"
   timetable_deleted: "Fahrplan erfolgreich gelöscht"
   delete_timetable: "Sind Sie sicher, dass Sie diesen Zeitplan löschen?"
+  basestart_date_is_invalid: "Startdatum ist ungültig"
+  baseend_date_is_invalid: "Enddatum ist ungültig"
+  remove_entry_confirm: "Eintrag löschen?"
   
   flash_msg1: "Zusätzliche Prüfungsgruppe erfolgreich aktualisiert."
   flash_msg2: "Sorry"

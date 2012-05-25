@@ -41,7 +41,7 @@ class ClassTimingsController < ApplicationController
         @class_timing.batch.nil? ?
           @class_timings = ClassTiming.find(:all,:conditions => { :batch_id => nil,:is_deleted=>false}, :order =>'start_time ASC') :
           @class_timings = ClassTiming.for_batch(@class_timing.batch_id)
-      #  flash[:notice] = 'Class timing was successfully created.'
+        #  flash[:notice] = 'Class timing was successfully created.'
         format.html { redirect_to class_timing_url(@class_timing) }
         format.js { render :action => 'create' }
       else
@@ -67,7 +67,7 @@ class ClassTimingsController < ApplicationController
         @class_timing.batch.nil? ?
           @class_timings = ClassTiming.find(:all,:conditions => { :batch_id => nil}, :order =>'start_time ASC') :
           @class_timings = ClassTiming.for_batch(@class_timing.batch_id)
-   #     flash[:notice] = 'Class timing updated successfully.'
+        #     flash[:notice] = 'Class timing updated successfully.'
         format.html { redirect_to class_timing_url(@class_timing) }
         format.js { render :action => 'update' }
       else

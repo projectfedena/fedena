@@ -15,7 +15,9 @@
   {"config_key" => "FinancialYearEndDate"            ,"config_value" => Date.today+1.year},
   {"config_key" => "AutomaticLeaveReset"             ,"config_value" => "0"},
   {"config_key" => "LeaveResetPeriod"                ,"config_value" => "4"},
-  {"config_key" => "LastAutoLeaveReset"              ,"config_value" => nil}
+  {"config_key" => "LastAutoLeaveReset"              ,"config_value" => nil},
+  {"config_key" => "GPA"                             ,"config_value" => "0"},
+  {"config_key" => "CWA"                             ,"config_value" => "0"}
 ].each do |param|
   Configuration.find_or_create_by_config_key_and_config_value(param)
 end
@@ -94,6 +96,6 @@ end
 
 
 Privilege.all.each do |p|
-p.update_attributes(:description=> p.name.underscore+"_privilege")
+  p.update_attributes(:description=> p.name.underscore+"_privilege")
 end
 

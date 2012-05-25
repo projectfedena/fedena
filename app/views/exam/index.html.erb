@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-<%= image_tag("/images/examination/show_exam.png") %>
+  <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
   <h3><%= t('home') %></h3>
   <div id="app-back-button">
@@ -39,16 +39,10 @@
         <div class="link-descr"><%= t('set_grading_levels') %></div>
       </div>
     <% end %>
-    <%  if permitted_to? :index,:ranking_levels %>
+    <% if Configuration.find_by_config_key("GPA").config_value=="1" or Configuration.find_by_config_key("CWA").config_value=="1" %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to "Ranking Levels" ,:controller=>'ranking_levels',:action=>'index' %> </div>
-        <div class="link-descr">Manage Ranking Levels</div>
-      </div>
-    <% end %>
-    <%  if permitted_to? :index,:class_designations %>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to "Class Designations" ,:controller=>'class_designations',:action=>'index' %> </div>
-        <div class="link-descr">Manage Class Designations</div>
+        <div class="link-heading"><%= link_to "Settings" ,:controller=>'exam' , :action=>'settings' %></div>
+        <div class="link-descr">Manage Ranking Levels and Class Designations</div>
       </div>
     <% end %>
     <% @employee_subjects=[] %>
@@ -66,29 +60,14 @@
       </div>
     <% end %>
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('exam_wise_report')}" ,:action=>'exam_wise_report' %></div>
-      <div class="link-descr"><%= t('generate_exam_wise_report') %></div>
+      <div class="link-heading"><%= link_to 'Generate Reports' , :controller=> "exam",:action=>'generate_reports' %></div>
+      <div class="link-descr">Generates Student Reports for Grouped Exams</div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('subject_wise_report')}" ,:action=>'subject_wise_report' %> </div>
-      <div class="link-descr"><%= t('generate_subject_wise_report') %></div>
+      <div class="link-heading"><%= link_to 'Report Center' , :controller=> "exam",:action=>'report_center' %></div>
+      <div class="link-descr">View Student Reports</div>
     </div>
-    <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('grouped_exam_reports')}" ,:action=>'grouped_exam_report' %></div>
-      <div class="link-descr"><%= t('group_up_exams_for_specific_reports') %></div>
-    </div>
-     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Archived Student Reports' , :controller=> "exam_reports",:action=>'archived_exam_wise_report' %></div>
-      <div class="link-descr">Generates reports for Archived Students Exam wise</div>
-    </div>
-    <div class="link-box">
-      <div class="link-heading"><%= link_to 'Student Ranking per Subject' , :controller=> "exam",:action=>'subject_rank' %></div>
-      <div class="link-descr">Generates reports for Subject wise Student Rank</div>
-    </div>
-    <div class="link-box">
-      <div class="link-heading"><%= link_to 'Student Ranking per Batch' , :controller=> "exam",:action=>'batch_rank' %></div>
-      <div class="link-descr">Generates reports for Batch wise Overall Student Rank</div>
-    </div>
+
 
     <!--online exam-->
 

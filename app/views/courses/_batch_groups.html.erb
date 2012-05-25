@@ -1,0 +1,17 @@
+<ul class="category-list">
+  <% unless @batch_groups.empty? %>
+    <li class="heading">Grouped Batches</li>
+    <% @batch_groups.each  do |batch_group| %>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <div class="category-name"><%= batch_group.name %></div>
+        <div class="category-name"><% batch_group.grouped_batches.each do|b| %>
+            <div class="category-name"><%= b.batch.name %></div>
+          <% end %></div>
+        <div class="category-edit"><%= link_to_remote "#{t('edit_text')}", :url=>{:controller=>"courses",:action=>"edit_batch_group", :id=>batch_group.id}  if permitted_to? :edit_batch_group, :courses %></div><div class="category-delete">   <%= link_to_remote "Delete", :url=>{:controller=>"courses",:action=>"delete_batch_group", :id=>batch_group.id}, :confirm=>"Are you sure?" if permitted_to? :delete_batch_group, :courses %></div>
+      </li>
+    <% end %>
+  <% else %>
+    <p class="flash-msg">No Grouped Batches found.</p>
+  <% end %>
+</ul>
+

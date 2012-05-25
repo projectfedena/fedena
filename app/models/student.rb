@@ -36,6 +36,7 @@ class Student < ActiveRecord::Base
   has_many   :student_additional_details
   has_many   :batch_students
   has_many   :subject_leaves
+  has_many   :grouped_exam_reports
   
 
   named_scope :active, :conditions => { :is_active => true }

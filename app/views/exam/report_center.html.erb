@@ -1,0 +1,90 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <%= image_tag("/images/examination/show_exam.png") %>
+  <h1><%= t('exams_text') %></h1>
+  <h3>Report Center</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('exam_wise_report')}" ,:action=>'exam_wise_report' %></div>
+      <div class="link-descr"><%= t('generate_exam_wise_report') %></div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('subject_wise_report')}" ,:action=>'subject_wise_report' %> </div>
+      <div class="link-descr"><%= t('generate_subject_wise_report') %></div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('grouped_exam_reports')}" ,:action=>'grouped_exam_report' %></div>
+      <div class="link-descr"><%= t('group_up_exams_for_specific_reports') %></div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'Archived Student Reports' , :controller=> "exam_reports",:action=>'archived_exam_wise_report' %></div>
+      <div class="link-descr">Generates reports for Archived Students Exam wise</div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'Student Ranking per Subject' , :controller=> "exam",:action=>'subject_rank' %></div>
+      <div class="link-descr">Generates reports for Subject wise Student Rank</div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'Student Ranking per Batch' , :controller=> "exam",:action=>'batch_rank' %></div>
+      <div class="link-descr">Generates reports for Batch wise Overall Student Rank</div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'Student Ranking per Course' , :controller=> "exam",:action=>'course_rank' %></div>
+      <div class="link-descr">Generates reports for Course wise Overall Student Rank</div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'Student Ranking per School' , :controller=> "exam",:action=>'student_school_rank' %></div>
+      <div class="link-descr">Generates reports for Overall Student Rank for this School</div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'Student Ranking per Attendance' , :controller=> "exam",:action=>'attendance_rank' %></div>
+      <div class="link-descr">Generates reports for Batch wise Student Rank per Attendance</div>
+    </div>
+    <% if Configuration.find_by_config_key("GPA").config_value=="1" and Configuration.find_by_config_key("CWA").config_value=="1" %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to 'GPA/CWA Reports' , :controller=> "exam",:action=>'gpa_cwa_reports' %></div>
+        <div class="link-descr">Generates GPA and CWA Reports</div>
+      </div>
+    <% elsif Configuration.find_by_config_key("GPA").config_value=="1" %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to 'GPA Reports' , :controller=> "exam",:action=>'gpa_cwa_reports' %></div>
+        <div class="link-descr">Generates GPA Reports</div>
+      </div>
+    <% elsif Configuration.find_by_config_key("CWA").config_value=="1" %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to 'CWA Reports' , :controller=> "exam",:action=>'gpa_cwa_reports' %></div>
+        <div class="link-descr">Generates CWA Reports</div>
+      </div>
+    <% else %>
+    <% end %>
+  </div>
+</div>

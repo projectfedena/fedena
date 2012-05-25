@@ -21,6 +21,7 @@ class Course < ActiveRecord::Base
   validate :presence_of_initial_batch, :on => :create
 
   has_many :batches
+  has_many :batch_groups
   accepts_nested_attributes_for :batches
 
   named_scope :active, :conditions => { :is_deleted => false }, :order => 'course_name asc'
@@ -36,6 +37,10 @@ class Course < ActiveRecord::Base
   
   def full_name
     "#{course_name} #{section_name}"
+  end
+
+  def active_batches
+    self.batches.all(:conditions=>{:is_active=>true,:is_deleted=>false})
   end
 
 #  def guardian_email_list

@@ -90,6 +90,12 @@
     width : 65px;
 
 }
+#category-list li div.category-marks {
+    font-size : 13px;
+    width : 65px;
+    font-weight:bold;
+
+}
 #category-list li div a {
     color : #000;
     font-size:14px;

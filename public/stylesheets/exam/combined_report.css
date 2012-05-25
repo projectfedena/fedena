@@ -1,0 +1,59 @@
+.link-box {
+    margin:10px 40px;
+    height:15px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+.submit_button {
+    margin-top:18px;
+    margin-left:212px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+.box{
+    width:500px;
+    margin:0px auto;
+}
+.fee_category_scroll {
+-moz-background-inline-policy:continuous;
+-moz-border-radius:10px 10px 10px 10px;
+-webkit-background-inline-policy:continuous;
+-webkit-border-radius:10px 10px 10px 10px;
+background:none repeat scroll 0 0 #EEEEEE;
+border:1px solid #C6C6C6;
+height:76px;
+margin-left:210px;
+margin-top:-30px;
+max-height:100px;
+overflow:auto;
+padding:7px;
+width:200px;
+}
+.sel-list {
+border-bottom:1px solid #DDDDDD;
+margin-bottom:2px;
+width:197px;
+}
+.each_batch {
+border-bottom:1px solid #DDDDDD;
+font-size:12px;
+overflow:auto;
+width:198px;
+}
+.grades {
+    margin-bottom:10px;
+}

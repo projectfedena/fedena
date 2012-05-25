@@ -1817,6 +1817,9 @@ hi:
   edit_entries: "संपादन प्रविष्टियों"
   timetable_deleted: "समय सारिणी को सफलतापूर्वक नष्ट कर दिया"
   delete_timetable: "क्या आप सुनिश्चित हैं कि आप इस समय सारिणी को हटाना चाहते हैं?"
+  basestart_date_is_invalid: "आरम्भ तिथि अमान्य है"
+  baseend_date_is_invalid: "समाप्ति तिथि अमान्य है"
+  remove_entry_confirm: "प्रविष्टि निकालें?"
   
   flash_msg1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक नवीनीकृत|"
   flash_msg2: "क्षमा करें"

@@ -1842,6 +1842,9 @@ es: # locale
   edit_entries: "Editar entradas"
   timetable_deleted: "Horario eliminado correctamente"
   delete_timetable: "¿Está seguro que desea eliminar este calendario?"
+  basestart_date_is_invalid: "Fecha de inicio no es válida"
+  baseend_date_is_invalid: "Fecha de finalización no es válida"
+  remove_entry_confirm: "Eliminar entrada?"
 
   flash_msg1: "Grupo de exámenes adicionales actualizados con éxito."
   flash_msg2: "Lo sentimos"

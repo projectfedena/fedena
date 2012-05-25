@@ -16,7 +16,79 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
+<script type="text/javascript">
+  function check_all_or_none(c)
+  {
+    if ((document.getElementById('chck1')).checked == true)
+    {
+      $$('input.right').each(function(checkbox) { checkbox.checked = true; });
+      total=0;
+      for(i=0;i<=c;i++)
+      {
+        box=$("check"+i);
+        set_weightage(box,i-1);
+      }
 
+    }
+    else
+    {
+      $$('input.right').each(function(checkbox) { checkbox.checked = false; });
+      for(i=0;i<=c;i++)
+      {
+        box=$("check"+i);
+        set_weightage(box,i-1);
+      }
+    }
+    make_total(c);
+  }
+
+  function set_weightage(val,cnt)
+  {
+    c=val.id;
+    d=c.replace("check","weightage");
+    if(val.checked==true)
+    {      
+      $(d).disabled=false;
+    }
+    else
+    {
+      document.getElementById('chck1').checked = false;
+      $(d).value="0";
+      $(d).disabled=true
+    }
+    make_total(cnt);
+
+  }
+  function make_total(val)
+  {
+    value=parseInt(val);
+    total=0;
+    for(i=0;i<=value;i++)
+    {
+      weightage=$("weightage"+i).value;
+      weight=parseFloat(weightage);
+      total=total+weight;
+    }
+    $("tot").innerHTML=total;
+  }
+  function check_weightage(val,cnt)
+  {
+    if(val.value=="")
+    {
+      val.value="0";
+    }
+    if(isNaN(val.value)){
+      alert("Please enter a valid weightage");
+      val.value="0";
+    }
+    if (parseFloat(val.value)>100)
+      {
+        alert("Weightage cannot be greater than 100%");
+      val.value="0";
+      }
+      make_total(cnt);
+  }
+  </script>
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
@@ -31,33 +103,68 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-  <div class="box">
+  <div id="application-list">
     <h4><%= t('connect_exams') %></h4>
-    <div id="list_content">
-      <div id="list">
-        <div class="sel-list">
-          <%= t('select') %>: <%= link_to_function t('all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
-          <%= link_to_function t('none'), "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
-        </div>
+        <%#*<div class="sel-list">%>
+          <%#= t('select') %><%#: <%= link_to_function t('all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>
+          <%#= link_to_function t('none'), "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
+        <%#*</div>%>
         <% unless @exam_groups.empty? %>
 
           <% form_for :exam_grouping do |f| %>
-            <% @exam_groups.each do |e| %>
-              <div class="name_list<%=cycle('odd', 'even')%>">
-                <% already_grouped = GroupedExam.find_by_batch_id_and_exam_group_id(@batch.id,e) %>
-                <% already_grouped = already_grouped.present? %>
-                <li><label><%= check_box_tag "exam_grouping[exam_group_ids][]", e.id,already_grouped,:class=>"right"%><div class="att_list_names"> <%= e.name %></div></label></li>
-              </div>
-            <% end %>
+            <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
+              <% count=@exam_groups.count.to_i - 1 %>
+              <tr class="tr-head">
+                <td class="col-1"><%= check_box_tag 'chck1','yes', false,{:onClick=> "check_all_or_none(#{count})"} %></td>
+                <td class="col-2">
+                  Exam Group
+                </td>
+                <td class="col-3">
+                  Weightage(%)
+                </td>
+              </tr>
+              <tr class="tr-blank"></tr>
+              <% i=0 %>
+              <% total = 0 %>
+              <% @exam_groups.each do |e| %>
+                <tr class="tr-<%= cycle('odd', 'even') %>">
+                  <% already_grouped = GroupedExam.find_by_batch_id_and_exam_group_id(@batch.id,e) %>
+                  <% is_already_grouped = already_grouped.present? %>
+                  <td class="col-1"><%= check_box_tag "exam_grouping[exam_group_ids][]", e.id,is_already_grouped,{:class=>'right',:id=>"check#{i}",:onClick=>"set_weightage(this,#{count})"} %></td>
+                  <td class="col-2"><%= e.name %></td>
+                  <% if is_already_grouped==true %>
+                  <td class="col-3"><%=text_field_tag 'weightage[]',already_grouped.weightage,:class=>'total-box',:id=>"weightage#{i}",:onchange=>"check_weightage(this,#{count})"%></td>
+                  <% total = total + already_grouped.weightage %>
+                  <% else %>
+                  <td class="col-3"><%=text_field_tag 'weightage[]',"0",:class=>'total-box',:disabled=>true,:id=>"weightage#{i}",:onchange=>"check_weightage(this,#{count})"%></td>
+                  <% end %>
+                </tr>
+                <% i=i+1 %>
+              <% end %>
+              <tr class="tr-blank"></tr>
+              <tr class="tr-head">
+                <td class="col-4" colspan="2">
+                  Total Weightage
+                </td>
+                <td class="col-3">
+                  <%=label_tag 'total',total,:id=>"tot"%>
+                </td>
+              </tr>
+            </table>
+            <%#*<div class="name_list<%=cycle('odd', 'even')%>
+              <%# already_grouped = GroupedExam.find_by_batch_id_and_exam_group_id(@batch.id,e) %>
+              <%# already_grouped = already_grouped.present? %>
+              <%#*<li><label><%= check_box_tag "exam_grouping[exam_group_ids][]", e.id,already_grouped,:class=>"right"%><%#<div class="att_list_names"> <%= e.name %><%#</div></label></li>%>
+            <%#*</div>%>
+          <%# end %>
 
-            <%= submit_tag "", :value => "#{t('save')}", :class => "submit_button" %>
-          <% end %>
-
+          <%= submit_tag "", :value => "#{t('save')}", :class => "submit_button" %>
         <% end %>
 
+      <% end %>
 
-      </div>
-    </div>    <div class="extender"></div>
+
+      <div class="extender"></div>
   </div>
 </div>
 

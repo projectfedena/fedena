@@ -12,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.feed 'courses/manage_course', :controller => 'courses' ,:action=>'manage_course'
   map.feed 'courses/manage_batches', :controller => 'courses' ,:action=>'manage_batches'
-  map.resources :courses, :has_many => :batches
+  map.resources :courses, :has_many => :batches, :collection => {:grouped_batches=>[:get,:post],:create_batch_group=>[:get,:post],:edit_batch_group=>[:get,:post],:update_batch_group=>[:get,:post],:delete_batch_group=>[:get,:post]}
 
   map.resources :batches do |batch|
     batch.resources :exam_groups

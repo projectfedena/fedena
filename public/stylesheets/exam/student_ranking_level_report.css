@@ -1,0 +1,112 @@
+
+.link-box {
+    margin:10px 40px;
+    width:270px;
+    float:left;
+    height:80px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+.link-descr {
+    margin-top:5px;
+    color:#666;
+    text-align:justify;
+    font-size:14px;
+}
+#box{
+    width:700px;
+    margin:0px auto;
+}
+.box{
+    width: 954px;
+    margin:0px auto;
+}
+
+.label-field-pair-select-class {
+    height:40px;
+    padding-top:3px;
+    width:500px;
+    margin:0px auto;
+}
+.label-field-pair-select-class label {
+    color:#444444;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 10px;
+    padding-top:10px;
+    width:120px;
+}
+#loader{
+    padding-top:10px;
+}
+
+
+table{
+    background: #c3d9ff;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding:20px;
+}
+tr.tr-head{
+    background: #fff;
+    color:#990a10;
+    font-weight:bold;
+    text-align:left;
+}
+.tr-head td{
+    padding-left:10px;
+
+}
+.tr-odd{
+    background: #fff;
+    text-align:center;
+    padding:50px;
+    color:#27292b;
+    font-weight:600;
+    font-size:14px;
+}
+.tr-even{
+    background: #f1f6ff;
+    text-align:center;
+    padding:50px;
+    color:#27292b;
+    font-weight:600;
+    font-size:14px;
+}
+td.col-1{
+    padding: 5px;
+}
+td.col-2{
+    text-align:left;
+    padding: 5px;
+    padding-left:10px;
+}
+td a{
+    text-decoration:none;
+    color:#27292b;
+}
+td a:hover{
+    color:#990a10;
+    text-decoration:underline;
+}
+td.col-3{
+    padding: 5px;
+}
+td.col-4{
+    padding: 5px;
+}
+
+#score-table{
+    margin: 0 auto;
+    overflow: auto;
+    width: 100%;
+}
+table#listing td.col-2 {
+padding:5px 5px 5px 10px;
+text-align:left;
+width:30%;
+}

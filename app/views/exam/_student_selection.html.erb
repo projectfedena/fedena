@@ -1,0 +1,6 @@
+<div class="label-field-pair">
+  <label for="student_course">Select a Student :</label>
+  <div  class="text-input-bg">
+    <%= select :transcript, :student_id,
+      @students.map{|s| [s.full_name, s.id]},
+      {:prompt => "select a student"}%></div></div>
