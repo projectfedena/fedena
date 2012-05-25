@@ -22,30 +22,33 @@
   Configuration.find_or_create_by_config_key_and_config_value(param)
 end
 
-
-[
-  {"name" => "A"   ,"min_score" => 90 },
-  {"name" => "B"   ,"min_score" => 80},
-  {"name" => "C"   ,"min_score" => 70},
-  {"name" => "D"   ,"min_score" => 60},
-  {"name" => "E"   ,"min_score" => 50},
-  {"name" => "F"   ,"min_score" => 0}
-].each do |param|
-  GradingLevel.find_or_create_by_name(param)
+if GradingLevel.count == 0
+  [
+    {"name" => "A"   ,"min_score" => 90 },
+    {"name" => "B"   ,"min_score" => 80},
+    {"name" => "C"   ,"min_score" => 70},
+    {"name" => "D"   ,"min_score" => 60},
+    {"name" => "E"   ,"min_score" => 50},
+    {"name" => "F"   ,"min_score" => 0}
+  ].each do |param|
+    GradingLevel.create(param)
+  end
 end
 
-[
-  {"name" => "1"          ,"is_break" => false   ,"is_deleted"=> false },
-  {"name" => "2"          ,"is_break" => false   ,"is_deleted"=> false },
-  {"name" => "Interval"   ,"is_break" => true    ,"is_deleted"=> false },
-  {"name" => "3"          ,"is_break" => false   ,"is_deleted"=> false },
-  {"name" => "4"          ,"is_break" => false   ,"is_deleted"=> false },
-  {"name" => "Lunch"      ,"is_break" => true    ,"is_deleted"=> false },
-  {"name" => "5"          ,"is_break" => false   ,"is_deleted"=> false },
-  {"name" => "6"          ,"is_break" => false   ,"is_deleted"=> false },
-  {"name" => "7"          ,"is_break" => false   ,"is_deleted"=> false }
-].each do |param|
-  ClassTiming.find_or_create_by_name(param)
+if ClassTiming.count == 0
+  [
+    {"name" => "1"          ,"is_break" => false   ,"is_deleted"=> false },
+    {"name" => "2"          ,"is_break" => false   ,"is_deleted"=> false },
+    {"name" => "Interval"   ,"is_break" => true    ,"is_deleted"=> false },
+    {"name" => "3"          ,"is_break" => false   ,"is_deleted"=> false },
+    {"name" => "4"          ,"is_break" => false   ,"is_deleted"=> false },
+    {"name" => "Lunch"      ,"is_break" => true    ,"is_deleted"=> false },
+    {"name" => "5"          ,"is_break" => false   ,"is_deleted"=> false },
+    {"name" => "6"          ,"is_break" => false   ,"is_deleted"=> false },
+    {"name" => "7"          ,"is_break" => false   ,"is_deleted"=> false }
+  ].each do |param|
+    ClassTiming.create(param)
+  end
 end
 
 
@@ -70,14 +73,16 @@ User.connection.execute "UPDATE users SET admin=1,employee=0 where id = 1"
   FinanceTransactionCategory.find_or_create_by_name(param)
 end
 
-[
-  {"batch_id" => nil          ,"weekday" => "1"     ,"day_of_week" => "1"   ,"is_deleted"=> false },
-  {"batch_id" => nil          ,"weekday" => "2"     ,"day_of_week" => "2"   ,"is_deleted"=> false },
-  {"batch_id" => nil          ,"weekday" => "3"     ,"day_of_week" => "3"   ,"is_deleted"=> false },
-  {"batch_id" => nil          ,"weekday" => "4"     ,"day_of_week" => "4"   ,"is_deleted"=> false },
-  {"batch_id" => nil          ,"weekday" => "5"     ,"day_of_week" => "5"   ,"is_deleted"=> false }
-].each do |param|
-  Weekday.find_or_create_by_batch_id_and_weekday(param)
+if Weekday.count == 0
+  [
+    {"batch_id" => nil          ,"weekday" => "1"     ,"day_of_week" => "1"   ,"is_deleted"=> false },
+    {"batch_id" => nil          ,"weekday" => "2"     ,"day_of_week" => "2"   ,"is_deleted"=> false },
+    {"batch_id" => nil          ,"weekday" => "3"     ,"day_of_week" => "3"   ,"is_deleted"=> false },
+    {"batch_id" => nil          ,"weekday" => "4"     ,"day_of_week" => "4"   ,"is_deleted"=> false },
+    {"batch_id" => nil          ,"weekday" => "5"     ,"day_of_week" => "5"   ,"is_deleted"=> false }
+  ].each do |param|
+    Weekday.create(param)
+  end
 end
 
 [
