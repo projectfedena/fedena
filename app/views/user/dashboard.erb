@@ -17,10 +17,9 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<div id="content_header">
-  <h1 id="main_heading"><%= t('welcome') %></h1>
-  <h3 id="sub_heading"><%= t('to_dashboard') %></h3>
-</div>
+<% cache 'latest_news' do%>
+  <%= render :partial=>'news_bar' %>
+<% end %>
 
 <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
 
@@ -62,7 +61,7 @@
     </div>
 
     <% if @config.include?('HR') %>
-       <div class="button-box">
+      <div class="button-box">
         <%= link_to "<div class ='button-label'><p>#{t('human_resources')}</p></div>", {:controller => "employee", :action => "hr"},
           :class => "option_buttons", :id => "hr_button", :title => t('hr_link_title')%>
       </div>
@@ -78,7 +77,7 @@
 
   <% elsif @user.student? or @user.parent?%>
 
-     <div class="button-box">
+    <div class="button-box">
       <%= link_to "<div class ='button-label'><p>#{t('my_profile')}</p></div>", {:controller => "student", :action => "profile", :id => @student.id},
         :class => "option_buttons", :id => "student_details_button", :title => "        #{t('view_your_profile')}"  %>
 
@@ -88,7 +87,7 @@
         :class => "option_buttons", :id => "campus_news_button",:title => t('news_link_title')%>
 
     </div>
-   <div class="button-box">
+    <div class="button-box">
       <%= link_to "<div class ='button-label'><p>#{t('timetable_text')}</p></div>", {:controller => "timetable", :action => "student_view",:id=>@student.id},
         :class => "option_buttons", :id => "timetable_button",:title => t('timetable_link_title') %>
     </div>
@@ -118,7 +117,7 @@
     <% end  %>
 
 
-     <% if permitted_to? :admission1, :student %>
+    <% if permitted_to? :admission1, :student %>
       <div class="button-box">
         <%= link_to "<div class ='button-label'><p>#{t('admission')}</p></div>", {:controller => "student", :action => "admission1"},
           :class => "option_buttons", :id => "admission_button", :title => "#{t('admission_link_title')}" %>
@@ -151,7 +150,7 @@
       </div>
     <%end%>
 
-   <% if permitted_to? :leave_management, :employee %>
+    <% if permitted_to? :leave_management, :employee %>
       <div class="button-box">
         <%= link_to "<div class ='button-label'><p>#{t('leaves')}</p></div>", {:controller => "employee", :action => "leave_management"},
           :class => "option_buttons", :id => "leaves_button", :title => "#{t('leave_management')}"%>
@@ -185,7 +184,7 @@
     <% if @user.employee? %>
       <% @employee_subjects= @user.employee_record.subject_ids  %>
       <% if @employee_subjects.empty?%>
-       
+
         <% if permitted_to? :index, :student_attendance or  permitted_to? :index, :attendances and @employee_subjects.present? or @user.privileges.map{|p| p.name}.include?("StudentAttendanceView") or @user.privileges.map{|p| p.name}.include?("StudentAttendanceRegister") %>
           <div class="button-box">
             <%= link_to "<div class ='button-label'><p>#{t('attendance')}</p></div>", {:controller => "student_attendance", :action => "index"},
@@ -266,3 +265,11 @@
 </div>
 
 <div id="option_description"> </div>
+
+<script type="text/javascript">
+  $$('#user_options .button-box').each(function(ele, index){
+    if(index%5 == 0){
+      ele.addClassName("left-button");
+    }
+  });
+</script>

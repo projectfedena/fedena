@@ -85,4 +85,9 @@ module ApplicationHelper
     SchoolDetail.first||SchoolDetail.new
   end
 
+  def current_school_name
+    Rails.cache.fetch("current_school_name#{session[:user_id]}"){
+      Configuration.get_config_value('InstitutionName')
+    }
+  end
 end

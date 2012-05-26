@@ -1,0 +1,11 @@
+<% @dash_news = News.get_latest %>
+
+<div id="news_bar">
+  <% @dash_news.each do |news| %>
+    <div class="news_box <%= "first-news" if news == @dash_news.first %>">
+      <h5 class="news-title"><%= link_to shorten_string(news.title, 30), { :controller => 'news', :action => 'view', :id => news.id} %></h5>
+      <small class="news-time"><%= "#{t('posted_on')}" %> <%= I18n.l(news.created_at.to_date, :format=> :date_month)  %> </small>
+      <small class="comments-count"><%= link_to "#{news.comments.size} #{t('comments')}", { :controller => 'news', :action => 'view', :id => news.id, :anchor=>"comments-heading"} %></small>
+    </div>
+  <% end %>
+</div>

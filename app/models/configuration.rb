@@ -37,6 +37,10 @@ class Configuration < ActiveRecord::Base
     end
   end
 
+  def self.clear_school_cache(user)
+    Rails.cache.delete("current_school_name#{user.id}")
+  end
+
   class << self
 
     def get_config_value(key)

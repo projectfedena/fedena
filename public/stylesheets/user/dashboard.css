@@ -18,14 +18,12 @@
 #user_options {
     padding:0px;
     margin:0px;
-    margin-top:15px;
     height:400px;
 }
 #user_options .option_buttons {
     display:block;
     float:left;
     height:175px;width:175px;
-    margin-left:10px;
     margin-top:20px;
     outline:none;
     text-align: center;
@@ -119,7 +117,12 @@ div.nicetitle p { margin: 0; padding: 0 3px; }
     position: relative;
     overflow: hidden;
     float:left;
-    width: 190px;
+    width: 175px;
+    margin-left: 26px;
+}
+
+.button-box.left-button{
+    margin-left: 0 !important;
 }
 
 .button-label p {
@@ -135,9 +138,8 @@ div.nicetitle p { margin: 0; padding: 0 3px; }
 }
 #outer-autosuggest-menu{
 float: right;
-margin-right: 94px;
-margin-top: 6px;
-width: 245px;
+margin-top: 26px;
+width: 329px;
 }
 #autosuggest_menu_input{
 width: 300px;

@@ -130,11 +130,12 @@ input[type="text"], input[type="password"], textarea, select {outline: none;}*/
 #powered_by {
     height:20px;
     padding:35px 0 0 0;
-    width:980px;
+    width:auto;
     margin:0 auto;
     color:#fff;
     font-size:12px;
     font-weight:bold;
+    float: right;
 }
 #powered_by a {
     color:#fff;

@@ -184,7 +184,7 @@ class UserController < ApplicationController
     if @user.parent?
       @student = Student.find_by_admission_no(@user.username[1..@user.username.length])
     end
-    @dash_news = News.find(:all, :limit => 5)
+#    @dash_news = News.find(:all, :limit => 3)
   end
 
   def edit

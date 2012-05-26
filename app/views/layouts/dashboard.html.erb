@@ -47,12 +47,19 @@
     <div id="header_bg">
       <div id="header">
         <div id="outer-header-link">
+          <div id="institution-name">
+            <%= current_school_name %>
+          </div>
           <div id="header_link" >
-            <%= t('logged_as') %>
-            <%= link_to @current_user.first_name, :controller => 'user', :action => 'profile',
-              :id => @current_user.username %> &nbsp;|&nbsp;
-            <%= link_to t('messages'), :controller => "reminder", :action => "index" %><%= render :partial =>'layouts/reminder_count'%>&nbsp;|&nbsp;
-            <%= link_to t('log_out'), :controller => 'user', :action => 'logout' %>  &nbsp;&nbsp;
+            <div id="messages-link">
+              <%= link_to t('messages'), :controller => "reminder", :action => "index" %><%= render :partial =>'layouts/reminder_count'%>
+            </div>
+            <div id="profile-link">
+            <%= link_to @current_user.first_name, { :controller => 'user', :action => 'profile', :id => @current_user.username }, :class=>"profile-link" %>
+            </div>
+            <div id="logout-link">
+            <%= link_to t('log_out'), :controller => 'user', :action => 'logout' %>
+            </div>
           </div>
         </div>
         <div id="outer-main-menu">
@@ -65,26 +72,6 @@
     </div>
 
     <div id="content_wrapper" >
-      <div id="side_bar">
-        <div id="fedena_logo">
-          <%= image_tag current_school_detail.logo.url %>
-        </div>
-        <div id="sidebar_news_area">
-          <% if action_name == "dashboard" %>
-            <%= link_to "#{t('news_text')}", { :controller => "news", :action => "index" }, :id => 'news_feed_top_img' %>
-            <div id="news_feed">
-              <% @dash_news.each do |n| %>
-                <div class="sidebar_news_item<%= cycle("0", "1") %>">
-                  <h5><%= link_to n.title, :controller => 'news', :action => 'view', :id => n.id %></h5>
-                  <small><%= time_ago_in_words(n.created_at)  %> <%= t('ago') %> </small>
-                </div>
-              <% end %>
-            </div>
-            <div class="extender"> </div>
-            <%= link_to "#{t('more_news')}", {:controller => "news", :action => "all"}, :id => "bottom_read_more" %>
-          </div>
-        <% end %>
-      </div>
       <div id="content"> <%= yield %> </div>
 
       <div class="extender"></div>
@@ -95,9 +82,6 @@
         <div id="powered_by">
           <%= t('powered_by') %> <a href=<%= "#{FEDENA_SETTINGS[:company_url]}" %> target="_blank"><%= FEDENA_SETTINGS[:company_name] %></a>
         </div>
-        <% if USER_SETTINGS.blank? %>
-          <a href="http://www.projectfedena.org/"  target="_blank" class="footer-logo"></a>
-        <% end %>
       </div>
     </div>
   </body>

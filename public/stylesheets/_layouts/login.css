@@ -12,7 +12,7 @@ body {
 #top_logo {
     margin:0 auto;
     padding-top:15px;
-    height:107px; width:155px;
+    height:115px; width:155px;
     /*background:#fff url(../../images/login/fedena_logo.jpg) no-repeat;*/
 }
 #top_logo h1 {
@@ -110,11 +110,12 @@ input[type="text"], input[type="password"], textarea, select {outline: none;}
 #powered_by {
     height:20px;
     padding:35px 0 0 0;
-    width:980px;
+    width:auto;
     margin:0 auto;
     color:#fff;
     font-size:12px;
     font-weight:bold;
+    float: right;
 }
 #powered_by a {
     color:#fff;

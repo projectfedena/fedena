@@ -1,0 +1,53 @@
+body{
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+
+}
+#wrapper{
+    width: 582px;
+    height: 104px;
+    margin: 100px auto;
+    background: url(/images/application/error_page_bg.png) no-repeat;
+    overflow: hidden;
+}
+#wrapper .top{
+    color: #c80000;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px 20px 7px 20px;
+    width: 542px;
+}
+#wrapper .bottom{
+    font-family: Arial;
+    margin: 0 20px;
+    font-size: 15px;
+    overflow: hidden;
+}
+#wrapper .bottom .error-details{
+    float: left;
+    font-size: 15px;
+    color: #000000;
+}
+#wrapper .bottom .error-details .error-code{
+    font-weight: bold;
+    font-size: 18px;
+}
+#wrapper .bottom .go-back{
+    padding-right: 15px;
+    float: right;
+    border-right: 1px #666666 solid;
+}
+#wrapper .bottom .fedena-home{
+    float: right;
+    padding-left: 15px;
+}
+#wrapper .bottom div a{
+    float: right;
+    color: #666666;
+    text-decoration: none;
+}
+#wrapper .bottom div a:hover{
+    text-decoration: underline;
+}

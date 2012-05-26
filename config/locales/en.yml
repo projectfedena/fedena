@@ -270,6 +270,7 @@ en: # locale
       day: "%a"
       mont: "%d"
       day_mon: "%a %d"
+      date_month: "%B %e"
        
 
     day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
@@ -1219,7 +1220,7 @@ en: # locale
   latest_announcement: "Latest announcements"
   user_deleted: "User Deleted"
   read_news: "Read news"
-  posted_on: "Posted On"
+  posted_on: "Posted on"
   content: "Content"
   comments: "Comments"
   leave_comment: "Leave a comment"

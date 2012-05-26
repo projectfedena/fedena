@@ -265,6 +265,7 @@ es: # locale
       day: "%a"
       mont: "%d"
       day_mon: "%a %d"
+      date_month: "%B %e"
 
 
     day_names: [Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sábado]

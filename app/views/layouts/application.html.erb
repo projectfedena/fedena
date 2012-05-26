@@ -57,12 +57,19 @@
     <div id="header_bg">
       <div id="header">
         <div id="outer-header-link">
+          <div id="institution-name">
+            <%= current_school_name %>
+          </div>
           <div id="header_link" >
-            <%= t('logged_as') %>
-            <%= link_to @current_user.first_name, :controller => 'user', :action => 'profile',
-              :id => @current_user.username %> &nbsp;|&nbsp;
-            <%= link_to t('messages'),:controller => "reminder", :action => "index" %><%= render :partial => 'layouts/reminder_count' %>&nbsp;|&nbsp;
-            <%= link_to t('log_out'), :controller => 'user', :action => 'logout' %>  &nbsp;&nbsp;
+            <div id="messages-link">
+              <%= link_to t('messages'), :controller => "reminder", :action => "index" %><%= render :partial =>'layouts/reminder_count'%>
+            </div>
+            <div id="profile-link">
+              <%= link_to @current_user.first_name, { :controller => 'user', :action => 'profile', :id => @current_user.username }, :class=>"profile-link" %>
+            </div>
+            <div id="logout-link">
+              <%= link_to t('log_out'), :controller => 'user', :action => 'logout' %>
+            </div>
           </div>
         </div>
         <div id="outer-main-menu">
@@ -103,10 +110,7 @@
         <div id="powered_by">
           <%= t('powered_by') %> <a href=<%= "#{FEDENA_SETTINGS[:company_url]}" %> target="_blank"><%= FEDENA_SETTINGS[:company_name] %></a>
         </div>
-        <% if USER_SETTINGS.blank? %>
-          <a href="http://www.projectfedena.org/" target="_blank" class="footer-logo"></a>
-        <% end %>
       </div>
-    </div>
+    </div> 
   </body>
 </html>
