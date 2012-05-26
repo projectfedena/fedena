@@ -807,8 +807,9 @@ class ExamController < ApplicationController
       end
     else
       @course = Course.find(params[:course_id])
-      @batch_group = BatchGroup.find(params[:ranking_level_report][:batch_group_id])
+      @batch_group = BatchGroup.find(params[:batch_group_id])
       @batches = @batch_group.batches
+      @students = Student.find_all_by_batch_id(@batches.collect(&:id))
       unless @ranking_level.subject_count.nil?
         @scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"s"})
       else

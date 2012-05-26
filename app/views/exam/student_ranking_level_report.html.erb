@@ -27,7 +27,7 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_ranking_level_report_pdf", :mode=>@mode, :report_type=>@report_type, :ranking_level_id=>@ranking_level.id, :batch_id=>params[:ranking_level_report][:batch_id], :course_id=>params[:ranking_level_report][:course_id], :subject_id=>params[:ranking_level_report][:subject_id]},:target => '_blank', :class=> 'user_button' %></li>
+    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_ranking_level_report_pdf", :mode=>@mode, :report_type=>@report_type, :ranking_level_id=>@ranking_level.id, :batch_id=>params[:ranking_level_report][:batch_id], :course_id=>params[:ranking_level_report][:course_id], :batch_group_id=>params[:ranking_level_report][:batch_group_id], :subject_id=>params[:ranking_level_report][:subject_id]},:target => '_blank', :class=> 'user_button' %></li>
   </ul>
 </div>
 <div id="page-yield">
