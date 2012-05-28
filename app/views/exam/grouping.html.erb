@@ -134,7 +134,7 @@
                   <td class="col-2"><%= e.name %></td>
                   <% if is_already_grouped==true %>
                   <td class="col-3"><%=text_field_tag 'weightage[]',already_grouped.weightage,:class=>'total-box',:id=>"weightage#{i}",:onchange=>"check_weightage(this,#{count})"%></td>
-                  <% total = total + already_grouped.weightage %>
+                  <% total += already_grouped.weightage  if already_grouped.weightage.present? %>
                   <% else %>
                   <td class="col-3"><%=text_field_tag 'weightage[]',"0",:class=>'total-box',:disabled=>true,:id=>"weightage#{i}",:onchange=>"check_weightage(this,#{count})"%></td>
                   <% end %>
