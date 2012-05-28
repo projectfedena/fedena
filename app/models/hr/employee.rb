@@ -54,7 +54,6 @@ class Employee < ActiveRecord::Base
 
 
   def create_user_and_validate
-    self.email ||="noreply" + self.employee_number.to_s + "@fedena.com"
     if self.new_record?
       user_record = self.build_user
       user_record.first_name = self.first_name
@@ -62,7 +61,7 @@ class Employee < ActiveRecord::Base
       user_record.username = self.employee_number.to_s
       user_record.password = self.employee_number.to_s + "123"
       user_record.role = 'Employee'
-      user_record.email = self.email.blank? ? "noreply#{self.employee_number.to_s}@fedena.com" : self.email.to_s
+      user_record.email = self.email.blank? ? "" : self.email.to_s
       check_user_errors(user_record)
     else
       changes_to_be_checked = ['employee_number','first_name','last_name','email']

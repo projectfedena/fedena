@@ -48,7 +48,7 @@
 
       <tr class="even"><td><%= t('category') %></td><td class="right"><%= @student.student_category.name unless @student.student_category.nil? %></td></tr>
       <tr class="odd"><td><%= t('religion') %></td><td class="right"><%= @student.religion %></td></tr>
-      <tr class="even"><td><%= t('address') %></td><td class="right"><%= @student.address_line1%>, <%=  @student.address_line2 %></td></tr>
+      <tr class="even"><td><%= t('address') %></td><td class="right"><%= @student.address_line1%><%= ', ' unless @student.address_line1.blank? %><%=  @student.address_line2 %></td></tr>
       <tr class="odd"><td><%= t('city') %></td><td class="right"><%= @student.city %></td></tr>
       <tr class="even"><td><%= t('state') %></td><td class="right"><%= @student.state %></td></tr>
       <tr class="odd"><td><%= t('zip') %></td><td class="right"><%= @student.pin_code %></td></tr>

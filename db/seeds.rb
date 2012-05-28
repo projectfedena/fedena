@@ -51,18 +51,17 @@ if ClassTiming.count == 0
   end
 end
 
-
-employee_category = EmployeeCategory.find_or_create_by_name(:name => 'Fedena Admin',:prefix => 'Admin',:status => true)
-
-employee_position = EmployeePosition.find_or_create_by_name(:name => 'Fedena Admin',:employee_category_id => employee_category.id,:status => true)
-
-employee_department = EmployeeDepartment.find_or_create_by_code(:code => 'Admin',:name => 'Fedena Admin',:status => true)
-
-employee_grade = EmployeeGrade.find_or_create_by_name(:name => 'Fedena Admin',:priority => 0 ,:status => true,:max_hours_day=>nil,:max_hours_week=>nil)
-
 if Employee.first(:joins=>:user, :conditions=>{:users=>{:admin=>true}}).nil?
 
-  employee = Employee.find_or_create_by_employee_number(:employee_number => 'admin',:joining_date => Date.today,:first_name => 'Fedena',:last_name => 'Administrator',
+  employee_category = EmployeeCategory.find_or_create_by_name(:name => 'System Admin',:prefix => 'Admin',:status => true)
+
+  employee_position = EmployeePosition.find_or_create_by_name(:name => 'System Admin',:employee_category_id => employee_category.id,:status => true)
+
+  employee_department = EmployeeDepartment.find_or_create_by_code(:code => 'Admin',:name => 'System Admin',:status => true)
+
+  employee_grade = EmployeeGrade.find_or_create_by_name(:name => 'System Admin',:priority => 0 ,:status => true,:max_hours_day=>nil,:max_hours_week=>nil)
+
+  employee = Employee.find_or_create_by_employee_number(:employee_number => 'admin',:joining_date => Date.today,:first_name => 'Admin',:last_name => 'User',
     :employee_department_id => employee_department.id,:employee_grade_id => employee_grade.id,:employee_position_id => employee_position.id,:employee_category_id => employee_category.id,:status => true,:nationality_id =>'76', :date_of_birth => Date.today-365)
 
   employee.user.update_attributes(:admin=>true,:employee=>false)

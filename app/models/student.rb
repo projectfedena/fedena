@@ -75,7 +75,6 @@ class Student < ActiveRecord::Base
   end
 
   def create_user_and_validate
-    self.email ||="noreply" + self.admission_no.to_s + "@fedena.com"
     if self.new_record?
       user_record = self.build_user
       user_record.first_name = self.first_name
@@ -83,7 +82,7 @@ class Student < ActiveRecord::Base
       user_record.username = self.admission_no.to_s
       user_record.password = self.admission_no.to_s + "123"
       user_record.role = 'Student'
-      user_record.email = self.email.blank? ? "noreply#{self.admission_no.to_s}@fedena.com" : self.email.to_s
+      user_record.email = self.email.blank? ? "" : self.email.to_s
       check_user_errors(user_record)
       return false unless errors.blank?
     else
@@ -103,7 +102,7 @@ class Student < ActiveRecord::Base
       end
       
     end
-    self.email = "noreply#{self.admission_no}@fedena.com" if self.email.blank?
+    self.email = "" if self.email.blank?
     return false unless errors.blank?
   end
 
