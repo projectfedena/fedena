@@ -5,6 +5,7 @@ available:
   es: "Español"
   hi: "हिंदी"
   de: "Deutsch"
+  pt: "português"
 
 fallbacks:
   en-GB:
