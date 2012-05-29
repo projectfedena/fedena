@@ -1983,6 +1983,7 @@ pt: # locale
     flash17: "Conta de usuário criada! "
     flash18: "o link para reinicialização de senha foi enviado para seu e-mail"
     flash19: "Não há usuário com o nome de usuário"
+    flash20: "Usuário não tem um ID de e-mail!"
 
 #student controller translation
   student:

@@ -2045,6 +2045,7 @@ de: # locale
     flash17: "Benutzerkonto erstellt! "
     flash18: "Passwortrücksetzungslink wurde per E-Mail versendet"
     flash19: "Es existiert kein Benutzer mit folgendem Benutzernamen"
+    flash20: "Benutzer verfügt nicht über eine E-Mail-ID!"
     
 #student controller translation
   student:

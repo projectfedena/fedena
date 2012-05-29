@@ -2053,6 +2053,7 @@ en: # locale
     flash17: "User account created! "
     flash18: "Reset Password link has been send to your email"
     flash19: "No user exists with username"
+    flash20: "User does not have an email id!"
     
 #student controller translation
   student:

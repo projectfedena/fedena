@@ -2041,6 +2041,7 @@ es: # locale
     flash17: "Cuenta de usuario creada! "
     flash18: "Enlace de restablecimiento de contraseña ha sido enviada a su correo electrónico"
     flash19: "No existe el usuario con nombre de usuario"
+    flash20: "El usuario no tiene un ID de correo electrónico!"
 
 #student controller translation
   student:

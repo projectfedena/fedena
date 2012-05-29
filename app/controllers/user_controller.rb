@@ -184,7 +184,7 @@ class UserController < ApplicationController
     if @user.parent?
       @student = Student.find_by_admission_no(@user.username[1..@user.username.length])
     end
-#    @dash_news = News.find(:all, :limit => 3)
+    #    @dash_news = News.find(:all, :limit => 3)
   end
 
   def edit
@@ -202,14 +202,19 @@ class UserController < ApplicationController
     @network_state = Configuration.find_by_config_key("NetworkState")
     if request.post? and params[:reset_password]
       if user = User.find_by_username(params[:reset_password][:username])
-        user.reset_password_code = Digest::SHA1.hexdigest( "#{user.email}#{Time.now.to_s.split(//).sort_by {rand}.join}" )
-        user.reset_password_code_until = 1.day.from_now
-        user.role = user.role_name
-        user.save(false)
-        url = "#{request.protocol}#{request.host_with_port}"
-        UserNotifier.deliver_forgot_password(user,url)
-        flash[:notice] = "#{t('flash18')}"
-        redirect_to :action => "index"
+        unless user.email.blank?
+          user.reset_password_code = Digest::SHA1.hexdigest( "#{user.email}#{Time.now.to_s.split(//).sort_by {rand}.join}" )
+          user.reset_password_code_until = 1.day.from_now
+          user.role = user.role_name
+          user.save(false)
+          url = "#{request.protocol}#{request.host_with_port}"
+          UserNotifier.deliver_forgot_password(user,url)
+          flash[:notice] = "#{t('flash18')}"
+          redirect_to :action => "index"
+        else
+          flash[:notice] = "#{t('flash20')}"
+          return
+        end
       else
         flash[:notice] = "#{t('flash19')} #{params[:reset_password][:username]}"
       end
