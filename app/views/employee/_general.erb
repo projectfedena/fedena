@@ -41,10 +41,11 @@
         <%= link_to "#{t('change')}", :controller=> "employee", :action=> "change_reporting_manager", :id=>@employee.id %>
       <%end%></td></tr>
   <tr class="even left"><td><%= t('gender') %></td><td class="right"><%= t("#{@gender.downcase}") %></td></tr>
-  <tr class="odd left"><td><%= t('status') %></td><td class="right"><%= t("#{@status.downcase}") %></td></tr>
-  <tr class="even left"><td><%= t('qualification') %></td><td class="right"><%= @employee.qualification %></td></tr>
-  <tr class="odd left"><td><%= t('total_exp') %></td><td class="right"><%= @total_years.to_s+" #{t('years')} "+@total_months.to_s+" #{t('months')}" %></td></tr>
-  <tr class="even left"><td><%= t('exp_info') %></td><td class="right"><%= @employee.experience_detail %></td></tr>
+  <tr class="odd left"><td><%= t('email') %></td><td class="right"><%= @employee.email %></td></tr>
+  <tr class="even left"><td><%= t('status') %></td><td class="right"><%= t("#{@status.downcase}") %></td></tr>
+  <tr class="odd left"><td><%= t('qualification') %></td><td class="right"><%= @employee.qualification %></td></tr>
+  <tr class="even left"><td><%= t('total_exp') %></td><td class="right"><%= @total_years.to_s+" #{t('years')} "+@total_months.to_s+" #{t('months')}" %></td></tr>
+  <tr class="odd left"><td><%= t('exp_info') %></td><td class="right"><%= @employee.experience_detail %></td></tr>
 </table>
 <div class="edit-pdf-group">
   <% if permitted_to? :change_reporting_manager, :employee %>

@@ -88,6 +88,13 @@
       <hr class="label-underline"></hr>
 
       <div class="label-field-pair">
+        <label><%= t('email') %></label>
+        <div class="text-input-bg"><%= a.text_field :email %></div>
+      </div>
+
+      <hr class="label-underline"></hr>
+
+      <div class="label-field-pair">
         <label for="employee_department"><%= t('department') %> <span class="necessary-field">*</span></label>
         <div class="text-input-bg"><%= select :employee, :employee_department_id, @departments.map {|s| [s.name, s.id]}, :value => @employee.employee_department_id %></div>
       </div>
