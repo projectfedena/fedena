@@ -6,6 +6,7 @@ available:
   hi: "हिंदी"
   de: "Deutsch"
   pt: "português"
+  mr: "मराठी"
 
 fallbacks:
   en-GB:
