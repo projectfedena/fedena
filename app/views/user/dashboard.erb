@@ -17,7 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<% cache 'latest_news' do%>
+<% cache News.cache_fragment_name do%>
   <%= render :partial=>'news_bar' %>
 <% end %>
 
