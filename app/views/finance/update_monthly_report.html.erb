@@ -90,9 +90,9 @@
     <% FedenaPlugin::FINANCE_CATEGORY.each do |category| %>
       <tr class="tr-<%=cycle('even','odd')%>">
         <td class="col-1"><%= index+=1 %></td>
-        <td class="col-2"><%= link_to "#{t(category[:category_name]+'_account')}" , category[:destination].merge(:start => @start_date,:end => @end_date)%> </td>
-        <td></td>
+        <td class="col-2"><%= link_to "#{t(category[:category_name]+'_account')}" , category[:destination].merge(:start => @start_date,:end => @end_date)%> </td>     
         <td class="col-3" align="right"><%=@category_transaction_totals["#{category[:category_name]}"]%></td>
+         <td></td>
         <td class="col-3"> - </td>
       </tr>
     <% end %>
