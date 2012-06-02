@@ -68,8 +68,10 @@ class Guardian < ActiveRecord::Base
   end
 
   def immediate_contact_nil
-    student = self.ward
-    student.update_attributes(:immediate_contact_id=>nil)
+     student = self.ward
+    unless student.user.nil?
+      student.update_attributes(:immediate_contact_id=>nil)
+    end
   end
     
 end
