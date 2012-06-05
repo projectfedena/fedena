@@ -283,7 +283,6 @@ class ApplicationController < ActionController::Base
   def set_user_language
     lan = Configuration.find_by_config_key("Locale")
     I18n.default_locale = :en
-    I18n.default_locale = lan.config_value
     Translator.fallback(true)
     if session[:language].nil?
       I18n.locale = lan.config_value
