@@ -270,6 +270,7 @@ mr: # locale
       day: "%a"
       mont: "%d"
       day_mon: "%a %d"
+      date_month: "%B %e"
        
 
     day_names: [रविवार, सोमवार, मंगळवार, बुधवार, गुरुवार, शुक्रवार, शनिवार]

@@ -266,6 +266,7 @@ pt: # locale
       day: "%a"
       mont: "%d"
       day_mon: "%a %d"
+      date_month: "%B %e"
 
 
     day_names: [domingo, segunda-feira, terça-feira, quarta-feira, quinta-feira, sexta-feira, sábado]
