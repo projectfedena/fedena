@@ -28,6 +28,6 @@ class NewsComment < ActiveRecord::Base
   after_destroy :reload_news_bar
 
   def reload_news_bar
-    ActionController::Base.new.expire_fragment('latest_news')
+    ActionController::Base.new.expire_fragment(News.cache_fragment_name)
   end
 end
