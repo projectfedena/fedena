@@ -289,5 +289,6 @@ class ApplicationController < ActionController::Base
     else
       I18n.locale = session[:language]
     end
+    News.new.reload_news_bar
   end
 end

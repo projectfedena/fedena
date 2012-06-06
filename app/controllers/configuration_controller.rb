@@ -41,6 +41,7 @@ class ConfigurationController < ApplicationController
       end
       @current_user.clear_menu_cache
       Configuration.clear_school_cache(@current_user)
+      News.new.reload_news_bar
       flash[:notice] = "#{t('flash_msg8')}"
       redirect_to :action => "settings"  and return
     end
