@@ -1884,11 +1884,12 @@ class FinanceController < ApplicationController
     end
 
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
-      c =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)[:amount]
-      unless c <= 0
+      transaction = FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)
+      amount = transaction[:amount]
+      unless amount <= 0
         x_labels << "#{category[:category_name]}"
-        data << c
-        largest_value = c if largest_value < c
+        transaction[:category_type] == "income" ? data << amount : data << amount-(amount*2)
+        largest_value = amount if largest_value < amount
       end
     end
 
@@ -1899,7 +1900,7 @@ class FinanceController < ApplicationController
     end
     unless expense <= 0
       x_labels << "#{t('other_expense')}"
-      data << expense
+      data << expense-(expense*2)
       largest_value = expense if largest_value < expense
     end
 
@@ -2007,15 +2008,16 @@ class FinanceController < ApplicationController
     end
        
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
-      c1 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)[:amount]
-      c2 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date2,end_date2)[:amount]
-
-      unless c1 <= 0 and c2 <= 0
+      transaction1 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)
+      transaction2 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date2,end_date2)
+      amount1 = transaction1[:amount]
+      amount2 = transaction2[:amount]
+      unless amount1 <= 0 and amount2 <= 0
         x_labels << "#{category[:category_name]}"
-        data << c1
-        data2 << c2
-        largest_value = c1 if largest_value < c1
-        largest_value = c2 if largest_value < c2
+        transaction1[:category_type] == "income" ? data << amount1 : data << amount1-(amount1*2)
+        transaction2[:category_type] == "income" ? data2 << amount2 : data2 << amount2-(amount2*2)
+        largest_value = amount1 if largest_value < amount1
+        largest_value = amount2 if largest_value < amount2
       end
     end
 
