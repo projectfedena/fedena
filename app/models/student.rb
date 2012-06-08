@@ -234,7 +234,10 @@ class Student < ActiveRecord::Base
   end
 
   def has_associated_fee_particular?(fee_category)
-    fee_category.fee_particulars.find_all_by_admission_no(admission_no).count > 0 ? true :false
+    status = false
+    status = true if fee_category.fee_particulars.find_all_by_admission_no(admission_no).count > 0
+    status = true if fee_category.fee_particulars.find_all_by_student_category_id(student_category_id).count > 0
+    return status
   end
 
   def archive_student(status)
