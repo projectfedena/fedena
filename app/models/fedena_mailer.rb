@@ -18,10 +18,19 @@
 
 class FedenaMailer < ActionMailer::Base
   def email(sender,recipients, subject, message)
-    @recipients = recipients
+    recipient_emails = (recipients.class == String) ? recipients.gsub(' ','').split(',').compact : recipients.compact
+    recipient_emails.each do |email|
+      setup_email(sender, email, subject, message)
+    end
+  end
+
+  protected
+  def setup_email(sender, email, subject, message)
     @from = sender
+    @recipients = email
     @subject = subject
     @sent_on = Time.now
     @body['message'] = message
   end
+  
 end
