@@ -18,8 +18,7 @@
 
 class FedenaMailer < ActionMailer::Base
   def email(sender,recipients, subject, message)
-    @bcc = recipients
-    @recipients = 'noreply@fedena.com'
+    @recipients = recipients
     @from = sender
     @subject = subject
     @sent_on = Time.now
