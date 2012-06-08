@@ -91,12 +91,17 @@
       <tr class="tr-<%=cycle('even','odd')%>">
         <td class="col-1"><%= index+=1 %></td>
         <td class="col-2"><%= link_to "#{t(category[:category_name]+'_account')}" , category[:destination].merge(:start => @start_date,:end => @end_date)%> </td>     
+       <%  if category[:is_income].present? and  category[:is_income] == 0 %>
         <td class="col-3" align="right"><%=@category_transaction_totals["#{category[:category_name]}"]%></td>
          <td></td>
         <td class="col-3"> - </td>
+        <% else %>
+         <td></td>
+        <td class="col-3" align="right"><%=@category_transaction_totals["#{category[:category_name]}"]%></td>      
+        <td class="col-3"> - </td>
       </tr>
     <% end %>
-
+ <% end %>
     <% @other_transaction_categories.each_with_index do |t,i| %>
       <% income = t.total_income(@start_date,@end_date) %>
       <% expense = t.total_expense(@start_date,@end_date) %>
