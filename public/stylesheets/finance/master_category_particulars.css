@@ -178,8 +178,8 @@
 .each_category label {
     float: right;
     margin-left: 22px;
-    margin-top: -26px;
-    width: 178px;
+    margin-top: -6px;
+    width: 138px;
 }
 .categories {
     height: 100px;
