@@ -366,12 +366,12 @@ class StudentController < ApplicationController
         recipient_list << @student.email
       when 'Guardian'
         recipient_list << @student.immediate_contact.email unless @student.immediate_contact.nil?
-      when 'Student & guardian'
+      when 'Student & Guardian'
         recipient_list << @student.email
         recipient_list << @student.immediate_contact.email unless @student.immediate_contact.nil?
       end
       FedenaMailer::deliver_email(sender, recipient_list, params['email']['subject'], params['email']['message'])
-      flash[:notice] = "#{t('flash12')} #{recipients}"
+      flash[:notice] = "#{t('flash12')} #{recipient_list.join(', ')}"
       redirect_to :controller => 'student', :action => 'profile', :id => @student.id
     end
   end
