@@ -221,11 +221,12 @@ class FinanceTransaction < ActiveRecord::Base
 
   def self.total_transaction_amount(transaction_category,start_date,end_date)
     amount = 0
-    transaction_category_id = FinanceTransactionCategory.find_by_name("#{transaction_category}").id
+    finance_transaction_category = FinanceTransactionCategory.find_by_name("#{transaction_category}")
+    category_type = finance_transaction_category.is_income ? "income" : "expense"
     transactions = FinanceTransaction.find(:all,
-      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{transaction_category_id}'"])
+      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{finance_transaction_category.id}'"])
     transactions.each {|transaction| amount += transaction.amount}
-    amount
+    return {:amount=>amount,:category_type=>category_type}
   end
   
   def add_voucher_or_receipt_number

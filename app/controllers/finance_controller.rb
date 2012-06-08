@@ -1884,7 +1884,7 @@ class FinanceController < ApplicationController
     end
 
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
-      c =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)
+      c =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)[:amount]
       unless c <= 0
         x_labels << "#{category[:category_name]}"
         data << c
@@ -2007,8 +2007,8 @@ class FinanceController < ApplicationController
     end
        
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
-      c1 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)
-      c2 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date2,end_date2)
+      c1 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)[:amount]
+      c2 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date2,end_date2)[:amount]
 
       unless c1 <= 0 and c2 <= 0
         x_labels << "#{category[:category_name]}"

@@ -69,8 +69,13 @@
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"><%= index+=1 %></td>
             <td class="col-pdf2"><%= "#{t(category[:category_name]+'_account')}"%> </td>
-            <td class="col-pdf3"></td>
-            <td class="col-pdf3"><%=  @category_transaction_totals["#{category[:category_name]}"]%></td>
+            <%  if  @category_transaction_totals["#{category[:category_name]}"][:category_type] == "income" %>
+              <td class="col-pdf3"></td>
+              <td class="col-pdf3"><%=  @category_transaction_totals["#{category[:category_name]}"][:amount]%></td>
+            <% else %>
+              <td class="col-pdf3"><%=  @category_transaction_totals["#{category[:category_name]}"][:amount]%></td>
+              <td class="col-pdf3"></td>
+            <% end %>
           </tr>
         <% end %>
         <% i+= 2 %>
