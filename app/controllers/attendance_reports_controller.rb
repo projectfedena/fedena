@@ -198,7 +198,7 @@ class AttendanceReportsController < ApplicationController
     @date = '01-'+@month+'-'+@year
     @start_date = @date.to_date
     @today = Date.today
-    if (@start_date<@batch.start_date.to_date || @start_date>@batch.end_date.to_date || @start_date>=@today.next_month.beginning_of_month)
+    if (@start_date<@batch.start_date.to_date.beginning_of_month || @start_date>@batch.end_date.to_date || @start_date>=@today.next_month.beginning_of_month)
       render :update do |page|
         page.replace_html 'report', :text => t('no_reports')
       end
