@@ -424,7 +424,9 @@ class TimetableController < ApplicationController
   end
   def work_allotment
     admin = EmployeeCategory.find_by_prefix('admin')
-    @employees = Employee.all(:conditions=>["employee_category_id not in (?)",admin.id],:include=>[:employee_grade,:employees_subjects])
+    admin_ids = []
+    admin_ids << admin.id unless admin.nil?
+    @employees = Employee.all(:conditions=>["employee_category_id not in (?)",admin_ids],:include=>[:employee_grade,:employees_subjects])
     @emp_subs = []
 
     if request.post?

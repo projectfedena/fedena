@@ -51,12 +51,12 @@
 
       <div class="label-field-pair">
         <div class="label-container"><%= t('start_date') %></div>
-        <div class="input-container"><%= calendar_date_select_tag 'batch[start_date]',I18n.localize(@batch.start_date, :format=>"%B %e, %Y") %></div>
+        <div class="input-container"><%= calendar_date_select_tag 'batch[start_date]',I18n.l(@batch.start_date, :format=>"%e-%m-%Y") %></div>
       </div>
 
       <div class="label-field-pair">
         <div class="label-container"><%= t('end_date') %></div>
-        <div class="input-container"><%= calendar_date_select_tag 'batch[end_date]',I18n.localize(@batch.end_date, :format=>"%B %e, %Y")  %></div>
+        <div class="input-container"><%= calendar_date_select_tag 'batch[end_date]',I18n.l(@batch.end_date, :format=>"%e-%m-%Y")  %></div>
       </div>
 
     <% unless @grade_types.blank? %>
