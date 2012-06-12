@@ -1014,3 +1014,6 @@ height: 14px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
+textarea{
+    font-family: Arial !important;
+}
