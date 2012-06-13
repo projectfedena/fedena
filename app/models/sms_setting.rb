@@ -52,4 +52,11 @@ class SmsSetting < ActiveRecord::Base
     result_schedule_sms = SmsSetting.find_by_settings_key("ExamScheduleResultEnabled")
     return true if result_schedule_sms.is_enabled
   end
+
+  def self.get_sms_config
+    if File.exists?("#{Rails.root}/config/sms_settings.yml")
+      config = YAML.load_file(File.join(Rails.root,"config","sms_settings.yml"))
+    end
+    return config
+  end
 end

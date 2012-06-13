@@ -9,15 +9,29 @@ class SmsManager
   def initialize(message, recipients)
     @recipients = recipients
     @message = message
-    if File.exists?("#{RAILS_ROOT}/config/sms_settings.yml")
-      @config = YAML.load_file(File.join(RAILS_ROOT,"config","sms_settings.yml"))
-    end
+    @config = SmsSetting.get_sms_config
     unless @config.blank?
       @sendername = @config['sms_settings']['sendername']
       @sms_url = @config['sms_settings']['host_url']
       @username = @config['sms_settings']['username']
       @password = @config['sms_settings']['password']
       @success_code = @config['sms_settings']['success_code']
+      @username_mapping = @config['parameter_mappings']['username']
+      @username_mapping ||= 'username'
+      @password_mapping = @config['parameter_mappings']['password']
+      @password_mapping ||= 'password'
+      @phone_mapping = @config['parameter_mappings']['phone']
+      @phone_mapping ||= 'phone'
+      @sender_mapping = @config['parameter_mappings']['sendername']
+      @sender_mapping ||= 'sendername'
+      @message_mapping = @config['parameter_mappings']['message']
+      @message_mapping ||= 'message'
+      unless @config['additional_parameters'].blank?
+        @additional_param = ""
+        @config['additional_parameters'].split(',').each do |param|
+          @additional_param += "&#{param}"
+        end
+      end
     end
   end
 
@@ -26,7 +40,7 @@ class SmsManager
       message_log = SmsMessage.new(:body=> @message)
       message_log.save
       encoded_message = URI.encode(@message)
-      request = "#{@sms_url}?username=#{@username}&password=#{@password}&sendername=#{@sendername}&message=#{encoded_message}&mobileno="
+      request = "#{@sms_url}?#{@username_mapping}=#{@username}&#{@password_mapping}=#{@password}&#{@sender_mapping}=#{@sendername}&#{@message_mapping}=#{encoded_message}#{@additional_param}&#{@phone_mapping}="
       @recipients.each do |recipient|
         cur_request = request
         cur_request += "#{recipient}"

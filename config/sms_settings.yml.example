@@ -4,3 +4,14 @@ sms_settings:
  sendername: sender
  host_url: http://yoursmsprovider.com/api
  success_code: "success"
+
+parameter_mappings:
+ username: username
+ password: password
+ sendername: sendername
+ message: message
+ phone: phone
+
+# Additional parameters to be added should given in the format "param1=value1&param2=value2&..."
+additional_parameters: ""
+ 
