@@ -350,7 +350,7 @@ class EmployeeController < ApplicationController
       sms_setting = SmsSetting.new()
       if sms_setting.application_sms_active and sms_setting.employee_sms_active
         recipient = ["#{@employee.mobile_phone}"]
-        message = "#{t('joinning_info')} #{@employee.first_name}. #{t('username')}: #{@employee.employee_number}, #{t('password')}: #{@employee.employee_number}123. #{t('change_password_after_login')}"
+        message = "#{t('joining_info')} #{@employee.first_name}. #{t('username')}: #{@employee.employee_number}, #{t('password')}: #{@employee.employee_number}123. #{t('change_password_after_login')}"
         Delayed::Job.enqueue(SmsManager.new(message,recipient))
       end
       flash[:notice] = "#{t('flash20')} #{ @employee.first_name}"
