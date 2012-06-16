@@ -47,7 +47,7 @@
         </div>
         <div class="label-field-pair">
           <label for="description"><%= t('transaction_date') %>:</label>
-          <div class="text-field-bg"><%= calendar_date_select_tag 'donation[transaction_date]', I18n.l(@donation.transaction_date,:format=>:normal), :year_range => 5.years.ago..0.years.ago %></div>
+          <div class="text-field-bg"><%= calendar_date_select_tag 'donation[transaction_date]', I18n.l(@donation.transaction_date,:format=>:default), :year_range => 5.years.ago..0.years.ago,:readonly=>true,:popup=>"force" %></div>
         </div>
         <div class="label-field-pair">
           <label for="amount"><%= t('amount') %>:</label>

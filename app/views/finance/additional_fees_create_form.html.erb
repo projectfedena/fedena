@@ -45,15 +45,15 @@
    </div>
        <div class="label-field-pair">
     <div class="label-container"><label><%= t('start_date') %> <span class="necessary-field">*</span> :</label> </div>
-    <div class="input-container"><%= calendar_date_select_tag 'additional_fees[start_date]', I18n.l(Date.today,:format=>:normal) %></div>
+    <div class="input-container"><%= calendar_date_select_tag 'additional_fees[start_date]', I18n.l(Date.today,:format=>:default) %></div>
    </div>
        <div class="label-field-pair">
     <div class="label-container"><label><%= t('end_date') %> <span class="necessary-field">*</span>:</label> </div>
-    <div class="input-container"><%= calendar_date_select_tag 'additional_fees[end_date]', I18n.l(Date.today,:format=>:normal) %></div>
+    <div class="input-container"><%= calendar_date_select_tag 'additional_fees[end_date]', I18n.l(Date.today,:format=>:default) %></div>
    </div>
        <div class="label-field-pair">
     <div class="label-container"><label><%= t('due_date') %> <span class="necessary-field">*</span> :</label> </div>
-    <div class="input-container"><%= calendar_date_select_tag 'additional_fees[due_date]', I18n.l(Date.today,:format=>:normal) %></div>
+    <div class="input-container"><%= calendar_date_select_tag 'additional_fees[due_date]', I18n.l(Date.today,:format=>:default) %></div>
    </div>
 
     <%=  submit_tag "► #{t('save')}",:class=>'submit_button' %>

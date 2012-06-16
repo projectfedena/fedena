@@ -32,15 +32,15 @@
     </div>
     <div class="label-field-pair">
       <div class="label-container"><label><%= t('start_date') %> :</label> </div>
-      <div class="input-container"><%= calendar_date_select_tag 'additional_fees[start_date]', @collection_date.start_date %></div>
+      <div class="input-container"><%= calendar_date_select_tag 'additional_fees[start_date]', I18n.l(@collection_date.start_date,:format=>:default),:readonly=>true,:popup=>"force" %></div>
     </div>
     <div class="label-field-pair">
       <div class="label-container"><label><%= t('end_date') %> <span class="necessary-field">*</span>:</label> </div>
-      <div class="input-container"><%= calendar_date_select_tag 'additional_fees[end_date]', @collection_date.end_date %></div>
+      <div class="input-container"><%= calendar_date_select_tag 'additional_fees[end_date]', I18n.l(@collection_date.end_date,:format=>:default),:readonly=>true,:popup=>"force" %></div>
     </div>
     <div class="label-field-pair">
       <div class="label-container"><label><%= t('due_date') %> :</label> </div>
-      <div class="input-container"><%= calendar_date_select_tag 'additional_fees[due_date]', @collection_date.due_date %></div>
+      <div class="input-container"><%= calendar_date_select_tag 'additional_fees[due_date]', I18n.l(@collection_date.due_date,:format=>:default),:readonly=>true,:popup=>"force" %></div>
     </div>
     <div class="label-field-pair">
       <div class="label-container"><label><%= t('course_text') %> :</label></div>

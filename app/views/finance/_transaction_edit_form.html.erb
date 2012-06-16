@@ -36,7 +36,7 @@
     </div>
     <div class="label-field-pair">
       <label for="amount"><%= t('date_text') %></label>
-      <div class="text-field-bg"><%= calendar_date_select_tag 'transaction[transaction_date]', I18n.localize(Date.today, :format=>:normal), :year_range => 5.years.ago..0.years.ago %></div>
+      <div class="text-field-bg"><%= calendar_date_select_tag 'transaction[transaction_date]', I18n.localize(Date.today, :format=>:default), :year_range => 5.years.ago..0.years.ago,:readonly=>true,:popup=>"force" %></div>
     </div>
     <div class="label-field-pair">
       <label for="category"><%= t('category') %></label>
