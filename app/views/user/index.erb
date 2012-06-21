@@ -34,30 +34,47 @@
 </div>
 <div id="search-area">
   <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
-    <div id="searchbox">
-      <form name="search-form" id="search-form">
-        <label for="query"><%= t('search_user') %>
-          <%= image_tag("loader.gif",
-              :align => "absmiddle",
-              :border => 0,
-              :id => "loader",
-              :style =>"display: none;" ) %>
-        </label>
-        <%= text_field_tag "query", params[:query], :autocomplete => 'off' %>
-      </form>
-    </div>
+  <div id="searchbox">
+    <form name="search-form" id="search-form">
+      <label for="query"><%= t('search_user') %>
+        <%= image_tag("loader.gif",
+          :align => "absmiddle",
+          :border => 0,
+          :id => "loader",
+          :style =>"display: none;" ) %>
+      </label>
+      <%= text_field_tag "query", params[:query], :autocomplete => 'off' %>
+    </form>
   </div>
+</div>
 <div id="page-yield">
 
 
-  
 
-  <%= observe_field 'query', :frequency => 0.5,
-                             :update => 'user_information',
-                             :url => { :action => 'search_user_ajax' },
-                             :before => "Element.show('loader')",
-                             :success => "Element.hide('loader')",
-                             :with => 'query' %>
+
+<%#= observe_field 'query', :frequency => 0.5,
+:update => 'user_information',
+:url => { :action => 'search_user_ajax' },
+:before => "Element.show('loader')",
+:success => "Element.hide('loader')",
+:with => 'query' %>
+
+  <script type="text/javascript">
+    function search_user_ajax(){
+      if ($('query').value.include("%")) return;
+<%="#{remote_function(:url => {:action => "search_user_ajax"},
+:with =>  "'query='+ $('query').value",
+:before => "Element.show('loader')",
+:success => "Element.hide('loader')",
+:update=>"user_information"
+)}"%>
+  }
+
+  document.observe("dom:loaded", function() {
+    new Form.Element.Observer('query', 1, search_user_ajax);
+  });
+
+  </script>
 
   <div id="user_information"> </div>
 

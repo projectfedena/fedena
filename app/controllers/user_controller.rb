@@ -298,7 +298,7 @@ class UserController < ApplicationController
         :conditions => "(first_name LIKE \"#{params[:query]}%\"
                        OR last_name LIKE \"#{params[:query]}%\"
                        OR (concat(first_name, \" \", last_name) LIKE \"#{params[:query]}%\")
-                       OR username LIKE \"#{params[:query]}%\")",
+                       OR username LIKE  \"#{params[:query]}\")",
         :order => "first_name asc") unless params[:query] == ''
       #      else
       #        @user = User.first_name_or_last_name_or_username_equals params[:query].split

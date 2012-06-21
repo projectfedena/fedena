@@ -20,7 +20,7 @@
 <script type="text/javascript"> function setOption(optn) {document.getElementById("option").value = optn;} </script>
 
 <div id="content-header">
- <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+  <%= image_tag("/images/student_details/student_details_logo.jpg") %>
   <h1><%= t('student_details') %></h1>
   <h3><%= t('view_details') %></h3>
   <div id="app-back-button">
@@ -51,9 +51,9 @@
 
       </div>
       <div class="radio_button">
-          <input type="radio" name="setopt" id="search_present_students_radio" checked="checked" onclick="setOption('active')" /><%= t('present_student') %>
-          <input type="radio" name="setopt" id ="search_former_students_radio"onclick="setOption('former')" /><%= t('former_student') %>
-        </div>
+        <input type="radio" name="setopt" id="search_present_students_radio" checked="checked" onclick="setOption('active')" /><%= t('present_student') %>
+        <input type="radio" name="setopt" id ="search_former_students_radio"onclick="setOption('former')" /><%= t('former_student') %>
+      </div>
       <div class="extender"></div>
     </form>
   </div>
@@ -64,13 +64,30 @@
   </div>
 
 
+<%#= observe_fields ['query', 'option'],
+:frequency => 0.5,
+:update => 'information',
+:before => "Element.show('loader')",
+:success => "Element.hide('loader')",
+:url => {:action => 'search_ajax'} %>
 
-  <%= observe_fields ['query', 'option'],
-    :frequency => 0.5,
-    :update => 'information',
-    :before => "Element.show('loader')",
-    :success => "Element.hide('loader')",
-    :url => {:action => 'search_ajax'} %>
+  <script type="text/javascript">
+    function search_ajax(){
+      if ($('query').value.include("%")) return;
+<%="#{remote_function(:url => {:action => "search_ajax"},
+:with => "'query='+$('query').value + '&option='+$('option').value",
+:before => "Element.show('loader')",
+:success => "Element.hide('loader')",
+:update=>"information"
+)}"%>
+  }
+
+  document.observe("dom:loaded", function() {
+    new Form.Element.Observer('query', 1, search_ajax);
+    new Form.Element.Observer('option', 0.5, search_ajax);
+  });
+
+  </script>
 
   <div id="information"></div>
 
