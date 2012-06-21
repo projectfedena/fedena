@@ -154,6 +154,10 @@
       <% else %>
         <%= check_box :configuration, :enable_news_comment_moderation, :checked => false %><%=  "Enable News  Comment Moderation" %>
       <% end %>
+      <% FedenaPlugin::REGISTERED_HOOKS[:general_settings_checkbox].each do |mod| %>
+        <br/>
+        <%= render :partial=>mod.camelize.constantize.send("general_settings_checkbox") %>
+      <% end %>
       <div id="submit-button">
         <%= submit_tag "► #{t('update')}" %>
       </div>

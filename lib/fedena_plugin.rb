@@ -32,6 +32,9 @@ class FedenaPlugin
         if plugin_details[:name].camelize.constantize.respond_to? "general_settings_form"
           REGISTERED_HOOKS[:general_settings_form] << plugin_details[:name]
         end
+        if plugin_details[:name].camelize.constantize.respond_to? "general_settings_checkbox"
+          REGISTERED_HOOKS[:general_settings_checkbox] << plugin_details[:name]
+        end
         if plugin_details[:name].camelize.constantize.respond_to? "dashboard_layout_left_sidebar"
           REGISTERED_HOOKS[:dashboard_layout_left_sidebar] << plugin_details[:name]
         end
