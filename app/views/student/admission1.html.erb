@@ -19,7 +19,7 @@
 
 
 <div id="content-header">
-<%= image_tag("/images/admission/admission_page_logo.jpg") %>
+  <%= image_tag("/images/admission/admission_page_logo.jpg") %>
   <h1><%= t('admission') %></h1>
   <h3><%=  t('student_detail_step1') %></h3>
   <div id="app-back-button">
@@ -107,7 +107,7 @@
           <label for="student_date_of_birth"><%= t('date_of_birth') %> <span class="necessary-field">*</span> </label>
           <div class="text-input-bg">
             <%= calendar_date_select_tag 'student[date_of_birth]',
-              I18n.l(Date.today-5.years,:format=>:default) , :year_range => 40.years.ago..0.years.ago, :readonly=>true, :popup=>"force" %>
+              I18n.l(Date.today-5.years,:format=>:default) , :year_range => 40.years.ago..0.years.ago,:popup=>"force" %>
           </div>
         </div>
 

@@ -524,11 +524,11 @@ class EmployeeController < ApplicationController
                        OR employee_number = ? OR (concat(first_name, \" \", last_name) LIKE ? ))"+ other_conditions,
           "#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
           "#{params[:query]}", "#{params[:query]}" ],
-        :order => "employee_department_id asc,first_name asc") unless params[:query] == ''
+        :order => "employee_department_id asc,first_name asc",:include=>"employee_department") unless params[:query] == ''
     else
       @employee = Employee.find(:all,
         :conditions => ["(employee_number = ? )"+ other_conditions, "#{params[:query]}"],
-        :order => "employee_department_id asc,first_name asc") unless params[:query] == ''
+        :order => "employee_department_id asc,first_name asc",:include=>"employee_department") unless params[:query] == ''
     end
     render :layout => false
   end
