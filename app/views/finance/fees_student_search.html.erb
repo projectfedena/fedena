@@ -19,11 +19,11 @@
 
 
 <div id="content-header">
-   <%= image_tag("/images/show_finance.png") %>
-    <h1><%= t('finance_text') %></h1>
-    <h3><%= t('fees_submission') %></h3>
+  <%= image_tag("/images/show_finance.png") %>
+  <h1><%= t('finance_text') %></h1>
+  <h3><%= t('fees_submission') %></h3>
   <div id="app-back-button">
-   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
@@ -32,28 +32,45 @@
   <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
 
   <div id="search_box_bg">
-      <form name="search_form" action="" style="display:inline;">
-        <label for="user_name">
-          <%= t('search_text') %>
-          <%= image_tag("loader.gif",
-              :align => "absmiddle",
-              :border => 0,
-              :id => "loader",
-              :style =>"display: none;" ) %>
-        </label>
-        <div id="search_textbox">
-          <%= text_field_tag("query", params['query'], :autocomplete => 'off') %><br/>
-        </div>
-      </form>
+    <form name="search_form" action="" style="display:inline;">
+      <label for="user_name">
+        <%= t('search_text') %>
+        <%= image_tag("loader.gif",
+          :align => "absmiddle",
+          :border => 0,
+          :id => "loader",
+          :style =>"display: none;" ) %>
+      </label>
+      <div id="search_textbox">
+        <%= text_field_tag("query", params['query'], :autocomplete => 'off') %><br/>
+      </div>
+    </form>
   </div>
-  <%= observe_fields ['query'],
-         :frequency => 0.5,
-         :update => 'information',
-         :before => "Element.show('loader')",
-         :success => "Element.hide('loader')",
-         :url => {:action => 'search_logic'} %>
+<%#= observe_fields ['query'],
+:frequency => 0.5,
+:update => 'information',
+:before => "Element.show('loader')",
+:success => "Element.hide('loader')",
+:url => {:action => 'search_logic'} %>
+
+  <script type="text/javascript">
+    function search_logic(){
+      if ($('query').value.include("%")) return;
+<%="#{remote_function(:url => {:action => "search_logic"},
+:with => "'query='+$('query').value",
+:before => "Element.show('loader')",
+:success => "Element.hide('loader')",
+:update=>"information"
+)}"%>
+  }
+
+  document.observe("dom:loaded", function() {
+    new Form.Element.Observer('query', 1, search_logic);
+  });
+
+  </script>
 
 
-<div id="information"></div>
+  <div id="information"></div>
 </div>
 
