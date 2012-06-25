@@ -7,7 +7,8 @@ available:
   de: "Deutsch"
   pt: "português"
   mr: "मराठी"
-
+  ja: "japanese"
+  
 fallbacks:
   en-GB:
     - :en
