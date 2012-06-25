@@ -46,12 +46,14 @@ class SmsManager
         cur_request += "#{recipient}"
         begin
           response = Net::HTTP.get_response(URI.parse(cur_request))
-          if response.body
+          if response.body.present?
             message_log.sms_logs.create(:mobile=>recipient,:gateway_response=>response.body)
-            if response.body.to_s =~ Regexp.new(@success_code)
-              sms_count = Configuration.find_by_config_key("TotalSmsCount")
-              new_count = sms_count.config_value.to_i + 1
-              sms_count.update_attributes(:config_value=>new_count)
+            if @success_code.present?
+              if response.body.to_s.include? @success_code
+                sms_count = Configuration.find_by_config_key("TotalSmsCount")
+                new_count = sms_count.config_value.to_i + 1
+                sms_count.update_attributes(:config_value=>new_count)
+              end
             end
           end
         rescue Timeout::Error => e
