@@ -51,7 +51,7 @@ if ClassTiming.count == 0
   end
 end
 
-if Employee.first(:joins=>:user, :conditions=>{:users=>{:admin=>true}}).nil?
+if User.first( :conditions=>{:admin=>true}).blank?
 
   employee_category = EmployeeCategory.find_or_create_by_prefix(:name => 'System Admin',:prefix => 'Admin',:status => true)
 

@@ -1821,7 +1821,8 @@ hi:
   basestart_date_is_invalid: "आरम्भ तिथि अमान्य है"
   baseend_date_is_invalid: "समाप्ति तिथि अमान्य है"
   remove_entry_confirm: "प्रविष्टि निकालें?"
-  
+  should_not_be_admin: नहीं होना चाहिए "एडमिन"
+
   flash_msg1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक नवीनीकृत|"
   flash_msg2: "क्षमा करें"
   flash_msg3: "क्षमा करें, कोई त्रुटि हुई है| संपर्क व्यवस्थापक कृपया|"

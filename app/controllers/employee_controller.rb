@@ -267,6 +267,7 @@ class EmployeeController < ApplicationController
       unless params[:employee][:employee_number].to_i ==0
         @employee.employee_number= "E" + params[:employee][:employee_number].to_s
       end
+      unless @employee.employee_number.to_s.downcase == 'admin'
       if @employee.save
         if params[:employee][:gender] == "true"
           Employee.update(@employee.id, :gender => true)
@@ -287,6 +288,9 @@ class EmployeeController < ApplicationController
         end
         flash[:notice] = "#{t('flash15')} #{@employee.first_name} #{t('flash16')}"
         redirect_to :controller =>"employee" ,:action => "admission2", :id => @employee.id
+      end
+      else
+        @employee.errors.add(:employee_number, "#{t('should_not_be_admin')}")
       end
       @positions = EmployeePosition.find_all_by_employee_category_id(params[:employee][:employee_category_id])
     end

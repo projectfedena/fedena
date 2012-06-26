@@ -1846,6 +1846,7 @@ es: # locale
   basestart_date_is_invalid: "Fecha de inicio no es válida"
   baseend_date_is_invalid: "Fecha de finalización no es válida"
   remove_entry_confirm: "Eliminar entrada?"
+  should_not_be_admin: "no debería ser administrador"
 
   flash_msg1: "Grupo de exámenes adicionales actualizados con éxito."
   flash_msg2: "Lo sentimos"

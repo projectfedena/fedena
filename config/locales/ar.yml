@@ -1848,6 +1848,7 @@ ar:
   basestart_date_is_invalid: "تاريخ البدء غير صالح"
   baseend_date_is_invalid: "تاريخ النهاية غير صالح"
   remove_entry_confirm: "إزالة دخول؟"
+  should_not_be_admin: "لا ينبغي أن المسؤول"
 
   flash_msg1: "تحديث إضافية المجموعة الامتحان بنجاح."
   flash_msg2: "آسف"
