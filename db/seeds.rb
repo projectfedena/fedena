@@ -53,7 +53,7 @@ end
 
 if Employee.first(:joins=>:user, :conditions=>{:users=>{:admin=>true}}).nil?
 
-  employee_category = EmployeeCategory.find_or_create_by_name(:name => 'System Admin',:prefix => 'Admin',:status => true)
+  employee_category = EmployeeCategory.find_or_create_by_prefix(:name => 'System Admin',:prefix => 'Admin',:status => true)
 
   employee_position = EmployeePosition.find_or_create_by_name(:name => 'System Admin',:employee_category_id => employee_category.id,:status => true)
 
