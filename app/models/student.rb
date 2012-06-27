@@ -71,6 +71,7 @@ class Student < ActiveRecord::Base
     errors.add(:gender, "#{t('model_errors.student.error2')}.") unless ['m', 'f'].include? self.gender.downcase \
       unless self.gender.nil?
     errors.add(:admission_no, "#{t('model_errors.student.error3')}.") if self.admission_no=='0'
+    errors.add(:admission_no, "#{t('should_not_be_admin')}") if self.admission_no.to_s.downcase== 'admin'
     
   end
 
