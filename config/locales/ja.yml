@@ -1850,7 +1850,7 @@ ja: # locale
   basestart_date_is_invalid: "Start date is invalid"
   baseend_date_is_invalid: "End date is invalid"
   remove_entry_confirm: "Remove entry?"
-  should_not_be_admin： "管理者であるべきではない"
+  should_not_be_admin: "Should Not Be Admin"
 
   flash_msg1: "追加試験グループのアップデートは成功しました。"
   flash_msg2: "申し訳ありません。"
