@@ -44,13 +44,29 @@
         </div>
       </form>
   </div>
-  <%= observe_fields ['query'],
+  <%#= observe_fields ['query'],
          :frequency => 0.5,
          :update => 'information',
          :before => "Element.show('loader')",
          :success => "Element.hide('loader')",
          :url => {:action => 'fees_student_structure_search_logic'} %>
 
+    <script type="text/javascript">
+    function fees_student_structure_search_logic(){
+      if ($('query').value.include("%")) return;
+<%="#{remote_function(:url => {:action => "fees_student_structure_search_logic"},
+:with =>  "'query='+ $('query').value",
+:before => "Element.show('loader')",
+:success => "Element.hide('loader')",
+:update=>"information"
+)}"%>
+  }
+
+  document.observe("dom:loaded", function() {
+    new Form.Element.Observer('query', 1,fees_student_structure_search_logic);
+  });
+
+  </script>
 
 <div id="information"></div>
 </div>

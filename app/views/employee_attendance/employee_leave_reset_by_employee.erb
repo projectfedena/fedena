@@ -62,12 +62,35 @@
 
 
 
-  <%= observe_fields ['query', 'employee_department_id','employee_category_id', 'employee_position_id', 'employee_grade_id'],
+  <%#= observe_fields ['query', 'employee_department_id','employee_category_id', 'employee_position_id', 'employee_grade_id'],
     :frequency => 0.1,
     :update => 'information',
     :before => "Element.show('loader')",
     :success => "Element.hide('loader')",
     :url => {:action => 'employee_search_ajax'} %>
+
+
+  <script type="text/javascript">
+    function employee_search_ajax(){
+ if ($('query').value.include("%")) return;
+<%="#{remote_function(:url => {:action => "employee_search_ajax"},
+:with =>  "'query='+ $('query').value + '&employee_department_id='+$('employee_department_id').value + '&employee_category_id='+$('employee_category_id').value + '&employee_position_id='+$('employee_position_id').value + '&employee_grade_id='+$('employee_grade_id').value",
+:before => "Element.show('loader')",
+:success => "Element.hide('loader')",
+:update=>"information"
+)}"%>
+  }
+
+  document.observe("dom:loaded", function() {
+    new Form.Element.Observer('query', 1, employee_search_ajax);
+    new Form.Element.Observer('employee_department_id', 0.1, employee_search_ajax);
+    new Form.Element.Observer('employee_category_id', 0.1, employee_search_ajax);
+    new Form.Element.Observer('employee_position_id', 0.1, employee_search_ajax);
+    new Form.Element.Observer('employee_grade_id', 0.1, employee_search_ajax);
+  });
+
+  </script>
+
   <div class="extender"></div>
   <div id="information"></div>
 
