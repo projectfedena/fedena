@@ -29,3 +29,29 @@ form{
 .label-field-pair label{
     width: 240px !important;
 }
+.fee_category_scroll {
+-moz-background-inline-policy:continuous;
+-moz-border-radius:10px 10px 10px 10px;
+-webkit-background-inline-policy:continuous;
+-webkit-border-radius:10px 10px 10px 10px;
+background:none repeat scroll 0 0 #EEEEEE;
+border:1px solid #C6C6C6;
+height:76px;
+margin-right:250px;
+margin-top:-30px;
+max-height:100px;
+overflow:auto;
+padding:7px;
+width:200px;
+}
+.sel-list {
+border-bottom:1px solid #DDDDDD;
+margin-bottom:2px;
+width:197px;
+}
+.each_batch {
+border-bottom:1px solid #DDDDDD;
+font-size:12px;
+overflow:auto;
+width:198px;
+}
