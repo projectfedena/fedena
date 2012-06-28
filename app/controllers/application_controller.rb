@@ -278,6 +278,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def render(options = nil, extra_options = {}, &block)
+    if RTL_LANGUAGES.include? I18n.locale.to_sym
+      unless options.nil?
+        unless request.xhr?
+          if options[:pdf]
+            options ||= {}
+            options = options.merge(:zoom => 0.68)
+          end
+        end
+      end
+    end
+    super(options, extra_options, &block)
+  end
 
   private
   def set_user_language
