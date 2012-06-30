@@ -12,7 +12,7 @@ body {
 #top_logo {
     margin:0 auto;
     padding-top:15px;
-    height:107px; width:155px;
+    height:126px; width:155px;
     /*background:#fff url(../../../images/login/fedena_logo.jpg) no-repeat;*/
 }
 #top_logo h1 {
@@ -35,8 +35,8 @@ body {
 #submit_area input {
     background:#312d2a;
     height:38px;
-    float:left;
-    margin-right:58px;
+    float:right;
+    margin-right:170px;
     margin-top:55px;
     border:none;
     color:#fff;
@@ -61,9 +61,9 @@ body {
 #notice {
     padding:0;
     width:336px;
-    float:left;
-    margin-top:-40px;
-    margin-right:218px;
+    float:right;
+    margin-top:-81px;
+    margin-right:216px;
     padding:2px;
     border:1px solid #999;
     background-color:#fff1ab;

@@ -7,7 +7,6 @@ body {
 #top_logo {
     margin:0 auto;
     height:143px; width:156px;
-    background:#fff url(../../../images/login/fedena_logo.jpg) no-repeat;
 }
 #top_logo h1 {
     text-indent:-9999px;
@@ -68,11 +67,20 @@ body {
 }
 
 #submit_area input {
-    /* background:#fff url(../../../images/login/login_button.jpg) no-repeat; */
+    /* background:#fff url(../../images/login/login_button.jpg) no-repeat; */
     width:85px;height:38px;
     float:left;
     margin-left:58px;
     margin-top:55px;
+     background:#312d2a;
+    border:none;
+    color:#fff;
+    font-size: 20px;
+    font-weight: bold;
+    cursor:pointer;
+    -moz-border-radius:12px;
+    -webkit-border-radius:12px;
+    padding: 7px 11px;
 }
 
 #checkbox_area {width:300px;float:right;}

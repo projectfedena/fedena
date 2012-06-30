@@ -1,0 +1,13 @@
+.submit_button {
+    -moz-border-radius: 10px 10px 10px 10px;
+    background: none repeat scroll 0 0 #27292B;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 210px;
+    margin-top: 20px;
+    padding: 7px 10px;
+}

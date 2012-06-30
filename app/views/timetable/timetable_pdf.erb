@@ -43,7 +43,7 @@
         <%  @day.each do |d| %>
           <% c =cycle('even','odd ') %>
           <tr class="<%= "#{c}" %>">
-            <td class="col-pdf"><%= @weekday[d.weekday.to_i][0,3].upcase %></td>
+            <td class="col-pdf"><%= t(Date::DAYNAMES[d.day_of_week].downcase).upcase -%></td>
 
             <% @class_timing.each do |pt1|  %>
               <% tte = TimetableEntry.find_by_weekday_id_and_class_timing_id_and_batch_id_and_timetable_id(d.id, pt1.id, @batch.id,@master.id) %>

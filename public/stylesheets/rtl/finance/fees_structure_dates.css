@@ -53,13 +53,13 @@
 .name{
     color: #999999;
     float: right;
-    width: 202px;
+    width: 500px;
     font-weight: bold;
     font-size: 13px;
 }
 
 .val {
-    width: 400px;
+    width: 750px;
     color: #bb0000;
     font-weight: bold;
      font-size: 13px;

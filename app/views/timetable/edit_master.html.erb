@@ -23,7 +23,7 @@
         <% @timetables.each_with_index do |tt,i| %>
           <li class="list<%=cycle('odd', 'even')%>">
             <div class="department-edit"><%= i+1 %></div>
-            <div class="department-name"><%= link_to "#{tt.start_date}  -  #{tt.end_date}",:controller=>:timetable,:action=>:update_timetable,:id=>tt.id %></div>
+            <div class="department-name"><%= link_to "#{I18n.l(tt.start_date,:format=>"%d %b %Y")}  -  #{I18n.l(tt.end_date,:format=>"%d %b %Y")}",:controller=>:timetable,:action=>:update_timetable,:id=>tt.id %></div>
           </li>
         <% end %>
       </ul>

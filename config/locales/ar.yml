@@ -1821,7 +1821,7 @@ ar:
   end_date_overlap: "وقت النهاية هو ضمن مجموعة من آخر جدول زمني"
   start_date_is_lower_than_today: "تاريخ البدء أقل من تاريخ اليوم"
   start_date_is_lower_than_end_date: "تاريخ البدء أقل من تاريخ نهاية"
-  timetable_created_from: "الجدول الزمني التي تم إنشاؤها من"
+  timetable_created_from: "حان الوقت بنية الجدول الذي تم إنشاؤه من"
   error_occured: "حدث خطأ"
   timetable_overlap: "التداخل الزمني"
   should_not_be_less_than_today: "التاريخ لا ينبغي أن يكون أقل من تاريخ اليوم"

@@ -11,7 +11,7 @@
     color: #444;
     height: 1.5em;
     list-style-type: none;
-    padding: 9px 0 0 45px;
+    padding: 9px 38px 0 45px;
     font-weight: bold;
     font-size: 13px;
 }
@@ -22,7 +22,7 @@
     min-height: 1.5em;
     overflow: auto;
     list-style-type: none;
-    padding: 9px 0 0 45px;
+    padding: 9px 10px 0 45px;
 }
 .category-list .listeven {
     background: #EEF2FD;
@@ -31,12 +31,12 @@
     min-height: 1.5em;
     overflow: auto;
     list-style-type: none;
-    padding: 9px 0 0 45px;
+    padding: 9px 10px 0 45px;
 }
 .category-list .listodd ,.category-list .listeven{
     height: auto;
     overflow: hidden;
-    padding: 5px 0px 5px 5px;
+    padding: 5px 10px 5px 5px;
 }
 .category-list li div{
     font-size: 12px;

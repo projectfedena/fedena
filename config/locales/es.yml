@@ -1819,7 +1819,7 @@ es: # locale
   end_date_overlap: "Hora de finalización está dentro del rango de otro calendario"
   start_date_is_lower_than_today: "Fecha de inicio es menor que la fecha de hoy"
   start_date_is_lower_than_end_date: "Fecha de inicio es inferior a la fecha de finalización"
-  timetable_created_from: "Horarios creado a partir de"
+  timetable_created_from: "estructura temporal creada a partir de la tabla"
   error_occured: "Ocurrió un error"
   timetable_overlap: "superposición de calendario"
   should_not_be_less_than_today: "La fecha no debe ser menor que la fecha de hoy"

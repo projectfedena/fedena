@@ -1830,7 +1830,7 @@ en: # locale
   end_date_overlap: "End time is within the range of another timetable"
   start_date_is_lower_than_today: "Start date is lower than today's date"
   start_date_is_lower_than_end_date: "Start date is lower than end date"
-  timetable_created_from: "Timetable created from"
+  timetable_created_from: "Time table structure created from"
   error_occured: "Error occured"
   timetable_overlap: "Timetable overlap"
   should_not_be_less_than_today: "Date should not be less than today's date"

@@ -161,13 +161,13 @@ h5{
 .name{
     color: #999999;
     float: right;
-    width: 212px;
+    width: 500px;
     font-weight: bold;
     font-size: 13px;
 }
 
 .val {
-    width: 400px;
+    width: 900px;
     color: #bb0000;
     font-weight: bold;
     font-size: 13px;

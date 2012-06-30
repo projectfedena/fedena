@@ -1794,7 +1794,7 @@ hi:
   end_date_overlap: "अंत समय एक और समय सारिणी की सीमा के भीतर है"
   start_date_is_lower_than_today: "प्रारंभ दिनांक आज की तारीख से कम है"
   start_date_is_lower_than_end_date: "प्रारंभ दिनांक समाप्ति तिथि से कम है"
-  timetable_created_from: "समय सारिणी से बनाया"
+  timetable_created_from: "समय तालिका संरचना से बनाया"
   error_occured: "त्रुटि हुई"
   timetable_overlap: "समय सारिणी ओवरलैप"
   should_not_be_less_than_today: "तिथि आज की तारीख से कम नहीं होना चाहिएv"

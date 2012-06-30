@@ -19,7 +19,7 @@
 
 
 <div id="content-header">
-<%= image_tag("/images/admission/admission_page_logo.jpg") %>
+  <%= image_tag("/images/admission/admission_page_logo.jpg") %>
   <h1><%= t('parent_information') %></h1>
   <h3><%= t('edit_parent_guardian_details') %></h3>
   <div id="app-back-button">
@@ -60,12 +60,17 @@
         <label for="parent_detail_relation"><%= t('relation') %></label>
         <div class="text-input-bg"><%= s.text_field :relation, :value => @parent.relation %></div>
       </div>
-
-      <div class="label-field-pair">
-        <label for="parent_detail_dob"><%= t('date_of_birth') %></label>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'parent_detail[dob]', I18n.l(@parent.dob,:format=>:default),:year_range => 60.years.ago..20.years.ago ,:popup=>"force"%></div>
-      </div>
-
+      <% unless @parent.dob.nil? %>
+        <div class="label-field-pair">
+          <label for="parent_detail_dob"><%= t('date_of_birth') %></label>
+          <div class="text-input-bg"><%= calendar_date_select_tag 'parent_detail[dob]', I18n.l(@parent.dob,:format=>:default),:year_range => 60.years.ago..20.years.ago ,:popup=>"force" %></div>
+        </div>
+      <% else %>
+        <div class="label-field-pair">
+          <label for="parent_detail_dob"><%= t('date_of_birth') %></label>
+          <div class="text-input-bg"><%= calendar_date_select_tag 'parent_detail[dob]', nil,:year_range => 60.years.ago..20.years.ago ,:popup=>"force" %></div>
+        </div>
+      <% end %>
       <div class="label-field-pair">
         <label for="parent_detail_education"><%= t('education') %></label>
         <div class="text-input-bg"><%= s.text_field :education, :value => @parent.education %></div>
@@ -127,10 +132,10 @@
       <div class="label-field-pair">
         <label for="parent_detail_country"><%= t('country') %></label>
         <% unless @parent.country.to_s.empty?  %>
-        <div class="text-input-bg"> <%= select :parent_detail, :country_id, @countries.map {|c| [c.name, c.id]}, :selected => @parent.country.id %> </div>
+          <div class="text-input-bg"> <%= select :parent_detail, :country_id, @countries.map {|c| [c.name, c.id]}, :selected => @parent.country.id %> </div>
         <% else %>
-        <div class="text-input-bg"> <%= select :parent_detail, :country_id, @countries.map {|c| [c.name, c.id]}, :selected => @student.country.id %> </div>
-          <% end %>
+          <div class="text-input-bg"> <%= select :parent_detail, :country_id, @countries.map {|c| [c.name, c.id]}, :selected => @student.country.id %> </div>
+        <% end %>
       </div>
 
       <div class="label-field-pair">

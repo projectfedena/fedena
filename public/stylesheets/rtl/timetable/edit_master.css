@@ -37,6 +37,7 @@
 
 #department-list li div {
     float : right;
+    padding-right: 10px;
 }
 #department-list li div.department-name {
     width : 350px;
