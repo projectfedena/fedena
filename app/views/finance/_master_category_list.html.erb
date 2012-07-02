@@ -34,7 +34,7 @@
         <td class="col-4"><%= link_to  fees.name, :action => 'master_category_particulars',:id => fees.id %>
         </td>
         <td class="col-7"><%  unless fees.batch.nil? %>
-            <%=shorten_string(fees.batch.full_name,20)%>
+            <%=shorten_string(fees.batch.full_name,50)%>
           <% else %>
             <%= t('all') %>
           <% end %></td>
