@@ -64,7 +64,7 @@
       <div class="label-field-pair">
         <label for="parent_detail_dob"><%= t('date_of_birth') %></label>
         <div class="text-input-bg">
-          <%= calendar_date_select_tag 'parent_detail[dob]', nil,:year_range => 60.years.ago..20.years.ago %>
+          <%= calendar_date_select_tag 'parent_detail[dob]', nil,:year_range => 60.years.ago..20.years.ago ,:popup=>"force"%>
         </div>
       </div>
 
