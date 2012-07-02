@@ -35,21 +35,6 @@ if GradingLevel.count == 0
   end
 end
 
-if ClassTiming.count == 0
-  [
-    {"name" => "1"          ,"is_break" => false   ,"is_deleted"=> false },
-    {"name" => "2"          ,"is_break" => false   ,"is_deleted"=> false },
-    {"name" => "Interval"   ,"is_break" => true    ,"is_deleted"=> false },
-    {"name" => "3"          ,"is_break" => false   ,"is_deleted"=> false },
-    {"name" => "4"          ,"is_break" => false   ,"is_deleted"=> false },
-    {"name" => "Lunch"      ,"is_break" => true    ,"is_deleted"=> false },
-    {"name" => "5"          ,"is_break" => false   ,"is_deleted"=> false },
-    {"name" => "6"          ,"is_break" => false   ,"is_deleted"=> false },
-    {"name" => "7"          ,"is_break" => false   ,"is_deleted"=> false }
-  ].each do |param|
-    ClassTiming.create(param)
-  end
-end
 
 if User.first( :conditions=>{:admin=>true}).blank?
 
