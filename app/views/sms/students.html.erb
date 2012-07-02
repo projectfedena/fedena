@@ -40,14 +40,16 @@
         :with => "'batch_id='+value",
         :before => "Element.show('loader')",
         :success => "Element.hide('loader')"
-        )}"} %></div>
-   </div>
-
+        )}"} %>
     <%= image_tag("loader.gif",
       :align => "absmiddle",
       :border => 0,
       :id => "loader",
       :style =>"display: none;" ) %>
+    </div>
+   </div>
+
+    
 
 <div id="student-list">
   <!--here students of the particular batch will be listed via ajax-->
