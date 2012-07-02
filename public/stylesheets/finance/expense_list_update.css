@@ -1,0 +1,12 @@
+table#listing td.col-2 {
+    width: 24%;
+}
+table#listing td.col-1 {
+    width: 9%;
+}
+table#listing td.col-4 {
+    width: 23%;
+}
+table#listing td.col-3 {
+    width: 47%;
+}
