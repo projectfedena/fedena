@@ -158,10 +158,12 @@
           <td></td>
           <td class="right">
             <% detail = StudentAdditionalDetail.find_all_by_student_id(@student.id) %>
-            <% unless detail.blank? %>
-              <span> (<%= link_to "#{t('edit_additional_details')}", :controller => 'student', :action => 'edit_admission4', :id => @student.id %>)</span>
-            <% else %>
-              <span> (<%= link_to "#{t('add_additional_details')}", :controller => 'student', :action => 'admission4', :id => @student.id %>)</span>
+            <% if permitted_to? :edit_admission4,:student %>
+              <% unless detail.blank? %>
+                <span> (<%= link_to "#{t('edit_additional_details')}", :controller => 'student', :action => 'edit_admission4', :id => @student.id %>)</span>
+              <% else %>
+                <span> (<%= link_to "#{t('add_additional_details')}", :controller => 'student', :action => 'admission4', :id => @student.id %>)</span>
+              <% end %>
             <% end %>
           </td>
         </tr>
@@ -170,7 +172,11 @@
         <tr class="even left"><td></td><td class="right"><%= t('previous_details') %></td></tr>
         <tr class="odd left"><td><%= t('previous_institution') %></td><td class="right"><%= link_to @previous_data.institution,:action=>'show_previous_details', :id => @student.id %></td></tr>
       <%else%>
-        <tr class="odd left"><td></td><td class="right"><%= t('no_previous_data') %> (<%= link_to "#{t('add_previous_data')}", :controller => 'student', :action => 'previous_data', :id => @student.id %>)</td></tr>
+        <% if permitted_to? :previous_data,:student %>
+          <tr class="odd left"><td></td><td class="right"><%= t('no_previous_data') %> (<%= link_to "#{t('add_previous_data')}", :controller => 'student', :action => 'previous_data', :id => @student.id %>)</td></tr>
+        <% else %>
+          <tr class="odd left"><td></td><td class="right"><%= t('no_previous_data') %></td></tr>
+        <% end %>
       <% end %>
     </table>
     <% if @current_user.admin? %>

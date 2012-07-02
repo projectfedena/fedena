@@ -97,11 +97,12 @@
       <% end %>
     <% end %>
 
-
+    <% if permitted_to? :previous_data_edit,:student %>
     <div class="buttons">
       <%= link_to " ► #{t('edit_text')}",
         { :controller => "student", :action => "previous_data_edit", :id => @student.id },:class => "user_button"%>
     </div>
+    <% end %>
     <div class="extender"></div>
   </div>
 
