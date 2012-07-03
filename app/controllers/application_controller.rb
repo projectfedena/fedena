@@ -279,7 +279,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render(options = nil, extra_options = {}, &block)
-    if RTL_LANGUAGES.include? I18n.locale.to_sym
+    if rtl?
       unless options.nil?
         unless request.xhr?
           if options[:pdf]
