@@ -109,7 +109,9 @@ table#pdf-table{
     height :500px;
 
 }
-
+table{
+    border-right: 1px solid #ADACAB;
+}
 .report{
     min-height: 1000px;
     margin: 0 auto;
