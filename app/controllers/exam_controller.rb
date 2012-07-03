@@ -1086,20 +1086,29 @@ class ExamController < ApplicationController
 
   def transcript
     @batches = Batch.active
-    @students = []
   end
 
   def student_transcript
-    if params[:transcript].nil? or params[:transcript][:student_id]==""
-      flash[:notice] = "Select a Student to continue."
+    if params[:transcript].nil? or params[:transcript][:batch_id]==""
+      flash[:notice] = "Select a Batch to continue."
       redirect_to :action=>"transcript" and return
     else
-      @student = Student.find(params[:transcript][:student_id])
-      @batch = @student.batch
-      @grade_type = @batch.grading_type
-      batch_ids = BatchStudent.find_all_by_student_id(@student.id).map{|b| b.batch_id}
-      batch_ids << @batch.id
-      @batches = Batch.find_all_by_id(batch_ids)
+      @batch = Batch.find(params[:transcript][:batch_id])
+      @students = @batch.students
+      unless @students.empty?
+        unless !params[:student_id].present? or params[:student_id].nil?
+          @student = Student.find(params[:student_id])
+        else
+          @student = @students.first
+        end
+        @grade_type = @batch.grading_type
+        batch_ids = BatchStudent.find_all_by_student_id(@student.id).map{|b| b.batch_id}
+        batch_ids << @batch.id
+        @batches = Batch.find_all_by_id(batch_ids)
+      else
+        flash[:notice] = "No Students in this Batch."
+      redirect_to :action=>"transcript" and return
+      end
     end
   end
 

@@ -35,8 +35,28 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-
-  <div class="box">
+  <div id="student_list">
+    <% unless @students.empty?  %>
+      <div class="list_name">
+        <%= t("students_in_batch") %>
+        <%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader", :style =>"display: none;" ) %>
+      </div>
+      <ul class="student_list">
+        <% @students.each do |s| %>
+          <li class="student_names">
+            <% if @student.id==s.id %>
+              <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:transcript=>{:batch_id=>s.batch_id}}, :class=>"active-link" %>
+            <% else %>
+              <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:transcript=>{:batch_id=>s.batch_id}}, :class=>"student-link" %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <%= t("no_students_in_batch")  %>
+    <% end %>
+  </div>
+  <div id="grouped_exam_report">
     <div class="info">
       <div class="info-left">
         <div class="info1">
@@ -66,7 +86,7 @@
       <% end %>
       <% @subjects = general_subjects + elective_subjects %>
       <% unless @subjects.empty? %>
-        <h3><%= batch.full_name %></h3>
+        <h4><%= batch.full_name %></h4>
         <% total_credits=0 %>
         <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
           <tr class="tr-head">
@@ -82,9 +102,9 @@
           <% @subjects.each do |s| %>
             <tr class="tr-<%= cycle('odd', 'even') %>">
               <% if @student.has_retaken_exam(s.id) %>
-              <td class="col-1"> <%= s.code %> - <label class="infolbl">Retaken</label></td>
+                <td class="col-1"> <%= s.code %> - <label class="infolbl">Retaken</label></td>
               <% else %>
-              <td class="col-1"> <%= s.code %></td>
+                <td class="col-1"> <%= s.code %></td>
               <% end %>
               <td class="col-1"> <%= s.name %></td>
               <% if batch.grading_type=="1" or batch.grading_type=="2" %>

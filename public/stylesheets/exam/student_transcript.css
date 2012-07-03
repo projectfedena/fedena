@@ -119,3 +119,61 @@ width:1%;
 .high{
     color:#b00;
 }
+.student_list{
+}
+.header{
+    list-style-type: none;
+    font-weight: bold;
+}
+li.student_names, li.student_names a{
+    text-decoration: none;
+    /*    margin-top: 5px;*/
+    color: black;
+    width:100%;
+    min-width:100%;
+    display: block;
+    padding: 2px 0 2px 0;
+}
+.student_list{
+    list-style-type: none;
+    clear : both;
+    width: 200px;
+    max-height: 400px;
+    overflow-y: scroll;
+    font-size: 13px;
+    padding: 0px;
+    float: left;
+}
+
+.student_list a:hover{
+    text-decoration: none;
+    background-color:  #F1F6FF;
+    width:100%;
+
+}
+.student_list a:active{
+    text-decoration: none;
+    /*    font-weight: bold;*/
+}
+.active-link{
+    font-weight: bold;
+    color: #C00 !important;
+}
+.student-name{
+    height: 28px;
+}
+#grouped_exam_report{
+    /*    float: left;*/
+    margin-left:  230px;
+}
+table#listing td{
+    font-size: 13px;
+    font-weight: bold;
+}
+table#listing tr.tr-head {
+    color: #C00;
+    font-size: 13px;
+}
+.list_name {
+font-weight:bold;
+}
