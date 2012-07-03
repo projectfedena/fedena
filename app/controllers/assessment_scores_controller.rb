@@ -31,7 +31,13 @@ class AssessmentScoresController < ApplicationController
         redirect_to :controller => 'user', :action => 'dashboard'
       end
     end
-    @students=@batch.students.all(:order=>"first_name ASC")
+    subject=@exam.subject
+    if subject.elective_group_id.nil?
+      @students=@batch.students.all(:order=>"first_name ASC")
+    else
+      @students=subject.students
+    end
+
     if params[:student].present?
       @student=Student.find(params[:student])
     else
