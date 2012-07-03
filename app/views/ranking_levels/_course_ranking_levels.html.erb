@@ -1,0 +1,50 @@
+
+<div id="rank_form">
+  <% remote_form_for :ranking_level,:url=>{:action=>"create_ranking_level", :course_id=>@course.id} do |c| %>
+
+    <div id="form-content">
+      <div class="label-field-pair">
+        <label for="name">Name</label>
+        <div class="text-input-bg"><%= c.text_field :name %></div>
+      </div>
+      <% if @course.grading_type=="1" %>
+        <div class="label-field-pair">
+          <label for="gpa">GPA Level</label>
+          <div class="text-input-bg"><%= c.text_field :gpa %></div>
+        </div>
+      <% else %>
+        <div class="label-field-pair">
+          <label for="marks">Marks</label>
+          <div class="text-input-bg"><%= c.text_field :marks %></div>
+        </div>
+      <% end %>
+      <div class="label-field-pair">
+        <% if @course.grading_type=="1" %><label for="marks">GPA Limit Type</label><% else %><label for="marks">Marks Limit Type</label><% end %>
+        <div class="text-input-bg"><%= c.select :marks_limit_type, RankingLevel::LIMIT_TYPES.collect{|lim| [lim.titleize,lim]} %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="subject_count">Number of Subjects</label>
+        <div class="text-input-bg"><%= c.text_field :subject_count %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="marks">Subject Limit Type</label>
+        <div class="text-input-bg"><%= c.select :subject_limit_type, RankingLevel::LIMIT_TYPES.collect{|lim| [lim.titleize,lim]} %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="subject_count">Consider Full Course Duration?</label>
+        <div class="text-input-bg"><%= c.check_box :full_course %></div>
+      </div>
+
+      <div class="extender"></div>
+
+      <div id="submit-button">
+        <%=submit_tag("► #{t('create_text')}") %>
+      </div>
+
+
+    </div>
+  <% end %>
+</div>
+<div id="category-list">
+  <%= render :partial=>"ranking_levels" %>
+</div>

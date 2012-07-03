@@ -1,0 +1,33 @@
+<div class="grades">
+  <div class="label-field-pair">
+    <label for="configuration_grading_systems">Class Designations :</label>
+  </div>
+  <div class="fee_category_scroll">
+    <div class="sel-list">
+      <%= t('select') %>: <%= link_to_function t('all'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
+      <%= link_to_function t('none'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
+    </div>
+    <% @class_designations.each do |d| %>
+      <div class="each_batch">
+        <%= check_box_tag "combined_report[designation_ids][]", d.id,false,:class=>'batches_box' %> <%= d.name %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="grades">
+  <div class="label-field-pair">
+    <label for="configuration_grading_systems">Ranking Levels :</label>
+  </div>
+  <div class="fee_category_scroll">
+    <div class="sel-list">
+      <%= t('select') %>: <%= link_to_function t('all'), "$$('input.batches_box1').each(function(checkbox) { checkbox.checked = true; });" %>,
+      <%= link_to_function t('none'), "$$('input.batches_box1').each(function(checkbox) { checkbox.checked = false; });" %>
+    </div>
+    <% @ranking_levels.each do |r| %>
+      <div class="each_batch">
+        <%= check_box_tag "combined_report[level_ids][]", r.id,false,:class=>'batches_box1' %> <%= r.name %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= submit_tag "", :value => "► #{t('view')}", :class => "submit_button" %>

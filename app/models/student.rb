@@ -17,6 +17,9 @@
 #limitations under the License.
 
 class Student < ActiveRecord::Base
+
+  include CceReportMod
+    
   belongs_to :country
   belongs_to :batch
   belongs_to :student_category
@@ -37,6 +40,10 @@ class Student < ActiveRecord::Base
   has_many   :batch_students
   has_many   :subject_leaves
   has_many   :grouped_exam_reports
+  has_many   :cce_reports
+  has_many   :assessment_scores
+  has_many   :exam_scores
+  has_many   :previous_exam_scores
   
 
   named_scope :active, :conditions => { :is_active => true }
@@ -64,7 +71,7 @@ class Student < ActiveRecord::Base
     :message=>'Image can only be GIF, PNG, JPG',:if=> Proc.new { |p| !p.photo_file_name.blank? }
   validates_attachment_size :photo, :less_than => 512000,\
     :message=>'must be less than 500 KB.',:if=> Proc.new { |p| p.photo_file_name_changed? }
-
+  
   def validate
     errors.add(:date_of_birth, "#{t('cant_be_a_future_date')}.") if self.date_of_birth >= Date.today \
       unless self.date_of_birth.nil?
@@ -98,7 +105,7 @@ class Student < ActiveRecord::Base
         check_user_errors(self.user)
       end
 
-     if check_changes.include?('immediate_contact_id') or check_changes.include?('admission_no')
+      if check_changes.include?('immediate_contact_id') or check_changes.include?('admission_no')
         Guardian.shift_user(self)
       end
       
@@ -213,6 +220,20 @@ class Student < ActiveRecord::Base
     #    end
   end
 
+  def has_retaken_exam(subject_id)
+    retaken_exams = PreviousExamScore.find_all_by_student_id(self.id)
+    if retaken_exams.empty?
+      return false
+    else
+      exams = Exam.find_all_by_id(retaken_exams.collect(&:exam_id))
+      if exams.collect(&:subject_id).include?(subject_id)
+        return true
+      end
+      return false
+    end
+
+  end
+
   def check_fee_pay(date)
     date.finance_fees.first(:conditions=>"student_id = #{self.id}").is_paid
   end
@@ -259,15 +280,15 @@ class Student < ActiveRecord::Base
         g.archive_guardian(archived_student.id)
       end
       #
-      student_exam_scores = ExamScore.find_all_by_student_id(self.id)
-      student_exam_scores.each do |s|
-        exam_score_attributes = s.attributes
-        exam_score_attributes.delete "id"
-        exam_score_attributes.delete "student_id"
-        exam_score_attributes["student_id"]= archived_student.id
-        ArchivedExamScore.create(exam_score_attributes)
-        s.destroy
-      end
+#      student_exam_scores = ExamScore.find_all_by_student_id(self.id)
+#      student_exam_scores.each do |s|
+#        exam_score_attributes = s.attributes
+#        exam_score_attributes.delete "id"
+#        exam_score_attributes.delete "student_id"
+#        exam_score_attributes["student_id"]= archived_student.id
+#        ArchivedExamScore.create(exam_score_attributes)
+#        s.destroy
+#      end
       #
     end
  
@@ -295,4 +316,153 @@ class Student < ActiveRecord::Base
   def former_dependency
     plugin_dependencies = FedenaPlugin.check_dependency(self,"former")
   end
+
+  def assessment_score_for(indicator_id,exam_id,batch_id)
+    assessment_score = self.assessment_scores.find(:first, :conditions => { :student_id => self.id,:descriptive_indicator_id=>indicator_id,:exam_id=>exam_id,:batch_id=>batch_id })
+    assessment_score.nil? ? assessment_scores.build(:descriptive_indicator_id=>indicator_id,:exam_id=>exam_id,:batch_id=>batch_id) : assessment_score
+  end
+  def observation_score_for(indicator_id,batch_id)
+    assessment_score = self.assessment_scores.find(:first, :conditions => { :student_id => self.id,:descriptive_indicator_id=>indicator_id,:batch_id=>batch_id })
+    assessment_score.nil? ? assessment_scores.build(:descriptive_indicator_id=>indicator_id,:batch_id=>batch_id) : assessment_score
+  end
+
+  def has_higher_priority_ranking_level(ranking_level_id,type,subject_id)
+    ranking_level = RankingLevel.find(ranking_level_id)
+    higher_levels = RankingLevel.find(:all,:conditions=>["course_id = ? AND priority < ?", ranking_level.course_id,ranking_level.priority])
+    if higher_levels.empty?
+      return false
+    else
+      higher_levels.each do|level|
+        if type=="subject"
+          score = GroupedExamReport.find_by_student_id_and_subject_id_and_batch_id_and_score_type(self.id,subject_id,self.batch_id,"s")
+          unless score.nil?
+            if self.batch.grading_type=="1"
+              return true if((score.marks < level.gpa if level.marks_limit_type=="upper") or (score.marks >= level.gpa if level.marks_limit_type=="lower") or (score.marks == level.gpa if level.marks_limit_type=="exact"))
+            else
+              return true if((score.marks < level.marks if level.marks_limit_type=="upper") or (score.marks >= level.marks if level.marks_limit_type=="lower") or (score.marks == level.marks if level.marks_limit_type=="exact"))
+            end
+          end
+        elsif type=="overall"
+          unless level.subject_count.nil?
+            unless level.full_course==true
+              subjects = self.batch.subjects
+              scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>self.id,:batch_id=>self.batch.id,:subject_id=>subjects.collect(&:id),:score_type=>"s"})
+            else
+              scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>self.id,:score_type=>"s"})
+            end
+            unless scores.empty?
+              if self.batch.grading_type=="1"
+                scores.reject!{|s| !((s.marks < level.gpa if level.marks_limit_type=="upper") or (s.marks >= level.gpa if level.marks_limit_type=="lower") or (s.marks == level.gpa if level.marks_limit_type=="exact"))}
+              else
+                scores.reject!{|s| !((s.marks < level.marks if level.marks_limit_type=="upper") or (s.marks >= level.marks if level.marks_limit_type=="lower") or (s.marks == level.marks if level.marks_limit_type=="exact"))}
+              end
+              unless scores.empty?
+                sub_count = level.subject_count
+                if level.subject_limit_type=="upper"
+                  return true if scores.count < sub_count
+                elsif level.subject_limit_type=="exact"
+                  return true if scores.count == sub_count
+                else
+                  return true if scores.count >= sub_count
+                end
+              end
+            end
+          else
+            unless level.full_course==true
+              score = GroupedExamReport.find_by_student_id(self.id,:conditions=>{:batch_id=>self.batch.id,:score_type=>"c"})
+            else
+              total_student_score = 0
+              avg_student_score = 0
+              marks = GroupedExamReport.find_all_by_student_id_and_score_type(self.id,"c")
+              unless marks.empty?
+                marks.map{|m| total_student_score+=m.marks}
+                avg_student_score = total_student_score.to_f/marks.count.to_f
+                marks.first.marks = avg_student_score
+                score = marks.first
+              end
+            end
+            unless score.nil?
+              if self.batch.grading_type=="1"
+                return true if((score.marks < level.gpa if level.marks_limit_type=="upper") or (score.marks >= level.gpa if level.marks_limit_type=="lower") or (score.marks == level.gpa if level.marks_limit_type=="exact"))
+              else
+                return true if((score.marks < level.marks if level.marks_limit_type=="upper") or (score.marks >= level.marks if level.marks_limit_type=="lower") or (score.marks == level.marks if level.marks_limit_type=="exact"))
+              end
+            end
+          end
+        elsif type=="course"
+          unless level.subject_count.nil?
+            scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>self.id,:score_type=>"s"})
+            unless scores.empty?
+              if level.marks_limit_type=="upper"
+                scores.reject!{|s| !(((s.marks < level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks < level.marks unless level.marks.nil?))}
+              elsif level.marks_limit_type=="exact"
+                scores.reject!{|s| !(((s.marks == level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks == level.marks unless level.marks.nil?))}
+              else
+                scores.reject!{|s| !(((s.marks >= level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks >= level.marks unless level.marks.nil?))}
+              end
+              unless scores.empty?
+                sub_count = level.subject_count
+                unless level.full_course==true
+                  batch_ids = scores.collect(&:batch_id)
+                  batch_ids.each do|batch_id|
+                    unless batch_ids.empty?
+                      count = batch_ids.count(batch_id)
+                      if level.subject_limit_type=="upper"
+                        return true if count < sub_count
+                      elsif level.subject_limit_type=="exact"
+                        return true if count == sub_count
+                      else
+                        return true if count >= sub_count
+                      end
+                      batch_ids.delete(batch_id)
+                    end
+                  end
+                else
+                  if level.subject_limit_type=="upper"
+                    return true if scores.count < sub_count
+                  elsif level.subject_limit_type=="exact"
+                    return true if @student_scores.count == sub_count
+                  else
+                    return true if @student_scores.count >= sub_count
+                  end
+                end
+              end
+            end
+          else
+            unless level.full_course==true
+              scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>self.id,:score_type=>"c"})
+              unless scores.empty?
+                if level.marks_limit_type=="upper"
+                  scores.reject!{|s| !(((s.marks < level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks < level.marks unless level.marks.nil?))}
+                elsif level.marks_limit_type=="exact"
+                  scores.reject!{|s| !(((s.marks == level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks == level.marks unless level.marks.nil?))}
+                else
+                  scores.reject!{|s| !(((s.marks >= level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks >= level.marks unless level.marks.nil?))}
+                end
+                return true unless scores.empty?
+              end
+            else
+              total_student_score = 0
+              avg_student_score = 0
+              marks = GroupedExamReport.find_all_by_student_id_and_score_type(self.id,"c")
+              unless marks.empty?
+                marks.map{|m| total_student_score+=m.marks}
+                avg_student_score = total_student_score.to_f/marks.count.to_f
+                if level.marks_limit_type=="upper"
+                  return true if(((avg_student_score < level.gpa unless level.gpa.nil?) if self.batch.grading_type=="1") or (avg_student_score < level.marks unless level.marks.nil?))
+                elsif level.marks_limit_type=="exact"
+                  return true if(((avg_student_score == level.gpa unless level.gpa.nil?) if self.batch.grading_type=="1") or (avg_student_score == level.marks unless level.marks.nil?))
+                else
+                  return true if(((avg_student_score >= level.gpa unless level.gpa.nil?) if self.batch.grading_type=="1") or (avg_student_score >= level.marks unless level.marks.nil?))
+                end
+              end
+            end
+          end
+        end
+      end
+    end
+    return false
+  end
+
+  
 end

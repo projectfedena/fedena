@@ -1,0 +1,24 @@
+<% form_remote_for @subject,:url=>{:controller=>:fa_groups,:action=>:update_subject_fa_groups,:id=>@subject.id} do |f| %>
+  <ul id="category-list">
+    <li class="listheading">
+      <div class="heading-name">Select FA Groups</div>
+      <div class="heading-edit">
+  <%#= "points" %>
+      </div>
+    </li>
+    <%#= @obs_groups.inspect %>
+    <% @fa_groups.each do |g| %>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <label>
+            <div class="category-edit">
+              <%= check_box_tag "subject[fa_group_ids][]", g.id, @subject.fa_groups.include?(g)%>
+            </div>
+            <div class="category-name">
+              <%= "#{g.name}-#{g.desc}   (#{g.cce_exam_category.name})"  %>
+            </div>
+          </label>
+        </li>
+      <% end %>
+  </ul>
+  <%= f.submit "", :value => "► #{t('save')}", :class => "submit_button" %>
+<% end %>

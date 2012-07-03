@@ -31,18 +31,11 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-
-  <div class="box">
-    <%  if permitted_to? :index,:grading_levels %>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('set_grading_levels')}" ,:controller=>'grading_levels',:action=>'index' %> </div>
-        <div class="link-descr"><%= t('set_grading_levels') %></div>
-      </div>
-    <% end %>
-    <% if Configuration.find_by_config_key("GPA").config_value=="1" or Configuration.find_by_config_key("CWA").config_value=="1" %>
+  <% if (@current_user.admin? or @current_user.privileges.collect(&:name).include?('ExaminationControl')) %>
+    <div class="box">
       <div class="link-box">
         <div class="link-heading"><%= link_to "Settings" ,:controller=>'exam' , :action=>'settings' %></div>
-        <div class="link-descr">Manage Ranking Levels and Class Designations</div>
+        <div class="link-descr">Manage Grading Levels, Ranking Levels and Class Designations</div>
       </div>
     <% end %>
     <% @employee_subjects=[] %>
@@ -59,10 +52,12 @@
         <div class="link-descr"><%= t('create_additional_exams_and_edit_results') %></div>
       </div>
     <% end %>
-    <div class="link-box">
-      <div class="link-heading"><%= link_to 'Generate Reports' , :controller=> "exam",:action=>'generate_reports' %></div>
-      <div class="link-descr">Generates Student Reports for Grouped Exams</div>
-    </div>
+    <% if (@current_user.admin? or @current_user.privileges.collect(&:name).include?('ExaminationControl')) %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to 'Generate Reports' , :controller=> "exam",:action=>'generate_reports' %></div>
+        <div class="link-descr">Generates Student Reports for Grouped Exams</div>
+      </div>
+    <% end %>
     <div class="link-box">
       <div class="link-heading"><%= link_to 'Report Center' , :controller=> "exam",:action=>'report_center' %></div>
       <div class="link-descr">View Student Reports</div>

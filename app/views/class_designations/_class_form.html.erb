@@ -1,17 +1,16 @@
-<% remote_form_for :class_designation,:url=>{:action=>"create_class_designation"} do |c| %>
+<% remote_form_for :class_designation,:url=>{:action=>"create_class_designation", :course_id=>@course.id} do |c| %>
 
   <div id="form-content">
     <div class="label-field-pair">
       <label for="name">Name</label>
       <div class="text-input-bg"><%= c.text_field :name %></div>
     </div>
-    <% if Configuration.find_by_config_key("GPA").config_value=="1" %>
+    <% if @course.grading_type=="1" %>
       <div class="label-field-pair">
         <label for="gpa">CGPA</label>
         <div class="text-input-bg"><%= c.text_field :cgpa %></div>
       </div>
-    <% end %>
-    <% if Configuration.find_by_config_key("CWA").config_value=="1" %>
+    <% else %>
       <div class="label-field-pair">
         <label for="marks">Marks</label>
         <div class="text-input-bg"><%= c.text_field :marks %></div>

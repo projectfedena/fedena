@@ -1,0 +1,22 @@
+<div id="page-yield">
+  <div class="box">
+    <% form_remote_for @descriptive,:url=>{:controller=>"descriptive_indicators",:action=>'create'} do |f| %>
+      <div id="form-errors"></div>
+      <%= error_messages_for :descriptive %>
+      <div class="label-field-pair">
+        <label for="category_name">Name</label>
+        <div class="text-input-bg"><%= f.text_field :name %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">Description</label>
+        <div class="text-input-bg"><%= f.text_field :desc %></div>
+      </div>
+      <% if @observation %>
+        <%= hidden_field_tag :observation_id,@observation.id %>
+      <% elsif @fa_criteria %>
+        <%= hidden_field_tag :fa_criteria_id,@fa_criteria.id %>
+      <% end %>
+      <%= f.submit "", :value => "► Create", :class => "submit_button" %>
+    <% end %>
+  </div>
+</div>

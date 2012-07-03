@@ -1,0 +1,18 @@
+<div id="page-yield">
+  <div class="box">
+    <% form_remote_for :grade,:url=>{:controller=>"cce_grade_sets",:id=>@grade.id,:action=>'update_grade'} do |f| %>
+      <div id="form-errors"></div>
+      <%= error_messages_for :grade %>
+      <div class="label-field-pair">
+        <label for="category_name">Name</label>
+        <div class="text-input-bg"><%= f.text_field :name %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">Grade Points</label>
+        <div class="text-input-bg"><%= f.text_field :grade_point %></div>
+      </div>
+      <%= f.hidden_field :cce_grade_set_id,:value=>@grade.cce_grade_set.id %>
+      <%= f.submit "", :value => "► Update", :class => "submit_button" %>
+    <% end %>
+  </div>
+</div>

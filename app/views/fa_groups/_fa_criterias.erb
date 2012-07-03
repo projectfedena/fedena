@@ -1,0 +1,46 @@
+<% unless @fa_criterias.empty? %>
+  <div class="box">
+    <table align="center" width="100%" cellpadding="1" cellspacing="1">
+      <tr class="tr-head">
+        <td><%= t("fa_criterias") %></td>
+        <td><%= t("desc") %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <% @fa_criterias.each_with_index do |g,i| %>
+        <tr class="tr-<%= cycle('odd', 'even') %>">
+          <td class="col-1">
+            <%= link_to g.fa_name, fa_criteria_descriptive_indicators_path(g) %>
+          </td>
+          <td class="col-1">
+            <%= link_to g.desc, fa_criteria_descriptive_indicators_path(g) %>
+          </td>
+          <td class="col-3">
+            <div class="category-edit">
+              <%= link_to_remote t("edit_text"),:url=>{:controller=>'fa_groups',:action=>'edit_fa_criteria',:id=>g.id},:method=>:get %>  |
+              <%= link_to_remote "#{t("delete_text")}", :url => { :action => 'destroy_fa_criteria', :id => g.id},:confirm=>"Delete criteria #{g.fa_name}?"  %>
+              <% unless i==0 %>
+                <%= link_to_remote "&#x25B2;", :url=>{:action=>'reorder',:direction=>'up',:id=>g.id,:count=>i},:method=>"post" %>
+              <% else %>
+                &nbsp;
+                &nbsp;
+              <% end %>
+              <% unless i+1==@fa_criterias.count %>
+                <%= link_to_remote "&#x25BC;", :url=>{:action=>'reorder',:direction=>'down',:id=>g.id,:count=>i},:method=>"post"  %>
+              <% else %>
+                &nbsp;
+                &nbsp;
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% else %>
+  No FA Criteria present.
+<% end %>

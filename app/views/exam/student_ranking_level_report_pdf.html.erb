@@ -32,6 +32,7 @@
         <% unless @scores.empty? %>
           <% if @report_type=="subject" %>
             <% ranked_students = Student.find_all_by_id(@scores.collect(&:student_id)) %>
+            <% ranked_students = ranked_students.reject{|st| st.has_higher_priority_ranking_level(@ranking_level.id,"subject",@subject.id)==true} %>
           <% else %>
             <% unless @ranking_level.subject_count.nil? %>
               <% sub_count = @ranking_level.subject_count %>
@@ -39,26 +40,37 @@
               <% @students.each do|student| %>
                 <% @student_scores = @scores.dup %>
                 <% @student_scores.reject!{|s| !(s.student_id==student.id)} %>
-                <% if @student_scores.count >= sub_count %>
-                  <% ranked_students << student %>
+                <% if @ranking_level.subject_limit_type=="upper" %>
+                  <% if @student_scores.count < sub_count %>
+                    <% ranked_students << student %>
+                  <% end %>
+                <% elsif @ranking_level.subject_limit_type=="exact" %>
+                  <% if @student_scores.count == sub_count %>
+                    <% ranked_students << student %>
+                  <% end %>
+                <% else %>
+                  <% if @student_scores.count >= sub_count %>
+                    <% ranked_students << student %>
+                  <% end %>
                 <% end %>
               <% end %>
             <% else %>
               <% ranked_students = Student.find_all_by_id(@scores.collect(&:student_id)) %>
             <% end %>
+            <% ranked_students = ranked_students.reject{|st| st.has_higher_priority_ranking_level(@ranking_level.id,"overall","")==true} %>
           <% end %>
           <% unless ranked_students.empty? %>
             <% c = 'even' %>
             <table id="pdf-table" width="100%" cellspacing="0">
               <tr class="table-header">
                 <td>Sl No.</td>
-                <td>Roll No.</td>
+                <td>Adm No.</td>
                 <td>Name</td>
               </tr>
               <% ranked_students.each_with_index do |s,i| %>
                 <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
                   <td class="col-pdf"><%= i+1 %></td>
-                  <td class="col-pdf"><%= s.class_roll_no.present? ? s.class_roll_no : "-" %></td>
+                  <td class="col-pdf"><%= s.admission_no.present? ? s.admission_no : "-" %></td>
                   <td class="col-pdf"><%= s.full_name %></td>
                 </tr>
               <% end %>
@@ -88,8 +100,24 @@
                 <% batch_ids.each do|batch_id|%>
                   <% unless batch_ids.empty? %>
                     <% count = batch_ids.count(batch_id) %>
-                    <% if count >= sub_count %>
-                      <% ranked_students << [student.id,batch_id] %>
+                    <% if @ranking_level.subject_limit_type=="upper" %>
+                      <% if count < sub_count %>
+                        <% unless student.has_higher_priority_ranking_level(@ranking_level.id,"course","") %>
+                          <% ranked_students << [student.id,batch_id] %>
+                        <% end %>
+                      <% end %>
+                    <% elsif @ranking_level.subject_limit_type=="exact" %>
+                      <% if count == sub_count %>
+                        <% unless student.has_higher_priority_ranking_level(@ranking_level.id,"course","") %>
+                          <% ranked_students << [student.id,batch_id] %>
+                        <% end %>
+                      <% end %>
+                    <% else %>
+                      <% if count >= sub_count %>
+                        <% unless student.has_higher_priority_ranking_level(@ranking_level.id,"course","") %>
+                          <% ranked_students << [student.id,batch_id] %>
+                        <% end %>
+                      <% end %>
                     <% end %>
                     <% batch_ids.delete(batch_id) %>
                   <% end %>
@@ -99,15 +127,33 @@
               <% @students.each do|student| %>
                 <% @student_scores = @scores.dup %>
                 <% @student_scores.reject!{|s| !(s.student_id==student.id)} %>
-                <% if @student_scores.count >= sub_count %>
-                  <% ranked_students << [student.id,student.batch.id] %>
+                <% if @ranking_level.subject_limit_type=="upper" %>
+                  <% if @student_scores.count < sub_count %>
+                    <% unless student.has_higher_priority_ranking_level(@ranking_level.id,"course","") %>
+                      <% ranked_students << [student.id,student.batch.id] %>
+                    <% end %>
+                  <% end %>
+                <% elsif @ranking_level.subject_limit_type=="exact" %>
+                  <% if @student_scores.count == sub_count %>
+                    <% unless student.has_higher_priority_ranking_level(@ranking_level.id,"course","") %>
+                      <% ranked_students << [student.id,student.batch.id] %>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <% if @student_scores.count >= sub_count %>
+                    <% unless student.has_higher_priority_ranking_level(@ranking_level.id,"course","") %>
+                      <% ranked_students << [student.id,student.batch.id] %>
+                    <% end %>
+                  <% end %>
                 <% end %>
               <% end %>
             <% end %>
           <% else %>
             <% ranked_students = [] %>
             <% @scores.each do|score| %>
-              <% ranked_students << [score.student_id,score.batch_id] %>
+              <% unless score.student.has_higher_priority_ranking_level(@ranking_level.id,"course","") %>
+                <% ranked_students << [score.student_id,score.batch_id] %>
+              <% end %>
             <% end %>
           <% end %>
           <% unless ranked_students.empty? %>
@@ -115,7 +161,7 @@
             <table id="pdf-table" width="100%" cellspacing="0">
               <tr class="table-header">
                 <td>Sl No.</td>
-                <td>Roll No.</td>
+                <td>Adm No.</td>
                 <td>Name</td>
                 <td>Batch</td>
                 <% unless @ranking_level.full_course==true %>
@@ -128,7 +174,7 @@
                 <% batch = Batch.find(s[1]) %>
                 <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
                   <td class="col-1"><%= i+1 %></td>
-                  <td class="col-1"><%= stu.class_roll_no.present? ? stu.class_roll_no : "-" %></td>
+                  <td class="col-1"><%= stu.admission_no.present? ? stu.admission_no : "-" %></td>
                   <td class="col-2"><%= stu.full_name %></td>
                   <td class="col-2"><%= stu.batch.full_name %></td>
                   <% unless @ranking_level.full_course==true %>

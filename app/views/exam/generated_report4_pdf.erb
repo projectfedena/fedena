@@ -31,7 +31,7 @@
         <table id="pdf-table" width="100%" cellspacing="0">
           <tr class="table-header">
             <td><%= t('subject') %></td>
-            <% if @batch.grading_type=="GPA" or @batch.grading_type=="CWA" %>
+            <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
               <td>Credit</td>
             <% end %>
             <% @exam_groups.each do |exam_group| %>
@@ -43,7 +43,7 @@
           <% @subjects.each do |subject| %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-pdf" ><%= subject.name %></td>
-              <% if @batch.grading_type=="GPA" or @batch.grading_type=="CWA" %>
+              <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
                 <td class="col-pdf"><%= subject.credit_hours.present? ? subject.credit_hours : "-" %></td>
               <% end %>
               <% @exam_groups.each do |exam_group| %>
@@ -51,10 +51,10 @@
                 <% @exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id) %>
                 <% exam_score = ExamScore.find_by_student_id(@student.id, :conditions=>{:exam_id=>@exam.id})unless @exam.nil? %>
                 <td class="col-pdf">
-                  <% if @batch.grading_type=="GPA" %>
-                    <%= exam_score.present? ? "#{exam_score.grading_level || "-"}"+" ["+"#{exam_score.grading_level.credit_points || "-"}"+"]" : "-" %>
-                  <% elsif @batch.grading_type=="CWA" %>
-                    <%= exam_score.present? ? "#{"%.2f" %((exam_score.marks.to_f/@exam.maximum_marks.to_f)*100)}"+" ["+"#{exam_score.grading_level.present? ? exam_score.grading_level : "-"}"+"]" : "-" %>
+                  <% if @batch.grading_type=="1" %>
+                    <%= exam_score.present? ? "#{exam_score.grading_level || "-"}"+" ["+"#{exam_score.grading_level.present? ? (exam_score.grading_level.credit_points || "-") : "-"}"+"]" : "-" %>
+                  <% elsif @batch.grading_type=="2" %>
+                    <%= exam_score.present? ? "#{exam_score.marks.present? ? ("%.2f" %((exam_score.marks.to_f/@exam.maximum_marks.to_f)*100)) : "-"}"+" ["+"#{exam_score.grading_level.present? ? exam_score.grading_level : "-"}"+"]" : "-" %>
                   <% else %>
                     <% if exam_group.exam_type == "MarksAndGrades" %>
                       <%= exam_score.nil? ? '-' :  "#{(exam_score.marks || "-")}" +"/"+@exam.maximum_marks.to_s+"[#{(exam_score.grading_level || "-")}]" %>
@@ -71,9 +71,9 @@
             </tr>
           <% end %>
           <tr class="table-header">
-            <% if @batch.grading_type=="GPA" %>
+            <% if @batch.grading_type=="1" %>
               <td colspan="2" align="right">GPA</td>
-            <% elsif @batch.grading_type=="CWA" %>
+            <% elsif @batch.grading_type=="2" %>
               <td colspan="2" align="right">Weighted Average</td>
             <% else %>
               <td align="right">Percentage</td>

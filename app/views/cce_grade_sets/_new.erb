@@ -1,0 +1,14 @@
+<div id="page-yield">
+  <div class="box">
+    <% form_remote_for @grade_set,:url=>{:controller=>"cce_grade_sets",:action=>'create'} do |f| %>
+      <div id="form-errors"></div>
+      <%= error_messages_for :grade_set %>
+      <div class="label-field-pair">
+        <label for="category_name">Name</label>
+        <div class="text-input-bg"><%= f.text_field :name %></div>
+      </div>
+      <%= f.submit "", :value => "► Create", :class => "submit_button" %>
+    <% end %>
+    <div class="extender"></div>
+  </div>
+</div>

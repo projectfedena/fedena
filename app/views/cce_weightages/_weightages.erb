@@ -1,0 +1,27 @@
+<div class="box">
+  <table align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td><%= t("weightages_text") %></td>
+      <td><%= t("cce_exam_category") %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <% @weightages.each do |g| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-1">
+          <%= link_to "#{g.weightage}(#{g.criteria_type})", cce_weightage_path(g) %>
+        </td>
+        <td class="col-2">
+          <%= link_to g.try(:cce_exam_category).try(:name), cce_weightage_path(g) %>
+        </td>
+        <td class="col-3">
+          <div class="category-edit"><%= link_to_remote "#{t("edit_text")}", :url => { :action => 'edit', :id => g.id },:method=>:get %> |  <%= link_to t("delete_text"),g,:method=>:delete,:confirm=>"Are you sure?" %></div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,16 @@
+<div class="label-field-pair">
+   <label for="student_course">Select Exam Group:
+<%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader2", :style =>"display: none;" ) %>
+   </label>
+   <div class="text-input-bg">
+  <%= select :course, :exam_group_id,
+        @exam_groups.map {|b| [b.name, b.id]},
+        {:prompt => "Select an Exam Group"},
+        {:onChange => "#{remote_function(:url => {:action => "previous_exam_marks"},
+        :with => "'exam_group_id='+ value",
+        :before => "Element.show('loader2')",
+        :success => "Element.hide('loader2')"
+        )}"} %>
+</div></div>
+<div id="previous_exam_marks"></div>
+<div class="extender"></div>

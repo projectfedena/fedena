@@ -112,20 +112,11 @@
             <%= t('select') %>: <%= link_to_function t('all'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
             <%= link_to_function t('none'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
           </div>
-          <div class="each_batch">
-            <% if @config[:gpa] == '1' %>
-              <%= check_box :configuration, :gpa, :checked => true,:class=>'batches_box' %> GPA
-            <% else %>
-              <%= check_box :configuration, :gpa, :checked => false,:class=>'batches_box' %> GPA
-            <% end %>
-          </div>
-          <div class="each_batch">
-            <% if @config[:cwa] == '1' %>
-              <%= check_box :configuration, :cwa, :checked => true,:class=>'batches_box' %> CWA
-            <% else %>
-              <%= check_box :configuration, :cwa, :checked => false,:class=>'batches_box' %> CWA
-            <% end %>
-          </div>
+          <% @grading_types.each do |key,val| %>
+            <div class="each_batch">
+              <%= check_box :configuration, val.underscore , :checked => (@enabled_grading_types.include? key),:class=>'batches_box' %> <label for="configuration_<%= val.underscore %>"><%= val %></label>
+            </div>
+          <% end %>                 
         </div>
       </div>
 

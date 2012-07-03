@@ -152,7 +152,7 @@ class ExamsController < ApplicationController
         end
       end
     end
-    flash[:notice] = "#{t('flash2')}" if @error == true
+    flash[:warn_notice] = "#{t('flash2')}" if @error == true
     flash[:notice] = "#{t('flash3')}" if @error == false
     redirect_to [@exam_group, @exam]
   end

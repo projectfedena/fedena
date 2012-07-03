@@ -39,10 +39,14 @@ class Batch < ActiveRecord::Base
   has_many :attendances
   has_many :subject_leaves
   has_many :timetable_entries
+  has_many :cce_reports
+  has_many :assessment_scores
+
 
   has_and_belongs_to_many :graduated_students, :class_name => 'Student', :join_table => 'batch_students'
 
   delegate :course_name,:section_name, :code, :to => :course
+  delegate :grading_type, :cce_enabled?, :observation_groups, :cce_weightages, :to=>:course
 
   validates_presence_of :name, :start_date, :end_date
 
@@ -216,4 +220,66 @@ class Batch < ActiveRecord::Base
     hsh2
   end
 
+  def create_coscholastic_reports
+    report_hash={}
+    observation_groups.scoped(:include=>[{:observations=>:assessment_scores},{:cce_grade_set=>:cce_grades}]).each do |og|
+      og.observations.each do |o|
+        report_hash[o.id]={}
+        o.assessment_scores.scoped(:conditions=>{:exam_id=>nil,:batch_id=>id}).group_by(&:student_id).each{|k,v| report_hash[o.id][k]=(v.sum(&:grade_points)/v.count.to_f).round}
+        report_hash[o.id].each do |key,val|
+          o.cce_reports.build(:student_id=>key, :grade_string=>og.cce_grade_set.grade_string_for(val), :batch_id=> id)
+        end
+        o.save
+      end
+    end
+  end
+
+  def delete_coscholastic_reports
+    CceReport.delete_all({:batch_id=>id,:exam_id=>nil})
+  end
+
+  def fa_groups
+    FaGroup.all(:joins=>:subjects, :conditions=>{:subjects=>{:batch_id=>id}}).uniq
+  end
+  
+  def create_scholastic_reports
+    report_hash={}
+    fa_groups.each do |fg|
+      fg.fa_criterias.all(:include=>:assessment_scores).each do |f|
+        report_hash[f.id]={}
+        f.assessment_scores.scoped(:conditions=>["exam_id IS NOT NULL AND batch_id = ?",id]).group_by(&:exam_id).each do |k1,v1|
+          report_hash[f.id][k1]={}
+          v1.group_by(&:student_id).each{|k2,v2| report_hash[f.id][k1][k2]=(v2.sum(&:grade_points)/v2.count.to_f).round}
+        end
+        report_hash[f.id].each do |k1,v1|
+          v1.each do |k2,v2|
+            f.cce_reports.build(:student_id=>k2, :grade_string=>v2,:exam_id=>k1, :batch_id=> id)
+          end
+        end
+        f.save
+      end
+    end
+  end
+
+  def delete_scholastic_reports
+    CceReport.delete_all(["batch_id = ? AND exam_id > 0", id])
+  end
+
+  def generate_cce_reports
+    CceReport.transaction do
+      delete_scholastic_reports
+      create_scholastic_reports
+      delete_coscholastic_reports
+      create_coscholastic_reports
+    end
+  end
+
+  def employees
+    unless employee_id.nil?
+      employee_ids = employee_id.split(",")
+      Employee.find(employee_ids)
+    else
+      []
+    end
+  end
 end

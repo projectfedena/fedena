@@ -1,0 +1,44 @@
+<% unless @descriptive_indicators.empty?  %>
+  <table align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td>Descriptive Indicators</td>
+      <td>Description</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <% @descriptive_indicators.each_with_index do |g,i| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-1">
+          <%=  g.name  %>
+        </td>
+        <td class="col-2">
+          <%= g.desc %>
+        </td>
+        <td class="col-3">
+          <div class="category-edit">
+            <%= link_to_remote "#{t("edit_text")}", :url => { :controller=>:descriptive_indicators,:action => 'edit', :id => g.id },:method=>:get %>  |  
+            <%= link_to_remote "#{t("delete_text")}", :url => { :action => 'destroy_indicator', :id => g.id},:confirm=>"Delete descriptive indicator #{g.name}?"  %>
+            <% unless i==0 %>
+              <%= link_to_remote "&#x25B2;", :url=>{:action=>'reorder',:direction=>'up',:id=>g.id,:count=>i},:method=>"post" %>
+            <% else %>
+              &nbsp;
+              &nbsp;
+            <% end %>
+            <% unless i+1==@descriptive_indicators.count %>
+              <%= link_to_remote "&#x25BC;", :url=>{:action=>'reorder',:direction=>'down',:id=>g.id,:count=>i},:method=>"post"  %>
+            <% else %>
+              &nbsp;
+              &nbsp;
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  No Descriptive indicators present.
+<% end %>

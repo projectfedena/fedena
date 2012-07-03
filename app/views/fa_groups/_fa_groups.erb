@@ -1,0 +1,27 @@
+<div class="box">
+  <table align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td><%= t("fa_group") %></td>
+      <td><%= t("exam_category") %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <% @fa_groups.each do |g| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-1">
+          <%= link_to g.name, fa_group_path(g) %>
+        </td>
+        <td class="col-1">
+          <%= link_to g.try(:cce_exam_category).try(:name), fa_group_path(g) %>
+        </td>
+        <td class="col-3">
+          <div class="category-edit"><%= link_to_remote t("edit_text"),:url=>{:controller=>'fa_groups',:action=>'edit',:id=>g.id},:method=>:get %> | <%= link_to t("delete_text"),g,:method=>:delete,:confirm=>"Delete FA Group #{g.name}?" %></div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>

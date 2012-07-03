@@ -46,3 +46,6 @@
 .user_button:hover{
     background:  #373B3F;
 }
+.text-input-bg select {
+    width:217px;
+}

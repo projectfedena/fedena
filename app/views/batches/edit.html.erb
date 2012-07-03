@@ -59,14 +59,6 @@
         <div class="input-container"><%= calendar_date_select_tag 'batch[end_date]',I18n.l(@batch.end_date, :format=>"%d-%m-%Y") ,:popup => "force"%></div>
       </div>
 
-    <% unless @grade_types.blank? %>
-
-      <div class="label-field-pair">
-        <div class="label-container">Grading System type</div>
-        <div class="text-input-bg"><%= f.select :grading_type, @grade_types.push("Normal") %></div>
-      </div>
-    <% end %>
-
       <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
 
 

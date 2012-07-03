@@ -1,0 +1,18 @@
+<div id="page-yield">
+  <div class="box">
+    <% form_remote_for @assessment_tool,:url=>{:controller=>"assessment_tools",:action=>'create'} do |f| %>
+      <div id="form-errors"></div>
+      <%= error_messages_for :assessment_tool %>
+      <div class="label-field-pair">
+        <label for="category_name"><%= t('name') %></label>
+        <div class="text-input-bg"><%= f.text_field :name %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name"><%= t('desc') %></label>
+        <div class="text-input-bg"><%= f.text_field :desc %></div>
+      </div>
+      <%= f.hidden_field :descriptive_indicator_id,:value=>@descriptive.id %>
+      <%= f.submit "", :value => "► #{t('save')}", :class => "submit_button" %>
+    <% end %>
+  </div>
+</div>

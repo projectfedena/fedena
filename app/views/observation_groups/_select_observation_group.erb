@@ -1,0 +1,24 @@
+<% form_remote_for @course,:url=>{:controller=>:observation_groups,:action=>:update_course_obs_groups,:id=>@course.id} do |f| %>
+  <ul id="category-list">
+    <li class="listheading">
+      <div class="heading-name"><%= t("select_observation_groups") %></div>
+      <div class="heading-edit">
+  <%#= "points" %>
+      </div>
+    </li>
+    <%#= @obs_groups.inspect %>
+    <% @obs_groups.each do |g| %>
+        <li class="list<%=cycle('odd', 'even')%>">
+          <label>
+            <div class="category-edit">
+              <%= check_box_tag "course[observation_group_ids][]", g.id, @course.observation_groups.include?(g)%>
+            </div>
+            <div class="category-name">
+              <%= g.name %>
+            </div>
+          </label>
+        </li>
+      <% end %>
+  </ul>
+  <%= f.submit "", :value => "► #{t('save')}", :class => "submit_button" %>
+<% end %>

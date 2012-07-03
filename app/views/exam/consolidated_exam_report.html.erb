@@ -42,13 +42,11 @@
       <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
         <tr class="tr-head">
           <td><%= t('name') %></td>
-          <% if @batch.grading_type=="GPA" or @batch.grading_type=="CWA" %>
-            <% total_credits = 0 %>
+          <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
             <% @exam_group.exams.each do |exam| %>
               <td><%= exam.subject.code %><%= "(" + exam.subject.credit_hours.to_s + ")"  unless exam.subject.credit_hours.nil? %></td>
-              <% total_credits = total_credits + exam.subject.credit_hours.to_f unless exam.subject.credit_hours.nil? %>
             <% end %>
-            <% if @batch.grading_type=="CWA" %>
+            <% if @batch.grading_type=="2" %>
               <td>Weighted Average</td>
             <% else %>
               <td>GPA</td>
@@ -63,24 +61,28 @@
         <% @exam_group.batch.students.each do |student|%>
           <tr class="tr-<%= cycle('odd', 'even') %>">
             <td class="col-2"><%= student.full_name %></td>
-            <% if @batch.grading_type=="GPA" %>
+            <% if @batch.grading_type=="1" %>
+              <% total_credits = 0 %>
               <% total_credit_points=0 %>
               <% @exam_group.exams.each do |exam| %>
                 <% exam_score = ExamScore.find_by_student_id_and_exam_id(student.id,exam.id) %>
                 <% unless exam_score.nil? %>
                   <td class="col-3"><%= exam_score.grading_level.present? ? exam_score.grading_level : "-" %></td>
+                  <% total_credits = total_credits + exam.subject.credit_hours.to_f unless exam.subject.credit_hours.nil? %>
                   <% total_credit_points = total_credit_points + (exam_score.grading_level.credit_points.to_f * exam.subject.credit_hours.to_f) unless exam_score.grading_level.nil? %>
                 <% else %>
                   <td class="col-3">-</td>
                 <% end %>
               <% end %>
               <td class="col-4"><%= "%.2f" %(total_credit_points.to_f/total_credits.to_f) %></td>
-            <% elsif @batch.grading_type=="CWA" %>
+            <% elsif @batch.grading_type=="2" %>
+              <% total_credits = 0 %>
               <% total_weighted_marks=0 %>
               <% @exam_group.exams.each do |exam| %>
                 <% exam_score = ExamScore.find_by_student_id_and_exam_id(student.id,exam.id) %>
                 <% unless exam_score.nil? %>
                   <td class="col-3"><%= exam_score.marks.present? ? "%.2f" %((exam_score.marks.to_f/exam.maximum_marks.to_f)*100) : "-" %></td>
+                  <% total_credits = total_credits + exam.subject.credit_hours.to_f unless exam.subject.credit_hours.nil? %>
                   <% total_weighted_marks = total_weighted_marks + ((exam_score.marks.to_f/exam.maximum_marks.to_f)*100)*(exam.subject.credit_hours.to_f) unless exam_score.marks.nil? %>
                 <% else %>
                   <td class="col-3">-</td>

@@ -1,0 +1,15 @@
+<% unless @students.empty?  %>
+  <div class="list_name">
+    <%= t("students_in_batch") %>
+    <%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader", :style =>"display: none;" ) %>
+  </div>
+  <ul class="student_list">
+    <% @students.each do |s| %>
+      <li class="student_names">
+        <a href="#" id="<%=s.id%>"  class="student-link" > <%= s.full_name %></a>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <%= t("no_students_in_batch")  %>
+<% end %>

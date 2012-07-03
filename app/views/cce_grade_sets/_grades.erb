@@ -1,0 +1,28 @@
+<% unless @grades.empty?  %>
+  <table align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td>Grade</td>
+      <td>Grade points</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <% @grades.each do |g| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-1">
+          <%= g.name %>
+        </td>
+        <td class="col-2">
+          <%= g.grade_point %>
+        </td>
+        <td class="col-3">
+          <div class="category-edit"><%= link_to_remote "#{t("edit_text")}", :url => { :action => 'edit_grade', :id => g.id } %> | <%= link_to_remote "#{t("delete_text")}", :url => { :action => 'destroy_grade', :id => g.id},:confirm=>"Delete Grade #{g.name}?"  %></div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  No grades present.
+<% end %>

@@ -1,0 +1,16 @@
+<div class="label-field-pair">
+   <label for="student_course"><%= t('select_a_batch') %>:
+<%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader1", :style =>"display: none;" ) %>
+   </label>
+   <div class="text-input-bg">
+  <%= select :course, :batch_id,
+        @batches.map {|b| [b.name, b.id]},
+        {:prompt => "#{t('select_a_batch')}"},
+        {:onChange => "#{remote_function(:url => {:action => "list_inactive_exam_groups"},
+        :with => "'batch_id='+ value",
+        :before => "Element.show('loader1')",
+        :success => "Element.hide('loader1')"
+        )}"} %>
+</div></div>
+<div id="inactive_exam_groups"></div>
+<div class="extender"></div>

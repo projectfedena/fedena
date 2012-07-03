@@ -1,0 +1,2 @@
+module CceReportsHelper
+end

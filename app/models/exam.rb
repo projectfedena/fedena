@@ -29,6 +29,9 @@ class Exam < ActiveRecord::Base
   
   has_many :exam_scores
   has_many :archived_exam_scores
+  has_many :previous_exam_scores
+  has_many :assessment_scores
+#  has_and_belongs_to_many :cce_reports
 
   accepts_nested_attributes_for :exam_scores
 
@@ -73,6 +76,9 @@ class Exam < ActiveRecord::Base
     return 0
   end
 
+  def fa_groups
+    subject.fa_groups.select{|fg| fg.cce_exam_category_id == exam_group.cce_exam_category_id}
+  end
 
   private
   def update_exam_group_date

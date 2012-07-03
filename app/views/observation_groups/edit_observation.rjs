@@ -1,0 +1,2 @@
+page.replace_html 'modal-box', :partial => 'edit_observation'
+page << "Modalbox.show($('modal-box'), {title: 'Edit Co-Scholastic Criteria', width: 500});"

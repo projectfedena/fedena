@@ -1,0 +1,155 @@
+
+#score-table{
+    overflow:auto;
+    margin-bottom: 20px;
+}
+.student_list{
+}
+.header{
+    list-style-type: none;
+    font-weight: bold;
+}
+li.student_names, li.student_names a{
+    text-decoration: none;
+    /*    margin-top: 5px;*/
+    color: black;
+    width:100%;
+    min-width:100%;
+    display: block;
+    padding: 2px 0 2px 0;
+}
+.student_list{
+    list-style-type: none;
+    clear : both;
+    width: 200px;
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: 13px;
+    padding: 0px;
+    float: left;
+}
+
+.student_list a:hover{
+    text-decoration: none;
+    background-color:  #F1F6FF;
+    width:100%;
+
+}
+.student_list a:active{
+    text-decoration: none;
+    /*    font-weight: bold;*/
+}
+.active-link{
+    font-weight: bold;
+    color: #C00 !important;
+}
+.student-name{
+    height: 28px;
+}
+#report{
+    /*    float: left;*/
+    margin-left:  230px;
+    margin-right: 10px;
+}
+.list_name{
+    font-weight: bold;
+}
+table#listing td{
+    font-size: 13px;
+    font-weight: bold;
+    padding: 5px;
+}
+table#listing tr.tr-head,   .cgpa {
+    color: #C00;
+    font-size: 13px;
+    font-weight: bold;
+
+}
+table#listing .tr-head td {
+    padding: 5px;
+    padding-left: 7px;
+    text-align: center;
+}
+.student{
+    font-weight: bold;
+    text-align: left !important;
+    margin-left: 10px;
+}
+/************giving border and padding to outer div instead of table***************/
+#score-table{
+    background: #C3D9FF;
+    /*    -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;*/
+    padding: 10px 10px;
+}
+table#listing{
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.custom_header{
+    margin: 0 auto;
+    padding: 8px;
+    /*    text-align: center;*/
+    background: #fff;
+}
+
+tr.center td{
+    text-align: center;
+}
+td.left-aligned{
+    text-align: left !important;
+}
+td.left-10{
+    padding-left: 10px !important;
+}
+/*************************************************************************************/
+.user_button{
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    /*    margin: 10px 0 0 433px;*/
+    text-decoration: none;
+    margin-left: 330px;
+    float:left;
+    /*    margin-left: 433px;*/
+
+}
+.user_button:hover{
+    background:  #373B3F;
+}
+.info1{
+    font-size:13px;
+    font-weight:600;
+    color:#444444;
+    margin-bottom:5px;
+}
+.infolbl{
+    color:#b00;
+}
+.field-label{
+    width:80px;
+    float:left;
+}
+.info-left{
+    float:left;
+}
+.info-right{
+    float:right;
+}
+.info{
+    width:100%;
+    float:left;
+}
+.high{
+    color:#b00;
+}

@@ -32,7 +32,7 @@ class GradingLevel < ActiveRecord::Base
   end
 
   def batch_has_gpa
-    self.batch_id and self.batch.grading_type=="GPA"
+    self.batch_id and self.batch.grading_type=="1"
   end
 
   def to_s

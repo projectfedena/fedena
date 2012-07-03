@@ -25,6 +25,11 @@
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "Previous Batch Exam", {:controller => "exam", :action => "previous_batch_exams"}, :class=> 'user_button' %></li>
+  </ul>
+</div>
 <div id="page-yield">
     <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>

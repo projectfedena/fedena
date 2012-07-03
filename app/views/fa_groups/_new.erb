@@ -1,0 +1,33 @@
+<div id="page-yield">
+  <div class="box">
+    <% form_remote_for @fa_group,:url=>{:controller=>"fa_groups",:action=>'create'} do |f| %>
+      <div id="form-errors"></div>
+      <%= error_messages_for :fa_group %>
+      <div class="label-field-pair">
+        <label for="category_name">Name</label>
+        <div class="text-input-bg"><%= f.text_field :name %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">Description</label>
+        <div class="text-input-bg"><%= f.text_field :desc %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">Max Marks</label>
+        <div class="text-input-bg"><%= f.text_field :max_marks %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">CCE Exam Category</label>
+        <div class="text-input-bg">
+         <%= f.select :cce_exam_category_id ,@exam_categories.map{|m| [m.name,m.id]} ,:prompt=>t("select_an_exam_category") %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">CCE Grade Set</label>
+        <div class="text-input-bg">
+          <%= f.select :cce_grade_set_id ,@grade_sets.map{|m| [m.name,m.id]} ,:prompt=>t("select_a_grade_set") %>
+        </div>
+      </div>
+      <%= f.submit "", :value => "► Create", :class => "submit_button" %>
+    <% end %>
+  </div>
+</div>

@@ -47,7 +47,7 @@
     c=val.id;
     d=c.replace("check","weightage");
     if(val.checked==true)
-    {      
+    {
       $(d).disabled=false;
     }
     else
@@ -110,7 +110,6 @@
           <%#= link_to_function t('none'), "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
         <%#*</div>%>
         <% unless @exam_groups.empty? %>
-
           <% form_for :exam_grouping do |f| %>
             <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
               <% count=@exam_groups.count.to_i - 1 %>

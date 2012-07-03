@@ -33,17 +33,29 @@
   <% end %>
 
   <div class="box">
-    <% if Configuration.find_by_config_key("GPA").config_value=="1" or Configuration.find_by_config_key("CWA").config_value=="1" %>
-      <%  if permitted_to? :index,:ranking_levels %>
+    <%  if permitted_to? :index,:grading_levels %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "#{t('set_grading_levels')}" ,:controller=>'grading_levels',:action=>'index' %> </div>
+        <div class="link-descr"><%= t('set_grading_levels') %></div>
+      </div>
+    <% end %>
+    <%  if permitted_to? :index,:ranking_levels %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Ranking Levels" ,:controller=>'ranking_levels',:action=>'index' %> </div>
+        <div class="link-descr">Manage Ranking Levels</div>
+      </div>
+    <% end %>
+    <%  if permitted_to? :index,:class_designations %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Class Designations" ,:controller=>'class_designations',:action=>'index' %> </div>
+        <div class="link-descr">Manage Class Designations</div>
+      </div>
+    <% end %>
+    <%  if Configuration.cce_enabled? %>
+      <%  if permitted_to? :index,:cce_settings %>
         <div class="link-box">
-          <div class="link-heading"><%= link_to "Ranking Levels" ,:controller=>'ranking_levels',:action=>'index' %> </div>
-          <div class="link-descr">Manage Ranking Levels</div>
-        </div>
-      <% end %>
-      <%  if permitted_to? :index,:class_designations %>
-        <div class="link-box">
-          <div class="link-heading"><%= link_to "Class Designations" ,:controller=>'class_designations',:action=>'index' %> </div>
-          <div class="link-descr">Manage Class Designations</div>
+          <div class="link-heading"><%= link_to "CCE Settings" ,:controller=>'cce_settings',:action=>'index' %> </div>
+          <div class="link-descr">Manage CCE Settings</div>
         </div>
       <% end %>
     <% end %>

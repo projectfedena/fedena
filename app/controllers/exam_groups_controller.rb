@@ -43,6 +43,7 @@ class ExamGroupsController < ApplicationController
 
   def new
     @user_privileges = @current_user.privileges
+    @cce_exam_categories = CceExamCategory.all if @batch.cce_enabled?
     if !@current_user.admin? and !@user_privileges.map{|p| p.name}.include?('ExaminationControl') and !@user_privileges.map{|p| p.name}.include?('EnterResults')
       flash[:notice] = "#{t('flash_msg4')}"
       redirect_to :controller => 'user', :action => 'dashboard'
@@ -57,12 +58,14 @@ class ExamGroupsController < ApplicationController
       flash[:notice] =  "#{t('flash1')}"
       redirect_to batch_exam_groups_path(@batch)
     else
+      @cce_exam_categories = CceExamCategory.all if @batch.cce_enabled?
       render 'new'
     end
   end
 
   def edit
     @exam_group = ExamGroup.find params[:id]
+    @cce_exam_categories = CceExamCategory.all if @batch.cce_enabled?
   end
 
   def update
@@ -71,6 +74,7 @@ class ExamGroupsController < ApplicationController
       flash[:notice] = "#{t('flash2')}"
       redirect_to [@batch, @exam_group]
     else
+      @cce_exam_categories = CceExamCategory.all if @batch.cce_enabled?
       render 'edit'
     end
   end

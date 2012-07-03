@@ -97,6 +97,9 @@ class User < ActiveRecord::Base
           prv << :subject_attendance if Configuration.get_config_value('StudentAttendanceType') == 'SubjectWise'
           prv << :subject_exam
         end
+        if Batch.active.collect(&:employee_id).include?(employee.id.to_s)
+          prv << :view_results
+        end
       end
       return [:employee] + prv
       elsif parent?

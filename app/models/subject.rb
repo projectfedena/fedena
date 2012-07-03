@@ -26,6 +26,7 @@ class Subject < ActiveRecord::Base
   has_many :students_subjects
   has_many :students, :through => :students_subjects
   has_many :grouped_exam_reports
+  has_and_belongs_to_many_with_deferred_save :fa_groups
   validates_presence_of :name, :max_weekly_classes, :code,:batch_id
   validates_presence_of :credit_hours, :if=>:check_grade_type
   validates_numericality_of :max_weekly_classes
@@ -33,9 +34,11 @@ class Subject < ActiveRecord::Base
   named_scope :for_batch, lambda { |b| { :conditions => { :batch_id => b.to_i, :is_deleted => false } } }
   named_scope :without_exams, :conditions => { :no_exams => false, :is_deleted => false }
 
+  before_save :fa_group_valid
+
   def check_grade_type
     batch = self.batch
-    batch.grading_type=="GPA" or batch.grading_type=="CWA"
+    batch.grading_type=="1" or batch.grading_type=="2"
   end
 
   def inactivate
@@ -75,4 +78,15 @@ class Subject < ActiveRecord::Base
     return selected_employee
   end
 
+  private
+
+  def fa_group_valid
+    fa_groups.group_by(&:cce_exam_category_id).values.each do |fg|
+      if fg.length > 2
+        errors.add(:fa_group, "cannot have more than 2 fa group under a single exam category")
+        return false
+      end
+    end
+  end
+  
 end

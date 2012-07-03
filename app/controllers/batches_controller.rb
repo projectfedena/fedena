@@ -17,24 +17,15 @@
 #limitations under the License.
 
 class BatchesController < ApplicationController
-  before_filter :init_data,:except=>[:assign_tutor,:update_employees,:assign_employee,:remove_employee]
+  before_filter :init_data,:except=>[:assign_tutor,:update_employees,:assign_employee,:remove_employee,:batches_ajax]
   filter_access_to :all
   
   def index
-    @batches = @course.batches
+    @batches = @course.batches    
   end
 
   def new
     @batch = @course.batches.build
-    @grade_types=[]
-    gpa = Configuration.find_by_config_key("GPA").config_value
-    if gpa == "1"
-      @grade_types << "GPA"
-    end
-    cwa = Configuration.find_by_config_key("CWA").config_value
-    if cwa == "1"
-      @grade_types << "CWA"
-    end
   end
 
   def create
@@ -51,26 +42,26 @@ class BatchesController < ApplicationController
         all_batches.reject! {|b| b.subjects.empty?}
         @previous_batch = all_batches[all_batches.size-2]
         unless @previous_batch.blank?
-        subjects = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false')
-        subjects.each do |subject|
-          if subject.elective_group_id.nil?
-            Subject.create(:name=>subject.name,:code=>subject.code,:batch_id=>@batch.id,:no_exams=>subject.no_exams,
-              :max_weekly_classes=>subject.max_weekly_classes,:elective_group_id=>subject.elective_group_id,:is_deleted=>false)
-          else
-            elect_group_exists = ElectiveGroup.find_by_name_and_batch_id(ElectiveGroup.find(subject.elective_group_id).name,@batch.id)
-            if elect_group_exists.nil?
-              elect_group = ElectiveGroup.create(:name=>ElectiveGroup.find(subject.elective_group_id).name,
-                :batch_id=>@batch.id,:is_deleted=>false)
+          subjects = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false')
+          subjects.each do |subject|
+            if subject.elective_group_id.nil?
               Subject.create(:name=>subject.name,:code=>subject.code,:batch_id=>@batch.id,:no_exams=>subject.no_exams,
-                :max_weekly_classes=>subject.max_weekly_classes,:elective_group_id=>elect_group.id,:is_deleted=>false)
+                :max_weekly_classes=>subject.max_weekly_classes,:elective_group_id=>subject.elective_group_id,:credit_hours=>subject.credit_hours,:is_deleted=>false)
             else
-              Subject.create(:name=>subject.name,:code=>subject.code,:batch_id=>@batch.id,:no_exams=>subject.no_exams,
-                :max_weekly_classes=>subject.max_weekly_classes,:elective_group_id=>elect_group_exists.id,:is_deleted=>false)
+              elect_group_exists = ElectiveGroup.find_by_name_and_batch_id(ElectiveGroup.find(subject.elective_group_id).name,@batch.id)
+              if elect_group_exists.nil?
+                elect_group = ElectiveGroup.create(:name=>ElectiveGroup.find(subject.elective_group_id).name,
+                  :batch_id=>@batch.id,:is_deleted=>false)
+                Subject.create(:name=>subject.name,:code=>subject.code,:batch_id=>@batch.id,:no_exams=>subject.no_exams,
+                  :max_weekly_classes=>subject.max_weekly_classes,:elective_group_id=>elect_group.id,:credit_hours=>subject.credit_hours,:is_deleted=>false)
+              else
+                Subject.create(:name=>subject.name,:code=>subject.code,:batch_id=>@batch.id,:no_exams=>subject.no_exams,
+                  :max_weekly_classes=>subject.max_weekly_classes,:elective_group_id=>elect_group_exists.id,:credit_hours=>subject.credit_hours,:is_deleted=>false)
+              end
             end
+            msg << "<li>#{subject.name}</li>"
           end
-          msg << "<li>#{subject.name}</li>"
-        end
-        msg << "</ol>"
+          msg << "</ol>"
         else
           msg = nil
           flash[:no_subject_error] = "#{t('flash7')}"
@@ -139,28 +130,19 @@ class BatchesController < ApplicationController
       redirect_to [@course, @batch]
     else
       @grade_types=[]
-    gpa = Configuration.find_by_config_key("GPA").config_value
-    if gpa == "1"
-      @grade_types << "GPA"
-    end
-    cwa = Configuration.find_by_config_key("CWA").config_value
-    if cwa == "1"
-      @grade_types << "CWA"
-    end
+      gpa = Configuration.find_by_config_key("GPA").config_value
+      if gpa == "1"
+        @grade_types << "GPA"
+      end
+      cwa = Configuration.find_by_config_key("CWA").config_value
+      if cwa == "1"
+        @grade_types << "CWA"
+      end
       render 'new'
     end
   end
 
   def edit
-    @grade_types=[]
-    gpa = Configuration.find_by_config_key("GPA").config_value
-    if gpa == "1"
-      @grade_types << "GPA"
-    end
-    cwa = Configuration.find_by_config_key("CWA").config_value
-    if cwa == "1"
-      @grade_types << "CWA"
-    end
   end
 
   def update
@@ -233,6 +215,15 @@ class BatchesController < ApplicationController
     end
   end
 
+  def batches_ajax
+    if request.xhr?
+      @course = Course.find_by_id(params[:course_id]) unless params[:course_id].blank?
+      @batches = @course.batches.active if @course
+      if params[:type]=="list"
+        render :partial=>"list"
+      end
+    end
+  end
   private
   def init_data
     @batch = Batch.find params[:id] if ['show', 'edit', 'update', 'destroy'].include? action_name

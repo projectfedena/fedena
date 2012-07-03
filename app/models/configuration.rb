@@ -76,6 +76,28 @@ class Configuration < ActiveRecord::Base
       conf_hash
     end
 
+    def get_grading_types
+      grading_types = Course::GRADINGTYPES
+      types= all(:conditions=>{:config_key=>grading_types.values, :config_value=>"1"},:group=>:config_key)
+      grading_types.keys.select{|k| types.collect(&:config_key).include? grading_types[k]}      
+    end
+    
+    def set_grading_types(updates)
+      #expects an array of integers types
+      grading_types = Course::GRADINGTYPES
+      deletions = grading_types.keys - updates
+      updates.each do |t|
+        find_or_create_by_config_key(grading_types[t]).update_attribute(:config_value, 1)
+      end
+      deletions.each do |t|
+        find_or_create_by_config_key(grading_types[t]).update_attribute(:config_value, 0)
+      end
+    end
+    
+    def cce_enabled?
+      get_config_value("CCE") == "1"
+    end
+
   end
 
 end

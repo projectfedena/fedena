@@ -17,10 +17,13 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
+<% content_for :head do  %>
+  <%= stylesheet_link_tag 'exam/index.css' %>
+<% end %>
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
-  <h1><%= t('exams_text') %></h1>
-  <h3>Report Center</h3>
+  <h1>CCE Settings</h1>
+  <h3>Basic Settings</h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -33,19 +36,28 @@
   <% end %>
 
   <div class="box">
-    <% if Configuration.find_by_config_key("GPA").config_value=="1" or Configuration.find_by_config_key("CWA").config_value=="1" %>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to 'Ranking Level Report' , :controller=> "exam",:action=>'ranking_level_report' %></div>
-        <div class="link-descr">Generates reports based on different Ranking Levels</div>
-      </div>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to 'View Transcripts' , :controller=> "exam",:action=>'transcript' %></div>
-        <div class="link-descr">Generates Student Transcripts</div>
-      </div>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to 'Combined Reports' , :controller=> "exam",:action=>'combined_report' %></div>
-        <div class="link-descr">Generates Combined Student Reports</div>
-      </div>
-    <% end %>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "CCE Grade Sets",:controller=>'cce_grade_sets' %></div>
+      <div class="link-descr">Manage Grade sets and grades.</div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "CCE Exam Categories",:controller=>'cce_exam_categories' %></div>
+      <div class="link-descr">Manage CCE Exam Categories</div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "CCE Weightages",:controller=>'cce_weightages' %></div>
+      <div class="link-descr">Manage CCE Weightages.</div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "Assign Weightages",:controller=>'cce_weightages',:action=>"assign_weightages" %></div>
+      <div class="link-descr">Assign Weightages to Courses.</div>
+    </div>
+
+    <div class="extender"></div>
   </div>
 </div>
+

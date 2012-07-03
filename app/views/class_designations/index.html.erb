@@ -7,45 +7,19 @@
   </div>
 </div>
 <div id="page-yield">
+  <div class="course-select">
+    <div class="label-field-pair">
+      <label for="student_course">Select a Course :</label>
+      <div  class="text-input-bg">
+        <%= select :class_designation, :course_id,
+          Course.active.map {|b| [b.full_name, b.id]},
+          {:prompt => "select a course"},{:onChange => "#{remote_function(:url => {:action => "load_class_designations"}, :with => "'course_id='+value")}"}%></div></div>
+  </div>
 
   <div id="flash"></div>
 
   <div id="errors">
     <%= error_messages_for 'class_designation' %>
   </div>
-  <div id="class_form">
-    <% remote_form_for :class_designation,:url=>{:action=>"create_class_designation"} do |c| %>
-
-      <div id="form-content">
-        <div class="label-field-pair">
-          <label for="name">Name</label>
-          <div class="text-input-bg"><%= c.text_field :name %></div>
-        </div>
-        <% if Configuration.find_by_config_key("GPA").config_value=="1" %>
-          <div class="label-field-pair">
-            <label for="gpa">CGPA</label>
-            <div class="text-input-bg"><%= c.text_field :cgpa %></div>
-          </div>
-        <% end %>
-        <% if Configuration.find_by_config_key("CWA").config_value=="1" %>
-          <div class="label-field-pair">
-            <label for="marks">Marks</label>
-            <div class="text-input-bg"><%= c.text_field :marks %></div>
-          </div>
-        <% end %>
-
-        <div class="extender"></div>
-
-        <div id="submit-button">
-          <%=submit_tag("► #{t('create_text')}") %>
-        </div>
-
-
-      </div>
-    <% end %>
-  </div>
-  <div id="category-list">
-    <%= render :partial=>"class_designations" %>
-  </div>
-
+  <div id="course_class_designations"></div>
 </div>

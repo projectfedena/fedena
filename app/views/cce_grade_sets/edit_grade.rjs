@@ -1,0 +1,2 @@
+page.replace_html 'modal-box', :partial => 'edit_grade'
+page << "Modalbox.show($('modal-box'), {title: 'Edit Grade', width: 500});"

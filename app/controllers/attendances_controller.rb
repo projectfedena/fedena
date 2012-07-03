@@ -22,7 +22,15 @@ class AttendancesController < ApplicationController
   before_filter :only_assigned_employee_allowed, :except => 'index'
   before_filter :only_privileged_employee_allowed, :only => 'index'
   def index
-    @batches = Batch.active
+    if current_user.admin?
+      @batches = Batch.all(:conditions=>{:is_active=>true, :is_deleted=>false},:include=>:course)
+    elsif @current_user.privileges.map{|p| p.name}.include?('StudentAttendanceRegister')
+      @batches = Batch.all(:conditions=>{:is_active=>true, :is_deleted=>false},:include=>:course)
+    elsif @current_user.employee?
+      @batches=Batch.find_all_by_employee_id @current_user.employee_record.id
+      @batches+=@current_user.employee_record.subjects.collect{|b| b.batch}
+      @batches=@batches.uniq unless @batches.empty?
+    end
     @config = Configuration.find_by_config_key('StudentAttendanceType')
   end
 
@@ -30,7 +38,11 @@ class AttendancesController < ApplicationController
     @batch = Batch.find(params[:batch_id])
     @subjects = @batch.subjects
     if @current_user.employee? and @allow_access ==true and !@current_user.privileges.map{|m| m.name}.include?("StudentAttendanceRegister")
-      @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
+      if @batch.employee_id.to_i==@current_user.employee_record.id
+        @subjects= @batch.subjects
+      else
+        @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
+      end
     end
     render(:update) do |page|
       page.replace_html 'subjects', :partial=> 'subjects'

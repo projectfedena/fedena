@@ -524,7 +524,7 @@ body > #content_wrapper {
     padding: 15px 0 0 10px;
 }
 #MB_frame .label-field-pair { margin: 5px 0; width: 450px; }
-#MB_frame .submit-button {
+#MB_frame .submit-button, .submit-button {
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px;
     background: #27292B;
@@ -547,9 +547,10 @@ body > #content_wrapper {
     -webkit-border-radius:10px;
     background : #eee;
     border : 1px solid #c6c6c6;
-    margin : 5px 10px 0 5px;
+    margin : 5px 10px 0 10px;
     padding: 5px;
-    width: 80px;
+    width: 215px;
+    height: 28px;
 }
 #MB_frame .head_label{
     position:absolute;
@@ -890,7 +891,7 @@ tr.tr-blank{
     color:#bb0000;
     font-weight: bold;
     font-size: 13px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 .bread_crumb a {
    color:#000;
@@ -1016,4 +1017,87 @@ height: 14px;
 }
 textarea{
     font-family: Arial !important;
+}
+
+#category-list {
+    clear : both;
+    padding : 10px 0 40px 0px;
+    width:570px;
+    margin:0px auto;
+}
+
+#category-list .listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    min-height : 1.5em; width : 33em;
+    overflow: auto;
+    list-style-type : none;
+    padding : 0.5em 0 0 3em;
+}
+
+#category-list .listodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    min-height : 1.5em; width : 33em;
+    overflow: auto;
+    list-style-type : none;
+    padding : 0.5em 0 0 3em;
+}
+
+#category-list li.heading {
+    background : none;
+    font-weight : bold;
+    list-style-type : none;
+    color : #444;
+    height : 1.5em; width : 30em;
+    padding : 0.5em 0 0 5em;
+}
+#category-list li div {
+    float : left;
+}
+#category-list li div.category-name {
+/*    width : 350px;*/
+    font-weight: bold;
+    font-size:13px;
+}
+#category-list li div.category-edit,
+#category-list li div.category-delete {
+    font-size : 0.9em;
+    width : 88px;
+
+}
+#category-list li div a {
+    color : #000;
+    font-size:14px;
+    text-decoration: none;
+}
+#category-list li div a:hover {
+    color : #d00;
+    text-decoration: underline;
+}
+
+.listheading {
+    background:none repeat scroll 0 0 #BECFFB;
+    border-bottom:2px solid #BECFFB;
+    color:#444444;
+    height:1.5em;
+    list-style-type:none;
+    padding: 5px 0 0 48px;
+    width:528px;
+    }
+
+.heading-name {
+    width : 350px;
+    font-size:13px;
+    font-weight:bold;
+}
+.heading-edit{
+    font-weight: bold;
+    font-size: 13px;
+    width: 65px;
+}
+.submit-button{
+    margin-top: 20px;
 }

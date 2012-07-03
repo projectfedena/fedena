@@ -1,0 +1,17 @@
+<div id="page-yield">
+  <div class="box">
+    <% form_remote_for @fa_criteria,:url=>{:controller=>"fa_groups",:action=>'update_fa_criteria',:id=>@fa_criteria.id} do |f| %>
+      <div id="form-errors"></div>
+      <%= error_messages_for :fa_group %>
+      <div class="label-field-pair">
+        <label for="category_name">Name</label>
+        <div class="text-input-bg"><%= f.text_field :fa_name %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">Description</label>
+        <div class="text-input-bg"><%= f.text_field :desc %></div>
+      </div>
+      <%= f.submit "", :value => "► Update", :class => "submit_button" %>
+    <% end %>
+  </div>
+</div>

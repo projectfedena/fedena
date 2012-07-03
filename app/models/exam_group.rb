@@ -24,6 +24,7 @@ class ExamGroup < ActiveRecord::Base
 
   has_many :exams, :dependent => :destroy
   before_destroy :removable?
+  belongs_to :cce_exam_category
 
   accepts_nested_attributes_for :exams
 
@@ -170,6 +171,10 @@ class ExamGroup < ActiveRecord::Base
       max_total = max_total + exam.maximum_marks unless exam_score.nil?
     end
     result = [total_marks,max_total]
+  end
+
+  def course
+    batch.course if batch
   end
 
 end

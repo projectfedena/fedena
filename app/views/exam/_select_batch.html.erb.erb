@@ -1,0 +1,3 @@
+<div class="label-field-pair">
+        <label for="student_course">Select a Batch :</label>
+        <div  class="text-input-bg"><%= select :report, :batch_id, @batches.map {|g| [g.name, g.id]}, {:prompt => "Select a Batch"}%></div></div>

@@ -1803,6 +1803,8 @@ es: # locale
   transport_admin_privilege: "Transporte de administración"
   task_management_privilege: "Tarea de gestión"
   waiting_to_approve: "Esperando a aprobar"
+  no_students_in_batch: "No, los estudiantes presentes en este lote"
+  students_in_batch: "Los estudiantes en este proceso por lotes"
 
 
 #  modified timetable and timetable entries

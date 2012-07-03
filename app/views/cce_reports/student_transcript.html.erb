@@ -1,0 +1,81 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+<% content_for :head do  %>
+    <%= stylesheet_link_tag "cce_reports/student_wise_report"  %>
+<% end %>
+
+<div id="content-header">
+  <img src="/images/examination/show_exam.png" alt="Exam" />
+  <h1>Student Transcript</h1>
+  <h3>CCE Report</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+  </ul>
+</div>
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  
+  <div id="batch_list">
+    <% unless @batches.empty?  %>
+    <div class="list_name">
+      All the batches of student
+      <%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader", :style =>"display: none;" ) %>
+    </div>
+    <ul class="student_list">
+      <% @batches.each do |b| %>
+        <li class="student_names">
+          <a href="#student_list" id="<%=b.id%>"  class="student-link <%= "active-link" if b.id == @batch.id %>" > <%= b.full_name %></a>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <%= t("no_students_in_batch")  %>
+  <% end %>
+  </div>
+  <div id="report">
+    <%= render  :partial=>"student_report" %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function set_active(){
+    $$('.active-link').each(function(e){
+      e.removeClassName('active-link');
+    });
+    this.addClassName('active-link')
+  }
+  function draw_report(){
+    Element.show('loader')
+    new Ajax.Request('/cce_reports/student_transcript/<%= @student.id %> ',
+    {asynchronous:true, evalScripts:true,
+      parameters:'batch_id='+this.id+'&type=<%= @type %>',onSuccess:function(request){Element.hide('loader')}
+    })
+  }
+  document.observe("dom:loaded", function() {
+    $$('.student-link').invoke('observe','click',draw_report);
+    $$('.student-link').invoke('observe','click',set_active);
+  });
+</script>

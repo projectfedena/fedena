@@ -1,0 +1,52 @@
+<% if @student.present? %>
+  <% form_remote_for :assessment_scores, :url=>{:action=>"observation_scores",:batch_id=>@batch.id,:observation_group_id=>@observation_group.id,:student_id=>@student.id} do |form| %>
+    <div class="table_area">
+      <div class="custom_header">
+        <span class="student"><%= "#{@student.full_name} - #{@student.admission_no}" %></span>
+      </div>
+      <table align="center" width="100%" cellpadding="1" cellspacing="1">
+        <thead>
+          <tr class="tr-head">
+    <%#*<td class="vert"></td>%>
+            <td class="fixed">Descriptive Indicator</td>
+            <td class="score">Grade</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @observations.each do |ob| %>
+            <% indicators=ob.descriptive_indicators %>
+            <% if indicators.present? %>
+              <tr class="tr-head">
+                <td colspan="3" class="vert" >
+                  <%= ob.name %>
+                </td>
+              </tr>
+              <% indicators.each_with_index do |di,i| %>
+                <tr class="tr-<%= cycle('odd', 'even') %>">
+                  <td class="fixed">
+                    <%= di.name %>
+                  </td>
+                  <td class="score">
+                    <%= select_tag "grade[#{di.id}]",options_for_select([["",""]]+@grading_levels.map{|m| [m.name,m.grade_point.to_i]},(@scores[@student.id][di.id].present? ? @scores[@student.id][di.id].first.grade_points : "")) %>
+                  </td>
+                </tr>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= submit_tag "", :value => "► Save", :class => "submit_button" %>
+  <% end %>
+<% else %>
+  Select a student
+<% end %>
+<script>
+  function draw_report(){
+    Element.show('loader')
+    new Ajax.Request('/assessment_scores/observation_scores',
+    {asynchronous:true, evalScripts:true,
+      parameters:'student='+this.id+'&batch_id=<%= @batch.id %>'+'&observation_group_id=<%= @observation_group.id %>',onSuccess:function(request){Element.hide('loader')}
+    })
+  }
+</script>

@@ -22,7 +22,15 @@ class AttendanceReportsController < ApplicationController
   before_filter :only_assigned_employee_allowed
 
   def index
-    @batches = Batch.active
+    if current_user.admin?
+      @batches = Batch.all(:conditions=>{:is_active=>true, :is_deleted=>false},:include=>:course)
+    elsif @current_user.privileges.map{|p| p.name}.include?('StudentAttendanceView')
+      @batches = Batch.all(:conditions=>{:is_active=>true, :is_deleted=>false},:include=>:course)
+    elsif @current_user.employee?
+      @batches=Batch.find_all_by_employee_id @current_user.employee_record.id
+      @batches+=@current_user.employee_record.subjects.collect{|b| b.batch}
+      @batches=@batches.uniq unless @batches.empty?
+    end
     @config = Configuration.find_by_config_key('StudentAttendanceType')
   end
 
@@ -34,7 +42,11 @@ class AttendanceReportsController < ApplicationController
       if role_symb.include?(:student_attendance_view) or role_symb.include?(:student_attendance_register)
         @subjects= Subject.find(:all,:conditions=>"batch_id = '#{@batch.id}' ")
       else
-        @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
+        if @batch.employee_id.to_i==@current_user.employee_record.id
+          @subjects= @batch.subjects
+        else
+          @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
+        end
       end
     else
       @subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>'is_deleted = false')

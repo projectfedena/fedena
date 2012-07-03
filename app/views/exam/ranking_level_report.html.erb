@@ -32,12 +32,6 @@
   <div class="box">
 
     <% form_for :ranking_level_report, :url=>{:action=>'student_ranking_level_report'} do |x| %>
-      <div class="label-field-pair">
-        <label for="student_course">Select Ranking Level :</label>
-        <div  class="text-input-bg">
-          <%= select :ranking_level_report, :ranking_level_id,
-            @ranking_levels.map {|b| [b.name, b.id]},
-            {:prompt => "select a ranking level"}%></div></div>
     <div class="label-field-pair">
         <label for="student_course">Select a Mode :</label>
         <div  class="text-input-bg">

@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  student: 
+  exam: 
+  marks: 9.99
+  grading_level_id: 1
+  remarks: MyString
+  is_failed: false
+
+two:
+  student: 
+  exam: 
+  marks: 9.99
+  grading_level_id: 1
+  remarks: MyString
+  is_failed: false

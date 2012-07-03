@@ -27,7 +27,7 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_course_rank_pdf", :batch_group_id=>@batch_group.id},:target => '_blank', :class=> 'user_button' %></li>
+    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_course_rank_pdf", :course_id=>@course.id, :batch_group_id=>params[:course_rank][:batch_group_id]},:target => '_blank', :class=> 'user_button' %></li>
   </ul>
 </div>
 
@@ -38,7 +38,7 @@
   <% end %>
 
   <div class="box">
-    <h4>Overall Rankings : <%= @batch_group.name %></h4>
+    <h4>Overall Rankings : <%= @batch_group.present? ? @batch_group.name : @course.full_name %></h4>
     <div id="score-table">
       <% unless @students.empty? %>
         <% unless @grouped_exams.empty? %>
@@ -59,7 +59,7 @@
               <td>Sl No.</td>
               <td><%= t('name') %></td>
               <td>Batch</td>
-              <td>Roll No.</td>
+              <td>Adm No.</td>
               <td>Marks</td>
               <td>Rank</td>
             </tr>
@@ -68,7 +68,7 @@
                 <td class="col-1"><%= i+1 %></td>
                 <td class="col-2"><%= student.full_name %></td>
                 <td class="col-2"><%= student.batch.full_name %></td>
-                <td class="col-1"><%= student.class_roll_no.present? ? student.class_roll_no : "-" %></td>
+                <td class="col-1"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
                 <% m = 0 %>
                 <% student_scores.each do|student_score| %>
                   <% if student_score[0]==student.id %>

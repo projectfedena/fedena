@@ -1,0 +1,26 @@
+<div id="page-yield">
+  <div class="box">
+    <% form_remote_for @weightage,:url=>{:controller=>"cce_weightages",:action=>'create'} do |f| %>
+      <div id="form-errors"></div>
+      <%= error_messages_for :weightage %>
+      <div class="label-field-pair">
+        <label for="category_name"><%= t('weightage_text') %></label>
+        <div class="text-input-bg"><%= f.text_field :weightage %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name"><%= t('criteria_text') %></label>
+        <div class="text-input-bg">
+          <%= f.select :criteria_type,@criteria  %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name"><%= t('exam_category') %></label>
+        <div class="text-input-bg">
+          <%= f.select :cce_exam_category_id ,@exam_categories.map{|m| [m.name,m.id]} ,:prompt=>t("select_a_category") %>
+        </div>
+      </div>
+      <%= f.submit "", :value => "► Create", :class => "submit_button" %>
+    <% end %>
+    <div class="extender"></div>
+  </div>
+</div>

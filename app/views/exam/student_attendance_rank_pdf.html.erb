@@ -54,7 +54,7 @@
             <tr class="table-header">
               <td>Sl No.</td>
               <td><%= t('name') %></td>
-              <td>Roll No.</td>
+              <td>Adm No.</td>
               <td>Working Days</td>
               <td>Attended</td>
               <td>Percentage</td>
@@ -71,7 +71,7 @@
                 <tr class="table-header">
                   <td>Sl No.</td>
                   <td><%= t('name') %></td>
-                  <td>Roll No.</td>
+                  <td>Adm No.</td>
                   <td>Working Days</td>
                   <td>Attended</td>
                   <td>Percentage</td>
@@ -81,7 +81,7 @@
               <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
                 <td class="col-pdf"><%= ind+1 %></td>
                 <td class="col-pdf"><%= student.full_name %></td>
-                <td class="col-pdf"><%= student.class_roll_no.present? ? student.class_roll_no : "-" %></td>
+                <td class="col-pdf"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
                 <td class="col-pdf"><%= working_days %></td>
 
                 <% student_percentages.each do|student_percentage| %>

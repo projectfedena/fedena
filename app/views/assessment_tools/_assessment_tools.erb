@@ -1,0 +1,31 @@
+<% unless @assessment_tools.empty?  %>
+  <table align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td><%= t("descriptive_indicators") %></td>
+      <td><%= t("desc_text") %></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <% @assessment_tools.each do |g| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-1">
+          <%= g.name %>
+        </td>
+        <td class="col-2">
+          <%= g.desc %>
+        </td>
+        <td class="col-3">
+          <div class="category-edit">
+            <%= link_to_remote "#{t("edit_text")}", :url => { :action => 'edit', :id => g.id },:method=>:get %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <%= t('no_assessment_tools') %>
+<% end %>

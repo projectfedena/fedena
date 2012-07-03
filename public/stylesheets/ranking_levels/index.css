@@ -127,3 +127,7 @@ p{
 #ranking_level_full_course{
     margin-top:11px;
 }
+.course-select{
+    width:500px;
+    margin:20px auto;
+}

@@ -1,0 +1,21 @@
+sqlite3:
+  adapter: sqlite3
+  database: test.sqlite3.db
+
+sqlite3mem:
+  adapter: sqlite3
+  database: ":memory:"
+
+postgresql:
+  adapter: postgresql
+  username: postgres
+  password: postgres
+  database: has_and_belongs_to_many_with_deferred_save_test
+  min_messages: ERROR
+
+mysql:
+  adapter: mysql
+  host: localhost
+  username: root
+  password:
+  database: has_and_belongs_to_many_with_deferred_save_test

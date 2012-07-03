@@ -1,0 +1,26 @@
+<% form_remote_for @course,:url=>{:controller=>:cce_weightages,:action=>:update_course_weightages,:id=>@course.id} do |f| %>
+  <ul id="category-list">
+    <li class="listheading">
+      <div class="heading-name"><%= t("select_weightages") %></div>
+      <div class="heading-edit">
+  <%#= "points" %>
+      </div>
+    </li>
+    <% @weightages.each do |g| %>
+      <li class="list<%=cycle('odd', 'even')%>">
+        <label>
+          <div class="category-edit">
+            <%= check_box_tag "course[weightage_ids][]", g.id, @course.cce_weightages.include?(g)%>
+          </div>
+          <div class="category-name">
+            <%= "#{g.weightage}(#{g.criteria_type})" %>
+          </div>
+          <div class="category-name">
+            <%= g.cce_exam_category.name %>
+          </div>
+        </label>
+      </li>
+    <% end %>
+  </ul>
+  <%= f.submit "", :value => "► #{t('save')}", :class => "submit_button" %>
+<% end %>

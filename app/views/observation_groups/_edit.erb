@@ -1,0 +1,34 @@
+<div id="page-yield">
+  <div class="box">
+    <% form_remote_for @obs_group,:url=>{:controller=>"observation_groups",:id=>@obs_group.id,:action=>'update'} do |f| %>
+      <div id="form-errors"></div>
+      <%= error_messages_for :obs_group %>
+      <div class="label-field-pair">
+        <label for="category_name">Name</label>
+        <div class="text-input-bg"><%= f.text_field :name %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">Header Name</label>
+        <div class="text-input-bg"><%= f.text_field :header_name %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">Description</label>
+        <div class="text-input-bg"><%= f.text_field :desc %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">CCE Grade Set</label>
+        <div class="text-input-bg">
+          <%= f.select :cce_grade_set_id ,@grade_sets.map{|m| [m.name,m.id]} ,:prompt=>"Select a grade set" %>
+        </div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">Type</label>
+        <div class="text-input-bg">
+          <%= f.select :observation_kind ,@observation_kinds.map{|m| [m[1],m[0]]},:prompt=>"Select an assessment type" %>
+        </div>
+      </div>
+      <%= f.submit "", :value => "► Update", :class => "submit_button" %>
+    <% end %>
+    <div class="extender"></div>
+  </div>
+</div>

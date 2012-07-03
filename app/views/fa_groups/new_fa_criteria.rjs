@@ -1,0 +1,2 @@
+page.replace_html 'modal-box', :partial => 'new_fa_criteria'
+page << "Modalbox.show($('modal-box'), {title: 'New FA Criteria', width: 500});"

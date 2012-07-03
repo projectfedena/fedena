@@ -1,0 +1,18 @@
+<div id="page-yield">
+  <div class="box">
+    <% form_remote_for :observation,:url=>{:controller=>"observation_groups",:id=>@observation.id,:action=>'update_observation'} do |f| %>
+      <div id="form-errors"></div>
+      <%= error_messages_for :observation %>
+      <div class="label-field-pair">
+        <label for="category_name">Name</label>
+        <div class="text-input-bg"><%= f.text_field :name %></div>
+      </div>
+      <div class="label-field-pair">
+        <label for="category_name">Description</label>
+        <div class="text-input-bg"><%= f.text_field :desc %></div>
+      </div>
+      <%= f.hidden_field :observation_group_id,:value=>@obs_group.id %>
+      <%= f.submit "", :value => "► Update", :class => "submit_button" %>
+    <% end %>
+  </div>
+</div>

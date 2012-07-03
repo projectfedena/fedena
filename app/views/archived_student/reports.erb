@@ -57,6 +57,9 @@
         <% unless @grouped_exams.empty? %>
         <li><%= link_to "#{t('final_report')}(#{t('exam_goruped')})",{ :action=>'generated_report4',:student=>@student.id,:type=>'grouped'} %></li>
         <li><%= link_to "#{t('compare_past')}(#{t('exam_goruped')})", {  :action => 'previous_years_marks_overview',:student=>@student.id,:type=>'grouped' } %></li>
+        <% if Configuration.cce_enabled? %>
+            <li><%= link_to "CCE Transcript Report", { :controller => 'cce_reports', :action => 'student_transcript',:id=>@student.id, :type=>"former" }%></li>
+          <% end %>
         <% else %>
         <li><%= link_to "#{t('final_report')}",{ :action=>'generated_report4',:student=>@student.id,:type=>'general'} %></li>
         <li><%= link_to "#{t('compare_past')}", {  :action => 'previous_years_marks_overview',:student=>@student.id,:type=>'general' } %></li>

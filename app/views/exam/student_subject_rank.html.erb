@@ -42,7 +42,7 @@
     <div id="score-table">
       <table id="listing" width="100%" cellpadding="1" cellspacing="1">
         <tr class="tr-head">
-          <td>Roll No.</td>
+          <td>Adm No.</td>
           <td><%= t('name') %></td>
           <% ranks = [] %>
           <% @exam_groups.each do |exam_group| %>
@@ -55,7 +55,7 @@
         </tr>
         <% @students.each do |student| %>
           <tr class="tr-<%= cycle('odd', 'even') %>">
-            <td class="col-1"><%= student.class_roll_no.present? ? student.class_roll_no : "-" %></td>
+            <td class="col-1"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
             <td class="col-2"><%= student.full_name %></td>
             <% @exam_groups.each do |exam_group| %>
             <% mark_list = [] %>
@@ -68,7 +68,7 @@
                 <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
                 <% exam_score = ExamScore.find_by_student_id(student.id,:conditions=>{:exam_id=>exam.id}) unless exam.nil? %>
                 <% unless exam.nil? %>
-                  <%= exam_score.nil? ? '-' : (mark_list.index(exam_score.marks) + 1) %>
+                  <%= exam_score.nil? ? '-' : (exam_score.marks.nil? ? '-' : (mark_list.index(exam_score.marks) + 1)) %>
                 <% else %>
                   <%= "#{t('n_a')}" %>
                 <% end %>

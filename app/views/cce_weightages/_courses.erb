@@ -1,0 +1,19 @@
+<% unless @courses.empty?  %>
+  <table align="center" width="100%" cellpadding="1" cellspacing="1">
+    <tr class="tr-head">
+      <td><%= t("courses_text") %></td>
+    </tr>
+    <tr>
+      <td></td>
+    </tr>
+    <% @courses.each do |g| %>
+      <tr class="tr-<%= cycle('odd', 'even') %>">
+        <td class="col-1">
+          <%= g.full_name %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  No courses assigned
+<% end %>

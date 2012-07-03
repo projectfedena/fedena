@@ -18,14 +18,20 @@
 #under the License. -%>
 
 <div id="content-header">
-<%= image_tag("/images/examination/show_exam.png") %>
+  <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
   <h3><%= t('result_entry') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
-
+<div id="inner-tab-menu">
+  <ul>
+    <% if (@batch.cce_enabled? and  permitted_to? :exam_fa_groups,:assessment_scores and @exam.exam_group.cce_exam_category.present?) %>
+      <li><%= link_to t("fa_groups_text"),:controller=>:assessment_scores,:action=>"exam_fa_groups",:id=>@exam.id %></li>
+    <% end %>
+  </ul>
+</div>
 <div id="page-yield">
 
   <% unless flash[:notice].nil? %>
@@ -79,8 +85,8 @@
                 <div class="text-input-bg2">
                   <%= text_field_tag "exam[#{student.id}][remarks]", @exam_score.remarks, :size => '40' %></div></div></td>
             <% unless @exam_group.exam_type == 'Marks' %>
-                <td class="col-1"><%= @exam_score.grading_level %></td>
-                <% end %>
+              <td class="col-1"><%= @exam_score.grading_level %></td>
+            <% end %>
           </tr>
 
         <% end %>

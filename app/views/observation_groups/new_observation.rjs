@@ -1,0 +1,2 @@
+page.replace_html 'modal-box', :partial => 'new_observation'
+page << "Modalbox.show($('modal-box'), {title: 'New Coscholastic Criteria', width: 500});"

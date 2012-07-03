@@ -97,7 +97,7 @@ class ExamScore < ActiveRecord::Base
     unless exam_type == 'Grades'
       unless self.marks.nil?
         percent_score = self.marks.to_i * 100 / self.exam.maximum_marks
-        grade = GradingLevel.percentage_to_grade(percent_score, self.student.batch_id)
+        grade = GradingLevel.percentage_to_grade(percent_score, self.exam.exam_group.batch_id)
         self.grading_level_id = grade.id if exam_type == 'MarksAndGrades'
       else
         self.grading_level_id = nil

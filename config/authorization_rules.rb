@@ -6,6 +6,12 @@ authorization do
     has_permission_on [:exam],
       :to => [
       :index,
+      :previous_batch_exams,
+      :list_inactive_batches,
+      :list_inactive_exam_groups,
+      :previous_exam_marks,
+      :edit_previous_marks,
+      :update_previous_marks,
       :create_exam,
       :update_batch,
       :create_examtype,
@@ -41,6 +47,8 @@ authorization do
       :student_attendance_rank,
       :student_attendance_rank_pdf,
       :generate_reports,
+      :generate_previous_reports,
+      :select_inactive_batches,
       :settings,
       :report_center,
       :gpa_cwa_reports,
@@ -52,6 +60,7 @@ authorization do
       :student_transcript,
       :student_transcript_pdf,
       :combined_report,
+      :load_levels,
       :student_combined_report,
       :student_combined_report_pdf,
       :load_batch_students,
@@ -148,6 +157,7 @@ authorization do
     has_permission_on [:ranking_levels],
       :to => [
       :index,
+      :load_ranking_levels,
       :create_ranking_level,
       :edit_ranking_level,
       :update_ranking_level,
@@ -157,11 +167,136 @@ authorization do
     has_permission_on [:class_designations],
       :to => [
       :index,
+      :load_class_designations,
       :create_class_designation,
       :edit_class_designation,
       :update_class_designation,
       :delete_class_designation
-      ]
+    ]
+    has_permission_on [:descriptive_indicators],
+      :to=>[
+      :index,
+      :show,
+      :new,
+      :create,
+      :edit,
+      :update,
+      :destroy,
+      :reorder,
+      :destroy_indicator
+    ]
+    has_permission_on [:fa_criterias],
+      :to=>[
+      :index,
+      :show
+    ]
+    has_permission_on [:fa_groups],
+      :to=>[
+      :index,
+      :new,
+      :create,
+      :edit,
+      :update,
+      :show,
+      :destroy,
+      :assign_fa_groups,
+      :select_subjects,
+      :select_fa_groups,
+      :update_subject_fa_groups,
+      :new_fa_criteria,
+      :create_fa_criteria,
+      :edit_fa_criteria,
+      :update_fa_criteria,
+      :destroy_fa_criteria,
+      :reorder
+
+    ]
+    has_permission_on [:observation_groups],
+      :to=>[
+      :index,
+      :new,
+      :create,
+      :edit,
+      :update,
+      :show,
+      :destroy,
+      :new_observation,
+      :create_observation,
+      :edit_osbervation,
+      :update_observation,
+      :destroy_observation,
+      :assign_courses,
+      :select_observation_groups,
+      :update_course_obs_groups,
+      :reorder
+    ]
+    has_permission_on [:observations],
+      :to=>[
+      :show
+    ]
+    has_permission_on [:assessment_scores],
+      :to=>[
+      :exam_fa_groups,
+      :fa_scores,
+      :observation_groups,
+      :observation_scores
+    ]
+    has_permission_on [:cce_exam_categories],
+      :to=>[
+      :index,
+      :new,
+      :create,
+      :show,
+      :edit,
+      :update,
+      :destroy
+    ]
+    has_permission_on [:cce_grade_sets],
+      :to=>[
+      :index,
+      :new,
+      :create,
+      :edit,
+      :update,
+      :destroy,
+      :show,
+      :index,
+      :new_grade,
+      :create_grade,
+      :edit_grade,
+      :update_grade,
+      :destroy_grade
+    ]
+    has_permission_on [:cce_reports],
+      :to=>[
+      :index,
+      :create_reports,
+      :student_wise_report,
+      :student_report_pdf,
+      :student_transcript
+    ]
+    has_permission_on [:cce_settings],
+      :to=>[
+      :index,
+      :basic,
+      :scholastic,
+      :co_scholastic
+    ]
+    has_permission_on [:cce_weightages],
+      :to=>[
+      :index,
+      :new,
+      :create,
+      :show,
+      :edit,
+      :update,
+      :destroy,
+      :assign_courses,
+      :assign_weightages,
+      :select_weightages,
+      :update_course_weightages
+    ]
+
   end
 
   role :enter_results  do
@@ -169,6 +304,12 @@ authorization do
     has_permission_on [:exam],
       :to => [
       :index,
+      :previous_batch_exams,
+      :list_inactive_batches,
+      :list_inactive_exam_groups,
+      :previous_exam_marks,
+      :edit_previous_marks,
+      :update_previous_marks,
       :create_exam,
       :update_batch,
       :exam_wise_report,
@@ -189,8 +330,6 @@ authorization do
       :attendance_rank,
       :student_attendance_rank,
       :student_attendance_rank_pdf,
-      :generate_reports,
-      :settings,
       :report_center,
       :gpa_cwa_reports,
       :list_batch_groups,
@@ -201,6 +340,7 @@ authorization do
       :student_transcript,
       :student_transcript_pdf,
       :combined_report,
+      :load_levels,
       :student_combined_report,
       :student_combined_report_pdf,
       :load_batch_students,
@@ -258,6 +398,22 @@ authorization do
       :show,
       :save_additional_scores
     ]
+    has_permission_on [:assessment_scores],
+      :to=>[
+      :exam_fa_groups,
+      :fa_scores,
+      :observation_groups,
+      :observation_scores
+    ]
+    has_permission_on [:cce_reports],
+      :to=>[
+      :index,
+      :create_reports,
+      :student_wise_report,
+      :student_report_pdf,
+      :student_transcript
+    ]
+
   end
 
   role :view_results  do
@@ -281,8 +437,6 @@ authorization do
       :attendance_rank,
       :student_attendance_rank,
       :student_attendance_rank_pdf,
-      :generate_reports,
-      :settings,
       :report_center,
       :gpa_cwa_reports,
       :list_batch_groups,
@@ -293,6 +447,7 @@ authorization do
       :student_transcript,
       :student_transcript_pdf,
       :combined_report,
+      :load_levels,
       :student_combined_report,
       :student_combined_report_pdf,
       :load_batch_students,
@@ -313,6 +468,14 @@ authorization do
       :final_report_type,
       :generated_report4,
       :generated_report4_pdf
+    ]
+    has_permission_on [:cce_reports],
+      :to=>[
+      :index,
+      :create_reports,
+      :student_wise_report,
+      :student_report_pdf,
+      :student_transcript
     ]
   end
 
@@ -1128,7 +1291,8 @@ authorization do
       :assign_tutor,
       :update_employees,
       :assign_employee,
-      :remove_employee
+      :remove_employee,
+      :batches_ajax
     ]
     has_permission_on [:batch_transfers],
       :to => [
@@ -1211,6 +1375,7 @@ authorization do
     has_permission_on [:ranking_levels],
       :to => [
       :index,
+      :load_ranking_levels,
       :create_ranking_level,
       :edit_ranking_level,
       :update_ranking_level,
@@ -1220,11 +1385,12 @@ authorization do
     has_permission_on [:class_designations],
       :to => [
       :index,
+      :load_class_designations,
       :create_class_designation,
       :edit_class_designation,
       :update_class_designation,
       :delete_class_designation
-      ]
+    ]
     has_permission_on [:exam],
       :to => [
       :index,
@@ -1249,6 +1415,8 @@ authorization do
       :student_attendance_rank,
       :student_attendance_rank_pdf,
       :generate_reports,
+      :generate_previous_reports,
+      :select_inactive_batches,
       :settings,
       :report_center,
       :gpa_cwa_reports,
@@ -1260,6 +1428,7 @@ authorization do
       :student_transcript,
       :student_transcript_pdf,
       :combined_report,
+      :load_levels,
       :student_combined_report,
       :student_combined_report_pdf,
       :load_batch_students,
@@ -1283,6 +1452,12 @@ authorization do
       :previous_years_marks_overview,
       :previous_years_marks_overview_pdf,
       :academic_report,
+      :previous_batch_exams,
+      :list_inactive_batches,
+      :list_inactive_exam_groups,
+      :previous_exam_marks,
+      :edit_previous_marks,
+      :update_previous_marks,
       :create_exam,
       :update_batch_ex_result,
       :update_batch,
@@ -1885,6 +2060,129 @@ authorization do
     ]
     has_permission_on [:calendar], :to => [:event_delete]
 
+    has_permission_on [:descriptive_indicators],
+      :to=>[
+      :index,
+      :new,
+      :create,
+      :show,
+      :edit,
+      :update,
+      :destroy,
+      :reorder,
+      :destroy_indicator
+    ]
+    has_permission_on [:fa_criterias],
+      :to=>[
+      :index,
+      :show
+    ]
+    has_permission_on [:fa_groups],
+      :to=>[
+      :index,
+      :new,
+      :create,
+      :edit,
+      :update,
+      :destroy,
+      :show,
+      :assign_fa_groups,
+      :select_subjects,
+      :select_fa_groups,
+      :update_subject_fa_groups,
+      :new_fa_criteria,
+      :create_fa_criteria,
+      :edit_fa_criteria,
+      :update_fa_criteria,
+      :destroy_fa_criteria,
+      :reorder
+
+    ]
+    has_permission_on [:observation_groups],
+      :to=>[
+      :index,
+      :new,
+      :show,
+      :create,
+      :edit,
+      :update,
+      :destroy,
+      :new_observation,
+      :create_observation,
+      :edit_osbervation,
+      :update_observation,
+      :destroy_observation,
+      :assign_courses,
+      :select_observation_groups,
+      :update_course_obs_groups,
+      :reorder
+    ]
+    has_permission_on [:observations],
+      :to=>[
+      :show
+    ]
+    has_permission_on [:assessment_scores],
+      :to=>[
+      :exam_fa_groups,
+      :fa_scores,
+      :observation_groups,
+      :observation_scores
+    ]
+    has_permission_on [:cce_exam_categories],
+      :to=>[
+      :index,
+      :new,
+      :show,
+      :create,
+      :edit,
+      :update,
+      :destroy
+    ]
+    has_permission_on [:cce_grade_sets],
+      :to=>[
+      :index,
+      :new,
+      :create,
+      :edit,
+      :update,
+      :destroy,
+      :show,
+      :index,
+      :new_grade,
+      :create_grade,
+      :edit_grade,
+      :update_grade,
+      :destroy_grade
+    ]
+    has_permission_on [:cce_reports],
+      :to=>[
+      :index,
+      :create_reports,
+      :student_wise_report,
+      :student_report_pdf,
+      :student_transcript
+    ]
+    has_permission_on [:cce_settings],
+      :to=>[
+      :index,
+      :basic,
+      :scholastic,
+      :co_scholastic
+    ]
+    has_permission_on [:cce_weightages],
+      :to=>[
+      :index,
+      :new,
+      :create,
+      :show,
+      :edit,
+      :update,
+      :destroy,
+      :assign_courses,
+      :assign_weightages,
+      :select_weightages,
+      :update_course_weightages
+    ]
   end
 
   # student- privileges
@@ -2048,7 +2346,17 @@ authorization do
       :delete_reminder_by_sender,
       :delete_reminder_by_recipient,
       :view_reminder,
-      :mark_unread ]  
+      :mark_unread ]
+    has_permission_on [:assessment_scores],
+      :to=>[
+      :exam_fa_groups,
+      :fa_scores,
+      :observation_groups,
+      :observation_scores
+    ]
+    has_permission_on [:attendances], :to => [:index, :list_subject, :show, :subject_wise_register, :daily_register, :new, :create, :edit,:update, :destroy]
+    has_permission_on [:attendance_reports], :to => [:new,:index, :subject, :mode, :show, :year, :report, :filter, :student_details,:report_pdf,:filter_report_pdf,:student]
+
   end
 
   role :subject_attendance do
@@ -2061,6 +2369,12 @@ authorization do
     has_permission_on [:exam],
       :to => [
       :index,
+      :previous_batch_exams,
+      :list_inactive_batches,
+      :list_inactive_exam_groups,
+      :previous_exam_marks,
+      :edit_previous_marks,
+      :update_previous_marks,
       :create_exam,
       :update_batch,
       :exam_wise_report,
@@ -2081,8 +2395,6 @@ authorization do
       :attendance_rank,
       :student_attendance_rank,
       :student_attendance_rank_pdf,
-      :generate_reports,
-      :settings,
       :report_center,
       :gpa_cwa_reports,
       :list_batch_groups,
@@ -2093,6 +2405,7 @@ authorization do
       :student_transcript,
       :student_transcript_pdf,
       :combined_report,
+      :load_levels,
       :student_combined_report,
       :student_combined_report_pdf,
       :load_batch_students,

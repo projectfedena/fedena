@@ -69,22 +69,23 @@
       <div class="link-heading"><%= link_to 'Student Ranking per Attendance' , :controller=> "exam",:action=>'attendance_rank' %></div>
       <div class="link-descr">Generates reports for Batch wise Student Rank per Attendance</div>
     </div>
-    <% if Configuration.find_by_config_key("GPA").config_value=="1" and Configuration.find_by_config_key("CWA").config_value=="1" %>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to 'GPA/CWA Reports' , :controller=> "exam",:action=>'gpa_cwa_reports' %></div>
-        <div class="link-descr">Generates GPA and CWA Reports</div>
-      </div>
-    <% elsif Configuration.find_by_config_key("GPA").config_value=="1" %>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to 'GPA Reports' , :controller=> "exam",:action=>'gpa_cwa_reports' %></div>
-        <div class="link-descr">Generates GPA Reports</div>
-      </div>
-    <% elsif Configuration.find_by_config_key("CWA").config_value=="1" %>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to 'CWA Reports' , :controller=> "exam",:action=>'gpa_cwa_reports' %></div>
-        <div class="link-descr">Generates CWA Reports</div>
-      </div>
-    <% else %>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'Ranking Level Report' , :controller=> "exam",:action=>'ranking_level_report' %></div>
+      <div class="link-descr">Generates reports based on different Ranking Levels</div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'View Transcripts' , :controller=> "exam",:action=>'transcript' %></div>
+      <div class="link-descr">Generates Student Transcripts</div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'Combined Reports' , :controller=> "exam",:action=>'combined_report' %></div>
+      <div class="link-descr">Generates Combined Student Reports</div>
+    </div>
+    <%  if Configuration.cce_enabled? %>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to 'CCE Reports' , :controller=> "cce_reports",:action=>'index' %></div>
+      <div class="link-descr">Generates Combined Student Reports</div>
+    </div>
     <% end %>
   </div>
 </div>

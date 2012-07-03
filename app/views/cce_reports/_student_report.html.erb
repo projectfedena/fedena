@@ -1,0 +1,114 @@
+<% scholastic = @report.scholastic %>
+<% cgpa=0.0 %>
+<% count=0 %>
+<div class="info">
+  <div class="info-left">
+    <div class="info1">
+      <label class="field-label">Name</label>: <label class="infolbl"> <%= @student.full_name %></label>
+    </div>
+    <div class="info1">
+      <label class="field-label">Course</label>: <label class="infolbl"> <%= @student.batch.course.full_name %></label>
+    </div>
+  </div>
+  <div class="info-right">
+    <div class="info1">
+      <label class="field-label">Adm No.</label>: <label class="infolbl"> <%= @student.admission_no.present? ? @student.admission_no : "-" %></label>
+    </div>
+    <div class="info1">
+      <label class="field-label">Batch</label>: <label class="infolbl"> <%= @student.batch.name %></label>
+    </div>
+  </div>
+</div>
+<div id="score-table">
+  <div class="custom_header">
+    Scholastic Areas
+  </div>
+  <table id="listing" width="100%">
+    <tr class="tr-head">
+      <td>Sl no</td>
+      <td></td>
+      <% @exam_groups.each do |eg| %>
+        <td colspan="4"><%= eg.cce_exam_category.name %></td>
+      <% end %>
+      <td colspan="4">Overall</td>
+    </tr>
+    <tr class="tr-head">
+      <td></td>
+      <td>Subjects</td>
+      <% @exam_groups.each do |eg| %>
+        <td>FA1</td>
+        <td>FA2</td>
+        <td>SA1</td>
+        <td>FA1+ FA2+ SA1</td>
+      <% end %>
+      <td>FA1+ FA2+ FA3+ FA4</td>
+      <td>SA1+ SA2</td>
+      <td>Overall</td>
+      <td>Grade Point</td>
+    </tr>
+    <% @subjects.each_with_index do |s,i| %>
+      <tr class="center tr-<%= cycle('odd', 'even') %>">
+        <td><%= i+1 %></td>
+        <td class="left-aligned"><%= s.name %></td>
+        <% sub=scholastic.find{|c| c.subject_id==s.id} %>
+        <% @exam_groups.each do |eg|
+          se=sub.exams.find{|g| g.exam_group_id==eg.id} if sub %>
+          <% if se %>
+            <td><%= se.fa[se.fa_group_ids[0]] if se.fa_group_ids[0] %></td>
+            <td><%= se.fa[se.fa_group_ids[1]] if se.fa_group_ids[1] %></td>
+            <td><%= se.sa %></td>
+            <td><%= se.overall %></td>
+          <% else %>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          <% end %>
+        <% end %>
+        <% if sub %>
+          <td><%= sub.fa %></td>
+          <td><%= sub.sa %></td>
+          <td><%= sub.overall %></td>
+          <td><%= sub.grade_point %></td>
+          <% if s.elective_group_id.blank? %>
+            <% cgpa += sub.grade_point.to_f %>
+            <% count += 1 %>
+          <% end %>
+        <% else %>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <div class="custom_header">
+    <span class="cgpa">Cumulative Grade Point Average(CGPA)  :   <%= cgpa/count unless count==0 %></span>
+  </div>
+</div>
+<% @co_hashi.keys.sort.each do |kind| %>
+  <div class="custom_header">
+    <%= ObservationGroup::OBSERVATION_KINDS[kind] %>
+  </div>
+  <% @co_hashi[kind].each do |ob_grp| %>
+    <div id="score-table">
+      <div class="custom_header">
+        <%= @obs_groups.find{|o| o.id == ob_grp.observation_group_id}.try(:name) %>
+      </div>
+      <table id="listing" width="100%">
+        <tr class="tr-head">
+          <td class="left-aligned">Descriptive Indicators</td>
+          <td class="left-aligned">Grade</td>
+        </tr>
+        <% ob_grp.observations.sort_by(&:sort_order).each do |o| %>
+          <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="left-10"><%= o.observation_name %></td>
+            <td class="left-10"><%= o.grade %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+<% end %>
+<%= link_to "► PDF Report",{:action=>"student_report_pdf",:id=>@student.id},:target => '_blank', :class=> 'user_button' %>

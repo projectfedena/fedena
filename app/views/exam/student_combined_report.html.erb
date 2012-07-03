@@ -46,10 +46,10 @@
             <% unless marks.empty? %>
               <% total = marks.map{|m| m.marks} %>
               <% avg = (total.sum.to_f)/(total.count.to_f) %>
-              <% if @batch.grading_type=="GPA" %>
-                <% classes = ClassDesignation.find(:all,:conditions=>["cgpa <= ?",avg],:order=>"cgpa DESC") %>
+              <% if @batch.grading_type=="1" %>
+                <% classes = ClassDesignation.find(:all,:conditions=>["cgpa <= ? AND course_id = ?",avg,student.batch.course_id],:order=>"cgpa DESC") %>
               <% else %>
-                <% classes = ClassDesignation.find(:all,:conditions=>["marks <= ?",avg],:order=>"marks DESC") %>
+                <% classes = ClassDesignation.find(:all,:conditions=>["marks <= ? AND course_id = ?",avg,student.batch.course_id],:order=>"marks DESC") %>
               <% end %>
               <% unless classes.empty? %>
                 <% if classes.first.id == designation.id %>
@@ -62,19 +62,21 @@
             <% unless designated_students.empty? %>
               <tr class="tr-head">
                 <td>Sl No.</td>
-                <td>Roll No.</td>
+                <td>Adm No.</td>
                 <td>Name</td>
-                <% if @batch.grading_type == "CWA" %>
+                <% if @batch.grading_type == "2" %>
                   <td>CWA</td>
-                <% else %>
+                <% elsif @batch.grading_type == "1" %>
                   <td>CGPA</td>
+                <% else %>
+                  <td>Percentage</td>
                 <% end %>
               </tr>
               <% designated_students.each_with_index do|s,i| %>
                 <tr class="tr-<%= cycle('odd', 'even') %>">
                   <% st = s[0] %>
                   <td class="col-1"><%= i+1 %></td>
-                  <td class="col-1"><%= st.class_roll_no.present? ? st.class_roll_no : "-" %></td>
+                  <td class="col-1"><%= st.admission_no.present? ? st.admission_no : "-" %></td>
                   <td class="col-3"><%= st.full_name %></td>
                   <td class="col-1"><%= "%.2f" %(s[1].to_f) %></td>
                 </tr>
@@ -95,10 +97,12 @@
           <% else %>
             <% scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"c"}) %>
           <% end %>
-          <% if level.lower_limit==false %>
-            <% scores.reject!{|s| !((s.marks < level.gpa if s.student.batch.grading_type=="GPA") or (s.marks < level.marks))} %>
+          <% if level.marks_limit_type=="upper" %>
+            <% scores.reject!{|s| !(((s.marks < level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks < level.marks unless level.marks.nil?))} %>
+          <% elsif level.marks_limit_type=="exact" %>
+            <% scores.reject!{|s| !(((s.marks == level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks == level.marks unless level.marks.nil?))} %>
           <% else %>
-            <% scores.reject!{|s| !((s.marks >= level.gpa if s.student.batch.grading_type=="GPA") or (s.marks >= level.marks))} %>
+            <% scores.reject!{|s| !(((s.marks >= level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks >= level.marks unless level.marks.nil?))} %>
           <% end %>
           <% ranked_students =[] %>
           <% unless scores.empty? %>
@@ -111,16 +115,50 @@
                 <% batch_ids.each do|batch_id|%>
                   <% unless batch_ids.empty? %>
                     <% count = batch_ids.count(batch_id) %>
-                    <% if count >= sub_count %>
-                      <% flag=0 %>
-                      <% ranked_students.each do|r| %>
-                        <% if r[0]==student.id %>
-                          <% r[1] << batch_id %>
-                          <% flag=1 %>
+                    <% if level.subject_limit_type=="upper" %>
+                      <% if count < sub_count %>
+                        <% flag=0 %>
+                        <% ranked_students.each do|r| %>
+                          <% if r[0]==student.id %>
+                            <% r[1] << batch_id %>
+                            <% flag=1 %>
+                          <% end %>
+                        <% end %>
+                        <% unless flag==1 %>
+                          <% unless student.has_higher_priority_ranking_level(level.id,"course","") %>
+                            <% ranked_students << [student.id,[batch_id]] %>
+                          <% end %>
                         <% end %>
                       <% end %>
-                      <% unless flag==1 %>
-                        <% ranked_students << [student.id,[batch_id]] %>
+                    <% elsif level.subject_limit_type=="exact" %>
+                      <% if count == sub_count %>
+                        <% flag=0 %>
+                        <% ranked_students.each do|r| %>
+                          <% if r[0]==student.id %>
+                            <% r[1] << batch_id %>
+                            <% flag=1 %>
+                          <% end %>
+                        <% end %>
+                        <% unless flag==1 %>
+                          <% unless student.has_higher_priority_ranking_level(level.id,"course","") %>
+                            <% ranked_students << [student.id,[batch_id]] %>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                    <% else %>
+                      <% if count >= sub_count %>
+                        <% flag=0 %>
+                        <% ranked_students.each do|r| %>
+                          <% if r[0]==student.id %>
+                            <% r[1] << batch_id %>
+                            <% flag=1 %>
+                          <% end %>
+                        <% end %>
+                        <% unless flag==1 %>
+                          <% unless student.has_higher_priority_ranking_level(level.id,"course","") %>
+                            <% ranked_students << [student.id,[batch_id]] %>
+                          <% end %>
+                        <% end %>
                       <% end %>
                     <% end %>
                     <% batch_ids.delete(batch_id) %>
@@ -137,7 +175,9 @@
                   <% end %>
                 <% end %>
                 <% unless flag==1 %>
-                  <% ranked_students << [score.student_id,[score.batch_id]] %>
+                  <% unless score.student.has_higher_priority_ranking_level(level.id,"course","") %>
+                    <% ranked_students << [score.student_id,[score.batch_id]] %>
+                  <% end %>
                 <% end %>
               <% end %>
             <% end %>
@@ -146,12 +186,14 @@
             <% unless ranked_students.empty? %>
               <tr class="tr-head">
                 <td>Sl No.</td>
-                <td>Roll No.</td>
+                <td>Adm No.</td>
                 <td>Name</td>
-                <% if @batch.grading_type == "CWA" %>
+                <% if @batch.grading_type == "2" %>
                   <td>CWA</td>
-                <% else %>
+                <% elsif @batch.grading_type == "1" %>
                   <td>CGPA</td>
+                <% else %>
+                  <td>Percentage</td>
                 <% end %>
                 <td>Courses <%= level.name %></td>
               </tr>
@@ -164,7 +206,7 @@
                     <% avg = (total.sum.to_f)/(total.count.to_f) %>
                   <% end %>
                   <td class="col-1"><%= ind+1 %></td>
-                  <td class="col-1"><%= stu.class_roll_no.present? ? stu.class_roll_no : "-" %></td>
+                  <td class="col-1"><%= stu.admission_no.present? ? stu.admission_no : "-" %></td>
                   <td class="col-3"><%= stu.full_name %></td>
                   <td class="col-1"><%= avg.present? ? "%.2f" %(avg) : "-" %></td>
                   <td class="col-3">

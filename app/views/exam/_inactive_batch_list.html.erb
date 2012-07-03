@@ -1,0 +1,16 @@
+<div class="grades">
+  <div class="label-field-pair">
+    <label for="configuration_grading_systems">Select Batches :</label>
+  </div>
+  <div class="fee_category_scroll">
+    <div class="sel-list">
+      <%= t('select') %>: <%= link_to_function t('all'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
+      <%= link_to_function t('none'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
+    </div>
+    <% @batches.each do |d| %>
+      <div class="each_batch">
+        <%= check_box_tag "report[batch_ids][]", d.id,false,:class=>'batches_box' %> <%= d.name %>
+      </div>
+    <% end %>
+  </div>
+</div>

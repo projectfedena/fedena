@@ -17,7 +17,8 @@
   {"config_key" => "LeaveResetPeriod"                ,"config_value" => "4"},
   {"config_key" => "LastAutoLeaveReset"              ,"config_value" => nil},
   {"config_key" => "GPA"                             ,"config_value" => "0"},
-  {"config_key" => "CWA"                             ,"config_value" => "0"}
+  {"config_key" => "CWA"                             ,"config_value" => "0"},
+  {"config_key" => "CCE"                             ,"config_value" => "0"}
 ].each do |param|
   Configuration.find_or_create_by_config_key_and_config_value(param)
 end

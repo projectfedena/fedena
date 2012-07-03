@@ -36,9 +36,9 @@ class EmployeesSubject < ActiveRecord::Base
       emp_assigned_hours = {}
       employee_assignments.each do |emp_id,emp_subs|
         emp_assigned_hours[emp_id] ||= {}
-        emp_assigned_hours[emp_id][:assigned]=emp_subs.sum{|es| es.subject.max_weekly_classes}
-        emp_assigned_hours[emp_id][:max]=emp_subs.first.employee.max_hours_week
-        emp_assigned_hours[emp_id][:emp_name]=emp_subs.first.employee.full_name
+        emp_assigned_hours[emp_id][:assigned]=emp_subs.sum{|es| es.subject.max_weekly_classes} || 0
+        emp_assigned_hours[emp_id][:max]=emp_subs.first.employee.max_hours_week || 0
+        emp_assigned_hours[emp_id][:emp_name]=emp_subs.first.employee.full_name 
       end
       overloaded_emps = emp_assigned_hours.reject{|emp_id,details| details[:assigned].to_i <= details[:max].to_i}
       status = overloaded_emps.blank?

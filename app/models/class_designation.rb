@@ -3,11 +3,13 @@ class ClassDesignation < ActiveRecord::Base
   validates_numericality_of :cgpa,:if=>:has_gpa
   validates_numericality_of :marks, :if=>:has_cwa
 
-  def has_gpa
-    Configuration.find_by_config_key("GPA").config_value=="1"
+  belongs_to :course
+
+ def has_gpa
+    self.course.grading_type=="1"
   end
 
   def has_cwa
-    Configuration.find_by_config_key("CWA").config_value=="1"
+    self.course.grading_type=="2" or self.course.grading_type=="0" or self.course.grading_type.nil?
   end
 end

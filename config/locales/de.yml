@@ -1806,6 +1806,8 @@ de: # locale
   transport_admin_privilege: "Transportverwalter"
   task_management_privilege: "Augabenverwaltung"
   waiting_to_approve: "Waiting to Genehmigen"
+  no_students_in_batch: "Keine Schüler präsentieren in diesem Batch"
+  students_in_batch: "Schüler in diesem Batch"
   
 
 #  modified timetable and timetable entries

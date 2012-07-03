@@ -1,0 +1,76 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <%= stylesheet_link_tag("observation_groups/show.css") %>
+  <%= image_tag("/images/examination/show_exam.png") %>
+  <h1>Descriptive Indicators</h1>
+  <h3>Descriptive Indicators</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <li>
+      <% if @observation %>
+        <%= link_to_remote "#{t('new_indicator')}", :url => {:action=>"new", :controller=>"descriptive_indicators",:observation_id => @observation.id, :sort_order=>@sort_order },:method=>:get %>
+      <% elsif @fa_criteria %>
+        <%= link_to_remote "#{t('new_indicator')}", :url => {:action=>"new", :controller=>"descriptive_indicators",:fa_criteria_id => @fa_criteria.id, :sort_order=>@sort_order },:method=>:get %>
+      <% end %>
+    </li>
+  </ul>
+</div>
+
+<div id="page-yield">
+  <div id="flash-box">
+    <% unless flash[:notice].nil? %>
+      <p class="flash-msg"> <%= flash[:notice] %> </p>
+    <% end %>
+  </div>
+  <% if @observation %>
+    <div class="bread_crumb">
+      <%= link_to t('observation_groups'), observation_groups_path %> &raquo;
+      <%= link_to @observation_group.name, observation_group_path(@observation_group) %> &raquo;
+      <%= @observation.name %>
+    </div>
+    <div class="title"><%= t("name_text") %>
+      <div class="description">:&nbsp;&nbsp;&nbsp;<%= @observation.name %></div>
+    </div>
+    <div class="title"><%= t("description_text") %>
+      <div class="description">:&nbsp;&nbsp;&nbsp;<%= @observation.desc %></div>
+    </div>
+  <% elsif @fa_criteria %>
+    <div class="bread_crumb">
+      <%= link_to t('fa_groups_text'), fa_groups_path %> &raquo;
+      <%= link_to @fa_group.name, fa_group_path(@fa_group) %> &raquo;
+      <%= @fa_criteria.fa_name %>
+    </div>
+    <div class="title"><%= t("fa_name") %>
+      <div class="description">:&nbsp;&nbsp;&nbsp;<%= @fa_criteria.fa_name %></div>
+    </div>
+    <div class="title"><%= t("description_text") %>
+      <div class="description">:&nbsp;&nbsp;&nbsp;<%= @fa_criteria.desc %></div>
+    </div>
+  <% end %>
+  <div id="descriptive_indicators">
+    <%= render  :partial=>'descriptive_indicators' %>
+  </div>
+  <div id="modal-box" style="display:none;"></div>
+</div>

@@ -1,0 +1,22 @@
+<div class="box">
+    <table align="center" width="100%" cellpadding="1" cellspacing="1">
+      <tr class="tr-head">
+        <td>Grade Sets</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <% @grade_sets.each do |g| %>
+        <tr class="tr-<%= cycle('odd', 'even') %>">
+          <td class="col-4">
+            <%= link_to g.name, cce_grade_set_path(g) %>
+          </td>
+          <td class="col-3">
+            <div class="category-edit"><%= link_to_remote "#{t("edit_text")}", :url => { :action => 'edit', :id => g.id },:method=>:get %> | <%= link_to t("delete_text"),g,:method=>:delete,:confirm=>"Delete grade set #{g.name}?" %></div>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>

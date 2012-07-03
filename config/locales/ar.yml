@@ -1807,6 +1807,8 @@ ar:
   transport_admin_privilege: "مسؤول النقل"
   task_management_privilege: "مهمة إدارة"
   waiting_to_approve: "في انتظار الموافقة على"
+  no_students_in_batch: "لا الطلاب الموجودين في هذه الدفعة"
+  students_in_batch: "الطلاب في هذه الدفعة"
 
   select_tte: "حدد جدولا زمنيا"
   work_allotment: "التخصيص العمل"

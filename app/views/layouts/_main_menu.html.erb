@@ -89,20 +89,27 @@
       <% if permitted_to? :index, :exam %>
         <li><%= link_to "#{t('examination')} <span class='right-arrow'>#{arrow_dir}</span>" , :controller => "exam", :action=>"index" %>
           <ul class="level-2">
-            <%  if permitted_to? :index,:grading_levels %>
-              <li><%= link_to "#{t('set_grading_levels')}" ,:controller=>'grading_levels',:action=>'index' %> </li>
-            <% end %>
             <% @employee_subjects=[] %>
             <% @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id} if @current_user.employee?  %>
-            <%  if permitted_to? :create_exam, :exam  %>
-              <li><%= link_to "#{t('exam_management')}" , :controller => "exam",:action=>'create_exam' %>  </li>
+            <% if (@current_user.admin? or @current_user.privileges.collect(&:name).include?('ExaminationControl')) %>
+              <%  if permitted_to? :settings,:exam %>
+                <li><%= link_to "Settings" ,:controller=>'exam',:action=>'settings' %> </li>
+              <% end %>
+              <%  if permitted_to? :create_exam, :exam  %>
+                <li><%= link_to "#{t('exam_management')}" , :controller => "exam",:action=>'create_exam' %>  </li>
+              <% end %>
+              <%  if permitted_to? :generate_reports,:exam %>
+                <li><%= link_to "Generate Reports" ,:controller=>'exam',:action=>'generate_reports' %> </li>
+              <% end %>
+              <li><%= link_to "Report Center" , :controller => "exam",:action=>'report_center' %></li>
+            <% elsif (@current_user.privileges.collect(&:name).include?('EnterResults') or !@employee_subjects.empty?) %>
+              <%  if permitted_to? :create_exam, :exam  %>
+                <li><%= link_to "#{t('exam_management')}" , :controller => "exam",:action=>'create_exam' %>  </li>
+              <% end %>
+              <li><%= link_to "Report Center" , :controller => "exam",:action=>'report_center' %></li>
+            <% elsif (@current_user.privileges.collect(&:name).include?('ViewResults') or (Batch.all.collect(&:employee_id).include?(@current_user.employee_record.id.to_s) if @current_user.employee?)) %>
+              <li><%= link_to "Report Center" , :controller => "exam",:action=>'report_center' %></li>
             <% end %>
-            <%  if permitted_to? :create_additional_exam,:additional_exam %>
-              <li><%= link_to "#{t('additional_exams_text')}" ,:controller=>'additional_exam' , :action=>'create_additional_exam' %></li>
-            <% end %>
-            <li><%= link_to "#{t('exam_wise_report')}" , :controller => "exam",:action=>'exam_wise_report' %></li>
-            <li><%= link_to "#{t('subject_wise_report')}" , :controller => "exam",:action=>'subject_wise_report' %> </li>
-            <li><%= link_to "#{t('grouped_exam_reports')}" , :controller => "exam",:action=>'grouped_exam_report' %></li>
             <% FedenaPlugin::ADDITIONAL_LINKS[:online_exam_index_link].each do |mod| %>
               <%  if permitted_to? "#{mod[:destination][:action]}".to_sym,"#{mod[:destination][:controller]}".to_sym %>
                 <li><%= link_to "#{t("#{mod[:title]}")}",mod[:destination] %></li>

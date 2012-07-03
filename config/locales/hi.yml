@@ -1779,6 +1779,8 @@ hi:
   task_management_privilege: "कार्य प्रबंध"
   student_attendance_register_privilege: "छात्र उपस्थिति रजिस्टर"
   waiting_to_approve: "स्वीकृत प्रतीक्षा कर रहा है "
+  no_students_in_batch: "कोई भी छात्र इस बैच में मौजूद"
+  students_in_batch: "इस बैच में छात्र"
   
 #  modified timetable and timetable entries
   select_tte:  "एक समय सारिणी का चयन करें"

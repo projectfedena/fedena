@@ -1,0 +1,22 @@
+<div class="box">
+    <table align="center" width="100%" cellpadding="1" cellspacing="1">
+      <tr class="tr-head">
+        <td>CCE exam_categories</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+      </tr>
+      <% @categories.each do |c| %>
+        <tr class="tr-<%= cycle('odd', 'even') %>">
+          <td class="col-4">
+            <%= c.name %>
+          </td>
+          <td class="col-5">
+            <div class="category-edit"><%= link_to_remote "#{t("edit_text")}", :url => { :action => 'edit', :id => c.id },:method=>:get %> | <%= link_to t("delete_text"),c,:method=>:delete,:confirm=>"Delete exam category #{c.name} ?" %></div>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>

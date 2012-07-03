@@ -1,0 +1,119 @@
+#radio-buttons{
+    margin:0;
+}
+
+#submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin:0px auto;
+    float:left;
+    margin-top:35px;
+    padding:7px 10px;
+    border:none;
+    text-align:center;
+    width:auto;
+    cursor:pointer;
+}
+
+#category-list {
+    clear : both;
+    padding : 10px 0 40px 0px;
+    width:570px;
+    margin:0px auto;
+}
+
+#category-list .listeven{
+    background : #EEF2FD;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    min-height : 1.5em; width : 33em;
+    overflow: auto;
+    list-style-type : none;
+    padding : 0.5em 0 0.3em 3em;
+}
+
+#category-list .listodd{
+    background : #DFEAFF;
+    border-bottom:1px solid #BECFFB;
+    color : #444;
+    min-height : 1.5em; width : 33em;
+    overflow: auto;
+    list-style-type : none;
+    padding : 0.5em 0 0.3em 3em;
+}
+
+#category-list li.heading {
+    background : none;
+    font-weight : bold;
+    list-style-type : none;
+    color : #444;
+    height : 1.5em; width : 30em;
+    padding : 0.5em 0 0 5em;
+}
+#category-list li div {
+    float : left;
+}
+#category-list li div.category-name {
+    /*    width : 350px;*/
+    font-weight: normal;
+    font-size:13px;
+}
+#category-list li div.category-edit,
+#category-list li div.category-delete {
+    font-size : 0.9em;
+    width : 88px;
+
+}
+#category-list li div a {
+    color : #444;
+    font-size:13px;
+    text-decoration: none;
+    font-weight: bold;  
+}
+#category-list li div a:hover {
+    color : #d00;
+    text-decoration: none;
+}
+
+#inner-tab-menu ul li {
+    background-color: #9D0E00;
+    color: #FFFFFF;
+    float: left;
+    font-size: 0.9em;
+    height: 1.5em;
+    list-style-type: none;
+    margin: 0 0 0 10px;
+    padding: 0;
+    text-align: center;
+    width: 100px;
+}
+
+p{
+    font-size:13px;
+}
+
+.listheading {
+    background:none repeat scroll 0 0 #BECFFB;
+    border-bottom:2px solid #BECFFB;
+    color:#444444;
+    height:1.5em;
+    list-style-type:none;
+    padding: 5px 0 0 48px;
+    width:528px;
+}
+
+.heading-name {
+    width : 350px;
+    font-size:13px;
+    font-weight:bold;
+}
+.heading-edit{
+    font-weight: bold;
+    font-size: 13px;
+    width: 65px;
+}
