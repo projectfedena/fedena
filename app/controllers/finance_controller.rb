@@ -1725,7 +1725,7 @@ class FinanceController < ApplicationController
 
           @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{tid}\")")
           flash[:notice] = "#{t('flash14')}"
-          redirect_to  :action => "fees_defaulters"
+          redirect_to  :action => "pay_fees_defaulters",:id => @student,:date => @date
         else
           flash[:notice] = "#{t('flash19')}"
         end

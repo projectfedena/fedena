@@ -38,7 +38,7 @@ h2.heading{
 
 .odd{
     height:auto;
-    background: #EEEEEE;
+    background: #fff;
 
 }
 
@@ -73,7 +73,7 @@ tr.odd{
     padding: 12px 12px 12px 15px;
     border-top: 1px solid #ADACAB;
     color: #97080e;
-    background: #BCBCBA;
+    background: #EEEEEE;
 }
 
 table#pdf-table{
