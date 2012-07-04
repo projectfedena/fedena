@@ -17,6 +17,8 @@
 #limitations under the License.
 
 class Batch < ActiveRecord::Base
+  GRADINGTYPES = {"1"=>"GPA","2"=>"CWA","3"=>"CCE"}
+
   belongs_to :course
 
   has_many :students
@@ -53,7 +55,7 @@ class Batch < ActiveRecord::Base
   named_scope :active,{ :conditions => { :is_deleted => false, :is_active => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
   named_scope :inactive,{ :conditions => { :is_deleted => false, :is_active => false },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
   named_scope :deleted,{:conditions => { :is_deleted => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
-  named_scope :cce, {:select => "batches.*",:joins => :course,:conditions=>["courses.grading_type = #{Course::GRADINGTYPES.invert["CCE"]}"]}
+  named_scope :cce, {:select => "batches.*",:joins => :course,:conditions=>["courses.grading_type = #{GRADINGTYPES.invert["CCE"]}"]}
 
   def validate
     errors.add(:start_date, "#{t('should_be_before_end_date')}.") \
