@@ -85,7 +85,7 @@ li.student_names, li.student_names a{
     clear : both;
     width: 200px;
     max-height: 400px;
-    overflow-y: scroll;
+    overflow-y: auto;
     font-size: 13px;
     padding: 0px;
     float: left;
