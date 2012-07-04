@@ -54,7 +54,7 @@
         <div class="link-descr"><%= t('sms_to_all') %></div>
       </div>
       <div class="link-box">
-        <div class="link-heading"><%= link_to_remote "#{t('sms_logs')}",:url=>{:action=>'all'} %></div>
+        <div class="link-heading"><%= link_to "#{t('sms_logs')}", :action=>'show_sms_messages' %></div>
         <div class="link-descr"><%= t('view_all_messages') %></div>
       </div>
 
