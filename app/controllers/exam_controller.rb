@@ -565,8 +565,12 @@ class ExamController < ApplicationController
       end
       @graph = open_flash_chart_object(770, 350,
         "/exam/graph_for_generated_report?batch=#{@student.batch.id}&examgroup=#{@exam_group.id}&student=#{@student.id}")
-      render(:update) do |page|
-        page.replace_html   'exam_wise_report', :partial=>"exam_wise_report"
+      if request.xhr?
+        render(:update) do |page|
+          page.replace_html   'exam_wise_report', :partial=>"exam_wise_report"
+        end
+      else
+        @students = @student.batch.students
       end
     end
   end
@@ -1107,7 +1111,7 @@ class ExamController < ApplicationController
         @batches = Batch.find_all_by_id(batch_ids)
       else
         flash[:notice] = "No Students in this Batch."
-      redirect_to :action=>"transcript" and return
+        redirect_to :action=>"transcript" and return
       end
     end
   end

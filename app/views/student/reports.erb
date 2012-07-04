@@ -37,7 +37,7 @@
         <h4><%= t('recent_exams') %></h4>
         <ul>
           <% @exam_groups.each do |e| %>
-            <li><%= link_to e.name, { :controller => 'exam', :action => 'generated_report',:exam_group=>e.id, :student => @student.id} %></li>
+            <li><%= link_to e.name,{:controller => 'exam', :action => 'generated_report',:exam_group=>e.id, :student=>@student.id}%></li>
           <% end %>
         </ul>
       <%end%>
