@@ -7,6 +7,7 @@ module CceReportMod
   CoScholasticObservation = Struct.new(:observation_id, :grade, :observation_name, :sort_order)
     
   def self.included(base)
+    base.send :unloadable
     base.send :attr_accessor, :batch_in_context_id
     base.send :include, InstanceMethods
   end
