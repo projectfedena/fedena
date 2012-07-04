@@ -24,7 +24,7 @@
       <div class="label-field-pair">
         <label for="category_name">CCE Grade Set</label>
         <div class="text-input-bg">
-          <%= f.select :cce_grade_set_id ,@grade_sets.map{|m| [m.name,m.id]} ,:prompt=>"Select a Grade Set") %>
+          <%= f.select :cce_grade_set_id ,@grade_sets.map{|m| [m.name,m.id]} ,:prompt=>"Select a Grade Set" %>
         </div>
       </div>
       <%= f.submit "", :value => "► Create", :class => "submit_button" %>
