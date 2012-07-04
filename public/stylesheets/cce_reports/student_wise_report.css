@@ -48,8 +48,8 @@ li.student_names, li.student_names a{
 }
 #report{
     float: left;
-    width: 770px;
-    /*    margin-left:  230px;*/
+    width: 750px;
+    margin-left:  20px;
     margin-right: 10px;
 }
 .list_name{
