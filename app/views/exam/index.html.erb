@@ -46,12 +46,6 @@
         <div class="link-descr"><%= t('create_a_new_exam_and_enter_result') %></div>
       </div>
     <% end %>
-    <%  if permitted_to? :create_additional_exam,:additional_exam %>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('additional_exams_text')}" ,:controller=>'additional_exam' , :action=>'create_additional_exam' %></div>
-        <div class="link-descr"><%= t('create_additional_exams_and_edit_results') %></div>
-      </div>
-    <% end %>
     <% if (@current_user.admin? or @current_user.privileges.collect(&:name).include?('ExaminationControl')) %>
       <div class="link-box">
         <div class="link-heading"><%= link_to 'Generate Reports' , :controller=> "exam",:action=>'generate_reports' %></div>

@@ -36,7 +36,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :batches, :collection=>{:batches_ajax=>[:get]} do |batch|
     batch.resources :exam_groups
-    batch.resources :additional_exam_groups
+    #batch.resources :additional_exam_groups
     batch.resources :elective_groups, :as => :electives
   end
 
@@ -44,9 +44,9 @@ ActionController::Routing::Routes.draw do |map|
     exam_group.resources :exams, :member => { :save_scores => :post }
   end
 
-  map.resources :additional_exam_groups do |additional_exam_group|
-    additional_exam_group.resources :additional_exams , :member => { :save_additional_scores => :post }
-  end
+#  map.resources :additional_exam_groups do |additional_exam_group|
+#    additional_exam_group.resources :additional_exams , :member => { :save_additional_scores => :post }
+#  end
 
   map.resources :timetables do |timetable|
     timetable.resources :timetable_entries
