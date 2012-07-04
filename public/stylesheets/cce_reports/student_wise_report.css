@@ -47,8 +47,9 @@ li.student_names, li.student_names a{
     height: 28px;
 }
 #report{
-    /*    float: left;*/
-    margin-left:  230px;
+    float: left;
+    width: 770px;
+    /*    margin-left:  230px;*/
     margin-right: 10px;
 }
 .list_name{
