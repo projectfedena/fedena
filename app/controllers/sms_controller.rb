@@ -61,8 +61,8 @@ class SmsController < ApplicationController
       unless params[:send_sms][:student_ids].nil?
         student_ids = params[:send_sms][:student_ids]
         sms_setting = SmsSetting.new()
+        @recipients=[]
         student_ids.each do |s_id|
-          @recipients=[]
           student = Student.find(s_id)
           guardian = student.immediate_contact
           if student.is_sms_enabled
@@ -75,13 +75,14 @@ class SmsController < ApplicationController
               end
             end
           end
-          unless @recipients.empty?
-            message = params[:send_sms][:message]
-            sms = Delayed::Job.enqueue(SmsManager.new(message,@recipients))
-            render(:update) do |page| 
-              page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sent')}</p>"
-              page.visual_effect(:highlight, 'status-message')
-            end
+        end
+        unless @recipients.empty?
+          message = params[:send_sms][:message]
+          sms = Delayed::Job.enqueue(SmsManager.new(message,@recipients))
+          # raise @recipients.inspect
+          render(:update) do |page|
+            page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_intiated')}</p>"
+            page.visual_effect(:highlight, 'status-message')
           end
         end
       end
@@ -99,8 +100,8 @@ class SmsController < ApplicationController
       unless params[:send_sms][:batch_ids].nil?
         batch_ids = params[:send_sms][:batch_ids]
         sms_setting = SmsSetting.new()
+        @recipients = []
         batch_ids.each do |b_id|
-          @recipients = []
           batch = Batch.find(b_id)
           batch_students = batch.students
           batch_students.each do |student|
@@ -116,13 +117,13 @@ class SmsController < ApplicationController
               end
             end
           end
-          unless @recipients.empty?
-            message = params[:send_sms][:message]
-            sms = Delayed::Job.enqueue(SmsManager.new(message,@recipients))
-            render(:update) do |page|
-              page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sent_selected_course')}</p>"
-              page.visual_effect(:highlight, 'status-message')
-            end
+        end
+        unless @recipients.empty?
+          message = params[:send_sms][:message]
+          sms = Delayed::Job.enqueue(SmsManager.new(message,@recipients))
+          render(:update) do |page|
+            page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_intiated')}</p>"
+            page.visual_effect(:highlight, 'status-message')
           end
         end
       end
@@ -132,8 +133,8 @@ class SmsController < ApplicationController
   def sms_all
     batches = Batch.active
     sms_setting = SmsSetting.new()
+    @recipients = []
     batches.each do |batch|
-      @recipients = []
       batch_students = batch.students
       batch_students.each do |student|
         if student.is_sms_enabled
@@ -148,30 +149,25 @@ class SmsController < ApplicationController
           end
         end
       end
-      unless @recipients.empty?
-        message = params[:send_sms][:message]
-        Delayed::Job.enqueue(SmsManager.new(message,@recipients))
-      end
     end
     emp_departments = EmployeeDepartment.find(:all)
     emp_departments.each do |dept|
-      @recipients = []
       dept_employees = dept.employees
       dept_employees.each do |employee|
         if sms_setting.employee_sms_active
           @recipients.push employee.mobile_phone unless (employee.mobile_phone.nil? or employee.mobile_phone == "")
         end
       end
-      unless @recipients.empty?
-        message = params[:send_sms][:message]
-        Delayed::Job.enqueue(SmsManager.new(message,@recipients))
-
-        render(:update) do |page|
-          page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_failed_with_response')} : #{response}</p>"
-          page.visual_effect(:highlight, 'status-message')
-        end
+    end
+    unless @recipients.empty?
+      message = params[:send_sms][:message]
+      Delayed::Job.enqueue(SmsManager.new(message,@recipients))
+      render(:update) do |page|
+        page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_intiated')}</p>"
+        page.visual_effect(:highlight, 'status-message')
       end
     end
+
   end
 
   def employees
@@ -179,19 +175,19 @@ class SmsController < ApplicationController
       unless params[:send_sms][:employee_ids].nil?
         employee_ids = params[:send_sms][:employee_ids]
         sms_setting = SmsSetting.new()
+        @recipients=[]
         employee_ids.each do |e_id|
-          @recipients=[]
           employee = Employee.find(e_id)
           if sms_setting.employee_sms_active
             @recipients.push employee.mobile_phone unless (employee.mobile_phone.nil? or employee.mobile_phone == "")
           end
-          unless @recipients.empty?
-            message = params[:send_sms][:message]
-            Delayed::Job.enqueue(SmsManager.new(message,@recipients))
-            render(:update) do |page|
-              page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sent_to_employee')}</p>"
-              page.visual_effect(:highlight, 'status-message')
-            end
+        end
+        unless @recipients.empty?
+          message = params[:send_sms][:message]
+          Delayed::Job.enqueue(SmsManager.new(message,@recipients))
+          render(:update) do |page|
+            page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_intiated')}</p>"
+            page.visual_effect(:highlight, 'status-message')
           end
         end
       end
@@ -209,8 +205,8 @@ class SmsController < ApplicationController
       unless params[:send_sms][:dept_ids].nil?
         dept_ids = params[:send_sms][:dept_ids]
         sms_setting = SmsSetting.new()
+        @recipients = []
         dept_ids.each do |d_id|
-          @recipients = []
           department = EmployeeDepartment.find(d_id)
           department_employees = department.employees
           department_employees.each do |employee|
@@ -218,17 +214,26 @@ class SmsController < ApplicationController
               @recipients.push employee.mobile_phone unless (employee.mobile_phone.nil? or employee.mobile_phone == "")
             end
           end
-          unless @recipients.empty?
-            message = params[:send_sms][:message]
-            Delayed::Job.enqueue(SmsManager.new(message,@recipients))
-            render(:update) do |page|
-              page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sent_to_selected_department')}</p>"
-              page.visual_effect(:highlight, 'status-message')
-            end
+        end
+        unless @recipients.empty?
+          message = params[:send_sms][:message]
+          Delayed::Job.enqueue(SmsManager.new(message,@recipients))
+          render(:update) do |page|
+            page.replace_html 'status-message',:text=>"<p class=\"flash-msg\">#{t('sms_sending_intiated')}</p>"
+            page.visual_effect(:highlight, 'status-message')
           end
         end
       end
     end
   end
 
+  def show_sms_messages
+    @sms_messages = SmsMessage.get_sms_messages(params[:page])
+    @total_sms = Configuration.get_config_value("TotalSmsCount")
+  end
+
+  def show_sms_logs
+    @sms_message = SmsMessage.find(params[:id])
+    @sms_logs = @sms_message.get_sms_logs(params[:page])
+  end
 end

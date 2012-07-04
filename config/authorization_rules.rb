@@ -764,7 +764,7 @@ authorization do
   end
   role :sms_management do
     has_permission_on [:configuration], :to => [:index]
-    has_permission_on [:sms], :to => [:index, :settings, :students, :batches, :employees, :departments,:all, :update_general_sms_settings, :list_students, :sms_all, :list_employees]
+    has_permission_on [:sms], :to => [:index, :settings, :students, :batches, :employees, :departments,:all, :update_general_sms_settings, :list_students, :sms_all, :list_employees, :show_sms_messages, :show_sms_logs]
   end
   role :event_management do
     
@@ -1252,7 +1252,7 @@ authorization do
       :subject_wise_register,
       :daily_register
     ]
-    has_permission_on [:sms],  :to => [:index, :settings, :update_general_sms_settings, :students, :list_students, :batches, :sms_all, :employees, :list_employees, :departments, :all]
+    has_permission_on [:sms],  :to => [:index, :settings, :update_general_sms_settings, :students, :list_students, :batches, :sms_all, :employees, :list_employees, :departments, :all, :show_sms_messages, :show_sms_logs]
     has_permission_on [:sms_settings],  :to => [:index, :update_general_sms_settings]
     has_permission_on [:class_timings],  :to => [:index, :edit, :destroy, :show, :new, :create, :update]
     has_permission_on [:attendance_reports], :to => [:index, :subject, :mode, :show, :year, :report, :filter, :student_details,:report_pdf,:filter_report_pdf]
