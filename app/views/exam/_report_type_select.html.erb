@@ -1,13 +1,13 @@
 <div class="label-field-pair">
-  <label for="student_course">Select Ranking Level :</label>
+  <label for="student_course"><%= t('select_ranking_level') %> :</label>
   <div  class="text-input-bg">
     <%= select :ranking_level_report, :ranking_level_id,
       @ranking_levels.map {|b| [b.name, b.id]},
       {:prompt => "select a ranking level"}%></div></div>
 <div class="label-field-pair">
-  <label for="student_course">Select a Report Type :</label>
+  <label for="student_course"><%= t('select_a_report_type') %> :</label>
   <div  class="text-input-bg">
     <%= select :ranking_level_report, :report_type,
-      [["Overall","overall"],["Subject wise","subject"]],
-      {:prompt => "select report type"}, {:onChange => "#{remote_function(:url => {:action => "select_type", :batch_id=>@batch.id}, :with => "'report_type='+value")}"}%></div></div>
+      [["#{t('overall')}","overall"],["#{t('subject_wise')}","subject"]],
+      {:prompt => "#{t('select_a_report_type')}"}, {:onChange => "#{remote_function(:url => {:action => "select_type", :batch_id=>@batch.id}, :with => "'report_type='+value")}"}%></div></div>
 <div id="subject-select"></div>

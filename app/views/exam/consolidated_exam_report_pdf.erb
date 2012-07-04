@@ -38,9 +38,9 @@
               <td><%= exam.subject.code %><%= "(" + exam.subject.credit_hours.to_s + ")"  unless exam.subject.credit_hours.nil? %></td>
             <% end %>
             <% if @batch.grading_type=="2" %>
-              <td>Weighted Average</td>
+              <td><%= t('weighted_average') %></td>
             <% else %>
-              <td>GPA</td>
+              <td><%= t('gpa') %></td>
             <% end %>
           <% else %>
             <% @exam_group.exams.each do |exam| %>
@@ -60,9 +60,9 @@
                   <td><%= exam.subject.code %><%= "(" + exam.subject.credit_hours.to_s + ")"  unless exam.subject.credit_hours.nil? %></td>
                 <% end %>
                 <% if @batch.grading_type=="2" %>
-                  <td>Weighted Average</td>
+                  <td><%= t('weighted_average') %></td>
                 <% else %>
-                  <td>GPA</td>
+                  <td><%= t('gpa') %></td>
                 <% end %>
               <% else %>
                 <% @exam_group.exams.each do |exam| %>

@@ -1,5 +1,5 @@
 <div class="label-field-pair">
-  <label for="student_course">Select a Student :</label>
+  <label for="student_course"><%= t('select_a_student') %> :</label>
   <div  class="text-input-bg">
     <%= select :transcript, :student_id,
       @students.map{|s| [s.full_name, s.id]},

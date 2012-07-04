@@ -28,12 +28,12 @@
     </div>
     <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
       <tr class="tr-head">
-        <td>Subject Code</td>
-        <td>Subject Title</td>
-        <td>Marks</td>
-        <td>Credit</td>
-        <td>Grade</td>
-        <td>Weighted Marks</td>
+        <td><%= t('subject_code') %></td>
+        <td><%= t('title') %></td>
+        <td><%= t('marks') %></td>
+        <td><%= t('credit') %></td>
+        <td><%= t('grade') %></td>
+        <td><%= t('weighted_marks') %></td>
       </tr>
       <% exam_score.each do |es| %>
         <tr class="tr-<%= cycle('odd', 'even') %>">
@@ -51,14 +51,14 @@
       <% end %>
       <tr class="tr-blank"></tr>
       <tr class="tr-head">
-        <td colspan="3" align="right">Total</td>
+        <td colspan="3" align="right"><%= t('total') %></td>
         <td><%= total_credits %></td>
         <td>-</td>
         <td><%= total_weighted_marks %></td>
       </tr>
     </table>
   </div>
-  <h5>Weighted Average =
+  <h5><%= t('weighted_average') %> =
     <% unless total_credits==0 %>
       <%= "%.2f" %(total_weighted_marks.to_f/total_credits.to_f) %>
     <% else %>
@@ -74,11 +74,11 @@
     </div>
     <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
       <tr class="tr-head">
-        <td>Subject Code</td>
-        <td>Subject Title</td>
-        <td>Credits</td>
-        <td>Grade</td>
-        <td>Remarks</td>
+        <td><%= t('subject_code') %></td>
+        <td><%= t('subject_title') %></td>
+        <td><%= t('credits') %></td>
+        <td><%= t('marks') %></td>
+        <td><%= t('remarks') %></td>
       </tr>
       <% exam_score.each do |es| %>
         <tr class="tr-<%= cycle('odd', 'even') %>">
@@ -95,14 +95,14 @@
       <% end %>
       <tr class="tr-blank"></tr>
       <tr class="tr-head">
-        <td colspan="2" align="right">Total</td>
+        <td colspan="2" align="right"><%= t('total') %></td>
         <td><%= total_credit_hours %></td>
         <td>-</td>
         <td>-</td>
       </tr>
     </table>
   </div>
-  <h5>Grade Point Average (GPA) =
+  <h5><%= t('grade_point_average_gpa') %> =
     <% unless total_credit_hours==0 %>
       <%= "%.2f" %(total_credit_points.to_f/total_credit_hours.to_f) %>
     <% else %>

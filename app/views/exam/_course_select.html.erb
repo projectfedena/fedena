@@ -1,7 +1,7 @@
 <div class="label-field-pair">
-        <label for="student_course">Select a Course :</label>
+        <label for="student_course"><%= t('select_a_course') %> :</label>
         <div  class="text-input-bg">
           <%= select :ranking_level_report, :course_id,
             @courses.map {|b| [b.full_name, b.id]},
-            {:prompt => "select a course"},{:onChange => "#{remote_function(:url=>{:action=>"select_batch_group"}, :with => "'course_id='+value")}"}%></div></div>
+            {:prompt => "#{t('select_a_course')}"},{:onChange => "#{remote_function(:url=>{:action=>"select_batch_group"}, :with => "'course_id='+value")}"}%></div></div>
 <div id="batch_groups"></div>

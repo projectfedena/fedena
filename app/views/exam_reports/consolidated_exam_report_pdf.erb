@@ -25,17 +25,17 @@
   <div class="report">
     <div id ="main_info">
       <h3><%= @exam_group.batch.full_name %> - <%= @exam_group.name %></h3>
-      <h4> Consolidated Report </h4>
+      <h4><%= t('consolidated_report') %></h4>
     </div>
     <div id="pdf-info">
       <% c = 'even' %>
       <table id="pdf-table" width="100%" cellspacing="0">
         <tr class="table-header">
-          <td>Name</td>
+          <td><%= t('name') %></td>
           <% @exam_group.exams.each do |exam| %>
             <td><%= exam.subject.code %><%= "(" + exam.maximum_marks.to_s + ")"  unless exam.maximum_marks.nil? %></td>
           <% end %>
-          <td>Percentage(%)</td>
+          <td><%= t('percentage') %>(%)</td>
         </tr>
         <% if @archived_students.present? %>
           <% @archived_students.each_with_index do |student,i|%>
@@ -43,11 +43,11 @@
               <% i= 0 %>
               <tr class="page-break"><td colspan="3"></td></tr>
               <tr class="table-header">
-                <td class="col-pdf">Name</td>
+                <td class="col-pdf"><%= t('name') %></td>
                 <% @exam_group.exams.each do |exam| %>
                   <td><%= exam.subject.code %><%= "(" + exam.maximum_marks.to_s + ")"  unless exam.maximum_marks.nil? %></td>
                 <% end %>
-                <td>Percentage(%)</td>
+                <td><%= t('percentage') %>(%)</td>
               </tr>
             <% end %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
@@ -82,11 +82,11 @@
               <% i= 0 %>
               <tr class="page-break"><td colspan="3"></td></tr>
               <tr class="table-header">
-                <td class="col-pdf">Name</td>
+                <td class="col-pdf"><%= t('name') %></td>
                 <% @exam_group.exams.each do |exam| %>
                   <td><%= exam.subject.code %><%= "(" + exam.maximum_marks.to_s + ")"  unless exam.maximum_marks.nil? %></td>
                 <% end %>
-                <td>Percentage(%)</td>
+                <td><%= t('percentage') %>(%)</td>
               </tr>
             <% end %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">

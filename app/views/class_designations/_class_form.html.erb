@@ -2,17 +2,17 @@
 
   <div id="form-content">
     <div class="label-field-pair">
-      <label for="name">Name</label>
+      <label for="name"><%= t('name') %></label>
       <div class="text-input-bg"><%= c.text_field :name %></div>
     </div>
     <% if @course.grading_type=="1" %>
       <div class="label-field-pair">
-        <label for="gpa">CGPA</label>
+        <label for="gpa"><%= t('cgpa') %></label>
         <div class="text-input-bg"><%= c.text_field :cgpa %></div>
       </div>
     <% else %>
       <div class="label-field-pair">
-        <label for="marks">Marks</label>
+        <label for="marks"><%= t('marks') %></label>
         <div class="text-input-bg"><%= c.text_field :marks %></div>
       </div>
     <% end %>

@@ -1,3 +1,3 @@
 <div class="label-field-pair">
-  <label for="student_course">Select a Batch Group :</label>
-  <div  class="text-input-bg"><div id="batch_group_list"><%= select :course_rank, :batch_group_id, @batch_groups.map {|g| [g.name, g.id]}, {:prompt => "Select a Batch Group"}%></div></div></div>
+  <label for="student_course"><%= t('select_a_batch_group') %> :</label>
+  <div  class="text-input-bg"><div id="batch_group_list"><%= select :course_rank, :batch_group_id, @batch_groups.map {|g| [g.name, g.id]}, {:prompt => "#{t('select_a_batch_group')}"}%></div></div></div>

@@ -24,7 +24,7 @@
   <div class="extender"> </div>
   <div class="report">
     <div id ="main_info">
-      <h3>Overall Rankings : <%= @batch_group.present? ? @batch_group.name : @course.full_name %></h3>
+      <h3><%= t('overall_rankings') %> : <%= @batch_group.present? ? @batch_group.name : @course.full_name %></h3>
     </div>
     <div id="pdf-info">
       <% unless @students.empty? %>
@@ -44,12 +44,12 @@
           <% c = 'even' %>
           <table id="pdf-table" width="100%" cellspacing="0">
             <tr class="table-header">
-              <td>Sl No.</td>
+              <td><%= t('sl_no') %></td>
               <td><%= t('name') %></td>
-              <td>Batch</td>
-              <td>Adm No.</td>
-              <td>Marks</td>
-              <td>Rank</td>
+              <td><%= t('batch') %></td>
+              <td><%= t('adm_no') %></td>
+              <td><%= t('marks') %></td>
+              <td><%= t('rank') %></td>
             </tr>
             <% i = 0 %>
             <% @students.each_with_index do |student,ind| %>
@@ -59,12 +59,12 @@
                 <tr class="page-break"><td colspan="3"></td></tr>
 
                 <tr class="table-header">
-                  <td>Sl No.</td>
+                  <td><%= t('sl_no') %></td>
                   <td><%= t('name') %></td>
-                  <td>Batch</td>
-                  <td>Adm No.</td>
-                  <td>Marks</td>
-                  <td>Rank</td>
+                  <td><%= t('batch') %></td>
+                  <td><%= t('adm_no') %></td>
+                  <td><%= t('marks') %></td>
+                  <td><%= t('rank') %></td>
                 </tr>
 
               <% end %>
@@ -85,10 +85,10 @@
             <% end %>
           </table>
         <% else %>
-          <p class="flash-msg"> No Grouped Exams for this Batch Group. </p>
+          <p class="flash-msg"><%= t('no_grouped_exams_in_this_batch_group') %> </p>
         <% end %>
       <% else %>
-        <p class="flash-msg"> No Students for this Batch Group. </p>
+        <p class="flash-msg"><%= t('no_students_in_this_batc_group') %></p>
       <% end %>
     </div>
   </div>

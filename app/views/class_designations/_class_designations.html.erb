@@ -1,6 +1,6 @@
 <ul class="category-list">
   <% unless @class_designations.empty? %>
-    <li class="heading">Class Designations</li>
+    <li class="heading"><%= t('class_designations_text') %></li>
     <% @class_designations.each  do |designation| %>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="category-name"><%= designation.name %></div>
@@ -14,7 +14,7 @@
         </li>
       <% end %>
   <% else %>
-    <p class="flash-msg">No Class Designations found.</p>
+    <p class="flash-msg"><%= t('no_class_designations_found') %>.</p>
   <% end %>
 </ul>
 

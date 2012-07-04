@@ -1,12 +1,12 @@
 <% if @batch_groups.present? %>
 <div class="label-field-pair">
-  <label for="student_course">Select a Batch Group :</label>
+  <label for="student_course"><%= t('select_a_batch_group') %> :</label>
   <div  class="text-input-bg">
-    <%= select :ranking_level_report, :batch_group_id, @batch_groups.map {|g| [g.name, g.id]}, {:prompt => "Select a Batch Group"}%></div></div>
+    <%= select :ranking_level_report, :batch_group_id, @batch_groups.map {|g| [g.name, g.id]}, {:prompt => "#{t('select_a_batch_group')}"}%></div></div>
 <% end %>
 <div class="label-field-pair">
-  <label for="student_course">Select Ranking Level :</label>
+  <label for="student_course"><%= t('select_ranking_level') %> :</label>
   <div  class="text-input-bg">
     <%= select :ranking_level_report, :ranking_level_id,
       @ranking_levels.map {|b| [b.name, b.id]},
-      {:prompt => "select a ranking level"}%></div></div>
+      {:prompt => "#{t('select_ranking_level')}"}%></div></div>

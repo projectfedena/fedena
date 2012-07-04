@@ -20,7 +20,7 @@
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
-  <h3>Ranking Level Report</h3>
+  <h3><%= t('ranking_level_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -38,7 +38,7 @@
 
   <div class="box">
     <% if @mode=="batch" %>
-      <h4><%= @ranking_level.name %> Students : <%= @batch.full_name %> <%= " | Subject : "+@subject.name if @subject.present? %></h4>
+      <h4><%= @ranking_level.name %> <%= t('students') %> : <%= @batch.full_name %> <%= " | #{t('subject')} : "+@subject.name if @subject.present? %></h4>
       <div id="score-table">
         <% unless @scores.empty? %>
           <% if @report_type=="subject" %>
@@ -73,9 +73,9 @@
           <% unless ranked_students.empty? %>
             <table id="listing" width="100%" cellpadding="1" cellspacing="1">
               <tr class="tr-head">
-                <td>Sl No.</td>
-                <td>Adm No.</td>
-                <td>Name</td>
+                <td><%= t('sl_no') %></td>
+                <td><%= t('adm_no') %></td>
+                <td><%= t('name') %></td>
               </tr>
               <tr class="tr-blank"></tr>
               <% ranked_students.each_with_index do |s,i| %>
@@ -87,14 +87,14 @@
               <% end %>
             </table>
           <% else %>
-            <p class="flash-msg"><%= "No #{@ranking_level.name} Students found." %></p>
+            <p class="flash-msg"><%= "#{t('no')} #{@ranking_level.name} #{t('students_found')}" %></p>
           <% end %>
         <% else %>
-          <p class="flash-msg"><%= "No #{@ranking_level.name} Students found." %></p>
+          <p class="flash-msg"><%= "#{t('no')} #{@ranking_level.name} #{t('students_found')}" %></p>
         <% end %>
       </div>
     <% else %>
-      <h4><%= @ranking_level.name %> Students : <%= @course.full_name %></h4>
+      <h4><%= @ranking_level.name %><%= t('students') %> : <%= @course.full_name %></h4>
       <div id="score-table">
         <% unless @scores.empty? %>
           <% unless @ranking_level.subject_count.nil? %>
@@ -167,12 +167,12 @@
           <% unless ranked_students.empty? %>
             <table id="listing" width="100%" cellpadding="1" cellspacing="1">
               <tr class="tr-head">
-                <td>Sl No.</td>
-                <td>Adm No.</td>
-                <td>Name</td>
-                <td>Batch</td>
+                <td><%= t('sl_no') %></td>
+                <td><%= t('adm_no') %></td>
+                <td><%= t('name') %></td>
+                <td><%= t('batch') %></td>
                 <% unless @ranking_level.full_course==true %>
-                  <td><%= "#{@ranking_level.name} Batch" %></td>
+                  <td><%= "#{@ranking_level.name} #{t('batch')}" %></td>
                 <% end %>
               </tr>
               <tr class="tr-blank"></tr>
@@ -191,10 +191,10 @@
               <% end %>
             </table>
           <% else %>
-            <p class="flash-msg"><%= "No #{@ranking_level.name} Students found." %></p>
+            <p class="flash-msg"><%= "#{t('no')} #{@ranking_level.name} #{t('students_found')}" %></p>
           <% end %>
         <% else %>
-          <p class="flash-msg"><%= "No #{@ranking_level.name} Students found." %></p>
+          <p class="flash-msg"><%= "#{t('no')}#{@ranking_level.name} #{t('students_found')}" %></p>
         <% end %>
       </div>
     <% end %>

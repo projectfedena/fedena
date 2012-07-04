@@ -116,10 +116,10 @@
               <tr class="tr-head">
                 <td class="col-1"><%= check_box_tag 'chck1','yes', false,{:onClick=> "check_all_or_none(#{count})"} %></td>
                 <td class="col-2">
-                  Exam Group
+                  <%= t('exam_group') %>
                 </td>
                 <td class="col-3">
-                  Weightage(%)
+                  <%= t('weightage') %>(%)
                 </td>
               </tr>
               <tr class="tr-blank"></tr>
@@ -143,7 +143,7 @@
               <tr class="tr-blank"></tr>
               <tr class="tr-head">
                 <td class="col-4" colspan="2">
-                  Total Weightage
+                  <%= t('total_weghtage') %>
                 </td>
                 <td class="col-3">
                   <%=label_tag 'total',total,:id=>"tot"%>

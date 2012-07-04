@@ -35,12 +35,12 @@ class ExamReportsController < ApplicationController
   def archived_batches_exam_report
     if params[:student].nil?
       if params[:exam_report].nil? or params[:exam_report][:batch_id].empty?
-        flash[:notice] = "Select a Batch to continue"
+        flash[:notice] = "#{t('select_a_batch_to_continue')}"
         redirect_to :action=>'archived_exam_wise_report' and return
       end
     else
       if !params[:type].present? or params[:type].nil?
-        flash[:notice] = "Invalid Parameters."
+        flash[:notice] = "#{t('invalid_parameters')}"
         redirect_to :action=>'archived_exam_wise_report' and return
       end
     end
@@ -67,7 +67,7 @@ class ExamReportsController < ApplicationController
       #@students=@batch.students.all(:order=>"first_name ASC")
       @student = @students.first  unless @students.empty?
       if @student.blank?
-        flash[:notice] = "No Students in selected batch"
+        flash[:notice] = "#{t('flash1')}"
         redirect_to :action=>'archived_exam_wise_report' and return
       end
       if @type == 'grouped'
@@ -253,11 +253,11 @@ class ExamReportsController < ApplicationController
           @exams.push exam unless exam.nil?
         end
       else
-        flash[:notice]="No student found in that exam group."
+        flash[:notice]="#{t('flash2')}"
         redirect_to :controller=>"exam_reports", :action=>"archived_exam_wise_report"
       end
     else
-      flash[:notice]="No student found in that exam group."
+      flash[:notice]="#{t('flash2')}"
       redirect_to :controller=>"exam_reports", :action=>"archived_exam_wise_report"
     end
   end

@@ -20,7 +20,7 @@
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
-  <h3>Settings</h3>
+  <h3><%= t('settings') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -41,21 +41,21 @@
     <% end %>
     <%  if permitted_to? :index,:ranking_levels %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to "Ranking Levels" ,:controller=>'ranking_levels',:action=>'index' %> </div>
-        <div class="link-descr">Manage Ranking Levels</div>
+        <div class="link-heading"><%= link_to "#{t('ranking_levels_text')}" ,:controller=>'ranking_levels',:action=>'index' %> </div>
+        <div class="link-descr"><%= t('manage_ranking_levels') %></div>
       </div>
     <% end %>
     <%  if permitted_to? :index,:class_designations %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to "Class Designations" ,:controller=>'class_designations',:action=>'index' %> </div>
-        <div class="link-descr">Manage Class Designations</div>
+        <div class="link-heading"><%= link_to "#{t('class_designations_text')}" ,:controller=>'class_designations',:action=>'index' %> </div>
+        <div class="link-descr"><%= t('manage_class_designations') %></div>
       </div>
     <% end %>
     <%  if Configuration.cce_enabled? %>
       <%  if permitted_to? :index,:cce_settings %>
         <div class="link-box">
-          <div class="link-heading"><%= link_to "CCE Settings" ,:controller=>'cce_settings',:action=>'index' %> </div>
-          <div class="link-descr">Manage CCE Settings</div>
+          <div class="link-heading"><%= link_to "#{t('cce_sttings')}" ,:controller=>'cce_settings',:action=>'index' %> </div>
+          <div class="link-descr"><%= t('manage_cce_settings') %></div>
         </div>
       <% end %>
     <% end %>

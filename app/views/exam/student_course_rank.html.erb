@@ -20,7 +20,7 @@
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
-  <h3>Student Ranking per Course</h3>
+  <h3><%= t('student_ranking_per_course') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -38,7 +38,7 @@
   <% end %>
 
   <div class="box">
-    <h4>Overall Rankings : <%= @batch_group.present? ? @batch_group.name : @course.full_name %></h4>
+    <h4><%= t('overall_rankings') %> : <%= @batch_group.present? ? @batch_group.name : @course.full_name %></h4>
     <div id="score-table">
       <% unless @students.empty? %>
         <% unless @grouped_exams.empty? %>
@@ -56,12 +56,12 @@
           <% ordered_scores = ordered_scores.compact.uniq.sort.reverse %>
           <table id="listing" width="100%" cellpadding="1" cellspacing="1">
             <tr class="tr-head">
-              <td>Sl No.</td>
+              <td><%= t('sl_no') %></td>
               <td><%= t('name') %></td>
-              <td>Batch</td>
-              <td>Adm No.</td>
-              <td>Marks</td>
-              <td>Rank</td>
+              <td><%= t('batch') %></td>
+              <td><%= t('adm_no') %></td>
+              <td><%= t('marks') %></td>
+              <td><%= t('rank') %></td>
             </tr>
             <% @students.each_with_index do |student,i| %>
               <tr class="tr-<%= cycle('odd', 'even') %>">
@@ -81,10 +81,10 @@
             <% end %>
           </table>
         <% else %>
-          <p class="flash-msg">No Grouped Exams in this Batch Group</p>
+          <p class="flash-msg"><%= t('no_grouped_exams_in_this_batch_group') %></p>
         <% end %>
       <% else %>
-        <p class="flash-msg">No Students in this Batch Group</p>
+        <p class="flash-msg"><%= t('no_students_in_this_batc_group') %></p>
       <% end %>
     </div>
     <div class="extender"></div>

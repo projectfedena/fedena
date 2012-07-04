@@ -1,17 +1,17 @@
 <ul class="category-list">
   <% unless @ranking_levels.empty? %>
-    <li class="heading">Ranking Levels</li>
+    <li class="heading"><%= t('ranking_levels_text') %></li>
     <% @ranking_levels.each_with_index do |rank,i| %>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="category-name"><%= rank.name %>
-            <span class="category-up-down <%= "inactive" if i==0 %>"><%= link_to_remote "▲",:url=>{:action=>"change_priority",:order=>"up",:id=>rank.id} %></span>
-            <span class="category-up-down <%= "inactive" if i+1==@ranking_levels.count%>"><%= link_to_remote "▼",:url=>{:action=>"change_priority",:order=>"down",:id=>rank.id} %></span>
+            <span class="category-up-down <%= "#{t('inactive')}" if i==0 %>"><%= link_to_remote "▲",:url=>{:action=>"change_priority",:order=>"up",:id=>rank.id} %></span>
+            <span class="category-up-down <%= "#{t('inactive')}" if i+1==@ranking_levels.count%>"><%= link_to_remote "▼",:url=>{:action=>"change_priority",:order=>"down",:id=>rank.id} %></span>
             </div>
-          <div class="category-edit"><%= link_to_remote "#{t('edit_text')}", :url=>{:controller=>"ranking_levels",:action=>"edit_ranking_level", :id=>rank.id}  if permitted_to? :edit_ranking_level, :ranking_levels %></div><div class="category-delete">   <%= link_to_remote "Delete", :url=>{:controller=>"ranking_levels",:action=>"delete_ranking_level", :id=>rank.id}, :confirm=>"Are you sure?" if permitted_to? :delete_ranking_level, :ranking_levels %></div>
+          <div class="category-edit"><%= link_to_remote "#{t('edit_text')}", :url=>{:controller=>"ranking_levels",:action=>"edit_ranking_level", :id=>rank.id}  if permitted_to? :edit_ranking_level, :ranking_levels %></div><div class="category-delete">   <%= link_to_remote "#{t('delete')}", :url=>{:controller=>"ranking_levels",:action=>"delete_ranking_level", :id=>rank.id}, :confirm=>"#{t('delete_confirm_msg')}" if permitted_to? :delete_ranking_level, :ranking_levels %></div>
         </li>
       <% end %>
   <% else %>
-    <p class="flash-msg">No Ranking Levels found.</p>
+    <p class="flash-msg"><%= t('no_ranking_level_found') %>.</p>
   <% end %>
 </ul>
 

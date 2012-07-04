@@ -19,7 +19,7 @@
 
 
 <div id="page-yield">
-  <h3 align="center">Archived Batches Grouped Exam Report</h3>
+  <h3 align="center"><%= t('archived_batches_grouped_exam_report') %></h3>
   <div class="hor_line"></div>
 
   <div class="extender"> </div>
@@ -33,12 +33,12 @@
           <tr class="table-header">
             <td><%= t('subject') %></td>
             <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
-              <td>Credit</td>
+              <td><%= t('credit') %></td>
             <% end %>
             <% @exam_groups.each do |exam_group| %>
               <td><%= exam_group.name %></td>
             <% end %>
-            <td>Combined</td>
+            <td><%= t('combined') %></td>
           </tr>
           <% c ='even' %>
           <% @subjects.each do |subject| %>
@@ -73,11 +73,11 @@
           <% end %>
           <tr class="table-header">
             <% if @batch.grading_type=="1" %>
-              <td colspan="2" align="right">GPA</td>
+              <td colspan="2" align="right"><%= t('gpa') %></td>
             <% elsif @batch.grading_type=="2" %>
-              <td colspan="2" align="right">Weighted Average</td>
+              <td colspan="2" align="right"><%= t('weighted_average') %></td>
             <% else %>
-              <td align="right">Percentage</td>
+              <td align="right"><%= t('percentage') %></td>
             <% end %>
             <% @exam_groups.each do |exam_group| %>
               <% exam_total = GroupedExamReport.find_by_student_id_and_exam_group_id_and_score_type(@student.id,exam_group.id,"e") %>

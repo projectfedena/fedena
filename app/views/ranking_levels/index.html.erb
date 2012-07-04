@@ -1,7 +1,7 @@
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
-  <h1>Ranking Levels</h1>
-  <h3>Manage Ranking Levels</h3>
+  <h1><%= t('ranking_levels_text') %></h1>
+  <h3><%= t('manage_ranking_levels') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -9,11 +9,11 @@
 <div id="page-yield">
   <div class="course-select">
     <div class="label-field-pair">
-      <label for="student_course">Select a Course :</label>
+      <label for="student_course"><%= t('select_a_course') %>:</label>
       <div  class="text-input-bg">
         <%= select :ranking_level, :course_id,
           Course.active.map {|b| [b.full_name, b.id]},
-          {:prompt => "select a course"},{:onChange => "#{remote_function(:url => {:action => "load_ranking_levels"}, :with => "'course_id='+value")}"}%></div></div>
+          {:prompt => "#{t('select_a_course')}"},{:onChange => "#{remote_function(:url => {:action => "load_ranking_levels"}, :with => "'course_id='+value")}"}%></div></div>
   </div>
   <div id="flash"></div>
 

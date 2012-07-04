@@ -20,7 +20,7 @@
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
-  <h3>Combined Report</h3>
+  <h3><%= t('combined_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -61,15 +61,15 @@
           <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
             <% unless designated_students.empty? %>
               <tr class="tr-head">
-                <td>Sl No.</td>
-                <td>Adm No.</td>
-                <td>Name</td>
+                <td><%= t('sl_no') %></td>
+                <td><%= t('adm_no') %></td>
+                <td><%= t('name') %></td>
                 <% if @batch.grading_type == "2" %>
-                  <td>CWA</td>
+                  <td><%= t('cwa') %></td>
                 <% elsif @batch.grading_type == "1" %>
-                  <td>CGPA</td>
+                  <td><%= t('cgpa') %></td>
                 <% else %>
-                  <td>Percentage</td>
+                  <td><%= t('percentage') %></td>
                 <% end %>
               </tr>
               <% designated_students.each_with_index do|s,i| %>
@@ -83,7 +83,7 @@
               <% end %>
             <% else %>
               <tr class="tr-head">
-                <td>No Students for this Class Designation.</td>
+                <td><%= t('no_students_for_this_class_designation') %></td>
               </tr>
             <% end %>
           </table>
@@ -91,7 +91,7 @@
       <% end %>
       <% unless @levels.blank? %>
         <% @levels.each do|level| %>
-          <h4 align="center"><%= level.name %> Students</h4>
+          <h4 align="center"><%= level.name %><%= t('students') %></h4>
           <% unless level.subject_count.nil? %>
             <% scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"s"}) %>
           <% else %>
@@ -185,17 +185,17 @@
           <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
             <% unless ranked_students.empty? %>
               <tr class="tr-head">
-                <td>Sl No.</td>
-                <td>Adm No.</td>
-                <td>Name</td>
+                <td><%= t('sl_no') %></td>
+                <td><%= t('adm_no') %></td>
+                <td><%= t('name') %></td>
                 <% if @batch.grading_type == "2" %>
-                  <td>CWA</td>
+                  <td><%= t('cwa') %></td>
                 <% elsif @batch.grading_type == "1" %>
-                  <td>CGPA</td>
+                  <td><%= t('cgpa') %></td>
                 <% else %>
-                  <td>Percentage</td>
+                  <td><%= t('percentage') %></td>
                 <% end %>
-                <td>Courses <%= level.name %></td>
+                <td><%= t('courses_text') %><%= level.name %></td>
               </tr>
               <% ranked_students.each_with_index do|r,ind| %>
                 <tr class="tr-<%= cycle('odd', 'even') %>">
@@ -217,7 +217,7 @@
               <% end %>
             <% else %>
               <tr class="tr-head">
-                <td>No Students for this Ranking Level.</td>
+                <td><%= t('no_students_for_this_ranking_level') %></td>
               </tr>
             <% end %>
           </table>

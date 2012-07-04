@@ -45,7 +45,7 @@
     </div>
     <% if @batch.grading_type=="1" %>
       <div class="label-field-pair">
-        <%= f.label :is_final_exam, "Is Final Exam?" %>
+        <%= f.label :is_final_exam, t('is_final_exam') %>
         <div class="text-input-bg"> <%= f.check_box :is_final_exam %></div>
       </div>
     <% end %>
@@ -83,14 +83,14 @@
         <td class="col-1">
          <div class="label-field-pair3">
         <div class="text-input-bg3">
-        <%= exam_form.calendar_date_select :start_time,:readonly=>true,:popup=>"force"%>
+        <%= exam_form.calendar_date_select :start_time,:popup=>"force"%>
         </div>
         </div>
         </td>
         <td class="col-1">
          <div class="label-field-pair3">
         <div class="text-input-bg3">
-        <%= exam_form.calendar_date_select :end_time,:readonly=>true,:popup=>"force" %>
+        <%= exam_form.calendar_date_select :end_time,:popup=>"force" %>
         </div>
         </div></td>
         <td class="col-1">

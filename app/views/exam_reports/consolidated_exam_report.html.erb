@@ -19,15 +19,15 @@
 
 <div id="content-header">
   <img src="/images/examination/show_exam.png" alt="Exam" />
-  <h1>Exams</h1>
-  <h3>Consolidated Report</h3>
+  <h1><%= t('exams_text') %></h1>
+  <h3><%= t('consolidated_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "PDF Report",{:controller => "exam_reports", :action => "consolidated_exam_report_pdf", :exam_group => @exam_group.id},:target => '_blank' %></li>
+    <li><%= link_to "#{t('pdf_report')}",{:controller => "exam_reports", :action => "consolidated_exam_report_pdf", :exam_group => @exam_group.id},:target => '_blank' %></li>
   </ul>
 </div>
 <div id="page-yield">
@@ -41,11 +41,11 @@
     <div class="students-table">
       <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
         <tr class="tr-head">
-          <td>Name</td>
+          <td><%= t('name') %></td>
           <% @exam_group.exams.each do |exam| %>
             <td><%= Subject.find(exam.subject_id).code %><%= "(" + exam.maximum_marks.to_s + ")"  unless exam.maximum_marks.nil? %></td>
           <% end %>
-          <td>Percentage(%)</td> 
+          <td><%= t('percentage') %>(%)</td>
         </tr>
         <% if @archived_students.present? %>
         <% @archived_students.each do |student|%>

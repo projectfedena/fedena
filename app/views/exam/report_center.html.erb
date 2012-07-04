@@ -20,7 +20,7 @@
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
-  <h3>Report Center</h3>
+  <h3><%= t('report_center') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -46,45 +46,45 @@
       <div class="link-descr"><%= t('group_up_exams_for_specific_reports') %></div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Archived Student Reports' , :controller=> "exam_reports",:action=>'archived_exam_wise_report' %></div>
-      <div class="link-descr">Generates Grouped Exam reports for Archived Students</div>
+      <div class="link-heading"><%= link_to "#{t('archived_student_reports')}" , :controller=> "exam_reports",:action=>'archived_exam_wise_report' %></div>
+      <div class="link-descr"><%= t('generates_grouped_exam_reports_for_archived_students') %></div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Student Ranking per Subject' , :controller=> "exam",:action=>'subject_rank' %></div>
-      <div class="link-descr">Generates reports for Subject wise Student Rank</div>
+      <div class="link-heading"><%= link_to "#{t('student_ranking_per_subject')}" , :controller=> "exam",:action=>'subject_rank' %></div>
+      <div class="link-descr"><%= t('generates_reports_for_subject_wise') %></div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Student Ranking per Batch' , :controller=> "exam",:action=>'batch_rank' %></div>
-      <div class="link-descr">Generates reports for Batch wise Overall Student Rank</div>
+      <div class="link-heading"><%= link_to "#{t('student_ranking_per_batch')}" , :controller=> "exam",:action=>'batch_rank' %></div>
+      <div class="link-descr"><%= t('generates_reports_for_batch_wise') %></div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Student Ranking per Course' , :controller=> "exam",:action=>'course_rank' %></div>
-      <div class="link-descr">Generates reports for Course wise Overall Student Rank</div>
+      <div class="link-heading"><%= link_to "#{t('student_ranking_per_course')}" , :controller=> "exam",:action=>'course_rank' %></div>
+      <div class="link-descr"><%= t('generates_reports_for_course_wise') %></div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Student Ranking per School' , :controller=> "exam",:action=>'student_school_rank' %></div>
-      <div class="link-descr">Generates reports for Overall Student Rank for this School</div>
+      <div class="link-heading"><%= link_to "#{t('student_ranking_per_school')}" , :controller=> "exam",:action=>'student_school_rank' %></div>
+      <div class="link-descr"><%= t('generate_report_for_overall_student_rank') %></div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Student Ranking per Attendance' , :controller=> "exam",:action=>'attendance_rank' %></div>
-      <div class="link-descr">Generates reports for Batch wise Student Rank per Attendance</div>
+      <div class="link-heading"><%= link_to "#{t('student_ranking_per_attendance')}" , :controller=> "exam",:action=>'attendance_rank' %></div>
+      <div class="link-descr"><%= t('generates_reports_for_batch_wise_student_per_rank') %></div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Ranking Level Report' , :controller=> "exam",:action=>'ranking_level_report' %></div>
-      <div class="link-descr">Generates reports based on different Ranking Levels</div>
+      <div class="link-heading"><%= link_to "#{t('ranking_level_report')}" , :controller=> "exam",:action=>'ranking_level_report' %></div>
+      <div class="link-descr"><%= t('generates_reports_based_on_different_ranking') %></div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'View Transcripts' , :controller=> "exam",:action=>'transcript' %></div>
-      <div class="link-descr">Generates Student Transcripts</div>
+      <div class="link-heading"><%= link_to "#{t('view_transcripts')}" , :controller=> "exam",:action=>'transcript' %></div>
+      <div class="link-descr"><%= t('generate_student_transcripts') %></div>
     </div>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Combined Reports' , :controller=> "exam",:action=>'combined_report' %></div>
-      <div class="link-descr">Generates Combined Student Reports</div>
+      <div class="link-heading"><%= link_to "#{t('combined_reports')}" , :controller=> "exam",:action=>'combined_report' %></div>
+      <div class="link-descr"><%= t('generates_combined_student_report') %></div>
     </div>
     <%  if Configuration.cce_enabled? %>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'CCE Reports' , :controller=> "cce_reports",:action=>'index' %></div>
-      <div class="link-descr">Generates Combined Student Reports</div>
+      <div class="link-heading"><%= link_to "#{t('cce_reports')}" , :controller=> "cce_reports",:action=>'index' %></div>
+      <div class="link-descr"><%= t('generates_combined_student_report') %></div>
     </div>
     <% end %>
   </div>

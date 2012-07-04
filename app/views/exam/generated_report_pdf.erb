@@ -55,12 +55,12 @@
               <% total_credits=0 %>
               <% total_weighted_marks=0 %>
               <tr class="table-header">
-                <td class="col-pdf">Subject Code</td>
-                <td class="col-pdf">Subject Title</td>
-                <td class="col-pdf">Marks</td>
-                <td class="col-pdf">Credit</td>
-                <td class="col-pdf">Grade</td>
-                <td class="col-pdf">Weighted Marks</td>
+                <td class="col-pdf"><%= t('subject_code') %></td>
+                <td class="col-pdf"><%= t('subject_title') %></td>
+                <td class="col-pdf"><%= t('marks') %></td>
+                <td class="col-pdf"><%= t('credit') %></td>
+                <td class="col-pdf"><%= t('grade') %></td>
+                <td class="col-pdf"><%= t('weighted_marks') %></td>
               </tr>
               <tr class="tr-blank"></tr>
               <% @exams.each_with_index do |exam,i|  %>
@@ -81,12 +81,12 @@
                   <% i= 0 %>
                   <tr class="page-break"><td colspan="3"></td></tr>
                   <tr class="table-header">
-                    <td class="col-pdf">Subject Code</td>
-                    <td class="col-pdf">Subject Title</td>
-                    <td class="col-pdf">Marks</td>
-                    <td class="col-pdf">Credit</td>
-                    <td class="col-pdf">Grade</td>
-                    <td class="col-pdf">Weighted Marks</td>
+                    <td class="col-pdf"><%= t('subject_code') %></td>
+                    <td class="col-pdf"><%= t('subject_title') %></td>
+                    <td class="col-pdf"><%= t('marks') %></td>
+                    <td class="col-pdf"><%= t('credit') %></td>
+                    <td class="col-pdf"><%= t('grade') %></td>
+                    <td class="col-pdf"><%= t('weighted_marks') %></td>
                   </tr>
                   <tr class="tr-blank"></tr>
                 <% end %>
@@ -110,11 +110,11 @@
               <% total_credit_points=0 %>
               <% total_credit_hours=0 %>
               <tr class="table-header">
-                <td class="col-pdf">Subject Code</td>
-                <td class="col-pdf">Subject Title</td>
-                <td class="col-pdf">Credits</td>
-                <td class="col-pdf">Grade</td>
-                <td class="col-pdf">Remarks</td>
+                <td class="col-pdf"><%= t('subject_code') %></td>
+                <td class="col-pdf"><%= t('subject_title') %></td>
+                <td class="col-pdf"><%= t('credits') %></td>
+                <td class="col-pdf"><%= t('grade') %></td>
+                <td class="col-pdf"><%= t('remarks') %></td>
               </tr>
               <tr class="tr-blank"></tr>
               <% @exams.each_with_index do |exam,i|  %>
@@ -129,11 +129,11 @@
                   <% i= 0 %>
                   <tr class="page-break"><td colspan="3"></td></tr>
                   <tr class="table-header">
-                    <td class="col-pdf">Subject Code</td>
-                    <td class="col-pdf">Subject Title</td>
-                    <td class="col-pdf">Credits</td>
-                    <td class="col-pdf">Grade</td>
-                    <td class="col-pdf">Remarks</td>
+                    <td class="col-pdf"><%= t('subject_code') %></td>
+                    <td class="col-pdf"><%= t('subject_title') %></td>
+                    <td class="col-pdf"><%= t('credits') %></td>
+                    <td class="col-pdf"><%= t('grade') %></td>
+                    <td class="col-pdf"><%= t('remarks') %></td>
                   </tr>
                   <tr class="tr-blank"></tr>
                 <% end %>
@@ -147,7 +147,7 @@
               <% end %>
               <tr class="tr-blank"></tr>
               <tr class="table-header">
-                <td class="col-pdf" colspan="2" align="right">Total</td>
+                <td class="col-pdf" colspan="2" align="right"><%= t('total') %></td>
                 <td class="col-pdf"><%= total_credit_hours %></td>
                 <td>-</td>
                 <td>-</td>
@@ -240,7 +240,7 @@
           </table>
         </div>
         <% if @batch.grading_type=="2" %>
-          <h4>Weighted Average =
+          <h4><%= t('weighted_average') %> =
             <% unless total_credits==0 %>
               <%= "%.2f" %(total_credit_points.to_f/total_credits.to_f) %>
             <% else %>
@@ -248,7 +248,7 @@
             <% end %>
           </h4>
         <% elsif @batch.grading_type=="1" %>
-          <h4>Grade Point Average (GPA) =
+          <h4><%= t('grade_point_average_gpa') %> =
             <% unless total_credit_hours==0 %>
               <%= "%.2f" %(total_credit_points.to_f/total_credit_hours.to_f) %>
             <% else %>

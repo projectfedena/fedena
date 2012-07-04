@@ -24,7 +24,7 @@
   <div class="extender"> </div>
   <div class="report">
     <div id ="main_info">
-      <h3>Overall Rankings per Attendance : <%= @batch.name %> - <%= @batch.course.full_name %> | <%=@start_date%> - <%=@end_date%></h3>
+      <h3><%= t('overall_ranking_per_attendance') %>: <%= @batch.name %> - <%= @batch.course.full_name %> | <%=@start_date%> - <%=@end_date%></h3>
     </div>
     <div id="pdf-info">
       <% unless @students.empty? %>
@@ -52,13 +52,13 @@
           <% c = 'even' %>
           <table id="pdf-table" width="100%" cellspacing="0">
             <tr class="table-header">
-              <td>Sl No.</td>
+              <td><%= t('sl_no') %></td>
               <td><%= t('name') %></td>
-              <td>Adm No.</td>
-              <td>Working Days</td>
-              <td>Attended</td>
-              <td>Percentage</td>
-              <td>Rank</td>
+              <td><%= t('adm_no') %></td>
+              <td><%= t('working_days') %></td>
+              <td><%= t('attended') %></td>
+              <td><%= t('percentage') %></td>
+              <td><%= t('rank') %></td>
             </tr>
             <% i = 0 %>
             <% @students.each_with_index do |student,ind| %>
@@ -69,13 +69,13 @@
                 <tr class="page-break"><td colspan="3"></td></tr>
 
                 <tr class="table-header">
-                  <td>Sl No.</td>
+                  <td><%= t('sl_no') %></td>
                   <td><%= t('name') %></td>
-                  <td>Adm No.</td>
-                  <td>Working Days</td>
-                  <td>Attended</td>
-                  <td>Percentage</td>
-                  <td>Rank</td>
+                  <td><%= t('adm_no') %></td>
+                  <td><%= t('working_days') %></td>
+                  <td><%= t('attended') %></td>
+                  <td><%= t('percentage') %></td>
+                  <td><%= t('rank') %></td>
                 </tr>
               <% end %>
               <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
@@ -98,10 +98,10 @@
             <% end %>
           </table>
         <% else %>
-          <p class="flash-msg"> No Working Days for this Batch. </p>
+          <p class="flash-msg"><%= t('no_working_days_for_this_batch') %></p>
         <% end %>
       <% else %>
-        <p class="flash-msg"> No Students in this Batch. </p>
+        <p class="flash-msg"><%= t('no_students_in_this_batch') %> </p>
       <% end %>
     </div>
   </div>

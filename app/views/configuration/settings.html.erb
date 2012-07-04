@@ -105,7 +105,7 @@
       </div>
       <div class="grades">
         <div class="label-field-pair">
-          <label for="configuration_grading_systems">Include Grading Systems</label>
+          <label for="configuration_grading_systems"><%= t('include_grading_systems') %></label>
         </div>
         <div class="fee_category_scroll">
           <div class="sel-list">
@@ -141,9 +141,9 @@
       <% end %>
       <br/>
       <% if @config[:enable_news_comment_moderation] == '1' %>
-        <%= check_box :configuration, :enable_news_comment_moderation, :checked => true %><%= "Enable News Comment Moderation" %>
+        <%= check_box :configuration, :enable_news_comment_moderation, :checked => true %><%= t('enable_news_comment_moderation') %>
       <% else %>
-        <%= check_box :configuration, :enable_news_comment_moderation, :checked => false %><%=  "Enable News  Comment Moderation" %>
+        <%= check_box :configuration, :enable_news_comment_moderation, :checked => false %><%= t('enable_news_comment_moderation') %>
       <% end %>
       <% FedenaPlugin::REGISTERED_HOOKS[:general_settings_checkbox].each do |mod| %>
         <br/>

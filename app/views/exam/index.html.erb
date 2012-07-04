@@ -34,8 +34,8 @@
   <% if (@current_user.admin? or @current_user.privileges.collect(&:name).include?('ExaminationControl')) %>
     <div class="box">
       <div class="link-box">
-        <div class="link-heading"><%= link_to "Settings" ,:controller=>'exam' , :action=>'settings' %></div>
-        <div class="link-descr">Manage Grading Levels, Ranking Levels and Class Designations</div>
+        <div class="link-heading"><%= link_to "#{t('settings')}" ,:controller=>'exam' , :action=>'settings' %></div>
+        <div class="link-descr"><%= t('manage_grade_rank_designation') %></div>
       </div>
     <% end %>
     <% @employee_subjects=[] %>
@@ -48,13 +48,13 @@
     <% end %>
     <% if (@current_user.admin? or @current_user.privileges.collect(&:name).include?('ExaminationControl')) %>
       <div class="link-box">
-        <div class="link-heading"><%= link_to 'Generate Reports' , :controller=> "exam",:action=>'generate_reports' %></div>
-        <div class="link-descr">Generates Student Reports for Grouped Exams</div>
+        <div class="link-heading"><%= link_to "#{t('generate_reports')}" , :controller=> "exam",:action=>'generate_reports' %></div>
+        <div class="link-descr"><%= t('generate_student_reports_for_grouped_exams') %></div>
       </div>
     <% end %>
     <div class="link-box">
-      <div class="link-heading"><%= link_to 'Report Center' , :controller=> "exam",:action=>'report_center' %></div>
-      <div class="link-descr">View Student Reports</div>
+      <div class="link-heading"><%= link_to "#{t('report_center')}" , :controller=> "exam",:action=>'report_center' %></div>
+      <div class="link-descr"><%= t('view_student_report') %></div>
     </div>
 
 

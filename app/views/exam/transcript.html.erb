@@ -20,7 +20,7 @@
 <div id="content-header">
 <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
-  <h3>View Transcripts</h3>
+  <h3><%= t('view_transcripts') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -33,11 +33,11 @@
 
     <% form_for :transcript, :url=>{:action=>'student_transcript'} do |x| %>
       <div class="label-field-pair">
-        <label for="student_course">Select a Batch :</label>
+        <label for="student_course"><%= t('select_a_batch') %> :</label>
         <div  class="text-input-bg">
           <%= select :transcript, :batch_id,
             @batches.map{|b| [b.full_name, b.id]},
-            {:prompt => "select a batch"}%></div></div>
+            {:prompt => "#{t('select_a_batch')}"}%></div></div>
       <%= submit_tag "", :value => "► #{t('view')}", :class => "submit_button" %>
     <% end %>
     <div class="extender"></div>

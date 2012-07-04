@@ -42,7 +42,7 @@ class RankingLevelsController < ApplicationController
       @ranking_levels = RankingLevel.find(:all,:conditions=>{:course_id=>@course.id},:order=>"priority ASC")
       render(:update) do|page|
         page.replace_html "category-list", :partial=>"ranking_levels"
-        page.replace_html 'flash', :text=>'<p class="flash-msg"> Ranking Level created successfully. </p>'
+        page.replace_html 'flash', :text=>"<p class='flash-msg'>#{t('flash1')}</p>"
         page.replace_html 'errors', :partial=>"rank_errors"
         page.replace_html 'rank_form', :partial=>"rank_form"
       end
@@ -72,7 +72,7 @@ class RankingLevelsController < ApplicationController
       @ranking_levels = RankingLevel.find(:all,:conditions=>{:course_id=>@course.id},:order=>"priority ASC")
       render(:update) do|page|
         page.replace_html "category-list", :partial=>"ranking_levels"
-        page.replace_html 'flash', :text=>'<p class="flash-msg"> Ranking Level updated successfully. </p>'
+        page.replace_html 'flash', :text=>"<p class='flash-msg'>#{t('flash2')}</p>"
         page.replace_html 'errors', :partial=>"rank_errors"
         page.replace_html 'rank_form', :partial=>"rank_form"
       end
@@ -92,7 +92,7 @@ class RankingLevelsController < ApplicationController
       @ranking_levels = RankingLevel.find(:all,:conditions=>{:course_id=>@course.id},:order=>"priority ASC")
       render(:update) do|page|
         page.replace_html "category-list", :partial=>"ranking_levels"
-        page.replace_html 'flash', :text=>'<p class="flash-msg"> Ranking Level deleted successfully. </p>'
+        page.replace_html 'flash', :text=>"<p class='flash-msg'>#{t('flash3')}</p>"
         page.replace_html 'errors', :partial=>"rank_errors"
         page.replace_html 'rank_form', :partial=>"rank_form"
       end

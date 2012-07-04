@@ -2,34 +2,34 @@
 
   <div id="form-content">
     <div class="label-field-pair">
-      <label for="name">Name</label>
+      <label for="name"><%= t('name') %></label>
       <div class="text-input-bg"><%= c.text_field :name %></div>
     </div>
     <% if @course.grading_type=="1" %>
       <div class="label-field-pair">
-        <label for="gpa">GPA Level</label>
+        <label for="gpa"><%= t('gpa_level') %></label>
         <div class="text-input-bg"><%= c.text_field :gpa %></div>
       </div>
     <% else %>
       <div class="label-field-pair">
-        <label for="marks">Marks</label>
+        <label for="marks"><%= t('marks') %></label>
         <div class="text-input-bg"><%= c.text_field :marks %></div>
       </div>
     <% end %>
     <div class="label-field-pair">
-      <% if @course.grading_type=="1" %><label for="marks">GPA Limit Type</label><% else %><label for="marks">Marks Limit Type</label><% end %>
+      <% if @course.grading_type=="1" %><label for="marks"><%= t('gpa_limit_type') %></label><% else %><label for="marks"><%= t('marks_limit_type') %></label><% end %>
       <div class="text-input-bg"><%= c.select :marks_limit_type, RankingLevel::LIMIT_TYPES.collect{|lim| [lim.titleize,lim]} %></div>
     </div>
     <div class="label-field-pair">
-      <label for="subject_count">Number of Subjects</label>
+      <label for="subject_count"><%= t('number_of_subjects') %></label>
       <div class="text-input-bg"><%= c.text_field :subject_count %></div>
     </div>
     <div class="label-field-pair">
-      <label for="marks">Subject Limit Type</label>
+      <label for="marks"><%= t('subject_limit_type') %></label>
       <div class="text-input-bg"><%= c.select :subject_limit_type, RankingLevel::LIMIT_TYPES.collect{|lim| [lim.titleize,lim]} %></div>
     </div>
     <div class="label-field-pair">
-      <label for="subject_count">Consider Full Course Duration?</label>
+      <label for="subject_count"><%= t('consider_full_course_duration') %></label>
       <div class="text-input-bg"><%= c.check_box :full_course %></div>
     </div>
 

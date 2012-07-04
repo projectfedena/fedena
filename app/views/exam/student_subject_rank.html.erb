@@ -20,7 +20,7 @@
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
-  <h3>Student Ranking per Subject</h3>
+  <h3><%= t('student_ranking_per_subject') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -42,7 +42,7 @@
     <div id="score-table">
       <table id="listing" width="100%" cellpadding="1" cellspacing="1">
         <tr class="tr-head">
-          <td>Adm No.</td>
+          <td><%= t('adm_no') %></td>
           <td><%= t('name') %></td>
           <% ranks = [] %>
           <% @exam_groups.each do |exam_group| %>

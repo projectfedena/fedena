@@ -20,7 +20,7 @@
 <div id="content-header">
 <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
-  <h3>Ranking Level Report</h3>
+  <h3><%= t('ranking_level_report') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -33,10 +33,10 @@
 
     <% form_for :ranking_level_report, :url=>{:action=>'student_ranking_level_report'} do |x| %>
     <div class="label-field-pair">
-        <label for="student_course">Select a Mode :</label>
+        <label for="student_course"><%= t('select_mode') %>:</label>
         <div  class="text-input-bg">
           <%= select :ranking_level_report, :mode,
-            [["Course wise","course"],["Batch wise","batch"]],
+            [["#{t('course_wise')}","course"],["#{t('batch_wise')}","batch"]],
             {:prompt => "select a mode"}, {:onChange => "#{remote_function(:url => {:action => "select_mode"}, :with => "'mode='+value")}"}%></div></div>
     <div id="course-batch"></div>
       <%= submit_tag "", :value => "► #{t('view')}", :class => "submit_button" %>
