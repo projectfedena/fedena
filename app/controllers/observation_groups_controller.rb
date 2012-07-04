@@ -88,7 +88,7 @@ class ObservationGroupsController < ApplicationController
   end
 
   def assign_courses
-    @courses=Course.active
+    @courses=Course.cce
   end
 
   def select_observation_groups

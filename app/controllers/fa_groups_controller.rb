@@ -55,7 +55,7 @@ class FaGroupsController < ApplicationController
   end
 
   def assign_fa_groups
-    @courses = Course.active
+    @courses = Course.cce
     @subjects = []
   end
 

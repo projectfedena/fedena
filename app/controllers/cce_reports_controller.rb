@@ -24,7 +24,7 @@ class CceReportsController < ApplicationController
   end
 
   def student_wise_report
-    @batches=Batch.active
+    @batches=Batch.cce
     if request.post?
       if params[:student].nil?
         @batch=Batch.find(params[:batch_id])

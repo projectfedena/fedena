@@ -66,7 +66,7 @@ class CceWeightagesController < ApplicationController
   end
 
   def assign_weightages
-    @courses=Course.active
+    @courses=Course.cce
   end
 
   def select_weightages
