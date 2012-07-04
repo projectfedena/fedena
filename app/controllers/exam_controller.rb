@@ -1278,8 +1278,12 @@ class ExamController < ApplicationController
         elective_subjects.push Subject.find(elect.subject_id)
       end
       @subjects = general_subjects + elective_subjects
-      render(:update) do |page|
-        page.replace_html   'grouped_exam_report', :partial=>"grouped_exam_report"
+      if request.xhr?
+        render(:update) do |page|
+          page.replace_html   'grouped_exam_report', :partial=>"grouped_exam_report"
+        end
+      else
+        @students = @batch.students
       end
     end
 
