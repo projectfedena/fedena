@@ -1,28 +1,4 @@
 
-.link-box {
-    margin:10px 40px;
-    width:270px;
-    float:left;
-    height:80px;
-}
-.link-heading a {
-    font-weight:bold;
-    color:#900;
-}
-.link-descr {
-    margin-top:5px;
-    color:#666;
-    text-align:justify;
-    font-size:14px;
-}
-#box{
-    width:700px;
-    margin:0px auto;
-}
-.box{
-    width:770px;
-    margin:0px auto;
-}
 .next a{
     float:left;
     -moz-border-radius:40px;
@@ -67,7 +43,7 @@
     font-size:16px;
     color:#121212;
     font-weight:bold;
-   margin:0px 6px;
+    margin:0px 6px;
 }
 #register{
     background: #C3D9FF;
@@ -83,5 +59,148 @@
 }
 
 #inner-tab-menu ul li{
- width: 150px;
+    width: 150px;
 }
+
+#score-table{
+    overflow:auto;
+}
+.student_list{
+}
+.header{
+    list-style-type: none;
+    font-weight: bold;
+}
+li.student_names, li.student_names a{
+    text-decoration: none;
+    /*    margin-top: 5px;*/
+    color: black;
+    width:100%;
+    min-width:100%;
+    display: block;
+    padding: 2px 0 2px 0;
+}
+.student_list{
+    list-style-type: none;
+    clear : both;
+    width: 200px;
+    max-height: 400px;
+    overflow-y: scroll;
+    font-size: 13px;
+    padding: 0px;
+    float: left;
+}
+
+.student_list a:hover{
+    text-decoration: none;
+    background-color:  #F1F6FF;
+    width:100%;
+
+}
+.student_list a:active{
+    text-decoration: none;
+    /*    font-weight: bold;*/
+}
+.active-link{
+    font-weight: bold;
+    color: #C00 !important;
+}
+.student-name{
+    height: 28px;
+}
+#grouped_exam_report{
+    /*    float: left;*/
+    margin-left:  230px;
+}
+.list_name{
+    font-weight: bold;
+}
+table#listing td{
+    font-size: 13px;
+    font-weight: bold;
+}
+table#listing tr.tr-head {
+    color: #C00;
+    font-size: 13px;
+}
+.student{
+    font-weight: bold;
+    text-align: left !important;
+    margin-left: 10px;
+}
+/************giving border and padding to outer div instead of table***************/
+#score-table{
+    background: #C3D9FF;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 20px 20px;
+}
+table#listing{
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    padding: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.custom_header{
+    margin: 0 auto;
+    padding: 5px;
+    /*    text-align: center;*/
+    background: #fff;
+}
+.user_button {
+    -moz-background-clip: border;
+    -moz-background-origin: padding;
+    -moz-background-size: auto auto;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    -webkit-background-clip: border;
+    -webkit-background-origin: padding;
+    -webkit-background-size: auto auto;
+    -webkit-border-radius: 10px;
+    background-attachment: scroll;
+    background-color: #27292B;
+    background-image: none;
+    background-position: 0 0;
+    background-repeat: repeat;
+    border-bottom-color: -moz-use-text-color;
+    border-bottom-style: none;
+    border-bottom-width: medium;
+    border-left-color-ltr-source: physical;
+    border-left-color-rtl-source: physical;
+    border-left-color-value: -moz-use-text-color;
+    border-left-style-ltr-source: physical;
+    border-left-style-rtl-source: physical;
+    border-left-style-value: none;
+    border-left-width-ltr-source: physical;
+    border-left-width-rtl-source: physical;
+    border-left-width-value: medium;
+    border-right-color-ltr-source: physical;
+    border-right-color-rtl-source: physical;
+    border-right-color-value: -moz-use-text-color;
+    border-right-style-ltr-source: physical;
+    border-right-style-rtl-source: physical;
+    border-right-style-value: none;
+    border-right-width-ltr-source: physical;
+    border-right-width-rtl-source: physical;
+    border-right-width-value: medium;
+    border-top-color: -moz-use-text-color;
+    border-top-style: none;
+    border-top-width: medium;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 7px;
+    text-decoration: none;
+    margin-left: 320px;
+}
+/*************************************************************************************/

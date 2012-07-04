@@ -18,132 +18,143 @@
 #under the License. -%>
 
 
-
 <div id="page-yield">
-
-  <div class="hor_line"></div>
-  <h2><%= "Student wise report for "+@exam_group.name+", Batch:"+@batch.full_name %></h2>
+  <h3 align="center">Archived Batches Grouped Exam Report</h3>
   <div class="hor_line"></div>
 
-  <% @students.each_with_index do |student,i| %>
-    <div class="extender"> </div>
-    <% if i == 0  %>
-      <div class="report">
-      <% else %>
-        <div class="report1">
-        <% end  %>
-        <div id ="main_info">
-          <h4> <%= student.full_name %></h4>
-          <h4> <%= "Exam : "+@exam_group.name %></h4>
-        </div>
-        <div id="pdf-info">
-          <table id="pdf-table" width="100%" cellspacing="0">
-            <% c = 'even'  %>
-            <%  if @exam_group.exam_type == 'Marks' %>
-              <tr class="table-header"><td class="col-pdf">Subject</td><td class="col-pdf"> Marks Obtained </td><td class="col-pdf">Maximum marks</td><td class="col-pdf">Percentage(%)</td></tr>
-              <% total_marks = 0 %>
-              <% total_max_marks = 0 %>
-              <% @exam_group.exams.each_with_index do |exam,i|  %>
-                <% if  student.class.name=="Student" %>
-                  <% exam_score = ExamScore.find_by_student_id_and_exam_id(student.id,exam) %>
-                <% else %>
-                  <% exam_score = ArchivedExamScore.find_by_student_id_and_exam_id(student.former_id,exam) %>
-                <% end %>
-                <% unless exam_score.nil? %>
-                  <% mark = exam_score.marks || "-" %>
-                  <% total_marks += exam_score.marks || 0 %>
-                  <% total_max_marks += exam.maximum_marks %>
-                <% else %>
-                  <% mark = "-" %>
-                  <% @total_percentage = ((total_marks.to_f/total_max_marks.to_f)*100) %>
-                <% end %>
-                <% if i== 50 %>
-                  <% i= 0 %>
-                  <tr class="page-break"><td colspan="3"></td></tr>
-
-                  <tr class="table-header"><td class="col-pdf">Subject</td><td class="col-pdf"> Marks Obtained </td><td class="col-pdf">Maximum marks</td><td class="col-pdf">Percentage(%)</td></tr>
-
-                <% end %>
-                <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-                  <td class="col-pdf"><%= exam.subject.name %></td>
-                  <td class="col-pdf"> <%= mark %> </td>
-                  <td class="col-pdf"><%= exam.maximum_marks %></td>
-                  <td class="col-pdf"><%= (exam_score.calculate_percentage unless exam_score.nil?) %></td>
-                </tr>
-              <% end %>
-              <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-                <td class="col-pdf"><%= "Total" %></td>
-                <td class="col-pdf"> <%= total_marks %> </td>
-                <td class="col-pdf"><%= total_max_marks %></td>
-                <td class="col-pdf"><%=((total_marks.to_f/total_max_marks.to_f)*100)%></td>
-              </tr>
-            <%  elsif @exam_group.exam_type == 'Grades' %>
-              <tr class="table-header"><td class="col-pdf">Subject</td><td class="col-pdf"> Grade </td></tr>
-              <% @exam_group.exams.each do |exam| %>
-                <% if  student.class.name=="Student" %>
-                  <% exam_score = ExamScore.find_by_student_id_and_exam_id(student.id,exam) %>
-                <% else %>
-                  <% exam_score = ArchivedExamScore.find_by_student_id_and_exam_id(student.former_id,exam) %>
-                <% end %>
-                <% unless exam_score.nil? %>
-                  <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-                    <td class="col-pdf"><%= exam.subject.name  %></td>
-                    <td class="col-pdf"> <%= exam_score.grading_level || "-" %> </td>
-                  </tr>
-                <% else %>
-                  <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-                    <td class="col-pdf"><%#= exam.subject.name %></td>
-                    <td class="col-pdf"> <%= "-" %> </td>
-                  </tr>
-                <% end %>
-              <% end %>
-
-            <% else %>
-              <tr class="table-header"><td class="col-pdf">Subject</td><td class="col-pdf"> Grade </td><td class="col-pdf"> Marks Obtained </td><td class="col-pdf"> Maximum marks </td><td class="col-pdf"> Percentage(%) </td></tr>
-              <% total_marks = 0 %>
-              <% total_max_marks = 0 %>
-              <% @exam_group.exams.each do |exam| %>
-              <% if  student.class.name=="Student" %>
-                  <% exam_score = ExamScore.find_by_student_id_and_exam_id(student.id,exam) %>
-                <% else %>
-                  <% exam_score = ArchivedExamScore.find_by_student_id_and_exam_id(student.former_id,exam) %>
-                <% end %>
-                <% unless exam_score.nil? %>
-                  <% mark = exam_score.marks || "-" %>
-                  <% grade = exam_score.grading_level || "-" %>
-                  <% total_marks += exam_score.marks || 0 %>
-                  <% total_max_marks += exam.maximum_marks %>
-                <% else %>
-                  <% mark = "-" %>
-                  <% grade = "-" %>
-                  <% @total_percentage = ((total_marks.to_f/total_max_marks.to_f)*100) %>
-                <% end %>
-                <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-                  <td class="col-pdf"><%= exam.subject.name %></td>
-                  <td class="col-pdf"> <%= grade %> </td>
-                  <td class="col-pdf"> <%= mark %> </td>
-                  <td class="col-pdf"> <%= exam.maximum_marks %> </td>
-                  <td class="col-pdf"> <%= "%.2f" %exam_score.calculate_percentage unless exam_score.nil? %> </td>
-                </tr>
-              <% end %>
-              <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-                <% @total_percentage = ((total_marks.to_f/total_max_marks.to_f)*100)%>
-                <% unless @total_percentage.nan? %>
-                  <% @deletedstudentgrade=GradingLevel.find(:all, :conditions=>"(min_score <= '#{@total_percentage.to_i}')").first %>
-                <% end %>
-                <td class="col-pdf"><%= 'Total' %></td>
-                <td class="col-pdf"> <% unless @total_percentage.nan? %> <%= @deletedstudentgrade.name %> <% else %> - <% end %></td>
-                <td class="col-pdf"> <%= total_marks %> </td>
-                <td class="col-pdf"> <%= total_max_marks %> </td>
-                <td class="col-pdf"> <%= @total_percentage %></td>
-              </tr>
+  <div class="extender"> </div>
+  <div class="report">
+    <div id ="main_info">
+      <h4><%= @student.full_name %> - <%= @student.admission_no %> </h4>
+    </div>
+    <div id="pdf-info">
+      <% if @type=="grouped" %>
+        <table id="pdf-table" width="100%" cellspacing="0">
+          <tr class="table-header">
+            <td><%= t('subject') %></td>
+            <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
+              <td>Credit</td>
             <% end %>
-          </table>
-        </div>
-      </div>
+            <% @exam_groups.each do |exam_group| %>
+              <td><%= exam_group.name %></td>
+            <% end %>
+            <td>Combined</td>
+          </tr>
+          <% c ='even' %>
+          <% @subjects.each do |subject| %>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf" ><%= subject.name %></td>
+              <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
+                <td class="col-pdf"><%= subject.credit_hours.present? ? subject.credit_hours : "-" %></td>
+              <% end %>
+              <% @exam_groups.each do |exam_group| %>
 
-    <% end %>
+                <% @exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id) %>
+                <% exam_score = ExamScore.find_by_student_id(@student.id, :conditions=>{:exam_id=>@exam.id})unless @exam.nil? %>
+                <td class="col-pdf">
+                  <% if @batch.grading_type=="1" %>
+                    <%= exam_score.present? ? "#{exam_score.grading_level || "-"}"+" ["+"#{exam_score.grading_level.present? ? (exam_score.grading_level.credit_points || "-") : "-"}"+"]" : "-" %>
+                  <% elsif @batch.grading_type=="2" %>
+                    <%= exam_score.present? ? "#{exam_score.marks.present? ? ("%.2f" %((exam_score.marks.to_f/@exam.maximum_marks.to_f)*100)) : "-"}"+" ["+"#{exam_score.grading_level.present? ? exam_score.grading_level : "-"}"+"]" : "-" %>
+                  <% else %>
+                    <% if exam_group.exam_type == "MarksAndGrades" %>
+                      <%= exam_score.nil? ? '-' :  "#{(exam_score.marks || "-")}" +"/"+@exam.maximum_marks.to_s+"[#{(exam_score.grading_level || "-")}]" %>
+                    <% elsif exam_group.exam_type == "Marks" %>
+                      <%= exam_score.nil? ? '-' : "#{exam_score.marks || "-"}/"+@exam.maximum_marks.to_s %>
+                    <% else %>
+                      <%= exam_score.nil? ? '-' : (exam_score.grading_level || '-')  %>
+                    <% end %>
+                  <% end %>
+                </td>
+              <% end %>
+              <% subject_average = GroupedExamReport.find_by_student_id_and_subject_id_and_score_type(@student.id,subject.id,"s") %>
+              <td class="col-pdf"><%= subject_average.present? ? subject_average.marks : "-" %></td>
+            </tr>
+          <% end %>
+          <tr class="table-header">
+            <% if @batch.grading_type=="1" %>
+              <td colspan="2" align="right">GPA</td>
+            <% elsif @batch.grading_type=="2" %>
+              <td colspan="2" align="right">Weighted Average</td>
+            <% else %>
+              <td align="right">Percentage</td>
+            <% end %>
+            <% @exam_groups.each do |exam_group| %>
+              <% exam_total = GroupedExamReport.find_by_student_id_and_exam_group_id_and_score_type(@student.id,exam_group.id,"e") %>
+              <td class="col-pdf">
+                <%= exam_total.present? ? exam_total.marks : "-" %>
+              </td>
+            <% end %>
+            <% total_avg = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(@student.id,@batch.id,"c") %>
+            <td class="col-pdf"><%= total_avg.present? ? total_avg.marks : "-" %></td>
+          </tr>
+        </table>
+      <% else %>
+        <table id="pdf-table" width="100%" cellspacing="0">
+          <tr class="table-header">
+            <td><%= t('subject') %></td>
+            <% @exam_groups.each do |exam_group| %>
+              <td><%= exam_group.name %></td>
+            <% end %>
+            <td><%= t('total') %></td>
+          </tr>
+          <% c ='even' %>
+          <% @subjects.each do |subject| %>
+            <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+              <td class="col-pdf" ><%= subject.name %></td>
+              <% @mmg = 1;@g = 1 %>
+              <% @exam_groups.each do |exam_group| %>
 
+                <% @exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id) %>
+                <% exam_score = ExamScore.find_by_student_id(@student.id, :conditions=>{:exam_id=>@exam.id})unless @exam.nil? %>
+                <td class="col-pdf">
+                  <% unless @exam.nil? %>
+                    <% if exam_group.exam_type == "MarksAndGrades" %>
+                      <%= exam_score.nil? ? '-' :  "#{(exam_score.marks || "-")}" +"/"+@exam.maximum_marks.to_s+"[#{(exam_score.grading_level || "-")}]" %>
+                    <% elsif exam_group.exam_type == "Marks" %>
+                      <%= exam_score.nil? ? '-' : "#{exam_score.marks || "-"}/"+@exam.maximum_marks.to_s %>
+                    <% else %>
+                      <%= exam_score.nil? ? '-' : (exam_score.grading_level || '-')  %>
+                      <% @g = 0 %>
+                    <% end %>
+                  <% else %>
+                    <%= "#{t('n_a')}" %>
+                  <% end %>
+                <% end %>
+              </td>
+              <% total_score = ExamScore.new() %>
+              <% if @mmg == @g %>
+                <td class="col-pdf"><%= total_score.grouped_exam_subject_total(subject,@student,@type) %></td>
+              <% else %>
+                <td class="col-pdf">-</td>
+              <% end %>
+            </tr>
+
+          <% end %>
+          <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+            <td class="col-pdf-bold"><%= t('total') %></td>
+            <% @max_total = 0 %>
+            <% @marks_total = 0 %>
+
+            <% @exam_groups.each do |exam_group| %>
+              <% if exam_group.exam_type == "MarksAndGrades" %>
+                <td class="col-pdf-bold"><%= exam_group.total_marks(@student)[0] %></td>
+              <% elsif exam_group.exam_type == "Marks" %>
+                <td class="col-pdf-bold"><%= exam_group.total_marks(@student)[0] %></td>
+              <% else %>
+                <td class="col-pdf-bold">-</td>
+              <% end %>
+              <% unless exam_group.exam_type == "Grades" %>
+                <% @max_total = @max_total + exam_group.total_marks(@student)[1] %>
+                <% @marks_total = @marks_total + exam_group.total_marks(@student)[0] %>
+              <% end %>
+            <% end %>
+            <td></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
   </div>
+
 
 </div>

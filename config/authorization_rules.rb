@@ -2465,6 +2465,8 @@ authorization do
     has_permission_on [:exam_reports],
       :to => [
       :archived_exam_wise_report,
+      :list_inactivated_batches,
+      :final_archived_report_type,
       :consolidated_exam_report,
       :consolidated_exam_report_pdf,
       :archived_batches_exam_report,

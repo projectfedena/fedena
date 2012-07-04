@@ -1,7 +1,7 @@
 
 
 #page-yield {
-    width:800px;
+    width:1600px;
     margin: 0 auto;
     float: left;
     overflow: hidden;
@@ -10,7 +10,7 @@
 
 
 .hor_line{
-    width:800px;
+    width:1600px;
     background: #333333;
     height: 1px;
 }
@@ -71,7 +71,9 @@ tr.odd{
 
 }
 
-
+td.col-pdf-bold{
+    font-weight: bold !important;
+}
 
 .table-header td{
     padding: 12px 12px 12px 15px;
@@ -100,22 +102,16 @@ table#pdf-table{
 }
 
 .report{
-    min-height: 1250px;
-    margin: 0 auto;
-}
-
-.report1{
-    min-height: 1260px;
+    min-height: 800px;
     margin: 0 auto;
 }
 
 #signature{
     text-align: right;
-    width: 700px;
+    width: 1600px;
     margin: 0 auto;
     color: #999999;
     font-size: 18px;
-    margin-bottom: 100px;
 }
 
 
@@ -125,12 +121,46 @@ table#pdf-table{
 
 
 .page-break td{
-    height: 300px;
+    height: 500px;
     border: 1px solid #fff;
     border-bottom: 1px solid #ADACAB;
 }
 
+#pdf-header{
+    width:1600px;
+    padding-top: 30px;
+    margin: 0 auto;
+    overflow: hidden;
+}
 
+.logo{
+    height: 120px;
+    width:300px;
+    float: left;
+}
 
+.header-content{
+    color: #97080e;
+    font-weight: bold;
+    font-size: 30px;
+    float: left;
+    width: 900px;
+    height: 110px;
+    text-align: center;
+}
 
+#pdf-footer{
+    text-align: right;
+    width: 1500px;
+    padding-right: 100px;
+    padding: 50px;
+    margin: 0 auto;
+    color: #999999;
+    font-size: 22px;
 
+}
+
+.page-break-box{
+    width: 100%;
+    height: 300px;
+}
