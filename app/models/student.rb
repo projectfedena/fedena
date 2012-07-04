@@ -423,9 +423,9 @@ class Student < ActiveRecord::Base
                   if level.subject_limit_type=="upper"
                     return true if scores.count < sub_count
                   elsif level.subject_limit_type=="exact"
-                    return true if @student_scores.count == sub_count
+                    return true if scores.count == sub_count
                   else
-                    return true if @student_scores.count >= sub_count
+                    return true if scores.count >= sub_count
                   end
                 end
               end
