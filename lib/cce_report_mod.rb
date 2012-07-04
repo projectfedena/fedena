@@ -60,7 +60,7 @@ module CceReportMod
 
     def subject_fa_scores
       hsh = {}
-      cce_reports.scoped(:select=>"cce_reports.*,exams.subject_id,fa_criterias.fa_group_id",:joins=>'INNER JOIN fa_criterias ON cce_reports.observable_id = fa_criterias.id INNER JOIN exams ON exams.id = cce_reports.exam_id', :conditions=>["exam_id IS NOT NULL AND batch_id=?", batch_in_context_id]).group_by(&:subject_id).each do |key,val|
+      cce_reports.scholastic.all(:select=>"cce_reports.*,exams.subject_id,fa_criterias.fa_group_id",:joins=>'INNER JOIN fa_criterias ON cce_reports.observable_id = fa_criterias.id INNER JOIN exams ON exams.id = cce_reports.exam_id', :conditions=>["batch_id=?", batch_in_context_id]).group_by(&:subject_id).each do |key,val|
         hsh[key.to_i]={}
         val.group_by(&:exam_id).each do |e_id,e_val|
           hsh[key.to_i][e_id]={}
@@ -135,7 +135,7 @@ module CceReportMod
 
     def coscholastic_scores
       hsh={}
-      cce_reports.scoped(:select=>"cce_reports.*,observations.observation_group_id,observations.name AS o_name, observations.sort_order ",:joins=>'INNER JOIN observations ON cce_reports.observable_id = observations.id', :conditions=>["exam_id IS NULL AND batch_id=?", batch_in_context_id], :order=>"observations.sort_order ASC").group_by(&:observation_group_id).each do |key,val|
+      cce_reports.coscholastic.all(:select=>"cce_reports.*,observations.observation_group_id,observations.name AS o_name, observations.sort_order ",:joins=>'INNER JOIN observations ON cce_reports.observable_id = observations.id', :conditions=>["batch_id=?", batch_in_context_id], :order=>"observations.sort_order ASC").group_by(&:observation_group_id).each do |key,val|
         hsh[key.to_i]={}
         val.group_by(&:observable_id).each do |k,v|
           hsh[key.to_i][k]={}

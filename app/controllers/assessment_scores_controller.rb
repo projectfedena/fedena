@@ -46,7 +46,7 @@ class AssessmentScoresController < ApplicationController
     @grading_levels=@fa_group.cce_grade_set.cce_grades
     di=@fa_criterias.collect(&:descriptive_indicator_ids).flatten
     @scores=Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
-    scores=AssessmentScore.find(:all,:conditions=>{:student_id=>@students,:descriptive_indicator_id=>di,:batch_id=>@batch.id, :exam_id=>@exam.id}).group_by(&:student_id)
+    scores=AssessmentScore.find(:all,:conditions=>{:student_id=>@student.id,:batch_id=>@batch.id,:descriptive_indicator_id=>di, :exam_id=>@exam.id}).group_by(&:student_id)
     scores.each do |k,v|
       @scores[k]=v.group_by{|g| g.descriptive_indicator_id}
     end
@@ -119,7 +119,7 @@ class AssessmentScoresController < ApplicationController
     @grading_levels=@observation_group.cce_grade_set.cce_grades
     di=@observations.collect(&:descriptive_indicator_ids).flatten
     @scores=Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
-    scores=AssessmentScore.find(:all,:conditions=>{:student_id=>@students,:descriptive_indicator_id=>di,:batch_id=>@batch.id}).group_by(&:student_id)
+    scores=AssessmentScore.find(:all,:conditions=>{:student_id=>@student.id,:batch_id=>@batch.id,:descriptive_indicator_id=>di}).group_by(&:student_id)
     scores.each do |k,v|
       @scores[k]=v.group_by{|g| g.descriptive_indicator_id}
     end
