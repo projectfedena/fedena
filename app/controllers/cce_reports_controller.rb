@@ -7,7 +7,7 @@ class CceReportsController < ApplicationController
   end
   
   def create_reports
-    @courses = Course.active
+    @courses = Course.cce
     if request.post?
       unless params[:course][:batch_ids].blank?
         batches = Batch.find_all_by_id(params[:course][:batch_ids])
