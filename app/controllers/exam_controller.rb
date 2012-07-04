@@ -1452,7 +1452,7 @@ class ExamController < ApplicationController
         unless details[:marks].to_f == exam_score.marks.to_f
           if details[:marks].to_f <= @exam.maximum_marks.to_f
             if exam_score.update_attributes(details)
-              PreviousExamScore.create(prev_score.attributes)
+              PreviousExamScore.create(:student_id=>prev_score.student_id,:exam_id=>prev_score.exam_id,:marks=>prev_score.marks,:grading_level_id=>prev_score.grading_level_id,:remarks=>prev_score.remarks,:is_failed=>prev_score.is_failed)
             else
               flash[:warn_notice] = "#{t('flash8')}"
               @error = nil
