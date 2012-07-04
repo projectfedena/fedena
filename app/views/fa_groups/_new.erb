@@ -18,13 +18,13 @@
       <div class="label-field-pair">
         <label for="category_name">CCE Exam Category</label>
         <div class="text-input-bg">
-         <%= f.select :cce_exam_category_id ,@exam_categories.map{|m| [m.name,m.id]} ,:prompt=>t("select_an_exam_category") %>
+         <%= f.select :cce_exam_category_id ,@exam_categories.map{|m| [m.name,m.id]} ,:prompt=>"Select an Exam Category" %>
         </div>
       </div>
       <div class="label-field-pair">
         <label for="category_name">CCE Grade Set</label>
         <div class="text-input-bg">
-          <%= f.select :cce_grade_set_id ,@grade_sets.map{|m| [m.name,m.id]} ,:prompt=>t("select_a_grade_set") %>
+          <%= f.select :cce_grade_set_id ,@grade_sets.map{|m| [m.name,m.id]} ,:prompt=>"Select a Grade Set") %>
         </div>
       </div>
       <%= f.submit "", :value => "► Create", :class => "submit_button" %>
