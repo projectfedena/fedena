@@ -48,7 +48,9 @@ class Student < ActiveRecord::Base
 
   named_scope :active, :conditions => { :is_active => true }
   named_scope :with_full_name_only, :select=>"id, first_name"
-  
+
+  default_scope :order=>'first_name'
+
   validates_presence_of :admission_no, :admission_date, :first_name, :batch_id, :date_of_birth
   validates_uniqueness_of :admission_no
   validates_presence_of :gender
