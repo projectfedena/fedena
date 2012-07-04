@@ -63,9 +63,9 @@
           <% end %>
         <% else %>
           <li><%= link_to "#{t('final_report')}",{:controller=>'exam', :action=>'generated_report4',:student=>@student.id,:type=>'general'} %></li>
-  <%#= link_to "Transcript Report", { :controller => 'exam', :action => 'student_transcript',:transcript=>{:student_id=>@student.id} } %>
-          <li><%= link_to "#{t('compare_past')}", { :controller => 'exam', :action => 'previous_years_marks_overview',:student=>@student.id }%></li>
-          
+          <li><%= link_to "Transcript Report", { :controller => 'exam', :action => 'student_transcript',:transcript=>{:batch_id=>@student.batch_id},:student_id=>@student.id} %></li>
+          <%#= link_to "#{t('compare_past')}", { :controller => 'exam', :action => 'previous_years_marks_overview',:student=>@student.id }%>
+
         <% end %>
       </ul>
 
