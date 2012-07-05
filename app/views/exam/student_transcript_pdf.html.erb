@@ -32,65 +32,69 @@
       <% else %>
         <% grades = [] %>
         <% @batches.each do|batch| %>
-          <% general_subjects = Subject.find_all_by_batch_id(batch.id, :conditions=>"elective_group_id IS NULL AND is_deleted=false") %>
-          <% student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{batch.id}") %>
-          <% elective_subjects = [] %>
-          <% student_electives.each do |elect| %>
-            <% elective_subjects.push Subject.find(elect.subject_id) %>
-          <% end %>
-          <% @subjects = general_subjects + elective_subjects %>
-          <% unless @subjects.empty? %>
-            <h3><%= batch.full_name %></h3>
-            <% total_credits=0 %>
-            <table id="pdf-table" width="100%" cellspacing="0">
-              <% c= 'even' %>
-              <tr class="table-header">
-                <td><%= t('subject_code') %></td>
-                <td><%= t('subject_title') %></td>
-                <% if batch.grading_type=="1" or batch.grading_type=="2" %>
-                  <td><%= t('credit') %></td>
-                  <td><%= t('marks') %></td>
-                <% else %>
-                  <td><%= t('percentage') %>(%)</td>
-                <% end %>
-              </tr>
-              <% @subjects.each do |s| %>
-                <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-                  <% if @student.has_retaken_exam(s.id) %>
-                    <td class="col-pdf"> <%= s.code %> - <label class="infolbl"><%= t('Retaken') %></label></td>
-                  <% else %>
-                    <td class="col-pdf"> <%= s.code %></td>
-                  <% end %>
-                  <td class="col-pdf"> <%= s.name %></td>
-                  <% if batch.grading_type=="1" or batch.grading_type=="2" %>
-                    <td class="col-pdf"><%= s.credit_hours %></td>
-                    <% total_credits = total_credits + s.credit_hours.to_f %>
-                  <% end %>
-                  <% subject_average = GroupedExamReport.find_by_student_id_and_subject_id_and_score_type(@student.id,s.id,"s") %>
-                  <td class="col-pdf"><%= subject_average.present? ? subject_average.marks : "-" %></td>
-                </tr>
-              <% end %>
-              <% if batch.grading_type=="1" or batch.grading_type=="2" %>
-                <tr class="table-header">
-                  <td colspan="2" align="right"><%= t('total') %></td>
-                  <td><%= total_credits %></td>
-                  <td>-</td>
-                </tr>
-              <% end %>
-            </table>
-            <% st_mark = GroupedExamReport.find_by_batch_id_and_student_id_and_score_type(batch.id,@student.id,"c") %>
-            <% unless st_mark.nil? %>
-              <% mark = st_mark.marks || 0 %>
-            <% else %>
-              <% mark=0 %>
+          <% st_mark = GroupedExamReport.find_by_batch_id_and_student_id_and_score_type(batch.id,@student.id,"c") %>
+          <% unless st_mark.nil? %>
+            <% general_subjects = Subject.find_all_by_batch_id(batch.id, :conditions=>"elective_group_id IS NULL AND is_deleted=false") %>
+            <% student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{batch.id}") %>
+            <% elective_subjects = [] %>
+            <% student_electives.each do |elect| %>
+              <% elective_subjects.push Subject.find(elect.subject_id) %>
             <% end %>
-            <% grades << mark %>
-            <% if batch.grading_type=="2" %>
-              <h5><%= t('combined_weighted_average') %> = <%= mark==0 ? "-" : mark %></h5>
-            <% elsif batch.grading_type=="1" %>
-              <h5><%= t('batch_wise_cumulative_grade_point_average') %> = <%= mark==0 ? "-" : mark %></h5>
-            <% else %>
-              <h5><%= t('combined_percentage') %> = <%= mark==0 ? "-" : mark %></h5>
+            <% @subjects = general_subjects + elective_subjects %>
+            <% unless @subjects.empty? %>
+              <h3><%= batch.full_name %></h3>
+              <% total_credits=0 %>
+              <table id="pdf-table" width="100%" cellspacing="0">
+                <% c= 'even' %>
+                <tr class="table-header">
+                  <td><%= t('subject_code') %></td>
+                  <td><%= t('subject_title') %></td>
+                  <% if batch.grading_type=="1" or batch.grading_type=="2" %>
+                    <td><%= t('credit') %></td>
+                    <td><%= t('marks') %></td>
+                  <% else %>
+                    <td><%= t('percentage') %>(%)</td>
+                  <% end %>
+                </tr>
+                <% @subjects.each do |s| %>
+                  <% subject_average = GroupedExamReport.find_by_student_id_and_subject_id_and_score_type(@student.id,s.id,"s") %>
+                  <% unless subject_average.nil? %>
+                    <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+                      <% if @student.has_retaken_exam(s.id) %>
+                        <td class="col-pdf"> <%= s.code %> - <label class="infolbl"><%= t('Retaken') %></label></td>
+                      <% else %>
+                        <td class="col-pdf"> <%= s.code %></td>
+                      <% end %>
+                      <td class="col-pdf"> <%= s.name %></td>
+                      <% if batch.grading_type=="1" or batch.grading_type=="2" %>
+                        <td class="col-pdf"><%= s.credit_hours %></td>
+                        <% total_credits = total_credits + s.credit_hours.to_f %>
+                      <% end %>
+                      <td class="col-pdf"><%= subject_average.present? ? subject_average.marks : "-" %></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+                <% if batch.grading_type=="1" or batch.grading_type=="2" %>
+                  <tr class="table-header">
+                    <td colspan="2" align="right"><%= t('total') %></td>
+                    <td><%= total_credits %></td>
+                    <td>-</td>
+                  </tr>
+                <% end %>
+              </table>
+              <% unless st_mark.nil? %>
+                <% mark = st_mark.marks || 0 %>
+              <% else %>
+                <% mark=0 %>
+              <% end %>
+              <% grades << mark %>
+              <% if batch.grading_type=="2" %>
+                <h5><%= t('combined_weighted_average') %> = <%= mark==0 ? "-" : mark %></h5>
+              <% elsif batch.grading_type=="1" %>
+                <h5><%= t('batch_wise_cumulative_grade_point_average') %> = <%= mark==0 ? "-" : mark %></h5>
+              <% else %>
+                <h5><%= t('combined_percentage') %> = <%= mark==0 ? "-" : mark %></h5>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
