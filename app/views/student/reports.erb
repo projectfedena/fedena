@@ -56,14 +56,14 @@
       <ul>
         <% unless @grouped_exams.empty? %>
           <li><%= link_to "#{t('final_report')}(#{t('exam_goruped')})",{:controller=>'exam', :action=>'generated_report4',:student=>@student.id,:type=>'grouped'} %></li>
-          <li><%= link_to "Transcript Report", { :controller => 'exam', :action => 'student_transcript',:transcript=>{:batch_id=>@student.batch_id},:student_id=>@student.id } %></li>
+          <li><%= link_to "Transcript Report", { :controller => 'exam', :action => 'student_transcript',:transcript=>{:batch_id=>@student.batch_id},:student_id=>@student.id,:flag=>"1" } %></li>
           <% if Configuration.cce_enabled? %>
             <li><%= link_to "CCE Transcript Report", { :controller => 'cce_reports', :action => 'student_transcript',:id=>@student.id }%></li>
 
           <% end %>
         <% else %>
           <li><%= link_to "#{t('final_report')}",{:controller=>'exam', :action=>'generated_report4',:student=>@student.id,:type=>'general'} %></li>
-          <li><%= link_to "Transcript Report", { :controller => 'exam', :action => 'student_transcript',:transcript=>{:batch_id=>@student.batch_id},:student_id=>@student.id} %></li>
+          <li><%= link_to "Transcript Report", { :controller => 'exam', :action => 'student_transcript',:transcript=>{:batch_id=>@student.batch_id},:student_id=>@student.id,:flag=>"1"} %></li>
           <%#= link_to "#{t('compare_past')}", { :controller => 'exam', :action => 'previous_years_marks_overview',:student=>@student.id }%>
 
         <% end %>

@@ -44,10 +44,18 @@
       <ul class="student_list">
         <% @students.each do |s| %>
           <li class="student_names">
+            <% if @flag.present? %>
+            <% if @student.id==s.id %>
+              <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:flag=>@flag,:transcript=>{:batch_id=>s.batch_id}}, :class=>"active-link" %>
+            <% else %>
+              <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:flag=>@flag,:transcript=>{:batch_id=>s.batch_id}}, :class=>"student-link" %>
+            <% end %>
+            <% else %>
             <% if @student.id==s.id %>
               <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:transcript=>{:batch_id=>s.batch_id}}, :class=>"active-link" %>
             <% else %>
               <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:transcript=>{:batch_id=>s.batch_id}}, :class=>"student-link" %>
+            <% end %>
             <% end %>
           </li>
         <% end %>

@@ -1098,7 +1098,12 @@ class ExamController < ApplicationController
       redirect_to :action=>"transcript" and return
     else
       @batch = Batch.find(params[:transcript][:batch_id])
-      @students = @batch.students
+      if params[:flag].present? and params[:flag]=="1"
+        @students = Student.find_all_by_id(params[:student_id])
+        @flag = "1"
+      else
+        @students = @batch.students
+      end
       unless @students.empty?
         unless !params[:student_id].present? or params[:student_id].nil?
           @student = Student.find(params[:student_id])
