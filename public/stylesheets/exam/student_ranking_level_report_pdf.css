@@ -1,19 +1,16 @@
 
 
 #page-yield {
-    width:-moz-max-content;
+    width:1400px;
     margin: 0 auto;
     float: left;
     overflow: hidden;
 }
 
-#pdf-info{
-    padding-top: 50px;
-}
 
 
 .hor_line{
-    width:-moz-max-content;
+    width:1400px;
     background: #333333;
     height: 1px;
 }
@@ -111,7 +108,7 @@ table#pdf-table{
 
 #signature{
     text-align: right;
-    width: 700px;
+    width: 10700px;
     margin: 0 auto;
     color: #999999;
     font-size: 18px;
@@ -124,11 +121,41 @@ table#pdf-table{
 
 
 .page-break td{
-    height: 450px;
+    height: 150px;
     border: 1px solid #fff;
     border-bottom: 1px solid #ADACAB;
 }
 
+#pdf-header{
+    width:1400px;
+    padding-top: 30px;
+    margin: 0 auto;
+    overflow: hidden;
+}
 
+.logo{
+    height: 120px;
+    width:120px;
+    float: left;
+}
 
+.header-content{
+    color: #97080e;
+    font-weight: bold;
+    font-size: 25px;
+    float: left;
+    width: 1400px;
+    height: 110px;
+    text-align: center;
+}
 
+#pdf-footer{
+    text-align: right;
+    width: 1400px;
+    padding-right: 100px;
+    padding: 50px;
+    margin: 0 auto;
+    color: #999999;
+    font-size: 18px;
+
+}

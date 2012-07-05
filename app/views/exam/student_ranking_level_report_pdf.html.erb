@@ -61,18 +61,29 @@
           <% end %>
           <% unless ranked_students.empty? %>
             <% c = 'even' %>
+            <% i=0 %>
             <table id="pdf-table" width="100%" cellspacing="0">
               <tr class="table-header">
                 <td><%= t('sl_no') %></td>
                 <td><%= t('adm_no') %></td>
                 <td><%= t('name') %></td>
               </tr>
-              <% ranked_students.each_with_index do |s,i| %>
+              <% ranked_students.each_with_index do |s,ind| %>
+                <% if i==47 %>
+                  <tr class="page-break"><td colspan="3"></td></tr>
+                  <tr class="table-header">
+                    <td><%= t('sl_no') %></td>
+                    <td><%= t('adm_no') %></td>
+                    <td><%= t('name') %></td>
+                  </tr>
+                  <%i=0%>
+                <% end %>
                 <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-                  <td class="col-pdf"><%= i+1 %></td>
+                  <td class="col-pdf"><%= ind+1 %></td>
                   <td class="col-pdf"><%= s.admission_no.present? ? s.admission_no : "-" %></td>
                   <td class="col-pdf"><%= s.full_name %></td>
                 </tr>
+                <% i=i+1 %>
               <% end %>
             </table>
           <% else %>
