@@ -45,17 +45,17 @@
         <% @students.each do |s| %>
           <li class="student_names">
             <% if @flag.present? %>
-            <% if @student.id==s.id %>
-              <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:flag=>@flag,:transcript=>{:batch_id=>s.batch_id}}, :class=>"active-link" %>
+              <% if @student.id==s.id %>
+                <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:flag=>@flag,:transcript=>{:batch_id=>s.batch_id}}, :class=>"active-link" %>
+              <% else %>
+                <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:flag=>@flag,:transcript=>{:batch_id=>s.batch_id}}, :class=>"student-link" %>
+              <% end %>
             <% else %>
-              <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:flag=>@flag,:transcript=>{:batch_id=>s.batch_id}}, :class=>"student-link" %>
-            <% end %>
-            <% else %>
-            <% if @student.id==s.id %>
-              <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:transcript=>{:batch_id=>s.batch_id}}, :class=>"active-link" %>
-            <% else %>
-              <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:transcript=>{:batch_id=>s.batch_id}}, :class=>"student-link" %>
-            <% end %>
+              <% if @student.id==s.id %>
+                <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:transcript=>{:batch_id=>s.batch_id}}, :class=>"active-link" %>
+              <% else %>
+                <%= link_to s.full_name, {:controller=>"exam",:action=>"student_transcript",:student_id=>s.id,:transcript=>{:batch_id=>s.batch_id}}, :class=>"student-link" %>
+              <% end %>
             <% end %>
           </li>
         <% end %>
@@ -84,6 +84,10 @@
       </div>
     </div>
     <br/><br/>
+    <% reports = GroupedExamReport.find_all_by_student_id_and_score_type(@student.id,'c') %>
+    <% if reports.empty? %>
+    <p class="flash-msg">Grouped Exam Reports have not been generated for this Student.</p>
+    <% else %>
     <% grades = [] %>
     <% @batches.each do|batch| %>
       <% general_subjects = Subject.find_all_by_batch_id(batch.id, :conditions=>"elective_group_id IS NULL AND is_deleted=false") %>
@@ -148,7 +152,11 @@
         <% end %>
       <% end %>
     <% end %>
-    <% cgpa = (grades.sum.to_f)/(grades.count.to_f) %>
+    <% unless grades.count.to_f==0 %>
+      <% cgpa = (grades.sum.to_f)/(grades.count.to_f) %>
+    <% else %>
+      <% cgpa=0 %>
+    <% end %>
     <% if @student.batch.grading_type=="1" %>
       <% designations = ClassDesignation.find(:all,:conditions=>["cgpa <= ? AND course_id = ? ",cgpa,@student.batch.course_id],:order=>"cgpa DESC") %>
       <h4 align="center"><%= t('course_wise_cumulative_grade_point') %> = <span class="high"><%= "%.2f" %(cgpa) %></span></h4>
@@ -161,5 +169,6 @@
       <% end %>
     <% end %>
     <h4 align="center"><%= t('class_designations_text') %> : <span class="high"><%= designations.empty? ? "-" : designations.first.name %></span></h4>
+    <% end %>
   </div>
 </div>

@@ -454,12 +454,16 @@ class ExamController < ApplicationController
                 exam_group = ExamGroup.find(exam_mark[1])
                 score = exam_mark[2].sum
                 max_marks = exam_mark[3].sum
+                tot_score = 0
+                percent = 0
+                unless max_marks.to_f==0
                 if grading_type.nil? or grading_type=="0"
                   tot_score = (((score.to_f)/max_marks.to_f)*100)
                   percent = (((score.to_f)/max_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
                 elsif grading_type=="1" or grading_type=="2"
                   tot_score = ((score.to_f)/max_marks.to_f)
                   percent = ((score.to_f)/max_marks.to_f)*((exam_group.weightage.to_f)/100)
+                end
                 end
                 prev_exam_score = GroupedExamReport.find_by_student_id_and_exam_group_id_and_score_type(student_id,exam_group.id,"e")
                 unless prev_exam_score.nil?
