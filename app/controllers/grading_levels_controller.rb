@@ -74,9 +74,12 @@ class GradingLevelsController < ApplicationController
     @grading_level = GradingLevel.find params[:id]
     respond_to do |format|
       if @grading_level.update_attributes(params[:grading_level])
-        @grading_level.batch.nil? ? 
-          @grading_levels = GradingLevel.default :
+        if @grading_level.batch.nil?
+          @grading_levels = GradingLevel.default
+        else
+          @batch = @grading_level.batch
           @grading_levels = GradingLevel.for_batch(@grading_level.batch_id)
+        end
         #flash[:notice] = 'Grading level update successfully.'
         format.html { redirect_to grading_level_url(@grading_level) }
         format.js { render :action => 'update' }
@@ -91,6 +94,9 @@ class GradingLevelsController < ApplicationController
   def destroy
     @grading_level = GradingLevel.find params[:id]
     @grading_level.inactivate
+    unless @grading_level.batch.nil?
+      @batch = @grading_level.batch
+    end
   end
 
   def show
