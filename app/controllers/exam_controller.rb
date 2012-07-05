@@ -570,7 +570,7 @@ class ExamController < ApplicationController
           page.replace_html   'exam_wise_report', :partial=>"exam_wise_report"
         end
       else
-        @students = @student.batch.students
+        @students = Student.find_all_by_id(params[:student])
       end
     end
   end
@@ -1283,7 +1283,7 @@ class ExamController < ApplicationController
           page.replace_html   'grouped_exam_report', :partial=>"grouped_exam_report"
         end
       else
-        @students = @batch.students
+        @students = Student.find_all_by_id(params[:student])
       end
     end
 
