@@ -141,3 +141,8 @@ table#pdf-table{
     font-size: 18px;
 
 }
+.page-break td{
+    height: 240px;
+    border: 1px solid #fff;
+    border-bottom: 1px solid #ADACAB;
+}

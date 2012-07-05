@@ -44,7 +44,24 @@
                     <td><%= t('percentage') %></td>
                   <% end %>
                 </tr>
+                <% ind=0 %>
                 <% designated_students.each_with_index do|s,i| %>
+                  <% if ind==23 %>
+                    <% ind=0 %>
+                    <tr class="page-break"><td colspan="3"></td></tr>
+                    <tr class="table-header">
+                      <td><%= t('sl_no') %></td>
+                      <td><%= t('adm_no') %></td>
+                      <td><%= t('name') %></td>
+                      <% if @batch.grading_type == "2" %>
+                        <td><%= t('cwa') %></td>
+                      <% elsif @batch.grading_type == "1" %>
+                        <td><%= t('cgpa') %></td>
+                      <% else %>
+                        <td><%= t('percentage') %></td>
+                      <% end %>
+                    </tr>
+                  <% end %>
                   <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
                     <% st = s[0] %>
                     <td class="col-pdf"><%= i+1 %></td>
@@ -52,6 +69,7 @@
                     <td class="col-pdf"><%= st.full_name %></td>
                     <td class="col-pdf"><%= "%.2f" %(s[1].to_f) %></td>
                   </tr>
+                  <% ind=ind+1 %>
                 <% end %>
               <% else %>
                 <tr class="table-header">
@@ -170,7 +188,25 @@
                   <% end %>
                   <td><%= t('courses_text') %><%= level.name %></td>
                 </tr>
-                <% ranked_students.each_with_index do|r,ind| %>
+                <% ind=0 %>
+                <% ranked_students.each_with_index do|r,indx| %>
+                  <% if ind==23 %>
+                    <% ind=0 %>
+                    <tr class="page-break"><td colspan="3"></td></tr>
+                    <tr class="table-header">
+                      <td><%= t('sl_no') %></td>
+                      <td><%= t('adm_no') %></td>
+                      <td><%= t('name') %></td>
+                      <% if @batch.grading_type == "2" %>
+                        <td><%= t('cwa') %></td>
+                      <% elsif @batch.grading_type == "1" %>
+                        <td><%= t('cgpa') %></td>
+                      <% else %>
+                        <td><%= t('percentage') %></td>
+                      <% end %>
+                      <td><%= t('courses_text') %><%= level.name %></td>
+                    </tr>
+                  <% end %>
                   <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
                     <% stu = Student.find(r[0]) %>
                     <% marks = GroupedExamReport.find_all_by_student_id_and_score_type(stu.id,"c") %>
@@ -178,7 +214,7 @@
                       <% total = marks.map{|m| m.marks} %>
                       <% avg = (total.sum.to_f)/(total.count.to_f) %>
                     <% end %>
-                    <td class="col-pdf"><%= ind+1 %></td>
+                    <td class="col-pdf"><%= indx+1 %></td>
                     <td class="col-pdf"><%= stu.admission_no.present? ? stu.admission_no : "-" %></td>
                     <td class="col-pdf"><%= stu.full_name %></td>
                     <td class="col-pdf"><%= avg.present? ? "%.2f" %(avg) : "-" %></td>
@@ -187,6 +223,7 @@
                       <%= Batch.find_all_by_id(batches).collect(&:full_name).join(", ") %>
                     </td>
                   </tr>
+                  <% ind=ind+1 %>
                 <% end %>
               <% else %>
                 <tr class="table-header">
