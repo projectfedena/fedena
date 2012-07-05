@@ -36,7 +36,7 @@ class ObservationGroupsController < ApplicationController
     @obs_group=ObservationGroup.find(params[:id])
     @obs_group.attributes=params[:observation_group]
     if @obs_group.save
-      flash[:notice]="Co-Scholastic Groupo Updated Successfully."
+      flash[:notice]="Co-Scholastic Group Updated Successfully."
       @obs_groups=ObservationGroup.all
     else
       @error=true
