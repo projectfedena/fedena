@@ -30,11 +30,42 @@
     <link rel="stylesheet" type="text/css" href="<%="#{RAILS_ROOT}/public/stylesheets/#{get_stylesheets}.css"%>" media="all" />
     <link rel="stylesheet" type="text/css" href="<%= "#{RAILS_ROOT}/public/stylesheets/#{@direction}_styles/ui.all.css"%>" media="all" />
 
+    <script type="text/css">
+      .page {
+        page-break-after: auto;
+        page-break-inside: avoid;
+        overflow: hidden;
+      }
+      .section{
+        margin-top:10px;
+      }
+    </script>
 
   </head>
   <body>
 
     <%= yield %>
-
+    <script type="text/javascript">
+      var body = document.body,
+      html = document.documentElement;
+      var pg_height = 0;//Magic number.. TADA
+      var page = new Element('div',{'class' : 'page'});
+      var pageBreak = new Element('div',{'class' : 'page-break'});
+      var insertPageBreak = function(){body.appendChild(pageBreak.cloneNode(true))};
+      var insertPage = function(){body.appendChild(page.cloneNode(true));};
+      var currPage = function(){return $$('.page').last()}
+      $$('.available_sections .section').each(function(el){
+        if(currPage() == null){
+          insertPage();//first page
+        }
+        a = parseInt(el.getHeight());
+        b = parseInt(currPage().getHeight());
+        c = a+b;
+        if(c>pg_height){
+          insertPage();
+        }
+        currPage().appendChild(el);
+      });
+    </script>
   </body>
 </html>

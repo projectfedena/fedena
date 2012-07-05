@@ -26,8 +26,8 @@
         </div>
       </div>
     </div>
-    <div id="pdf-info">
-      <div id="score-table">
+    <div id="pdf-info  available_sections">
+      <div id="score-table section">
         <div class="custom_header">
           <h3>
             Scholastic Areas
@@ -101,29 +101,31 @@
 
       </div>
       <% @co_hashi.keys.sort.each do |kind| %>
-        <div class="custom_header">
-          <h3><%= ObservationGroup::OBSERVATION_KINDS[kind] %></h3>
-        </div>
-        <% @co_hashi[kind].each do |ob_grp| %>
-          <div id="score-table">
-    <%# e = 'even' %>
-            <table id="pdf-table" width="100%" cellspacing="0">
-              <tr class="table-header">
-                <td colspan="2"><%= @obs_groups.find{|o| o.id == ob_grp.observation_group_id}.try(:name) %></td>
-              </tr>
-              <tr class="table-header">
-                <td>Descriptive Indicators</td>
-                <td>Grade</td>
-              </tr>
-              <% ob_grp.observations.sort_by(&:sort_order).each do |o| %>
-                <tr class="<%= cycle(e,(["odd","even"]-[e]).first) %>">
-                  <td><%= o.observation_name %></td>
-                  <td><%= o.grade %></td>
-                </tr>
-              <% end %>
-            </table>
+        <div class="section">
+          <div class="custom_header">
+            <h3><%= ObservationGroup::OBSERVATION_KINDS[kind] %></h3>
           </div>
-        <% end %>
+          <% @co_hashi[kind].each do |ob_grp| %>
+            <div id="score-table">
+    <%# e = 'even' %>
+              <table id="pdf-table" width="100%" cellspacing="0">
+                <tr class="table-header">
+                  <td colspan="2"><%= @obs_groups.find{|o| o.id == ob_grp.observation_group_id}.try(:name) %></td>
+                </tr>
+                <tr class="table-header">
+                  <td>Descriptive Indicators</td>
+                  <td>Grade</td>
+                </tr>
+                <% ob_grp.observations.sort_by(&:sort_order).each do |o| %>
+                  <tr class="<%= cycle(e,(["odd","even"]-[e]).first) %>">
+                    <td><%= o.observation_name %></td>
+                    <td><%= o.grade %></td>
+                  </tr>
+                <% end %>
+              </table>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
