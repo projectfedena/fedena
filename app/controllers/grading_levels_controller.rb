@@ -30,7 +30,7 @@ class GradingLevelsController < ApplicationController
     if @batch.present?
       @credit = @batch.grading_type=="1" || @batch.cce_enabled?
     else
-      @credit = Configuration.get_config_value('CCE')=='1' || Configuration.get_config_value('CWA')=='1' || Configuration.get_config_value('GPA')=='1'
+      @credit = Configuration.cce_enabled? || Configuration.get_config_value('CWA')=='1' || Configuration.get_config_value('GPA')=='1'
     end
     respond_to do |format|
       format.js { render :action => 'new' }
