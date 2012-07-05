@@ -47,6 +47,14 @@ module CceReportMod
 
       cr
     end
+
+    def individual_cce_report_cached
+      Rails.cache.fetch(cce_report_cache_key){individual_cce_report}
+    end
+
+    def delete_individual_cce_report_cache
+      Rails.cache.delete(cce_report_cache_key)
+    end
   
     def all_subjects
       (elective_subjects + batch_in_context.subjects).uniq
@@ -55,9 +63,9 @@ module CceReportMod
     def elective_subjects
       subjects.all(:conditions=>{:batch_id=>batch_in_context_id})
     end
-
+    
     private
-
+    
     def subject_fa_scores
       hsh = {}
       cce_reports.scholastic.all(:select=>"cce_reports.*,exams.subject_id,fa_criterias.fa_group_id",:joins=>'INNER JOIN fa_criterias ON cce_reports.observable_id = fa_criterias.id INNER JOIN exams ON exams.id = cce_reports.exam_id', :conditions=>["batch_id=?", batch_in_context_id]).group_by(&:subject_id).each do |key,val|
@@ -168,6 +176,9 @@ module CceReportMod
       @grades.to_a.find{|g| g.min_score <= score.to_f}.try(:credit_points) || ""
     end
 
-
+    def cce_report_cache_key
+      "cce_report/batch/#{self.batch_in_context_id}/#{self.class.name}/#{self.id}"
+    end
+   
   end
 end

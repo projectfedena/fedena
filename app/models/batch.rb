@@ -285,4 +285,15 @@ class Batch < ActiveRecord::Base
       []
     end
   end
+
+  def perform
+    #this is for cce_report_generation use flags if need job for other works
+    generate_cce_reports    
+  end
+
+  def delete_student_cce_report_cache
+    students.all(:select=>"id, batch_id").each do |s|
+      s.delete_individual_cce_report_cache
+    end
+  end
 end

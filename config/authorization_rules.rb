@@ -273,7 +273,8 @@ authorization do
       :create_reports,
       :student_wise_report,
       :student_report_pdf,
-      :student_transcript
+      :student_transcript,
+      :student_report
     ]
     has_permission_on [:cce_settings],
       :to=>[
@@ -411,7 +412,8 @@ authorization do
       :create_reports,
       :student_wise_report,
       :student_report_pdf,
-      :student_transcript
+      :student_transcript,
+      :student_report
     ]
 
   end
@@ -475,7 +477,8 @@ authorization do
       :create_reports,
       :student_wise_report,
       :student_report_pdf,
-      :student_transcript
+      :student_transcript,
+      :student_report
     ]
   end
 
@@ -2160,7 +2163,8 @@ authorization do
       :create_reports,
       :student_wise_report,
       :student_report_pdf,
-      :student_transcript
+      :student_transcript,
+      :student_report
     ]
     has_permission_on [:cce_settings],
       :to=>[

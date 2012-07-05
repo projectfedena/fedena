@@ -1,7 +1,7 @@
 class CceReportsController < ApplicationController
   before_filter :login_required
   filter_access_to :all
-
+    
   def index
     
   end
@@ -12,9 +12,10 @@ class CceReportsController < ApplicationController
       unless params[:course][:batch_ids].blank?
         batches = Batch.find_all_by_id(params[:course][:batch_ids])
         batches.each do |batch|
-          batch.generate_cce_reports
+          Delayed::Job.enqueue(batch)
+          batch.delete_student_cce_report_cache
         end
-        flash[:notice]="Reports generated for batches #{batches.collect(&:full_name).join(", ")}."
+        flash[:notice]="Report generation in queue for batches #{batches.collect(&:full_name).join(", ")}."
       else
         flash[:notice]="No batch selected"
       end
@@ -25,22 +26,22 @@ class CceReportsController < ApplicationController
 
   def student_wise_report
     @batches=Batch.cce
-    if request.post?
-      if params[:student].nil?
+    if request.post?      
         @batch=Batch.find(params[:batch_id])
         @students=@batch.students
         render(:update) do |page|
           page.replace_html   'student_list', :partial=>"student_list",   :object=>@students
-        end
-      else
-        @student = Student.find(params[:student])
-        @batch=@student.batch
-        fetch_report
-        
-        render(:update) do |page|
-          page.replace_html   'report', :partial=>"student_report"
-        end
-      end
+          page.replace_html   'report', :text=>""
+        end      
+    end
+  end
+
+  def student_report
+    @student = Student.find(params[:student])
+    @batch=@student.batch
+    fetch_report
+    render(:update) do |page|
+      page.replace_html   'report', :partial=>"student_report"
     end
   end
 
@@ -68,7 +69,7 @@ class CceReportsController < ApplicationController
   private
 
   def fetch_report
-    @report=@student.individual_cce_report
+    @report=@student.individual_cce_report_cached
     @subjects=@student.all_subjects
     @exam_groups=ExamGroup.find_all_by_id(@report.exam_group_ids, :include=>:cce_exam_category)
     coscholastic=@report.coscholastic
@@ -83,4 +84,5 @@ class CceReportsController < ApplicationController
       coscholastic.each{|cs| @co_hashi[kind] << cs if ogs.collect(&:id).include? cs.observation_group_id}
     end       
   end
+  
 end

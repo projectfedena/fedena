@@ -66,7 +66,7 @@
   }
   function draw_report(){
     Element.show('loader')
-    new Ajax.Request('/cce_reports/student_wise_report',
+    new Ajax.Request('/cce_reports/student_report',
     {asynchronous:true, evalScripts:true,
       parameters:'student='+this.id,onSuccess:function(request){Element.hide('loader')}
     })
