@@ -38,13 +38,13 @@
   <div class="box">
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to t("fa_group_settings"),:controller=>'fa_groups' %></div>
-      <div class="link-descr"><%= t("cce_grade_set_descr") %></div>
+      <div class="link-heading"><%= link_to "Formative Assessment Items",:controller=>'fa_groups' %></div>
+      <div class="link-descr">Manage Formative Assessment Items</div>
     </div>
 
     <div class="link-box">
-      <div class="link-heading"><%= link_to t("assign_subjects"),:controller=>'fa_groups',:action=>"assign_fa_groups" %></div>
-      <div class="link-descr"><%= t("assign_subjects_descr") %></div>
+      <div class="link-heading"><%= link_to "Assign FA Items",:controller=>'fa_groups',:action=>"assign_fa_groups" %></div>
+      <div class="link-descr"><%= "Assign Formative Assessment Items to subjects" %></div>
     </div>
 
     <div class="extender"></div>
