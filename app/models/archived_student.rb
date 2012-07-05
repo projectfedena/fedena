@@ -71,4 +71,19 @@ class ArchivedStudent < ActiveRecord::Base
   def additional_detail(additional_field)
     StudentAdditionalDetail.find_by_additional_field_id_and_student_id(additional_field,self.former_id)
   end
+
+  def has_retaken_exam(subject_id)
+    retaken_exams = PreviousExamScore.find_all_by_student_id(self.former_id)
+    if retaken_exams.empty?
+      return false
+    else
+      exams = Exam.find_all_by_id(retaken_exams.collect(&:exam_id))
+      if exams.collect(&:subject_id).include?(subject_id)
+        return true
+      end
+      return false
+    end
+
+  end
+
 end

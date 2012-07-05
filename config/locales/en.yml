@@ -1962,6 +1962,7 @@ en: # locale
   exam_reports_text: "Exam Reports"
   archived_grouped_exam_reports: "Archived Grouped Exam Reports"
   is_final_exam: "Is Final Exam?"
+  retaken: "Retaken"
   
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"

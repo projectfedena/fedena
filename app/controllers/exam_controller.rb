@@ -549,7 +549,7 @@ class ExamController < ApplicationController
         "/exam/graph_for_generated_report?batch=#{@student.batch.id}&examgroup=#{@exam_group.id}&student=#{@student.id}")
     else
       @exam_group = ExamGroup.find(params[:exam_group])
-      @student = Student.find(params[:student])
+      @student = Student.find_by_id(params[:student])
       @batch = @student.batch
       general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>"elective_group_id IS NULL")
       student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@student.batch.id}")
@@ -1100,13 +1100,23 @@ class ExamController < ApplicationController
       @batch = Batch.find(params[:transcript][:batch_id])
       if params[:flag].present? and params[:flag]=="1"
         @students = Student.find_all_by_id(params[:student_id])
+        if @students.empty?
+          @students = ArchivedStudent.find_all_by_former_id(params[:student_id])
+          @students.each do|student|
+            student.id=student.former_id
+          end
+        end
         @flag = "1"
       else
         @students = @batch.students
       end
       unless @students.empty?
         unless !params[:student_id].present? or params[:student_id].nil?
-          @student = Student.find(params[:student_id])
+          @student = Student.find_by_id(params[:student_id])
+          if @student.nil?
+            @student = ArchivedStudent.find_by_former_id(params[:student_id])
+            @student.id = @student.former_id
+          end
         else
           @student = @students.first
         end
@@ -1122,7 +1132,11 @@ class ExamController < ApplicationController
   end
 
   def student_transcript_pdf
-    @student = Student.find(params[:student_id])
+    @student = Student.find_by_id(params[:student_id])
+    if @student.nil?
+      @student = ArchivedStudent.find_by_former_id(params[:student_id])
+      @student.id = @student.former_id
+    end
     @batch = @student.batch
     @grade_type = @batch.grading_type
     batch_ids = BatchStudent.find_all_by_student_id(@student.id).map{|b| b.batch_id}

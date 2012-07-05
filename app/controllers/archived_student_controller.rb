@@ -51,7 +51,7 @@ class ArchivedStudentController < ApplicationController
     @batch = @student.batch
     @grouped_exams = GroupedExam.find_all_by_batch_id(@batch.id)
     @normal_subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>"no_exams = false AND elective_group_id IS NULL AND is_deleted = false")
-    @student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>{:batch_id=>@batch.id})
+    @student_electives = StudentsSubject.find_all_by_student_id(@student.former_id,:conditions=>{:batch_id=>@batch.id})
     @elective_subjects = []
     @student_electives.each do |e|
       @elective_subjects.push Subject.find(e.subject_id)
@@ -149,9 +149,10 @@ class ArchivedStudentController < ApplicationController
     else
       @exam_group = ExamGroup.find(params[:exam_group])
       @student = ArchivedStudent.find(params[:student])
+      @student.id=@student.former_id
       @batch = @student.batch
       general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>"elective_group_id IS NULL")
-      student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@student.batch.id}")
+      student_electives = StudentsSubject.find_all_by_student_id(@student.former_id,:conditions=>"batch_id = #{@student.batch.id}")
       elective_subjects = []
       student_electives.each do |elect|
         elective_subjects.push Subject.find(elect.subject_id)
@@ -170,7 +171,8 @@ class ArchivedStudentController < ApplicationController
   def generated_report_pdf
     @config = Configuration.get_config_value('InstitutionName')
     @exam_group = ExamGroup.find(params[:exam_group])
-    @student = ArchivedStudent.find(params[:student])
+    @student = ArchivedStudent.find_by_former_id(params[:student])
+    @student.id = @student.former_id
     @batch = @student.batch
     general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>"elective_group_id IS NULL")
     student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@student.batch.id}")
@@ -194,6 +196,7 @@ class ArchivedStudentController < ApplicationController
   def generated_report3
     #student-subject-wise-report
     @student = ArchivedStudent.find(params[:student])
+    @student.id=@student.former_id
     @batch = @student.batch
     @subject = Subject.find(params[:subject])
     @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
@@ -273,7 +276,8 @@ class ArchivedStudentController < ApplicationController
   #GRAPHS
 
   def graph_for_generated_report
-    student = ArchivedStudent.find(params[:student])
+    student = ArchivedStudent.find_by_former_id(params[:student])
+    student.id=student.former_id
     examgroup = ExamGroup.find(params[:examgroup])
     batch = student.batch
     general_subjects = Subject.find_all_by_batch_id(batch.id, :conditions=>"elective_group_id IS NULL")
@@ -290,7 +294,7 @@ class ArchivedStudentController < ApplicationController
 
     subjects.each do |s|
       exam = Exam.find_by_exam_group_id_and_subject_id(examgroup.id,s.id)
-      res = ArchivedExamScore.find_by_exam_id_and_student_id(exam, student)
+      res = ExamScore.find_by_exam_id_and_student_id(exam, student)
       unless res.nil?
         x_labels << s.code
         data << res.marks
@@ -340,7 +344,8 @@ class ArchivedStudentController < ApplicationController
   end
 
   def graph_for_generated_report3
-    student = ArchivedStudent.find params[:student]
+    student = ArchivedStudent.find_by_former_id(params[:student])
+    student.id = student.former_id
     subject = Subject.find params[:subject]
     exams = Exam.find_all_by_subject_id(subject.id, :order => 'start_time asc')
 
@@ -348,7 +353,7 @@ class ArchivedStudentController < ApplicationController
     x_labels = []
 
     exams.each do |e|
-      exam_result = ArchivedExamScore.find_by_exam_id_and_student_id(e, student.id)
+      exam_result = ExamScore.find_by_exam_id_and_student_id(e, student.id)
       unless exam_result.nil?
         data << exam_result.marks
         x_labels << XAxisLabel.new(exam_result.exam.exam_group.name, '#000000', 10, 0)

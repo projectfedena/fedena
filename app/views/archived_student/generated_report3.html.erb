@@ -45,7 +45,7 @@
             <%= exam_group.name %>
           </td>
           <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
-          <% exam_score = ArchivedExamScore.find_by_student_id(@student.id,:conditions=>{:exam_id=>exam.id}) unless exam.nil? %>
+          <% exam_score = ExamScore.find_by_student_id(@student.id,:conditions=>{:exam_id=>exam.id}) unless exam.nil? %>
           <% if exam_group.exam_type == 'Marks' %>
             <td class="col-2"><%= exam_score.nil? ? '-' : exam_score.marks %></td>
             <td class="col-2"><%= exam_score.nil? ? '-' : exam.maximum_marks %></td>

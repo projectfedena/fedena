@@ -67,7 +67,7 @@
     font-size:16px;
     color:#121212;
     font-weight:bold;
-   margin:0px 6px;
+    margin:0px 6px;
 }
 #register{
     background: #C3D9FF;
@@ -83,5 +83,24 @@
 }
 
 #inner-tab-menu ul li{
- width: 150px;
+    width: 150px;
+}
+.custom_header{
+    margin: 0 auto;
+    padding: 5px;
+    /*    text-align: center;*/
+    background: #fff;
+}
+.student{
+    font-weight: bold;
+    text-align: left !important;
+    margin-left: 10px;
+}
+table#listing td.col-1 {
+    padding:5px 5px 5px 10px;
+    width:5%;
+}
+table#listing td.col-2 {
+    padding:5px 5px 5px 10px;
+    width:1%;
 }

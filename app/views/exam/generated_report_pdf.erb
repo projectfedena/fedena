@@ -242,7 +242,7 @@
         <% if @batch.grading_type=="2" %>
           <h4><%= t('weighted_average') %> =
             <% unless total_credits==0 %>
-              <%= "%.2f" %(total_credit_points.to_f/total_credits.to_f) %>
+              <%= "%.2f" %(total_weighted_marks.to_f/total_credits.to_f) %>
             <% else %>
               -
             <% end %>
