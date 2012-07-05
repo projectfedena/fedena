@@ -2225,6 +2225,7 @@ authorization do
     has_permission_on [:attendance], :to => [:student_report]
     has_permission_on [:student_attendance], :to => [:index, :student, :month]
     has_permission_on [:finance], :to => [:student_fees_structure]
+    has_permission_on [:cce_reports], :to => [:student_transcript]
   end
 
   role :parent do
