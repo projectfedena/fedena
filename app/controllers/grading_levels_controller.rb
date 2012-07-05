@@ -27,6 +27,11 @@ class GradingLevelsController < ApplicationController
   def new
     @grading_level = GradingLevel.new
     @batch = Batch.find params[:id] if request.xhr? and params[:id]
+    if @batch.present?
+      @credit = @batch.grading_type=="1" || @batch.cce_enabled?
+    else
+      @credit = Configuration.get_config_value('CCE')=='1' || Configuration.get_config_value('CWA')=='1' || Configuration.get_config_value('GPA')=='1'
+    end
     respond_to do |format|
       format.js { render :action => 'new' }
     end
@@ -54,6 +59,11 @@ class GradingLevelsController < ApplicationController
   def edit
     @grading_level = GradingLevel.find params[:id]
     @batch = Batch.find(@grading_level.batch_id) unless @grading_level.batch_id.nil?
+    if @batch.present?
+      @credit = @batch.grading_type=="1" || @batch.cce_enabled?
+    else
+      @credit = Configuration.get_config_value('CCE')=='1' || Configuration.get_config_value('CWA')=='1' || Configuration.get_config_value('GPA')=='1'
+    end
     respond_to do |format|
       format.html { }
       format.js { render :action => 'edit' }

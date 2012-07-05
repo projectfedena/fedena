@@ -42,8 +42,7 @@
       <%= f.label :description, "Description" %>
       <div class="input-field"><%= f.text_field :description %></div>
     </div>
-
-    <% if @batch and (@batch.grading_type=="1" || @batch.cce_enabled?) %>
+    <% if @credit %>
     <div class="label-field-pair">
       <%= f.label :credit_points, "Credit Points" %>
       <div class="input-field"><%= f.text_field :credit_points %></div>
