@@ -64,6 +64,13 @@ class ExamReportsController < ApplicationController
           end
         end
       end
+      archived_students = ArchivedStudent.find_all_by_batch_id(@batch.id)
+      unless archived_students.empty?
+        archived_students.each do|ast|
+          ast.id = ast.former_id
+          @students.push ast
+        end
+      end
       #@students=@batch.students.all(:order=>"first_name ASC")
       @student = @students.first  unless @students.empty?
       if @student.blank?

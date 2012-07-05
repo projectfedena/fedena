@@ -1956,10 +1956,10 @@ en: # locale
   include_grading_systems: "Include Grading Systems"
   archived_student_reports: "Archived Student Reports"
   generates_reports_for_archived_student_exam_wise: "Generates reports for Archived Students Exam wise"
-  archived_exams1: "Archived Exams1"
+  archived_exams: "Archived Exams"
   archived_batches_grouped_exam_report: "Archived Batches Grouped Exam Report"
   generates_grouped_exam_reports_for_archived_students: "Generates Grouped Exam reports for Archived Students"
-  exam_reports1: "Exam Reports1"
+  exam_reports_text: "Exam Reports"
   archived_grouped_exam_reports: "Archived Grouped Exam Reports"
   is_final_exam: "Is Final Exam?"
   
