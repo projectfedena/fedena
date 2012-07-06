@@ -32,6 +32,16 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
+  <% unless flash[:error].blank? %>
+    <div class="errorExplanation" id="errorExplanation">
+      <p>There where some problems</p>
+      <ul>
+        <% flash[:error].each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="box">
     <% form_for :course, :url=>{:action=>:create_reports} do |f|  %>
       <div class="label-field-pair">
@@ -52,6 +62,6 @@
 
       <div id="update_batch" ></div>
       <%= submit_tag "", :value => "► #{t('create_text')}", :class => "submit-button" %>
-      <% end %>
-      <div class="extender"></div>
-    </div></div>
+    <% end %>
+    <div class="extender"></div>
+  </div></div>
