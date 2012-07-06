@@ -88,7 +88,7 @@ module CceReportMod
       all_weightages = CceWeightage.all(:joins=>:courses, :conditions=>{:courses=>{:id=>batch_in_context.course_id}})
       sub_fa_scores.each{|k1,v1| v1.each{|k2, v2| fg_ids<<v2.keys}; exam_ids << v1.keys}
       examscores = exam_scores.all(:joins=>{:exam=>:exam_group},:conditions=>{:exam_id=>exam_ids.flatten.uniq,:exam_groups=>{:batch_id=>batch_in_context_id}}, :include=>{:exam=>:exam_group})
-      fgs= FaGroup.find_all_by_id(fg_ids.flatten.uniq, :include=>{:cce_grade_set=>:cce_grades})
+      fgs= FaGroup.find_all_by_id(fg_ids.flatten.uniq)
       s_arr = []
       sub_fa_scores.each do |subject_id,subval|
         max_fa = max_sa = max_overall = 0
