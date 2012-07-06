@@ -110,7 +110,7 @@
       <% if @batch.cce_enabled? %>
         <% if permitted_to? :observation_groups,  :assessment_scores %>
           <tr class="tr-<%= cycle('odd', 'even') %>">
-            <td colspan="2" class="col-1"><%= link_to t("co_scholastic_mark_entry"), observation_groups_assessment_scores_path(:batch_id=>@batch.id) %></td>
+            <td colspan="2" class="col-1"><%= link_to "Co-Scholastic result entry", observation_groups_assessment_scores_path(:batch_id=>@batch.id) %></td>
           </tr>
         <% end %>
       <% end %>
