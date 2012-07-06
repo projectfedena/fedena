@@ -34,69 +34,80 @@
           </h3>
         </div>
         <table id="pdf-table" width="100%" cellspacing="0">
-          <tr class="table-header">
-            <% cols=6 %>
-            <td>Sl no</td>
-            <td></td>
-            <% @exam_groups.each do |eg| %>
-              <td colspan="4"><%= eg.cce_exam_category.name %></td>
-            <% end %>
-            <td colspan="4">Overall</td>
-          </tr>
-          <tr class="table-header">
-            <td></td>
-            <td>Subjects</td>
-            <% @exam_groups.each do |eg| %>
-              <% cols +=4 %>
-              <td>FA1</td>
-              <td>FA2</td>
-              <td>SA1</td>
-              <td>FA1+ FA2+ SA1</td>
-            <% end %>
-            <td>FA1+ FA2+ FA3+ FA4</td>
-            <td>SA1+ SA2</td>
-            <td>Overall</td>
-            <td>Grade Point</td>
-          </tr>
-          <% @subjects.each_with_index do |s,i| %>
-            <tr class="<%= cycle(e,(["odd","even"]-[e]).first) %>">
-              <td><%= i+1 %></td>
-              <td><%= s.name %></td>
-              <% sub=scholastic.find{|c| c.subject_id==s.id} %>
-              <% @exam_groups.each do |eg|
-                se=sub.exams.find{|g| g.exam_group_id==eg.id} if sub %>
-                <% if se %>
-                  <td><%= se.fa[se.fa_group_ids[0]] if se.fa_group_ids[0] %></td>
-                  <td><%= se.fa[se.fa_group_ids[1]] if se.fa_group_ids[1] %></td>
-                  <td><%= se.sa %></td>
-                  <td><%= se.overall %></td>
-                <% else %>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                <% end %>
+          <% if @exam_groups.empty? %>
+            <tr class="tr-head">
+              <td>No Exams </td></tr>
+          <% else %>
+            <tr class="table-header">
+              <td>Sl no</td>
+              <td></td>
+              <% @exam_groups.each do |eg| %>
+                <td colspan="4"><%= eg.cce_exam_category.name %></td>
               <% end %>
-              <% if sub %>
-                <td><%= sub.fa %></td>
-                <td><%= sub.sa %></td>
-                <td><%= sub.overall %></td>
-                <td><%= sub.grade_point %></td>
-                <% if s.elective_group_id.blank? %>
-                  <% cgpa += sub.grade_point.to_f %>
-                  <% count += 1 %>
-                <% end %>
-              <% else %>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+              <% if @exam_groups.count==2 %>
+                <td colspan="4">Overall</td>
               <% end %>
             </tr>
+            <tr class="table-header">
+              <td></td>
+              <td>Subjects</td>
+              <% @exam_groups.each_with_index do |eg,i| %>
+                <td><%= "FA#{2*i+1}" %></td>
+                <td><%= "FA#{2*i+2}" %></td>
+                <td><%= "SA#{i+1}" %></td>
+                <td><%= "FA#{2*i+1}+ FA#{2*i+2}+ SA#{i+1}" %></td>
+              <% end %>
+              <% if @exam_groups.count==2 %>
+                <td>FA1+ FA2+ FA3+ FA4</td>
+                <td>SA1+ SA2</td>
+                <td>Overall</td>
+                <td>Grade Point</td>
+              <% end %>
+            </tr>
+            <% @subjects.each_with_index do |s,i| %>
+              <tr class="<%= cycle(e,(["odd","even"]-[e]).first) %>">
+                <td><%= i+1 %></td>
+                <td><%= s.name %></td>
+                <% sub=scholastic.find{|c| c.subject_id==s.id} %>
+                <% @exam_groups.each do |eg|
+                  se=sub.exams.find{|g| g.exam_group_id==eg.id} if sub %>
+                  <% if se %>
+                    <td><%= se.fa[se.fa_group_ids[0]] if se.fa_group_ids[0] %></td>
+                    <td><%= se.fa[se.fa_group_ids[1]] if se.fa_group_ids[1] %></td>
+                    <td><%= se.sa %></td>
+                    <td><%= se.overall %></td>
+                  <% else %>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  <% end %>
+                <% end %>
+                <% if @exam_groups.count==2 %>
+                  <% if sub %>
+                    <td><%= sub.fa %></td>
+                    <td><%= sub.sa %></td>
+                    <td><%= sub.overall %></td>
+                    <td><%= sub.grade_point %></td>
+                    <% if s.elective_group_id.blank? %>
+                      <% cgpa += sub.grade_point.to_f %>
+                      <% count += 1 %>
+                    <% end %>
+                  <% else %>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  <% end %>
+                <% end %>
+              </tr>
+            <% end %>
+            <% if @exam_groups.count==2 %>
+              <tr class="table-footer">
+                <td colspan="<%= 6+@exam_groups.count*4 %>">Cumulative Grade Point Average(CGPA)  :   <%= cgpa/count unless count==0 %></td>
+              </tr>
+            <% end %>
           <% end %>
-          <tr class="table-footer">
-            <td colspan="<%= cols %>">Cumulative Grade Point Average(CGPA)  :   <%= cgpa/count unless count==0 %></td>
-          </tr>
         </table>
 
       </div>
