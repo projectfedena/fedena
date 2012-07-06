@@ -101,7 +101,7 @@ table#pdf-table{
     border: 1px solid #ADACAB;
     border-collapse:collapse
 }
-.header-content{
+/*.header-content{
     color: #97080e;
     font-weight: bold;
     font-size: 25px;
@@ -109,7 +109,7 @@ table#pdf-table{
     width: 800px;
     height: 110px;
     text-align: center;
-}
+}*/
 
 .header-content p{
     margin-top: 3px;
