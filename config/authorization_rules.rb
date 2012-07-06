@@ -107,42 +107,42 @@ authorization do
       :save_scores,
       :query_data
     ]
-#    has_permission_on [:additional_exam],
-#      :to => [
-#      :index,
-#      :update_exam_form,
-#      :publish,
-#      :create_additional_exam,
-#      :update_batch
-#    ]
+    #    has_permission_on [:additional_exam],
+    #      :to => [
+    #      :index,
+    #      :update_exam_form,
+    #      :publish,
+    #      :create_additional_exam,
+    #      :update_batch
+    #    ]
 
-#    has_permission_on [:additional_exam_groups],
-#      :to => [
-#      :index,
-#      :new,
-#      :create,
-#      :edit,
-#      :update,
-#      :destroy,
-#      :show,
-#      :initial_queries,
-#      :set_additional_exam_minimum_marks,
-#      :set_additional_exam_maximum_marks,
-#      :set_additional_exam_weightage,
-#      :set_additional_exam_group_name
-#    ]
-#    has_permission_on [:additional_exams],
-#      :to => [
-#      :index,
-#      :show,
-#      :new,
-#      :create,
-#      :edit,
-#      :update,
-#      :destroy,
-#      :save_additional_scores,
-#      :query_data
-#    ]
+    #    has_permission_on [:additional_exam_groups],
+    #      :to => [
+    #      :index,
+    #      :new,
+    #      :create,
+    #      :edit,
+    #      :update,
+    #      :destroy,
+    #      :show,
+    #      :initial_queries,
+    #      :set_additional_exam_minimum_marks,
+    #      :set_additional_exam_maximum_marks,
+    #      :set_additional_exam_weightage,
+    #      :set_additional_exam_group_name
+    #    ]
+    #    has_permission_on [:additional_exams],
+    #      :to => [
+    #      :index,
+    #      :show,
+    #      :new,
+    #      :create,
+    #      :edit,
+    #      :update,
+    #      :destroy,
+    #      :save_additional_scores,
+    #      :query_data
+    #    ]
     has_permission_on [:grading_levels],
       :to => [
       :index,
@@ -379,27 +379,27 @@ authorization do
       :show,
       :save_scores
     ]
-#    has_permission_on [:additional_exam],
-#      :to =>[
-#      :create_additional_exam,
-#      :update_batch,
-#      :publish
-#    ]
-#    has_permission_on [:additional_exam_groups],
-#      :to =>[
-#      :index,
-#      :show,
-#      :set_additional_exam_minimum_marks,
-#      :set_additional_exam_maximum_marks,
-#      :set_additional_exam_weightage,
-#      :set_additional_exam_group_name
-#    ]
-#    has_permission_on [:additional_exams],
-#      :to => [
-#      :index,
-#      :show,
-#      :save_additional_scores
-#    ]
+    #    has_permission_on [:additional_exam],
+    #      :to =>[
+    #      :create_additional_exam,
+    #      :update_batch,
+    #      :publish
+    #    ]
+    #    has_permission_on [:additional_exam_groups],
+    #      :to =>[
+    #      :index,
+    #      :show,
+    #      :set_additional_exam_minimum_marks,
+    #      :set_additional_exam_maximum_marks,
+    #      :set_additional_exam_weightage,
+    #      :set_additional_exam_group_name
+    #    ]
+    #    has_permission_on [:additional_exams],
+    #      :to => [
+    #      :index,
+    #      :show,
+    #      :save_additional_scores
+    #    ]
     has_permission_on [:assessment_scores],
       :to=>[
       :exam_fa_groups,
@@ -421,6 +421,7 @@ authorization do
 
   role :view_results  do
     includes :archived_exam_reports
+    has_permission_on [:student], :to => [:reports]
     has_permission_on [:exam], :to => [:index,
       :exam_wise_report,
       :list_exam_types,
@@ -578,6 +579,94 @@ authorization do
       :guardians,
       :delete,
       :destroy,
+      :generate_tc_pdf,
+      :consolidated_exam_report,
+      :consolidated_exam_report_pdf,
+      :academic_report,
+      :student_report,
+      :generated_report,
+      :generated_report_pdf,
+      :generated_report3,
+      :previous_years_marks_overview,
+      :previous_years_marks_overview_pdf,
+      :generated_report4,
+      :generated_report4_pdf,
+      :graph_for_generated_report,
+      :graph_for_generated_report3,
+      :graph_for_previous_years_marks_overview
+    ]
+    has_permission_on [:exam],
+      :to =>[
+      :generated_report,
+      :generated_report_pdf,
+      :consolidated_exam_report,
+      :consolidated_exam_report_pdf,
+      :generated_report3,
+      :generated_report3_pdf,
+      :generated_report4,
+      :generated_report4_pdf,
+      :graph_for_generated_report,
+      :graph_for_generated_report3,
+      :previous_years_marks_overview,
+      :previous_years_marks_overview_pdf,
+      :academic_report,
+      :graph_for_previous_years_marks_overview
+    ]
+    has_permission_on [:student_attendance],
+      :to =>[
+      :student,
+      :month
+    ]
+  end
+
+  role :student_view do
+    has_permission_on [:student] ,
+      :to => [
+      :academic_reports_pdf,
+      :academic_report,
+      :academic_report_all,
+      :profile,
+      :guardians,
+      :list_students_by_course,
+      :show,
+      :view_all,
+      :index,
+      :email,
+      :exam_report,
+      :previous_years_marks_overview,
+      :previous_years_marks_overview_pdf,
+      :search_ajax,
+      :subject_wise_report,
+      :graph_for_previous_years_marks_overview,
+      :graph_for_student_annual_overview,
+      :graph_for_subject_wise_report_for_one_subject,
+      :graph_for_exam_report,
+      :graph_for_academic_report,
+      :advanced_search,
+      :advanced_search_pdf,
+      :profile_pdf,
+      :show_previous_details,
+      :list_doa_year,
+      :doa_equal_to_update,
+      :doa_less_than_update,
+      :doa_greater_than_update,
+      :list_dob_year,
+      :dob_equal_to_update,
+      :dob_less_than_update,
+      :dob_greater_than_update,
+      :list_batches,
+      :find_student,
+      :fees,
+      :fee_details,
+      :admission3_1,
+      :admission3_2,
+      :immediate_contact2
+    ]
+    has_permission_on [:archived_student],
+      :to => [
+      :profile,
+      :reports,
+      :guardians,
       :generate_tc_pdf,
       :consolidated_exam_report,
       :consolidated_exam_report_pdf,
@@ -1498,42 +1587,42 @@ authorization do
       :query_data
     ]
 
-#    has_permission_on [:additional_exam],
-#      :to => [
-#      :index,
-#      :update_exam_form,
-#      :publish,
-#      :create_additional_exam,
-#      :update_batch
-#    ]
+    #    has_permission_on [:additional_exam],
+    #      :to => [
+    #      :index,
+    #      :update_exam_form,
+    #      :publish,
+    #      :create_additional_exam,
+    #      :update_batch
+    #    ]
 
-#    has_permission_on [:additional_exam_groups],
-#      :to => [
-#      :index,
-#      :new,
-#      :create,
-#      :edit,
-#      :update,
-#      :destroy,
-#      :show,
-#      :initial_queries,
-#      :set_additional_exam_minimum_marks,
-#      :set_additional_exam_maximum_marks,
-#      :set_additional_exam_weightage,
-#      :set_additional_exam_group_name
-#    ]
-#    has_permission_on [:additional_exams],
-#      :to => [
-#      :index,
-#      :show,
-#      :new,
-#      :create,
-#      :edit,
-#      :update,
-#      :destroy,
-#      :save_additional_scores,
-#      :query_data
-#    ]
+    #    has_permission_on [:additional_exam_groups],
+    #      :to => [
+    #      :index,
+    #      :new,
+    #      :create,
+    #      :edit,
+    #      :update,
+    #      :destroy,
+    #      :show,
+    #      :initial_queries,
+    #      :set_additional_exam_minimum_marks,
+    #      :set_additional_exam_maximum_marks,
+    #      :set_additional_exam_weightage,
+    #      :set_additional_exam_group_name
+    #    ]
+    #    has_permission_on [:additional_exams],
+    #      :to => [
+    #      :index,
+    #      :show,
+    #      :new,
+    #      :create,
+    #      :edit,
+    #      :update,
+    #      :destroy,
+    #      :save_additional_scores,
+    #      :query_data
+    #    ]
 
     has_permission_on [:finance],
       :to => [
@@ -2446,26 +2535,26 @@ authorization do
       :show,
       :save_scores
     ]
-#    has_permission_on [:additional_exam],
-#      :to =>[
-#      :create_additional_exam,
-#      :update_batch
-#    ]
-#    has_permission_on [:additional_exam_groups],
-#      :to =>[
-#      :index,
-#      :show,
-#      :set_additional_exam_minimum_marks,
-#      :set_additional_exam_maximum_marks,
-#      :set_additional_exam_weightage,
-#      :set_additional_exam_group_name
-#    ]
-#    has_permission_on [:additional_exams],
-#      :to => [
-#      :index,
-#      :show,
-#      :save_additional_scores
-#    ]
+    #    has_permission_on [:additional_exam],
+    #      :to =>[
+    #      :create_additional_exam,
+    #      :update_batch
+    #    ]
+    #    has_permission_on [:additional_exam_groups],
+    #      :to =>[
+    #      :index,
+    #      :show,
+    #      :set_additional_exam_minimum_marks,
+    #      :set_additional_exam_maximum_marks,
+    #      :set_additional_exam_weightage,
+    #      :set_additional_exam_group_name
+    #    ]
+    #    has_permission_on [:additional_exams],
+    #      :to => [
+    #      :index,
+    #      :show,
+    #      :save_additional_scores
+    #    ]
   end
 
   role :archived_exam_reports do
