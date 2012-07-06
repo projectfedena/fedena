@@ -177,3 +177,12 @@ table#listing tr.tr-head {
 .list_name {
 font-weight:bold;
 }
+.batch-name {
+    font-size:14px;
+    font-weight:bold;
+    margin-top:10px;
+    margin-bottom:15px;
+}
+.class-designations {
+    margin-top:-38px;
+}

@@ -71,15 +71,12 @@
           <label class="field-label"><%= t('name') %></label>: <label class="infolbl"> <%= @student.full_name %></label>
         </div>
         <div class="info1">
-          <label class="field-label"><%= t('course_text') %></label>: <label class="infolbl"> <%= @student.batch.course.full_name %></label>
+          <label class="field-label"><%= t('course_text') %></label>: <label class="infolbl"> <%= @student.batch.course.course_name %></label>
         </div>
       </div>
       <div class="info-right">
         <div class="info1">
           <label class="field-label"><%= t('adm_no') %></label>: <label class="infolbl"> <%= @student.admission_no.present? ? @student.admission_no : "-" %></label>
-        </div>
-        <div class="info1">
-          <label class="field-label"><%= t('batch') %></label>: <label class="infolbl"> <%= @student.batch.name %></label>
         </div>
       </div>
     </div>
@@ -100,7 +97,7 @@
           <% end %>
           <% @subjects = general_subjects + elective_subjects %>
           <% unless @subjects.empty? %>
-            <h4><%= batch.full_name %></h4>
+            <div class="batch-name"><%= batch.full_name %></div>
             <% total_credits=0 %>
             <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
               <tr class="tr-head">
@@ -156,23 +153,25 @@
           <% end %>
         <% end %>
       <% end %>
-      <% unless grades.count.to_f==0 %>
-        <% cgpa = (grades.sum.to_f)/(grades.count.to_f) %>
-      <% else %>
-        <% cgpa=0 %>
-      <% end %>
-      <% if @student.batch.grading_type=="1" %>
-        <% designations = ClassDesignation.find(:all,:conditions=>["cgpa <= ? AND course_id = ? ",cgpa,@student.batch.course_id],:order=>"cgpa DESC") %>
-        <h4 align="center"><%= t('course_wise_cumulative_grade_point') %> = <span class="high"><%= "%.2f" %(cgpa) %></span></h4>
-      <% else %>
-        <% designations = ClassDesignation.find(:all,:conditions=>["marks <= ? AND course_id = ?",cgpa,@student.batch.course_id],:order=>"marks DESC") %>
-        <% if @student.batch.grading_type=="2" %>
-          <h4 align="center"><%= t('course_wise_combined_weighted_average') %> = <span class="high"><%= "%.2f" %(cgpa) %></span></h4>
+      <div class="class-designations">
+        <% unless grades.count.to_f==0 %>
+          <% cgpa = (grades.sum.to_f)/(grades.count.to_f) %>
         <% else %>
-          <h4 align="center"><%= t('course_wise_combined_percentage') %>= <span class="high"><%= "%.2f" %(cgpa) %></span></h4>
+          <% cgpa=0 %>
         <% end %>
-      <% end %>
-      <h4 align="center"><%= t('class_designations_text') %> : <span class="high"><%= designations.empty? ? "-" : designations.first.name %></span></h4>
+        <% if @student.batch.grading_type=="1" %>
+          <% designations = ClassDesignation.find(:all,:conditions=>["cgpa <= ? AND course_id = ? ",cgpa,@student.batch.course_id],:order=>"cgpa DESC") %>
+          <h4 align="right"><%= t('course_wise_cumulative_grade_point') %> = <span class="high"><%= "%.2f" %(cgpa) %></span></h4>
+        <% else %>
+          <% designations = ClassDesignation.find(:all,:conditions=>["marks <= ? AND course_id = ?",cgpa,@student.batch.course_id],:order=>"marks DESC") %>
+          <% if @student.batch.grading_type=="2" %>
+            <h4 align="right"><%= t('course_wise_combined_weighted_average') %> = <span class="high"><%= "%.2f" %(cgpa) %></span></h4>
+          <% else %>
+            <h4 align="right"><%= t('course_wise_combined_percentage') %>= <span class="high"><%= "%.2f" %(cgpa) %></span></h4>
+          <% end %>
+        <% end %>
+        <h4 align="right"><%= t('class_designations_text') %> : <span class="high"><%= designations.empty? ? "-" : designations.first.name %></span></h4>
+      </div>
     <% end %>
   </div>
 </div>
