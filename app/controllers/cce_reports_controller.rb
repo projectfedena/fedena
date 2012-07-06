@@ -8,18 +8,23 @@ class CceReportsController < ApplicationController
   
   def create_reports
     @courses = Course.cce
-    if request.post?
+    if request.post?      
       unless params[:course][:batch_ids].blank?
+        errors = []
         batches = Batch.find_all_by_id(params[:course][:batch_ids])
         batches.each do |batch|
-          Delayed::Job.enqueue(batch)
-          batch.delete_student_cce_report_cache
+          if batch.check_credit_points
+            Delayed::Job.enqueue(batch)
+            batch.delete_student_cce_report_cache
+          else
+            errors += ["Incomplete grading level credit points for #{batch.full_name}, report generation failed."]
+          end
         end
         flash[:notice]="Report generation in queue for batches #{batches.collect(&:full_name).join(", ")}."
+        flash[:error]=errors
       else
         flash[:notice]="No batch selected"
-      end
-      redirect_to :action=>:index
+      end      
     end
     
   end
@@ -27,12 +32,12 @@ class CceReportsController < ApplicationController
   def student_wise_report
     @batches=Batch.cce
     if request.post?      
-        @batch=Batch.find(params[:batch_id])
-        @students=@batch.students
-        render(:update) do |page|
-          page.replace_html   'student_list', :partial=>"student_list",   :object=>@students
-          page.replace_html   'report', :text=>""
-        end      
+      @batch=Batch.find(params[:batch_id])
+      @students=@batch.students
+      render(:update) do |page|
+        page.replace_html   'student_list', :partial=>"student_list",   :object=>@students
+        page.replace_html   'report', :text=>""
+      end
     end
   end
 

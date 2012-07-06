@@ -80,6 +80,7 @@ module CceReportMod
 
     def make_scholastic_report
       @grades = batch_in_context.grading_level_list
+      max_credit_point = @grades.collect{|g| g.credit_points.to_f}.max
       fg_ids = []
       exam_ids = []
       exam_group_ids = []
@@ -97,7 +98,7 @@ module CceReportMod
           examval.each do |fg_id, score|
             se.fa_group_ids << fg_id
             fg = fgs.find{|f| f.id == fg_id}
-            se.fa[fg_id]= score * fg.max_marks/fg.cce_grade_set.max_grade_point
+            se.fa[fg_id]= score * fg.max_marks/max_credit_point
           end
           examscore = examscores.find{|e| e.exam_id == exam_id}
           if examscore
@@ -122,7 +123,7 @@ module CceReportMod
             examval.each do |fg_id, score|
               se.fa[fg_id]= to_grade(se.fa[fg_id])
             end
-
+              
           end
 
           sc.exams << se
