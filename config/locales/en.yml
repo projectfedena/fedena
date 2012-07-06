@@ -1049,6 +1049,7 @@ en: # locale
   admission_privilege: "Admission"
   students_control_privilege: "Students Control"
   manage_news_privilege: "Manage News"
+  student_view: "Student View"
   timetable_privilege: "Timetable"
   student_attendance_view_privilege: "Student Attendance View"
   hr_basics_privilege: "Hr Basics"
