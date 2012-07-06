@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-<%= image_tag("/images/examination/show_exam.png") %>
+  <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
   <h3><%= t('generated_report') %></h3>
   <div id="app-back-button">
@@ -40,51 +40,58 @@
   <div class="box">
     <h4><%= @batch.name %> - <%= @batch.course.full_name %> | <%= @subject.name %></h4>
     <div id="score-table">
-    <table id="listing" width="100%" cellpadding="1" cellspacing="1">
-      <tr class="tr-head">
-        <td><%= t('name') %></td>
-        <% @exam_groups.each do |exam_group| %>
-          <td><%= exam_group.name %></td>
-        <% end %>
-      </tr>
-      <% @students.each do |student| %>
-        <tr class="tr-<%= cycle('odd', 'even') %>">
-          <td class="col-2"><%= student.full_name %></td>
+      <table id="listing" width="100%" cellpadding="1" cellspacing="1">
+        <tr class="tr-head">
+          <td><%= t('name') %></td>
           <% @exam_groups.each do |exam_group| %>
-            <td class="col-3">
-              <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
-              <% exam_score = ExamScore.find_by_student_id(student.id,:conditions=>{:exam_id=>exam.id}) unless exam.nil? %>
-              <% unless exam.nil? %>
-                <% if exam_group.exam_type == 'Marks' %>
-                  <%= exam_score.nil? ? '-' : "#{exam_score.marks || "-"}/"+exam.maximum_marks.to_s %>
-                <% elsif exam_group.exam_type == 'Grades'%>
-                  <%= exam_score.nil? ? '-' : (exam_score.grading_level || '-') %>
-                <% else %>
-                  <%= exam_score.nil? ? '-' : "#{(exam_score.marks || "-")}" +"/"+exam.maximum_marks.to_s+"[#{(exam_score.grading_level || "-")}]" %>
-                <% end %>
-              <% else %>
-                <%= "#{t('n_a')}" %>
-              <% end %>
-            </td>
+            <td><%= exam_group.name %></td>
           <% end %>
         </tr>
-      <% end %>
-      <tr class="tr-head">
-        <td>
-          <%= t('class_average') %>
-        </td>
-        <% @exam_groups.each do |exam_group| %>
-          <% if exam_group.exam_type == 'Marks' or exam_group.exam_type == 'MarksAndGrades' %>
-            <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
-            <td>
-              <%="%.2f"%exam_group.subject_wise_batch_average_marks(@subject.id) unless exam.nil?%>
-            </td>
-          <% else %>
-            <td>-</td>
+        <% @students.each do |student| %>
+          <% is_valid_subject=1 %>
+          <% unless @subject.elective_group_id.nil? %>
+            <% is_student_elective = StudentsSubject.find_by_student_id_and_subject_id(student.id,@subject.id) %>
+            <% is_valid_subject = 0 if is_student_elective.nil? %>
+          <% end %>
+          <% unless is_valid_subject == 0 %>
+            <tr class="tr-<%= cycle('odd', 'even') %>">
+              <td class="col-2"><%= student.full_name %></td>
+              <% @exam_groups.each do |exam_group| %>
+                <td class="col-3">
+                  <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
+                  <% exam_score = ExamScore.find_by_student_id(student.id,:conditions=>{:exam_id=>exam.id}) unless exam.nil? %>
+                  <% unless exam.nil? %>
+                    <% if exam_group.exam_type == 'Marks' %>
+                      <%= exam_score.nil? ? '-' : "#{exam_score.marks || "-"}/"+exam.maximum_marks.to_s %>
+                    <% elsif exam_group.exam_type == 'Grades'%>
+                      <%= exam_score.nil? ? '-' : (exam_score.grading_level || '-') %>
+                    <% else %>
+                      <%= exam_score.nil? ? '-' : "#{(exam_score.marks || "-")}" +"/"+exam.maximum_marks.to_s+"[#{(exam_score.grading_level || "-")}]" %>
+                    <% end %>
+                  <% else %>
+                    <%= "#{t('n_a')}" %>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
           <% end %>
         <% end %>
-      </tr>
-    </table>
+        <tr class="tr-head">
+          <td>
+            <%= t('class_average') %>
+          </td>
+          <% @exam_groups.each do |exam_group| %>
+            <% if exam_group.exam_type == 'Marks' or exam_group.exam_type == 'MarksAndGrades' %>
+              <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
+              <td>
+                <%="%.2f"%exam_group.subject_wise_batch_average_marks(@subject.id) unless exam.nil?%>
+              </td>
+            <% else %>
+              <td>-</td>
+            <% end %>
+          <% end %>
+        </tr>
+      </table>
     </div>
     <div class="extender"></div>
   </div>
