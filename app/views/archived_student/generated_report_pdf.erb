@@ -90,7 +90,7 @@
               <td class="col-pdf"><%= exam.subject.name %></td>
               <td class="col-pdf"> <%= mark %> </td>
               <td class="col-pdf"><%= exam.subject.credit_hours %></td>
-              <td class="col-pdf"><%= exam_score.grading_level.present? ? exam_score.grading_level : "-" %></td>
+              <td class="col-pdf"><%= exam_score.present? ? (exam_score.grading_level.present? ? exam_score.grading_level : "-") : "-" %></td>
               <td class="col-pdf"><%= weighted_mark %></td>
             </tr>
           <% end %>
@@ -136,8 +136,8 @@
               <td class="col-pdf"><%= exam.subject.code %></td>
               <td class="col-pdf"><%= exam.subject.name %></td>
               <td class="col-pdf"><%= exam.subject.credit_hours %></td>
-              <td class="col-pdf"><%= exam_score.grading_level.present? ? exam_score.grading_level : "-" %></td>
-              <td class="col-pdf"><%= exam_score.grading_level.present? ? (exam_score.grading_level.description.present? ? exam_score.grading_level.description : "-") : "-" %></td>
+              <td class="col-pdf"><%= exam_score.present? ? (exam_score.grading_level.present? ? exam_score.grading_level : "-") : "-" %></td>
+              <td class="col-pdf"><%= exam_score.present? ? (exam_score.grading_level.present? ? (exam_score.grading_level.description.present? ? exam_score.grading_level.description : "-") : "-") : "-" %></td>
             </tr>
           <% end %>
           <tr class="tr-blank"></tr>
