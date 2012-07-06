@@ -21,12 +21,12 @@
           <%= f.select :cce_exam_category_id ,@exam_categories.map{|m| [m.name,m.id]} ,:prompt=>"Select an exam category" %>
         </div>
       </div>
-      <div class="label-field-pair">
-        <label for="category_name">CCE Grade Set</label>
-        <div class="text-input-bg">
-          <%= f.select :cce_grade_set_id ,@grade_sets.map{|m| [m.name,m.id]} ,:prompt=>"Select a grade set" %>
-        </div>
-      </div>
+      <%#*<div class="label-field-pair">%>
+        <%#*<label for="category_name">CCE Grade Set</label>%>
+        <%#*<div class="text-input-bg">%>
+          <%#= f.select :cce_grade_set_id ,@grade_sets.map{|m| [m.name,m.id]} ,:prompt=>"Select a grade set" %>
+        <%#*</div>%>
+      <%#*</div>%>
 
       <%= f.submit "", :value => "► Update", :class => "submit_button" %>
     <% end %>
