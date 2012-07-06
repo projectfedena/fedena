@@ -298,7 +298,7 @@ class Batch < ActiveRecord::Base
   end
 
   def check_credit_points
-    grading_level_list.collect{|g| g.credit_points}.include? ""
+    grading_level_list.select{|g| g.credit_points.nil?}.empty?
   end
   
 end

@@ -27,7 +27,7 @@
                     <%= di.name %>
                   </td>
                   <td class="score">
-                    <%= select_tag "grade[#{di.id}]",options_for_select([["",""]]+@grading_levels.map{|m| [m.name,m.grade_point.to_i]},(@scores[@student.id][di.id].present? ? @scores[@student.id][di.id].first.grade_points : "")) %>
+                    <%= select_tag "grade[#{di.id}]",options_for_select([["",""]]+@grading_levels.map{|m| [m.name,m.credit_points.to_f]},(@scores[@student.id][di.id].present? ? @scores[@student.id][di.id].first.grade_points : "")) %>
                   </td>
                 </tr>
               <% end %>

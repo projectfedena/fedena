@@ -43,7 +43,12 @@ class AssessmentScoresController < ApplicationController
     else
       @student=@students.first
     end
-    @grading_levels=@fa_group.cce_grade_set.cce_grades
+    @grading_levels=@batch.grading_level_list
+    unless @batch.check_credit_points
+      flash[:notice]="Incomplete credit points for #{@batch.full_name}. Please assign credit points to all grades."
+      redirect_to :controller => "grading_levels"
+      return
+    end
     di=@fa_criterias.collect(&:descriptive_indicator_ids).flatten
     @scores=Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
     scores=AssessmentScore.find(:all,:conditions=>{:student_id=>@student.id,:batch_id=>@batch.id,:descriptive_indicator_id=>di, :exam_id=>@exam.id}).group_by(&:student_id)
