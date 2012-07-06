@@ -296,4 +296,9 @@ class Batch < ActiveRecord::Base
       s.delete_individual_cce_report_cache
     end
   end
+
+  def check_credit_points
+    grading_level_list.collect{|g| g.credit_points}.include? ""
+  end
+  
 end
