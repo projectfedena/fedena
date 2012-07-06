@@ -457,13 +457,13 @@ class ExamController < ApplicationController
                 tot_score = 0
                 percent = 0
                 unless max_marks.to_f==0
-                if grading_type.nil? or grading_type=="0"
-                  tot_score = (((score.to_f)/max_marks.to_f)*100)
-                  percent = (((score.to_f)/max_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
-                elsif grading_type=="1" or grading_type=="2"
-                  tot_score = ((score.to_f)/max_marks.to_f)
-                  percent = ((score.to_f)/max_marks.to_f)*((exam_group.weightage.to_f)/100)
-                end
+                  if grading_type.nil? or grading_type=="0"
+                    tot_score = (((score.to_f)/max_marks.to_f)*100)
+                    percent = (((score.to_f)/max_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
+                  elsif grading_type=="1" or grading_type=="2"
+                    tot_score = ((score.to_f)/max_marks.to_f)
+                    percent = ((score.to_f)/max_marks.to_f)*((exam_group.weightage.to_f)/100)
+                  end
                 end
                 prev_exam_score = GroupedExamReport.find_by_student_id_and_exam_group_id_and_score_type(student_id,exam_group.id,"e")
                 unless prev_exam_score.nil?
@@ -620,6 +620,9 @@ class ExamController < ApplicationController
       @subject = Subject.find(params[:rank_report][:subject_id])
       @batch = @subject.batch
       @students = @batch.students
+      unless @subject.elective_group_id.nil?
+        @students.reject!{|s| !StudentsSubject.exists?(:student_id=>s.id,:subject_id=>@subject.id)}
+      end
       @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
       @exam_groups.reject!{|e| e.exam_type=="Grades"}
     else
@@ -632,6 +635,9 @@ class ExamController < ApplicationController
     @subject = Subject.find(params[:subject_id])
     @batch = @subject.batch
     @students = @batch.students
+    unless @subject.elective_group_id.nil?
+      @students.reject!{|s| !StudentsSubject.exists?(:student_id=>s.id,:subject_id=>@subject.id)}
+    end
     @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
     @exam_groups.reject!{|e| e.exam_type=="Grades"}
     render :pdf => 'student_subject_rank_pdf'
