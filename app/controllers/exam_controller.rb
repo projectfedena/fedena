@@ -1288,6 +1288,9 @@ class ExamController < ApplicationController
       end
       @subjects = general_subjects + elective_subjects
       @subjects.reject!{|s| s.no_exams==true}
+      exams = Exam.find_all_by_exam_group_id(@exam_groups.collect(&:id))
+      subject_ids = exams.collect(&:subject_id)
+      @subjects.reject!{|sub| !(subject_ids.include?(sub.id))}
     else
       @student = Student.find(params[:student])
       @batch = @student.batch
@@ -1309,6 +1312,9 @@ class ExamController < ApplicationController
       end
       @subjects = general_subjects + elective_subjects
       @subjects.reject!{|s| s.no_exams==true}
+      exams = Exam.find_all_by_exam_group_id(@exam_groups.collect(&:id))
+      subject_ids = exams.collect(&:subject_id)
+      @subjects.reject!{|sub| !(subject_ids.include?(sub.id))}
       if request.xhr?
         render(:update) do |page|
           page.replace_html   'grouped_exam_report', :partial=>"grouped_exam_report"
@@ -1344,6 +1350,9 @@ class ExamController < ApplicationController
       end
       @subjects = general_subjects + elective_subjects
       @subjects.reject!{|s| s.no_exams==true}
+      exams = Exam.find_all_by_exam_group_id(@exam_groups.collect(&:id))
+      subject_ids = exams.collect(&:subject_id)
+      @subjects.reject!{|sub| !(subject_ids.include?(sub.id))}
     else
       @student = Student.find(params[:student])
       @batch = @student.batch
@@ -1365,6 +1374,9 @@ class ExamController < ApplicationController
       end
       @subjects = general_subjects + elective_subjects
       @subjects.reject!{|s| s.no_exams==true}
+      exams = Exam.find_all_by_exam_group_id(@exam_groups.collect(&:id))
+      subject_ids = exams.collect(&:subject_id)
+      @subjects.reject!{|sub| !(subject_ids.include?(sub.id))}
     end
     render :pdf => 'generated_report_pdf',
       :orientation => 'Landscape'
