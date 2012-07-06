@@ -1427,6 +1427,7 @@ class ExamController < ApplicationController
   def list_inactive_exam_groups
     unless params[:batch_id]==""
       @exam_groups = ExamGroup.find(:all, :conditions=>{:batch_id=>params[:batch_id]})
+      @exam_groups.reject!{|e| !GroupedExam.exists?(:exam_group_id=>e.id,:batch_id=>params[:batch_id])}
       render(:update) do|page|
         page.replace_html "inactive_exam_groups", :partial=>"inactive_exam_groups"
       end
