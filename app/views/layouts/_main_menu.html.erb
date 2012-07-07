@@ -28,7 +28,7 @@
         </li>
       <% end %>
     <% else %>
-      <% if permitted_to? :index, :student_attendance or @employee_batches.present?or @employee_subjects.present? or @user.privileges.map{|p| p.name}.include?("StudentAttendanceView") or @user.privileges.map{|p| p.name}.include?("StudentAttendanceRegister") %>
+      <% if permitted_to? :index, :student_attendance or @employee_batches.present? or @employee_subjects.present? or @user.privileges.map{|p| p.name}.include?("StudentAttendanceView") or @user.privileges.map{|p| p.name}.include?("StudentAttendanceRegister") %>
         <li class="a"><%= link_to "#{t('attendance')} ▼", :controller => "student_attendance", :action => "index" %>
           <ul class="level-1">
             <% if @employee_batches.present? or @employee_subjects.present? or @user.privileges.map{|p| p.name}.include?("StudentAttendanceRegister") %>
