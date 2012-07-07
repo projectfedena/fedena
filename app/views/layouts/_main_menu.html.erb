@@ -134,6 +134,9 @@
             <% elsif (@current_user.privileges.collect(&:name).include?('ViewResults') or (Batch.all.collect(&:employee_id).include?(@current_user.employee_record.id.to_s) if @current_user.employee?)) %>
               <li><%= link_to "Report Center" , :controller => "exam",:action=>'report_center' %></li>
             <% end %>
+            <%  if permitted_to? :index, :cce_reports  %>
+              <li><%= link_to "CCE Report" , :controller => "cce_reports" %>  </li>
+            <% end %>
             <% FedenaPlugin::ADDITIONAL_LINKS[:online_exam_index_link].each do |mod| %>
               <%  if permitted_to? "#{mod[:destination][:action]}".to_sym,"#{mod[:destination][:controller]}".to_sym %>
                 <li><%= link_to "#{t("#{mod[:title]}")}",mod[:destination] %></li>
