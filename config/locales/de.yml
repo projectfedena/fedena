@@ -1041,6 +1041,8 @@ de: # locale
   admission_privilege: "Aufnahme"
   students_control_privilege: "Schülerkontrolle"
   manage_news_privilege: "Neuigkeitenverwaltung"
+  student_view: "student Bekijk"
+  student_view_privilege: "student Bekijk"
   timetable_privilege: "Stundenplan"
   student_attendance_view_privilege: "Schüleranwesenheitsansicht"
   hr_basics_privilege: "HR Grundlagen"

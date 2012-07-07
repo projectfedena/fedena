@@ -1015,6 +1015,8 @@ hi:
   admission_privilege: "प्रवेश"
   students_control_privilege: "छात्र नियंत्रण"
   manage_news_privilege: "समाचार प्रबंधित"
+  student_view: "छात्र देखें"
+  student_view_privilege: "छात्र देखें"
   timetable_privilege: "समय सारिणी"
   student_attendance_view_privilege: "छात्र उपस्थिति देखें"
   hr_basics_privilege: "मानव संसाधन मूल बातें"

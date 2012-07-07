@@ -1038,6 +1038,8 @@ es: # locale
   admission_privilege: "Admisión"
   students_control_privilege: "Control de estudiantes"
   manage_news_privilege: "Gestionar noticias"
+  student_view: "Estudiante Ver"
+  student_view_privilege: "Estudiante Ver"
   timetable_privilege: "Horarios"
   student_attendance_view_privilege: "Vista de asistencia de estudiantes"
   hr_basics_privilege: "RH básico"

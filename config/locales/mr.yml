@@ -1033,6 +1033,8 @@ mr: # locale
   admission_privilege: "प्रवेश"
   students_control_privilege: "विद्यार्थी नियंत्रण"
   manage_news_privilege: "बातमी व्यस्थापन"
+  student_view: "स्तुदेंत विएव"
+  student_view_privilege: "स्तुदेंत विएव"
   timetable_privilege: "वेळापत्रक"
   student_attendance_view_privilege: "विद्यार्थी उपस्थिती बघा"
   hr_basics_privilege: "मानवसंसाधन बेसिक"

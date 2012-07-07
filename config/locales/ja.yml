@@ -1045,6 +1045,8 @@ ja: # locale
   admission_privilege: "アドミッション"
   students_control_privilege: "生徒コントロール"
   manage_news_privilege: "ニュースを管理"
+  student_view: "学生ビュー"
+  student_view_privilege: "学生ビュー"
   timetable_privilege: "時間割"
   student_attendance_view_privilege: "生徒出欠を閲覧"
   hr_basics_privilege: "ベーシックHR"

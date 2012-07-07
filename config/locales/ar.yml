@@ -1042,6 +1042,8 @@ ar:
   admission_privilege: "قبول"
   students_control_privilege: "طلاب التحكم"
   manage_news_privilege: "إدارة الأخبار"
+  student_view: "اعرض"
+  student_view_privilege: "اعرض"
   timetable_privilege: "الجدول الزمني"
   student_attendance_view_privilege: "طالب الحضور الشخصي"
   hr_basics_privilege: "أساسيات ساعة"
