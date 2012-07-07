@@ -36,7 +36,6 @@
       </div>
     <% else %>
       <div class="label-field-pair">
-        <%= @cce_exam_category_id %>
         <label for="cce_exam_category_id"><%= t('cce_exam_category') %></label>
         <div class="text-input-bg"><%= f.select :cce_exam_category_id,options_for_select([["",""]]+@cce_exam_categories.map{|ec| [ec.name,ec.id]},:selected=>(@exam_group.cce_exam_category_id.present? ? @exam_group.cce_exam_category_id : @cce_exam_category_id.to_i)) %>
         </div>
