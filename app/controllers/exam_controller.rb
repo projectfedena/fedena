@@ -30,6 +30,7 @@ class ExamController < ApplicationController
     @name = params[:exam_option][:name]
     @type = params[:exam_option][:exam_type]
     @cce_exam_category_id = params[:exam_option][:cce_exam_category_id]
+    @cce_exam_categories = CceExamCategory.all if @batch.cce_enabled?
     unless @name == ''
       @exam_group = ExamGroup.new
       @normal_subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>"no_exams = false AND elective_group_id IS NULL AND is_deleted = false")

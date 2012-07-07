@@ -27,12 +27,19 @@
       <div class="text-input-bg"><%= f.text_field :name, :value=>@name %></div>
     </div>
     <%= f.hidden_field :exam_type,:value=>@type %>
-    <%= f.hidden_field :cce_exam_category_id,:value=>@cce_exam_category_id %>
+  <%#= f.hidden_field :cce_exam_category_id,:value=>@cce_exam_category_id %>
     <% unless @batch.cce_enabled? %>
       <div class="label-field-pair">
         <%= f.label :exam_type, t('exam_type')%>
         <div class="text-input-bg"><%= f.text_field :exam_type, :value=>@type=='Marks' ? t('marks') : t('marks_and_grades'),:disabled=>true %>
         </div><%= link_to "#{t('change_type')}", new_batch_exam_group_path(@batch,:ename=>@name),:class=>"type_link" %>
+      </div>
+    <% else %>
+      <div class="label-field-pair">
+        <%= @cce_exam_category_id %>
+        <label for="cce_exam_category_id"><%= t('cce_exam_category') %></label>
+        <div class="text-input-bg"><%= f.select :cce_exam_category_id,options_for_select([["",""]]+@cce_exam_categories.map{|ec| [ec.name,ec.id]},:selected=>(@exam_group.cce_exam_category_id.present? ? @exam_group.cce_exam_category_id : @cce_exam_category_id.to_i)) %>
+        </div>
       </div>
     <% end %>
     <div class="label-field-pair">
@@ -43,12 +50,12 @@
       <%= f.label :minimum_marks, t('min_mark') %>
       <div class="text-input-bg"> <%= f.text_field :minimum_marks %></div>
     </div>
-    <%# if @batch.grading_type=="1" %>
-      <%#*<div class="label-field-pair">%>
-        <%#= f.label :is_final_exam, t('is_final_exam') %>
-        <%#*<div class="text-input-bg"> <%= f.check_box :is_final_exam %>
-      <%#*</div>%>
-    <%# end %>
+  <%# if @batch.grading_type=="1" %>
+  <%#*<div class="label-field-pair">%>
+  <%#= f.label :is_final_exam, t('is_final_exam') %>
+  <%#*<div class="text-input-bg"> <%= f.check_box :is_final_exam %>
+  <%#*</div>%>
+  <%# end %>
 
   </div>
   <h4> <%= t('enter_exam_related_details') %>:</h4>
@@ -81,18 +88,18 @@
           </div>
         </td>
         <td class="col-1">
-         <div class="label-field-pair3">
-        <div class="text-input-bg3">
-        <%= exam_form.calendar_date_select :start_time,:popup=>"force"%>
-        </div>
-        </div>
+          <div class="label-field-pair3">
+            <div class="text-input-bg3">
+              <%= exam_form.calendar_date_select :start_time,:popup=>"force"%>
+            </div>
+          </div>
         </td>
         <td class="col-1">
-         <div class="label-field-pair3">
-        <div class="text-input-bg3">
-        <%= exam_form.calendar_date_select :end_time,:popup=>"force" %>
-        </div>
-        </div></td>
+          <div class="label-field-pair3">
+            <div class="text-input-bg3">
+              <%= exam_form.calendar_date_select :end_time,:popup=>"force" %>
+            </div>
+          </div></td>
         <td class="col-1">
           <div class="label-field-pair2">
             <div class="text-input-bg2">

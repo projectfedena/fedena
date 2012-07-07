@@ -301,4 +301,4 @@ class Batch < ActiveRecord::Base
     grading_level_list.select{|g| g.credit_points.nil?}.empty?
   end
   
-end
+  end
