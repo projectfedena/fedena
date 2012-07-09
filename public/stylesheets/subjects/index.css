@@ -98,12 +98,12 @@
 #category-list li div.category-edit,
 #category-list li div.category-delete {
     font-size : 0.9em;
-    width : 75px;
+    width : 65px;
 
 }
 #category-list li div.category-assign{
     font-size : 0.9em;
-    width : 189px;
+    width : 120px;
 }
 #category-list li div a {
     color : #000;

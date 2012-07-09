@@ -51,7 +51,7 @@
 #category-list {
     clear : both;
     padding : 10px 0 40px 0px;
-    width:700px;
+    width:750px;
     margin:0px auto;
 }
 
@@ -59,7 +59,7 @@
     background : #EEF2FD;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 600px;
+    height : 1.5em; width : 670px;
     list-style-type : none;
     padding : 0.5em 0 0 5em;
 }
@@ -68,7 +68,7 @@
     background : #DFEAFF;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 600px;
+    height : 1.5em; width : 670px;
     list-style-type : none;
     padding : 0.5em 0 0 5em;
 }
@@ -85,7 +85,7 @@
     float : left;
 }
 #category-list li div.category-name {
-    width:191px;
+    width:335px;
     font-weight: bold;
     font-size:13px;
 }
@@ -104,7 +104,7 @@
 }
 #category-list li div.category-assign{
     font-size : 0.9em;
-    width : 183px;
+    width : 103px;
 }
 #category-list li div a {
     color : #000;
