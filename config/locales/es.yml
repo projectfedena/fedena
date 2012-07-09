@@ -1787,6 +1787,7 @@ es: # locale
   student_admission_no_cant_be_blank: "El número de admisión del estudiante no puede estar en blanco"
   must_be_a_valid_email_address: "Debe ser una dirección email válida"
   must_contain_only_letters: "debe contener sólo letras, números, guiones y guiones bajos"
+  must_contain_only_letters_numbers_space: "debe contener sólo letras, números y el espacio"
   partial: "parcial"
   student_category_updated_succesfully: "categoría de estudiante actualizado correctamente"
   student_category_deleted_succesfully: "categoría de estudiantes ha eliminado correctamente"

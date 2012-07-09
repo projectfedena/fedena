@@ -1790,6 +1790,7 @@ ar:
   student_category_cant_be_blank: "الفئة يكون الطالب غير قادر على فارغة"
   student_admission_no_cant_be_blank: "طالب عدد غير قادر على القبول يكون فارغا"
   must_be_a_valid_email_address: "يجب أن يكون عنوان بريد إلكتروني صالح"
+  must_contain_only_letters_numbers_space: "يجب أن تحتوي فقط على الأحرف والأرقام والفضاء"
   must_contain_only_letters: "يجب أن يحتوي فقط الأحرف والأرقام واصلة ، ويؤكد"
   partial: "جزئي"
   student_category_updated_succesfully: "فئة الطالب تحديثها بنجاح"

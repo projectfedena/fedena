@@ -1763,6 +1763,7 @@ hi:
   student_category_cant_be_blank: "Categoría Estudiantes no pueden ser en blanco"
   student_admission_no_cant_be_blank: "número de admisión de estudiantes no puede ser en blanco"
   must_be_a_valid_email_address: "एक मान्य ईमेल पता होना चाहिए."
+  must_contain_only_letters_numbers_space: "केवल वर्णों, संख्याओं, और अंतरिक्ष शामिल होना चाहिए"
   must_contain_only_letters: "केवल अक्षर, संख्या, हाइफ़न, और अंडरस्कोर शामिल होना चाहिए."
   partial: "आंशिक"
   years: "वर्षों"

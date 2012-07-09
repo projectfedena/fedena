@@ -1790,6 +1790,7 @@ de: # locale
   student_admission_no_cant_be_blank: "Schüleraufnahmenummer darf nicht leer sein"
   must_be_a_valid_email_address: "muß eine gültige E-Mailadresse sein"
   must_contain_only_letters: "darf nur Buchstaben, Zahlen, Bindestriche und Unterstriche enthalten"
+  must_contain_only_letters_numbers_space: "darf nur Buchstaben, Zahlen und Leerzeichen enthalten"
   partial: "teilweise"
   student_category_updated_succesfully: "Schülerkategorie erfolgreich aktualisiert"
   student_category_deleted_succesfully: "Schülerkategorie erfolgreich gelöscht"

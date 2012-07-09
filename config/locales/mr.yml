@@ -1779,6 +1779,7 @@ mr: # locale
   student_category_cant_be_blank: "विद्यार्थी प्रकार कोरा असू शकत नाही"
   student_admission_no_cant_be_blank: "विद्यार्थी प्रवेश संख्या कोरी असू शकत नाही "
   must_be_a_valid_email_address: "वैध ई मेल पत्ता असला पाहिजे"
+  must_contain_only_letters_numbers_space: "फक्त अक्षरे ,आकडे, असले पाहिजे"
   must_contain_only_letters: "फक्त अक्षरे ,आकडे हायफन न अंडरस्कोर असले पाहिजे "
   partial: "अंशतः"
   student_category_updated_succesfully: "विद्यार्थी प्रकार बनविण्यात यशस्वी"

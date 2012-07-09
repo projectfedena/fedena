@@ -1791,6 +1791,7 @@ ja: # locale
   student_category_cant_be_blank: "生徒カテゴリは空欄不可"
   student_admission_no_cant_be_blank: "生徒アドミッション番号は空欄不可"
   must_be_a_valid_email_address: "有効なメールアドレスでなくてはいけません。"
+  must_contain_only_letters_numbers_space: "唯一の文字、数字、およびスペースを含める必要があります"
   must_contain_only_letters: "文字、数字、ハイフン、アンダーバーのみ"
   partial: "部分的"
   student_category_updated_succesfully: "生徒カテゴリのアップデートは成功しました。"

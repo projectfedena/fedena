@@ -1798,6 +1798,7 @@ en: # locale
   student_admission_no_cant_be_blank: "Student Admission number cant be blank"
   must_be_a_valid_email_address: "must be a valid email address"
   must_contain_only_letters: "must contain only letters, numbers, hyphen, and  underscores"
+  must_contain_only_letters_numbers_space: "must contain only letters, numbers, and space"
   partial: "partial"
   student_category_updated_succesfully: "Student category updated successfully"
   student_category_deleted_succesfully: "Student category deleted successfully"
