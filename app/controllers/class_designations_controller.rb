@@ -33,7 +33,7 @@ class ClassDesignationsController < ApplicationController
       @class_designations = @course.class_designations.all
       render(:update) do|page|
         page.replace_html "category-list", :partial=>"class_designations"
-        page.replace_html 'flash', :text=>"<p class='flash-msg'>#{t('flash1')}</p>"
+        page.replace_html 'flash', :text=>"<p class='flash-msg'>#{t('class_designations.flash1')}</p>"
         page.replace_html 'errors', :partial=>"form_errors"
         page.replace_html 'class_form', :partial=>"class_form"
       end
@@ -63,7 +63,7 @@ class ClassDesignationsController < ApplicationController
       @class_designations = @course.class_designations.all
       render(:update) do|page|
         page.replace_html "category-list", :partial=>"class_designations"
-        page.replace_html 'flash', :text=>"<p class='flash-msg'> #{t('flash2')}</p>"
+        page.replace_html 'flash', :text=>"<p class='flash-msg'> #{t('class_designations.flash2')}</p>"
         page.replace_html 'errors', :partial=>"form_errors"
         page.replace_html 'class_form', :partial=>"class_form"
       end
@@ -83,7 +83,7 @@ class ClassDesignationsController < ApplicationController
     @class_designations = @course.class_designations.all
     render(:update) do|page|
       page.replace_html "category-list", :partial=>"class_designations"
-      page.replace_html 'flash', :text=>"<p class='flash-msg'>#{t('flash3')}</p>"
+      page.replace_html 'flash', :text=>"<p class='flash-msg'>#{t('class_designations.flash3')}</p>"
       page.replace_html 'errors', :partial=>"form_errors"
       page.replace_html 'class_form', :partial=>"class_form"
     end
