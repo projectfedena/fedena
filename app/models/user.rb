@@ -118,4 +118,7 @@ class User < ActiveRecord::Base
     Student.find_by_admission_no(self.username[1..self.username.length])
   end
   
+  def has_subject_in_batch(b)
+    employee_record.subjects.collect(&:batch_id).include? b.id
+  end
 end

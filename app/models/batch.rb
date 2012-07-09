@@ -300,5 +300,10 @@ class Batch < ActiveRecord::Base
   def check_credit_points
     grading_level_list.select{|g| g.credit_points.nil?}.empty?
   end
+
+  def user_is_authorized?(u)
+    employees.collect(&:user_id).include? u.id
+  end
+  
   
   end

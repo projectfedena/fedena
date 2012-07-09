@@ -34,9 +34,16 @@ class CceReportsController < ApplicationController
     if request.post?      
       @batch=Batch.find(params[:batch_id])
       @students=@batch.students
-      render(:update) do |page|
-        page.replace_html   'student_list', :partial=>"student_list",   :object=>@students
-        page.replace_html   'report', :text=>""
+      if @batch.user_is_authorized?(@current_user) or @current_user.has_subject_in_batch(@batch)
+        render(:update) do |page|
+          page.replace_html   'student_list', :partial=>"student_list",   :object=>@students          
+          page.replace_html   'report', :text=>""
+          page.replace_html   'hider', :text=>""
+        end
+      else
+        flash[:notice]="You are not authorized to that batch"
+        render :js=>"window.location='student_wise_report'"
+        
       end
     end
   end

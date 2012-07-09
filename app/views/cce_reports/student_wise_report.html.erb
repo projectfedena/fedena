@@ -30,10 +30,11 @@
   </ul>
 </div>
 <div id="page-yield">
-
-  <% unless flash[:notice].nil? %>
-    <p class="flash-msg"> <%= flash[:notice] %> </p>
-  <% end %>
+  <div id="hider">
+    <% unless flash[:notice].nil? %>
+      <p id="flash-msg"class="flash-msg"> <%= flash[:notice] %> </p>
+    <% end %>
+  </div>
   <div class="label-field-pair">
     <label for="batch_id"><%= t('select_a_batch') %></label>
     <%= image_tag("loader.gif",
