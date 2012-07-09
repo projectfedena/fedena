@@ -17,7 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 <% content_for :head do  %>
-    <%= stylesheet_link_tag "exam/report_center"  %>
+  <%= stylesheet_link_tag "exam/report_center"  %>
 <% end %>
 <div id="content-header">
   <%= image_tag("/images/attendence/attendence.png") %>
@@ -35,14 +35,18 @@
   <% end %>
 
   <div class="box">
-    <div class="link-box">
-      <div class="link-heading"><%= link_to "Generate Reports" ,:action=>'create_reports' %></div>
-      <div class="link-descr">Generate CCE Report from entered scores.</div>
-    </div>
-    <div class="link-box">
-      <div class="link-heading"><%= link_to "View Student Report" ,:action=>'student_wise_report' %></div>
-      <div class="link-descr">Student-wise CCE Report</div>
-    </div>
+    <% if permitted_to? :create_reports, :cce_reports %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "Generate Reports" ,:action=>'create_reports' %></div>
+        <div class="link-descr">Generate CCE Report from entered scores.</div>
+      </div>
+    <% end %>
+    <% if permitted_to? :student_wise_report, :cce_reports %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "View Student Report" ,:action=>'student_wise_report' %></div>
+        <div class="link-descr">Student-wise CCE Report</div>
+      </div>
+    <% end %>
   </div>
 
 </div>
