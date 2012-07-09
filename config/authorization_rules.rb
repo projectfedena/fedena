@@ -410,7 +410,6 @@ authorization do
     has_permission_on [:cce_reports],
       :to=>[
       :index,
-      :create_reports,
       :student_wise_report,
       :student_report_pdf,
       :student_transcript,
@@ -476,7 +475,6 @@ authorization do
     has_permission_on [:cce_reports],
       :to=>[
       :index,
-      :create_reports,
       :student_wise_report,
       :student_report_pdf,
       :student_transcript,
