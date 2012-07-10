@@ -20,7 +20,7 @@
         </td>
         <td class="col-3">
           <div class="category-edit">
-            <%= link_to_remote "#{t("edit_text")}", :url => { :controller=>:descriptive_indicators,:action => 'edit', :id => g.id },:method=>:get %>  |  
+            <%= link_to_remote "#{t("edit_text")}", :url => { :controller=>:descriptive_indicators,:action => 'edit', :id => g.id },:method=>:get %>  |
             <%= link_to_remote "#{t("delete_text")}", :url => { :action => 'destroy_indicator', :id => g.id},:confirm=>"Delete descriptive indicator #{g.name}?"  %>
             <% unless i==0 %>
               <%= link_to_remote "&#x25B2;", :url=>{:action=>'reorder',:direction=>'up',:id=>g.id,:count=>i},:method=>"post" %>
@@ -40,5 +40,7 @@
     <% end %>
   </table>
 <% else %>
-  No Descriptive indicators present.
+  <div id="flash-box">
+    <p class="flash-msg">No Descriptive indicators present</p>
+  </div>
 <% end %>
