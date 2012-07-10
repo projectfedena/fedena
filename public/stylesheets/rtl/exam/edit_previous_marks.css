@@ -1,0 +1,96 @@
+.link-box {
+    margin:10px 40px;
+    width:270px;
+    float:right;
+    height:80px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+.link-descr {
+    margin-top:5px;
+    color:#666;
+    text-align:justify;
+    font-size:14px;
+}
+#box{
+    width:700px;
+    margin:0px auto;
+}
+
+#inner-tab-menu ul li {
+    padding: 0 6px;
+
+}
+
+.label-field-pair {
+    height:30px;
+    padding-top:3px;
+    width:60px;
+}
+.label-field-pair input {
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px 10px 10px 10px;
+    background:none repeat scroll 0 0 #EEEEEE;
+    border:1px solid #C6C6C6;
+    height:17px;
+    margin:0 10px 0 0;
+    padding:5px;
+    width:50px;
+}
+.label-field-pair input:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+
+.label-field-pair2 {
+    height:30px;
+    padding-top:3px;
+    width:400px;
+}
+.label-field-pair2 input {
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px 10px 10px 10px;
+    background:none repeat scroll 0 0 #EEEEEE;
+    border:1px solid #C6C6C6;
+    height:17px;
+    margin:0 10px 0 0;
+    padding:5px;
+    width:350px;
+}
+.label-field-pair2 input:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+.submit_button {
+
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+
+#sub-button{
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 80px;
+}
+
+.text-input-bg select {
+    -moz-border-radius:10px 10px 10px 10px;
+    background-color:#EEEEEE;
+    border:1px solid #C6C6C6;
+    height:27px;
+    padding:3px 6px;
+    width:130px;
+}

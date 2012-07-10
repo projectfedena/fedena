@@ -104,3 +104,8 @@ td.col-4{
     overflow: auto;
     width: 100%;
 }
+table#listing td.col-2 {
+padding:5px 10px 5px 5px;
+text-align:right;
+width:30%;
+}

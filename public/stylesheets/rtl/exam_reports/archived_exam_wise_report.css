@@ -1,14 +1,6 @@
-.link-box {
-    margin:10px 40px;
-    height:15px;
-}
-.link-heading a {
-    font-weight:bold;
-    color:#900;
-}
 .submit_button {
-    margin-top:18px;
-    margin-right:279px;
+    margin-top:10px;
+    margin-right:210px;
     padding: 7px 10px;
     color: #fff;
     background: #27292B;
@@ -25,6 +17,6 @@
 }
 
 .box{
-    width:500px;
+    width:520px;
     margin:0px auto;
 }

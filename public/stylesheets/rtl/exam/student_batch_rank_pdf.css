@@ -1,0 +1,148 @@
+#page-yield {
+    width:800px;
+    margin: 0 auto;
+
+    overflow: hidden;
+}
+.info1{
+    margin-top:-10px;
+    width:800px;
+    float:right;
+}
+.info-left{
+    float:right;
+}
+.info-right{
+    float:left;
+}
+.tr-blank{
+    height:  27px;
+}
+.hor_line{
+    width:800px;
+    background: #333333;
+    height: 1px;
+    margin-top:-10px;
+    float:right;
+}
+
+h2.heading{
+    text-align: center;
+    margin:5px;
+}
+
+
+#main_info h2{
+    margin-bottom: 2px;
+    font-weight: normal;
+
+}
+
+#main_info h4{
+    color: #555555;
+    margin-top: 18px;
+    font-weight: bold;
+}
+
+
+
+
+.odd{
+    height:auto;
+    background: #EEEEEE;
+
+}
+
+.even{
+
+    height:auto;
+    background: #fff;
+
+
+}
+tr.even{
+    border: 1px solid #ADACAB;
+}
+
+tr.odd{
+    border: 1px solid #ADACAB;
+}
+
+.even td{
+
+    padding: 12px 12px 12px 15px;
+    border: 1px solid #ADACAB;
+    border-right: 0px solid #fff;
+    border-top: 0px solid #fff;
+
+}
+
+.odd td{
+    padding: 12px 12px 12px 15px;
+    border: 1px solid #ADACAB;
+    border-right: 0px solid #fff;
+    border-top: 0px solid #fff;
+
+}
+
+.table-header td{
+    padding: 12px 12px 12px 15px;
+    border-top: 1px solid #ADACAB;
+    border-left: 1px solid #ADACAB;
+    border-right: 1px solid #ADACAB;
+    color: #97080e;
+    background: #EEEEEE;
+}
+#pdf-info{
+    float:right;
+    width:800px;
+}
+table#pdf-table{
+    border: 1px solid #ADACAB;
+    border-collapse:collapse
+}
+/*.header-content{
+    color: #97080e;
+    font-weight: bold;
+    font-size: 25px;
+    float: left;
+    width: 800px;
+    height: 110px;
+    text-align: center;
+}*/
+
+.header-content p{
+    margin-top: 3px;
+    margin-bottom: 2px;
+}
+
+.notes{
+    float:left;
+    width:750px;
+    font-size:15px;
+}
+.note{
+    float:right;
+    width:40px;
+    font-size:15px;
+    height:60px;
+}
+.note_text{
+    float:right;
+    margin-bottom:7px;
+}
+#pdf-footer{
+    text-align: left;
+    width: 1400px;
+    padding-left: 100px;
+    padding: 50px;
+    margin: 0 auto;
+    color: #999999;
+    font-size: 18px;
+
+}
+.page-break td{
+    height: 240px;
+    border: 1px solid #fff;
+    border-bottom: 1px solid #ADACAB;
+}

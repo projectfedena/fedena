@@ -22,21 +22,9 @@
     font-weight:600;
     margin:0 0 10px;
     padding-top:10px;
-    width:150px;
+    width:170px;
 }
 #update_batch{
     float:right;
     width:800px;
-}
-#inner-tab-menu ul li {
-    background-color:#9D0E00;
-    color:#FFFFFF;
-    float:right;
-    font-size:0.9em;
-    height:1.5em;
-    list-style-type:none;
-    margin:0 10px 0 0;
-    padding:0;
-    text-align:center;
-    width:161px;
 }

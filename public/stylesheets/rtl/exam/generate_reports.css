@@ -8,7 +8,7 @@
 }
 .submit_button {
     margin-top:18px;
-    margin-right:279px;
+    margin-right:212px;
     padding: 7px 10px;
     color: #fff;
     background: #27292B;
@@ -27,4 +27,16 @@
 .box{
     width:500px;
     margin:0px auto;
+}
+#inner-tab-menu ul li {
+    background-color:#9D0E00;
+    color:#FFFFFF;
+    float:right;
+    font-size:0.9em;
+    height:1.5em;
+    list-style-type:none;
+    margin:0 10px 0 0;
+    padding:0;
+    text-align:center;
+    width:190px;
 }

@@ -1,7 +1,6 @@
 
-
 #page-yield {
-    width:800px;
+    width:-moz-max-content;
     margin: 0 auto;
     float: right;
     overflow: hidden;
@@ -13,7 +12,7 @@
 
 
 .hor_line{
-    width:800px;
+    width:-moz-max-content;
     background: #333333;
     height: 1px;
 }
@@ -128,7 +127,6 @@ table#pdf-table{
     border: 1px solid #fff;
     border-bottom: 1px solid #ADACAB;
 }
-
 
 
 

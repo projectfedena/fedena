@@ -1,4 +1,3 @@
-
 #form_content {
     margin : 0 50px 0 0;
 }
@@ -17,7 +16,7 @@
     width : 550px;
 }
 #exams-list ul li {
-    background : #fff url(../../../images/_global/list-bg-repeat.jpg) repeat;
+    background : #fff url(../../images/_global/list-bg-repeat.jpg) repeat;
     font-size : 0.9em;
     height : 1.5em;
     list-style-type : none;

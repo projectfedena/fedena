@@ -1,4 +1,3 @@
-
 .link-box {
     margin:10px 40px;
     width:270px;
@@ -58,7 +57,7 @@ label {
 }
 .submit_button {
     margin-top:10px;
-    margin-right:160px;
+    margin-right:316px;
     padding: 7px 10px;
     color: #fff;
     background: #27292B;
@@ -88,6 +87,37 @@ label {
 }
 
 h4{
-    margin-right: 400px;
+    text-align:center;
 
+}
+#application-list{
+    width:700px;
+    margin:10px auto;
+}
+table#listing td.col-1 {
+    text-align:center;
+    width:1%;
+}
+
+.total-box {
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px 10px 10px 10px;
+    background:none repeat scroll 0 0 #EEEEEE;
+    border:1px solid #C6C6C6;
+    height:17px;
+    padding:5px;
+    width:80px;
+}
+table#listing td.col-4 {
+    padding:5px 10px 5px 5px;
+    text-align:left;
+    width:40%;
+}
+table#listing td.col-2 {
+    padding:5px 10px 5px 5px;
+    text-align:right;
+    width:70%;
+}
+table#listing td.col-3 {
+    width:1%;
 }

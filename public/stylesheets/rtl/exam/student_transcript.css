@@ -1,3 +1,27 @@
+.link-box {
+    margin:10px 40px;
+    width:270px;
+    float:right;
+    height:80px;
+}
+.link-heading a {
+    font-weight:bold;
+    color:#900;
+}
+.link-descr {
+    margin-top:5px;
+    color:#666;
+    text-align:justify;
+    font-size:14px;
+}
+#box{
+    width:700px;
+    margin:0px auto;
+}
+.box{
+    width:770px;
+    margin:0px auto;
+}
 .next a{
     float:right;
     -moz-border-radius:40px;
@@ -42,7 +66,7 @@
     font-size:16px;
     color:#121212;
     font-weight:bold;
-    margin:0px 6px;
+   margin:0px 6px;
 }
 #register{
     background: #C3D9FF;
@@ -58,11 +82,41 @@
 }
 
 #inner-tab-menu ul li{
-    width: 150px;
+ width: 150px;
 }
-
-#score-table{
-    overflow:auto;
+table#listing td.col-1 {
+padding:5px 10px 5px 5px;
+width:5%;
+}
+table#listing td.col-2 {
+padding:5px 10px 5px 5px;
+width:1%;
+}
+.info1{
+    font-size:14px;
+    font-weight:600;
+    color:#444444;
+    margin-bottom:5px;
+}
+.infolbl{
+    color:#b00;
+}
+.field-label{
+    width:80px;
+    float:right;
+}
+.info-left{
+    float:right;
+}
+.info-right{
+    float:left;
+}
+.info{
+    width:100%;
+    float:right;
+}
+.high{
+    color:#b00;
 }
 .student_list{
 }
@@ -111,9 +165,6 @@ li.student_names, li.student_names a{
     /*    float: left;*/
     margin-right:  230px;
 }
-.list_name{
-    font-weight: bold;
-}
 table#listing td{
     font-size: 13px;
     font-weight: bold;
@@ -122,29 +173,15 @@ table#listing tr.tr-head {
     color: #C00;
     font-size: 13px;
 }
-.student{
-    font-weight: bold;
-    text-align: right !important;
-    margin-right: 10px;
+.list_name {
+font-weight:bold;
 }
-/************giving border and padding to outer div instead of table***************/
-#score-table{
-    background: #C3D9FF;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    padding: 20px 20px;
+.batch-name {
+    font-size:14px;
+    font-weight:bold;
+    margin-top:10px;
+    margin-bottom:15px;
 }
-table#listing{
-    -moz-border-radius: 0px;
-    -webkit-border-radius: 0px;
-    padding: 0;
-    margin-top: 10px;
-    margin-bottom: 10px;
+.class-designations {
+    margin-top:-38px;
 }
-.custom_header{
-    margin: 0 auto;
-    padding: 5px;
-    /*    text-align: center;*/
-    background: #fff;
-}
-/*************************************************************************************/
