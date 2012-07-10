@@ -43,8 +43,6 @@
     <td><%= t('particulars') %></td>
     <td><%= t('expenses') %>(<%= currency %>)</td>
     <td><%= t('income') %>(<%= currency %>)</td>
-
-    <td><%= t('date_text') %></td>
   </tr>
   <tr class="tr-blank"></tr>
   <% index = 0  %>
@@ -62,7 +60,7 @@
       <% end %>
       <td class="col-3" align="right"><%= @salary%></td>
       <td> </td>
-      <td class="col-3"> - </td>
+      
     </tr>
 
   <% end %>
@@ -76,7 +74,7 @@
     <% end %>
     <td></td>
     <td class="col-3" align="right"><%=@donations_total%></td>
-    <td class="col-3"> - </td>
+    
   </tr>
 
 
@@ -89,7 +87,7 @@
     <% end %>
     <td></td>
     <td class="col-3" align="right"><%=@transactions_fees%></td>
-    <td class="col-3"> - </td>
+    
   </tr>
 
   <% FedenaPlugin::FINANCE_CATEGORY.each do |category| %>
@@ -103,7 +101,7 @@
         <td class="col-3" align="right"><%=@category_transaction_totals["#{category[:category_name]}"][:amount]%></td>
         <td></td>
       <% end %>
-      <td class="col-3"> - </td>
+     
     </tr>
   <% end %>
 
@@ -131,7 +129,7 @@
       <td class="col-3" align="right"><%= sprintf("%.2f",@grand_total * -1)%></td>
       <td></td>
     <% end %>
-    <td class="col-3">  </td>
+    
   </tr>
 
 </table>
@@ -146,7 +144,7 @@
     <td><%= t('expenses') %>(<%= currency %>)</td>
     <td><%= t('income') %>(<%= currency %>)</td>
 
-    <td><%= t('date_text') %></td>
+   
   </tr>
   <tr class="tr-blank"></tr>
   <% index = 0  %>
@@ -164,7 +162,7 @@
       <% end %>
       <td class="col-3" align="right"><%= @salary2%></td>
       <td> </td>
-      <td class="col-3"> - </td>
+      
     </tr>
 
   <% end %>
@@ -178,7 +176,7 @@
     <% end %>
     <td></td>
     <td class="col-3" align="right"><%=@donations_total2%></td>
-    <td class="col-3"> - </td>
+    
   </tr>
 
 
@@ -191,7 +189,7 @@
     <% end %>
     <td></td>
     <td class="col-3" align="right"><%=@transactions_fees2%></td>
-    <td class="col-3"> - </td>
+    
   </tr>
 
   <% FedenaPlugin::FINANCE_CATEGORY.each do |category| %>
@@ -205,7 +203,7 @@
         <td class="col-3" align="right"><%=@category_transaction_totals["#{category[:category_name]}"][:amount]%></td>
         <td></td>
       <% end %>
-      <td class="col-3"> - </td>
+      
     </tr>
   <% end %>
 
@@ -233,7 +231,7 @@
       <td class="col-3" align="right"><%= sprintf("%.2f",@grand_total2 * -1)%></td>
       <td></td>
     <% end %>
-    <td class="col-3">  </td>
+    
   </tr>
 
 </table>
