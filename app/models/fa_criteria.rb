@@ -4,5 +4,9 @@ class FaCriteria < ActiveRecord::Base
   accepts_nested_attributes_for :descriptive_indicators
   has_many :cce_reports , :as=>:observable
   belongs_to :fa_group
-  validates_presence_of :fa_name,:desc,:fa_group_id
+  validates_presence_of :fa_group_id
+  def validate
+    errors.add_to_base("Name can't be blank") if self.fa_name.blank?
+    errors.add_to_base("Description can't be blank") if self.desc.blank?
+  end
 end

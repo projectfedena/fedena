@@ -4,6 +4,10 @@ class FaGroup < ActiveRecord::Base
   belongs_to :cce_exam_category
   has_many :cce_reports, :through=>:fa_criterias 
   
-  validates_presence_of :name,  :desc,  :cce_exam_category_id,  :max_marks
+  validates_presence_of :name, :max_marks
+  def validate
+    errors.add_to_base("CCE exam category can't be blank") if self.cce_exam_category_id.blank?
+    errors.add_to_base("Description can't be blank") if self.desc.blank?
+  end
   
 end
