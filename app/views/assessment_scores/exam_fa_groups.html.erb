@@ -30,8 +30,6 @@
 </div>
 <div id="page-yield">
   <% unless @fa_groups.empty?  %>
-
-
     <ul id="category-list">
       <li class="listheading">
         <div class="heading-name">Select an FA</div>
@@ -49,5 +47,10 @@
       <% end %>
     </ul>
   <% else %>
+    <ul id="category-list">
+      <li class="listheading">
+        <div class="heading-name">No Scholastic items assigned to the batch.</div>
+      </li>
+    </ul>
   <% end %>
 </div>
