@@ -41,11 +41,11 @@ class CceGradeSetsController < ApplicationController
 
   def destroy
     @grade_set=CceGradeSet.find(params[:id])
-    if @grade_set.cce_grades.empty?
+    if @grade_set.observation_groups.empty?
       @grade_set.destroy
       flash[:notice]="Grade set deleted."
     else
-      flash[:notice]="Unable to delete the grade set. The grade set contains associated grades."
+      flash[:warn_notice]="Grade set #{@grade_set.name} is associated to some Co-Scholastic groups. Clear them before deleting."
     end
     redirect_to :action => "index"
   end

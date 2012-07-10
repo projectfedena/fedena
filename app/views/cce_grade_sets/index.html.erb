@@ -33,6 +33,9 @@
   </ul>
 </div>
 <div id="page-yield">
+  <% unless flash[:warn_notice].nil? %>
+    <div id="errorExplanation" class="errorExplanation"><ul><li><%= flash[:warn_notice] %></li></ul> </div>
+  <% end %>
   <div id="flash-box">
     <% unless flash[:notice].nil? %>
       <p class="flash-msg"> <%= flash[:notice] %> </p>

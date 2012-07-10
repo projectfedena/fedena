@@ -45,10 +45,15 @@ class CceWeightagesController < ApplicationController
 
   def destroy
     @weightage=CceWeightage.find(params[:id])
-    if @weightage.destroy
-      flash[:notice]="Weightage deleted."
+
+    if @weightage.courses.empty?
+      if @weightage.destroy
+        flash[:notice]="Weightage deleted."
+      else
+        flash[:warn_notice]="Weightage could be deleted."
+      end
     else
-      flash[:notice]="Weightage could be deleted."
+      flash[:warn_notice]="CCE weightage #{@weightage.weightage}(#{@weightage.criteria_type}) has been assigned to courses. Remove the associations before deleting."
     end
     redirect_to :action => "index"
   end
