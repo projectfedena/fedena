@@ -122,9 +122,9 @@ class ObservationGroupsController < ApplicationController
     @observation=Observation.find(params[:id])
     @obs_group=@observation.observation_group
     if @observation.update_attribute(:is_active,false)
-      flash[:notice]=t("obervation_deleted")
+      flash[:notice]="Co-scholastic criteria deleted."
     else
-      flash[:notice]=t("cannot_delete_observation")
+      flash[:notice]="Co-Scholastic criteria could not be deleted"
     end
     @observations=@obs_group.observations.find(:all,:conditions=>{:is_active=>true},:order=>"sort_order ASC")
     render(:update) do |page|
