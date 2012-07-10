@@ -10,7 +10,7 @@ class CceExamCategoriesController < ApplicationController
   def create
     @category=CceExamCategory.new(params[:cce_exam_category])
     if @category.save
-      flash[:notice]="Exam Xategory created successfully."
+      flash[:notice]="Exam Category created successfully."
       @categories=CceExamCategory.all
     else
       @error=true
