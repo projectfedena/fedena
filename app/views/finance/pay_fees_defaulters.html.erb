@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-<%= image_tag("/images/show_finance.png") %>
+  <%= image_tag("/images/show_finance.png") %>
   <h1><%= t('fees_submission') %></h1>
   <h3><%= @student.full_name %></h3>
   <div id="app-back-button">
@@ -38,11 +38,11 @@
   <% else %>
     <div class="name"><%= t('student_category') %></div><div class="val"><span>:</span>N.A</div>
   <% end %>
-    <br /><br />
+  <br /><br />
 
   <% total_fees =0 %>
-  <%if @financefee.transaction_id.blank? and @fine.nil?%>
-    <%= render :partial=> 'defaulters_fine_submission' %>
+  <% unless @financefee.is_paid %>
+    <%= render :partial=> 'defaulters_fine_submission' if @fine.nil? %>
   <% end %>
   <% form_for :fees, :url => {:action => 'pay_fees_defaulters', :student => @student.id,:date => @date.id, :fine => @fine} do |form| %>
     <% unless @fee_particulars.nil? %>
@@ -120,7 +120,7 @@
         <% unless @fine.nil? %>
           <tr class="tr-<%= cycle("odd","even") %>">
             <td class="col-1"><%= i+=1 %></td>
-            <td class="col-2"><span><%= t('fine') %></span></td>
+            <td class="col-2"><span><%= t('fine_on') %> <%= Date.today %></span></td>
             <td class="col-6"><%= @fine %></td>
           </tr>
           <% total_fees += @fine.to_f %>
@@ -128,15 +128,18 @@
 
         <% unless @financefee.transaction_id.nil? %>
 
-          <% @trans = FinanceTransaction.find_by_id(@financefee.transaction_id) %>
-          <% unless @trans.nil? %>
-            <% if @trans.fine_included %>
-              <tr class="tr-<%= cycle("odd","even") %>">
-                <td class="col-1"><%= i+=1 %></td>
-                <td class="col-2"><span><%= t('fine') %></span></td>
-                <td class="col-6"><%= @trans.fine_amount %></td>
-              </tr>
-              <% total_fees += @trans.fine_amount.to_f %>
+          <% @transactions = FinanceTransaction.all(:conditions=>"id IN (#{@financefee.transaction_id})") %>
+
+          <% unless @transactions.blank? %>
+            <% @transactions.each do |trans| %>
+              <% if trans.fine_included %>
+                <tr class="tr-<%= cycle("odd","even") %>">
+                  <td class="col-1"><%= i+=1 %></td>
+                  <td class="col-2"><span><%= t('fine_on') %> <%= trans.transaction_date %></span></td>
+                  <td class="col-6"><%= trans.fine_amount %></td>
+                </tr>
+                <% total_fees += trans.fine_amount.to_f %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>

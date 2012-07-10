@@ -639,6 +639,7 @@ ar:
   total_discount: "إجمالي الخصم"
   total_fees: "مجموع الرسوم"
   fine: "غرامة"
+  fine_on: "Fine on"
   payment_done: "تم الدفع"
   partial_payment_on: "جزئية على الدفع"
   profile_text: "التعريف"
@@ -844,6 +845,7 @@ ar:
   no_employee_assigned: "تعيين أي موظف حتى الان."
   subject_transfer_message: "وقد تم استيراد المواد التالية"
   fee_import_message: "وقد تم استيراد فئات الرسوم التالية"
+  no_fee_import_message: "No Fee Categories found in previous batches."
   import_subject: "استيراد المواد الدفعة السابقة"
   import_fees: "رسوم الاستيراد السابقة دفعة ماجستير"
   new_batch: "دفعة جديدة"
@@ -2198,6 +2200,7 @@ ar:
     flash25: "التبرع حذف بنجاح"
     flash26: "رسوم إضافية لتحديث بنجاح"
     flash27: "رسوم إضافية حذف بنجاح"
+    flash28: "No batches found in selected category"
     
 ## traslation for xml controller
   xml:

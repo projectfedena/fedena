@@ -635,6 +635,7 @@ es: # locale
   total_discount: "Total Descuentos"
   total_fees: "Total Tarifas"
   fine: "Multa"
+  fine_on: "Fine on"
   payment_done: "Pago realizado"
   partial_payment_on: "Pago parcial"
   profile_text: "Perfil"
@@ -840,6 +841,7 @@ es: # locale
   no_employee_assigned: "Ningún empleado asignado todavía."
   subject_transfer_message: "Las siguientes asignaturas han sido importadas"
   fee_import_message: "Las siguientes categorías de tarifas han sido importadas"
+  no_fee_import_message: "No Fee Categories found in previous batches."
   import_subject: "Importar asignaturas de grupos previos"
   import_fees: "Importar tarifas de grupos previos"
   new_batch: "Nuevo grupo"
@@ -2196,6 +2198,7 @@ es: # locale
     flash25: "Donación eliminado con éxito"
     flash26: "Los honorarios adicionales actualizado correctamente"
     flash27: "Los honorarios adicionales eliminado con éxito"
+    flash28: "No batches found in selected category"
     
 
 ## traslation for xml controller

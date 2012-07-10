@@ -641,6 +641,7 @@ ja: # locale
   total_discount: "トータルディスカウント"
   total_fees: "トータルフィー"
   fine: "罰金"
+  fine_on: "Fine on"
   payment_done: "支払手続済"
   partial_payment_on: "一部支払い"
   profile_text: "プロフィール"
@@ -847,6 +848,7 @@ ja: # locale
   no_employee_assigned: "職員は誰もアサインしていません。"
   subject_transfer_message: "以下の教科はインポートされました。"
   fee_import_message: "以下のフィーカテゴリはインポートされました。"
+  no_fee_import_message: "No Fee Categories found in previous batches."
   import_subject: "以前のバッチをインポートする。"
   import_fees: "以前のマスターフィーバッチをインポートする。"
   new_batch: "新規バッチ"
@@ -2199,6 +2201,7 @@ ja: # locale
     flash25: "寄付の削除は成功しました。"
     flash26: "追加フィーのアップデートは成功しました。"
     flash27: "追加フィーの削除は成功しました。"
+    flash28: "No batches found in selected category"
     
 
 ## traslation for xml controller

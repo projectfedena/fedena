@@ -1,0 +1,109 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+
+<div id="content-header">
+  <%= image_tag("/images/show_finance.png") %>
+  <h1><%= t('fees_collection') %></h1>
+  <h3><%= t('create_particular_for_master_fee') %></h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "#{t('master_fees')}", :action=>'master_fees'%></li>
+  </ul>
+</div>
+
+<div id="page-yield">
+  <div id="flash_box">
+  </div>
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div id="grading-levels-form">
+
+    <% form_for  :finance_fee_particular,:url =>{:action => 'fees_particulars_create'}  do |f| %>
+
+      <div id="form-errors"><%= error_messages_for 'finance_fee_particular' %></div>
+      <div id="form-errors"></div>
+      <div id="right-side-inputs">
+        <div class="label-field-pair category_list">
+          <div class="label-container">
+            <label><%= t('select_a_category') %>:
+              <b class="sel-list">
+                <%= link_to_function t('all'), "$$('input.category_select').each(function(checkbox) { checkbox.checked = true; });" %>,
+                <%= link_to_function t('none'), "$$('input.category_select').each(function(checkbox) { checkbox.checked = false; });" %>
+              </b>
+            </label>
+          </div>
+          <div class="categories">
+
+            <% @fees_categories.each do |c| %>
+              <div class="each_category">
+                <%= check_box_tag "finance_fee_particular[finance_fee_category_ids][]", c.id, false, :class=>"category_select" %> <label><%= "#{c.name} - #{c.batch.full_name}" %></label>
+              </div>
+            <% end %></div>
+        </div>
+      </div>
+      <div id="left-side-inputs">
+
+        <div class="label-field-pair">
+          <div class="label-container"> <%= f.label "#{t('name')}"  %></div>
+          <div class="input-container"><%= f.text_field :name %></div>
+        </div>
+
+        <div class="label-field-pair">
+          <div class="label-container"><%= f.label "#{t('description')}" %></div>
+          <div class="input-container"><%= f.text_field :description %></div>
+        </div>
+        <div class="label-field-pair2">
+          <div class="label-container2"><label><%= t('create_using') %></label></div>
+          <div class="input-container2">
+            <div class="opt"><%= radio_button("particulars","select","all",
+                {:checked=>true,:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
+                  :with => "'select_value='+value")}"}) %><%= t('all') %></div>
+            <div class="opt"><%=  radio_button("particulars","select","student",
+                {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
+                  :with => "'select_value='+value")}"}) %><%= t('admission_no') %></div>
+            <div class="opt"> <%= radio_button("particulars","select","category",
+                {:onchange => "#{remote_function(:url => {:action => "student_or_student_category"},
+                  :with => "'select_value='+value")}"}) %><%= t('student_category') %> </div>
+          </div>
+        </div>
+
+        <div id="student"></div>
+
+        <div class="label-field-pair">
+          <div class="label-container"><%= f.label "#{t('amount')}" %></div>
+          <div class="input-container"> <%= f.text_field :amount %></div>
+        </div>
+      </div>
+
+
+
+
+      <%=  submit_tag "► #{t('create_text')}",:class=>'submit_button' %>
+
+    <% end %>
+  </div>
+</div>

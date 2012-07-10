@@ -629,6 +629,7 @@ mr: # locale
   total_discount: "एकूण सुट"
   total_fees: "एकूण फीस"
   fine: "दंड"
+  fine_on: "Fine on"
   payment_done: "भरणा केली"
   partial_payment_on: "अंशतः भरणा सुरु"
   profile_text: "प्रोफाइल"
@@ -835,6 +836,7 @@ mr: # locale
   no_employee_assigned: "कोणतेच कर्मचारी नेमले नाही."
   subject_transfer_message: "खालील विषय आयात केले आहे "
   fee_import_message: "खालील फी प्रकार आयात केले आहे"
+  no_fee_import_message: "No Fee Categories found in previous batches."
   import_subject: "पूर्वीच्या तुकड्यांचे विषय आयात करा"
   import_fees: "पूर्वीच्या तुकडीची मुख्य फी आयात करा"
   new_batch: "नवीन तुकडी"
@@ -2188,6 +2190,7 @@ mr: # locale
     flash25: "देणगी यशस्वीपणे काढले."
     flash26: "अधीक फी यशस्वीपणे अद्यावत."
     flash27: "अधीक फी यशस्वीपणे काढले"
+    flash28: "No batches found in selected category"
 
 
 ## traslation for xml controller

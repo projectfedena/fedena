@@ -642,6 +642,7 @@ en: # locale
   total_discount: "Total Discount"
   total_fees: "Total Fees"
   fine: "Fine"
+  fine_on: "Fine on"
   payment_done: "Payment Done"
   partial_payment_on: "Partial Payment on"
   profile_text: "Profile"
@@ -848,6 +849,7 @@ en: # locale
   no_employee_assigned: "No employee assigned yet."
   subject_transfer_message: "Following Subjects have been imported"
   fee_import_message: "Following Fee Categories have been imported"
+  no_fee_import_message: "No Fee Categories found in previous batches."
   import_subject: "Import previous batch Subjects"
   import_fees: "Import previous batch Master fees"
   new_batch: "New batch"
@@ -2208,6 +2210,7 @@ en: # locale
     flash25: "Donation deleted successfully"
     flash26: "Additional fees updated successfully"
     flash27: "Additional fees deleted successfully"
+    flash28: "No batches found in selected category"
     
 
 ## traslation for xml controller

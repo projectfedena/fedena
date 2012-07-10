@@ -638,6 +638,7 @@ de: # locale
   total_discount: "Gesamter Rabatt"
   total_fees: "Gesamte Gebühren"
   fine: "Bußgeld"
+  fine_on: "Fine on"
   payment_done: "Bezahlt"
   partial_payment_on: "Teilbetrag gezahlt am"
   profile_text: "Profil"
@@ -843,6 +844,7 @@ de: # locale
   no_employee_assigned: "Noch kein Angestellter zugewiesen."
   subject_transfer_message: "Folgende Fächer wurden importiert"
   fee_import_message: "Folgende Gebührenkategorien wurden importiert"
+  no_fee_import_message: "No Fee Categories found in previous batches."
   import_subject: "Vorherige Partiefächer importieren"
   import_fees: "Vorherige Partie-Hauptgebühren importieren"
   new_batch: "Neue Partie"
@@ -2199,6 +2201,7 @@ de: # locale
     flash25: "Spende erfolgreich gelöscht"
     flash26: "Zusätzliche Gebühren erfolgreich aktualisiert"
     flash27: "Zusätzliche Gebühren erfolgreich gelöscht"
+    flash28: "No batches found in selected category"
     
 ## traslation for xml controller
   xml:

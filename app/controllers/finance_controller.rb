@@ -274,7 +274,7 @@ class FinanceController < ApplicationController
       @cat_names << "'#{category[:category_name]}'"
     end
     @transaction_trigger = FinanceTransactionTrigger.find(params[:id])
-    @categories = FinanceTransactionCategory.find(:all ,:conditions => "name NOT IN (#{@cat_names.join(',')})")
+    @categories = FinanceTransactionCategory.find(:all ,:conditions => ["name NOT IN (#{@cat_names.join(',')}) and is_income=1 and deleted=0 "])
   end
 
   def transaction_trigger_update
@@ -726,9 +726,6 @@ class FinanceController < ApplicationController
   def master_category_particulars
     @finance_fee_category = FinanceFeeCategory.find(params[:id])
     @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
-    #    respond_to do |format|
-    #      format.js { render :action => 'master_category_particulars' }
-    #    end
   end
   def master_category_particulars_edit
     @finance_fee_particular= FinanceFeeParticular.find(params[:id])
@@ -790,19 +787,80 @@ class FinanceController < ApplicationController
     end
   end
 
-
   def fees_particulars_new
     @fees_categories = FinanceFeeCategory.find(:all ,:conditions=> "is_deleted = 0 and is_master = 1")
     @fees_categories.reject!{|f|f.batch.is_deleted or !f.batch.is_active }
     @student_categories = StudentCategory.active
-    respond_to do |format|
-      format.js { render :action => 'fees_particulars_new' }
-    end
   end
 
   def fees_particulars_create
     @error = false
-    finance_fee_categories = FinanceFeeCategory.find_all_by_id(params[:finance_fee_particular][:finance_fee_category_ids].reject{|cat| cat.empty?}.map{|cat| cat.to_i})
+    finance_fee_categories = FinanceFeeCategory.find_all_by_id(params[:finance_fee_particular][:finance_fee_category_ids].reject{|cat| cat.empty?}.map{|cat| cat.to_i}) unless params[:finance_fee_particular][:finance_fee_category_ids].blank?
+    unless finance_fee_categories.blank?
+      batches = finance_fee_categories.map{|ffc| ffc.batch}
+      posted_params = params[:finance_fee_particular]
+      posted_admission_no = params[:finance_fee_particular][:admission_no]
+      posted_params.delete("finance_fee_category_ids")
+      finance_fee_categories.each do |ffc|
+        @finance_fee_particular = ffc.fee_particulars.new(posted_params)
+        if params[:particulars][:select].to_s == 'student'
+          unless posted_admission_no.empty?
+            all_admission_no = admission_no = posted_admission_no.split(",")
+            posted_params.delete "admission_no"
+            all_students = batches.map{|batch| batch.students.map{|stu| stu.admission_no}}.flatten
+            rejected_admission_no = admission_no.select{|adm| !all_students.include? adm}
+            unless (rejected_admission_no.empty?)
+              @error = true
+              @finance_fee_particular.errors.add_to_base("#{rejected_admission_no.join(',')} #{t('does_not_belong_to_batch')} #{batches.map{|batch| batch.full_name}.join(',')}")
+            end
+            selected_admission_no = all_admission_no.select{|adm| ffc.batch.students.all.map{|stu| stu.admission_no}.include? adm}
+            selected_admission_no.each do |a|
+              s = Student.find_by_admission_no(a)
+              if s.nil?
+                @error = true
+                @finance_fee_particular.errors.add_to_base("#{a} #{t('does_not_exist')}")
+              end
+            end
+            unless @error
+              selected_admission_no.each do |a|
+                posted_params["admission_no"] = a.to_s
+                @error = true unless @finance_fee_particular = ffc.fee_particulars.create(posted_params)
+              end
+            end
+          else
+            @error = true
+            @finance_fee_particular.errors.add(:admission_no,"#{t('is_blank')}")
+          end
+        else
+          @error = true unless @finance_fee_particular.save
+        end
+      end
+      @particulars = FinanceFeeParticular.all(:conditions => {:is_deleted => false,:finance_fee_category_id => finance_fee_categories.map{|ffc| ffc.id}})
+      if @error.blank?
+        flash[:notice] = t('particulars_created_successfully')
+      else
+        @fees_categories = FinanceFeeCategory.find(:all ,:conditions=> "is_deleted = 0 and is_master = 1")
+        @fees_categories.reject!{|f|f.batch.is_deleted or !f.batch.is_active }
+        render :action => 'fees_particulars_new'
+        return
+      end
+    else
+      flash[:notice] = t('select_fee_category')
+    end
+    redirect_to :action => "fees_particulars_new"
+  end
+
+  def fees_particulars_new2
+    @fees_category = FinanceFeeCategory.find(params[:category_id])
+    @student_categories = StudentCategory.active
+    respond_to do |format|
+      format.js { render :action => 'fees_particulars_new2' }
+    end
+  end
+
+  def fees_particulars_create2
+    @error = false
+    finance_fee_categories = FinanceFeeCategory.find_all_by_id(params[:finance_fee_particular][:finance_fee_category_ids].reject{|cat| cat.empty?}.map{|cat| cat.to_i}) unless params[:finance_fee_particular][:finance_fee_category_ids].blank?
     batches = finance_fee_categories.map{|ffc| ffc.batch}
     posted_params = params[:finance_fee_particular]
     posted_admission_no = params[:finance_fee_particular][:admission_no]
@@ -1107,6 +1165,7 @@ class FinanceController < ApplicationController
 
   def fee_collection_create
     @user = current_user
+    @fee_categories = FinanceFeeCategory.common_active
     fee_category_name = params[:finance_fee_collection][:fee_category_id]
     category =[]
     unless params[:fee_collection].nil?
@@ -1156,8 +1215,14 @@ class FinanceController < ApplicationController
       @finance_fee_collection = FinanceFeeCollection.new
       @finance_fee_collection.errors.add_to_base("#{t('fees_category_cant_be_blank')}")
     end
-  end
 
+    if @error.nil?
+      flash[:notice] = t('flash_msg33')
+      redirect_to :action => 'fee_collection_new'
+    else
+      render :action => 'fee_collection_new'
+    end
+  end
 
   def fee_collection_view
     @batchs = Batch.active
@@ -1397,6 +1462,9 @@ class FinanceController < ApplicationController
       @next_student = @student.next_fee_student(@date.id)
       
       @financefee = @student.finance_fee_by_date @date
+      unless @financefee.transaction_id.blank?
+        @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
+      end
       unless params[:fine][:fee].to_f < 0
         @fine = (params[:fine][:fee])
       else
@@ -1517,6 +1585,7 @@ class FinanceController < ApplicationController
     @date = @fee_collection = FinanceFeeCollection.find(params[:date])
     @financefee = @date.fee_transactions(@student.id)
 
+    @due_date = @fee_collection.due_date
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted IS NOT NULL"])
     @fee_particulars = @date.fees_particulars(@student)
     @batch_discounts = BatchFeeCollectionDiscount.find_all_by_finance_fee_collection_id(@fee_collection.id)
@@ -1635,8 +1704,18 @@ class FinanceController < ApplicationController
   #fees defaulters-----------------------
 
   def fees_defaulters
-    @batchs = Batch.active
+    @courses = Course.all
+    @batchs = []
     @dates = []
+  end
+
+  def update_batches
+    @course = Course.find(params[:course_id])
+    @batchs = @course.batches
+
+    render :update do |page|
+      page.replace_html "batches_list", :partial => "batches_list"
+    end
   end
 
   def update_fees_collection_dates_defaulters
@@ -1651,7 +1730,7 @@ class FinanceController < ApplicationController
   def fees_defaulters_students
     @batch   = Batch.find(params[:batch_id])
     @date = FinanceFeeCollection.find(params[:date])
-    @students = @date.students.all(:conditions=> "batch_id = #{@batch.id}")
+    @students = @date.students
     @defaulters = @students.reject{|s| s.check_fee_pay(@date)}
     render :update do |page|
       page.replace_html "student", :partial => "student_defaulters"
@@ -1665,10 +1744,6 @@ class FinanceController < ApplicationController
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
         
     render :pdf => 'fee_defaulters_pdf'
-           
-    ##        respond_to do |format|
-    ##            format.pdf { render :layout => false }
-    ##        end
   end
 
   def pay_fees_defaulters

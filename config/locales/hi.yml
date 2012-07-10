@@ -612,6 +612,7 @@ hi:
   total_discount: "कुल डिस्काउंट"
   total_fees: "कुल शुल्क"
   fine: "अच्छा"
+  fine_on: "Fine on"
   payment_done: "भुगतान किया"
   partial_payment_on: "आंशिक भुगतान पर"
   profile_text: "रूपरेखा"
@@ -817,6 +818,7 @@ hi:
   no_employee_assigned: "अभी तक कोई कर्मचारी सौंपा|"
   subject_transfer_message: "निम्नलिखित विषयों का आयात किया गया है"
   fee_import_message: "बाद शुल्क चैनल आयात किया गया है"
+  no_fee_import_message: "No Fee Categories found in previous batches."
   import_subject: "पिछले बैच विषय का आयात"
   import_fees: "पिछले बैच मास्टर फीस आयात"
   new_batch: "नई बैच"
@@ -2172,6 +2174,7 @@ hi:
     flash25: "दान सफलतापूर्वक हटाया"
     flash26: "अतिरिक्त सफलतापूर्वक अद्यतन फीस"
     flash27: "अतिरिक्त फीस सफलतापूर्वक नष्ट कर दिया"
+    flash28: "No batches found in selected category"
     
 ## traslation for xml controller
   xml:

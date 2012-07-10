@@ -64,8 +64,12 @@
     <div class="flash-msg"><%= flash[:no_subject_error] %></div>
   <% end %>
 
-  <% unless flash[:fees_import].nil? %>
+  <% unless flash[:fees_import].blank? %>
     <div class="flash-msg" style="text-align: left;"><%= t('fee_import_message') %>:<br /> <%= flash[:fees_import].join("")%></div>
+  <% end %>
+
+  <% if @fee_import_error %>
+    <div class="flash-msg"><%= t('no_fee_import_message') %></div>
   <% end %>
 
   <div class="box">

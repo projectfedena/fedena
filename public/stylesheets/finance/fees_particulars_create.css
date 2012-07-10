@@ -1,0 +1,133 @@
+.submit_button {
+    margin-top:65px;
+    margin-left:205px;
+    padding: 7px 10px;
+    color: #fff;
+    background: #27292B;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    font-weight: bold;
+    font-size: 14px;
+    border:none;
+    font-family: arial;
+    cursor:pointer;
+    float: left;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+.label-field-pair{
+    width: 460px;
+}
+#left-side-inputs{
+    width: 460px;
+    float: left;
+    height: 243px;
+}
+#right-side-inputs{
+    float: right;
+    width: 460px;
+    height: 243px;
+}
+.label-field-pair.category_list{
+    overflow: hidden;
+    height: auto;
+}
+.category_list .label-container{
+    overflow: hidden;
+}
+.label-field-pair select {
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px;
+    background:none repeat scroll 0 0 #EEEEEE;
+    border:1px solid #C6C6C6;
+    margin:5px 10px 0 5px;
+    padding:5px;
+    width:217px;
+}
+
+.label-field-pair2 {
+    height : 79px;
+    width : 450px;
+    padding-top: 3px;
+}
+
+.label-field-pair2 label {
+    color : #444;
+    display : block;
+    font-size: 14px;
+    margin : 0 0 0px 0;
+    float:left;
+    width:205px;
+    padding-top: 10px;
+    font-weight: 600;
+}
+
+.label-field-pair input {
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px;
+    background:none repeat scroll 0 0 #EEEEEE;
+    border:1px solid #C6C6C6;
+    height:17px;
+    margin:5px 0 0 5px;
+    padding:5px;
+    width:205px;
+}
+
+.label-field-pair2 input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 0 0 10px;
+    width : auto;
+    height:auto;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+}
+.opt input {
+    background : #eee;
+    border : 1px solid #c6c6c6;
+    margin : 5px 0 0 10px;
+    width : 50px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    padding: 5px;
+}
+
+.each_category{
+    font-size: 12px;
+    overflow:auto;
+    width:auto;
+
+}
+.each_category input{
+    float:left;
+    width:auto;
+}
+
+.each_category label {
+    float: left;
+    margin-top: -7px;
+    width: auto;
+    font-size:13px;
+    font-weight: normal;
+    margin-left: 8px;
+}
+.categories {
+    height: 265px;
+    width: 458px;
+    overflow: auto;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#EEEEEE;
+    border:1px solid #C6C6C6;
+}
+.label-container2{
+    float: left;
+}
+.input-container2{
+    float: left;
+}
