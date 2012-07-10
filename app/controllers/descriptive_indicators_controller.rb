@@ -15,9 +15,9 @@ class DescriptiveIndicatorsController < ApplicationController
     @describable=Observation.find(params[:observation_id]) if params[:observation_id]
     @describable=FaCriteria.find(params[:fa_criteria_id]) if params[:fa_criteria_id]
     @descriptive=@describable.descriptive_indicators.new(params[:descriptive_indicator])
-    @descriptive.sort_order=@describable.descriptive_indicators.find(:last,:order=>"sort_order ASC").try(:sort_order).to_i+1 || 1
+    @descriptive.sort_order=@describable.descriptive_indicators.find(:last).try(:sort_order).to_i+1 || 1
     if @descriptive.save
-      @descriptive_indicators=@descriptive.describable.descriptive_indicators.all(:order=>"sort_order ASC")
+      @descriptive_indicators=@descriptive.describable.descriptive_indicators.all
       @observation=@descriptive if params[:observation_id]
       @fa_criteria=@descriptive  if params[:fa_criteria_id]
       flash[:notice]="Descriptive Indicator Created Successfully."
@@ -32,11 +32,11 @@ class DescriptiveIndicatorsController < ApplicationController
   def index
     if params[:observation_id]
       @observation=Observation.find(params[:observation_id])
-      @descriptive_indicators=@observation.descriptive_indicators.all(:order=>"sort_order ASC")
+      @descriptive_indicators=@observation.descriptive_indicators.all
       @observation_group=@observation.observation_group
     elsif params[:fa_criteria_id]
       @fa_criteria=FaCriteria.find(params[:fa_criteria_id])
-      @descriptive_indicators=@fa_criteria.descriptive_indicators.all(:order=>"sort_order ASC")
+      @descriptive_indicators=@fa_criteria.descriptive_indicators.all
       @fa_group=@fa_criteria.fa_group
     end
   end
@@ -49,7 +49,7 @@ class DescriptiveIndicatorsController < ApplicationController
     @descriptive=DescriptiveIndicator.find(params[:id])
     @descriptive.attributes=(params[:descriptive_indicator])
     if @descriptive.save
-      @descriptive_indicators=@descriptive.describable.descriptive_indicators.all(:order=>"sort_order ASC")
+      @descriptive_indicators=@descriptive.describable.descriptive_indicators.all
       @observation=@descriptive if @descriptive.describable_type == "Observation"
       @fa_criteria=@descriptive if @descriptive.describable_type == "FaCriteria"
       flash[:notice]="Descriptive Indicator Updated Successfully."
@@ -81,7 +81,7 @@ class DescriptiveIndicatorsController < ApplicationController
     if request.post?
       descriptive_indicator=DescriptiveIndicator.find(params[:id])
       describable=descriptive_indicator.describable
-      swap=describable.descriptive_indicators.all(:order=>"sort_order ASC")
+      swap=describable.descriptive_indicators.all
       initial=params[:count].to_i
       src=swap[initial]
       if params[:direction]=='up'
@@ -92,7 +92,7 @@ class DescriptiveIndicatorsController < ApplicationController
       dest_id=dest.sort_order.to_i
       dest.update_attribute(:sort_order,src.sort_order.to_i)
       src.update_attribute(:sort_order,dest_id)
-      @descriptive_indicators=describable.descriptive_indicators.all(:order=>"sort_order ASC")
+      @descriptive_indicators=describable.descriptive_indicators.all
       render(:update) do |page|
         page.replace_html 'descriptive_indicators', :partial => 'descriptive_indicators', :object => @descriptive_indicators
       end

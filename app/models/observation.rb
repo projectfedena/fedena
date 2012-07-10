@@ -5,6 +5,8 @@ class Observation < ActiveRecord::Base
   accepts_nested_attributes_for :descriptive_indicators
   has_many    :cce_reports, :as=>:observable
 
+  default_scope :order=>'sort_order ASC'
+  named_scope :active,:conditions=>{:is_active=>true}
 
   def next_record
     observation_group.observations.first(:conditions => ['order > ?',order])

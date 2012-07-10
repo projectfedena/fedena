@@ -2,7 +2,7 @@ class ObservationGroupsController < ApplicationController
   before_filter :login_required
   filter_access_to :all
   def index
-    @obs_groups=ObservationGroup.all
+    @obs_groups=ObservationGroup.active
   end
 
   def new
@@ -15,7 +15,7 @@ class ObservationGroupsController < ApplicationController
     @obs_group=ObservationGroup.new(params[:observation_group])
     if @obs_group.save
       flash[:notice]="Co-Scholastic Group Created Successfully."
-      @obs_groups=ObservationGroup.all
+      @obs_groups=ObservationGroup.active
     else
       @error=true
     end
@@ -23,7 +23,7 @@ class ObservationGroupsController < ApplicationController
 
   def show
     @obs_group=ObservationGroup.find(params[:id])
-    @observations=@obs_group.observations.find(:all,:conditions=>{:is_active=>true},:order=>"sort_order ASC")
+    @observations=@obs_group.observations.active
   end
 
   def edit
@@ -37,14 +37,14 @@ class ObservationGroupsController < ApplicationController
     @obs_group.attributes=params[:observation_group]
     if @obs_group.save
       flash[:notice]="Co-Scholastic Group Updated Successfully."
-      @obs_groups=ObservationGroup.all
+      @obs_groups=ObservationGroup.active
     else
       @error=true
     end
   end
   def destroy
     @category=ObservationGroup.find(params[:id])
-    if @category.destroy
+    if @category.update_attribute(:is_deleted,true)
       flash[:notice]="Co-Scholastic Group Deleted."
     else
       flash[:notice]="Unable to delete Co-Scholastic Group"
@@ -63,7 +63,7 @@ class ObservationGroupsController < ApplicationController
     @observation.sort_order=@obs_group.observations.find(:last,:conditions=>{:is_active=>true},:order=>"sort_order ASC").try(:sort_order).to_i+1 || 1
     @observation.is_active=true
     if @observation.save
-      @observations=@obs_group.observations.find(:all,:conditions=>{:is_active=>true},:order=>"sort_order ASC")
+      @observations=@obs_group.observations.active
       flash[:notice]="Co-Scholastic Criteria Created Successfully."
     else
       @error=true
@@ -80,7 +80,7 @@ class ObservationGroupsController < ApplicationController
     @observation.attributes=(params[:observation])
     @obs_group=ObservationGroup.find(params[:observation][:observation_group_id])
     if @observation.save
-      @observations=@obs_group.observations.find(:all,:conditions=>{:is_active=>true},:order=>"sort_order ASC")
+      @observations=@obs_group.observations.active
       flash[:notice]="Co-Scholastic Criteria updated Successfully."
     else
       @error=true
@@ -95,7 +95,7 @@ class ObservationGroupsController < ApplicationController
     if request.post?
       @course=Course.find(params[:course_id])
       @course_observation_groups=@course.observation_groups
-      @obs_groups=ObservationGroup.all
+      @obs_groups=ObservationGroup.active
       render(:update) do |page|
         page.replace_html 'flash-box',""
         page.replace_html 'select_observation_group',:partial=>"select_observation_group"
@@ -112,10 +112,6 @@ class ObservationGroupsController < ApplicationController
     @obs_groups=ObservationGroup.all
     flash[:notice] = "Co-Scholastic groups successfully assigned to the selected course."
     render :js=>"window.location='/observation_groups/assign_courses'"
-    #    render(:update) do |page|
-    #      page.replace_html 'flash-box', :text=>"<p class='flash-msg'>#{flash[:notice]}</p>" unless flash[:notice].nil?
-    #      page.replace_html 'select_observation_group',:partial=>"select_observation_group"
-    #    end
   end
 
   def destroy_observation
@@ -148,7 +144,7 @@ class ObservationGroupsController < ApplicationController
       dest_id=dest.sort_order.to_i
       dest.update_attribute(:sort_order,src.sort_order.to_i)
       src.update_attribute(:sort_order,dest_id)
-      @observations=obs_group.observations.find(:all,:conditions=>{:is_active=>true},:order=>"sort_order ASC")
+      @observations=obs_group.observations.active
       render(:update) do |page|
         page.replace_html 'observations', :partial => 'observations', :object => @observations
       end

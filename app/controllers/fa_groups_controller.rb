@@ -3,7 +3,7 @@ class FaGroupsController < ApplicationController
   filter_access_to :all
 
   def index
-    @fa_groups=FaGroup.all
+    @fa_groups=FaGroup.active
   end
 
   def new
@@ -15,7 +15,7 @@ class FaGroupsController < ApplicationController
   def create
     @fa_group=FaGroup.new(params[:fa_group])
     if @fa_group.save
-      @fa_groups=FaGroup.all
+      @fa_groups=FaGroup.active
       flash[:notice]="FA Group created successfully."
     else
       @error=true
@@ -24,7 +24,7 @@ class FaGroupsController < ApplicationController
 
   def show
     @fa_group=FaGroup.find(params[:id])
-    @fa_criterias=@fa_group.fa_criterias.all(:order=>"sort_order ASC")
+    @fa_criterias=@fa_group.fa_criterias.active
   end
 
   def edit
@@ -37,7 +37,7 @@ class FaGroupsController < ApplicationController
     @fa_group=FaGroup.find(params[:id])
     @fa_group.attributes=params[:fa_group]
     if @fa_group.save
-      @fa_groups=FaGroup.all
+      @fa_groups=FaGroup.active
       flash[:notice]="FA Group updated successfully."
     else
       @error=true
@@ -46,7 +46,7 @@ class FaGroupsController < ApplicationController
 
   def destroy
     @fa_group=FaGroup.find(params[:id])
-    if @fa_group.destroy
+    if @fa_group.update_attribute(:is_deleted,true)
       flash[:notice]="FA Group deleted"
     else
       flash[:notice]="Unable to delete FA Group."
@@ -70,7 +70,7 @@ class FaGroupsController < ApplicationController
     if request.post?
       @subject=Subject.find(params[:subject_id])
       @subject_fa_groups=@subject.fa_groups
-      @fa_groups=FaGroup.all
+      @fa_groups=FaGroup.active
       render(:update) do |page|
         page.replace_html 'flash-box',""
         page.replace_html 'select_fa_group',:partial=>"select_fa_groups"
@@ -101,7 +101,7 @@ class FaGroupsController < ApplicationController
     else
       @error_object=s
       @subject_fa_groups=@subject.fa_groups
-      @fa_groups=FaGroup.all
+      @fa_groups=FaGroup.active
       render(:update) do |page|
         page.replace_html 'error-div',:partial=>"layouts/errors"
         page.replace_html 'select_fa_group',:partial=>"select_fa_groups"
@@ -120,7 +120,7 @@ class FaGroupsController < ApplicationController
     @fa_group=FaGroup.find(params[:fa_criteria][:fa_group_id])
     @fa_criteria.sort_order=@fa_group.fa_criterias.find(:last,:order=>"sort_order ASC").try(:sort_order).to_i+1 || 1
     if @fa_criteria.save
-      @fa_criterias=@fa_group.fa_criterias.all(:order=>"sort_order ASC")
+      @fa_criterias=@fa_group.fa_criterias.active
       flash[:notice]="FA Criteria created successfully"
     else
       @error=true
@@ -135,7 +135,7 @@ class FaGroupsController < ApplicationController
     @fa_criteria=FaCriteria.find(params[:id])
     @fa_criteria.attributes=params[:fa_criteria]
     if @fa_criteria.save
-      @fa_criterias=@fa_criteria.fa_group.fa_criterias.all(:order=>"sort_order ASC")
+      @fa_criterias=@fa_criteria.fa_group.fa_criterias.active
       flash[:notice]="FA Criteria updated successfully"
     else
       @error=true
@@ -145,12 +145,12 @@ class FaGroupsController < ApplicationController
   def destroy_fa_criteria
     @fa_criteria=FaCriteria.find(params[:id])
     @fa_group=@fa_criteria.fa_group
-    if @fa_criteria.destroy
-      flash[:notice]=t("fa_criteria_deleted")
+    if @fa_criteria.update_attribute(:is_deleted,true)
+      flash[:notice]="scholastic criteria deleted"
     else
-      flash[:notice]=t("cannot_delete_fa_criteria")
+      flash[:notice]="scholastic criteria cannot be deleted"
     end
-    @fa_criterias=@fa_criteria.fa_group.fa_criterias.all(:order=>"sort_order ASC")
+    @fa_criterias=@fa_criteria.fa_group.fa_criterias.active
     render(:update) do |page|
       page.replace_html 'flash-box', :text=>"<p class='flash-msg'>#{flash[:notice]}</p>" unless flash[:notice].nil?
       page.replace_html 'fa_criterias', :partial => 'fa_criterias', :object => @fa_criterias
@@ -172,7 +172,7 @@ class FaGroupsController < ApplicationController
       dest_id=dest.sort_order.to_i
       dest.update_attribute(:sort_order,src.sort_order.to_i)
       src.update_attribute(:sort_order,dest_id)
-      @fa_criterias=fa_group.fa_criterias.all(:order=>"sort_order ASC")
+      @fa_criterias=fa_group.fa_criterias.active
       render(:update) do |page|
         page.replace_html 'fa_criterias', :partial => 'fa_criterias', :object => @fa_criterias
       end
