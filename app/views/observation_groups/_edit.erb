@@ -18,7 +18,8 @@
       <div class="label-field-pair">
         <label for="category_name">CCE Grade Set</label>
         <div class="text-input-bg">
-          <%= select_tag "obs_group[cce_grade_set_id]",options_for_select(@grade_sets.map{|m| [m.name,m.id]},@obs_group.try(:cce_grade_set_id).to_i) %>
+  <%#= select_tag "obs_group[cce_grade_set_id]",options_for_select(@grade_sets.map{|m| [m.name,m.id]},@obs_group.try(:cce_grade_set_id).to_i) %>
+          <%= f.select :cce_grade_set_id ,@grade_sets.map{|m| [m.name,m.id]} ,:prompt=>"Select a grade set",:selected=>@obs_group.try(:cce_grade_set_id).to_i %>
         </div>
       </div>
       <div class="label-field-pair">
