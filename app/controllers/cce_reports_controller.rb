@@ -1,6 +1,8 @@
 class CceReportsController < ApplicationController
   before_filter :login_required
-  filter_access_to :all
+  #  before_filter :load_cce_report, :only=>[:show_student_wise_report]
+  filter_access_to :all 
+  #  filter_access_to :show_student_wise_report, :attribute_check => true
     
   def index
     
@@ -34,16 +36,14 @@ class CceReportsController < ApplicationController
     if request.post?      
       @batch=Batch.find(params[:batch_id])
       @students=@batch.students
-      if @batch.user_is_authorized?(@current_user) or @current_user.has_subject_in_batch(@batch)
-        render(:update) do |page|
-          page.replace_html   'student_list', :partial=>"student_list",   :object=>@students          
-          page.replace_html   'report', :text=>""
-          page.replace_html   'hider', :text=>""
-        end
-      else
-        flash[:notice]="You are not authorized to that batch"
-        render :js=>"window.location='student_wise_report'"
-        
+      @student = @students.first
+      if @student
+        fetch_report
+      end
+      render(:update) do |page|
+        page.replace_html   'student_list', :partial=>"student_list",   :object=>@students
+        @student.nil? ? (page.replace_html   'report', :text=>"") : (page.replace_html   'report', :partial=>"student_report")
+        page.replace_html   'hider', :text=>""
       end
     end
   end
@@ -96,5 +96,5 @@ class CceReportsController < ApplicationController
       coscholastic.each{|cs| @co_hashi[kind] << cs if ogs.collect(&:id).include? cs.observation_group_id}
     end       
   end
-  
+ 
 end
