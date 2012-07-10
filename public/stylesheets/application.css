@@ -495,9 +495,9 @@ body > #content_wrapper {
     height : 1.5em;
     list-style-type : none;
     margin : 0 0 0 10px;
-    padding : 0;
+    padding : 0 10px !important;
     text-align : center;
-    width : 100px;
+    width : auto !important;
 }
 #inner-tab-menu ul li a {
     color : #fff;
