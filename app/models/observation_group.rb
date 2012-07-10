@@ -8,5 +8,9 @@ class ObservationGroup < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :header_name
-  validates_presence_of :desc,:cce_grade_set_id,:observation_kind #,:max_marks
+  validates_presence_of :observation_kind #,:max_marks
+  def validate
+    errors.add_to_base("CCE grade set can't be blank") if self.cce_grade_set_id.blank?
+    errors.add_to_base("Description can't be blank") if self.desc.blank?
+  end
 end
