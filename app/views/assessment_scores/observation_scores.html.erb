@@ -51,5 +51,6 @@
   document.observe("dom:loaded", function() {
     $$('.student-link').invoke('observe','click',draw_report);
     $$('.student-link').invoke('observe','click',set_active);
+    set_active.call($('<%=@student.id%>'))
   });
 </script>
