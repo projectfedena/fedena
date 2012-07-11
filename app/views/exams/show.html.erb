@@ -28,7 +28,7 @@
 <div id="inner-tab-menu">
   <ul>
     <% if (@batch.cce_enabled? and  permitted_to? :exam_fa_groups,:assessment_scores and @exam.exam_group.cce_exam_category.present?) %>
-      <li><%= link_to t("fa_groups_text"),:controller=>:assessment_scores,:action=>"exam_fa_groups",:id=>@exam.id %></li>
+      <li><%= link_to "FA Scores",:controller=>:assessment_scores,:action=>"exam_fa_groups",:id=>@exam.id %></li>
     <% end %>
   </ul>
 </div>
