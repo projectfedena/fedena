@@ -82,7 +82,7 @@ class CceReportsController < ApplicationController
 
   def fetch_report
     @report=@student.individual_cce_report_cached
-    @subjects=@student.all_subjects
+    @subjects=@student.all_subjects.select{|x| x.no_exams==false}
     @exam_groups=ExamGroup.find_all_by_id(@report.exam_group_ids, :include=>:cce_exam_category)
     coscholastic=@report.coscholastic
     @observation_group_ids=coscholastic.collect(&:observation_group_id)
