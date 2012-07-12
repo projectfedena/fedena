@@ -252,7 +252,7 @@ class Batch < ActiveRecord::Base
         report_hash[f.id]={}
         f.assessment_scores.scoped(:conditions=>["exam_id IS NOT NULL AND batch_id = ?",id]).group_by(&:exam_id).each do |k1,v1|
           report_hash[f.id][k1]={}
-          v1.group_by(&:student_id).each{|k2,v2| report_hash[f.id][k1][k2]=(v2.sum(&:grade_points)/v2.count.to_f).round}
+          v1.group_by(&:student_id).each{|k2,v2| report_hash[f.id][k1][k2]=(v2.sum(&:grade_points)/v2.count.to_f)}
         end
         report_hash[f.id].each do |k1,v1|
           v1.each do |k2,v2|
