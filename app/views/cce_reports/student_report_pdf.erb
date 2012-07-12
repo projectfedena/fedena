@@ -2,12 +2,14 @@
 <% cgpa=0.0 %>
 <% count=0 %>
 <% e = 'even' %>
-<div id="page-yield">
-  <div class="hor_line"></div>
-  <h2>STUDENT REPORT</h2>
-  <div class="hor_line"></div>
-  <div class="extender"> </div>
-  <div class="report">
+<div id="page-yield" class="available_sections">
+  <div class="section">
+
+    <div class="hor_line"></div>
+    <h2>STUDENT REPORT</h2>
+    <div class="hor_line"></div>
+    <div class="extender"> </div>
+<%#*<div class="report">%>
     <div class="info">
       <div class="info-left">
         <div class="info1">
@@ -26,118 +28,117 @@
         </div>
       </div>
     </div>
-    <div id="pdf-info  available_sections">
-      <div id="score-table section">
-        <div class="custom_header">
-          <h3>
-            Scholastic Areas
-          </h3>
-        </div>
-        <table id="pdf-table" width="100%" cellspacing="0">
-          <% if @exam_groups.empty? %>
-            <tr class="tr-head">
-              <td>No Exams </td></tr>
-          <% else %>
-            <tr class="table-header">
-              <td>Sl no</td>
-              <td></td>
-              <% @exam_groups.each do |eg| %>
-                <td colspan="4"><%= eg.cce_exam_category.name %></td>
-              <% end %>
-              <% if @exam_groups.count==2 %>
-                <td colspan="4">Overall</td>
-              <% end %>
-            </tr>
-            <tr class="table-header">
-              <td></td>
-              <td>Subjects</td>
-              <% @exam_groups.each_with_index do |eg,i| %>
-                <td><%= "FA#{2*i+1}" %></td>
-                <td><%= "FA#{2*i+2}" %></td>
-                <td><%= "SA#{i+1}" %></td>
-                <td><%= "FA#{2*i+1}+ FA#{2*i+2}+ SA#{i+1}" %></td>
-              <% end %>
-              <% if @exam_groups.count==2 %>
-                <td>FA1+ FA2+ FA3+ FA4</td>
-                <td>SA1+ SA2</td>
-                <td>Overall</td>
-                <td>Grade Point</td>
-              <% end %>
-            </tr>
-            <% @subjects.each_with_index do |s,i| %>
-              <tr class="<%= cycle(e,(["odd","even"]-[e]).first) %>">
-                <td><%= i+1 %></td>
-                <td><%= s.name %></td>
-                <% sub=scholastic.find{|c| c.subject_id==s.id} %>
-                <% @exam_groups.each do |eg|
-                  se=sub.exams.find{|g| g.exam_group_id==eg.id} if sub %>
-                  <% if se %>
-                    <td><%= se.fa[se.fa_group_ids[0]] if se.fa_group_ids[0] %></td>
-                    <td><%= se.fa[se.fa_group_ids[1]] if se.fa_group_ids[1] %></td>
-                    <td><%= se.sa %></td>
-                    <td><%= se.overall %></td>
-                  <% else %>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                  <% end %>
-                <% end %>
-                <% if @exam_groups.count==2 %>
-                  <% if sub %>
-                    <td><%= sub.fa %></td>
-                    <td><%= sub.sa %></td>
-                    <td><%= sub.overall %></td>
-                    <td><%= sub.grade_point %></td>
-                    <% if s.elective_group_id.blank? %>
-                      <% cgpa += sub.grade_point.to_f %>
-                      <% count += 1 %>
-                    <% end %>
-                  <% else %>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                  <% end %>
-                <% end %>
-              </tr>
+  </div>
+  <div  class="section">
+    <div id="score-table">
+      <div class="custom_header">
+        <h3>
+          Scholastic Areas
+        </h3>
+      </div>
+      <table id="pdf-table" width="100%" cellspacing="0">
+        <% if @exam_groups.empty? %>
+          <tr class="tr-head">
+            <td>No Exams </td></tr>
+        <% else %>
+          <tr class="table-header">
+            <td class="sl_no" rowspan="2">Sl no</td>
+            <td rowspan="2">Subjects</td>
+            <% @exam_groups.each do |eg| %>
+              <td colspan="4"><%= eg.cce_exam_category.name %></td>
             <% end %>
             <% if @exam_groups.count==2 %>
-              <tr class="table-footer">
-                <td colspan="<%= 6+@exam_groups.count*4 %>">Cumulative Grade Point Average(CGPA)  :   <%= cgpa/count unless count==0 %></td>
+              <td colspan="4">Overall</td>
+            <% end %>
+          </tr>
+          <tr class="table-header">
+            <% @exam_groups.each_with_index do |eg,i| %>
+              <td><%= "FA#{2*i+1}" %></td>
+              <td><%= "FA#{2*i+2}" %></td>
+              <td><%= "SA#{i+1}" %></td>
+              <td><%= "FA#{2*i+1}+ FA#{2*i+2}+ SA#{i+1}" %></td>
+            <% end %>
+            <% if @exam_groups.count==2 %>
+              <td>FA1+ FA2+ FA3+ FA4</td>
+              <td>SA1+ SA2</td>
+              <td>Overall</td>
+              <td>Grade Point</td>
+            <% end %>
+          </tr>
+          <% @subjects.each_with_index do |s,i| %>
+            <tr class="<%= cycle(e,(["odd","even"]-[e]).first) %>">
+              <td class="sl_no"><%= i+1 %></td>
+              <td class="subject"><%= s.name %></td>
+              <% sub=scholastic.find{|c| c.subject_id==s.id} %>
+              <% @exam_groups.each do |eg|
+                se=sub.exams.find{|g| g.exam_group_id==eg.id} if sub %>
+                <% if se %>
+                  <td><%= se.fa[se.fa_group_ids[0]] if se.fa_group_ids[0] %></td>
+                  <td><%= se.fa[se.fa_group_ids[1]] if se.fa_group_ids[1] %></td>
+                  <td><%= se.sa %></td>
+                  <td><%= se.overall %></td>
+                <% else %>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                <% end %>
+              <% end %>
+              <% if @exam_groups.count==2 %>
+                <% if sub %>
+                  <td><%= sub.fa %></td>
+                  <td><%= sub.sa %></td>
+                  <td><%= sub.overall %></td>
+                  <td><%= sub.grade_point %></td>
+                  <% if s.elective_group_id.blank? %>
+                    <% cgpa += sub.grade_point.to_f %>
+                    <% count += 1 %>
+                  <% end %>
+                <% else %>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+          <% if @exam_groups.count==2 %>
+            <tr class="table-footer">
+              <td colspan="<%= 6+@exam_groups.count*4 %>">Cumulative Grade Point Average(CGPA)  :   <%= cgpa/count unless count==0 %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+  <% @co_hashi.keys.sort.each do |kind| %>
+    <div class="section">
+      <div class="custom_header">
+        <h3><%= ObservationGroup::OBSERVATION_KINDS[kind] %></h3>
+      </div>
+      <% @co_hashi[kind].each do |ob_grp| %>
+        <div id="score-table">
+    <%# e = 'even' %>
+          <table id="pdf-table" width="100%" cellspacing="0">
+            <tr class="table-header">
+              <td colspan="2"><%= @obs_groups.find{|o| o.id == ob_grp.observation_group_id}.try(:name) %></td>
+            </tr>
+            <tr class="table-header">
+              <td>Descriptive Indicators</td>
+              <td class="grade">Grade</td>
+            </tr>
+            <% ob_grp.observations.sort_by(&:sort_order).each do |o| %>
+              <tr class="<%= cycle(e,(["odd","even"]-[e]).first) %>">
+                <td class="subject"><%= o.observation_name %></td>
+                <td class="grade"><%= o.grade %></td>
               </tr>
             <% end %>
-          <% end %>
-        </table>
-
-      </div>
-      <% @co_hashi.keys.sort.each do |kind| %>
-        <div class="section">
-          <div class="custom_header">
-            <h3><%= ObservationGroup::OBSERVATION_KINDS[kind] %></h3>
-          </div>
-          <% @co_hashi[kind].each do |ob_grp| %>
-            <div id="score-table">
-    <%# e = 'even' %>
-              <table id="pdf-table" width="100%" cellspacing="0">
-                <tr class="table-header">
-                  <td colspan="2"><%= @obs_groups.find{|o| o.id == ob_grp.observation_group_id}.try(:name) %></td>
-                </tr>
-                <tr class="table-header">
-                  <td>Descriptive Indicators</td>
-                  <td>Grade</td>
-                </tr>
-                <% ob_grp.observations.sort_by(&:sort_order).each do |o| %>
-                  <tr class="<%= cycle(e,(["odd","even"]-[e]).first) %>">
-                    <td><%= o.observation_name %></td>
-                    <td><%= o.grade %></td>
-                  </tr>
-                <% end %>
-              </table>
-            </div>
-          <% end %>
+          </table>
         </div>
       <% end %>
     </div>
-  </div>
+  <% end %>
 </div>
+<%#*</div>%>
