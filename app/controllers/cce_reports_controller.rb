@@ -61,7 +61,7 @@ class CceReportsController < ApplicationController
     @student=Student.find(params[:id])
     @batch=@student.batch
     fetch_report
-    render :pdf => 'generated_report_pdf'
+    render :pdf => "#{@student.first_name}-CCE_Report"
   end
 
   def student_transcript
