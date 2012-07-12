@@ -1421,8 +1421,8 @@ class ExamController < ApplicationController
     else
       @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
     end
-    general_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>"elective_group_id IS NULL and is_deleted=false and no_exam=false")
-    student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@batch.id} and no_exam=false")
+    general_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>"elective_group_id IS NULL and is_deleted=false and no_exams=false")
+    student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@batch.id} and no_exams=false")
     elective_subjects = []
     student_electives.each do |elect|
       elective_subjects.push Subject.find(elect.subject_id)
