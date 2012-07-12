@@ -1,9 +1,8 @@
 
 
-#page-yield {
+.page {
     width:800px;
     margin: 0 auto;
-    float: left;
     overflow: hidden;
 }
 
@@ -47,12 +46,14 @@
    padding: 12px 12px 12px 15px;
   border-left:  1px solid #ADACAB;
   border-bottom: 1px solid #ADACAB;
+  width: 150px;
 }
 
 .odd td{
   padding: 12px 12px 12px 15px;
   border-left:  1px solid #ADACAB;
   border-bottom: 1px solid #ADACAB;
+  width: 150px;
 
 }
 
