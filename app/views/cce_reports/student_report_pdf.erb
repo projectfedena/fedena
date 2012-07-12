@@ -16,7 +16,7 @@
           <label class="field-label">Name</label>: <label class="infolbl"> <%= @student.full_name %></label>
         </div>
         <div class="info1">
-          <label class="field-label">Course</label>: <label class="infolbl"> <%= @student.batch.course.full_name %></label>
+          <label class="field-label">Course</label>: <label class="infolbl"> <%= @batch.course.full_name %></label>
         </div>
       </div>
       <div class="info-right">
@@ -24,7 +24,7 @@
           <label class="field-label">Adm No.</label>: <label class="infolbl"> <%= @student.admission_no.present? ? @student.admission_no : "-" %></label>
         </div>
         <div class="info1">
-          <label class="field-label">Batch</label>: <label class="infolbl"> <%= @student.batch.name %></label>
+          <label class="field-label">Batch</label>: <label class="infolbl"> <%= @batch.name %></label>
         </div>
       </div>
     </div>

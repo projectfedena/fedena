@@ -7,7 +7,7 @@
       <label class="field-label">Name</label>: <label class="infolbl"> <%= @student.full_name %></label>
     </div>
     <div class="info1">
-      <label class="field-label">Course</label>: <label class="infolbl"> <%= @student.batch.course.full_name %></label>
+      <label class="field-label">Course</label>: <label class="infolbl"> <%= @batch.course.full_name %></label>
     </div>
   </div>
   <div class="info-right">
@@ -15,7 +15,7 @@
       <label class="field-label">Adm No.</label>: <label class="infolbl"> <%= @student.admission_no.present? ? @student.admission_no : "-" %></label>
     </div>
     <div class="info1">
-      <label class="field-label">Batch</label>: <label class="infolbl"> <%= @student.batch.name %></label>
+      <label class="field-label">Batch</label>: <label class="infolbl"> <%= @batch.name %></label>
     </div>
   </div>
 </div>
@@ -124,4 +124,4 @@
     </div>
   <% end %>
 <% end %>
-<%= link_to "► PDF Report",{:action=>"student_report_pdf",:id=>@student.id},:target => '_blank', :class=> 'user_button' %>
+<%= link_to "► PDF Report",{:action=>"student_report_pdf",:id=>@student.id,:batch_id=>@batch.id},:target => '_blank', :class=> 'user_button' %>
