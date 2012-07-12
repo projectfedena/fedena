@@ -54,16 +54,16 @@ h3{
 
 }
 tr.even{
-    border: 0px solid #ADACAB;
+    border: 1px solid #ADACAB;
 }
 
 tr.odd{
-    border: 0px solid #ADACAB;
+    border: 1px solid #ADACAB;
 }
 
 td{
     padding: 12px 5px 12px 5px;
-    border: 0px solid #ADACAB;
+    border: 1px solid #ADACAB;
     border-collapse: collapse;
     width: 25px;
     text-align: center;
@@ -75,21 +75,21 @@ td.col-pdf-bold{
 
 .table-header td{
 /*    padding: 12px 12px 12px 15px;*/
-    border-top: 0px solid #ADACAB;
-    border-left: 0px solid #ADACAB;
-    border-right: 0px solid #ADACAB;
+    border-top: 1px solid #ADACAB;
+    border-left: 1px solid #ADACAB;
+    border-right: 1px solid #ADACAB;
     color: #97080e;
     background: #EEEEEE;
 }
 .table-footer td{
     padding: 12px 12px 12px 15px;
-    border: 0px solid #ADACAB;
+    border: 1px solid #ADACAB;
     color: #97080e;
     background: #EEEEEE;
 }
 
 table#pdf-table{
-    border-top: 0px solid #ADACAB;
+    border-top: 1px solid #ADACAB;
     border-collapse:collapse
 }
 
@@ -105,7 +105,7 @@ table#pdf-table{
 
 }
 table{
-    border-right: 0px solid #ADACAB;
+    border-right: 1px solid #ADACAB;
     font-size: 11px;
 /*    border-collapse: collapse;*/
     margin-bottom: 20px;
