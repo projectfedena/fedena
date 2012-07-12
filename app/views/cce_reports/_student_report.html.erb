@@ -124,4 +124,4 @@
     </div>
   <% end %>
 <% end %>
-<%= link_to "► PDF Report",{:action=>"student_report_pdf",:id=>@student.id,:batch_id=>@batch.id},:target => '_blank', :class=> 'user_button' %>
+<%= link_to "► PDF Report",{:action=>"student_report_pdf",:id=>@student.id,:batch_id=>@batch.id,:type=>@type},:target => '_blank', :class=> 'user_button' %>

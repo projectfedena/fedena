@@ -58,7 +58,8 @@ class CceReportsController < ApplicationController
   end
 
   def student_report_pdf
-    @student=Student.find(params[:id])
+    @student= (params[:type]=="former" ? ArchivedStudent.find(params[:id]) : Student.find(params[:id]))
+    @type= params[:type] || "regular"
     @batch=Batch.find(params[:batch_id])
     @student.batch_in_context = @batch
     fetch_report
