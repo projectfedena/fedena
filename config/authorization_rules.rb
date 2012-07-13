@@ -298,6 +298,7 @@ authorization do
       :select_weightages,
       :update_course_weightages
     ]
+    has_permission_on [:batches],:to=>[:batches_ajax]
 
   end
 
@@ -816,7 +817,7 @@ authorization do
   role :add_new_batch do
     has_permission_on [:configuration], :to => [:index]
     has_permission_on [:courses], :to => [:index,:manage_course, :manage_batches,:find_course, :new, :create,:destroy,:edit,:update, :show, :update_batch,:grouped_batches,:create_batch_group,:edit_batch_group,:update_batch_group,:delete_batch_group]
-    has_permission_on [:batches], :to => [:index, :new, :create,:destroy,:edit,:update, :show, :init_data,:assign_tutor,:update_employees,:assign_employee]
+    has_permission_on [:batches], :to => [:index, :new, :create,:destroy,:edit,:update, :show, :init_data,:assign_tutor,:update_employees,:assign_employee,:batches_ajax]
     has_permission_on [:subjects], :to => [:index, :new, :create,:destroy,:edit,:update, :show]
     has_permission_on [:student], :to => [:electives, :assign_students, :unassign_students, :assign_all_students, :unassign_all_students, :profile, :guardians, :show_previous_details]
     has_permission_on [:batch_transfers],
@@ -1969,35 +1970,6 @@ authorization do
       :delete,
       :edit,
       :list_subjects ]
-    #    has_permission_on [:timetable],
-    #      :to => [
-    #      :index,
-    #      :edit,
-    #      :delete_subject,
-    #      :select_class,
-    #      :tt_entry_update,
-    #      :tt_entry_noupdate,
-    #      :update_multiple_timetable_entries,
-    #      :view,
-    #      :update_timetable_view,
-    #      :tt_entry_noupdate2,
-    #      :select_class2,
-    #      :edit2,
-    #      :update_employees,
-    #      :update_multiple_timetable_entries2,
-    #      :delete_employee2,
-    #      :tt_entry_update2,
-    #      :generate,
-    #      :weekdays,
-    #      :extra_class,
-    #      :extra_class_edit,
-    #      :list_employee_by_subject,
-    #      :save_extra_class,
-    #      :timetable,
-    #      :timetable_pdf,
-    #      :work_allotment
-    #
-    #    ]
     has_permission_on [:timetable],
       :to => [:index,
       :new_timetable,
