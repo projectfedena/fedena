@@ -43,7 +43,6 @@ class CceGradeSetsController < ApplicationController
     @grade_set=CceGradeSet.find(params[:id])
     if @grade_set.observation_groups.empty?
       if @grade_set.destroy
-        sdfsdf
         flash[:notice]="Grade set deleted."
       end
     else
