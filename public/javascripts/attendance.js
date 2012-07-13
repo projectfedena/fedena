@@ -154,7 +154,7 @@ function registerBuilder(respjson){
 function makeRow(student){
     var nameTd=nameTdElem.cloneNode(true);
     var rowEl =rowElem.cloneNode(true);
-    rowEl.update(nameTd.update(student.first_name.split(" ").first()));
+    rowEl.update(nameTd.update(student.name));
     dates.each(function(dt){
         rowEl.appendChild(makeCell(student,dt));
     });
