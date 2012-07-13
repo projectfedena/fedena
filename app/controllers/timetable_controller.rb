@@ -36,10 +36,10 @@ class TimetableController < ApplicationController
         @error=true
         @timetable.errors.add_to_base('end_date_overlap')
       end
-#      unless @timetable.start_date>=Date.today
-#        @error=true
-#        @timetable.errors.add_to_base('start_date_is_lower_than_today')
-#      end
+      #      unless @timetable.start_date>=Date.today
+      #        @error=true
+      #        @timetable.errors.add_to_base('start_date_is_lower_than_today')
+      #      end
       if @timetable.start_date > @timetable.end_date
         @error=true
         @timetable.errors.add_to_base('start_date_is_lower_than_end_date')
@@ -286,6 +286,8 @@ class TimetableController < ApplicationController
     if permitted_to? :employee_timetable,:timetables
       @blocked=false
     elsif @current_user.employee_record==@employee
+      @blocked=false
+    elsif @current_user.admin?
       @blocked=false
     end
     unless @blocked
