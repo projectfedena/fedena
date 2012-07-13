@@ -17,7 +17,18 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-
+<%-
+#page breaking implemented page
+#'available_sections' marks beginning of a pdf page, all the contents within a 'section' class beneath -
+#the 'available_section' will be taken to another div with a class 'page' dynamically by the javascript -
+#written in layouts/pdf.html.erb. 'page' has style for page-break-after:auto property which makes sure -
+#content within class 'section' breaks on each page if its the last content and no space left in current page
+#warning: the 'page' div is created directly below html , so style your pdf keeping that in mind.
+#point to note: make an easy guess the length of content a page can hold, and make sure each 'section' will -
+#not exceed the a page size, like we did below for student_additional_fields, we force a new table to be drawn -
+#each time the row count reaches 28, as 28 being the max number of rows an A4 can hold.
+#avoid creating deeper nests, make 'section' simpler.
+-%>
 
 <div id="page-yield" class="available_sections">
   <div class="hor_line"></div>
