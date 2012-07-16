@@ -498,6 +498,7 @@ body > #content_wrapper {
     padding : 0 10px !important;
     text-align : center;
     width : auto !important;
+    min-width: 50px !important;
 }
 #inner-tab-menu ul li a {
     color : #fff;
