@@ -91,7 +91,7 @@
       <% end %>
       <% unless @levels.blank? %>
         <% @levels.each do|level| %>
-          <h4 align="center"><%= level.name %><%= t('students') %></h4>
+          <h4 align="center"><%= level.name %> <%= t('students') %></h4>
           <% unless level.subject_count.nil? %>
             <% scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"s"}) %>
           <% else %>
@@ -195,7 +195,7 @@
                 <% else %>
                   <td><%= t('percentage') %></td>
                 <% end %>
-                <td><%= t('courses_text') %><%= level.name %></td>
+                <td><%= t('courses_text') %> <%= level.name %></td>
               </tr>
               <% ranked_students.each_with_index do|r,ind| %>
                 <tr class="tr-<%= cycle('odd', 'even') %>">
