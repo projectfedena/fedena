@@ -10,7 +10,7 @@
       <% unless @students.empty? %>
         <% unless @designations.blank? %>
           <% @designations.each do|designation| %>
-            <h4 align="center"><%= designation.name %></h4>
+            <h4><%= designation.name %></h4>
             <% designated_students = [] %>
             <% @students.each do|student| %>
               <% marks = GroupedExamReport.find_all_by_student_id_and_score_type(student.id,"c") %>
@@ -81,7 +81,7 @@
         <% end %>
         <% unless @levels.blank? %>
           <% @levels.each do|level| %>
-            <h4 align="center"><%= level.name %> <%= t('students') %></h4>
+            <h4><%= level.name %> <%= t('students') %></h4>
             <% unless level.subject_count.nil? %>
               <% scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"s"}) %>
             <% else %>
