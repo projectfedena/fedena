@@ -126,7 +126,7 @@ table#pdf-table{
     border-bottom: 1px solid #ADACAB;
 }
 
-#pdf-header{
+/*#pdf-header{
     width:1400px;
     padding-top: 30px;
     margin: 0 auto;
@@ -137,9 +137,9 @@ table#pdf-table{
     height: 120px;
     width:120px;
     float: left;
-}
+}*/
 
-.header-content{
+/*.header-content{
     color: #97080e;
     font-weight: bold;
     font-size: 25px;
@@ -147,7 +147,7 @@ table#pdf-table{
     width: 1400px;
     height: 110px;
     text-align: center;
-}
+}*/
 
 #pdf-footer{
     text-align: right;
