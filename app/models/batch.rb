@@ -189,6 +189,285 @@ class Batch < ActiveRecord::Base
     count
   end
 
+  def generate_batch_reports
+    grading_type = self.grading_type
+    students = self.students
+    grouped_exams = self.exam_groups.reject{|e| !GroupedExam.exists?(:batch_id=>self.id, :exam_group_id=>e.id)}
+    unless grouped_exams.empty?
+      subjects = self.subjects(:conditions=>{:is_deleted=>false})
+      unless students.empty?
+        st_scores = GroupedExamReport.find_all_by_student_id_and_batch_id(students,self.id)
+        unless st_scores.empty?
+          st_scores.map{|sc| sc.destroy}
+        end
+        subject_marks=[]
+        exam_marks=[]
+        grouped_exams.each do|exam_group|
+          subjects.each do|subject|
+            exam = Exam.find_by_exam_group_id_and_subject_id(exam_group.id,subject.id)
+            unless exam.nil?
+              students.each do|student|
+                is_assigned_elective = 1
+                unless subject.elective_group_id.nil?
+                  assigned = StudentsSubject.find_by_student_id_and_subject_id(student.id,subject.id)
+                  if assigned.nil?
+                    is_assigned_elective=0
+                  end
+                end
+                unless is_assigned_elective==0
+                  percentage = 0
+                  marks = 0
+                  score = ExamScore.find_by_exam_id_and_student_id(exam.id,student.id)
+                  if grading_type.nil? or grading_type=="0"
+                    unless score.nil? or score.marks.nil?
+                      percentage = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
+                      marks = score.marks.to_f
+                    end
+                  elsif grading_type=="1"
+                    unless score.nil? or score.grading_level_id.nil?
+                      percentage = (score.grading_level.credit_points.to_f)*((exam_group.weightage.to_f)/100)
+                      marks = (score.grading_level.credit_points.to_f) * (subject.credit_hours.to_f)
+                    end
+                  elsif grading_type=="2"
+                    unless score.nil? or score.marks.nil?
+                      percentage = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
+                      marks = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*(subject.credit_hours.to_f)
+                    end
+                  end
+                  flag=0
+                  subject_marks.each do|s|
+                    if s[0]==student.id and s[1]==subject.id
+                      s[2] << percentage.to_f
+                      flag=1
+                    end
+                  end
+
+                  unless flag==1
+                    subject_marks << [student.id,subject.id,[percentage.to_f]]
+                  end
+                  e_flag=0
+                  exam_marks.each do|e|
+                    if e[0]==student.id and e[1]==exam_group.id
+                      e[2] << marks.to_f
+                      if grading_type.nil? or grading_type=="0"
+                        e[3] << exam.maximum_marks.to_f
+                      elsif grading_type=="1" or grading_type=="2"
+                        e[3] << subject.credit_hours.to_f
+                      end
+                      e_flag = 1
+                    end
+                  end
+                  unless e_flag==1
+                    if grading_type.nil? or grading_type=="0"
+                      exam_marks << [student.id,exam_group.id,[marks.to_f],[exam.maximum_marks.to_f]]
+                    elsif grading_type=="1" or grading_type=="2"
+                      exam_marks << [student.id,exam_group.id,[marks.to_f],[subject.credit_hours.to_f]]
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+        subject_marks.each do|subject_mark|
+          student_id = subject_mark[0]
+          subject_id = subject_mark[1]
+          marks = subject_mark[2].sum.to_f
+          prev_marks = GroupedExamReport.find_by_student_id_and_subject_id_and_batch_id_and_score_type(student_id,subject_id,self.id,"s")
+          unless prev_marks.nil?
+            prev_marks.update_attributes(:marks=>marks)
+          else
+            GroupedExamReport.create(:batch_id=>self.id,:student_id=>student_id,:marks=>marks,:score_type=>"s",:subject_id=>subject_id)
+          end
+        end
+        exam_totals = []
+        exam_marks.each do|exam_mark|
+          student_id = exam_mark[0]
+          exam_group = ExamGroup.find(exam_mark[1])
+          score = exam_mark[2].sum
+          max_marks = exam_mark[3].sum
+          tot_score = 0
+          percent = 0
+          unless max_marks.to_f==0
+            if grading_type.nil? or grading_type=="0"
+              tot_score = (((score.to_f)/max_marks.to_f)*100)
+              percent = (((score.to_f)/max_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
+            elsif grading_type=="1" or grading_type=="2"
+              tot_score = ((score.to_f)/max_marks.to_f)
+              percent = ((score.to_f)/max_marks.to_f)*((exam_group.weightage.to_f)/100)
+            end
+          end
+          prev_exam_score = GroupedExamReport.find_by_student_id_and_exam_group_id_and_score_type(student_id,exam_group.id,"e")
+          unless prev_exam_score.nil?
+            prev_exam_score.update_attributes(:marks=>tot_score)
+          else
+            GroupedExamReport.create(:batch_id=>self.id,:student_id=>student_id,:marks=>tot_score,:score_type=>"e",:exam_group_id=>exam_group.id)
+          end
+          exam_flag=0
+          exam_totals.each do|total|
+            if total[0]==student_id
+              total[1] << percent.to_f
+              exam_flag=1
+            end
+          end
+          unless exam_flag==1
+            exam_totals << [student_id,[percent.to_f]]
+          end
+        end
+        exam_totals.each do|exam_total|
+          student_id=exam_total[0]
+          total=exam_total[1].sum.to_f
+          prev_total_score = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(student_id,self.id,"c")
+          unless prev_total_score.nil?
+            prev_total_score.update_attributes(:marks=>total)
+          else
+            GroupedExamReport.create(:batch_id=>self.id,:student_id=>student_id,:marks=>total,:score_type=>"c")
+          end
+        end
+      end
+    end
+  end
+
+  def generate_previous_batch_reports
+    grading_type = self.grading_type
+    students=[]
+    batch_students= BatchStudent.find_all_by_batch_id(self.id)
+    batch_students.each do|bs|
+      stu = Student.find_by_id(bs.student_id)
+      students.push stu unless stu.nil?
+    end
+    grouped_exams = self.exam_groups.reject{|e| !GroupedExam.exists?(:batch_id=>self.id, :exam_group_id=>e.id)}
+    unless grouped_exams.empty?
+      subjects = self.subjects(:conditions=>{:is_deleted=>false})
+      unless students.empty?
+        st_scores = GroupedExamReport.find_all_by_student_id_and_batch_id(students,self.id)
+        unless st_scores.empty?
+          st_scores.map{|sc| sc.destroy}
+        end
+        subject_marks=[]
+        exam_marks=[]
+        grouped_exams.each do|exam_group|
+          subjects.each do|subject|
+            exam = Exam.find_by_exam_group_id_and_subject_id(exam_group.id,subject.id)
+            unless exam.nil?
+              students.each do|student|
+                is_assigned_elective = 1
+                unless subject.elective_group_id.nil?
+                  assigned = StudentsSubject.find_by_student_id_and_subject_id(student.id,subject.id)
+                  if assigned.nil?
+                    is_assigned_elective=0
+                  end
+                end
+                unless is_assigned_elective==0
+                  percentage = 0
+                  marks = 0
+                  score = ExamScore.find_by_exam_id_and_student_id(exam.id,student.id)
+                  if grading_type.nil? or grading_type=="0"
+                    unless score.nil? or score.marks.nil?
+                      percentage = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
+                      marks = score.marks.to_f
+                    end
+                  elsif grading_type=="1"
+                    unless score.nil? or score.grading_level_id.nil?
+                      percentage = (score.grading_level.credit_points.to_f)*((exam_group.weightage.to_f)/100)
+                      marks = (score.grading_level.credit_points.to_f) * (subject.credit_hours.to_f)
+                    end
+                  elsif grading_type=="2"
+                    unless score.nil? or score.marks.nil?
+                      percentage = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
+                      marks = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*(subject.credit_hours.to_f)
+                    end
+                  end
+                  flag=0
+                  subject_marks.each do|s|
+                    if s[0]==student.id and s[1]==subject.id
+                      s[2] << percentage.to_f
+                      flag=1
+                    end
+                  end
+
+                  unless flag==1
+                    subject_marks << [student.id,subject.id,[percentage.to_f]]
+                  end
+                  e_flag=0
+                  exam_marks.each do|e|
+                    if e[0]==student.id and e[1]==exam_group.id
+                      e[2] << marks.to_f
+                      if grading_type.nil? or grading_type=="0"
+                        e[3] << exam.maximum_marks.to_f
+                      elsif grading_type=="1" or grading_type=="2"
+                        e[3] << subject.credit_hours.to_f
+                      end
+                      e_flag = 1
+                    end
+                  end
+                  unless e_flag==1
+                    if grading_type.nil? or grading_type=="0"
+                      exam_marks << [student.id,exam_group.id,[marks.to_f],[exam.maximum_marks.to_f]]
+                    elsif grading_type=="1" or grading_type=="2"
+                      exam_marks << [student.id,exam_group.id,[marks.to_f],[subject.credit_hours.to_f]]
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+        subject_marks.each do|subject_mark|
+          student_id = subject_mark[0]
+          subject_id = subject_mark[1]
+          marks = subject_mark[2].sum.to_f
+          prev_marks = GroupedExamReport.find_by_student_id_and_subject_id_and_batch_id_and_score_type(student_id,subject_id,self.id,"s")
+          unless prev_marks.nil?
+            prev_marks.update_attributes(:marks=>marks)
+          else
+            GroupedExamReport.create(:batch_id=>self.id,:student_id=>student_id,:marks=>marks,:score_type=>"s",:subject_id=>subject_id)
+          end
+        end
+        exam_totals = []
+        exam_marks.each do|exam_mark|
+          student_id = exam_mark[0]
+          exam_group = ExamGroup.find(exam_mark[1])
+          score = exam_mark[2].sum
+          max_marks = exam_mark[3].sum
+          if grading_type.nil? or grading_type=="0"
+            tot_score = (((score.to_f)/max_marks.to_f)*100)
+            percent = (((score.to_f)/max_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
+          elsif grading_type=="1" or grading_type=="2"
+            tot_score = ((score.to_f)/max_marks.to_f)
+            percent = ((score.to_f)/max_marks.to_f)*((exam_group.weightage.to_f)/100)
+          end
+          prev_exam_score = GroupedExamReport.find_by_student_id_and_exam_group_id_and_score_type(student_id,exam_group.id,"e")
+          unless prev_exam_score.nil?
+            prev_exam_score.update_attributes(:marks=>tot_score)
+          else
+            GroupedExamReport.create(:batch_id=>self.id,:student_id=>student_id,:marks=>tot_score,:score_type=>"e",:exam_group_id=>exam_group.id)
+          end
+          exam_flag=0
+          exam_totals.each do|total|
+            if total[0]==student_id
+              total[1] << percent.to_f
+              exam_flag=1
+            end
+          end
+          unless exam_flag==1
+            exam_totals << [student_id,[percent.to_f]]
+          end
+        end
+        exam_totals.each do|exam_total|
+          student_id=exam_total[0]
+          total=exam_total[1].sum.to_f
+          prev_total_score = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(student_id,self.id,"c")
+          unless prev_total_score.nil?
+            prev_total_score.update_attributes(:marks=>total)
+          else
+            GroupedExamReport.create(:batch_id=>self.id,:student_id=>student_id,:marks=>total,:score_type=>"c")
+          end
+        end
+      end
+    end
+  end
+
   
 
   def subject_hours(starting_date,ending_date,subject_id)
