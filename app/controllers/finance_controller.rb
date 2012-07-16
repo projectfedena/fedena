@@ -1166,7 +1166,7 @@ class FinanceController < ApplicationController
   def fee_collection_create
     @user = current_user
     @fee_categories = FinanceFeeCategory.common_active
-    fee_category_name = params[:finance_fee_collection][:fee_category_id]
+    fee_category_name = params[:finance_fee_collection][:fee_category_id] unless params[:finance_fee_collection].nil?
     category =[]
     unless params[:fee_collection].nil?
       category = params[:fee_collection][:category_ids]
