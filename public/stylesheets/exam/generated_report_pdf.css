@@ -78,6 +78,7 @@ tr.odd{
     border-top: 1px solid #ADACAB;
     border-left: 1px solid #ADACAB;
     border-right: 1px solid #ADACAB;
+    border-bottom: 1px solid #ADACAB;
     color: #97080e;
     background: #EEEEEE;
 }
