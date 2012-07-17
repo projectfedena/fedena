@@ -152,4 +152,6 @@
     <% end %>
   </div>
 <% end %>
+<%= link_to " ► #{t('pdf_report')}",
+    { :action => "generated_report4_pdf", :batch_id => @batch.id, :student=>@student.id, :type=> @type},:target => '_blank', :class=> 'user_button' %>
 <div class="extender"></div>

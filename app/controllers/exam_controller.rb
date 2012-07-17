@@ -1057,7 +1057,6 @@ class ExamController < ApplicationController
 
   end
   def generated_report4_pdf
-
     #grouped-exam-report-for-batch
     if params[:student].nil?
       @type = params[:type]
@@ -1108,12 +1107,28 @@ class ExamController < ApplicationController
       subject_ids = exams.collect(&:subject_id)
       @subjects.reject!{|sub| !(subject_ids.include?(sub.id))}
     end
-    render :pdf => 'generated_report_pdf',
+    render :pdf => 'generated_report4_pdf',
       :orientation => 'Landscape'
     #    respond_to do |format|
     #      format.pdf { render :layout => false }
     #    end
 
+  end
+
+  def combined_grouped_exam_report_pdf
+    @type = params[:type]
+    @batch = Batch.find(params[:batch])
+    @students = @batch.students
+    if @type == 'grouped'
+      @grouped_exams = GroupedExam.find_all_by_batch_id(@batch.id)
+      @exam_groups = []
+      @grouped_exams.each do |x|
+        @exam_groups.push ExamGroup.find(x.exam_group_id)
+      end
+    else
+      @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
+    end
+    render :pdf => 'combined_grouped_exam_report_pdf'
   end
 
   def previous_years_marks_overview
