@@ -109,15 +109,21 @@
         <% end %>
 
         <% unless @financefee.transaction_id.nil? %>
-          <% @trans = FinanceTransaction.find(@financefee.transaction_id) %>
-          <% if @trans.fine_included %>
-            <tr class="<%= cycle((["odd","even"]-[c]).first,c) %>">
-              <td class="col-pdf1"></td>
-              <td class="col-pdf2"><span><%= t('fine') %></span></td>
-              <td class="col-pdf3"></td>
-              <td class="col-pdf4">&nbsp;<%= @currency_type.to_s + " " +(@trans.fine_amount.to_f).to_s %></td>
-            </tr>
-            <%  total_fees = total_fees+@trans.fine_amount.to_f %>
+
+          <% @transactions = FinanceTransaction.all(:conditions=>"id IN (#{@financefee.transaction_id})") %>
+
+          <% unless @transactions.blank? %>
+            <% @transactions.each do |trans| %>
+              <% if trans.fine_included %>
+                <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+                  <td class="col-1"><%= i+=1 %></td>
+                  <td class="col-2"><span><%= t('fine_on') %> <%= trans.transaction_date %></span></td>
+                  <td class="col-3"></td>
+                  <td class="col-4">&nbsp;<%= @currency_type.to_s + " " +(trans.fine_amount.to_f).to_s %></td>
+                </tr>
+                <% total_fees += trans.fine_amount.to_f %>
+              <% end %>
+            <% end %>
           <% end %>
           <% unless @paid_fees.nil? %>
             <tr class="tr-blank"></tr>
