@@ -5,11 +5,17 @@ class ClassDesignation < ActiveRecord::Base
 
   belongs_to :course
 
- def has_gpa
+  def has_gpa
     self.course.grading_type=="1"
   end
 
   def has_cwa
     self.course.grading_type=="2" or self.course.grading_type=="0" or self.course.grading_type.nil?
+  end
+
+  HUMANIZED_COLUMNS = {:cgpa => "CGPA"}
+
+  def self.human_attribute_name(attribute)
+    HUMANIZED_COLUMNS[attribute.to_sym] || super
   end
 end
