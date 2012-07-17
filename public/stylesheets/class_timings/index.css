@@ -170,3 +170,7 @@ table#class-timings-list td.col-6{
 .time-select-field select {
     visibility: visible !important;
 }
+#MB_frame .label-field-pair select
+{
+    width: 87px !important;
+}
