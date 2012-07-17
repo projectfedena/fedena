@@ -108,13 +108,16 @@
               </tr>
             </table>
           <% else %>
+            <% all_exams = @exam_groups.reject{|ex| ex.exam_type == "Grades"} %>
             <table id="pdf-table" width="100%" cellspacing="0">
               <tr class="table-header">
                 <td><%= t('subject') %></td>
                 <% @exam_groups.each do |exam_group| %>
                   <td><%= exam_group.name %></td>
                 <% end %>
-                <td><%= t('total') %></td>
+                <% unless all_exams.empty? %>
+                  <td><%= t('total') %></td>
+                <% end %>
               </tr>
               <% c ='even' %>
               <% @subjects.each do |subject| %>
@@ -141,10 +144,12 @@
                     <% end %>
                   </td>
                   <% total_score = ExamScore.new() %>
-                  <% if @mmg == @g %>
-                    <td class="col-pdf"><%= total_score.grouped_exam_subject_total(subject,student,@type) %></td>
-                  <% else %>
-                    <td class="col-pdf">-</td>
+                  <% unless all_exams.empty? %>
+                    <% if @mmg == @g %>
+                      <td class="col-pdf"><%= total_score.grouped_exam_subject_total(subject,student,@type) %></td>
+                    <% else %>
+                      <td class="col-pdf">-</td>
+                    <% end %>
                   <% end %>
                 </tr>
 
@@ -167,7 +172,9 @@
                     <% @marks_total = @marks_total + exam_group.total_marks(student)[0] %>
                   <% end %>
                 <% end %>
-                <td></td>
+                <% unless all_exams.empty? %>
+                  <td></td>
+                <% end %>
               </tr>
             </table>
           <% end %>
