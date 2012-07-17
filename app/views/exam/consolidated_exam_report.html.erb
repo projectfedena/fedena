@@ -55,7 +55,9 @@
             <% @exam_group.exams.each do |exam| %>
               <td><%= exam.subject.code %><%= "(" + exam.maximum_marks.to_s + ")"  unless exam.maximum_marks.nil? %></td>
             <% end %>
-            <td><%= t('percentage') %>(%)</td>
+            <% unless @exam_group.exam_type == "Grades" %>
+              <td><%= t('percentage') %>(%)</td>
+            <% end %>
           <% end %>
         </tr>
         <% @exam_group.batch.students.each do |student|%>
@@ -108,9 +110,10 @@
                   <td class="col-3"><%= exam_score.nil? ? '-' : exam_score.grading_level || "-" %></td>
                 <% end %>
               <% end %>
-
-              <td class="col-4"><% percentage = total_marks*100/total_max_marks.to_f unless total_max_marks == 0%>
-                <%= "%.2f" %percentage unless total_max_marks == 0 %></td>
+              <% unless @exam_group.exam_type == "Grades" %>
+                <td class="col-4"><% percentage = total_marks*100/total_max_marks.to_f unless total_max_marks == 0%>
+                  <%= "%.2f" %percentage unless total_max_marks == 0 %></td>
+              <% end %>
             </tr>
           <% end %>
         <% end %>
