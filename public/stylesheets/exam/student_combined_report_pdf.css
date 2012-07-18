@@ -99,7 +99,7 @@ tr.odd{
 }
 table#pdf-table{
     border: 1px solid #ADACAB;
-    border-collapse:collapse
+    border-collapse:collapse;
 }
 /*.header-content{
     color: #97080e;
@@ -145,4 +145,9 @@ table#pdf-table{
     height: 240px;
     border: 1px solid #fff;
     border-bottom: 1px solid #ADACAB;
+}
+.page {
+    width:800px;
+    margin: 0 auto;
+    overflow: hidden;
 }

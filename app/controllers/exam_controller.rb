@@ -942,7 +942,7 @@ class ExamController < ApplicationController
     unless params[:levels].blank?
       @levels = RankingLevel.find_all_by_id(params[:levels])
     end
-    render :pdf=>"student_combined_report_pdf"
+    render :pdf=>"student_combined_report_pdf"#, :show_as_html=>true
   end
 
 
