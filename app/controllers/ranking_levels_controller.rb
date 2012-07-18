@@ -104,6 +104,18 @@ class RankingLevelsController < ApplicationController
     end
   end
 
+  def ranking_level_cancel
+    @course = Course.find(params[:course_id])
+    @ranking_levels = RankingLevel.find(:all,:conditions=>{:course_id=>@course.id},:order=>"priority ASC")
+    @ranking_level = RankingLevel.new
+    render(:update) do|page|
+      page.replace_html "category-list", :partial=>"ranking_levels"
+      page.replace_html 'flash', :text=>""
+      page.replace_html 'errors', :text=>""
+      page.replace_html 'rank_form', :partial=>"rank_form"
+    end
+  end
+
   def change_priority
     @ranking_level = RankingLevel.find(params[:id])
     @course = @ranking_level.course

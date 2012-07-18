@@ -163,6 +163,7 @@ authorization do
       :edit_ranking_level,
       :update_ranking_level,
       :delete_ranking_level,
+      :ranking_level_cancel,
       :change_priority
     ]
     has_permission_on [:class_designations],
@@ -1480,6 +1481,7 @@ authorization do
       :edit_ranking_level,
       :update_ranking_level,
       :delete_ranking_level,
+      :ranking_level_cancel,
       :change_priority
     ]
     has_permission_on [:class_designations],

@@ -39,6 +39,8 @@
 
       <div id="submit-button">
         <%=submit_tag("► #{t('create_text')}") %>
+        <%= link_to_remote " ► Cancel",
+ :url=>{ :action => "ranking_level_cancel", :course_id=>@course.id},:html=>{ :class=> 'user_button'} %>
       </div>
 
 
