@@ -146,3 +146,8 @@ table#pdf-table{
     border: 1px solid #fff;
     border-bottom: 1px solid #ADACAB;
 }
+.page {
+    width:800px;
+    margin: 0 auto;
+    overflow: hidden;
+}

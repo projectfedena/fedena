@@ -94,7 +94,7 @@
         <% end %>
       </div>
     <% else %>
-      <h4><%= @ranking_level.name %><%= t('students') %> : <%= @course.full_name %></h4>
+      <h4><%= @ranking_level.name %> <%= t('students') %> : <%= @course.full_name %></h4>
       <div id="score-table">
         <% unless @scores.empty? %>
           <% unless @ranking_level.subject_count.nil? %>
