@@ -95,7 +95,7 @@
       </div>
     <% else %>
       <div id ="main_info">
-        <h3 align="center"><%= @ranking_level.name %><%= t('students') %></h3>
+        <h3 align="center"><%= @ranking_level.name %> <%= t('students') %></h3>
         <h4 align="center"><%= @course.full_name %></h4>
       </div>
       <div id="pdf-info">
@@ -169,6 +169,7 @@
           <% end %>
           <% unless ranked_students.empty? %>
             <% c = 'even' %>
+            <% i=0 %>
             <table id="pdf-table" width="100%" cellspacing="0">
               <tr class="table-header">
                 <td><%= t('sl_no') %></td>
@@ -179,8 +180,20 @@
                   <td><%= "#{@ranking_level.name} #{t('batch')}" %></td>
                 <% end %>
               </tr>
-              <tr class="tr-blank"></tr>
               <% ranked_students.each_with_index do |s,i| %>
+                <% if i==23 %>
+                  <tr class="page-break"><td colspan="3"></td></tr>
+                  <tr class="table-header">
+                    <td><%= t('sl_no') %></td>
+                    <td><%= t('adm_no') %></td>
+                    <td><%= t('name') %></td>
+                    <td><%= t('batch') %></td>
+                    <% unless @ranking_level.full_course==true %>
+                      <td><%= "#{@ranking_level.name} #{t('batch')}" %></td>
+                    <% end %>
+                  </tr>
+                  <%i=0%>
+                <% end %>
                 <% stu = Student.find(s[0]) %>
                 <% batch = Batch.find(s[1]) %>
                 <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
@@ -192,6 +205,7 @@
                     <td class="col-2"><%= batch.full_name %></td>
                   <% end %>
                 </tr>
+                <% i=i+1 %>
               <% end %>
             </table>
           <% else %>
