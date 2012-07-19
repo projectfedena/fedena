@@ -1,0 +1,28 @@
+.forgot_password_link{
+    margin-top: 38px;
+    overflow: hidden;
+    padding: 0 !important;
+    width: 350px !important;
+}
+.forgot_password_link a{
+    color: #b00;
+    text-decoration: none;
+}
+.forgot_password_link a:hover{
+    text-decoration: underline;
+}
+#login_area_bg{
+    height: 400px !important;
+}
+#notice {
+    margin: 0 !important;
+    width: 502px !important;
+}
+#notice-box {
+    margin: 20px 52px !important;
+    overflow: hidden;
+    width: 510px !important;
+}
+#submit_area input {
+    margin-top: 0 !important;
+}

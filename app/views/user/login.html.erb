@@ -38,27 +38,27 @@
           <%= form.password_field :password %>
         </div>
 
-        <div id="checkbox_area">
-          <input type="checkbox" id="remember" />
-          <label for="remember"><%= t('remember_me') %></label>
+        <div id="notice-box">
+          <% if !flash.empty? %>
+            <div id="notice"><%= flash[:notice] %></div>
+          <% end %>
         </div>
 
         <div id="submit_area">
           <%= submit_tag t('login'), :class => "submit" %>
         </div>
 
+        <label for="forgot_password" class="forgot_password_link">
+          <%= link_to t('forgot_password'),
+            :controller => "user",
+            :action => "forgot_password" %>
+        </label>
 
-        <% if !flash.empty? %>
-          <div id="notice"><%= flash[:notice] %></div>
-        <% end %>
 
       </div>
     </div>
   <% end %>
   <div id="help_forgot_pw">
-    <%= link_to t('forgot_password'),
-      :controller => "user",
-      :action => "forgot_password" %>
 
   </div>
   <div class="clearfooter"></div>

@@ -1290,7 +1290,7 @@ en: # locale
   campus_news: "Campus News"
   reminders: "Reminders"
   remember_me: "Remember me"
-  forgot_password: "Help! I've Forgotten my Password?"
+  forgot_password: "Forgot Password?"
   login: "Login"
   enter_email: "Enter your username"
   contact_admin: "Contact Fedena Administrator to recover your password"
