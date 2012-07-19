@@ -9,10 +9,10 @@ class RankingLevel < ActiveRecord::Base
   LIMIT_TYPES = %w(upper lower exact)
 
   def has_gpa
-    self.course.grading_type=="1"
+    self.course.gpa_enabled?
   end
 
   def has_cwa
-    self.course.grading_type=="2" or self.course.grading_type=="0" or self.course.grading_type.nil?
+    self.course.cwa_enabled? or self.course.normal_enabled?
   end
 end

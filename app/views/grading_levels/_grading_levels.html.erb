@@ -22,7 +22,7 @@
 
 </div>
 <% if @batch.present?
-  @credit = @batch.grading_type=="1" || @batch.cce_enabled?
+  @credit = @batch.gpa_enabled? || @batch.cce_enabled?
 else
   @credit = Configuration.cce_enabled? || Configuration.get_config_value('CWA')=='1' || Configuration.get_config_value('GPA')=='1'
 end %>

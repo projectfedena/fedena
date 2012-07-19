@@ -19,7 +19,7 @@
                 <% unless marks.empty? %>
                   <% total = marks.map{|m| m.marks} %>
                   <% avg = (total.sum.to_f)/(total.count.to_f) %>
-                  <% if @batch.grading_type=="1" %>
+                  <% if @batch.gpa_enabled? %>
                     <% classes = ClassDesignation.find(:all,:conditions=>["cgpa <= ? AND course_id = ?",avg,student.batch.course_id],:order=>"cgpa DESC") %>
                   <% else %>
                     <% classes = ClassDesignation.find(:all,:conditions=>["marks <= ? AND course_id = ?",avg,student.batch.course_id],:order=>"marks DESC") %>
@@ -38,9 +38,9 @@
                     <td><%= t('sl_no') %></td>
                     <td><%= t('adm_no') %></td>
                     <td><%= t('name') %></td>
-                    <% if @batch.grading_type == "2" %>
+                    <% if @batch.cwa_enabled? %>
                       <td><%= t('cwa') %></td>
-                    <% elsif @batch.grading_type == "1" %>
+                    <% elsif @batch.gpa_enabled? %>
                       <td><%= t('cgpa') %></td>
                     <% else %>
                       <td><%= t('percentage') %></td>
@@ -54,9 +54,9 @@
                         <td><%= t('sl_no') %></td>
                         <td><%= t('adm_no') %></td>
                         <td><%= t('name') %></td>
-                        <% if @batch.grading_type == "2" %>
+                        <% if @batch.cwa_enabled? %>
                           <td><%= t('cwa') %></td>
-                        <% elsif @batch.grading_type == "1" %>
+                        <% elsif @batch.gpa_enabled? %>
                           <td><%= t('cgpa') %></td>
                         <% else %>
                           <td><%= t('percentage') %></td>
@@ -92,11 +92,11 @@
                 <% scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>@students.collect(&:id),:score_type=>"c"}) %>
               <% end %>
               <% if level.marks_limit_type=="upper" %>
-                <% scores.reject!{|s| !(((s.marks < level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks < level.marks unless level.marks.nil?))} %>
+                <% scores.reject!{|s| !(((s.marks < level.gpa unless level.gpa.nil?) if s.student.batch.gpa_enabled?) or (s.marks < level.marks unless level.marks.nil?))} %>
               <% elsif level.marks_limit_type=="exact" %>
-                <% scores.reject!{|s| !(((s.marks == level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks == level.marks unless level.marks.nil?))} %>
+                <% scores.reject!{|s| !(((s.marks == level.gpa unless level.gpa.nil?) if s.student.batch.gpa_enabled?) or (s.marks == level.marks unless level.marks.nil?))} %>
               <% else %>
-                <% scores.reject!{|s| !(((s.marks >= level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks >= level.marks unless level.marks.nil?))} %>
+                <% scores.reject!{|s| !(((s.marks >= level.gpa unless level.gpa.nil?) if s.student.batch.gpa_enabled?) or (s.marks >= level.marks unless level.marks.nil?))} %>
               <% end %>
               <% ranked_students =[] %>
               <% unless scores.empty? %>
@@ -183,9 +183,9 @@
                     <td><%= t('sl_no') %></td>
                     <td><%= t('adm_no') %></td>
                     <td><%= t('name') %></td>
-                    <% if @batch.grading_type == "2" %>
+                    <% if @batch.cwa_enabled? %>
                       <td><%= t('cwa') %></td>
-                    <% elsif @batch.grading_type == "1" %>
+                    <% elsif @batch.gpa_enabled? %>
                       <td><%= t('cgpa') %></td>
                     <% else %>
                       <td><%= t('percentage') %></td>
@@ -202,9 +202,9 @@
                         <td><%= t('sl_no') %></td>
                         <td><%= t('adm_no') %></td>
                         <td><%= t('name') %></td>
-                        <% if @batch.grading_type == "2" %>
+                        <% if @batch.cwa_enabled? %>
                           <td><%= t('cwa') %></td>
-                        <% elsif @batch.grading_type == "1" %>
+                        <% elsif @batch.gpa_enabled? %>
                           <td><%= t('cgpa') %></td>
                         <% else %>
                           <td><%= t('percentage') %></td>

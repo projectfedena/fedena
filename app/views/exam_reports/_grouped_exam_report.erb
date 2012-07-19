@@ -18,7 +18,7 @@
     <table id="listing" width="100%">
       <tr class="tr-head">
         <td><%= t('subject') %></td>
-        <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
+        <% if @batch.gpa_enabled? or @batch.cwa_enabled? %>
           <td><%= t('credit') %></td>
         <% end %>
         <% @exam_groups.each do |exam_group| %>
@@ -29,7 +29,7 @@
       <% @subjects.each do |subject| %>
         <tr class="tr-<%= cycle('odd', 'even') %>">
           <td class="col-2" ><%= subject.name %></td>
-          <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
+          <% if @batch.gpa_enabled? or @batch.cwa_enabled? %>
             <td class="col-3"><%= subject.credit_hours.present? ? subject.credit_hours : "-" %></td>
           <% end %>
           <% @exam_groups.each do |exam_group| %>
@@ -37,9 +37,9 @@
             <% @exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id) %>
             <% exam_score = ExamScore.find_by_student_id(@student.id, :conditions=>{:exam_id=>@exam.id})unless @exam.nil? %>
             <td class="col-3">
-              <% if @batch.grading_type=="1" %>
+              <% if @batch.gpa_enabled? %>
                 <%= exam_score.present? ? "#{exam_score.grading_level || "-"}"+" ["+"#{exam_score.grading_level.present? ? (exam_score.grading_level.credit_points || "-") : "-"}"+"]" : "-" %>
-              <% elsif @batch.grading_type=="2" %>
+              <% elsif @batch.cwa_enabled? %>
                 <%= exam_score.present? ? "#{exam_score.marks.present? ? ("%.2f" %((exam_score.marks.to_f/@exam.maximum_marks.to_f)*100)) : "-"}"+" ["+"#{exam_score.grading_level.present? ? exam_score.grading_level : "-"}"+"]" : "-" %>
               <% else %>
                 <% if exam_group.exam_type == "MarksAndGrades" %>
@@ -58,9 +58,9 @@
       <% end %>
       <tr class="tr-blank"></tr>
       <tr class="tr-head">
-        <% if @batch.grading_type=="1" %>
+        <% if @batch.gpa_enabled? %>
           <td colspan="2" align="right"><%= t('gpa') %></td>
-        <% elsif @batch.grading_type=="2" %>
+        <% elsif @batch.cwa_enabled? %>
           <td colspan="2" align="right"><%= t('weighted_average') %></td>
         <% else %>
           <td align="right"><%= t('percentage') %></td>

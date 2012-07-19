@@ -63,7 +63,7 @@
             <% end  %>
             <div class="text-input-bg"><%= form.text_field :name, :value=>@ename%></div>
           </div>
-          <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
+          <% if @batch.gpa_enabled? or @batch.cwa_enabled? %>
             <div class="label-field-pair">
               <label for="exam_type"><%= t('exam_type') %></label>
               <div class="text-input-bg"><%= select :exam_option,:exam_type,[[t('marks_and_grades'),"MarksAndGrades"]] %></div>

@@ -68,6 +68,18 @@ class Course < ActiveRecord::Base
   def cce_enabled?
     Configuration.cce_enabled? and grading_type == "3"
   end
+
+  def gpa_enabled?
+    Configuration.has_gpa? and self.grading_type=="1"
+  end
+
+  def cwa_enabled?
+    Configuration.has_cwa? and self.grading_type=="2"
+  end
+
+  def normal_enabled?
+    self.grading_type.nil? or self.grading_type=="0"
+  end
   #  def guardian_email_list
   #    email_addresses = []
   #    students = self.students

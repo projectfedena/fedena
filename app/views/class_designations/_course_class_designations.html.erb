@@ -6,7 +6,7 @@
         <label for="name"><%= t('name') %></label>
         <div class="text-input-bg"><%= c.text_field :name %></div>
       </div>
-      <% if @course.grading_type=="1" %>
+      <% if @course.gpa_enabled? %>
         <div class="label-field-pair">
           <label for="gpa"><%= t('cgpa') %></label>
           <div class="text-input-bg"><%= c.text_field :cgpa %></div>

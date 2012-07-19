@@ -44,7 +44,7 @@
       <div class="label-container"><label><%= t('max_weekly_class') %></label></div>
       <div class="input-container"> <%= f.text_field :max_weekly_classes %></div>
     </div>
-    <% if @batch and (@batch.grading_type=="2" or @batch.grading_type=="1") %>
+    <% if @batch and (@batch.cwa_enabled? or @batch.gpa_enabled?) %>
       <div class="label-field-pair">
         <div class="label-container"><label>Credit Hours</label></div>
         <div class="input-container"> <%= f.text_field :credit_hours %></div>

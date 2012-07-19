@@ -43,7 +43,7 @@
     <% @exams.each do |exam| %>
       <% exam_score.push exam.exam_scores.find_by_student_id(@student.id) unless exam.exam_scores.find_by_student_id(@student.id).nil?  %>
     <% end %>
-    <% if @batch.grading_type=="2" %>
+    <% if @batch.cwa_enabled? %>
       <% total_credits=0 %>
       <% total_weighted_marks=0 %>
       <div id="score-table">
@@ -89,7 +89,7 @@
           -
         <% end %>
       </h5>
-    <% elsif @batch.grading_type=="1" %>
+    <% elsif @batch.gpa_enabled? %>
       <% total_credit_points=0 %>
       <% total_credit_hours=0 %>
       <div id="score-table">
@@ -197,7 +197,7 @@
         <% end %>
       </div>
     <% end %>
-    <% unless @batch.grading_type=="1" %>
+    <% unless @batch.gpa_enabled? %>
       <% if @exam_group.exam_type == 'Marks' or @exam_group.exam_type == 'MarksAndGrades' %>
         <script type="text/javascript" src="/javascripts/swfobject.js"></script>
         <%= @graph %>

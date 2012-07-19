@@ -28,7 +28,7 @@ class GradingLevelsController < ApplicationController
     @grading_level = GradingLevel.new
     @batch = Batch.find params[:id] if request.xhr? and params[:id]
     if @batch.present?
-      @credit = @batch.grading_type=="1" || @batch.cce_enabled?
+      @credit = @batch.gpa_enabled? || @batch.cce_enabled?
     else
       @credit = Configuration.cce_enabled? || Configuration.get_config_value('CWA')=='1' || Configuration.get_config_value('GPA')=='1'
     end
@@ -60,7 +60,7 @@ class GradingLevelsController < ApplicationController
     @grading_level = GradingLevel.find params[:id]
     @batch = Batch.find(@grading_level.batch_id) unless @grading_level.batch_id.nil?
     if @batch.present?
-      @credit = @batch.grading_type=="1" || @batch.cce_enabled?
+      @credit = @batch.gpa_enabled? || @batch.cce_enabled?
     else
       @credit = Configuration.get_config_value('CCE')=='1' || Configuration.get_config_value('CWA')=='1' || Configuration.get_config_value('GPA')=='1'
     end

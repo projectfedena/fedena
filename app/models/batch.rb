@@ -189,6 +189,18 @@ class Batch < ActiveRecord::Base
     count
   end
 
+  def gpa_enabled?
+    Configuration.has_gpa? and self.grading_type=="1"
+  end
+
+  def cwa_enabled?
+    Configuration.has_cwa? and self.grading_type=="2"
+  end
+
+  def normal_enabled?
+    self.grading_type.nil? or self.grading_type=="0"
+  end
+
   def generate_batch_reports
     grading_type = self.grading_type
     students = self.students
@@ -218,17 +230,17 @@ class Batch < ActiveRecord::Base
                   percentage = 0
                   marks = 0
                   score = ExamScore.find_by_exam_id_and_student_id(exam.id,student.id)
-                  if grading_type.nil? or grading_type=="0"
+                  if grading_type.nil? or self.normal_enabled?
                     unless score.nil? or score.marks.nil?
                       percentage = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
                       marks = score.marks.to_f
                     end
-                  elsif grading_type=="1"
+                  elsif self.gpa_enabled?
                     unless score.nil? or score.grading_level_id.nil?
                       percentage = (score.grading_level.credit_points.to_f)*((exam_group.weightage.to_f)/100)
                       marks = (score.grading_level.credit_points.to_f) * (subject.credit_hours.to_f)
                     end
-                  elsif grading_type=="2"
+                  elsif self.cwa_enabled?
                     unless score.nil? or score.marks.nil?
                       percentage = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
                       marks = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*(subject.credit_hours.to_f)
@@ -249,18 +261,18 @@ class Batch < ActiveRecord::Base
                   exam_marks.each do|e|
                     if e[0]==student.id and e[1]==exam_group.id
                       e[2] << marks.to_f
-                      if grading_type.nil? or grading_type=="0"
+                      if grading_type.nil? or self.normal_enabled?
                         e[3] << exam.maximum_marks.to_f
-                      elsif grading_type=="1" or grading_type=="2"
+                      elsif self.gpa_enabled? or self.cwa_enabled?
                         e[3] << subject.credit_hours.to_f
                       end
                       e_flag = 1
                     end
                   end
                   unless e_flag==1
-                    if grading_type.nil? or grading_type=="0"
+                    if grading_type.nil? or self.normal_enabled?
                       exam_marks << [student.id,exam_group.id,[marks.to_f],[exam.maximum_marks.to_f]]
-                    elsif grading_type=="1" or grading_type=="2"
+                    elsif self.gpa_enabled? or self.cwa_enabled?
                       exam_marks << [student.id,exam_group.id,[marks.to_f],[subject.credit_hours.to_f]]
                     end
                   end
@@ -289,10 +301,10 @@ class Batch < ActiveRecord::Base
           tot_score = 0
           percent = 0
           unless max_marks.to_f==0
-            if grading_type.nil? or grading_type=="0"
+            if grading_type.nil? or self.normal_enabled?
               tot_score = (((score.to_f)/max_marks.to_f)*100)
               percent = (((score.to_f)/max_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
-            elsif grading_type=="1" or grading_type=="2"
+            elsif self.gpa_enabled? or self.cwa_enabled?
               tot_score = ((score.to_f)/max_marks.to_f)
               percent = ((score.to_f)/max_marks.to_f)*((exam_group.weightage.to_f)/100)
             end
@@ -362,17 +374,17 @@ class Batch < ActiveRecord::Base
                   percentage = 0
                   marks = 0
                   score = ExamScore.find_by_exam_id_and_student_id(exam.id,student.id)
-                  if grading_type.nil? or grading_type=="0"
+                  if grading_type.nil? or self.normal_enabled?
                     unless score.nil? or score.marks.nil?
                       percentage = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
                       marks = score.marks.to_f
                     end
-                  elsif grading_type=="1"
+                  elsif self.gpa_enabled?
                     unless score.nil? or score.grading_level_id.nil?
                       percentage = (score.grading_level.credit_points.to_f)*((exam_group.weightage.to_f)/100)
                       marks = (score.grading_level.credit_points.to_f) * (subject.credit_hours.to_f)
                     end
-                  elsif grading_type=="2"
+                  elsif self.cwa_enabled?
                     unless score.nil? or score.marks.nil?
                       percentage = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
                       marks = (((score.marks.to_f)/exam.maximum_marks.to_f)*100)*(subject.credit_hours.to_f)
@@ -393,18 +405,18 @@ class Batch < ActiveRecord::Base
                   exam_marks.each do|e|
                     if e[0]==student.id and e[1]==exam_group.id
                       e[2] << marks.to_f
-                      if grading_type.nil? or grading_type=="0"
+                      if grading_type.nil? or self.normal_enabled?
                         e[3] << exam.maximum_marks.to_f
-                      elsif grading_type=="1" or grading_type=="2"
+                      elsif self.gpa_enabled? or self.cwa_enabled?
                         e[3] << subject.credit_hours.to_f
                       end
                       e_flag = 1
                     end
                   end
                   unless e_flag==1
-                    if grading_type.nil? or grading_type=="0"
+                    if grading_type.nil? or self.normal_enabled?
                       exam_marks << [student.id,exam_group.id,[marks.to_f],[exam.maximum_marks.to_f]]
-                    elsif grading_type=="1" or grading_type=="2"
+                    elsif self.gpa_enabled? or self.cwa_enabled?
                       exam_marks << [student.id,exam_group.id,[marks.to_f],[subject.credit_hours.to_f]]
                     end
                   end
@@ -430,10 +442,10 @@ class Batch < ActiveRecord::Base
           exam_group = ExamGroup.find(exam_mark[1])
           score = exam_mark[2].sum
           max_marks = exam_mark[3].sum
-          if grading_type.nil? or grading_type=="0"
+          if grading_type.nil? or self.normal_enabled?
             tot_score = (((score.to_f)/max_marks.to_f)*100)
             percent = (((score.to_f)/max_marks.to_f)*100)*((exam_group.weightage.to_f)/100)
-          elsif grading_type=="1" or grading_type=="2"
+          elsif self.gpa_enabled? or self.cwa_enabled?
             tot_score = ((score.to_f)/max_marks.to_f)
             percent = ((score.to_f)/max_marks.to_f)*((exam_group.weightage.to_f)/100)
           end

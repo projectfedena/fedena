@@ -338,7 +338,7 @@ class Student < ActiveRecord::Base
         if type=="subject"
           score = GroupedExamReport.find_by_student_id_and_subject_id_and_batch_id_and_score_type(self.id,subject_id,self.batch_id,"s")
           unless score.nil?
-            if self.batch.grading_type=="1"
+            if self.batch.gpa_enabled?
               return true if((score.marks < level.gpa if level.marks_limit_type=="upper") or (score.marks >= level.gpa if level.marks_limit_type=="lower") or (score.marks == level.gpa if level.marks_limit_type=="exact"))
             else
               return true if((score.marks < level.marks if level.marks_limit_type=="upper") or (score.marks >= level.marks if level.marks_limit_type=="lower") or (score.marks == level.marks if level.marks_limit_type=="exact"))
@@ -353,7 +353,7 @@ class Student < ActiveRecord::Base
               scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>self.id,:score_type=>"s"})
             end
             unless scores.empty?
-              if self.batch.grading_type=="1"
+              if self.batch.gpa_enabled?
                 scores.reject!{|s| !((s.marks < level.gpa if level.marks_limit_type=="upper") or (s.marks >= level.gpa if level.marks_limit_type=="lower") or (s.marks == level.gpa if level.marks_limit_type=="exact"))}
               else
                 scores.reject!{|s| !((s.marks < level.marks if level.marks_limit_type=="upper") or (s.marks >= level.marks if level.marks_limit_type=="lower") or (s.marks == level.marks if level.marks_limit_type=="exact"))}
@@ -384,7 +384,7 @@ class Student < ActiveRecord::Base
               end
             end
             unless score.nil?
-              if self.batch.grading_type=="1"
+              if self.batch.gpa_enabled?
                 return true if((score.marks < level.gpa if level.marks_limit_type=="upper") or (score.marks >= level.gpa if level.marks_limit_type=="lower") or (score.marks == level.gpa if level.marks_limit_type=="exact"))
               else
                 return true if((score.marks < level.marks if level.marks_limit_type=="upper") or (score.marks >= level.marks if level.marks_limit_type=="lower") or (score.marks == level.marks if level.marks_limit_type=="exact"))
@@ -396,11 +396,11 @@ class Student < ActiveRecord::Base
             scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>self.id,:score_type=>"s"})
             unless scores.empty?
               if level.marks_limit_type=="upper"
-                scores.reject!{|s| !(((s.marks < level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks < level.marks unless level.marks.nil?))}
+                scores.reject!{|s| !(((s.marks < level.gpa unless level.gpa.nil?) if s.student.batch.gpa_enabled?) or (s.marks < level.marks unless level.marks.nil?))}
               elsif level.marks_limit_type=="exact"
-                scores.reject!{|s| !(((s.marks == level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks == level.marks unless level.marks.nil?))}
+                scores.reject!{|s| !(((s.marks == level.gpa unless level.gpa.nil?) if s.student.batch.gpa_enabled?) or (s.marks == level.marks unless level.marks.nil?))}
               else
-                scores.reject!{|s| !(((s.marks >= level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks >= level.marks unless level.marks.nil?))}
+                scores.reject!{|s| !(((s.marks >= level.gpa unless level.gpa.nil?) if s.student.batch.gpa_enabled?) or (s.marks >= level.marks unless level.marks.nil?))}
               end
               unless scores.empty?
                 sub_count = level.subject_count
@@ -435,11 +435,11 @@ class Student < ActiveRecord::Base
               scores = GroupedExamReport.find(:all,:conditions=>{:student_id=>self.id,:score_type=>"c"})
               unless scores.empty?
                 if level.marks_limit_type=="upper"
-                  scores.reject!{|s| !(((s.marks < level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks < level.marks unless level.marks.nil?))}
+                  scores.reject!{|s| !(((s.marks < level.gpa unless level.gpa.nil?) if s.student.batch.gpa_enabled?) or (s.marks < level.marks unless level.marks.nil?))}
                 elsif level.marks_limit_type=="exact"
-                  scores.reject!{|s| !(((s.marks == level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks == level.marks unless level.marks.nil?))}
+                  scores.reject!{|s| !(((s.marks == level.gpa unless level.gpa.nil?) if s.student.batch.gpa_enabled?) or (s.marks == level.marks unless level.marks.nil?))}
                 else
-                  scores.reject!{|s| !(((s.marks >= level.gpa unless level.gpa.nil?) if s.student.batch.grading_type=="1") or (s.marks >= level.marks unless level.marks.nil?))}
+                  scores.reject!{|s| !(((s.marks >= level.gpa unless level.gpa.nil?) if s.student.batch.gpa_enabled?) or (s.marks >= level.marks unless level.marks.nil?))}
                 end
                 return true unless scores.empty?
               end
@@ -451,11 +451,11 @@ class Student < ActiveRecord::Base
                 marks.map{|m| total_student_score+=m.marks}
                 avg_student_score = total_student_score.to_f/marks.count.to_f
                 if level.marks_limit_type=="upper"
-                  return true if(((avg_student_score < level.gpa unless level.gpa.nil?) if self.batch.grading_type=="1") or (avg_student_score < level.marks unless level.marks.nil?))
+                  return true if(((avg_student_score < level.gpa unless level.gpa.nil?) if self.batch.gpa_enabled?) or (avg_student_score < level.marks unless level.marks.nil?))
                 elsif level.marks_limit_type=="exact"
-                  return true if(((avg_student_score == level.gpa unless level.gpa.nil?) if self.batch.grading_type=="1") or (avg_student_score == level.marks unless level.marks.nil?))
+                  return true if(((avg_student_score == level.gpa unless level.gpa.nil?) if self.batch.gpa_enabled?) or (avg_student_score == level.marks unless level.marks.nil?))
                 else
-                  return true if(((avg_student_score >= level.gpa unless level.gpa.nil?) if self.batch.grading_type=="1") or (avg_student_score >= level.marks unless level.marks.nil?))
+                  return true if(((avg_student_score >= level.gpa unless level.gpa.nil?) if self.batch.gpa_enabled?) or (avg_student_score >= level.marks unless level.marks.nil?))
                 end
               end
             end

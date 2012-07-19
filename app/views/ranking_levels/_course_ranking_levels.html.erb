@@ -7,7 +7,7 @@
         <label for="name"><%= t('name') %></label>
         <div class="text-input-bg"><%= c.text_field :name %></div>
       </div>
-      <% if @course.grading_type=="1" %>
+      <% if @course.gpa_enabled?%>
         <div class="label-field-pair">
           <label for="gpa"><%= t('gpa_level') %></label>
           <div class="text-input-bg"><%= c.text_field :gpa %></div>
@@ -19,7 +19,7 @@
         </div>
       <% end %>
       <div class="label-field-pair">
-        <% if @course.grading_type=="1" %><label for="marks"><%= t('gpa_limit_type') %></label><% else %><label for="marks"><%= t('marks_limit_type') %></label><% end %>
+        <% if @course.gpa_enabled? %><label for="marks"><%= t('gpa_limit_type') %></label><% else %><label for="marks"><%= t('marks_limit_type') %></label><% end %>
         <div class="text-input-bg"><%= c.select :marks_limit_type, RankingLevel::LIMIT_TYPES.collect{|lim| [lim.titleize,lim]} %></div>
       </div>
       <div class="label-field-pair">

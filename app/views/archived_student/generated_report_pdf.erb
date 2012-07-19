@@ -46,7 +46,7 @@
     <div id="pdf-info">
       <table id="pdf-table" width="100%" cellspacing="0">
         <% c = 'even'  %>
-        <% if @batch.grading_type=="2" %>
+        <% if @batch.cwa_enabled? %>
           <% total_credits=0 %>
           <% total_weighted_marks=0 %>
           <tr class="table-header">
@@ -101,7 +101,7 @@
             <td>-</td>
             <td class="col-pdf"><%= total_weighted_marks %></td>
           </tr>
-        <% elsif @batch.grading_type=="1" %>
+        <% elsif @batch.gpa_enabled? %>
           <% total_credit_points=0 %>
           <% total_credit_hours=0 %>
           <tr class="table-header">
@@ -234,7 +234,7 @@
         <% end %>
       </table>
     </div>
-    <% if @batch.grading_type=="2" %>
+    <% if @batch.cwa_enabled? %>
       <h4><%= t('weighted_average') %> =
         <% unless total_credits==0 %>
           <%= "%.2f" %(total_weighted_marks.to_f/total_credits.to_f) %>
@@ -242,7 +242,7 @@
           -
         <% end %>
       </h4>
-    <% elsif @batch.grading_type=="1" %>
+    <% elsif @batch.gpa_enabled? %>
       <h4><%= t('grade_point_average_gpa') %> =
         <% unless total_credit_hours==0 %>
           <%= "%.2f" %(total_credit_points.to_f/total_credit_hours.to_f) %>

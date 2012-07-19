@@ -42,11 +42,11 @@
       <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
         <tr class="tr-head">
           <td><%= t('name') %></td>
-          <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
+          <% if @batch.gpa_enabled? or @batch.cwa_enabled? %>
             <% @exam_group.exams.each do |exam| %>
               <td><%= exam.subject.code %><%= "(" + exam.subject.credit_hours.to_s + ")"  unless exam.subject.credit_hours.nil? %></td>
             <% end %>
-            <% if @batch.grading_type=="2" %>
+            <% if @batch.cwa_enabled? %>
               <td><%= t('weighted_average') %></td>
             <% else %>
               <td><%= t('gpa') %></td>
@@ -63,7 +63,7 @@
         <% @exam_group.batch.students.each do |student|%>
           <tr class="tr-<%= cycle('odd', 'even') %>">
             <td class="col-2"><%= student.full_name %></td>
-            <% if @batch.grading_type=="1" %>
+            <% if @batch.gpa_enabled? %>
               <% total_credits = 0 %>
               <% total_credit_points=0 %>
               <% @exam_group.exams.each do |exam| %>
@@ -77,7 +77,7 @@
                 <% end %>
               <% end %>
               <td class="col-4"><%= "%.2f" %(total_credit_points.to_f/total_credits.to_f) %></td>
-            <% elsif @batch.grading_type=="2" %>
+            <% elsif @batch.cwa_enabled? %>
               <% total_credits = 0 %>
               <% total_weighted_marks=0 %>
               <% @exam_group.exams.each do |exam| %>

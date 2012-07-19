@@ -38,7 +38,7 @@ class Subject < ActiveRecord::Base
 
   def check_grade_type
     batch = self.batch
-    batch.grading_type=="1" or batch.grading_type=="2"
+    batch.gpa_enabled? or batch.cwa_enabled?
   end
 
   def inactivate

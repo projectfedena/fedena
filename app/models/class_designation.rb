@@ -6,11 +6,11 @@ class ClassDesignation < ActiveRecord::Base
   belongs_to :course
 
   def has_gpa
-    self.course.grading_type=="1"
+    self.course.gpa_enabled?
   end
 
   def has_cwa
-    self.course.grading_type=="2" or self.course.grading_type=="0" or self.course.grading_type.nil?
+    self.course.cwa_enabled? or self.course.normal_enabled?
   end
 
   HUMANIZED_COLUMNS = {:cgpa => "CGPA"}

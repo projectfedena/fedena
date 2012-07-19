@@ -33,11 +33,11 @@
       <table id="pdf-table" width="100%" cellspacing="0">
         <tr class="table-header">
           <td><%= t('name') %></td>
-          <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
+          <% if @batch.gpa_enabled? or @batch.cwa_enabled? %>
             <% @exam_group.exams.each do |exam| %>
               <td><%= exam.subject.code %><%= "(" + exam.subject.credit_hours.to_s + ")"  unless exam.subject.credit_hours.nil? %></td>
             <% end %>
-            <% if @batch.grading_type=="2" %>
+            <% if @batch.cwa_enabled? %>
               <td><%= t('weighted_average') %></td>
             <% else %>
               <td><%= t('gpa') %></td>
@@ -57,11 +57,11 @@
             <tr class="page-break"><td colspan="3"></td></tr>
             <tr class="table-header">
               <td class="col-pdf"><%= t('name') %></td>
-              <% if @batch.grading_type=="1" or @batch.grading_type=="2" %>
+              <% if @batch.gpa_enabled? or @batch.cwa_enabled? %>
                 <% @exam_group.exams.each do |exam| %>
                   <td><%= exam.subject.code %><%= "(" + exam.subject.credit_hours.to_s + ")"  unless exam.subject.credit_hours.nil? %></td>
                 <% end %>
-                <% if @batch.grading_type=="2" %>
+                <% if @batch.cwa_enabled? %>
                   <td><%= t('weighted_average') %></td>
                 <% else %>
                   <td><%= t('gpa') %></td>
@@ -78,7 +78,7 @@
           <% end %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-pdf"><%= student.full_name %></td>
-            <% if @batch.grading_type=="1" %>
+            <% if @batch.gpa_enabled? %>
               <% total_credits = 0 %>
               <% total_credit_points=0 %>
               <% @exam_group.exams.each do |exam| %>
@@ -92,7 +92,7 @@
                 <% end %>
               <% end %>
               <td class="col-pdf"><%= "%.2f" %(total_credit_points.to_f/total_credits.to_f) %></td>
-            <% elsif @batch.grading_type=="2" %>
+            <% elsif @batch.cwa_enabled? %>
               <% total_credits = 0 %>
               <% total_weighted_marks=0 %>
               <% @exam_group.exams.each do |exam| %>

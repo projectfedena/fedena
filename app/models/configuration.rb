@@ -98,6 +98,14 @@ class Configuration < ActiveRecord::Base
       get_config_value("CCE") == "1"
     end
 
+    def has_gpa?
+      get_config_value("GPA") == "1"
+    end
+
+    def has_cwa?
+      get_config_value("CWA") == "1"
+    end
+
   end
 
 end
