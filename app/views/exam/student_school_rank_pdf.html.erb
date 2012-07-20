@@ -24,7 +24,7 @@
   <div class="extender"> </div>
   <div class="report">
     <div id ="main_info">
-      <h3><%= t('overall_school_rankings') %> : <%= Configuration.find_by_config_key("InstitutionName").config_value.present? ? Configuration.find_by_config_key("InstitutionName").config_value : "-" %></h3>
+      <h3 align="center"><%= t('overall_school_rankings') %> : <%= Configuration.find_by_config_key("InstitutionName").config_value.present? ? Configuration.find_by_config_key("InstitutionName").config_value : "-" %></h3>
     </div>
     <div id="pdf-info" class="section">
       <% unless @courses.empty? %>
@@ -43,7 +43,7 @@
             <% end %>
             <% ordered_scores = ordered_scores.compact.uniq.sort.reverse %>
             <% c = 'even' %>
-            <% page_val=26 %>
+            <% page_val=24 %>
             <% i=0 %>
             <table id="pdf-table" width="100%" cellspacing="0">
               <tr class="table-header">
@@ -58,7 +58,7 @@
                 <% percentage = 0 %>
                 <% if (i+1)%(page_val.to_i) == 0 %>
                   <% i=0 %>
-                  <% page_val=28 %>
+                  <% page_val=26 %>
                 </table>
                 <table id="pdf-table" width="100%" cellspacing="0" class="section">
                   <tr class="table-header">
