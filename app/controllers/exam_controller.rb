@@ -179,7 +179,8 @@ class ExamController < ApplicationController
       unless params[:report][:batch_ids].blank?
         @batches = Batch.find_all_by_id(params[:report][:batch_ids])
         @batches.each do|batch|
-          batch.generate_previous_batch_reports
+          batch.report_flag = "2"
+          Delayed::Job.enqueue(batch)
         end
         flash[:notice]="#{t('flash10')}"
       else
@@ -223,7 +224,8 @@ class ExamController < ApplicationController
       end
       if @batches
         @batches.each do|batch|
-          batch.generate_batch_reports
+          batch.report_flag = "1"
+          Delayed::Job.enqueue(batch)
         end
         flash[:notice]="#{t('flash10')}"
       else

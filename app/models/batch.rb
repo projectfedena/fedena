@@ -52,6 +52,8 @@ class Batch < ActiveRecord::Base
 
   validates_presence_of :name, :start_date, :end_date
 
+  attr_accessor :report_flag
+
   named_scope :active,{ :conditions => { :is_deleted => false, :is_active => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
   named_scope :inactive,{ :conditions => { :is_deleted => false, :is_active => false },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
   named_scope :deleted,{:conditions => { :is_deleted => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
@@ -579,7 +581,15 @@ class Batch < ActiveRecord::Base
 
   def perform
     #this is for cce_report_generation use flags if need job for other works
-    generate_cce_reports    
+    if report_flag.blank?
+      generate_cce_reports
+    else
+      if report_flag=="1"
+        generate_batch_reports
+      elsif report_flag=="2"
+        generate_previous_batch_reports
+      end
+    end
   end
 
   def delete_student_cce_report_cache
@@ -597,4 +607,4 @@ class Batch < ActiveRecord::Base
   end
   
   
-  end
+end
