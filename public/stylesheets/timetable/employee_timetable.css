@@ -59,7 +59,7 @@ padding-left: 0px;
 #table-viewer{
 /*    height:480px;*/
     margin-left: 0px;
-    overflow-x: scroll;
+    overflow-x: auto;
     width: 810px;
     float: left;
 }

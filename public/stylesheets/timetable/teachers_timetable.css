@@ -65,7 +65,7 @@ padding-left: 0px;
 .box{
     width: 95%;
     margin: 0 auto;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 .employee_list{
     float: left;
