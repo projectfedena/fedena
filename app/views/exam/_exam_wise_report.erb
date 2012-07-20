@@ -86,7 +86,7 @@
           <td class="col-1"> <%= es.exam.subject.name %></td>
           <td class="col-2"><%= es.exam.subject.credit_hours %></td>
           <% total_credit_hours = total_credit_hours + es.exam.subject.credit_hours.to_f %>
-          <td class="col-2"><%= es.grading_level.present? ? es.grading_level : "-" %></td>
+          <td class="col-2"><%= "#{es.grading_level.present? ? es.grading_level : "-"}"+" ["+"#{es.grading_level.present? ? (es.grading_level.credit_points.present? ? es.grading_level.credit_points : "-") : "-"}"+"]" %></td>
           <% points=0 %>
           <% points = (es.grading_level.credit_points.to_f) * (es.exam.subject.credit_hours.to_f) if es.grading_level.present? %>
           <% total_credit_points = total_credit_points + points %>
