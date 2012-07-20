@@ -23,9 +23,9 @@ class AttendanceReportsController < ApplicationController
 
   def index
     if current_user.admin?
-      @batches = Batch.all(:conditions=>{:is_active=>true, :is_deleted=>false},:include=>:course)
+      @batches = Batch.active
     elsif @current_user.privileges.map{|p| p.name}.include?('StudentAttendanceView')
-      @batches = Batch.all(:conditions=>{:is_active=>true, :is_deleted=>false},:include=>:course)
+      @batches = Batch.active
     elsif @current_user.employee?
       @batches=Batch.find_all_by_employee_id @current_user.employee_record.id
       @batches+=@current_user.employee_record.subjects.collect{|b| b.batch}
