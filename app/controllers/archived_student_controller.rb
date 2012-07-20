@@ -58,6 +58,7 @@ class ArchivedStudentController < ApplicationController
     end
     @subjects = @normal_subjects+@elective_subjects
     @exam_groups = @batch.exam_groups
+    @exam_groups.reject!{|e| e.result_published==false}
     @old_batches = @student.all_batches
   end
 
@@ -200,6 +201,7 @@ class ArchivedStudentController < ApplicationController
     @batch = @student.batch
     @subject = Subject.find(params[:subject])
     @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
+    @exam_groups.reject!{|e| e.result_published==false}
     @graph = open_flash_chart_object(770, 350,
       "/archived_student/graph_for_generated_report3?subject=#{@subject.id}&student=#{@student.id}")
   end

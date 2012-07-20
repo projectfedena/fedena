@@ -967,6 +967,7 @@ class ExamController < ApplicationController
     @batch = @student.batch
     @subject = Subject.find(params[:subject])
     @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
+    @exam_groups.reject!{|e| e.result_published==false}
     @graph = open_flash_chart_object(770, 350,
       "/exam/graph_for_generated_report3?subject=#{@subject.id}&student=#{@student.id}")
   end

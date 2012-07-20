@@ -429,6 +429,7 @@ class StudentController < ApplicationController
     end
     @subjects = @normal_subjects+@elective_subjects
     @exam_groups = @batch.exam_groups
+    @exam_groups.reject!{|e| e.result_published==false}
     @old_batches = @student.graduated_batches
   end
 
