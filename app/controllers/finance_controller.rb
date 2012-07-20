@@ -429,8 +429,17 @@ class FinanceController < ApplicationController
     dates.each do |d|
       d.approve(current_user.id,"Approved")
     end
+
+    emp_ids = dates.map{|date| date.employee_id }.uniq.join(',')
+    Delayed::Job.enqueue(PayslipTransactionJob.new(
+        :salary_date => params[:date],
+        :employee_id => emp_ids,
+        :school_id => (self.respond_to?(:school_id)) ? self.school_id : nil
+      ))
+
     flash[:notice] = "#{t('flash8')}"
     redirect_to :action => "index"
+
     
   end
 
@@ -439,6 +448,11 @@ class FinanceController < ApplicationController
     dates.each do |d|
       d.approve(current_user.id,params[:payslip_accept][:remark])
     end
+    Delayed::Job.enqueue(PayslipTransactionJob.new(
+        :salary_date => params[:id2],
+        :employee_id => params[:id],
+        :school_id => (self.respond_to?(:school_id)) ? self.school_id : nil
+      ))
     flash[:notice] = "#{t('flash8')}"
     render :update do |page|
       page.reload
