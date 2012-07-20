@@ -194,7 +194,7 @@ class ExamController < ApplicationController
       @batches = Batch.find(:all, :conditions=>{:course_id=>params[:course_id],:is_active=>false,:is_deleted=>:false})
       if @batches.empty?
         render(:update) do|page|
-          page.replace_html "select_inactive_batches", :text=>"<p class='flash-msg'>#{t('flash12')}</p>"
+          page.replace_html "select_inactive_batches", :text=>"<p class='flash-msg'>#{t('exam.flash12')}</p>"
         end
       else
         render(:update) do|page|
