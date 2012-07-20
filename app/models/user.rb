@@ -75,10 +75,10 @@ class User < ActiveRecord::Base
   end
 
   def role_name
-    return "Admin" if self.admin?
-    return "Student" if self.student?
-    return "Employee" if self.employee?
-    return "Parent" if self.parent?
+    return "#{t('admin')}" if self.admin?
+    return "#{t('student_text')}" if self.student?
+    return "#{t('employee_text')}" if self.employee?
+    return "#{t('parent')}" if self.parent?
     return nil
   end
   
@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
         end
       end
       return [:employee] + prv
-      elsif parent?
+    elsif parent?
       return [:parent] + prv
     else
       return prv
