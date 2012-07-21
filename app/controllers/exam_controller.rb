@@ -1271,8 +1271,9 @@ class ExamController < ApplicationController
   end
 
   def create_exam
-    if current_user.admin
-      @course= Course.active
+    privilege = current_user.privileges.map{|p| p.name}
+    if current_user.admin or privilege.include?("ExaminationControl") or privilege.include?("EnterResults")
+      @course= Course.find(:all,:conditions => { :is_deleted => false }, :order => 'code asc')
     elsif current_user.employee
       @course= current_user.employee_record.subjects.all(:group => 'batch_id').map{|x|x.batch.course}
     end

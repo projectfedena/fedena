@@ -41,7 +41,7 @@
    </label>
    <div class="text-input-bg">
   <%= select :courses, :name,
-        Course.active.map {|b| [b.code, b.id]},
+        @course.map {|b| [b.code, b.id]},
         {:prompt => "#{t('select_a_course')}"},
         {:onChange => "#{remote_function(:url => {:action => "update_batch"},
         :with => "'course_name='+ value",
