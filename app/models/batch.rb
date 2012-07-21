@@ -207,6 +207,7 @@ class Batch < ActiveRecord::Base
     grading_type = self.grading_type
     students = self.students
     grouped_exams = self.exam_groups.reject{|e| !GroupedExam.exists?(:batch_id=>self.id, :exam_group_id=>e.id)}
+    grouped_exams.reject!{|g| g.result_published==false}
     unless grouped_exams.empty?
       subjects = self.subjects(:conditions=>{:is_deleted=>false})
       unless students.empty?
@@ -351,6 +352,7 @@ class Batch < ActiveRecord::Base
       students.push stu unless stu.nil?
     end
     grouped_exams = self.exam_groups.reject{|e| !GroupedExam.exists?(:batch_id=>self.id, :exam_group_id=>e.id)}
+    grouped_exams.reject!{|g| g.result_published==false}
     unless grouped_exams.empty?
       subjects = self.subjects(:conditions=>{:is_deleted=>false})
       unless students.empty?

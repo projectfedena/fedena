@@ -2267,7 +2267,7 @@ authorization do
   # student- privileges
   role :student do
     has_permission_on [:course], :to => [:view]
-    has_permission_on [:exam], :to => [:generated_report, :generated_report4_pdf, :combined_grouped_exam_report_pdf, :graph_for_generated_report, :academic_report, :previous_years_marks_overview,:previous_years_marks_overview_pdf, :graph_for_previous_years_marks_overview, :generated_report3, :graph_for_generated_report3 ,:generated_report4,:student_transcript,:student_transcript_pdf]
+    has_permission_on [:exam], :to => [:generated_report, :generated_report4_pdf, :graph_for_generated_report, :academic_report, :previous_years_marks_overview,:previous_years_marks_overview_pdf, :graph_for_previous_years_marks_overview, :generated_report3, :graph_for_generated_report3 ,:generated_report4,:student_transcript,:student_transcript_pdf]
     has_permission_on [:student],
       :to => [
       :exam_report,

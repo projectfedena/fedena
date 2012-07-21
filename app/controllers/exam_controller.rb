@@ -1010,8 +1010,10 @@ class ExamController < ApplicationController
         @grouped_exams.each do |x|
           @exam_groups.push ExamGroup.find(x.exam_group_id)
         end
+        @exam_groups.reject!{|e| e.result_published==false}
       else
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
+        @exam_groups.reject!{|e| e.result_published==false}
       end
       general_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>"elective_group_id IS NULL AND is_deleted=false")
       student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@batch.id}")
@@ -1034,8 +1036,10 @@ class ExamController < ApplicationController
         @grouped_exams.each do |x|
           @exam_groups.push ExamGroup.find(x.exam_group_id)
         end
+        @exam_groups.reject!{|e| e.result_published==false}
       else
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
+        @exam_groups.reject!{|e| e.result_published==false}
       end
       general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>"elective_group_id IS NULL AND is_deleted=false")
       student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@student.batch.id}")
@@ -1071,8 +1075,10 @@ class ExamController < ApplicationController
         @grouped_exams.each do |x|
           @exam_groups.push ExamGroup.find(x.exam_group_id)
         end
+        @exam_groups.reject!{|e| e.result_published==false}
       else
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
+        @exam_groups.reject!{|e| e.result_published==false}
       end
       general_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>"elective_group_id IS NULL and is_deleted=false")
       student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@batch.id}")
@@ -1095,8 +1101,10 @@ class ExamController < ApplicationController
         @grouped_exams.each do |x|
           @exam_groups.push ExamGroup.find(x.exam_group_id)
         end
+        @exam_groups.reject!{|e| e.result_published==false}
       else
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
+        @exam_groups.reject!{|e| e.result_published==false}
       end
       general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>"elective_group_id IS NULL")
       student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@student.batch.id}")
@@ -1128,8 +1136,10 @@ class ExamController < ApplicationController
       @grouped_exams.each do |x|
         @exam_groups.push ExamGroup.find(x.exam_group_id)
       end
+      @exam_groups.reject!{|e| e.result_published==false}
     else
       @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
+      @exam_groups.reject!{|e| e.result_published==false}
     end
     render :pdf => 'combined_grouped_exam_report_pdf'
   end
@@ -1370,6 +1380,7 @@ class ExamController < ApplicationController
     student = Student.find params[:student]
     subject = Subject.find params[:subject]
     exams = Exam.find_all_by_subject_id(subject.id, :order => 'start_time asc')
+    exams.reject!{|e| e.exam_group.result_published==false}
 
     data = []
     x_labels = []
