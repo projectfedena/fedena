@@ -3,13 +3,13 @@
 <% unless @exam_group.exam_type == 'Grades' %>
   <table id="listing">
     <tr class="tr-head">
-      <td><%= t('subject') %></td>
-      <td><%= t('max_mark') %></td>
-      <td><%= t('min_mark') %></td>
+      <td class="col-2"><%= t('subject') %></td>
+      <td class="col-1"><%= t('max_mark') %></td>
+      <td class="col-1"><%= t('min_mark') %></td>
     </tr>
     <% @exam_group.exams.each do |exam| %>
       <% @exam = exam %>
-      <% if @employee_subjects.include?(exam.subject.id) or @current_user.admin? or @user_privileges.map{|p| p.name}.include?('ExaminationControl') or @user_privileges.map{|p| p.name}.include?('EnterResults') %>
+      <% if @employee_subjects.include?(exam.subject.id) or @current_user.admin? or @current_user.privileges.map{|p| p.name}.include?('ExaminationControl') or @current_user.privileges.map{|p| p.name}.include?('EnterResults') %>
         <tr class="tr-<%= cycle('odd', 'even') %>">
           <% @exam = exam %>
           <td class="col-2"><%= link_to exam.subject.name, {:controller=>"exam", :action=>"edit_previous_marks", :exam_id=>exam.id} %></td>
@@ -22,7 +22,7 @@
 <% else %>
   <table id="listing" width="100%">
     <tr class="tr-head">
-      <td><%= t('subject') %></td>
+      <td class="col-3"><%= t('subject') %></td>
     </tr>
     <% @exam_group.exams.each do |exam| %>
       <% if @employee_subjects.include?("#{exam.subject.id}") or @current_user.admin?  or @current_user.privileges.map{|p| p.name}.include?("ExaminationControl") or @current_user.privileges.map{|p| p.name}.include?("EnterResults") %>
