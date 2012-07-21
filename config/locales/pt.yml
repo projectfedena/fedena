@@ -1918,7 +1918,7 @@ pt: # locale
   course_wise_cumulative_grade_point: "Course wise Cumulative Grade Point Average (CGPA)"
   course_wise_combined_weighted_average: "Course wise Combined Weighted Average"
   course_wise_combined_percentage: "Course wise Combined Percentage"
-  no: "No"
+  no_text: "No"
   students_found: "Students found."
   cwa: "CWA"
   no_students_for_this_class_designation: "No Students for this Class Designation."
