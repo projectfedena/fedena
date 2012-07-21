@@ -1010,7 +1010,6 @@ class ExamController < ApplicationController
         @grouped_exams.each do |x|
           @exam_groups.push ExamGroup.find(x.exam_group_id)
         end
-        @exam_groups.reject!{|e| e.result_published==false}
       else
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
         @exam_groups.reject!{|e| e.result_published==false}
@@ -1036,7 +1035,6 @@ class ExamController < ApplicationController
         @grouped_exams.each do |x|
           @exam_groups.push ExamGroup.find(x.exam_group_id)
         end
-        @exam_groups.reject!{|e| e.result_published==false}
       else
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
         @exam_groups.reject!{|e| e.result_published==false}
@@ -1075,7 +1073,6 @@ class ExamController < ApplicationController
         @grouped_exams.each do |x|
           @exam_groups.push ExamGroup.find(x.exam_group_id)
         end
-        @exam_groups.reject!{|e| e.result_published==false}
       else
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
         @exam_groups.reject!{|e| e.result_published==false}
@@ -1101,7 +1098,6 @@ class ExamController < ApplicationController
         @grouped_exams.each do |x|
           @exam_groups.push ExamGroup.find(x.exam_group_id)
         end
-        @exam_groups.reject!{|e| e.result_published==false}
       else
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
         @exam_groups.reject!{|e| e.result_published==false}
@@ -1136,7 +1132,6 @@ class ExamController < ApplicationController
       @grouped_exams.each do |x|
         @exam_groups.push ExamGroup.find(x.exam_group_id)
       end
-      @exam_groups.reject!{|e| e.result_published==false}
     else
       @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
       @exam_groups.reject!{|e| e.result_published==false}
