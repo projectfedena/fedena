@@ -2449,12 +2449,6 @@ authorization do
     has_permission_on [:exam],
       :to => [
       :index,
-      :previous_batch_exams,
-      :list_inactive_batches,
-      :list_inactive_exam_groups,
-      :previous_exam_marks,
-      :edit_previous_marks,
-      :update_previous_marks,
       :create_exam,
       :update_batch,
       :exam_wise_report,
