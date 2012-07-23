@@ -35,8 +35,8 @@ body {
 #submit_area input {
     background:#312d2a;
     height:38px;
-    float:right;
-    margin-right:170px;
+    float:left;
+    margin-left:65px;
     margin-top:55px;
     border:none;
     color:#fff;
