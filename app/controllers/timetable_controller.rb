@@ -296,18 +296,19 @@ class TimetableController < ApplicationController
       ## Prints out timetable of all teachers
       @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",Date.today,Date.today])
       unless @current.nil?
-        @timetable_entries = Hash.new { |l, k| l[k] = Hash.new(&l.default_proc) }
-        @employee_subjects = @employee.subjects
-        @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
-        @entries = @current.timetable_entries.find(:all,:conditions=>{:subject_id=>@employee_timetable_subjects})
-        @all_timetable_entries = @entries.select{|t| t.batch.is_active}.select{|s| s.class_timing.is_deleted==false}.select{|w| w.weekday.is_deleted==false}
-        @all_batches = @all_timetable_entries.collect(&:batch).uniq.sort!{|a,b| a.class_timing <=> b.class_timing}
-        @all_weekdays = @all_timetable_entries.collect(&:weekday).uniq.sort!{|a,b| a.weekday <=> b.weekday}
-        @all_classtimings = @all_timetable_entries.collect(&:class_timing).uniq
-        @all_teachers = @all_timetable_entries.collect(&:employee).uniq
-        @all_timetable_entries.each do |tt|
-          @timetable_entries[tt.employee_id][tt.weekday_id][tt.class_timing_id] = tt
-        end
+        @electives=@employee.subjects.group_by(&:elective_group_id)
+    @timetable_entries = Hash.new { |l, k| l[k] = Hash.new(&l.default_proc) }
+    @employee_subjects = @employee.subjects
+    @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
+    @entries = @current.timetable_entries.find(:all,:conditions=>{:subject_id=>@employee_timetable_subjects})
+    @all_timetable_entries = @entries.select{|t| t.batch.is_active}.select{|s| s.class_timing.is_deleted==false}.select{|w| w.weekday.is_deleted==false}
+    @all_batches = @all_timetable_entries.collect(&:batch).uniq.sort!{|a,b| a.class_timing <=> b.class_timing}
+    @all_weekdays = @all_timetable_entries.collect(&:weekday).uniq.sort!{|a,b| a.weekday <=> b.weekday}
+    @all_classtimings = @all_timetable_entries.collect(&:class_timing).uniq
+    @all_teachers = @all_timetable_entries.collect(&:employee).uniq
+    @all_timetable_entries.each do |tt|
+      @timetable_entries[tt.weekday_id][tt.class_timing_id] = tt
+    end
       else
         flash[:notice]=t('no_entries_found')
       end
