@@ -2390,7 +2390,8 @@ authorization do
       :all,
       :search_news_ajax,
       :view,
-      :add_comment ]
+      :add_comment,
+      :delete_comment]
     has_permission_on [:employee_attendance],
       :to => [
       :index,
