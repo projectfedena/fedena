@@ -433,8 +433,7 @@ class FinanceController < ApplicationController
     emp_ids = dates.map{|date| date.employee_id }.uniq.join(',')
     Delayed::Job.enqueue(PayslipTransactionJob.new(
         :salary_date => params[:date],
-        :employee_id => emp_ids,
-        :school_id => (self.respond_to?(:school_id)) ? self.school_id : nil
+        :employee_id => emp_ids
       ))
 
     flash[:notice] = "#{t('flash8')}"
@@ -450,8 +449,7 @@ class FinanceController < ApplicationController
     end
     Delayed::Job.enqueue(PayslipTransactionJob.new(
         :salary_date => params[:id2],
-        :employee_id => params[:id],
-        :school_id => (self.respond_to?(:school_id)) ? self.school_id : nil
+        :employee_id => params[:id]
       ))
     flash[:notice] = "#{t('flash8')}"
     render :update do |page|

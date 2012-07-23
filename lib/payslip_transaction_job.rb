@@ -3,14 +3,11 @@ class PayslipTransactionJob
   def initialize(*args)
     opts = args.extract_options!
 
-    @school_id = opts[:school_id]
     @employee_ids = opts[:employee_id].split(',')
     @salary_date = Date.parse(opts[:salary_date])
   end
 
   def perform
-    MultiSchool.current_school = School.find @school_id  if @school_id.present?
-
     @employee_ids.each do |employee_id|
       employee = Employee.find_by_id employee_id
       monthly_payslips = MonthlyPayslip.find(:all,:conditions=>["employee_id=? AND salary_date = ?", employee.id, @salary_date],:include=>:payroll_category)
