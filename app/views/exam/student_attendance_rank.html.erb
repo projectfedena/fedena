@@ -17,6 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
+<%= javascript_include_tag "sortable" %>
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
@@ -42,60 +43,32 @@
     <div id="score-table">
       <% unless @students.empty? %>
         <% working_days = @batch.find_working_days(@start_date,@end_date).count %>
-      <% unless working_days == 0 %>
-        <% ordered_percentages = [] %>
-        <% student_percentages = [] %>
-        <% @students.each do|student| %>
-          <% leaves = Attendance.find(:all,:conditions=>["student_id = ? and month_date >= ? and month_date <= ?",student.id,@start_date,@end_date]) %>
-          <% absents = 0 %>
-          <% unless leaves.empty? %>
-            <% leaves.each do|leave| %>
-              <% if leave.forenoon == true and leave.afternoon == true %>
-                <% absents = absents + 1 %>
-              <% else %>
-                <% absents = absents + 0.5 %>
-              <% end %>
-            <% end %>
-          <% end %>
-          <% percentage = ((working_days.to_f - absents).to_f/working_days.to_f)*100 %>
-          <% ordered_percentages << percentage %>
-          <% student_percentages << [student.id,(working_days - absents),percentage] %>
-        <% end %>
-        <% ordered_percentages = ordered_percentages.compact.uniq.sort.reverse %>
-        <table id="listing" width="100%" cellpadding="1" cellspacing="1">
-          <tr class="tr-head">
-            <td><%= t('sl_no') %></td>
-            <td><%= t('name') %></td>
-            <td><%= t('adm_no') %></td>
-            <td><%= t('working_days') %></td>
-            <td><%= t('attended') %></td>
-            <td><%= t('percentage') %></td>
-            <td><%= t('rank') %></td>
-          </tr>
-          <% @students.each_with_index do |student,i| %>
-            <% stu_percentage = 0 %>
-            <% attended = 0 %>
-            <tr class="tr-<%= cycle('odd', 'even') %>">
-              <td class="col-1"><%= i+1 %></td>
-              <td class="col-2"><%= student.full_name %></td>
-              <td class="col-1"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
-              <td class="col-1"><%= working_days %></td>
-
-              <% student_percentages.each do|student_percentage| %>
-                <% if student_percentage[0]==student.id %>
-                  <% attended = student_percentage[1] %>
-                  <% stu_percentage = student_percentage[2] %>
-                <% end %>
-              <% end %>
-              <td class="col-1"><%= attended %></td>
-              <td class="col-1"><%= "%.2f" %(stu_percentage) %></td>
-              <td class="col-1"><%= ordered_percentages.index(stu_percentage) + 1 %></td>
+        <% unless working_days == 0 %>
+          <table class ="sortable" id="listing" width="100%" cellpadding="1" cellspacing="1" onload="sortables_init()" >
+            <tr class="tr-head">
+              <th class="unsortable"><%= t('sl_no') %></th>
+              <th><%= t('name') %></th>
+              <th><%= t('adm_no') %></th>
+              <th><%= t('working_days') %></th>
+              <th><%= t('attended') %></th>
+              <th><%= t('percentage') %></th>
+              <th><%= t('rank') %></th>
             </tr>
-          <% end %>
-        </table>
-      <% else %>
-        <p class="flash-msg"><%= t('no_working_days_for_this_batch') %></p>
-      <% end %>
+            <% @ranked_students.each_with_index do |student,i| %>
+              <tr class="tr-<%= cycle('odd', 'even') %>">
+                <td class="col-1"><%= i+1 %></td>
+                <td class="col-2"><%= student[5].full_name %></td>
+                <td class="col-1"><%= student[5].admission_no.present? ? student[5].admission_no : "-" %></td>
+                <td class="col-1"><%= student[3] %></td>
+                <td class="col-1"><%= student[4] %></td>
+                <td class="col-1"><%= "%.2f" %(student[1]) %></td>
+                <td class="col-1"><%= student[0] %></td>
+              </tr>
+            <% end %>
+          </table>
+        <% else %>
+          <p class="flash-msg"><%= t('no_working_days_for_this_batch') %></p>
+        <% end %>
       <% else %>
         <p class="flash-msg"><%= t('no_students_in_this_batch') %></p>
       <% end %>

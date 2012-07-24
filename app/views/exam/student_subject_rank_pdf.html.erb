@@ -30,14 +30,17 @@
     <% ranks = [] %>
     <% @exam_groups.each do |exam_group| %>
       <% rank_exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
-      <% exam_scores = ExamScore.find_all_by_exam_id(rank_exam.id) %>
-      <% ordered_marks = exam_scores.map{|m| m.marks}.compact.uniq.sort.reverse %>
-      <% ranks << [exam_group.id,ordered_marks] %>
+      <% unless rank_exam.nil? %>
+        <% exam_scores = ExamScore.find_all_by_exam_id(rank_exam.id) %>
+        <% ordered_marks = exam_scores.map{|m| m.marks}.compact.uniq.sort.reverse %>
+        <% ranks << [exam_group.id,ordered_marks] %>
+      <% end %>
     <% end %>
     <div id="pdf-info">
       <% c = 'even' %>
       <table id="pdf-table" width="100%" cellspacing="0">
         <tr class="table-header">
+          <td><%= t('sl_no') %></td>
           <td><%= t('adm_no') %></td>
           <td><%= t('name') %></td>
           <% @exam_groups.each do |exam_group| %>
@@ -45,12 +48,13 @@
           <% end %>
         </tr>
         <% i = 0 %>
-        <% @students.each do |student| %>
+        <% @students.each_with_index do |student,i| %>
           <% if i== 23 %>
             <% i= 0 %>
             <tr class="page-break"><td colspan="3"></td></tr>
 
             <tr class="table-header">
+              <td><%= t('sl_no') %></td>
               <td><%= t('adm_no') %></td>
               <td><%= t('name') %></td>
               <% @exam_groups.each do |exam_group| %>
@@ -60,6 +64,7 @@
 
           <% end %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+             <td class="col-pdf"><%= i+1 %></td>
             <td class="col-pdf"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
             <td class="col-pdf"><%= student.full_name %></td>
             <% @exam_groups.each do |exam_group| %>

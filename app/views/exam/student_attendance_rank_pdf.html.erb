@@ -30,25 +30,6 @@
       <% unless @students.empty? %>
         <% working_days = @batch.find_working_days(@start_date,@end_date).count %>
         <% unless working_days == 0 %>
-          <% ordered_percentages = [] %>
-          <% student_percentages = [] %>
-          <% @students.each do|student| %>
-            <% leaves = Attendance.find(:all,:conditions=>["student_id = ? and month_date >= ? and month_date <= ?",student.id,@start_date,@end_date]) %>
-            <% absents = 0 %>
-            <% unless leaves.empty? %>
-              <% leaves.each do|leave| %>
-                <% if leave.forenoon == true and leave.afternoon == true %>
-                  <% absents = absents + 1 %>
-                <% else %>
-                  <% absents = absents + 0.5 %>
-                <% end %>
-              <% end %>
-            <% end %>
-            <% percentage = ((working_days.to_f - absents).to_f/working_days.to_f)*100 %>
-            <% ordered_percentages << percentage %>
-            <% student_percentages << [student.id,(working_days - absents),percentage] %>
-          <% end %>
-          <% ordered_percentages = ordered_percentages.compact.uniq.sort.reverse %>
           <% c = 'even' %>
           <table id="pdf-table" width="100%" cellspacing="0">
             <tr class="table-header">
@@ -61,9 +42,7 @@
               <td><%= t('rank') %></td>
             </tr>
             <% i = 0 %>
-            <% @students.each_with_index do |student,ind| %>
-              <% stu_percentage = 0 %>
-              <% attended = 0 %>
+            <% @ranked_students.each_with_index do |student,ind| %>
               <% if i== 23 %>
                 <% i= 0 %>
                 <tr class="page-break"><td colspan="3"></td></tr>
@@ -80,19 +59,12 @@
               <% end %>
               <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
                 <td class="col-pdf"><%= ind+1 %></td>
-                <td class="col-pdf"><%= student.full_name %></td>
-                <td class="col-pdf"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
-                <td class="col-pdf"><%= working_days %></td>
-
-                <% student_percentages.each do|student_percentage| %>
-                  <% if student_percentage[0]==student.id %>
-                    <% attended = student_percentage[1] %>
-                    <% stu_percentage = student_percentage[2] %>
-                  <% end %>
-                <% end %>
-                <td class="col-pdf"><%= attended %></td>
-                <td class="col-pdf"><%= "%.2f" %(stu_percentage) %></td>
-                <td class="col-pdf"><%= ordered_percentages.index(stu_percentage) + 1 %></td>
+                <td class="col-pdf"><%= student[5].full_name %></td>
+                <td class="col-pdf"><%= student[5].admission_no.present? ? student[5].admission_no : "-" %></td>
+                <td class="col-pdf"><%= student[3] %></td>
+                <td class="col-pdf"><%= student[4] %></td>
+                <td class="col-pdf"><%= "%.2f" %(student[1]) %></td>
+                <td class="col-pdf"><%= student[0] %></td>
               </tr>
               <% i+=1 %>
             <% end %>

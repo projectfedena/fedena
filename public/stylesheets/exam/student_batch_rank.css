@@ -57,9 +57,23 @@ tr.tr-head{
     font-weight:bold;
     text-align:left;
 }
+tr.tr-head a{
+    background: #fff;
+    color:#990a10;
+    font-weight:bold;
+    text-align:left;
+    text-decoration:none;
+}
 .tr-head td{
     padding-left:10px;
 
+}
+.tr-head th{
+    padding:5px 5px 5px 10px;
+
+}
+.sortheader img{
+    border:0px;
 }
 .tr-odd{
     background: #fff;

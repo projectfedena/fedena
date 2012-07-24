@@ -16,7 +16,7 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
-
+<%= javascript_include_tag "sortable" %>
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
@@ -42,39 +42,21 @@
     <div id="score-table">
       <% unless @students.empty? %>
         <% unless @grouped_exams.empty? %>
-          <% ordered_scores = [] %>
-          <% student_scores = [] %>
-          <% @students.each do|student| %>
-            <% score = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(student.id,student.batch_id,"c") %>
-            <% marks = 0 %>
-            <% unless score.nil? %>
-              <% marks = score.marks %>
-            <% end %>
-            <% ordered_scores << marks %>
-            <% student_scores << [student.id,marks] %>
-          <% end %>
-          <% ordered_scores = ordered_scores.compact.uniq.sort.reverse %>
-          <table id="listing" width="100%" cellpadding="1" cellspacing="1">
+          <table class ="sortable" id="listing" width="100%" cellpadding="1" cellspacing="1" onload="sortables_init()" >
             <tr class="tr-head">
-              <td><%= t('sl_no') %></td>
-              <td><%= t('name') %></td>
-              <td><%= t('adm_no') %></td>
-              <td><%= t('marks') %></td>
-              <td><%= t('rank') %></td>
+              <th class="unsortable"><%= t('sl_no') %></th>
+              <th><%= t('name') %></th>
+              <th><%= t('adm_no') %></th>
+              <th><%= t('marks') %></th>
+              <th><%= t('rank') %></th>
             </tr>
-            <% @students.each_with_index do |student,i| %>
-              <% marks = 0 %>
+            <% @ranked_students.each_with_index do |student,i| %>
               <tr class="tr-<%= cycle('odd', 'even') %>">
-                <td class="col-1"><%= i+1 %></td>
-                <td class="col-2"><%= student.full_name %></td>
-                <td class="col-1"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
-                <% student_scores.each do|student_score| %>
-                  <% if student_score[0]==student.id %>
-                    <% marks = student_score[1] %>
-                  <% end %>
-                <% end %>
-                <td class="col-1"><%= marks %></td>
-                <td class="col-1"><%= ordered_scores.index(marks) + 1 %></td>
+                <td class="col-1"><%= (i+1)  %></td>
+                <td class="col-2"><%= student[3].full_name %></td>
+                <td class="col-1"><%= student[3].admission_no.present? ? student[3].admission_no : "-" %></td>
+                <td class="col-1"><%= student[1] %></td>
+                <td class="col-1"><%= student[0] %></td>
               </tr>
             <% end %>
           </table>

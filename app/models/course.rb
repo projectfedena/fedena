@@ -65,6 +65,35 @@ class Course < ActiveRecord::Base
     return false
   end
 
+  def find_course_rank(batch_ids)
+    batches = Batch.find_all_by_id(batch_ids)
+    @students = Student.find_all_by_batch_id(batches)
+    @grouped_exams = GroupedExam.find_all_by_batch_id(batches)
+    ordered_scores = []
+    student_scores = []
+    ranked_students = []
+    @students.each do|student|
+      score = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(student.id,student.batch_id,"c")
+      marks = 0
+      unless score.nil?
+        marks = score.marks
+      end
+      ordered_scores << marks
+      student_scores << [student.id,marks]
+    end
+    ordered_scores = ordered_scores.compact.uniq.sort.reverse
+    @students.each do |student|
+      m = 0
+      student_scores.each do|student_score|
+        if student_score[0]==student.id
+          m = student_score[1]
+        end
+      end
+      ranked_students << [(ordered_scores.index(m) + 1),m,student.id,student]
+    end
+    ranked_students = ranked_students.sort
+  end
+
   def cce_enabled?
     Configuration.cce_enabled? and grading_type == "3"
   end

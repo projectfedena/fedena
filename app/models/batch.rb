@@ -191,6 +191,76 @@ class Batch < ActiveRecord::Base
     count
   end
 
+  def find_batch_rank
+    @students = Student.find_all_by_batch_id(self.id)
+    @grouped_exams = GroupedExam.find_all_by_batch_id(self.id)
+    ordered_scores = []
+    student_scores = []
+    ranked_students = []
+    @students.each do|student|
+      score = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(student.id,student.batch_id,"c")
+      marks = 0
+      unless score.nil?
+        marks = score.marks
+      end
+      ordered_scores << marks
+      student_scores << [student.id,marks]
+    end
+    ordered_scores = ordered_scores.compact.uniq.sort.reverse
+    @students.each do |student|
+      marks = 0
+      student_scores.each do|student_score|
+        if student_score[0]==student.id
+          marks = student_score[1]
+        end
+      end
+      ranked_students << [(ordered_scores.index(marks) + 1),marks,student.id,student]
+    end
+    ranked_students = ranked_students.sort
+  end
+
+  def find_attendance_rank(start_date,end_date)
+    @students = Student.find_all_by_batch_id(self.id)
+    ranked_students=[]
+    unless @students.empty?
+      working_days = self.find_working_days(start_date,end_date).count
+      unless working_days == 0
+        ordered_percentages = []
+        student_percentages = []
+        @students.each do|student|
+          leaves = Attendance.find(:all,:conditions=>["student_id = ? and month_date >= ? and month_date <= ?",student.id,start_date,end_date])
+          absents = 0
+          unless leaves.empty?
+            leaves.each do|leave|
+              if leave.forenoon == true and leave.afternoon == true
+                absents = absents + 1
+              else
+                absents = absents + 0.5
+              end
+            end
+          end
+          percentage = ((working_days.to_f - absents).to_f/working_days.to_f)*100
+          ordered_percentages << percentage
+          student_percentages << [student.id,(working_days - absents),percentage]
+        end
+        ordered_percentages = ordered_percentages.compact.uniq.sort.reverse
+        @students.each do |student|
+          stu_percentage = 0
+          attended = 0
+          working_days
+          student_percentages.each do|student_percentage|
+            if student_percentage[0]==student.id
+              attended = student_percentage[1]
+              stu_percentage = student_percentage[2]
+            end
+          end
+          ranked_students << [(ordered_percentages.index(stu_percentage) + 1),stu_percentage,student.first_name,working_days,attended,student]
+        end
+      end
+    end
+    return ranked_students
+  end
+
   def gpa_enabled?
     Configuration.has_gpa? and self.grading_type=="1"
   end
@@ -506,7 +576,7 @@ class Batch < ActiveRecord::Base
       end
       timetables.each do |tt|
         ([starting_date,start_date.to_date,tt.start_date].max..[tt.end_date,end_date.to_date,ending_date,Date.today].min).each do |d|
-          hsh2[d]=hsh[tt.id][d.wday] 
+          hsh2[d]=hsh[tt.id][d.wday]
         end
       end
     end

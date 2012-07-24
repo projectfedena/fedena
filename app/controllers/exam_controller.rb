@@ -420,6 +420,7 @@ class ExamController < ApplicationController
       @batch = Batch.find(params[:batch_rank][:batch_id])
       @students = Student.find_all_by_batch_id(@batch.id)
       @grouped_exams = GroupedExam.find_all_by_batch_id(@batch.id)
+      @ranked_students = @batch.find_batch_rank
     end
   end
 
@@ -427,6 +428,7 @@ class ExamController < ApplicationController
     @batch = Batch.find(params[:batch_id])
     @students = Student.find_all_by_batch_id(@batch.id)
     @grouped_exams = GroupedExam.find_all_by_batch_id(@batch.id)
+    @ranked_students = @batch.find_batch_rank
     render :pdf => "student_batch_rank_pdf"
   end
   
@@ -471,6 +473,7 @@ class ExamController < ApplicationController
         end
         @students = Student.find_all_by_batch_id(@batches)
         @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
+        @ranked_students = @course.find_course_rank(@batches.collect(&:id)).paginate(:page => params[:page], :per_page=>25)
       end
     end
   end
@@ -485,6 +488,7 @@ class ExamController < ApplicationController
     end
     @students = Student.find_all_by_batch_id(@batches)
     @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
+    @ranked_students = @course.find_course_rank(@batches.collect(&:id))
     render :pdf => "student_course_rank_pdf"
   end
 
@@ -493,6 +497,11 @@ class ExamController < ApplicationController
     @batches = Batch.all(:conditions=>{:course_id=>@courses,:is_deleted=>false,:is_active=>true})
     @students = Student.find_all_by_batch_id(@batches)
     @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
+    unless @courses.empty?
+      @ranked_students = @courses.first.find_course_rank(@batches.collect(&:id)).paginate(:page => params[:page], :per_page=>25)
+    else
+      @ranked_students=[]
+    end
   end
 
   def student_school_rank_pdf
@@ -500,6 +509,11 @@ class ExamController < ApplicationController
     @batches = Batch.all(:conditions=>{:course_id=>@courses,:is_deleted=>false,:is_active=>true})
     @students = Student.find_all_by_batch_id(@batches)
     @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
+    unless @courses.empty?
+      @ranked_students = @courses.first.find_course_rank(@batches.collect(&:id))
+    else
+      @ranked_students=[]
+    end
     render :pdf => "student_school_rank_pdf"
   end
 
@@ -516,6 +530,7 @@ class ExamController < ApplicationController
         @students = Student.find_all_by_batch_id(@batch.id)
         @start_date = params[:attendance_rank][:start_date].to_date
         @end_date = params[:attendance_rank][:end_date].to_date
+        @ranked_students = @batch.find_attendance_rank(@start_date,@end_date)
       end
     end
   end
@@ -525,6 +540,7 @@ class ExamController < ApplicationController
     @students = Student.find_all_by_batch_id(@batch.id)
     @start_date = params[:start_date].to_date
     @end_date = params[:end_date].to_date
+    @ranked_students = @batch.find_attendance_rank(@start_date,@end_date)
     render :pdf => "student_attendance_rank_pdf"
   end
 

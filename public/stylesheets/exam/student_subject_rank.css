@@ -96,6 +96,10 @@ td a:hover{
 td.col-3{
     padding: 5px;
 }
+table#listing td.col-3 {
+    padding:5px 5px 5px 10px;
+    width:14%;
+}
 td.col-4{
     padding: 5px;
 }
@@ -104,4 +108,19 @@ td.col-4{
     margin: 0 auto;
     overflow: auto;
     width: 100%;
+}
+tr.tr-head a{
+    background: #fff;
+    color:#990a10;
+    font-weight:bold;
+    text-align:left;
+    text-decoration:none;
+}
+
+.tr-head th{
+    padding:5px 5px 5px 10px;
+
+}
+.sortheader img{
+    border:0px;
 }

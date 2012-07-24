@@ -17,6 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
+<%= javascript_include_tag "sortable" %>
 <div id="content-header">
   <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
@@ -40,25 +41,29 @@
   <div class="box">
     <h4><%= @batch.name %> - <%= @batch.course.full_name %> | <%= @subject.name %></h4>
     <div id="score-table">
-      <table id="listing" width="100%" cellpadding="1" cellspacing="1">
+      <table class ="sortable" id="listing" width="100%" cellpadding="1" cellspacing="1" onload="sortables_init()" >
         <tr class="tr-head">
-          <td><%= t('adm_no') %></td>
-          <td><%= t('name') %></td>
+          <th class="unsortable"><%= t('sl_no') %></th>
+          <th><%= t('adm_no') %></th>
+          <th><%= t('name') %></th>
           <% ranks = [] %>
           <% @exam_groups.each do |exam_group| %>
             <% rank_exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
-            <% exam_scores = ExamScore.find_all_by_exam_id(rank_exam.id) %>
-            <% ordered_marks = exam_scores.map{|m| m.marks}.compact.uniq.sort.reverse %>
-            <% ranks << [exam_group.id,ordered_marks] %>
-            <td><%= exam_group.name %></td>
+            <% unless rank_exam.nil? %>
+              <% exam_scores = ExamScore.find_all_by_exam_id(rank_exam.id) %>
+              <% ordered_marks = exam_scores.map{|m| m.marks}.compact.uniq.sort.reverse %>
+              <% ranks << [exam_group.id,ordered_marks] %>
+            <% end %>
+            <th><%= exam_group.name %></th>
           <% end %>
         </tr>
-        <% @students.each do |student| %>
+        <% @students.each_with_index do |student,i| %>
           <tr class="tr-<%= cycle('odd', 'even') %>">
+            <td class="col-1"><%= i+1 %></td>
             <td class="col-1"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
             <td class="col-2"><%= student.full_name %></td>
             <% @exam_groups.each do |exam_group| %>
-            <% mark_list = [] %>
+              <% mark_list = [] %>
               <% ranks.each do|rank| %>
                 <% if rank[0]==exam_group.id %>
                   <% mark_list = rank[1] %>
