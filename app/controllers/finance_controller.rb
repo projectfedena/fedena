@@ -1716,7 +1716,7 @@ class FinanceController < ApplicationController
   #fees defaulters-----------------------
 
   def fees_defaulters
-    @courses = Course.all
+    @courses = Course.active
     @batchs = []
     @dates = []
   end
