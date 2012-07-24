@@ -46,7 +46,7 @@
     <% @leave_count.each do |e| %>
       <% leave_type = EmployeeLeaveType.find_by_id(e.employee_leave_type_id)%>
       <div class="type_name<%=cycle("odd", "even")%> ">
-        <div class="total"><%= t('total') %><%= leave_type.name %>:</div><div class="count"><%= e.leave_taken %>/<%= e.leave_count %></div>
+        <div class="total"><%= t('total') %> <%= leave_type.name %>:</div><div class="count"><%= e.leave_taken %>/<%= e.leave_count %></div>
          <% if permitted_to? :employee_leave_count_edit, :employee %>
         <div class="edit-leave"><%=  link_to_remote "#{t('edit_text')}", :url =>{:action=>"employee_leave_count_edit", :id=>e.id, :leave_type=>e.employee_leave_type_id }%></div>
       <%end%>

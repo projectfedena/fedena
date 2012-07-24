@@ -67,7 +67,7 @@
         <% @leave_count.each do |e| %>
           <% leave_type = EmployeeLeaveType.find_by_id(e.employee_leave_type_id) %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-bold"><%= "#{t('total')}#{leave_type.name}" %></td>
+            <td class="col-bold"><%= "#{t('total')} #{leave_type.name}" %></td>
             <td class="col-bold"><%= "#{e.leave_taken}/#{e.leave_count}" %></td>
           </tr>
           <% total_leave+= e.leave_taken %>
