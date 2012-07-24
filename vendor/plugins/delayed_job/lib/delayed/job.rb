@@ -269,7 +269,7 @@ module Delayed
     end
 
     def after_create
-      Manager.scale_up if self.class.auto_scale && Manager.qty == 0
+      Manager.scale_up if self.class.auto_scale #&& Manager.qty == 0 --- solving worker start error when more than one worker
     end
   end
 
