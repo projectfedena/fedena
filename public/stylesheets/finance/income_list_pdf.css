@@ -1,7 +1,72 @@
+.page1 {
+    width:100%;
+    height: auto;
+    page-break-after: always;
+    page-break-inside: avoid;
+    clear: both;
+}
+.page-break1{
+    height: 20px;
+    border: 1px solid #fff;
+    width: 100%;
+    float: left;
+}
+.section1{
+    page-break-before:always;
+    text-align: center;
+}
+.row{
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+.page-blank{
+    width: 100%;
+    float: left;
+}
+.page_break{
+    margin-top: 60px;
+}
+.sl_no{
+    width:20px;
+    min-width:20px;
+    max-width:20px;
+}
+.rcpt_no{
+    width:50px;
+    min-width:50px;
+    max-width:50px;    
+}
+.amnt{
+    width:80px;
+    min-width:80px;
+    max-width:80px;  
+}
+.t_date{
+    width:90px;
+    min-width:90px;
+    max-width:90px;
+}
+.name{
+    width:150px;
+    min-width:150px;
+    max-width:150px;   
+}
+.desc{
+    width:120px;
+    min-width:120px;
+    max-width:120px;  
+}
+.total_amnt{
+    width:80px;
+    min-width:80px;
+    max-width:80px;
+    border-right: 0px;
+}
 
 
 #page-yield {
-    width:800px;
+    width:100%;
     margin: 0 auto;
     float: left;
     overflow: hidden;
@@ -10,7 +75,7 @@
 
 
 .hor_line{
-    width:800px;
+    width:100%;
     background: #333333;
     height: 1px;
 }
@@ -82,7 +147,8 @@ tr.odd{
 
 table#pdf-table{
     border-top: 1px solid #ADACAB;
-    border-collapse:collapse
+    border-collapse:collapse;
+    font-size: 18px;
 }
 
 
@@ -98,7 +164,6 @@ table#pdf-table{
 }
 
 .report{
-    min-height: 1000px;
     margin: 0 auto;
 }
 
@@ -107,7 +172,7 @@ table#pdf-table{
     width: 700px;
     margin: 0 auto;
     color: #999999;
-    font-size: 18px;
+
 }
 
 

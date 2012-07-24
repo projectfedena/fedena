@@ -19,47 +19,100 @@
 
 
 
-<div id="page-yield">
-
-  <div class="hor_line"></div>
-  <h2><%= t('finance_income_report') %></h2>
-  <div class="hor_line"></div>
-
-
-  <div class="extender"> </div>
-  <div class="report">
-    <div id ="main_info">
-      <h4> <%= "#{t('from')} ( #{@start_date})#{t('to')} ( #{@end_date})" %></h4>
-    </div>
-    <div id="pdf-info">
-      <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"> <%= t('name') %> </td><td class="col-pdf"> <%= t('description') %> </td><td class="col-pdf"> <%= t('receipt_no') %> </td><td class="col-pdf"><%= "#{t('amount')}( #{currency})" %></td><td class="col-pdf"> <%= t('transaction_date') %></td></tr>
-        <% index = 0 %>
-        <% total = 0 %>
-        <% i = 0 %>
-        <% c= 'even' %>
-
-        <% @incomes.each do |d| %>
-          <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf"><%= index+=1 %></td>
-            <td class="col-pdf"><%= d.title %></td>
-            <td class="col-pdf"><%= d.description %></td>
-            <td class="col-pdf"><%= d.receipt_no %></td>
-            <td class="col-pdf"><%= d.amount %></td>
-            <td class="col-pdf"><%= d.transaction_date.strftime("%d-%m-%y") unless d.transaction_date.nil?%></td>
-          </tr>
-        <% total += d.amount %>
-        <% end %>
-
-        <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-            <td class="col-pdf"></td>
-            <td class="col-pdf" colspan="3"><%= t('grand_total') %></td>
-            <td class="col-pdf" colspan="2"><%= total %></td>
-          </tr>
-
-      </table>
-    </div>
-
+<div id="page-yield" class="available_sections1">
+  <div class="page1"></div>
+  <div class="section1 row" >
+    <center>
+      <div class="hor_line"></div>
+      <h2><%= t('finance_income_report') %></h2>
+      <div class="hor_line"></div>
+      <div class="extender"> </div>
+      <div class="report">
+        <div id ="main_info">
+          <h4> <%= "#{t('from')} ( #{@start_date})#{t('to')} ( #{@end_date})" %></h4>
+        </div>
+      </div>
+    </center>
   </div>
+  <div class="section1 row" >
+    <center>
+      <table id="pdf-table">
+        <tr class="table-header">
+          <td class="col-pdf sl_no"><%= t('sl_no') %></td>
+          <td class="col-pdf name"> <%= t('name') %> </td>
+          <td class="col-pdf desc"> <%= t('description') %> </td>
+          <td class="col-pdf rcpt_no"> <%= t('receipt_no') %> </td>
+          <td class="col-pdf amnt"><%= "#{t('amount')}( #{currency})" %></td>
+          <td class="col-pdf t_date"> <%= t('transaction_date') %></td>
+        </tr>
+      </table>
+    </center>
+  </div>
+  <% index = 0 %>
+  <% total = 0 %>
+  <% i = 0 %>
+  <% rows_per_page=22 %>
+  <% c= 'even' %>
 
+  <% @incomes.each_with_index do |d,i| %>
+    <div class="section1 row" >
+      <center>
+        <table id="pdf-table">
+          <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+            <td class="col-pdf sl_no"><%= i+1 %></td>
+            <td class="col-pdf name"><%= d.title %></td>
+            <td class="col-pdf desc"><%= d.description %></td>
+            <td class="col-pdf rcpt_no"><%= d.receipt_no %></td>
+            <td class="col-pdf amnt"><%= d.amount %></td>
+            <td class="col-pdf t_date"><%= d.transaction_date.strftime("%d-%m-%y") unless d.transaction_date.nil?%></td>
+          </tr>
+        </table>
+      </center>
+    </div>
+    <% total += d.amount %>
+  <% end %>
+  <div class="section1 row" >
+    <center>
+      <table id="pdf-table">
+        <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
+          <td class="col-pdf sl_no">&nbsp;</td>
+          <td class="col-pdf name">&nbsp;</td>
+          <td class="col-pdf desc">&nbsp; </td>
+          <td class="col-pdf rcpt_no"><%= t('grand_total') %></td>
+          <td class="col-pdf total_amnt"><%= total %></td>
+          <td class="col-pdf t_date">&nbsp;</td>
+        </tr>
+      </table>
+    </center>
+  </div>
 </div>
+<% if params[:page_height] %>
+  <script type="text/javascript">
+    var body = document.body,
+    html = document.documentElement;
+    var pg_height = parseInt(<%= params[:page_height] %>)
+    var page = new Element('div',{'class' : 'page1'});
+    var pageBreak = new Element('div',{'class' : 'page-break1'});
+    var insertPageBreak = function(){body.appendChild(pageBreak.cloneNode(true))};
+    var insertPage = function(){body.appendChild(page.cloneNode(true));};
+    var currPage = function(){return $$('.page1').last()};
+    var current_page_height=0
+    var i=0
+    $$('.available_sections1 .section1').each(function(el){
+      a = parseInt(el.getHeight());
+      c=current_page_height+a;
+      current_page_height=c;
+      if(c>pg_height){
+        current_page_height=a
+        body.appendChild(new Element('div',{'id' : 'page-blank_'+i, 'class' : 'page-blank'}))
+        document.getElementById('page-blank_'+i).style.height= (c-pg_height)+'px';
+        document.getElementById('page-blank_'+i).innerHTML="&nbsp;"/* if a div doesnt have any content it may not display.. set height will not work */
+        i+=1
+        el.style.marginTop="50px"; /* for this border-top is coming, top section of each page */
+        insertPageBreak();
+        insertPage();
+      }
+      currPage().appendChild(el);
+    });
+  </script>
+<% end %>

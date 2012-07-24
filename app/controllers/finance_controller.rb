@@ -187,7 +187,7 @@ class FinanceController < ApplicationController
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
     @incomes = FinanceTransaction.incomes(@start_date,@end_date)
-    render :pdf => 'income_list_pdf'
+    render :pdf => 'income_list_pdf', :zoom=>0.68#, :show_as_html=>true
   end
 
   def income_details_pdf

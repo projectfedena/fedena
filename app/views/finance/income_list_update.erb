@@ -28,7 +28,7 @@
 <div id="inner-tab-menu">
   <ul>
     <li><%= link_to "#{t('pdf_report')}",
-        {:controller => "finance", :action => "income_list_pdf", :start_date => @start_date, :end_date=>@end_date,:id => @income_category.id},:target => '_blank' %></li>
+        {:controller => "finance", :action => "income_list_pdf", :start_date => @start_date, :end_date=>@end_date,:id => @income_category.id, :page_height=>1100},:target => '_blank' %></li>
   </ul>
 </div>
 <% unless @incomes.empty? %>
