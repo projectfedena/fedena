@@ -1968,6 +1968,7 @@ en: # locale
   archived_grouped_exam_reports: "Archived Grouped Exam Reports"
   is_final_exam: "Is Final Exam?"
   retaken: "Retaken"
+  grouped_exam_reports_not_generated: "Grouped Exam Reports have not been generated for this Student."
   
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"

@@ -1931,6 +1931,8 @@ hi:
   exam_reports1: "Exam Reports1"
   archived_grouped_exam_reports: "Archived Grouped Exam Reports"
   is_final_exam: "Is Final Exam?"
+  retaken: "Retaken"
+  grouped_exam_reports_not_generated: "Grouped Exam Reports have not been generated for this Student."
 
   flash_msg1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक नवीनीकृत|"
   flash_msg2: "क्षमा करें"
