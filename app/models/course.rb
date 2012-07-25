@@ -65,7 +65,7 @@ class Course < ActiveRecord::Base
     return false
   end
 
-  def find_course_rank(batch_ids)
+  def find_course_rank(batch_ids,sort_order)
     batches = Batch.find_all_by_id(batch_ids)
     @students = Student.find_all_by_batch_id(batches)
     @grouped_exams = GroupedExam.find_all_by_batch_id(batches)
@@ -89,9 +89,17 @@ class Course < ActiveRecord::Base
           m = student_score[1]
         end
       end
-      ranked_students << [(ordered_scores.index(m) + 1),m,student.id,student]
+      if sort_order=="" or sort_order=="rank-ascend" or sort_order=="rank-descend"
+        ranked_students << [(ordered_scores.index(m) + 1),m,student.id,student]
+      else
+        ranked_students << [student.full_name,(ordered_scores.index(m) + 1),m,student.id,student]
+      end
     end
-    ranked_students = ranked_students.sort
+    if sort_order=="" or sort_order=="rank-ascend" or sort_order=="name-ascend"
+      ranked_students = ranked_students.sort
+    else
+      ranked_students = ranked_students.sort.reverse
+    end
   end
 
   def cce_enabled?

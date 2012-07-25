@@ -61,11 +61,19 @@
                   <% i=i+1 %>
                 <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
                   <td class="col-pdf"><%= ind+1 %></td>
+                  <% if @sort_order=="" or @sort_order=="rank-ascend" or @sort_order=="rank-descend" %>
                   <td class="col-pdf"><%= student[3].full_name %></td>
                   <td class="col-pdf"><%= student[3].batch.full_name %></td>
                   <td class="col-pdf"><%= student[3].admission_no.present? ? student[3].admission_no : "-" %></td>
                   <td class="col-pdf"><%= student[1] %></td>
                   <td class="col-pdf"><%= student[0] %></td>
+                  <% else %>
+                  <td class="col-pdf"><%= student[4].full_name %></td>
+                  <td class="col-pdf"><%= student[4].batch.full_name %></td>
+                  <td class="col-pdf"><%= student[4].admission_no.present? ? student[4].admission_no : "-" %></td>
+                  <td class="col-pdf"><%= student[2] %></td>
+                  <td class="col-pdf"><%= student[1] %></td>
+                  <% end %>
                 </tr>
               <% end %>
             </table>

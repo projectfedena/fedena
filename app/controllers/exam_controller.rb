@@ -473,7 +473,11 @@ class ExamController < ApplicationController
         end
         @students = Student.find_all_by_batch_id(@batches)
         @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
-        @ranked_students = @course.find_course_rank(@batches.collect(&:id)).paginate(:page => params[:page], :per_page=>25)
+        @sort_order=""
+        unless !params[:sort_order].present?
+          @sort_order=params[:sort_order]
+        end
+        @ranked_students = @course.find_course_rank(@batches.collect(&:id),@sort_order).paginate(:page => params[:page], :per_page=>25)
       end
     end
   end
@@ -488,7 +492,11 @@ class ExamController < ApplicationController
     end
     @students = Student.find_all_by_batch_id(@batches)
     @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
-    @ranked_students = @course.find_course_rank(@batches.collect(&:id))
+    @sort_order=""
+    unless !params[:sort_order].present?
+      @sort_order=params[:sort_order]
+    end
+    @ranked_students = @course.find_course_rank(@batches.collect(&:id),@sort_order)
     render :pdf => "student_course_rank_pdf"
   end
 
@@ -497,8 +505,12 @@ class ExamController < ApplicationController
     @batches = Batch.all(:conditions=>{:course_id=>@courses,:is_deleted=>false,:is_active=>true})
     @students = Student.find_all_by_batch_id(@batches)
     @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
+    @sort_order=""
+    unless !params[:sort_order].present?
+      @sort_order=params[:sort_order]
+    end
     unless @courses.empty?
-      @ranked_students = @courses.first.find_course_rank(@batches.collect(&:id)).paginate(:page => params[:page], :per_page=>25)
+      @ranked_students = @courses.first.find_course_rank(@batches.collect(&:id),@sort_order).paginate(:page => params[:page], :per_page=>25)
     else
       @ranked_students=[]
     end
@@ -509,8 +521,12 @@ class ExamController < ApplicationController
     @batches = Batch.all(:conditions=>{:course_id=>@courses,:is_deleted=>false,:is_active=>true})
     @students = Student.find_all_by_batch_id(@batches)
     @grouped_exams = GroupedExam.find_all_by_batch_id(@batches)
+    @sort_order=""
+    unless !params[:sort_order].present?
+      @sort_order=params[:sort_order]
+    end
     unless @courses.empty?
-      @ranked_students = @courses.first.find_course_rank(@batches.collect(&:id))
+      @ranked_students = @courses.first.find_course_rank(@batches.collect(&:id),@sort_order)
     else
       @ranked_students=[]
     end

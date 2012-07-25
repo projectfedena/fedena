@@ -27,7 +27,7 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_school_rank_pdf"},:target => '_blank', :class=> 'user_button' %></li>
+    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_school_rank_pdf", :sort_order => @sort_order},:target => '_blank', :class=> 'user_button' %></li>
   </ul>
 </div>
 
@@ -46,11 +46,23 @@
             <table id="listing" width="100%" cellpadding="1" cellspacing="1">
               <tr class="tr-head">
                 <td><%= t('sl_no') %></td>
-                <td><%= t('name') %></td>
+                <% if @sort_order=="name-ascend" %>
+                  <td><%= link_to  "#{t('name')}&nbsp;▲", {:action=>"student_school_rank",:page=>params[:page],:sort_order=>"name-descend"} %></td>
+                <% elsif @sort_order=="name-descend" %>
+                  <td><%= link_to  "#{t('name')}&nbsp;▼", {:action=>"student_school_rank",:page=>params[:page],:sort_order=>"name-ascend"} %></td>
+                <% else %>
+                  <td><%= link_to  "#{t('name')}", {:action=>"student_school_rank",:page=>params[:page],:sort_order=>"name-ascend"} %></td>
+                <% end %>
                 <td><%= t('batch') %></td>
                 <td><%= t('adm_no') %></td>
                 <td><%= t('marks') %></td>
-                <td><%= t('rank') %></td>
+                <% if @sort_order=="rank-ascend" %>
+                  <td><%= link_to  "#{t('rank')}&nbsp;▲", {:action=>"student_school_rank",:page=>params[:page],:sort_order=>"rank-descend"} %></td>
+                <% elsif @sort_order=="rank-descend" %>
+                  <td><%= link_to  "#{t('rank')}&nbsp;▼", {:action=>"student_school_rank",:page=>params[:page],:sort_order=>"rank-ascend"} %></td>
+                <% else %>
+                  <td><%= link_to  "#{t('rank')}", {:action=>"student_school_rank",:page=>params[:page],:sort_order=>"rank-ascend"} %></td>
+                <% end %>
               </tr>
               <% if params[:page].present? %>
                 <% i = (params[:page].to_i - 1) * 25 %>
@@ -60,15 +72,23 @@
               <% @ranked_students.each do |student| %>
                 <tr class="tr-<%= cycle('odd', 'even') %>">
                   <td class="col-1"><%= i=i+1 %></td>
+                  <% if @sort_order=="" or @sort_order=="rank-ascend" or @sort_order=="rank-descend" %>
                   <td class="col-2"><%= student[3].full_name %></td>
                   <td class="col-2"><%= student[3].batch.full_name %></td>
                   <td class="col-1"><%= student[3].admission_no.present? ? student[3].admission_no : "-" %></td>
                   <td class="col-1"><%= student[1] %></td>
                   <td class="col-1"><%= student[0] %></td>
+                  <% else %>
+                  <td class="col-2"><%= student[4].full_name %></td>
+                  <td class="col-2"><%= student[4].batch.full_name %></td>
+                  <td class="col-1"><%= student[4].admission_no.present? ? student[4].admission_no : "-" %></td>
+                  <td class="col-1"><%= student[2] %></td>
+                  <td class="col-1"><%= student[1] %></td>
+                  <% end %>
                 </tr>
               <% end %>
             </table>
-            <%= will_paginate @ranked_students %>
+            <%= will_paginate @ranked_students, :params=>{:sort_order=>@sort_order} %>
           <% else %>
             <p class="flash-msg"><%= t('no_grouped_exams_in_this_school') %></p>
           <% end %>
