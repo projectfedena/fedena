@@ -31,11 +31,11 @@
   <% form_for :report, :url => {:action => 'update_monthly_report'} do |form| %>
     <div class="label-field-pair">
       <label><%= t('select_start_date') %>:</label>
-      <div class="input-container"><%= calendar_date_select_tag 'start_date', I18n.l(Date.today,:format=>"%e-%m-%Y") %></div>
+      <div class="input-container"><%= calendar_date_select_tag 'start_date', I18n.l(Date.today,:format=>"%e-%m-%Y") ,:popup=>:force%></div>
     </div>
     <div class="label-field-pair">
       <label><%= t('select_end_date') %>: </label>
-      <div class="input-container"><%= calendar_date_select_tag 'end_date', I18n.l(Date.today,:format=>"%e-%m-%Y") %></div>
+      <div class="input-container"><%= calendar_date_select_tag 'end_date', I18n.l(Date.today,:format=>"%e-%m-%Y") ,:popup=>:force%></div>
     </div>
 
          <%=  submit_tag "► #{t('monthly_report')}",:class=>'submit_button' %>
