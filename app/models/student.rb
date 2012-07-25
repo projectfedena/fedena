@@ -49,7 +49,7 @@ class Student < ActiveRecord::Base
   named_scope :active, :conditions => { :is_active => true }
   named_scope :with_full_name_only, :select=>"id, CONCAT_WS('',first_name,' ',last_name) AS name,first_name,last_name"
 
-  default_scope :order=>'first_name'
+  named_scope :by_first_name, :order=>'first_name',:conditions => { :is_active => true }
 
   validates_presence_of :admission_no, :admission_date, :first_name, :batch_id, :date_of_birth
   validates_uniqueness_of :admission_no

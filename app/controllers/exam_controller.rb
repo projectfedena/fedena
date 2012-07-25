@@ -263,7 +263,7 @@ class ExamController < ApplicationController
     if params[:student].nil?
       @exam_group = ExamGroup.find(params[:exam_report][:exam_group_id])
       @batch = @exam_group.batch
-      @students=@batch.students.all(:order=>"first_name ASC")
+      @students=@batch.students.by_first_name
       @student = @students.first  unless @students.empty?
       if @student.nil?
         flash[:notice] = "#{t('flash_student_notice')}"
@@ -315,7 +315,7 @@ class ExamController < ApplicationController
     @config = Configuration.get_config_value('InstitutionName')
     @exam_group = ExamGroup.find(params[:exam_group])
     @batch = Batch.find(params[:batch])
-    @students = @batch.students
+    @students = @batch.students.by_first_name
     render :pdf => 'generated_report_pdf'
   end
 
@@ -351,7 +351,7 @@ class ExamController < ApplicationController
     unless params[:rank_report][:subject_id] == ""
       @subject = Subject.find(params[:rank_report][:subject_id])
       @batch = @subject.batch
-      @students = @batch.students
+      @students = @batch.students.by_first_name
       unless @subject.elective_group_id.nil?
         @students.reject!{|s| !StudentsSubject.exists?(:student_id=>s.id,:subject_id=>@subject.id)}
       end
@@ -366,7 +366,7 @@ class ExamController < ApplicationController
   def student_subject_rank_pdf
     @subject = Subject.find(params[:subject_id])
     @batch = @subject.batch
-    @students = @batch.students
+    @students = @batch.students.by_first_name
     unless @subject.elective_group_id.nil?
       @students.reject!{|s| !StudentsSubject.exists?(:student_id=>s.id,:subject_id=>@subject.id)}
     end
@@ -882,7 +882,7 @@ class ExamController < ApplicationController
         end
         @flag = "1"
       else
-        @students = @batch.students
+        @students = @batch.students.by_first_name
       end
       unless @students.empty?
         unless !params[:student_id].present? or params[:student_id].nil?
@@ -922,7 +922,7 @@ class ExamController < ApplicationController
   def load_batch_students
     unless params[:id].nil? or params[:id]==""
       @batch = Batch.find(params[:id])
-      @students = @batch.students
+      @students = @batch.students.by_first_name
     else
       @students = []
     end
@@ -1030,7 +1030,7 @@ class ExamController < ApplicationController
     if params[:student].nil?
       @type = params[:type]
       @batch = Batch.find(params[:exam_report][:batch_id])
-      @students=@batch.students.all(:order=>"first_name ASC")
+      @students=@batch.students.by_first_name
       @student = @students.first  unless @students.empty?
       if @student.blank?
         flash[:notice] = "#{t('flash5')}"
@@ -1157,7 +1157,7 @@ class ExamController < ApplicationController
   def combined_grouped_exam_report_pdf
     @type = params[:type]
     @batch = Batch.find(params[:batch])
-    @students = @batch.students
+    @students = @batch.students.by_first_name
     if @type == 'grouped'
       @grouped_exams = GroupedExam.find_all_by_batch_id(@batch.id)
       @exam_groups = []
