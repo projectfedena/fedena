@@ -86,9 +86,9 @@ class AttendancesController < ApplicationController
     @today = params[:next].present? ? params[:next].to_date : Date.today
     unless @sub.elective_group_id.nil?
       elective_student_ids = StudentsSubject.find_all_by_subject_id(@sub.id).map { |x| x.student_id }
-      @students = @batch.students.with_full_name_only.all(:conditions=>"FIND_IN_SET(id,\"#{elective_student_ids.split.join(',')}\")")
+      @students = @batch.students.by_first_name.with_full_name_only.all(:conditions=>"FIND_IN_SET(id,\"#{elective_student_ids.split.join(',')}\")")
     else
-      @students = @batch.students.with_full_name_only
+      @students = @batch.students.by_first_name.with_full_name_only
     end
     subject_leaves = SubjectLeave.by_month_batch_subject(@today,@batch.id,@sub.id).group_by(&:student_id)
     @leaves = Hash.new
@@ -122,7 +122,7 @@ class AttendancesController < ApplicationController
   def daily_register
     @batch = Batch.find(params[:batch_id])
     @today = params[:next].present? ? params[:next].to_date : Date.today
-    @students = @batch.students.with_full_name_only
+    @students = @batch.students.by_first_name.with_full_name_only
     @leaves = Hash.new
     attendances = Attendance.by_month_and_batch(@today,params[:batch_id]).group_by(&:student_id)
     @students.each do |student|

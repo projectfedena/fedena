@@ -60,7 +60,7 @@ class ExamReportsController < ApplicationController
             end
           end
           unless st.nil?
-            @students.push st
+            @students.push [st.first_name, st.id, st]
           end
         end
       end
@@ -68,8 +68,13 @@ class ExamReportsController < ApplicationController
       unless archived_students.empty?
         archived_students.each do|ast|
           ast.id = ast.former_id
-          @students.push ast
+          @students.push [ast.first_name, ast.id, ast]
         end
+      end
+      @sorted_students = @students.sort
+      @students=[]
+      @sorted_students.each do|s|
+        @students.push s[2]
       end
       #@students=@batch.students.all(:order=>"first_name ASC")
       @student = @students.first  unless @students.empty?

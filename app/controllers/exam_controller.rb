@@ -1273,8 +1273,13 @@ class ExamController < ApplicationController
     unless scores.empty?
       scores.each do|score|
         student = Student.find_by_id(score.student_id)
-        @students.push student unless student.nil?
+        @students.push [student.first_name,student.id,student] unless student.nil?
       end
+    end
+    @ordered_students = @students.sort
+    @students=[]
+    @ordered_students.each do|s|
+      @students.push s[2]
     end
     @config = Configuration.get_config_value('ExamResultType') || 'Marks'
 
