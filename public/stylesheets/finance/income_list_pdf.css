@@ -38,9 +38,9 @@
     max-width:50px;    
 }
 .amnt{
-    width:80px;
-    min-width:80px;
-    max-width:80px;  
+    width:100px;
+    min-width:100px;
+    max-width:100px;
 }
 .t_date{
     width:90px;
@@ -53,14 +53,12 @@
     max-width:150px;   
 }
 .desc{
-    width:120px;
-    min-width:120px;
-    max-width:120px;  
+    width:auto;
 }
 .total_amnt{
-    width:80px;
-    min-width:80px;
-    max-width:80px;
+    width:100px;
+    min-width:100px;
+    max-width:100px;
     border-right: 0px;
 }
 
