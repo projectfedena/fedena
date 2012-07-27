@@ -35,7 +35,7 @@ class CceReportsController < ApplicationController
     @batches=Batch.cce
     if request.post?      
       @batch=Batch.find(params[:batch_id])
-      @students=@batch.students
+      @students=@batch.students.all(:order=>"first_name ASC")
       @student = @students.first
       if @student
         fetch_report
