@@ -8,8 +8,6 @@
   {"config_key" => "AdmissionNumberAutoIncrement"    ,"config_value" => "1"},
   {"config_key" => "EmployeeNumberAutoIncrement"     ,"config_value" => "1"},
   {"config_key" => "TotalSmsCount"                   ,"config_value" => "0"},
-  {"config_key" => "AvailableModules"                ,"config_value" => "HR"},
-  {"config_key" => "AvailableModules"                ,"config_value" => "Finance"},
   {"config_key" => "NetworkState"                    ,"config_value" => "Online"},
   {"config_key" => "FinancialYearStartDate"          ,"config_value" => Date.today},
   {"config_key" => "FinancialYearEndDate"            ,"config_value" => Date.today+1.year},
@@ -21,6 +19,13 @@
   {"config_key" => "CCE"                             ,"config_value" => "0"}
 ].each do |param|
   Configuration.find_or_create_by_config_key(param)
+end
+
+[
+  {"config_key" => "AvailableModules"                ,"config_value" => "HR"},
+  {"config_key" => "AvailableModules"                ,"config_value" => "Finance"}
+].each do |param|
+  Configuration.find_or_create_by_config_key_and_config_value(param)
 end
 
 if GradingLevel.count == 0
