@@ -1859,6 +1859,8 @@ es: # locale
   baseend_date_is_invalid: "Fecha de finalización no es válida"
   remove_entry_confirm: "Eliminar entrada?"
   should_not_be_admin: "no debería ser administrador"
+  edit_current_tte_confirm: "This timetable is currently in use. Please remove the attendance related to the class timings of removing timetable entries before editing if subject-wise attendance is in use."
+
 
   #exam updates
   ranking_levels_text: "Ranking Levels"

@@ -32,6 +32,10 @@
       <li>
         <%= link_to t('edit_entries'),:controller=>:timetable_entries,:action => "new",:timetable_id=>@timetable.id %>
       </li>
+    <% else %>
+      <li>
+        <%= link_to t('edit_entries'),{:controller=>:timetable_entries,:action => "new",:timetable_id=>@timetable.id}, :class => 'delete-button',:confirm=>t("edit_current_tte_confirm") %>
+      </li>
     <% end %>
     <% if @removable %>
       <li>
