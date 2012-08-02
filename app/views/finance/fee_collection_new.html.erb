@@ -59,15 +59,15 @@
       </div>
       <div class="label-field-pair">
         <label for="reason">  <%= t('start_date') %>:</label>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'finance_fee_collection[start_date]', I18n.l(Date.today,:format=>:default),:popup=>"force" %></div>
+        <div class="text-input-bg"><%= calendar_date_select_tag 'finance_fee_collection[start_date]', I18n.l(@finance_fee_collection.start_date || Date.today,:format=>:default),:popup=>"force" %></div>
       </div>
       <div class="label-field-pair">
         <label for="reason">  <%= t('end_date') %>:</label>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'finance_fee_collection[end_date]',I18n.l(Date.today,:format=>:default), :popup=>"force" %></div>
+        <div class="text-input-bg"><%= calendar_date_select_tag 'finance_fee_collection[end_date]',I18n.l(@finance_fee_collection.end_date || Date.today,:format=>:default), :popup=>"force" %></div>
       </div>
       <div class="label-field-pair">
         <label for="reason">  <%= t('due_date') %>:</label>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'finance_fee_collection[due_date]', I18n.l(Date.today,:format=>:default), :popup=>"force"%></div>
+        <div class="text-input-bg"><%= calendar_date_select_tag 'finance_fee_collection[due_date]', I18n.l(@finance_fee_collection.due_date || Date.today,:format=>:default), :popup=>"force"%></div>
       </div>
     </div>
 

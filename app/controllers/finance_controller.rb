@@ -1180,59 +1180,71 @@ class FinanceController < ApplicationController
     @fee_categories = FinanceFeeCategory.common_active
     fee_category_name = params[:finance_fee_collection][:fee_category_id] unless params[:finance_fee_collection].nil?
     category =[]
-    unless params[:fee_collection].nil?
-      category = params[:fee_collection][:category_ids]
-      subject = "#{t('fees_submission_date')}"
+    @finance_fee_collection = FinanceFeeCollection.new
+    if request.post?
+      unless params[:fee_collection].nil?
+        category = params[:fee_collection][:category_ids]
+        subject = "#{t('fees_submission_date')}"
 
-      category.each do |c|
-        fee_category = FinanceFeeCategory.find_by_id(c)
-        b = Batch.find_by_id(fee_category.batch_id)
-        @finance_fee_collection = FinanceFeeCollection.new(
-          :name => params[:finance_fee_collection][:name],
-          :start_date => params[:finance_fee_collection][:start_date],
-          :end_date => params[:finance_fee_collection][:end_date],
-          :due_date => params[:finance_fee_collection][:due_date],
-          :fee_category_id => c,
-          :batch_id => b.id
-        )
-        if @finance_fee_collection.save
-          @students = Student.find_all_by_batch_id(b.id)
-          unless fee_category.have_common_particular?
-            @students = @students.select{|stu| stu.has_associated_fee_particular?(fee_category)}
-          end
-          body = "<p><b>#{t('fee_submission_date_for')} <i>"+fee_category_name+"</i> #{t('has_been_published')} </b>
-             \n \n  #{t('start_date')} : "+@finance_fee_collection.start_date.to_s+" \n"+
-            " #{t('end_date')} :"+@finance_fee_collection.end_date.to_s+" \n "+
-            " #{t('due_date')} :"+@finance_fee_collection.due_date.to_s+" \n \n \n "+
-            " #{t('check_your')}  #{t('fee_structure')}"
-          recipient_ids = []
-          @students.each do |s|
-            unless s.has_paid_fees
-              FinanceFee.create(:student_id => s.id,:fee_collection_id => @finance_fee_collection.id)
-              recipient_ids << s.user.id
+        category.each do |c|
+          fee_category = FinanceFeeCategory.find_by_id(c)
+          b = Batch.find_by_id(fee_category.batch_id)
+          @finance_fee_collection = FinanceFeeCollection.new(
+            :name => params[:finance_fee_collection][:name],
+            :start_date => params[:finance_fee_collection][:start_date],
+            :end_date => params[:finance_fee_collection][:end_date],
+            :due_date => params[:finance_fee_collection][:due_date],
+            :fee_category_id => c,
+            :batch_id => b.id
+          )
+          if @finance_fee_collection.save
+            @students = Student.find_all_by_batch_id(b.id)
+            unless fee_category.have_common_particular?
+              @students = @students.select{|stu| stu.has_associated_fee_particular?(fee_category)}
             end
-          end
-          new_event =  Event.create(:title=> "#{t('fees_due')}", :description =>params[:finance_fee_collection][:name], :start_date => @finance_fee_collection.due_date.to_datetime, :end_date => @finance_fee_collection.due_date.to_datetime, :is_due => true , :origin=>@finance_fee_collection)
-          BatchEvent.create(:event_id => new_event.id, :batch_id => b.id )
-          Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => @user.id,
+            body = "<p><b>#{t('fee_submission_date_for')} <i>"+fee_category_name+"</i> #{t('has_been_published')} </b>
+              \n \n  #{t('start_date')} : "+@finance_fee_collection.start_date.to_s+" \n"+
+              " #{t('end_date')} :"+@finance_fee_collection.end_date.to_s+" \n "+
+              " #{t('due_date')} :"+@finance_fee_collection.due_date.to_s+" \n \n \n "+
+              " #{t('check_your')}  #{t('fee_structure')}"
+            recipient_ids = []
+            @students.each do |s|
+              unless s.has_paid_fees
+                FinanceFee.create(:student_id => s.id,:fee_collection_id => @finance_fee_collection.id)
+                recipient_ids << s.user.id
+              end
+            end
+            new_event =  Event.create(:title=> "#{t('fees_due')}", :description =>params[:finance_fee_collection][:name], :start_date => @finance_fee_collection.due_date.to_datetime, :end_date => @finance_fee_collection.due_date.to_datetime, :is_due => true , :origin=>@finance_fee_collection)
+            BatchEvent.create(:event_id => new_event.id, :batch_id => b.id )
+            Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => @user.id,
               :recipient_ids => recipient_ids,
               :subject=>subject,
               :body=>body ))
-        else
-          @error = true
+          else
+            @error = true
+          end
         end
+      else
+        @error = true
+        if params[:finance_fee_collection].present?
+          @finance_fee_collection = FinanceFeeCollection.new(
+            :name => params[:finance_fee_collection][:name],
+            :start_date => params[:finance_fee_collection][:start_date],
+            :end_date => params[:finance_fee_collection][:end_date],
+            :due_date => params[:finance_fee_collection][:due_date],
+            :fee_category_id => nil,
+            :batch_id => nil
+          )
+        end
+        @finance_fee_collection.errors.add_to_base("#{t('fees_category_cant_be_blank')}")
       end
-    else
-      @error = true
-      @finance_fee_collection = FinanceFeeCollection.new
-      @finance_fee_collection.errors.add_to_base("#{t('fees_category_cant_be_blank')}")
-    end
 
-    if @error.nil?
-      flash[:notice] = t('flash_msg33')
-      redirect_to :action => 'fee_collection_new'
-    else
-      render :action => 'fee_collection_new'
+      if @error.nil?
+        flash[:notice] = t('flash_msg33')
+        redirect_to :action => 'fee_collection_new'
+      else
+        render :action => 'fee_collection_new'
+      end
     end
   end
 
