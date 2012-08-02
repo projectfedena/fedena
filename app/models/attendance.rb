@@ -20,9 +20,8 @@ class Attendance < ActiveRecord::Base
   belongs_to :subject
   belongs_to :student
   belongs_to :batch
-#  belongs_to :period_entry, :foreign_key => :period_table_entry_id
-#  validates_uniqueness_of :student_id, :scope => [:period_table_entry_id]
   validates_presence_of :reason
+  validates_uniqueness_of :student_id, :scope => [:month_date]
 
   def validate
     errors.add("#{t('attendance_before_the_date_of_admission')}")  if self.month_date < self.student.admission_date
