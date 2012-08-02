@@ -42,6 +42,17 @@ class Timetable < ActiveRecord::Base
     today
   end
 
+  def self.tte_for_the_weekday(batch,day)
+    date=Date.today
+    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timing, :weekday],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?)  AND timetable_entries.batch_id = ? AND class_timings.is_deleted = false AND weekdays.is_deleted = false",date,date,batch.id], :order=>"class_timings.start_time",:include=>[:employee,:class_timing,:subject])
+    if entries.empty?
+      today=[]
+    else
+      today=entries.select{|a| a.day_of_week==day}
+    end
+    today
+  end
+
   def self.employee_tte(employee,date)
     entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timing, :weekday],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?) AND timetable_entries.employee_id = ? AND class_timings.is_deleted = false AND weekdays.is_deleted = false",date,date,employee.id], :order=>"class_timings.start_time")
     if entries.empty?
@@ -57,7 +68,7 @@ class Timetable < ActiveRecord::Base
     unless subject.elective_group.nil?
       subject=subject.elective_group.subjects.first
     end
-    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timig, :weekday],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?)  AND timetable_entries.subject_id = ? AND class_timings.is_deleted = false AND weekdays.is_deleted = false",date,date,subject.id])
+    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timing, :weekday],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?)  AND timetable_entries.subject_id = ? AND class_timings.is_deleted = false AND weekdays.is_deleted = false",date,date,subject.id])
     if entries.empty?
       today=[]
     else
