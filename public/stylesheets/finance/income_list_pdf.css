@@ -48,9 +48,9 @@
     max-width:90px;
 }
 .name{
-    width:150px;
-    min-width:150px;
-    max-width:150px;   
+    width:300px;
+    min-width:300px;
+    max-width:300px;
 }
 .desc{
     width:auto;
