@@ -28,9 +28,10 @@ class User < ActiveRecord::Base
     :message => "#{t('must_be_a_valid_email_address')}"
   validates_presence_of   :role , :on=>:create
   validates_presence_of   :password, :on => :create
-  
-  has_and_belongs_to_many :privileges
 
+  has_and_belongs_to_many :privileges
+  has_many  :user_events
+  has_many  :events,:through=>:user_events
   has_one :student_record,:class_name=>"Student",:foreign_key=>"user_id"
   has_one :employee_record,:class_name=>"Employee",:foreign_key=>"user_id"
 
@@ -81,7 +82,7 @@ class User < ActiveRecord::Base
     return "#{t('parent')}" if self.parent?
     return nil
   end
-  
+
   def role_symbols
     prv = []
     @privilge_symbols ||= privileges.map { |privilege| prv << privilege.name.underscore.to_sym }
@@ -117,8 +118,27 @@ class User < ActiveRecord::Base
   def parent_record
     Student.find_by_admission_no(self.username[1..self.username.length])
   end
-  
+
   def has_subject_in_batch(b)
     employee_record.subjects.collect(&:batch_id).include? b.id
+  end
+
+  def future_events
+    all_events=[]
+    date=Date.today
+    case(role_name)
+    when "Admin"
+      all_events=Event.find(:all,:conditions => ["? between events.start_date and events.end_date",date])
+    when "Student","Parent"
+      all_events+= events.all(:conditions=>["? between events.start_date and events.end_date",date])
+      all_events+= student_record.batch.events.all(:conditions=>["? between events.start_date and events.end_date",date])
+      all_events+= Event.all(:conditions=>["(? between events.start_date and events.end_date) and is_common = true",date])
+    when "Employee"
+      all_events+= events.all(:conditions=>["? between events.start_date and events.end_date",date])
+      all_events+= employee_record.employee_department.events.all(:conditions=>["? between events.start_date and events.end_date",date])
+      all_events+= Event.all(:conditions=>["(? between events.start_date and events.end_date) and is_exam = true",date])
+      all_events+= Event.all(:conditions=>["(? between events.start_date and events.end_date) and is_common = true",date])
+    end
+    all_events
   end
 end

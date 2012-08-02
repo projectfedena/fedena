@@ -20,9 +20,11 @@ class EmployeeDepartment < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name, :code
   has_many :employees
+  has_many  :employee_department_events
+  has_many  :events,  :through=>:employee_department_events
   named_scope :active, :conditions => {:status => true }
 
-  
+
   def department_total_salary(start_date,end_date)
     total = 0
     self.employees.each do |e|
