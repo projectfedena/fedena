@@ -131,3 +131,7 @@
 .input-container2{
     float: left;
 }
+.label-field-pair.category_list label{
+    width: 410px !important;
+}
+
