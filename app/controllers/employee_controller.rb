@@ -312,7 +312,7 @@ class EmployeeController < ApplicationController
     @employee = Employee.find(params[:id])
     @employee_user = @employee.user
     if request.post?
-      unless params[:employee][:employee_number] == 'admin'
+      if  params[:employee][:employee_number].downcase != 'admin' or @employee_user.admin
       if @employee.update_attributes(params[:employee])
         if params[:employee][:gender] == "true"
           Employee.update(@employee.id, :gender => true)
