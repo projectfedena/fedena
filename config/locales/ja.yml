@@ -260,7 +260,7 @@ ja: # locale
 
   date:
     formats:
-      default: "%e-%m-%Y"
+      default: "%Y-%m-%d"
       normal: "%B %e, %Y"
       short: "%e. %b"
       month_year: "%B %Y"

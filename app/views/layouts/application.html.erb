@@ -44,7 +44,7 @@
       <%= render :partial=>mod.camelize.constantize.send("application_layout_header") %>
     <% end %>
 
-    <%= calendar_date_select_includes 'red' %>
+    <%= calendar_date_select_includes 'red', 'iso_date' %>
 
     <%= javascript_include_tag "calendar_date_select/locale/#{I18n.locale}.js" unless I18n.locale==:en %>
     <%= yield :head %>
