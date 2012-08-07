@@ -180,7 +180,7 @@
       <% end %>
       <% if permitted_to? :index, :finance %>
         <li><%= link_to "#{t('finance_text')} <span class='right-arrow'>#{arrow_dir}</span>" , :controller => "finance", :action=>"index" %>
-          <ul class="level-2">
+          <ul class="level-2" id="finance_menu">
             <li><%= link_to "#{t('fees_text')}", :controller => "finance", :action => "fees_index" %> </li>
             <li><%= link_to "#{t('category')}", :controller => "finance", :action => "categories" %> </li>
             <li><%= link_to "#{t('transactions')}", :controller => "finance", :action => "transactions" %> </li>
@@ -215,3 +215,15 @@
     </ul>
   </li>
 </ul>
+
+<script type="text/javascript">
+  function load_menu_from_plugins(){
+    <% FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].each do |mod|  %>
+      <% if mod[:menu_id].present? %>
+        <% if permitted_to? mod[:destination][:action].to_sym,mod[:destination][:controller].to_sym %>
+          $('<%= mod[:menu_id] %>').insert({bottom: '<li><%= link_to(t(mod[:title]), :controller=>mod[:destination][:controller].to_sym,:action=>mod[:destination][:action].to_sym) %></li>'})
+        <% end %>
+      <% end %>
+    <% end %>
+  }
+</script>

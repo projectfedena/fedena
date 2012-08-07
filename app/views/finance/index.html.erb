@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-<%= image_tag("/images/show_finance.png") %>
+  <%= image_tag("/images/show_finance.png") %>
   <h1><%= t('finance_text') %></h1>
   <h3><%= t('manage_finance') %></h3>
   <div id="app-back-button">
@@ -27,44 +27,46 @@
 </div>
 <div id="page-yield">
   <% unless flash[:notice].nil? %><p class="flash-msg"><%= flash[:notice] %></p><% end %>
-  
+
   <div class="box">
 
-  <div class="link-box">
-    <div class="link-heading"><%= link_to "#{t('fees_text')}", :action => "fees_index" %> </div>
-    <div class="link-descr"><%= t('manage_fees') %></div>
-  </div>
-
-  <div class="link-box">
-    <div class="link-heading"><%= link_to "#{t('category')}", :action => "categories" %> </div>
-    <div class="link-descr"><%= t('manage_category') %></div>
-  </div>
-
-  <div class="link-box">
-    <div class="link-heading"><%= link_to "#{t('transactions')}", :action => "transactions" %> </div>
-    <div class="link-descr"><%= t('manage_expense_and_income') %></div>
-  </div>
-
-  <div class="link-box">
-    <div class="link-heading"><%= link_to "#{t('donations')}", :action => "donation" %></div>
-    <div class="link-descr"><%= t('creates_new_donations') %></div>
-  </div>
-
-  <div class="link-box">
-    <div class="link-heading"><%= link_to "#{t('automatic_transactions')}", :action => "automatic_transactions" %></div>
-    <div class="link-descr"><%= t('add_automatic_transactions') %></div>
-  </div>
-  <% unless @hr.nil? %>
     <div class="link-box">
-      <div class="link-heading"><%= link_to "#{t('payslip_text')}", :action => "payslip_index" %></div>
-      <div class="link-descr"><%= t('employee_payslips') %></div>
+      <div class="link-heading"><%= link_to "#{t('fees_text')}", :action => "fees_index" %> </div>
+      <div class="link-descr"><%= t('manage_fees') %></div>
     </div>
-  <% end %>
 
-  <div class="link-box">
-    <div class="link-heading"><%= link_to "#{t('asset_liability_management')}", :action => "asset_liability" %></div>
-    <div class="link-descr"><%= t('asset_liability') %> <%= t('management') %></div>
-  </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('category')}", :action => "categories" %> </div>
+      <div class="link-descr"><%= t('manage_category') %></div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('transactions')}", :action => "transactions" %> </div>
+      <div class="link-descr"><%= t('manage_expense_and_income') %></div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('donations')}", :action => "donation" %></div>
+      <div class="link-descr"><%= t('creates_new_donations') %></div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('automatic_transactions')}", :action => "automatic_transactions" %></div>
+      <div class="link-descr"><%= t('add_automatic_transactions') %></div>
+    </div>
+    <% unless @hr.nil? %>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "#{t('payslip_text')}", :action => "payslip_index" %></div>
+        <div class="link-descr"><%= t('employee_payslips') %></div>
+      </div>
+    <% end %>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('asset_liability_management')}", :action => "asset_liability" %></div>
+      <div class="link-descr"><%= t('asset_liability') %> <%= t('management') %></div>
+    </div>
+
+    <%= generic_dashboard_hook(params[:controller],params[:action]) %>
 
   </div>
 </div>

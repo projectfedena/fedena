@@ -101,4 +101,22 @@ module ApplicationHelper
     end
     return ""
   end
+
+  def generic_dashboard_hook(cntrl,act)
+    dashboard_links = ""
+    FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].each do |mod|
+      if cntrl.to_s == mod[:source][:controller].to_s && act.to_s == mod[:source][:action].to_s
+        if permitted_to? mod[:destination][:action].to_sym,mod[:destination][:controller].to_sym
+
+          dashboard_links += <<-END_HTML
+             <div class="link-box">
+                <div class="link-heading">#{link_to t(mod[:title]), :controller=>mod[:destination][:controller].to_sym, :action=>mod[:destination][:action].to_sym}</div>
+                <div class="link-descr">#{t(mod[:description])}</div>
+             </div>
+          END_HTML
+        end
+      end
+    end
+    return dashboard_links
+  end
 end
