@@ -27,12 +27,15 @@
     <div id ="main_info">
       <h4>  <%= @student.full_name %> </h4>
     </div>
+    <% grade_type = "normal" %>
+    <% grade_type = "GPA" if @batch.gpa_enabled? %>
+    <% grade_type = "CWA" if @batch.cwa_enabled? %>
     <div id="pdf-info">
       <% if @type=="grouped" %>
         <table id="pdf-table" width="100%" cellspacing="0">
           <tr class="table-header">
             <td><%= t('subject') %></td>
-            <% if @batch.gpa_enabled? or @batch.cwa_enabled? %>
+            <% if grade_type=="GPA" or grade_type=="CWA" %>
               <td><%= t('credit') %></td>
             <% end %>
             <% @exam_groups.each do |exam_group| %>
@@ -44,7 +47,7 @@
           <% @subjects.each do |subject| %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-pdf" ><%= subject.name %></td>
-              <% if @batch.gpa_enabled? or @batch.cwa_enabled? %>
+              <% if grade_type=="GPA" or grade_type=="CWA" %>
                 <td class="col-pdf"><%= subject.credit_hours.present? ? subject.credit_hours : "-" %></td>
               <% end %>
               <% @exam_groups.each do |exam_group| %>
@@ -52,9 +55,9 @@
                 <% @exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id) %>
                 <% exam_score = ExamScore.find_by_student_id(@student.id, :conditions=>{:exam_id=>@exam.id})unless @exam.nil? %>
                 <td class="col-pdf">
-                  <% if @batch.gpa_enabled? %>
+                  <% if grade_type=="GPA" %>
                     <%= exam_score.present? ? "#{exam_score.grading_level || "-"}"+" ["+"#{exam_score.grading_level.present? ? (exam_score.grading_level.credit_points || "-") : "-"}"+"]" : "-" %>
-                  <% elsif @batch.cwa_enabled? %>
+                  <% elsif grade_type=="CWA" %>
                     <%= exam_score.present? ? "#{exam_score.marks.present? ? ("%.2f" %((exam_score.marks.to_f/@exam.maximum_marks.to_f)*100)) : "-"}"+" ["+"#{exam_score.grading_level.present? ? exam_score.grading_level : "-"}"+"]" : "-" %>
                   <% else %>
                     <% if exam_group.exam_type == "MarksAndGrades" %>
@@ -72,9 +75,9 @@
             </tr>
           <% end %>
           <tr class="table-header">
-            <% if @batch.gpa_enabled? %>
+            <% if grade_type=="GPA" %>
               <td colspan="2" align="right"><%= t('gpa') %></td>
-            <% elsif @batch.cwa_enabled? %>
+            <% elsif grade_type=="CWA" %>
               <td colspan="2" align="right"><%= t('weighted_average') %></td>
             <% else %>
               <td align="right"><%= t('percentage') %></td>
@@ -90,7 +93,7 @@
           </tr>
         </table>
       <% else %>
-      <% all_exams = @exam_groups.reject{|ex| ex.exam_type == "Grades"} %>
+        <% all_exams = @exam_groups.reject{|ex| ex.exam_type == "Grades"} %>
         <table id="pdf-table" width="100%" cellspacing="0">
           <tr class="table-header">
             <td><%= t('subject') %></td>
