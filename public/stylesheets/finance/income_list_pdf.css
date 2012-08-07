@@ -11,6 +11,10 @@
     width: 100%;
     float: left;
 }
+.grand_total
+{
+    border-bottom: 1px solid #ADACAB;
+}
 .section1{
     page-break-before:always;
     text-align: center;
