@@ -1,3 +1,49 @@
+.page1 {
+    width:100%;
+    height: auto;
+    page-break-after: always;
+    page-break-inside: avoid;
+    clear: both;
+}
+.page-break1{
+    height: 20px;
+    border: 1px solid #fff;
+    width: 100%;
+    float: left;
+}
+.grand_total
+{
+    border-bottom: 1px solid #ADACAB;
+}
+.section1{
+    page-break-before:always;
+    text-align: center;
+}
+.row{
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+.page-blank{
+    width: 100%;
+    float: left;
+    border-top: 1px solid #ADACAB;
+}
+.page_break{
+    margin-top: 60px;
+}
+.marks{
+    width:100px;
+    min-width:100px;
+    max-width:100px;
+}
+.name{
+    width: auto;
+}
+.grand_total
+{
+    border-bottom: 1px solid #ADACAB;
+}
 
 
 #page-yield {
@@ -51,10 +97,12 @@ h2.heading{
 }
 tr.even{
     border: 1px solid #ADACAB;
+    border-bottom: 0;
 }
 
 tr.odd{
     border: 1px solid #ADACAB;
+    border-bottom: 0;
 }
 
 .even td{
@@ -63,7 +111,7 @@ tr.odd{
     border: 1px solid #ADACAB;
     border-right: 0px solid #fff;
     border-top: 0px solid #fff;
-
+    border-bottom: 0;
 }
 
 .odd td{
@@ -71,7 +119,7 @@ tr.odd{
     border: 1px solid #ADACAB;
     border-right: 0px solid #fff;
     border-top: 0px solid #fff;
-
+    border-bottom: 0;
 }
 
 td.col-pdf-bold{

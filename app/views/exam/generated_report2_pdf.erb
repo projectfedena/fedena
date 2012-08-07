@@ -18,48 +18,44 @@
 #under the License. -%>
 
 
-<div id="page-yield">
-  <div class="hor_line"></div>
+<div id="page-yield" class="available_sections1"">
+     <div class="page1"> </div>
+  <div class="section1 row" >
+    <center>
+      <div class="hor_line"></div>
 
-  <div class="extender"> </div>
-  <div class="report">
-    <div id ="main_info">
-      <h3><%= @subject.name %></h3>
-      <h4>  <%= @batch.name %> - <%= @batch.course.full_name %> </h4>
-    </div>
-    <div id="pdf-info">
+      <div class="extender"> </div>
+      <div id ="main_info">
+        <h3><%= @subject.name %></h3>
+        <h4>  <%= @batch.name %> - <%= @batch.course.full_name %> </h4>
+      </div>
+
       <% c = 'even' %>
       <table id="pdf-table" width="100%" cellspacing="0">
         <tr class="table-header">
-          <td><%= t('name') %></td>
+          <td class="name"><%= t('name') %></td>
           <% @exam_groups.each do |exam_group| %>
-            <td><%= exam_group.name %></td>
+            <td class="marks"><%= exam_group.name %></td>
           <% end %>
         </tr>
-        <% i = 0 %>
-        <% @students.each do |student| %>
-          <% if i== 22 %>
-            <% i= 0 %>
-            <tr class="page-break"><td colspan="3"></td></tr>
-
-            <tr class="table-header">
-              <td><%= t('name') %></td>
-              <% @exam_groups.each do |exam_group| %>
-                <td><%= exam_group.name %></td>
-              <% end %>
-            </tr>
-
-          <% end %>
-          <% is_valid_subject=1 %>
-          <% unless @subject.elective_group_id.nil? %>
-            <% is_student_elective = StudentsSubject.find_by_student_id_and_subject_id(student.id,@subject.id) %>
-            <% is_valid_subject = 0 if is_student_elective.nil? %>
-          <% end %>
-          <% unless is_valid_subject == 0 %>
+      </table>
+    </center>
+  </div>
+  <% i = 0 %>
+  <% @students.each do |student| %>
+    <% is_valid_subject=1 %>
+    <% unless @subject.elective_group_id.nil? %>
+      <% is_student_elective = StudentsSubject.find_by_student_id_and_subject_id(student.id,@subject.id) %>
+      <% is_valid_subject = 0 if is_student_elective.nil? %>
+    <% end %>
+    <% unless is_valid_subject == 0 %>
+      <div class="section1 row" >
+        <center>
+          <table id="pdf-table" width="100%" cellspacing="0">
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-              <td class="col-pdf"><%= student.full_name %></td>
+              <td class="name"><%= student.full_name %></td>
               <% @exam_groups.each do |exam_group| %>
-                <td class="col-pdf">
+                <td class="marks">
                   <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
                   <% exam_score = ExamScore.find_by_student_id(student.id,:conditions=>{:exam_id=>exam.id}) unless exam.nil? %>
                   <% unless exam.nil? %>
@@ -76,27 +72,61 @@
                 </td>
               <% end %>
             </tr>
-            <% i+=1 %>
-          <% end %>
-        <% end %>
+          </table>
+        </center>
+      </div>
+      <% i+=1 %>
+    <% end %>
+  <% end %>
+  <div class="section1 row" >
+    <center>
+      <table id="pdf-table" class="grand_total" width="100%" cellspacing="0">
         <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-          <td class="col-pdf-bold">
+          <td class="col-pdf-bold name">
             <%= t('class_average') %>
           </td>
           <% @exam_groups.each do |exam_group| %>
             <% if exam_group.exam_type == 'Marks' or exam_group.exam_type == 'MarksAndGrades' %>
               <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
-              <td class="col-pdf-bold">
+              <td class="col-pdf-bold marks">
                 <%="%.2f"%exam_group.subject_wise_batch_average_marks(@subject.id) unless exam.nil?%>
               </td>
             <% else %>
-              <td class="col-pdf-bold">-</td>
+              <td class="col-pdf-bold marks">-</td>
             <% end %>
           <% end %>
         </tr>
       </table>
-    </div>
+    </center>
   </div>
-
-
 </div>
+<% if params[:page_height] %>
+  <script type="text/javascript">
+    var body = document.body,
+    html = document.documentElement;
+    var pg_height = parseInt(<%= params[:page_height] %>)
+    var page = new Element('div',{'class' : 'page1'});
+    var pageBreak = new Element('div',{'class' : 'page-break1'});
+    var insertPageBreak = function(){body.appendChild(pageBreak.cloneNode(true))};
+    var insertPage = function(){body.appendChild(page.cloneNode(true));};
+    var currPage = function(){return $$('.page1').last()};
+    var current_page_height=0
+    var i=0
+    $$('.available_sections1 .section1').each(function(el){
+      a = parseInt(el.getHeight());
+      c=current_page_height+a;
+      current_page_height=c;
+      if(c>pg_height){
+        current_page_height=a
+        body.appendChild(new Element('div',{'id' : 'page-blank_'+i, 'class' : 'page-blank'}))
+        document.getElementById('page-blank_'+i).style.height= (c-pg_height)+'px';
+        document.getElementById('page-blank_'+i).innerHTML="&nbsp;"/* if a div doesnt have any content it may not display.. set height will not work */
+        i+=1
+        el.style.marginTop="50px"; /* for this border-top is coming, top section of each page */
+        insertPageBreak();
+        insertPage();
+      }
+      currPage().appendChild(el);
+    });
+  </script>
+<% end %>
