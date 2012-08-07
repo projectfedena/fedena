@@ -98,7 +98,9 @@ module CceReportMod
           examval.each do |fg_id, score|
             se.fa_group_ids << fg_id
             fg = fgs.find{|f| f.id == fg_id}
-            se.fa[fg_id]= score * fg.max_marks/max_credit_point
+            unless fg.nil?
+              se.fa[fg_id]= score * fg.max_marks/max_credit_point
+            end
           end
           examscore = examscores.find{|e| e.exam_id == exam_id}
           if examscore

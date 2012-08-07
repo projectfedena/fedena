@@ -89,7 +89,7 @@ class CceReportsController < ApplicationController
     @exam_groups=ExamGroup.find_all_by_id(@report.exam_group_ids, :include=>:cce_exam_category)
     coscholastic=@report.coscholastic
     @observation_group_ids=coscholastic.collect(&:observation_group_id)
-    @observation_groups=ObservationGroup.find(@observation_group_ids).collect(&:name)
+    @observation_groups=ObservationGroup.find_all_by_id(@observation_group_ids).collect(&:name)
     @co_hash=Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
     @obs_groups=@batch.observation_groups.to_a
     @og=@obs_groups.group_by(&:observation_kind)
