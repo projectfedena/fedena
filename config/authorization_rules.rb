@@ -83,6 +83,10 @@ authorization do
       :generated_report4_pdf,
       :combined_grouped_exam_report_pdf
     ]
+    has_permission_on [:scheduled_jobs],
+      :to => [
+      :index
+      ]
     has_permission_on [:exam_groups],
       :to => [
       :index,
@@ -1569,6 +1573,10 @@ authorization do
       :graph_for_previous_years_marks_overview,
       :grouped_exam_report
     ]
+    has_permission_on [:scheduled_jobs],
+      :to => [
+      :index
+      ]
     has_permission_on [:exam_groups],
       :to => [
       :index,

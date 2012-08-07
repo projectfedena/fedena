@@ -1,0 +1,97 @@
+<%-# Fedena
+#Copyright 2010 Foradian Technologies Private Limited
+#
+#This product includes software developed at
+#Project Fedena - http://www.projectfedena.org/
+#
+#Licensed under the Apache License, Version 2.0 (the "License");
+#you may not use this file except in compliance with the License.
+#You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#Unless required by applicable law or agreed to in writing,
+#software distributed under the License is distributed on an
+#"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#KIND, either express or implied.  See the License for the
+#specific language governing permissions and limitations
+#under the License. -%>
+
+<div id="content-header">
+  <%= image_tag("/images/examination/show_exam.png") %>
+  <h1>Scheduled Jobs</h1>
+  <h3>Listing scheduled jobs</h3>
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="box">
+    <% job_name = "All" %>
+    <% if @job_type.present? %>
+      <% job_name = @job_type %>
+      <% job_name = "Batch - Generate Reports" if @job_type=="Batch/1" %>
+      <% job_name = "Batch - Generate Previous Reports" if @job_type=="Batch/2" %>
+      <% job_name = "Batch - Generate CCE Reports" if @job_type=="Batch/3" %>
+    <% end %>
+    <h4>Scheduled Jobs for : <%= job_name %></h4>
+    <% unless @jobs.empty? %>
+      <div id="score-table">
+        <table id="listing" width="100%" cellpadding="1" cellspacing="1">
+          <tr class="tr-head">
+            <td>Sl No.</td>
+            <td>Job Object</td>
+            <td>Job Type</td>
+            <td>Status</td>
+          </tr>
+          <% @jobs.each_with_index do |job,i| %>
+            <tr class="tr-<%= cycle('odd', 'even') %>">
+              <td class="col-1"><%= i+1 %></td>
+              <td class="col-3"><%= obj = job.handler.split(':').second.split(' ').first %></td>
+              <% type = job.handler.split('job_type').last[/\d+/] %>
+              <% j_type = "#{obj}/#{type}" %>
+              <% if j_type=="Batch/1" %>
+                <td class="col-3">Generate Reports</td>
+              <% elsif j_type=="Batch/2" %>
+                <td class="col-3">Generate Previous Reports</td>
+              <% elsif j_type=="Batch/3" %>
+                <td class="col-3">Generate CCE Reports</td>
+              <% else %>
+                <td class="col-3"> - </td>
+              <% end %>
+              <% if !job.failed_at.nil? %>
+                <td class="col-3">Failed</td>
+              <% elsif !job.locked_by.nil? %>
+                <td class="col-3">Running</td>
+              <% else %>
+                <td class="col-3">In Queue</td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% else %>
+      <p class="flash-msg">No scheduled jobs for selected job type.</p>
+    <% end %>
+    <% if @job_type.present? %>
+      <% if params[:job_type].present? %>
+        <% last_completion_time_record = Configuration.find_by_config_key("job/#{@job_type}") %>
+        <% if last_completion_time_record.present? %>
+          <% last_completion_time = last_completion_time_record.config_value.to_time %>
+        <% end %>
+      <% else %>
+        <% last_completion_time = Configuration.find(:all, :conditions=>["config_key like ?","job/#{params[:job_object]}%"]).map{|t| t.config_value.to_time}.sort.last %>
+      <% end %>
+    <% else %>
+      <% last_completion_time = Configuration.find(:all, :conditions=>["config_key like ?","job/%"]).map{|t| t.config_value.to_time}.sort.last %>
+    <% end %>
+    <h5>Last Successful Completion Time : <%= last_completion_time.present? ? last_completion_time.strftime("%B %d, %Y  %r") : "-" %></h5>
+    <div class="extender"></div>
+  </div>
+</div>

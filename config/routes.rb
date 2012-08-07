@@ -12,6 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :cce_exam_categories
   map.resources :assessment_scores,:collection=>{:exam_fa_groups=>[:get],:observation_groups=>[:get]}
   map.resources :cce_settings,:collection=>{:basic=>[:get],:scholastic=>[:get],:co_scholastic=>[:get]}
+  map.resources :scheduled_jobs,:except => [:show]
   map.resources :fa_groups,:collection=>{:assign_fa_groups=>[:get,:post],:new_fa_criteria=>[:get,:post],:create_fa_criteria=>[:get,:post],:edit_fa_criteria=>[:get,:post],:update_fa_criteria=>[:get,:post],:destroy_fa_criteria=>[:post],:reorder=>[:get,:post]}
   #  do |fa|
   #    fa.resources  :fa_criterias
@@ -55,6 +56,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.fa_scores 'assessment_scores/exam/:exam_id/fa_group/:fa_group_id', :controller=>'assessment_scores',:action=>'fa_scores'
   map.observation_scores 'assessment_scores/batch/:batch_id/observation_group/:observation_group_id', :controller=>'assessment_scores',:action=>'observation_scores'
+  map.scheduled_task 'scheduled_jobs/:job_object/:job_type',:controller => "scheduled_jobs",:action => "index"
+  map.scheduled_task_object 'scheduled_jobs/:job_object',:controller => "scheduled_jobs",:action => "index"
+
 
   #map.connect 'parts/:number', :controller => 'inventory', :action => 'sho
   map.connect ':controller/:action/:id'

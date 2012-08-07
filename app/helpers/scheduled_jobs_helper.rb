@@ -1,0 +1,2 @@
+module ScheduledJobsHelper
+end

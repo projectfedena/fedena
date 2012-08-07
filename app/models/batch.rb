@@ -52,7 +52,7 @@ class Batch < ActiveRecord::Base
 
   validates_presence_of :name, :start_date, :end_date
 
-  attr_accessor :report_flag
+  attr_accessor :job_type
 
   named_scope :active,{ :conditions => { :is_deleted => false, :is_active => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
   named_scope :inactive,{ :conditions => { :is_deleted => false, :is_active => false },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
@@ -651,14 +651,19 @@ class Batch < ActiveRecord::Base
 
   def perform
     #this is for cce_report_generation use flags if need job for other works
-    if report_flag.blank?
-      generate_cce_reports
+    
+    if job_type=="1"
+      generate_batch_reports
+    elsif job_type=="2"
+      generate_previous_batch_reports
     else
-      if report_flag=="1"
-        generate_batch_reports
-      elsif report_flag=="2"
-        generate_previous_batch_reports
-      end
+      generate_cce_reports
+    end
+    prev_record = Configuration.find_by_config_key("job/Batch/#{self.job_type}")
+    if prev_record.present?
+      prev_record.update_attributes(:config_value=>Time.now)
+    else
+      Configuration.create(:config_key=>"job/Batch/#{self.job_type}", :config_value=>Time.now)
     end
   end
 

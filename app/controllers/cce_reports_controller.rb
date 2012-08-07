@@ -16,13 +16,14 @@ class CceReportsController < ApplicationController
         batches = Batch.find_all_by_id(params[:course][:batch_ids])
         batches.each do |batch|
           if batch.check_credit_points
+            batch.job_type = "3"
             Delayed::Job.enqueue(batch)
             batch.delete_student_cce_report_cache
           else
             errors += ["Incomplete grading level credit points for #{batch.full_name}, report generation failed."]
           end
         end
-        flash[:notice]="Report generation in queue for batches #{batches.collect(&:full_name).join(", ")}."
+        flash[:notice]="Report generation in queue for batches #{batches.collect(&:full_name).join(", ")}. <a href='/scheduled_jobs/Batch/3'>Click Here</a> to view the scheduled job."
         flash[:error]=errors
       else
         flash[:notice]="No batch selected"

@@ -25,6 +25,11 @@
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "View Scheduled Jobs", scheduled_task_path(:job_object=>"Batch", :job_type=>"2"), :class=> 'user_button' %></li>
+  </ul>
+</div>
 <div id="page-yield">
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>

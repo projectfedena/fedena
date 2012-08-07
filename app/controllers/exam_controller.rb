@@ -179,10 +179,10 @@ class ExamController < ApplicationController
       unless params[:report][:batch_ids].blank?
         @batches = Batch.find_all_by_id(params[:report][:batch_ids])
         @batches.each do|batch|
-          batch.report_flag = "2"
+          batch.job_type = "2"
           Delayed::Job.enqueue(batch)
         end
-        flash[:notice]="#{t('flash10')}"
+        flash[:notice]="Report generation in queue for batches #{@batches.collect(&:full_name).join(", ")}. <a href='/scheduled_jobs/Batch/2'>Click Here</a> to view the scheduled job."
       else
         flash[:notice]="#{t('flash11')}"
         return
@@ -224,10 +224,10 @@ class ExamController < ApplicationController
       end
       if @batches
         @batches.each do|batch|
-          batch.report_flag = "1"
+          batch.job_type = "1"
           Delayed::Job.enqueue(batch)
         end
-        flash[:notice]="#{t('flash10')}"
+        flash[:notice]="Report generation in queue for batches #{@batches.collect(&:full_name).join(", ")}. <a href='/scheduled_jobs/Batch/1'>Click Here</a> to view the scheduled job."
       else
         flash[:notice]="#{t('flash11')}"
         return
