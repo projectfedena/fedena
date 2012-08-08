@@ -9,7 +9,7 @@ class ScheduledJobsController < ApplicationController
         @all_jobs.each do|j|
           h = j.handler
           unless h.nil?
-            obj = h.split(':').second.split(' ').first
+            obj = j.payload_object.class.name
             type = h.split('job_type').last[/\d+/]
             j_type = "#{obj}/#{type}"
             if j_type == @job_type
@@ -22,7 +22,7 @@ class ScheduledJobsController < ApplicationController
         @all_jobs.each do|j|
           h = j.handler
           unless h.nil?
-            obj = h.split(':').second.split(' ').first
+            obj = j.payload_object.class.name
             if obj == @job_type
               @jobs.push j
             end

@@ -53,7 +53,7 @@
           <% @jobs.each_with_index do |job,i| %>
             <tr class="tr-<%= cycle('odd', 'even') %>">
               <td class="col-1"><%= i+1 %></td>
-              <td class="col-3"><%= obj = job.handler.split(':').second.split(' ').first %></td>
+              <td class="col-3"><%= obj = job.payload_object.class.name %></td>
               <% type = job.handler.split('job_type').last[/\d+/] %>
               <% j_type = "#{obj}/#{type}" %>
               <% if j_type=="Batch/1" %>
