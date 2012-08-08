@@ -10,7 +10,7 @@ class ScheduledJobsController < ApplicationController
           h = j.handler
           unless h.nil?
             obj = j.payload_object.class.name
-            type = h.split('job_type').last[/\d+/]
+            type = j.payload_object.job_type
             j_type = "#{obj}/#{type}"
             if j_type == @job_type
               @jobs.push j

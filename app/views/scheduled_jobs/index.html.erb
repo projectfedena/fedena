@@ -54,7 +54,7 @@
             <tr class="tr-<%= cycle('odd', 'even') %>">
               <td class="col-1"><%= i+1 %></td>
               <td class="col-3"><%= obj = job.payload_object.class.name %></td>
-              <% type = job.handler.split('job_type').last[/\d+/] %>
+              <% type = job.payload_object.job_type %>
               <% j_type = "#{obj}/#{type}" %>
               <% if j_type=="Batch/1" %>
                 <td class="col-3">Generate Reports</td>
