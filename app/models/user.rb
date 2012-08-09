@@ -123,9 +123,8 @@ class User < ActiveRecord::Base
     employee_record.subjects.collect(&:batch_id).include? b.id
   end
 
-  def future_events
+  def future_events(date)
     all_events=[]
-    date=Date.today
     case(role_name)
     when "Admin"
       all_events=Event.find(:all,:conditions => ["? between events.start_date and events.end_date",date])
