@@ -21,6 +21,8 @@ h2.heading{
 }
 #main_info{
     margin-top: 20px;
+    width : 100%;
+    float: left;
 
 }
 #main_info h4{
@@ -136,17 +138,34 @@ table#pdf-table{
 .info-data span{
     color: #555555;
 }
-
-
+.info_right{
+    float: left;
+    width: 49%;
+}
+.info_left{
+    float: left;
+    width: 49%;
+}
 .info{
-    width:700px;
+    width:345px;
     overflow: auto;
     margin-bottom: 10px;
+    float: left;
+    overflow: hidden;
+}
+.info1{
+    width:345px;
+    overflow: auto;
+    margin-bottom: 10px;
+    float: right;
+    overflow: hidden;
 }
 
 #pdf-info{
     min-height: 900px;
     margin-top: 20px;
+    width: 100%;
+    float: left;
 }
 
 
