@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
     employee_record.subjects.collect(&:batch_id).include? b.id
   end
 
-  def future_events(date)
+  def days_events(date)
     all_events=[]
     case(role_name)
     when "Admin"
@@ -140,4 +140,29 @@ class User < ActiveRecord::Base
     end
     all_events
   end
+
+  def next_event(date)
+    all_events=[]
+    case(role_name)
+    when "Admin"
+      all_events=Event.find(:all,:conditions => ["? < events.end_date",date],:order=>"start_date")
+    when "Student","Parent"
+      all_events+= events.all(:conditions=>["? < events.end_date",date])
+      all_events+= student_record.batch.events.all(:conditions=>["? < events.end_date",date],:order=>"start_date")
+      all_events+= Event.all(:conditions=>["(? < events.end_date) and is_common = true",date],:order=>"start_date")
+    when "Employee"
+      all_events+= events.all(:conditions=>["? < events.end_date",date],:order=>"start_date")
+      all_events+= employee_record.employee_department.events.all(:conditions=>["? < events.end_date",date],:order=>"start_date")
+      all_events+= Event.all(:conditions=>["(? < events.end_date) and is_exam = true",date],:order=>"start_date")
+      all_events+= Event.all(:conditions=>["(? < events.end_date) and is_common = true",date],:order=>"start_date")
+    end
+    start_date=all_events.collect(&:start_date).min
+    unless start_date
+      return ""
+    else
+      next_date=(start_date<date ? date+1.days : start_date )
+      next_date
+    end
+  end
+
 end
