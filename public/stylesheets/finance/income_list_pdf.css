@@ -53,12 +53,16 @@
     max-width:90px;
 }
 .name{
-    width:300px;
-    min-width:300px;
-    max-width:300px;
+    width:240px;
+    min-width:240px;
+    max-width:240px;
+    overflow: hidden;
 }
 .desc{
-    width:auto;
+    width:130px;
+    min-width:130px;
+    max-width:130px;
+    overflow: hidden;
 }
 .total_amnt{
     width:100px;
