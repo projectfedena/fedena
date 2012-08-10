@@ -86,7 +86,7 @@
       </div>
 
       <div class="label-field-pair">
-        <label for="configuration_default_country"><%= t('default_country') %></label>
+        <label for="configuration_default_country"><%= t('country') %></label>
         <div class="text-input-bg">
           <% selected_value = @config[:default_country].present? ? @config[:default_country].to_i : 76 %>
           <%= select :configuration, :default_country, Country.all.map {|c| [c.name, c.id]}, :selected=> selected_value.to_i %>
