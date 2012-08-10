@@ -33,13 +33,13 @@
       <div class="link-descr"><%= t('sms_settings_page') %></div>
     </div>
     <% if @sms_setting.application_sms_active %>
-      <% if @students_sms_enabled.is_enabled and  @parents_sms_enabled.is_enabled %>
+      <% if @students_sms_enabled.is_enabled or @parents_sms_enabled.is_enabled %>
         <div class="link-box">
           <div class="link-heading"><%= link_to "#{t('send_sms_to_students')}",:action=>'students'%></div>
           <div class="link-descr"><%= t('send_sms_to_students') %></div>
         </div>
       <% end %>
-      <% if @students_sms_enabled.is_enabled and  @parents_sms_enabled.is_enabled %>
+      <% if @students_sms_enabled.is_enabled or  @parents_sms_enabled.is_enabled %>
         <div class="link-box">
           <div class="link-heading"><%= link_to "#{t('sms_to_batches')}",:action=>'batches'%></div>
           <div class="link-descr"><%= t('sms_to_batches') %></div>
