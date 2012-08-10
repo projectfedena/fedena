@@ -65,7 +65,7 @@
         <hr class="label-underline"></hr>
         <div class="label-field-pair">
           <label><%=  t('country')  %></label>
-          <div class="text-input-bg"><%= select :employee, :home_country_id, @countries.map {|c| [c.name, c.id]}, :selected => 76 %></div>
+          <div class="text-input-bg"><%= select :employee, :home_country_id, @countries.map {|c| [c.name, c.id]}, :selected => @selected_value[1].to_i %></div>
           <div class="extender"></div>
         </div>
         <hr class="label-underline"></hr>
@@ -104,7 +104,7 @@
         <hr class="label-underline"></hr>
         <div class="label-field-pair">
           <label><%= t('country') %></label>
-          <div class="text-input-bg"><%= select :employee, :office_country_id, @countries.map {|c| [c.name, c.id]}, :selected => 76 %></div>
+          <div class="text-input-bg"><%= select :employee, :office_country_id, @countries.map {|c| [c.name, c.id]}, :selected => @selected_value[2].to_i %></div>
           <div class="extender"></div>
         </div>
         <hr class="label-underline"></hr>

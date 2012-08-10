@@ -357,6 +357,7 @@ end
 def admission2
   @countries = Country.find(:all)
   @employee = Employee.find(params[:id])
+  @selected_value = @employee.default_nationality
   if request.post? and @employee.update_attributes(params[:employee])
     sms_setting = SmsSetting.new()
     if sms_setting.application_sms_active and sms_setting.employee_sms_active

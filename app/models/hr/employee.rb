@@ -152,13 +152,34 @@ class Employee < ActiveRecord::Base
 
   def default_nationality
     default_nationality_value = 76
+    default_home_country_value = 76
+    default_office_country_value = 76
+    # employee nationality
     if self.nationality_id.present?
       default_nationality_value = self.nationality_id
     else
       config = Configuration.get_multiple_configs_as_hash ['DefaultCountry']
       default_nationality_value = config[:default_country].present? ? config[:default_country].to_i : 76
     end
-    return default_nationality_value
+    #employee home_country
+    if self.home_country_id.present?
+      default_home_country_value = self.home_country_id
+    else
+      unless config.present?
+        config = Configuration.get_multiple_configs_as_hash ['DefaultCountry']
+      end
+      default_home_country_value = config[:default_country].present? ? config[:default_country].to_i : 76
+    end
+    #employee office_country
+    if self.office_country_id.present?
+      default_office_country_value = self.office_country_id
+    else
+      unless config.present?
+        config = Configuration.get_multiple_configs_as_hash ['DefaultCountry']
+      end
+      default_office_country_value = config[:default_country].present? ? config[:default_country].to_i : 76
+    end
+    return [default_nationality_value, default_home_country_value,default_office_country_value]
   end
 
   def employee_salary(salary_date)
