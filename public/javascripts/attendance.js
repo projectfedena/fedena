@@ -2,22 +2,22 @@ var students, dates, leaves, holidays, batch, today, req, translated;
 
 var nameTdElem=new Element('td',{
     'class':'td-name'
-});
+}).addClassName('td-name');
 var rowElem = new Element('tr',{
     'class':'tr-odd'
-});
+}).addClassName('td-odd');
 var absentElem = new Element('a',{
     'class':'absent',
     'id':''
-});
+}).addClassName('absent');
 var presentElem = new Element('a',{
     'class':'present',
     'id':'',
     'date':''
-});
+}).addClassName('present');
 var cellElem = new Element('td',{
     'class':'td-mark'
-});
+}).addClassName('td-mark');
 
 
 function getjson(val){
@@ -53,33 +53,33 @@ function changeMonth(){
 function drawHeader(){
     var header = new Element('div',{
         'class':'header'
-    });
+    }).addClassName('header');
     var next = new Element('div',{
         'class':'next'
-    });
+    }).addClassName('next');
     var nextln = new Element('a',{
         'class':'goto',
         'batch_id':batch.id,
         'next':Date.parse(today).add({
             month:1
         })
-    }).update("►");
+    }).addClassName('goto').update("►");
     var prev = new Element('div',{
         'class':'prev'
-    });
+    }).addClassName('prev');
     var prevln = new Element('a',{
         'class':'goto',
         'batch_id':batch.id,
         'next':Date.parse(today).add({
             month:-1
         })
-    }).update("◄");
+    }).addClassName('goto').update("◄");
     var month = new Element('div',{
         'class':'month'
-    }).update(translated[Date.parse(today).toString("MMMM")]+" "+Date.parse(today).toString("yyyy"));
+    }).addClassName('month').update(translated[Date.parse(today).toString("MMMM")]+" "+Date.parse(today).toString("yyyy"));
     var extender = new Element('div',{
         'class':'extender'
-    });
+    }).addClassName('extender');
     prev.update(prevln);
     next.update(nextln);
     if((new Date(batch.start_date)).clearTime() < (Date.parse(today).moveToFirstDayOfMonth()).clearTime()) header.update(prev);
@@ -93,23 +93,23 @@ function drawHeader(){
 function drawBox(){
     var box = new Element('div',{
         'class':'box-1'
-    });
+    }).addClassName('box-1');
     var tbl = new Element('table',{
         'id':'register-table'
     });
     var tblbody = new Element('tbody');
     var headrow = new Element('tr',{
         'class':'tr-head'        
-    });
+    }).addClassName('tr-head');
     var nameTd = new Element('td',{
         'class':'head-td-name'
-    }).update(translated['name']);
+    }).addClassName('head-td-name').update(translated['name']);
 
     var dateTd = new Element('td',{
         'class':'head-td-date'
-    });
-    var dtDiv1 = new Element('div',{'class':'day'});
-    var dtDiv2 = new Element('div',{'class':'date'});
+    }).addClassName('head-td-date');
+    var dtDiv1 = new Element('div',{'class':'day'}).addClassName('day');
+    var dtDiv2 = new Element('div',{'class':'date'}).addClassName('date');
     var dtd, dtdiv1, dtdiv2, ndate, tdate;
     tdate = Date.today();
     headrow.update(nameTd);
@@ -219,7 +219,7 @@ function getName(row,col,tbl){
 function makeHoverEl(dt,name){
     var maindiv = new Element('div',{
         'class':'date'
-    });
+    }).addClassName('date');
     var spanel =  new Element('span');
     var secdiv = new Element('div');
     secdiv.update(name);

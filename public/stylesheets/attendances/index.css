@@ -226,3 +226,12 @@ table.table{
 a {
     cursor: pointer;
 }
+.present{
+/*    color:#FEFFAF;*/
+    color:#fff;
+    padding:5px;
+background:#FFF;
+}
+.td-mark, .td-name{
+    background:#FFF;
+}
