@@ -189,7 +189,7 @@
       <hr class="label-underline"></hr>
       <div class="label-field-pair">
         <label for="employee_nationality"><%= t('nationality') %></label>
-        <div class="text-input-bg"><%= select :employee, :nationality_id, @nationalities.map {|c| [c.name, c.id]}, :selected => 76 %></div>
+        <div class="text-input-bg"><%= select :employee, :nationality_id, @nationalities.map {|c| [c.name, c.id]}, :selected => @selected_value.to_i %></div>
       </div>
       <hr class="label-underline"></hr>
       <script>

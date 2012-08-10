@@ -41,6 +41,7 @@ class StudentController < ApplicationController
 
   def admission1
     @student = Student.new(params[:student])
+    @selected_value = @student.default_nationality_and_country
     @application_sms_enabled = SmsSetting.find_by_settings_key("ApplicationEnabled")
     @last_admitted_student = Student.find(:last)
     @config = Configuration.find_by_config_key('AdmissionNumberAutoIncrement')
@@ -301,6 +302,7 @@ class StudentController < ApplicationController
 
   def edit
     @student = Student.find(params[:id])
+    @selected_value = @student.default_nationality_and_country
     @student_user = @student.user
     @student_categories = StudentCategory.active
     @batches = Batch.active

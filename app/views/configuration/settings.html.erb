@@ -86,6 +86,13 @@
       </div>
 
       <div class="label-field-pair">
+        <label for="configuration_default_country"><%= t('default_country') %></label>
+        <div class="text-input-bg">
+          <% selected_value = @config[:default_country].present? ? @config[:default_country].to_i : 76 %>
+          <%= select :configuration, :default_country, Country.all.map {|c| [c.name, c.id]}, :selected=> selected_value.to_i %>
+        </div>
+      </div>
+      <div class="label-field-pair">
         <label for="configuration_currency_type"><%= t('currency_type') %></label>
         <div class="text-input-bg">
           <%= text_field :configuration, :currency_type, :value => @config[:currency_type] %>
@@ -116,7 +123,7 @@
             <div class="each_batch">
               <%= check_box :configuration, val.underscore , :checked => (@enabled_grading_types.include? key),:class=>'batches_box' %> <label for="configuration_<%= val.underscore %>"><%= val %></label>
             </div>
-          <% end %>                 
+          <% end %>
         </div>
       </div>
 

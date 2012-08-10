@@ -26,7 +26,7 @@ class ConfigurationController < ApplicationController
   def settings
     @config = Configuration.get_multiple_configs_as_hash ['InstitutionName', 'InstitutionAddress', 'InstitutionPhoneNo', \
         'StudentAttendanceType', 'CurrencyType', 'ExamResultType', 'AdmissionNumberAutoIncrement','EmployeeNumberAutoIncrement', \
-        'NetworkState','Locale','FinancialYearStartDate','FinancialYearEndDate','EnableNewsCommentModeration']
+        'NetworkState','Locale','FinancialYearStartDate','FinancialYearEndDate','EnableNewsCommentModeration', 'DefaultCountry']
     @grading_types = Course::GRADINGTYPES
     @enabled_grading_types = Configuration.get_grading_types
     @school_detail = SchoolDetail.first || SchoolDetail.new
@@ -37,7 +37,7 @@ class ConfigurationController < ApplicationController
       unless @school_detail.save
         @config = Configuration.get_multiple_configs_as_hash ['InstitutionName', 'InstitutionAddress', 'InstitutionPhoneNo', \
             'StudentAttendanceType', 'CurrencyType', 'ExamResultType', 'AdmissionNumberAutoIncrement','EmployeeNumberAutoIncrement', \
-            'NetworkState','Locale','FinancialYearStartDate','FinancialYearEndDate','EnableNewsCommentModeration']
+            'NetworkState','Locale','FinancialYearStartDate','FinancialYearEndDate','EnableNewsCommentModeration', 'DefaultCountry']
         return
       end
       @current_user.clear_menu_cache

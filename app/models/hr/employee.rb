@@ -70,7 +70,7 @@ class Employee < ActiveRecord::Base
     else
       changes_to_be_checked = ['employee_number','first_name','last_name','email']
       check_changes = self.changed & changes_to_be_checked
-#      self.user.role ||= "Employee"
+      #      self.user.role ||= "Employee"
       unless check_changes.blank?
         emp_user = self.user
         emp_user.username = self.employee_number if check_changes.include?('employee_number')
@@ -83,7 +83,7 @@ class Employee < ActiveRecord::Base
   end
 
   def check_user_errors(user)
-   unless user.valid?
+    unless user.valid?
       user.errors.each{|attr,msg| errors.add(attr.to_sym,"#{msg}")}
     end
     user.errors.blank?
@@ -148,6 +148,17 @@ class Employee < ActiveRecord::Base
       end
     end
     salary
+  end
+
+  def default_nationality
+    default_nationality_value = 76
+    if self.nationality_id.present?
+      default_nationality_value = self.nationality_id
+    else
+      config = Configuration.get_multiple_configs_as_hash ['DefaultCountry']
+      default_nationality_value = config[:default_country].present? ? config[:default_country].to_i : 76
+    end
+    return default_nationality_value
   end
 
   def employee_salary(salary_date)
@@ -294,16 +305,16 @@ class Employee < ActiveRecord::Base
       if v.kind_of?(Array)
         flag=true unless  v.blank?
       else
-         v.each do |h,a|
-           flag=true unless  a.blank?
-         end
+        v.each do |h,a|
+          flag=true unless  a.blank?
+        end
       end
     end
     return flag
   end
 
   def former_dependency
-   plugin_dependencies = FedenaPlugin.check_dependency(self,"former")
+    plugin_dependencies = FedenaPlugin.check_dependency(self,"former")
   end
   
 end

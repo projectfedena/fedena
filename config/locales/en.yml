@@ -827,6 +827,7 @@ en: # locale
   school_college_phone: "School/College Phone"
   student_attendance_type: "Student Attendance Type"
   currency_type: "Currency Type"
+  default_country: "Default Country"
   college: "College"
   upload_logo: "Upload Logo"
   network_state: "Network State"

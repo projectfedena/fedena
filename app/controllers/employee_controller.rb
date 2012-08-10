@@ -259,6 +259,7 @@ class EmployeeController < ApplicationController
     @departments = EmployeeDepartment.find(:all,:order => "name asc",:conditions => "status = true")
     @nationalities = Country.all
     @employee = Employee.new(params[:employee])
+    @selected_value = @employee.default_nationality
     @last_admitted_employee = Employee.find(:last,:conditions=>"employee_number != 'admin'")
     @config = Configuration.find_by_config_key('EmployeeNumberAutoIncrement')
 

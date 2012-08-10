@@ -183,6 +183,28 @@ class Student < ActiveRecord::Base
     next_st ||= fee.student unless fee.nil?
     #    prev_st ||= self.batch.students.first(:order => "id DESC")
   end
+  
+  def default_nationality_and_country
+    default_nationality_value = 76
+    default_country_value = 76
+    #nationality checking
+    if self.nationality_id.present?
+      default_nationality_value = self.nationality_id
+    else
+      config = Configuration.get_multiple_configs_as_hash ['DefaultCountry']
+      default_nationality_value = config[:default_country].present? ? config[:default_country].to_i : 76
+    end
+    #country checking
+    if self.country_id.present?
+      default_country_value = self.country_id
+    else
+      unless config.present?
+        config = Configuration.get_multiple_configs_as_hash ['DefaultCountry']
+      end
+      default_country_value = config[:default_country].present? ? config[:default_country].to_i : 76
+    end
+    return [default_nationality_value,default_country_value]
+  end
 
   def finance_fee_by_date(date)
     FinanceFee.find_by_fee_collection_id_and_student_id(date.id,self.id)
@@ -282,15 +304,15 @@ class Student < ActiveRecord::Base
         g.archive_guardian(archived_student.id)
       end
       #
-#      student_exam_scores = ExamScore.find_all_by_student_id(self.id)
-#      student_exam_scores.each do |s|
-#        exam_score_attributes = s.attributes
-#        exam_score_attributes.delete "id"
-#        exam_score_attributes.delete "student_id"
-#        exam_score_attributes["student_id"]= archived_student.id
-#        ArchivedExamScore.create(exam_score_attributes)
-#        s.destroy
-#      end
+      #      student_exam_scores = ExamScore.find_all_by_student_id(self.id)
+      #      student_exam_scores.each do |s|
+      #        exam_score_attributes = s.attributes
+      #        exam_score_attributes.delete "id"
+      #        exam_score_attributes.delete "student_id"
+      #        exam_score_attributes["student_id"]= archived_student.id
+      #        ArchivedExamScore.create(exam_score_attributes)
+      #        s.destroy
+      #      end
       #
     end
  
