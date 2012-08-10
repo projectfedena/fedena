@@ -21,6 +21,9 @@ class SmsController < ApplicationController
   
   def index
     @sms_setting = SmsSetting.new()
+    @parents_sms_enabled = SmsSetting.find_by_settings_key("ParentSmsEnabled")
+    @students_sms_enabled = SmsSetting.find_by_settings_key("StudentSmsEnabled")
+    @employees_sms_enabled = SmsSetting.find_by_settings_key("EmployeeSmsEnabled")
   end
 
   def settings
