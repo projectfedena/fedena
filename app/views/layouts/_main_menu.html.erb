@@ -137,11 +137,6 @@
             <%  if permitted_to? :index, :cce_reports  %>
               <li><%= link_to "CCE Report" , :controller => "cce_reports" %>  </li>
             <% end %>
-            <%# FedenaPlugin::ADDITIONAL_LINKS[:online_exam_index_link].each do |mod| %>
-              <%#  if permitted_to? "#{mod[:destination][:action]}".to_sym,"#{mod[:destination][:controller]}".to_sym %>
-                <%#*<li><%= link_to "#{t("#{mod[:title]}")}",mod[:destination] %><%#</li>%>
-              <%# end %>
-            <%# end %>
           </ul>
         </li>
       <% end %>
@@ -196,22 +191,6 @@
       <% if @current_user.admin? %>
         <li><%= link_to "#{t('user_text')}" , :controller => "user", :action=>"index" %></li>
       <% end %>
-<%# FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
-<%# unless mod[:more_menu].blank? %>
-<%# arrow = mod[:sub_menus].present? ? " <span class='right-arrow'>#{arrow_dir}</span>" : "" %>
-<%# if permitted_to? "#{mod[:more_menu][:action]}".to_sym,"#{mod[:more_menu][:controller]}".to_sym %>
-<%#*<li><%= link_to "#{t(mod[:more_menu][:title])}#{arrow}",:controller => "#{mod[:more_menu][:controller]}", :action=>"#{mod[:more_menu][:action]}" %>
-<%# unless mod[:sub_menus].blank? %>
-<%#*<ul class="level-2">%>
-<%# mod[:sub_menus].each do |submenu| %>
-<%#*<li><%= link_to "#{t(submenu[:title])}",:controller => "#{submenu[:controller]}", :action=>"#{submenu[:action]}"  if permitted_to? "#{submenu[:action]}".to_sym,"#{submenu[:controller]}".to_sym  %><%#</li>%>
-<%# end %>
-<%#*</ul>%>
-<%# end %>
-<%#*</li>%>
-<%# end %>
-<%# end %>
-<%# end %>
     </ul>
   </li>
 </ul>
@@ -232,7 +211,10 @@
       <% unless mod[:sub_menus].blank? %>
         <% mod[:sub_menus].each do |submenu| %>
           <% if submenu[:target_id].present? %>
-                $('<%= submenu[:target_id] %>').insert({bottom: '<li><%= link_to "#{t(submenu[:title])}",:controller => "#{submenu[:controller]}", :action=>"#{submenu[:action]}"  if permitted_to? "#{submenu[:action]}".to_sym,"#{submenu[:controller]}".to_sym  %></li>'})
+                if ($('<%= submenu[:target_id] %>')!=null)
+                {
+                  $('<%= submenu[:target_id] %>').insert({bottom: '<li><%= link_to "#{t(submenu[:title])}",:controller => "#{submenu[:controller]}", :action=>"#{submenu[:action]}"  if permitted_to? "#{submenu[:action]}".to_sym,"#{submenu[:controller]}".to_sym  %></li>'})
+                }
           <% end %>
         <% end %>
       <% end %>
@@ -241,15 +223,3 @@
 <% end %>
   }
 </script>
-
-<%#*<script type="text/javascript">%>
-<%#*function load_menu_from_plugins(){%>
-<%# FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].each do |mod|  %>
-<%# if mod[:menu_id].present? %>
-<%# if permitted_to? mod[:destination][:action].to_sym,mod[:destination][:controller].to_sym %>
-<%#*$('<%= mod[:menu_id] %><%#').insert({bottom: '<li><%= link_to(t(mod[:title]), :controller=>mod[:destination][:controller].to_sym,:action=>mod[:destination][:action].to_sym) %><%#</li>'})%>
-<%# end %>
-<%# end %>
-<%# end %>
-<%#*}%>
-<%#*</script>%>
