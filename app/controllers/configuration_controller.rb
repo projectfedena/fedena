@@ -30,6 +30,7 @@ class ConfigurationController < ApplicationController
     @grading_types = Course::GRADINGTYPES
     @enabled_grading_types = Configuration.get_grading_types
     @school_detail = SchoolDetail.first || SchoolDetail.new
+    @country=Country.all
     if request.post?
       Configuration.set_config_values(params[:configuration])
       session[:language] = nil unless session[:language].nil?
