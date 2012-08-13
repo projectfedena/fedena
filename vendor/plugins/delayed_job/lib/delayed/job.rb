@@ -269,7 +269,9 @@ module Delayed
     end
 
     def after_create
-      Manager.scale_up if self.class.auto_scale #&& Manager.qty == 0 --- solving worker start error when more than one worker
+      #checking for an existing job before scaling up. Scale ups if no job.
+      Manager.scale_up if self.class.auto_scale && !(File.exists?('tmp/delayed_job.pid'))
+      ##&& Manager.qty == 0 --- solving worker start error when more than one worker
     end
   end
 
