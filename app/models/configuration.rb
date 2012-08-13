@@ -81,6 +81,15 @@ class Configuration < ActiveRecord::Base
       types= all(:conditions=>{:config_key=>grading_types.values, :config_value=>"1"},:group=>:config_key)
       grading_types.keys.select{|k| types.collect(&:config_key).include? grading_types[k]}      
     end
+
+    def default_country
+      default_country_value = 76
+      config = Configuration.get_multiple_configs_as_hash ['DefaultCountry']
+      if config.present?
+        default_country_value = config[:default_country].to_i
+      end
+      return default_country_value
+    end
     
     def set_grading_types(updates)
       #expects an array of integers types
