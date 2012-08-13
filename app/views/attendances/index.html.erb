@@ -23,6 +23,20 @@
   <% else %>
     <%= javascript_include_tag 'subject_leave', 'date' %>
   <% end %>
+  <!--[if IE]>
+  <style>
+
+  .present{
+    color:#fff;
+    padding:5px;
+    background:#FFF;
+  }
+  .td-mark, .td-name{
+    background:#FFF;
+  }
+
+  </style>
+  <![endif]-->
 <%  end %>
 <div id="content-header">
   <%= image_tag("/images/attendence/attendence.png") %>
