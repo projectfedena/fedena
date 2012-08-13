@@ -112,7 +112,7 @@
       <li><%= link_to "#{t('calendar_text')}" , :controller => "calendar", :action=>"index" %></li>
       <% if permitted_to? :index, :exam %>
         <li><%= link_to "#{t('examination')} <span class='right-arrow'>#{arrow_dir}</span>" , :controller => "exam", :action=>"index" %>
-          <ul class="level-2">
+          <ul class="level-2" id="exam-parent">
             <% @employee_subjects=[] %>
             <% @employee_subjects= @current_user.employee_record.subjects.map { |n| n.id} if @current_user.employee?  %>
             <% if (@current_user.admin? or @current_user.privileges.collect(&:name).include?('ExaminationControl')) %>
@@ -137,11 +137,11 @@
             <%  if permitted_to? :index, :cce_reports  %>
               <li><%= link_to "CCE Report" , :controller => "cce_reports" %>  </li>
             <% end %>
-            <% FedenaPlugin::ADDITIONAL_LINKS[:online_exam_index_link].each do |mod| %>
-              <%  if permitted_to? "#{mod[:destination][:action]}".to_sym,"#{mod[:destination][:controller]}".to_sym %>
-                <li><%= link_to "#{t("#{mod[:title]}")}",mod[:destination] %></li>
-              <% end %>
-            <% end %>
+            <%# FedenaPlugin::ADDITIONAL_LINKS[:online_exam_index_link].each do |mod| %>
+              <%#  if permitted_to? "#{mod[:destination][:action]}".to_sym,"#{mod[:destination][:controller]}".to_sym %>
+                <%#*<li><%= link_to "#{t("#{mod[:title]}")}",mod[:destination] %><%#</li>%>
+              <%# end %>
+            <%# end %>
           </ul>
         </li>
       <% end %>
