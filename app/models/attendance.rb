@@ -21,7 +21,7 @@ class Attendance < ActiveRecord::Base
   belongs_to :student
   belongs_to :batch
   validates_presence_of :reason
-  validates_uniqueness_of :student_id, :scope => [:month_date]
+  validates_uniqueness_of :student_id, :scope => [:month_date],:message=>"already marked as absent"
 
   def validate
     errors.add("#{t('attendance_before_the_date_of_admission')}")  if self.month_date < self.student.admission_date
