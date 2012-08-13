@@ -1,0 +1,310 @@
+= Searchlogic
+
+Searchlogic makes using ActiveRecord named scopes easier and less repetitive. It helps keep your code DRY, clean, and simple.
+
+The specs pass with ActiveRecord 2.3.9 - 2.3.14 on Ruby 1.9.3-p125, 1.9.2-p318, and 1.8.7-p358
+
+== Helpful links
+
+* <b>Documentation:</b> http://rdoc.info/projects/binarylogic/searchlogic
+* <b>Repository:</b> http://github.com/binarylogic/searchlogic/tree/master
+* <b>Issues:</b> http://github.com/binarylogic/searchlogic/issues
+* <b>Google group:</b> http://groups.google.com/group/searchlogic
+* <b>Railscast:</b> http://railscasts.com/episodes/176-searchlogic
+
+<b>Before contacting me directly, please read:</b>
+
+If you find a bug or a problem please post it in the issues section. If you need help with something, please use google groups. I check both regularly and get emails when anything happens, so that is the best place to get help. This also benefits other people in the future with the same questions / problems. Thank you.
+
+== Install & use
+
+Install the gem from rubyforge:
+
+  sudo gem install searchlogic
+
+Now just set it as a dependency in your project and you are ready to go.
+
+You can also install this as a plugin:
+
+  script/plugin install git://github.com/binarylogic/searchlogic.git
+
+See below for usage examples.
+
+== Search using conditions on columns
+
+Instead of explaining what Searchlogic can do, let me show you. Let's start at the top:
+
+  # We have the following model
+  User(id: integer, created_at: datetime, username: string, age: integer)
+  
+  # Searchlogic gives you a bunch of named scopes for free:
+  User.username_equals("bjohnson")
+  User.username_equals(["bjohnson", "thunt"])
+  User.username_equals("a".."b")
+  User.username_does_not_equal("bjohnson")
+  User.username_begins_with("bjohnson")
+  User.username_not_begin_with("bjohnson")
+  User.username_like("bjohnson")
+  User.username_not_like("bjohnson")
+  User.username_ends_with("bjohnson")
+  User.username_not_end_with("bjohnson")
+  User.age_greater_than(20)
+  User.age_greater_than_or_equal_to(20)
+  User.age_less_than(20)
+  User.age_less_than_or_equal_to(20)
+  User.username_null
+  User.username_not_null
+  User.username_blank
+
+Any named scope Searchlogic creates is dynamic and created via method_missing. Meaning it will only create what you need. Also, keep in mind, these are just named scopes, you can chain them, call methods off of them, etc:
+
+  scope = User.username_like("bjohnson").age_greater_than(20).id_less_than(55)
+  scope.all
+  scope.first
+  scope.count
+  # etc...
+
+For a complete list of conditions please see the constants in Searchlogic::NamedScopes::Conditions.
+
+== Use condition aliases
+
+Typing out 'greater_than_or_equal_to' is not fun. Instead Searchlogic provides various aliases for the conditions. For a complete list please see Searchlogic::NamedScopes::Conditions. But they are pretty straightforward:
+
+  User.username_is(10)  # equals
+  User.username_eq(10)  # equals
+  User.id_lt(10)        # less than
+  User.id_lte(10)       # less than or equal to
+  User.id_gt(10)        # greater than
+  User.id_gte(10)       # greater than or equal to
+  # etc...
+
+== Search using scopes in associated classes
+
+This is my favorite part of Searchlogic. You can dynamically call scopes on associated classes and Searchlogic will take care of creating the necessary joins for you. This is REALY nice for keeping your code DRY. The best way to explain this is to show you:
+
+=== Searchlogic provided scopes
+
+Let's take some basic scopes that Searchlogic provides for every model:
+
+  # We have the following relationships
+  User.has_many :orders
+  Order.has_many :line_items
+  LineItem
+  
+  # Set conditions on association columns
+  User.orders_total_greater_than(20)
+  User.orders_line_items_price_greater_than(20)
+  
+  # Order by association columns
+  User.ascend_by_order_total
+  User.descend_by_orders_line_items_price
+
+This is recursive, you can travel through your associations simply by typing it in the name of the method. Again these are just named scopes. You can chain them together, call methods off of them, etc.
+
+=== Custom associated scopes
+
+Also, these conditions aren't limited to the scopes Searchlogic provides. You can use your own scopes. Like this:
+
+  LineItem.named_scope :expensive, :conditions => "line_items.price > 500"
+  
+  User.orders_line_items_expensive
+
+As I stated above, Searchlogic will take care of creating the necessary joins for you. This is REALLY nice when trying to keep your code DRY, because if you wanted to use a scope like this in your User model you would have to copy over the conditions. Now you have 2 named scopes that are essentially doing the same thing. Why do that when you can dynamically access that scope using this feature?
+
+=== Polymorphic associations
+
+Polymorphic associations are tough because ActiveRecord doesn't support them with the :joins or :include options. Searchlogic checks for a specific syntax and takes care of this for you. Ex:
+
+  Audit.belongs_to :auditable, :polymorphic => true
+  User.has_many :audits, :as => :auditable
+  
+  Audit.auditable_user_type_username_equals("ben")
+
+The above will take care of creating the inner join on the polymorphic association so that it only looks for type 'User'. On the surface it works the same as a non polymorphic association. The syntax difference being that you need to call the association and then specify the type:
+  
+  [polymorphic association name]_[association type]_type
+
+=== Uses :joins not :include
+
+Another thing to note is that the joins created by Searchlogic do NOT use the :include option, making them <em>much</em> faster. Instead they leverage the :joins option, which is great for performance. To prove my point here is a quick benchmark from an application I am working on:
+
+  Benchmark.bm do |x|
+    x.report { 10.times { Event.tickets_id_gt(10).all(:include => :tickets) } }
+    x.report { 10.times { Event.tickets_id_gt(10).all } }
+  end
+        user     system      total        real
+   10.120000   0.170000  10.290000 ( 12.625521)
+    2.630000   0.050000   2.680000 (  3.313754)
+
+If you want to use the :include option, just specify it:
+
+  User.orders_line_items_price_greater_than(20).all(:include => {:orders => :line_items})
+
+Obviously, only do this if you want to actually use the included objects. Including objects into a query can be helpful with performance, especially when solving an N+1 query problem.
+
+== Order your search
+
+Just like the various conditions, Searchlogic gives you some very basic scopes for ordering your data:
+
+  User.ascend_by_id
+  User.descend_by_id
+  User.ascend_by_orders_line_items_price
+  # etc...
+
+== Use any or all
+
+Every condition you've seen in this readme also has 2 related conditions that you can use. Example:
+
+  User.username_like_any("bjohnson", "thunt")   # will return any users that have either of the strings in their username
+  User.username_like_all("bjohnson", "thunt")   # will return any users that have all of the strings in their username
+  User.username_like_any(["bjohnson", "thunt"]) # also accepts an array
+
+This is great for checkbox filters, etc. Where you can pass an array right from your form to this condition.
+
+== Combine scopes with 'OR'
+
+In the same fashion that Searchlogic provides a tool for accessing scopes in associated classes, it also provides a tool for combining scopes with 'OR'. As we all know, when scopes are combined they are joined with 'AND', but sometimes you need to combine scopes with 'OR'. Searchlogic solves this problem:
+
+  User.username_or_first_name_like("ben")
+  => "username LIKE '%ben%' OR first_name like'%ben%'"
+  
+  User.id_or_age_lt_or_username_or_first_name_begins_with(10)
+  => "id < 10 OR age < 10 OR username LIKE 'ben%' OR first_name like'ben%'"
+
+Notice you don't have to specify the explicit condition (like, gt, lt, begins with, etc.). You just need to eventually specify it. If you specify a column it will just use the next condition specified. So instead of:
+
+  User.username_like_or_first_name_like("ben")
+
+You can do:
+
+  User.username_or_first_name_like("ben")
+
+Again, these just map to named scopes. Use Searchlogic's dynamic scopes, use scopes on associations, use your own custom scopes. As long as it maps to a named scope it will join the conditions with 'OR'. There are no limitations.
+
+== Create scope procedures
+
+Sometimes you notice a pattern in your application where you are constantly combining certain named scopes. You want to keep the flexibility of being able to mix and match small named scopes, while at the same time being able to call a single scope for a common task. User searchlogic's scpe procedure:
+
+  User.scope_procedure :awesome, lambda { first_name_begins_with("ben").last_name_begins_with("johnson").website_equals("binarylogic.com") }
+
+All that this is doing is creating a class level method, but what is nice about this method is that is more inline with your other named scopes. It also tells searchlogic that this method is 'safe' to use when using the search method. Ex:
+
+  User.search(:awesome => true)
+
+Otherwise searchlogic will ignore the 'awesome' condition because there is no way to tell that its a valid scope. This is a security measure to keep users from passing in a scope with a named like 'destroy_all'.
+
+== Make searching and ordering data in your application trivial
+
+The above is great, but what about tying all of this in with a search form in your application? What would be really nice is if we could use an object that represented a single search. Like this...
+
+  search = User.search(:username_like => "bjohnson", :age_less_than => 20)
+  search.all
+
+The above is equivalent to:
+
+  User.username_like("bjohnson").age_less_than(20).all
+
+You can set, read, and chain conditions off of your search too:
+
+  search.username_like                              => "bjohnson"
+  search.age_gt = 2                                 => 2
+  search.id_gt(10).email_begins_with("bjohnson")    => <#Searchlogic::Search...>
+  search.all                                        => An array of users
+  search.count                                      => integer
+  # .. etc
+
+So let's start with the controller...
+
+=== Your controller
+
+The search class just chains named scopes together for you. What's so great about that? It keeps your controllers extremely simple:
+
+  class UsersController < ApplicationController
+    def index
+      @search = User.search(params[:search])
+      @users = @search.all
+    end
+  end
+
+It doesn't get any simpler than that.
+
+=== Your form
+
+Adding a search condition is as simple as adding a condition to your form. Remember all of those named scopes above? Just create fields with the same names:
+
+  - form_for @search do |f|
+    = f.text_field :username_like
+    = f.select :age_greater_than, (0..100)
+    = f.text_field :orders_total_greater_than
+    = f.submit
+
+When a Searchlogic::Search object is passed to form_for it will add a hidden field for the "order" condition, to preserve the order of the data.
+
+=== Additional helpers
+
+There really isn't a big need for helpers in searchlogic, other than helping you order data. If you want to order your search with a link, just specify the name of the column. Ex:
+
+  = order @search, :by => :age
+  = order @search, :by => :created_at, :as => "Created date"
+
+The first one will create a link that alternates between calling "ascend_by_age" and "descend_by_age". If you wanted to order your data by more than just a column, create your own named scopes: "ascend_by_*" and "descend_by_*". The "order" helper is a very straight forward helper, checkout the docs for some of the options.
+
+<b>This helper is just a convenience method. It's extremely simple and there is nothing wrong with creating your own. If it doesn't do what you want, copy the code, modify it, and create your own. You could even fork the project, modify it there, and use your own gem.</b>
+
+== Use your existing named scopes
+
+This is one of the big differences between Searchlogic v1 and v2. What about your existing named scopes? Let's say you have this:
+
+  User.named_scope :four_year_olds, :conditions => {:age => 4}
+
+Again, these are all just named scopes, use it in the same way:
+
+  User.search(:four_year_olds => true, :username_like => "bjohnson")
+
+Notice we pass true as the value. If a named scope does not accept any parameters (arity == 0) you can simply pass it true or false. If you pass false, the named scope will be ignored. If your named scope accepts a parameter, the value will be passed right to the named scope regardless of the value.
+
+Now just throw it in your form:
+
+  - form_for @search do |f|
+    = f.text_field :username_like
+    = f.check_box :four_year_olds
+    = f.submit
+
+This really allows Searchlogic to extend beyond what it provides internally. If Searchlogic doesn't provide a named scope for that crazy edge case that you need, just create your own named scope and use it. The sky is the limit.
+
+== Pagination (leverage will_paginate)
+
+Instead of recreating the wheel with pagination, Searchlogic works great with will_paginate. All that Searchlogic is doing is creating named scopes, and will_paginate works great with named scopes:
+
+  User.username_like("bjohnson").age_less_than(20).paginate(:page => params[:page])
+  User.search(:username_like => "bjohnson", :age_less_than => 20).paginate(:page => params[:page])
+
+If you don't like will_paginate, use another solution, or roll your own. Pagination really has nothing to do with searching, and the main goal for Searchlogic v2 was to keep it lean and simple. No reason to recreate the wheel and bloat the library.
+
+== Conflicts with other gems
+
+You will notice searchlogic wants to create a method called "search". So do other libraries like thinking-sphinx, etc. So searchlogic has a no conflict resolution. If the "search" method is already taken the method will be called "searchlogic" instead. So instead of
+
+  User.search
+
+You would do:
+
+  User.searchlogic
+
+== Under the hood
+
+Before I use a library in my application I like to glance at the source and try to at least understand the basics of how it works. If you are like me, a nice little explanation from the author is always helpful:
+
+Searchlogic utilizes method_missing to create all of these named scopes. When it hits method_missing it creates a named scope to ensure it will never hit method missing for that named scope again. Sort of a caching mechanism. It works in the same fashion as ActiveRecord's "find_by_*" methods. This way only the named scopes you need are created and nothing more.
+
+The search object is just a proxy to your model that only delegates calls that map to named scopes and nothing more. This is obviously done for security reasons. It also helps make form integration easier, by type casting values, and playing nice with form_for. This class is pretty simple as well.
+
+That's about it, the named scope options are pretty bare bones and created just like you would manually.
+
+== Credit
+
+Thanks a lot to {Tyler Hunt}[http://github.com/tylerhunt] for helping plan, design, and start the project. He was a big help.
+
+== Copyright
+
+Copyright (c) 2009 {Ben Johnson of Binary Logic}[http://www.binarylogic.com], released under the MIT license
