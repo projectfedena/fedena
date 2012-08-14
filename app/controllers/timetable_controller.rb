@@ -302,9 +302,9 @@ class TimetableController < ApplicationController
     @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
     @entries = @current.timetable_entries.find(:all,:conditions=>{:subject_id=>@employee_timetable_subjects})
     @all_timetable_entries = @entries.select{|t| t.batch.is_active}.select{|s| s.class_timing.is_deleted==false}.select{|w| w.weekday.is_deleted==false}
-    @all_batches = @all_timetable_entries.collect(&:batch).uniq.sort!{|a,b| a.class_timing <=> b.class_timing}
+    @all_batches = @all_timetable_entries.collect(&:batch).uniq
     @all_weekdays = @all_timetable_entries.collect(&:weekday).uniq.sort!{|a,b| a.weekday <=> b.weekday}
-    @all_classtimings = @all_timetable_entries.collect(&:class_timing).uniq
+    @all_classtimings = @all_timetable_entries.collect(&:class_timing).uniq.sort!{|a,b| a.start_time <=> b.start_time}
     @all_teachers = @all_timetable_entries.collect(&:employee).uniq
     @all_timetable_entries.each do |tt|
       @timetable_entries[tt.weekday_id][tt.class_timing_id] = tt
@@ -338,9 +338,9 @@ class TimetableController < ApplicationController
     @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
     @entries = @current.timetable_entries.find(:all,:conditions=>{:subject_id=>@employee_timetable_subjects})
     @all_timetable_entries = @entries.select{|t| t.batch.is_active}.select{|s| s.class_timing.is_deleted==false}.select{|w| w.weekday.is_deleted==false}
-    @all_batches = @all_timetable_entries.collect(&:batch).uniq.sort!{|a,b| a.class_timing <=> b.class_timing}
+    @all_batches = @all_timetable_entries.collect(&:batch).uniq
     @all_weekdays = @all_timetable_entries.collect(&:weekday).uniq.sort!{|a,b| a.weekday <=> b.weekday}
-    @all_classtimings = @all_timetable_entries.collect(&:class_timing).uniq
+    @all_classtimings = @all_timetable_entries.collect(&:class_timing).uniq.sort!{|a,b| a.start_time <=> b.start_time}
     @all_teachers = @all_timetable_entries.collect(&:employee).uniq
     @all_timetable_entries.each do |tt|
       @timetable_entries[tt.weekday_id][tt.class_timing_id] = tt
