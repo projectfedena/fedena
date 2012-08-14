@@ -168,7 +168,7 @@ class User < ActiveRecord::Base
     unless start_date
       return ""
     else
-      next_date=(start_date<date ? date+1.days : start_date )
+      next_date=(start_date.to_date<=date ? date+1.days : start_date )
       next_date
     end
   end
