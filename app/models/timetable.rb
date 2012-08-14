@@ -10,7 +10,7 @@ class Timetable < ActiveRecord::Base
     range=register_range(batch,date)
     holidays=batch.holiday_event_dates
     entries = TimetableEntry.find(:all,:joins=>[:timetable, :weekday, :class_timing],:include=>:weekday,:conditions=>["((? BETWEEN start_date AND end_date) OR (? BETWEEN start_date AND end_date) OR (start_date BETWEEN ? AND ?) OR (end_date BETWEEN ? AND ?)) AND timetable_entries.subject_id = ? AND timetable_entries.batch_id = ? AND class_timings.is_deleted = false AND weekdays.is_deleted = false",range.first,range.last,range.first,range.last,range.first,range.last,subject.id,batch.id])
-#    entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["(timetables.start_date <= ? OR timetables.end_date >= ?) AND timetable_entries.subject_id = ? AND timetable_entries.batch_id = ?",range.first,range.last,subject.id,batch.id])
+    #    entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["(timetables.start_date <= ? OR timetables.end_date >= ?) AND timetable_entries.subject_id = ? AND timetable_entries.batch_id = ?",range.first,range.last,subject.id,batch.id])
     timetable_ids=entries.collect(&:timetable_id).uniq
     hsh2=ActiveSupport::OrderedHash.new
     unless timetable_ids.nil?
@@ -54,7 +54,8 @@ class Timetable < ActiveRecord::Base
   end
 
   def self.employee_tte(employee,date)
-    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timing, :weekday],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?) AND timetable_entries.employee_id = ? AND class_timings.is_deleted = false AND weekdays.is_deleted = false",date,date,employee.id], :order=>"class_timings.start_time")
+    subjects = employee.subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
+    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timing, :weekday],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?) AND timetable_entries.subject_id in (?) AND class_timings.is_deleted = false AND weekdays.is_deleted = false",date,date,subjects], :order=>"class_timings.start_time")
     if entries.empty?
       today=[]
     else
