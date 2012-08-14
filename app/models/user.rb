@@ -134,6 +134,7 @@ class User < ActiveRecord::Base
       all_events+= Event.all(:conditions=>["(? between date(events.start_date) and date(events.end_date)) and is_common = true",date])
     when "Parent"
       all_events+= events.all(:conditions=>["? between date(events.start_date) and date(events.end_date)",date])
+      all_events+= parent_record.user.events.all(:conditions=>["? between date(events.start_date) and date(events.end_date)",date])
       all_events+= parent_record.batch.events.all(:conditions=>["? between date(events.start_date) and date(events.end_date)",date])
       all_events+= Event.all(:conditions=>["(? between date(events.start_date) and date(events.end_date)) and is_common = true",date])
     when "Employee"
@@ -156,6 +157,7 @@ class User < ActiveRecord::Base
       all_events+= Event.all(:conditions=>["(? < date(events.end_date)) and is_common = true",date],:order=>"start_date")
     when "Parent"
       all_events+= events.all(:conditions=>["? < date(events.end_date)",date])
+      all_events+= parent_record.user.events.all(:conditions=>["? < date(events.end_date)",date])
       all_events+= parent_record.batch.events.all(:conditions=>["? < date(events.end_date)",date],:order=>"start_date")
       all_events+= Event.all(:conditions=>["(? < date(events.end_date)) and is_common = true",date],:order=>"start_date")
     when "Employee"
