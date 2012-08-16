@@ -190,6 +190,11 @@
     color : #000;
 }
 
+.item-list li div.item-edit b .currency-type1{
+    float:left;
+    margin-left:20px;
+    text-align: left;
+}
 .edit-delete-link{
     -moz-border-radius:10px;
     -webkit-border-radius:10px;

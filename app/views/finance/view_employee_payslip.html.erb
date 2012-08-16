@@ -88,12 +88,18 @@
       <div class="item-name"><b><%= t('net_salary') %></b></div>
       <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span><b> <%="%.2f" %@salary[:net_amount]%></b></div>
     </li>
+    <% unless @monthly_payslips.first.is_approved == false and @monthly_payslips.first.is_rejected == false%>
+      <li class="listodd">
+        <div class="item-name"><b><%= t('remark') %></b></div>
+        <div class="item-edit"><b><span class="currency-type1"><%= @monthly_payslips.first.remark %></span></b></div>
+      </li>
+    <% end %>
   </ul>
 </div>
 <div class="pdf-report">
   <% if @monthly_payslips.first.is_approved == false and @monthly_payslips.first.is_rejected == false%>
-    <%#= link_to_remote "#{t('approve')}", {:controller=>"finance", :action => "employee_payslip_approve_form",:id =>@monthly_payslips.first.employee_id,:id2 => params[:salary_date] } %>
-  <%= link_to_remote "#{t('approve')}",:url=>{:controller => "finance", :action => "employee_payslip_accept_form", :id=> @monthly_payslips.first.employee_id, :id2=>params[:salary_date]}, :confirm=>"#{t('delete_confirm_msg')}" %>
+  <%#= link_to_remote "#{t('approve')}", {:controller=>"finance", :action => "employee_payslip_approve_form",:id =>@monthly_payslips.first.employee_id,:id2 => params[:salary_date] } %>
+    <%= link_to_remote "#{t('approve')}",:url=>{:controller => "finance", :action => "employee_payslip_accept_form", :id=> @monthly_payslips.first.employee_id, :id2=>params[:salary_date]}, :confirm=>"#{t('delete_confirm_msg')}" %>
     <%= link_to_remote "#{t('reject')}",:url=>{:controller => "finance", :action => "employee_payslip_reject_form", :id=> @monthly_payslips.first.employee_id, :id2=>params[:salary_date]}, :confirm=>"#{t('delete_confirm_msg')}" %>
   <% end %>
 

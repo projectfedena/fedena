@@ -1,25 +1,38 @@
+
 .item-list {
     clear : both;
     padding : 10px 0 0 130px;
     margin:0px;
 }
 
+.item-list li.heading1 {
+    background : #BECFFB;
+    border-bottom:1px solid #BECFFB;
+    font-weight : bold;
+    height : 1.5em;
+    width : 35em;
+    list-style-type : none;
+    padding : 0.5em 0 0 0.3em;
+}
+
 .item-list .listeven{
     background : #EEF2FD;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 30em;
+    min-height : 1.5em; width : 30.3em;
     list-style-type : none;
     padding : 0.5em 0 0 5em;
+    overflow: hidden;
 }
 
 .item-list .listodd{
     background : #DFEAFF;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 30em;
+    min-height : 1.5em; width : 30.3em;
     list-style-type : none;
     padding : 0.5em 0 0 5em;
+    overflow: hidden;
 }
 
 .item-list li.heading {
@@ -28,33 +41,34 @@
     list-style-type : none;
     color : #444;
     height : 1.5em; width : 30em;
-}
-.item-list li.heading1 {
-    background : #BECFFB;
-    border-bottom:1px solid #BECFFB;
-    font-weight : normal;
-    height : 1.5em;
-    width : 34em;
-    list-style-type : none;
-    padding : 0.5em 0 0 1em;
+    padding : 0.5em 0 0 0em;
 }
 .item-list li div {
     float : left;
 }
 .item-list li div.item-name {
     width : 350px;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: bold;
 }
 .item-list li div.item-edit,
 .item-list li div.item-delete {
-    font-size : 14px;
+    font-size : 0.9em;
     width : 100px;
-    text-align:justify;
+    text-align:right;
 }
 .item-list li div a {
     color : #000;
 }
-
+.item-list li div.item-edit b .currency-type1{
+    float:left;
+    margin-left:20px;
+    text-align: left;
+}
+.currency-type{
+    float:left;
+    margin-left:20px;
+}
 .approve{
     float:right;
     margin-top:20px;
