@@ -74,6 +74,7 @@ tr.odd{
 .table-header td{
     padding: 12px 12px 12px 15px;
     border-top: 1px solid #ADACAB;
+     border-left: 1px solid #ADACAB;
     color: #97080e;
     background: #EEEEEE;
 }

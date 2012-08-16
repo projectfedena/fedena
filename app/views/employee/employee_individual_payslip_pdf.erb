@@ -38,7 +38,7 @@
       </div>
       <div class="info_right">
         <% @bank_details.each do |b| %>
-        <div class="info"><div class="info-label"><%= b.bank_field.name %></div> <div class="info-data"><span>:</span><%=  b.bank_info%></div></div>
+          <div class="info"><div class="info-label"><%= b.bank_field.name %></div> <div class="info-data"><span>:</span><%=  b.bank_info%></div></div>
         <% end %>
       </div>
     </div>
@@ -142,10 +142,16 @@
           <tr class="odd"><td class="col-pdf"><b><%= t('total_deduction') %></b></td><td class="col-pdf"><b><%= "#{@currency_type.to_s}"+" ""#{@net_deductionable_amount.to_s}" %></b></td></tr>
           <tr class="table-header"><td colspan="2"class="col-pdf"><%= t('total') %></td></tr>
           <tr class="even"><td class="col-pdf"><b><%= t('net_salary') %></b></td><td class="col-pdf"><b><%= "#{@currency_type.to_s}"+ " " "#{@net_amount.to_s}" %></b></td></tr>
+          <% unless @monthly_payslips.first.is_approved == false and @monthly_payslips.first.is_rejected == false%>
+            <tr class="odd"><td class="col-pdf"><b><%= t('remark') %></b></td><td class="col-pdf"><b><%= @monthly_payslips.first.remark %></b></td></tr>
+          <% end %>
         <% else %>
           <tr class="even"><td class="col-pdf"><b><%= t('total_deduction') %></b></td><td class="col-pdf"><b><%= "#{@currency_type.to_s}"+ " ""#{@net_deductionable_amount.to_s}" %></b></td></tr>
           <tr class="table-header"><td colspan="2"class="col-pdf"><%= t('total') %></td></tr>
           <tr class="odd"><td class="col-pdf"><b><%= t('net_salary') %></b></td><td class="col-pdf"><b><%= "#{@currency_type.to_s}"+ " " "#{@net_amount.to_s}" %></b></td></tr>
+          <% unless @monthly_payslips.first.is_approved == false and @monthly_payslips.first.is_rejected == false%>
+            <tr class="even"><td class="col-pdf"><b><%= t('remark') %></b></td><td class="col-pdf"><b><%= @monthly_payslips.first.remark %></b></td></tr>
+          <% end %>
         <% end  %>
       </table>
 
