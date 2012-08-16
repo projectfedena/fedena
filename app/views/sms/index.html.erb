@@ -50,11 +50,11 @@
           <div class="link-heading"><%= link_to "#{t('sms_to_employees')}",:action=>'employees'%></div>
           <div class="link-descr"><%= t('sms_to_employees') %></div>
         </div>
+        <div class="link-box">
+          <div class="link-heading"><%= link_to "#{t('sms_to_employee_department')}",:action=>'departments'%></div>
+          <div class="link-descr"><%= t('sms_to_employee_department') %></div>
+        </div>
       <% end %>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('sms_to_employee_department')}",:action=>'departments'%></div>
-        <div class="link-descr"><%= t('sms_to_employee_department') %></div>
-      </div>
       <div class="link-box">
         <div class="link-heading"><%= link_to_remote "#{t('sms_to_all')}",:url=>{:action=>'all'} %></div>
         <div class="link-descr"><%= t('sms_to_all') %></div>
