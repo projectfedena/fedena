@@ -83,11 +83,7 @@ class Configuration < ActiveRecord::Base
     end
 
     def default_country
-      default_country_value = 76
-      config = Configuration.get_multiple_configs_as_hash ['DefaultCountry']
-      if config.present?
-        default_country_value = config[:default_country].to_i
-      end
+      default_country_value = self.find_by_config_key('DefaultCountry').config_value.to_i
       return default_country_value
     end
     
