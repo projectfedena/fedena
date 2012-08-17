@@ -261,7 +261,7 @@ class Student < ActiveRecord::Base
   def has_associated_fee_particular?(fee_category)
     status = false
     status = true if fee_category.fee_particulars.find_all_by_admission_no(admission_no).count > 0
-    status = true if fee_category.fee_particulars.find_all_by_student_category_id(student_category_id).count > 0
+    status = true if student_category_id.present? and fee_category.fee_particulars.find_all_by_student_category_id(student_category_id).count > 0
     return status
   end
 
