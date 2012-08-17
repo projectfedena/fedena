@@ -84,6 +84,12 @@
             :selected => @config[:locale] %>
         </div>
       </div>
+      <div class="label-field-pair">
+        <label for="configuration_student_attendance_type">Time Zone</label>
+        <div class="text-input-bg">
+          <%= select :configuration, :time_zone, @time_zones.map{|t| ["#{t.name}(#{t.code}) - GMT#{t.difference_type}#{Time.at(t.time_difference).gmtime.strftime('%R')}",t.id]},:selected =>@config[:time_zone].to_i  %>
+        </div>
+      </div>
 
       <div class="label-field-pair">
         <label for="configuration_default_country"><%= t('country') %></label>

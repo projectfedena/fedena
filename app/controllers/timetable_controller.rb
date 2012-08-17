@@ -19,6 +19,7 @@
 class TimetableController < ApplicationController
   before_filter :login_required
   before_filter :protect_other_student_data
+  before_filter :default_time_zone_present_time
   filter_access_to :all
 
   def new_timetable
@@ -162,13 +163,13 @@ class TimetableController < ApplicationController
 
   def edit_master
     @courses = Batch.active
-    @timetables=Timetable.find(:all,:conditions=>["end_date > ?",Date.today])
+    @timetables=Timetable.find(:all,:conditions=>["end_date > ?",@local_tzone_time.to_date])
   end
 
   def teachers_timetable
     @timetables=Timetable.all
     ## Prints out timetable of all teachers
-    @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",Date.today,Date.today])
+    @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",@local_tzone_time.to_date,@local_tzone_time.to_date])
     if @current
       @timetable_entries = Hash.new { |l, k| l[k] = Hash.new(&l.default_proc) }
       @all_timetable_entries = @current.timetable_entries.select{|t| t.batch.is_active}.select{|s| s.class_timing.is_deleted==false}.select{|w| w.weekday.is_deleted==false}
@@ -199,7 +200,7 @@ class TimetableController < ApplicationController
   #    if request.xhr?
   def update_teacher_tt
     if params[:timetable_id].nil?
-      @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",Date.today,Date.today])
+      @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",@local_tzone_time.to_date,@local_tzone_time.to_date])
     else
       if params[:timetable_id]==""
         render :update do |page|
@@ -280,6 +281,7 @@ class TimetableController < ApplicationController
       redirect_to :controller=>:timetable
     end
   end
+
   def employee_timetable
     @employee=Employee.find(params[:id])
     @blocked=true
@@ -294,7 +296,7 @@ class TimetableController < ApplicationController
 
       @timetables=Timetable.all
       ## Prints out timetable of all teachers
-      @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",Date.today,Date.today])
+      @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",@local_tzone_time.to_date,@local_tzone_time.to_date])
       unless @current.nil?
         @electives=@employee.subjects.group_by(&:elective_group_id)
     @timetable_entries = Hash.new { |l, k| l[k] = Hash.new(&l.default_proc) }
@@ -317,11 +319,12 @@ class TimetableController < ApplicationController
       redirect_to :controller=>:user ,:action=>:dashboard
     end
   end
+
   #    if request.xhr?
   def update_employee_tt
     @employee=Employee.find(params[:employee_id])
     if params[:timetable_id].nil?
-      @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",Date.today,Date.today])
+      @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",@local_tzone_time.to_date,@local_tzone_time.to_date])
     else
       if params[:timetable_id]==""
         render :update do |page|
@@ -354,7 +357,7 @@ class TimetableController < ApplicationController
     @student = Student.find(params[:id])
     @batch=@student.batch
     @timetables=Timetable.all
-    @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",Date.today,Date.today])
+    @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",@local_tzone_time.to_date,@local_tzone_time.to_date])
     @timetable_entries = Hash.new { |l, k| l[k] = Hash.new(&l.default_proc) }
     unless @current.nil?
       @entries=@current.timetable_entries.find(:all,:conditions=>{:batch_id=>@batch.id})
@@ -372,7 +375,7 @@ class TimetableController < ApplicationController
     @student = Student.find(params[:id])
     @batch=@student.batch
     if params[:timetable_id].nil?
-      @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",Date.today,Date.today])
+      @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",@local_tzone_time.to_date,@local_tzone_time.to_date])
     else
       if params[:timetable_id]==""
         render :update do |page|
@@ -458,7 +461,7 @@ class TimetableController < ApplicationController
         page.replace_html "timetable", :partial => 'table'
       end
     else
-      @today = Date.today
+      @today = @local_tzone_time.to_date
     end
   end
   

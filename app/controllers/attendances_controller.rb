@@ -21,6 +21,7 @@ class AttendancesController < ApplicationController
   filter_access_to :all
   before_filter :only_assigned_employee_allowed, :except => 'index'
   before_filter :only_privileged_employee_allowed, :only => 'index'
+  before_filter :default_time_zone_present_time
   def index
     if current_user.admin?
       @batches = Batch.active
@@ -54,7 +55,7 @@ class AttendancesController < ApplicationController
     unless params[:next].nil?
       @today = params[:next].to_date
     else
-      @today = Date.today
+      @today = @local_tzone_time.to_date
     end
     start_date = @today.beginning_of_month
     end_date = @today.end_of_month
@@ -83,7 +84,7 @@ class AttendancesController < ApplicationController
   def subject_wise_register
     @sub =Subject.find params[:subject_id]
     @batch=Batch.find(@sub.batch_id)
-    @today = params[:next].present? ? params[:next].to_date : Date.today
+    @today = params[:next].present? ? params[:next].to_date : @local_tzone_time.to_date
     unless @sub.elective_group_id.nil?
       elective_student_ids = StudentsSubject.find_all_by_subject_id(@sub.id).map { |x| x.student_id }
       @students = @batch.students.by_first_name.with_full_name_only.all(:conditions=>"FIND_IN_SET(id,\"#{elective_student_ids.split.join(',')}\")")
@@ -121,7 +122,7 @@ class AttendancesController < ApplicationController
 
   def daily_register
     @batch = Batch.find(params[:batch_id])
-    @today = params[:next].present? ? params[:next].to_date : Date.today
+    @today = params[:next].present? ? params[:next].to_date : @local_tzone_time.to_date
     @students = @batch.students.by_first_name.with_full_name_only
     @leaves = Hash.new
     attendances = Attendance.by_month_and_batch(@today,params[:batch_id]).group_by(&:student_id)

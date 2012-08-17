@@ -73,7 +73,7 @@
       <tr class="day">
         <% (1..7).each do |c|%>
           <% dt = c - @start_date_day + (r-1)*7 %>
-          <% day_style = (dt==@show_month.day&&Date.today==@show_month)? "today" : nil %>
+          <% day_style = (dt==@show_month.day && @local_tzone_time.to_date==@show_month)? "today" : nil %>
           <td class="<%= day_style.to_s  %>">
             <% unless (r == 1 and c <= @start_date_day) %>
               <% unless dt > @last_day.day %>

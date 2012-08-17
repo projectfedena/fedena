@@ -18,11 +18,12 @@
 
 class CalendarController < ApplicationController
   before_filter :login_required
+  before_filter :default_time_zone_present_time
   filter_access_to :event_delete
   def index
     @user = current_user
     if params[:new_month].nil?
-      @show_month = Date.today
+      @show_month = @local_tzone_time.to_date
     else
       d = params[:new_month].to_i
       passed_date = (params[:passed_date]).to_date

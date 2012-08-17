@@ -36,7 +36,7 @@
   <% if @timetables.blank? %>
     No timetables found
   <% else %>
-    <% current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",Date.today,Date.today]) %>
+    <% current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",@local_tzone_time.to_date,@local_tzone_time.to_date]) %>
     <% form_for :timetable_entry do |s| %>
       <div class="label-field-pair">
         <label for="timetable_entry_course_id"><%= t('select_tte') %></label>

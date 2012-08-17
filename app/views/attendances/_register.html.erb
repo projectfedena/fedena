@@ -45,7 +45,7 @@
   <table class="" align="center" width="100%">
     <tr class="tr-head">
       <td class="head-td-name"><%= t('name') %></td>
-      <% current_day = Date.today  %>
+      <% current_day = @local_tzone_time.to_date  %>
       <% if @config.config_value=='Daily' %>
         <% @dates.each do |date| %>
           <% if current_day.strftime("%a %d %y") == date.strftime("%a %d %y") %>
