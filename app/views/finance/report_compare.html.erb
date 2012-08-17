@@ -26,7 +26,7 @@
   </div>
 </div>
 <br/>
-<% unless @salary == 0 and @donations_total == 0 and @transactions_fees and @other_transactions.empty? %>
+<% unless @salary == 0 and @donations_total == 0 and @transactions_fees and @other_transactions %>
   <script type="text/javascript" src="/javascripts/swfobject.js"></script>
   <%= @graph %>
 <% end %>
