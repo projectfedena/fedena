@@ -74,6 +74,7 @@ class Employee < ActiveRecord::Base
       unless check_changes.blank?
         emp_user = self.user
         emp_user.username = self.employee_number if check_changes.include?('employee_number')
+        emp_user.password = self.employee_number.to_s + "123" if check_changes.include?('employee_number')
         emp_user.first_name = self.first_name if check_changes.include?('first_name')
         emp_user.last_name = self.last_name if check_changes.include?('last_name')
         emp_user.email = self.email.to_s if check_changes.include?('email')

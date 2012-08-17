@@ -315,11 +315,6 @@ class EmployeeController < ApplicationController
     if request.post?
       if  params[:employee][:employee_number].downcase != 'admin' or @employee_user.admin
         if @employee.update_attributes(params[:employee])
-          unless @employee.changed.include?('employee_number')
-            @employee_user.update_attributes(:username=> @employee.employee_number,:password => "#{@employee.employee_number.to_s}123",:first_name=> @employee.first_name , :last_name=> @employee.last_name, :email=> @employee.email, :role=>'Employee')
-          else
-            @employee_user.update_attributes(:username=> @employee.employee_number,:first_name=> @employee.first_name , :last_name=> @employee.last_name, :email=> @employee.email, :role=>'Employee')
-          end
           if params[:employee][:gender] == "true"
             Employee.update(@employee.id, :gender => true)
           else
