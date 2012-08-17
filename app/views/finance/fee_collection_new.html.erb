@@ -49,7 +49,7 @@
         <label for="reason"> <%= t('fee_category') %>:</label>
         <div class="text-input-bg">
           <%= form.select(:fee_category_id, @fee_categories.map { |item| [item.name, item.name] },
-            {:prompt => "#{ t('select_category')}" },
+            {:selected => @fee_category.present? ? @fee_category.first.name : nil , :prompt => "#{ t('select_category')}" },
             {:onchange => "#{remote_function(:url => {:action => "fee_collection_batch_update"}, :with => "'id='+value")}"})
         %></div>
       </div>
@@ -72,7 +72,11 @@
     </div>
 
 
-    <div id ="batchs"></div>
+    <div id ="batchs">
+      <% unless params[:fee_collection].nil? %>
+        <%= render :partial=>'fee_collection_batchs' if params[:fee_collection][:category_ids].present? %>
+      <% end %>
+    </div>
 
     <div class="extender"></div>
     <div id="submit-button">

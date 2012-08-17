@@ -515,7 +515,7 @@ class FinanceController < ApplicationController
     @monthly_payslips = MonthlyPayslip.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],params[:salary_date]],:include=>:payroll_category)
     @individual_payslips =  IndividualPayslipCategory.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],params[:salary_date]])
     @salary  = Employee.calculate_salary(@monthly_payslips, @individual_payslips)
-   @currency_type= Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type= Configuration.find_by_config_key("CurrencyType").config_value
   end
  
   
@@ -1179,7 +1179,11 @@ class FinanceController < ApplicationController
   def fee_collection_create
     @user = current_user
     @fee_categories = FinanceFeeCategory.common_active
-    fee_category_name = params[:finance_fee_collection][:fee_category_id] unless params[:finance_fee_collection].nil?
+    unless params[:finance_fee_collection].nil?
+      fee_category_name = params[:finance_fee_collection][:fee_category_id]
+      @fee_category = FinanceFeeCategory.find_all_by_name(fee_category_name, :conditions=>['is_deleted is false'])
+      @fee_category.reject!{|x| x.batch.students.blank? or x.batch.is_deleted? or x.fee_particulars.blank?}
+    end
     category =[]
     @finance_fee_collection = FinanceFeeCollection.new
     if request.post?
@@ -1218,9 +1222,9 @@ class FinanceController < ApplicationController
             new_event =  Event.create(:title=> "#{t('fees_due')}", :description =>params[:finance_fee_collection][:name], :start_date => @finance_fee_collection.due_date.to_datetime, :end_date => @finance_fee_collection.due_date.to_datetime, :is_due => true , :origin=>@finance_fee_collection)
             BatchEvent.create(:event_id => new_event.id, :batch_id => b.id )
             Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => @user.id,
-              :recipient_ids => recipient_ids,
-              :subject=>subject,
-              :body=>body ))
+                :recipient_ids => recipient_ids,
+                :subject=>subject,
+                :body=>body ))
           else
             @error = true
           end

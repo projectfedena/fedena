@@ -8,6 +8,16 @@
 #batchs{
     float: right;
     height: 243px;
+    width: 460px;
+}
+#batchs .batch_select_box{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#EEEEEE;
+    border:1px solid #C6C6C6;
+    height: 241px;
+    width: 453px;
+    padding-left: 5px;
 }
 .each_batch{
     font-size: 12px;

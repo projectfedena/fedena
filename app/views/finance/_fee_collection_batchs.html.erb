@@ -28,7 +28,11 @@
     <div class="fee_category_scroll">
       <% @fee_category.each do |f| %>
         <div class="each_batch">
-          <%= check_box_tag "fee_collection[category_ids][]", f.id, true, :class=>'batches_box' %> <%= f.batch.full_name %>
+          <% checked = true %>
+          <% unless params[:fee_collection].nil? %>
+            <% checked = params[:fee_collection][:category_ids].include?(f.id.to_s) if params[:fee_collection][:category_ids].present? %>
+          <% end %>
+          <%= check_box_tag "fee_collection[category_ids][]", f.id, checked, :class=>'batches_box' %> <%= f.batch.full_name %>
         </div>
       <% end %>
     </div>
