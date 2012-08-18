@@ -31,7 +31,7 @@
     <li class="heading"><%= t('payslip_generated_on') %> <%= params[:salary_date] %> <span class="red">(<%= t('status') %>: <%=  @monthly_payslips.first.status_as_text %>)</span></li>
   </ul>
   <ul class="item-list">
-    <li class="heading1"><%= t('salary') %></li>
+    <li class="heading1"><%= t('earnings') %></li>
     <% @monthly_payslips.each do |mp| %>
       <% unless mp.payroll_category.is_deduction == true %>
         <li class="list<%=cycle('odd', 'even')%>">
@@ -77,7 +77,7 @@
       <% end %>
     <% end %>
     <li class="list<%=cycle('odd', 'even')%>">
-      <div class="item-name"><b><%= t('total_deductions') %></b></div>
+      <div class="item-name"><b><%= t('deductions') %></b></div>
       <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span> <b><%="%.2f" %@salary[:net_deductionable_amount] %></b></div>
     </li>
   </ul>

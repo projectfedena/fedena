@@ -81,7 +81,7 @@
 
 
       <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="table-header"><td colspan="2"class="col-pdf"><%= t('salary') %></td></tr>
+        <tr class="table-header"><td colspan="2"class="col-pdf"><%= t('earnings') %></td></tr>
         <% c = 'even' %>
         <% @monthly_payslips.each do |mp| %>
           <% category = PayrollCategory.find(mp.payroll_category_id) %>
@@ -133,14 +133,14 @@
           <% end %>
         <% end %>
         <% if c =='even' %>
-          <tr class="odd"><td class="col-pdf"><%= t('total_deduction') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+" ""#{@net_deductionable_amount.to_s}" %></td></tr>
+          <tr class="odd"><td class="col-pdf"><%= t('deductions') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+" ""#{@net_deductionable_amount.to_s}" %></td></tr>
           <tr class="table-header"><td colspan="2"class="col-pdf"><%= t('total') %></td></tr>
           <tr class="even"><td class="col-pdf"><%= t('net_salary') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_amount.to_s}" %></td></tr>
           <% unless @monthly_payslips.first.is_approved == false and @monthly_payslips.first.is_rejected == false%>
             <tr class="odd"><td class="col-pdf"><b><%= t('remark') %></b></td><td class="col-pdf"><b><%= @monthly_payslips.first.remark %></b></td></tr>
           <% end %>
         <% else %>
-          <tr class="even"><td class="col-pdf"><%= t('total_deduction') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " ""#{@net_deductionable_amount.to_s}" %></td></tr>
+          <tr class="even"><td class="col-pdf"><%= t('deductions') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " ""#{@net_deductionable_amount.to_s}" %></td></tr>
           <tr class="table-header"><td colspan="2"class="col-pdf"><%= t('total') %></td></tr>
           <tr class="odd"><td class="col-pdf"><%= t('net_salary') %></td><td class="col-pdf"><%= "#{@currency_type.to_s}"+ " " "#{@net_amount.to_s}" %></td></tr>
           <% unless @monthly_payslips.first.is_approved == false and @monthly_payslips.first.is_rejected == false%>
