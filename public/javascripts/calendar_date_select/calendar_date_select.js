@@ -1,23 +1,22 @@
-// CalendarDateSelect version 1.10.2 - a prototype based date picker
-// Questions, comments, bugs? - email the Author - Tim Harper <"timseeharper@gmail.seeom".gsub("see", "c")> 
+// CalendarDateSelect version 1.16.1 - a prototype based date picker
+// Questions, comments, bugs? - see the project page: http://code.google.com/p/calendardateselect
 if (typeof Prototype == 'undefined') alert("CalendarDateSelect Error: Prototype could not be found. Please make sure that your application's layout includes prototype.js (.g. <%= javascript_include_tag :defaults %>) *before* it includes calendar_date_select.js (.g. <%= calendar_date_select_includes %>).");
 if (Prototype.Version < "1.6") alert("Prototype 1.6.0 is required.  If using earlier version of prototype, please use calendar_date_select version 1.8.3");
 
 Element.addMethods({
   purgeChildren: function(element) { $A(element.childNodes).each(function(e){$(e).remove();}); },
   build: function(element, type, options, style) {
-    var newElement = Element.build(type, options, style);
+    var newElement = Element.buildAndAppend(type, options, style);
     element.appendChild(newElement);
     return newElement;
   }
 });
 
-Element.build = function(type, options, style)
+Element.buildAndAppend = function(type, options, style)
 {
   var e = $(document.createElement(type));
-  $H(options).each(function(pair) { eval("e." + pair.key + " = pair.value" ); });
-  if (style) 
-    $H(style).each(function(pair) { eval("e.style." + pair.key + " = pair.value" ); });
+  $H(options).each(function(pair) { e[pair.key] = pair.value });
+  if (style) e.setStyle(style);
   return e;
 };
 nil = null;
@@ -34,7 +33,7 @@ Date.prototype.stripTime = function() { return new Date(this.getFullYear(), this
 Date.prototype.daysDistance = function(compare_date) { return Math.round((compare_date - this) / Date.one_day); };
 Date.prototype.toFormattedString = function(include_time){
   var hour, str;
-   str = this.getDate() + "-" + (this.getMonth()+1) + "-" + this.getFullYear();
+  str = Date.months[this.getMonth()] + " " + this.getDate() + ", " + this.getFullYear();
   
   if (include_time) { hour = this.getHours(); str += " " + this.getAMPMHour() + ":" + this.getPaddedMinutes() + " " + this.getAMPM() }
   return str;
@@ -47,7 +46,8 @@ window.f_scrollTop = function() { return ([window.pageYOffset ? window.pageYOffs
 _translations = {
   "OK": "OK",
   "Now": "Now",
-  "Today": "Today"
+  "Today": "Today",
+  "Clear": "Clear"
 }
 SelectBox = Class.create();
 SelectBox.prototype = {
@@ -82,6 +82,7 @@ CalendarDateSelect.prototype = {
       popup: nil,
       time: false,
       buttons: true,
+      clear_button: true,
       year_range: 10,
       close_on_click: nil,
       minute_interval: 5,
@@ -223,7 +224,7 @@ CalendarDateSelect.prototype = {
           onclick: function() {this.today(false); return false;}.bindAsEventListener(this)
         });
       
-      if (this.options.get("time")=="mixed") buttons_div.build("span", {innerHTML: " | ", className:"button_seperator"})
+      if (this.options.get("time")=="mixed") buttons_div.build("span", {innerHTML: "&#160;|&#160;", className:"button_seperator"})
       
       if (this.options.get("time")) b = buttons_div.build("a", {
         innerHTML: _translations["Now"],
@@ -231,10 +232,14 @@ CalendarDateSelect.prototype = {
         onclick: function() {this.today(true); return false}.bindAsEventListener(this)
       });
       
-      if (!this.options.get("embedded"))
+      if (!this.options.get("embedded") && !this.closeOnClick())
       {
-        buttons_div.build("span", {innerHTML: "&#160;"});
+        buttons_div.build("span", {innerHTML: "&#160;|&#160;", className:"button_seperator"})
         buttons_div.build("a", { innerHTML: _translations["OK"], href: "#", onclick: function() {this.close(); return false;}.bindAsEventListener(this) });
+      }
+      if (this.options.get('clear_button')) {
+        buttons_div.build("span", {innerHTML: "&#160;|&#160;", className:"button_seperator"})
+        buttons_div.build("a", { innerHTML: _translations["Clear"], href: "#", onclick: function() {this.clearDate(); if (!this.options.get("embedded")) this.close(); return false;}.bindAsEventListener(this) });
       }
     }
   },
@@ -328,23 +333,36 @@ CalendarDateSelect.prototype = {
   parseDate: function()
   {
     var value = $F(this.target_element).strip()
-    this.selection_made = (value != "");
+    var default_time = this.options.get("default_time");
+    this.selection_made = (value != "" || default_time);
     this.date = value=="" ? NaN : Date.parseFormattedString(this.options.get("date") || value);
-    if (isNaN(this.date)) this.date = new Date();
+    if (isNaN(this.date) && !default_time)
+        this.date = new Date();
+    else if (isNaN(this.date) && default_time)
+        this.date = (Object.prototype.toString.apply(default_time) === '[object Function]') ? default_time() : default_time;
+
     if (!this.validYear(this.date.getFullYear())) this.date.setYear( (this.date.getFullYear() < this.yearRange().start) ? this.yearRange().start : this.yearRange().end);
     this.selected_date = new Date(this.date);
     this.use_time = /[0-9]:[0-9]{2}/.exec(value) ? true : false;
     this.date.setDate(1);
   },
   updateFooter:function(text) { if (!text) text = this.dateString(); this.footer_div.purgeChildren(); this.footer_div.build("span", {innerHTML: text }); },
+  clearDate:function() {
+    if ((this.target_element.disabled || this.target_element.readOnly) && this.options.get("popup") != "force") return false;
+    var last_value = this.target_element.value;
+    this.target_element.value = "";
+    this.clearSelectedClass();
+    this.updateFooter('&#160;');
+    if (last_value!=this.target_element.value) this.callback("onchange");
+  },
   updateSelectedDate:function(partsOrElement, via_click) {
     var parts = $H(partsOrElement);
     if ((this.target_element.disabled || this.target_element.readOnly) && this.options.get("popup") != "force") return false;
     if (parts.get("day")) {
       var t_selected_date = this.selected_date, vdc = this.options.get("valid_date_check");
-      for (var x = 0; x<=3; x++) t_selected_date.setDate(parts.get("day"));
       t_selected_date.setYear(parts.get("year"));
       t_selected_date.setMonth(parts.get("month"));
+      t_selected_date.setDate(parts.get("day"));
       
       if (vdc && ! vdc(t_selected_date.stripTime())) { return false; }
       this.selected_date = t_selected_date;
@@ -417,7 +435,7 @@ CalendarDateSelect.prototype = {
     Event.stopObserving(document, "keypress", this.keyPress_handler);
     this.calendar_div.remove(); this.closed = true;
     if (this.iframe) this.iframe.remove();
-    if (this.target_element.type!="hidden") this.target_element.focus();
+    if (this.target_element.type != "hidden" && ! this.target_element.disabled) this.target_element.focus();
     this.callback("after_close");
   },
   closeIfClickedOut: function(e) {
