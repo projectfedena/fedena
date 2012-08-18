@@ -85,11 +85,13 @@
 
       <div class="label-field-pair">
         <label for="start_date"><%= t('start_date') %></label>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'leave_apply[start_date]' ,I18n.l(Date.today, :format=>:default),:popup=>:force  %></div>
+        <% start_date = params[:leave_apply][:start_date] if params[:leave_apply].present? %>
+        <div class="text-input-bg"><%= calendar_date_select_tag 'leave_apply[start_date]' ,I18n.l( start_date.present? ? start_date.to_date : Date.today, :format=>:default),:popup=>:force  %></div>
       </div>
       <div class="label-field-pair">
         <label for="end_date"><%= t('end_date') %>:</label>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'leave_apply[end_date]' ,I18n.l(Date.today, :format=>:default),:popup=>:force   %></div>
+        <% end_date = params[:leave_apply][:end_date] if params[:leave_apply].present? %>
+        <div class="text-input-bg"><%= calendar_date_select_tag 'leave_apply[end_date]' ,I18n.l( end_date.present? ? end_date.to_date : Date.today, :format=>:default),:popup=>:force   %></div>
       </div>
       <div class="label-field-pair">
         <label for="reason"><%= t('reason') %>:</label>
