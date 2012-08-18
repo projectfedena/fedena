@@ -1,5 +1,4 @@
 var students, dates, leaves, holidays, batch, today, req, translated;
-
 var nameTdElem=new Element('td',{
     'class':'td-name'
 }).addClassName('td-name');
@@ -21,6 +20,7 @@ var cellElem = new Element('td',{
 
 
 function getjson(val){
+    date_today = $('time_zone').value
     Element.show('loader')
     new Ajax.Request('/attendances/daily_register.json',{
         parameters:'batch_id='+val,
@@ -111,7 +111,7 @@ function drawBox(){
     var dtDiv1 = new Element('div',{'class':'day'}).addClassName('day');
     var dtDiv2 = new Element('div',{'class':'date'}).addClassName('date');
     var dtd, dtdiv1, dtdiv2, ndate, tdate;
-    tdate = Date.today();
+    tdate = Date.parse(date_today);
     headrow.update(nameTd);
     
     dates.each(function(dt){
@@ -164,7 +164,7 @@ function makeCell(student,dt){
     var cellEl = cellElem.cloneNode(true);
     cellEl.id = 'student-'+student.id+'-date-'+d(dt)
     var ndate, tdate;
-    tdate = Date.today();
+    tdate = Date.parse(date_today);
     ndate = Date.parse(dt);
      if(tdate.equals(ndate))cellEl.addClassName('active');
     if(!holidays.include(dt)){

@@ -1,5 +1,4 @@
 var students, dates, leaves, holidays, batch, today, req, subject_id, translated, datearr;
-
 var nameTdElem=new Element('td',{
     'class':'td-name'
 });
@@ -20,6 +19,7 @@ var cellElem = new Element('td',{
 });
 
 function getjson(val){
+    date_today = $('time_zone').value
     Element.show('loader')
     new Ajax.Request('/attendances/subject_wise_register.json',{
         parameters:'batch_id='+$('batch_id').value+'&subject_id='+val,
@@ -137,7 +137,7 @@ function drawBox(){
         'class':'date'
     });
     var dtd, dtdiv1, dtdiv2, ndate, tdate;
-    tdate = Date.today();
+    tdate = Date.parse(date_today);
     headrow.update(nameTd);    
     for(var i=0;i<datearr.length;i++){
         if(dates[datearr[i]] != null){
@@ -179,7 +179,7 @@ function makeCell(student,dt,el){
     var cellEl = cellElem.cloneNode(true);
     cellEl.id = 'student-'+student.id+'-date-'+d(dt)+'-timing-'+el.timetable_entry.class_timing_id
     var ndate, tdate;
-    tdate = Date.today();
+    tdate = Date.parse(date_today);
     ndate = Date.parse(dt);
     if(tdate.equals(ndate))
         cellEl.addClassName('active');

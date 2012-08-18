@@ -20,6 +20,8 @@ class AttendanceReportsController < ApplicationController
   before_filter :login_required
   filter_access_to :all
   before_filter :only_assigned_employee_allowed
+  before_filter :default_time_zone_present_time
+
 
   def index
     if current_user.admin?
@@ -72,7 +74,7 @@ class AttendanceReportsController < ApplicationController
   def show
     @batch = Batch.find params[:batch_id]
     @start_date = @batch.start_date.to_date
-    @end_date = Date.today.to_date
+    @end_date = @local_tzone_time.to_date
     @leaves=Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
     @mode = params[:mode]
     @config = Configuration.find_by_config_key('StudentAttendanceType')
@@ -120,8 +122,8 @@ class AttendanceReportsController < ApplicationController
           page.replace_html 'year', :text => ''
         end
       else
-        @year = Date.today.year
-        @academic_days=@batch.working_days(Date.today).count
+        @year = @local_tzone_time.to_date.year
+        @academic_days=@batch.working_days(@local_tzone_time.to_date).count
         @subject = params[:subject_id]
         render :update do |page|
           page.replace_html 'month', :partial => 'month'
@@ -144,7 +146,7 @@ class AttendanceReportsController < ApplicationController
           page.replace_html 'year', :text => ''
         end
       else
-        @year = Date.today.year
+        @year = @local_tzone_time.to_date.year
         @subject = params[:subject_id]
         render :update do |page|
           page.replace_html 'month', :partial => 'month'
@@ -156,7 +158,7 @@ class AttendanceReportsController < ApplicationController
     @batch = Batch.find params[:batch_id]
     @subject = params[:subject_id]
     if request.xhr?
-      @year = Date.today.year
+      @year = @local_tzone_time.to_date.year
       @month = params[:month]
       render :update do |page|
         page.replace_html 'year', :partial => 'year'
@@ -173,11 +175,11 @@ class AttendanceReportsController < ApplicationController
     #    @date = "01-#{@month}-#{@year}"
     @date = '01-'+@month+'-'+@year
     @start_date = @date.to_date
-    @today = Date.today
+    @today = @local_tzone_time.to_date
     working_days=@batch.working_days(@date.to_date)
-    unless @start_date > Date.today
+    unless @start_date > @local_tzone_time.to_date
       if @month == @today.month.to_s
-        @end_date = Date.today
+        @end_date = @local_tzone_time.to_date
       else
         @end_date = @start_date.end_of_month
       end
@@ -209,7 +211,7 @@ class AttendanceReportsController < ApplicationController
     #    @date = "01-#{@month}-#{@year}"
     @date = '01-'+@month+'-'+@year
     @start_date = @date.to_date
-    @today = Date.today
+    @today = @local_tzone_time.to_date
     if (@start_date<@batch.start_date.to_date.beginning_of_month || @start_date>@batch.end_date.to_date || @start_date>=@today.next_month.beginning_of_month)
       render :update do |page|
         page.replace_html 'report', :text => t('no_reports')
@@ -217,9 +219,9 @@ class AttendanceReportsController < ApplicationController
     else
       @leaves=Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
       working_days=@batch.working_days(@date.to_date)
-      unless @start_date > Date.today
+      unless @start_date > @local_tzone_time.to_date
         if @month == @today.month.to_s
-          @end_date = Date.today
+          @end_date = @local_tzone_time.to_date
         else
           @end_date = @start_date.end_of_month
         end
@@ -297,11 +299,11 @@ class AttendanceReportsController < ApplicationController
     @value = (params[:filter][:value])
     @leaves=Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
     #    @academic_days=  @working_days.select{|v| v<=@end_date}.count
-    @today = Date.today
+    @today = @local_tzone_time.to_date
     @mode=params[:filter][:report_type]
     working_days=@batch.working_days(@start_date.to_date)
     if request.post?
-      unless @start_date > Date.today
+      unless @start_date > @local_tzone_time.to_date
         unless @config.config_value == 'Daily'
           unless params[:filter][:subject] == '0'
             @subject = Subject.find params[:filter][:subject]
@@ -392,10 +394,10 @@ class AttendanceReportsController < ApplicationController
     @range = (params[:filter][:range])
     @value = (params[:filter][:value])
     @leaves=Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
-    @today = Date.today
+    @today = @local_tzone_time.to_date
     @mode=params[:filter][:report_type]
     working_days=@batch.working_days(@start_date.to_date)
-    unless @start_date > Date.today
+    unless @start_date > @local_tzone_time.to_date
       unless @config.config_value == 'Daily'
         unless params[:filter][:subject] == '0'
           @subject = Subject.find params[:filter][:subject]
@@ -466,7 +468,7 @@ class AttendanceReportsController < ApplicationController
     @leaves=Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
 
     if request.post?
-      unless @start_date > Date.today
+      unless @start_date > @local_tzone_time.to_date
         unless @config.config_value == 'Daily'
           unless params[:filter][:subject] == '0'
             @subject = Subject.find params[:filter][:subject]

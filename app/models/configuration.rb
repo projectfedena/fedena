@@ -98,6 +98,24 @@ class Configuration < ActiveRecord::Base
         find_or_create_by_config_key(grading_types[t]).update_attribute(:config_value, 0)
       end
     end
+
+    def default_time_zone_present_time
+      server_time = Time.now
+      server_time_to_gmt = server_time.getgm
+      local_tzone_time = server_time
+      time_zone = Configuration.find_by_config_key("TimeZone")
+      unless time_zone.nil?
+        unless time_zone.config_value.nil?
+          zone = TimeZone.find(time_zone.config_value)
+          if zone.difference_type=="+"
+            local_tzone_time = server_time_to_gmt + zone.time_difference
+          else
+            local_tzone_time = server_time_to_gmt - zone.time_difference
+          end
+        end
+      end
+      return local_tzone_time
+    end
     
     def cce_enabled?
       get_config_value("CCE") == "1"

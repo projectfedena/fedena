@@ -23,6 +23,7 @@ class AttendancesController < ApplicationController
   before_filter :only_privileged_employee_allowed, :only => 'index'
   before_filter :default_time_zone_present_time
   def index
+    @date_today = @local_tzone_time.to_date
     if current_user.admin?
       @batches = Batch.active
     elsif @current_user.privileges.map{|p| p.name}.include?('StudentAttendanceRegister')

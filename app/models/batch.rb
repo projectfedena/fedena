@@ -575,7 +575,7 @@ class Batch < ActiveRecord::Base
         hsh[k]=val.group_by(&:day_of_week)
       end
       timetables.each do |tt|
-        ([starting_date,start_date.to_date,tt.start_date].max..[tt.end_date,end_date.to_date,ending_date,Date.today].min).each do |d|
+        ([starting_date,start_date.to_date,tt.start_date].max..[tt.end_date,end_date.to_date,ending_date,Configuration.default_time_zone_present_time.to_date].min).each do |d|
           hsh2[d]=hsh[tt.id][d.wday]
         end
       end

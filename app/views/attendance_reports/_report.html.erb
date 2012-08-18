@@ -16,7 +16,6 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
-
 <% if @academic_days > 0 %>
   <% form_for :filter, :url => {:action=> 'filter'} do |f| %>
     <%= f.hidden_field :batch , :value=> @batch.id %>
