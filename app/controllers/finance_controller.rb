@@ -1250,6 +1250,8 @@ class FinanceController < ApplicationController
       else
         render :action => 'fee_collection_new'
       end
+    else
+      redirect_to :action => 'fee_collection_new'
     end
   end
 
