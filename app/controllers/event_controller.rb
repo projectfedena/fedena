@@ -28,19 +28,24 @@ class EventController < ApplicationController
       date = params[:id].to_date
       @date = date.to_time
     end
-    if request.post? and @events.save
-      #Event.update(@events.id,:start_date=>params[:start_date], :end_date=>params[:end_date])
-      #      if params[:events][:is_common] == "0" and @events.save
-      redirect_to :action=>"show", :id=>@events.id
-      #      else
-      #        @users = User.find(:all)
-      #        @users.each do |u|
-      #          Reminder.create(:sender=> current_user.id,:recipient=>u.id,
-      #            :subject=>"New Event : #{params[:events][:title]}",
-      #            :body=>" New event description : #{params[:events][:description]} <br/> start date : #{params[:start_date]} <br/> end date : #{params[:end_date]}")
-      #        end
-      #        redirect_to :action=>"show", :id=>@events.id
-      #      end
+    if request.post?
+      if @events.save
+        #Event.update(@events.id,:start_date=>params[:start_date], :end_date=>params[:end_date])
+        #      if params[:events][:is_common] == "0" and @events.save
+        redirect_to :action=>"show", :id=>@events.id
+        #      else
+        #        @users = User.find(:all)
+        #        @users.each do |u|
+        #          Reminder.create(:sender=> current_user.id,:recipient=>u.id,
+        #            :subject=>"New Event : #{params[:events][:title]}",
+        #            :body=>" New event description : #{params[:events][:description]} <br/> start date : #{params[:start_date]} <br/> end date : #{params[:end_date]}")
+        #        end
+        #        redirect_to :action=>"show", :id=>@events.id
+        #      end
+      else
+        @start_date = params[:events][:start_date].to_date
+        @end_date = params[:events][:end_date].to_date
+      end
     end
   end
 
