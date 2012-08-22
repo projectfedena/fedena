@@ -88,7 +88,7 @@ class BatchTransfersController < ApplicationController
   def get_previous_batch_subjects
     @batch = Batch.find(params[:id])
     course = @batch.course
-    all_batches = course.batches(:order=>'id asc',:conditions=>"id < '#{@batch.id}'")
+    all_batches = course.batches(:order=>'id asc')
     all_batches.reject! {|b| b.is_deleted?}
     all_batches.reject! {|b| b.subjects.empty?}
     @previous_batch = all_batches[all_batches.size-2]
