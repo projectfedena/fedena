@@ -1614,16 +1614,6 @@ class EmployeeController < ApplicationController
   def change_to_former
     @employee = Employee.find(params[:id])
     @dependency = @employee.former_dependency
-    @has_dependency = false
-    @dependency.each do |k,v|
-      if v.kind_of?(Array)
-        @has_dependency = true unless  v.blank?
-      else
-        v.each do |h,a|
-          @has_dependency = true unless  a.blank?
-        end
-      end
-    end
     if request.post?
       flash[:notice]= "#{t('flash32')}  #{@employee.employee_number}"
       EmployeesSubject.destroy_all(:employee_id=>@employee.id)

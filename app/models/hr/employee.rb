@@ -282,29 +282,14 @@ class Employee < ActiveRecord::Base
   end
 
   def has_dependency
-    flag = false
-    flag = true if self.monthly_payslips.present?
-    flag = true if self.employee_salary_structures.present?
-    flag = true if self.employees_subjects.present?
-    flag = true if self.apply_leaves.present?
-    flag = true if self.finance_transactions.present?
-    flag = true if self.timetable_entries.present?
-    flag = true if self.employee_attendances.present?
-    plugin_dependencies = FedenaPlugin.check_dependency(self,"permanant")
-    plugin_dependencies.each do |k,v|
-      if v.kind_of?(Array)
-        flag=true unless  v.blank?
-      else
-        v.each do |h,a|
-          flag=true unless  a.blank?
-        end
-      end
-    end
-    return flag
+    return true if self.monthly_payslips.present? or self.employee_salary_structures.present? or self.employees_subjects.present? \
+      or self.apply_leaves.present? or self.finance_transactions.present? or self.timetable_entries.present? or self.employee_attendances.present?
+    return true if FedenaPlugin.check_dependency(self,"permanant").present?
+    return false
   end
 
   def former_dependency
-    plugin_dependencies = FedenaPlugin.check_dependency(self,"former")
+    FedenaPlugin.check_dependency(self,"former")
   end
   
 end

@@ -1982,7 +1982,7 @@ class FinanceController < ApplicationController
       data << donations_total
       largest_value = donations_total if largest_value < donations_total
     end
-
+     
     unless fees <= 0
       x_labels << "#{t('fees_text')}"
       data << fees

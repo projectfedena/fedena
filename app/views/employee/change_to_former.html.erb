@@ -33,9 +33,9 @@
   </div>
 
   <div class="extender"> </div>
-  <% if @has_dependency %>
-    <% @dependency.each do |k,v| %>
-      <%= render :partial=>k.classify.constantize.send("employee_dependency_hook") %>
+  <% if @dependency.present? %>
+    <% @dependency.each do |mod| %>
+      <%= render :partial=> mod.classify.constantize.send("employee_dependency_hook") if mod.classify.constantize.respond_to?("employee_dependency_hook") %>
     <% end %>
   <% else %>
     <div id="remove-student">
