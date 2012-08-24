@@ -51,7 +51,10 @@
     font-size: 13px;
     font-weight: bold;
 }
-.item-list li div.item-edit,
+.item-list li div.item-edit {
+    font-size : 0.9em;
+    text-align:right;
+}
 .item-list li div.item-delete {
     font-size : 0.9em;
     width : 100px;
