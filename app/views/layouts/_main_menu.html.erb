@@ -201,10 +201,18 @@
   function load_menu_from_plugins(){
 <% FedenaPlugin::AVAILABLE_MODULES.each do |mod|  %>
   <% unless mod[:more_menu].blank? %>
-    <% arrow = mod[:sub_menus].present? ? " <span class=right-arrow>#{arrow_dir}</span>" : "" %>
+    <% sub_menu_flag = 0 %>
+    <% unless mod[:sub_menus].blank? %>
+      <% mod[:sub_menus].each do|mnu| %>
+        <% if permitted_to? "#{mnu[:action]}".to_sym,"#{mnu[:controller]}".to_sym and mnu[:target_id]==mod[:name]%>
+          <% sub_menu_flag = 1 %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% arrow = sub_menu_flag==1 ? " <span class=right-arrow>#{arrow_dir}</span>" : "" %>
     <% if mod[:more_menu][:target_id].present? %>
       <% if permitted_to? mod[:more_menu][:action].to_sym,mod[:more_menu][:controller].to_sym %>
-        <% unless mod[:sub_menus].blank? %>
+        <% if sub_menu_flag==1 %>
               $('<%= mod[:more_menu][:target_id] %>').insert({bottom: '<li><%= link_to "#{t(mod[:more_menu][:title])}#{arrow}",:controller => "#{mod[:more_menu][:controller]}", :action=>"#{mod[:more_menu][:action]}" %><ul class="level-2" id="<%= mod[:name] %>"></ul></li>'})
         <% else %>
               $('<%= mod[:more_menu][:target_id] %>').insert({bottom: '<li><%= link_to "#{t(mod[:more_menu][:title])}#{arrow}",:controller => "#{mod[:more_menu][:controller]}", :action=>"#{mod[:more_menu][:action]}" %></li>'})
