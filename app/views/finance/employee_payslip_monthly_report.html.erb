@@ -20,7 +20,7 @@
 <div id="content-header">
 <%= image_tag("/images/show_finance.png") %>
   <h1><%= t('employee_salary_report') %></h1>
-  <h3><%= t('payslip_for') %><%= @monthly_payslips.first.active_or_archived_employee.full_name %> on <%= @salary_date %></h3>
+  <h3><%= t('payslip_for') %> <%= @monthly_payslips.first.active_or_archived_employee.full_name %> on <%= @salary_date %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -33,7 +33,7 @@
 
 
 <ul class="item-list">
-  <li class="heading"><%= t('payslip_generated_for') %><%= @monthly_payslips.first.active_or_archived_employee.full_name %></li>
+  <li class="heading"><%= t('payslip_generated_for') %> <%= @monthly_payslips.first.active_or_archived_employee.full_name %></li>
 </ul>
 <ul class="item-list">
   <li class="heading"><%= t('salary') %>:</li>
