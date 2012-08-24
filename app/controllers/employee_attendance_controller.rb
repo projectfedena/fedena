@@ -109,7 +109,7 @@ class EmployeeAttendanceController < ApplicationController
       end
     end
     render :update do |page|
-            page.replace_html "reset-box", :text => "#{t('leave_count_reset_sucessfull')}"
+            page.replace_html "main-reset-box", :text => "<p class='flash-msg'>#{t('leave_count_reset_sucessfull')}</p>"
     end
   end
 
