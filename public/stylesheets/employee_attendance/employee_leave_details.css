@@ -64,14 +64,14 @@ font-family:arial;
 font-size:14px;
 font-weight:bold;
 margin-left:0px;
-margin-top:15px;
-padding:7px 10px;
+padding:5px 5px;
 width:auto;
 display: inline-block;
 }
 
 .submit-button{
-    width: 100%;
+    margin-top:20px;
+    margin-left:420px;
     text-align: center;
 }
 
