@@ -899,6 +899,8 @@ en: # locale
   mark_as_unread: "Mark as unread"
   mark_as_read: "Mark as read"
   select_an_action: "Select an action"
+  previous_text: "&laquo; Previous"
+  next_text: "Next &raquo;"
   delete: "Delete"
   reminder_to_staff: "Create reminder to staff"
   reminder_to_student: "Create reminder to student"

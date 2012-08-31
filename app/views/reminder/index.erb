@@ -155,7 +155,7 @@
         });
       </script>
     <% end %>
-    <%= will_paginate @reminders %>
+    <%= will_paginate @reminders, :previous_label=>t('previous_text'), :next_label=>t('next_text') %>
   </div>
 
 </div>
