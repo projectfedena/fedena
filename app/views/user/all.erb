@@ -31,7 +31,7 @@
   <% unless flash[:notice].nil? %><p class="flash-msg"> <%= flash[:notice] %> </p><% end %>
   <div class="all-user">
     <div class="label-field-pair">
-      <div class="text-input-bg"><%= select :user_type, :type, [["#{t('admin')}","Admin"], ["#{t('employee_text')}","Employee"],["#{t('student_text')}","Student"],"Parent"],
+      <div class="text-input-bg"><%= select :user_type, :type, [["#{t('admin')}","Admin"], ["#{t('employee_text')}","Employee"],["#{t('student_text')}","Student"],["#{t('parent')}","Parent"]],
           {:prompt => "#{t('select_a_role')}"},
           {:onChange => "#{remote_function(:url => {:action => "list_user"},
           :with => "'user_type='+value",
