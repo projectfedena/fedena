@@ -62,16 +62,16 @@
     width: 200px;
 }
 #teacher_status{
-    width: 250px;
-    position: fixed;
-    right: 0px;
-    top: 150px;
-    font-size: 12px;
     border: 1px solid #00CC00;
-    padding: 0px;
+    bottom: 0;
+    font-size: 12px;
     font-weight: bold;
-    overflow: scroll;
-    height: 510px;
+    overflow: auto;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    top: 10px;
+    width: 250px;
 }
 .category-list li span{
     float: right;
