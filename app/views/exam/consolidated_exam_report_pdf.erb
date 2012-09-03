@@ -52,7 +52,7 @@
             <td class="avg-td"><%= t('gpa') %></td>
           <% end %>
         <% else %>
-          <% (@exam_group.exams + @exam_group.exams).each do |exam| %>
+          <% @exam_group.exams.each do |exam| %>
             <td class="mark-td"><%= exam.subject.code %><%= " (" + exam.maximum_marks.to_s + ")"  unless exam.maximum_marks.nil? %></td>
           <% end %>
           <% unless @exam_group.exam_type == "Grades" %>
@@ -63,7 +63,7 @@
       </table>
     </center>
   </div>
-      <% (@exam_group.batch.students + @exam_group.batch.students + @exam_group.batch.students).each_with_index do |student,i|%>
+      <% @exam_group.batch.students.each_with_index do |student,i|%>
         <div class="section1 row" >
     <center>
       <table id="pdf-table" width="100%">
@@ -100,7 +100,7 @@
           <% else %>
             <% total_marks = 0 %>
             <% total_max_marks = 0 %>
-            <% (@exam_group.exams + @exam_group.exams).each do |exam| %>
+            <% @exam_group.exams.each do |exam| %>
               <% exam_score = ExamScore.find_by_student_id_and_exam_id(student.id,exam.id) %>
               <% unless @exam_group.exam_type == "Grades" %>
                 <td class="col-pdf mark-td">
