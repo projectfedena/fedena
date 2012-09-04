@@ -98,7 +98,11 @@ class TimetableController < ApplicationController
       end
       if new_end<new_start
         @error=true
-        @timetable.errors.add_to_base('start_date_is_lower_than_today')
+        @timetable.errors.add_to_base('start_date_is_lower_than_end_date')
+      end
+      if new_end < Date.today
+        @error=true
+        @timetable.errors.add_to_base('end_date_is_lower_than_today')
       end
       #      @end_conflicts=Timetable.find(:all,:conditions=>["start_date <= ? AND id != ?",new_end,@tt.id])
       @end_conflicts=Timetable.find(:all,:conditions=>["start_date <= ? AND end_date >= ? AND id != ?",new_end,new_start,@tt.id])
@@ -116,9 +120,9 @@ class TimetableController < ApplicationController
         if (@tt.start_date <= Date.today and @tt.end_date >= Date.today)
           @tt.end_date=Date.today
           if @tt.save
-            unless new_end==Date.today
+            unless new_end<=Date.today
               @tt2=Timetable.new
-              @tt2.start_date=1.day.from_now.to_date
+              @tt2.start_date=Date.today+1.days
               @tt2.end_date=new_end
               if @tt2.save
                 entries=@tt.timetable_entries
@@ -299,18 +303,18 @@ class TimetableController < ApplicationController
       @current=Timetable.find(:first,:conditions=>["timetables.start_date <= ? AND timetables.end_date >= ?",@local_tzone_time.to_date,@local_tzone_time.to_date])
       unless @current.nil?
         @electives=@employee.subjects.group_by(&:elective_group_id)
-    @timetable_entries = Hash.new { |l, k| l[k] = Hash.new(&l.default_proc) }
-    @employee_subjects = @employee.subjects
-    @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
-    @entries = @current.timetable_entries.find(:all,:conditions=>{:subject_id=>@employee_timetable_subjects})
-    @all_timetable_entries = @entries.select{|t| t.batch.is_active}.select{|s| s.class_timing.is_deleted==false}.select{|w| w.weekday.is_deleted==false}
-    @all_batches = @all_timetable_entries.collect(&:batch).uniq
-    @all_weekdays = @all_timetable_entries.collect(&:weekday).uniq.sort!{|a,b| a.weekday <=> b.weekday}
-    @all_classtimings = @all_timetable_entries.collect(&:class_timing).uniq.sort!{|a,b| a.start_time <=> b.start_time}
-    @all_teachers = @all_timetable_entries.collect(&:employee).uniq
-    @all_timetable_entries.each do |tt|
-      @timetable_entries[tt.weekday_id][tt.class_timing_id] = tt
-    end
+        @timetable_entries = Hash.new { |l, k| l[k] = Hash.new(&l.default_proc) }
+        @employee_subjects = @employee.subjects
+        @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
+        @entries = @current.timetable_entries.find(:all,:conditions=>{:subject_id=>@employee_timetable_subjects})
+        @all_timetable_entries = @entries.select{|t| t.batch.is_active}.select{|s| s.class_timing.is_deleted==false}.select{|w| w.weekday.is_deleted==false}
+        @all_batches = @all_timetable_entries.collect(&:batch).uniq
+        @all_weekdays = @all_timetable_entries.collect(&:weekday).uniq.sort!{|a,b| a.weekday <=> b.weekday}
+        @all_classtimings = @all_timetable_entries.collect(&:class_timing).uniq.sort!{|a,b| a.start_time <=> b.start_time}
+        @all_teachers = @all_timetable_entries.collect(&:employee).uniq
+        @all_timetable_entries.each do |tt|
+          @timetable_entries[tt.weekday_id][tt.class_timing_id] = tt
+        end
       else
         flash[:notice]=t('no_entries_found')
       end
