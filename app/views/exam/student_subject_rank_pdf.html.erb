@@ -18,55 +18,53 @@
 #under the License. -%>
 
 
-<div id="page-yield">
-  <div class="hor_line"></div>
+<div id="page-yield" class="available_sections1">
+  <div class="page1"></div>
+  <div class="section1 row" >
+    <center>
+      <div class="hor_line"></div>
 
-  <div class="extender"> </div>
-  <div class="report">
-    <div id ="main_info">
-      <h3><%= t('subjects_rankings') %> - <%= @subject.name %></h3>
-      <h4>  <%= @batch.name %> - <%= @batch.course.full_name %> </h4>
-    </div>
-    <% ranks = [] %>
-    <% @exam_groups.each do |exam_group| %>
-      <% rank_exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
-      <% unless rank_exam.nil? %>
-        <% exam_scores = ExamScore.find_all_by_exam_id(rank_exam.id) %>
-        <% ordered_marks = exam_scores.map{|m| m.marks}.compact.uniq.sort.reverse %>
-        <% ranks << [exam_group.id,ordered_marks] %>
-      <% end %>
+      <div class="extender"> </div>
+    </center>
+  </div>
+  <div class="section1 row" >
+      <div id ="main_info">
+        <h3><%= t('subjects_rankings') %> - <%= @subject.name %></h3>
+        <h4>  <%= @batch.name %> - <%= @batch.course.full_name %> </h4>
+      </div>
+  </div>
+  <% ranks = [] %>
+  <% @exam_groups.each do |exam_group| %>
+    <% rank_exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
+    <% unless rank_exam.nil? %>
+      <% exam_scores = ExamScore.find_all_by_exam_id(rank_exam.id) %>
+      <% ordered_marks = exam_scores.map{|m| m.marks}.compact.uniq.sort.reverse %>
+      <% ranks << [exam_group.id,ordered_marks] %>
     <% end %>
-    <div id="pdf-info">
-      <% c = 'even' %>
-      <table id="pdf-table" width="100%" cellspacing="0">
+  <% end %>
+  <% c = 'even' %>
+  <div class="section1 row" id="table-headers" >
+    <center>
+      <table id="pdf-table" width="100%">
         <tr class="table-header">
-          <td><%= t('sl_no') %></td>
-          <td><%= t('adm_no') %></td>
-          <td><%= t('name') %></td>
+          <td class="serial-td"><%= t('sl_no') %></td>
+          <td class="adm-td"><%= t('adm_no') %></td>
+          <td class="name-td"><%= t('name') %></td>
           <% @exam_groups.each do |exam_group| %>
-            <td><%= exam_group.name %></td>
+            <td class="exam-td"><%= exam_group.name %></td>
           <% end %>
         </tr>
-        <% i = 0 %>
-        <% @students.each_with_index do |student,i| %>
-          <% if i== 23 %>
-            <% i= 0 %>
-            <tr class="page-break"><td colspan="3"></td></tr>
-
-            <tr class="table-header">
-              <td><%= t('sl_no') %></td>
-              <td><%= t('adm_no') %></td>
-              <td><%= t('name') %></td>
-              <% @exam_groups.each do |exam_group| %>
-                <td><%= exam_group.name %></td>
-              <% end %>
-            </tr>
-
-          <% end %>
+      </table>
+    </center>
+  </div>
+  <% @students.each_with_index do |student,i| %>
+    <div class="section1 row" >
+      <center>
+        <table id="pdf-table" width="100%">
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-             <td class="col-pdf"><%= i+1 %></td>
-            <td class="col-pdf"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
-            <td class="col-pdf"><%= student.full_name %></td>
+            <td class="serial-td"><%= i+1 %></td>
+            <td class="adm-td"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
+            <td class="name-td"><%= student.full_name %></td>
             <% @exam_groups.each do |exam_group| %>
               <% mark_list = [] %>
               <% ranks.each do|rank| %>
@@ -74,7 +72,7 @@
                   <% mark_list = rank[1] %>
                 <% end %>
               <% end %>
-              <td class="col-pdf">
+              <td class="exam-td">
                 <% exam = Exam.find_by_subject_id(@subject.id,:conditions=>{:exam_group_id=>exam_group.id}) %>
                 <% exam_score = ExamScore.find_by_student_id(student.id,:conditions=>{:exam_id=>exam.id}) unless exam.nil? %>
                 <% unless exam.nil? %>
@@ -85,11 +83,48 @@
               </td>
             <% end %>
           </tr>
-          <% i+=1 %>
-        <% end %>
-      </table>
+        </table>
+      </center>
     </div>
-  </div>
-
-
+  <% end %>
 </div>
+<% if params[:page_height] %>
+  <script type="text/javascript">
+    var body = document.body,
+    html = document.documentElement;
+    var pg_height = parseInt(<%= params[:page_height] %>);
+    var header = $("table-headers")
+    var page = new Element('div',{'class' : 'page1'});
+    var pageBreak = new Element('div',{'class' : 'page-break1'});
+    var insertPageBreak = function(){body.appendChild(pageBreak.cloneNode(true))};
+    var insertPage = function(){body.appendChild(page.cloneNode(true));};
+    var currPage = function(){return $$('.page1').last()};
+    var insertHeader = function(){
+      header1 = header.cloneNode(true);
+      header1.style.marginTop="50px";
+      currPage().appendChild(header1.cloneNode(true));};
+    var current_page_height=0;
+    var i=0
+    $$('.available_sections1 .section1').each(function(el){
+      a = parseInt(el.getHeight());
+      c=current_page_height+a;
+      current_page_height=c;
+      if(c>pg_height){
+        current_page_height=a
+        body.appendChild(new Element('div',{'id' : 'page-blank_'+i, 'class' : 'page-blank'}))
+        document.getElementById('page-blank_'+i).style.height= (c-pg_height)+'px';
+        document.getElementById('page-blank_'+i).innerHTML="&nbsp;"/* if a div doesnt have any content it may not display.. set height will not work */
+        i+=1
+
+        //el.style.marginTop="50px"; /* for this border-top is coming, top section of each page */
+        insertPageBreak();
+        /* insertHeader(); */
+        insertPage();
+        insertHeader();
+        current_page_height = (current_page_height + header.getHeight() + 50)
+
+      }
+      currPage().appendChild(el);
+    });
+  </script>
+<% end %>

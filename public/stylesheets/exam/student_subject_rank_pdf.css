@@ -141,8 +141,61 @@ table#pdf-table{
     font-size: 18px;
 
 }
-.page-break td{
-    height: 240px;
+.page1 {
+    width:800px;
+    height: auto;
+    page-break-after: always;
+    page-break-inside: avoid;
+    clear: both;
+}
+.page-break1{
+    height: 20px;
     border: 1px solid #fff;
+    width:800px;
+    float: left;
+}
+.grand_total
+{
     border-bottom: 1px solid #ADACAB;
+}
+.section1{
+    page-break-before:always;
+    text-align: center;
+}
+.row{
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+.page-blank{
+    width: 100%;
+    float: left;
+}
+.page_break{
+    margin-top: 60px;
+}
+.serial-td{
+    width:30px;
+    min-width:30px;
+    max-width:30px;
+    overflow:hidden;
+
+}
+.name-td{
+    width:auto;
+/*    min-width:180px;
+    max-width:180px;*/
+    overflow: hidden;
+}
+.adm-td{
+    width:80px;
+    min-width:80px;
+    max-width:80px;
+    overflow:hidden;
+}
+.exam-td{
+    width:80px;
+    min-width:80px;
+    max-width:80px;
+    overflow:hidden;
 }
