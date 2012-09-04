@@ -63,7 +63,7 @@
       </tr>
     <% end %>
   </table>
-  <% form_for :filter, :url => {:action=> 'report_pdf'},:html=>{:target => '_blank'} do |f| %>
+  <% form_for :filter, :url => {:action=> 'report_pdf', :page_height=>1150},:html=>{:target => '_blank'} do |f| %>
     <%= f.hidden_field :batch , :value=> @batch.id %>
     <%= f.hidden_field :start_date , :value=> @start_date %>
     <%= f.hidden_field :end_date , :value=> @end_date %>

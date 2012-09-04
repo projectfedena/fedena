@@ -19,51 +19,100 @@
 
 
 
-<div id="page-yield">
+<div id="page-yield" class="available_sections1">
+  <div class="page1"></div>
+  <div class="section1 row" >
+    <center>
+      <div class="hor_line"></div>
+      <h2><%= t('attendance_report') %></h2>
+      <div class="hor_line"></div>
 
-  <div class="hor_line"></div>
-  <h2><%= t('attendance_report') %></h2>
-  <div class="hor_line"></div>
-
-
-  <div class="extender"> </div>
-  <div class="report">
-    <%  if @academic_days %>
-      <% working_days = @academic_days %>
-      <div id ="main_info">
-        <% if @config.config_value == 'Daily' %>
-          <h4> <%= "#{t('total_no_of_wrkng_days')} = " + @academic_days.to_s %></h4>
-        <% else %>
-          <h4> <%= "#{t('total_no_of_wrkng_hours')} = " + @academic_days.to_s %></h4>
-        <% end %>
-      </div>
-      <div id="pdf-info">
-        <table id="pdf-table" width="100%" cellspacing="0">
-          <tr class="odd"><td class="col-pdf1"><%= t('name') %></td><td class="col-pdf1"><%= t('total') %></td><td class="col-pdf1"><%= t('percentage') %></td></tr>
-          <% @students.each_with_index do |student,i| %>
-            <% c =cycle('even','odd ') %>
-            <% if (i!=0 && i%22==0) %>
-              <tr class="page-break"><td colspan="3"></td></tr>
-              <% if c == 'even' %>
-                <tr class="odd"><td class="col-pdf1"><%= t('name') %></td><td class="col-pdf1"><%= t('total') %></td><td class="col-pdf1"><%= t('percentage') %></td></tr>
-              <% else %>
-                <tr class="even"><td class="col-pdf1"><%= t('name') %></td><td class="col-pdf1"><%= t('total') %></td><td class="col-pdf1"><%= t('percentage') %></td></tr>
-              <% end %>
-            <% end %>
-            <tr class="<%= "#{c}" %>">
-              <td class="col-pdf"><%= student.full_name %></td>
-              <td class="col-pdf"><%= @leaves[student.id]['total'] %></td>
-              <td class="col-pdf"><%= @leaves[student.id]['percent'].round(2) unless @leaves[student.id]['percent'].nil? %></td>
-            </tr>
-          <% end %>
-        </table>
-
-      </div>
-    <%  else %>
-      <div class="no-data"><%= t('no_report_for_given_period') %></div>
-
-    <% end %>
-
+      <div class="extender"> </div>
+    </center>
   </div>
 
+  <%  if @academic_days %>
+    <% working_days = @academic_days %>
+    <div class="section1 row" >
+      <center>
+        <div id ="main_info">
+          <% if @config.config_value == 'Daily' %>
+            <h4> <%= "#{t('total_no_of_wrkng_days')} = " + @academic_days.to_s %></h4>
+          <% else %>
+            <h4> <%= "#{t('total_no_of_wrkng_hours')} = " + @academic_days.to_s %></h4>
+          <% end %>
+        </div>
+      </center>
+    </div>
+    <div class="section1 row" id="table-headers" >
+      <center>
+        <table id="pdf-table" width="100%">
+          <tr class="odd"><td class="col-pdf1 name-td"><%= t('name') %></td><td class="col-pdf1 total-td"><%= t('total') %></td><td class="col-pdf1 total-td"><%= t('percentage') %></td></tr>
+        </table>
+      </center>
+    </div>
+    <% @students.each_with_index do |student,i| %>
+      <% c =cycle('even','odd ') %>
+      <div class="section1 row" >
+        <center>
+          <table id="pdf-table" width="100%">
+            <tr class="<%= "#{c}" %>">
+              <td class="name-td"><%= student.full_name %></td>
+              <td class="total-td"><%= @leaves[student.id]['total'] %></td>
+              <td class="total-td"><%= @leaves[student.id]['percent'].round(2) unless @leaves[student.id]['percent'].nil? %></td>
+            </tr>
+          </table>
+        </center>
+      </div>
+    <% end %>
+
+  <%  else %>
+    <div class="section1 row" >
+      <center>
+        <div class="no-data"><%= t('no_report_for_given_period') %></div>
+      </center>
+    </div>
+  <% end %>
+
+
 </div>
+<% if params[:page_height] %>
+  <script type="text/javascript">
+    var body = document.body,
+    html = document.documentElement;
+    var pg_height = parseInt(<%= params[:page_height] %>);
+    var header = $("table-headers")
+    var page = new Element('div',{'class' : 'page1'});
+    var pageBreak = new Element('div',{'class' : 'page-break1'});
+    var insertPageBreak = function(){body.appendChild(pageBreak.cloneNode(true))};
+    var insertPage = function(){body.appendChild(page.cloneNode(true));};
+    var currPage = function(){return $$('.page1').last()};
+    var insertHeader = function(){
+      header1 = header.cloneNode(true);
+      header1.style.marginTop="50px";
+      currPage().appendChild(header1.cloneNode(true));};
+    var current_page_height=0;
+    var i=0
+    $$('.available_sections1 .section1').each(function(el){
+      a = parseInt(el.getHeight());
+      c=current_page_height+a;
+      current_page_height=c;
+      if(c>pg_height){
+        current_page_height=a
+        body.appendChild(new Element('div',{'id' : 'page-blank_'+i, 'class' : 'page-blank'}))
+        document.getElementById('page-blank_'+i).style.height= (c-pg_height)+'px';
+        document.getElementById('page-blank_'+i).innerHTML="&nbsp;"/* if a div doesnt have any content it may not display.. set height will not work */
+        i+=1
+
+        //el.style.marginTop="50px"; /* for this border-top is coming, top section of each page */
+        insertPageBreak();
+        /* insertHeader(); */
+        insertPage();
+        insertHeader();
+        current_page_height = (current_page_height + header.getHeight() + 50)
+
+      }
+      currPage().appendChild(el);
+    });
+  </script>
+<% end %>
