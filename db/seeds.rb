@@ -99,3 +99,6 @@ Privilege.all.each do |p|
   p.update_attributes(:description=> p.name.underscore+"_privilege")
 end
 
+Event.all.each do |e|
+  e.destroy if e.origin_type=="AdditionalExam"
+end
