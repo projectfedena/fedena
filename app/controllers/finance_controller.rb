@@ -1348,30 +1348,36 @@ class FinanceController < ApplicationController
     @date    =  @fee_collection = FinanceFeeCollection.find(params[:date])
     @student = Student.find(params[:student]) if params[:student]
     @fee = FinanceFee.first(:conditions=>"fee_collection_id = #{@date.id}" ,:joins=>'INNER JOIN students ON finance_fees.student_id = students.id')
-    @student ||= @fee.student
-    @prev_student = @student.previous_fee_student(@date.id)
-    @next_student = @student.next_fee_student(@date.id)
-    @financefee = @student.finance_fee_by_date @date
-    @due_date = @fee_collection.due_date
-    unless @financefee.transaction_id.blank?
-      @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
-    end
-    @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted = false"])
-    @fee_particulars = @date.fees_particulars(@student)
+    unless @fee.nil?
+      @student ||= @fee.student
+      @prev_student = @student.previous_fee_student(@date.id)
+      @next_student = @student.next_fee_student(@date.id)
+      @financefee = @student.finance_fee_by_date @date
+      @due_date = @fee_collection.due_date
+      unless @financefee.transaction_id.blank?
+        @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
+      end
+      @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted = false"])
+      @fee_particulars = @date.fees_particulars(@student)
 
-    @batch_discounts = BatchFeeCollectionDiscount.find_all_by_finance_fee_collection_id(@date.id)
-    @student_discounts = StudentFeeCollectionDiscount.find_all_by_finance_fee_collection_id_and_receiver_id(@date.id,@student.id)
-    @category_discounts = StudentCategoryFeeCollectionDiscount.find_all_by_finance_fee_collection_id_and_receiver_id(@date.id,@student.student_category_id)
-    @total_discount = 0
-    @total_discount += @batch_discounts.map{|s| s.discount}.sum unless @batch_discounts.nil?
-    @total_discount += @student_discounts.map{|s| s.discount}.sum unless @student_discounts.nil?
-    @total_discount += @category_discounts.map{|s| s.discount}.sum unless @category_discounts.nil?
-    if @total_discount > 100
-      @total_discount = 100
-    end
+      @batch_discounts = BatchFeeCollectionDiscount.find_all_by_finance_fee_collection_id(@date.id)
+      @student_discounts = StudentFeeCollectionDiscount.find_all_by_finance_fee_collection_id_and_receiver_id(@date.id,@student.id)
+      @category_discounts = StudentCategoryFeeCollectionDiscount.find_all_by_finance_fee_collection_id_and_receiver_id(@date.id,@student.student_category_id)
+      @total_discount = 0
+      @total_discount += @batch_discounts.map{|s| s.discount}.sum unless @batch_discounts.nil?
+      @total_discount += @student_discounts.map{|s| s.discount}.sum unless @student_discounts.nil?
+      @total_discount += @category_discounts.map{|s| s.discount}.sum unless @category_discounts.nil?
+      if @total_discount > 100
+        @total_discount = 100
+      end
 
-    render :update do |page|
-      page.replace_html "student", :partial => "student_fees_submission"
+      render :update do |page|
+        page.replace_html "student", :partial => "student_fees_submission"
+      end
+    else
+      render :update do |page|
+        page.replace_html "student", :text => '<p class="flash-msg">No students have been assigned this fee.</p>'
+      end
     end
   end
 
