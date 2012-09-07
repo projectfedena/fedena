@@ -81,7 +81,10 @@
 
           </div>
         </div>
-        <%= submit_tag "", :value => "► #{t('update')}", :class => "user_submit_button" %>
+        <div class="submit_div">
+          <%= link_to "► #{t('delete_text')}", { :controller => "user", :action => "delete", :id => @user.username}, :class => "user_button", :confirm=>"#{t('are_you_sure_to_delete_user')}", :class => "user_submit_button1" %>
+        </div>
+    <%#= submit_tag "", :value => "► #{t('update')}", :class => "user_submit_button" %>
       <% end  %>
 
     </div>
