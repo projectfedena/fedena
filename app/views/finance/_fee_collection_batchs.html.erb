@@ -19,13 +19,13 @@
   <div class="batch_select_box">
     <div class="label-field-pair">
       <label> <%= t('select_batch') %>:
-        <b class="sel-list">
-          <%= link_to_function t('all'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
-          <%= link_to_function t('none'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
-        </b>
       </label>
     </div>
     <div class="fee_category_scroll">
+      <b class="sel-list">
+        <%= link_to_function t('all'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = true; });" %>,
+        <%= link_to_function t('none'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
+      </b>
       <% @fee_category.each do |f| %>
         <div class="each_batch">
           <% checked = true %>
