@@ -164,7 +164,7 @@ function drawBox(){
 function makeRow(student){
     var nameTd=nameTdElem.cloneNode(true);
     var rowEl =rowElem.cloneNode(true);
-    rowEl.update(nameTd.update(student.first_name.split(" ").first()));
+    rowEl.update(nameTd.update(student.name));
     for(var i=0;i<datearr.length;i++){
         if(dates[datearr[i]] != null){
             dates[datearr[i]].each(function(e){
