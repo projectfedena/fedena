@@ -13,4 +13,9 @@ Rails::Initializer.run do |config|
   config.reload_plugins = true if RAILS_ENV =="development"
   config.plugins = [:paperclip,:all]
 
+  if (File.exist?('config/smtp_settings.yml')) && !(mail_settings=YAML.load_file('config/smtp_settings.yml')[RAILS_ENV]).nil?
+      config.action_mailer.delivery_method = :smtp
+      config.action_mailer.smtp_settings = mail_settings
+  end
+
 end

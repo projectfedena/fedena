@@ -1,0 +1,32 @@
+#Edit with appropriate values
+#in case of SendGrid the config need the key :domain and its value
+
+development:
+      :enable_starttls_auto: true
+      :address: smtp.mailer.com
+      :port: 587
+      :user_name: username
+      :password: password
+      :authentication: plain
+#      :domain : something.com
+
+test: &test
+      :enable_starttls_auto: true
+      :address: smtp.mailer.com
+      :port: 587
+      :user_name: username
+      :password: password
+      :authentication: plain
+#      :domain : something.com
+
+production:
+      :enable_starttls_auto: true
+      :address: smtp.mailer.com
+      :port: 587
+      :user_name: username
+      :password: password
+      :authentication: plain
+#      :domain : something.com
+
+cucumber:
+  <<: *test
