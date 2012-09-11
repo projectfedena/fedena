@@ -78,7 +78,9 @@
           <%= link_to "► #{t('view_profile')}",{:controller => "employee", :action => "profile", :id => @employee.id }, :class => "user_button" unless @employee.nil?%>
         <% end %>
       <% end %>
-      <%= link_to "#{t('change_password')}", {:controller => "user", :action => "user_change_password", :id =>@user.username}, :class => "user_button" %>
+      <% unless @current_user.id == @user.id %>
+        <%= link_to "#{t('change_password')}", {:controller => "user", :action => "user_change_password", :id =>@user.username}, :class => "user_button" %>
+      <% end %>
       <% unless @user.admin %>
         <% unless @user.role_name == 'Student' or @user.role_name == 'Parent' %>
           <%= link_to "► #{t('edit_privilege_text')}", {:controller => "user", :action => "edit_privilege", :id => @user.username } ,:class => "user_button" %>
