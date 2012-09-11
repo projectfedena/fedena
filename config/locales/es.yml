@@ -1852,7 +1852,7 @@ es: # locale
   baseend_date_overlap: "La hora final se superpone"
   basestart_date_is_lower_than_today: "La fecha inicial es anterior a hoy"
   basestart_date_is_lower_than_end_date: "Fecha de finalización es menor que la fecha de inicio"
-  baseend_date_is_lower_than_end_date: "Fecha de finalización es menor que la fecha de hoy"
+  baseend_date_is_lower_than_today: "Fecha de finalización es menor que la fecha de hoy"
   time_period:  "Período"
   select_a_batch: "Seleccionar un grupo"
   select_employee: "Seleccionar empleado"

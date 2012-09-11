@@ -1844,7 +1844,7 @@ mr: # locale
   baseend_date_overlap: "End time is within the range of another timetable"
   basestart_date_is_lower_than_today: "Start date is lower than today's date"
   basestart_date_is_lower_than_end_date: "End date is lower than start date"
-  baseend_date_is_lower_than_end_date: "End date is lower than today's date"
+  baseend_date_is_lower_than_today: "End date is lower than today's date"
   time_period:  "Period"
   select_a_batch: "Select a batch"
   select_employee: "Select employee"

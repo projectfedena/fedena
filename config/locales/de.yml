@@ -1854,7 +1854,7 @@ de: # locale
   baseend_date_overlap: "Ende der Zeit ist im Bereich von einem anderen Zeitplan"
   basestart_date_is_lower_than_today: "Startdatum ist niedriger als das heutige Datum"
   basestart_date_is_lower_than_end_date: "Enddatum ist niedriger als Startdatum"
-  baseend_date_is_lower_than_end_date: "Enddatum ist niedriger als das heutige Datum"
+  baseend_date_is_lower_than_today: "Enddatum ist niedriger als das heutige Datum"
   time_period:  "Zeit"
   select_a_batch: "Wählen Sie eine Batch"
   select_employee: "Wählen Sie Mitarbeiter"

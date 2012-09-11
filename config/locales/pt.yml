@@ -1851,7 +1851,7 @@ pt: # locale
   baseend_date_overlap: "término está dentro da faixa de um outro calendário"
   basestart_date_is_lower_than_today: "inicio é menor que a data de hoje"
   basestart_date_is_lower_than_end_date: "Data final é menor que a data inicial"
-  baseend_date_is_lower_than_end_date: "Data final é menor do que a data de hoje"
+  baseend_date_is_lower_than_today: "Data final é menor do que a data de hoje"
   time_period:  "Período"
   select_a_batch: "Selecione um grupo"
   select_employee: "Selecione empregado"
