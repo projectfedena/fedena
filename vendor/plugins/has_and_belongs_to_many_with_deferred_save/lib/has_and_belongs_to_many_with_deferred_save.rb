@@ -22,8 +22,8 @@ module ActiveRecord
         collection_name = args[0].to_s
         collection_singular_ids = collection_name.singularize + "_ids"
 
-        # this will delete all the assocation into the join table after obj.destroy
-        after_destroy { |record| record.save }
+        # this will delete all the assocation into the join table after obj.destroy=== [ismu] changed it form record.save to this
+        before_destroy { |record| record.send("#{collection_name}=",[]);record.save }
 
         attr_accessor :"unsaved_#{collection_name}"
         attr_accessor :"use_original_collection_reader_behavior_for_#{collection_name}"
