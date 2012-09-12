@@ -2124,6 +2124,7 @@ ja: # locale
     flash2: "ペイロールのカテゴリがアップデートされました。"
     flash3: "削除成功!"
     flash4: "削除出来ません!"
+    new_admission_link: "For new admission"
 
 #employee_attendance translation
   employee_attendance:

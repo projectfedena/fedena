@@ -2122,6 +2122,7 @@ de: # locale
     flash2: "Lohnabrechnungskategorie aktualisiert"
     flash3: "Erfolgreich gelöscht!"
     flash4: "Konnte nicht gelöscht werden!"
+    new_admission_link: "For new admission"
 
 #employee_attendance translation
   employee_attendance:

@@ -83,7 +83,7 @@ class PayrollController < ApplicationController
           params[:manage_payroll].each_pair do |k, v|
             EmployeeSalaryStructure.create(:employee_id => params[:id], :payroll_category_id => k, :amount => v['amount'])
           end
-          flash[:notice] = "#{t('data_saved_for')} #{@employee.first_name}"
+          flash[:notice] = "#{t('data_saved_for')} #{@employee.first_name}.  #{t('new_admission_link')} <a href='/employee/admission1'>Click Here</a>"
           redirect_to :controller => "employee", :action => "profile", :id=> @employee.id
         end
       else

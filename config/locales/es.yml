@@ -2118,6 +2118,7 @@ es: # locale
     flash2: "Categoría de nómina actualizada"
     flash3: "Eliminación exitosa!"
     flash4: "Imposible de eliminar!"
+    new_admission_link: "For new admission"
 
 #employee_attendance translation
   employee_attendance:

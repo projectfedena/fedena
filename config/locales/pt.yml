@@ -2119,6 +2119,7 @@ pt: # locale
     flash2: "Categoria da folha de Salário atualizado"
     flash3: "Apagado com sucesso!"
     flash4: "Impossivel APAGAR!"
+    new_admission_link: "For new admission"
 
 #employee_attendance translation
   employee_attendance:

@@ -2121,6 +2121,7 @@ ar:
     flash2: "الفئة الرواتب المحدثة"
     flash3: "حذف بنجاح!"
     flash4: "غير قادر على حذف!"
+    new_admission_link: "For new admission"
 
 #employee_attendance translation
   employee_attendance:

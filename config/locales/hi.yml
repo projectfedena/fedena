@@ -2094,6 +2094,7 @@ hi:
     flash2: "पेरोल श्रेणी अद्यतन"
     flash3: "सफलतापूर्वक हटा दिया!"
     flash4: "हटाना करने में असमर्थ!"
+    new_admission_link: "For new admission"
 
 #employee_attendance translation
   employee_attendance:

@@ -2112,6 +2112,7 @@ mr: # locale
     flash2: "वेतनपट प्रकार अद्यावत "
     flash3: "यशस्वीपणे काढले! "
     flash4: "काढण्यात असमर्थ !"
+    new_admission_link: "For new admission"
 
 #employee_attendance translation
   employee_attendance:

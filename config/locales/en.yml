@@ -2121,13 +2121,14 @@ en: # locale
     flash44: "Cannot delete the employee when dependecy exists. Use change to former option"
     flash45: "Payslip Date cant be generated before joining date"
     flash46: "Employee deleted successfully."
-
+    
 #payroll translation
   payroll:
     flash1: "Payroll category saved"
     flash2: "Payroll category updated"
     flash3: "Successfully deleted!"
     flash4: "Unable to delete!"
+    new_admission_link: "For new admission"
 
 #employee_attendance translation
   employee_attendance:
