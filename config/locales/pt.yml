@@ -2179,6 +2179,7 @@ pt: # locale
     flash13: "APAGADO com sucesso!"
     flash14: "Lamento! impossivel APAGAR quando existe entradas sobre o detalhe selecionado"
     flash15: "Lamento! Nao pode APAGAR estudante quando existe dados ligados a ele"
+    new_admission_link: "For new admission"
 
    ## traslation for finance controller
   finance:

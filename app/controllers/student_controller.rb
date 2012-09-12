@@ -191,7 +191,7 @@ class StudentController < ApplicationController
         StudentAdditionalDetail.create(:student_id => params[:id],
           :additional_field_id => k,:additional_info => v['additional_info'])
       end
-      flash[:notice] = "#{t('flash9')} #{@student.first_name} #{@student.last_name}."
+      flash[:notice] = "#{t('flash9')} #{@student.first_name} #{@student.last_name}. #{t('new_admission_link')} <a href='/student/admission1'>Click Here</a>"
       redirect_to :controller => "student", :action => "profile", :id => @student.id
     end
   end

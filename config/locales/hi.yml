@@ -2155,6 +2155,7 @@ hi:
     flash13: "सफलतापूर्वक हटा दिया!"
     flash14: "क्षमा करें! हटाने के लिए जब प्रविष्टियों चयनित विस्तार के तहत मौजूद करने में असमर्थ"
     flash15: "क्षमा करें! हटाने के जब निर्भर रिकॉर्ड मौजूद नहीं किया जा सका छात्र"
+    new_admission_link: "For new admission"
   
    ## traslation for finance controller
   finance:

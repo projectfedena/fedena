@@ -2172,6 +2172,7 @@ mr: # locale
     flash13: "यशस्वीपणे काढले!"
     flash14: "क्षमस्व! निवडलेल्या माहिती अंतर्गत नोंदी असताना काढण्यात असमर्थ."
     flash15: "क्षमस्व ! अवलंबित नोंदी असताना विद्यार्थी काढू शकत नाही."
+    new_admission_link: "For new admission"
 
    ## traslation for finance controller
   finance:

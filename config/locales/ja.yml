@@ -2184,6 +2184,7 @@ ja: # locale
     flash13: "削除は成功しました!"
     flash14: "申し訳ありません。選択されたフィールドに入力がある場合は削除出来ません。"
     flash15: "申し訳ありません。扶養のある生徒の場合削除出来ません。"
+    new_admission_link: "For new admission"
   
    ## traslation for finance controller
   finance:

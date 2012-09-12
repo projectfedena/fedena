@@ -1400,7 +1400,7 @@ es: # locale
   disabled: "Deshabilitado"
   current_year_report: "Reporte del año actual"
   grouped_exam_final_report: "Reporte final de exámenes agrupados"
-  compare_grouped_exam_past: "Comparar exámenes agrupados con años anteriores"
+  compare_grouped_exa}_past: "Comparar exámenes agrupados con años anteriores"
   paid_all: "Ha pagado todos los recibos del grupo."
   paid: "PAGADO"
   unpaid: "NO PAGADO"
@@ -2179,6 +2179,7 @@ es: # locale
     flash13: "Eliminación exitosa!"
     flash14: "Lo sentimos! Imposible eliminar cuando existen registros dependientes"
     flash15: "Lo sentimos! No puede eliminar un estudiante cuando existen registros dependientes"
+    new_admission_link: "For new admission"
 
    ## traslation for finance controller
   finance:

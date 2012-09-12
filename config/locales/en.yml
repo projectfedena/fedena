@@ -2189,7 +2189,8 @@ en: # locale
     flash13: "Successfully deleted!"
     flash14: "Sorry! Unable to delete when entries exists under the selected detail"
     flash15: "Sorry ! Could not delete student when dependent record exists"
-  
+    new_admission_link: "For new admission"
+
    ## traslation for finance controller
   finance:
     flash1: "Donation accepted"
