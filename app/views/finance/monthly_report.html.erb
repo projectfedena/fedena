@@ -27,6 +27,11 @@
 </div>
 
 <div id="page-yield">
+  <div class="bread_crumb">
+    <%= link_to t('finance_text'), :controller => "finance", :action=>"index" %> &raquo;
+    <%= link_to "#{t('transactions')}", :controller => "finance", :action => "transactions" %> &raquo;
+    <%= t('monthly_transactions') %>
+  </div>
   <div class="box">
   <% form_for :report, :url => {:action => 'update_monthly_report'} do |form| %>
     <div class="label-field-pair">
