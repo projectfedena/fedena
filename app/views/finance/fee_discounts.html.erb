@@ -41,7 +41,13 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-
+  <div class="bread_crumb">
+    <%= link_to t('finance_text'), :controller => "finance", :action=>"index" %> &raquo;
+    <%= link_to "#{t('fees_text')}", :controller => "finance", :action => "fees_index" %> &raquo;
+    <%= link_to "#{t('create_fees')}", :controller => "finance", :action => "fees_create" %> &raquo;
+    <%= link_to "#{t('master_fees')}", :controller => "finance", :action => "master_fees" %> &raquo;
+    <%= t('fee_discounts') %>
+  </div>
 
     <div id="batch">
       <div class="label-field-pair"><label><%= t('select_a_batch') %> : </label>
