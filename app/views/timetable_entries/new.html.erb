@@ -78,7 +78,13 @@
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
-
+<div id="inner-tab-menu">
+  <ul>
+    <% if (permitted_to? :subject_assignment,:employee) %>
+      <li><%= link_to "#{t('employee_subject_association')}",:controller=>"employee", :action=>"subject_assignment" %></li>
+    <% end %>
+  </ul>
+</div>
 <div id="page-yield">
   <div class="box">
     <% unless flash[:notice].nil? %>
