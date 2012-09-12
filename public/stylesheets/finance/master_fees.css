@@ -248,3 +248,6 @@ table#listing td.col-1 {
     max-height: 100px;
     overflow: auto;
 }
+.bread_crumb {
+ margin-left: 10px;
+}

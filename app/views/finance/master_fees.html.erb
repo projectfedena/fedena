@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-<%= image_tag("/images/show_finance.png") %>
+  <%= image_tag("/images/show_finance.png") %>
   <h1><%= t('master_category') %></h1>
   <h3><%= t('finance_management') %></h3>
   <div id="app-back-button">
@@ -31,6 +31,12 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
+  <div class="bread_crumb">
+    <%= link_to t('finance_text'), :controller => "finance", :action=>"index" %> &raquo;
+    <%= link_to "#{t('fees_text')}", :controller => "finance", :action => "fees_index" %> &raquo;
+    <%= link_to "#{t('create_fees')}", :controller => "finance", :action => "fees_create" %> &raquo;
+    <%= t('master_fees') %>
+  </div>
   <div id="message"></div>
 
   <div class="box">
@@ -70,7 +76,7 @@
       </div>
     </div>
     <div id="fee_collection_dates"></div>
-      
+
     <div id="categories">   
       <%= render :partial => "master_category_list" unless params[:batch_id].blank? %>
     </div>
