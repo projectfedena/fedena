@@ -19,7 +19,7 @@
 
 
 <div id="content-header">
-<%= image_tag("/images/show_finance.png") %>
+  <%= image_tag("/images/show_finance.png") %>
   <h1><%= t('department_wise_salary_report') %></h1>
   <h3><%= t('finance_transactions') %></h3>
   <div id="app-back-button">
@@ -28,6 +28,13 @@
 </div>
 
 <div id="page-yield">
+  <div class="bread_crumb">
+    <%= link_to t('finance_text'), :controller => "finance", :action=>"index" %> &raquo;
+    <%= link_to "#{t('transactions')}", :controller => "finance", :action => "transactions" %> &raquo;
+    <%= link_to "#{t('monthly_transactions')}", :controller => "finance", :action => "monthly_report" %> &raquo;
+    <%= link_to "#{t('finance_transactions_view')}", :controller => "finance", :action => "update_monthly_report", :start_date=>@start_date, :end_date=>@end_date %> &raquo;
+    <%= t('salary_account') %>
+  </div>
   <% total=0 %>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
     <tr class="tr-head">

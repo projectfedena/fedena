@@ -71,3 +71,6 @@
 table#listing .tr-head td.align_right{
     text-align: right;
 }*/
+.bread_crumb {
+ margin-left: 10px;
+}

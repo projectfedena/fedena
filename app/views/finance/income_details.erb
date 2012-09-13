@@ -33,6 +33,13 @@
 </div>
 <% unless @incomes.empty? %>
   <div id="page-yield">
+        <div class="bread_crumb">
+    <%= link_to t('finance_text'), :controller => "finance", :action=>"index" %> &raquo;
+    <%= link_to "#{t('transactions')}", :controller => "finance", :action => "transactions" %> &raquo;
+    <%= link_to "#{t('monthly_transactions')}", :controller => "finance", :action => "monthly_report" %> &raquo;
+    <%= link_to "#{t('finance_transactions_view')}", :controller => "finance", :action => "update_monthly_report", :start_date=>@start_date, :end_date=>@end_date %> &raquo;
+    <%= @income_category.name %>
+  </div>
     <table id="listing" align="center" width="100%">
       <tr class="tr-head">
         <td class="name"><%= t('name') %></td>

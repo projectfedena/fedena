@@ -27,6 +27,14 @@
 </div>
 
 <div id="page-yield">
+  <div class="bread_crumb">
+    <%= link_to t('finance_text'), :controller => "finance", :action=>"index" %> &raquo;
+    <%= link_to "#{t('transactions')}", :controller => "finance", :action => "transactions" %> &raquo;
+    <%= link_to "#{t('monthly_transactions')}", :controller => "finance", :action => "monthly_report" %> &raquo;
+    <%= link_to "#{t('finance_transactions_view')}", :controller => "finance", :action => "update_monthly_report", :start_date=>@start_date, :end_date=>@end_date %> &raquo;
+    <%= link_to "#{t('fees_report')}", :controller => "finance", :action => "fees_report", :start=>@start_date, :end=>@end_date %> &raquo;
+    <%= t('batch') +": " + @batch.full_name%>
+  </div>
   <% total =0 %>
 
   <b id="transaction-report-title"><%= @batch.full_name%>  <%= t('transaction_report') %> </b>
