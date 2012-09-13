@@ -32,7 +32,12 @@
   </ul>
 </div>
 <div id="page-yield">
-
+  <div class="bread_crumb">
+    <%= link_to t('finance_text'), :controller => "finance", :action=>"index" %> &raquo;
+    <%= link_to "#{t('transactions')}", :controller => "finance", :action => "transactions" %> &raquo;
+    <%= link_to "#{t('monthly_transactions')}", :controller => "finance", :action => "monthly_report" %> &raquo;
+    <%= t('finance_transactions_view') %>
+  </div>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">
 
     <tr class="tr-head">
