@@ -9,7 +9,6 @@
 #search_box_bg{
     width:910px;
     padding-left:10px;
-    margin-top:-30px;
 }
 #search_box_bg label{
     padding-top:8px;
@@ -93,4 +92,7 @@
 #form-content{
     width:300px;
     float: left;
+}
+.bread_crumb {
+ margin-left: 10px;
 }

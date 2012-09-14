@@ -31,7 +31,11 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-
+  <div class="bread_crumb">
+      <%= link_to t('hr'), :controller => "employee", :action=>"hr" %> &raquo;
+      <%= link_to t('employee_leave_management'), :controller => "employee", :action => "employee_attendance" %> &raquo;
+      <%= t('reports_text') %>
+    </div>
   <% form_for :employee_department do |s| %>
     <div class="label-field-pair">
       <label for="employee_department_select"><%= t('select_the_department') %></label>

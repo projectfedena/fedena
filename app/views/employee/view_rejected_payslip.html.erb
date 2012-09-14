@@ -29,7 +29,12 @@
 
 
 <div id="page-yield">
-
+  <div class="bread_crumb">
+    <%= link_to t('hr'), :controller => "employee", :action=>"hr" %> &raquo;
+    <%= link_to t('create_payslip'), :controller => "employee", :action=>"payslip" %> &raquo;
+    <%= link_to t('rejected_payslip'), :controller => "employee", :action=>"rejected_payslip" %> &raquo;
+    <%= @emp.full_name %>
+  </div>
     <div class="drop-down-box">
       <label for="category_prefix"><%= t('select_payslip_month_year') %></label>
       <div class="text-input-bg"> <%= select :employee, :rejected_payslip, @payslips.map { |s| [s.salary_date.strftime("%B %Y"), s.salary_date] },

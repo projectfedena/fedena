@@ -22,16 +22,20 @@
   <h1><%= t('attendance') %></h1>
   <h3><%= t('attendance_register') %></h3>
   <div id="app-back-button">
-   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
 
 <div id="page-yield">
-
+  <div class="bread_crumb">
+    <%= link_to t('hr'), :controller => "employee", :action=>"hr" %> &raquo;
+    <%= link_to t('employee_leave_management'), :controller => "employee", :action => "employee_attendance" %> &raquo;
+    <%= t('attendance_register') %>
+  </div>
   <div class="label-field-pair">
-          <label for="employee_department_select"><%= t('select_the_department') %></label>
- <%= image_tag("loader.gif", :align => "absmiddle", :border => 0, :id => "loader", :style =>"display: none;" ) %>
+    <label for="employee_department_select"><%= t('select_the_department') %></label>
+    <%= image_tag("loader.gif", :align => "absmiddle", :border => 0, :id => "loader", :style =>"display: none;" ) %>
     <div class="text-input-bg">
       <%= select :batch, :id,
         @departments.map {|b| [b.name, b.id] },
@@ -44,7 +48,7 @@
     </div>
   </div>
 
- 
+
 
   <div id="register"></div>
   <div id="modal-box" style="display:none;"></div>

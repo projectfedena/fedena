@@ -34,6 +34,12 @@
 </div>
 
 <div id="page-yield">
+  <div class="bread_crumb">
+    <%= link_to t('hr'), :controller => "employee", :action=>"hr" %> &raquo;
+    <%= link_to t('employee_leave_management'), :controller => "employee", :action => "employee_attendance" %> &raquo;
+    <%= link_to t('reset_leave'), :controller => "employee_attendance", :action => "manual_reset" %> &raquo;
+    <%= t('individual_reset') %>
+  </div>
   <div id="search_box_bg">
     <div id="form-content">
       <form name="employee" action="" style="display:inline;">
@@ -62,17 +68,17 @@
 
 
 
-  <%#= observe_fields ['query', 'employee_department_id','employee_category_id', 'employee_position_id', 'employee_grade_id'],
-    :frequency => 0.1,
-    :update => 'information',
-    :before => "Element.show('loader')",
-    :success => "Element.hide('loader')",
-    :url => {:action => 'employee_search_ajax'} %>
+<%#= observe_fields ['query', 'employee_department_id','employee_category_id', 'employee_position_id', 'employee_grade_id'],
+:frequency => 0.1,
+:update => 'information',
+:before => "Element.show('loader')",
+:success => "Element.hide('loader')",
+:url => {:action => 'employee_search_ajax'} %>
 
 
   <script type="text/javascript">
     function employee_search_ajax(){
- if ($('query').value.include("%")) return;
+      if ($('query').value.include("%")) return;
 <%="#{remote_function(:url => {:action => "employee_search_ajax"},
 :with =>  "'query='+ $('query').value + '&employee_department_id='+$('employee_department_id').value + '&employee_category_id='+$('employee_category_id').value + '&employee_position_id='+$('employee_position_id').value + '&employee_grade_id='+$('employee_grade_id').value",
 :before => "Element.show('loader')",

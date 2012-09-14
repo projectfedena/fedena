@@ -264,3 +264,6 @@ ul{
     padding: 16px 0 20px 50px;
     width: 510px;
 }
+.bread_crumb {
+ margin-left: 10px;
+}

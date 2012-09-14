@@ -27,11 +27,18 @@
 </div>
 
 <div id="page-yield">
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+
+  <div class="bread_crumb">
+    <%= link_to t('hr'), :controller => "employee", :action=>"hr" %> &raquo;
+    <%= link_to t('employee_leave_management'), :controller => "employee", :action => "employee_attendance" %> &raquo;
+    <%= link_to t('reset_leave'), :controller => "employee_attendance", :action => "manual_reset" %> &raquo;
+    <%= t('department_reset') %>
+  </div>
   <div id="box">
 
-    <% unless flash[:notice].nil? %>
-      <p class="flash-msg"> <%= flash[:notice] %> </p>
-    <% end %>
 
     <% form_for :employee_department do |s| %>
       <div class="label-field-pair">

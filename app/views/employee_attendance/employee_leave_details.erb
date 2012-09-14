@@ -27,6 +27,13 @@
 </div>
 
 <div id="page-yield">
+  <div class="bread_crumb">
+    <%= link_to t('hr'), :controller => "employee", :action=>"hr" %> &raquo;
+    <%= link_to t('employee_leave_management'), :controller => "employee", :action => "employee_attendance" %> &raquo;
+    <%= link_to t('reset_leave'), :controller => "employee_attendance", :action => "manual_reset" %> &raquo;
+    <%= link_to t('individual_reset'), :controller => "employee_attendance", :action => "employee_leave_reset_by_employee" %> &raquo;
+    <%= @employee.full_name %>
+  </div>
   <div id="list">
     <table id="listing" width="100%">
       <tr class="tr-head">

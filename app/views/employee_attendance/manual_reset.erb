@@ -27,34 +27,38 @@
 </div>
 
 <div id="page-yield">
-
+  <div class="bread_crumb">
+    <%= link_to t('hr'), :controller => "employee", :action=>"hr" %> &raquo;
+    <%= link_to t('employee_leave_management'), :controller => "employee", :action => "employee_attendance" %> &raquo;
+    <%= t('reset_leave') %>
+  </div>
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
   <div id="box">
 
-      <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('leave_reset_settings')}", :action => "leave_reset_settings" %></div>
-        <div class="link-descr"><%= t('configure_automatic_leave_reset') %> </div>
-      </div>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('reset_all')} ", :action => "employee_leave_reset_all" %></div>
-        <div class="link-descr"><%= t('reset_leave_count_for_all') %>.</div>
-      </div>
-  
-      <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('department_reset')}", :action => "employee_leave_reset_by_department" %></div>
-        <div class="link-descr"><%= t('reset_emp_leave_count_by_dept') %>.</div>
-      </div>
-   
-      <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('individual_reset')}", :action => "employee_leave_reset_by_employee" %></div>
-        <div class="link-descr"><%= t('reset_emp_leave_count_ind') %></div>
-      </div>
-   
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('leave_reset_settings')}", :action => "leave_reset_settings" %></div>
+      <div class="link-descr"><%= t('configure_automatic_leave_reset') %> </div>
+    </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('reset_all')} ", :action => "employee_leave_reset_all" %></div>
+      <div class="link-descr"><%= t('reset_leave_count_for_all') %>.</div>
+    </div>
 
-       </div>
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('department_reset')}", :action => "employee_leave_reset_by_department" %></div>
+      <div class="link-descr"><%= t('reset_emp_leave_count_by_dept') %>.</div>
+    </div>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('individual_reset')}", :action => "employee_leave_reset_by_employee" %></div>
+      <div class="link-descr"><%= t('reset_emp_leave_count_ind') %></div>
+    </div>
 
 
   </div>
+
+
+</div>

@@ -28,7 +28,11 @@
 
 
 <div id="page-yield">
-
+  <div class="bread_crumb">
+    <%= link_to t('hr'), :controller => "employee", :action=>"hr" %> &raquo;
+    <%= link_to t('create_payslip'), :controller => "employee", :action=>"payslip" %> &raquo;
+    <%= t('rejected_payslip') %>
+  </div>
   <div class="drop-down-box">
     <label for="category_prefix"><%= t('select_a_department') %></label>
     <div class="text-input-bg"> <%= select :individual_payslip, :department_id, @departments.map { |s| [s.name, s.id] },

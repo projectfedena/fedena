@@ -30,12 +30,16 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
+  <div class="bread_crumb">
+    <%= link_to t('hr'), :controller => "employee", :action=>"hr" %> &raquo;
+    <%= t('create_payslip') %>
+  </div>
   <div id="box">
     <div class="link-box">
       <div class="link-heading"><%= link_to "#{t('select_employee')}", {:controller=>"employee", :action=>"select_department_employee"} %></div>
       <div class="link-descr"><%= t('link_desc1') %></div>
     </div>
-    
+
     <div class="link-box">
       <div class="link-heading"><%= link_to "#{t('rejected_employee')}", {:controller=>"employee", :action=>"rejected_payslip"} %></div>
       <div class="link-descr"><%= t('link_desc4') %></div>

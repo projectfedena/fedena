@@ -51,3 +51,6 @@
 #skip1:hover,#add-more-parent:hover{
    background:  #373B3F;
 }
+.bread_crumb {
+ margin-left: 10px;
+}
