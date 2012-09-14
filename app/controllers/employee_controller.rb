@@ -1151,7 +1151,7 @@ class EmployeeController < ApplicationController
   def view_rejected_payslip
 
     @payslips = MonthlyPayslip.find_all_by_employee_id(params[:id], :conditions =>"is_rejected is true", :group=>'salary_date')
-    
+    @emp = Employee.find(params[:id])
   end
 
   def update_employee_select_list
