@@ -103,6 +103,13 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
+  <div class="bread_crumb">
+    <%= link_to t('course_text'), :controller => "courses", :action=>"index" %> &raquo;
+    <%= link_to "#{@batch.course.full_name}", :controller => "courses", :action => "show",:id=>@batch.course_id %> &raquo;
+    <%= link_to "#{@batch.name}", [@batch.course, @batch] %> &raquo;
+   <%= link_to t('exams_text'), :controller => "exam", :action=>"index" %> &raquo;
+    <%= t('connect_exams') %>
+  </div>
   <div id="application-list"> 
 <%#*<div class="sel-list">%>
 <%#= t('select') %><%#: <%= link_to_function t('all'), "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>

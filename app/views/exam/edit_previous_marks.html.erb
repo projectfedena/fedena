@@ -33,7 +33,12 @@
   <% unless flash[:warn_notice].nil? %>
     <div id="errorExplanation" class="errorExplanation"><p><%= flash[:warn_notice] %></p> </div>
   <% end %>
-
+  <div class="bread_crumb">
+    <%= link_to t('exams_text'), :controller => "exam", :action=>"index" %> &raquo;
+    <%= link_to "#{t('exam_management')}", :controller => "exam", :action => "create_exam" %> &raquo;
+    <%= link_to "#{t('previous_batch_exam')}", :controller => "exam", :action => "previous_batch_exams" %> &raquo;
+    <%= @exam.subject.name %>
+  </div>
   <div class="box">
     <% form_for :exam_scores, :url => {:controller=>"exam", :action=>"update_previous_marks", :exam_id=>@exam.id} do |f| %>
 
