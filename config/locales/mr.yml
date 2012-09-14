@@ -349,6 +349,7 @@ mr: # locale
       errors_found: "खालील त्रूटी आढळल्या"
 
   sl_no: "अनु. क्रम."
+  grouped_batches: "Grouped Batches"
   name: "नाव "
   adm_no: "प्रवेश संख्या "
   view_profile: "प्रोफाइल बघा"

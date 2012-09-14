@@ -344,6 +344,7 @@ es: # locale
       errors_found: "Se encontró el siguiente error"
 
   sl_no: "Sl No."
+  grouped_batches: "Grouped Batches"
   name: "Nombre"
   adm_no: "No. del Adm"
   view_profile: "Ver Perfil"

@@ -349,6 +349,7 @@ pt: # locale
       errors_found: "Os Seguintes erros foram encontrados"
 
   sl_no: "Sl  no."
+  grouped_batches: "Grouped Batches"
   name: "Nome"
   adm_no: "Adm. No."
   view_profile: "Ver Perfil"

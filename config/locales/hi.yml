@@ -321,6 +321,7 @@ hi:
       errors_found: "निम्नलिखित त्रुटियाँ पाए गए"
 
   sl_no: "कोई क्रम|"
+  grouped_batches: "Grouped Batches"
   name: "नाम"
   adm_no: "कोई एडमिरल|"
   view_profile: "प्रोफ़ाइल देखें"

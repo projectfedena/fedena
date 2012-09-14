@@ -147,3 +147,6 @@ font-size:12px;
 overflow:auto;
 width:198px;
 }
+.bread_crumb {
+ margin-left: 10px;
+}

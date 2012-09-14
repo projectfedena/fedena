@@ -351,6 +351,7 @@ ar:
       errors_found: "تم العثور على الأخطاء التالية :"
 
   sl_no: "لا SL."
+  grouped_batches: "Grouped Batches"
   name: "اسم"
   adm_no: "ADM لا."
   view_profile: "عرض الملف الشخصي"

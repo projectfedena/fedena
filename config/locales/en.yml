@@ -349,6 +349,7 @@ en: # locale
       errors_found: "Following errors were found"
 
   sl_no: "Sl  no."
+  grouped_batches: "Grouped Batches"
   name: "Name"
   adm_no: "Adm no."
   view_profile: "View Profile"

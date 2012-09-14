@@ -29,12 +29,17 @@
 <div id="inner-tab-menu">
   <ul>
     <% if permitted_to? :index ,:grading_levels %>
-    <li><%= link_to "#{t('grading_system')}", grading_levels_path %></li>
+      <li><%= link_to "#{t('grading_system')}", grading_levels_path %></li>
     <% end %>
     <li><%= link_to "#{t('batch_transfer')}", :controller => 'batch_transfers' %></li>
   </ul>
 </div>
 <div id="page-yield">
+  <div class="bread_crumb">
+    <%= link_to t('configuration_text'), :controller => "configuration", :action=>"index" %> &raquo;
+    <%= link_to "#{t('courses_text')}", :controller => "courses", :action => "index" %> &raquo;
+    <%= t('manage_batch') %>
+  </div>
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>

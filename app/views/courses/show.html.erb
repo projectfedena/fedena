@@ -38,14 +38,16 @@
   </ul>
 </div>
 <div id="page-yield">
+  <div class="bread_crumb">
+    <%= link_to t('configuration_text'), :controller => "configuration", :action=>"index" %> &raquo;
+    <%= link_to "#{t('courses_text')}", :controller => "courses", :action => "index" %> &raquo;
+    <%= link_to "#{t('manage_course')}", :controller => "courses", :action => "manage_course" %> &raquo;
+    <%= @course.full_name %>
+  </div>
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
   <div class="box">
-    <div class="bread_crumb">
-      <%= link_to "#{t('courses_text')}", courses_path %> &raquo;
-      <%= @course.full_name %>
-    </div>
 
 
     <ul id="category-list">
