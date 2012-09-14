@@ -44,16 +44,13 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-
+  <div class="bread_crumb">
+    <%= link_to t('exams_text'), :controller => "exam", :action=>"index" %> &raquo;
+    <%= link_to "#{t('exam_management')}", :controller => "exam", :action => "create_exam" %> &raquo;
+    <%= link_to "#{t('exam_groups_text')}", batch_exam_groups_path(@batch) %> &raquo;
+    <%= @exam_group.name %>
+  </div>
   <div class="box">
-    <div class="bread_crumb">
-      <%= link_to t('course_text'), courses_path %> &raquo;
-      <%= link_to @course.full_name, @course %> &raquo;
-      <%= link_to "#{t('batch')} #{@batch.name}", [@course, @batch] %> &raquo;
-      <%= link_to t('exams_text'), batch_exam_groups_path(@batch) %> &raquo;
-      <%= @exam_group.name %>
-    </div>
-
     <div class="update_msg">
       <% if permitted_to? :edit, :exams %>
         <h4>

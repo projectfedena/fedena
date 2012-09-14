@@ -140,3 +140,6 @@ table#listing .tr-even .inplaceeditor-form .editor_field:focus{
 {
     background-color: #FFF1AB;
 }
+.bread_crumb {
+ margin-left: 10px;
+}

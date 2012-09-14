@@ -40,16 +40,15 @@
   <% unless flash[:warn_notice].nil? %>
     <div id="errorExplanation" class="errorExplanation"><p><%= flash[:warn_notice] %></p> </div>
   <% end %>
-
-  <div class="box">
     <div class="bread_crumb">
-      <%= link_to "#{t('courses_text')}", courses_path %> &raquo;
-      <%= link_to @exam_group.batch.course.full_name, @exam_group.batch.course %> &raquo;
-      <%= link_to  "#{t('batch')} " + @exam_group.batch.name, [@exam_group.batch.course, @exam_group.batch] %> &raquo;
-      <%= link_to "#{t('exams_text')}", batch_exam_groups_path(@batch) %> &raquo;
+      <%= link_to t('exams_text'), :controller => "exam", :action=>"index" %> &raquo;
+      <%= link_to "#{t('exam_management')}", :controller => "exam", :action => "create_exam" %> &raquo;
+      <%= link_to "#{t('exam_groups_text')}", batch_exam_groups_path(@batch) %> &raquo;
       <%= link_to @exam_group.name, [@exam_group.batch, @exam_group] %> &raquo;
       <%= @exam.subject.name %>
     </div>
+  <div class="box">
+
 
 
     <% form_for :exams, :url => save_scores_exam_group_exam_url do |f| %>
