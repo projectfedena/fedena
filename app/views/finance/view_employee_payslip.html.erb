@@ -26,6 +26,12 @@
   </div>
 </div>
 <div id="page-yield">
+  <div class="bread_crumb">
+    <%= link_to t('finance_text'), :controller => "finance", :action=>"index" %> &raquo;
+    <%= link_to "#{t('payslip_text')}", :controller => "finance", :action => "payslip_index" %> &raquo;
+    <%= link_to "#{t('monthly_payslip')}", :controller => "finance", :action => "view_monthly_payslip" %> &raquo;
+    <%= "#{@monthly_payslips.first.active_or_archived_employee.full_name.to_s} :#{params[:salary_date].to_date.strftime("%b %d, %Y")}" %>
+  </div>
   <ul class="item-list">
     <li class="heading"><%= @monthly_payslips.first.active_or_archived_employee.full_name %></li>
     <li class="heading"><%= t('payslip_generated_on') %> <%= params[:salary_date] %> <span class="red">(<%= t('status') %>: <%=  @monthly_payslips.first.status_as_text %>)</span></li>
