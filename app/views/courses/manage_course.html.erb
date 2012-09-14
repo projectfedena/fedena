@@ -35,7 +35,11 @@
 
 
 <div id="page-yield">
-
+  <div class="bread_crumb">
+    <%= link_to t('configuration_text'), :controller => "configuration", :action=>"index" %> &raquo;
+    <%= link_to "#{t('courses_text')}", :controller => "courses", :action => "index" %> &raquo;
+    <%= t('manage_course') %>
+  </div>
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
