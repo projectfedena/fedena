@@ -192,3 +192,6 @@
 table#listing td.col-1 {
     width: 9%;
 }
+.bread_crumb {
+ margin-left: 10px;
+}
