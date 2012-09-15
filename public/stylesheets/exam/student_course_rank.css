@@ -105,3 +105,6 @@ td.col-4{
     overflow: auto;
     width: 100%;
 }
+.bread_crumb {
+ margin-left: 10px;
+}

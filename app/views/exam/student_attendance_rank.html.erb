@@ -37,7 +37,12 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-
+  <div class="bread_crumb">
+    <%= link_to t('exam_text'), :controller => "exam", :action=>"index" %> &raquo;
+    <%= link_to t('report_center'), :controller => "exam", :action => "report_center" %> &raquo;
+    <%= link_to t('student_ranking_per_attendance'), :controller => "exam", :action => "attendance_rank" %> &raquo;
+    <%= @batch.name %>
+  </div>
   <div class="box">
     <h4><%= t('overall_ranking_per_attendance') %> : <%= @batch.name %> - <%= @batch.course.full_name %> | <%=@start_date%> - <%=@end_date%></h4>
     <div id="score-table">

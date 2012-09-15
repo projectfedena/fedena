@@ -124,3 +124,6 @@ tr.tr-head a{
 .sortheader img{
     border:0px;
 }
+.bread_crumb {
+ margin-left: 10px;
+}

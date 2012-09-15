@@ -41,6 +41,12 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
+  <div class="bread_crumb">
+    <%= link_to t('exam_text'), :controller => "exam", :action=>"index" %> &raquo;
+    <%= link_to t('report_center'), :controller => "exam", :action => "report_center" %> &raquo;
+    <%= link_to t('exam_wise_report'), :controller => "exam", :action => "exam_wise_report" %> &raquo;
+    <%= t('generated_report') %>
+  </div>
   <h3 align="center"><%= @student.batch.full_name %> - <%= @exam_group.name %></h3>
   <div id="student_list">
     <%= render  :partial=>"exam_wise_student_list" %>
@@ -49,7 +55,7 @@
     <%= render :partial=>'exam_wise_report' %>
   </div>
   <div class="box">
-    
+
   </div>
 </div>
 <script type="text/javascript">

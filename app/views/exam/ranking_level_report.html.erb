@@ -18,7 +18,7 @@
 #under the License. -%>
 
 <div id="content-header">
-<%= image_tag("/images/examination/show_exam.png") %>
+  <%= image_tag("/images/examination/show_exam.png") %>
   <h1><%= t('exams_text') %></h1>
   <h3><%= t('ranking_level_report') %></h3>
   <div id="app-back-button">
@@ -29,16 +29,21 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
+  <div class="bread_crumb">
+    <%= link_to t('exam_text'), :controller => "exam", :action=>"index" %> &raquo;
+    <%= link_to t('report_center'), :controller => "exam", :action => "report_center" %> &raquo;
+    <%= t('ranking_level_report') %>
+  </div>
   <div class="box">
 
     <% form_for :ranking_level_report, :url=>{:action=>'student_ranking_level_report'} do |x| %>
-    <div class="label-field-pair">
+      <div class="label-field-pair">
         <label for="student_course"><%= t('select_mode') %>:</label>
         <div  class="text-input-bg">
           <%= select :ranking_level_report, :mode,
             [["#{t('course_wise')}","course"],["#{t('batch_wise')}","batch"]],
             {:prompt => "select a mode"}, {:onChange => "#{remote_function(:url => {:action => "select_mode"}, :with => "'mode='+value")}"}%></div></div>
-    <div id="course-batch"></div>
+      <div id="course-batch"></div>
       <%= submit_tag "", :value => "► #{t('view')}", :class => "submit_button" %>
     <% end %>
     <div class="extender"></div>
