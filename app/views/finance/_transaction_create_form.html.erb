@@ -17,11 +17,13 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<% form_for :transaction do |form| %>
+<% form_for :finance_transaction do |form| %>
   <div id="create_user_form">
-
+    <%= error_messages_for 'finance_transaction', :header_message => nil %>
     <div class="label-field-pair">
-      <label for="title"><%= t('title') %> : </label>
+      <label for="title"><%= t('title') %><span class="necessary-field">*</span> : </label>
+      <% value="" %>
+      <% value= params[:transaction][:title] if params[:transaction] and params[:transaction][:title] %>
       <div class="text-field-bg"><%= form.text_field :title %> </div>
     </div>
     <div class="label-field-pair">
@@ -31,17 +33,17 @@
 
 
     <div class="label-field-pair">
-      <label for="amount"><%= t('amount') %> : </label>
+      <label for="amount"><%= t('amount') %><span class="necessary-field">*</span> : </label>
       <div class="text-field-bg"><%= form.text_field :amount %> </div>
     </div>
     <div class="label-field-pair">
       <label for="amount"><%= t('date_text') %> :</label>
-      <div class="text-field-bg"><%= calendar_date_select_tag 'transaction[transaction_date]', I18n.l(Date.today,:format=>:default), :year_range => 5.years.ago..0.years.ago ,:popup=>:force%>
+      <div class="text-field-bg"><%= calendar_date_select_tag 'finance_transaction[transaction_date]', @finance_transaction.transaction_date.blank? ?  I18n.l(Date.today,:format=>:default): @finance_transaction.transaction_date, :year_range => 5.years.ago..0.years.ago ,:popup=>:force%>
       </div>
     </div>
     <div class="label-field-pair">
-      <label for="category"><%= t('category') %> :</label>
-      <div class="text-input-bg"><%= select :transaction, :category_id, @categories.map { |c| [c.name, c.id] },:prompt=>t('select_a_category') %></div>
+      <label for="category"><%= t('category') %><span class="necessary-field">*</span> :</label>
+      <div class="text-input-bg"><%= form.select 'category_id', @categories.map { |c| [c.name, c.id] },{:prompt=>t('select_a_category'), :selected=> @finance_transaction.category_id}  %></div>
     </div>
 
     <%=  submit_tag "► #{t('save')}",:class=>'submit_button' %>

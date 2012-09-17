@@ -78,14 +78,19 @@ class FinanceController < ApplicationController
   end
 
   def expense_create
-    flash[:notice]=nil
-    @expense = FinanceTransaction.new(params[:transaction])
+    @finance_transaction = FinanceTransaction.new
     @categories = FinanceTransactionCategory.expense_categories
     if @categories.empty?
       flash[:notice] = "#{t('flash2')}"
     end
-    if request.post? and @expense.save
-      flash[:notice] = "#{t('flash3')}"
+    if request.post?
+      @finance_transaction = FinanceTransaction.new(params[:finance_transaction])
+      if @finance_transaction.save
+        flash[:notice] = "#{t('flash3')}"
+        redirect_to :action=>"expense_create"
+      else
+        render :action=>"expense_create"
+      end
     end
   end
 
@@ -120,14 +125,19 @@ class FinanceController < ApplicationController
   end
   
   def income_create
-    flash[:notice]=nil
-    @income = FinanceTransaction.new(params[:transaction])
+    @finance_transaction = FinanceTransaction.new()
     @categories = FinanceTransactionCategory.income_categories
     if @categories.empty?
       flash[:notice] = "#{t('flash5')}"
     end
-    if request.post? and @income.save
-      flash[:notice] = "#{t('flash6')}"
+    if request.post? 
+      @finance_transaction = FinanceTransaction.new(params[:finance_transaction])
+      if @finance_transaction.save
+        flash[:notice] = "#{t('flash6')}"
+        redirect_to :action=>"income_create"
+      else
+        render :action=>"income_create"
+      end
     end
   end
 
