@@ -28,7 +28,7 @@
 <div id="inner-tab-menu">
   <ul>
     <% if permitted_to? :previous_batch_exams, :exam %>
-      <li><%= link_to "#{t('previous_batch_exam')}", {:controller => "exam", :action => "previous_batch_exams"}, :class=> 'user_button' %></li>
+      <li><%= link_to "#{t('previous_batch_exam')}", {:controller => "exam", :action => "previous_batch_exams"} %></li>
     <% end %>
   </ul>
 </div>
