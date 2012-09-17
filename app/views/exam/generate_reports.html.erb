@@ -27,8 +27,8 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "#{t('generate_previous_reports')}", {:controller => "exam", :action => "generate_previous_reports"}, :class=> 'user_button' %></li>
-    <li><%= link_to "View Scheduled Jobs", scheduled_task_path(:job_object=>"Batch",:job_type=>"1"), :class=> 'user_button' %></li>
+    <li><%= link_to "#{t('generate_previous_reports')}", {:controller => "exam", :action => "generate_previous_reports"} %></li>
+    <li><%= link_to "View Scheduled Jobs", scheduled_task_path(:job_object=>"Batch",:job_type=>"1") %></li>
   </ul>
 </div>
 <div id="page-yield">
