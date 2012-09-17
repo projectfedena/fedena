@@ -28,7 +28,7 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_attendance_rank_pdf", :batch_id=>@batch.id,:start_date=>@start_date,:end_date=>@end_date},:target => '_blank', :class=> 'user_button' %></li>
+    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_attendance_rank_pdf", :batch_id=>@batch.id,:start_date=>@start_date,:end_date=>@end_date},:target => '_blank' %></li>
   </ul>
 </div>
 

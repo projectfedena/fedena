@@ -27,7 +27,7 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_course_rank_pdf", :course_id=>@course.id, :batch_group_id=>params[:course_rank][:batch_group_id], :sort_order=>@sort_order},:target => '_blank', :class=> 'user_button' %></li>
+    <li><%= link_to "#{t('pdf_report')}", {:controller => "exam", :action => "student_course_rank_pdf", :course_id=>@course.id, :batch_group_id=>params[:course_rank][:batch_group_id], :sort_order=>@sort_order},:target => '_blank' %></li>
   </ul>
 </div>
 
