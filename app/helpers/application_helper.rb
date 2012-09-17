@@ -20,6 +20,34 @@ module ApplicationHelper
   def get_stylesheets
     @direction = (rtl?) ? 'rtl/' : ''
     stylesheets = [] unless stylesheets
+    if controller.controller_path == 'user' and controller.action_name == 'dashboard'
+      stylesheets << @direction+'_layouts/dashboard'
+    elsif controller.controller_path == 'user' and (controller.action_name == 'login' or controller.action_name == 'set_new_password' )
+      stylesheets << @direction+"_layouts/login"
+    else
+      stylesheets << @direction+'application'
+      stylesheets << @direction+'popup.css'
+    end
+    stylesheets << @direction+'_styles/ui.all.css'
+    stylesheets << @direction+'modalbox'
+    stylesheets << @direction+'autosuggest-menu.css'
+    ["#{@direction}#{controller.controller_path}/#{controller.action_name}"].each do |ss|
+      stylesheets << ss
+    end
+    plugin_css_overrides = FedenaPlugin::CSS_OVERRIDES["#{controller.controller_path}_#{controller.action_name}"]
+    stylesheets << plugin_css_overrides.collect{|p| "#{@direction}plugin_css/#{p}"}
+  end
+
+  def get_forgotpw_stylesheets
+    @direction = (rtl?) ? 'rtl/' : ''
+    stylesheets = [] unless stylesheets
+    stylesheets << @direction+"_layouts/forgotpw"
+    stylesheets << @direction+"_styles/style"
+  end
+
+  def get_pdf_stylesheets
+    @direction = (rtl?) ? 'rtl/' : ''
+    stylesheets = [] unless stylesheets
     ["#{@direction}#{controller.controller_path}/#{controller.action_name}"].each do |ss|
       stylesheets << ss
     end

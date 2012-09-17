@@ -670,3 +670,8 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     height: 250px;
     left: 57px;
 }
+.profile-topbanner{
+    width: 185px;
+    height: 135px;
+    background: url(/images/master_student/profile/topbanner_rtl.png);
+}

@@ -222,3 +222,8 @@
     text-align: center;
     height: 250px;
 }
+.profile-topbanner{
+    width: 185px;
+    height: 135px;
+    background: url(/images/master_student/profile/topbanner_rtl.png);
+}

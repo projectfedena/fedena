@@ -27,11 +27,7 @@
     <link rel="icon" href="/favicon.ico" type="image/ico" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/ico" />
 
-    <%= stylesheet_link_tag([@direction+'application', @direction+'_styles/ui.all'])%>
     <%= stylesheet_link_tag(*get_stylesheets) %>
-    <%= stylesheet_link_tag @direction+'modalbox' %>
-    <%= stylesheet_link_tag @direction+'popup.css' %>
-    <%= stylesheet_link_tag @direction+'autosuggest-menu.css' %>
 
     <%= javascript_include_tag :defaults, :cache => 'cache/javascripts/all' %>
     <%= javascript_include_tag 'scripts/nicetitle', 'droplicious' %>
