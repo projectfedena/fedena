@@ -375,7 +375,14 @@ class CalendarController < ApplicationController
 
       if e.is_common ==false and e.is_holiday==false and e.is_exam ==true  # not_common_exam_event
         unless e.origin.nil?
-          build_student_events_hash(e,'student_batch_exam',@user.student_record.batch_id,@show_month) if @user.student?
+          if @user.student?
+            subject=e.origin.subject
+            if subject.elective_group_id == nil
+              build_student_events_hash(e,'student_batch_exam',@user.student_record.batch_id,@show_month)  
+            else
+              build_student_events_hash(e,'student_batch_exam',@user.student_record.batch_id,@show_month)  if (@user.student_record.students_subjects.map{|sub| sub.subject_id}.include?(subject.id))
+            end
+          end
           if @user.employee?
             build_common_events_hash(e,'student_batch_exam',@show_month)
           end
