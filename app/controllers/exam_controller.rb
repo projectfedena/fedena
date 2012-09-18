@@ -1268,11 +1268,12 @@ class ExamController < ApplicationController
       flash[:notice] = "#{t('flash_msg6')}"
       redirect_to :controller=>"user", :action=>"dashboard"
     end
-    scores = ExamScore.find_all_by_exam_id(@exam.id)
+    #scores = ExamScore.find_all_by_exam_id(@exam.id)
     @students = []
-    unless scores.empty?
-      scores.each do|score|
-        student = Student.find_by_id(score.student_id)
+    batch_students = BatchStudent.find_all_by_batch_id(@batch.id)
+    unless batch_students.empty?
+      batch_students.each do|b|
+        student = Student.find_by_id(b.student_id)
         @students.push [student.first_name,student.id,student] unless student.nil?
       end
     end
@@ -1293,10 +1294,12 @@ class ExamController < ApplicationController
       exam_score = ExamScore.find(:first, :conditions => {:exam_id => @exam.id, :student_id => student_id} )
       prev_score = ExamScore.find(:first, :conditions => {:exam_id => @exam.id, :student_id => student_id} )
       unless exam_score.nil?
-        unless details[:marks].to_f == exam_score.marks.to_f
+        #unless details[:marks].to_f == exam_score.marks.to_f
           if details[:marks].to_f <= @exam.maximum_marks.to_f
             if exam_score.update_attributes(details)
-              PreviousExamScore.create(:student_id=>prev_score.student_id,:exam_id=>prev_score.exam_id,:marks=>prev_score.marks,:grading_level_id=>prev_score.grading_level_id,:remarks=>prev_score.remarks,:is_failed=>prev_score.is_failed)
+              if params[:student_ids] and params[:student_ids].include?(student_id)
+                PreviousExamScore.create(:student_id=>prev_score.student_id,:exam_id=>prev_score.exam_id,:marks=>prev_score.marks,:grading_level_id=>prev_score.grading_level_id,:remarks=>prev_score.remarks,:is_failed=>prev_score.is_failed)
+              end
             else
               flash[:warn_notice] = "#{t('flash8')}"
               @error = nil
@@ -1304,6 +1307,18 @@ class ExamController < ApplicationController
           else
             @error = true
           end
+        #end
+      else
+        if details[:marks].to_f <= @exam.maximum_marks.to_f
+          ExamScore.create do |score|
+            score.exam_id          = @exam.id
+            score.student_id       = student_id
+            score.marks            = details[:marks]
+            score.grading_level_id = details[:grading_level_id]
+            score.remarks          = details[:remarks]
+          end
+        else
+          @error = true
         end
       end
     end
