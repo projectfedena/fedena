@@ -2358,6 +2358,11 @@ class FinanceController < ApplicationController
         page.replace_html "form-box", :partial => "student_wise_discount_form"
         page.replace_html 'form-errors', :text =>""
       end
+    else
+      render :update do |page|
+        page.replace_html "form-box", :text => ""
+        page.replace_html 'form-errors', :text =>""
+      end
     end
   end
 
