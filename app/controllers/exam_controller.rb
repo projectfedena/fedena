@@ -1269,12 +1269,23 @@ class ExamController < ApplicationController
       redirect_to :controller=>"user", :action=>"dashboard"
     end
     #scores = ExamScore.find_all_by_exam_id(@exam.id)
-    @students = []
-    batch_students = BatchStudent.find_all_by_batch_id(@batch.id)
-    unless batch_students.empty?
-      batch_students.each do|b|
-        student = Student.find_by_id(b.student_id)
-        @students.push [student.first_name,student.id,student] unless student.nil?
+    exam_subject = Subject.find(@exam.subject_id)
+    is_elective = exam_subject.elective_group_id
+    if is_elective == nil
+      @students = []
+      batch_students = BatchStudent.find_all_by_batch_id(@batch.id)
+      unless batch_students.empty?
+        batch_students.each do|b|
+          student = Student.find_by_id(b.student_id)
+          @students.push [student.first_name,student.id,student] unless student.nil?
+        end
+      end
+    else
+      assigned_students = StudentsSubject.find_all_by_subject_id(exam_subject.id)
+      @students = []
+      assigned_students.each do |s|
+        student = Student.find_by_id(s.student_id)
+        @students.push [student.first_name, student.id, student] unless student.nil?
       end
     end
     @ordered_students = @students.sort
@@ -1295,18 +1306,18 @@ class ExamController < ApplicationController
       prev_score = ExamScore.find(:first, :conditions => {:exam_id => @exam.id, :student_id => student_id} )
       unless exam_score.nil?
         #unless details[:marks].to_f == exam_score.marks.to_f
-          if details[:marks].to_f <= @exam.maximum_marks.to_f
-            if exam_score.update_attributes(details)
-              if params[:student_ids] and params[:student_ids].include?(student_id)
-                PreviousExamScore.create(:student_id=>prev_score.student_id,:exam_id=>prev_score.exam_id,:marks=>prev_score.marks,:grading_level_id=>prev_score.grading_level_id,:remarks=>prev_score.remarks,:is_failed=>prev_score.is_failed)
-              end
-            else
-              flash[:warn_notice] = "#{t('flash8')}"
-              @error = nil
+        if details[:marks].to_f <= @exam.maximum_marks.to_f
+          if exam_score.update_attributes(details)
+            if params[:student_ids] and params[:student_ids].include?(student_id)
+              PreviousExamScore.create(:student_id=>prev_score.student_id,:exam_id=>prev_score.exam_id,:marks=>prev_score.marks,:grading_level_id=>prev_score.grading_level_id,:remarks=>prev_score.remarks,:is_failed=>prev_score.is_failed)
             end
           else
-            @error = true
+            flash[:warn_notice] = "#{t('flash8')}"
+            @error = nil
           end
+        else
+          @error = true
+        end
         #end
       else
         if details[:marks].to_f <= @exam.maximum_marks.to_f
