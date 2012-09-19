@@ -17,10 +17,6 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 <script>
-  function check_checkbox(val)
-  {
-    $("check"+val).checked=true
-  }
   function check_blanks()
   {
     var blank_marks = 0;
@@ -79,11 +75,11 @@
             <% unless @exam_group.exam_type == 'Grades' %>
               <td class="col-1"><div class="label-field-pair">
                   <div class="text-input-bg">
-                    <%= text_field_tag "exam[#{student.id}][marks]", @exam_score.marks, :size => '4', :onChange=>"check_checkbox(#{student.id})", :class=>"marks-box" %></div></div></td>
+                    <%= text_field_tag "exam[#{student.id}][marks]", @exam_score.marks, :size => '4', :class=>"marks-box" %></div></div></td>
             <% else %>
               <td class="col-2"><div class="label-field-pair">
                   <div class="text-input-bg"><%= select "exam[#{student.id}]", "grading_level_id", @grades.map {|g| [g.name, g.id] },
-                      { :prompt =>"#{t('select_grade')}", :selected => @exam_score.grading_level_id, :onChange=>"check_checkbox(#{student.id})"},:class=>"marks-box" %></div></div></td>
+                      { :prompt =>"#{t('select_grade')}", :selected => @exam_score.grading_level_id},:class=>"marks-box" %></div></div></td>
             <% end %>
 
             <td class="col-2"><div class="label-field-pair2">
