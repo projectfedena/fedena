@@ -116,26 +116,10 @@
     float:left;
     margin-right:10px;
     margin-left:290px;
-    margin-top:20px;
 }
-
-.pdf-report a{
-    -webkit-border-radius:10px;
-    -moz-border-radius:10px 10px 10px 10px;
-    background:none repeat scroll 0 0 #27292B;
-    text-align: center;
-    text-decoration: none;
-    color:#FFFFFF;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
-    padding:7px 10px;
-
+a.user_button{
+    margin-left: 0 !important;
 }
-.pdf-report:hover a{
-    background:  #373B3F;
-}
-
 .box{
     width:750px;
     margin:0px auto;

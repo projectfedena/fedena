@@ -16,26 +16,26 @@
     text-decoration: none;
 }
 #skip:hover,#add-more-parent:hover{
-   background:  #373B3F;
+    background:  #373B3F;
 }
 
 table#listing td a:hover {
-color:#27292B;
-text-decoration:none;
--moz-border-radius:10px 10px 10px 10px;
--webkit-border-radius:10px 10px 10px 10px;
-background:none repeat scroll 0 0 #373B3F;
-border:medium none;
-color:#FFFFFF;
-cursor:pointer;
-font-family:arial;
-font-size:14px;
-font-weight:bold;
-margin-right:0px;
-margin-top:15px;
-padding:7px 10px;
-width:115px;
-display: block;
+    color:#27292B;
+    text-decoration:none;
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius:10px 10px 10px 10px;
+    background:none repeat scroll 0 0 #373B3F;
+    border:medium none;
+    color:#FFFFFF;
+    cursor:pointer;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-right:0px;
+    margin-top:15px;
+    padding:7px 10px;
+    width:115px;
+    display: block;
 }
 
 #reset-box {
@@ -51,23 +51,9 @@ display: block;
     font-size: 18px;
 }
 
-.submit_button3 {
-color:#27292B;
-text-decoration:none;
--moz-border-radius:10px 10px 10px 10px;
--webkit-border-radius:10px 10px 10px 10px;
-background:none repeat scroll 0 0 #27292B;
-border:medium none;
-color:#FFFFFF;
-cursor:pointer;
-font-family:arial;
-font-size:14px;
-font-weight:bold;
-margin-right:0px;
-margin-top:15px;
-padding:7px 10px;
-width:auto;
-display: inline-block;
+a.user_button{
+    margin-top: 20px;
+    margin-left: 420px;
 }
 
 .submit-button{

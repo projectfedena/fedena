@@ -43,10 +43,10 @@
         <p> <%= t('reset_count_msg') %></p>
         <div id="skip">
           <%= link_to_remote("► #{t('reset')}",
-            :url => {:action =>'update_employee_leave_reset_all'} ) %>
+            :url => {:action =>'update_employee_leave_reset_all'}, :html => {:class=>"user_button"} ) %>
         </div>
-        <div id="skip1">
-          <%= link_to "► #{t('cancel')}", { :action => "manual_reset",} %>
+        <div>
+          <%= link_to "► #{t('cancel')}", { :action => "manual_reset"}, :class=>"user_button" %>
         </div>
 
 

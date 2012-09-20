@@ -30,7 +30,7 @@
   <%= link_to_remote "► #{t('add_new_category')}",
            :update => "payslip-category-form",
            :url => {:action => "add_payslip_category"},
-            :with=>"'emp_id=#{emp_id}&salary_date=#{salary_date}'" ,:class=>'submit_button'%>
+            :with=>"'emp_id=#{emp_id}&salary_date=#{salary_date}'", :html=> {:class=>'user_button'} %>
 </div>
 
 

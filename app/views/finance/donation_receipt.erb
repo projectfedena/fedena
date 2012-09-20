@@ -40,8 +40,8 @@
     <div class="val"><%= @donation.amount %></div>
     <div class="field1"><%= t('transaction_id') %>: </div>
     <div class="val"><%= @donation.transaction_id unless @donation.transaction_id.nil? %></div>
-    <div class="submit_button">
-      <%= link_to "► #{t('print_receipt')}", {:action => 'donation_receipt_pdf', :id => @donation.id}, :format => 'pdf', :target => '_blank' %>
+    <div>
+      <%= link_to "► #{t('print_receipt')}", {:action => 'donation_receipt_pdf', :id => @donation.id}, :format => 'pdf', :target => '_blank', :class=>"user_button" %>
     </div>
   </div>
 </div>

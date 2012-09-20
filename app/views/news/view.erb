@@ -43,12 +43,12 @@
   <% if @is_moderator %>
     
       <%= link_to "► #{t('edit_text')} #{t('news_text')}",
-        {:controller => "news",  :action => "edit", :id => @news.id }, :class => "edit_button"%>
+        {:controller => "news",  :action => "edit", :id => @news.id }, :class => "edit_button user_button"%>
     
   <div id="">
       <%= link_to "► #{t('delete_text')} #{t('news_text')}",
         { :controller => "news", :action => "delete", :id => @news.id },
-        :confirm => "#{t('delete_confirm_msg')}", :class => "delete_button" %>
+        :confirm => "#{t('delete_confirm_msg')}", :class => "delete_button user_button" %>
      
     </div>
   <div class="extender"></div>

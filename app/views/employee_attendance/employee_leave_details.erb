@@ -58,8 +58,8 @@
         <%end%>
       <% end %>
     </table>
-    <div class="submit-button">
-      <%= link_to_remote "►  #{t('reset_leave')}",:html=> {:class=>'submit_button3'} ,:url=>{:action=>'employee_wise_leave_reset', :id => @employee.id } %>
+    <div>
+      <%= link_to_remote "►  #{t('reset_leave')}",:html=> {:class=>'user_button'} ,:url=>{:action=>'employee_wise_leave_reset', :id => @employee.id } %>
     </div>
   </div>
 </div>

@@ -22,7 +22,7 @@
   <h1><%= t('school_news') %></h1>
   <h3><%= t('latest_announcement') %></h3>
   <div id="app-back-button">
-  <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
@@ -34,8 +34,9 @@
     <% end %>
   </ul>
 </div>
-<div id="search_add_news_area">
-<% unless flash[:notice].nil? %><p class="flash-msg"> <%= flash[:notice] %> </p><% end %>
+<div id="page-yield">
+  <div id="search_add_news_area">
+    <% unless flash[:notice].nil? %><p class="flash-msg"> <%= flash[:notice] %> </p><% end %>
     <div class="news_search_add">
       <div id="news_bg">
         <form name="s1form" action="" style="display:inline;">
@@ -48,7 +49,6 @@
     </div>
     <div class="extender"></div>
   </div>
-<div id="page-yield">
 
 
 
@@ -62,7 +62,7 @@
           <%=  link_to link_value, :controller => "news", :action => "view", :id => r.id%><br/>
           <small><%= t('posted') %><%= time_ago_in_words(r.created_at) %><%= t('ago') %></small>
         </div>
-      <%= '<div class="extender"></div>' if i%3 == 2 %>
+        <%= '<div class="extender"></div>' if i%3 == 2 %>
       <% end %>
     </div>
   <% end %>

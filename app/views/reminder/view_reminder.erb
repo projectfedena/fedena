@@ -47,7 +47,7 @@
     <div id="reminder-message"><strong><%= t('message') %>:</strong><br /><br /><%=h @new_reminder.body %></div>
     <div id="reminder-reply">
 
-      <%= link_to_function "►#{t('reply')}", :class=>'button' do |page|
+      <%= link_to_function "►#{t('reply')}", :class=>'button user_button' do |page|
         page.visual_effect :toggle_blind, "reply-form"
       end  unless @sender.nil? %>
       

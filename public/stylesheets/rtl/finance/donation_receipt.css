@@ -90,26 +90,7 @@
     width:500px;
 }
 
-.submit_button{
-    float: right;
-    margin-top: 50px;
-}
-
-.submit_button a{
+a.user_button{
     margin-top:15px;
     margin-right:100px;
-    padding: 7px 10px;
-    color: #fff;
-    background: #27292B;
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    font-weight: bold;
-    font-size: 14px;
-    border:none;
-    font-family: arial;
-    cursor:pointer;
-    text-decoration: none;
-}
-.submit_button a:hover{
-    background:  #373B3F;
 }

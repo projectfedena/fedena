@@ -82,24 +82,8 @@ select#adv_search_doj_year, select#adv_search_dob_year, select#adv_search_joinin
     margin-bottom:5px;
     float:left;
 }
-.search-again a {
-    -moz-background-clip:border;
-    -moz-background-inline-policy:continuous;
-    -moz-background-origin:padding;
-    -moz-border-radius-bottomleft:10px;
-    -moz-border-radius-bottomright:10px;
-    -moz-border-radius-topleft:10px;
-    -moz-border-radius-topright:10px;
-    -webkit-border-radius:10px;
-    background:#27292B none repeat scroll 0 0;
-    border:medium none;
-    color:#FFFFFF;
-    cursor:pointer;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
-    padding:7px 10px;
-    text-decoration:none;
+.user_button{
+    margin-top: 0 !important;
 }
 .span-sub-heading{
     font-weight: bold;

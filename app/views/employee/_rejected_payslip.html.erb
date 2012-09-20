@@ -97,6 +97,6 @@
   </li>
 </ul>
 
-<div id="submit-button" class ="approve">
-    <%= link_to "#{t('edit_text')}", {:controller=>"employee", :action=>"edit_rejected_payslip",:id =>@employee.id,:id2 => @salary_date } %>
+<div class ="approve">
+    <%= link_to "#{t('edit_text')}", {:controller=>"employee", :action=>"edit_rejected_payslip",:id =>@employee.id,:id2 => @salary_date }, :class=>"user_button" %>
   </div>

@@ -120,9 +120,9 @@
     <% end %>
 
     <% unless @command == 'edit' %>
-      <%= link_to "► #{t('confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create'%>  <%= link_to "► #{t('cancel')}", { :action=>"cancel_event" , :id=>@event.id },  :class=> 'create' %>
+      <%= link_to "► #{t('confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create user_button'%>  <%= link_to "► #{t('cancel')}", { :action=>"cancel_event" , :id=>@event.id },  :class=> 'create user_button' %>
     <% else %>
-      <%= link_to "► #{t('confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create'%>  <%= link_to "►  #{t('cancel')}", { :action=>"edit_event" , :id=>@event.id },  :class=> 'create' %>
+      <%= link_to "► #{t('confirm')}",{ :action=>"confirm_event",:id=>@event.id}, :class=> 'create user_button'%>  <%= link_to "►  #{t('cancel')}", { :action=>"edit_event" , :id=>@event.id },  :class=> 'create user_button' %>
     <% end %>
   </div>
 </div>

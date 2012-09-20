@@ -203,9 +203,9 @@
         <% end %>
 
 
-        <%= link_to "► #{t('search_again')}", {:action=>"advanced_search"}%>
+        <%= link_to "► #{t('search_again')}", {:action=>"advanced_search"}, :class => "user_button" %>
         <% unless @employees1.empty? %>
-          <%= link_to "► #{t('pdf_report')}",   {:action => "advanced_search_pdf",:for =>searched_for, :result2=>@employees2 , :result =>@employees1,:status=>params[:search][:status_equals], :format => 'pdf'}, :target => '_blank' , :class=> 'submit_button' %>
+          <%= link_to "► #{t('pdf_report')}",   {:action => "advanced_search_pdf",:for =>searched_for, :result2=>@employees2 , :result =>@employees1,:status=>params[:search][:status_equals], :format => 'pdf'}, :target => '_blank', :class => "user_button" %>
         <% end %>
       </div>
       <div class="extender"></div>

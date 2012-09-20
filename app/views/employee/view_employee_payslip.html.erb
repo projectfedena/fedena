@@ -92,6 +92,6 @@
 
 
 <div class="pdf-report">
-  <%= link_to "#{t('pdf_report')}", :controller=>"employee", :action=>"employee_individual_payslip_pdf", :id=>params[:id], :id2=>params[:salary_date], :format=>'pdf', :target=>"_blank" %>
+  <%= link_to "#{t('pdf_report')}", {:controller=>"employee", :action=>"employee_individual_payslip_pdf", :id=>params[:id], :id2=>params[:salary_date]}, :format=>'pdf', :target=>"_blank", :class=>"user_button" %>
 </div>
 </div>

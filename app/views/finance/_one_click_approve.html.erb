@@ -20,7 +20,7 @@
 
 <%unless @dates.empty? %>
   <div id="submit-button" class ="approve">
-      <%= link_to t('approve'), {:controller=>"finance", :action=>"one_click_approve_submit",:date => @salary_date } %>
+      <%= link_to t('approve'), {:controller=>"finance", :action=>"one_click_approve_submit",:date => @salary_date }, :class=>"user_button" %>
   </div>
 <% else%>
   <div id="submit-button" class ="approved">
