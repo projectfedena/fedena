@@ -28,10 +28,12 @@ class ScheduledJobsController < ApplicationController
           h = j.handler
           unless h.nil?
             obj = j.payload_object.class.name
-            type = j.payload_object.job_type
-            j_type = "#{obj}/#{type}"
-            if j_type == @job_type
-              @jobs.push j
+            if j.payload_object.respond_to?("job_type")
+              type = j.payload_object.job_type
+              j_type = "#{obj}/#{type}"
+              if j_type == @job_type
+                @jobs.push j
+              end
             end
           end
         end
