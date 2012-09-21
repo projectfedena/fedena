@@ -116,6 +116,7 @@ class ExamReportsController < ApplicationController
         elective_subjects.push Subject.find(elect.subject_id)
       end
       @subjects = general_subjects + elective_subjects
+      @subjects.reject!{|s| (s.no_exams==true or s.exam_not_created(@exam_groups.collect(&:id)))}
     else
       @student = Student.find_by_id(params[:student])
       if @student.nil?
@@ -142,6 +143,7 @@ class ExamReportsController < ApplicationController
         elective_subjects.push Subject.find(elect.subject_id)
       end
       @subjects = general_subjects + elective_subjects
+      @subjects.reject!{|s| (s.no_exams==true or s.exam_not_created(@exam_groups.collect(&:id)))}
       render(:update) do |page|
         page.replace_html   'grouped_exam_report', :partial=>"grouped_exam_report"
       end
@@ -199,6 +201,7 @@ class ExamReportsController < ApplicationController
         elective_subjects.push Subject.find(elect.subject_id,:conditions => {:is_deleted => false})
       end
       @subjects = general_subjects + elective_subjects
+      @subjects.reject!{|s| (s.no_exams==true or s.exam_not_created(@exam_groups.collect(&:id)))}
     else
       @student = Student.find_by_id(params[:student])
       if @student.nil?
@@ -225,6 +228,7 @@ class ExamReportsController < ApplicationController
         elective_subjects.push Subject.find(elect.subject_id)
       end
       @subjects = general_subjects + elective_subjects
+      @subjects.reject!{|s| (s.no_exams==true or s.exam_not_created(@exam_groups.collect(&:id)))}
     end
     render :pdf => 'archived_batches_exam_report_pdf',
       :orientation => 'Landscape'

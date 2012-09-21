@@ -99,6 +99,7 @@
             <% elective_subjects.push Subject.find(elect.subject_id) %>
           <% end %>
           <% @subjects = general_subjects + elective_subjects %>
+          <% @subjects.reject!{|s| (s.no_exams==true or s.no_exam_for_batch(batch.id))} %>
           <% unless @subjects.empty? %>
             <div class="batch-name"><%= batch.full_name %></div>
             <% total_credits=0 %>

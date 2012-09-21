@@ -78,6 +78,20 @@ class Subject < ActiveRecord::Base
     return selected_employee
   end
 
+  def no_exam_for_batch(batch_id)
+    grouped_exams = GroupedExam.find_all_by_batch_id(batch_id).collect(&:exam_group_id)
+    return exam_not_created(grouped_exams)
+  end
+
+  def exam_not_created(exam_group_ids)
+    exams = Exam.find_all_by_exam_group_id_and_subject_id(exam_group_ids,self.id)
+    if exams.empty?
+      return true
+    else
+      return false
+    end
+  end
+
   private
 
   def fa_group_valid
