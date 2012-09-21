@@ -1044,3 +1044,6 @@ textarea{
 .themed_text{
     color: #B00;
 }
+.themed_bg {
+    background-color: #B00;
+}
