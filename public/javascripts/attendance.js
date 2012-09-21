@@ -15,8 +15,8 @@ var presentElem = new Element('a',{
     'date':''
 }).addClassName('present');
 var cellElem = new Element('td',{
-    'class':'td-mark'
-}).addClassName('td-mark');
+    'class':'td-mark themed_text'
+}).addClassName('td-mark themed_text');
 
 
 function getjson(val){
@@ -103,13 +103,13 @@ function drawBox(){
     }).addClassName('tr-head');
     var nameTd = new Element('td',{
         'class':'head-td-name'
-    }).addClassName('head-td-name').update(translated['name']);
+    }).addClassName('head-td-name themed_text').update(translated['name']);
 
     var dateTd = new Element('td',{
-        'class':'head-td-date'
-    }).addClassName('head-td-date');
+        'class':'head-td-date themed_text'
+    }).addClassName('head-td-date themed_text');
     var dtDiv1 = new Element('div',{'class':'day'}).addClassName('day');
-    var dtDiv2 = new Element('div',{'class':'date'}).addClassName('date');
+    var dtDiv2 = new Element('div',{'class':'date themed_text'}).addClassName('date themed_text');
     var dtd, dtdiv1, dtdiv2, ndate, tdate;
     tdate = Date.parse(date_today);
     headrow.update(nameTd);
@@ -218,7 +218,7 @@ function getName(row,col,tbl){
 }
 function makeHoverEl(dt,name){
     var maindiv = new Element('div',{
-        'class':'date'
+        'class':'date themed_text'
     }).addClassName('date');
     var spanel =  new Element('span');
     var secdiv = new Element('div');

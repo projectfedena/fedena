@@ -2,18 +2,19 @@
     padding: 10px;
     background-color: #C3D9FF;
     border-radius: 8px;
+/*    border: 1px solid #BB0000;*/
 }
 #teacher{
-border-right: none;
+border-left: none;
 width: 150px;
-border-top-right-radius: 0px;
-border-bottom-right-radius: 0px;
-}
-#timetable{
 border-top-left-radius: 0px;
 border-bottom-left-radius: 0px;
-border-left: none;
-padding-left: 0px;
+}
+#timetable{
+border-top-right-radius: 0px;
+border-bottom-right-radius: 0px;
+/*border-left: none;*/
+padding-right: 0px;
 }
 #timetable-container{
     font-weight: bold;
@@ -21,21 +22,22 @@ padding-left: 0px;
 /*    overflow-y: scroll;*/
 }
 .batch{
-    height: 80px;
+    height: 66px;
 }
 #weekday-header{
 
     background-color: #fff;
     height: 30px;
+    color: #990A10;
     font-size: 12px;
 
-} 
+}
 #timetable td{
     text-align: center;
 }
 #period-count{
     background-color: #fff;
-    height: 66px;
+/*    height: 66px;*/
     font-size: 12px;
     font-weight: bold;
 }
@@ -51,20 +53,16 @@ padding-left: 0px;
     font-weight: bold;
     font-size: 12px;
     background-color: #fff;
-    min-width: 70px;
 }
 #table-viewer{
 /*    height:480px;*/
-    margin-left: 0px;
-    overflow-x: scroll;
+    margin-right: 0px;
+    overflow-x: auto;
     width: 810px;
-    float: left;
+    float: right;
 }
 .box{
     width: 95%;
     margin: 0 auto;
-    overflow-x: auto;
-}
-.employee_list{
-    float: left;
+    overflow-x: scroll;
 }

@@ -24,14 +24,14 @@
         <tr id="weekday-header"><th></th></tr>
         <% @all_weekdays.each do |weekday| -%>
           <tr class="batch">
-            <td class="batch_name"><%= t(Date::DAYNAMES[weekday.day_of_week].downcase).upcase -%></td>
+            <td class="batch_name themed_text"><%= t(Date::DAYNAMES[weekday.day_of_week].downcase).upcase -%></td>
           </tr>
         <% end %>
       </table>
     </div>
     <div id="table-viewer">
       <table id="timetable" cellspacing="1">
-        <tr id="period-count">
+        <tr id="period-count" class="themed_text">
           <% @all_classtimings.each do |ct| -%>
             <td class="tte">
               <%= "#{ct.start_time.strftime("%I:%M%p")} - #{ct.end_time.strftime("%I:%M%p")}" -%>
@@ -50,7 +50,7 @@
                   <% else %>
                     <%= @electives[tte.subject.elective_group_id].first.code %>
                   <% end %>
-                  <div class="batch_name">
+                  <div class="batch_name themed_text">
                     <%= timetable_batch (@timetable_entries[weekday.id][ct.id])  -%>
                   </div>
                 <% end -%>

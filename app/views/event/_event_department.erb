@@ -28,10 +28,10 @@
       </li>
     <% end %>
   </ul>
-  <%= link_to_remote "#{t('select_more_department')}", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]} %>
+  <%= link_to_remote "#{t('select_more_department')}", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]}, :html=>{:class=>"themed_text"} %>
 <% else %>
   <span class="title"><%= t('no_department_selected') %>:</span>
-  <%= link_to_remote "#{t('select_department')}", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]} %>
+  <%= link_to_remote "#{t('select_department')}", :url=>{:controller=>"event", :action=>"select_employee_department", :id=>params[:id]}, :html=>{:class=>"themed_text"} %>
 <% end %>
   </div>
 

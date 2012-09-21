@@ -17,14 +17,14 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<div class="name"><%= t('fees_receipt_no') %></div><div class="val"><span>:</span>F<%= @financefee.id %></div>
+<div class="name"><%= t('fees_receipt_no') %></div><div class="val themed_text"><span>:</span>F<%= @financefee.id %></div>
 <% unless @fee_category.nil? %>
-  <div class="name"><%= t('fee_category_name') %></div><div class="val"><span>:</span><%= @fee_category.name %></div>
+  <div class="name"><%= t('fee_category_name') %></div><div class="val themed_text"><span>:</span><%= @fee_category.name %></div>
 <% end %>
 <% unless @student.student_category.nil? %>
-  <div class="name"><%= t('student_category') %></div><div class="val"><span>:</span><%= @student.student_category.name %></div>
+  <div class="name"><%= t('student_category') %></div><div class="val themed_text"><span>:</span><%= @student.student_category.name %></div>
 <% else %>
-  <div class="name"><%= t('student_category') %></div><div class="val"><span>:</span><%= t('n_a') %></div>
+  <div class="name"><%= t('student_category') %></div><div class="val themed_text"><span>:</span><%= t('n_a') %></div>
 <% end %>
 
 <br />
@@ -72,7 +72,7 @@
         <tr class="tr-blank"></tr>
         <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
           <td class="col-1" ></td>
-          <td class="col-1" colspan="2"><span><%= t('discount') %></span></td>
+          <td class="col-1" colspan="2"><span class="themed_text"><%= t('discount') %></span></td>
         </tr>
         <% @batch_discounts.each do |d| %>
           <tr class="tr-<%= cycle("odd","even") %>">
@@ -122,7 +122,7 @@
       <% unless @fine.nil? %>
         <tr class="tr-<%= cycle("odd","even") %>">
           <td class="col-1"><%= i+=1 %></td>
-          <td class="col-2"><span><%= t('fine_on') %> <%= Date.today %></span></td>
+          <td class="col-2"><span class="themed_text"><%= t('fine_on') %> <%= Date.today %></span></td>
           <td class="col-6"><%= @fine.to_f %></td>
         </tr>
         <% unless @financefee.is_paid? == true %>
@@ -141,7 +141,7 @@
             <% if trans.fine_included %>
               <tr class="tr-<%= cycle("odd","even") %>">
                 <td class="col-1"><%= i+=1 %></td>
-                <td class="col-2"><span><%= t('fine_on') %> <%= trans.transaction_date %></span></td>
+                <td class="col-2"><span class="themed_text"><%= t('fine_on') %> <%= trans.transaction_date %></span></td>
                 <td class="col-6"><%= trans.fine_amount %></td>
               </tr>
               <% total_fees += trans.fine_amount.to_f %>
@@ -156,7 +156,7 @@
       <% unless @paid_fees.nil? %>
         <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
           <td class="col-1" ></td>
-          <td class="col-1" colspan="2" ><span><%= t('payment_done') %> </span></td>
+          <td class="col-1" colspan="2" ><span class="themed_text"><%= t('payment_done') %> </span></td>
 
         </tr>
         <% paid = 0 %>

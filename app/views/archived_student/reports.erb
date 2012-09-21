@@ -34,7 +34,7 @@
 
     <div class="exam-results-reports-col">
       <% if permitted_to? :exam_report, :student %>
-        <h4><%= t('recent_exams') %></h4>
+        <h4 class="themed_text"><%= t('recent_exams') %></h4>
         <ul>
           <% @exam_groups.each do |e| %>
             <li><%= link_to e.name, { :action => 'generated_report',:exam_group=>e.id, :student => @student.id} %></li>
@@ -42,7 +42,7 @@
         </ul>
       <%end%>
 
-      <h4><%= t('subject_wise_result') %></h4>
+      <h4 class="themed_text"><%= t('subject_wise_result') %></h4>
       <ul>
         <% @subjects.each do |s| %>
           <li><%= link_to s.name, { :action => 'generated_report3', :student => @student.id, :subject => s.id } %></li>
@@ -52,7 +52,7 @@
 
     <div class="exam-results-reports-col">
 
-      <h4><%= t('detailed_report') %></h4>
+      <h4 class="themed_text"><%= t('detailed_report') %></h4>
       <ul>
         <% unless @grouped_exams.empty? %>
           <li><%= link_to "Transcript Report", { :controller=>'exam', :action => 'student_transcript',:transcript=>{:batch_id=>@student.batch_id},:student_id=>@student.former_id,:flag=>"1" } %></li>
@@ -77,7 +77,7 @@
 
     <h3><%= t('attendance') %></h3>
 
-    <h4><%= t('detailed_report') %></h4>
+    <h4 class="themed_text"><%= t('detailed_report') %></h4>
     <ul>
       <% @old_batches.each do |b| %>
         <li><%= link_to b.name, :action => 'student_report', :id => @student.id, :year => b.id %></li>

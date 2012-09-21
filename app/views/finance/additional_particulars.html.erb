@@ -27,13 +27,13 @@
 </div>
 <div id="page-yield">
   <div id="particulars" >
-    <div class="name"><%= t('category_name') %></div><div class="val"><span>:</span><%= @additional_category.name %></div>
-    <div class="name"><%= t('description') %></div><div class="val"><span>:</span><%= @additional_category.description %></div>
+    <div class="name"><%= t('category_name') %></div><div class="val themed_text"><span>:</span><%= @additional_category.name %></div>
+    <div class="name"><%= t('description') %></div><div class="val themed_text"><span>:</span><%= @additional_category.description %></div>
 
   <% unless @additional_category.batch.nil? %>
-    <div class="name"><%= t('course_text') %></div><div class="val"><span>:</span><%= @additional_category.batch.full_name %></div>
+    <div class="name"><%= t('course_text') %></div><div class="val themed_text"><span>:</span><%= @additional_category.batch.full_name %></div>
     <% else %>
-  <div class="name"><%= t('course_text') %></div><div class="val"><span>:</span>NIL</div>
+  <div class="name"><%= t('course_text') %></div><div class="val themed_text"><span>:</span>NIL</div>
   <% end %>
 <br/>
 

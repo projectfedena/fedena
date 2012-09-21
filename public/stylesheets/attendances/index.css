@@ -132,7 +132,6 @@ table#attendance{
 }
 .td-mark a.absent{
     text-decoration: none;
-    color:#990A10;
     font-size:12px;
     font-weight:bold;
 }
@@ -159,7 +158,6 @@ table.table{
 }
 .td-mark .date span,.td-name .date span{
     display: none;
-    color: #FFFFFF;
 }
 .td-mark:hover .date span{
     display: block;
@@ -170,12 +168,10 @@ table.table{
     min-height: 40px;
     left: 50px;
     top: -10px;
-    color: #FFFFFF;
     padding: 5px;
     -moz-border-radius:8px;
     -webkit-border-radius:8px;
     padding-top:10px;
-    color:#990A10;
     font-weight:bold;
 }
 .active{

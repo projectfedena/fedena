@@ -21,12 +21,12 @@
   <div id="timetable-container">
     <div class="employee_list">
       <table id="teacher" cellspacing="1">
-        <tr id="weekday-header"><th></th></tr>
-        <tr id="period-count"><td></td></tr>
+        <tr id="weekday-header" class="themed_text"><th></th></tr>
+        <tr id="period-count" class="themed_text"><td></td></tr>
         <% @all_teachers.each do |teacher| -%>
           <% unless teacher.nil? %>
             <tr class="batch">
-              <td class="batch_name"><%= "#{teacher.full_name} [ #{teacher.employee_number} ]"  %></td>
+              <td class="batch_name themed_text"><%= "#{teacher.full_name} [ #{teacher.employee_number} ]"  %></td>
             </tr>
           <% end %>
         <% end %>
@@ -34,13 +34,13 @@
     </div>
     <div id="table-viewer">
       <table id="timetable" cellspacing="1">
-        <tr id="weekday-header">
+        <tr id="weekday-header" class="themed_text">
   <%#*<th></th>%>
           <% @all_weekdays.each do |weekday| -%>
             <th colspan="<%= @all_classtimings.count %>"><%= t("#{Date::DAYNAMES[weekday.day_of_week].downcase}").upcase -%></th>
           <% end -%>
         </tr>
-        <tr id="period-count">
+        <tr id="period-count" class="themed_text">
   <%#*<td></td>%>
           <% @all_weekdays.each do |weekday| -%>
             <% @all_classtimings.each do |ct| -%>

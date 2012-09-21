@@ -1042,3 +1042,6 @@ textarea{
 .user_button:hover{
     background: #373b3f;
 }
+.themed_text{
+    color: #B00;
+}

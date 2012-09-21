@@ -26,7 +26,6 @@ padding-right: 0px;
 
     background-color: #fff;
     height: 30px;
-    color: #990A10;
     font-size: 12px;
 
 } 
@@ -36,14 +35,12 @@ padding-right: 0px;
 #period-count{
     background-color: #fff;
     height: 66px;
-    color: #990A10;
     font-size: 12px;
     font-weight: bold;
 }
 .batch_name{
     background-color: #fff;
     height: 30px;
-    color: #990A10;
     font-size: 12px;
     font-weight: bold;
     padding: 0px 20px;

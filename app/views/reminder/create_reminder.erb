@@ -124,11 +124,11 @@
       <% @config = Configuration.available_modules  %>
       <% if @config.include?('HR') %>
         <div class="to-options">
-          <%= link_to_remote "#{t('reminder_to_staff')}", :url=>{:controller=>"reminder",:action=>"select_employee_department"},:update=>"select-employee-department" %>
+          <%= link_to_remote "#{t('reminder_to_staff')}", :url=>{:controller=>"reminder",:action=>"select_employee_department"},:update=>"select-employee-department", :html=>{:class=>"themed_text"} %>
         </div>
       <% else %>
         <div class="to-options">
-          <%= link_to_remote "#{t('reminder_to_staff')}", :url=>{:controller=>"reminder",:action=>"select_users"},:update=>"select-employee-department" %>
+          <%= link_to_remote "#{t('reminder_to_staff')}", :url=>{:controller=>"reminder",:action=>"select_users"},:update=>"select-employee-department", :html=>{:class=>"themed_text"} %>
         </div>
       <% end %>
       <%= image_tag("loader.gif",
@@ -154,7 +154,7 @@
 
 
       <div class="to-options">
-        <%= link_to_remote "#{t('reminder_to_student')}", :url=>{:controller=>"reminder",:action=>"select_student_course"},:update=>"select-student-course" %>
+        <%= link_to_remote "#{t('reminder_to_student')}", :url=>{:controller=>"reminder",:action=>"select_student_course"},:update=>"select-student-course", :html=>{:class=>"themed_text"} %>
       </div>
       <div class="extender"></div>
       <div id="select-student-course">

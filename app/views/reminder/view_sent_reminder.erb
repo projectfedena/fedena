@@ -41,7 +41,7 @@
 
 <div id="reminder-date"><%= t('sent_on') %>: <%= I18n.l(@sent_reminder.created_at,:format=>"%A, %d %B, %Y") %></div>
 
-<div id="reminder-subject"><%= t('subject') %>: <%= @sent_reminder.subject %></div>
+<div id="reminder-subject" class="themed_text"><%= t('subject') %>: <%= @sent_reminder.subject %></div>
 
 
 

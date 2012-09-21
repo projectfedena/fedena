@@ -68,15 +68,15 @@
     <div class="info">
       <div class="info-left">
         <div class="info1">
-          <label class="field-label"><%= t('name') %></label>: <label class="infolbl"> <%= @student.full_name %></label>
+          <label class="field-label"><%= t('name') %></label>: <label class="infolbl themed_text"> <%= @student.full_name %></label>
         </div>
         <div class="info1">
-          <label class="field-label"><%= t('course_text') %></label>: <label class="infolbl"> <%= @student.batch.course.course_name %></label>
+          <label class="field-label"><%= t('course_text') %></label>: <label class="infolbl themed_text"> <%= @student.batch.course.course_name %></label>
         </div>
       </div>
       <div class="info-right">
         <div class="info1">
-          <label class="field-label"><%= t('adm_no') %></label>: <label class="infolbl"> <%= @student.admission_no.present? ? @student.admission_no : "-" %></label>
+          <label class="field-label"><%= t('adm_no') %></label>: <label class="infolbl themed_text"> <%= @student.admission_no.present? ? @student.admission_no : "-" %></label>
         </div>
       </div>
     </div>
@@ -118,7 +118,7 @@
                 <% unless subject_average.nil? %>
                   <tr class="tr-<%= cycle('odd', 'even') %>">
                     <% if @student.has_retaken_exam(s.id) %>
-                      <td class="col-1"> <%= s.code %> - <label class="infolbl"><%= t('retaken') %></label></td>
+                      <td class="col-1"> <%= s.code %> - <label class="infolbl themed_text"><%= t('retaken') %></label></td>
                     <% else %>
                       <td class="col-1"> <%= s.code %></td>
                     <% end %>
