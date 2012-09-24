@@ -40,7 +40,7 @@
 }
 .category-list li div{
     font-size: 12px;
-    height: 1px;
+    height: auto;
     text-decoration: none;
 
 }
