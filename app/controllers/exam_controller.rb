@@ -1206,6 +1206,7 @@ class ExamController < ApplicationController
       elective_subjects.push Subject.find(elect.subject_id)
     end
     @subjects = general_subjects + elective_subjects
+    @subjects.reject!{|s| (s.no_exams==true or s.exam_not_created(@exam_groups.collect(&:id)))}
   end
 
   def previous_batch_exams
