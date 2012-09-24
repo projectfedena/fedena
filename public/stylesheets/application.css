@@ -1023,7 +1023,7 @@ textarea{
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     background:#27292B none repeat scroll 0 0;
-    color:#FFFFFF;
+    color:#FFFFFF !important;
     font-family:arial;
     font-size:14px;
     font-weight:bold;
