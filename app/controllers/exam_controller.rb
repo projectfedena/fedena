@@ -341,7 +341,7 @@ class ExamController < ApplicationController
   end
 
   def list_batch_subjects
-    @subjects = Subject.find_all_by_batch_id(params[:batch_id],:conditions=>"is_deleted=false")
+    @subjects = Subject.find_all_by_batch_id(params[:batch_id],:conditions=>"is_deleted=false AND no_exam=false")
     render(:update) do |page|
       page.replace_html 'subject-select', :partial=>'rank_subject_select'
     end
@@ -381,7 +381,7 @@ class ExamController < ApplicationController
   end
 
   def list_subjects
-    @subjects = Subject.find_all_by_batch_id(params[:batch_id],:conditions=>"is_deleted=false")
+    @subjects = Subject.find_all_by_batch_id(params[:batch_id],:conditions=>"is_deleted=false AND no_exam=false")
     render(:update) do |page|
       page.replace_html 'subject-select', :partial=>'subject_select'
     end
