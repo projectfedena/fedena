@@ -10,7 +10,7 @@ body {
 }
 #header_bg {
     height : 60px;
-    background : #b00 url(../../images/application/app_layout_header_bg.jpg) repeat;
+    background : #b00 url(../../images/application/bg_pattern.png) repeat;
 }
 #header {
     width : 980px; height : 60px;
@@ -236,7 +236,7 @@ body > #content_wrapper {
     font: normal 0.9em Arial;
     line-height: 18px;
     z-index: 100; /* zIndex should be greater than that of shadow's below */
-    background: #b00 url(../../images/application/app_layout_header_bg.jpg) repeat;
+    background: #b00 url(../../images/application/bg_pattern.png) repeat;
     width: 125px; /* default width for menu */
 }
 
