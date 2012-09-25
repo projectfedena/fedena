@@ -418,54 +418,10 @@ html>body #nav ul.scriptaculously{/*ie shit*/
 }
 
 .pdf-link{
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    background:#27292B none repeat scroll 0 0;
-    color:#FFFFFF;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
-    margin:0px auto;
-    margin-top:30px;
-    padding:7px 10px;
-    border:none;
-    text-align:center;
-    width:100px;
-    cursor:pointer;
+    overflow: hidden;
+    margin-left: 300px;
 }
 
-.pdf-link a{
-    color:#fff;
-    text-decoration: none;
-}
-.pdf-link:hover{
-    background:  #373B3F;
-}
-.edit{
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    background:#27292B none repeat scroll 0 0;
-    color:#FFFFFF;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
-    margin:0px;
-    margin-top:30px;
-    padding:7px 10px;
-    border:none;
-    text-align:center;
-    width:auto;
-    cursor:pointer;
-    float:left;
-    margin-right:20px;
-}
-.edit a{
-    color:#fff;
-    text-decoration: none;
-}
-.edit:hover{
-    background:  #373B3F;
-}
 .profile_top_banner{
     position:absolute;
     float:right;
@@ -546,7 +502,7 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     width: 300px;
     height: auto;
     float: left;
-  
+
 }
 
 .edit-leave{
@@ -627,7 +583,7 @@ html>body #nav ul.scriptaculously{/*ie shit*/
 
     font-weight:bold;
     padding:10px 10px 10px 10px;
-   border-top:1px solid #bdcfff;
+    border-top:1px solid #bdcfff;
     border-bottom:1px solid #bdcfff;
 }
 .right{
@@ -655,7 +611,7 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     padding:10px 10px 10px 10px;
 }
 .profile{
-   -moz-transform: rotate(37deg);  /* FF3.5+ */
+    -moz-transform: rotate(37deg);  /* FF3.5+ */
     -o-transform: rotate(37deg);  /* Opera 10.5 */
     -webkit-transform: rotate(37deg);  /* Saf3.1+, Chrome */
     -ms-transform: rotate(37deg);  /* IE9 */

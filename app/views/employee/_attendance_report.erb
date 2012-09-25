@@ -56,7 +56,7 @@
     <div class="type_nameeven"><div class="total"><%= t('total_leaves_taken')  %>:</div><div class="count"><%= total_leave %></div></div>
   </div>
   <div class="pdf-link">
-    <%=  link_to " ►#{t('pdf_report')}", :controller=>"employee_attendance", :action=>"employee_attendance_pdf", :id=>@employee.id, :format=>'pdf' %>
+    <%=  link_to " ►#{t('pdf_report')}", {:controller=>"employee_attendance", :action=>"employee_attendance_pdf", :id=>@employee.id, :format=>'pdf'}, :class => 'user_button' %>
   </div>
 </div>
 
