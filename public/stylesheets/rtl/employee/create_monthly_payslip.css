@@ -246,22 +246,18 @@ ul{
 }
 
 #submit-button input{
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    background:#27292B;
-    color:#FFFFFF;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
-    margin: 0px auto;
-    padding:7px 12px;
-    border:none;
-    float:left;
-    text-align:center;
-    width:auto;
-    cursor:pointer;
-    margin-right:280px;
-    margin-top:30px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    background: #27292B;
+    color: white;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 280px;
+    margin-top: 30px;
+    padding: 7px 10px;
+    border: none;
+    cursor: pointer;
 }
 
 #submit-button input:hover{
