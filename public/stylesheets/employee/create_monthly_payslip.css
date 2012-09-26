@@ -272,6 +272,7 @@ ul{
     text-align:center;
     width:auto;
     cursor:pointer;
+    margin-left:280px;
 }
 
 #submit-button input:hover{
