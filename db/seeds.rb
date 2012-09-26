@@ -102,3 +102,42 @@ end
 Event.all.each do |e|
   e.destroy if e.origin_type=="AdditionalExam"
 end
+
+#insert record in privilege_tags table
+[
+  {"name_tag" => "system_settings", "priority"=>2},
+  {"name_tag" => "administration_operations", "priority"=>1},
+  {"name_tag" => "academics", "priority"=>3},
+  {"name_tag" => "student_management", "priority"=>5},
+  {"name_tag" => "social_other_activity", "priority"=>4},
+].each do |param|
+  PrivilegeTag.find_or_create_by_name_tag(param)
+end
+
+
+#add privilege_tag_id, priority in privileges table
+#system_settings
+Privilege.find_by_name('GeneralSettings').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('system_settings').id, :priority=>10 )
+Privilege.find_by_name('AddNewBatch').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('system_settings').id, :priority=>20 )
+Privilege.find_by_name('SubjectMaster').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('system_settings').id, :priority=>30 )
+Privilege.find_by_name('SMSManagement').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('system_settings').id, :priority=>40 )
+#administration_operations
+Privilege.find_by_name('HrBasics').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('administration_operations').id, :priority=>50 )
+Privilege.find_by_name('EmployeeSearch').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('administration_operations').id, :priority=>60 )
+Privilege.find_by_name('EmployeeAttendance').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('administration_operations').id, :priority=>70 )
+Privilege.find_by_name('PayslipPowers').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('administration_operations').id, :priority=>80 )
+Privilege.find_by_name('FinanceControl').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('administration_operations').id, :priority=>90 )
+Privilege.find_by_name('EventManagement').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('administration_operations').id, :priority=>100 )
+Privilege.find_by_name('ManageNews').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('administration_operations').id, :priority=>110 )
+#academics
+Privilege.find_by_name('ExaminationControl').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('academics').id, :priority=>230 )
+Privilege.find_by_name('EnterResults').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('academics').id, :priority=>240 )
+Privilege.find_by_name('ViewResults').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('academics').id, :priority=>250 )
+Privilege.find_by_name('ManageTimetable').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('academics').id, :priority=>260 )
+Privilege.find_by_name('TimetableView').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('academics').id, :priority=>270 )
+#student_management
+Privilege.find_by_name('Admission').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('student_management').id, :priority=>280 )
+Privilege.find_by_name('StudentsControl').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('student_management').id, :priority=>290 )
+Privilege.find_by_name('StudentView').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('student_management').id, :priority=>300 )
+Privilege.find_by_name('StudentAttendanceRegister').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('student_management').id, :priority=>310 )
+Privilege.find_by_name('StudentAttendanceView').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('student_management').id, :priority=>320 )
