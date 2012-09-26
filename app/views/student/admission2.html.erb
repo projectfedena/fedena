@@ -37,13 +37,13 @@
           <li class="list<%=cycle('odd', 'even')%>"><%= p.full_name %> - <%= p.relation %> </li>
         <%  end %>
         <div id="add-more-parent">
-          <%= link_to_function "► #{t('add_another_guardian')}" do |page|
+          <%= link_to_function "► #{t('add_another_guardian')}", :class => "user_button" do |page|
             page.visual_effect :toggle_slide, "admission1_form"
             page.hide "parents"
           end %>
         </div>
         <div id="skip">
-            <%= link_to "► #{t('finish')}", {:controller => "student", :action => "admission3", :id => @student.id } %>
+            <%= link_to "► #{t('finish')}", {:controller => "student", :action => "admission3", :id => @student.id }, :class => "user_button" %>
         </div>
         <script type="text/javascript">
           Event.observe(window, 'load', function() { $('admission1_form').hide(); });

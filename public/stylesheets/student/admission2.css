@@ -115,19 +115,11 @@ ul#parents-list li.listeven {
     margin-left:30px;
 }
 #add-more-parent{
-    margin-top:28px;
     margin-left:100px;
     float:left;
-    -moz-border-radius:12px;
-    -webkit-border-radius:12px;
-    background:none repeat scroll 0 0 #27292B;
-    color:#FFFFFF;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
-    padding:7px 10px;
 }
 #add-more-parent a{
+    margin-top:28px;
     color:#fff;
     text-decoration: none;
 }
