@@ -444,17 +444,21 @@ class EmployeeController < ApplicationController
   end
 
   def edit_privilege
-    @privileges = Privilege.find(:all)
     @user = User.find_by_username(params[:id])
     @employee = @user.employee_record
+    @finance = Configuration.find_by_config_value("Finance")
+    @sms_setting = SmsSetting.application_sms_status
+    @hr = Configuration.find_by_config_value("HR")
+    @privilege_tags=PrivilegeTag.find(:all,:order=>"priority ASC")
+    @user_privileges=@user.privileges
     if request.post?
       new_privileges = params[:user][:privilege_ids] if params[:user]
       new_privileges ||= []
       @user.privileges = Privilege.find_all_by_id(new_privileges)
-      redirect_to :action => 'admission4',:id => @employee.id
+     redirect_to :action => 'admission4',:id => @employee.id
     end
   end
-
+  
   def edit3_1
     @employee = Employee.find(params[:id])
     @additional_fields = AdditionalField.find(:all, :conditions=>"status = true")

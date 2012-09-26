@@ -18,10 +18,45 @@
 #under the License. -%>
 
 
+<script type="text/javascript">
+  function privilege_tag_check_all_or_none(privilege_tag_id, th_is){
+    field_value = th_is.checked
+    $$('.privilege_check_'+privilege_tag_id).each(function(check){
+      check.checked = field_value;
+      if(check.checked == false){
+        $(check).up('tr').removeClassName('active')
+      }
+      else{
+        $(check).up('tr').addClassName('active')
+      }
+    })
+  }
+
+  function privilege_check(privilege_tag_id, th_is){
+    if(th_is.checked == false){
+      $$('.check_all_'+privilege_tag_id).first().checked = false
+      $(th_is).up('tr').removeClassName('active')
+    }
+    else
+    {
+      $(th_is).up('tr').addClassName('active')
+      var flag =0;
+      $$('.privilege_check_'+privilege_tag_id).each(function(check){
+        if(check.checked == false){
+          flag=1;
+        }
+      });
+      if(flag==0)
+      {
+        $$('.check_all_'+privilege_tag_id).first().checked = true
+      }
+    }
+  }
+</script>
 <div id="content-header">
-    <%= image_tag("/images/HR/show_hr.png") %>
+  <%= image_tag("/images/user_profile/user_profile_logo.jpg") %>
   <h1><%= t('user_privilege') %></h1>
-  <h3><%= t('set_privilege') %></h3>
+  <h3><%= t('edit_privilege_text') %></h3>
   <div id="app-back-button">
     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
@@ -29,37 +64,69 @@
 
 
 
-<div class="label_field_pair"><label><%= t('set_privilege_for') %> <%= @user.full_name.capitalize %></label></div>
-<div id="list_content">
-  <div id="list">
-    <div class="sel-list">
-      <%= t('select') %>: <%= link_to_function "#{t('all')}", "$$('input.right').each(function(checkbox) { checkbox.checked = true; });" %>,
-      <%= link_to_function "#{t('none')}", "$$('input.right').each(function(checkbox) { checkbox.checked = false; });" %>
-    </div>
+<div id="page-yield">
 
-
+  <div class="privileges">
     <% form_for :user do |form| %>
-      <% for privilege in Privilege.find(:all) %>
-        <%    hr = Configuration.find_by_config_value("HR") %>
-        <%  finance = Configuration.find_by_config_value("Finance") %>
-        <%  if hr.nil?  %>
-          <% if privilege.name =="HrBasics" or  privilege.name =="EmployeeAttendance" or privilege.name =="EmployeeSearch" %>
-            <% next %>
+      <div class="privilege_heading" id="application-list">
+        <div class="label_field_pair"><label><%= t('set_privilege_for') %> <%= @user.full_name.capitalize %></label></div>
+        <div class="user_submit_button1">
+          <%= submit_tag "", :name => "commit", :value => "► #{t('save')}" %>
+        </div>
+      </div>
+      <div class="all_privileges_list">
+        <% @privilege_tags.each do |privilege_tag| %>
+          <% all_privileges = privilege_tag.privileges.all(:order=>"priority ASC") %>
+          <% if all_privileges.count > 0 %>
+            <table id="listing" align="center" width="300px" class="privilege_table" cellpadding="1" cellspacing="1">
+              <tr class="tr-head">
+                <td><%= check_box_tag "check_all", nil, false, {:class=>"check_all_#{privilege_tag.id}", :onChange=>"privilege_tag_check_all_or_none('#{privilege_tag.id}',this);" } %></td>
+                <td><%= t(privilege_tag.name_tag) %></td>
+              </tr>
+              <tr class="tr-blank"></tr>
+              <% all_privileges.each do |privilege| %>
+                <%  if @hr.blank?  %>
+                  <% if privilege.name =="HrBasics" or  privilege.name =="EmployeeAttendance" or privilege.name =="PayslipPowers" or privilege.name =="EmployeeSearch" %>
+                    <% next %>
+                  <% end %>
+                <% end %>
+                <%  if @finance.blank?  %>
+                  <% if privilege.name =="FinanceControl" %>
+                    <% next %>
+                  <% end %>
+                <% end %>
+
+                <% if privilege.name =="SMSManagement" %>
+                  <% if  @sms_setting==true %>
+                    <tr class="tr-<%= cycle('odd', 'even') %>">
+                      <td class="col-8"><%= check_box_tag "user[privilege_ids][]", privilege.id, @user_privileges.include?(privilege),{:class=>"privilege_check_#{privilege_tag.id}", :onChange=>"privilege_check('#{privilege_tag.id}', this)", :id=>"privilege_check_#{privilege.id}"}%></td>
+                      <td class="col-9"><%= t(privilege.description) %> </td>
+                    </tr>
+                    <%# if @user_privileges.include?(privilege) %>
+                      <script type="text/javascript">
+                        //$("privilege_check_"+<%= privilege.id  %> ).up('tr').addClassName('active')
+                        privilege_check('<%= privilege_tag.id  %>', $("privilege_check_<%=privilege.id%>"))
+                      </script>
+                    <%# end %>
+                  <% end %>
+                  <% next %>
+                <% end %>
+                <tr class="tr-<%= cycle('odd', 'even') %>">
+                  <td class="col-8"><%= check_box_tag "user[privilege_ids][]", privilege.id, @user_privileges.include?(privilege),{:class=>"privilege_check_#{privilege_tag.id}", :onChange=>"privilege_check('#{privilege_tag.id}', this)", :id=>"privilege_check_#{privilege.id}"}%></td>
+                  <td class="col-9"><%= t(privilege.description) %> </td>
+                </tr>
+                <%# if @user_privileges.include?(privilege) %>
+                  <script type="text/javascript">
+                   //$("privilege_check_"+<%= privilege.id  %> ).up('tr').addClassName('active')
+                    privilege_check('<%= privilege_tag.id  %>', $("privilege_check_<%=privilege.id%>"))
+                  </script>
+                <%# end %>
+              <% end %>
+            </table>
           <% end %>
         <% end %>
-        <%  if finance.nil?  %>
-          <% if privilege.name =="FinanceControl" or  privilege.name =="PayslipPowers" %>
-            <% next %>
-          <% end %>
-        <% end %>
-        <div class="name_list<%=cycle('odd', 'even')%>"><li>
-            <label><%= check_box_tag "user[privilege_ids][]", privilege.id, @user.privileges.include?(privilege),:class=>'right'%>
-              <div class="att_list_names"> <%= t(privilege.description) %> </div> </label>
-          </li></div>
-      <% end %>
-      <div class="user_submit_button1">
-        <%= submit_tag "", :name => "commit", :value =>  "► #{t('update')}" %>
       </div>
     <% end %>
   </div>
 </div>
+
