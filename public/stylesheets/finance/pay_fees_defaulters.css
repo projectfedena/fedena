@@ -225,7 +225,7 @@ label-field-pair2 {
 }
 
 td span{
-   color: #990A10;
+    color: #990A10;
 }
 
 table#listing td.col-8 {
@@ -247,7 +247,8 @@ a.user_button{
     font-family: arial;
     cursor:pointer;
     margin-top:4px;
-    margin-left: 806px
+    margin-left: 814px;
+    margin-right: 0;
 }
 
 
