@@ -349,6 +349,10 @@ de: # locale
       errors_found: "Folgende Fehler wurden gefunden"
 
   sl_no: "Sl Nr."
+  system_settings: "System Settings"
+  administration_operations: "Administration / Operations"
+  student_management: "Student Management"
+  social_other_activity: "Social / Other Activity"
   grouped_batches: "Grouped Batches"
   name: "Name"
   adm_no: "Aufn.-Nr."

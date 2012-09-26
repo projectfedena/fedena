@@ -349,6 +349,10 @@ mr: # locale
       errors_found: "खालील त्रूटी आढळल्या"
 
   sl_no: "अनु. क्रम."
+  system_settings: "System Settings"
+  administration_operations: "Administration / Operations"
+  student_management: "Student Management"
+  social_other_activity: "Social / Other Activity"
   grouped_batches: "Grouped Batches"
   name: "नाव "
   adm_no: "प्रवेश संख्या "

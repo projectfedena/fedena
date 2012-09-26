@@ -344,6 +344,10 @@ es: # locale
       errors_found: "Se encontró el siguiente error"
 
   sl_no: "Sl No."
+  system_settings: "System Settings"
+  administration_operations: "Administration / Operations"
+  student_management: "Student Management"
+  social_other_activity: "Social / Other Activity"
   grouped_batches: "Grouped Batches"
   name: "Nombre"
   adm_no: "No. del Adm"

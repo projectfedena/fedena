@@ -351,6 +351,10 @@ ar:
       errors_found: "تم العثور على الأخطاء التالية :"
 
   sl_no: "لا SL."
+  system_settings: "System Settings"
+  administration_operations: "Administration / Operations"
+  student_management: "Student Management"
+  social_other_activity: "Social / Other Activity"
   grouped_batches: "Grouped Batches"
   name: "اسم"
   adm_no: "ADM لا."

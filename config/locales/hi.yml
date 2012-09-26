@@ -321,6 +321,10 @@ hi:
       errors_found: "निम्नलिखित त्रुटियाँ पाए गए"
 
   sl_no: "कोई क्रम|"
+  system_settings: "System Settings"
+  administration_operations: "Administration / Operations"
+  student_management: "Student Management"
+  social_other_activity: "Social / Other Activity"
   grouped_batches: "Grouped Batches"
   name: "नाम"
   adm_no: "कोई एडमिरल|"

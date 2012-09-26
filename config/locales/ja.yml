@@ -349,6 +349,10 @@ ja: # locale
       errors_found: "以下のエラーが発生しています。"
 
   sl_no: "Sl  番号"
+  system_settings: "System Settings"
+  administration_operations: "Administration / Operations"
+  student_management: "Student Management"
+  social_other_activity: "Social / Other Activity"
   grouped_batches: "Grouped Batches"
   name: "名称"
   adm_no: "Adm 番号"
