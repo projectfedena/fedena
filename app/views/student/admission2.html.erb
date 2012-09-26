@@ -218,7 +218,7 @@
         <%= submit_tag "", :value => " ► #{t('finish')}",  :name => "commit", :class => "submit_button3" %>
       </div>
       <div id="skip">
-        <%= link_to "► #{t('click_here_to_skip')}", {:controller => "student", :action => "admission3", :id => @student.id } %>
+        <%= link_to "► #{t('click_here_to_skip')}", {:controller => "student", :action => "admission3", :id => @student.id }, :class => "user_button" %>
       </div>
 
     </div>

@@ -132,24 +132,13 @@ ul#parents-list li.listeven {
     text-decoration: none;
 }
 #skip{
-    margin-top:28px;
     margin-left:50px;
-    float:left;
-    -moz-border-radius:12px;
-    -webkit-border-radius:12px;
-    background:none repeat scroll 0 0 #27292B;
-    color:#FFFFFF;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
-    padding:7px 10px;
+    float: left;
 }
 #skip a{
+    margin-top:28px;
     color:#fff;
     text-decoration: none;
-}
-#skip:hover,#add-more-parent:hover{
-   background:  #373B3F;
 }
 .necessary-field {
     color : #f00;
