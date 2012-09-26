@@ -81,20 +81,8 @@
     height: 1px;
     border: none;
 }
-.skip{
-    background: none repeat scroll 0 0 #27292B;
-    border: medium none;
-    border-radius: 10px 10px 10px 10px;
-    -moz-border-radius: 10px 10px 10px 10px;
-    color: #FFFFFF;
-    cursor: pointer;
-    float: left;
-    font-family: arial;
-    font-size: 14px;
-    font-weight: bold;
+.user_button{
     margin-top: 8px;
-    padding: 8px 10px;
-    text-decoration: none;
 }
 .save-button{
     position:relative;
