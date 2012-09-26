@@ -173,9 +173,9 @@
   page.hide "search-result"
   end %>
 
-        <%= link_to "►#{t('search_again')}", {:action=>"advanced_search"}%>
+        <%= link_to "►#{t('search_again')}", {:action=>"advanced_search"}, :class => 'user_button'%>
         <% unless @students.empty? %>
-          <%= link_to "► #{t('view')} #{t('pdf_report')}",   {:action => "advanced_search_pdf", :search=> params[:search],:advv_search=>params[:advv_search],:adv_search=>params[:adv_search]}, :target => '_blank' , :class=> 'submit_button' %>
+          <%= link_to "► #{t('view')} #{t('pdf_report')}",   {:action => "advanced_search_pdf", :search=> params[:search],:advv_search=>params[:advv_search],:adv_search=>params[:adv_search]}, :target => '_blank' , :class=> 'user_button' %>
         <% end %>
       </div>
       <div class="extender"></div>
