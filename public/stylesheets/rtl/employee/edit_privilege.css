@@ -29,9 +29,10 @@
 label {display:inline;}
 .user_submit_button1{
     width:100px;
-    margin:0px auto;
+    float: left
 }
 .user_submit_button1 input{
+    border-radius:10px;
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
     background:#27292B;
@@ -39,24 +40,69 @@ label {display:inline;}
     font-family:arial;
     font-size:14px;
     font-weight:bold;
-    margin:30px auto;
-    margin-left:20px;
-    padding:7px 10px;
+    padding:7px 12px;
     border:none;
     text-align:center;
     text-decoration: none;
     width:auto;
     cursor:pointer;
+    float: left;
 }
-.label_field_pair { 
+.label_field_pair {
     width:450px;
-    margin:0px auto;
-    text-align:center;
+    float: right;
+    margin-top: 10px;
 }
 .label_field_pair label {
-    font-weight:bold;
-    display:block;
-    color:#444;
-    margin-top:50px;
-    margin-bottom:10px;
+    color: black;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.privileges{
+    width:960px;
+    margin-right:10px;
+}
+.privilege_heading{
+    height: 40px;
+    float: right;
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #999999;
+}
+.all_privileges_list{
+    float: right;
+    width:960px;
+    max-width:960px;
+    min-width:960px;
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+}
+table.privilege_table{
+    width:300px;
+    max-width:300px;
+    min-width:300px;
+    /*    float: left;*/
+    margin: 10px;
+    border-radius:10px;
+    padding: 10px;
+}
+table.privilege_table tr td.col-8{
+    width: 25px;
+    padding: 5px 10px 5px 5px;
+}
+table.privilege_table tr td.col-9{
+    font-weight: normal;
+    width: auto;
+    padding: 5px 10px 5px 5px;
+}
+table#listing {
+    padding: 10px;
+}
+table#listing .tr-read-even.active, table#listing .tr-read-odd.active {
+    background: none repeat scroll 0 0 #E1E6FF;
+}
+table#listing .tr-even.active, table#listing .tr-odd.active {
+    background: none repeat scroll 0 0 #E1E6FF;
 }
