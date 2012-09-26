@@ -1045,6 +1045,9 @@ textarea{
 .themed_text{
     color: #B00;
 }
+.themed_hover_text:hover{
+    color: #B00;
+}
 .themed_bg {
     background-color: #B00;
 }
