@@ -160,7 +160,11 @@
 
 
   <% unless @employees1.nil? %>
-    <% @employees1= @employees1.to_a.sort_by{|s| s.first_name} %>
+    <% if @sort_order=="first_name-ascend" %>
+      <% @employees1= @employees1.to_a.sort_by{|s| s.first_name} %>
+    <% elsif @sort_order=="first_name-descend" %>
+      <% @employees1= @employees1.to_a.sort_by{|s| s.first_name}.reverse %>
+    <% end %>
     <script type="text/javascript">
       Event.observe(window, 'load', function() { $('search-form').hide(); });
     </script>
@@ -278,16 +282,22 @@
         <% unless @employees1.empty? and @employees2.empty? %>
           <tr class="tr-head">
             <td>
-             <%= t('sl_no') %>
+              <%= t('sl_no') %>
             </td>
             <td>
-              <%= order @search, :by => :first_name %>
+              <% if @sort_order=="first_name-ascend" %>
+                <%= link_to  "#{t('first_name')}&nbsp;▲", {:action=>"advanced_search", :search=>params[:search], :adv_search=>params[:adv_search],:sort_order=>"first_name-descend"} %>
+              <% elsif @sort_order=="first_name-descend" %>
+                <%= link_to  "#{t('first_name')}&nbsp;▼", {:action=>"advanced_search", :search=>params[:search], :adv_search=>params[:adv_search],:sort_order=>"first_name-ascend"} %>
+              <% else %>
+                <%= link_to  "#{t('first_name')}", {:action=>"advanced_search", :search=>params[:search], :adv_search=>params[:adv_search],:sort_order=>"first_name-ascend"} %>
+              <% end %>
             </td>
             <td>
               <%= t('employee_id') %>
             </td>
             <td>
-               <%= t('employee_department') %>
+              <%= t('employee_department') %>
             </td>
           </tr>
           <tr class="tr-blank"></tr>

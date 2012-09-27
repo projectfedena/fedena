@@ -455,7 +455,7 @@ class EmployeeController < ApplicationController
       new_privileges = params[:user][:privilege_ids] if params[:user]
       new_privileges ||= []
       @user.privileges = Privilege.find_all_by_id(new_privileges)
-     redirect_to :action => 'admission4',:id => @employee.id
+      redirect_to :action => 'admission4',:id => @employee.id
     end
   end
   
@@ -1489,6 +1489,8 @@ class EmployeeController < ApplicationController
   end
   def advanced_search
     @search = Employee.search(params[:search])
+    @sort_order=""
+    @sort_order=params[:sort_order] if  params[:sort_order]
     if params[:search]
       if params[:search][:status_equals]=="true"
         @search = Employee.search(params[:search])
