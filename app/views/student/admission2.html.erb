@@ -57,7 +57,12 @@
   <% form_for :guardian do |f| %>
 
     <%= f.error_messages :header_message => nil %>
-
+    <% if f.error_messages.present?  %>
+      <script type="text/javascript">
+        Event.observe(window, 'load', function() { $('parents').hide(); });
+        Event.observe(window, 'load', function() { $('admission1_form').show(); });
+      </script>
+    <% end %>
     <div id="admission1_form">
 
       <div id="admission1_form_vertical_block_left">
