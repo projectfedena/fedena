@@ -31,9 +31,9 @@ class AttendancesController < ApplicationController
       @batches = Batch.active
     elsif @current_user.employee?
       if @config.config_value == 'Daily'
-        @batches=Batch.find_all_by_employee_id @current_user.employee_record.id
+        @batches=Batch.active.find_all_by_employee_id @current_user.employee_record.id
       else
-        @batches=Batch.find_all_by_employee_id @current_user.employee_record.id
+        @batches=Batch.active.find_all_by_employee_id @current_user.employee_record.id
         @batches+=@current_user.employee_record.subjects.collect{|b| b.batch}
         @batches=@batches.uniq unless @batches.empty?
       end
