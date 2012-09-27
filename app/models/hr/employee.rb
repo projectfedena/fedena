@@ -90,6 +90,12 @@ class Employee < ActiveRecord::Base
     user.errors.blank?
   end
 
+  def employee_batches
+    batches_with_employees = Batch.active.reject{|b| b.employee_id.nil?}
+    assigned_batches = batches_with_employees.reject{|e| !e.employee_id.split(",").include?(self.id.to_s)}
+    return assigned_batches
+  end
+
   def image_file=(input_data)
     return if input_data.blank?
     self.photo_filename     = input_data.original_filename
