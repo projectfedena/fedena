@@ -2189,6 +2189,7 @@ de: # locale
     flash13: "Erfolgreich gelöscht!"
     flash14: "Sorry! Kann nicht gelöscht werden, wenn Einträge unter dem gewählten Detail exisitieren"
     flash15: "Sorry! Schüler kann nicht gelöscht werden, wenn abhängige Einträge existieren"
+    flash20: "Benutzer verfügt nicht über eine E-Mail-ID!"
     new_admission_link: "For new admission"
   
    ## traslation for finance controller

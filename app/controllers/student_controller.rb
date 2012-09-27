@@ -355,16 +355,20 @@ class StudentController < ApplicationController
       recipient_list = []
       case params['email']['recipients']
       when 'Student'
-        recipient_list << @student.email
+        recipient_list << @student.email unless @student.email == ""
       when 'Guardian'
-        recipient_list << @student.immediate_contact.email unless @student.immediate_contact.nil?
+        recipient_list << @student.immediate_contact.email unless (@student.immediate_contact.nil? or @student.immediate_contact.email=="")
       when 'Student & Guardian'
-        recipient_list << @student.email
-        recipient_list << @student.immediate_contact.email unless @student.immediate_contact.nil?
+        recipient_list << @student.email unless @student.email == ""
+        recipient_list << @student.immediate_contact.email unless (@student.immediate_contact.nil? or @student.immediate_contact.email=="")
       end
+      unless recipient_list.empty?
       FedenaMailer::deliver_email(sender, recipient_list, params['email']['subject'], params['email']['message'])
       flash[:notice] = "#{t('flash12')} #{recipient_list.join(', ')}"
       redirect_to :controller => 'student', :action => 'profile', :id => @student.id
+      else
+        @student.errors.add_to_base("#{t('flash20')}")
+      end
     end
   end
 

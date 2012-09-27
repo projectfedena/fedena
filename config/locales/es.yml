@@ -2185,6 +2185,7 @@ es: # locale
     flash13: "Eliminación exitosa!"
     flash14: "Lo sentimos! Imposible eliminar cuando existen registros dependientes"
     flash15: "Lo sentimos! No puede eliminar un estudiante cuando existen registros dependientes"
+    flash20: "El usuario no tiene un ID de correo electrónico!"
     new_admission_link: "For new admission"
 
    ## traslation for finance controller

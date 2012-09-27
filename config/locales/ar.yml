@@ -2188,6 +2188,7 @@ ar:
     flash13: "حذف بنجاح!"
     flash14: "آسف! غير قادر على حذف عند مداخل موجود تحت التفصيل المحدد"
     flash15: "آسف! لا يمكن حذف سجل الطالب عندما تعتمد موجود"
+    flash20: "المستخدم ليس لديه هوية البريد الالكتروني!"
     new_admission_link: "For new admission"
 
    ## traslation for finance controller

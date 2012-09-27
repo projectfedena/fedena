@@ -31,7 +31,6 @@
   <div id="student_profile_heading">
 
 
-
     <div id="student_main_info">
       <span class="name"> <%= @student.full_name %>  </span>
       <span class="course"><%= t('course_and_batch') %>:<%= @student.batch.full_name %> </span>
@@ -41,24 +40,31 @@
     <div class="extender"> </div>
 
   </div>
-
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
 
   <% form_for :email do |f| %>
+    <%= error_messages_for 'student', :header_message => nil %>
 
     <div class="label-field-pair">
       <label for="email_subject"><%= t('subject') %></label>
-      <div class="text-input-bg"><%= f.text_field 'subject' %></div>
+      <% subject = "" %>
+      <% subject = params[:email][:subject] if params[:email] and params[:email][:subject]%>
+      <div class="text-input-bg"><%= f.text_field 'subject',:value=>subject%></div>
     </div>
 
     <div class="label-field-pair">
       <label for="email_recipients"><%= t('recipients') %></label>
-      <div class="text-input-bg"><%= select 'email', 'recipients', [["#{t('student_text')}","Student"], ["#{t('guardian')}","Guardian"], ["#{t('student_text')} & #{t('guardian')}","Student & Guardian"]] %></div>
+      <div class="text-input-bg"><%= select 'email', 'recipients', [["#{t('student_text')}","Student"], ["#{t('guardian')}","Guardian"], ["#{t('student_text')} & #{t('guardian')}","Student & Guardian"]], :selected=>(params[:email] and params[:email][:recipients] ? params[:email][:recipients] : 0) %></div>
     </div>
 
     <div class="message-area">
       <br/>
+      <% message = "" %>
+      <% message = params[:email][:subject] if params[:email] and params[:email][:subject]%>
       <label for="email_message"><%= t('message') %></label>
-      <%= f.text_area 'message' %>
+      <%= f.text_area 'message', :value=>message %>
     </div>
 
     <div class="submit-area">

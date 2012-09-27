@@ -2160,6 +2160,7 @@ mr: # locale
     flash17: "युजर खाते बनले ! "
     flash18: "रिसेट पासवर्ड लिंक तुमच्या ई मेल वर पाठविण्यात आली आहे ."
     flash19: "या युजरनेमचा कोणताच युजर अस्तित्वात नाही."
+    flash20: "User does not have an email id!"
 
 #student controller translation
   student:
@@ -2178,6 +2179,7 @@ mr: # locale
     flash13: "यशस्वीपणे काढले!"
     flash14: "क्षमस्व! निवडलेल्या माहिती अंतर्गत नोंदी असताना काढण्यात असमर्थ."
     flash15: "क्षमस्व ! अवलंबित नोंदी असताना विद्यार्थी काढू शकत नाही."
+    flash20: "User does not have an email id!"
     new_admission_link: "For new admission"
 
    ## traslation for finance controller
