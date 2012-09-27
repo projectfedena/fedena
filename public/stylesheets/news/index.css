@@ -11,7 +11,12 @@
 .news_search_add img {
     margin-top:15px;
 }
-
+#all_news {
+    height: auto;
+    margin: 30px auto;
+    padding: 0;
+    width: 960px;
+}
 #news_bg input {
     background : #eee;
     float:left;
