@@ -227,6 +227,8 @@
     cursor:pointer;
     text-decoration: none;
     margin:0 20px 0 auto;
+    display: inline;
+    float: none;
 }
 .user_button:hover{
     background:  #373B3F;
