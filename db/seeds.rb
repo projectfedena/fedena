@@ -105,10 +105,10 @@ end
 
 #insert record in privilege_tags table
 [
-  {"name_tag" => "system_settings", "priority"=>2},
+  {"name_tag" => "system_settings", "priority"=>5},
   {"name_tag" => "administration_operations", "priority"=>1},
   {"name_tag" => "academics", "priority"=>3},
-  {"name_tag" => "student_management", "priority"=>5},
+  {"name_tag" => "student_management", "priority"=>2},
   {"name_tag" => "social_other_activity", "priority"=>4},
 ].each do |param|
   PrivilegeTag.find_or_create_by_name_tag(param)
