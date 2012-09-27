@@ -76,8 +76,8 @@ label {display:inline;}
     width:960px;
     max-width:960px;
     min-width:960px;
-    -moz-column-count: 3;
-    -webkit-column-count: 3;
+    /*    -moz-column-count: 3;*/
+    /*    -webkit-column-count: 3;*/
 }
 table.privilege_table{
     width:300px;
@@ -105,4 +105,7 @@ table#listing .tr-read-even.active, table#listing .tr-read-odd.active {
 }
 table#listing .tr-even.active, table#listing .tr-odd.active {
     background: none repeat scroll 0 0 #E1E6FF;
+}
+.table_design tr td{
+    vertical-align: top;
 }
