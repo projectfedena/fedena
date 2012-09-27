@@ -75,56 +75,60 @@
         </div>
       </div>
       <div class="all_privileges_list">
-        <% @privilege_tags.each do |privilege_tag| %>
-          <% all_privileges = privilege_tag.privileges.all(:order=>"priority ASC") %>
-          <% if all_privileges.count > 0 %>
-            <table id="listing" align="center" width="300px" class="privilege_table" cellpadding="1" cellspacing="1">
-              <tr class="tr-head">
-                <td><%= check_box_tag "check_all", nil, false, {:class=>"check_all_#{privilege_tag.id}", :onChange=>"privilege_tag_check_all_or_none('#{privilege_tag.id}',this);" } %></td>
-                <td><%= t(privilege_tag.name_tag) %></td>
-              </tr>
-              <tr class="tr-blank"></tr>
-              <% all_privileges.each do |privilege| %>
-                <%  if @hr.blank?  %>
-                  <% if privilege.name =="HrBasics" or  privilege.name =="EmployeeAttendance" or privilege.name =="PayslipPowers" or privilege.name =="EmployeeSearch" %>
-                    <% next %>
+        <table width="100%" align="center" cellspacing="1" cellpadding="1" class="table_design">
+          <tr>
+            <% @privilege_tags.each_with_index do |privilege_tag,ind| %>
+              <% all_privileges = privilege_tag.privileges.all(:order=>"priority ASC") %>
+              <% if all_privileges.count > 0 %>
+                <% if ind==0 or ind==1 or ind==4 %>
+                  <td>
                   <% end %>
-                <% end %>
-                <%  if @finance.blank?  %>
-                  <% if privilege.name =="FinanceControl" %>
-                    <% next %>
-                  <% end %>
-                <% end %>
-
-                <% if privilege.name =="SMSManagement" %>
-                  <% if  @sms_setting==true %>
-                    <tr class="tr-<%= cycle('odd', 'even') %>">
-                      <td class="col-8"><%= check_box_tag "user[privilege_ids][]", privilege.id, @user_privileges.include?(privilege),{:class=>"privilege_check_#{privilege_tag.id}", :onChange=>"privilege_check('#{privilege_tag.id}', this)", :id=>"privilege_check_#{privilege.id}"}%></td>
-                      <td class="col-9"><%= t(privilege.description) %> </td>
+                  <table id="listing" align="center" width="300px" class="privilege_table" cellpadding="1" cellspacing="1">
+                    <tr class="tr-head">
+                      <td><%= check_box_tag "check_all", nil, false, {:class=>"check_all_#{privilege_tag.id}", :onChange=>"privilege_tag_check_all_or_none('#{privilege_tag.id}',this);" } %></td>
+                      <td><%= t(privilege_tag.name_tag) %></td>
                     </tr>
-                    <%# if @user_privileges.include?(privilege) %>
+                    <tr class="tr-blank"></tr>
+                    <% all_privileges.each do |privilege| %>
+                      <%  if @hr.blank?  %>
+                        <% if privilege.name =="HrBasics" or  privilege.name =="EmployeeAttendance" or privilege.name =="PayslipPowers" or privilege.name =="EmployeeSearch" %>
+                          <% next %>
+                        <% end %>
+                      <% end %>
+                      <%  if @finance.blank?  %>
+                        <% if privilege.name =="FinanceControl" %>
+                          <% next %>
+                        <% end %>
+                      <% end %>
+
+                      <% if privilege.name =="SMSManagement" %>
+                        <% if  @sms_setting==true %>
+                          <tr class="tr-<%= cycle('odd', 'even') %>">
+                            <td class="col-8"><%= check_box_tag "user[privilege_ids][]", privilege.id, @user_privileges.include?(privilege),{:class=>"privilege_check_#{privilege_tag.id}", :onChange=>"privilege_check('#{privilege_tag.id}', this)", :id=>"privilege_check_#{privilege.id}"}%></td>
+                            <td class="col-9"><%= t(privilege.description) %> </td>
+                          </tr>
+                          <script type="text/javascript">
+                            privilege_check('<%= privilege_tag.id  %>', $("privilege_check_<%=privilege.id%>"))
+                          </script>
+                        <% end %>
+                        <% next %>
+                      <% end %>
+                      <tr class="tr-<%= cycle('odd', 'even') %>">
+                        <td class="col-8"><%= check_box_tag "user[privilege_ids][]", privilege.id, @user_privileges.include?(privilege),{:class=>"privilege_check_#{privilege_tag.id}", :onChange=>"privilege_check('#{privilege_tag.id}', this)", :id=>"privilege_check_#{privilege.id}"}%></td>
+                        <td class="col-9"><%= t(privilege.description) %> </td>
+                      </tr>
                       <script type="text/javascript">
-                        //$("privilege_check_"+<%= privilege.id  %> ).up('tr').addClassName('active')
                         privilege_check('<%= privilege_tag.id  %>', $("privilege_check_<%=privilege.id%>"))
                       </script>
-                    <%# end %>
-                  <% end %>
-                  <% next %>
+                    <% end %>
+                  </table>
+                  <% if ind==0 or ind==3 or ind==4 %>
+                  </td>
                 <% end %>
-                <tr class="tr-<%= cycle('odd', 'even') %>">
-                  <td class="col-8"><%= check_box_tag "user[privilege_ids][]", privilege.id, @user_privileges.include?(privilege),{:class=>"privilege_check_#{privilege_tag.id}", :onChange=>"privilege_check('#{privilege_tag.id}', this)", :id=>"privilege_check_#{privilege.id}"}%></td>
-                  <td class="col-9"><%= t(privilege.description) %> </td>
-                </tr>
-                <%# if @user_privileges.include?(privilege) %>
-                  <script type="text/javascript">
-                   //$("privilege_check_"+<%= privilege.id  %> ).up('tr').addClassName('active')
-                    privilege_check('<%= privilege_tag.id  %>', $("privilege_check_<%=privilege.id%>"))
-                  </script>
-                <%# end %>
               <% end %>
-            </table>
-          <% end %>
-        <% end %>
+            <% end %>
+          </tr>
+        </table>
       </div>
     <% end %>
   </div>
