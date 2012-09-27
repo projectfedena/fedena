@@ -140,11 +140,6 @@
     background:#dae6ff;
     border-top:1px solid #bdcfff;
 }
-.user_button {
-    margin-top:40px;
-    margin-right:270px;
-}
-
 .parent-del-button {
     margin : 20px 600px 40px 0;
 }
@@ -154,30 +149,6 @@
     padding-right:525px;
     margin-top:-12px;
 
-}
-.parent-edit-button{
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    background:#27292B none repeat scroll 0 0;
-    color:#FFFFFF;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
-    margin:0px auto;
-    margin-right:10px;
-    padding:7px 12px;
-    border:none;
-    text-align:center;
-    width:auto;
-    cursor:pointer;
-    float:right;
-}
-.parent-edit-button:hover{
-    background: #373B3F;
-}
-.parent-edit-button a{
-    color:#fff;
-    text-decoration: none;
 }
 #guardians-links span{
     font-weight:600;
