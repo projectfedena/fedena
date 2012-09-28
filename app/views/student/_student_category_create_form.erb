@@ -22,7 +22,7 @@
     <%= error_messages_for 'student_category', :header_message => nil %>
     <div class="label-field-pair">
       <label><%= t('enter_new_category') %> : </label>
-      <div class="text-input-bg"><%= f.text_field :name, :value => '' %>
+      <div class="text-input-bg"><%= f.text_field :name, :value => @student_category.name %>
       </div>
     </div>
     <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
