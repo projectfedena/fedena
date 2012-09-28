@@ -51,12 +51,12 @@
 
       <div class="label-field-pair">
         <div class="label-container"><%= t('start_date') %></div>
-        <div class="input-container"><%= calendar_date_select_tag 'batch[start_date]',I18n.l(@batch.start_date, :format=>"%d-%m-%Y"), :popup => "force"%></div>
+        <div class="input-container"><%= calendar_date_select_tag 'batch[start_date]',I18n.l(@batch.start_date.to_date, :format=>:default), :popup => "force"%></div>
       </div>
 
       <div class="label-field-pair">
         <div class="label-container"><%= t('end_date') %></div>
-        <div class="input-container"><%= calendar_date_select_tag 'batch[end_date]',I18n.l(@batch.end_date, :format=>"%d-%m-%Y") ,:popup => "force"%></div>
+        <div class="input-container"><%= calendar_date_select_tag 'batch[end_date]',I18n.l(@batch.end_date.to_date, :format=>:default) ,:popup => "force"%></div>
       </div>
 
       <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
