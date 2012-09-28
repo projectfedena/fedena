@@ -89,7 +89,10 @@
     margin : 5px 10px 0 0;
     width : 210px;
 }
-
+#search-text-box #query:focus {
+    background : transparent !important;
+    border : none !important;
+}
 .employee-search-options{
     float:right;
     background : #fff url(../../../images/form_bg/smalltextbox.jpg) no-repeat;
