@@ -402,7 +402,6 @@ body > #content_wrapper {
     height : 40px;
     width : 600px;
     padding-top: 3px;
-    overflow: hidden;
 }
 .text-input-bg {
     background : transparent;

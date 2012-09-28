@@ -55,3 +55,6 @@ font-size:12px;
 overflow:auto;
 width:198px;
 }
+.label-field-pair {
+    overflow: hidden;
+}
