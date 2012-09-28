@@ -1,3 +1,4 @@
 
 page.replace_html 'student-category-form', :partial => 'student_category_edit_form'
 page.replace_html 'student-category-list',""
+page.replace_html 'flash_box', :text => ""

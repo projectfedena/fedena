@@ -586,12 +586,13 @@ class StudentController < ApplicationController
 
   def category_edit
     @student_category = StudentCategory.find(params[:id])
-    
+    @student_category_name=@student_category.name
   end
 
   def category_update
     @student_category = StudentCategory.find(params[:id])
-    @student_category.update_attribute(:name, params[:name])
+    @student_category_name=@student_category.name
+    @student_category.update_attributes(:name => params[:name])
     @student_categories = StudentCategory.active
   end
 
