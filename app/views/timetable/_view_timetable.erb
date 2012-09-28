@@ -31,7 +31,7 @@
         &nbsp;</td><!--timetable_td_tl -->
       <td class="td-blank"></td>
       <% @class_timing.each do |pt| %>
-        <td class="td"><div class="top"><%=pt.start_time.strftime("%I:%M%p")  unless pt.start_time.nil? %> - <%= pt.end_time.strftime("%I:%M%p")  unless pt.end_time.nil? %></div></td>
+        <td class="td"><div class="top themed_text"><%=pt.start_time.strftime("%I:%M%p")  unless pt.start_time.nil? %> - <%= pt.end_time.strftime("%I:%M%p")  unless pt.end_time.nil? %></div></td>
       <% end %>
     </tr> <!-- timetable_tr -->
     <tr class="blank">
@@ -43,7 +43,7 @@
     </tr>
     <%- @day.each do |d| -%>
       <tr>
-        <td class="td"><div class="name"><%= t(Date::DAYNAMES[d.day_of_week].downcase).upcase -%></div></td>
+        <td class="td"><div class="name themed_text"><%= t(Date::DAYNAMES[d.day_of_week].downcase).upcase -%></div></td>
         <td class="td-blank"></td>
         <%- @class_timing.each do |ct| -%>
           <td class="td">
@@ -51,9 +51,9 @@
               <div class="tt-subject">
                 <% if  @timetable[d.id][ct.id].present? %>
                   <% unless  @timetable[d.id][ct.id].subject.elective_group.nil? %>
-                    <div class="subject">
+                    <div class="subject themed_text">
                       <%= @timetable[d.id][ct.id].subject.elective_group.name %>
-                      <span>
+                      <span class="themed_text">
                         <% @timetable[d.id][ct.id].subject.elective_group.subjects.each do |s| %>
                           <%= s.name unless s.nil? %>
                           <% @sub_emp = s.employees %>
@@ -69,9 +69,9 @@
                       <%= t('elective') %>
                     </div>
                   <% else %>
-                    <div class="subject">
+                    <div class="subject themed_text">
                       <%= @timetable[d.id][ct.id].subject.code %>
-                      <span>
+                      <span class="themed_text">
                         <%= @timetable[d.id][ct.id].subject.name %>
                         <div class="emp-name">
                           <%= @timetable[d.id][ct.id].employee.full_name unless @timetable[d.id][ct.id].employee.nil? %>
