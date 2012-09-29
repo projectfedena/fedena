@@ -58,7 +58,7 @@
       <tr class="tr-blank"></tr>
       <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
         <td class="col-1"></td>
-        <td class="col-1" colspan="2" ><span><%= t('discount') %></span></td>
+        <td class="col-1" colspan="2" ><span class="themed_text"><%= t('discount') %></span></td>
       </tr>
       <% @batch_discounts.each do |d| %>
         <tr class="tr-<%= cycle("odd","even") %>">
