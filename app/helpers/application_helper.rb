@@ -31,6 +31,7 @@ module ApplicationHelper
     stylesheets << @direction+'_styles/ui.all.css'
     stylesheets << @direction+'modalbox'
     stylesheets << @direction+'autosuggest-menu.css'
+    stylesheets << 'calendar'
     ["#{@direction}#{controller.controller_path}/#{controller.action_name}"].each do |ss|
       stylesheets << ss
     end
