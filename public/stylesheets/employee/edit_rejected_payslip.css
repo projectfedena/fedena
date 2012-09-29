@@ -53,7 +53,23 @@
     margin : 5px 0 0 10px;
     width : 135px;
 }
-
+#submit-button input{
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    background:#27292B none repeat scroll 0 0;
+    color:#FFFFFF;
+    font-family:arial;
+    font-size:14px;
+    font-weight:bold;
+    margin-left:281px;
+    margin-top:30px;
+    padding:7px 10px;
+    border:none;
+    cursor:pointer;
+}
+#submit-button input:hover{
+    background: #373B3F;
+}
 a.user_button{
     margin-top: 0 !important;
 }
