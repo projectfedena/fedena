@@ -38,30 +38,30 @@
     max-width:20px;
 }
 .rcpt_no{
-    width:50px;
-    min-width:50px;
-    max-width:50px;    
-}
-.amnt{
     width:100px;
     min-width:100px;
     max-width:100px;
 }
+.amnt{
+    width:120px;
+    min-width:120px;
+    max-width:120px;
+}
 .t_date{
-    width:90px;
-    min-width:90px;
-    max-width:90px;
+    width:100px;
+    min-width:100px;
+    max-width:100px;
 }
 .name{
-    width:240px;
-    min-width:240px;
-    max-width:240px;
+    width:190px;
+    min-width:190px;
+    max-width:190px;
     overflow: hidden;
 }
 .desc{
-    width:130px;
-    min-width:130px;
-    max-width:130px;
+    width:100px;
+    min-width:100px;
+    max-width:100px;
     overflow: hidden;
 }
 .total_amnt{
