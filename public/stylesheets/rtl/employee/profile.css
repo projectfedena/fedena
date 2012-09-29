@@ -191,23 +191,12 @@
 }
 
 .edit-delete-link{
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    background:#27292B none repeat scroll 0 0;
-    color:#FFFFFF;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
     margin:0px auto;
-    margin-top:30px;
-    padding:7px 10px;
-    border:none;
-    text-align:center;
-    width:auto;
-    cursor:pointer;
+    width:70px;
 }
 
 .edit-delete-link a{
+    width:70px;
     color:#fff;
     text-decoration: none;
 }
