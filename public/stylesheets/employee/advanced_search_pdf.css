@@ -1,14 +1,9 @@
-
-
-#page-yield {
+page-yield {
     width:800px;
     margin: 0 auto;
     float: left;
     overflow: hidden;
 }
-
-
-
 .hor_line{
     width:800px;
     background: #333333;
@@ -19,16 +14,16 @@ h2.heading{
     text-align: center;
     margin:5px;
 }
-#main_info{
-    margin-top: 20px;
-}
+
 #main_info h4{
+    text-align:center;
     color: #555555;
-    margin-top: 2px;
+    margin-top: 18px;
     font-weight: normal;
 }
 
 #main_info h2{
+    text-align:center;
     margin-bottom: 2px;
     font-weight: normal;
 
@@ -38,44 +33,57 @@ h2.heading{
 .odd{
     height:auto;
     background: #EEEEEE;
-    
+
 }
 
 .even{
-    
+
     height:auto;
     background: #fff;
-    
-    
+
+
 }
 tr.even{
-   border: 1px solid #ADACAB;
+    border: 1px solid #ADACAB;
 }
 
 tr.odd{
-   border: 1px solid #ADACAB;
+    border: 1px solid #ADACAB;
 }
 
 .even td{
-   
-  padding: 12px 12px 12px 15px;
-  border: 1px solid #ADACAB;
-  border-right: 0px solid #fff;
-  border-top: 0px solid #fff;
- 
+
+    padding: 12px 12px 12px 15px;
+    border: 1px solid #ADACAB;
+    border-right: 0px solid #fff;
+    border-top: 0px solid #fff;
+
 }
 
 .odd td{
-  padding: 12px 12px 12px 15px;
-  border: 1px solid #ADACAB;
-  border-right: 0px solid #fff;
-  border-top: 0px solid #fff;
- 
+    padding: 12px 12px 12px 15px;
+    border: 1px solid #ADACAB;
+    border-right: 0px solid #fff;
+    border-top: 0px solid #fff;
+
+}
+
+td.col-pdf-bold{
+    font-weight: bold !important;
+}
+
+.table-header td{
+    padding: 12px 12px 12px 15px;
+    border-top: 1px solid #ADACAB;
+    border-left: 1px solid #ADACAB;
+    border-right: 1px solid #ADACAB;
+    color: #97080e;
+    background: #EEEEEE;
 }
 
 table#pdf-table{
- border-top: 1px solid #ADACAB;
- border-collapse:collapse
+    border-top: 1px solid #ADACAB;
+    border-collapse:collapse
 }
 
 
@@ -108,12 +116,75 @@ table#pdf-table{
     text-align: center;
 }
 
+#pdf-footer{
+    text-align: right;
+    width: 800px;
+    padding-right: 100px;
+    padding: 50px;
+    margin: 0 auto;
+    color: #999999;
+    font-size: 18px;
 
-.page-break td{
-    height: 400px;
-    border: 1px solid #fff;
-    border-bottom: 1px solid #ADACAB;
 }
+.page1 {
+    width:100%;
+    height: auto;
+    page-break-after: always;
+    page-break-inside: avoid;
+    clear: both;
+}
+.page-break1{
+    height: 20px;
+    border: 1px solid #fff;
+    width: 100%;
+    float: left;
+}
+.section1{
+    page-break-before:always;
+    text-align: center;
+}
+.row{
+    float: left;
+    width: 800px;
+    text-align: center;
+}
+.page-blank{
+    width: 100%;
+    float: left;
+}
+.page_break{
+    margin-top: 60px;
+}
+.e_no{
+    width:150px;
+    min-width:150px;
+    max-width:150px;
+}
+.e_dept{
+    width:150px;
+    min-width:150px;
+    max-width:150px;
+}
+.j_date{
+    width:125px;
+    min-width:125px;
+    max-width:125px;
+}
+.name{
+    width:260px;
+    min-width:260px;
+    max-width:260px;
+    overflow: hidden;
+}
+.table-header td{
+    padding: 12px 15px 12px 12px;
+    border-top: 1px solid #ADACAB;
+    border-right: 1px solid #ADACAB;
+    border-left: 1px solid #ADACAB;
+    color: #97080e;
+    background: #EEEEEE;
+}
+
 
 
 

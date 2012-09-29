@@ -19,68 +19,101 @@
 
 
 
-<div id="page-yield">
-
-  <div class="hor_line"></div>
-  <h2><%= t('employee_search_report') %></h2>
-  <div class="hor_line"></div>
-
-
-  <div class="extender"> </div>
-  <div class="report">
-    <div id ="main_info">
-      <h4> <%= "#{t('employee_text')} "+@searched_for.camelcase unless @searched_for.nil?%></h4>
-    </div>
-    <div id="pdf-info">
-      <table id="pdf-table" width="100%" cellspacing="0">
-        <tr class="odd"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('employee_number') %></td><td class="col-pdf"><%= t('joining_date') %></td></tr>
-        <% i=0 %>
-        <% @employees1.each do |employee1| %>
-        <% c =cycle('even','odd ') %>
-        <% i+= 1 %>
-             <% if i==23 %>
-              <% i= 0 %>
-              <tr class="page-break"><td colspan="3"></td></tr>
-              <% if c == 'even' %>
-               <tr class="odd"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('employee_number') %></td><td class="col-pdf"><%= t('joining_date') %></td></tr>
-              <% else %>
-               <tr class="even"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('employee_number') %></td><td class="col-pdf"><%= t('joining_date') %></td></tr>
-              <% end %>
-              <% end %>
-        <tr class="<%= "#{c}" %>">
-              <td class="col-pdf"><%= employee1.first_name %></td>
-              <td class="col-pdf"><%= employee1.employee_department.name %></td>
-              <td class="col-pdf"><%= employee1.employee_number%></td>
-              <td class="col-pdf"><%= I18n.l(employee1.joining_date,:format=>"%d %b, %Y") %></td>
-            </tr>
-            <% end %>
-
-            <% unless @employees2.nil? %>
-              <% @employees2.each do |employee2| %>
-            <% c =cycle('even','odd ') %>
-            <% i+= 1 %>
-              <% if i==23 %>
-              <% i= 0 %>
-              <tr class="page-break"><td colspan="3"></td></tr>
-              <% if c == 'even' %>
-               <tr class="odd"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('employee_number') %></td><td class="col-pdf"><%= t('joining_date') %></td></tr>
-              <% else %>
-               <tr class="even"><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= t('admission1.employee_number') %></td><td class="col-pdf"><%= t('admission1.joining_date') %></td></tr>
-              <% end %>
-              <% end %>
-            <tr class="<%= "#{c}" %>">
-              <td class="col-pdf"><%= employee2.first_name %></td>
-              <td class="col-pdf"><%= employee2.employee_department.name %></td>
-              <td class="col-pdf"><%= employee2.employee_number%></td>
-              <td class="col-pdf"><%= I18n.l(employee2.joining_date,:format=>"%d %b, %Y") %></td>
-            </tr>
-            <% end %>
-            <% end %>
-      </table>
-
-    </div>
-
-
+<div id="page-yield" class="available_sections1">
+  <div class="page1"></div>
+  <div class="section1 row" >
+    <center>
+      <div class="hor_line"></div>
+      <h2><%= t('employee_search_report') %></h2>
+      <div class="hor_line"></div>
+      <div id ="main_info">
+        <h4> <%= "#{t('employee_text')} "+@searched_for.camelcase unless @searched_for.nil?%></h4>
+      </div>
+    </center>
   </div>
+  <div class="section1 row" id="table-headers" >
+    <center>
+      <table id="pdf-table" width="100%" cellspacing="0">
+        <tr class="table-header">
+          <td class="col-pdf name"><%= t('name') %></td>
+          <td class="col-pdf e_dept"><%= t('department') %></td>
+          <td class="col-pdf e_no"><%= t('employee_number') %></td>
+          <td class="col-pdf j_date"><%= t('joining_date') %></td>
+        </tr>
+      </table>
+    </center>
+  </div>
+  <% @employees1.each do |employee1| %>
+    <% c =cycle('even','odd ') %>
+    <div class="section1 row" >
+      <center>
+        <table id="pdf-table" width="100%" cellspacing="0">
+          <tr class="<%= "#{c}" %>">
+            <td class="col-pdf name"><%= employee1.first_name %></td>
+            <td class="col-pdf e_dept"><%= employee1.employee_department.name %></td>
+            <td class="col-pdf e_no"><%= employee1.employee_number%></td>
+            <td class="col-pdf j_date"><%= I18n.l(employee1.joining_date,:format=>"%d %b, %Y") %></td>
+          </tr>
+        </table>
+      </center>
+    </div>
+  <% end %>
 
+  <% unless @employees2.nil? %>
+    <% @employees2.each do |employee2| %>
+      <% c =cycle('even','odd ') %>
+      <div class="section1 row" >
+        <center>
+          <table id="pdf-table" width="100%" cellspacing="0">
+            <tr class="<%= "#{c}" %>">
+              <td class="col-pdf name"><%= employee2.first_name %></td>
+              <td class="col-pdf e_dept"><%= employee2.employee_department.name %></td>
+              <td class="col-pdf e_no"><%= employee2.employee_number%></td>
+              <td class="col-pdf j_date"><%= I18n.l(employee2.joining_date,:format=>"%d %b, %Y") %></td>
+            </tr>
+          </table>
+        </center>
+      </div>
+    <% end %>
+  <% end %>
 </div>
+<% if params[:page_height] %>
+  <script type="text/javascript">
+    var body = document.body,
+    html = document.documentElement;
+    var pg_height = parseInt(<%= params[:page_height] %>);
+    var header = $("table-headers")
+    var page = new Element('div',{'class' : 'page1'});
+    var pageBreak = new Element('div',{'class' : 'page-break1'});
+    var insertPageBreak = function(){body.appendChild(pageBreak.cloneNode(true))};
+    var insertPage = function(){body.appendChild(page.cloneNode(true));};
+    var currPage = function(){return $$('.page1').last()};
+    var insertHeader = function(){
+      header1 = header.cloneNode(true);
+      header1.style.marginTop="50px";
+      currPage().appendChild(header1.cloneNode(true));};
+    var current_page_height=0;
+    var i=0
+    $$('.available_sections1 .section1').each(function(el){
+      a = parseInt(el.getHeight());
+      c=current_page_height+a;
+      current_page_height=c;
+      if(c>pg_height){
+        current_page_height=a
+        body.appendChild(new Element('div',{'id' : 'page-blank_'+i, 'class' : 'page-blank'}))
+        document.getElementById('page-blank_'+i).style.height= (c-pg_height)+'px';
+        document.getElementById('page-blank_'+i).innerHTML="&nbsp;"/* if a div doesnt have any content it may not display.. set height will not work */
+        i+=1
+
+        //el.style.marginTop="50px"; /* for this border-top is coming, top section of each page */
+        insertPageBreak();
+        /* insertHeader(); */
+        insertPage();
+        insertHeader();
+        current_page_height = (current_page_height + header.getHeight() + 50)
+
+      }
+      currPage().appendChild(el);
+    });
+  </script>
+<% end %>
