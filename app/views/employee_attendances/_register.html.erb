@@ -30,15 +30,15 @@
   <div class="extender"></div>
 </div>
 <div class="box-1">
-<table class="" align="center" width="100%">
+<table class="" id="register-table" align="center" width="100%">
   <tr class="tr-head">
-    <td class="head-td-name"><%= t('name') %></td>
+    <td class="head-td-name themed_text"><%= t('name') %></td>
     <% current_day = Date.today  %>
     <% (@start_date..@end_date).each do |date| %>
       <% if current_day.strftime("%a %d %y") == date.strftime("%a %d %y") %>
-        <td class="head-td-date active" ><div class="day"><%= I18n.l(date,:format=>"%a")  %></div> <div class="date"> <%= I18n.l(date,:format=>"%d") %></div></td>
+        <td class="head-td-date active" ><div class="day themed_text"><%= I18n.l(date,:format=>"%a")  %></div> <div class="date"> <%= I18n.l(date,:format=>"%d") %></div></td>
       <% else %>
-        <td class="head-td-date"><div class="day"><%= I18n.l(date,:format=>"%a") %></div> <div class="date"> <%=  I18n.l(date,:format=>"%d") %></div></td>
+        <td class="head-td-date"><div class="day themed_text"><%= I18n.l(date,:format=>"%a") %></div> <div class="date"> <%=  I18n.l(date,:format=>"%d") %></div></td>
       <% end %>
 
     <% end %>
@@ -49,7 +49,7 @@
       <td class="td-name">
         <%= employee.first_name %>
         <div class="date">
-          <span><div><%= employee.full_name %></div></span>
+          <span><div class="themed_text"><%= employee.full_name %></div></span>
         </div>
 
       </td>
@@ -65,7 +65,7 @@
           <% else %>
             <%= link_to_remote('O', { :url => {:controller =>'employee_attendances', :action => 'new', :id=> date, :id2 =>employee.id}}, :class => 'present') %>
           <% end %>
-          <div class="date"><span><%=  I18n.l(date,:format=>"%a %d")%> <div> <%= employee.full_name %></div></span>
+          <div class="date"><span class="themed_text"><%=  I18n.l(date,:format=>"%a %d")%> <div> <%= employee.full_name %></div></span>
           </div>
         </td>
       <% end %>
