@@ -66,11 +66,15 @@
     cursor:pointer;
 }
 .news_publish_button:hover{
-   background:  #373B3F;
+    background:  #373B3F;
 }
 .fieldWithErrors {
     height: 42px;
     width: 648px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
+}
+#page-yield #news_title:focus {
+    background: none !important;
+    border: none !important;
 }
