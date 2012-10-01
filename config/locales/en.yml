@@ -359,6 +359,7 @@ en: # locale
   view_profile: "View Profile"
   select_a_category: "Select a Category"
   select_a_batch: "Select a Batch"
+  are_you_sure_to_trnsfer: "All the students will be transferred to the batch"
   select_a_course: "Select a Course"
   create_text: "Create"
   student_text: "Student"

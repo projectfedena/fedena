@@ -344,6 +344,7 @@ es: # locale
       errors_found: "Se encontró el siguiente error"
 
   sl_no: "Sl No."
+  are_you_sure_to_trnsfer: "All the students will be transferred to the batch"
   system_settings: "System Settings"
   administration_operations: "Administration / Operations"
   student_management: "Student Management"

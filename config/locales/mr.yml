@@ -349,6 +349,7 @@ mr: # locale
       errors_found: "खालील त्रूटी आढळल्या"
 
   sl_no: "अनु. क्रम."
+  are_you_sure_to_trnsfer: "All the students will be transferred to the batch"
   system_settings: "System Settings"
   administration_operations: "Administration / Operations"
   student_management: "Student Management"
