@@ -363,9 +363,9 @@ class StudentController < ApplicationController
         recipient_list << @student.immediate_contact.email unless (@student.immediate_contact.nil? or @student.immediate_contact.email=="")
       end
       unless recipient_list.empty?
-      FedenaMailer::deliver_email(sender, recipient_list, params['email']['subject'], params['email']['message'])
-      flash[:notice] = "#{t('flash12')} #{recipient_list.join(', ')}"
-      redirect_to :controller => 'student', :action => 'profile', :id => @student.id
+        FedenaMailer::deliver_email(sender, recipient_list, params['email']['subject'], params['email']['message'])
+        flash[:notice] = "#{t('flash12')} #{recipient_list.join(', ')}"
+        redirect_to :controller => 'student', :action => 'profile', :id => @student.id
       else
         @student.errors.add_to_base("#{t('flash20')}")
       end
@@ -592,8 +592,10 @@ class StudentController < ApplicationController
   def category_update
     @student_category = StudentCategory.find(params[:id])
     @student_category_name=@student_category.name
-    @student_category.update_attributes(:name => params[:name])
-    @student_categories = StudentCategory.active
+    if @student_category.update_attributes(:name => params[:name])
+      @student_categories = StudentCategory.active
+      @student_category = StudentCategory.new
+    end
   end
 
   def view_all
