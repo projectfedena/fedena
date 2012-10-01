@@ -32,22 +32,22 @@
     <li><%= link_to "#{t('add_new')}", :action => "create" %></li>
   </ul>
 </div>
-<div id="search-area">
-  <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
-  <div id="searchbox">
-    <form name="search-form" id="search-form">
-      <label for="query"><%= t('search_user') %>
-        <%= image_tag("loader.gif",
-          :align => "absmiddle",
-          :border => 0,
-          :id => "loader",
-          :style =>"display: none;" ) %>
-      </label>
-      <%= text_field_tag "query", params[:query], :autocomplete => 'off' %>
-    </form>
-  </div>
-</div>
 <div id="page-yield">
+  <div id="search-area">
+    <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
+    <div id="searchbox">
+      <form name="search-form" id="search-form">
+        <label for="query"><%= t('search_user') %>
+          <%= image_tag("loader.gif",
+            :align => "absmiddle",
+            :border => 0,
+            :id => "loader",
+            :style =>"display: none;" ) %>
+        </label>
+        <%= text_field_tag "query", params[:query], :autocomplete => 'off' %>
+      </form>
+    </div>
+  </div>
 
 
 
