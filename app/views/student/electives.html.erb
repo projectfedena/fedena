@@ -32,9 +32,9 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
-  <div class="name"><%= t('batch') %></div><div class="val"><span>:</span><%= @batch.name %></div>
-  <div class="name"><%=t('elective_group') %></div><div class="val"><span>:</span><%= @elective_group.name %></div>
-  <div class="name"><%= t('subject') %></div><div class="val"><span>:</span><%= @elective_subject.name %></div>
+  <div class="name"><%= t('batch') %></div><div class="val themed_text"><span>:</span><%= @batch.name %></div>
+  <div class="name"><%=t('elective_group') %></div><div class="val themed_text"><span>:</span><%= @elective_group.name %></div>
+  <div class="name"><%= t('subject') %></div><div class="val themed_text"><span>:</span><%= @elective_subject.name %></div>
   <br />
   <ul id="category-list">
     <div class="linker">
