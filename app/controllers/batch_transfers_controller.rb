@@ -30,26 +30,37 @@ class BatchTransfersController < ApplicationController
   end
 
   def transfer
-    unless params[:transfer][:students].nil?
-      students = Student.find(params[:transfer][:students])
-      students.each do |s|
-        s.batch_students.create(:batch_id => s.batch.id)
-        s.update_attribute(:batch_id, params[:transfer][:to])
-        s.update_attribute(:has_paid_fees,0)
-      end
-    end
-    batch = Batch.find(params[:id])
-    @stu = Student.find_all_by_batch_id(batch.id)
-    if @stu.empty?
-      batch.update_attribute :is_active, false
-      Subject.find_all_by_batch_id(batch.id).each do |sub|
-          sub.employees_subjects.each do |emp_sub|
-            emp_sub.delete
+    if request.post?
+      @batch = Batch.find params[:id], :include => [:students],:order => "students.first_name ASC"
+      if params[:transfer][:to].present?
+        unless params[:transfer][:students].nil?
+          students = Student.find(params[:transfer][:students])
+          students.each do |s|
+            s.batch_students.create(:batch_id => s.batch.id)
+            s.update_attribute(:batch_id, params[:transfer][:to])
+            s.update_attribute(:has_paid_fees,0)
           end
+        end
+        batch = @batch
+        @stu = Student.find_all_by_batch_id(batch.id)
+        if @stu.empty?
+          batch.update_attribute :is_active, false
+          Subject.find_all_by_batch_id(batch.id).each do |sub|
+            sub.employees_subjects.each do |emp_sub|
+              emp_sub.delete
+            end
+          end
+        end
+        flash[:notice] = "#{t('flash1')}"
+        redirect_to :controller => 'batch_transfers'
+      else
+        @batches = Batch.active - @batch.to_a
+        @batch.errors.add_to_base("#{t('select_a_batch_to_continue')}")
+        render :template=> "batch_transfers/show"
       end
+    else
+      redirect_to :action=>"show", :id=> params[:id]
     end
-    flash[:notice] = "#{t('flash1')}"
-    redirect_to :controller => 'batch_transfers'
   end
 
   def graduation
@@ -60,23 +71,23 @@ class BatchTransfersController < ApplicationController
     end
     if request.post?
       student_id_list = params[:graduate][:students]
-        @student_list = student_id_list.map { |st_id| Student.find(st_id) }
-        @admission_list = []
-        @student_list.each do |s|
-          @admission_list.push s.admission_no
-        end
-        @student_list.each { |s| s.archive_student(params[:graduate][:status_description]) }
-        @stu = Student.find_all_by_batch_id(@batch.id)
-        if @stu.empty?
-          @batch.update_attribute :is_active, false
-          @batch.employees_subjects.destroy_all
-#          flash[:notice]="Graduated selected students successfully."
-#          redirect_to :controller=>'batch_transfers' and return
-        end
-        flash[:notice]= "#{t('flash2')}"
-        redirect_to :action=>"graduation", :id=>params[:id], :ids => @admission_list
+      @student_list = student_id_list.map { |st_id| Student.find(st_id) }
+      @admission_list = []
+      @student_list.each do |s|
+        @admission_list.push s.admission_no
       end
+      @student_list.each { |s| s.archive_student(params[:graduate][:status_description]) }
+      @stu = Student.find_all_by_batch_id(@batch.id)
+      if @stu.empty?
+        @batch.update_attribute :is_active, false
+        @batch.employees_subjects.destroy_all
+        #          flash[:notice]="Graduated selected students successfully."
+        #          redirect_to :controller=>'batch_transfers' and return
+      end
+      flash[:notice]= "#{t('flash2')}"
+      redirect_to :action=>"graduation", :id=>params[:id], :ids => @admission_list
     end
+  end
 
   def subject_transfer
     @batch = Batch.find(params[:id])
@@ -93,12 +104,12 @@ class BatchTransfersController < ApplicationController
     all_batches.reject! {|b| b.subjects.empty?}
     @previous_batch = all_batches[all_batches.size-2]
     unless @previous_batch.blank?
-    @previous_batch_normal_subject = @previous_batch.normal_batch_subject
-    @elective_groups = @previous_batch.elective_groups.all(:conditions => {:is_deleted => false})
-    @previous_batch_electives = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"])
-    render(:update) do |page|
-      page.replace_html 'previous-batch-subjects', :partial=>"previous_batch_subjects"
-    end
+      @previous_batch_normal_subject = @previous_batch.normal_batch_subject
+      @elective_groups = @previous_batch.elective_groups.all(:conditions => {:is_deleted => false})
+      @previous_batch_electives = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"])
+      render(:update) do |page|
+        page.replace_html 'previous-batch-subjects', :partial=>"previous_batch_subjects"
+      end
     else
       render(:update) do |page|
         page.replace_html 'msg', :text=>"<p class='flash-msg'>#{t('batch_transfers.flash4')}</p>"

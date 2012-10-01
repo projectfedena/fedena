@@ -32,13 +32,14 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
-  <p><%= t('transferring_batch') %>: <%= @batch.full_name %></p>
+  <div class="transfer_batch_details">
+    <div class="label-field-pair"><label><%= t('transferring_batch') %>:</label> <div class="text-input-bg themed_text"><%= @batch.full_name %></div></div></div>
 
-  <% form_for :transfer, :url => { :controller => 'batch_transfers', :action => 'transfer', :id => @batch.id } do |f| %>
-
+  <% form_for :transfer,@batch, :url => { :controller => 'batch_transfers', :action => 'transfer', :id => @batch.id } do |f| %>
+    <%= error_messages_for 'batch', :header_message => nil %>
     <div class="label-field-pair">
       <label for="subject_id"><%= t('transfer_to') %> </label>
-      <div class="text-input-bg"><%= select :transfer, :to, @batches.map{ |b| [b.full_name, b.id] } %></div>
+      <div class="text-input-bg"><%= select :transfer, :to, @batches.map{ |b| [b.full_name, b.id] }, :prompt=>t('select_a_batch'), :id=>'transfer_to' %></div>
     </div>
 
     <p><%= t('uncheck_message') %>.</p>
@@ -61,9 +62,32 @@
       <% end %>
     </ul>
 
-    <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button" %>
+    <%= submit_tag "", :value => "► #{t('save')}", :class => "submit_button", :onclick=>"if (confirm_show()) return true; else return false;" %>
 
   <% end %>
 
   <div class="extender"></div>
 </div>
+<script type="text/javascript">
+  function confirm_show()
+  {
+    var elt = $('transfer_to');
+    if (elt.value=="")
+    {
+      return true
+    }
+    else
+    {
+      var text = elt.options[elt.selectedIndex].text;
+      if(confirm('<%=t('are_you_sure_to_trnsfer')%> ' + text ))
+      {
+        return true
+      }
+      else
+      {
+        return false
+      }
+    }
+  }
+
+</script>
