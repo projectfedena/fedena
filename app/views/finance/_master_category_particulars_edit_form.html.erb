@@ -59,7 +59,7 @@
 
 
     <div id="student">
-      <%= render :partial => 'student_category_particulars', :lacals=>{ :student_categories=> @student_categories} unless @finance_fee_particular.student_category_id.nil? %>
+      <%= render :partial => 'student_category_particulars', :locals=>{ :student_categories=> @student_categories} unless @finance_fee_particular.student_category_id.nil? %>
     </div>
 
     <div class="label-field-pair">
