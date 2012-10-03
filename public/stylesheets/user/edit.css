@@ -72,25 +72,9 @@
 #inner-tab-menu ul li{
     width:130px;
 }
-.user_submit_button1 {
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    background:#27292B;
-    color:#FFFFFF;
-    font-family:arial;
-    font-size:14px;
-    font-weight:bold;
-   
+.user_button {
     margin-left: 210px;
-    padding:7px 12px;
-    border:none;
-    text-align:center;
-    text-decoration: none;
-    width:auto;
-    cursor:pointer;
-}
-.user_submit_button:hover1{
-    background: #373B3F;
+    margin-top: 0;
 }
 .submit_div{
      margin-top:30px;
