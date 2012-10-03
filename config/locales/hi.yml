@@ -1988,6 +1988,7 @@ hi:
   flash_msg40: "सभी छात्रों को सफलतापूर्वक निरुपित"
   flash_msg41: "छात्रों को सफलतापूर्वक निकालें"
   flash_msg42: "सभी छात्रों को सफलतापूर्वक निकालें"
+  flash_msg43: "Invalid Submission. Please try again."
 
 #configuration controller translation
   configuration:

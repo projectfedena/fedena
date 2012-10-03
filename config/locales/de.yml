@@ -2016,6 +2016,7 @@ de: # locale
   flash_msg40: "Alle Schüler erfolgreich zugewiesen"
   flash_msg41: "Schüler erfolgreich entfernt"
   flash_msg42: "Alle Schüler erfolgreich entfernt"
+  flash_msg43: "Invalid Submission. Please try again."
 
 #configuration controller translation
   configuration:

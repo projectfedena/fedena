@@ -2017,6 +2017,7 @@ ja: # locale
   flash_msg40: "すべての生徒の割当は成功しました。"
   flash_msg41: "生徒の移動は成功しました。"
   flash_msg42: "すべての生徒の移動は成功しました。"
+  flash_msg43: "Invalid Submission. Please try again."
 
 #configuration controller translation
   configuration:

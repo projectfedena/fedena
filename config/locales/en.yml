@@ -2022,6 +2022,7 @@ en: # locale
   flash_msg40: "Assign all students successfully"
   flash_msg41: "Remove students successfully"
   flash_msg42: "Remove all students successfully"
+  flash_msg43: "Invalid Submission. Please try again."
 
 #configuration controller translation
   configuration:

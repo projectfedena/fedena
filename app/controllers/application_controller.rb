@@ -67,6 +67,19 @@ class ApplicationController < ActionController::Base
       log_error exception
       redirect_to :controller=>:user ,:action=>:dashboard
     end
+
+    rescue_from ActionController::InvalidAuthenticityToken do|exception|
+      flash[:notice] = "#{t('flash_msg43')}"
+      logger.info "[FedenaRescue] Invalid Authenticity Token #{exception.to_s}"
+      log_error exception
+      if request.xhr?
+        render(:update) do|page|
+          page.redirect_to :controller => 'user', :action => 'dashboard'
+        end
+      else
+        redirect_to :controller => 'user', :action => 'dashboard'
+      end
+    end
   end
 
  

@@ -2015,6 +2015,7 @@ ar:
   flash_msg40: "تعيين جميع الطلاب بنجاح"
   flash_msg41: "إزالة الطلاب بنجاح"
   flash_msg42: "إزالة جميع الطلاب بنجاح"
+  flash_msg43: "Invalid Submission. Please try again."
 
 #configuration controller translation
   configuration:

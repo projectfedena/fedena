@@ -2013,6 +2013,7 @@ pt: # locale
   flash_msg40: "Indicar todos estudantes com sucesso"
   flash_msg41: "Estudantes REMOVIDOS com sucesso"
   flash_msg42: "REMOVER todos estudantes com sucesso"
+  flash_msg43: "Invalid Submission. Please try again."
 
 #configuration controller translation
   configuration:

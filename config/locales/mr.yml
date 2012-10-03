@@ -2006,6 +2006,7 @@ mr: # locale
   flash_msg40: "सगळ्या विद्यार्थ्यांची नेमणूक यशस्वी"
   flash_msg41: "विद्यार्थी काढण्यात यशस्वी"
   flash_msg42: "सगळे विद्यार्थी काढण्यात यशस्वी"
+  flash_msg43: "Invalid Submission. Please try again."
 
 #configuration controller translation
   configuration:

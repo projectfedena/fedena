@@ -2012,6 +2012,7 @@ es: # locale
   flash_msg40: "Todos los estudiantes asignados con éxito"
   flash_msg41: "Estudiantes eliminados con éxito"
   flash_msg42: "Todos los estudiantes eliminados con éxito"
+  flash_msg43: "Invalid Submission. Please try again."
 
 #configuration controller translation
   configuration:
