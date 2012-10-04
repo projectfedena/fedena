@@ -522,6 +522,8 @@ class FinanceController < ApplicationController
 
 
   def view_employee_payslip
+    @is_present_employee=true
+    @is_present_employee=false if (Employee.find_by_id(params[:id]).nil?)
     @monthly_payslips = MonthlyPayslip.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],params[:salary_date]],:include=>:payroll_category)
     @individual_payslips =  IndividualPayslipCategory.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],params[:salary_date]])
     @salary  = Employee.calculate_salary(@monthly_payslips, @individual_payslips)
