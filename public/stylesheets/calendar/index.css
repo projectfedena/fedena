@@ -205,3 +205,8 @@ td a.event{
     -webkit-border-radius:2px;
     margin:2px;
 }
+.image_loading{
+    width: 100%;
+    float: left;
+    height: 20px;
+}

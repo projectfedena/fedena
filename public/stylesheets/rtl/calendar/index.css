@@ -14,9 +14,8 @@
     margin-bottom:20px;
     padding:15px;
 }
-/*---------custom css start---------*/
 .next a{
-    float:left;
+    float:right;
     -moz-border-radius:40px;
     -webkit-border-radius:40px;
     width:25px;
@@ -31,7 +30,7 @@
     display:block;
 }
 .prev a{
-    float:left;
+    float:right;
     -moz-border-radius:40px;
     -webkit-border-radius:40px;
     width:25px;
@@ -55,13 +54,12 @@
     background: #fff;
     padding:5px 0 5px 0;
     text-align:center;
-    float:left;
+    float:right;
     font-size:20px;
     color:#121212;
     font-weight:bold;
     margin:0 20px 0 20px;
 }
-/*---------custom css end---------*/
 table#calendar-table{
     background: #C3D9FF;
     -moz-border-radius:8px;
@@ -206,4 +204,9 @@ td a.event{
     -moz-border-radius:2px;
     -webkit-border-radius:2px;
     margin:2px;
+}
+.image_loading{
+    width: 100%;
+    float: right;
+    height: 20px;
 }
