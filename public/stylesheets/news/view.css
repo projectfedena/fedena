@@ -93,7 +93,7 @@
 }
 .comment-details .commenter {
     float: left;
-    width: 200px;
+    width: 535px;
 }
 .comment-details .comment-posted-at {
     float: right;
@@ -101,7 +101,7 @@
 }
 .comment-details .delete-comment {
     float: right;
-    margin: 0 0 0 4px;
+    margin: 0 0 0 20px;
 }
 .comment-content {
 
@@ -143,8 +143,22 @@
 }
 .approve
 {
-    float: right;
+    float: left;
     width: 220px;
 }
 
+.delete-comment a {
+    color: #000000;
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+.approve a {
+    color: #000000;
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
 

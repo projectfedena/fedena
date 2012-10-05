@@ -23,20 +23,20 @@
       <li id="comment-item-<%= @cmnt.id %>">
         <div class="comment-details">
           <div class="commenter"><%= @cmnt.author.present? ? @cmnt.author.first_name : "#{t('user_deleted')}" %></div>
-          <div class="comment-posted-at"><%= t('posted') %> <%= @cmnt.created_at.present? ? time_ago_in_words(@cmnt.created_at) : "" %> <%= t('ago') %></div>
 
+          <%  if is_author || @is_moderator%>
+            <div class="delete-comment">
+              <%= link_to_remote  "#{t('delete_text')}", :url => { :controller => 'news', :action => 'delete_comment', :id => @cmnt }, :confirm => "#{t('delete_confirm_msg')}" %>
+            </div>
+          <% end %>
+          <div class="comment-posted-at"><%= t('posted') %> <%= @cmnt.created_at.present? ? time_ago_in_words(@cmnt.created_at) : "" %> <%= t('ago') %></div>
           <div class ="approve">
             <% if !@is_moderator and !@cmnt.is_approved and is_author%>
               <%= "#{t('waiting_to_approve')}" %>
             <% end %>
             <% if @is_moderator and !@cmnt.is_approved%>
               <%= "#{t('waiting_to_approve')}" %>
-              <%= link_to_remote "#{t('approve')}"  ,:url=>{:action=> "comment_approved",:id=>@cmnt.id} %> |
-            <% end %>
-
-            <%  if is_author || @is_moderator%>
-              <div class="delete-comment">
-                <%= link_to_remote  "#{t('delete_text')}", :url => { :controller => 'news', :action => 'delete_comment', :id => @cmnt } %></div>
+              <%= link_to_remote "#{t('approve')}"  ,:url=>{:action=> "comment_approved",:id=>@cmnt.id} %> 
             <% end %>
           </div>
         </div>
@@ -44,13 +44,14 @@
       </li>
     <% end %>
   <% else %>
-
-
+    <% is_author = (@current_user == @cmnt.author) %>
     <li id="comment-item-<%= @cmnt.id %>">
       <div class="comment-details">
         <div class="commenter"><%= @cmnt.author.present? ? @cmnt.author.first_name : "#{t('user_deleted')}" %></div>
         <% if permitted_to? :delete_comment , :news %>
-          <div class="delete-comment"><%= link_to_remote  "#{t('delete_text')}", :url => { :controller => 'news', :action => 'delete_comment', :id => @cmnt } %></div>
+          <%  if is_author || @is_moderator%>
+            <div class="delete-comment"><%= link_to_remote  "#{t('delete_text')}", :url => { :controller => 'news', :action => 'delete_comment', :id => @cmnt }, :confirm => "#{t('delete_confirm_msg')}" %></div>
+          <%end%>
         <%end%>
         <div class="comment-posted-at"><%= t('posted') %> <%= @cmnt.created_at.present? ? time_ago_in_words(@cmnt.created_at) : "" %> <%= t('ago') %></div>
       </div>

@@ -1,4 +1,3 @@
-
 #news_area {
     margin-top:50px;
 }
@@ -93,10 +92,11 @@
 }
 .comment-details .commenter {
     float: right;
-    width: 200px;
+    width: 535px;
 }
 .comment-details .comment-posted-at {
     float: left;
+   padding-right: 10px;
 }
 .comment-details .delete-comment {
     float: left;
@@ -140,6 +140,24 @@
     width:auto;
     cursor:pointer;
 }
+.approve
+{
+    float: right;
+    width: 220px;
+}
 
-
+.delete-comment a {
+    color: #000000;
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+.approve a {
+    color: #000000;
+    font-size: 12px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
 
