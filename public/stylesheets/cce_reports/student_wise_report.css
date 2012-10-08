@@ -39,9 +39,9 @@ li.student_names, li.student_names a{
     text-decoration: none;
     /*    font-weight: bold;*/
 }
-.active-link{
+.student_list a.active-link{
     font-weight: bold;
-    color: #C00 !important;
+    color: #C00;
 }
 .student-name{
     height: 28px;
