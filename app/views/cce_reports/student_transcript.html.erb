@@ -63,9 +63,9 @@
 <script type="text/javascript">
   function set_active(){
     $$('.active-link').each(function(e){
-      e.removeClassName('active-link');
+      e.removeClassName('active-link themed_text');
     });
-    this.addClassName('active-link')
+    this.addClassName('active-link themed_text')
   }
   function draw_report(){
     Element.show('loader')
