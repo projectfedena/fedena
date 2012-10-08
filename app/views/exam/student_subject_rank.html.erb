@@ -60,7 +60,7 @@
         <% @students.each_with_index do |student,i| %>
           <tr class="tr-<%= cycle('odd', 'even') %>">
             <td class="col-1"><%= i+1 %></td>
-            <td class="col-1"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
+            <td class="col-3"><%= student.admission_no.present? ? student.admission_no : "-" %></td>
             <td class="col-2"><%= student.full_name %></td>
             <% @exam_groups.each do |exam_group| %>
               <% mark_list = [] %>
