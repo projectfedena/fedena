@@ -105,7 +105,7 @@
               <% unless @exam_group.exam_type == "Grades" %>
                 <td class="col-pdf mark-td">
                   <% if @exam_group.exam_type == "MarksAndGrades" %>
-                    <%= exam_score.nil? ? '-' :  "#{(exam_score.marks || "-")}" + "(#{(exam_score.grading_level || "-")})" %>
+                    <%= exam_score.nil? ? '-' :  "#{(exam_score.marks || "-")}" + " (#{(exam_score.grading_level || "-")})" %>
                   <% else %>
                     <%= exam_score.nil? ? '-' : exam_score.marks || "-" %>
                   <% end %>

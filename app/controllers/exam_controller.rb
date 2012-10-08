@@ -328,8 +328,7 @@ class ExamController < ApplicationController
   def consolidated_exam_report_pdf
     @exam_group = ExamGroup.find(params[:exam_group])
     @batch = @exam_group.batch
-    render :pdf => 'consolidated_exam_report_pdf',
-      :page_size=> 'A3'
+    render :pdf => 'consolidated_exam_report_pdf'#, :page_size=> 'A3'
     #        respond_to do |format|
     #            format.pdf { render :layout => false }
     #        end
