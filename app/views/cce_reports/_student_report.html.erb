@@ -23,18 +23,18 @@
 <div class="info">
   <div class="info-left">
     <div class="info1">
-      <label class="field-label">Name</label>: <label class="infolbl"> <%= @student.full_name %></label>
+      <label class="field-label">Name</label>: <label class="infolbl themed_text"> <%= @student.full_name %></label>
     </div>
     <div class="info1">
-      <label class="field-label">Course</label>: <label class="infolbl"> <%= @batch.course.full_name %></label>
+      <label class="field-label">Course</label>: <label class="infolbl themed_text"> <%= @batch.course.full_name %></label>
     </div>
   </div>
   <div class="info-right">
     <div class="info1">
-      <label class="field-label">Adm No.</label>: <label class="infolbl"> <%= @student.admission_no.present? ? @student.admission_no : "-" %></label>
+      <label class="field-label">Adm No.</label>: <label class="infolbl themed_text"> <%= @student.admission_no.present? ? @student.admission_no : "-" %></label>
     </div>
     <div class="info1">
-      <label class="field-label">Batch</label>: <label class="infolbl"> <%= @batch.name %></label>
+      <label class="field-label">Batch</label>: <label class="infolbl themed_text"> <%= @batch.name %></label>
     </div>
   </div>
 </div>
@@ -115,7 +115,7 @@
   </table>
   <% if @exam_groups.count==2 %>
     <div class="custom_header">
-      <span class="cgpa">Cumulative Grade Point Average(CGPA)  :   <%= cgpa/count unless count==0 %></span>
+      <span class="cgpa themed_text">Cumulative Grade Point Average(CGPA)  :   <%= cgpa/count unless count==0 %></span>
     </div>
   <% end %>
 </div>

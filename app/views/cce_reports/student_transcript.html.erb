@@ -47,7 +47,7 @@
     <ul class="student_list">
       <% @batches.each do |b| %>
         <li class="student_names">
-          <a href="#student_list" id="<%=b.id%>"  class="student-link <%= "active-link" if b.id == @batch.id %>" > <%= b.full_name %></a>
+          <a href="#student_list" id="<%=b.id%>"  class="student-link <%= "active-link themed_text" if b.id == @batch.id %> " > <%= b.full_name %></a>
         </li>
       <% end %>
     </ul>
