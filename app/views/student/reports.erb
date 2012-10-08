@@ -72,10 +72,10 @@
         <h4 class="themed_text"><%= t('archives') %></h4>
         <ul>
           <% @old_batches.each do |b| %>
-            <% unless @grouped_exams.empty? %>
-              <li><%= link_to b.name+'-G', { :controller => 'exam', :action => 'academic_report', :student => @student.id, :year => b.id,:type=>'grouped' } %></li>
+            <% unless GroupedExam.find_all_by_batch_id(b.id).empty? %>
+              <li><%= link_to b.name+'-G',{:controller=>'exam', :action=>'generated_report4',:student=>@student.id,:batch=>b.id,:type=>'grouped'} %></li>
             <% else %>
-              <li><%= link_to b.name, { :controller => 'exam', :action => 'academic_report', :student => @student.id, :year => b.id,:type=>'general' } %></li>
+              <li><%= link_to b.name,{:controller=>'exam', :action=>'generated_report4',:student=>@student.id,:batch=>b.id,:type=>'general'} %></li>
             <% end %>
           <% end %>
         </ul>

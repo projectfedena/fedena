@@ -88,7 +88,7 @@
                 <%= exam_total.present? ? exam_total.marks : "-" %>
               </td>
             <% end %>
-            <% total_avg = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(@student.id,@student.batch.id,"c") %>
+            <% total_avg = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(@student.id,@batch.id,"c") %>
             <td class="col-pdf"><%= total_avg.present? ? total_avg.marks : "-" %></td>
           </tr>
         </table>

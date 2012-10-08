@@ -93,7 +93,7 @@
             <%= exam_total.present? ? exam_total.marks : "-" %>
           </td>
         <% end %>
-        <% total_avg = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(@student.id,@student.batch.id,"c") %>
+        <% total_avg = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(@student.id,@batch.id,"c") %>
         <td class="col-3"><%= total_avg.present? ? total_avg.marks : "-" %></td>
       </tr>
     </table>
@@ -181,6 +181,11 @@
     <% end %>
   </div>
 <% end %>
+<% if @previous_batch == 1 %>
+<%= link_to " ► #{t('pdf_report')}",
+  { :action => "generated_report4_pdf", :batch_id => @batch.id, :student=>@student.id, :type=> @type},:target => '_blank', :class=> 'user_button1' %>
+<% else %>
 <%= link_to " ► #{t('pdf_report')}",
   { :action => "generated_report4_pdf", :batch_id => @batch.id, :student=>@student.id, :type=> @type},:target => '_blank', :class=> 'user_button' %>
+<% end %>
 <div class="extender"></div>

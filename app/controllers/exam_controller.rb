@@ -1026,6 +1026,7 @@ class ExamController < ApplicationController
         redirect_to :action=>'grouped_exam_report' and return
       end
     end
+    @previous_batch = 0
     #grouped-exam-report-for-batch
     if params[:student].nil?
       @type = params[:type]
@@ -1056,7 +1057,12 @@ class ExamController < ApplicationController
       @subjects.reject!{|s| (s.no_exams==true or s.exam_not_created(@exam_groups.collect(&:id)))}
     else
       @student = Student.find(params[:student])
-      @batch = @student.batch
+      if params[:batch].present?
+        @batch = Batch.find(params[:batch])
+        @previous_batch = 1
+      else
+        @batch = @student.batch
+      end
       @type  = params[:type]
       if params[:type] == 'grouped'
         @grouped_exams = GroupedExam.find_all_by_batch_id(@batch.id)
@@ -1068,8 +1074,8 @@ class ExamController < ApplicationController
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
         @exam_groups.reject!{|e| e.result_published==false}
       end
-      general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>"elective_group_id IS NULL AND is_deleted=false")
-      student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@student.batch.id}")
+      general_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>"elective_group_id IS NULL AND is_deleted=false")
+      student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@batch.id}")
       elective_subjects = []
       student_electives.each do |elect|
         elective_subjects.push Subject.find(elect.subject_id)
@@ -1116,7 +1122,7 @@ class ExamController < ApplicationController
       @subjects.reject!{|sub| !(subject_ids.include?(sub.id))}
     else
       @student = Student.find(params[:student])
-      @batch = @student.batch
+      @batch = Batch.find_by_id(params[:batch_id])
       @type  = params[:type]
       if params[:type] == 'grouped'
         @grouped_exams = GroupedExam.find_all_by_batch_id(@batch.id)
@@ -1128,8 +1134,8 @@ class ExamController < ApplicationController
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
         @exam_groups.reject!{|e| e.result_published==false}
       end
-      general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>"elective_group_id IS NULL")
-      student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@student.batch.id}")
+      general_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>"elective_group_id IS NULL")
+      student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@batch.id}")
       elective_subjects = []
       student_electives.each do |elect|
         elective_subjects.push Subject.find(elect.subject_id)

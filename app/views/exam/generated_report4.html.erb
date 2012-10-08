@@ -27,9 +27,11 @@
 </div>
 <div id="inner-tab-menu">
   <ul>
-    <%  if permitted_to? :combined_grouped_exam_report_pdf,:exam %>
-      <li><%= link_to "#{t('pdf_report')}",
-          {:controller => "exam", :action => "combined_grouped_exam_report_pdf", :type => @type, :batch => @batch.id},:target => '_blank' %></li>
+    <% unless @previous_batch == 1 %>
+      <%  if permitted_to? :combined_grouped_exam_report_pdf,:exam %>
+        <li><%= link_to "#{t('pdf_report')}",
+            {:controller => "exam", :action => "combined_grouped_exam_report_pdf", :type => @type, :batch => @batch.id},:target => '_blank' %></li>
+      <% end %>
     <% end %>
   </ul>
 </div>
@@ -38,12 +40,24 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
   <h4 align="center"><%= @batch.name %> - <%= @batch.course.full_name %></h4>
+  <% unless @previous_batch == 1 %>
   <div id="student_list">
     <%= render  :partial=>"student_list" %>
   </div>
+  <% end %>
+  <% unless @previous_batch == 1 %>
+  <div class ="current_batch">
   <div id="grouped_exam_report">
     <%= render :partial=>'grouped_exam_report' %>
   </div>
+  </div>
+  <% else %>
+  <div class ="previous_batch">
+  <div id="grouped_exam_report">
+    <%= render :partial=>'grouped_exam_report' %>
+  </div>
+  </div>
+  <% end %>
 <%#*<div class="box">%>
 <%#*</div>%>
 
