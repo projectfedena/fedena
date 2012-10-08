@@ -98,11 +98,11 @@
   </div>
 <% end %>
 <% if @current_user==@emp.user %>
-  <div>
+  <div class="pdf-link">
     <%= link_to "► #{t('pdf_report')}", {:controller=>"employee", :action=>"individual_payslip_pdf", :id=>@emp.id, :id2=>@salary_date}, :target=> "_blank", :class=>"user_button" %>
   </div>
 <% elsif permitted_to?     :employee_individual_payslip_pdf,:employee %>
-  <div>
+  <div class="pdf-link">
     <%= link_to "► #{t('pdf_report')}", {:controller=>"employee", :action=>"employee_individual_payslip_pdf", :id=>@emp.id, :id2=>@salary_date}, :target=> "_blank", :class=>"user_button" %>
   </div>
 <% end %>
