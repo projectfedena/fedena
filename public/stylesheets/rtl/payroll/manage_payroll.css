@@ -7,7 +7,7 @@
 .payroll-input-bg input{
     background: #EEE;
     border: 1px solid #C6C6C6;
-    margin: 5px 0 0 10px;
+    margin: 5px 10px 0 0;
     width: 205px;
     height: 17px;
     -moz-border-radius: 10px;
@@ -17,11 +17,10 @@
 .payroll-field-pair label {
     color: #444;
     display: block;
-    margin: 0 0 0px 0;
-    float: left;
+    margin: 0;
+    float: right;
     width: 220px;
     padding-top: 10px;
-    font-weight: 600;
     font-weight: bold;
 }
 #page-yield .payroll-input-bg input:focus {

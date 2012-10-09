@@ -32,7 +32,7 @@
 }
 
 #changed-manager-name{
-    
+
     float:right;
     font-weight:bold;
     color:#BB0000;
@@ -67,17 +67,20 @@
 
 #search-text-box{
     float:right;
-    background : #fff url(../../../images/form_bg/text-input-bg.png) no-repeat;
     height : 28px;
     width : 230px;
     margin:10px 0 25px 0;
 }
 
 #search-text-box input {
-    background : transparent;
-    border : 0;
-    margin : 5px 10px 0 0;
-    width : 210px;
+    background: #EEE;
+    border: 1px solid #C6C6C6;
+    margin: 0;
+    width: 218px;
+    height: 16px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    padding: 5px;
 }
 
 .employee-search-options{
@@ -133,8 +136,8 @@
 }
 
 #form-content{
-    
-    
+
+
 }
 
 #new-manager-label{
