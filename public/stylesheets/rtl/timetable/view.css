@@ -123,6 +123,7 @@ td .tt-subject .subject{
     font-weight: bold;
     font-size: 13px;
     cursor: pointer;
+    overflow: hidden;
 }
 td .tt-subject .employee{
     height: 15px;
