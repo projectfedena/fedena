@@ -18,7 +18,7 @@
 #under the License. -%>
 
 
-<div class="heading"><%= t('view_all_leave_application') %></div>
+<div class="heading themed_text"><%= t('view_all_leave_application') %></div>
 <div class="label-field">      
   <div class="text-input-bg"><%= select :leave_applications, :employee_id, @reporting_employees.map {|c| [c.full_name, c.id]},
       {:prompt => "#{t('select_employee')}"},
