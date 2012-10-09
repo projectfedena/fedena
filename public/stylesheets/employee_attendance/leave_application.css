@@ -131,6 +131,7 @@
     font-family: arial;
     cursor:pointer;
     margin-left: 40px;
+    margin-top: 0;
     text-decoration: none;
 }
 .cancel_button a:hover{
