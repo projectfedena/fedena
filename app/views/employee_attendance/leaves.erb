@@ -35,18 +35,18 @@
     <li><%= link_to_remote "#{t('my_leaves')}",
         :update => "application-list",
         :url => {:action => "individual_leave_applications", :id=>@employee.id} %></li>
-      <% unless @reporting_employees == [] %>
-        <% if @total_leave_count == 0 %>
+    <% unless @reporting_employees == [] %>
+      <% if @total_leave_count == 0 %>
 
-        <% else %>
-        <span class="new-leaves-count">  <li><b><%= link_to_remote "#{t('new_leaves')} (#{@total_leave_count})",
-                :update => "application-list-2",
-                :url => {:action => "new_leave_applications", :id=>@employee.id} %></b></li></span>
-            <% end %>
+      <% else %>
+        <li><b><%= link_to_remote "#{t('new_leaves')} (#{@total_leave_count})",
+              :update => "application-list-2",
+              :url => {:action => "new_leave_applications", :id=>@employee.id} %></b></li>
+      <% end %>
       <li><%= link_to_remote "#{t('all_leaves')}",
           :update => "application-list",
           :url => {:action => "all_leave_applications", :id=>@employee.id} %></li>
-      <% end %>
+    <% end %>
   </ul>
 </div>
 
@@ -59,50 +59,50 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-        <% reporting_manager = Employee.find(@employee.id).reporting_manager_id %>
-    
+  <% reporting_manager = Employee.find(@employee.id).reporting_manager_id %>
+
   <div id="application-list-2">
     <% unless @current_user.admin? %>
-        <% if reporting_manager.nil?  %>
-    <p class="flash-msg"><%= t('warn_notice') %> </p>
-<% end %>
-<% end %>
-  </div>
- <% unless reporting_manager.nil? and not @current_user.admin? %>
-  <div id="application-list">
-    <div class="heading themed_text"><%= t('apply_for_a_leave') %></div>
-    <% form_for :leave_apply do |l| %>
-      <%= error_messages_for :leave_apply %>
-      <%= l.hidden_field :employee_id, :value=>@employee.id %>
-      <div class="label-field-pair">
-        <label for="leave_type"><%= t('leave_type') %>:</label>
-        <div class="text-input-bg"><%= select :leave_apply, :employee_leave_types_id, @leave_types.map {|s| [s.name, s.id]},:prompt => "Select" %></div>
-      </div>
-      <div class="label-field-pair">
-          <label for="create_user" id="create_user_option"><%= t('is_half_day') %></label>
-         <div class="text-input-bg"><%= l.check_box :is_half_day, :checked => false %></div>
-      </div>
-
-      <div class="label-field-pair">
-        <label for="start_date"><%= t('start_date') %></label>
-        <% start_date = params[:leave_apply][:start_date] if params[:leave_apply].present? %>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'leave_apply[start_date]' ,I18n.l( start_date.present? ? start_date.to_date : Date.today, :format=>:default),:popup=>:force  %></div>
-      </div>
-      <div class="label-field-pair">
-        <label for="end_date"><%= t('end_date') %>:</label>
-        <% end_date = params[:leave_apply][:end_date] if params[:leave_apply].present? %>
-        <div class="text-input-bg"><%= calendar_date_select_tag 'leave_apply[end_date]' ,I18n.l( end_date.present? ? end_date.to_date : Date.today, :format=>:default),:popup=>:force   %></div>
-      </div>
-      <div class="label-field-pair">
-        <label for="reason"><%= t('reason') %>:</label>
-        <div class="text-input-bg"><%= l.text_field   :reason %></div>
-      </div>
-      
-      <div id="submit-button">
-        <%=  submit_tag("► #{t('create_text')}") %>
-      </div>
+      <% if reporting_manager.nil?  %>
+        <p class="flash-msg"><%= t('warn_notice') %> </p>
+      <% end %>
     <% end %>
-    <div class="extender"></div>
   </div>
-<% end %>
-  </div>
+  <% unless reporting_manager.nil? and not @current_user.admin? %>
+    <div id="application-list">
+      <div class="heading themed_text"><%= t('apply_for_a_leave') %></div>
+      <% form_for :leave_apply do |l| %>
+        <%= error_messages_for :leave_apply %>
+        <%= l.hidden_field :employee_id, :value=>@employee.id %>
+        <div class="label-field-pair">
+          <label for="leave_type"><%= t('leave_type') %>:</label>
+          <div class="text-input-bg"><%= select :leave_apply, :employee_leave_types_id, @leave_types.map {|s| [s.name, s.id]},:prompt => "Select" %></div>
+        </div>
+        <div class="label-field-pair">
+          <label for="create_user" id="create_user_option"><%= t('is_half_day') %></label>
+          <div class="text-input-bg"><%= l.check_box :is_half_day, :checked => false %></div>
+        </div>
+
+        <div class="label-field-pair">
+          <label for="start_date"><%= t('start_date') %></label>
+          <% start_date = params[:leave_apply][:start_date] if params[:leave_apply].present? %>
+          <div class="text-input-bg"><%= calendar_date_select_tag 'leave_apply[start_date]' ,I18n.l( start_date.present? ? start_date.to_date : Date.today, :format=>:default),:popup=>:force  %></div>
+        </div>
+        <div class="label-field-pair">
+          <label for="end_date"><%= t('end_date') %>:</label>
+          <% end_date = params[:leave_apply][:end_date] if params[:leave_apply].present? %>
+          <div class="text-input-bg"><%= calendar_date_select_tag 'leave_apply[end_date]' ,I18n.l( end_date.present? ? end_date.to_date : Date.today, :format=>:default),:popup=>:force   %></div>
+        </div>
+        <div class="label-field-pair">
+          <label for="reason"><%= t('reason') %>:</label>
+          <div class="text-input-bg"><%= l.text_field   :reason %></div>
+        </div>
+
+        <div id="submit-button">
+          <%=  submit_tag("► #{t('create_text')}") %>
+        </div>
+      <% end %>
+      <div class="extender"></div>
+    </div>
+  <% end %>
+</div>

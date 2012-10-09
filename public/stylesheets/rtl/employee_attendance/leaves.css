@@ -66,19 +66,6 @@
     width : 250px;
     margin:10px 40px 0 0;
 }
-.new-leaves-count{
-    background-color : #9d0e00;
-    color : #fff;
-    float : right;
-    font-size : 0.9em;
-    height : 1.5em;
-    list-style-type : none;
-    margin : 0 10px 0 0;
-    padding : 0;
-    text-align : center;
-    width : 162px;
-}
-
 .container{
 
 }
