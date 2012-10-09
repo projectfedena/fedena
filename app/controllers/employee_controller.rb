@@ -1036,7 +1036,6 @@ class EmployeeController < ApplicationController
     #@employees = Employee.find_all_by_employee_department_id(department_id)
     @employees = MonthlyPayslip.find(:all, :conditions =>"is_rejected is true", :group=>'employee_id', :joins=>"INNER JOIN employees on monthly_payslips.employee_id = employees.id")
     @employees.reject!{|x| x.employee.employee_department_id != department_id.to_i}
-    
 
     render :update do |page|
       page.replace_html 'employees_select_list', :partial => 'rejected_employee_select_list', :object => @employees
@@ -1161,7 +1160,7 @@ class EmployeeController < ApplicationController
   def update_employee_select_list
     department_id = params[:department_id]
     @employees = Employee.find_all_by_employee_department_id(department_id)
-
+    @employees = @employees.sort_by { |u1| [u1.full_name] } if @employees.present?
     render :update do |page|
       page.replace_html 'employees_select_list', :partial => 'employee_select_list', :object => @employees
     end
