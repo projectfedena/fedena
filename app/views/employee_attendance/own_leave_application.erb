@@ -68,7 +68,7 @@
     </ul>
 
     <%= link_to "► #{t('cancel_leave')}",
-      {:action => "cancel_application", :id=>@applied_leave.id}, :class=>'cancel_button' ,:confirm=>"#{t('delete_confirm_msg')}" if (@applied_leave.viewed_by_manager == false and @applied_leave.approved == false)%>
+      {:action => "cancel_application", :id=>@applied_leave.id}, :class=>'user_button' ,:confirm=>"#{t('delete_confirm_msg')}" if (@applied_leave.viewed_by_manager == false and @applied_leave.approved == false)%>
 
   </div>
 </div>
