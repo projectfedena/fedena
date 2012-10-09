@@ -119,7 +119,7 @@
 
 
   <div id="application-list">
-    <div class="heading"><%= t('apply_for_a_leave') %></div>
+    <div class="heading themed_text"><%= t('apply_for_a_leave') %></div>
     <% form_for :leave_apply do |l| %>
       <%= error_messages_for :leave_apply %>
       <%= l.hidden_field :employee_id, :value=>@employee.id %>
