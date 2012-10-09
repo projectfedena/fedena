@@ -25,8 +25,8 @@
     font-weight: bold;
 }
 #page-yield .payroll-input-bg input:focus {
-    background: #EEE;
-    border: 1px solid #C6C6C6;
+    background: #EEE !important;
+    border: 1px solid #C6C6C6 !important;
 }
 #submit-button input{
     -moz-border-radius:10px;
