@@ -64,6 +64,7 @@ a.user_button{
 
 #add-payslip-category-link{
     padding-right:80px;
+    overflow: hidden;
 }
 
 #add-payslip-category-link a{
