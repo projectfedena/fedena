@@ -32,11 +32,9 @@
   <div id="form-content">
     <% form_for :employee do |e| %>
       <div id="current-changed-manager">
-
-
         <div id="changed-manager-outer">
           <div id="changed-manager"><%= t('selected_manager') %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</div>
-          <div id="changed-manager-name"><span class="not-selected">(<%= t('not_selected') %>)</span></div>
+          <div id="changed-manager-name" class="themed_text"><span class="not-selected">(<%= t('not_selected') %>)</span></div>
           <div id="update-button"><%=  submit_tag("► #{t('save_and_proceed')}") %></div>
           <div class="extender"></div>
         </div>
