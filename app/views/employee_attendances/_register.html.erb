@@ -61,7 +61,7 @@
         <td id="attendance-employee-<%= employee.id %>-day-<%= date %>" class="td-mark">
             <% end %>
           <% unless @absent.nil? %>
-            <%= link_to_remote('X', {:url => edit_employee_attendance_path(@absent), :method => 'get'}, :class=> 'absent') %>
+            <%= link_to_remote('X', {:url => edit_employee_attendance_path(@absent), :method => 'get'}, :class=> 'absent themed_text') %>
           <% else %>
             <%= link_to_remote('O', { :url => {:controller =>'employee_attendances', :action => 'new', :id=> date, :id2 =>employee.id}}, :class => 'present') %>
           <% end %>
