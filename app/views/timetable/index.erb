@@ -33,6 +33,17 @@
   <% end %>
 
   <div class="box">
+    <%  if permitted_to? :new_timetable,:timetable%>
+      <div class="link-box">
+        <div class="link-heading"><%= link_to "#{t('create_text')} #{t('weekdays_text')}", :controller => "weekday", :action => "index" %></div>
+        <div class="link-descr"><%= t('create_text') %> <%= t('weekdays_text') %></div>
+      </div>
+    <% end %>
+
+    <div class="link-box">
+      <div class="link-heading"><%= link_to "#{t('set_class_timings')}", :controller => "class_timings", :action => "index"   %></div>
+      <div class="link-descr"><%= t('select_a_class_and_edit_the_timetable') %>.</div>
+    </div>
     <%if permitted_to? :work_allotment,:timetable%>
       <div class="link-box">
         <div class="link-heading"><%= link_to "#{t('work_allotment')}", :controller => "timetable", :action => "work_allotment"   %></div>
@@ -50,10 +61,6 @@
         <div class="link-descr"><%= t('select_a_class_and_create_the_timetable') %>.</div>
       </div>
 
-      <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('set_class_timings')}", :controller => "class_timings", :action => "index"   %></div>
-        <div class="link-descr"><%= t('select_a_class_and_edit_the_timetable') %>.</div>
-      </div>
     <%  end%>
     <%if permitted_to? :edit_master,:timetable%>
       <div class="link-box">
@@ -100,12 +107,7 @@
         <div class="link-descr"><%= t('view_entire_timetable') %></div>
       </div>
     <% end %>
-    <%  if permitted_to? :new_timetable,:timetable%>
-      <div class="link-box">
-        <div class="link-heading"><%= link_to "#{t('create_text')} #{t('weekdays_text')}", :controller => "weekday", :action => "index" %></div>
-        <div class="link-descr"><%= t('create_text') %> <%= t('weekdays_text') %></div>
-      </div>
-    <% end %>
+
     <div class="extender"></div>
   </div>
 </div>
