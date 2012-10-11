@@ -1160,7 +1160,7 @@ class EmployeeController < ApplicationController
   def update_employee_select_list
     department_id = params[:department_id]
     @employees = Employee.find_all_by_employee_department_id(department_id)
-    @employees = @employees.sort_by { |u1| [u1.full_name] } if @employees.present?
+    @employees = @employees.sort_by { |u1| [u1.full_name.to_s.downcase ] } if @employees.present?
     render :update do |page|
       page.replace_html 'employees_select_list', :partial => 'employee_select_list', :object => @employees
     end
