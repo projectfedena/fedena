@@ -1388,7 +1388,7 @@ ar:
   student_admission_done: "قبول الطالب القيام به. اسم المستخدم هو"
   password_is: "وكلمة السر هي"
   select_one_of_the_guardians: "حدد أحد الأوصياء والاتصال في حالات الطوارئ."
-  max_size: "50KB ماكس"
+  max_size: "500KB ماكس"
   unknown: "غير معروف"
   student_detail_step1: "الخطوة 1 -- تفاصيل الطلاب"
   last_course: "حضر الدورة الماضية"

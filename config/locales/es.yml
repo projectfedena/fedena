@@ -1385,7 +1385,7 @@ es: # locale
   student_admission_done: "Admisión de estudiante realizada. El nombre de usuario es"
   password_is: "y la contraseña es"
   select_one_of_the_guardians: "Seleccionar uno de los guardianes como contacto de emergencia."
-  max_size: "50KB max"
+  max_size: "500KB max"
   unknown: "Desconocido"
   student_detail_step1: "Paso 1 – Información del estudiante"
   last_course: "Último curso estudiado"

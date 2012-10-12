@@ -1361,7 +1361,7 @@ hi:
   student_admission_done: "छात्र प्रवेश किया| उपयोगकर्ता नाम है"
   password_is: "और पासवर्ड है"
   select_one_of_the_guardians: "एक आपातकालीन संपर्क के रूप में संरक्षक के का चयन करें|"
-  max_size: "50KB अधिकतम"
+  max_size: "500KB अधिकतम"
   unknown: "अज्ञात"
   student_detail_step1: "चरण 1 - छात्र विवरण"
   last_course: "अंतिम भाग लिया कोर्स"

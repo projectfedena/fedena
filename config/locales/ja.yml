@@ -1390,7 +1390,7 @@ ja: # locale
   student_admission_done: "生徒の登録完了。ユーザー名は"
   password_is: "パスワードは"
   select_one_of_the_guardians: "保護者を一人選択し、緊急連絡先を設定"
-  max_size: "最大50KBまで"
+  max_size: "最大500KBまで"
   unknown: "不明"
   student_detail_step1: "ステップ 1 - 生徒詳細"
   last_course: "前回のコース"
