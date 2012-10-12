@@ -270,8 +270,17 @@ module Delayed
 
     def after_create
       #checking for an existing job before scaling up. Scale ups if no job.
-      Manager.scale_up if self.class.auto_scale && !(File.exists?('tmp/delayed_job.pid'))
+     current_pid = Manager.scale_up if self.class.auto_scale && !(File.exists?('tmp/delayed_job.pid'))
       ##&& Manager.qty == 0 --- solving worker start error when more than one worker
+     if current_pid
+       make_pid_file(current_pid)
+     end
+    end
+    def make_pid_file(cpid)
+      Dir.mkdir('tmp') unless File.exists?('tmp') && File.directory?('tmp')
+      File.open('tmp/delayed_job.pid','w') do |f|
+        f.puts "#{cpid}"
+      end
     end
   end
 

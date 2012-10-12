@@ -30,7 +30,7 @@ module Delayed
 
     def start
       say "*** Starting job worker #{Delayed::Job.worker_name}"
-      make_pid_file #pid file being made on start of scale up, this will be checked on each job enqueue
+#      make_pid_file #pid file being made on start of scale up, this will be checked on each job enqueue
       trap('TERM') { say 'Exiting...'; $exit = true }
       trap('INT')  { say 'Exiting...'; $exit = true }
 
