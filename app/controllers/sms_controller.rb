@@ -17,6 +17,7 @@
 #limitations under the License.
 
 class SmsController < ApplicationController
+  before_filter :login_required
   filter_access_to :all
   
   def index

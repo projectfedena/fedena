@@ -19,7 +19,7 @@
 class BatchesController < ApplicationController
   before_filter :init_data,:except=>[:assign_tutor,:update_employees,:assign_employee,:remove_employee,:batches_ajax]
   filter_access_to :all
-  
+  before_filter :login_required
   def index
     @batches = @course.batches    
   end

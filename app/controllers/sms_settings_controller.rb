@@ -18,7 +18,7 @@
 
 class SmsSettingsController < ApplicationController
   filter_access_to :all
-  
+  before_filter :login_required
   def index
     @application_sms_enabled = SmsSetting.find_by_settings_key("ApplicationEnabled")
     @student_admission_sms_enabled = SmsSetting.find_by_settings_key("StudentAdmissionEnabled")

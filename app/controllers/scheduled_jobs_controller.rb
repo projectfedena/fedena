@@ -17,6 +17,8 @@
 #limitations under the License.
 
 class ScheduledJobsController < ApplicationController
+  before_filter :login_required
+  filter_access_to :all
   def index
     @jobs = Delayed::Job.all
     @all_jobs = @jobs.dup

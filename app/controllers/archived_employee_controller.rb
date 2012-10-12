@@ -19,7 +19,7 @@
 class ArchivedEmployeeController < ApplicationController
 
   before_filter :login_required,:configuration_settings_for_hr
-  #filter_access_to :all
+  filter_access_to :all
 #  prawnto :prawn => {:left_margin => 25, :right_margin => 25}
 
   

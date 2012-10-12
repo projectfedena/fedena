@@ -20,7 +20,7 @@ class StudentAttendanceController < ApplicationController
   before_filter :login_required
   before_filter :only_assigned_employee_allowed
   before_filter :protect_other_student_data
-
+  filter_access_to :all
  
   def index
   end

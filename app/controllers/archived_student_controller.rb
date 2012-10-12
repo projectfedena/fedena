@@ -18,6 +18,7 @@
 
 class ArchivedStudentController < ApplicationController
   filter_access_to :all
+  before_filter :login_required
 
   def profile
     @current_user = current_user
