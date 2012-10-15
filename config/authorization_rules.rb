@@ -86,7 +86,7 @@ authorization do
     has_permission_on [:scheduled_jobs],
       :to => [
       :index
-      ]
+    ]
     has_permission_on [:exam_groups],
       :to => [
       :index,
@@ -829,6 +829,7 @@ authorization do
     has_permission_on [:courses], :to => [:index,:manage_course, :manage_batches,:find_course, :new, :create,:destroy,:edit,:update, :show, :update_batch,:grouped_batches,:create_batch_group,:edit_batch_group,:update_batch_group,:delete_batch_group]
     has_permission_on [:batches], :to => [:index, :new, :create,:destroy,:edit,:update, :show, :init_data,:assign_tutor,:update_employees,:assign_employee,:batches_ajax]
     has_permission_on [:subjects], :to => [:index, :new, :create,:destroy,:edit,:update, :show]
+    has_permission_on [:elective_groups],  :to => [:index,:new,:create,:destroy,:edit, :update,:show]
     has_permission_on [:student], :to => [:electives, :assign_students, :unassign_students, :assign_all_students, :unassign_all_students, :profile, :guardians, :show_previous_details]
     has_permission_on [:batch_transfers],
       :to => [
@@ -850,6 +851,7 @@ authorization do
     has_permission_on [:configuration], :to => [:index]
     has_permission_on [:student], :to => [:electives, :assign_students, :unassign_students, :assign_all_students, :unassign_all_students]
     has_permission_on [:subjects],        :to => [:index,:new,:create,:destroy,:edit, :update,:show]
+    has_permission_on [:elective_groups],  :to => [:index,:new,:create,:destroy,:edit, :update,:show]
   end
 
   role :academic_year do
@@ -995,12 +997,12 @@ authorization do
       :fees_create,
       :master_fees,
       :show_master_categories_list,
-#      :show_additional_fees_list,
+      #      :show_additional_fees_list,
       :fees_particulars,
-#      :additional_fees,
-#      :additional_fees_create_form,
-#      :additional_fees_create,
-#      :additional_fees_view,
+      #      :additional_fees,
+      #      :additional_fees_create_form,
+      #      :additional_fees_create,
+      #      :additional_fees_view,
       :add_particulars,
       :fee_collection_batch_update,
       :fees_submission_student,
@@ -1045,14 +1047,14 @@ authorization do
       :master_category_particulars_edit,
       :master_category_particulars_update,
       :master_category_particulars_delete,
-#      :additional_fees_list,
+      #      :additional_fees_list,
       :additional_particulars,
       :add_particulars_edit,
       :add_particulars_update,
       :add_particulars_delete,
-#      :additional_fees_edit,
-#      :additional_fees_update,
-#      :additional_fees_delete,
+      #      :additional_fees_edit,
+      #      :additional_fees_update,
+      #      :additional_fees_delete,
       :month_date,
       :compare_report,
       :report_compare,
@@ -1364,6 +1366,7 @@ authorization do
     has_permission_on [:student_attendance], :to => [:index, :student, :month]
     has_permission_on [:configuration], :to => [:index,:settings,:permissions, :add_weekly_holidays, :delete]
     has_permission_on [:subjects], :to => [:index, :new, :create,:destroy,:edit,:update, :show]
+    has_permission_on [:elective_groups],  :to => [:index,:new,:create,:destroy,:edit, :update,:show]
     has_permission_on [:courses],
       :to => [
       :index,
@@ -1576,7 +1579,7 @@ authorization do
     has_permission_on [:scheduled_jobs],
       :to => [
       :index
-      ]
+    ]
     has_permission_on [:exam_groups],
       :to => [
       :index,
@@ -1757,12 +1760,12 @@ authorization do
       :fees_create,
       :master_fees,
       :show_master_categories_list,
-#      :show_additional_fees_list,
+      #      :show_additional_fees_list,
       :fees_particulars,
-#      :additional_fees,
-#      :additional_fees_create_form,
-#      :additional_fees_create,
-#      :additional_fees_view,
+      #      :additional_fees,
+      #      :additional_fees_create_form,
+      #      :additional_fees_create,
+      #      :additional_fees_view,
       :add_particulars,
       :fee_collection_batch_update,
       :fees_submission_student,
@@ -1807,14 +1810,14 @@ authorization do
       :master_category_particulars_edit,
       :master_category_particulars_update,
       :master_category_particulars_delete,
-#      :additional_fees_list,
+      #      :additional_fees_list,
       :additional_particulars,
       :add_particulars_edit,
       :add_particulars_update,
       :add_particulars_delete,
-#      :additional_fees_edit,
-#      :additional_fees_update,
-#      :additional_fees_delete,
+      #      :additional_fees_edit,
+      #      :additional_fees_update,
+      #      :additional_fees_delete,
       :month_date,
       :compare_report,
       :report_compare,
