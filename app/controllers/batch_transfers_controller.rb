@@ -98,11 +98,8 @@ class BatchTransfersController < ApplicationController
 
   def get_previous_batch_subjects
     @batch = Batch.find(params[:id])
-    course = @batch.course
-    all_batches = course.batches(:order=>'id asc')
-    all_batches.reject! {|b| b.is_deleted?}
-    all_batches.reject! {|b| b.subjects.empty?}
-    @previous_batch = all_batches[all_batches.size-2]
+    course_id = @batch.course_id
+    @previous_batch = Batch.find(:first,:order=>'id asc', :conditions=>"batches.id < '#{@batch.id }' AND batches.is_deleted = 0 AND course_id = ' #{course_id }'",:joins=>"INNER JOIN subjects ON subjects.batch_id = batches.id  AND subjects.is_deleted = 0")
     unless @previous_batch.blank?
       @previous_batch_normal_subject = @previous_batch.normal_batch_subject
       @elective_groups = @previous_batch.elective_groups.all(:conditions => {:is_deleted => false})

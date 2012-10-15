@@ -36,11 +36,8 @@ class BatchesController < ApplicationController
       unless params[:import_subjects].nil?
         msg = []
         msg << "<ol>"
-        course = @batch.course
-        all_batches = Batch.find_all_by_course_id(course.id,:conditions=>'is_deleted = 0')
-        all_batches.reject! {|b| b.is_deleted?}
-        all_batches.reject! {|b| b.subjects.empty?}
-        @previous_batch = all_batches[all_batches.size-2]
+        course_id = @batch.course_id
+        @previous_batch = Batch.find(:first,:order=>'id asc', :conditions=>"batches.id < '#{@batch.id }' AND batches.is_deleted = 0 AND course_id = ' #{course_id }'",:joins=>"INNER JOIN subjects ON subjects.batch_id = batches.id  AND subjects.is_deleted = 0")
         unless @previous_batch.blank?
           subjects = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false')
           subjects.each do |subject|
@@ -72,10 +69,8 @@ class BatchesController < ApplicationController
       err1 = "<span style = 'margin-left:15px;font-size:15px,margin-bottom:20px;'><b>#{t('following_pblm_occured_while_saving_the_batch')}</b></span>"
       unless params[:import_fees].nil?
         fee_msg = []
-        course = @batch.course
-        all_batches = Batch.find_all_by_course_id(course.id,:conditions=>'is_deleted = 0',:order=>'id asc')
-        all_batches.reject! {|b| b.fee_category.blank?}
-        @previous_batch = all_batches[all_batches.size-1]
+        course_id = @batch.course_id
+        @previous_batch = Batch.find(:first,:order=>'id asc', :conditions=>"batches.id < '#{@batch.id }' AND batches.is_deleted = 0 AND course_id = ' #{course_id }'",:joins=>"INNER JOIN finance_fee_categories ON finance_fee_categories.batch_id = batches.id  AND finance_fee_categories.is_deleted = 0 AND is_master= 1")
         unless @previous_batch.blank?
           fee_msg << "<ol>"
           categories = FinanceFeeCategory.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false and is_master=true')
