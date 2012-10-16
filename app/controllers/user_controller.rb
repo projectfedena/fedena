@@ -110,11 +110,12 @@ class UserController < ApplicationController
       if User.authenticate?(@user.username, params[:user][:old_password])
         if params[:user][:new_password] == params[:user][:confirm_password]
           @user.password = params[:user][:new_password]
-          @user.update_attributes(:password => @user.password,
-            :role => @user.role_name
-          )
-          flash[:notice] = "#{t('flash9')}"
-          redirect_to :action => 'dashboard'
+          if @user.update_attributes(:password => @user.password, :role => @user.role_name)
+            flash[:notice] = "#{t('flash9')}"
+            redirect_to :action => 'dashboard'
+          else
+             flash[:warn_notice] = "<p>#{@user.errors.full_messages}</p>"
+          end
         else
           flash[:warn_notice] = "<p>#{t('flash10')}</p>"
         end
