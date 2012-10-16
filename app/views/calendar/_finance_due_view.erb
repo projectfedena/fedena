@@ -19,7 +19,7 @@
 
 
   <% unless @finance_due.empty? %>
-    <div class="current-date"> <%= I18n.l(@date,:format => :month_year) %><%= image_tag("loader.gif",:align => "absmiddle",:border => 0,:id => "loader",:style =>"display: none; float:right;margin-top: 4px;" ) %> </div>
+    <div class="current-date"> <%= I18n.l(@date,:format => :month_year) %> </div>
     <% @finance_due.each do |h| %>
       <div class="events">
         <div class="title">
