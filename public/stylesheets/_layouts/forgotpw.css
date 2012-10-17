@@ -23,10 +23,13 @@ body {
 #help_top #help_link {float:right;}
 #help_top #help_link a {color:#b00;padding-right:10px;}
 
-#login_area_bg {
-    background:#fff url(../../images/login/form_bg.jpg) repeat-x;
-    height:362px;
+#login_strip {
+    margin-top: 19px;
+    height: 156px;
+    width: 100%;
+    background: #B00 url(/images/application/bg_pattern.png) repeat;
 }
+#login_area_bg{margin-top: -175px; height:362px;}
 #login_area {
     height:362px;width:614px;
     background:#fff url(../../images/login/login_box.jpg) no-repeat;
@@ -114,8 +117,8 @@ input[type="text"], input[type="password"], textarea, select {outline: none;}*/
 #footer_logo {
     height:66px;
     position:relative;
-     width:980px;
-     margin:0 auto;
+    width:980px;
+    margin:0 auto;
 }
 
 #footer_logo a.footer-logo{
@@ -159,6 +162,6 @@ input[type="text"], input[type="password"], textarea, select {outline: none;}*/
     position:relative;
 }
 .clearfooter {
-height: 66px;
-clear: both;
+    height: 66px;
+    clear: both;
 }
