@@ -25,7 +25,13 @@ body {
 #help_top #help_link {float:left;}
 #help_top #help_link a {color:#b00;padding-left:10px;}
 
-#login_area_bg {background:#fff url(../../../images/login/form_bg.jpg) repeat-x;height:362px;}
+#login_strip {
+    margin-top: 19px;
+    height: 156px;
+    width: 100%;
+    background: #B00 url(/images/application/bg_pattern.png) repeat;
+}
+#login_area_bg{margin-top: -175px; height:362px;}
 #login_area {height:362px;width:614px;background:#fff url(../../../images/login/login_box.jpg) no-repeat;margin:0px auto;}
 #login_area label {display:block;width:200px;margin-right:50px;padding-top:30px;font-weight:bold;color:#888;padding-bottom:5px;font-size:110%;}
 
