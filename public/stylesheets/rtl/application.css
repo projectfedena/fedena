@@ -518,7 +518,7 @@ body > #content_wrapper {
 /* Modalbox styles */
 
 #MB_frame #MB_header {
-    background: transparent url(../../images/modalbox/header-underline.jpg) bottom center no-repeat;
+    background: transparent url(../../images/modalbox/header-underline_rtl.jpg) bottom center no-repeat;
     height: 55px;
 }
 #MB_frame #MB_caption {
