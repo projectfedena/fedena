@@ -1239,11 +1239,16 @@ class EmployeeController < ApplicationController
         payslip_record.each do |pr|
           pr.destroy unless pr.is_approved
         end
-        individual_payslip_record = IndividualPayslipCategory.find_all_by_employee_id(e.id,
+        payslip_record = MonthlyPayslip.find_all_by_employee_id(e.id,
           :conditions => ["salary_date >= ? and salary_date < ?", start_date, end_date])
-        unless individual_payslip_record.nil?
-          individual_payslip_record.each do|ipr|
-            ipr.destroy unless ipr.is_approved
+
+        if payslip_record.empty?
+          individual_payslip_record = IndividualPayslipCategory.find_all_by_employee_id(e.id,
+            :conditions => ["salary_date >= ? and salary_date < ?", start_date, end_date])
+          unless individual_payslip_record.nil?
+            individual_payslip_record.each do|ipr|
+              ipr.destroy
+            end
           end
         end
       end
