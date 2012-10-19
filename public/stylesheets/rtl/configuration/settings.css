@@ -57,4 +57,10 @@ width:198px;
 }
 .label-field-pair {
     overflow: hidden;
+    height: auto;
+    margin-bottom: 10px;
+}
+.text-input-bg{
+    height: auto;
+    overflow: hidden;
 }
