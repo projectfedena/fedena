@@ -31,7 +31,6 @@ class Batch < ActiveRecord::Base
   has_many :exam_groups
   has_many :fee_category , :class_name => "FinanceFeeCategory"
   has_many :elective_groups
-  has_many :additional_exam_groups
   has_many :finance_fee_collections
   has_many :finance_transactions, :through => :students
   has_many :batch_events
