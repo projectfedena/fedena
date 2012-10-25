@@ -38,7 +38,7 @@ class FinanceFeeCategory < ActiveRecord::Base
   end
 
   def check_fee_collection
-    fee_collection = FinanceFeeCollection.find_all_by_fee_category_id(self.id)
+    fee_collection = FinanceFeeCollection.find_all_by_fee_category_id(self.id,:conditions=>{:is_deleted=>0})
     fee_collection.empty? ? true : false
   end
 
