@@ -37,7 +37,7 @@ class Subject < ActiveRecord::Base
   before_save :fa_group_valid
 
   def check_grade_type
-    unless self.batch_id.nil?
+    unless self.batch.nil?
       batch = self.batch
       batch.gpa_enabled? or batch.cwa_enabled?
     else
