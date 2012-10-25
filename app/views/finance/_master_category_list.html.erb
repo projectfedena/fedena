@@ -42,7 +42,7 @@
         <td class="col-7">
           <div class="options">
             <%  unless fees.check_fee_collection == false %>
-              <span class="small"> <%= link_to_remote t('delete_text'), :url => { :action => 'master_category_delete',:id => fees.id} %></span>
+              <span class="small"> <%= link_to_remote t('delete_text'),:confirm=>"#{t('delete_confirm_msg')}", :url => { :action => 'master_category_delete',:id => fees.id} %></span>
             <% else %>
               <span class="small-strike"><%= t('delete_text') %></span>
             <% end %>
