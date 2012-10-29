@@ -440,6 +440,8 @@ ja: # locale
   teacher: "教師"
   total_average: "総合平均"
   continue: "コンティニュー"
+  override: "Override"
+  retain_all: "Retain All"
   email: "Eメール"
   web_address: "ウェブアドレス"
   jan: "1月"

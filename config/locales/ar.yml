@@ -440,6 +440,8 @@ ar:
   teacher: "معلم"
   total_average: "مجموع متوسط"
   continue: "تواصل"
+  override: "Override"
+  retain_all: "Retain All"
   email: "البريد الإلكتروني"
   web_address: "العنوان على شبكة الإنترنت"
   jan: "يان"

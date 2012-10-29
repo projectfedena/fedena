@@ -440,6 +440,8 @@ mr: # locale
   teacher: "शिक्षक"
   total_average: "एकूण सरासरी"
   continue: "पुढे"
+  override: "Override"
+  retain_all: "Retain All"
   email: "ई मेल"
   web_address: "वेबसाईट"
   jan: "जाने"

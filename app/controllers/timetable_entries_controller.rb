@@ -104,11 +104,12 @@ class TimetableEntriesController < ApplicationController
         if subject.max_weekly_classes <= TimetableEntry.count(:conditions =>{:subject_id=>subject.id,:timetable_id=>@timetable.id}) unless subject.max_weekly_classes.nil?
 
       #check for overlapping classes
-      overlap = TimetableEntry.find(:first,
+      @overlap = TimetableEntry.find(:first,
         :conditions => "timetable_id=#{@timetable.id} AND weekday_id = #{weekday} AND class_timing_id = #{class_timing} AND timetable_entries.employee_id = #{employee.id}", \
           :joins=>"INNER JOIN subjects ON timetable_entries.subject_id = subjects.id INNER JOIN batches ON subjects.batch_id = batches.id AND batches.is_active = 1 AND batches.is_deleted = 0")
-      unless overlap.nil?
-        errors["messages"] << "#{t('class_overlap')}: #{overlap.batch.full_name}."
+      unless @overlap.nil?
+
+        errors["messages"] << "#{t('class_overlap')}: #{@overlap.batch.full_name}."
       end
 
       # check for max_hour_day exceeded
@@ -155,7 +156,7 @@ class TimetableEntriesController < ApplicationController
         TimetableEntry.new(:weekday_id=>weekday,:class_timing_id=>class_timing, :subject_id => params[:sub_id], :employee_id => params[:emp_id],:batch_id=>@batch.id,:timetable_id=>@timetable.id).save
       end
     else
-      overlapped_tte.destroy
+      overlapped_tte.destroy if params[:overwrite].present?
       unless tte.nil?
         TimetableEntry.update(tte.id, :subject_id => params[:sub_id], :employee_id => params[:emp_id])
       else

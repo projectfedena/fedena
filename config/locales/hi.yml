@@ -411,6 +411,8 @@ hi:
   teacher: "शिक्षक"
   total_average: "कुल का औसत"
   continue: "जारी रखें"
+  override: "Override"
+  retain_all: "Retain All"
   email: "ईमेल"
   web_address: "वेब पता"
   jan: "जन"

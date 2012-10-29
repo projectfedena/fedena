@@ -428,6 +428,8 @@ es: # locale
   teacher: "Profesor"
   total_average: "Promedio Total"
   continue: "Continuar"
+  override: "Override"
+  retain_all: "Retain All"
   email: "Email"
   web_address: "Dirección Web"
   jan: "Ene"
