@@ -52,11 +52,11 @@
         </div>
         <div class="label-field-pair">
           <label for="subject_start_time"><%= t('start_time') %><span class="necessary-field">*</span></label>
-          <div class="text-input-bg"> <%= f.calendar_date_select :start_time %></div>
+          <div class="text-input-bg"> <%= f.calendar_date_select :start_time,:readonly=>true,:popup=>"force" %></div>
         </div>
         <div class="label-field-pair">
           <label for="subject_end_time"><%= t('end_time') %><span class="necessary-field">*</span></label>
-          <div class="text-input-bg"> <%= f.calendar_date_select :end_time %></div>
+          <div class="text-input-bg"> <%= f.calendar_date_select :end_time,:readonly=>true,:popup=>"force" %></div>
         </div>
         <div class="label-field-pair">
           <label for="subject_maximum_marks"><%= t('max_mark') %><span class="necessary-field">*</span></label>
