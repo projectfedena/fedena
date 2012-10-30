@@ -1208,6 +1208,7 @@ pt: # locale
   sms_sent_to_employee: "SMS enviada com sucesso ao funcionario ao funcionario selecionado"
   sent_to_selected_department: "SMS enviado com sucesso aos departamento selecionado"
   sms_settings_page: "Pagina de configuração de SMS"
+  sms_sending_intiated: "SMS sending initiated successfully. <a href='%{log_url}'>Click here</a> to view log."
   send_sms_to_students: "Enviar SMS a Estudante"
   sms_to_batches: "Enviar SMS a um Grupo"
   sms_to_employees: "Enviar SMS a Funcionarios"

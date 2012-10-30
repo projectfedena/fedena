@@ -1209,7 +1209,7 @@ de: # locale
   settings: "Einstellungen"
   sms_sending_failed_with_response: "SMS-Versand mit folgender Antwort fehlgeschlagen"
   sms_configuration_not_found: "SMS-Konfigurationsdatei nicht gefunden."
-  sms_sending_intiated: "'SMS sending initiated successfully. <a href='%{log_url}'>Click here</a> to view log."
+  sms_sending_intiated: "SMS sending initiated successfully. <a href='%{log_url}'>Click here</a> to view log."
   sms_settings_page: "SMS-Einstellungen-Seite"
   send_sms_to_students: "SMS an Schüler senden"
   sms_to_batches: "SMS an Partien senden"

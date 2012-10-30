@@ -1210,7 +1210,7 @@ ar:
   settings: "إعدادات"
   sms_sending_failed_with_response: "فشل إرسال الرسائل القصيرة مع استجابة"
   sms_configuration_not_found: "SMS ملف التكوين غير موجود."
-  sms_sending_intiated: "'SMS sending initiated successfully. <a href='%{log_url}'>Click here</a> to view log."
+  sms_sending_intiated: "SMS sending initiated successfully. <a href='%{log_url}'>Click here</a> to view log."
   sms_settings_page: "صفحة إعدادات SMS"
   send_sms_to_students: "ارسال الرسائل القصيرة للطلاب"
   sms_to_batches: "ارسال الرسائل القصيرة لأفواج"

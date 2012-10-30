@@ -1199,7 +1199,7 @@ mr: # locale
   departments: "विभाग"
   employees: "कर्मचारी"
   settings: "सेटींग्स"
-  sms_sending_intiated: "'SMS sending initiated successfully. <a href='%{log_url}'>Click here</a> to view log."
+  sms_sending_intiated: "SMS sending initiated successfully. <a href='%{log_url}'>Click here</a> to view log."
   sms_settings_page: "SMS सेटींग्स"
   send_sms_to_students: "विद्यार्थ्यांना SMS पाठवा"
   sms_to_batches: "तुकड्यांना SMS पाठवा"
