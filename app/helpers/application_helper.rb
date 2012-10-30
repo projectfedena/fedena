@@ -148,4 +148,17 @@ module ApplicationHelper
     end
     return dashboard_links
   end
+
+  def render_generic_hook
+    hooks =  []
+    FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].select{|h| h if (h[:source][:controller] == controller_name.to_s && h[:source][:action] == action_name.to_s)}.each do |hook|
+      if permitted_to? hook[:destination][:action].to_sym,hook[:destination][:controller].to_sym
+        h = Marshal.load(Marshal.dump(hook))
+        h[:title] = t(hook[:title])
+        h[:description] = t(hook[:description])
+        hooks << h
+      end
+    end    
+    return hooks.to_json
+  end
 end
