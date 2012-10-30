@@ -1212,7 +1212,7 @@ ja: # locale
   departments: "部門"
   employees: "職員"
   settings: "設定"
-  sms_sending_intiated: "'SMSは送信されました。詳細はログで確認出来ます。"
+  sms_sending_intiated: "'SMS sending initiated successfully. <a href='%{log_url}'>Click here</a> to view log."
   sms_settings_page: "SMS設定ページ"
   send_sms_to_students: "生徒にSMSを送信 "
   sms_to_batches: "クラスにSMSを送信"

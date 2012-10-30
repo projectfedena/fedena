@@ -1201,7 +1201,7 @@ es: # locale
   settings: "Configuración"
   sms_sending_failed_with_response: "Falló la respuesta del envío SMS"
   sms_configuration_not_found: "Archivo de Configuración de SMS que no se encuentra."
-  sms_sending_intiated: "Envío SMS iniciado correctamente. Por favor revise los logs para información adicional."
+  sms_sending_intiated: "'SMS sending initiated successfully. <a href='%{log_url}'>Click here</a> to view log."
   sms_settings_page: "Página de Configuración SMS"
   send_sms_to_students: "Enviar SMS a estudiantes"
   sms_to_batches: "Enviar SMS a grupos"

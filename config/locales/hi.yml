@@ -1184,7 +1184,7 @@ hi:
   settings: "सेटिंग्स"
   sms_sending_failed_with_response: "एसएमएस भेजने प्रतिक्रिया के साथ विफल"
   sms_configuration_not_found: "एसएमएस विन्यास फाइल नहीं मिला."
-  sms_sending_intiated: "'SMS sending initiated successfully. Please check SMS logs for further details"
+  sms_sending_intiated: "'SMS sending initiated successfully. <a href='%{log_url}'>Click here</a> to view log."
   sms_settings_page: "एसएमएस सेटिंग्स पेज"
   send_sms_to_students: "छात्रों के लिए एसएमएस भेजें"
   sms_to_batches: "बैच के लिए एसएमएस भेजें"
