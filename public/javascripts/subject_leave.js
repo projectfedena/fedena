@@ -230,7 +230,9 @@ function makeHoverEl(dt,name){
     var maindiv = new Element('div',{
         'class':'date'
     });
-    var spanel =  new Element('span');
+    var spanel =  new Element('span',{
+        'class':'themed_text'
+    });
     var secdiv = new Element('div');
     secdiv.update(name);
     spanel.update(dt.day+" "+dt.date);
