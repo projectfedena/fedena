@@ -312,8 +312,8 @@ class TimetableController < ApplicationController
         @all_weekdays = @all_timetable_entries.collect(&:weekday).uniq.sort!{|a,b| a.weekday <=> b.weekday}
         @all_classtimings = @all_timetable_entries.collect(&:class_timing).uniq.sort!{|a,b| a.start_time <=> b.start_time}
         @all_teachers = @all_timetable_entries.collect(&:employee).uniq
-        @all_timetable_entries.each do |tt|
-          @timetable_entries[tt.weekday_id][tt.class_timing_id] = tt
+        @all_timetable_entries.each_with_index do |tt , i|
+          @timetable_entries[tt.weekday_id][tt.class_timing_id][i] = tt
         end
       else
         flash[:notice]=t('no_entries_found')
@@ -349,8 +349,8 @@ class TimetableController < ApplicationController
     @all_weekdays = @all_timetable_entries.collect(&:weekday).uniq.sort!{|a,b| a.weekday <=> b.weekday}
     @all_classtimings = @all_timetable_entries.collect(&:class_timing).uniq.sort!{|a,b| a.start_time <=> b.start_time}
     @all_teachers = @all_timetable_entries.collect(&:employee).uniq
-    @all_timetable_entries.each do |tt|
-      @timetable_entries[tt.weekday_id][tt.class_timing_id] = tt
+    @all_timetable_entries.each_with_index do |tt , i|
+      @timetable_entries[tt.weekday_id][tt.class_timing_id][i] = tt
     end
     render :update do |page|
       page.replace_html "timetable_view", :partial => "employee_timetable"

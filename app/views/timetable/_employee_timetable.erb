@@ -44,15 +44,35 @@
             <% @all_classtimings.each do |ct| -%>
               <td class="tte">
                 <% unless @timetable_entries[weekday.id][ct.id].blank? %>
-                  <% tte=@timetable_entries[weekday.id][ct.id] %>
-                  <% if tte.subject.elective_group.nil? %>
-                    <%= formatted_timetable_cell(tte)  -%>
+                  <% if @timetable_entries[weekday.id][ct.id].size > 1 %>
+                    <%= t('multiple_entries') %>
+                    <div class="entries_wrapper">
+                      <div class="entries">
+                        <% @timetable_entries[weekday.id][ct.id].each_pair do |k, tte| %>
+                          <% if tte.subject.elective_group.nil? %>
+                            <%= formatted_timetable_cell(tte)  -%>
+                          <% else %>
+                            <%= @electives[tte.subject.elective_group_id].first.code %>
+                          <% end %>
+                          <div class="batch_name themed_text">
+                            <%= timetable_batch (tte)  -%>
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
                   <% else %>
-                    <%= @electives[tte.subject.elective_group_id].first.code %>
+                    <% tte = @timetable_entries[weekday.id][ct.id].first %>
+                    <% unless tte.blank? %>
+                      <% if tte.last.subject.elective_group.nil? %>
+                        <%= formatted_timetable_cell(tte.last)  -%>
+                      <% else %>
+                        <%= @electives[tte.last.subject.elective_group_id].first.code %>
+                      <% end %>
+                      <div class="batch_name themed_text">
+                        <%= timetable_batch (tte.last)  -%>
+                      </div>
+                    <% end %>
                   <% end %>
-                  <div class="batch_name themed_text">
-                    <%= timetable_batch (@timetable_entries[weekday.id][ct.id])  -%>
-                  </div>
                 <% end -%>
               </td>
             <% end -%>

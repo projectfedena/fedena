@@ -34,6 +34,7 @@ padding-left: 0px;
 } 
 #timetable td{
     text-align: center;
+    min-width: 150px;
 }
 #period-count{
     background-color: #fff;
@@ -53,11 +54,13 @@ padding-left: 0px;
     font-weight: bold;
     font-size: 12px;
     background-color: #fff;
+    width: 150px;
+    max-width: 150px;
 }
 #table-viewer{
 /*    height:480px;*/
     margin-left: 0px;
-    overflow-x: auto;
+/*    overflow-x: auto;*/
     width: 810px;
     float: left;
 }
@@ -65,4 +68,26 @@ padding-left: 0px;
     width: 95%;
     margin: 0 auto;
     overflow-x: scroll;
+}
+.tte .entries_wrapper{
+    display: none;
+    margin-left: 90px;
+    min-width: 150px;
+}
+.tte:hover .entries_wrapper{
+    display: block;
+    position: relative;
+    z-index: 2000;
+    height: 0;
+}
+.tte:hover .entries_wrapper .entries{
+    background-color: white;
+    border: 4px solid #C3D9FF;
+    padding: 5px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    padding-top: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    font-variant: small-caps;
 }
