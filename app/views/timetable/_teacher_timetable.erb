@@ -56,10 +56,25 @@
               <% @all_weekdays.each do |weekday| -%>
                 <% @all_classtimings.each do |ct| -%>
                   <td class="tte">
-                    <%= formatted_timetable_cell_2(@timetable_entries[teacher.id][weekday.id][ct.id],teacher) unless @timetable_entries[teacher.id][weekday.id][ct.id].blank? -%>
-                    <div>
-                      <%= timetable_batch (@timetable_entries[teacher.id][weekday.id][ct.id]) unless @timetable_entries[teacher.id][weekday.id][ct.id].blank? -%>
-                    </div>
+                    <% if @timetable_entries[teacher.id][weekday.id][ct.id].size > 1 %>
+                      <%= t('multiple_entries') %>
+                      <div class="entries_wrapper">
+                        <div class="entries">
+                          <% @timetable_entries[teacher.id][weekday.id][ct.id].each_pair do |k, entry| %>
+                            <%= formatted_timetable_cell_2(entry,teacher) unless entry.blank? -%>
+                            <div>
+                              <%= timetable_batch (entry) unless entry.blank? -%>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% else %>
+                      <% entry = @timetable_entries[teacher.id][weekday.id][ct.id].first %>
+                      <%= formatted_timetable_cell_2(entry.last,teacher) unless entry.blank? -%>
+                      <div>
+                        <%= timetable_batch (entry.last) unless entry.blank? -%>
+                      </div>
+                    <% end %>
                   </td>
                 <% end -%>
               <% end -%>

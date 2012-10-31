@@ -1867,6 +1867,7 @@ es: # locale
   baseend_date_is_invalid: "La fecha final no es válida"
   remove_entry_confirm: "¿Eliminar entrada?"
   should_not_be_admin: " no debe ser administrador"
+  multiple_entries: "Multiple entries"
 
   #exam updates
   ranking_levels_text: "Niveles de Ranking"

@@ -182,16 +182,16 @@ class TimetableController < ApplicationController
       @all_classtimings = @all_timetable_entries.collect(&:class_timing).uniq.sort!{|a,b| a.start_time <=> b.start_time}
       @all_subjects = @all_timetable_entries.collect(&:subject).uniq
       @all_teachers = @all_timetable_entries.collect(&:employee).uniq
-      @all_timetable_entries.each do |tt|
-        @timetable_entries[tt.employee_id][tt.weekday_id][tt.class_timing_id] = tt
+      @all_timetable_entries.each_with_index do |tt , i|
+        @timetable_entries[tt.employee_id][tt.weekday_id][tt.class_timing_id][i] = tt
       end
       @all_subjects.each do |sub|
         unless sub.elective_group.nil?
           @all_teachers+=sub.elective_group.subjects.collect(&:employees).flatten
           @elective_teachers=sub.elective_group.subjects.collect(&:employees).flatten
           @current.timetable_entries.find_all_by_subject_id(sub.id).each do |tt|
-            @elective_teachers.each do |e|
-              @timetable_entries[e.id][tt.weekday_id][tt.class_timing_id] = tt
+            @elective_teachers.each_with_index do |e , i|
+              @timetable_entries[e.id][tt.weekday_id][tt.class_timing_id][i] = tt
             end
           end
         end

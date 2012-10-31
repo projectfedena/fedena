@@ -1877,6 +1877,7 @@ ja: # locale
   remove_entry_confirm: "入力をさくじょしますか？"
   should_not_be_admin: "アドミンではできません。"
   edit_current_tte_confirm: "この時間割は現在使われています。教科別の出欠に使用されている場合は、授業の入力と出欠をすべて削除してから編集してください。"
+  multiple_entries: "Multiple entries"
 
 
   #exam updates
