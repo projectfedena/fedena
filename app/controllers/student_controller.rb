@@ -64,7 +64,7 @@ class StudentController < ApplicationController
         if sms_setting.application_sms_active and @student.is_sms_enabled
           recipients = []
           message = "#{t('student_admission_done')} #{@student.admission_no} #{t('password_is')} #{@student.admission_no}123"
-          if sms_setting.student_sms_active
+          if sms_setting.student_admission_sms_active
             recipients.push @student.phone2 unless @student.phone2.blank?
           end
           unless recipients.empty?

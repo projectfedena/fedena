@@ -28,6 +28,11 @@ class SmsSetting < ActiveRecord::Base
     return true if student_sms.is_enabled
   end
 
+  def student_admission_sms_active
+    student_sms = SmsSetting.find_by_settings_key("StudentAdmissionEnabled")
+    return true if student_sms.is_enabled
+  end
+
   def parent_sms_active
     parent_sms = SmsSetting.find_by_settings_key("ParentSmsEnabled")
     return true if parent_sms.is_enabled
