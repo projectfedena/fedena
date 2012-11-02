@@ -192,6 +192,8 @@ class EventController < ApplicationController
         end
       end
     else
+      recipients = []
+      sms_setting = SmsSetting.new()
       batch_event = BatchEvent.find_all_by_event_id(event.id)
       unless batch_event.empty?
         batch_event.each do |b|
@@ -206,6 +208,19 @@ class EventController < ApplicationController
           @batch_students = Student.find(:all, :conditions=>"batch_id = #{b.batch_id}")
           @batch_students.each do |s|
             reminder_recipient_ids << s.user_id
+            if sms_setting.application_sms_active and sms_setting.event_news_sms_active
+              guardian = s.immediate_contact unless s.immediate_contact.nil?
+              if s.is_sms_enabled
+                if sms_setting.student_sms_active
+                  recipients.push s.phone2 unless s.phone2.nil?
+                end
+                if sms_setting.parent_sms_active
+                  unless guardian.nil?
+                    recipients.push guardian.mobile_phone unless guardian.mobile_phone.nil?
+                  end
+                end
+              end
+            end
           end
         end
       end
@@ -215,8 +230,17 @@ class EventController < ApplicationController
           @dept_emp = Employee.find(:all, :conditions=>"employee_department_id = #{d.employee_department_id}")
           @dept_emp.each do |e|
             reminder_recipient_ids << e.user_id
+            if sms_setting.application_sms_active and sms_setting.event_news_sms_active
+              if sms_setting.employee_sms_active
+                recipients.push e.mobile_phone unless e.mobile_phone.nil?
+              end
+            end
           end
         end
+      end
+      unless recipients.empty?
+        message = "#{t('event_notification')}: #{event.title}.#{t('from')} : #{event.start_date} #{t('to')} #{event.end_date}"
+        Delayed::Job.enqueue(SmsManager.new(message,recipients))
       end
     end
     Delayed::Job.enqueue(DelayedReminderJob.new( :sender_id  => current_user.id,
