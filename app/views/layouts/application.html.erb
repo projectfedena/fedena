@@ -90,7 +90,7 @@
       <div id="side_bar">
 
         <div id="sidebar_news_area">
-          <% if action_name == "dashboard" %>
+          <% if action_name == "dashboard" && controller_name == "user"%>
             <%= link_to " ", { :controller => "news", :action => "index" }, :id => 'news_feed_top_img' %>
             <div id="news_feed">
               <% @dash_news.each do |n| %>
