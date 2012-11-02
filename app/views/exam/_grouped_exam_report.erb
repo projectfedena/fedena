@@ -183,7 +183,7 @@
 <% end %>
 <% if @previous_batch == 1 %>
 <%= link_to " ► #{t('pdf_report')}",
-  { :action => "generated_report4_pdf", :batch_id => @batch.id, :student=>@student.id, :type=> @type},:target => '_blank', :class=> 'user_button1' %>
+  { :action => "generated_report4_pdf", :batch_id => @batch.id, :student=>@student.id, :type=> @type},:target => '_blank', :class=> 'user_button' %>
 <% else %>
 <%= link_to " ► #{t('pdf_report')}",
   { :action => "generated_report4_pdf", :batch_id => @batch.id, :student=>@student.id, :type=> @type},:target => '_blank', :class=> 'user_button' %>
