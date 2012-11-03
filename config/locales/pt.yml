@@ -348,6 +348,8 @@ pt: # locale
     batch_transfers:
       errors_found: "Os Seguintes erros foram encontrados"
 
+  minmarks_cant_be_blank: "Minimum Mark can't be blank"
+  maxmarks_cant_be_blank: "Maximum Mark can't be blank"
   sl_no: "Sl  no."
   are_you_sure_to_trnsfer: "All the students will be transferred to the batch"
   system_settings: "System Settings"

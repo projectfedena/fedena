@@ -343,6 +343,8 @@ es: # locale
     batch_transfers:
       errors_found: "Se encontró el siguiente error"
 
+  minmarks_cant_be_blank: "Minimum Mark can't be blank"
+  maxmarks_cant_be_blank: "Maximum Mark can't be blank"
   sl_no: "No."
   name: "Nombre"
   adm_no: "No. del Adm"

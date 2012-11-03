@@ -350,6 +350,8 @@ ar:
     batch_transfers:
       errors_found: "تم العثور على الأخطاء التالية :"
 
+  minmarks_cant_be_blank: "Minimum Mark can't be blank"
+  maxmarks_cant_be_blank: "Maximum Mark can't be blank"
   sl_no: "لا SL."
   are_you_sure_to_trnsfer: "All the students will be transferred to the batch"
   system_settings: "System Settings"

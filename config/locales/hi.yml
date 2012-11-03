@@ -320,6 +320,8 @@ hi:
     batch_transfers:
       errors_found: "निम्नलिखित त्रुटियाँ पाए गए"
 
+  minmarks_cant_be_blank: "Minimum Mark can't be blank"
+  maxmarks_cant_be_blank: "Maximum Mark can't be blank"
   sl_no: "कोई क्रम|"
   are_you_sure_to_trnsfer: "All the students will be transferred to the batch"
   system_settings: "System Settings"
