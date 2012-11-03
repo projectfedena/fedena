@@ -276,3 +276,6 @@ ul{
 #submit-button input:hover{
     background:#373B3F;
 }
+.payslip_category_list li{
+    display: block;
+}
