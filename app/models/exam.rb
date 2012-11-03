@@ -18,8 +18,8 @@
 
 class Exam < ActiveRecord::Base
   validates_presence_of :start_time
-  validates_presence_of :end_time
-
+  validates_presence_of :end_time, :maximum_marks, :minimum_marks
+  validates_numericality_of :maximum_marks, :minimum_marks
   belongs_to :exam_group
   belongs_to :subject, :conditions => { :is_deleted => false }
   before_destroy :removable?
@@ -31,7 +31,7 @@ class Exam < ActiveRecord::Base
   has_many :archived_exam_scores
   has_many :previous_exam_scores
   has_many :assessment_scores
-#  has_and_belongs_to_many :cce_reports
+  #  has_and_belongs_to_many :cce_reports
 
   accepts_nested_attributes_for :exam_scores
 
