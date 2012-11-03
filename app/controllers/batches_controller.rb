@@ -37,7 +37,7 @@ class BatchesController < ApplicationController
         msg = []
         msg << "<ol>"
         course_id = @batch.course_id
-        @previous_batch = Batch.find(:first,:order=>'id asc', :conditions=>"batches.id < '#{@batch.id }' AND batches.is_deleted = 0 AND course_id = ' #{course_id }'",:joins=>"INNER JOIN subjects ON subjects.batch_id = batches.id  AND subjects.is_deleted = 0")
+        @previous_batch = Batch.find(:first,:order=>'id desc', :conditions=>"batches.id < '#{@batch.id }' AND batches.is_deleted = 0 AND course_id = ' #{course_id }'",:joins=>"INNER JOIN subjects ON subjects.batch_id = batches.id  AND subjects.is_deleted = 0")
         unless @previous_batch.blank?
           subjects = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false')
           subjects.each do |subject|
@@ -70,7 +70,7 @@ class BatchesController < ApplicationController
       unless params[:import_fees].nil?
         fee_msg = []
         course_id = @batch.course_id
-        @previous_batch = Batch.find(:first,:order=>'id asc', :conditions=>"batches.id < '#{@batch.id }' AND batches.is_deleted = 0 AND course_id = ' #{course_id }'",:joins=>"INNER JOIN finance_fee_categories ON finance_fee_categories.batch_id = batches.id  AND finance_fee_categories.is_deleted = 0 AND is_master= 1")
+        @previous_batch = Batch.find(:first,:order=>'id desc', :conditions=>"batches.id < '#{@batch.id }' AND batches.is_deleted = 0 AND course_id = ' #{course_id }'",:joins=>"INNER JOIN finance_fee_categories ON finance_fee_categories.batch_id = batches.id  AND finance_fee_categories.is_deleted = 0 AND is_master= 1")
         unless @previous_batch.blank?
           fee_msg << "<ol>"
           categories = FinanceFeeCategory.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false and is_master=true')
