@@ -39,7 +39,18 @@ class ExamsController < ApplicationController
   def create
     @exam = Exam.new(params[:exam])
     @exam.exam_group_id = @exam_group.id
-    if @exam.save
+    @error=false
+    unless @exam_group.exam_type=="Grades"
+      unless params[:exam][:maximum_marks].present?
+        @exam.errors.add_to_base("#{t('maxmarks_cant_be_blank')}")
+        @error=true
+      end
+      unless params[:exam][:minimum_marks].present?
+        @exam.errors.add_to_base("#{t('minmarks_cant_be_blank')}")
+        @error=true
+      end
+    end
+    if @error==false and @exam.save
       flash[:notice] = "#{t('flash_msg10')}"
       redirect_to [@batch, @exam_group]
     else

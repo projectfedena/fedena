@@ -54,7 +54,22 @@ class ExamGroupsController < ApplicationController
     @exam_group = ExamGroup.new(params[:exam_group])
     @exam_group.batch_id = @batch.id
     @type = @exam_group.exam_type
-    if @exam_group.save
+    @error=false
+    unless @type=="Grades"
+      params[:exam_group][:exams_attributes].each do |exam|
+        if exam[1][:_delete].to_s=="0" and @error==false
+          unless exam[1][:maximum_marks].present?
+            @exam_group.errors.add_to_base("#{t('maxmarks_cant_be_blank')}")
+            @error=true
+          end
+          unless exam[1][:minimum_marks].present?
+            @exam_group.errors.add_to_base("#{t('minmarks_cant_be_blank')}")
+            @error=true
+          end
+        end
+      end
+    end
+    if @error==false and @exam_group.save
       flash[:notice] =  "#{t('flash1')}"
       redirect_to batch_exam_groups_path(@batch)
     else

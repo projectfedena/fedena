@@ -17,16 +17,16 @@
 #limitations under the License.
 
 class Exam < ActiveRecord::Base
-  validates_presence_of :start_time
-  validates_presence_of :end_time, :maximum_marks, :minimum_marks
-  validates_numericality_of :maximum_marks, :minimum_marks
+  validates_presence_of :start_time, :end_time
+  validates_numericality_of :maximum_marks, :minimum_marks, :allow_nil => true
+  validates_presence_of :maximum_marks, :minimum_marks, :if => :validation_should_present?, :on=>:update
   belongs_to :exam_group
   belongs_to :subject, :conditions => { :is_deleted => false }
   before_destroy :removable?
   before_save :update_exam_group_date
-  
+
   has_one :event ,:as=>:origin
-  
+
   has_many :exam_scores
   has_many :archived_exam_scores
   has_many :previous_exam_scores
@@ -35,11 +35,19 @@ class Exam < ActiveRecord::Base
 
   accepts_nested_attributes_for :exam_scores
 
-  def removable?
-    self.exam_scores.reject{|es| es.marks.nil? and es.grading_level_id.nil?}.empty?
-  
+  def validation_should_present?
+    if self.exam_group.exam_type=="Grades"
+      return false
+    else
+      return true
+    end
   end
   
+  def removable?
+    self.exam_scores.reject{|es| es.marks.nil? and es.grading_level_id.nil?}.empty?
+
+  end
+
   def validate
     errors.add_to_base("#{t('minmarks_cant_be_more_than_maxmarks')}") \
       if minimum_marks and maximum_marks and minimum_marks > maximum_marks
