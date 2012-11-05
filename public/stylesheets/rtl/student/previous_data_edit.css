@@ -166,4 +166,6 @@ ul{
 }
 #added-subjects li {
     display: block;
+    width: 100%;
+    float: right;
 }

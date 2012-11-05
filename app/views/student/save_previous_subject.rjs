@@ -1,5 +1,9 @@
-page.replace_html "subject", :text=>""
-#page.replace_html "added-subjects", :partial=>"previous_subject_added"
-page.insert_html :bottom, "added-subjects", render(:partial=>'previous_subject_added')
-page.visual_effect(:highlight, 'added-subjects')
-
+unless @student_previous_subject_details.errors.full_messages.present?
+  page.replace_html "subject", :text=>""
+  #page.replace_html "added-subjects", :partial=>"previous_subject_added"
+  page.insert_html :bottom, "added-subjects", render(:partial=>'previous_subject_added')
+  page.visual_effect(:highlight, 'added-subjects')
+else
+  @student = Student.find(@student_previous_subject_details.student_id)
+  page.replace_html 'subject', render(:partial=>"previous_subject")
+end

@@ -159,14 +159,15 @@ class StudentController < ApplicationController
 
   def previous_subject
     @student = Student.find(params[:id])
+    @student_previous_subject_details=StudentPreviousSubjectMark.new
     render(:update) do |page|
       page.replace_html 'subject', :partial=>"previous_subject"
     end
   end
 
   def save_previous_subject
-    @previous_subject = StudentPreviousSubjectMark.new params[:student_previous_subject_details]
-    @previous_subject.save
+    @student_previous_subject_details = StudentPreviousSubjectMark.new params[:student_previous_subject_details]
+    @student_previous_subject_details.save
     #@all_previous_subject = StudentPreviousSubjectMark.find(:all,:conditions=>"student_id = #{@previous_subject.student_id}")
   end
 

@@ -17,10 +17,10 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<li><div class="name"><%= @previous_subject.subject %></div>
-  <div class="val"><span>:</span><%= @previous_subject.mark %></div>
+<li><div class="name"><%= @student_previous_subject_details.subject %></div>
+  <div class="val"><span>:</span><%= @student_previous_subject_details.mark %></div>
   <div class="delete"><%= link_to_remote image_tag("/images/buttons/delete-new.png", :border => 0),
-                :url => {:action => "delete_previous_subject", :id => @previous_subject.id},
+                :url => {:action => "delete_previous_subject", :id => @student_previous_subject_details.id},
                 
                 :update => "added_subjects"%></div>
 </li>
