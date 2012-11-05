@@ -95,7 +95,7 @@ class StudentController < ApplicationController
     if request.post?
       sms_setting = SmsSetting.new()
       @student = Student.update(@student.id, :immediate_contact_id => params[:immediate_contact][:contact])
-      if sms_setting.application_sms_active and @student.is_sms_enabled
+      if sms_setting.application_sms_active and sms_setting.student_admission_sms_active and @student.is_sms_enabled
         recipients = []
         message = "#{t('student_admission_done')}  #{@student.admission_no} #{t('password_is')} #{@student.admission_no}123"
         if sms_setting.parent_sms_active
@@ -120,7 +120,7 @@ class StudentController < ApplicationController
     if request.post?
       sms_setting = SmsSetting.new()
       @student = Student.update(@student.id, :immediate_contact_id => params[:immediate_contact][:contact])
-      if sms_setting.application_sms_active and @student.is_sms_enabled
+      if sms_setting.application_sms_active and sms_setting.student_admission_sms_active and @student.is_sms_enabled
         recipients = []
         message = "#{t('student_admission_done')}   #{@student.admission_no} #{t('password_is')}#{@student.admission_no}123"
         if sms_setting.parent_sms_active
