@@ -182,7 +182,7 @@ table.table{
 }
 .td-mark:hover,.td-mark:hover a.present{
     background:#C3D9FF;
-    color:#C3D9FF;
+/*    color:#C3D9FF;*/
 }
 .td-name:hover .date span{
     display: block;
