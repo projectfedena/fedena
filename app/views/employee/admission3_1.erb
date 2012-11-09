@@ -34,17 +34,64 @@
 
 
 <% form_for :employee_additional_details do |a| %>
-<%= error_messages_for 'employee_bank_details' %>
-
+<%= error_messages_for 'employee' %>
+<% i=0 %>
+<%= hidden_field_tag :edit_request, params[:edit_request] %>
     <div id="form-contents">
       <span class="span-sub-heading"><%= t('additional_detail') %></span>
       <hr class="sub-heading"></hr>
+      <div id="necessary-field-notification"> <%= t('legend1') %> <span class="necessary-field">*</span> <%= t('legend2') %></div>
         <% @additional_fields.each do |additional| %>
-        <div class="label-field-pair">
-          <label><%= additional.name %></label>
-          <div class="text-input-bg"><%= a.text_field :additional_info,:index => additional.id %></div>
-          <div class="extender"></div>
+      <% prev_record = @employee_additional_details.find_by_additional_field_id(additional.id) %>
+        <% unless prev_record.nil? %>
+          <% if additional.input_type=="has_many" %>
+            <% prev_value = prev_record.additional_info.split(", ") %>
+          <% else %>
+            <% prev_value = prev_record.additional_info %>
+          <% end %>
+        <% end %>
+        <% input_val = ((params[:employee_additional_details].present? and params[:employee_additional_details][additional.id.to_s.to_sym].present? and params[:employee_additional_details][additional.id.to_s.to_sym][:additional_info].present?) ? (params[:employee_additional_details][additional.id.to_s.to_sym][:additional_info]) : (prev_value.present? ? prev_value : nil))%>
+      <% if additional.input_type=="belongs_to" %>
+      <div class="label-field-pair">
+          <label><%= additional.name %>
+          <% if additional.is_mandatory %>
+                <span class="necessary-field">*</span>
+              <% end %>
+          </label>
+        <div class="text-input-bg"><%= select_tag "employee_additional_details[#{additional.id}][additional_info]", options_for_select(additional.additional_field_options.map{|b| [b.field_option,b.field_option]}, input_val)%></div>
         </div>
+        <% elsif additional.input_type=="has_many" %>
+          <div class="grades">
+            <div class="label-field-pair">
+              <label><%= additional.name %>
+                <% if additional.is_mandatory %>
+                  <span class="necessary-field">*</span>
+                <% end %></label>
+            </div>
+            <div class="fee_category_scroll">
+              <div class="sel-list">
+                <%= t('select') %>: <%= link_to_function t('all'), "$$('input.check#{i}').each(function(checkbox) { checkbox.checked = true; });" %>,
+                <%= link_to_function t('none'), "$$('input.batches_box').each(function(checkbox) { checkbox.checked = false; });" %>
+              </div>
+              <% additional.additional_field_options.each do |k| %>
+                <div class="each_batch">
+                  <%= check_box_tag "employee_additional_details[#{additional.id}][additional_info][]", k.field_option,(!(input_val.nil?) and input_val.include?(k.field_option)), :class=>"batches_box check#{i}" %> <label><%= k.field_option %></label>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <% i+=1 %>
+        <% else %>
+      <div class="label-field-pair">
+            <label><%= additional.name %>
+              <% if additional.is_mandatory %>
+                <span class="necessary-field">*</span>
+              <% end %></label>
+
+            <div class="text-input-bg"><%= text_field_tag "employee_additional_details[#{additional.id}][additional_info]", input_val %></div>
+          </div>
+        <% end %>
+          <div class="extender"></div>
         <hr class="label-underline"></hr>
         <% end %>
     </div>

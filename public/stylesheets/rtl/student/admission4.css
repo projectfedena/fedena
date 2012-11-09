@@ -41,7 +41,7 @@
     font-family:arial;
     font-size:14px;
     font-weight:bold;
-    margin-right:270px;
+    margin-right:220px;
     margin-top:30px;
     padding:7px 10px;
     border:none;
@@ -61,4 +61,39 @@
     background:  #eeeeee;
     height: 1px;
     border: none;
+}
+.fee_category_scroll {
+-moz-background-inline-policy:continuous;
+-moz-border-radius:10px 10px 10px 10px;
+-webkit-background-inline-policy:continuous;
+-webkit-border-radius:10px 10px 10px 10px;
+background:none repeat scroll 0 0 #EEEEEE;
+border:1px solid #C6C6C6;
+height:86px;
+margin-right:210px;
+margin-top:-37px;
+margin-bottom:5px;
+max-height:100px;
+overflow:auto;
+padding:7px;
+width:275px;
+}
+.sel-list {
+border-bottom:1px solid #DDDDDD;
+margin-bottom:2px;
+width:265px;
+}
+.each_batch {
+border-bottom:1px solid #DDDDDD;
+font-size:12px;
+overflow:auto;
+width:265px;
+}
+.necessary-field {
+    color : #f00;
+    font-size : 1.1em;
+}
+#necessary-field-notification {
+    font-weight : bold;
+    padding : 10px 0 30px 0;
 }

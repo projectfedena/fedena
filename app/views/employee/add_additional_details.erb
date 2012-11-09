@@ -32,7 +32,7 @@
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
 
-  <%- form_for :additional_field do |c| -%>
+  <%- form_for @additional_field, :url=>{:action=>(@additional_field.new_record? ? "add_additional_details" : "edit_additional_details")} do |c| -%>
 
     <%= error_messages_for 'additional_field' %>
     <div id="form-content">
@@ -51,9 +51,31 @@
           <label class="label_for_status" for="add_grade_status_false"><%= t('inactive') %></label>
         </div>
       </div>
-
+      <div class="label-field-pair">
+        <div class="label-container"><%= c.label :is_mandatory, t('is_mandatory') %></div>
+        <div class="input-container">  <%= c.check_box :is_mandatory %></div>
+      </div>
+      <div class="label-field-pair">
+        <div class="label-container"> <%= c.label :input_type,"#{t('input_method')}" %></div>
+        <div class="text-input-bg"><%= c.select :input_type, [["TextBox","text"],["Select Box","belongs_to"],["CheckBox","has_many"]] ,{},:class=>"input-type-select"%>
+        </div>
+      </div>
+      <div class="custom" style="display: none" >
+        <% c.fields_for :additional_field_options do |builder| %>
+          <%= render "additional_field_option_fields" ,:c=>builder%>
+        <% end %>
+        <div>
+          <%= link_to_add_fields t('add'), c, :additional_field_options  %>
+        </div>
+      </div>
       <div id="submit-button">
-        <%=submit_tag("► #{t('create_text')}") %>
+        <% unless @additional_field.new_record? %>
+          <%=submit_tag("► #{t('update')}") %>
+          <%= link_to " ► #{t('cancel')}",
+            { :action => "add_additional_details"}, :class=> 'user_button' %>
+        <% else %>
+          <%=submit_tag("► #{t('create_text')}") %>
+        <% end %>
       </div>
     </div>
 
@@ -65,3 +87,47 @@
   </div>
 
 </div>
+
+
+<script>
+  function add_fields(link, association, content){
+    var new_id = new Date().getTime();
+    var regexp = new RegExp("new_" + association, "g");
+    $(link).up().insert({
+      before: content.replace(regexp, new_id)
+    });
+    if ($$('.input-type-select')!=""){
+      $$('.input-type-select').invoke('observe','change',toggle_custom);
+    }
+  }
+
+
+  function remove_fields(link){
+    //    console.log($(link).previous("input[type=hidden]"));
+    $(link).previous("input[type=hidden]").value='1';
+    $(link).up(".fields").hide();
+  }
+
+  function toggle_custom(val){
+    console.log(this)
+    console.log(val)
+    dest = this.up(2).select('.custom')[0]
+    //if(dest != null)
+    if(this.value == 'text'){
+      dest.hide();
+    }
+    else{
+      dest.show();
+    }
+    return true;
+  }
+  document.observe("dom:loaded", function() {
+    if ($$('.input-type-select')!=""){
+      $$('.input-type-select').invoke('observe','change',toggle_custom);
+      $$('.input-type-select').first().fire('change');
+      $$('select').each(function(e){
+        toggle_custom.call(e);
+      });
+    }
+  });
+</script>

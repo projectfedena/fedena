@@ -161,7 +161,7 @@
             <% detail = StudentAdditionalDetail.find_all_by_student_id(@student.id) %>
             <% if permitted_to? :edit_admission4,:student %>
               <% unless detail.blank? %>
-                <span> (<%= link_to "#{t('edit_additional_details')}", :controller => 'student', :action => 'edit_admission4', :id => @student.id %>)</span>
+                <span> (<%= link_to "#{t('edit_additional_details')}", :controller => 'student', :action => 'admission4', :id => @student.id %>)</span>
               <% else %>
                 <span> (<%= link_to "#{t('add_additional_details')}", :controller => 'student', :action => 'admission4', :id => @student.id %>)</span>
               <% end %>

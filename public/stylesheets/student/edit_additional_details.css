@@ -11,10 +11,6 @@
     margin : 0 0 10px 5px;
 }
 
-#radio-buttons{
-    padding: 13px 0 0 0;
-}
-
 #submit-button input{
     -moz-border-radius:10px;
     -webkit-border-radius:10px;
@@ -23,8 +19,10 @@
     font-family:arial;
     font-size:14px;
     font-weight:bold;
-    margin:20px 210px;
+    margin:0px auto;
     float:left;
+    margin-top:20px;
+    margin-left: 210px;
     padding:7px 12px;
     border:none;
     text-align:center;
@@ -43,7 +41,7 @@
     background : #EEF2FD;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 30em;
+    height : 1.5em; width : 34em;
     list-style-type : none;
     padding : 0.5em 0 0 5em;
 }
@@ -52,9 +50,54 @@
     background : #DFEAFF;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 30em;
+    height : 1.5em; width : 34em;
     list-style-type : none;
     padding : 0.5em 0 0 5em;
+}
+.label-checkbox-pair {
+    float: none;
+}
+.delete_button_img{
+    background:#fff url(../../images/buttons/delete_2.png) no-repeat;
+    display: block;
+    float: right;
+    height: 12px;
+    margin-top: 13px;
+    padding-left: 15px;
+    margin-right:130px;
+    color: #f00;
+    text-decoration: none;
+}
+.custom .add_button_img {
+    float: none;
+    margin-left: 210px;
+}
+.add_button_img {
+    float: left;
+    width: 110px;
+}
+.add_button_img {
+    background: none repeat scroll 0 0 transparent;
+    color: #008800;
+    display: inline;
+    float: none;
+    font-size: 13px;
+    height: 12px;
+    margin-left: 210px;
+    margin-top: 15px;
+    text-decoration: none;
+    width: 100px;
+}
+.label-field-pair1 input {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #C6C6C6;
+    height: 17px;
+    margin: 5px 0 0 10px;
+    padding: 5px;
+    width: 205px;
+}
+.text-input-bg select {
+    width: 217px;
 }
 
 #category-list li.heading {
@@ -70,19 +113,29 @@
 }
 #category-list li div.category-name {
     width : 350px;
+    font-size:13px;
+    font-weight:bold;
 }
 #category-list li div.category-edit,
 #category-list li div.category-delete {
     font-size : 0.9em;
     width : 50px;
 }
+#category-list li div.category-status {
+    font-size : 0.9em;
+    width : 64px;
+}
 #category-list li div a {
     color : #000;
+    text-decoration:none;
+    font-size:14px;
+}
+#category-list li div a:hover {
+    color : #d00;
+    text-decoration:underline;
 }
 
-.label-checkbox-pair {
-    padding: 0 0 0 10px;
-}
+
 
 .label-checkbox-pair  {
     height:40px;
@@ -99,4 +152,40 @@
     margin:0 0 10px;
     padding-top:3px;
     width:206px;
+}
+.user_button  {
+    padding: 8px 15px;
+    margin-top:20px;
+    margin-left:25px;
+    text-decoration: none;
+}
+#submit-button input:hover{
+    background:  #373B3F;
+}
+.category-up-down{
+    width : 20px;
+    float: right;
+    padding-right: 20px;
+    text-decoration: none;
+}
+.category-up-down a{
+    text-decoration: none;
+}
+#category-list li div .category-up-down a:hover{
+    text-decoration: none;
+}
+.inactive{
+    width : 20px;
+    float: right;
+    padding-right: 20px;
+    visibility: hidden;
+}
+#category-list .listheading {
+    background:none repeat scroll 0 0 #BECFFB;
+    border-bottom:2px solid #BECFFB;
+    color:#444444;
+    height:1.5em;
+    list-style-type:none;
+    padding:0.5em 0 0 1em;
+    width:38em;
 }

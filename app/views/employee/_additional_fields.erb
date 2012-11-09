@@ -21,9 +21,12 @@
   <% unless @additional_details.empty? and @inactive_additional_details.empty? %>
 <% unless @additional_details.empty? %>
   <li class="listheading"><div class="category-name"><%= t('active_fields') %></div></li>
-    <%- @additional_details.each do |c| -%>
+    <%- @additional_details.each_with_index do |c,i| -%>
       <li class="list<%=cycle('odd', 'even')%>">
-        <div class="category-name"><%= c.name %></div>
+        <div class="category-name"><%= c.name %>
+            <span class="category-up-down <%= "inactive" if i==0 %>"><%= link_to_remote "▲",:url=>{:action=>"change_field_priority",:order=>"up",:id=>c.id} %></span>
+            <span class="category-up-down <%= "inactive" if i+1==@additional_details.count%>"><%= link_to_remote "▼",:url=>{:action=>"change_field_priority",:order=>"down",:id=>c.id} %></span>
+        </div>
         <div class="category-edit"><%= link_to "#{t('edit_text')}", {:action => "edit_additional_details", :id=>c.id} %></div>
         <div class="category-edit"><%= link_to  "#{t('delete_text')}", {:action => "delete_additional_details", :id=>c.id}, :confirm => "#{t('delete_confirm_msg')}" %></div>
       </li>

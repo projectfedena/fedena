@@ -216,22 +216,62 @@ class EmployeeController < ApplicationController
   end
 
   def add_additional_details
-    @additional_details = AdditionalField.find(:all,:order => "name asc",:conditions=>'status = 1')
-    @inactive_additional_details = AdditionalField.find(:all,:order => "name asc",:conditions=>'status = 0')
-    @additional_field = AdditionalField.new(params[:additional_field])
-    if request.post? and @additional_field.save
-      flash[:notice] = t('flash13')
-      redirect_to :controller => "employee", :action => "add_additional_details"
+    @additional_details = AdditionalField.find(:all, :conditions=>{:status=>true},:order=>"priority ASC")
+    @inactive_additional_details = AdditionalField.find(:all, :conditions=>{:status=>false},:order=>"priority ASC")
+    @additional_field = AdditionalField.new
+    @additional_field_option = @additional_field.additional_field_options.build
+    if request.post?
+      priority = 1
+      unless @additional_details.empty?
+        last_priority = @additional_details.map{|r| r.priority}.compact.sort.last
+        priority = last_priority + 1
+      end
+      @additional_field = AdditionalField.new(params[:additional_field])
+      @additional_field.priority = priority
+      if @additional_field.save
+        flash[:notice] = t('flash13')
+        redirect_to :controller => "employee", :action => "add_additional_details"
+      end
+    end
+  end
+  
+  def change_field_priority
+    @additional_field = AdditionalField.find(params[:id])
+    priority = @additional_field.priority
+    @additional_fields = AdditionalField.find(:all, :conditions=>{:status=>true}, :order=> "priority ASC").map{|b| b.priority.to_i}
+    position = @additional_fields.index(priority)
+    if params[:order]=="up"
+      prev_field = AdditionalField.find_by_priority(@additional_fields[position - 1])
+    else
+      prev_field = AdditionalField.find_by_priority(@additional_fields[position + 1])
+    end
+    @additional_field.update_attributes(:priority=>prev_field.priority)
+    prev_field.update_attributes(:priority=>priority.to_i)
+    @additional_field = AdditionalField.new
+    @additional_details = AdditionalField.find(:all, :conditions=>{:status=>true},:order=>"priority ASC")
+    @inactive_additional_details = AdditionalField.find(:all, :conditions=>{:status=>false},:order=>"priority ASC")
+    render(:update) do|page|
+      page.replace_html "category-list", :partial=>"additional_fields"
     end
   end
 
   def edit_additional_details
-    @additional_details = AdditionalField.find(params[:id])
-    if request.post? and @additional_details.update_attributes(params[:additional_details])
-      flash[:notice] = t('flash14')
-      redirect_to :action => "add_additional_details"
+    @additional_details = AdditionalField.find(:all, :conditions=>{:status=>true},:order=>"priority ASC")
+    @inactive_additional_details = AdditionalField.find(:all, :conditions=>{:status=>false},:order=>"priority ASC")
+    @additional_field = AdditionalField.find(params[:id])
+    @additional_field_option = @additional_field.additional_field_options
+    if request.get?
+      render :action=>'add_additional_details'
+    else
+      if @additional_field.update_attributes(params[:additional_field])
+        flash[:notice] = t('flash14')
+        redirect_to :action => "add_additional_details"
+      else
+        render :action=>"add_additional_details"
+      end
     end
   end
+
   def delete_additional_details
     if params[:id]
       employees = EmployeeAdditionalDetail.find(:all ,:conditions=>"additional_field_id = #{params[:id]}")
@@ -427,19 +467,66 @@ class EmployeeController < ApplicationController
     end
   end
 
+  #  def admission3_1
+  #    @employee = Employee.find(params[:id])
+  #    @additional_fields = AdditionalField.find(:all, :conditions=>"status = true")
+  #    if @additional_fields.empty?
+  #      redirect_to :action => "edit_privilege", :id => @employee.employee_number
+  #    end
+  #    if request.post?
+  #      params[:employee_additional_details].each_pair do |k, v|
+  #        EmployeeAdditionalDetail.create(:employee_id => params[:id],
+  #          :additional_field_id => k,:additional_info => v['additional_info'])
+  #      end
+  #      flash[:notice] = "#{t('flash25')}#{@employee.first_name}"
+  #      redirect_to :action => "edit_privilege", :id => @employee.employee_number
+  #    end
+  #  end
+
   def admission3_1
     @employee = Employee.find(params[:id])
-    @additional_fields = AdditionalField.find(:all, :conditions=>"status = true")
+    @employee_additional_details = EmployeeAdditionalDetail.find_all_by_employee_id(@employee.id)
+    @additional_fields = AdditionalField.find(:all, :conditions=> "status = true", :order=>"priority ASC")
     if @additional_fields.empty?
       redirect_to :action => "edit_privilege", :id => @employee.employee_number
     end
     if request.post?
-      params[:employee_additional_details].each_pair do |k, v|
-        EmployeeAdditionalDetail.create(:employee_id => params[:id],
-          :additional_field_id => k,:additional_info => v['additional_info'])
+      @error=false
+      mandatory_fields = AdditionalField.find(:all, :conditions=>{:is_mandatory=>true, :status=>true})
+      mandatory_fields.each do|m|
+        unless params[:employee_additional_details][m.id.to_s.to_sym].present?
+          @employee.errors.add_to_base("#{m.name} must contain atleast one selected option.")
+          @error=true
+        else
+          if params[:employee_additional_details][m.id.to_s.to_sym][:additional_info]==""
+            @employee.errors.add_to_base("#{m.name} cannot be blank.")
+            @error=true
+          end
+        end
       end
-      flash[:notice] = "#{t('flash25')}#{@employee.first_name}"
-      redirect_to :action => "edit_privilege", :id => @employee.employee_number
+      unless @error==true
+        params[:employee_additional_details].each_pair do |k, v|
+          addl_info = v['additional_info']
+          addl_field = AdditionalField.find_by_id(k)
+          if addl_field.input_type == "has_many"
+            addl_info = addl_info.join(", ")
+          end
+          prev_record = EmployeeAdditionalDetail.find_by_employee_id_and_additional_field_id(params[:id], k)
+          unless prev_record.nil?
+            prev_record.update_attributes(:additional_info => addl_info)
+          else
+            EmployeeAdditionalDetail.create(:employee_id => params[:id],
+              :additional_field_id => k,:additional_info => addl_info)
+          end
+        end
+        unless params[:edit_request].present?
+          flash[:notice] = "#{t('flash25')}#{@employee.first_name}"
+          redirect_to :action => "edit_privilege", :id => @employee.employee_number
+        else
+          flash[:notice] = "#{t('flash15')}#{@employee.first_name} #{t('flash14')}"
+          redirect_to :action => "profile", :id => @employee.id
+        end
+      end
     end
   end
 

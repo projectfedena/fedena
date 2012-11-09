@@ -19,6 +19,7 @@
 class EmployeeAdditionalDetail < ActiveRecord::Base
   belongs_to :employee
   belongs_to :additional_field
+  validates_presence_of :additional_info
   
   def archive_employee_additional_detail(archived_employee)
     additional_detail_attributes = self.attributes

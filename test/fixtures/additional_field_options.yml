@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  additional_field_id: 1
+  field_option: MyString
+  school_id: 1
+
+two:
+  additional_field_id: 1
+  field_option: MyString
+  school_id: 1

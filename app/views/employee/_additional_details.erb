@@ -18,30 +18,30 @@
 #under the License. -%>
 
 <table width="700">
-<% unless @additional_details.empty? %>
-  <% @additional_details.each do |b| %>
-    <%  code = cycle('even', 'odd') %>
-       <tr class="<%= code %> left"><td><%= b.additional_field.name %></td><td class="right"><%= b.additional_info %></td></tr>
-  <% end %>
-</table>
+  <% unless @additional_details.empty? %>
+    <% @additional_details.each do |b| %>
+      <%  code = cycle('even', 'odd') %>
+      <tr class="<%= code %> left"><td><%= b.additional_field.name %></td><td class="right"><%= b.additional_info %></td></tr>
+    <% end %>
+  </table>
   <div class="extender"></div>
   <div class="edit-pdf-group">
-    <% if permitted_to? :edit3_1,:employee %>
+    <% if permitted_to? :admission3_1,:employee %>
       <div>
-        <%= link_to "► #{t('edit_text')}",   {:controller => "employee", :action => "edit3_1", :id =>@employee.id }, :class=> 'user_button'%>
+        <%= link_to "► #{t('edit_text')}",   {:controller => "employee", :action => "admission3_1", :id =>@employee.id, :edit_request=>1 }, :class=> 'user_button'%>
       </div>
     <%end%>
     <% if permitted_to?  :profile_pdf , :employee %>
-  <div>
-    <%= link_to " ► #{t('pdf_report')}",
-      {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
-  </div>
-  <% end %>
+      <div>
+        <%= link_to " ► #{t('pdf_report')}",
+          {:controller => "employee", :action => "profile_pdf", :id => @employee.id},:target => '_blank', :class=> 'user_button' %>
+      </div>
+    <% end %>
   </div>
 <% else %>
-  <% if permitted_to? :edit3_1,:employee %>
-    <p class="flash-msg"><%= t('no_additional_details_entered') %> <%= @employee.first_name%>. <%= link_to "#{t('add')}", :controller => "employee", :action => "edit3_1", :id => @employee.id %></p>
+  <% if permitted_to? :admission3_1,:employee %>
+    <p class="flash-msg"><%= t('no_additional_details_entered') %> <%= @employee.first_name%>. <%= link_to "#{t('add')}", :controller => "employee", :action => "admission3_1", :id => @employee.id, :edit_request=>1 %></p>
   <% else %>
-     <p class="flash-msg"><%= t('no_additional_details_entered') %> <%= @employee.first_name%>. <%#= link_to "ADD", :controller => "employee", :action => "edit3_1", :id => @employee.id %></p>
+    <p class="flash-msg"><%= t('no_additional_details_entered') %> <%= @employee.first_name%>. <%#= link_to "ADD", :controller => "employee", :action => "edit3_1", :id => @employee.id %></p>
   <% end %>
 <% end %>

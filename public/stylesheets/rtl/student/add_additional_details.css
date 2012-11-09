@@ -1,4 +1,3 @@
-
 #form-content{
     height:150px;
     width:500px;
@@ -53,6 +52,78 @@
     height : 1.5em; width : 34em;
     list-style-type : none;
     padding : 0.5em 5em 0 0;
+}
+.category-up-down{
+    width : 20px;
+    float: left;
+    padding-left: 20px;
+    text-decoration: none;
+}
+.category-up-down a{
+    text-decoration: none;
+}
+#category-list li div .category-up-down a:hover{
+    text-decoration: none;
+}
+.inactive{
+    width : 20px;
+    float: left;
+    padding-left: 20px;
+    visibility: hidden;
+}
+#category-list .listheading {
+    background:none repeat scroll 0 0 #BECFFB;
+    border-bottom:2px solid #BECFFB;
+    color:#444444;
+    height:1.5em;
+    list-style-type:none;
+    padding:0.5em 1em 0 0;
+    width:38em;
+}
+.label-checkbox-pair {
+    float: none;
+}
+.delete_button_img{
+    background:#fff url(../../images/buttons/delete_2.png) no-repeat;
+    display: block;
+    float: left;
+    height: 12px;
+    margin-top: 13px;
+    padding-right: 15px;
+    margin-left:130px;
+    color: #f00;
+    text-decoration: none;
+}
+.custom .add_button_img {
+    float: none;
+    margin-right: 210px;
+}
+.add_button_img {
+    float: right;
+    width: 110px;
+}
+.add_button_img {
+    background: none repeat scroll 0 0 transparent;
+    color: #008800;
+    display: inline;
+    float: none;
+    font-size: 13px;
+    height: 12px;
+    margin-right: 210px;
+    margin-top: 15px;
+    text-decoration: none;
+    width: 100px;
+}
+.label-field-pair1 input {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #C6C6C6;
+    height: 17px;
+    margin: 5px 10px 0 0;
+    padding: 5px;
+    width: 205px;
+}
+.text-input-bg select {
+    width: 217px;
 }
 
 #category-list li.heading {
