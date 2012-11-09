@@ -114,6 +114,36 @@ end
   PrivilegeTag.find_or_create_by_name_tag(param)
 end
 
+#add priorities to student additional fields with nil priority, if any
+addl_fields = StudentAdditionalField.all
+unless addl_fields.empty?
+  priority=1
+  last_priority = addl_fields.collect(&:priority).compact.sort.last
+  unless last_priority.nil?
+    priority = last_priority + 1
+  end
+  nil_priority_fields = addl_fields.reject{|f| !(f.priority.nil?)}
+  nil_priority_fields.each do|p|
+    p.update_attributes(:priority=>priority)
+    priority+=1
+  end
+end
+
+#add priorities to employee additional fields with nil priority, if any
+addl_fields = AdditionalField.all
+unless addl_fields.empty?
+  priority=1
+  last_priority = addl_fields.collect(&:priority).compact.sort.last
+  unless last_priority.nil?
+    priority = last_priority + 1
+  end
+  nil_priority_fields = addl_fields.reject{|f| !(f.priority.nil?)}
+  nil_priority_fields.each do|p|
+    p.update_attributes(:priority=>priority)
+    priority+=1
+  end
+end
+
 
 #add privilege_tag_id, priority in privileges table
 #system_settings
