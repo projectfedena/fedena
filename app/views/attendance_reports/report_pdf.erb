@@ -41,6 +41,7 @@
           <% else %>
             <h4> <%= "#{t('total_no_of_wrkng_hours')} = " + @academic_days.to_s %></h4>
           <% end %>
+          <h4><%= t('course_name') %> = <%= @students.first.batch.course.full_name %></h4>
         </div>
       </center>
     </div>
