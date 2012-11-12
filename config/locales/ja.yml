@@ -1863,6 +1863,7 @@ ja: # locale
   select_a_tte: "時間割を選択"
   basestart_date_overlap: "開始時刻が他の時間割の時間中です。"
   baseend_date_overlap: "終了時刻が他の時間割の時間中です。"
+  basetimetable_in_between_given_dates: "もう一つの時刻表が与えられた日付の間に存在する"
   basestart_date_is_lower_than_today: "開始日が本日より前になっています。"
   basestart_date_is_lower_than_end_date: "終了日が開始日より前になっています。"
   baseend_date_is_lower_than_today: "終了日が本日より前になっています。"

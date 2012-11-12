@@ -1861,6 +1861,7 @@ ar:
   select_a_tte: "حدد جدولا زمنيا"
   basestart_date_overlap: "وقت البدء هو ضمن مجموعة من آخر جدول زمني"
   baseend_date_overlap: "وقت النهاية هو ضمن مجموعة من آخر جدول زمني"
+  basetimetable_in_between_given_dates: "آخر موجود في الجدول الزمني بين تواريخ معينة"
   basestart_date_is_lower_than_today: "تاريخ البدء أقل من تاريخ اليوم"
   basestart_date_is_lower_than_end_date: "تاريخ انتهاء أقل من تاريخ بدء"
   baseend_date_is_lower_than_today: "تاريخ انتهاء أقل من تاريخ اليوم"

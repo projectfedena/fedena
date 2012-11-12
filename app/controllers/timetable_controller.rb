@@ -37,6 +37,11 @@ class TimetableController < ApplicationController
         @error=true
         @timetable.errors.add_to_base('end_date_overlap')
       end
+      fully_overlapping=Timetable.find(:all,:conditions=>["end_date <= ? AND start_date >= ?",@timetable.end_date,@timetable.start_date])
+      unless fully_overlapping.empty?
+        @error=true
+        @timetable.errors.add_to_base('timetable_in_between_given_dates')
+      end
       #      unless @timetable.start_date>=Date.today
       #        @error=true
       #        @timetable.errors.add_to_base('start_date_is_lower_than_today')
@@ -109,6 +114,11 @@ class TimetableController < ApplicationController
       unless @end_conflicts.empty?
         @error=true
         @timetable.errors.add_to_base('end_date_overlap')
+      end
+      fully_overlapping=Timetable.find(:all,:conditions=>["end_date <= ? AND start_date >= ?",@timetable.end_date,@timetable.start_date])
+      unless fully_overlapping.empty?
+        @error=true
+        @timetable.errors.add_to_base('timetable_in_between_given_dates')
       end
       unless @current
         if new_start<=Date.today

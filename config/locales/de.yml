@@ -1862,6 +1862,7 @@ de: # locale
   select_a_tte: "Wählen Sie einen Zeitplan"
   basestart_date_overlap: "Startzeit ist im Bereich von einem anderen Zeitplan"
   baseend_date_overlap: "Ende der Zeit ist im Bereich von einem anderen Zeitplan"
+  basetimetable_in_between_given_dates: "Ein weiterer Zeitplan existiert zwischen den angegebenen Terminen"
   basestart_date_is_lower_than_today: "Startdatum ist niedriger als das heutige Datum"
   basestart_date_is_lower_than_end_date: "Enddatum ist niedriger als Startdatum"
   baseend_date_is_lower_than_today: "Enddatum ist niedriger als das heutige Datum"

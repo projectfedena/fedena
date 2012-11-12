@@ -1834,6 +1834,7 @@ hi:
   select_a_tte: "एक समय सारिणी का चयन करें"
   basestart_date_overlap: "प्रारंभ समय एक और समय सारिणी की सीमा के भीतर है"
   baseend_date_overlap: "अंत समय एक और समय सारिणी की सीमा के भीतर है"
+  basetimetable_in_between_given_dates: "एक और समय सारिणी में दी गई तिथियों के बीच मौजूद है"
   basestart_date_is_lower_than_today: "प्रारंभ दिनांक आज की तारीख से कम है"
   basestart_date_is_lower_than_end_date: "समाप्ति तिथि आरंभ तिथि से कम है"
   baseend_date_is_lower_than_today: "समाप्ति तिथि आज की तारीख से कम है"

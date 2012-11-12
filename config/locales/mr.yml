@@ -1852,6 +1852,7 @@ mr: # locale
   select_a_tte: "Select a timetable"
   basestart_date_overlap: "Start time is within the range of another timetable"
   baseend_date_overlap: "End time is within the range of another timetable"
+  basetimetable_in_between_given_dates: "Another timetable exists in between the given dates"
   basestart_date_is_lower_than_today: "Start date is lower than today's date"
   basestart_date_is_lower_than_end_date: "End date is lower than start date"
   baseend_date_is_lower_than_today: "End date is lower than today's date"

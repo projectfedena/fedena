@@ -1854,6 +1854,7 @@ es: # locale
   select_a_tte: "Seleccionar un horario"
   basestart_date_overlap: "La hora de inicio se superpone"
   baseend_date_overlap: "La hora final se superpone"
+  basetimetable_in_between_given_dates: "Otro calendario existe entre las fechas dadas"
   basestart_date_is_lower_than_today: "La fecha inicial es anterior a hoy"
   basestart_date_is_lower_than_end_date: "La fecha final es menor que la fecha inicial"
   baseend_date_is_lower_than_end_date: "La fecha final es menor que la fecha de hoy"
