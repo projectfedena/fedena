@@ -18,17 +18,17 @@
 #under the License. -%>
 
 <div id="content-header">
- <%= image_tag("/images/student_details/student_details_logo.jpg") %>
+  <%= image_tag("/images/student_details/student_details_logo.jpg") %>
   <h1><%= t('students') %></h1>
   <h3><%= t('remove_student') %></h3>
   <div id="app-back-button">
-     <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
 <div id="page-yield">
-<% unless flash[:warn_notice].nil? %>
-  <div id="errorExplanation" class="errorExplanation"><%= flash[:warn_notice] %> </div>
+  <% unless flash[:warn_notice].nil? %>
+    <div id="errorExplanation" class="errorExplanation"><%= flash[:warn_notice] %> </div>
   <% end %>
   <div id="student-details">
     <h3><%= @student.full_name %></h3>
@@ -37,45 +37,40 @@
   </div>
 
   <div class="extender"> </div>
-  <% if @student.is_active == true %>
+
   <div class="link-box">
     <div class="link-heading"> <%= link_to "#{t('leaving_institution')}", :controller => "student", :action => "change_to_former", :id => @student.id %> </div>
     <div class="link-descr"><%= t('leaving_institution_message') %></div>
   </div>
-  <% else %>
-    <div class="link-box">
-    <div class="link-heading"> <a><%= t('student_left_message') %></a> </div>
-    <div class="link-descr"><b><%= t('reason') %>:</b><%= @student.status_description %> </div>
-  </div>
-    <% end %>
+
   <div class="link-box">
     <div class="link-heading"> <%= link_to "#{t('remove_student_records')}", :controller => "student", :action => "delete", :id => @student.id %> </div>
     <div class="link-descr"><%= t('remove_student_message') %></div>
   </div>
 
-    <!--
+  <!--
 
-  <div id="remove-student">
-    <h4><%= link_to "#{t('student_left_message')}" %></h4>
-    <p>For students leaving the school, use this option to remove them from the list of active students and place them in the former students list.</p>
-    <% form_for :remove do |f| %>
+<div id="remove-student">
+  <h4><%= link_to "#{t('student_left_message')}" %></h4>
+  <p>For students leaving the school, use this option to remove them from the list of active students and place them in the former students list.</p>
+  <% form_for :remove do |f| %>
       <div class="label-field-pair">
         <label for="remove_descr">Reason for leaving</label>
         <div class="text-input-bg"><%= f.text_field :description %></div>
       </div>
       <div class="extender"> </div>
-      <%= image_submit_tag '/images/buttons/remove.png' %>
-    <% end %>
-  </div>
+    <%= image_submit_tag '/images/buttons/remove.png' %>
+  <% end %>
+</div>
 
-  <div id="delete-student">
-    <h4>Delete student</h4>
-    <p>Completely delete student's records from the school's databases. Use this option only if you created the student record by accident and want to remove it completely.</p>
+<div id="delete-student">
+  <h4>Delete student</h4>
+  <p>Completely delete student's records from the school's databases. Use this option only if you created the student record by accident and want to remove it completely.</p>
 
-    <p class="warning">(Warning: All records will be deleted for the student and cannot be recovered.)</p>
-    <%= link_to image_tag('/images/buttons/delete.png', :border => 0),
-      { :action => 'destroy', :id => @student.id }, :confirm =>"#{t('are_you_completely_sure')}" %>
-  </div>
-    -->
+  <p class="warning">(Warning: All records will be deleted for the student and cannot be recovered.)</p>
+  <%= link_to image_tag('/images/buttons/delete.png', :border => 0),
+    { :action => 'destroy', :id => @student.id }, :confirm =>"#{t('are_you_completely_sure')}" %>
+</div>
+  -->
 
 </div>
