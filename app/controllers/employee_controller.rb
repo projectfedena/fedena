@@ -316,13 +316,6 @@ class EmployeeController < ApplicationController
             Employee.update(@employee.id, :gender => false)
           end
 
-          if params[:employee][:status] == "true"
-            Employee.update(@employee.id, :status => true)
-          else
-            Employee.update(@employee.id, :status => false)
-          end
-
-
           @leave_type = EmployeeLeaveType.all
           @leave_type.each do |e|
             EmployeeLeave.create( :employee_id => @employee.id, :employee_leave_type_id => e.id, :leave_count => e.max_leave_count)

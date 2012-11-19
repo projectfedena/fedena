@@ -209,7 +209,6 @@ class Employee < ActiveRecord::Base
   end
 
   def archive_employee(status)
-    self.update_attributes(:status => false, :status_description => status)
     employee_attributes = self.attributes
     employee_attributes.delete "id"
     employee_attributes.delete "photo_file_size"

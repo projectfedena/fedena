@@ -266,7 +266,6 @@ class Student < ActiveRecord::Base
   end
 
   def archive_student(status)
-    self.update_attributes(:is_active => false, :status_description => status)
     student_attributes = self.attributes
     student_attributes["former_id"]= self.id
     student_attributes.delete "id"
