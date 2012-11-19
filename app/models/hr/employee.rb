@@ -39,7 +39,7 @@ class Employee < ActiveRecord::Base
     :message => "#{t('must_be_a_valid_email_address')}"
 
   validates_presence_of :employee_category_id, :employee_number, :first_name, :employee_position_id,
-    :employee_department_id,  :date_of_birth,:joining_date
+    :employee_department_id,  :date_of_birth,:joining_date,:nationality_id,:employee_grade_id
   validates_uniqueness_of  :employee_number
 
   validates_associated :user
