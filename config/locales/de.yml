@@ -1392,6 +1392,7 @@ de: # locale
   password_is: "und das Passwort ist"
   select_one_of_the_guardians: "Wähle einen Vormund als Notfallkontakt."
   max_size: "max 500KB"
+  height_width: "150x110"
   unknown: "Unbekannt"
   student_detail_step1: "Schritt 1 - Schülerdetails"
   last_course: "Letzter besuchter Kurs"

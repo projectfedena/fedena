@@ -1382,6 +1382,7 @@ mr: # locale
   password_is: "व पासवर्ड आहे"
   select_one_of_the_guardians: "खालील एक पालक निवडा आपत्कालीन संपर्कासाठी."
   max_size: "कमाल 500KB"
+  height_width: "150x110"
   unknown: "Unknown"
   student_detail_step1: "क्रम १ - विद्यार्थी माहिती"
   last_course: "पूर्वीचा अभ्यासक्रम"

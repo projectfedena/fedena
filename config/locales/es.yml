@@ -1384,6 +1384,7 @@ es: # locale
   password_is: "y la Contraseña es "
   select_one_of_the_guardians: "Seleccionar un acudiente como contacto de emergencia."
   max_size: "50KB max"
+  height_width: "150x110"
   unknown: "Desconocido"
   student_detail_step1: "Paso 1 - Información del estudiante"
   last_course: "Último curso estudiado"

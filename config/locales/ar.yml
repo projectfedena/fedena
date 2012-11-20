@@ -1393,6 +1393,7 @@ ar:
   password_is: "وكلمة السر هي"
   select_one_of_the_guardians: "حدد أحد الأوصياء والاتصال في حالات الطوارئ."
   max_size: "500KB ماكس"
+  height_width: "150x110"
   unknown: "غير معروف"
   student_detail_step1: "الخطوة 1 -- تفاصيل الطلاب"
   last_course: "حضر الدورة الماضية"
