@@ -8,11 +8,11 @@
 .box-1{
     width: 948px;
     padding:16px;
-    overflow:auto;
+    /*overflow:auto;*/
 }
 .box-2{
     height:400px;
-    overflow:auto;
+    /*overflow:auto;*/
     width: 965px;
 }
 .header{
@@ -158,6 +158,8 @@ table.table{
 }
 .td-mark .date span,.td-name .date span{
     display: none;
+    margin-left: 145px;
+    margin-top: 80px;
 }
 .td-mark:hover .date span{
     display: block;
@@ -185,7 +187,7 @@ table.table{
 }
 .td-mark:hover,.td-mark:hover a.present{
     background:#C3D9FF;
-/*    color:#C3D9FF;*/
+    /*    color:#C3D9FF;*/
 }
 .td-name:hover .date span{
     display: block;

@@ -8,11 +8,11 @@
 .box-1{
     width: 948px;
     padding:16px;
-    overflow:auto;
+    /*overflow:auto;*/
 }
 .box-2{
     height:400px;
-    overflow:auto;
+    /*overflow:auto;*/
     width: 965px;
 }
 .header{
@@ -83,7 +83,9 @@ table#attendance{
     height: 40px;
 }
 .td-mark{
-    width:20px;
+    min-width:20px;
+    /*    width: auto;*/
+    width: 900px;
     text-align:center;
 
 
@@ -112,7 +114,8 @@ table#attendance{
     font-size:11px;
     background: #f1f6ff;
     font-weight:bold;
-    width:20px;
+    min-width:20px;
+    width:auto;
     text-align: center;
 
 }
@@ -155,6 +158,8 @@ table.table{
 }
 .td-mark .date span,.td-name .date span{
     display: none;
+    margin-right: 145px;
+    margin-top: 80px;
 }
 .td-mark:hover .date span{
     display: block;
@@ -182,7 +187,7 @@ table.table{
 }
 .td-mark:hover,.td-mark:hover a.present{
     background:#C3D9FF;
-/*    color:#C3D9FF;*/
+    /*    color:#C3D9FF;*/
 }
 .td-name:hover .date span{
     display: block;
@@ -214,4 +219,8 @@ table.table{
     font-weight:bold;
     margin:0 210px 0 0;
     padding:6px 8px;
+}
+
+a {
+    cursor: pointer;
 }
