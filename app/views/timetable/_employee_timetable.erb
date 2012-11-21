@@ -45,30 +45,49 @@
               <td class="tte">
                 <% unless @timetable_entries[weekday.id][ct.id].blank? %>
                   <% if @timetable_entries[weekday.id][ct.id].size > 1 %>
-                    <%= t('multiple_entries') %>
                     <div class="entries_wrapper">
                       <div class="entries">
                         <% @timetable_entries[weekday.id][ct.id].each_pair do |k, tte| %>
-                          <% if tte.subject.elective_group.nil? %>
-                            <%= formatted_timetable_cell(tte)  -%>
-                          <% else %>
-                            <%= @electives[tte.subject.elective_group_id].first.code %>
-                          <% end %>
-                          <div class="batch_name themed_text">
+                          <div class="sub_name">
+                            <% if tte.subject.elective_group.nil? %>
+                              <%= formatted_timetable_cell(tte)  -%>
+                            <% else %>
+                              <%= @electives[tte.subject.elective_group_id].first.code %>
+                            <% end %>
+                          </div>
+                          <div class="batch_name themed_text batch_code">
                             <%= timetable_batch (tte)  -%>
                           </div>
                         <% end %>
                       </div>
                     </div>
+                    <% tte = @timetable_entries[weekday.id][ct.id].first %>
+                    <% unless tte.blank? %>
+                      <div class="sub_name">
+                        <% if tte.last.subject.elective_group.nil? %>
+                          <%= formatted_timetable_cell(tte.last)  -%>
+                        <% else %>
+                          <%= @electives[tte.last.subject.elective_group_id].first.code %>
+                        <% end %>
+                      </div>
+                      <div class="batch_name themed_text batch_code">
+                        <%= timetable_batch (tte.last)  -%>
+                      </div>
+                      <a class="themed_text add_sym">+</a>
+                    <% end %>
                   <% else %>
                     <% tte = @timetable_entries[weekday.id][ct.id].first %>
                     <% unless tte.blank? %>
                       <% if tte.last.subject.elective_group.nil? %>
-                        <%= formatted_timetable_cell(tte.last)  -%>
+                        <div class="sub_name">
+                          <%= formatted_timetable_cell(tte.last)  -%>
+                        </div>
                       <% else %>
-                        <%= @electives[tte.last.subject.elective_group_id].first.code %>
+                        <div class="sub_name">
+                          <%= @electives[tte.last.subject.elective_group_id].first.code %>
+                        </div>
                       <% end %>
-                      <div class="batch_name themed_text">
+                      <div class="batch_name themed_text batch_code">
                         <%= timetable_batch (tte.last)  -%>
                       </div>
                     <% end %>

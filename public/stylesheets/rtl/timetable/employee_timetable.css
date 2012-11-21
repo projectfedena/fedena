@@ -2,24 +2,24 @@
     padding: 10px;
     background-color: #C3D9FF;
     border-radius: 8px;
-/*    border: 1px solid #BB0000;*/
+    /*    border: 1px solid #BB0000;*/
 }
 #teacher{
-border-left: none;
-width: 150px;
-border-top-left-radius: 0px;
-border-bottom-left-radius: 0px;
+    border-left: none;
+    width: 150px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 #timetable{
-border-top-right-radius: 0px;
-border-bottom-right-radius: 0px;
-/*border-left: none;*/
-padding-right: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    /*border-left: none;*/
+    padding-right: 0px;
 }
 #timetable-container{
     font-weight: bold;
-/*    height: 450px;*/
-/*    overflow-y: scroll;*/
+    /*    height: 450px;*/
+    /*    overflow-y: scroll;*/
 }
 .batch{
     height: 66px;
@@ -34,10 +34,11 @@ padding-right: 0px;
 }
 #timetable td{
     text-align: center;
+    min-width: 150px;
 }
 #period-count{
     background-color: #fff;
-/*    height: 66px;*/
+    /*    height: 66px;*/
     font-size: 12px;
     font-weight: bold;
 }
@@ -53,11 +54,13 @@ padding-right: 0px;
     font-weight: bold;
     font-size: 12px;
     background-color: #fff;
+    width: 150px;
+    max-width: 150px;
 }
 #table-viewer{
-/*    height:480px;*/
+    /*    height:480px;*/
     margin-right: 0px;
-    overflow-x: auto;
+    /*    overflow-x: auto;*/
     width: 810px;
     float: right;
 }
@@ -65,4 +68,57 @@ padding-right: 0px;
     width: 95%;
     margin: 0 auto;
     overflow-x: scroll;
+}
+.tte .entries_wrapper{
+    display: none;
+    margin-right: -14px;
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
+    height: 95px;
+    max-height: 95px;
+    min-height: 95px;
+    position:absolute;
+    z-index: 2000;
+    margin-top: -23px;
+    cursor: pointer;
+}
+.tte:hover .entries_wrapper{
+    display: block;
+}
+.tte:hover .entries_wrapper .entries{
+    background-color: white;
+    border: 4px solid #C3D9FF;
+    padding: 5px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    padding-top: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    font-variant: small-caps;
+    overflow-x:hidden;
+    overflow-y:auto;
+    height: 95px;
+    max-height: 95px;
+    min-height: 95px;
+}
+.add_sym{
+    font-weight: bold;
+    font-size: 14px;
+}
+.batch_code{
+    float: right;
+    width: 100%;
+    color: black;
+    font-weight: normal;
+}
+.sub_name{
+    float: right;
+    width: 100%;
+    color: #444444;
+}
+.gap{
+    float: right;
+    width: 100%;
+    height: 10px;
 }

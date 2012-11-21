@@ -57,21 +57,33 @@
                 <% @all_classtimings.each do |ct| -%>
                   <td class="tte">
                     <% if @timetable_entries[teacher.id][weekday.id][ct.id].size > 1 %>
-                      <%= t('multiple_entries') %>
                       <div class="entries_wrapper">
                         <div class="entries">
                           <% @timetable_entries[teacher.id][weekday.id][ct.id].each_pair do |k, entry| %>
-                            <%= formatted_timetable_cell_2(entry,teacher) unless entry.blank? -%>
-                            <div>
+                            <div class="sub_name">
+                              <%= formatted_timetable_cell_2(entry,teacher) unless entry.blank? -%>
+                            </div>
+                            <div class="batch_code">
                               <%= timetable_batch (entry) unless entry.blank? -%>
                             </div>
+                          <div class="gap"></div>
                           <% end %>
                         </div>
                       </div>
+                      <% entry = @timetable_entries[teacher.id][weekday.id][ct.id].first %>
+                      <div class="sub_name">
+                        <%= formatted_timetable_cell_2(entry.last,teacher) unless entry.blank? -%>
+                      </div>
+                      <div class="batch_code">
+                        <%= timetable_batch (entry.last) unless entry.blank? -%>
+                      </div>
+                      <a class="themed_text add_sym">+</a>
                     <% else %>
                       <% entry = @timetable_entries[teacher.id][weekday.id][ct.id].first %>
-                      <%= formatted_timetable_cell_2(entry.last,teacher) unless entry.blank? -%>
-                      <div>
+                      <div class="sub_name">
+                        <%= formatted_timetable_cell_2(entry.last,teacher) unless entry.blank? -%>
+                      </div>
+                      <div class="batch_code">
                         <%= timetable_batch (entry.last) unless entry.blank? -%>
                       </div>
                     <% end %>
