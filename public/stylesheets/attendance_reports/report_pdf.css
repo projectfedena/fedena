@@ -3,16 +3,17 @@
 #page-yield {
     width:800px;
     margin: 0 auto;
-    float: left;
     overflow: hidden;
 }
 
 
 
-.hor_line{
-    width:800px;
-    background: #333333;
+.hor_line {
+    background: none repeat scroll 0 0 #333333;
+    float: left;
     height: 1px;
+    margin-top: -10px;
+    width: 800px;
 }
 
 h2.heading{
@@ -36,44 +37,44 @@ h2.heading{
 .odd{
     height:auto;
     background: #EEEEEE;
-    
+
 }
 
 .even{
-    
+
     height:auto;
     background: #fff;
-    
-    
+
+
 }
 tr.even{
-   border: 1px solid #ADACAB;
+    border: 1px solid #ADACAB;
 }
 
 tr.odd{
-   border: 1px solid #ADACAB;
+    border: 1px solid #ADACAB;
 }
 
 .even td{
-   
-  padding: 12px 12px 12px 15px;
-  border: 1px solid #ADACAB;
-  border-right: 0px solid #fff;
-  border-top: 0px solid #fff;
- 
+
+    padding: 12px 12px 12px 15px;
+    border: 1px solid #ADACAB;
+    border-right: 0px solid #fff;
+    border-top: 0px solid #fff;
+
 }
 
 .odd td{
-  padding: 12px 12px 12px 15px;
-  border: 1px solid #ADACAB;
-  border-right: 0px solid #fff;
-  border-top: 0px solid #fff;
- 
+    padding: 12px 12px 12px 15px;
+    border: 1px solid #ADACAB;
+    border-right: 0px solid #fff;
+    border-top: 0px solid #fff;
+
 }
 
 table#pdf-table{
- border-top: 1px solid #ADACAB;
- border-collapse:collapse
+    border-top: 1px solid #ADACAB;
+    border-collapse:collapse
 }
 
 
@@ -151,8 +152,8 @@ table#pdf-table{
 }
 .name-td{
     width:auto;
-/*    min-width:180px;
-    max-width:180px;*/
+    /*    min-width:180px;
+        max-width:180px;*/
     overflow: hidden;
 }
 .total-td{
@@ -163,4 +164,21 @@ table#pdf-table{
 }
 
 
+#main_info h4 {
+    color: #555555;
+    font-weight: bold;
+    margin-top: 18px;
+    float: left;
+}
+.info1 {
+    float: left;
+    margin-top: -10px;
+    width: 800px;
+}
 
+.info-left {
+    float: left;
+}
+.info-right {
+    float: right;
+}

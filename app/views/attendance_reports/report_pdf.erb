@@ -36,12 +36,25 @@
     <div class="section1 row" >
       <center>
         <div id ="main_info">
-          <% if @config.config_value == 'Daily' %>
-            <h4> <%= "#{t('total_no_of_wrkng_days')} = " + @academic_days.to_s %></h4>
-          <% else %>
-            <h4> <%= "#{t('total_no_of_wrkng_hours')} = " + @academic_days.to_s %></h4>
-          <% end %>
-          <h4><%= t('course_name') %> = <%= @students.first.batch.course.full_name %></h4>
+          <div class="info1">
+            <div class="info-left">
+              <h4><%= t('course_name') %> = <%= @students.first.batch.course.full_name %></h4>
+            </div>
+            <div class="info-right">
+              <h4><%= t('batch') %> = <%= @students.first.batch.name %></h4>
+            </div>
+            <div class="hor_line"></div>
+          </div>
+          <div class="info1">
+            <div class="info-left">
+              <% if @config.config_value == 'Daily' %>
+                <h4> <%= "#{t('total_no_of_wrkng_days')} = " + @academic_days.to_s %></h4>
+              <% else %>
+                <h4> <%= "#{t('total_no_of_wrkng_hours')} = " + @academic_days.to_s %></h4>
+              <% end %>
+              <div class="hor_line"></div>
+            </div>
+          </div>
         </div>
       </center>
     </div>

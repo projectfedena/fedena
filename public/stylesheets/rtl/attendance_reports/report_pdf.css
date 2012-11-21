@@ -1,18 +1,18 @@
 
-
 #page-yield {
     width:800px;
     margin: 0 auto;
-    float: right;
     overflow: hidden;
 }
 
 
 
-.hor_line{
-    width:800px;
-    background: #333333;
+.hor_line {
+    background: none repeat scroll 0 0 #333333;
+    float: right;
     height: 1px;
+    margin-top: -10px;
+    width: 800px;
 }
 
 h2.heading{
@@ -106,16 +106,78 @@ table#pdf-table{
     text-align: center;
 }
 
+.col-pdf1
+{color: #990A10;}
 
-.page-break td{
-    height: 300px;
+.page1 {
+    width:800px;
+    height: auto;
+    page-break-after: always;
+    page-break-inside: avoid;
+    clear: both;
+}
+.page-break1{
+    height: 20px;
     border: 1px solid #fff;
+    width:800px;
+    float: right;
+}
+.grand_total
+{
     border-bottom: 1px solid #ADACAB;
 }
-.col-pdf1{
- color: #990A10;
+.section1{
+    page-break-before:always;
+    text-align: center;
+}
+.row{
+    float: right;
+    width: 100%;
+    text-align: center;
+}
+.page-blank{
+    width: 100%;
+    float: right;
+}
+.page_break{
+    margin-top: 60px;
+}
+.serial-td{
+    width:60px;
+    min-width:60px;
+    max-width:60px;
+    overflow:hidden;
+
+}
+.name-td{
+    width:auto;
+    /*    min-width:180px;
+        max-width:180px;*/
+    overflow: hidden;
+}
+.total-td{
+    width:150px;
+    min-width:150px;
+    max-width:150px;
+    overflow:hidden;
 }
 
 
+#main_info h4 {
+    color: #555555;
+    font-weight: bold;
+    margin-top: 18px;
+    float: right;
+}
+.info1 {
+    float: right;
+    margin-top: -10px;
+    width: 800px;
+}
 
-
+.info-left {
+    float: right;
+}
+.info-right {
+    float: left;
+}
