@@ -24,8 +24,8 @@
     <% @direction = (rtl?) ? 'rtl/' : '' %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> 
     <title><%= @title %></title>
-    <link rel="icon" href="/favicon.ico" type="image/ico" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/ico" />
+    <link rel="icon" href="<%=current_school_detail.logo.url%>" type="<%=current_school_detail.logo.content_type%>" />
+    <link rel="shortcut icon" href="<%=current_school_detail.logo.url%>" type="<%=current_school_detail.logo.content_type%>" />
 
     <%= stylesheet_link_tag(*get_stylesheets) %>
 
@@ -76,7 +76,7 @@
     <div id="footer">
       <div id="footer_logo">
         <div id="powered_by">
-          <%= t('powered_by') %> <a href=<%= "#{FEDENA_SETTINGS[:company_url]}" %> target="_blank"><%= FEDENA_SETTINGS[:company_name] %></a>
+          <%= t('powered_by') %> <a href=<%= "#{FedenaSetting.company_details[:company_url]}" %> target="_blank"><%= FedenaSetting.company_details[:company_name] %></a>
         </div>
       </div>
     </div>

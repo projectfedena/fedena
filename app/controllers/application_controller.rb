@@ -121,7 +121,7 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize
-    @title = FEDENA_SETTINGS[:company_name]
+    @title = FedenaSetting.company_details[:company_name]
   end
 
   def message_user
