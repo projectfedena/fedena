@@ -29,10 +29,11 @@ class ExamsController < ApplicationController
     @subjects = @batch.subjects
     if @current_user.employee? and  !@current_user.privileges.map{|m| m.name}.include?("ExaminationControl")
       @subjects= Subject.find(:all,:joins=>"INNER JOIN employees_subjects ON employees_subjects.subject_id = subjects.id AND employee_id = #{@current_user.employee_record.id} AND batch_id = #{@batch.id} ")
-      if @subjects.blank?
-        flash[:notice] = "#{t('flash_msg4')}"
-        redirect_to [@batch, @exam_group]
-      end
+    end
+    @subjects.reject!{|s| (@exam_group.exams.map{|e| e.subject_id}.include?(s.id))}
+    if @subjects.blank?
+      flash[:notice] = "#{t('flash_msg4')}"
+      redirect_to [@batch, @exam_group]
     end
   end
 
