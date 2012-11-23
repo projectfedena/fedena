@@ -24,8 +24,8 @@
     <% @direction = (rtl?) ? 'rtl/' : '' %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><%= @title %></title>
-    <link rel="icon" href="/favicon.ico" type="image/ico" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/ico" />
+    <link rel="icon" href="<%=current_school_detail.logo.url%>" type="<%=current_school_detail.logo.content_type%>" />
+    <link rel="shortcut icon" href="<%=current_school_detail.logo.url%>" type="<%=current_school_detail.logo.content_type%>" />
 
     <%= stylesheet_link_tag(*get_stylesheets) %>
 

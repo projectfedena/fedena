@@ -18,16 +18,18 @@
 #under the License. -%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html dir="<%= (rtl?) ? 'rtl' : 'ltr' %>">
-<head>
-<% @direction = (rtl?) ? 'rtl/' : '' %>
-<title><%= @title %></title>
-  <%= stylesheet_link_tag(*get_forgotpw_stylesheets) %>
-  <%= javascript_include_tag :defaults %>
-</head>
+  <head>
+    <% @direction = (rtl?) ? 'rtl/' : '' %>
+    <title><%= @title %></title>
+    <link rel="icon" href="<%=current_school_detail.logo.url%>" type="<%=current_school_detail.logo.content_type%>" />
+    <link rel="shortcut icon" href="<%=current_school_detail.logo.url%>" type="<%=current_school_detail.logo.content_type%>" />
+    <%= stylesheet_link_tag(*get_forgotpw_stylesheets) %>
+    <%= javascript_include_tag :defaults %>
+  </head>
 
-<body>
-  <%= yield %>
-</body>
+  <body>
+    <%= yield %>
+  </body>
 </html>
