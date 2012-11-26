@@ -25,11 +25,13 @@ class Attendance < ActiveRecord::Base
   #validate :student_current_batch
 
   def validate
-    if self.student.batch_id == self.batch_id
-      return true
-    else
-      errors.add('batch_id',"attendance is not marked for present batch")
-      return false
+    unless self.student.nil?
+      if self.student.batch_id == self.batch_id
+        return true
+      else
+        errors.add('batch_id',"attendance is not marked for present batch")
+        return false
+      end
     end
   end
 
