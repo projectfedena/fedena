@@ -22,6 +22,16 @@ class Attendance < ActiveRecord::Base
 
   validates_presence_of :reason,:month_date,:batch_id,:student_id
   validates_uniqueness_of :student_id, :scope => [:month_date],:message=>"already marked as absent"
+  #validate :student_current_batch
+
+  def validate
+    if self.student.batch_id == self.batch_id
+      return true
+    else
+      errors.add('batch_id',"attendance is not marked for present batch")
+      return false
+    end
+  end
 
   def after_validate
     unless self.month_date.nil?
