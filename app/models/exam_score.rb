@@ -23,7 +23,8 @@ class ExamScore < ActiveRecord::Base
 
   before_save :calculate_grade
 
-  validates_presence_of :student_id,:exam_id
+  validates_presence_of :student_id
+  validates_presence_of :exam_id,:message => "Invalid batch name or subject code"
   validates_numericality_of :marks,:allow_nil => true
 
 
