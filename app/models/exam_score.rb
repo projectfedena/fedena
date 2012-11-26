@@ -22,6 +22,22 @@ class ExamScore < ActiveRecord::Base
   belongs_to :grading_level
 
   before_save :calculate_grade
+  before_save :check_valid_marks
+
+  validates_presence_of :student_id,:exam_id
+  validates_numericality_of :marks,:allow_nil => true
+
+
+  def check_valid_marks
+    unless self.marks.nil?
+      if self.exam.maximum_marks.to_f < self.marks.to_f
+        errors.add('marks','marks cannot be greater than maximum marks')
+        return false
+      else
+        return true
+      end
+    end
+  end
 
   def calculate_percentage
     percentage = self.marks.to_f * 100 / self.exam.maximum_marks.to_f
