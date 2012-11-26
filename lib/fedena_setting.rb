@@ -14,4 +14,8 @@ class FedenaSetting
     FEDENA_SETTINGS
   end
 
+  def self.smtp_settings
+    SMTP_SETTINGS
+  end
+
 end
