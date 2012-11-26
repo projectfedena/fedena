@@ -114,7 +114,7 @@ class UserController < ApplicationController
             flash[:notice] = "#{t('flash9')}"
             redirect_to :action => 'dashboard'
           else
-             flash[:warn_notice] = "<p>#{@user.errors.full_messages}</p>"
+            flash[:warn_notice] = "<p>#{@user.errors.full_messages}</p>"
           end
         else
           flash[:warn_notice] = "<p>#{t('flash10')}</p>"
@@ -178,7 +178,7 @@ class UserController < ApplicationController
   def dashboard
     @user = current_user
     @config = Configuration.available_modules
-    @employee = @user.employee_record if ['employee','admin'].include?(@user.role_name.downcase)
+    @employee = @user.employee_record if ["#{t('admin')}","#{t('employee_text')}"].include?(@user.role_name)
     if @user.student?
       @student = Student.find_by_admission_no(@user.username)
     end
