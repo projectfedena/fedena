@@ -61,14 +61,21 @@ class AttendanceReportsController < ApplicationController
 
   def mode
     @batch = Batch.find params[:batch_id]
-    unless params[:subject_id] == ''
-      @subject = params[:subject_id]
+    if params[:subject_id] ==''
+      render :update do |page|
+        page.replace_html 'mode', :text => ''
+        page.replace_html 'month', :text => ''
+      end
     else
-      @subject = 0
-    end
-    render :update do |page|
-      page.replace_html 'mode', :partial => 'mode'
-      page.replace_html 'month', :text => ''
+      unless params[:subject_id] == 'all_sub'
+        @subject = params[:subject_id]
+      else
+        @subject = 0
+      end
+      render :update do |page|
+        page.replace_html 'mode', :partial => 'mode'
+        page.replace_html 'month', :text => ''
+      end
     end
   end
   def show
