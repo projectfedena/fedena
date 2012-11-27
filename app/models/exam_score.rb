@@ -22,12 +22,21 @@ class ExamScore < ActiveRecord::Base
   belongs_to :grading_level
 
   before_save :calculate_grade
+  before_create :check_existing
 
   validates_presence_of :student_id
   validates_presence_of :exam_id,:message =>  "Name/Batch Name/Subject Code is invalid"
   validates_numericality_of :marks,:allow_nil => true
+  validates_uniqueness_of :student_id,:scope => :exam_id
 
 
+  def check_existing
+    exam_score = ExamScore.find(:first,:conditions => {:exam_id => exam_id,:student_id => student_id})
+    unless exam_score.nil?
+      exam_score.update_attributes(self.attributes)
+    end
+  end
+  
   def validate
     unless self.marks.nil?
       unless self.exam.nil?
