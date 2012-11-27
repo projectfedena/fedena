@@ -41,29 +41,38 @@ class ExamScore < ActiveRecord::Base
     end
   end
 
-  def self.find_or_update_by_elements(exam_id,student_id,details)
-    exam_score = ExamScore.find(:first, :conditions => {:exam_id => exam_id, :student_id => student_id} )
-    error = false
-    if details[:marks].to_f <= @exam.maximum_marks.to_f
-      if exam_score.nil?
-        ExamScore.create do |score|
-          score.exam_id          = exam_id
-          score.student_id       = student_id
-          score.marks            = details[:marks]
-          score.grading_level_id = details[:grading_level_id]
-          score.remarks          = details[:remarks]
+  def save_scores
+    @exam = Exam.find(params[:id])
+    @error= false
+    params[:exam].each_pair do |student_id, details|
+      @exam_score = ExamScore.find(:first, :conditions => {:exam_id => @exam.id, :student_id => student_id} )
+      if @exam_score.nil?
+        if details[:marks].to_f <= @exam.maximum_marks.to_f
+          ExamScore.create do |score|
+            score.exam_id          = @exam.id
+            score.student_id       = student_id
+            score.marks            = details[:marks]
+            score.grading_level_id = details[:grading_level_id]
+            score.remarks          = details[:remarks]
+          end
+        else
+          @error = true
         end
       else
-        if exam_score.update_attributes(details)
-          error = nil
+        if details[:marks].to_f <= @exam.maximum_marks.to_f
+          if @exam_score.update_attributes(details)
+          else
+            flash[:warn_notice] = "#{t('flash4')}"
+            @error = nil
+          end
         else
-          error = "update_failed"
+          @error = true
         end
       end
-    else
-      error = true
     end
-    error
+    flash[:warn_notice] = "#{t('flash2')}" if @error == true
+    flash[:notice] = "#{t('flash3')}" if @error == false
+    redirect_to [@exam_group, @exam]
   end
 
   def calculate_percentage

@@ -140,7 +140,7 @@ class ExamsController < ApplicationController
     redirect_to [@batch, @exam_group]
   end
 
- def save_scores
+  def save_scores
     @exam = Exam.find(params[:id])
     @error= false
     params[:exam].each_pair do |student_id, details|
