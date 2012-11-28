@@ -21,7 +21,7 @@ class ExamScore < ActiveRecord::Base
   belongs_to :exam
   belongs_to :grading_level
 
-  #before_save :calculate_grade
+  before_save :calculate_grade
   before_create :check_existing
   after_create :delete_duplicate
 
