@@ -61,11 +61,13 @@
   <ul class="item-list">
     <li class="heading1"><%= t('deductions') %></li>
     <% @monthly_payslips.each do |mp| %>
+    <% unless mp.payroll_category.blank? %>
       <% unless mp.payroll_category.is_deduction == false %>
         <li class="list<%=cycle('odd', 'even')%>">
           <div class="item-name"><%= mp.payroll_category.name  %></div>
           <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %mp.amount.to_f %></div>
         </li>
+      <% end %>
       <% end %>
     <% end %>
     <% unless @individual_payslips.empty? %>
