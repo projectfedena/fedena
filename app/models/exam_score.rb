@@ -22,8 +22,8 @@ class ExamScore < ActiveRecord::Base
   belongs_to :grading_level
 
   before_save :calculate_grade
-  before_create :check_existing
-  after_create :delete_duplicate
+  before_save :check_existing
+
 
   validates_presence_of :student_id
   validates_presence_of :exam_id,:message =>  "Name/Batch Name/Subject Code is invalid"
@@ -33,20 +33,14 @@ class ExamScore < ActiveRecord::Base
 
   def check_existing
     exam_score = ExamScore.find(:first,:conditions => {:exam_id => self.exam_id,:student_id => self.student_id})
-    #raise "#{exam_score.to_yaml} AND #{self.to_yaml}"
-    unless exam_score.nil?
-      exam_score.update_attributes(:marks => self.marks.to_f)
-      self.errors.add_to_base("Score updated successfully.")
-    else
-      return true
+    if exam_score
+      self.id = exam_score.id
+      self.instance_variable_set("@new_record",false)    #If the record exists,then make the new record as a copy of the existing one and allow rails to chhose
+                                                         #the update operation instead of insert. 
     end
+    return true
   end
 
-  def delete_duplicate
-    exam_score = ExamScore.find(:first,:conditions => {:exam_id => self.exam_id,:student_id => self.student_id})
-    exam_scores = ExamScore.find(:all,:conditions => {:exam_id => self.exam_id,:student_id => self.student_id}).reject{|es| es.id == exam_score.id}
-    exam_scores.map(&:destroy)
-  end
   
   def validate
     unless self.marks.nil?
