@@ -21,8 +21,9 @@ class ExamScore < ActiveRecord::Base
   belongs_to :exam
   belongs_to :grading_level
 
-  before_save :calculate_grade
+  #before_save :calculate_grade
   before_create :check_existing
+  after_create :delete_duplicate
 
   validates_presence_of :student_id
   validates_presence_of :exam_id,:message =>  "Name/Batch Name/Subject Code is invalid"
@@ -31,13 +32,20 @@ class ExamScore < ActiveRecord::Base
 
 
   def check_existing
-    exam_score = ExamScore.find(:first,:conditions => {:exam_id => exam_id,:student_id => student_id})
+    exam_score = ExamScore.find(:first,:conditions => {:exam_id => self.exam_id,:student_id => self.student_id})
+    #raise "#{exam_score.to_yaml} AND #{self.to_yaml}"
     unless exam_score.nil?
-      exam_score.update_attributes(self.attributes)
-      return false
+      exam_score.update_attributes(:marks => self.marks.to_f)
+      self.errors.add_to_base("Score updated successfully.")
     else
       return true
     end
+  end
+
+  def delete_duplicate
+    exam_score = ExamScore.find(:first,:conditions => {:exam_id => self.exam_id,:student_id => self.student_id})
+    exam_scores = ExamScore.find(:all,:conditions => {:exam_id => self.exam_id,:student_id => self.student_id}).reject{|es| es.id == exam_score.id}
+    exam_scores.map(&:destroy)
   end
   
   def validate
@@ -53,40 +61,7 @@ class ExamScore < ActiveRecord::Base
     end
   end
 
-  def save_scores
-    @exam = Exam.find(params[:id])
-    @error= false
-    params[:exam].each_pair do |student_id, details|
-      @exam_score = ExamScore.find(:first, :conditions => {:exam_id => @exam.id, :student_id => student_id} )
-      if @exam_score.nil?
-        if details[:marks].to_f <= @exam.maximum_marks.to_f
-          ExamScore.create do |score|
-            score.exam_id          = @exam.id
-            score.student_id       = student_id
-            score.marks            = details[:marks]
-            score.grading_level_id = details[:grading_level_id]
-            score.remarks          = details[:remarks]
-          end
-        else
-          @error = true
-        end
-      else
-        if details[:marks].to_f <= @exam.maximum_marks.to_f
-          if @exam_score.update_attributes(details)
-          else
-            flash[:warn_notice] = "#{t('flash4')}"
-            @error = nil
-          end
-        else
-          @error = true
-        end
-      end
-    end
-    flash[:warn_notice] = "#{t('flash2')}" if @error == true
-    flash[:notice] = "#{t('flash3')}" if @error == false
-    redirect_to [@exam_group, @exam]
-  end
-
+  
   def calculate_percentage
     percentage = self.marks.to_f * 100 / self.exam.maximum_marks.to_f
   end
