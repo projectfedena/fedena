@@ -26,72 +26,74 @@
   </div>
 </div>
 <div id="page-yield">
-<ul class="item-list">
-  <li class="heading"><%= @monthly_payslips.first.active_or_archived_employee.full_name %></li>
-  <li class="heading"><%= t('payslip_generated_on') %> <%= params[:salary_date] %> <span class="themed_text">(<%= t('status') %>: <%=  @monthly_payslips.first.status_as_text %>)</span></li>
-</ul>
-<ul class="item-list">
-  <li class="heading1"><%= t('salary') %></li>
-  <% @monthly_payslips.each do |mp| %>
-    <% unless mp.payroll_category.is_deduction == true %>
-      <li class="list<%=cycle('odd', 'even')%>">
-        <div class="item-name"><%= mp.payroll_category.name  %> </div>
-        <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %mp.amount.to_f  %></div>
-      </li>
+  <ul class="item-list">
+    <li class="heading"><%= @monthly_payslips.first.active_or_archived_employee.full_name %></li>
+    <li class="heading"><%= t('payslip_generated_on') %> <%= params[:salary_date] %> <span class="themed_text">(<%= t('status') %>: <%=  @monthly_payslips.first.status_as_text %>)</span></li>
+  </ul>
+  <ul class="item-list">
+    <li class="heading1"><%= t('salary') %></li>
+    <% @monthly_payslips.each do |mp| %>
+      <% unless mp.payroll_category.blank? %>
+        <% unless mp.payroll_category.is_deduction == true %>
+          <li class="list<%=cycle('odd', 'even')%>">
+            <div class="item-name"><%= mp.payroll_category.name  %> </div>
+            <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %mp.amount.to_f  %></div>
+          </li>
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-  <% unless @individual_payslips.empty? %>
-    <% @individual_payslips.each do |pc| %>
-      <%if  pc.is_deduction == false %>
+    <% unless @individual_payslips.empty? %>
+      <% @individual_payslips.each do |pc| %>
+        <%if  pc.is_deduction == false %>
+          <li class="list<%=cycle('odd', 'even')%>">
+            <div class="item-name"><%= pc.name %></div>
+            <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %pc.amount %></div>
+          </li>
+        <% end %>
+      <% end %>
+    <% end %>
+    <li class="list<%=cycle('odd', 'even')%>">
+      <div class="item-name"><b><%= t('total_salary') %></b></div>
+      <div class="item-edit"><b><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %@salary[:net_non_deductionable_amount]  %></b></div>
+    </li>
+  </ul>
+
+  <ul class="item-list">
+    <li class="heading1"><%= t('deductions') %></li>
+    <% @monthly_payslips.each do |mp| %>
+      <% unless mp.payroll_category.is_deduction == false %>
         <li class="list<%=cycle('odd', 'even')%>">
-          <div class="item-name"><%= pc.name %></div>
-          <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %pc.amount %></div>
+          <div class="item-name"><%= mp.payroll_category.name  %></div>
+          <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %mp.amount.to_f %></div>
         </li>
       <% end %>
     <% end %>
-  <% end %>
-  <li class="list<%=cycle('odd', 'even')%>">
-    <div class="item-name"><b><%= t('total_salary') %></b></div>
-    <div class="item-edit"><b><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %@salary[:net_non_deductionable_amount]  %></b></div>
-  </li>
-</ul>
-
-<ul class="item-list">
-  <li class="heading1"><%= t('deductions') %></li>
-  <% @monthly_payslips.each do |mp| %>
-    <% unless mp.payroll_category.is_deduction == false %>
-      <li class="list<%=cycle('odd', 'even')%>">
-        <div class="item-name"><%= mp.payroll_category.name  %></div>
-        <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" %mp.amount.to_f %></div>
-      </li>
-    <% end %>
-  <% end %>
-  <% unless @individual_payslips.empty? %>
-    <% @individual_payslips.each do |pc| %>
-      <%if  pc.is_deduction == true %>
-        <li class="list<%=cycle('odd', 'even')%>">
-          <div class="item-name"><%= pc.name %></div>
-          <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" % pc.amount %></div>
-        </li>
+    <% unless @individual_payslips.empty? %>
+      <% @individual_payslips.each do |pc| %>
+        <%if  pc.is_deduction == true %>
+          <li class="list<%=cycle('odd', 'even')%>">
+            <div class="item-name"><%= pc.name %></div>
+            <div class="item-edit"><span class="currency-type"><%= @currency_type %></span> <%="%.2f" % pc.amount %></div>
+          </li>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <li class="list<%=cycle('odd', 'even')%>">
-    <div class="item-name"><b><%= t('total_deduction') %></b></div>
-    <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span> <b><%="%.2f" %@salary[:net_deductionable_amount] %></b></div>
-  </li>
-</ul>
+    <li class="list<%=cycle('odd', 'even')%>">
+      <div class="item-name"><b><%= t('total_deduction') %></b></div>
+      <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span> <b><%="%.2f" %@salary[:net_deductionable_amount] %></b></div>
+    </li>
+  </ul>
 
-<ul class="item-list">
-  <li class="heading1"><%= t('total') %></li>
-  <li class="listeven">
-    <div class="item-name"><b><%= t('net_salary') %></b></div>
-    <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span><b> <%="%.2f" %@salary[:net_amount]%></b></div>
-  </li>
-</ul>
+  <ul class="item-list">
+    <li class="heading1"><%= t('total') %></li>
+    <li class="listeven">
+      <div class="item-name"><b><%= t('net_salary') %></b></div>
+      <div class="item-edit"><span class="currency-type"><b><%= @currency_type %></b></span><b> <%="%.2f" %@salary[:net_amount]%></b></div>
+    </li>
+  </ul>
 
 
-<div class="pdf-report">
-  <%= link_to "#{t('pdf_report')}", {:controller=>"employee", :action=>"employee_individual_payslip_pdf", :id=>params[:id], :id2=>params[:salary_date]}, :format=>'pdf', :target=>"_blank", :class=>"user_button" %>
-</div>
+  <div class="pdf-report">
+    <%= link_to "#{t('pdf_report')}", {:controller=>"employee", :action=>"employee_individual_payslip_pdf", :id=>params[:id], :id2=>params[:salary_date]}, :format=>'pdf', :target=>"_blank", :class=>"user_button" %>
+  </div>
 </div>
