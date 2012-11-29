@@ -508,8 +508,9 @@ class EmployeeController < ApplicationController
           unless prev_record.nil?
             prev_record.update_attributes(:additional_info => addl_info)
           else
-            EmployeeAdditionalDetail.create(:employee_id => params[:id],
+            addl_detail = EmployeeAdditionalDetail.new(:employee_id => params[:id],
               :additional_field_id => k,:additional_info => addl_info)
+            addl_detail.save if addl_detail.valid?
           end
         end
         unless params[:edit_request].present?

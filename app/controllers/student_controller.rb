@@ -213,8 +213,9 @@ class StudentController < ApplicationController
           unless prev_record.nil?
             prev_record.update_attributes(:additional_info => addl_info)
           else
-            StudentAdditionalDetail.create(:student_id => params[:id],
+            addl_detail = StudentAdditionalDetail.new(:student_id => params[:id],
               :additional_field_id => k,:additional_info => addl_info)
+            addl_detail.save if addl_detail.valid?
           end
         end
         flash[:notice] = "#{t('flash9')} #{@student.first_name} #{@student.last_name}. #{t('new_admission_link')} <a href='/student/admission1'>Click Here</a>"
