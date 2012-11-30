@@ -524,3 +524,6 @@ html>body #nav ul.scriptaculously{/*ie shit*/
     height: 135px;
     background: url(/images/master_student/profile/topbanner.png);
 }
+.user_button{
+    margin-top:0px;
+}

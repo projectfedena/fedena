@@ -29,7 +29,7 @@ class ArchivedEmployeeController < ApplicationController
     @employee = ArchivedEmployee.find(params[:id])
     @new_reminder_count = Reminder.find_all_by_recipient(@current_user.id, :conditions=>"is_read = false")
     @gender = "Male"
-    @gender = "Female" if @employee.gender == false
+    @gender = "Female" if @employee.gender == "f"
     @status = "Active"
     @status = "Inactive" if @employee.status == false
     @reporting_manager = Employee.find(@employee.reporting_manager_id).first_name unless @employee.reporting_manager_id.nil?
@@ -104,7 +104,7 @@ class ArchivedEmployeeController < ApplicationController
   def profile_pdf
     @employee = ArchivedEmployee.find(params[:id])
     @gender = "Male"
-    @gender = "Female" if @employee.gender == false
+    @gender = "Female" if @employee.gender == "f"
     @status = "Active"
     @status = "Inactive" if @employee.status == false
     @reporting_manager = ArchivedEmployee.find(@employee.reporting_manager_id).first_name unless @employee.reporting_manager_id.nil?

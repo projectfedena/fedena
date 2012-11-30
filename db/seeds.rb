@@ -180,3 +180,11 @@ Employee.all.each do |e|
     e.update_attributes(:gender=> "f")
   end
 end
+
+ArchivedEmployee.all.each do |e|
+  if e.gender.to_s=="1"
+    e.update_attributes(:gender=> "m")
+  elsif e.gender.to_s=="0"
+    e.update_attributes(:gender=> "f")
+  end
+end
