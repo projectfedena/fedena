@@ -53,8 +53,8 @@
 }
 .label_field_pair .label_for_gender {margin:0;display:block;float:right;padding-top:5px;padding-left:10px;padding-right:10px;}
 .label_field_pair .label_for_status {margin:0;display:block;float:right;padding-top:5px;padding-left:10px;padding-right:10px;}
-#employee_gender_true,
-#employee_gender_false {margin:0;padding:0;width:20px;display:inline;margin-bottom:10px;display:block;float:right;}
+#employee_gender_m,
+#employee_gender_f {margin:0;padding:0;width:20px;display:inline;margin-bottom:10px;display:block;float:right;}
 #employee_status_true,
 #employee_status_false {margin:0;padding:0;width:20px;display:inline;margin-bottom:10px;display:block;float:right;}
 
