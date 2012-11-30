@@ -309,13 +309,7 @@ class EmployeeController < ApplicationController
         @employee.employee_number= "E" + params[:employee][:employee_number].to_s
       end
       unless @employee.employee_number.to_s.downcase == 'admin'
-        if @employee.save
-          if params[:employee][:gender] == "true"
-            Employee.update(@employee.id, :gender => true)
-          else
-            Employee.update(@employee.id, :gender => false)
-          end
-
+       if @employee.save
           @leave_type = EmployeeLeaveType.all
           @leave_type.each do |e|
             EmployeeLeave.create( :employee_id => @employee.id, :employee_leave_type_id => e.id, :leave_count => e.max_leave_count)
@@ -348,12 +342,6 @@ class EmployeeController < ApplicationController
     if request.post?
       if  params[:employee][:employee_number].downcase != 'admin' or @employee_user.admin
         if @employee.update_attributes(params[:employee])
-          if params[:employee][:gender] == "true"
-            Employee.update(@employee.id, :gender => true)
-          else
-            Employee.update(@employee.id, :gender => false)
-          end
-
           if params[:employee][:status] == "true"
             Employee.update(@employee.id, :status => true)
           else
@@ -657,7 +645,7 @@ class EmployeeController < ApplicationController
     @employee = Employee.find(params[:id])
     @new_reminder_count = Reminder.find_all_by_recipient(@current_user.id, :conditions=>"is_read = false")
     @gender = "Male"
-    @gender = "Female" if @employee.gender == false
+    @gender = "Female" if @employee.gender == "f"
     @status = "Active"
     @status = "Inactive" if @employee.status == false
     @reporting_manager = Employee.find(@employee.reporting_manager_id).full_name unless @employee.reporting_manager_id.nil?
@@ -742,7 +730,7 @@ class EmployeeController < ApplicationController
   def profile_pdf
     @employee = Employee.find(params[:id])
     @gender = "Male"
-    @gender = "Female" if @employee.gender == false
+    @gender = "Female" if @employee.gender == "f"
     @status = "Active"
     @status = "Inactive" if @employee.status == false
     @reporting_manager = Employee.find(@employee.reporting_manager_id).first_name unless @employee.reporting_manager_id.nil?

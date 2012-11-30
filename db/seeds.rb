@@ -171,3 +171,12 @@ Privilege.find_by_name('StudentsControl').update_attributes(:privilege_tag_id=>P
 Privilege.find_by_name('StudentView').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('student_management').id, :priority=>300 )
 Privilege.find_by_name('StudentAttendanceRegister').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('student_management').id, :priority=>310 )
 Privilege.find_by_name('StudentAttendanceView').update_attributes(:privilege_tag_id=>PrivilegeTag.find_by_name_tag('student_management').id, :priority=>320 )
+
+#update gender as string
+Employee.all.each do |e|
+  if e.gender.to_s=="1"
+    e.update_attributes(:gender=> "m")
+  elsif e.gender.to_s=="0"
+    e.update_attributes(:gender=> "f")
+  end
+end
