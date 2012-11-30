@@ -1110,6 +1110,19 @@ authorization do
   end
 
   role :hr_basics do
+    has_permission_on [:archived_employee],
+      :to => [
+      :profile,
+      :profile_general,
+      :profile_personal,
+      :profile_address,
+      :profile_contact,
+      :profile_bank_details,
+      :profile_additional_details,
+      :profile_payroll_details,
+      :profile_pdf,
+      :show
+      ]
     has_permission_on [:employee],
       :to => [
       :index,
@@ -1300,6 +1313,19 @@ authorization do
   end
 
   role :employee_search do
+    has_permission_on [:archived_employee],
+      :to => [
+      :profile,
+      :profile_general,
+      :profile_personal,
+      :profile_address,
+      :profile_contact,
+      :profile_bank_details,
+      :profile_additional_details,
+      :profile_payroll_details,
+      :profile_pdf,
+      :show
+      ]
     has_permission_on [:employee],
       :to => [
       :search,
@@ -2026,6 +2052,19 @@ authorization do
       :index,
       :new
     ]
+    has_permission_on [:archived_employee],
+      :to => [
+      :profile,
+      :profile_general,
+      :profile_personal,
+      :profile_address,
+      :profile_contact,
+      :profile_bank_details,
+      :profile_additional_details,
+      :profile_payroll_details,
+      :profile_pdf,
+      :show
+      ]
     has_permission_on [:employee],
       :to => [
       :index,
