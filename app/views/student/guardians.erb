@@ -108,7 +108,7 @@
           <div class="profile_info_text2"> <%= p.office_address_line1%> <%= p.office_address_line2%> </div>
 
           <div class="profile_info_label"> </div>
-          <div class="profile_info_text"> <%= p.city %> <%= p.state %> <%= p.country.name %> </div>
+          <div class="profile_info_text"> <%= p.city %> <%= p.state %> <%= p.country.nil? ? "" : p.country.name %> </div>
         </div>
 
         <div class="new_profile_info_area1">
