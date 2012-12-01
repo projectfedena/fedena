@@ -138,6 +138,9 @@ class EmployeeController < ApplicationController
   def delete_department
     employees = Employee.find(:all ,:conditions=>"employee_department_id = #{params[:id]}")
     if employees.empty?
+      employees = ArchivedEmployee.find(:all ,:conditions=>"employee_department_id = #{params[:id]}")
+    end
+    if employees.empty?
       EmployeeDepartment.find(params[:id]).destroy
       @departments = EmployeeDepartment.find :all
       flash[:notice]=t('flash3')
@@ -309,7 +312,7 @@ class EmployeeController < ApplicationController
         @employee.employee_number= "E" + params[:employee][:employee_number].to_s
       end
       unless @employee.employee_number.to_s.downcase == 'admin'
-       if @employee.save
+        if @employee.save
           @leave_type = EmployeeLeaveType.all
           @leave_type.each do |e|
             EmployeeLeave.create( :employee_id => @employee.id, :employee_leave_type_id => e.id, :leave_count => e.max_leave_count)
