@@ -159,15 +159,7 @@
       <hr class="label-underline"></hr>
 
 
-      <div class="label_field_pair">
-        <label class="employee_status" for="employee_status"><%= t('status') %></label>
-
-        <label class="label_for_status" for="employee_status_true"><%= t('active') %></label>
-        <%= a.radio_button  "status", "true", :checked => "checked" %>
-
-        <label class="label_for_status" for="employee_status_false"><%= t('inactive') %></label>
-        <%= a.radio_button  "status", "false" %>
-      </div>
+      
 
     </div>
     <%= submit_tag "► #{ t('update')}", :class => "submit_button" %>
