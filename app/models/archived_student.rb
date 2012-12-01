@@ -34,6 +34,8 @@ class ArchivedStudent < ActiveRecord::Base
   has_many   :assessment_scores, :primary_key=>:former_id, :foreign_key=>'student_id'
   has_many   :exam_scores, :primary_key=>:former_id, :foreign_key=>'student_id'
 
+  before_save :is_active_false
+
   #has_and_belongs_to_many :graduated_batches, :class_name => 'Batch', :join_table => 'batch_students',:foreign_key => 'student_id' ,:finder_sql =>'SELECT * FROM `batches`,`archived_students`  INNER JOIN `batch_students` ON `batches`.id = `batch_students`.batch_id WHERE (`batch_students`.student_id = `archived_students`.former_id )'
 
   has_attached_file :photo,
@@ -42,6 +44,12 @@ class ArchivedStudent < ActiveRecord::Base
     :small  => "150x150>"},
     :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
     :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension"
+
+  def is_active_false
+    unless self.is_active==0
+      self.is_active=0
+    end
+  end
 
   def gender_as_text
     self.gender == 'm' ? 'Male' : 'Female'
@@ -64,7 +72,7 @@ class ArchivedStudent < ActiveRecord::Base
   end
 
   def graduated_batches
-   # SELECT * FROM `batches` INNER JOIN `batch_students` ON `batches`.id = `batch_students`.batch_id
+    # SELECT * FROM `batches` INNER JOIN `batch_students` ON `batches`.id = `batch_students`.batch_id
     Batch.find(:all,:conditions=> ["batch_students.student_id = #{former_id.to_i}"], :joins =>'INNER JOIN batch_students ON batches.id = batch_students.batch_id' )
   end
 

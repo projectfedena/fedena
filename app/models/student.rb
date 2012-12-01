@@ -63,6 +63,8 @@ class Student < ActiveRecord::Base
   validates_associated :user
   before_validation :create_user_and_validate
 
+  before_save :is_active_true
+
   has_attached_file :photo,
     :styles => {:original=> "125x125#"},
     :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
@@ -83,6 +85,12 @@ class Student < ActiveRecord::Base
     errors.add(:admission_no, "#{t('model_errors.student.error3')}.") if self.admission_no=='0'
     errors.add(:admission_no, "#{t('should_not_be_admin')}") if self.admission_no.to_s.downcase== 'admin'
     
+  end
+
+  def is_active_true
+    unless self.is_active==1
+      self.is_active=1
+    end
   end
 
   def create_user_and_validate

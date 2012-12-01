@@ -24,6 +24,13 @@ class ArchivedEmployee < ActiveRecord::Base
   belongs_to  :nationality, :class_name => 'Country'
   has_many    :archived_employee_bank_details
   has_many    :archived_employee_additional_details
+  before_save :status_false
+
+  def status_false
+    unless self.status==0
+      self.status=0
+    end
+  end
 
   def image_file=(input_data)
     return if input_data.blank?
@@ -40,7 +47,7 @@ class ArchivedEmployee < ActiveRecord::Base
     :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
     :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension"
 
-   def full_name
+  def full_name
     "#{first_name} #{middle_name} #{last_name}"
   end
 

@@ -44,7 +44,7 @@ class Employee < ActiveRecord::Base
 
   validates_associated :user
   before_validation :create_user_and_validate
-
+  before_save :status_true
   has_attached_file :photo,
     :styles => {:original=> "125x125#"},
     :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
@@ -56,6 +56,12 @@ class Employee < ActiveRecord::Base
     :message=>'Image can only be GIF, PNG, JPG',:if=> Proc.new { |p| !p.photo_file_name.blank? }
   validates_attachment_size :photo, :less_than => 512000,\
     :message=>'must be less than 500 KB.',:if=> Proc.new { |p| p.photo_file_name_changed? }
+
+  def status_true
+    unless self.status==1
+      self.status=1
+    end
+  end
 
   def create_user_and_validate
     if self.new_record?
