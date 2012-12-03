@@ -24,8 +24,10 @@
     <% @direction = (rtl?) ? 'rtl/' : '' %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><%= @title %></title>
+    <% unless current_school_detail.new_record? %>
     <link rel="icon" href="<%=current_school_detail.logo.url%>" type="<%=current_school_detail.logo.content_type%>" />
     <link rel="shortcut icon" href="<%=current_school_detail.logo.url%>" type="<%=current_school_detail.logo.content_type%>" />
+    <% end %>
 
     <%= stylesheet_link_tag(*get_stylesheets) %>
 

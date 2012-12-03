@@ -23,8 +23,10 @@
   <head>
     <% @direction = (rtl?) ? 'rtl/' : '' %>
     <title><%= @title %></title>
+    <% unless current_school_detail.new_record? %>
     <link rel="icon" href="<%=current_school_detail.logo.url%>" type="<%=current_school_detail.logo.content_type%>" />
     <link rel="shortcut icon" href="<%=current_school_detail.logo.url%>" type="<%=current_school_detail.logo.content_type%>" />
+    <% end %>
     <%= stylesheet_link_tag(*get_stylesheets) %>
     <%= javascript_include_tag :defaults %>
   </head>
