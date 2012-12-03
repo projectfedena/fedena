@@ -107,7 +107,7 @@
           <label for="student_date_of_birth"><%= t('date_of_birth') %> <span class="necessary-field">*</span> </label>
           <div class="text-input-bg">
             <%= calendar_date_select_tag 'student[date_of_birth]',
-              I18n.l(Date.today-5.years,:format=>:default) , :year_range => 40.years.ago..0.years.ago,:popup=>"force" %>
+              I18n.l(Date.today-5.years,:format=>:default) , :year_range => 72.years.ago..0.years.ago,:popup=>"force" %>
           </div>
         </div>
 
