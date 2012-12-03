@@ -24,7 +24,7 @@
     <div class="scroll-inside">
 <% @recipients.each do |r|  %>
   <div class="hover">
-    <%=  %> <%= link_to r.first_name + x, "#", :onClick => "remove_recipient(#{r.id})", :class=> 'individual',
+    <%=  %> <%= link_to r.full_name + x, "#", :onClick => "remove_recipient(#{r.id})", :class=> 'individual',
     :before => "Element.show('loader')",
       :success => "Element.hide('loader')" %>
     </div>
