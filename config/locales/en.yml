@@ -1840,6 +1840,7 @@ en: # locale
   sms_logs: "SMS Logs"
   view_all_messages: "View all messages and their status"
   enable_news_comment_moderation: "Enable News Comment Moderation"
+  choose_from_existing: "Choose from existing"
   
 
 #  modified timetable and timetable entries

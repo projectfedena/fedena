@@ -137,7 +137,9 @@
               <span>(<%= link_to "#{t('change_contact')}", :controller => 'student', :action => 'admission3_1', :id => @student.id %>)</span>
             <%else%>
               <% if permitted_to? :add_guardian,:student %>
-                <span><%= t('no_guardian') %>(<%= link_to "#{t('add_guardian')}",:controller => 'student',:action => 'add_guardian', :id => @student.id %>)</span>
+                <span>
+                  <%= t('no_guardian') %>(<%= link_to "#{t('add_guardian')}",:controller => 'student',:action => 'add_guardian', :id => @student.id %> / <%= link_to "#{t('choose_from_existing')}",:controller => 'student',:action => 'admission3_1', :id => @student.id %>)
+                </span>
               <%else%>
                 <span><%= t('no_guardian') %></span>
               <%end%>
