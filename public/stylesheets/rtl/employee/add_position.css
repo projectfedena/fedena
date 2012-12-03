@@ -114,3 +114,17 @@
     padding-top:3px;
     width:206px;
 }
+#errorExplanation1 {
+    background: url("/images/_global/error.png") no-repeat scroll 10px 14px #FFDEDF;
+    border-radius: 10px 10px 10px 10px;
+    height: auto;
+    margin: 20px auto;
+    padding: 10px 20px 20px 0;
+    width: 510px;
+}
+#errorExplanation1 ul li {
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: -10px;
+    display: block;
+}

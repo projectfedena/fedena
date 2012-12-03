@@ -58,6 +58,9 @@ class EmployeeController < ApplicationController
 
   def delete_category
     employees = Employee.find(:all ,:conditions=>"employee_category_id = #{params[:id]}")
+    if employees.empty?
+      employees = ArchivedEmployee.find(:all ,:conditions=>"employee_category_id = #{params[:id]}")
+    end
     category_position = EmployeePosition.find(:all, :conditions=>"employee_category_id = #{params[:id]}")
     if employees.empty? and category_position.empty?
       EmployeeCategory.find(params[:id]).destroy
@@ -65,7 +68,7 @@ class EmployeeController < ApplicationController
       flash[:notice]=t('flash3')
       redirect_to :action => "add_category"
     else
-      flash[:notice]=t('flash4')
+      flash[:warn_notice]=t('flash4')
       redirect_to :action => "add_category"
     end
   end
@@ -99,14 +102,16 @@ class EmployeeController < ApplicationController
 
   def delete_position
     employees = Employee.find(:all ,:conditions=>"employee_position_id = #{params[:id]}")
-
+    if employees.empty?
+      employees = ArchivedEmployee.find(:all ,:conditions=>"employee_position_id = #{params[:id]}")
+    end
     if employees.empty?
       EmployeePosition.find(params[:id]).destroy
       @positions = EmployeePosition.find :all
       flash[:notice]=t('flash3')
       redirect_to :action => "add_position"
     else
-      flash[:notice]=t('flash4')
+      flash[:warn_notice]=t('flash4')
       redirect_to :action => "add_position"
     end
   end
@@ -146,7 +151,7 @@ class EmployeeController < ApplicationController
       flash[:notice]=t('flash3')
       redirect_to :action => "add_department"
     else
-      flash[:notice]=t('flash4')
+      flash[:warn_notice]=t('flash4')
       redirect_to :action => "add_department"
     end
   end
@@ -178,12 +183,15 @@ class EmployeeController < ApplicationController
   def delete_grade
     employees = Employee.find(:all ,:conditions=>"employee_grade_id = #{params[:id]}")
     if employees.empty?
+      employees = ArchivedEmployee.find(:all ,:conditions=>"employee_grade_id = #{params[:id]}")
+    end
+    if employees.empty?
       EmployeeGrade.find(params[:id]).destroy
       @grades = EmployeeGrade.find :all
       flash[:notice]=t('flash3')
       redirect_to :action => "add_grade"
     else
-      flash[:notice]=t('flash4')
+      flash[:warn_notice]=t('flash4')
       redirect_to :action => "add_grade"
     end
   end
@@ -213,7 +221,7 @@ class EmployeeController < ApplicationController
       flash[:notice]=t('flash3')
       redirect_to :action => "add_bank_details"
     else
-      flash[:notice]=t('flash4')
+      flash[:warn_notice]=t('flash4')
       redirect_to :action => "add_bank_details"
     end
   end
@@ -284,7 +292,7 @@ class EmployeeController < ApplicationController
         flash[:notice]=t('flash3')
         redirect_to :action => "add_additional_details"
       else
-        flash[:notice]=t('flash4')
+        flash[:warn_notice]=t('flash4')
         redirect_to :action => "add_additional_details"
       end
     else

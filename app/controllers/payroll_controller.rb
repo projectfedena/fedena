@@ -63,7 +63,7 @@ class PayrollController < ApplicationController
         flash[:notice]="#{t('flash3')}"
         redirect_to :action => "add_category"
       else
-        flash[:notice]="#{t('flash4')}"
+        flash[:warn_notice]="#{t('flash4')}"
         redirect_to :action => "add_category"
       end
     else

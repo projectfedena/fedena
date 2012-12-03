@@ -22,55 +22,63 @@
   <h1><%= "#{t('employee_settings')}" %></h1>
   <h3><%= "#{t('add_grade')}" %></h3>
   <div id="app-back-button">
-   <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
 <div id="page-yield">
-
+  <% unless flash[:warn_notice].nil? %>
+    <div id="errorExplanation1">
+      <ul>
+        <li>
+          <%= flash[:warn_notice] %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
   <%- form_for :grade do |c| -%>
 
-  <% unless flash[:notice].nil? %>
-    <p class="flash-msg"> <%= flash[:notice] %> </p>
-  <% end %>
+    <% unless flash[:notice].nil? %>
+      <p class="flash-msg"> <%= flash[:notice] %> </p>
+    <% end %>
 
     <%= error_messages_for 'grade' %>
-<div id="form-content">
-    <div class="label-field-pair">
-      <label for="grade_name"><%= t('name') %></label>
-      <div class="text-input-bg"> <%= c.text_field :name %> </div>
-    </div>
+    <div id="form-content">
+      <div class="label-field-pair">
+        <label for="grade_name"><%= t('name') %></label>
+        <div class="text-input-bg"> <%= c.text_field :name %> </div>
+      </div>
 
-    <div class="label-field-pair">
-      <label for="grade_priority"><%= t('priority') %></label>
-      <div class="text-input-bg"> <%= c.text_field :priority %> </div>
-    </div>
+      <div class="label-field-pair">
+        <label for="grade_priority"><%= t('priority') %></label>
+        <div class="text-input-bg"> <%= c.text_field :priority %> </div>
+      </div>
 
-    <div class="label-field-pair">
-      <label for="grade_priority"><%= t('max_period_per_day') %></label>
-      <div class="text-input-bg"> <%= c.text_field :max_hours_day %> </div>
-    </div>
+      <div class="label-field-pair">
+        <label for="grade_priority"><%= t('max_period_per_day') %></label>
+        <div class="text-input-bg"> <%= c.text_field :max_hours_day %> </div>
+      </div>
 
-    <div class="label-field-pair">
-      <label for="grade_priority"><%= t('max_period_per_week') %></label>
-      <div class="text-input-bg"> <%= c.text_field :max_hours_week %> </div>
-    </div>
+      <div class="label-field-pair">
+        <label for="grade_priority"><%= t('max_period_per_week') %></label>
+        <div class="text-input-bg"> <%= c.text_field :max_hours_week %> </div>
+      </div>
 
-    <div class="label-checkbox-pair">
-      <label class="status" for="status"><%= t('status') %></label>
-      <div id="radio-buttons">
-      <%= c.radio_button  "status", "true", :checked => "checked" %>
-      <label class="label_for_status" for="grade_status_true"><%= t('active') %></label>
+      <div class="label-checkbox-pair">
+        <label class="status" for="status"><%= t('status') %></label>
+        <div id="radio-buttons">
+          <%= c.radio_button  "status", "true", :checked => "checked" %>
+          <label class="label_for_status" for="grade_status_true"><%= t('active') %></label>
 
-      <%= c.radio_button  "status", "false" %>
-      <label class="label_for_status" for="grade_status_false"><%= t('inactive') %></label>
-    </div>
-    </div>
+          <%= c.radio_button  "status", "false" %>
+          <label class="label_for_status" for="grade_status_false"><%= t('inactive') %></label>
+        </div>
+      </div>
 
-    <div id="submit-button">
-      <%=submit_tag("► #{t('create_text')}") %>
+      <div id="submit-button">
+        <%=submit_tag("► #{t('create_text')}") %>
+      </div>
     </div>
-</div>
 
   <%- end -%>
 
