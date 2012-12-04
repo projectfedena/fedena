@@ -55,7 +55,7 @@
                               <%= @electives[tte.subject.elective_group_id].first.code %>
                             <% end %>
                           </div>
-                          <div class="batch_name themed_text batch_code">
+                          <div class="batch_name themed_text batch_code no_padding">
                             <%= timetable_batch (tte)  -%>
                           </div>
                         <% end %>
@@ -70,7 +70,7 @@
                           <%= @electives[tte.last.subject.elective_group_id].first.code %>
                         <% end %>
                       </div>
-                      <div class="batch_name themed_text batch_code">
+                      <div class="batch_name themed_text batch_code no_padding">
                         <%= timetable_batch (tte.last)  -%>
                       </div>
                       <a class="themed_text add_sym">+</a>
@@ -87,7 +87,7 @@
                           <%= @electives[tte.last.subject.elective_group_id].first.code %>
                         </div>
                       <% end %>
-                      <div class="batch_name themed_text batch_code">
+                      <div class="batch_name themed_text batch_code no_padding">
                         <%= timetable_batch (tte.last)  -%>
                       </div>
                     <% end %>
