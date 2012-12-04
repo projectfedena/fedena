@@ -14,7 +14,13 @@
     margin-top: -10px;
     width: 800px;
 }
-
+.hor_line1{
+    background: none repeat scroll 0 0 #000000;
+    float: right;
+    height: 1px;
+    margin-top: -10px;
+    width: 800px;
+}
 h2.heading{
     text-align: center;
     margin:5px;
