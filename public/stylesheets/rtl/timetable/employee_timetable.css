@@ -22,7 +22,9 @@
     /*    overflow-y: scroll;*/
 }
 .batch{
-    height: 66px;
+    height: 60px;
+    overflow: hidden;
+    text-align: center;
 }
 #weekday-header{
 
@@ -45,6 +47,13 @@
 .batch_name{
     background-color: #fff;
     height: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0px 20px;
+}
+.batch_name1{
+    background-color: #fff;
+    height: 20px;
     font-size: 12px;
     font-weight: bold;
     padding: 0px 20px;
@@ -116,6 +125,7 @@
     float: right;
     width: 100%;
     color: #444444;
+    text-align: center;
 }
 .gap{
     float: right;
