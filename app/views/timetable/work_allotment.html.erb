@@ -16,15 +16,6 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
-<script type="text/javascript">
-
-  var subject_limits = <%= @subject_limits.to_json %>;
-  var employee_limits = <%= @employee_limits.to_json %>;
-
-</script>
-<% content_for :head do %>
-  <%= javascript_include_tag 'work_allotment.js'  %>
-<%end %>
 <div id="content-header">
 <%#*<img src="/images/show_timetable.png" />%>
   <%= link_to  image_tag("/images/show_timetable.png"),:controller=>:timetable %>
@@ -48,11 +39,6 @@
     </p>
   <% end %>
 
-  <ul id="teacher_status" class="category-list">
-    <% @employees.each do |emp| %>
-      <li class="listodd" ><%= emp.full_name %><span id="emp_status_<%=emp.id%>"></span></li>
-    <% end %>
-  </ul>
   <% form_for :employee_subjects,:html=>{:id=>'work_allotment_form'} do |f| %>
     <% @batches.each do |batch| %>
       <ul class="category-list">
@@ -60,6 +46,12 @@
           <%= batch.full_name %>
         </li>
         <% batch.subjects.each do |subj| %>
+          <% subj.employees.each do |e|  %>
+            <% ep=@employees.find_by_id(e.id) %>
+            <% if ep.present? %>
+              <% ep.total_time = (ep.total_time.to_i - subj.max_weekly_classes.to_i) %>
+            <% end %>
+          <% end %>
           <li class="list<%=cycle('odd','even')%>">
             <div class="category-subject-name"><%= "#{subj.name}" %></div>
             <div class="category-employee-options">
@@ -72,4 +64,17 @@
     <% end %>
     <%= f.submit "► #{t('update')}",:class=>:submit_button %>
   <% end %>
+  <ul id="teacher_status" class="category-list">
+    <% @employees.each do |emp| %>
+      <li class="listodd" ><%= emp.full_name %><span id="emp_status_<%=emp.id%>">
+          <% if emp.total_time.to_i < 0 %>
+            <span class='deficit'><%= 0-emp.total_time.to_i %> deficit</span>
+          <% elsif emp.total_time.to_i==0 %>
+            <span class='ok'>OK</span>
+          <% else %>
+            <span class='remaining'><%= emp.total_time.to_i %> remaining</span>
+          <% end %>
+        </span></li>
+    <% end %>
+  </ul>
 </div>

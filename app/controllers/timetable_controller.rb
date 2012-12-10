@@ -448,7 +448,7 @@ class TimetableController < ApplicationController
     admin_ids << admin.id unless admin.nil?
     @employees = Employee.all(:conditions=>["employee_category_id not in (?)",admin_ids],:include=>[:employee_grade,:employees_subjects])
     @emp_subs = []
-
+    @employees.map{|employee| (employee[:total_time] = ((employee.max_hours_week).to_i))}
     if request.post?
       params[:employee_subjects].delete_blank
       success,@error_obj = EmployeesSubject.allot_work(params[:employee_subjects])
@@ -460,12 +460,7 @@ class TimetableController < ApplicationController
     end
     @batches = Batch.active.scoped :include=>[{:subjects=>:employees},:course]
     @subjects = @batches.collect(&:subjects).flatten
-
-    @subject_limits = {}
-    @subjects.each{|s| @subject_limits[s.id] = s.max_weekly_classes}
-    @employee_limits = {}
-    @employees.each{|e| @employee_limits[e.id] = e.max_hours_week}
-  end
+ end
   def timetable
     @config = Configuration.available_modules
     @batches = Batch.active
