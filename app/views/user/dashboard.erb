@@ -182,7 +182,7 @@
       <% end %>
     </div>
     <% if @user.employee? %>
-      <% @employee_subjects= @user.employee_record.subject_ids  %>
+      <% @employee_subjects= @user.employee_record.subjects.collect(&:id)  %>
       <% if @employee_subjects.empty?%>
 
         <% if permitted_to? :index, :student_attendance or  permitted_to? :index, :attendances and @employee_subjects.present? or @user.privileges.map{|p| p.name}.include?("StudentAttendanceView") or @user.privileges.map{|p| p.name}.include?("StudentAttendanceRegister") %>

@@ -32,7 +32,7 @@
     </li>
   <% elsif @current_user.employee? %>
     <% @employee= @current_user.employee_record  %>
-    <% @employee_subjects= @employee.subject_ids  %>
+    <% @employee_subjects= @employee.subjects.collect(&:id)  %>
     <% @employee_batches=Batch.find_all_by_employee_id(@employee.id) %>
     <% @attendance_type = Configuration.find_by_config_key('StudentAttendanceType') %>
     <% if @attendance_type.config_value == 'Daily' %>
