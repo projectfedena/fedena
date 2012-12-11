@@ -26,7 +26,7 @@
 <% @employees.each do |employee| %>
  <div class="name_list<%=cycle('odd', 'even')%>"><li>
   <label><%= check_box_tag "send_sms[employee_ids][]", employee.id, false,:class=>'right' %>
-  <div class="att_list_names"><%= employee.first_name %></div> </label>
+  <div class="att_list_names"><%= employee.full_name %></div> </label>
   </li>  </div>
 <% end %>
   </div>
