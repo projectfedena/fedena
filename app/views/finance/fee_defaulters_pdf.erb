@@ -37,6 +37,7 @@
         <tr class="table-header"><td class="col-pdf"><%= t('sl_no') %></td><td class="col-pdf"><%= t('name') %></td><td class="col-pdf"><%= t('amount') %></td></tr>
         <% i = 0 %>
         <% index = 0   %>
+        <% c = 'even' %>
         <% @students.each do |s| %>
           <% if i== 22 %>
             <% i= 0 %>
@@ -55,8 +56,8 @@
             <% total_fees += p.amount %>
           <% end %>
           <% if s.check_fee_pay(@date) == false %>
-              <% i += 1  %>
-              <% c =cycle('even','odd ') %>
+            <% i += 1  %>
+            <% c =cycle('even','odd ') %>
             <tr class="<%= "#{c}" %>">
               <td class="col-pdf"><%= index += 1 %></td>
               <td class="col-pdf"><%= s.full_name %></td>
