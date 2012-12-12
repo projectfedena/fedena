@@ -1993,7 +1993,7 @@ en: # locale
   retaken: "Retaken"
   grouped_exam_reports_not_generated: "Grouped Exam Reports have not been generated for this Student."
   enable_first_time_login: "Enable first time login change password."
-  first_login_attempt: "U have looged in for the first time in fedena.Please change your password"
+  first_login_attempt: "Please change your password before proceeding"
   not_applicable: "Not applicable"
   password_update: "Password successfully updated"
   
