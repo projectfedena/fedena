@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   include CustomInPlaceEditing
 
   def check_first_login
-    unless (controller_name == "user" or controller_name == "oauth") and ["first_login_change_password","login","logout"].include? action_name
+    unless (controller_name == "user") and ["first_login_change_password","login","logout"].include? action_name
         user = User.find(session[:user_id])
         setting = Configuration.get_config_value('FirstTimeLoginEnable')
         if setting == "1" and user.is_first_login != false
