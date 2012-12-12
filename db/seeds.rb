@@ -17,7 +17,8 @@
   {"config_key" => "GPA"                             ,"config_value" => "0"},
   {"config_key" => "CWA"                             ,"config_value" => "0"},
   {"config_key" => "CCE"                             ,"config_value" => "0"},
-  {"config_key" => "DefaultCountry"                  ,"config_value" => "76"}
+  {"config_key" => "DefaultCountry"                  ,"config_value" => "76"},
+  {"config_key" => "FirstTimeLoginEnable"            ,"config_value" => "0"}
 ].each do |param|
   Configuration.find_or_create_by_config_key(param)
 end
