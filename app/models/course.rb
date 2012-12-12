@@ -27,6 +27,7 @@ class Course < ActiveRecord::Base
   has_many :batch_groups
   has_many :ranking_levels
   has_many :class_designations
+  has_many :subject_amounts
   accepts_nested_attributes_for :batches
   has_and_belongs_to_many :observation_groups
   has_and_belongs_to_many_with_deferred_save :cce_weightages

@@ -1,0 +1,51 @@
+<div id="content-header">
+  <%=image_tag "/images/examination/show_exam.png" %>
+  <h1><%= t('courses_text') %></h1>
+  <h3><%= t('edit_subject_amount') %></h3>
+
+  <div id="app-back-button">
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+  </div>
+</div>
+<div id="inner-tab-menu">
+  <ul>
+    <li><%= link_to "#{t('courses_text')}", courses_path %></li>
+  </ul>
+</div>
+
+<div id="page-yield">
+
+  <% unless flash[:notice].nil? %>
+    <p class="flash-msg"> <%= flash[:notice] %> </p>
+  <% end %>
+  <div class="box">
+    <div class="bread_crumb">
+      <%= link_to t('courses_text'),courses_path %> &raquo;
+      <%= t('assign_subject_amount') %>
+    </div>
+    <% form_for :subject_amount,@subject_amount,:url => edit_subject_amount_courses_url(:subject_amount_id => @subject_amount.id) do |f| %>
+      <%= f.error_messages %>
+      <div class="label-field-pair">
+        <label for="subjects"><%= t('subjects_text') %></label>
+        <div class="text-input-bg"><%= f.select :code,@subjects.map{|subject| [subject.to_s,subject.to_s]} %></div>
+      </div>
+
+      <div class="label-field-pair">
+        <label for="amount"><%= t('amount') %></label>
+        <div class="text-input-bg"><%= f.text_field :amount %></div>
+      </div>
+
+      <%= f.submit "#{t('save')}", :class => "submit-button" %>
+    <% end %>
+    <div class="extender"></div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+

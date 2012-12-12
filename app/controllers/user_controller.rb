@@ -18,7 +18,7 @@
 
 class UserController < ApplicationController
   layout :choose_layout
-  before_filter :login_required, :except => [:forgot_password, :login, :set_new_password, :reset_password]
+  before_filter :login_required, :except => [:forgot_password, :login, :set_new_password, :reset_password,:first_login_change_password]
   before_filter :only_admin_allowed, :only => [:edit, :create, :index, :edit_privilege, :user_change_password,:delete,:list_user,:all]
   before_filter :protect_user_data, :only => [:profile, :user_change_password]
   before_filter :check_if_loggedin, :only => [:login]
@@ -185,8 +185,13 @@ class UserController < ApplicationController
     if @user.parent?
       @student = Student.find_by_admission_no(@user.username[1..@user.username.length])
     end
-    #    @dash_news = News.find(:all, :limit => 3)
+    @first_time_login = Configuration.get_config_value('FirstTimeLoginEnable')
+    if @first_time_login == "1" and @user.is_first_login != false
+      flash[:notice] = "#{t('first_login_attempt')}"
+      redirect_to :controller => "user",:action => "first_login_change_password",:id => @user.username
+    end
   end
+
 
   def edit
     @user = User.find_by_username(params[:id])
@@ -234,7 +239,7 @@ class UserController < ApplicationController
         @user = User.new(params[:user])
         user = User.find_by_username @user.username
         if user.present? and User.authenticate?(@user.username, @user.password)
-          authenticated_user = user 
+          authenticated_user = user
         end
       end
     end
@@ -242,6 +247,26 @@ class UserController < ApplicationController
       successful_user_login(authenticated_user) and return
     elsif authenticated_user.blank? and request.post?
       flash[:notice] = "#{t('login_error_message')}"
+    end
+  end
+
+  def first_login_change_password
+    @user = User.find_by_username(params[:id])
+    @setting = Configuration.get_config_value('FirstTimeLoginEnable')
+    if @setting == "1" and @user.is_first_login != false
+      if request.post?
+        if @user.update_attributes(:password => params[:user][:confirm_password],:is_first_login => false)
+          flash[:notice] = "#{t('password_update')}"
+          redirect_to :controller => "user",:action => "dashboard"
+        else
+          render :first_login_change_password
+        end
+      else
+        render :first_login_change_password
+      end
+    else
+      flash[:notice] = "#{t('not_applicable')}"
+      redirect_to :controller => "user",:action => "dashboard"
     end
   end
 
@@ -257,7 +282,7 @@ class UserController < ApplicationController
       selected_logout_hook[:name].classify.constantize.send("logout_hook",self,"/")
     else
       redirect_to :controller => 'user', :action => 'login' and return
-    end    
+    end
   end
 
   def profile

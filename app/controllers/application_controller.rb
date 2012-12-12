@@ -25,9 +25,21 @@ class ApplicationController < ActionController::Base
   before_filter :message_user
   before_filter :set_user_language
   before_filter :set_variables
+  before_filter :check_first_login
 
   before_filter :dev_mode
   include CustomInPlaceEditing
+
+  def check_first_login
+    unless controller_name == "user" and ["first_login_change_password","login"].include? action_name
+      user = User.find(session[:user_id])
+      setting = Configuration.get_config_value('FirstTimeLoginEnable')
+      if setting == "1" and user.is_first_login != false
+        flash[:notice] = "#{t('first_login_attempt')}"
+        redirect_to :controller => "user",:action => "first_login_change_password",:id => user.username
+      end
+    end
+  end
 
 
   def dev_mode

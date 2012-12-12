@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
       self.student  = true if self.role == 'Student'
       self.employee = true if self.role == 'Employee'
       self.parent = true if self.role == 'Parent'
+      self.is_first_login = true
     end
   end
 

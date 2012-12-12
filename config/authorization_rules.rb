@@ -826,7 +826,7 @@ authorization do
 
   role :add_new_batch do
     has_permission_on [:configuration], :to => [:index]
-    has_permission_on [:courses], :to => [:index,:manage_course, :manage_batches,:find_course, :new, :create,:destroy,:edit,:update, :show, :update_batch,:grouped_batches,:create_batch_group,:edit_batch_group,:update_batch_group,:delete_batch_group]
+    has_permission_on [:courses], :to => [:index,:manage_course, :manage_batches,:find_course, :new, :create,:destroy,:edit,:update, :show, :update_batch,:grouped_batches,:create_batch_group,:edit_batch_group,:update_batch_group,:delete_batch_group,:assign_subject_amount,:edit_subject_amount,:destroy_subject_amount]
     has_permission_on [:batches], :to => [:index, :new, :create,:destroy,:edit,:update, :show, :init_data,:assign_tutor,:update_employees,:assign_employee,:batches_ajax]
     has_permission_on [:subjects], :to => [:index, :new, :create,:destroy,:edit,:update, :show]
     has_permission_on [:elective_groups],  :to => [:index,:new,:create,:destroy,:edit, :update,:show]
@@ -1122,7 +1122,7 @@ authorization do
       :profile_payroll_details,
       :profile_pdf,
       :show
-      ]
+    ]
     has_permission_on [:employee],
       :to => [
       :index,
@@ -1325,7 +1325,7 @@ authorization do
       :profile_payroll_details,
       :profile_pdf,
       :show
-      ]
+    ]
     has_permission_on [:employee],
       :to => [
       :search,
@@ -1411,7 +1411,10 @@ authorization do
       :create_batch_group,
       :edit_batch_group,
       :update_batch_group,
-      :delete_batch_group
+      :delete_batch_group,
+      :assign_subject_amount,
+      :edit_subject_amount,
+      :destroy_subject_amount
     ]
     has_permission_on [:batches],
       :to => [
@@ -2064,7 +2067,7 @@ authorization do
       :profile_payroll_details,
       :profile_pdf,
       :show
-      ]
+    ]
     has_permission_on [:employee],
       :to => [
       :index,

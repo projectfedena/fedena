@@ -28,18 +28,58 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     @grade_types=Course.grading_types_as_options
-#    gpa = Configuration.find_by_config_key("GPA").config_value
-#    if gpa == "1"
-#      @grade_types << "GPA"
-#    end
-#    cwa = Configuration.find_by_config_key("CWA").config_value
-#    if cwa == "1"
-#      @grade_types << "CWA"
-#    end
+    #    gpa = Configuration.find_by_config_key("GPA").config_value
+    #    if gpa == "1"
+    #      @grade_types << "GPA"
+    #    end
+    #    cwa = Configuration.find_by_config_key("CWA").config_value
+    #    if cwa == "1"
+    #      @grade_types << "CWA"
+    #    end
   end
 
   def manage_course
     @courses = Course.active
+  end
+
+  def assign_subject_amount
+    @course = Course.active.find(params[:id])
+    @subjects = @course.batches.map(&:subjects).flatten.compact.map(&:code).compact.flatten.uniq
+    @subject_amount = @course.subject_amounts.build
+    @subject_amounts = @course.subject_amounts.reject{|sa| sa.new_record?}
+    if request.post?
+      code = params[:subject_amount][:code]
+      @subject_amount = @course.subject_amounts.build(params[:subject_amount])
+      if @subject_amount.save
+        @subject_amounts = @course.subject_amounts.reject{|sa| sa.new_record?}
+        flash[:notice] = "Subject amount saved successfully"
+        redirect_to assign_subject_amount_courses_path(:id => @course.id)
+      else
+        render :assign_subject_amount
+      end
+    end
+  end
+
+  def edit_subject_amount
+    @subject_amount = SubjectAmount.find(params[:subject_amount_id])
+    @course = @subject_amount.course
+    @subjects = @course.batches.map(&:subjects).flatten.compact.map(&:code).compact.flatten.uniq
+    if request.post?
+      if @subject_amount.update_attributes(params[:subject_amount])
+        flash[:notice] = "Subject amount has been updated successfully"
+        redirect_to assign_subject_amount_courses_path(:id => @subject_amount.course_id)
+      else
+        render :edit_subject_amount
+      end
+    end
+  end
+
+  def destroy_subject_amount
+    subject_amount = SubjectAmount.find(params[:subject_amount_id])
+    course_id = subject_amount.course_id
+    subject_amount.destroy
+    flash[:notice] = "Subject amount has been destroyed sucessfully"
+    redirect_to assign_subject_amount_courses_path(:id => course_id)
   end
 
   def manage_batches
@@ -165,36 +205,36 @@ class CoursesController < ApplicationController
       redirect_to :action=>'manage_course'
     else
       @grade_types=Course.grading_types_as_options
-#      gpa = Configuration.find_by_config_key("GPA").config_value
-#      if gpa == "1"
-#        @grade_types << "GPA"
-#      end
-#      cwa = Configuration.find_by_config_key("CWA").config_value
-#      if cwa == "1"
-#        @grade_types << "CWA"
-#      end
+      #      gpa = Configuration.find_by_config_key("GPA").config_value
+      #      if gpa == "1"
+      #        @grade_types << "GPA"
+      #      end
+      #      cwa = Configuration.find_by_config_key("CWA").config_value
+      #      if cwa == "1"
+      #        @grade_types << "CWA"
+      #      end
       render 'new'
     end
   end
 
   def edit
     @grade_types=Course.grading_types_as_options
-#    @grade_types=[]
-#    gpa = Configuration.find_by_config_key("GPA").config_value
-#    if gpa == "1"
-#      @grade_types << "GPA"
-#    end
-#    cwa = Configuration.find_by_config_key("CWA").config_value
-#    if cwa == "1"
-#      @grade_types << "CWA"
-#    end
+    #    @grade_types=[]
+    #    gpa = Configuration.find_by_config_key("GPA").config_value
+    #    if gpa == "1"
+    #      @grade_types << "GPA"
+    #    end
+    #    cwa = Configuration.find_by_config_key("CWA").config_value
+    #    if cwa == "1"
+    #      @grade_types << "CWA"
+    #    end
   end
 
   def update
     if @course.update_attributes(params[:course])
-#      if @course.cce_enabled
-#        @course.batches.update_all(:grading_type=>nil)
-#      end
+      #      if @course.cce_enabled
+      #        @course.batches.update_all(:grading_type=>nil)
+      #      end
       flash[:notice] = "#{t('flash2')}"
       redirect_to :action=>'manage_course'
     else

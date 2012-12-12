@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-
+  
   map.resources :grading_levels
   map.resources :ranking_levels, :collection => {:create_ranking_level=>[:get,:post], :edit_ranking_level=>[:get,:post], :update_ranking_level=>[:get,:post], :delete_ranking_level=>[:get,:post], :ranking_level_cancel=>[:get,:post], :change_priority=>[:get,:post]}
   map.resources :class_designations
@@ -33,7 +33,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.feed 'courses/manage_course', :controller => 'courses' ,:action=>'manage_course'
   map.feed 'courses/manage_batches', :controller => 'courses' ,:action=>'manage_batches'
-  map.resources :courses, :has_many => :batches, :collection => {:grouped_batches=>[:get,:post],:create_batch_group=>[:get,:post],:edit_batch_group=>[:get,:post],:update_batch_group=>[:get,:post],:delete_batch_group=>[:get,:post]}
+  map.resources :courses, :has_many => :batches, :collection => {:grouped_batches=>[:get,:post],:create_batch_group=>[:get,:post],:edit_batch_group=>[:get,:post],:update_batch_group=>[:get,:post],:delete_batch_group=>[:get,:post],:assign_subject_amount => [:get,:post],:edit_subject_amount => [:get,:post],:destroy_subject_amount => [:get,:post]}
 
   map.resources :batches, :collection=>{:batches_ajax=>[:get]} do |batch|
     batch.resources :exam_groups
@@ -45,9 +45,9 @@ ActionController::Routing::Routes.draw do |map|
     exam_group.resources :exams, :member => { :save_scores => :post }
   end
 
-#  map.resources :additional_exam_groups do |additional_exam_group|
-#    additional_exam_group.resources :additional_exams , :member => { :save_additional_scores => :post }
-#  end
+  #  map.resources :additional_exam_groups do |additional_exam_group|
+  #    additional_exam_group.resources :additional_exams , :member => { :save_additional_scores => :post }
+  #  end
 
   map.resources :timetables do |timetable|
     timetable.resources :timetable_entries

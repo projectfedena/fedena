@@ -35,6 +35,10 @@
     <% if permitted_to? :destroy, :course %>
       <li><%= link_to("#{t('delete_text')}", course_path(@course), :method => 'delete', :confirm => "#{t('delete_confirm_msg')}") %></li>
     <%  end %>
+
+    <% if permitted_to? :assign_subject_amount, :courses %>
+      <li><%= link_to "#{t('assign_subject_amount')}", assign_subject_amount_courses_path(:id => @course.id) %></li>
+    <% end %>
   </ul>
 </div>
 <div id="page-yield">

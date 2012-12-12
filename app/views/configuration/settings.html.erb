@@ -153,10 +153,10 @@
         <% end %>
       <% end %>
       <br/>
-      <% if @config[:enable_news_comment_moderation] == '1' %>
-        <%= check_box :configuration, :enable_news_comment_moderation, :checked => true %><%= t('enable_news_comment_moderation') %>
+      <% if @config[:first_time_login_enable] == '1' %>
+        <%= check_box :configuration, :first_time_login_enable, :checked => true %><%= t('enable_first_time_login') %>
       <% else %>
-        <%= check_box :configuration, :enable_news_comment_moderation, :checked => false %><%= t('enable_news_comment_moderation') %>
+        <%= check_box :configuration, :first_time_login_enable, :checked => false %><%= t('enable_first_time_login') %>
       <% end %>
       <% FedenaPlugin::REGISTERED_HOOKS[:general_settings_checkbox].each do |mod| %>
         <br/>
