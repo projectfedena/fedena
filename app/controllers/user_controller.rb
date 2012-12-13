@@ -186,7 +186,7 @@ class UserController < ApplicationController
       @student = Student.find_by_admission_no(@user.username[1..@user.username.length])
     end
     @first_time_login = Configuration.get_config_value('FirstTimeLoginEnable')
-    if @first_time_login == "1" and @user.is_first_login != false
+    if  session[:user_id].present? and @first_time_login == "1" and @user.is_first_login != false
       flash[:notice] = "#{t('first_login_attempt')}"
       redirect_to :controller => "user",:action => "first_login_change_password",:id => @user.username
     end
@@ -255,14 +255,17 @@ class UserController < ApplicationController
     @setting = Configuration.get_config_value('FirstTimeLoginEnable')
     if @setting == "1" and @user.is_first_login != false
       if request.post?
-        if @user.update_attributes(:password => params[:user][:confirm_password],:is_first_login => false)
-          flash[:notice] = "#{t('password_update')}"
-          redirect_to :controller => "user",:action => "dashboard"
+        if params[:user][:new_password] == params[:user][:confirm_password]
+          if @user.update_attributes(:password => params[:user][:confirm_password],:is_first_login => false)
+            flash[:notice] = "#{t('password_update')}"
+            redirect_to :controller => "user",:action => "dashboard"
+          else
+            render :first_login_change_password
+          end
         else
+          @user.errors.add('password','and confirm password doesnot match')
           render :first_login_change_password
         end
-      else
-        render :first_login_change_password
       end
     else
       flash[:notice] = "#{t('not_applicable')}"
