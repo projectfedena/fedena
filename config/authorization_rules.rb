@@ -2492,6 +2492,7 @@ authorization do
       :observation_groups,
       :observation_scores
     ]
+    has_permission_on [:student_attendance], :to => [:index]
     has_permission_on [:attendances], :to => [:index, :list_subject, :show, :subject_wise_register, :daily_register, :new, :create, :edit,:update, :destroy]
     has_permission_on [:attendance_reports], :to => [:new,:index, :subject, :mode, :show, :year, :report, :filter, :student_details,:report_pdf,:filter_report_pdf,:student]
     has_permission_on [:cce_reports],:to=>[:index,:student_wise_report,:student_wise_report_pdf,:student_report,:student_report_pdf,:student_transcript]
