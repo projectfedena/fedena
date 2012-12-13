@@ -75,24 +75,27 @@
           <% @batch_discounts.each do |d| %>
             <tr class="tr-<%= cycle("odd","even") %>">
               <td class="col-1"><%= i+1 %></td>
-              <td class="col-2"><%= d.name %></td>
-              <td class="col-6"><%= d.discount%></td>
+              <% discount_text = d.is_amount == true ? "#{d.name}" : "#{d.name}(#{d.discount})%" %>
+              <td class="col-2"><%= discount_text %></td>
+              <td class="col-6"><%= d.total_payable * d.discount / 100 %> </td>
             </tr>
             <% i += 1 %>
           <% end %>
           <% @student_discounts.each do |d| %>
             <tr class="tr-<%= cycle("odd","even") %>">
               <td class="col-1"><%= i+1 %></td>
-              <td class="col-2"><%= d.name %></td>
-              <td class="col-6"><%= d.discount%></td>
+              <% discount_text = d.is_amount == true ? "#{d.name}" : "#{d.name}(#{d.discount})%" %>
+              <td class="col-2"><%= discount_text %></td>
+              <td class="col-6"><%= d.total_payable * d.discount / 100 %></td>
             </tr>
             <% i += 1 %>
           <% end %>
           <% @category_discounts.each do |d| %>
             <tr class="tr-<%= cycle("odd","even") %>">
               <td class="col-1"><%= i+1 %></td>
-              <td class="col-2"><%= d.name %></td>
-              <td class="col-6"><%= d.discount%></td>
+              <% discount_text = d.is_amount == true ? "#{d.name}" : "#{d.name}(#{d.discount})%" %>
+              <td class="col-2"><%= discount_text %></td>
+              <td class="col-6"><%= d.total_payable * d.discount / 100 %></td>
             </tr>
             <% i += 1 %>
           <% end %>
@@ -101,12 +104,12 @@
 
           <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
             <td class="col-8" colspan="2" ><%= t('total_discount') %></td>
-            <td class="col-6" ><%= "#{@total_discount} %" %></td>
+            <td class="col-6" ><%= "#{@total_discount}" %></td>
           </tr>
 
           <tr class="tr-blank"></tr>
           <tr class="tr-blank"></tr>
-          <% total_fees = (total_fees - ((total_fees*@total_discount)/100)) %>
+          <% total_fees = (total_fees - ((total_fees*@total_discount_percentage)/100)) %>
           <tr class="tr-<%= cycle("odd","even") %>" cellpadding="1" cellspacing="1">
             <td class="col-8" colspan="2" ><%= t('total_fees') %></td>
             <td class="col-6" ><%= total_fees %></td>
@@ -196,10 +199,10 @@
         </tr>
         <tr>
           <td colspan="3">
-            <% unless @paid_fees.nil? or not total_fees.to_f == 0 %>
-              <%= link_to "► #{t('print_receipt')}",
-                {:controller => "finance", :action => "student_fee_receipt_pdf", :id => @student.id, :id2=>@date.id},:target => '_blank', :class=> 'user_button' %>
-            <% end %>
+    <%# unless @paid_fees.nil? or not total_fees.to_f == 0 %>
+            <%= link_to "► #{t('print_receipt')}",
+              {:controller => "finance", :action => "student_fee_receipt_pdf", :id => @student.id, :id2=>@date.id},:target => '_blank', :class=> 'user_button' %>
+    <%# end %>
           </td>
         </tr>
       </table>

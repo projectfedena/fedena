@@ -24,5 +24,21 @@ class BatchFeeDiscount < FeeDiscount
 
   validates_uniqueness_of :name, :scope=>[:receiver_id, :type]
 
-#  validates_uniqueness_of :receiver_id, :scope=>[:type,:finance_fee_category_id],:message=>'Discount already exists for batch'
+  #  validates_uniqueness_of :receiver_id, :scope=>[:type,:finance_fee_category_id],:message=>'Discount already exists for batch'
+
+  def total_payable
+    payable = finance_fee_category.fee_particulars.map(&:amount).compact.flatten.sum
+    payable
+  end
+  
+  def discount
+    if is_amount == false
+      super
+    elsif is_amount == true
+      payable = total_payable
+      percentage = (super.to_f / payable.to_f).to_f * 100
+      percentage
+    end
+  end
+
 end

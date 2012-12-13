@@ -66,25 +66,28 @@
           <% @batch_discounts.each do |d| %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-1"><%= i=1 %></td>
-              <td class="col-2"><%= d.name %></td>
+              <% discount_text = d.is_amount == true ? "#{d.name}" : "#{d.name}(#{d.discount})%" %>
+              <td class="col-2"><%= discount_text %></td>
               <td class="col-2"></td>
-              <td class="col-6"><%= d.discount%> %</td>
+              <td class="col-6"><%= d.total_payable * d.discount / 100 %></td>
             </tr>
           <% end %>
           <% @student_discounts.each do |d| %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-1"><%= i+=1 %></td>
-              <td class="col-2"><%= d.name %></td>
+              <% discount_text = d.is_amount == true ? "#{d.name}" : "#{d.name}(#{d.discount})%" %>
+              <td class="col-2"><%= discount_text %></td>
               <td class="col-2"></td>
-              <td class="col-6"><%= d.discount%> %</td>
+              <td class="col-6"><%= d.total_payable * d.discount / 100 %></td>
             </tr>
           <% end %>
           <% @category_discounts.each do |d| %>
             <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
               <td class="col-1"><%= i+=1 %></td>
-              <td class="col-2"><%= d.name %></td>
+              <% discount_text = d.is_amount == true ? "#{d.name}" : "#{d.name}(#{d.discount})%" %>
+              <td class="col-2"><%= discount_text %></td>
               <td class="col-2"></td>
-              <td class="col-6"><%= d.discount%> %</td>
+              <td class="col-6"><%= d.total_payable * d.discount / 100 %></td>
             </tr>
           <% end %>
           <tr class="tr-blank"></tr>
@@ -92,12 +95,12 @@
 
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-8" colspan="3" ><%= t('total_discount') %></td>
-            <td class="col-6" ><%= "#{@total_discount} %" %></td>
+            <td class="col-6" ><%= "#{@total_discount}" %></td>
           </tr>
 
           <tr class="tr-blank"></tr>
           <tr class="tr-blank"></tr>
-          <% total_fees = (total_fees - ((total_fees*@total_discount)/100)) %>
+          <% total_fees = (total_fees - ((total_fees*@total_discount_percentage)/100)) %>
           <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
             <td class="col-8" colspan="3" ><%= t('total_fees') %></td>
             <td class="col-6" ><%= total_fees %></td>

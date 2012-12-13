@@ -17,39 +17,49 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
- <% form_remote_for :fee_discount, :url=>{:action=>"student_wise_fee_discount_create"} do |form|%>
+<% form_remote_for :fee_discount, :url=>{:action=>"student_wise_fee_discount_create"} do |form|%>
 
 
-   <div class="label-field-pair">
+  <div class="label-field-pair">
     <label for="reason"> <%= t('name') %></label>
     <div class="text-input-bg"><%= form.text_field :name %></div>
- </div>
-
-<div class="label-field-pair"><label> <%= t('select_a_course') %> : </label>
-        <div class="text-input-bg"> <%= select("","", @courses.map{|c|[c.full_name,c.id]},{:prompt => "#{t('select_a_course')}"},
-            {:onChange => "#{remote_function(:url => {:action => "load_discount_batch"}, :with => "'id='+value")}"})%> </div>
-   </div>
-
- <%#*<div class="label-field-pair">%>
-      <%#*<label>Fee Master Category :</label>%>
-      <%#*<div class="text-input-bg"><%= form.select :finance_fee_category_id, @fees_categories.map { |c| ["#{c.name} - #{c.batch.full_name}", c.id] },{:prompt=>"Select Fee Category"}%><%#</div>%>
-    <%#*</div>%>
-
-<div id="batch-box"></div>
-<div id="fee-category-box"></div>
-
-   <div class="label-field-pair">
-    <label for="reason">  <%= t('admission_number') %> </label>
-    <div class="text-input-bg"><%= text_field_tag "students" %></div>
- </div>
-
-    <div class="label-field-pair">
-    <label for="discount">  <%= t('discount') %>(%) </label>
-    <div class="text-input-bg"><%= form.text_field :discount %></div>
- </div>
-
-    <div id="submit-button">
-      <%=  form.submit "► #{t('create_text')}" %>
   </div>
 
-    <% end %>
+  <div class="label-field-pair"><label> <%= t('select_a_course') %> : </label>
+    <div class="text-input-bg"> <%= select("","", @courses.map{|c|[c.full_name,c.id]},{:prompt => "#{t('select_a_course')}"},
+        {:onChange => "#{remote_function(:url => {:action => "load_discount_batch"}, :with => "'id='+value")}"})%> </div>
+  </div>
+
+  <%#*<div class="label-field-pair">%>
+  <%#*<label>Fee Master Category :</label>%>
+  <%#*<div class="text-input-bg"><%= form.select :finance_fee_category_id, @fees_categories.map { |c| ["#{c.name} - #{c.batch.full_name}", c.id] },{:prompt=>"Select Fee Category"}%><%#</div>%>
+  <%#*</div>%>
+
+  <div id="batch-box"></div>
+  <div id="fee-category-box"></div>
+
+  <div class="label-field-pair">
+    <label for="reason">  <%= t('admission_number') %> </label>
+    <div class="text-input-bg"><%= text_field_tag "students" %></div>
+  </div>
+
+  <div class="label-field-pair">
+    <label for="discount">  <%= t('discount') %>(%) </label>
+    <div class="text-input-bg"><%= form.text_field :discount %></div>
+  </div>
+
+  <div class="label_field_pair">
+    <label class="label_for_student_gender" for="is_amount"><%= t('discount_type') %></label>
+    <div class="student_gender_value">
+      <label class="label_for_gender" for="is_amount_true"> <%= t('percentage') %></label>
+      <%= form.radio_button  :is_amount, false, :checked => "checked" %>
+      <label class="label_for_gender" for="is_amount_false"><%= t('amount') %></label>
+      <%= form.radio_button  :is_amount, true %>
+    </div>
+  </div>
+
+  <div id="submit-button">
+    <%=  form.submit "► #{t('create_text')}" %>
+  </div>
+
+<% end %>

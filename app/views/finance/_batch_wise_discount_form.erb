@@ -17,35 +17,45 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
- <% form_remote_for :fee_discount, :url=>{:action=>"batch_wise_discount_create"} do |form|%>
+<% form_remote_for :fee_discount, :url=>{:action=>"batch_wise_discount_create"} do |form|%>
 
 
 
-   <div class="label-field-pair">
+  <div class="label-field-pair">
     <label for="reason"><%= t('name') %></label>
     <div class="text-input-bg"><%= form.text_field :name %></div>
- </div>
+  </div>
 
- 
 
- <div class="label-field-pair">
+
+  <div class="label-field-pair">
     <label for="reason"><%= t('fee_category') %>:</label>
     <div class="text-input-bg">
       <%= select("","", @fee_categories.map { |item| [item.name, item.name] },
-      {:prompt => "#{t('select_category')}" },
-      {:onchange => "#{remote_function(:url => {:action => "fee_collection_batch_update"}, :with => "'id='+value")}"})
-      %></div>
- </div>
+        {:prompt => "#{t('select_category')}" },
+        {:onchange => "#{remote_function(:url => {:action => "fee_collection_batch_update"}, :with => "'id='+value")}"})
+    %></div>
+  </div>
 
   <div id ="batchs"></div>
 
-    <div class="label-field-pair">
-    <label for="reason"><%= t('discount') %>(%) </label>
+  <div class="label-field-pair">
+    <label for="reason"><%= t('discount') %></label>
     <div class="text-input-bg"><%= form.text_field :discount %></div>
- </div>
-
-    <div id="submit-button">
-      <%=  form.submit "►#{t('create_text')}" %>
   </div>
 
-    <% end %>
+  <div class="label_field_pair">
+    <label class="label_for_student_gender" for="is_amount"><%= t('discount_type') %></label>
+    <div class="student_gender_value">
+      <label class="label_for_gender" for="is_amount_true"> <%= t('percentage') %></label>
+      <%= form.radio_button  :is_amount, false, :checked => "checked" %>
+      <label class="label_for_gender" for="is_amount_false"><%= t('amount') %></label>
+      <%= form.radio_button  :is_amount, true %>
+    </div>
+  </div>
+
+  <div id="submit-button">
+    <%=  form.submit "►#{t('create_text')}" %>
+  </div>
+
+<% end %>

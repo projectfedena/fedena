@@ -20,7 +20,37 @@ class FeeDiscount < ActiveRecord::Base
 
   belongs_to :finance_fee_category
   validates_presence_of :name, :discount, :type
-  validates_numericality_of :discount,:less_than_or_equal_to=> 100,:greater_than_or_equal_to=> 1
+  validates_numericality_of :discount
+
+  def validate
+    if is_amount == false
+      if discount.to_f < 0.00 or discount.to_f > 100.00
+        errors.add("discount","must be between 0 to 100")
+      end
+    elsif is_amount == true
+      payable = finance_fee_category.fee_particulars.map(&:amount).compact.flatten.sum
+      if discount.to_f > payable.to_f
+        errors.add("discount","cannot be greater than total payable amount")
+      end
+    end
+  end
+
+  def total_payable
+    payable = finance_fee_category.fee_particulars.map(&:amount).compact.flatten.sum
+    payable
+  end
+
+  def discount
+    if is_amount == false
+      super
+    elsif is_amount == true
+      payable = total_payable
+      percentage = (super.to_f / payable.to_f).to_f * 100
+      percentage
+    end
+  end
+
+
 
   def category_name
     c =StudentCategory.find(self.receiver_id)
