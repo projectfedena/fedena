@@ -232,9 +232,9 @@
     <% if mod[:more_menu][:target_id].present? %>
       <% if permitted_to?(mod[:more_menu][:action].to_sym,mod[:plugin_auth_object],:context=>mod[:more_menu][:controller].to_sym) %>
         <% if sub_menu_flag==1 %>
-              $('<%= mod[:more_menu][:target_id] %>').insert({bottom: '<li><%= link_to "#{t(mod[:more_menu][:title])}#{arrow}",:controller => "#{mod[:more_menu][:controller]}", :action=>"#{mod[:more_menu][:action]}" %><ul class="level-2" id="<%= mod[:name] %>"></ul></li>'})
+              $('<%= mod[:more_menu][:target_id] %>').insert({bottom: '<li><%= link_to "#{t(mod[:more_menu][:title]).gsub("'","&#39;")}#{arrow}",:controller => "#{mod[:more_menu][:controller]}", :action=>"#{mod[:more_menu][:action]}" %><ul class="level-2" id="<%= mod[:name] %>"></ul></li>'})
         <% else %>
-              $('<%= mod[:more_menu][:target_id] %>').insert({bottom: '<li><%= link_to "#{t(mod[:more_menu][:title])}#{arrow}",:controller => "#{mod[:more_menu][:controller]}", :action=>"#{mod[:more_menu][:action]}" %></li>'})
+              $('<%= mod[:more_menu][:target_id] %>').insert({bottom: '<li><%= link_to "#{t(mod[:more_menu][:title]).gsub("'","&#39;")}#{arrow}",:controller => "#{mod[:more_menu][:controller]}", :action=>"#{mod[:more_menu][:action]}" %></li>'})
         <% end %>
       <% end %>
       <% unless mod[:sub_menus].blank? %>
@@ -242,7 +242,7 @@
           <% if submenu[:target_id].present? %>
                 if ($('<%= submenu[:target_id] %>')!=null)
                 {
-                  $('<%= submenu[:target_id] %>').insert({bottom: '<li><%= link_to "#{t(submenu[:title])}",:controller => "#{submenu[:controller]}", :action=>"#{submenu[:action]}"  if permitted_to? "#{submenu[:action]}".to_sym,"#{submenu[:controller]}".to_sym  %></li>'})
+                  $('<%= submenu[:target_id] %>').insert({bottom: '<li><%= link_to "#{t(submenu[:title]).gsub("'","&#39;")}",:controller => "#{submenu[:controller]}", :action=>"#{submenu[:action]}"  if permitted_to? "#{submenu[:action]}".to_sym,"#{submenu[:controller]}".to_sym  %></li>'})
                 }
           <% end %>
         <% end %>
