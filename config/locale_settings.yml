@@ -8,6 +8,7 @@ available:
   pt: "português"
   mr: "मराठी"
   ja: "日本の"
+  fr: "français"
   
 fallbacks:
   en-GB:
