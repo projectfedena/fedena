@@ -1,0 +1,197 @@
+.box{
+    width:700px;
+    margin:0px auto;
+    margin-left: 10px;
+}
+
+#errorExplanation{
+}
+
+h3{
+    font-size: 10px;
+    font-weight: normal;
+}
+.submit_button {
+    background: none repeat scroll 0 0 #27292B;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 210px;
+    margin-top: 20px;
+    padding: 7px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+.label-field-pair input {
+    height: auto;
+}
+
+.fee_category_scroll {
+    -moz-background-inline-policy: continuous;
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #C6C6C6;
+    height: 86px;
+    margin-left: 210px;
+    margin-top: -32px;
+    max-height: 100px;
+    overflow: auto;
+    padding: 7px;
+    width: 200px;
+}
+.sel-list {
+    border-bottom:1px solid #DDDDDD;
+    margin-bottom:2px;
+    width:197px;
+}
+.each_batch {
+    border-bottom:1px solid #DDDDDD;
+    font-size:12px;
+    overflow:auto;
+    width:198px;
+}
+
+
+
+.fee_category_scroll1 {
+    -moz-background-inline-policy: continuous;
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #C6C6C6;
+    height: 180px;
+    margin-left: 497px;
+    margin-top: -236px;
+    max-height: 180px;
+    overflow: auto;
+    padding: 7px;
+    width: 458px;
+}
+.sel-list1 {
+    border-bottom:1px solid #DDDDDD;
+    margin-bottom:2px;
+    width:452px;
+}
+
+.sel-list1 a{
+    font-size: 15px;
+    color: #BB0000;
+    text-decoration: none;
+}
+
+.sel-list1 a:hover{
+    font-size: 15px;
+    color: #BB0000;
+    text-decoration: none;
+}
+
+.each_batch1 {
+    border-bottom:1px solid #DDDDDD;
+    font-size:12px;
+    overflow:auto;
+    width:452px;
+}
+.themed_text{
+    font-size: 12px;
+}
+
+.submit-button {
+    background: none repeat scroll 0 0 #27292B;
+    border: medium none;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 210px;
+    margin-top: 20px;
+    padding: 7px 10px;
+}
+.submit_button:hover{
+    background:  #373B3F;
+}
+.errorExplanation {
+    background: url("/images/_global/error.png") no-repeat scroll 10px 14px #FFDEDF;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    height: auto;
+    margin: 20px auto;
+    padding: 10px 0 20px 20px;
+    width: 510px;
+}
+.errorExplanation h2 {
+    font-size: 1em;
+    font-weight: normal;
+    margin: 5px 0 0 20px;
+    padding: 0;
+}
+.errorExplanation p {
+    font-weight: bold;
+    margin: 5px 0 0 20px;
+}
+.errorExplanation ul li {
+    font-size: 13px;
+    font-weight: 600;
+}
+td{
+    padding:10px;
+}
+.editor_field{
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 1px solid #C6C6C6;
+    border-radius: 10px 10px 10px 10px;
+    height: 17px;
+    margin: 5px 0 0 10px;
+    padding: 5px;
+    width: 205px;
+}
+.editor_field input:focus{
+    background: #fff;
+    border: 1px solid #9e0f15;
+}
+.editor_ok_button{
+    background: none repeat scroll 0 0 #27292B;
+    border: medium none;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    padding: 5px 7px;
+}
+.editor_cancel_link{
+    text-decoration: none;
+    color: #b00;
+    margin-left:10px;
+}
+
+#listing{
+    margin-top: 20px;
+}
+
+
+h4{
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+}
+
+.flash-msg{
+    float: none;
+}
+
+.flash-msg1 {
+    float: left;
+    width: 100%;
+}
