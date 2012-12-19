@@ -70,18 +70,17 @@
 }
 
 .submit_button {
-    padding: 7px 10px;
-    color: #fff;
-    background: #27292B;
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    font-weight: bold;
-    font-size: 14px;
-    border:none;
+    background: none repeat scroll 0 0 #27292B;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
     font-family: arial;
-    cursor:pointer;
-    margin-top:25px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 18px 132px 0 0;
+    padding: 7px 10px;
 }
+
 .submit_button:hover{
     background:  #373B3F;
 }
@@ -253,9 +252,17 @@ a.user_button{
 
 
 table#listing td a {
-    color: #fff;
+    background: none repeat scroll 0 0 #27292B;
+    border: medium none;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: right;
+    font-family: arial;
+    font-size: 14px;
+    font-weight: bold;
+    margin: -34px auto 0;
+    padding: 7px 10px;
     text-decoration: none;
-    text-align: right;
 }
 
 table#listing td a:hover {

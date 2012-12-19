@@ -22,6 +22,18 @@
 
 <% unless flash[:warning].nil? %><p class="flash-msg"><%= flash[:warning] %></p><% end %>
 
+<div class="name"><%= t('fees_receipt_no') %></div><div class="val themed_text"><span>:</span>F<%= @financefee.id %></div>
+<% unless @fee_category.nil? %>
+  <div class="name"><%= t('fee_category_name') %></div><div class="val themed_text"><span>:</span><%= @fee_category.name %></div>
+<% end %>
+<% unless @student.student_category.nil? %>
+  <div class="name"><%= t('student_category') %></div><div class="val themed_text"><span>:</span><%= @student.student_category.name %></div>
+<% else %>
+  <div class="name"><%= t('student_category') %></div><div class="val themed_text"><span>:</span><%= t('n_a') %></div>
+<% end %>
+
+<br />
+
 <% unless @financefee.is_paid %>
   <%= render :partial => "student_fine_submission" if @fine.nil? %>
 <% end %>

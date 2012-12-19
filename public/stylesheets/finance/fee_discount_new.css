@@ -99,33 +99,67 @@
 }
 
 #batchs{
-    
+
     margin-bottom: 10px;
     margin-top: 20px;
 }
 
 #inner-tab-menu ul li {
-background-color:#9D0E00;
-color:#FFFFFF;
-float:left;
-font-size:0.9em;
-height:1.5em;
-list-style-type:none;
-margin:0 0 0 10px;
-padding:0;
-text-align:center;
-width:120px;
+    background-color:#9D0E00;
+    color:#FFFFFF;
+    float:left;
+    font-size:0.9em;
+    height:1.5em;
+    list-style-type:none;
+    margin:0 0 0 10px;
+    padding:0;
+    text-align:center;
+    width:120px;
 }
 .label-field-pair label {
-color:#444444;
-display:block;
-float:left;
-font-size:14px;
-font-weight:600;
-margin:0 0 0;
-padding-top:10px;
-width:250px;
+    color:#444444;
+    display:block;
+    float:left;
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 0;
+    padding-top:10px;
+    width:250px;
 }
 .bread_crumb {
- margin-left: 10px;
+    margin-left: 10px;
+}
+
+.label_field_pair {
+    width:600px;
+    height: 40px;
+    padding-top: 3px;
+}
+
+.label_field_pair label {
+    padding-top: 10px;
+    display:block;
+    color:#444;
+    margin-bottom:10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.label_for_student_gender{
+    display:block;
+    color:#444;
+    margin-bottom:10px;
+    width:200px;
+    float:left;
+}
+.student_gender_value {
+    float: left;
+    margin-left: 60px;
+    padding-top: 5px;
+    width: 300px;
+}
+
+.label_field_pair label.label_for_gender {
+    font-weight:normal;
+    display:inline;
 }
