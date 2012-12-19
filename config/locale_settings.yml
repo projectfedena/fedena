@@ -9,6 +9,7 @@ available:
   mr: "मराठी"
   ja: "日本の"
   fr: "français"
+  vi: "tiếng Việt"
   
 fallbacks:
   en-GB:
