@@ -124,13 +124,11 @@
 }
 
 #errorExplanation1 {
-   background: #ffdedf url(/images/_global/error.png) no-repeat 10px 14px;
-    -moz-border-radius:10px;
-    border-radius:10px;
-    -webkit-border-radius:10px;
-    height : auto; width : 510px;
-    margin : 20px auto;
-    padding : 10px 0 20px 20px;
+    background: url("/images/_global/error.png") no-repeat scroll 10px 14px #FFDEDF;
+    height: auto;
+    margin: 20px auto 20px 164px;
+    padding: 10px 0 20px 20px;
+    width: 543px;
 }
 #errorExplanation1 ul {
     margin: 5px 0 0;
