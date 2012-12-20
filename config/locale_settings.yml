@@ -10,6 +10,7 @@ available:
   ja: "日本の"
   fr: "français"
   vi: "tiếng Việt"
+  ch: "中國的"
   
 fallbacks:
   en-GB:
