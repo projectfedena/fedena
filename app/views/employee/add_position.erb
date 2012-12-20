@@ -27,53 +27,58 @@
 </div>
 
 <div id="page-yield">
-  <% unless flash[:warn_notice].nil? %>
-    <div id="errorExplanation1">
-      <ul>
-        <li>
-          <%= flash[:warn_notice] %>
-        </li>
-      </ul>
+  <div class="box">
+    <div class="bread_crumb">
+      <%= link_to "#{t('hr_setting')}", :controller => "employee",:action => "settings" %> &raquo;
+      <%= t('add_position') %>
     </div>
-  <% end %>
-  <%- form_for :position do |c| -%>
 
-    <% unless flash[:notice].nil? %>
-      <p class="flash-msg"> <%= flash[:notice] %> </p>
+    <% unless flash[:warn_notice].nil? %>
+      <div id="errorExplanation1">
+        <ul>
+          <li>
+            <%= flash[:warn_notice] %>
+          </li>
+        </ul>
+      </div>
     <% end %>
+    <%- form_for :position do |c| -%>
 
-    <%= error_messages_for 'position' %>
-    <div id="form-content">
-      <div class="label-field-pair">
-        <label for="position_name"><%= t('name') %></label>
-        <div class="text-input-bg"> <%= c.text_field :name %> </div>
-      </div>
+      <% unless flash[:notice].nil? %>
+        <p class="flash-msg"> <%= flash[:notice] %> </p>
+      <% end %>
 
-      <div class="label-field-pair">
-        <label for="category_name"><%= "#{t('employee_category')}" %></label>
-        <div class="text-input-bg"><%= select :position, :employee_category_id, @categories.map {|s| [s.name, s.id]}, :prompt => "#{t('select')}" %></div>
-      </div>
+      <%= error_messages_for 'position' %>
+      <div id="form-content">
+        <div class="label-field-pair">
+          <label for="position_name"><%= t('name') %></label>
+          <div class="text-input-bg"> <%= c.text_field :name %> </div>
+        </div>
 
-      <div class="label-checkbox-pair">
-        <label class="status" for="status"><%= t('status') %></label>
-        <div id="radio-buttons">
-          <%= c.radio_button  "status", "true", :checked => "checked" %>
-          <label class="label_for_status" for="add_grade_status_true"><%= t('active') %></label>
+        <div class="label-field-pair">
+          <label for="category_name"><%= "#{t('employee_category')}" %></label>
+          <div class="text-input-bg"><%= select :position, :employee_category_id, @categories.map {|s| [s.name, s.id]}, :prompt => "#{t('select')}" %></div>
+        </div>
 
-          <%= c.radio_button  "status", "false" %>
-          <label class="label_for_status" for="add_grade_status_false"><%= t('inactive') %></label>
+        <div class="label-checkbox-pair">
+          <label class="status" for="status"><%= t('status') %></label>
+          <div id="radio-buttons">
+            <%= c.radio_button  "status", "true", :checked => "checked" %>
+            <label class="label_for_status" for="add_grade_status_true"><%= t('active') %></label>
+
+            <%= c.radio_button  "status", "false" %>
+            <label class="label_for_status" for="add_grade_status_false"><%= t('inactive') %></label>
+          </div>
+        </div>
+
+        <div id="submit-button">
+          <%=  submit_tag("► #{t('create_text')}") %>
         </div>
       </div>
 
-      <div id="submit-button">
-        <%=  submit_tag("► #{t('create_text')}") %>
-      </div>
+    <%- end -%>
+    <div id="position-list">
+      <%= render :partial => "position" %>
     </div>
-
-  <%- end -%>
-
-  <div id="position-list">
-    <%= render :partial => "position" %>
   </div>
-
 </div>

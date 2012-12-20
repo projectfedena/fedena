@@ -22,23 +22,28 @@
   <h1><%= t('employee_settings') %></h1>
   <h3><%= t('add_bank_details') %></h3>
   <div id="app-back-button">
-      <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
+    <%= link_to_function image_tag("/images/buttons/back.png",:border => 0), "history.back()" %>
   </div>
 </div>
 
 <div id="page-yield">
- <% unless flash[:warn_notice].nil? %>
-    <div id="errorExplanation1">
-      <ul>
-        <li>
-          <%= flash[:warn_notice] %>
-        </li>
-      </ul>
+  <div class="box">
+    <div class="bread_crumb">
+      <%= link_to "#{t('hr_setting')}", :controller => "employee",:action => "settings" %> &raquo;
+      <%= t('add_bank_details') %>
     </div>
-  <% end %>
-  <% unless flash[:notice].nil? %>
-    <p class="flash-msg"> <%= flash[:notice] %> </p>
-  <% end %>
+    <% unless flash[:warn_notice].nil? %>
+      <div id="errorExplanation1">
+        <ul>
+          <li>
+            <%= flash[:warn_notice] %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+    <% unless flash[:notice].nil? %>
+      <p class="flash-msg"> <%= flash[:notice] %> </p>
+    <% end %>
 
     <%- form_for :bank_field do |c| -%>
 
@@ -71,5 +76,5 @@
     <div id="category-list">
       <%= render :partial => "bank_fields" %>
     </div>
-
+  </div>
 </div>

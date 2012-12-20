@@ -27,73 +27,76 @@
 </div>
 
 <div id="page-yield">
-  <% unless flash[:warn_notice].nil? %>
-    <div id="errorExplanation1">
-      <ul>
-        <li>
-          <%= flash[:warn_notice] %>
-        </li>
-      </ul>
+  <div class="box">
+    <div class="bread_crumb">
+      <%= link_to "#{t('hr_setting')}", :controller => "employee",:action => "settings" %> &raquo;
+      <%= t('add_additional_details') %>
     </div>
-  <% end %>
-  <% unless flash[:notice].nil? %>
-    <p class="flash-msg"> <%= flash[:notice] %> </p>
-  <% end %>
-
-  <%- form_for @additional_field, :url=>{:action=>(@additional_field.new_record? ? "add_additional_details" : "edit_additional_details")} do |c| -%>
-
-    <%= error_messages_for 'additional_field' %>
-    <div id="form-content">
-      <div class="label-field-pair">
-        <label for="category_name"><%= t('name') %></label>
-        <div class="text-input-bg"> <%= c.text_field :name %> </div>
+    <% unless flash[:warn_notice].nil? %>
+      <div id="errorExplanation1">
+        <ul>
+          <li>
+            <%= flash[:warn_notice] %>
+          </li>
+        </ul>
       </div>
+    <% end %>
+    <% unless flash[:notice].nil? %>
+      <p class="flash-msg"> <%= flash[:notice] %> </p>
+    <% end %>
 
-      <div class="label-checkbox-pair">
-        <label class="status" for="status"><%= t('status') %></label>
-        <div id="radio-buttons">
-          <%= c.radio_button  "status", "true", :checked => "checked" %>
-          <label class="label_for_status" for="add_grade_status_true"><%= t('active') %></label>
+    <%- form_for @additional_field, :url=>{:action=>(@additional_field.new_record? ? "add_additional_details" : "edit_additional_details")} do |c| -%>
 
-          <%= c.radio_button  "status", "false" %>
-          <label class="label_for_status" for="add_grade_status_false"><%= t('inactive') %></label>
+      <%= error_messages_for 'additional_field' %>
+      <div id="form-content">
+        <div class="label-field-pair">
+          <label for="category_name"><%= t('name') %></label>
+          <div class="text-input-bg"> <%= c.text_field :name %> </div>
+        </div>
+
+        <div class="label-checkbox-pair">
+          <label class="status" for="status"><%= t('status') %></label>
+          <div id="radio-buttons">
+            <%= c.radio_button  "status", "true", :checked => "checked" %>
+            <label class="label_for_status" for="add_grade_status_true"><%= t('active') %></label>
+
+            <%= c.radio_button  "status", "false" %>
+            <label class="label_for_status" for="add_grade_status_false"><%= t('inactive') %></label>
+          </div>
+        </div>
+        <div class="label-field-pair">
+          <div class="label-container"><%= c.label :is_mandatory, t('is_mandatory') %></div>
+          <div class="input-container">  <%= c.check_box :is_mandatory %></div>
+        </div>
+        <div class="label-field-pair">
+          <div class="label-container"> <%= c.label :input_type,"#{t('input_method')}" %></div>
+          <div class="text-input-bg"><%= c.select :input_type, [["TextBox","text"],["Select Box","belongs_to"],["CheckBox","has_many"]] ,{},:class=>"input-type-select"%>
+          </div>
+        </div>
+        <div class="custom" style="display: none" >
+          <% c.fields_for :additional_field_options do |builder| %>
+            <%= render "additional_field_option_fields" ,:c=>builder%>
+          <% end %>
+          <div>
+            <%= link_to_add_fields t('add'), c, :additional_field_options  %>
+          </div>
+        </div>
+        <div id="submit-button">
+          <% unless @additional_field.new_record? %>
+            <%=submit_tag("► #{t('update')}") %>
+            <%= link_to " ► #{t('cancel')}",
+              { :action => "add_additional_details"}, :class=> 'user_button' %>
+          <% else %>
+            <%=submit_tag("► #{t('create_text')}") %>
+          <% end %>
         </div>
       </div>
-      <div class="label-field-pair">
-        <div class="label-container"><%= c.label :is_mandatory, t('is_mandatory') %></div>
-        <div class="input-container">  <%= c.check_box :is_mandatory %></div>
-      </div>
-      <div class="label-field-pair">
-        <div class="label-container"> <%= c.label :input_type,"#{t('input_method')}" %></div>
-        <div class="text-input-bg"><%= c.select :input_type, [["TextBox","text"],["Select Box","belongs_to"],["CheckBox","has_many"]] ,{},:class=>"input-type-select"%>
-        </div>
-      </div>
-      <div class="custom" style="display: none" >
-        <% c.fields_for :additional_field_options do |builder| %>
-          <%= render "additional_field_option_fields" ,:c=>builder%>
-        <% end %>
-        <div>
-          <%= link_to_add_fields t('add'), c, :additional_field_options  %>
-        </div>
-      </div>
-      <div id="submit-button">
-        <% unless @additional_field.new_record? %>
-          <%=submit_tag("► #{t('update')}") %>
-          <%= link_to " ► #{t('cancel')}",
-            { :action => "add_additional_details"}, :class=> 'user_button' %>
-        <% else %>
-          <%=submit_tag("► #{t('create_text')}") %>
-        <% end %>
-      </div>
+    <%- end -%>
+
+    <div id="category-list">
+      <%= render :partial => "additional_fields" %>
     </div>
-
-
-  <%- end -%>
-
-  <div id="category-list">
-    <%= render :partial => "additional_fields" %>
   </div>
-
 </div>
 
 
