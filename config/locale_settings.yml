@@ -11,6 +11,7 @@ available:
   fr: "français"
   vi: "tiếng Việt"
   ch: "中國的"
+  gl: "Galego"
   
 fallbacks:
   en-GB:
