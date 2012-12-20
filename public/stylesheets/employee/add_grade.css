@@ -113,6 +113,16 @@
     padding-top:3px;
     width:206px;
 }
+
+
+.errorExplanation {
+    background: url("/images/_global/error.png") no-repeat scroll 10px 14px #FFDEDF;
+    height: auto;
+    margin: 20px auto 20px 164px;
+    padding: 10px 0 20px 20px;
+    width: 543px;
+}
+
 #errorExplanation1 {
    background: #ffdedf url(/images/_global/error.png) no-repeat 10px 14px;
     -moz-border-radius:10px;
