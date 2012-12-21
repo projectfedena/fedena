@@ -23,16 +23,20 @@ class BatchFeeCollectionDiscount < FeeCollectionDiscount
   belongs_to :finance_fee_collection
   validates_presence_of  :receiver_id , :message => "#{t('batch_cant_be_blank')}"
 
-  def total_payable
-    payable = finance_fee_collection.fee_category.fee_particulars.map(&:amount).compact.flatten.sum
+  def total_payable(student = nil)
+    if student.nil?
+      payable = finance_fee_collection.fee_category.fee_particulars.active.map(&:amount).compact.flatten.sum
+    else
+      payable = finance_fee_collection.fees_particulars(student).map(&:amount).compact.flatten.sum
+    end
     payable
   end
   
-  def discount
+  def discount(student = nil)
     if is_amount == false
       super
     elsif is_amount == true
-      payable = total_payable
+      payable = student.nil? ? total_payable : total_payable(student)
       percentage = (super.to_f / payable.to_f).to_f * 100
       percentage
     end
