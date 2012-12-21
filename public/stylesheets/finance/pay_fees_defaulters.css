@@ -79,6 +79,9 @@
     font-weight: bold;
     margin: 18px 132px 0 0;
     padding: 7px 10px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius:10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
 }
 
 .submit_button:hover{
