@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
 
   def login_check
     if session[:user_id].present?
-      unless (controller_name == "user") and ["first_login_change_password","login","logout"].include? action_name
+      unless (controller_name == "user") and ["first_login_change_password","login","logout","forgot_password"].include? action_name
         user = User.find(session[:user_id])
         setting = Configuration.get_config_value('FirstTimeLoginEnable')
         if setting == "1" and user.is_first_login != false
