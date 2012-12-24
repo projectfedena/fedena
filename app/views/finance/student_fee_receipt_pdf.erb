@@ -141,7 +141,7 @@
               <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %> <%= "paid" if @paid_fees.last.id.to_i == p.id.to_i and @financefee.is_paid == false%>">
                 <td class="col-pdf1"><%= x+=1 %></td>
                 <td class="col-pdf2"><%= "#{t('partial_payment_on')}" + p.transaction_date.to_s %></td>
-                <td class="col-pdf3"> F<%= @financefee.id %></td>
+                <td class="col-pdf3"> <%= p.receipt_no %></td>
                 <td class="col-pdf4"><%= @currency_type.to_s + " " +(p.amount.to_s) %></td>
               </tr>
 

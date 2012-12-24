@@ -29,7 +29,7 @@
 
   <% unless flash[:notice].nil? %> <p class="flash-msg"> <%= flash[:notice] %> </p> <% end %>
 
-  <div class="name"><%= t('fees_receipt_no') %></div><div class="val themed_text"><span>:</span>F<%= @financefee.id %></div>
+  <div class="name"><%= t('fees_receipt_no') %></div><div class="val themed_text"><span>:</span><%= @paid_fees.nil? ? t('n_a') : @paid_fees.map(&:receipt_no).join(',') %></div>
   <% unless @fee_category.nil? %>
     <div class="name"><%= t('fee_category_name') %></div><div class="val themed_text"><span>:</span><%= @fee_category.name %></div>
   <% end %>
