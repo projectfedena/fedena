@@ -59,18 +59,20 @@
     background : #EEF2FD;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em;
+    height : auto;
+    min-height: 25px;
     list-style-type : none;
-    padding : 0.5em 0 0 2em;
+    padding : 10px;
 }
 
 #category-list .listodd{
     background : #DFEAFF;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em;
+    height: auto;
+    min-height: 25px;
     list-style-type : none;
-    padding : 0.5em 0 0 2em;
+    padding : 10px;
 }
 
 #category-list li.heading {
@@ -78,7 +80,8 @@
     font-weight : bold;
     list-style-type : none;
     color : #444;
-    height : 1.5em; width : 30em;
+    height : 1.5em;
+    width : 30em;
     padding : 0.5em 0 0 5em;
 }
 #category-list li div {
@@ -87,6 +90,7 @@
 #category-list li div.category-name {
     font-weight: bold;
     font-size:13px;
+    width: 65%;
 }
 
 #category-list li div.category-code {
