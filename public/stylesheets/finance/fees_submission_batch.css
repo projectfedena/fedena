@@ -63,6 +63,9 @@
     font-weight: bold;
     margin: 18px 132px 0 0;
     padding: 7px 10px;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
 }
 .submit_button:hover{
     background:  #373B3F;
@@ -277,7 +280,7 @@ table#listing td a:hover{
 }
 
 td span{
-   color: #990A10;
+    color: #990A10;
 }
 
 table#listing td.col-8 {
