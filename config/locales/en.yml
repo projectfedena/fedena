@@ -2005,6 +2005,7 @@ en: # locale
   flash_msg5: "You are not allowed to view that information."
   flash_msg6: "Access denied!"
   flash_msg7: "is absent on"
+  flash_subject: "for the subject"
   flash_msg8: "Settings has been saved"
   flash_msg9: "Exam name can't be blank"
   flash_msg10: "New exam created successfully."

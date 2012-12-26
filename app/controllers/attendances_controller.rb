@@ -208,7 +208,17 @@ class AttendancesController < ApplicationController
         sms_setting = SmsSetting.new()
         if sms_setting.application_sms_active and @student.is_sms_enabled and sms_setting.attendance_sms_active
           recipients = []
-          message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} #{@absentee.month_date}"
+          unless @config.config_value=="SubjectWise"
+            if @absentee.is_full_day
+              message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} #{@absentee.month_date}}"
+            elsif @absentee.forenoon == true
+              message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} (forenoon) #{@absentee.month_date}}"
+            elsif @absentee.afternoon
+              message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} (afternoon) #{@absentee.month_date}}"
+            end
+          else
+            message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} #{@absentee.month_date}  #{t('flash_subject')} #{@absentee.subject.name} #{t('flash_period')} #{@absentee.class_timing.try(:name)}"
+          end
           if sms_setting.student_sms_active
             recipients.push @student.phone2 unless @student.phone2.nil?
           end

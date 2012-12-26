@@ -18,6 +18,10 @@
 class SubjectLeave < ActiveRecord::Base
   belongs_to :student
   belongs_to :batch
+  belongs_to :subject
+  belongs_to :employee
+  belongs_to :class_timing
+  
   validates_presence_of :subject_id
   validates_presence_of :batch_id
   validates_presence_of :student_id
