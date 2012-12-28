@@ -28,14 +28,14 @@
 <div id="page-yield">
   <%= flash[:notice] %>
   <% form_for :event do |f| %>
-    <%= error_messages_for 'events' %>
+    <%= error_messages_for 'event' %>
     <div class="label-field-pair">
       <label for="start-date"><%= t('start_date') %>:</label>
-      <div class="text-input-bg"><%= calendar_date_select_tag "event[start_date]", I18n.l(@event.start_date,:format=>("%B %d, %Y,%I:%M %P")), :time => true, :readonly=>true, :popup=>"force"%></div>
+      <div class="text-input-bg"><%= calendar_date_select_tag "event[start_date]", I18n.l(@event.start_date.to_date,:format=>("%Y-%m-%d %H:%M")), :time => true, :readonly=>true, :popup=>"force"%></div>
     </div>
     <div class="label-field-pair">
       <label for="end-date"><%= t('end_date') %>:</label>
-      <div class="text-input-bg"><%= calendar_date_select_tag "event[end_date]", I18n.l(@event.end_date,:format=>("%B %d, %Y,%I:%M %P")), :time => true , :readonly=>true, :popup=>"force" %></div>
+      <div class="text-input-bg"><%= calendar_date_select_tag "event[end_date]", I18n.l(@event.end_date.to_date,:format=>("%Y-%m-%d %H:%M")), :time => true , :readonly=>true, :popup=>"force" %></div>
     </div>
     <div class="label-field-pair">
       <label for="title"><%= t('title') %>:</label>
