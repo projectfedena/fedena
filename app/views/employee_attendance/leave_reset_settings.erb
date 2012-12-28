@@ -61,6 +61,9 @@
       <div class="label-field-pair">
         <label for="configuration_currency_type"><%= t('count_begin_date') %></label>
         <div class="text-input-bg">
+          <% if @last_reset.config_value.nil? %>
+            <% @last_reset.config_value= @fin_start_date.config_value %>
+          <% end %>
           <%= calendar_date_select_tag 'configuration[financial_year_start_date]',  I18n.l(@last_reset.config_value.to_date || @fin_start_date.config_value.to_date,:format=>:default) %>
         </div>
       </div>
