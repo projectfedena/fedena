@@ -121,7 +121,7 @@ module ApplicationHelper
   end
 
   def generic_hook(cntrl,act)
-    FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].each do |mod| 
+    FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].flatten.compact.each do |mod|
       if cntrl.to_s == mod[:source][:controller].to_s && act.to_s == mod[:source][:action].to_s
         if permitted_to? mod[:destination][:action].to_sym,mod[:destination][:controller].to_sym
           return link_to(mod[:title], :controller=>mod[:destination][:controller].to_sym,:action=>mod[:destination][:action].to_sym)
@@ -133,7 +133,7 @@ module ApplicationHelper
 
   def generic_dashboard_hook(cntrl,act)
     dashboard_links = ""
-    FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].each do |mod|
+    FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].compact.flatten.each do |mod|
       if cntrl.to_s == mod[:source][:controller].to_s && act.to_s == mod[:source][:action].to_s
         if permitted_to? mod[:destination][:action].to_sym,mod[:destination][:controller].to_sym
 
@@ -151,7 +151,7 @@ module ApplicationHelper
 
   def render_generic_hook
     hooks =  []
-    FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].select{|h| h if (h[:source][:controller] == controller_name.to_s && h[:source][:action] == action_name.to_s)}.each do |hook|
+    FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].compact.flatten.select{|h| h if (h[:source][:controller] == controller_name.to_s && h[:source][:action] == action_name.to_s)}.each do |hook|
       if permitted_to? hook[:destination][:action].to_sym,hook[:destination][:controller].to_sym
         h = Marshal.load(Marshal.dump(hook))
         h[:title] = t(hook[:title])
