@@ -654,7 +654,7 @@ en: # locale
   fine: "Fine"
   fine_on: "Fine on"
   payment_done: "Payment Done"
-  partial_payment_on: "Partial Payment on"
+  partial_payment_on: "Payment done on"
   profile_text: "Profile"
   messages: "Messages"
   reminder_text: "Reminder"
