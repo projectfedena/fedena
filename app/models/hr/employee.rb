@@ -222,7 +222,6 @@ class Employee < ActiveRecord::Base
     employee_attributes.delete "photo_file_size"
     employee_attributes.delete "photo_file_name"
     employee_attributes.delete "photo_content_type"
-    employee_attributes.delete "user_id"
     employee_attributes["former_id"]= self.id
     archived_employee = ArchivedEmployee.new(employee_attributes)
     archived_employee.photo = self.photo

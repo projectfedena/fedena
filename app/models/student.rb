@@ -279,7 +279,6 @@ class Student < ActiveRecord::Base
     student_attributes["former_id"]= self.id
     student_attributes.delete "id"
     student_attributes.delete "has_paid_fees"
-    student_attributes.delete "user_id"
     student_attributes.delete "created_at"
     archived_student = ArchivedStudent.new(student_attributes)
     archived_student.photo = self.photo
