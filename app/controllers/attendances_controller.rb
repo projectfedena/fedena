@@ -206,6 +206,7 @@ class AttendancesController < ApplicationController
     respond_to do |format|
       if @absentee.save
         sms_setting = SmsSetting.new()
+        message = ""
         if sms_setting.application_sms_active and @student.is_sms_enabled and sms_setting.attendance_sms_active
           recipients = []
           unless @config.config_value=="SubjectWise"
@@ -213,7 +214,7 @@ class AttendancesController < ApplicationController
               message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} #{@absentee.month_date}"
             elsif @absentee.forenoon == true and @absentee.afternoon = false
               message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} (forenoon) #{@absentee.month_date}"
-            elsif @absentee.afternoon and @absentee.forenoon == false
+            elsif @absentee.afternoon == true and @absentee.forenoon == false
               message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} (afternoon) #{@absentee.month_date}"
             end
           else
