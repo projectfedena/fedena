@@ -355,7 +355,7 @@ es: # locale
   create_text: "Crear"
   student_text: "Estudiante"
   course_and_batch: "Curso & Grupo"
-  subject: "Asunto"
+  subject: "Asignatura"
   message: "Mensaje"
   recipient: "Destinatario"
   recipients: "Destinatarios"
