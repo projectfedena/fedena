@@ -1611,7 +1611,7 @@ es: # locale
   fee_structure: "Información de pagos"
   regards: "se refiere a "
   fees_category_cant_be_blank: "La categoría no puede estar en blanco"
-  receipt_no: " voucher_no "
+  receipt_no: "Número de Recibo"
   voucher_no: " voucher_no "
   receipt_or_voucher_no: "Recibo / Voucher No."
   batch_cant_be_blank: "El grupo no puede estar en blanco"
