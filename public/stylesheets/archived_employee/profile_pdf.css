@@ -5,6 +5,7 @@
     margin: 0 auto;
     float: left;
     overflow: hidden;
+    margin-top: 30px;
 }
 
 
@@ -36,19 +37,19 @@ h2.heading{
 .odd{
     height:auto;
     background: #EEEEEE;
-    
+
 }
 
 .even{
-    
+
     height:auto;
     background: #fff;
-    
-    
+
+
 }
 
 .even td{
-   
+
    padding: 12px 12px 12px 15px;
   border-left:  1px solid #ADACAB;
   border-bottom: 1px solid #ADACAB;
@@ -69,12 +70,12 @@ table#pdf-table{
 
 #page-extender{
     width:100%;
-    height :300px;
+    height :250px;
 
 }
 #page-extender1{
     width:100%;
-    height :500px;
+    height :300px;
 
 }
 

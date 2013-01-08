@@ -28,7 +28,7 @@
   <div id="general_info">
     <table id="pdf-table" width="100%" cellspacing="0">
       <tr class="odd"><td class="col-pdf"><%= t('employee_number') %></td><td class="col-pdf"><%= @employee.employee_number unless @employee.employee_number.nil? %></td></tr>
-      <tr class="even"><td class="col-pdf"><%= t('joining_date') %></td><td class="col-pdf"><%= I18n.l(@employee.joining_date,:format=>"%d %b, %Y") unless @employee.joining_date.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf"><%= t('joining_date') %></td><td class="col-pdf"><%= I18n.l(@employee.joining_date,:format=>:normal) unless @employee.joining_date.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('department') %></td><td class="col-pdf"><%= @employee.employee_department.name unless @employee.employee_department.name.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('category') %></td><td class="col-pdf"><%= @employee.employee_category.name unless @employee.employee_category.name.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('position') %></td><td class="col-pdf"><%= @employee.employee_position.name unless @employee.employee_position.name.nil? %></td></tr>
@@ -37,12 +37,11 @@
       <tr class="even"><td class="col-pdf"><%= t('gender') %></td><td class="col-pdf"><%= t("#{@gender.downcase}") unless @gender.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('status') %></td><td class="col-pdf"><%= t("#{@status.downcase}") unless @status.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('qualification') %></td><td class="col-pdf"><%= @employee.qualification unless @employee.qualification.nil? %></td></tr>
-      <tr class="odd"><td class="col-pdf"><%= t('total_exp') %></td><td class="col-pdf"><%= @total_years.to_s+"Years "+@total_months.to_s+"Months" unless @total_years.nil? or @total_months.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf"><%= t('total_exp') %></td><td class="col-pdf"><%= @total_years.to_s+" #{t('years')} "+@total_months.to_s+" #{t('months')}" unless @total_years.nil? or @total_months.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('exp_info') %></td><td class="col-pdf"><%= @employee.experience_detail unless @employee.experience_detail.nil? %></td></tr>
     </table>
 
   </div>
-
 
   <div id="page-extender"></div>
 
@@ -52,7 +51,7 @@
   </div>
   <div id="personal_info">
     <table id="pdf-table" width="100%" cellspacing="0">
-      <tr class="odd"><td class="col-pdf"><%= t('date_of_birth') %></td><td class="col-pdf"><%= @employee.date_of_birth unless @employee.date_of_birth.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf"><%= t('dob') %></td><td class="col-pdf"><%= @employee.date_of_birth unless @employee.date_of_birth.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('marital_status') %></td><td class="col-pdf"><%= @employee.marital_status unless @employee.marital_status.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('no_of_children') %></td><td class="col-pdf"><%= @employee.children_count unless @employee.children_count.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('father_name') %></td><td class="col-pdf"><%= @employee.father_name unless @employee.father_name.nil? %></td></tr>
@@ -63,7 +62,6 @@
     </table>
 
   </div>
-
   <div id="page-extender1"></div>
 
   <div id ="main_info">
@@ -76,12 +74,12 @@
       <tr class="even"><td class="col-pdf"><%= t('city') %></td><td class="col-pdf"><%= @employee.home_city unless @employee.home_city.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('state') %></td><td class="col-pdf"><%= @employee.home_state unless @employee.home_state.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('country') %></td><td class="col-pdf"><%= @home_country unless @home_country.nil? %></td></tr>
-      <tr class="odd"><td class="col-pdf"><%= t('pin_code') %></td><td class="col-pdf"><%= @employee.home_pin_code unless @employee.home_pin_code.nil? %></td></tr>
+      <tr class="odd"><td class="col-pdf"><%= t('home') %> <%= t('zip') %></td><td class="col-pdf"><%= @employee.home_pin_code unless @employee.home_pin_code.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('office_address') %></td><td class="col-pdf"><%= @employee.office_address_line1 unless @employee.office_address_line1.nil? %><br/><%= @employee.office_address_line2 unless @employee.office_address_line2.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('city') %></td><td class="col-pdf"><%= @employee.office_city unless @employee.office_city.nil? %></td></tr>
       <tr class="even"><td class="col-pdf"><%= t('state') %></td><td class="col-pdf"><%= @employee.office_state unless @employee.office_state.nil? %></td></tr>
       <tr class="odd"><td class="col-pdf"><%= t('country') %></td><td class="col-pdf"><%= @office_country unless @office_country.nil? %></td></tr>
-      <tr class="even"><td class="col-pdf"><%= t('pin_code') %></td><td class="col-pdf"><%= @employee.office_pin_code unless @employee.office_pin_code.nil? %></td></tr>
+      <tr class="even"><td class="col-pdf"><%= t('office') %> <%= t('zip') %></td><td class="col-pdf"><%= @employee.office_pin_code unless @employee.office_pin_code.nil? %></td></tr>
     </table>
 
   </div>
@@ -90,7 +88,7 @@
 
   <div id ="main_info">
     <h2> <%= @employee.full_name %>  </h2>
-    <h4>  <%= t('employee_profile') %>(<%= t('contact_details') %>)</h4>
+    <h4><%= t('employee_profile') %>(<%= t('contact_details') %>)</h4>
   </div>
 
   <div id="personal_info">
@@ -136,14 +134,14 @@
     <div id="page-extender1"></div>
     <div id ="main_info">
       <h2> <%= @employee.full_name %>  </h2>
-      <h4> <%= t('employee_profile') %>(<%= t('bank_account_details') %>)</h4>
+      <h4> <%= t('employee_profile') %>(<%= t('additional_detail') %>)</h4>
     </div>
 
     <div id="personal_info">
       <table id="pdf-table" width="100%" cellspacing="0">
-        <% @additional_details.each do |a| %>
+        <% @additional_details.each do |add_det| %>
           <% p =cycle('odd','even ') %>
-          <tr class="<%= "#{p}" %>"><td class="col-pdf"><%= a.bank_field.name %></td><td class="col-pdf"><%= a.bank_info %></td></tr>
+          <tr class="<%= "#{p}" %>"><td class="col-pdf"><%= add_det.additional_field.name %></td><td class="col-pdf"><%= add_det.additional_info %></td></tr>
         <% end %>
       </table>
     </div>
