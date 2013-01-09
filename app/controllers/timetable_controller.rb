@@ -316,7 +316,7 @@ class TimetableController < ApplicationController
         @timetable_entries = Hash.new { |l, k| l[k] = Hash.new(&l.default_proc) }
         @employee_subjects = @employee.subjects
         @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
-        @entries = @current.timetable_entries.find(:all,:conditions=>{:subject_id=>@employee_timetable_subjects})
+        @entries = @current.timetable_entries.find(:all,:conditions=>{:subject_id=>@employee_timetable_subjects,:employee_id => @employee.id})
         @all_timetable_entries = @entries.select{|t| t.batch.is_active}.select{|s| s.class_timing.is_deleted==false}.select{|w| w.weekday.is_deleted==false}
         @all_batches = @all_timetable_entries.collect(&:batch).uniq
         @all_weekdays = @all_timetable_entries.collect(&:weekday).uniq.sort!{|a,b| a.weekday <=> b.weekday}
@@ -353,7 +353,7 @@ class TimetableController < ApplicationController
     @timetable_entries = Hash.new { |l, k| l[k] = Hash.new(&l.default_proc) }
     @employee_subjects = @employee.subjects
     @employee_timetable_subjects = @employee_subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
-    @entries = @current.timetable_entries.find(:all,:conditions=>{:subject_id=>@employee_timetable_subjects})
+    @entries = @current.timetable_entries.find(:all,:conditions=>{:subject_id=>@employee_timetable_subjects,:employee_id => @employee.id})
     @all_timetable_entries = @entries.select{|t| t.batch.is_active}.select{|s| s.class_timing.is_deleted==false}.select{|w| w.weekday.is_deleted==false}
     @all_batches = @all_timetable_entries.collect(&:batch).uniq
     @all_weekdays = @all_timetable_entries.collect(&:weekday).uniq.sort!{|a,b| a.weekday <=> b.weekday}

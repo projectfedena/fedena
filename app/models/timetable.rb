@@ -73,7 +73,7 @@ class Timetable < ActiveRecord::Base
 
   def self.employee_tte(employee,date)
     subjects = employee.subjects.map {|sub| sub.elective_group_id.nil? ? sub : sub.elective_group.subjects.first}
-    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timing, :weekday],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?) AND timetable_entries.subject_id in (?) AND class_timings.is_deleted = false AND weekdays.is_deleted = false",date,date,subjects], :order=>"class_timings.start_time")
+    entries = TimetableEntry.find(:all,:joins=>[:timetable, :class_timing, :weekday],:conditions=>["(timetables.start_date <= ? AND timetables.end_date >= ?) AND timetable_entries.subject_id in (?) AND timetable_entries.employee_id = (?) AND class_timings.is_deleted = false AND weekdays.is_deleted = false",date,date,subjects,employee.id], :order=>"class_timings.start_time")
     if entries.empty?
       today=[]
     else
