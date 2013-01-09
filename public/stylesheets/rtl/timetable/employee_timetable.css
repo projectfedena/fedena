@@ -4,11 +4,12 @@
     border-radius: 8px;
     /*    border: 1px solid #BB0000;*/
 }
-#teacher{
-    border-left: none;
+#teacher {
+    border-bottom-left-radius: 0;
+    border-left: medium none;
+    border-top-left-radius: 0;
+    float: right;
     width: 150px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
 }
 #timetable{
     border-top-right-radius: 0px;
@@ -66,12 +67,13 @@
     width: 150px;
     max-width: 150px;
 }
-#table-viewer{
-    /*    height:480px;*/
-    margin-right: 0px;
-    /*    overflow-x: auto;*/
-    width: 810px;
+
+#table-viewer {
     float: right;
+    margin-right: 0;
+    max-width: 810px;
+    overflow: auto;
+    width: 810px;
 }
 .box{
     width: 95%;
