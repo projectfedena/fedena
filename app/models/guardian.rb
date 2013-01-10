@@ -44,7 +44,7 @@ class Guardian < ActiveRecord::Base
     guardian_attributes.delete "user_id"
     guardian_attributes["ward_id"] = archived_student
     if ArchivedGuardian.create(guardian_attributes)
-      self.user.update_attributes(:is_deleted =>true) unless self.user.blank?
+      self.user.update_attributes(:is_deleted =>true) unless self.user.nil?
       self.destroy
     end
   end
@@ -74,7 +74,7 @@ class Guardian < ActiveRecord::Base
 
   def immediate_contact_nil
     student = self.ward
-    unless student.user.nil?
+    if student.present? and (student.immediate_contact_id==self.id)
       student.update_attributes(:immediate_contact_id=>nil)
     end
   end
