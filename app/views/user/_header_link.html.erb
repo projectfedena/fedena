@@ -17,7 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<% this_user = User.find(session[:user_id]) if session[:user_id] %>
+<% this_user = User.active.find(session[:user_id]) if session[:user_id] %>
 <%= t('logged_as') %>
           <%= link_to this_user.first_name, :controller => 'user', :action => 'profile',
             :id => this_user.username %> &nbsp;|&nbsp;

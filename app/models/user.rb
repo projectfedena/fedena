@@ -35,6 +35,9 @@ class User < ActiveRecord::Base
   has_one :student_record,:class_name=>"Student",:foreign_key=>"user_id"
   has_one :employee_record,:class_name=>"Employee",:foreign_key=>"user_id"
 
+  named_scope :active, :conditions => { :is_deleted => false }
+  named_scope :inactive, :conditions => { :is_deleted => true }
+
   def before_save
     self.salt = random_string(8) if self.salt == nil
     self.hashed_password = Digest::SHA1.hexdigest(self.salt + self.password) unless self.password.nil?

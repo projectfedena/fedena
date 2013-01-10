@@ -38,7 +38,7 @@
   <div class="box">
     <div id="register">
       <%  @type = params[:type] %>
-      <% this_user = User.find(session[:user_id]) if session[:user_id] %>
+      <% this_user = @current_user %>
       <% unless this_user.student? or this_user.parent?  %>
         <div class="header">
           <div class="prev">

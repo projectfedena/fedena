@@ -28,7 +28,7 @@
        
       </div>
       <% @to_users.each do |t| %>
-        <% user = User.find(t) %>
+        <% user = User.active.find(t) %>
         <div class="hover"><%= link_to user.full_name+add  , '#', :onClick => "add_recipient(#{t})", :class=>'individual',
     :before => "Element.show('loader')",
       :success => "Element.hide('loader')" %>

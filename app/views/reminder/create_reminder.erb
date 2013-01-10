@@ -115,7 +115,7 @@
   <div class="create-options">
 
 
-    <% current_user =User.find(session[:user_id]) unless session[:user_id].nil? %>
+    <% current_user = @current_user %>
   </div>
   <% form_for :reminder do |l| %>
     <div id="form">

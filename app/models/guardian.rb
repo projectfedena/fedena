@@ -19,7 +19,7 @@
 class Guardian < ActiveRecord::Base
   belongs_to :country
   belongs_to :ward, :class_name => 'Student'
-  belongs_to :user,:dependent=>:destroy, :autosave =>true
+  belongs_to :user, :autosave =>true
 
   validates_presence_of :first_name, :relation,:ward_id
   validates_format_of     :email, :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,   :allow_blank=>true,
@@ -43,7 +43,10 @@ class Guardian < ActiveRecord::Base
     guardian_attributes.delete "id"
     guardian_attributes.delete "user_id"
     guardian_attributes["ward_id"] = archived_student
-    self.destroy if ArchivedGuardian.create(guardian_attributes)
+    if ArchivedGuardian.create(guardian_attributes)
+      self.user.update_attributes(:is_deleted =>true) unless self.user.blank?
+      self.destroy
+    end
   end
 
   def create_guardian_user(student)
@@ -53,7 +56,7 @@ class Guardian < ActiveRecord::Base
       u.username = "p"+student.admission_no.to_s
       u.password = "p#{student.admission_no.to_s}123"
       u.role = 'Parent'
-      u.email = ( email == '' or User.find_by_email(self.email) ) ? "" :self.email.to_s
+      u.email = ( email == '' or User.active.find_by_email(self.email) ) ? "" :self.email.to_s
     end 
     self.update_attributes(:user_id => user.id) if user.save
   end
@@ -70,7 +73,7 @@ class Guardian < ActiveRecord::Base
   end
 
   def immediate_contact_nil
-     student = self.ward
+    student = self.ward
     unless student.user.nil?
       student.update_attributes(:immediate_contact_id=>nil)
     end

@@ -26,7 +26,7 @@ class UserNotifier < ActionMailer::Base
   protected
     def setup_email(user, current_url)
       @recipients  = "#{user.email}"
-      admin_email = User.find_by_username('admin').email
+      admin_email = User.active.find_by_username('admin').email
       admin_email ||= "noreply@#{get_domain(current_url)}"
       @from        = admin_email
       @subject     = " "

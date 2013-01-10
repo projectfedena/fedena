@@ -158,7 +158,7 @@ class EventController < ApplicationController
           end
         end
       end
-      @users = User.find(:all)
+      @users = User.active.find(:all)
       reminder_recipient_ids << @users.map(&:id)
       sms_setting = SmsSetting.new()
       if sms_setting.application_sms_active and sms_setting.event_news_sms_active

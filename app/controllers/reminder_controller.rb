@@ -34,7 +34,7 @@ class ReminderController < ApplicationController
     @new_reminder_count = Reminder.find_all_by_recipient(@user.id, :conditions=>"is_read = false")
     unless params[:send_to].nil?
       recipients_array = params[:send_to].split(",").collect{ |s| s.to_i }
-      @recipients = User.find(recipients_array)
+      @recipients = User.active.find(recipients_array)
     end
     if request.post?
       unless params[:reminder][:body] == "" or params[:recipients] == ""
@@ -60,7 +60,7 @@ class ReminderController < ApplicationController
 
   def select_users
     @user = current_user
-    users = User.find(:all, :conditions=>"student = false")
+    users = User.active.find(:all, :conditions=>"student = false")
     @to_users = users.map { |s| s.id unless s.nil? }
     render :partial=>"to_users", :object => @to_users
   end
@@ -107,7 +107,7 @@ class ReminderController < ApplicationController
   def update_recipient_list
     if params[:recipients]
       recipients_array = params[:recipients].split(",").collect{ |s| s.to_i }
-      @recipients = User.find(recipients_array)
+      @recipients = User.active.find(recipients_array)
       render :update do |page|
         page.replace_html 'recipient-list', :partial => 'recipient_list'
       end

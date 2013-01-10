@@ -524,7 +524,7 @@ class EmployeeController < ApplicationController
   end
 
   def edit_privilege
-    @user = User.find_by_username(params[:id])
+    @user = User.active.find_by_username(params[:id])
     @employee = @user.employee_record
     @finance = Configuration.find_by_config_value("Finance")
     @sms_setting = SmsSetting.application_sms_status

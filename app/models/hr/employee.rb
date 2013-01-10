@@ -22,7 +22,7 @@ class Employee < ActiveRecord::Base
   belongs_to  :employee_grade
   belongs_to  :employee_department
   belongs_to  :nationality, :class_name => 'Country'
-  belongs_to  :user, :dependent=>:destroy
+  belongs_to  :user
   belongs_to  :reporting_manager,:class_name => "Employee"
   
   has_many    :employees_subjects
@@ -226,7 +226,7 @@ class Employee < ActiveRecord::Base
     archived_employee = ArchivedEmployee.new(employee_attributes)
     archived_employee.photo = self.photo
     if archived_employee.save
-      self.user.delete unless self.user.nil?
+      #      self.user.delete unless self.user.nil?
       employee_salary_structures = self.employee_salary_structures
       employee_bank_details = self.employee_bank_details
       employee_additional_details = self.employee_additional_details
@@ -239,7 +239,7 @@ class Employee < ActiveRecord::Base
       employee_additional_details.each do |g|
         g.archive_employee_additional_detail(archived_employee.id)
       end
-      self.user.destroy
+      self.user.update_attributes(:is_deleted =>true)
       self.destroy
     end
   end

@@ -24,7 +24,7 @@ class Student < ActiveRecord::Base
   belongs_to :batch
   belongs_to :student_category
   belongs_to :nationality, :class_name => 'Country'
-  belongs_to :user,:dependent=>:destroy
+  belongs_to :user
 
   has_one    :immediate_contact
   has_one    :student_previous_data
@@ -283,12 +283,12 @@ class Student < ActiveRecord::Base
     archived_student = ArchivedStudent.new(student_attributes)
     archived_student.photo = self.photo
     if archived_student.save
-      guardian = self.guardians
-      self.user.destroy unless self.user.blank?
-      self.destroy
-      guardian.each do |g|
+      guardians = self.guardians
+      self.user.update_attributes(:is_deleted =>true) unless self.user.blank?
+      guardians.each do |g|
         g.archive_guardian(archived_student.id)
       end
+      self.destroy
       #
       #      student_exam_scores = ExamScore.find_all_by_student_id(self.id)
       #      student_exam_scores.each do |s|
