@@ -19,7 +19,7 @@
 class Guardian < ActiveRecord::Base
   belongs_to :country
   belongs_to :ward, :class_name => 'Student'
-  belongs_to :user, :autosave =>true
+  belongs_to :user
 
   validates_presence_of :first_name, :relation,:ward_id
   validates_format_of     :email, :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,   :allow_blank=>true,
@@ -44,7 +44,7 @@ class Guardian < ActiveRecord::Base
     guardian_attributes.delete "user_id"
     guardian_attributes["ward_id"] = archived_student
     if ArchivedGuardian.create(guardian_attributes)
-      self.user.update_attributes(:is_deleted =>true) unless self.user.nil?
+      self.user.soft_delete if self.user.present?
       self.destroy
     end
   end
@@ -66,7 +66,7 @@ class Guardian < ActiveRecord::Base
   def self.shift_user(student)
     self.find_all_by_ward_id(student.id).each do |g|
       parent_user = g.user
-      parent_user.destroy if parent_user.present?
+      parent_user.soft_delete if parent_user.present? and (parent_user.is_deleted==false)
     end
     current_guardian =  student.immediate_contact
     current_guardian.create_guardian_user(student) if  current_guardian.present?

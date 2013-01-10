@@ -178,5 +178,8 @@ class User < ActiveRecord::Base
       next_date
     end
   end
+  def soft_delete
+    self.update_attributes(:is_deleted =>true)
+  end
 
 end

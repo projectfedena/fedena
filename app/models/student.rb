@@ -274,9 +274,9 @@ class Student < ActiveRecord::Base
   end
 
   def archive_student(status)
-    self.update_attributes(:status_description => status)
     student_attributes = self.attributes
     student_attributes["former_id"]= self.id
+    student_attributes["status_description"] = status
     student_attributes.delete "id"
     student_attributes.delete "has_paid_fees"
     student_attributes.delete "created_at"
@@ -284,7 +284,7 @@ class Student < ActiveRecord::Base
     archived_student.photo = self.photo
     if archived_student.save
       guardians = self.guardians
-      self.user.update_attributes(:is_deleted =>true) unless self.user.nil?
+      self.user.soft_delete
       guardians.each do |g|
         g.archive_guardian(archived_student.id)
       end

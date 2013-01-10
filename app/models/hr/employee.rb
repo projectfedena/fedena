@@ -239,7 +239,7 @@ class Employee < ActiveRecord::Base
       employee_additional_details.each do |g|
         g.archive_employee_additional_detail(archived_employee.id)
       end
-      self.user.update_attributes(:is_deleted =>true)
+      self.user.soft_delete
       self.destroy
     end
   end
