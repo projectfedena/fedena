@@ -284,7 +284,7 @@ class Student < ActiveRecord::Base
     archived_student.photo = self.photo
     if archived_student.save
       guardians = self.guardians
-      self.user.update_attributes(:is_deleted =>true) unless self.user.blank?
+      self.user.update_attributes(:is_deleted =>true) unless self.user.nil?
       guardians.each do |g|
         g.archive_guardian(archived_student.id)
       end
