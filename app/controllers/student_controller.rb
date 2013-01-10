@@ -349,6 +349,12 @@ class StudentController < ApplicationController
   def destroy
     student = Student.find(params[:id])
     unless student.check_dependency
+      student.guardians.each do|guardian|
+        guardian.user.destroy if guardian.user.present?
+        guardian.destroy
+
+      end
+      student.user.destroy
       student.destroy
       flash[:notice] = "#{t('flash10')}. #{student.admission_no}."
       redirect_to :controller => 'user', :action => 'dashboard'
