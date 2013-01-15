@@ -18,6 +18,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all
+  helper_method :can_access_request?
   protect_from_forgery # :secret => '434571160a81b5595319c859d32060c1'
   filter_parameter_logging :password
   
@@ -335,6 +336,10 @@ class ApplicationController < ActionController::Base
       end
     end
     return @local_tzone_time
+  end
+
+  def can_access_request? (action,controller)
+    true
   end
 
   private
