@@ -254,7 +254,7 @@
 
   <% FedenaPlugin::AVAILABLE_MODULES.each do |mod| %>
     <% unless mod[:dashboard_menu].blank? %>
-      <% if permitted_to? "#{mod[:dashboard_menu][:action]}".to_sym,mod[:plugin_auth_object],:context=>"#{mod[:dashboard_menu][:controller]}".to_sym %>
+      <% if can_access_request? "#{mod[:dashboard_menu][:action]}".to_sym,"#{mod[:dashboard_menu][:controller]}".to_sym %>
         <div class="button-box">
           <%= link_to "<div class =\"button-label\"><p>#{t("#{mod[:dashboard_menu][:title]}")}</p></div>", {:controller => "#{mod[:dashboard_menu][:controller]}", :action => "#{mod[:dashboard_menu][:action]}"}, :class=>"#{mod[:dashboard_menu][:options][:class]}", :id=>"#{mod[:dashboard_menu][:options][:id]}", :title=>"#{t("#{mod[:dashboard_menu][:options][:title]}")}" %>
         </div>
