@@ -339,7 +339,7 @@ class ApplicationController < ActionController::Base
   end
 
   def can_access_request? (action,controller)
-    true
+    permitted_to?(action,controller)
   end
 
   private
