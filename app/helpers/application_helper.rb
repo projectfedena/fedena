@@ -135,7 +135,7 @@ module ApplicationHelper
     dashboard_links = ""
     FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].compact.flatten.each do |mod|
       if cntrl.to_s == mod[:source][:controller].to_s && act.to_s == mod[:source][:action].to_s
-        if permitted_to? mod[:destination][:action].to_sym,mod[:destination][:controller].to_sym
+        if can_access_request? mod[:destination][:action].to_sym,mod[:destination][:controller].to_sym
 
           dashboard_links += <<-END_HTML
              <div class="link-box">
@@ -152,7 +152,7 @@ module ApplicationHelper
   def render_generic_hook
     hooks =  []
     FedenaPlugin::ADDITIONAL_LINKS[:generic_hook].compact.flatten.select{|h| h if (h[:source][:controller] == controller_name.to_s && h[:source][:action] == action_name.to_s)}.each do |hook|
-      if permitted_to? hook[:destination][:action].to_sym,hook[:destination][:controller].to_sym
+      if can_access_request? hook[:destination][:action].to_sym,hook[:destination][:controller].to_sym
         h = Marshal.load(Marshal.dump(hook))
         h[:title] = t(hook[:title])
         h[:description] = t(hook[:description])
