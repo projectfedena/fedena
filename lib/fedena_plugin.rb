@@ -70,5 +70,18 @@ class FedenaPlugin
     end
     dependency
   end
+
+  def self.accessible_plugins
+    AVAILABLE_MODULES.collect{|m| m[:name]}
+  end
+
+  def self.can_access_plugin?(plugin)
+    accessible_plugins.include? plugin
+  end
+
+  def self.deliver_registered_hook(hook)
+    raise "No such hook registered." unless REGISTERED_HOOKS.keys.include? hook
+    REGISTERED_HOOKS[hook].select{|p| p if can_access_plugin? p}
+  end
   
 end
