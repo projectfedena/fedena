@@ -133,7 +133,7 @@
         </div>
       </div>
 
-      <% FedenaPlugin::REGISTERED_HOOKS[:general_settings_form].each do |mod| %>
+      <% FedenaPlugin.deliver_registered_hook(:general_settings_form).each do |mod| %>
         <%= render :partial=>mod.camelize.constantize.send("general_settings_form") %>
       <% end %>
 
@@ -158,7 +158,7 @@
       <% else %>
         <%= check_box :configuration, :first_time_login_enable, :checked => false %><%= t('enable_first_time_login') %>
       <% end %>
-      <% FedenaPlugin::REGISTERED_HOOKS[:general_settings_checkbox].each do |mod| %>
+      <% FedenaPlugin.deliver_registered_hook(:general_settings_checkbox).each do |mod| %>
         <br/>
         <%= render :partial=>mod.camelize.constantize.send("general_settings_checkbox") %>
       <% end %>
