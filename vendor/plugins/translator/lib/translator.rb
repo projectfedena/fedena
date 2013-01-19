@@ -163,18 +163,6 @@ module Translator
     end
   end
 
-  #I18n.backend = I18n::Backend::ActiveRecord.new
-
-  # for translations that don't exist in the database, fallback to the Simple Backend which loads the default English Rails YAML files
-  #  I18nSimpleBackend = I18n::Backend::Simple.new
-  #  I18n.exception_handler = lambda do |exception, locale, key, options|
-  #    case exception
-  #    when I18n::MissingTranslationData
-  #      I18nSimpleBackend.translate(:en, key, options || {})
-  #    else
-  #      puts exception
-  #    end
-  #  end
   # Get if it is in strict mode
   def self.strict_mode?
     @@strict_mode
@@ -262,7 +250,6 @@ end
 module ActionView #:nodoc:
   class Base
     # Redefine the +translate+ method in ActionView (contributed by TranslationHelper) that is
-    # context-aware of what view (or partial) is being rendered.
     # Initial scoping will be scoped to [:controller_name :view_name]
     def translate_with_context(key, options={})
       # default to an empty scope
@@ -328,8 +315,7 @@ end
 
 module ActiveRecord #:nodoc:
   class Base
-    # Add a +translate+ (or +t+) method to ActiveRecord that is context-aware of what model is being invoked.
-    # Initial scoping of [:model_name] where model name is like 'blog_post' (singular - *not* the table name)
+
     def translate(key, options={})
       Translator.translate_with_scope([self.class.name.underscore], key, options)
     end
@@ -352,7 +338,7 @@ module ActionMailer #:nodoc:
   class Base
 
     # Add a +translate+ (or +t+) method to ActionMailer that is context-aware of what mailer and action
-    # is being invoked. Initial scoping of [:mailer_name :action_name] where mailer_name is like 'comment_mailer'
+
     # and action_name is 'comment_notification' (note: no "deliver_" or "create_")
     def translate(key, options={})
       Translator.translate_with_scope([self.mailer_name, self.action_name], key, options)
