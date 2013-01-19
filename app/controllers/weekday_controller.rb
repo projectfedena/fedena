@@ -48,9 +48,9 @@ class WeekdayController < ApplicationController
     batch = params[:weekday][:batch_id]
     if request.post?
       new_weekdays = params[:weekdays]||[]
-      batch = params[:weekday][:batch_id].empty??  nil :params[:weekday][:batch_id]
+      batch = params[:weekday][:batch_id].present? ?  params[:weekday][:batch_id] : nil
       old = Weekday.find(:all,:conditions=>{:batch_id=>batch,:is_deleted=>false})
-      batch_id = params[:weekday][:batch_id].empty??  0 :params[:weekday][:batch_id]
+      batch_id = params[:weekday][:batch_id].present? ?  params[:weekday][:batch_id] : 0
       old_weekdays = old.map{|w| w.weekday}
       flash[:notice]  = ""
       (new_weekdays-old_weekdays).each do |new|

@@ -49,8 +49,8 @@ class Weekday < ActiveRecord::Base
         w.save
       end
     else
-      unless Weekday.find_by_day_of_week(day).nil?
-        Weekday.find_by_day_of_week(day).update_attributes(:is_deleted=>false,:day_of_week => day)
+      unless Weekday.find_by_batch_id_and_day_of_week(nil,day).nil?
+        Weekday.find_by_batch_id_and_day_of_week(nil,day).update_attributes(:is_deleted=>false,:day_of_week => day)
       else
         w=Weekday.new
         w.day_of_week = day
