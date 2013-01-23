@@ -77,7 +77,7 @@
     <div class="electives">
       <% @batch.elective_groups.each do |el| %>
         <div class="group_names"><%= el.name %></div>
-        <% el.subjects.each do |sub| %>
+        <% el.subjects.active.each do |sub| %>
           <div class="subject"><%= sub.name %></div>
           <div class="employee">: <%= sub.employees.collect{|e| e.full_name}.join(',') %></div>
         <% end %>
