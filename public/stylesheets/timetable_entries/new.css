@@ -65,11 +65,19 @@
     padding-top : 10px;
     text-align : center;
 }
+#employee-list {
+    float: left;
+    height: auto;
+    margin-bottom: 20px;
+    width: 100%;
+}
 #errors {
     background-color : #f2d5b2;
     font-size : 0.9em;
-    height : auto; width : 420px;
+    height : auto;
+    width : 420px;
     margin : 50px 0 20px 0;
+    float: left;
 }
 .error-explanation {
     padding : 10px;
