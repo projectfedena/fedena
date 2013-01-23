@@ -59,18 +59,22 @@
     background : #EEF2FD;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 670px;
+    height : auto;
+    min-height:25px;
+    width : 670px;
     list-style-type : none;
-    padding : 0.5em 0 0 5em;
+    padding : 10px;
 }
 
 #category-list .listodd{
     background : #DFEAFF;
     border-bottom:1px solid #BECFFB;
     color : #444;
-    height : 1.5em; width : 670px;
+    height : auto;
+    min-height: 25px;
+    width : 670px;
     list-style-type : none;
-    padding : 0.5em 0 0 5em;
+    padding : 10px;
 }
 
 #category-list li.heading {

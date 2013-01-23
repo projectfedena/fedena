@@ -42,9 +42,10 @@
 }
 
 #category-list li div.category-code {
-    width : 100px;
+    font-size: 13px;
     font-weight: bold;
-    font-size:13px;
+    margin-left: 15px;
+    width: 100px;
 }
 
 #category-list li div.category-edit,
