@@ -53,9 +53,9 @@ class Batch < ActiveRecord::Base
 
   attr_accessor :job_type
 
-  named_scope :active,{ :conditions => { :is_deleted => false, :is_active => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
-  named_scope :inactive,{ :conditions => { :is_deleted => false, :is_active => false },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
-  named_scope :deleted,{:conditions => { :is_deleted => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
+  named_scope :active,{ :conditions => { :is_deleted => false, :is_active => true },:joins=>:course,:select=>"batches.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
+  named_scope :inactive,{ :conditions => { :is_deleted => false, :is_active => false },:joins=>:course,:select=>"batches.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
+  named_scope :deleted,{:conditions => { :is_deleted => true },:joins=>:course,:select=>"batches.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
   named_scope :cce, {:select => "batches.*",:joins => :course,:conditions=>["courses.grading_type = #{GRADINGTYPES.invert["CCE"]}"],:order=>:code}
 
   def validate
@@ -71,7 +71,7 @@ class Batch < ActiveRecord::Base
   def course_section_name
     "#{course_name} - #{section_name}"
   end
-  
+
   def inactivate
     update_attribute(:is_deleted, true)
     self.employees_subjects.destroy_all
@@ -93,7 +93,7 @@ class Batch < ActiveRecord::Base
   def normal_batch_subject
     Subject.find_all_by_batch_id(self.id,:conditions=>["elective_group_id IS NULL AND is_deleted = false"])
   end
-  
+
   def elective_batch_subject(elect_group)
     Subject.find_all_by_batch_id_and_elective_group_id(self.id,elect_group,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"])
   end
@@ -129,7 +129,7 @@ class Batch < ActiveRecord::Base
     end
     return event_holidays #array of holiday event dates
   end
-  
+
   def return_holidays(start_date,end_date)
     @common_holidays ||= Event.holidays.is_common
     @batch_holidays=self.events(:all,:conditions=>{:is_holiday=>true})
@@ -557,7 +557,7 @@ class Batch < ActiveRecord::Base
     end
   end
 
-  
+
 
   def subject_hours(starting_date,ending_date,subject_id)
     unless subject_id == 0
@@ -612,7 +612,7 @@ class Batch < ActiveRecord::Base
   def fa_groups
     FaGroup.all(:joins=>:subjects, :conditions=>{:subjects=>{:batch_id=>id}}).uniq
   end
-  
+
   def create_scholastic_reports
     report_hash={}
     fa_groups.each do |fg|
@@ -656,7 +656,7 @@ class Batch < ActiveRecord::Base
 
   def perform
     #this is for cce_report_generation use flags if need job for other works
-    
+
     if job_type=="1"
       generate_batch_reports
     elsif job_type=="2"
@@ -685,6 +685,6 @@ class Batch < ActiveRecord::Base
   def user_is_authorized?(u)
     employees.collect(&:user_id).include? u.id
   end
-  
-  
+
+
 end
