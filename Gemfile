@@ -6,10 +6,16 @@ gem 'i18n'
 gem 'delayed_job', '2.0.8'
 gem 'mysql'
 
-group :development, :test do
-  gem 'test-unit'
+group :test do
+  gem 'shoulda'
+  gem 'factory_girl'
+  gem 'test-unit', '1.2.3'
   gem 'rspec-rails', '1.3.4'
+  gem 'cucumber-rails', '0.3.2'
+  gem 'database_cleaner'
+  gem 'webrat'
 end
+
 gem 'will_paginate', '2.3.12'
 gem 'paperclip', '2.3.10'
 gem 'wicked_pdf', '0.7.0'

@@ -7,7 +7,7 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
   config.autoload_once_paths += %W( #{RAILS_ROOT}/lib )
   config.autoload_paths += Dir["#{RAILS_ROOT}/app/models/*"].find_all { |f| File.stat(f).directory? }
-  config.gem 'delayed_job', :version => '~>2.0.4'
+  config.plugins = [:all]
 
   if (File.exist?('config/smtp_settings.yml'))
     SMTP_SETTINGS = YAML.load_file('config/smtp_settings.yml')[RAILS_ENV]
