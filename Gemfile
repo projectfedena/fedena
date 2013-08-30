@@ -6,11 +6,14 @@ gem 'i18n'
 gem 'delayed_job', '2.0.8'
 gem 'mysql'
 
+group :development, :test do
+  gem 'rspec-rails', '1.3.4'
+end
+
 group :test do
-  gem 'shoulda'
   gem 'factory_girl'
   gem 'test-unit', '1.2.3'
-  gem 'rspec-rails', '1.3.4'
+  gem 'shoulda-matchers'
   gem 'cucumber-rails', '0.3.2'
   gem 'database_cleaner'
   gem 'webrat'
