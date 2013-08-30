@@ -4,7 +4,7 @@ gem 'rails', '2.3.18'
 gem 'i18n', '0.4.0'
 
 gem 'delayed_job', '2.0.8'
-gem 'mysql2', '0.2.6'
+gem 'mysql'
 
 group :development, :test do
   gem 'test-unit'
