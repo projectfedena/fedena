@@ -22,6 +22,8 @@ Fedena is released under the Apache License 2.0.
 ```
 bundle install
 bundle exec rake db:create db:migrate
+bundle exec rake db:seed
+./scipt/server
 ```
 
 # Test
