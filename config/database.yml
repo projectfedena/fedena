@@ -1,25 +1,23 @@
 development:
-      host: localhost
-      adapter: mysql
-      database: fedena_ultimate
-      port: 3306
-      username: root
-      password: foradian
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: fedena_development
+  pool: 5
 
 test: &test
-      host: localhost
-      adapter: mysql
-      database: fedena_two_new
-      port: 3306
-      username: root
-      password: foradian
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: fedena_test
+  pool: 5
 
 production:
-      host: localhost
-      adapter: mysql
-      database: fedena_ultimate
-      port: 3306
-      username: root
-      password: foradian
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: fedena_production
+  pool: 5
+
 cucumber:
   <<: *test

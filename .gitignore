@@ -1,6 +1,5 @@
 .bundle
 .rvmrc
-.ruby-version
 nbproject
 db/*.sqlite3
 log/*.log*
