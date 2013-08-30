@@ -1,7 +1,7 @@
 de: # locale
   activerecord:
     attributes:
-  
+
       student:
         first_name: "Vorname"
         admission_no: "Aufnahmenummer"
@@ -26,7 +26,7 @@ de: # locale
         course_name: "Kursname"
         section_name: "Abschnittsname"
         code: "Kode"
-               
+
       additional_exam:
         start_time: "Startzeit"
         end_time: "Endzeit"
@@ -106,7 +106,7 @@ de: # locale
       liability:
         amount: "Betrag"
         title: "Titel"
-        
+
       finance_donation:
         donor: "Spender"
         amount: "Betrag"
@@ -271,13 +271,56 @@ de: # locale
       mont: "%d"
       day_mon: "%a %d"
       date_month: "%B %e"
-       
 
-    day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
-    abbr_day_names: [Son, Mon, Die, Mit, Don, Fre, Sam]
-    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
-    abbr_month_names: [~, Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
-    order: [ :day, :month, :year ]
+
+    day_names:
+      - Sonntag
+      - Montag
+      - Dienstag
+      - Mittwoch
+      - Donnerstag
+      - Freitag
+      - Samstag
+    abbr_day_names:
+      - Son
+      - Mon
+      - Die
+      - Mit
+      - Don
+      - Fre
+      - Sam
+    month_names:
+      - ~
+      - Januar
+      - Februar
+      - März
+      - April
+      - Mai
+      - Juni
+      - Juli
+      - August
+      - September
+      - Oktober
+      - November
+      - Dezember
+    abbr_month_names:
+      - ~
+      - Jan
+      - Feb
+      - Mär
+      - Apr
+      - Mai
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Okt
+      - Nov
+      - Dez
+    order:
+      - :day
+      - :month
+      - :year
 
   time:
     formats:
@@ -1833,7 +1876,7 @@ de: # locale
   sms_logs: "SMS Logs"
   view_all_messages: "View all messages and their status"
   enable_news_comment_moderation: "Enable News Comment Moderation"
-  
+
 
 #  modified timetable and timetable entries
   select_tte: "Wählen Sie einen Zeitplan"
@@ -1981,7 +2024,7 @@ de: # locale
   is_final_exam: "Is Final Exam?"
   retaken: "Retaken"
   grouped_exam_reports_not_generated: "Grouped Exam Reports have not been generated for this Student."
-  
+
   flash_msg1: "Zusätzliche Prüfungsgruppe erfolgreich aktualisiert."
   flash_msg2: "Sorry"
   flash_msg3: "Sorry, ein Fehler ist aufgetreten. Bitte einen Administrator kontaktieren."
@@ -2180,7 +2223,7 @@ de: # locale
     flash18: "Passwortrücksetzungslink wurde per E-Mail versendet"
     flash19: "Es existiert kein Benutzer mit folgendem Benutzernamen"
     flash20: "Benutzer verfügt nicht über eine E-Mail-ID!"
-    
+
 #student controller translation
   student:
     flash1: "Zusätzliches Feld erstellt"
@@ -2200,7 +2243,7 @@ de: # locale
     flash15: "Sorry! Schüler kann nicht gelöscht werden, wenn abhängige Einträge existieren"
     flash20: "Benutzer verfügt nicht über eine E-Mail-ID!"
     new_admission_link: "For new admission"
-  
+
    ## traslation for finance controller
   finance:
     flash1: "Spende akzeptiert"
@@ -2228,11 +2271,11 @@ de: # locale
     flash26: "Zusätzliche Gebühren erfolgreich aktualisiert"
     flash27: "Zusätzliche Gebühren erfolgreich gelöscht"
     flash28: "No batches found in selected category"
-    
+
 ## traslation for xml controller
   xml:
     flash1: "XML-Einstellungen erfolgreich aktualisiert"
-  
+
 # translation for exam controller
   exam:
     flash1: "Gewählte Prüfungen erfolgreich gruppiert."
@@ -2257,7 +2300,7 @@ de: # locale
     flash20: "No Grouped Exams found for this Batch Group."
     flash21: "Select a Student to continue."
     flash22: "Select a Batch and atleast one option to continue."
-     
+
 # exams controller
   exams:
     flash1: "Prüfungsdetails erfolgreich aktualisert."
@@ -2272,7 +2315,7 @@ de: # locale
     flash2: "Prüfungsgruppe erfolgreich aktualisiert."
     flash3: "Prüfungsgruppe erfoglreich gelöscht"
 
-      
+
 #additional exams controller
   additional_exams:
     flash1: "Zusätzliche Prüfungspunktzahlen aktualisert."
@@ -2282,7 +2325,7 @@ de: # locale
 #additional exam groups controller
   additional_exam_groups:
     flash1: "Zusätzliche Prüfungsgruppe erfolgreich gespeichert"
-    
+
  ## translation for timetable controller
   timetable:
     flash1: "Stundenplan wurde schon veröffentlicht"

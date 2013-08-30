@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '2.3.18'
-gem 'i18n', '0.4.0'
+gem 'i18n'
 
 gem 'delayed_job', '2.0.8'
 gem 'mysql'

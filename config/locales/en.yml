@@ -1,7 +1,7 @@
 en: # locale
   activerecord:
     attributes:
-  
+
       student:
         first_name: "First name"
         admission_no: "Admission number"
@@ -26,7 +26,7 @@ en: # locale
         course_name: "Course name"
         section_name: "Section name"
         code: "Code"
-               
+
       additional_exam:
         start_time: "Start Time"
         end_time: "End Time"
@@ -106,7 +106,7 @@ en: # locale
       liability:
         amount: "Amount"
         title: "Title"
-        
+
       finance_donation:
         donor: "Donor"
         amount: "Amount"
@@ -271,13 +271,55 @@ en: # locale
       mont: "%d"
       day_mon: "%a %d"
       date_month: "%B %e"
-       
 
-    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
-    abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]
-    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
-    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    order: [ :day, :month, :year ]
+    day_names:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    abbr_day_names:
+      - Sun
+      - Mon
+      - Tue
+      - Wed
+      - Thur
+      - Fri
+      - Sat
+    month_names:
+      - ~
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+    abbr_month_names:
+      - ~
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    order:
+      - :day
+      - :month
+      - :year
 
   time:
     formats:
@@ -1845,8 +1887,8 @@ en: # locale
   edit_subject_amount: "Edit "
   discount_type: "Mode"
   flash_period: "period"
-  
-  
+
+
 
 #  modified timetable and timetable entries
   select_tte:  "Select a Timetable"
@@ -1998,7 +2040,7 @@ en: # locale
   first_login_attempt: "Please change your password before proceeding"
   not_applicable: "Not applicable"
   password_update: "Password successfully updated"
-  
+
   flash_msg1: "Updated additional exam group successfully."
   flash_msg2: "Sorry"
   flash_msg3: "Sorry, an error occurred .Please contact Administrator."
@@ -2147,7 +2189,7 @@ en: # locale
     flash44: "Cannot delete the employee when dependecy exists. Use change to former option"
     flash45: "Payslip Date cant be generated before joining date"
     flash46: "Employee deleted successfully."
-    
+
 #payroll translation
   payroll:
     flash1: "Payroll category saved"
@@ -2198,7 +2240,7 @@ en: # locale
     flash18: "Reset Password link has been send to your email"
     flash19: "No user exists with username"
     flash20: "User does not have an email id!"
-    
+
 #student controller translation
   student:
     flash1: "Additional field created"
@@ -2246,12 +2288,12 @@ en: # locale
     flash26: "Additional fees updated successfully"
     flash27: "Additional fees deleted successfully"
     flash28: "No batches found in selected category"
-    
+
 
 ## traslation for xml controller
   xml:
     flash1: "XML settings updated successfully"
-  
+
 # translation for exam controller
   exam:
     flash1: "Selected exams grouped successfully."
@@ -2276,7 +2318,7 @@ en: # locale
     flash20: "No Grouped Exams found for this Batch Group."
     flash21: "Select a Student to continue."
     flash22: "Select a Batch and atleast one option to continue."
-     
+
 # exams controller
   exams:
     flash1: "Updated exam details successfully."
@@ -2290,7 +2332,7 @@ en: # locale
     flash2: "Updated exam group successfully."
     flash3: "Exam group deleted successfully"
 
-      
+
 #additional exams controller
   additional_exams:
     flash1: "Additional exam scores updated."
@@ -2300,7 +2342,7 @@ en: # locale
 #additional exam groups controller
   additional_exam_groups:
     flash1: "Additional Exam Group successfully saved"
-    
+
  ## translation for timetable controller
   timetable:
     flash1: "Timetable has already been published"
@@ -2323,7 +2365,7 @@ en: # locale
   exam_reports:
     flash1: "No Students in selected batch"
     flash2: "No student found in that exam group."
-    
+
   shared:
     user:
       key: "Foo"
@@ -2422,7 +2464,7 @@ en: # locale
    change_password: "Change Password"
    employee_advanced_search: "Employee Advance Search"
    view_employees: "View Employees"
-   
+
 
 #cce exams
   cce_exam_categories_text: "CCE Exam Categories"
