@@ -1,7 +1,7 @@
 require File.join(File.dirname(__FILE__), 'boot')
 
 
-RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.3.18' unless defined? RAILS_GEM_VERSION
 
 Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
