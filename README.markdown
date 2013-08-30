@@ -19,7 +19,23 @@ Fedena is released under the Apache License 2.0.
 
 #Installation
 
-Visit  http://projectfedena.org/install for detailed installation instruction.
+```
+bundle install
+bundle exec rake db:create db:migrate
+```
+
+# Test
+
+```
+RAILS_ENV=test bundle exec rake db:create db:migrate
+rake spec
+```
+
+to run individual test, do:
+
+```
+./script/spec spec/models/abc_spec.rb
+```
 
 #Community Support:
 
