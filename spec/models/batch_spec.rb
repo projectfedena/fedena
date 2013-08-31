@@ -1,20 +1,32 @@
 require 'spec_helper'
 
 describe Batch do
-  it { should_have_many :students }
-  it { should_have_many :exam_groups }
-  it { should_has_many :archived_students }
-  it { should_has_many :grading_levels, :conditions => { :is_deleted => false } }
-  it { should_has_many :subjects, :conditions => { :is_deleted => false } }
-  it { should_has_many :fee_category , :class_name => "FinanceFeeCategory" }
-  it { should_has_many :elective_groups }
-  it { should_has_many :additional_exam_groups }
+  it { should have_many(:students) }
+  it { should have_many(:exam_groups) }
+  it { should have_many(:archived_students) }
+  it { should have_many(:grading_levels).conditions(:is_deleted => false) }
+  it { should have_many(:subjects).conditions(:is_deleted => false) }
+  it { should have_many(:fee_category).class_name("FinanceFeeCategory") }
+  it { should have_many(:elective_groups) }
+  it { should have_many(:grouped_exam_reports) }
+  it { should have_many(:grouped_batches) }
+  it { should have_many(:finance_fee_collections) }
+  it { should have_many(:finance_transactions).through(:students) }
+  it { should have_many(:batch_events) }
+  it { should have_many(:events).through(:batch_events) }
+  it { should have_many(:batch_fee_discounts) }
+  it { should have_many(:student_category_fee_discounts) }
+  it { should have_many(:attendances) }
+  it { should have_many(:subject_leaves) }
+  it { should have_many(:timetable_entries) }
+  it { should have_many(:cce_reports) }
+  it { should have_many(:assessment_scores) }
 
-  it { should_belong_to :course }
+  it { should belong_to(:course) }
 
-  it { should_validate_presence_of :name }
-  it { should_validate_presence_of :start_date }
-  it { should_validate_presence_of :end_date }
+  it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:start_date) }
+  it { should validate_presence_of(:end_date) }
 
   context 'a new batch' do
     before do
