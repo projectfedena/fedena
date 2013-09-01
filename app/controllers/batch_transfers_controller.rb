@@ -19,7 +19,7 @@
 class BatchTransfersController < ApplicationController
   before_filter :login_required
   filter_access_to :all
-   
+
   def index
     @batches = Batch.active
   end
@@ -93,7 +93,7 @@ class BatchTransfersController < ApplicationController
     @batch = Batch.find(params[:id])
     @elective_groups = @batch.elective_groups.all(:conditions => {:is_deleted => false})
     @normal_subjects = @batch.normal_batch_subject
-    @elective_subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"])
+    @elective_subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = ?", false])
   end
 
   def get_previous_batch_subjects

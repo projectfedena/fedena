@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       unless (controller_name == "user") and ["first_login_change_password","login","logout","forgot_password"].include? action_name
         user = User.active.find(session[:user_id])
         setting = Configuration.get_config_value('FirstTimeLoginEnable')
-        if setting == "1" and user.is_first_login != false
+        if setting == "1" and user.is_first_login?
           flash[:notice] = "#{t('first_login_attempt')}"
           redirect_to :controller => "user",:action => "first_login_change_password",:id => user.username
         end

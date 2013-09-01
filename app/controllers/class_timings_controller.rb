@@ -81,7 +81,7 @@ class ClassTimingsController < ApplicationController
   def show
     @batch = nil
     if params[:batch_id] == ''
-      @class_timings = ClassTiming.find(:all, :conditions=>["batch_id is null and is_deleted = false"])
+      @class_timings = ClassTiming.find(:all, :conditions=>{:batch_id => nil, :is_deleted => false})
     else
       @class_timings = ClassTiming.active_for_batch(params[:batch_id])
       @batch = Batch.find params[:batch_id] unless params[:batch_id] == ''

@@ -62,7 +62,7 @@ class ElectiveGroupsController < ApplicationController
   end
 
   def show
-    @electives = Subject.find_all_by_batch_id_and_elective_group_id(@batch.id,@elective_group.id, :conditions=>["is_deleted = false"])
+    @electives = Subject.find_all_by_batch_id_and_elective_group_id(@batch.id,@elective_group.id, :conditions=>{:is_deleted => false})
   end
 
   private

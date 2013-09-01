@@ -22,12 +22,12 @@ class ArchivedEmployeeController < ApplicationController
   filter_access_to :all
 #  prawnto :prawn => {:left_margin => 25, :right_margin => 25}
 
-  
+
 
   def profile
     @current_user = current_user
     @employee = ArchivedEmployee.find(params[:id])
-    @new_reminder_count = Reminder.find_all_by_recipient(@current_user.id, :conditions=>"is_read = false")
+    @new_reminder_count = Reminder.find_all_by_recipient(@current_user.id, :conditions=>{:is_read => false})
     @gender = "Male"
     @gender = "Female" if @employee.gender == "f"
     @status = "Active"
@@ -121,11 +121,11 @@ class ArchivedEmployeeController < ApplicationController
     @office_country = Country.find(@employee.office_country_id).name unless @employee.office_country_id.nil?
     @bank_details = ArchivedEmployeeBankDetail.find_all_by_employee_id(@employee.id)
     @additional_details = ArchivedEmployeeAdditionalDetail.find_all_by_employee_id(@employee.id)
-    
-      render :pdf => 'profile_pdf'
-            
 
-    
+      render :pdf => 'profile_pdf'
+
+
+
   end
 
   def show
