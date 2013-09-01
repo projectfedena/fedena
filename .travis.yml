@@ -1,0 +1,13 @@
+before_script:
+  - sh -e /etc/init.d/xvfb start
+  - export DISPLAY=:99.0
+bundler_args: --without development production --quiet
+script:
+  - RAILS_ENV=test bundle exec rake db:create db:migrate --trace
+  - bundle exec rake spec
+before_script:
+  - gem update --system 1.8.25
+  - cp config/database.travis.yml config/database.yml
+rvm:
+  - 1.8.7
+  - 1.9.3
