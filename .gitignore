@@ -12,6 +12,7 @@ public/assets/sources_manifest.yml
 public/assets/
 public/system/
 public/form_templates/
+public/javascript/cache
 dump.rdb
 .idea/
 *.swp
