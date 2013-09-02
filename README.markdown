@@ -61,6 +61,7 @@ What would you expect with this port?
 * Cloud Deployment - Heroku, EngineYard, OpenShift
 * New plugin engine infrastructure
 * Extensive customer product support for upgrade from Fedena 2.3
+* Responsive CSS - support mobile, tablet and desktop
 
 # Demo
 A demo website for Fedena has been set up at demo.projectfedena.org. You can log in with following usernames and passwords:
