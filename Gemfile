@@ -6,6 +6,7 @@ gem 'i18n'
 gem 'delayed_job', '2.0.8'
 gem 'mysql'
 gem 'in_place_editing'
+gem 'nokogiri', '~> 1.5.10'
 
 group :development, :test do
   gem 'rspec-rails', '1.3.4'
