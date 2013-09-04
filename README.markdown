@@ -72,7 +72,7 @@ A demo website for Fedena has been set up at demo.projectfedena.org. You can log
 
 # License
 
-Fedena LTS is released under the MIT License.
+Fedena LTS is released under the Apache License 2.0.
 Fedena is released under the Apache License 2.0.
 
 # Installation
