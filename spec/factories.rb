@@ -102,3 +102,10 @@ Factory.define :general_emp_category,:class=>"EmployeeCategory" do |s|
   s.name  "cat1"
   s.prefix   "forads"
 end
+
+Factory.define :weekday do |w|
+  w.weekday     '1'
+  w.day_of_week '1'
+  w.is_deleted  false
+  w.batch_id    nil
+end
