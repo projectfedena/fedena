@@ -15,7 +15,6 @@ group :test do
   gem 'factory_girl'
   gem 'test-unit', '1.2.3'
   gem 'shoulda-matchers'
-  gem 'cucumber-rails', '0.3.2'
   gem 'database_cleaner'
   gem 'webrat'
 

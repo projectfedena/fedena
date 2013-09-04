@@ -4,6 +4,3 @@ test: &test
   password:
   database: fedena_test
   pool: 5
-
-cucumber:
-  <<: *test
