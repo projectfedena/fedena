@@ -18,6 +18,12 @@ group :test do
   gem 'cucumber-rails', '0.3.2'
   gem 'database_cleaner'
   gem 'webrat'
+
+  if RUBY_VERSION > '1.9'
+    gem 'debugger'
+  else
+    gem 'ruby-debug'
+  end
 end
 
 gem 'will_paginate', '2.3.12'
