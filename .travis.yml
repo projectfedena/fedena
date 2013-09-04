@@ -2,6 +2,9 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - export DISPLAY=:99.0
 bundler_args: --without development production --quiet
+branches:
+  only:
+    - master
 script:
   - RAILS_ENV=test bundle exec rake db:create db:migrate --trace
   - bundle exec rake spec
