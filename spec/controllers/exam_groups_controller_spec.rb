@@ -76,7 +76,7 @@ describe ExamGroupsController do
   describe 'POST #create' do
     context 'exam_type is Grades' do
       before do
-        @exam_group = ExamGroup.new(exam_type: 'Grades')
+        @exam_group = ExamGroup.new(:exam_type => 'Grades')
         ExamGroup.stub(:new).with({ 'these' => 'params' }).and_return(@exam_group)
       end
 
@@ -113,7 +113,7 @@ describe ExamGroupsController do
 
     context 'exam_type is not Grades' do
       before do
-        @exam_group = ExamGroup.new(exam_type: 'Something')
+        @exam_group = ExamGroup.new(:exam_type => 'Something')
         ExamGroup.stub(:new).and_return(@exam_group)
       end
 
