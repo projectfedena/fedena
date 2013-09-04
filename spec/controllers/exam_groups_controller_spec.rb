@@ -32,7 +32,7 @@ describe ExamGroupsController do
   describe 'GET #show' do
     before do
       ExamGroup.stub(:find).with('37', :include => :exams).and_return(@exam_group)
-      get :show, :id => '37'
+      get :show, :id => '37', :batch_id => '1'
     end
 
     it 'renders the show template' do
