@@ -1,7 +1,6 @@
-require File.expand_path(File.dirname(__FILE__) + './../test_helper')
+require 'spec_helper'
 
-class ConfigurationTest <  ActiveSupport::TestCase
-
+describe Configuration do
 
   context 'configuration' do
 
@@ -24,31 +23,31 @@ class ConfigurationTest <  ActiveSupport::TestCase
       "LastAutoLeaveReset"  => ""
     }
 
-    setup do
+    before do
       CONFIG_HASH.each do |key,value|
         Configuration.create(:config_key=>key,:config_value=>value)
       end
     end
     CONFIG_HASH.each do |key,value|
-      should "be able to get config value for #{key}" do
+      it "should be able to get config value for #{key}" do
         config_value = Configuration.get_config_value(key)
-        assert_equal config_value,value
+        config_value.should == value
       end
     end
 
-    should "not be able to set config value for StudentAttendanceType other than Daily,Subjectwise" do
+    it 'should not be able to set config value for StudentAttendanceType other than Daily,Subjectwise' do
       config = Configuration.find_by_config_key("StudentAttendanceType")
       config.config_value = "Test"
-      assert !config.valid?
+      config.should be_invalid
     end
 
-    should "not be able to set config value for NetworkType than Online,Offline" do
+    it 'should not be able to set config value for NetworkType than Online,Offline' do
       config = Configuration.find_by_config_key("NetworkState")
       config.config_value = "Test"
-      assert !config.valid?
+      config.should be_invalid
     end
-    
+
 
   end
-  
+
 end

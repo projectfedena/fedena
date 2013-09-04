@@ -55,6 +55,15 @@ end
 Factory.define :exam_group do |e|
   e.sequence(:name) { |n| "Exam Group #{n}" }
   e.exam_date       Date.today
+  e.exam_type       "grades"
+  e.cce_exam_category_id 12
+end
+
+Factory.define :grading_level do |g|
+  g.name 'A'
+  g.min_score 85
+  g.order 1
+  g.batch { Factory.create(:batch) }
 end
 
 Factory.define :subject do |s|
@@ -71,11 +80,12 @@ Factory.define :exam do |e|
   e.weightage     50
 end
 
-Factory.define :general_subject,:class=>"Subject" do |s|
+Factory.define :general_subject,:class=> Subject do |s|
   s.name  "Subject"
   s.code   "SUB1"
   s.batch_id           1
   s.max_weekly_classes 5
+  s.credit_hours 10
 end
 
 Factory.define :elective_group do |s|

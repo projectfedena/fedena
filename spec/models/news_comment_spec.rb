@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe NewsComment do
-  it { should_validate_presence_of(:author) }
-  it { should_validate_presence_of(:content) }
-  it { should_validate_presence_of(:news_id) }
+  it { should validate_presence_of(:author) }
+  it { should validate_presence_of(:content) }
+  it { should validate_presence_of(:news_id) }
 
-  # it { should_belong_to(:news) }
-  # it { should_belong_to(:author) }
+  it { should belong_to(:news) }
+  it { should belong_to(:author).class_name("User") }
 end

@@ -1,27 +1,31 @@
 require 'spec_helper'
 
 describe ElectiveGroup do
-  it { should belong_to(:batch) }
-  it { should have_many(:subjects) }
-
-  it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:batch_id) }
-
-  it { should_have_named_scope :for_batch }
-
-  context "existing elective group" do
+  context "validate elective group" do
     before do
-      @elective_group = Factory.build(:elective_group)
+      @elective_group1 = Factory.create(:elective_group, :batch_id => 20, :is_deleted => false)
+      @elective_group2 = Factory.create(:elective_group, :batch_id => 22, :is_deleted => true)
     end
 
-    it 'must be new a active new record' do
-      @elective_group.is_deleted.should_not be_true
-      @elective_group.should be_new_record
+    it { should belong_to(:batch) }
+    it { should have_many(:subjects) }
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:batch_id) }
+
+    describe '#inactive' do
+      it 'must be disabled' do
+        @elective_group1.inactivate
+        @elective_group1.should be_is_deleted
+      end
     end
 
-    it 'must be disabled' do
-      @elective_group.inactivate
-      @elective_group.is_deleted.should be_true
+    describe "scope_name test" do
+      describe ".for_batch" do
+        it "returns for_batch" do
+          ElectiveGroup.for_batch(20).should == [@elective_group1]
+        end
+      end
     end
+
   end
 end
