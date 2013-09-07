@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class FinanceTransaction < ActiveRecord::Base
   belongs_to :category, :class_name => 'FinanceTransactionCategory', :foreign_key => 'category_id'
@@ -67,7 +67,7 @@ class FinanceTransaction < ActiveRecord::Base
     expenses_total = 0
     fees_total =0
     salary = 0
-     
+
     unless hr.nil?
       salary = MonthlyPayslip.total_employees_salary(start_date, end_date)
       expenses_total += salary[:total_salary].to_f
@@ -82,7 +82,7 @@ class FinanceTransaction < ActiveRecord::Base
       else
         expenses_total +=d.amount
       end
-      
+
     end
     transactions_fees.each do |fees|
       income_total +=fees.amount
@@ -104,7 +104,7 @@ class FinanceTransaction < ActiveRecord::Base
         end
       end
     end
-    
+
     other_transactions.each do |t|
       if t.category.is_income? and t.master_transaction_id == 0
         income_total +=t.amount
@@ -113,7 +113,7 @@ class FinanceTransaction < ActiveRecord::Base
       end
     end
     income_total-expenses_total
-    
+
   end
 
   def self.total_fees(start_date,end_date)
@@ -165,7 +165,7 @@ class FinanceTransaction < ActiveRecord::Base
       #end
     end
     donations_income-donations_expenses
-    
+
   end
 
 
@@ -228,7 +228,7 @@ class FinanceTransaction < ActiveRecord::Base
     transactions.each {|transaction| amount += transaction.amount}
     return {:amount=>amount,:category_type=>category_type}
   end
-  
+
   def add_voucher_or_receipt_number
     if self.category.is_income and self.master_transaction_id == 0
       last_transaction = FinanceTransaction.last(:conditions=>"receipt_no IS NOT NULL")

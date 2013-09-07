@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class EmployeeController < ApplicationController
   before_filter :login_required,:configuration_settings_for_hr
@@ -32,13 +32,13 @@ class EmployeeController < ApplicationController
       redirect_to :controller => "employee", :action => "add_category"
     end
   end
-  
+
   def edit_category
     @category = EmployeeCategory.find(params[:id])
     employees = Employee.find(:all ,:conditions=>"employee_category_id = #{params[:id]}")
     if request.post?
       if (params[:category][:status] == 'false' and employees.blank?) or params[:category][:status] == 'true'
-        
+
         if @category.update_attributes(params[:category])
           unless @category.status
             position = EmployeePosition.find_all_by_employee_category_id(@category.id)
@@ -52,7 +52,7 @@ class EmployeeController < ApplicationController
       else
         flash[:warn_notice] = "<p>#{t('flash2')}</p>"
       end
-      
+
     end
   end
 
@@ -245,7 +245,7 @@ class EmployeeController < ApplicationController
       end
     end
   end
-  
+
   def change_field_priority
     @additional_field = AdditionalField.find(params[:id])
     priority = @additional_field.priority
@@ -401,7 +401,7 @@ class EmployeeController < ApplicationController
       redirect_to :action => "admission3", :id => @employee.id
     end
   end
-  
+
   def edit2
     @employee = Employee.find(params[:id])
     @countries = Country.find(:all)
@@ -436,7 +436,7 @@ class EmployeeController < ApplicationController
       redirect_to :action => "admission3_1", :id => @employee.id
     end
   end
-  
+
   def edit3
     @employee = Employee.find(params[:id])
     @bank_fields = BankField.find(:all, :conditions=>"status = true")
@@ -538,7 +538,7 @@ class EmployeeController < ApplicationController
       redirect_to :action => 'admission4',:id => @employee.id
     end
   end
-  
+
   def edit3_1
     @employee = Employee.find(params[:id])
     @additional_fields = AdditionalField.find(:all, :conditions=>"status = true")
@@ -572,7 +572,7 @@ class EmployeeController < ApplicationController
       flash[:notice]=t('flash25')
       redirect_to :controller => "payroll", :action => "manage_payroll", :id=>@employee.id
     end
-  
+
   end
 
   def view_rep_manager
@@ -764,8 +764,8 @@ class EmployeeController < ApplicationController
     @bank_details = EmployeeBankDetail.find_all_by_employee_id(@employee.id)
     @additional_details = EmployeeAdditionalDetail.find_all_by_employee_id(@employee.id)
     render :pdf => 'profile_pdf'
-          
-            
+
+
     #    respond_to do |format|
     #      format.pdf { render :layout => false }
     #    end
@@ -887,7 +887,7 @@ class EmployeeController < ApplicationController
         flash[:warn_notice] = "#{t('flash45')} #{params[:salary_date]}"
       end
     end
-    
+
   end
 
   def view_payslip
@@ -1134,7 +1134,7 @@ class EmployeeController < ApplicationController
     @employee_additional_categories = IndividualPayslipCategory.find_all_by_employee_id(@employee.id, :conditions=>"include_every_month = true")
     @new_payslip_category = IndividualPayslipCategory.find_all_by_employee_id_and_salary_date(@employee.id,nil)
     @user = current_user
-    
+
 
     if request.post?
       salary_date = Date.parse(params[:salary_date])
@@ -1145,7 +1145,7 @@ class EmployeeController < ApplicationController
       payslip_exists.each do |p|
         p.delete
       end
-      
+
       params[:manage_payroll].each_pair do |k, v|
         row_id = EmployeeSalaryStructure.find_by_employee_id_and_payroll_category_id(@employee, k)
         category_name = PayrollCategory.find(k).name
@@ -1171,7 +1171,7 @@ class EmployeeController < ApplicationController
           :body=>body ))
       flash[:notice] = "#{@employee.first_name} #{t('flash27')} #{params[:salary_date]}"
       redirect_to :controller => "employee", :action => "profile", :id=> @employee.id
-      
+
     end
   end
   def update_rejected_payslip
@@ -1442,7 +1442,7 @@ class EmployeeController < ApplicationController
 
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     @salary_date = params[:salary_date] if params[:salary_date]
-   
+
     render :pdf => 'department_payslip_pdf',
       :margin => {    :top=> 10,
       :bottom => 10,
@@ -1504,7 +1504,7 @@ class EmployeeController < ApplicationController
 
     @net_amount = @net_non_deductionable_amount - @net_deductionable_amount
     render :pdf => 'individual_payslip_pdf'
-    
+
 
     #    respond_to do |format|
     #      format.pdf { render :layout => false }
@@ -1565,7 +1565,7 @@ class EmployeeController < ApplicationController
     @net_deductionable_amount = @individual_category_deductionable + @deductionable_amount
 
     @net_amount = @net_non_deductionable_amount - @net_deductionable_amount
-    
+
     render :pdf => 'individual_payslip_pdf'
     #    respond_to do |format|
     #      format.pdf { render :layout => false }

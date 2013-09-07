@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class FinanceFeeCategory < ActiveRecord::Base
   belongs_to :batch
@@ -49,7 +49,7 @@ class FinanceFeeCategory < ActiveRecord::Base
       flag = 1 if fee.check_fee_category == true
     end
     flag == 1 ?  true : false
-    
+
   end
 
   def delete_particulars
@@ -80,7 +80,7 @@ class FinanceFeeCategory < ActiveRecord::Base
     unless particulars.nil?
       total_fees += particulars.collect{|x|x.amount.to_f}.sum
       total_fees = (total_fees - ((total_fees*total_discount)/100))
-      
+
       unless paid_fees.nil?
         paid = 0
         paid += paid_fees.collect{|x|x.amount.to_f}.sum
@@ -108,6 +108,6 @@ class FinanceFeeCategory < ActiveRecord::Base
   def have_common_particular?
      self.fee_particulars.find_all_by_student_category_id_and_admission_no(nil,nil).count > 0 ? true : false
   end
-  
-  
+
+
 end

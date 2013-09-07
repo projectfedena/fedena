@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class UserController < ApplicationController
   layout :choose_layout
@@ -29,11 +29,11 @@ class UserController < ApplicationController
     return 'dashboard' if action_name == 'dashboard'
     'application'
   end
-  
+
   def all
     @users = User.active.all
   end
-  
+
   def list_user
     if params[:user_type] == 'Admin'
       @users = User.active.find(:all, :conditions => {:admin => true}, :order => 'first_name ASC')
@@ -104,7 +104,7 @@ class UserController < ApplicationController
   end
 
   def change_password
-    
+
     if request.post?
       @user = current_user
       if User.authenticate?(@user.username, params[:user][:old_password])
@@ -145,7 +145,7 @@ class UserController < ApplicationController
         end
       end
 
-      
+
     end
   end
 
@@ -154,14 +154,14 @@ class UserController < ApplicationController
 
     @user = User.new(params[:user])
     if request.post?
-          
+
       if @user.save
         flash[:notice] = "#{t('flash17')}"
         redirect_to :controller => 'user', :action => 'edit', :id => @user.username
       else
         flash[:notice] = "#{t('flash16')}"
       end
-           
+
     end
   end
 
@@ -174,7 +174,7 @@ class UserController < ApplicationController
     end
     redirect_to :controller => 'user'
   end
-  
+
   def dashboard
     @user = current_user
     @config = Configuration.available_modules

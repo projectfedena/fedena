@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class FinanceFeeCollection < ActiveRecord::Base
   belongs_to :batch
@@ -50,7 +50,7 @@ class FinanceFeeCollection < ActiveRecord::Base
 
   def check_transaction(transactions)
     transactions.finance_fees_id.nil? ? false : true
-   
+
   end
 
   def fee_table
@@ -84,7 +84,7 @@ class FinanceFeeCollection < ActiveRecord::Base
   end
 
   def create_associates
-    
+
     batch_discounts = BatchFeeDiscount.find_all_by_finance_fee_category_id(self.fee_category_id)
     batch_discounts.each do |discount|
       discount_attributes = discount.attributes
@@ -127,7 +127,7 @@ class FinanceFeeCollection < ActiveRecord::Base
     trans = self.finance_transactions.all(:conditions=>"transaction_date >= '#{start_date}' AND transaction_date <= '#{end_date}'")
     total = trans.map{|t|t.amount}.sum
   end
-  
+
   def student_fee_balance(student)
     particulars= self.fees_particulars(student)
     financefee = self.fee_transactions(student.id)

@@ -1,25 +1,25 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class SmsController < ApplicationController
   before_filter :login_required
   filter_access_to :all
-  
+
   def index
     @sms_setting = SmsSetting.new()
     @parents_sms_enabled = SmsSetting.find_by_settings_key("ParentSmsEnabled")
@@ -70,7 +70,7 @@ class SmsController < ApplicationController
           student = Student.find(s_id)
           guardian = student.immediate_contact
           if student.is_sms_enabled
-            if sms_setting.student_sms_active           
+            if sms_setting.student_sms_active
               @recipients.push student.phone2 unless (student.phone2.nil? or student.phone2 == "")
             end
             if sms_setting.parent_sms_active
@@ -92,7 +92,7 @@ class SmsController < ApplicationController
       end
     end
   end
-  
+
   def list_students
     batch = Batch.find(params[:batch_id])
     @students = Student.find_all_by_batch_id(batch.id,:conditions=>'is_sms_enabled=true')

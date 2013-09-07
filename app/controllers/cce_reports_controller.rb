@@ -1,34 +1,34 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class CceReportsController < ApplicationController
   before_filter :login_required
   #  before_filter :load_cce_report, :only=>[:show_student_wise_report]
-  filter_access_to :all 
+  filter_access_to :all
   #  filter_access_to :show_student_wise_report, :attribute_check => true
-    
+
   def index
-    
+
   end
-  
+
   def create_reports
     @courses = Course.cce
-    if request.post?      
+    if request.post?
       unless params[:course][:batch_ids].blank?
         errors = []
         batches = Batch.find_all_by_id(params[:course][:batch_ids])
@@ -45,14 +45,14 @@ class CceReportsController < ApplicationController
         flash[:error]=errors
       else
         flash[:notice]="No batch selected"
-      end      
+      end
     end
-    
+
   end
 
   def student_wise_report
     @batches=Batch.cce
-    if request.post?      
+    if request.post?
       @batch=Batch.find(params[:batch_id])
       @students=@batch.students.all(:order=>"first_name ASC")
       @student = @students.first
@@ -115,7 +115,7 @@ class CceReportsController < ApplicationController
     @og.each do |kind, ogs|
       @co_hashi[kind]=[]
       coscholastic.each{|cs| @co_hashi[kind] << cs if ogs.collect(&:id).include? cs.observation_group_id}
-    end       
+    end
   end
- 
+
 end

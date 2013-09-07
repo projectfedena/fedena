@@ -1,25 +1,25 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class Course < ActiveRecord::Base
 
   GRADINGTYPES = {"1"=>"GPA","2"=>"CWA","3"=>"CCE"}
-  
+
   validates_presence_of :course_name, :code
   validate :presence_of_initial_batch, :on => :create
 
@@ -31,7 +31,7 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :batches
   has_and_belongs_to_many :observation_groups
   has_and_belongs_to_many_with_deferred_save :cce_weightages
-  
+
   before_save :cce_weightage_valid
 
   named_scope :active, :conditions => { :is_deleted => false }, :order => 'course_name asc'
@@ -45,7 +45,7 @@ class Course < ActiveRecord::Base
   def inactivate
     update_attribute(:is_deleted, true)
   end
-  
+
   def full_name
     "#{course_name} #{section_name}"
   end
