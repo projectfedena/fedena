@@ -174,8 +174,8 @@ class ExamsController < ApplicationController
     redirect_to [@exam_group, @exam]
   end
 
-
   private
+
   def query_data
     @exam_group = ExamGroup.find(params[:exam_group_id], :include => :batch)
     @batch = @exam_group.batch
