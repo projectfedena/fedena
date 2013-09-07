@@ -1,6 +1,7 @@
 # Fedena LTS: Open source school management system
 
 [![Build Status](https://travis-ci.org/joneslee85/fedena.png)](https://travis-ci.org/joneslee85/fedena)
+[![Code Climate](https://codeclimate.com/repos/522ae9d9c7f3a339a5007113/badges/4bbe8c7497cc0359076e/gpa.png)](https://codeclimate.com/repos/522ae9d9c7f3a339a5007113/feed)
 
 Project Fedena is the open source school management system based on Ruby on Rails. It is developed by a team of developers at Foradian Technologies.
 The project was made open source by Foradian, and is now maintained by the open source community. Fedena is the ideal solution for schools and campuses that want an easy means to manage all campus records.
