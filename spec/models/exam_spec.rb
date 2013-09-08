@@ -32,27 +32,4 @@ describe Exam do
     end
 
   end
-
-  context 'an existing exam record' do
-    before do
-      @exam_group = Factory.create(:exam_group, :exam_date => Date.today)
-      @course = Factory.create(:course)
-      @batch = @course.batches.first
-      @subject = Factory.create(:subject, :batch_id => @batch.id)
-      @exam = Factory.create(:exam,
-        :exam_group_id => @exam_group.id,
-        :subject_id => @subject.id)
-    end
-
-    it 'should update exam group date if this date is earlier' do
-      @exam.update_attribute(:start_time, Time.now - 2.days)
-      @exam_group = @exam.exam_group
-      @exam_group.exam_date.should == (Date.today - 2.days)
-    end
-
-    it 'should not update exam group date if this date is later' do
-      @exam.update_attribute :start_time, Time.now + 2.days
-      @exam_group.exam_date.should == (Date.today)
-    end
-  end
 end
