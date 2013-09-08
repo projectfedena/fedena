@@ -978,8 +978,6 @@ class ExamController < ApplicationController
     render :pdf=>"student_combined_report_pdf"#, :show_as_html=>true
   end
 
-
-
   def select_report_type
     unless params[:batch_id].nil? or params[:batch_id]==""
       @batch = Batch.find(params[:batch_id])
@@ -1089,9 +1087,8 @@ class ExamController < ApplicationController
         @students = Student.find_all_by_id(params[:student])
       end
     end
-
-
   end
+
   def generated_report4_pdf
     #grouped-exam-report-for-batch
     if params[:student].nil?

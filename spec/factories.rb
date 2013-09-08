@@ -56,7 +56,7 @@ Factory.define :exam_group do |e|
   e.sequence(:name) { |n| "Exam Group #{n}" }
   e.exam_date       Date.today
   e.exam_type       "grades"
-  e.cce_exam_category_id 12
+  e.sequence(:cce_exam_category_id) { |n| n }
 end
 
 Factory.define :grading_level do |g|
@@ -80,7 +80,7 @@ Factory.define :exam do |e|
   e.weightage     50
 end
 
-Factory.define :general_subject,:class=> Subject do |s|
+Factory.define :general_subject, :class => 'Subject' do |s|
   s.name  "Subject"
   s.code   "SUB1"
   s.batch_id           1
@@ -98,7 +98,7 @@ Factory.define :employee_department do |e|
   e.sequence(:code) { |n| "forad#{n}" }
 end
 
-Factory.define :general_department,:class=>"EmployeeDepartment" do |s|
+Factory.define :general_department, :class => "EmployeeDepartment" do |s|
   s.name  "Dep1"
   s.code   "forad"
 end
@@ -108,7 +108,7 @@ Factory.define :employee_category do |e|
   e.sequence(:prefix) { |n| "forad#{n}" }
 end
 
-Factory.define :general_emp_category,:class=>"EmployeeCategory" do |s|
+Factory.define :general_emp_category, :class => "EmployeeCategory" do |s|
   s.name  "cat1"
   s.prefix   "forads"
 end

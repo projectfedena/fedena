@@ -17,7 +17,7 @@
 # limitations under the License.
 
 class Batch < ActiveRecord::Base
-  GRADINGTYPES = {"1"=>"GPA","2"=>"CWA","3"=>"CCE"}
+  GRADINGTYPES = { '1' => 'GPA', '2' => 'CWA', '3' => 'CCE' }
 
   belongs_to :course
 
@@ -26,23 +26,22 @@ class Batch < ActiveRecord::Base
   has_many :grouped_batches
   has_many :archived_students
   has_many :grading_levels, :conditions => { :is_deleted => false }
-  has_many :subjects, :conditions => { :is_deleted => false }
-  has_many :employees_subjects, :through =>:subjects
+  has_many :subjects,       :conditions => { :is_deleted => false }
+  has_many :employees_subjects, :through => :subjects
   has_many :exam_groups
-  has_many :fee_category , :class_name => "FinanceFeeCategory"
+  has_many :fee_category, :class_name => 'FinanceFeeCategory'
   has_many :elective_groups
   has_many :finance_fee_collections
   has_many :finance_transactions, :through => :students
   has_many :batch_events
-  has_many :events , :through =>:batch_events
-  has_many :batch_fee_discounts , :foreign_key => 'receiver_id'
-  has_many :student_category_fee_discounts , :foreign_key => 'receiver_id'
+  has_many :events, :through => :batch_events
+  has_many :batch_fee_discounts, :foreign_key => 'receiver_id'
+  has_many :student_category_fee_discounts, :foreign_key => 'receiver_id'
   has_many :attendances
   has_many :subject_leaves
   has_many :timetable_entries
   has_many :cce_reports
   has_many :assessment_scores
-
 
   has_and_belongs_to_many :graduated_students, :class_name => 'Student', :join_table => 'batch_students'
 
@@ -53,15 +52,15 @@ class Batch < ActiveRecord::Base
 
   attr_accessor :job_type
 
-  named_scope :active,{ :conditions => { :is_deleted => false, :is_active => true },:joins=>:course,:select=>"batches.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
-  named_scope :inactive,{ :conditions => { :is_deleted => false, :is_active => false },:joins=>:course,:select=>"batches.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
-  named_scope :deleted,{:conditions => { :is_deleted => true },:joins=>:course,:select=>"batches.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
-  named_scope :cce, {:select => "batches.*",:joins => :course,:conditions=>["courses.grading_type = #{GRADINGTYPES.invert["CCE"]}"],:order=>:code}
+  named_scope :active,   { :conditions => { :is_deleted => false, :is_active => true },  :joins => :course, :select => 'batches.*, CONCAT(courses.code, "-", batches.name) AS course_full_name', :order => 'course_full_name' }
+  named_scope :inactive, { :conditions => { :is_deleted => false, :is_active => false }, :joins => :course, :select => 'batches.*, CONCAT(courses.code, "-", batches.name) AS course_full_name', :order => 'course_full_name' }
+  named_scope :deleted,  { :conditions => { :is_deleted => true }, :joins => :course, :select => 'batches.*, CONCAT(courses.code, "-", batches.name) AS course_full_name', :order => 'course_full_name' }
+  named_scope :cce, { :select => 'batches.*', :joins => :course, :conditions => ['courses.grading_type = ?', GRADINGTYPES.invert['CCE']], :order => :code }
 
   def validate
-    errors.add(:start_date, "#{t('should_be_before_end_date')}.") \
-      if self.start_date > self.end_date \
-      if self.start_date and self.end_date
+    if start_date && end_date && self.start_date > self.end_date
+      errors.add(:start_date, "#{t('should_be_before_end_date')}.")
+    end
   end
 
   def full_name
@@ -83,7 +82,7 @@ class Batch < ActiveRecord::Base
   end
 
   def fee_collection_dates
-    FinanceFeeCollection.find_all_by_batch_id(self.id,:conditions => "is_deleted = false")
+    FinanceFeeCollection.find_all_by_batch_id(self.id, :conditions => { :is_deleted => false })
   end
 
   def all_students
@@ -91,7 +90,7 @@ class Batch < ActiveRecord::Base
   end
 
   def normal_batch_subject
-    Subject.find_all_by_batch_id(self.id,:conditions=>["elective_group_id IS NULL AND is_deleted = false"])
+    Subject.find_all_by_batch_id(self.id, :conditions => { :elective_group_id => nil, :is_deleted => false })
   end
 
   def elective_batch_subject(elect_group)
@@ -99,11 +98,11 @@ class Batch < ActiveRecord::Base
   end
 
   def all_elective_subjects
-    elective_groups.map(&:subjects).compact.flatten.select{|subject| subject.is_deleted == false}
+    elective_groups.map(&:subjects).compact.flatten.select { |subject| !subject.is_deleted? }
   end
 
   def has_own_weekday
-    Weekday.find_all_by_batch_id(self.id,:conditions=>{:is_deleted=>false}).present?
+    Weekday.find_all_by_batch_id(self.id, :conditions => { :is_deleted => false }).any?
   end
 
   def allow_exam_acess(user)

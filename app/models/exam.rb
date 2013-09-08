@@ -19,13 +19,13 @@
 class Exam < ActiveRecord::Base
   validates_presence_of :start_time, :end_time
   validates_numericality_of :maximum_marks, :minimum_marks, :allow_nil => true
-  validates_presence_of :maximum_marks, :minimum_marks, :if => :validation_should_present?, :on=>:update
+  validates_presence_of :maximum_marks, :minimum_marks, :if => :validation_should_present?, :on => :update
   belongs_to :exam_group
   belongs_to :subject, :conditions => { :is_deleted => false }
   before_destroy :removable?
   before_save :update_exam_group_date
 
-  has_one :event ,:as=>:origin
+  has_one :event, :as => :origin
 
   has_many :exam_scores
   has_many :archived_exam_scores
@@ -89,6 +89,7 @@ class Exam < ActiveRecord::Base
   end
 
   private
+
   def update_exam_group_date
     group = self.exam_group
     group.update_attribute(:exam_date, self.start_time.to_date) if !group.exam_date.nil? and self.start_time.to_date < group.exam_date

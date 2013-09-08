@@ -60,42 +60,39 @@ describe CoursesController do
   end
 
   describe 'POST #create' do
-    context 'create with these params' do
+    before do
+      @course = Course.new
+      Course.stub(:new).with({ 'these' => 'params' }).and_return(@course)
+    end
+
+    context 'successful create' do
       before do
-        @course = Course.new
-        Course.stub(:new).with({ 'these' => 'params' }).and_return(@course)
+        @course.stub(:save).and_return(true)
+        post :create, :course => { 'these' => 'params' }
       end
 
-      context 'successful create' do
-        before do
-          @course.stub(:save).and_return(true)
-          post :create, :course => { 'these' => 'params' }
-        end
-
-        it 'assigns flash[:notice]' do
-          flash[:notice].should == "#{@controller.t('flash1')}"
-        end
-
-        it 'redirects to the manage_course' do
-          response.should redirect_to(:controller=>"courses", :action=>"manage_course")
-        end
+      it 'assigns flash[:notice]' do
+        flash[:notice].should == "#{@controller.t('flash1')}"
       end
 
-      context 'failed create' do
-        before do
-          @course.stub(:save).and_return(false)
-          post :create, :course => { 'these' => 'params' }
-        end
-
-        it 'renders the new template' do
-          response.should render_template('new')
-        end
-
-        it 'assigns @grade_types' do
-          assigns(:grade_types).should == Course.grading_types_as_options
-        end
+      it 'redirects to the manage_course' do
+        response.should redirect_to(:controller=>"courses", :action=>"manage_course")
       end
     end
 
+    context 'failed create' do
+      before do
+        @course.stub(:save).and_return(false)
+        post :create, :course => { 'these' => 'params' }
+      end
+
+      it 'renders the new template' do
+        response.should render_template('new')
+      end
+
+      it 'assigns @grade_types' do
+        assigns(:grade_types).should == Course.grading_types_as_options
+      end
+    end
   end
 end

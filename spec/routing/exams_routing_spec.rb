@@ -7,6 +7,11 @@ describe ExamsController do
         route_to(:controller => 'exams', :action => 'new', :exam_group_id => '1')
     end
 
+    it 'recognizes and generates #save_scores' do
+      { :post => '/exam_groups/1/exams/1/save_scores' }.should \
+        route_to(:controller => 'exams', :action => 'save_scores', :id => '1', :exam_group_id => '1')
+    end
+
     it 'recognizes and generates #show' do
       { :get => '/exam_groups/1/exams/1' }.should \
         route_to(:controller => 'exams', :action => 'show', :id => '1', :exam_group_id => '1')
