@@ -15,11 +15,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class Reminder < ActiveRecord::Base
   validates_presence_of :body
   belongs_to :user , :foreign_key => 'sender'
-  belongs_to :to_user, :class_name=>"User",:foreign_key => 'recipient'
+  belongs_to :to_user, :class_name => 'User', :foreign_key => 'recipient'
 
   cattr_reader :per_page
   @@per_page = 12

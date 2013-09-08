@@ -33,6 +33,17 @@ describe User do
         end
       end
     end
+  end
 
+  describe '#check_reminders' do
+    before do
+      @user = FactoryGirl.create(:employee_user)
+      FactoryGirl.create(:reminder, :recipient => @user.id, :is_read => true)
+      FactoryGirl.create(:reminder, :recipient => @user.id, :is_read => false)
+    end
+
+    it 'returns number of read reminders' do
+      @user.check_reminders.should == 1
+    end
   end
 end

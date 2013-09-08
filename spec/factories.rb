@@ -1,121 +1,127 @@
+FactoryGirl.define do
+  factory :employee_user, :class => 'User' do
+    sequence(:username) { |n| "emp#{n}" }
+    password            { |u1| "#{u1.username}123" }
+    email               { |u1| "#{u1.username}@fedena.com" }
+    first_name          'John'
+    last_name           'Doe'
+    role                'Employee'
+  end
 
-Factory.define :employee_user, :class => User do |u|
-  u.sequence(:username) { |n| "emp#{n}" }
-  u.password            { |u1| "#{u1.username}123" }
-  u.email               { |u1| "#{u1.username}@fedena.com" }
-  u.first_name          'John'
-  u.last_name           'Doe'
-  u.role                'Employee'
-end
+  factory :admin_user, :class => 'User' do
+    sequence(:username) { |n| "admin#{n}" }
+    password            { |u1| "#{u1.username}123" }
+    email               { |u1| "#{u1.username}@fedena.com" }
+    first_name          'John'
+    last_name           'Doe'
+    role 'Admin'
+  end
 
-Factory.define :admin_user, :class => User do |u|
-  u.sequence(:username) { |n| "admin#{n}" }
-  u.password { |u1| "#{u1.username}123" }
-  u.first_name 'Fedena'
-  u.sequence(:last_name) { |n| "Admin#{n}"}
-  u.email { |u1| "#{u1.username}@fedena.com" }
-  u.role 'Admin'
-end
+  factory :reminder do
+    recipient { FactoryGirl.create(:employee_user).id }
+    body      'Reminding'
+  end
 
-Factory.define :student do |s|
-  s.admission_no    1
-  s.admission_date  Date.today
-  s.date_of_birth   Date.today - 5.years
-  s.first_name      'John'
-  s.middle_name     'K'
-  s.last_name       'Doe'
-  s.address_line1   ''
-  s.address_line2   ''
-  s.batch_id        1
-  s.gender          'm'
-  s.country_id      76
-  s.nationality_id  76
-end
+  factory :student do
+    admission_no    1
+    admission_date  Date.today
+    date_of_birth   Date.today - 5.years
+    first_name      'John'
+    middle_name     'K'
+    last_name       'Doe'
+    address_line1   ''
+    address_line2   ''
+    batch_id        1
+    gender          'm'
+    country_id      76
+    nationality_id  76
+  end
 
-Factory.define :guardian do |g|
-  g.first_name 'Fname'
-  g.last_name  'Lname'
-  g.relation   'Parent'
-end
+  factory :guardian do
+    first_name 'Fname'
+    last_name  'Lname'
+    relation   'Parent'
+  end
 
-Factory.define :course do |c|
-  c.course_name  '1'
-  c.section_name 'A'
-  c.code         '1A'
+  factory :course do
+    course_name  '1'
+    section_name 'A'
+    code         '1A'
 
-  c.batches { |batches| [batches.association(:batch)] }
-end
+    batches { |batches| [batches.association(:batch)] }
+  end
 
-Factory.define :batch do |b|
-  b.name       '2010/11'
-  b.start_date Date.today
-  b.end_date   Date.today + 1.years
-end
+  factory :batch do
+    name       '2010/11'
+    start_date { Date.today }
+    end_date   { Date.today + 1.years }
+  end
 
-Factory.define :exam_group do |e|
-  e.sequence(:name) { |n| "Exam Group #{n}" }
-  e.exam_date       Date.today
-  e.exam_type       "grades"
-  e.sequence(:cce_exam_category_id) { |n| n }
-end
+  factory :exam_group do
+    sequence(:name) { |n| "Exam Group #{n}" }
+    exam_date       { Date.today }
+    exam_type       'grades'
+    sequence(:cce_exam_category_id) { |n| n }
+  end
 
-Factory.define :grading_level do |g|
-  g.name 'A'
-  g.min_score 85
-  g.order 1
-  g.batch { Factory.create(:batch) }
-end
+  factory :grading_level do
+    name      'A'
+    min_score 85
+    order     1
+    batch     { Factory.create(:batch) }
+  end
 
-Factory.define :subject do |s|
-  s.name               'Subject'
-  s.code               'SUB'
-  s.max_weekly_classes 8
-end
+  factory :subject do
+    name               'Subject'
+    code               'SUB'
+    max_weekly_classes 8
+  end
 
-Factory.define :exam do |e|
-  e.start_time    Time.now
-  e.end_time      Time.now + 1.hours
-  e.maximum_marks 100
-  e.minimum_marks 30
-  e.weightage     50
-end
+  factory :exam do
+    start_time    { Time.now }
+    end_time      { Time.now + 1.hours }
+    maximum_marks 100
+    minimum_marks 30
+    weightage     50
+  end
 
-Factory.define :general_subject, :class => 'Subject' do |s|
-  s.name  "Subject"
-  s.code   "SUB1"
-  s.batch_id           1
-  s.max_weekly_classes 5
-  s.credit_hours 10
-end
+  factory :general_subject, :class => 'Subject' do
+    name               'Subject'
+    code               'SUB1'
+    batch_id           1
+    max_weekly_classes 5
+    credit_hours       10
+  end
 
-Factory.define :elective_group do |s|
-  s.name  "Test Elective"
-  s.batch_id           1
-end
+  factory :elective_group do
+    name     'Test Elective'
+    batch_id 1
+  end
 
-Factory.define :employee_department do |e|
-  e.sequence(:name) { |n| "emp_department#{n}" }
-  e.sequence(:code) { |n| "forad#{n}" }
-end
+  factory :employee_department do
+    sequence(:name) { |n| "emp_department#{n}" }
+    sequence(:code) { |n| "forad#{n}" }
+  end
 
-Factory.define :general_department, :class => "EmployeeDepartment" do |s|
-  s.name  "Dep1"
-  s.code   "forad"
-end
+  factory :general_department, :class => 'EmployeeDepartment' do
+    name 'Dep1'
+    code 'forad'
+  end
 
-Factory.define :employee_category do |e|
-  e.sequence(:name) { |n| "emp_category#{n}" }
-  e.sequence(:prefix) { |n| "forad#{n}" }
-end
+  factory :employee_category do
+    sequence(:name)   { |n| "emp_category#{n}" }
+    sequence(:prefix) { |n| "forad#{n}" }
+  end
 
-Factory.define :general_emp_category, :class => "EmployeeCategory" do |s|
-  s.name  "cat1"
-  s.prefix   "forads"
-end
+  factory :general_emp_category, :class => 'EmployeeCategory' do
+    name   'cat1'
+    prefix 'forads'
+  end
 
-Factory.define :weekday do |w|
-  w.weekday     '1'
-  w.day_of_week '1'
-  w.is_deleted  false
-  w.batch_id    nil
+  factory :weekday do
+    weekday     '1'
+    day_of_week '1'
+    is_deleted  false
+    batch_id    nil
+  end
 end
