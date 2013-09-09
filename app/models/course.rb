@@ -144,7 +144,7 @@ class Course < ActiveRecord::Base
   end
 
   def self.grading_types_as_options
-    grading_types.invert.sort_by { |k, _| v }
+    grading_types.invert.sort_by { |k, v| v }
   end
 
   def cce_weightages_for_exam_category(cce_exam_cateogry_id)

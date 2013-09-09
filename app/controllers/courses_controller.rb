@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class CoursesController < ApplicationController
   before_filter :login_required
   before_filter :find_course, :only => [:show, :edit, :update, :destroy]
@@ -27,7 +26,7 @@ class CoursesController < ApplicationController
 
   def new
     @course = Course.new
-    @grade_types=Course.grading_types_as_options
+    @grade_types = Course.grading_types_as_options
     #    gpa = Configuration.find_by_config_key("GPA").config_value
     #    if gpa == "1"
     #      @grade_types << "GPA"
@@ -43,9 +42,9 @@ class CoursesController < ApplicationController
   end
 
   def assign_subject_amount
-    @course = Course.active.find(params[:id])
+    @course   = Course.active.find(params[:id])
     @subjects = @course.batches.map(&:subjects).flatten.compact.map(&:code).compact.flatten.uniq
-    @subject_amount = @course.subject_amounts.build
+    @subject_amount  = @course.subject_amounts.build
     @subject_amounts = @course.subject_amounts.reject{|sa| sa.new_record?}
     if request.post?
       code = params[:subject_amount][:code]
@@ -260,6 +259,7 @@ class CoursesController < ApplicationController
   end
 
   private
+
   def find_course
     @course = Course.find params[:id]
   end
