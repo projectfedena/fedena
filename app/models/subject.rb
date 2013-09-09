@@ -86,7 +86,7 @@ class Subject < ActiveRecord::Base
 
   def exam_not_created(exam_group_ids)
     exams = Exam.find_all_by_exam_group_id_and_subject_id(exam_group_ids, self.id)
-    exam.empty?
+    exams.empty?
   end
 
   private

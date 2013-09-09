@@ -91,7 +91,7 @@ FactoryGirl.define do
 
   factory :general_subject, :class => 'Subject' do
     name               'Subject'
-    code               'SUB1'
+    sequence(:code) { |n| "SUB#{n}" }
     batch_id           1
     max_weekly_classes 5
     credit_hours       10
@@ -105,6 +105,23 @@ FactoryGirl.define do
   factory :employee_department do
     sequence(:name) { |n| "emp_department#{n}" }
     sequence(:code) { |n| "forad#{n}" }
+  end
+
+  factory :employee do
+    employee_category_id    5
+    sequence(:employee_number)   { |n| "#{n}" }
+    first_name              "John"
+    employee_position_id    7
+    employee_department_id  8
+    date_of_birth           Date.today - 18.years
+    joining_date            Date.today - 3.days
+    nationality_id          9
+  end
+
+  factory :employee_grade do
+    sequence(:name)   { |n| "Em Grade #{n}" }
+    sequence(:priority)   { |n| "#{n}" }
+    status              true
   end
 
   factory :general_department, :class => 'EmployeeDepartment' do
