@@ -57,6 +57,10 @@ FactoryGirl.define do
     end_date   { Date.today + 1.years }
   end
 
+  factory :batch_group do
+    name       'batch'
+  end
+
   factory :exam_group do
     sequence(:name) { |n| "Exam Group #{n}" }
     exam_date       { Date.today }

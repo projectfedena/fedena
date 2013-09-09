@@ -19,6 +19,7 @@
 class Course < ActiveRecord::Base
 
   GRADINGTYPES = {"1"=>"GPA","2"=>"CWA","3"=>"CCE"}
+  INVERT_GRADINGTYPES = GRADINGTYPES.invert
 
   validates_presence_of :course_name, :code
   validate :presence_of_initial_batch, :on => :create
