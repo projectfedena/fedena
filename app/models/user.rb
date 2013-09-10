@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class User < ActiveRecord::Base
   attr_accessor :password, :role, :old_password, :new_password, :confirm_password
 
@@ -132,7 +131,7 @@ class User < ActiveRecord::Base
       all_events += parent_record.batch.events.all(:conditions => ['? BETWEEN DATE(events.start_date) AND DATE(events.end_date)', date])
       all_events += Event.all(:conditions => ['(? BETWEEN DATE(events.start_date) AND DATE(events.end_date)) AND is_common = ?', date, true])
     when 'Employee'
-      all_events += events.all(:conditions => ['? between events.start_date and events.end_date', date])
+      all_events += events.all(:conditions => ['? BETWEEN events.start_date AND events.end_date', date])
       all_events += employee_record.employee_department.events.all(:conditions => ['? BETWEEN DATE(events.start_date) AND DATE(events.end_date)', date])
       all_events += Event.all(:conditions => ['(? BETWEEN DATE(events.start_date) AND DATE(events.end_date)) AND is_exam = ?', date, true])
       all_events += Event.all(:conditions => ['(? BETWEEN DATE(events.start_date) AND DATE(events.end_date)) AND is_common = ?', date, true])
