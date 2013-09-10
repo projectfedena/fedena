@@ -23,7 +23,7 @@ FactoryGirl.define do
   end
 
   factory :student do
-    admission_no    1
+    sequence(:admission_no) { |n| "#{n}" }
     admission_date  Date.today
     date_of_birth   Date.today - 5.years
     first_name      'John'

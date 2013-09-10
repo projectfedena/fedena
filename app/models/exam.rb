@@ -20,27 +20,26 @@ class Exam < ActiveRecord::Base
   validates_presence_of :start_time, :end_time
   validates_numericality_of :maximum_marks, :minimum_marks, :allow_nil => true
   validates_presence_of :maximum_marks, :minimum_marks, :if => :validation_should_present?, :on => :update
+  validate :minmarks_cant_be_more_than_maxmarks, :end_time_cannot_before_start_time
   belongs_to :exam_group
   belongs_to :subject, :conditions => { :is_deleted => false }
   before_destroy :removable?
-  before_save :update_exam_group_date
+  before_save :update_exam_group_date, :update_weightage
+  after_create :create_exam_event
+  after_update :update_exam_event
 
   has_one :event, :as => :origin
 
   has_many :exam_scores
+  accepts_nested_attributes_for :exam_scores
+
   has_many :archived_exam_scores
   has_many :previous_exam_scores
   has_many :assessment_scores
   #  has_and_belongs_to_many :cce_reports
 
-  accepts_nested_attributes_for :exam_scores
-
   def validation_should_present?
-    if self.exam_group.exam_type=="Grades"
-      return false
-    else
-      return true
-    end
+    self.exam_group.exam_type != "Grades"
   end
 
   def removable?
@@ -48,40 +47,15 @@ class Exam < ActiveRecord::Base
 
   end
 
-  def validate
-    errors.add_to_base("#{t('minmarks_cant_be_more_than_maxmarks')}") \
-      if minimum_marks and maximum_marks and minimum_marks > maximum_marks
-    errors.add_to_base("#{t('minmarks_cant_be_more_than_maxmarks')}") \
-      if minimum_marks and maximum_marks and minimum_marks > maximum_marks
-    unless self.start_time.nil? or self.end_time.nil?
-      errors.add_to_base("#{t('end_time_cannot_before_start_time')}")if self.end_time < self.start_time
-    end
-  end
-
-  def before_save
-    self.weightage = 0 if self.weightage.nil?
-    #update_exam_group_date
-  end
-
-  def after_create
-    create_exam_event
-  end
-
-  def after_update
-    update_exam_event
-  end
-
   def score_for(student_id)
-    exam_score = self.exam_scores.find(:first, :conditions => { :student_id => student_id })
-    exam_score.nil? ? ExamScore.new : exam_score
+    self.exam_scores.find_or_initialize_by_student_id(student_id)
   end
 
   def class_average_marks
     results = ExamScore.find_all_by_exam_id(self)
-    scores = results.collect { |x| x.marks unless x.marks.nil?}
+    scores = results.collect { |x| x.marks if x.marks }
     scores.delete(nil)
-    return (scores.sum / scores.size) unless scores.size == 0
-    return 0
+    scores.size == 0 ? 0 : scores.sum / scores.size
   end
 
   def fa_groups
@@ -90,27 +64,39 @@ class Exam < ActiveRecord::Base
 
   private
 
+  def minmarks_cant_be_more_than_maxmarks
+    errors.add_to_base("#{t('minmarks_cant_be_more_than_maxmarks')}") if minimum_marks && maximum_marks and minimum_marks > maximum_marks
+  end
+
+  def end_time_cannot_before_start_time
+      errors.add_to_base("#{t('end_time_cannot_before_start_time')}") if start_time && end_time and self.end_time < self.start_time
+  end
+
+  def update_weightage
+    self.weightage = 0 if self.weightage.nil?
+  end
+
   def update_exam_group_date
     group = self.exam_group
-    group.update_attribute(:exam_date, self.start_time.to_date) if !group.exam_date.nil? and self.start_time.to_date < group.exam_date
+    group.update_attribute(:exam_date, self.start_time.to_date) if group.exam_date and self.start_time.to_date < group.exam_date
   end
 
   def create_exam_event
     if self.event.blank?
-      new_event = Event.create do |e|
-        e.title       = "#{t('exam_text')}"
-        e.description = "#{self.exam_group.name} #{t('for')} #{self.subject.batch.full_name} - #{self.subject.name}"
-        e.start_date  = self.start_time
-        e.end_date    = self.end_time
-        e.is_exam     = true
-        e.origin      = self
-      end
-      batch_event = BatchEvent.create do |be|
-        be.event_id = new_event.id
-        be.batch_id = self.exam_group.batch_id
-      end
+      new_event = Event.create(
+        :title       => "#{t('exam_text')}",
+        :description => "#{self.exam_group.name} #{t('for')} #{self.subject.batch.full_name} - #{self.subject.name}",
+        :start_date  => self.start_time,
+        :end_date    => self.end_time,
+        :is_exam     => true,
+        :origin      => self
+      )
+      batch_event = BatchEvent.create(
+        :event_id => new_event.id,
+        :batch_id => self.exam_group.batch_id
+      )
       #self.event_id = new_event.id
-      self.update_attributes(:event_id=>new_event.id)
+      self.update_attributes(:event_id => new_event.id)
     end
   end
 
