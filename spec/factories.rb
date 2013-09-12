@@ -145,4 +145,9 @@ FactoryGirl.define do
     is_deleted  false
     batch_id    nil
   end
+
+  factory :ranking_level do
+    sequence(:name)   { |n| "rank#{n}" }
+    marks             90
+  end
 end
