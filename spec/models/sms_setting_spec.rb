@@ -159,7 +159,7 @@ describe SmsSetting do
 
   describe '.application_sms_status' do
     context 'ApplicationEnabled setting is found' do
-      before { @application_sms = SmsSetting.create(:settings_key => 'ApplicationEnabled', :is_enabled => true) }
+      before { SmsSetting.create(:settings_key => 'ApplicationEnabled', :is_enabled => true) }
 
       it 'returns true' do
         SmsSetting.application_sms_status.should be_true
@@ -167,7 +167,7 @@ describe SmsSetting do
     end
 
     context 'ApplicationEnabled setting is not found' do
-      before { @application_sms = SmsSetting.create(:settings_key => 'ApplicationEnabled', :is_enabled => false) }
+      before { SmsSetting.create(:settings_key => 'ApplicationEnabled', :is_enabled => false) }
 
       it 'returns false' do
         SmsSetting.application_sms_status.should be_false
