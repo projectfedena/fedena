@@ -1,11 +1,17 @@
 require 'spec_helper'
 
 describe ExamGroup do
-  before(:each) do
-    @valid_attributes = Factory.attributes_for :exam_group
-  end
+  context 'a new exam group' do
+    before { @exam_group = Factory.create(:exam_group) }
 
-  it "should create a new instance given valid attributes" do
-    ExamGroup.create!(@valid_attributes)
+    it { should belong_to(:batch) }
+    it { should have_many(:exams).dependent(:destroy) }
+    it { should belong_to(:cce_exam_category) }
+
+    it 'should save current date if date is not given' do
+      @exam_group.exam_date = nil
+      @exam_group.save
+      @exam_group.exam_date.should == Date.today
+    end
   end
 end

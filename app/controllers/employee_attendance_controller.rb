@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class EmployeeAttendanceController < ApplicationController
   before_filter :login_required,:configuration_settings_for_hr
@@ -27,8 +27,8 @@ class EmployeeAttendanceController < ApplicationController
   filter_access_to :all
 
   def add_leave_types
-    @leave_types = EmployeeLeaveType.find(:all, :order => "name ASC",:conditions=>'status = 1')
-    @inactive_leave_types = EmployeeLeaveType.find(:all, :order => "name ASC",:conditions=>'status = 0')
+    @leave_types = EmployeeLeaveType.find(:all, :order => "name ASC",:conditions=> {:status => 1})
+    @inactive_leave_types = EmployeeLeaveType.find(:all, :order => "name ASC",:conditions=>{:status => 0})
     @leave_type = EmployeeLeaveType.new(params[:leave_type])
     @employee = Employee.all
     if request.post? and @leave_type.save
@@ -62,7 +62,7 @@ class EmployeeAttendanceController < ApplicationController
             flash[:notice] = "#{t('flash_msg12')}"
     end
     redirect_to :action => "add_leave_types"
-    
+
 
   end
 
@@ -80,7 +80,7 @@ class EmployeeAttendanceController < ApplicationController
             flash[:notice] = t('flash_msg8')
         end
     end
- 
+
   def update_employee_leave_reset_all
     @leave_count = EmployeeLeave.all
     @leave_count.each do |e|
@@ -114,12 +114,12 @@ class EmployeeAttendanceController < ApplicationController
   end
 
   def employee_leave_reset_by_department
-    @departments = EmployeeDepartment.find(:all, :conditions => "status = true", :order=> "name ASC")
+    @departments = EmployeeDepartment.find(:all, :conditions => {:status => true}, :order=> "name ASC")
 
   end
 
   def list_department_leave_reset
-    @leave_types = EmployeeLeaveType.find(:all, :conditions => "status = true")
+    @leave_types = EmployeeLeaveType.find(:all, :conditions => {:status => true})
     if params[:department_id] == ""
       render :update do |page|
         page.replace_html "department-list", :text => ""
@@ -263,7 +263,7 @@ class EmployeeAttendanceController < ApplicationController
 
 
   def register
-    @departments = EmployeeDepartment.find(:all, :conditions=>"status = true", :order=> "name ASC")
+    @departments = EmployeeDepartment.find(:all, :conditions=>{:status => true}, :order=> "name ASC")
     if request.post?
       unless params[:employee_attendance].nil?
         params[:employee_attendance].each_pair do |emp, att|
@@ -277,7 +277,7 @@ class EmployeeAttendanceController < ApplicationController
   end
 
   def update_attendance_form
-    @leave_types = EmployeeLeaveType.find(:all, :conditions=>"status = true", :order=>"name ASC")
+    @leave_types = EmployeeLeaveType.find(:all, :conditions=>{:status => true}, :order=>"name ASC")
     if params[:department_id] == ""
       render :update do |page|
         page.replace_html "attendance_form", :text => ""
@@ -292,11 +292,11 @@ class EmployeeAttendanceController < ApplicationController
   end
 
   def report
-    @departments = EmployeeDepartment.find(:all, :conditions => "status = true", :order=> "name ASC")
+    @departments = EmployeeDepartment.find(:all, :conditions => {:status => true}, :order=> "name ASC")
   end
 
   def update_attendance_report
-    @leave_types = EmployeeLeaveType.find(:all, :conditions => "status = true")
+    @leave_types = EmployeeLeaveType.find(:all, :conditions => {:status => true})
     if params[:department_id] == ""
       render :update do |page|
         page.replace_html "attendance_report", :text => ""
@@ -312,8 +312,8 @@ class EmployeeAttendanceController < ApplicationController
   def emp_attendance
     @employee = Employee.find(params[:id])
     @attendance_report = EmployeeAttendance.find_all_by_employee_id(@employee.id)
-    @leave_types = EmployeeLeaveType.find(:all, :conditions => "status = true")
-    @leave_count = EmployeeLeave.find_all_by_employee_id(@employee,:joins=>:employee_leave_type,:conditions=>"status = true")
+    @leave_types = EmployeeLeaveType.find(:all, :conditions => {:status => true})
+    @leave_count = EmployeeLeave.find_all_by_employee_id(@employee,:joins=>:employee_leave_type,:conditions=>{:status => true})
     @total_leaves = 0
     @leave_types.each do |lt|
       leave_count = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id,lt.id).size
@@ -329,10 +329,10 @@ class EmployeeAttendanceController < ApplicationController
     @employee = Employee.find(params[:id])
     @start_date = (params[:period][:start_date])
     @end_date = (params[:period][:end_date])
-    @leave_types = EmployeeLeaveType.find(:all, :conditions => "status = true")
+    @leave_types = EmployeeLeaveType.find(:all, :conditions => {:status => true})
     @employee_attendances = {}
     @leave_types.each do |lt|
-      @employee_attendances[lt.name] = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id,lt.id,:conditions=> "attendance_date between '#{@start_date.to_date}' and '#{@end_date.to_date}'")
+      @employee_attendances[lt.name] = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id,lt.id,:conditions=> {:attendance_date => @start_date.to_date..@end_date.to_date})
     end
     render :update do |page|
       page.replace_html "attendance-report", :partial => 'update_leave_history'
@@ -340,12 +340,12 @@ class EmployeeAttendanceController < ApplicationController
   end
 
   def leaves
-    @leave_types = EmployeeLeaveType.find(:all, :conditions=>"status = true")
+    @leave_types = EmployeeLeaveType.find(:all, :conditions=>{:status => true})
     @employee = Employee.find(params[:id])
     @reporting_employees = Employee.find_all_by_reporting_manager_id(@employee.id)
     @total_leave_count = 0
     @reporting_employees.each do |e|
-      @app_leaves = ApplyLeave.count(:conditions=>["employee_id =? AND viewed_by_manager =?", e.id, false])
+      @app_leaves = ApplyLeave.count(:conditions=>{:employee_id => e.id, :viewed_by_manager => false})
       @total_leave_count = @total_leave_count + @app_leaves
     end
 
@@ -362,7 +362,7 @@ class EmployeeAttendanceController < ApplicationController
     @applied_employee = Employee.find(@applied_leave.employee_id)
     @leave_type = EmployeeLeaveType.find(@applied_leave.employee_leave_types_id)
     @manager = @applied_employee.reporting_manager_id
-    @leave_count = EmployeeLeave.find_by_employee_id(@applied_employee.id,:conditions=> "employee_leave_type_id = '#{@leave_type.id}'")
+    @leave_count = EmployeeLeave.find_by_employee_id(@applied_employee.id,:conditions=> {:employee_leave_type_id => @leave_type.id})
   end
 
   def leave_app
@@ -389,12 +389,12 @@ class EmployeeAttendanceController < ApplicationController
       start_date = @applied_leave.start_date
       end_date = @applied_leave.end_date
       (start_date..end_date).each do |d|
-      
+
         unless(d.strftime('%A') == "Sunday")
           EmployeeAttendance.create(:attendance_date=>d, :employee_id=>@applied_employee.id,:employee_leave_type_id=>@applied_leave.employee_leave_types_id, :reason => @applied_leave.reason, :is_half_day => @applied_leave.is_half_day)
           att = EmployeeAttendance.find_by_attendance_date(d)
           EmployeeAttendance.update(att.id, :is_half_day => @applied_leave.is_half_day)
-          @reset_count = EmployeeLeave.find_by_employee_id(@applied_leave.employee_id, :conditions=> "employee_leave_type_id = '#{@applied_leave.employee_leave_types_id}'")
+          @reset_count = EmployeeLeave.find_by_employee_id(@applied_leave.employee_id, :conditions=> {:employee_leave_type_id => @applied_leave.employee_leave_types_id})
           leave_taken = @reset_count.leave_taken
           if @applied_leave.is_half_day
             leave_taken += 0.5
@@ -406,7 +406,7 @@ class EmployeeAttendanceController < ApplicationController
         end
       end
     end
-    
+
         flash[:notice]="#{t('flash6')} #{@applied_employee.first_name} from #{@applied_leave.start_date} to #{@applied_leave.end_date}"
     redirect_to :controller=>"employee_attendance", :action=>"leaves", :id=>@manager
   end
@@ -444,8 +444,8 @@ class EmployeeAttendanceController < ApplicationController
 
   def individual_leave_applications
     @employee = Employee.find(params[:id])
-    @pending_applied_leaves = ApplyLeave.find_all_by_employee_id(@employee.id, :conditions=> "approved = false AND viewed_by_manager = false", :order=>"start_date DESC")
-    @applied_leaves = ApplyLeave.paginate(:page => params[:page],:per_page=>10 , :conditions=>[ "employee_id = '#{@employee.id}'"], :order=>"start_date DESC")
+    @pending_applied_leaves = ApplyLeave.find_all_by_employee_id(@employee.id, :conditions=> {:approved => false, :viewed_by_manager => false}, :order=>"start_date DESC")
+    @applied_leaves = ApplyLeave.paginate(:page => params[:page],:per_page=>10 , :conditions=>{:employee_id => @employee.id}, :order=>"start_date DESC")
     render :partial => "individual_leave_applications"
   end
 
@@ -476,8 +476,8 @@ class EmployeeAttendanceController < ApplicationController
     end
     @employee = Employee.find(params[:employee_id])
 
-    @all_pending_applied_leaves = ApplyLeave.find_all_by_employee_id(params[:employee_id], :conditions=> "approved = false AND viewed_by_manager = false", :order=>"start_date DESC")
-    @all_applied_leaves = ApplyLeave.paginate(:page => params[:page], :per_page=>10, :conditions=> ["employee_id = '#{@employee.id}'"], :order=>"start_date DESC")
+    @all_pending_applied_leaves = ApplyLeave.find_all_by_employee_id(params[:employee_id], :conditions=> {:approved => false, :viewed_by_manager => false}, :order=>"start_date DESC")
+    @all_applied_leaves = ApplyLeave.paginate(:page => params[:page], :per_page=>10, :conditions=> {:employee_id => @employee.id}, :order=>"start_date DESC")
     render :update do |page|
       page.replace_html "all-application-view", :partial => "all_leave_application_lists"
     end
@@ -488,15 +488,15 @@ class EmployeeAttendanceController < ApplicationController
   def employee_attendance_pdf
     @employee = Employee.find(params[:id])
     @attendance_report = EmployeeAttendance.find_all_by_employee_id(@employee.id)
-    @leave_types = EmployeeLeaveType.find(:all, :conditions => "status = true")
-    @leave_count = EmployeeLeave.find_all_by_employee_id(@employee,:joins=>:employee_leave_type,:conditions=>"status = true")
+    @leave_types = EmployeeLeaveType.find(:all, :conditions => {:status => true})
+    @leave_count = EmployeeLeave.find_all_by_employee_id(@employee,:joins=>:employee_leave_type,:conditions=>{:status => true})
     @total_leaves = 0
     @leave_types.each do |lt|
       leave_count = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(@employee.id,lt.id).size
       @total_leaves = @total_leaves + leave_count
     end
     render :pdf => 'employee_attendance_pdf'
-          
+
 
     #        respond_to do |format|
     #            format.pdf { render :layout => false }

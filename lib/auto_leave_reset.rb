@@ -1,23 +1,23 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class AutoLeaveReset
-    
+
   def auto_leave_reset
     reset_status = Configuration.find_by_config_key("AutomaticLeaveReset")
     last_reset = Configuration.find_by_config_key("LastAutoLeaveReset")
@@ -40,18 +40,18 @@ class AutoLeaveReset
                   available_leave = balance_leave.to_f
                   available_leave += default_leave_count.to_f
                   leave_taken = 0
-            
+
                   e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
                 else
                   available_leave = default_leave_count.to_f
                   leave_taken = 0
-                          
+
                   e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
                 end
               else
                 available_leave = default_leave_count.to_f
                 leave_taken = 0
-             
+
                 e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
               end
             end
@@ -75,18 +75,18 @@ class AutoLeaveReset
                   available_leave = balance_leave.to_f
                   available_leave += default_leave_count.to_f
                   leave_taken = 0
-                          
+
                   e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
                 else
                   available_leave = default_leave_count.to_f
                   leave_taken = 0
-       
+
                   e.update_attributes(:leave_taken => 0.0,:leave_count => available_leave, :reset_date => Date.today)
                 end
               else
                 available_leave = default_leave_count.to_f
                 leave_taken = 0
-                 
+
                 e.update_attributes(:leave_taken => 0.0,:leave_count => available_leave, :reset_date => Date.today)
               end
             end

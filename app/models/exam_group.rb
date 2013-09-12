@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class ExamGroup < ActiveRecord::Base
   validates_presence_of :name
@@ -32,13 +32,13 @@ class ExamGroup < ActiveRecord::Base
   validates_associated :exams
 
   validates_uniqueness_of :cce_exam_category_id, :scope=>:batch_id, :message=>"already assigned for another Exam Group",:unless => lambda { |e| e.cce_exam_category_id.nil?}
-  
+
   def removable?
-    self.exams.reject{|e| e.removable?}.empty?
+    self.exams.reject { |e| e.removable? }.empty?
   end
 
   def before_save
-    self.exam_date = self.exam_date || Date.today 
+    self.exam_date = self.exam_date || Date.today
   end
 
   def before_validation
@@ -120,7 +120,7 @@ class ExamGroup < ActiveRecord::Base
   end
 
   def batch_average_percentage
-    
+
   end
 
   def subject_wise_batch_average_marks(subject_id)

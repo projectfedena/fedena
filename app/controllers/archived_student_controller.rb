@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class ArchivedStudentController < ApplicationController
   filter_access_to :all
@@ -23,7 +23,7 @@ class ArchivedStudentController < ApplicationController
   def profile
     @current_user = current_user
     @archived_student = ArchivedStudent.find(params[:id])
-    @additional_fields = StudentAdditionalField.all(:conditions=>"status = true")
+    @additional_fields = StudentAdditionalField.all(:conditions=>{:status => true})
   end
 
   def show
@@ -36,7 +36,7 @@ class ArchivedStudentController < ApplicationController
 
   def guardians
     @archived_student = ArchivedStudent.find(params[:id])
-    @parents = ArchivedGuardian.find(:all, :conditions=>"ward_id = #{@archived_student.id}")
+    @parents = ArchivedGuardian.find(:all, :conditions=>{:ward_id => @archived_student.id})
   end
 
 
@@ -51,7 +51,7 @@ class ArchivedStudentController < ApplicationController
     @student= ArchivedStudent.find params[:id]
     @batch = @student.batch
     @grouped_exams = GroupedExam.find_all_by_batch_id(@batch.id)
-    @normal_subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>"no_exams = false AND elective_group_id IS NULL AND is_deleted = false")
+    @normal_subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=> {:no_exams => false, :elective_group_id => nil, :is_deleted => false})
     @student_electives = StudentsSubject.find_all_by_student_id(@student.former_id,:conditions=>{:batch_id=>@batch.id})
     @elective_subjects = []
     @student_electives.each do |e|
@@ -59,7 +59,7 @@ class ArchivedStudentController < ApplicationController
     end
     @subjects = @normal_subjects+@elective_subjects
     @exam_groups = @batch.exam_groups
-    @exam_groups.reject!{|e| e.result_published==false}
+    @exam_groups.reject!{|e| !e.result_published? }
     @old_batches = @student.all_batches
   end
 
@@ -88,8 +88,8 @@ class ArchivedStudentController < ApplicationController
     else
       @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
     end
-    general_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>"elective_group_id IS NULL and is_deleted=false")
-    student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@batch.id}")
+    general_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>{:elective_group_id=>nil, :is_deleted=>false})
+    student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=> {:batch_id=>@batch.id})
     elective_subjects = []
     student_electives.each do |elect|
       elective_subjects.push Subject.find(elect.subject_id)
@@ -134,8 +134,8 @@ class ArchivedStudentController < ApplicationController
       @exam_group = ExamGroup.find(params[:exam_report][:exam_group_id])
       @batch = @exam_group.batch
       @student = @batch.students.first
-      general_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>"elective_group_id IS NULL")
-      student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@batch.id}")
+      general_subjects = Subject.find_all_by_batch_id(@batch.id, :conditions=>{:elective_group_id => nil})
+      student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>{:batch_id => @batch.id})
       elective_subjects = []
       student_electives.each do |elect|
         elective_subjects.push Subject.find(elect.subject_id)
@@ -153,8 +153,8 @@ class ArchivedStudentController < ApplicationController
       @student = ArchivedStudent.find(params[:student])
       @student.id=@student.former_id
       @batch = @student.batch
-      general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>"elective_group_id IS NULL")
-      student_electives = StudentsSubject.find_all_by_student_id(@student.former_id,:conditions=>"batch_id = #{@student.batch.id}")
+      general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>{:elective_group_id => nil})
+      student_electives = StudentsSubject.find_all_by_student_id(@student.former_id,:conditions=>{:batch_id => @student.batch.id})
       elective_subjects = []
       student_electives.each do |elect|
         elective_subjects.push Subject.find(elect.subject_id)
@@ -176,8 +176,8 @@ class ArchivedStudentController < ApplicationController
     @student = ArchivedStudent.find_by_former_id(params[:student])
     @student.id = @student.former_id
     @batch = @student.batch
-    general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>"elective_group_id IS NULL")
-    student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@student.batch.id}")
+    general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>{:elective_group_id => nil})
+    student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>{:batch_id => @student.batch.id})
     elective_subjects = []
     student_electives.each do |elect|
       elective_subjects.push Subject.find(elect.subject_id)
@@ -189,7 +189,7 @@ class ArchivedStudentController < ApplicationController
       @exams.push exam unless exam.nil?
     end
     render :pdf => 'generated_report_pdf'
-          
+
     #    respond_to do |format|
     #      format.pdf { render :layout => false }
     #    end
@@ -232,8 +232,8 @@ class ArchivedStudentController < ApplicationController
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
         @exam_groups.reject!{|e| e.result_published==false}
       end
-      general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>"elective_group_id IS NULL AND is_deleted=false")
-      student_electives = StudentsSubject.find_all_by_student_id(@student.former_id,:conditions=>"batch_id = #{@student.batch.id}")
+      general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>{:elective_group_id => nil, :is_deleted => false})
+      student_electives = StudentsSubject.find_all_by_student_id(@student.former_id,:conditions=>{:batch_id => @student.batch.id})
       elective_subjects = []
       student_electives.each do |elect|
         elective_subjects.push Subject.find(elect.subject_id)
@@ -243,7 +243,7 @@ class ArchivedStudentController < ApplicationController
 
   end
 
-    
+
   def generated_report4_pdf
 
     #grouped-exam-report-for-batch
@@ -261,8 +261,8 @@ class ArchivedStudentController < ApplicationController
         @exam_groups = ExamGroup.find_all_by_batch_id(@batch.id)
         @exam_groups.reject!{|e| e.result_published==false}
       end
-      general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>"elective_group_id IS NULL")
-      student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>"batch_id = #{@student.batch.id}")
+      general_subjects = Subject.find_all_by_batch_id(@student.batch.id, :conditions=>{:elective_group_id => nil})
+      student_electives = StudentsSubject.find_all_by_student_id(@student.id,:conditions=>{:batch_id => @student.batch.id})
       elective_subjects = []
       student_electives.each do |elect|
         elective_subjects.push Subject.find(elect.subject_id)
@@ -285,7 +285,7 @@ class ArchivedStudentController < ApplicationController
     student.id=student.former_id
     examgroup = ExamGroup.find(params[:examgroup])
     batch = student.batch
-    general_subjects = Subject.find_all_by_batch_id(batch.id, :conditions=>"elective_group_id IS NULL")
+    general_subjects = Subject.find_all_by_batch_id(batch.id, :conditions=>{:elective_group_id => nil})
     student_electives = StudentsSubject.find_all_by_student_id(student.id,:conditions=>"batch_id = #{batch.id}")
     elective_subjects = []
     student_electives.each do |elect|

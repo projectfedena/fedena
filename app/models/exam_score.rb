@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class ExamScore < ActiveRecord::Base
   belongs_to :student
@@ -26,9 +26,9 @@ class ExamScore < ActiveRecord::Base
 
 
   validates_presence_of :student_id
-  validates_presence_of :exam_id,:message =>  "Name/Batch Name/Subject Code is invalid"
+  validates_presence_of :exam_id,:message => "Name/Batch Name/Subject Code is invalid"
   validates_numericality_of :marks,:allow_nil => true
-  
+
 
 
   def check_existing
@@ -36,12 +36,12 @@ class ExamScore < ActiveRecord::Base
     if exam_score
       self.id = exam_score.id
       self.instance_variable_set("@new_record",false)    #If the record exists,then make the new record as a copy of the existing one and allow rails to chhose
-                                                         #the update operation instead of insert. 
+                                                         #the update operation instead of insert.
     end
     return true
   end
 
-  
+
   def validate
     unless self.marks.nil?
       unless self.exam.nil?
@@ -55,7 +55,7 @@ class ExamScore < ActiveRecord::Base
     end
   end
 
-  
+
   def calculate_percentage
     percentage = self.marks.to_f * 100 / self.exam.maximum_marks.to_f
   end
@@ -88,7 +88,7 @@ class ExamScore < ActiveRecord::Base
     total_marks
   end
 
-  
+
 
   def batch_wise_aggregate(student,batch)
     check = ExamGroup.find_all_by_batch_id(batch.id)
@@ -119,7 +119,7 @@ class ExamScore < ActiveRecord::Base
     else
       aggr = 'nil'
     end
-    
+
   end
 
   private

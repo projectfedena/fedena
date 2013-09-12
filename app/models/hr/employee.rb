@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class Employee < ActiveRecord::Base
   belongs_to  :employee_category
@@ -24,7 +24,7 @@ class Employee < ActiveRecord::Base
   belongs_to  :nationality, :class_name => 'Country'
   belongs_to  :user
   belongs_to  :reporting_manager,:class_name => "Employee"
-  
+
   has_many    :employees_subjects
   has_many    :subjects ,:through => :employees_subjects
   has_many    :timetable_entries
@@ -119,7 +119,7 @@ class Employee < ActiveRecord::Base
   end
   alias_method(:max_hours_day, :max_hours_per_day)
   alias_method(:max_hours_week, :max_hours_per_week)
-  
+
   def next_employee
     next_st = self.employee_department.employees.first(:conditions => "id>#{self.id}",:order => "id ASC")
     next_st ||= employee_department.employees.first(:order => "id ASC")
@@ -243,7 +243,7 @@ class Employee < ActiveRecord::Base
       self.destroy
     end
   end
- 
+
 
   def all_salaries(start_date,end_date)
     MonthlyPayslip.find_all_by_employee_id(self.id,:select =>"distinct salary_date" ,:order => 'salary_date desc',
@@ -303,5 +303,5 @@ class Employee < ActiveRecord::Base
   def former_dependency
     FedenaPlugin.check_dependency(self,"former")
   end
-  
+
 end

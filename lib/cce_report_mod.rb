@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 module CceReportMod
 
@@ -23,7 +23,7 @@ module CceReportMod
   ScholasticExam = Struct.new(:exam_id, :fa, :exam_group_id,:fa_group_ids, :sa, :overall)
   CoScholasticReport = Struct.new(:observation_group_id, :observations)
   CoScholasticObservation = Struct.new(:observation_id, :grade, :observation_name, :sort_order)
-    
+
   def self.included(base)
     base.send :unloadable
     base.send :attr_accessor, :batch_in_context_id
@@ -36,9 +36,9 @@ module CceReportMod
       begin
         self.batch_in_context_id = batch_id
       rescue ActiveRecord::MissingAttributeError
-        
+
       end
-      
+
     end
 
     def batch_in_context
@@ -54,7 +54,7 @@ module CceReportMod
       end
       @batch_in_context
     end
-  
+
     def individual_cce_report
       cr = MasterCceReport.new(:student_id=>id)
       sch_report = make_scholastic_report
@@ -73,7 +73,7 @@ module CceReportMod
     def delete_individual_cce_report_cache
       Rails.cache.delete(cce_report_cache_key)
     end
-  
+
     def all_subjects
       (elective_subjects + batch_in_context.subjects).uniq
     end
@@ -81,9 +81,9 @@ module CceReportMod
     def elective_subjects
       subjects.all(:conditions=>{:batch_id=>batch_in_context_id})
     end
-    
+
     private
-    
+
     def subject_fa_scores
       hsh = {}
       cce_reports.scholastic.all(:select=>"cce_reports.*,exams.subject_id,fa_criterias.fa_group_id",:joins=>'INNER JOIN fa_criterias ON cce_reports.observable_id = fa_criterias.id INNER JOIN exams ON exams.id = cce_reports.exam_id', :conditions=>["batch_id=?", batch_in_context_id]).group_by(&:subject_id).each do |key,val|
@@ -143,7 +143,7 @@ module CceReportMod
             examval.each do |fg_id, score|
               se.fa[fg_id]= to_grade(se.fa[fg_id])
             end
-              
+
           end
 
           sc.exams << se
@@ -200,6 +200,6 @@ module CceReportMod
     def cce_report_cache_key
       "cce_report/batch/#{self.batch_in_context_id}/#{self.class.name}/#{self.id}"
     end
-   
+
   end
 end

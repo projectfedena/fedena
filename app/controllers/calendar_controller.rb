@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class CalendarController < ApplicationController
   before_filter :login_required
@@ -31,8 +31,8 @@ class CalendarController < ApplicationController
         @show_month  = passed_date+1.month
       else
         @show_month = passed_date-1.month
-      end      
-    end    
+      end
+    end
     @start_date = @show_month.beginning_of_month
     @start_date_day = @start_date.wday
     @last_day = @show_month.end_of_month
@@ -67,7 +67,7 @@ class CalendarController < ApplicationController
     end
   end
 
- 
+
 
   def show_event_tooltip
     @user = current_user
@@ -108,7 +108,7 @@ class CalendarController < ApplicationController
       end
       @events = @common_event_array + @student_batch_not_common_event_array
     elsif @user.employee == true
-      user_employee = @user.employee_record 
+      user_employee = @user.employee_record
       department = user_employee.employee_department
       @employee_dept_not_common_event_array = []
       non_common_events.each do |h|
@@ -378,7 +378,7 @@ class CalendarController < ApplicationController
           if @user.student?
             subject=e.origin.subject
             if subject.elective_group_id == nil
-              build_student_events_hash(e,'student_batch_exam',@user.student_record.batch_id,@show_month)  
+              build_student_events_hash(e,'student_batch_exam',@user.student_record.batch_id,@show_month)
             else
               build_student_events_hash(e,'student_batch_exam',@user.student_record.batch_id,@show_month)  if (@user.student_record.students_subjects.map{|sub| sub.subject_id}.include?(subject.id))
             end

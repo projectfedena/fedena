@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class FinanceFeeStructureElement < ActiveRecord::Base
 
@@ -26,7 +26,7 @@ class FinanceFeeStructureElement < ActiveRecord::Base
   #  t.references :finance_fee
   #  t.references :parent
   #  t.references :fee_collection
-  
+
   belongs_to :batch
   belongs_to :student_category
   belongs_to :student
@@ -87,7 +87,7 @@ class FinanceFeeStructureElement < ActiveRecord::Base
         ")
       elements[:by_batch_and_fee_collection] = find(:all,
         :conditions => "
-   
+
         student_category_id IS NULL AND
         fee_collection_id = #{date}  AND
         student_id IS NULL AND
@@ -146,9 +146,9 @@ class FinanceFeeStructureElement < ActiveRecord::Base
         student_category_id IS NOT NULL
         ")
       elements
- 
+
       elements
-    
+
     end
 
   end

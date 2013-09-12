@@ -2,7 +2,7 @@
 hi:
   activerecord:
     attributes:
-        
+
       student:
         first_name: "प्रथम नाम"
         admission_no: "प्रवेश संख्या"
@@ -27,7 +27,7 @@ hi:
         course_name: "कोर्स का नाम"
         section_name: "अनुभाग नाम"
         code: "कोड"
-               
+
       additional_exam:
         start_time: "प्रारंभ समय"
         end_time: "समाप्ति समय"
@@ -245,11 +245,54 @@ hi:
       date_month: "%B %e"
 
 
-    day_names: [रविवार, सोमवार, मंगलवार, बुधवार, गुरुवार, शुक्रवार, शनिवार]
-    abbr_day_names: [रवि, ​​सोम, मंगल, बुध, गुरु, शुक्र, शनि]
-    month_names: [~, जनवरी, फरवरी, मार्च, अप्रैल, मई, जून, जुलाई, अगस्त, सितंबर, अक्टूबर, नवम्बर, दिसम्बर]
-    abbr_month_names: [~, जनवरी, फ़रवरी, मार्च, अप्रैल, मई, जून, जुलाई, अगस्त, सितम्बर, अक्टूबर, नवम्बर, दिसम्बर]
-    order: [ :day, :month, :year ]
+    day_names:
+      - रविवार
+      - सोमवार
+      - मंगलवार
+      - बुधवार
+      - गुरुवार
+      - शुक्रवार
+      - शनिवार
+    abbr_day_names:
+      - रवि
+      - ​​सोम
+      - मंगल
+      - बुध
+      - गुरु
+      - शुक्र
+      - शनि
+    month_names:
+      - ~
+      - जनवरी
+      - फरवरी
+      - मार्च
+      - अप्रैल
+      - मई
+      - जून
+      - जुलाई
+      - अगस्त
+      - सितंबर
+      - अक्टूबर
+      - नवम्बर
+      - दिसम्बर
+    abbr_month_names:
+      - ~
+      - जनवरी
+      - फ़रवरी
+      - मार्च
+      - अप्रैल
+      - मई
+      - जून
+      - जुलाई
+      - अगस्त
+      - सितम्बर
+      - अक्टूबर
+      - नवम्बर
+      - दिसम्बर
+    order:
+      - :day
+      - :month
+      - :year
 
   time:
     formats:
@@ -1806,7 +1849,7 @@ hi:
   sms_logs: "SMS Logs"
   view_all_messages: "View all messages and their status"
   enable_news_comment_moderation: "Enable News Comment Moderation"
-  
+
 #  modified timetable and timetable entries
   select_tte:  "एक समय सारिणी का चयन करें"
   work_allotment: "कार्य आबंटन"
@@ -2152,7 +2195,7 @@ hi:
     flash18: "रीसेट पासवर्ड ईमेल लिंक"
     flash19: "कोई ईमेल पते के साथ उपयोगकर्ता मौजूद"
     flash20: "उपयोगकर्ता एक ईमेल आईडी नहीं है!"
-    
+
 #student controller translation
   student:
     flash1: "अतिरिक्त बनाया क्षेत्र"
@@ -2172,7 +2215,7 @@ hi:
     flash15: "क्षमा करें! हटाने के जब निर्भर रिकॉर्ड मौजूद नहीं किया जा सका छात्र"
     flash20: "उपयोगकर्ता एक ईमेल आईडी नहीं है!"
     new_admission_link: "For new admission"
-  
+
    ## traslation for finance controller
   finance:
     flash1: "दान स्वीकार किए जाते हैं"
@@ -2201,11 +2244,11 @@ hi:
     flash26: "अतिरिक्त सफलतापूर्वक अद्यतन फीस"
     flash27: "अतिरिक्त फीस सफलतापूर्वक नष्ट कर दिया"
     flash28: "No batches found in selected category"
-    
+
 ## traslation for xml controller
   xml:
     flash1: "एक्सएमएल सेटिंग सफलतापूर्वक अद्यतन"
-  
+
 # translation for exam controller
   exam:
     flash1: "चयनित परीक्षा सफलतापूर्वक समूहीकृत|"
@@ -2230,7 +2273,7 @@ hi:
     flash20: "No Grouped Exams found for this Batch Group."
     flash21: "Select a Student to continue."
     flash22: "Select a Batch and atleast one option to continue."
-    
+
 # exams controller
   exams:
     flash1: "अद्यतित परीक्षा विवरण सफलतापूर्वक|"
@@ -2244,7 +2287,7 @@ hi:
     flash2: "परीक्षा समूह सफलतापूर्वक अद्यतित किया गया|"
     flash3: "परीक्षा समूह सफलतापूर्वक नष्ट कर दिया"
 
-      
+
 #additional exams controller
   additional_exams:
     flash1: "अतिरिक्त परीक्षा स्कोर अपडेट किया गया|"
@@ -2254,7 +2297,7 @@ hi:
 #additional exam groups controller
   additional_exam_groups:
     flash1: "अतिरिक्त परीक्षा समूह सफलतापूर्वक बचाया"
-    
+
  ## translation for timetable controller
   timetable:
     flash1: "समय सारिणी पहले ही प्रकाशित किया गया"
@@ -2277,7 +2320,7 @@ hi:
   exam_reports:
     flash1: "No Students in selected batch"
     flash2: "No student found in that exam group."
-    
+
   shared:
     user:
       key: "फू"

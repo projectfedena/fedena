@@ -1,31 +1,31 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 class Exam < ActiveRecord::Base
   validates_presence_of :start_time, :end_time
   validates_numericality_of :maximum_marks, :minimum_marks, :allow_nil => true
-  validates_presence_of :maximum_marks, :minimum_marks, :if => :validation_should_present?, :on=>:update
+  validates_presence_of :maximum_marks, :minimum_marks, :if => :validation_should_present?, :on => :update
   belongs_to :exam_group
   belongs_to :subject, :conditions => { :is_deleted => false }
   before_destroy :removable?
   before_save :update_exam_group_date
 
-  has_one :event ,:as=>:origin
+  has_one :event, :as => :origin
 
   has_many :exam_scores
   has_many :archived_exam_scores
@@ -42,7 +42,7 @@ class Exam < ActiveRecord::Base
       return true
     end
   end
-  
+
   def removable?
     self.exam_scores.reject{|es| es.marks.nil? and es.grading_level_id.nil?}.empty?
 
@@ -89,6 +89,7 @@ class Exam < ActiveRecord::Base
   end
 
   private
+
   def update_exam_group_date
     group = self.exam_group
     group.update_attribute(:exam_date, self.start_time.to_date) if !group.exam_date.nil? and self.start_time.to_date < group.exam_date
