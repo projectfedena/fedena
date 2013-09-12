@@ -1,11 +1,6 @@
 require 'spec_helper'
 
 describe Course do
-  before do
-    @course1 = FactoryGirl.create(:course, :is_deleted => false)
-    @course2 = FactoryGirl.create(:course, :is_deleted => true)
-  end
-
   context 'validate course' do
     it { should validate_presence_of(:course_name) }
     it { should validate_presence_of(:code) }
@@ -32,16 +27,19 @@ describe Course do
   end
 
   describe '#inactivate' do
+    let(:course) { Factory.create(:course) }
+
     it 'sets is_deleted true' do
-      @course1.inactivate
-      @course1.should be_is_deleted
+      course.inactivate
+      course.should be_is_deleted
     end
   end
 
   describe '#full_name' do
+    let(:course) { Course.new(:course_name => '1', :section_name => 'A') }
+
     it 'returns full name of course' do
-      @course = Course.new(:course_name => '1', :section_name => 'A')
-      @course.full_name.should == '1 A'
+      course.full_name.should == '1 A'
     end
   end
 
@@ -61,32 +59,39 @@ describe Course do
 
   describe '#has_batch_groups_with_active_batches' do
     context 'no active batches' do
+      before do
+        @course = FactoryGirl.create(:course)
+      end
+
       it 'returns false' do
-        @course1.has_batch_groups_with_active_batches.should be_false
+        @course.has_batch_groups_with_active_batches.should be_false
       end
     end
 
     context 'with active batches' do
       before do
-        @batch_groups = FactoryGirl.create(:batch_group, :course => @course1)
-        @batch_groups.batches = @course1.batches
+        @course = FactoryGirl.create(:course)
+        @batch_groups = FactoryGirl.create(:batch_group, :course => @course)
+        @batch_groups.batches = @course.batches
       end
 
       it 'returns true' do
-        @course1.has_batch_groups_with_active_batches.should be_true
+        @course.has_batch_groups_with_active_batches.should be_true
       end
     end
   end
 
   describe '#cce_enabled?' do
+    let!(:course) { Course.new }
+
     context 'cce is enabled in Configuration and grading type is CCE' do
       before do
         Configuration.stub(:cce_enabled?).and_return(true)
-        @course1.grading_type = Course::INVERT_GRADINGTYPES['CCE']
+        course.grading_type = Course::INVERT_GRADINGTYPES['CCE']
       end
 
       it 'returns true' do
-        @course1.should be_cce_enabled
+        course.should be_cce_enabled
       end
     end
 
@@ -96,31 +101,33 @@ describe Course do
       end
 
       it 'returns false' do
-        @course1.should_not be_cce_enabled
+        course.should_not be_cce_enabled
       end
     end
 
     context 'cce is enabled in Configuration and grading type is not CCE' do
       before do
         Configuration.stub(:cce_enabled?).and_return(true)
-        @course1.grading_type = Course::INVERT_GRADINGTYPES['GPA']
+        course.grading_type = Course::INVERT_GRADINGTYPES['GPA']
       end
 
       it 'returns false' do
-        @course1.should_not be_cce_enabled
+        course.should_not be_cce_enabled
       end
     end
   end
 
   describe '#gpa_enabled?' do
+    let!(:course) { Course.new }
+
     context 'gpa is enabled in Configuration and grading type is GPA' do
       before do
         Configuration.stub(:has_gpa?).and_return(true)
-        @course1.grading_type = Course::INVERT_GRADINGTYPES['GPA']
+        course.grading_type = Course::INVERT_GRADINGTYPES['GPA']
       end
 
       it 'returns true' do
-        @course1.should be_gpa_enabled
+        course.should be_gpa_enabled
       end
     end
 
@@ -130,57 +137,70 @@ describe Course do
       end
 
       it 'returns false' do
-        @course1.should_not be_gpa_enabled
+        course.should_not be_gpa_enabled
       end
     end
 
     context 'gpa is enabled in Configuration and grading type is not GPA' do
       before do
         Configuration.stub(:has_gpa?).and_return(true)
-        @course1.grading_type = Course::INVERT_GRADINGTYPES['CCE']
+        course.grading_type = Course::INVERT_GRADINGTYPES['CCE']
       end
 
       it 'returns false' do
-        @course1.should_not be_gpa_enabled
+        course.should_not be_gpa_enabled
       end
     end
   end
 
   describe '#normal_enabled?' do
+    let!(:course) { Course.new }
+
     context 'grading type is nil' do
-      before do
-        @course1.grading_type = nil
-      end
+      before { course.grading_type = nil }
 
       it 'returns true' do
-        @course1.should be_normal_enabled
+        course.should be_normal_enabled
       end
     end
 
     context 'grading type is 0' do
-      before do
-        @course1.grading_type = '0'
-      end
+      before { course.grading_type = '0' }
 
       it 'returns true' do
-        @course1.should be_normal_enabled
+        course.should be_normal_enabled
       end
     end
   end
 
   describe '.active' do
+    before do
+      @course1 = FactoryGirl.create(:course, :is_deleted => false)
+      @course2 = FactoryGirl.create(:course, :is_deleted => true)
+    end
+
     it 'returns active course' do
       Course.active.should == [@course1]
     end
   end
 
   describe '.deleted' do
+    before do
+      @course1 = FactoryGirl.create(:course, :is_deleted => false)
+      @course2 = FactoryGirl.create(:course, :is_deleted => true)
+    end
+
     it 'returns deleted course' do
       Course.deleted.should == [@course2]
     end
   end
 
   describe '.cce' do
+    before do
+      @course1 = FactoryGirl.create(:course, :is_deleted => false)
+      @course2 = FactoryGirl.create(:course, :is_deleted => true)
+    end
+
     it 'returns CCE course' do
       @course1.grading_type = Course::INVERT_GRADINGTYPES['CCE']
       @course1.save
