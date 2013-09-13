@@ -12,5 +12,4 @@ before_script:
   - gem update --system 1.8.25
   - cp config/database.travis.yml config/database.yml
 rvm:
-  - 1.8.7
   - 1.9.3

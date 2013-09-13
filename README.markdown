@@ -19,6 +19,7 @@ Fedena LTS is a fork of the fedena project, that provides:
 * Refactor and cleanup codebase
 * Extended support for other DBs such as PostgreSQL
 * Support Ruby 1.9.x
+* Cease support for Ruby 1.8.x
 
 The main reasons behind the decision to fork are:
 

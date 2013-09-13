@@ -20,12 +20,7 @@ group :test do
   gem 'database_cleaner'
   gem 'webrat'
   gem 'simplecov', :require => false
-
-  if RUBY_VERSION > '1.9'
-    gem 'debugger'
-  else
-    gem 'ruby-debug'
-  end
+  gem 'debugger'
 end
 
 gem 'will_paginate', '2.3.12'
