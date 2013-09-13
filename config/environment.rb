@@ -1,3 +1,4 @@
+Encoding.default_external = Encoding.default_internal = Encoding::UTF_8
 require File.join(File.dirname(__FILE__), 'boot')
 
 RAILS_GEM_VERSION = '2.3.18' unless defined? RAILS_GEM_VERSION
