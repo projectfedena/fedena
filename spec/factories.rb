@@ -181,4 +181,24 @@ FactoryGirl.define do
     batch
     student             { Factory.create(:student, :batch => batch) }
   end
+  
+  factory :event do
+    sequence(:title)       { |n| "event_title #{n}" }
+    sequence(:description) { |n| "event_description #{n}" }
+    start_date             { Date.today.to_datetime }
+    end_date               { (Date.today + 2.days).to_datetime }
+  end
+
+  factory :user_event do; end
+
+  factory :finance_fee do; end
+
+  factory :finance_fee_collection do
+    sequence(:name)  { |n| "FFC#{n}" }
+    start_date       { Date.today }
+    end_date         { Date.today + 1.days }
+    due_date         { Date.today + 2.days }
+    fee_category_id  1
+    is_deleted       false
+  end
 end
