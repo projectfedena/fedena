@@ -19,6 +19,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'webrat'
+  gem 'simplecov', :require => false
 
   if RUBY_VERSION > '1.9'
     gem 'debugger'
