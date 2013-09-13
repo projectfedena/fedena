@@ -47,7 +47,7 @@ class Batch < ActiveRecord::Base
   delegate :course_name,:section_name, :code, :to => :course
   delegate :grading_type, :cce_enabled?, :observation_groups, :cce_weightages, :to=>:course
 
-  validates_presence_of :name, :start_date, :end_date
+  validates_presence_of :name, :started_on, :ended_on
 
   attr_accessor :job_type
 
@@ -57,8 +57,8 @@ class Batch < ActiveRecord::Base
   named_scope :cce, { :select => 'batches.*', :joins => :course, :conditions => ['courses.grading_type = ?', GRADINGTYPES.invert['CCE']], :order => :code }
 
   def validate
-    if start_date && end_date && self.start_date > self.end_date
-      errors.add(:start_date, "#{t('should_be_before_end_date')}.")
+    if self.started_on && self.ended_on && self.started_on > self.ended_on
+      errors.add(:started_on, "#{t('should_be_before_end_date')}.")
     end
   end
 
@@ -113,7 +113,7 @@ class Batch < ActiveRecord::Base
   end
 
   def is_a_holiday_for_batch?(day)
-    return true if Event.holidays.count(:all, :conditions => ["start_date <=? AND end_date >= ?", day, day] ) > 0
+    return true if Event.holidays.count(:all, :conditions => ["started_on <=? AND ended_on >= ?", day, day] ) > 0
     false
   end
 
@@ -128,11 +128,11 @@ class Batch < ActiveRecord::Base
     return event_holidays #array of holiday event dates
   end
 
-  def return_holidays(start_date,end_date)
+  def return_holidays(started_on,ended_on)
     @common_holidays ||= Event.holidays.is_common
     @batch_holidays=self.events(:all,:conditions=>{:is_holiday=>true})
     all_holiday_events = @batch_holidays+@common_holidays
-    all_holiday_events.reject!{|h| !(h.start_date>=start_date and h.end_date<=end_date)}
+    all_holiday_events.reject!{|h| !(h.started_on >= started_on && h.ended_on <= ended_on)}
     event_holidays = []
     all_holiday_events.each do |event|
       event_holidays+=event.dates
@@ -140,16 +140,16 @@ class Batch < ActiveRecord::Base
     return event_holidays #array of holiday event dates
   end
 
-  def find_working_days(start_date,end_date)
+  def find_working_days(started_on,ended_on)
     start=[]
-    start<<self.start_date.to_date
-    start<<start_date.to_date
+    start<<self.started_on
+    start<<started_on
     stop=[]
-    stop<<self.end_date.to_date
-    stop<<end_date.to_date
+    stop<<self.ended_on
+    stop<<ended_on
     all_days=start.max..stop.min
     weekdays=Weekday.weekday_by_day(self.id).keys
-    holidays=return_holidays(start_date,end_date)
+    holidays=return_holidays(started_on,ended_on)
     non_holidays=all_days.to_a-holidays
     range=non_holidays.select{|d| weekdays.include? d.wday}
     return range
@@ -158,10 +158,10 @@ class Batch < ActiveRecord::Base
 
   def working_days(date)
     start=[]
-    start<<self.start_date.to_date
+    start<<self.started_on
     start<<date.beginning_of_month.to_date
     stop=[]
-    stop<<self.end_date.to_date
+    stop<<self.ended_on
     stop<<date.end_of_month.to_date
     all_days=start.max..stop.min
     weekdays=Weekday.weekday_by_day(self.id).keys
@@ -171,7 +171,7 @@ class Batch < ActiveRecord::Base
   end
 
   def academic_days
-    all_days=start_date.to_date..Date.today
+    all_days=started_on..Date.today
     weekdays=Weekday.weekday_by_day(self.id).keys
     holidays=holiday_event_dates
     non_holidays=all_days.to_a-holidays
@@ -222,16 +222,16 @@ class Batch < ActiveRecord::Base
     ranked_students = ranked_students.sort
   end
 
-  def find_attendance_rank(start_date,end_date)
+  def find_attendance_rank(started_on,ended_on)
     @students = Student.find_all_by_batch_id(self.id)
     ranked_students=[]
     unless @students.empty?
-      working_days = self.find_working_days(start_date,end_date).count
+      working_days = self.find_working_days(started_on,ended_on).count
       unless working_days == 0
         ordered_percentages = []
         student_percentages = []
         @students.each do|student|
-          leaves = Attendance.find(:all,:conditions=>["student_id = ? and month_date >= ? and month_date <= ?",student.id,start_date,end_date])
+          leaves = Attendance.find(:all,:conditions=>["student_id = ? and month_date >= ? and month_date <= ?",student.id,started_on,ended_on])
           absents = 0
           unless leaves.empty?
             leaves.each do|leave|
@@ -563,10 +563,10 @@ class Batch < ActiveRecord::Base
       unless subject.elective_group.nil?
         subject=subject.elective_group.subjects.first
       end
-      #          Timetable.all(:conditions=>["('#{starting_date}' BETWEEN start_date AND end_date) OR ('#{ending_date}' BETWEEN start_date AND end_date) OR (start_date BETWEEN '#{starting_date}' AND #{ending_date}) OR (end_date BETWEEN '#{starting_date}' AND '#{ending_date}')"])
-      entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["((? BETWEEN start_date AND end_date) OR (? BETWEEN start_date AND end_date) OR (start_date BETWEEN ? AND ?) OR (end_date BETWEEN ? AND ?)) AND timetable_entries.subject_id = ? AND timetable_entries.batch_id = ?",starting_date,ending_date,starting_date,ending_date,starting_date,ending_date,subject.id,id]).group_by(&:timetable_id)
+      #          Timetable.all(:conditions=>["('#{starting_date}' BETWEEN started_on AND ended_on) OR ('#{ending_date}' BETWEEN started_on AND ended_on) OR (started_on BETWEEN '#{starting_date}' AND #{ending_date}) OR (ended_on BETWEEN '#{starting_date}' AND '#{ending_date}')"])
+      entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["((? BETWEEN started_on AND ended_on) OR (? BETWEEN started_on AND ended_on) OR (started_on BETWEEN ? AND ?) OR (ended_on BETWEEN ? AND ?)) AND timetable_entries.subject_id = ? AND timetable_entries.batch_id = ?",starting_date,ending_date,starting_date,ending_date,starting_date,ending_date,subject.id,id]).group_by(&:timetable_id)
     else
-      entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["((? BETWEEN start_date AND end_date) OR (? BETWEEN start_date AND end_date) OR (start_date BETWEEN ? AND ?) OR (end_date BETWEEN ? AND ?)) AND timetable_entries.batch_id = ?",starting_date,ending_date,starting_date,ending_date,starting_date,ending_date,id]).group_by(&:timetable_id)
+      entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["((? BETWEEN started_on AND ended_on) OR (? BETWEEN started_on AND ended_on) OR (started_on BETWEEN ? AND ?) OR (ended_on BETWEEN ? AND ?)) AND timetable_entries.batch_id = ?",starting_date,ending_date,starting_date,ending_date,starting_date,ending_date,id]).group_by(&:timetable_id)
     end
     timetable_ids=entries.keys
     hsh2=Hash.new
@@ -578,7 +578,7 @@ class Batch < ActiveRecord::Base
         hsh[k]=val.group_by(&:day_of_week)
       end
       timetables.each do |tt|
-        ([starting_date,start_date.to_date,tt.start_date].max..[tt.end_date,end_date.to_date,ending_date,Configuration.default_time_zone_present_time.to_date].min).each do |d|
+        ([starting_date,started_on,tt.started_on].max..[tt.ended_on,ended_on,ending_date,Configuration.default_time_zone_present_time.to_date].min).each do |d|
           hsh2[d]=hsh[tt.id][d.wday]
         end
       end

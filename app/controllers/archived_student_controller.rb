@@ -100,9 +100,9 @@ class ArchivedStudentController < ApplicationController
     @config = Configuration.find_by_config_key('StudentAttendanceType')
     @student = ArchivedStudent.find(params[:id])
     @batch = Batch.find(params[:year])
-    @start_date = @batch.start_date.to_date
-    if @student.created_at.to_date > @batch.end_date.to_date
-      @end_date =  @batch.end_date.to_date
+    @start_date = @batch.started_on
+    if @student.created_at.to_date > @batch.ended_on
+      @end_date =  @batch.ended_on
     else
       @end_date =  @student.created_at.to_date
     end

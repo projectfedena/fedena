@@ -59,8 +59,8 @@ FactoryGirl.define do
 
   factory :batch do
     name       '2010/11'
-    start_date { Date.today }
-    end_date   { Date.today + 1.years }
+    started_on { Date.today }
+    ended_on   { Date.today + 1.years }
   end
 
   factory :batch_group do

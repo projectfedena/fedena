@@ -102,11 +102,11 @@ class Timetable < ActiveRecord::Base
 
   def self.register_range(batch,date)
     start=[]
-    start<<batch.start_date.to_date
+    start<<batch.started_on
     start<<date.beginning_of_month.to_date
     start<<find(:first,:select=>:start_date,:order=>:start_date).start_date.to_date
     stop=[]
-    stop<<batch.end_date.to_date
+    stop<<batch.ended_on
     stop<<date.end_of_month.to_date
     stop<<find(:last,:select=>:end_date,:order=>:end_date).end_date.to_date
     range=(start.max..stop.min).to_a - batch.holiday_event_dates

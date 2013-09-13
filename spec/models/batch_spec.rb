@@ -25,8 +25,8 @@ describe Batch do
   it { should belong_to(:course) }
 
   it { should validate_presence_of(:name) }
-  it { should validate_presence_of(:start_date) }
-  it { should validate_presence_of(:end_date) }
+  it { should validate_presence_of(:started_on) }
+  it { should validate_presence_of(:ended_on) }
 
   context 'a new batch' do
     before do
@@ -34,8 +34,9 @@ describe Batch do
     end
 
     it 'does not have start date after end date' do
-      @batch.start_date = Date.today
-      @batch.end_date = Date.today - 1
+
+      @batch.started_on = Date.today
+      @batch.ended_on = Date.today - 1
       @batch.should_not be_valid
     end
 

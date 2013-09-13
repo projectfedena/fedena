@@ -36,7 +36,7 @@ class StudentAttendanceController < ApplicationController
     if request.post?
       @detail_report = []
       if params[:advance_search][:mode]== 'Overall'
-        @start_date = @batch.start_date.to_date
+        @start_date = @batch.started_on
         @end_date = Date.today
         unless @config.config_value == 'Daily'
           unless params[:advance_search][:subject_id].empty?
@@ -128,11 +128,11 @@ class StudentAttendanceController < ApplicationController
     @config = Configuration.find_by_config_key('StudentAttendanceType')
     @student = Student.find(params[:id])
     @batch = Batch.find(params[:year])
-    @start_date = @batch.start_date.to_date
-    @end_date =  @batch.end_date.to_date
+    @start_date = @batch.started_on
+    @end_date =  @batch.ended_on
     unless @config.config_value == 'Daily'
       @academic_days=@batch.subject_hours(@start_date, @end_date, 0).values.flatten.compact.count
-      @student_leaves = SubjectLeave.find(:all,  :conditions =>{:batch_id=>@batch.id,:student_id=>@student.id,:month_date => @start_date..@end_date})
+      @student_leaves = SubjectLeave.find(:all, :conditions => {:batch_id => @batch.id, :student_id => @student.id, :month_date => @start_date..@end_date})
       @leaves= @student_leaves.count
       @leaves||=0
       @attendance = (@academic_days - @leaves)
