@@ -21,4 +21,5 @@ dump.rdb
 *.log
 *.sql.backup
 .~lock*
+coverage/
 
