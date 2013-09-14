@@ -234,7 +234,7 @@ class Student < ActiveRecord::Base
     #    end
   end
 
-  def has_retaken_exam(subject_id)
+  def has_retaken_exam?(subject_id)
     retaken_exams = PreviousExamScore.find_all_by_student_id(self.id)
     if retaken_exams.empty?
       return false
