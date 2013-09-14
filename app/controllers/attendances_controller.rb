@@ -210,7 +210,7 @@ class AttendancesController < ApplicationController
         if sms_setting.application_sms_active and @student.is_sms_enabled and sms_setting.attendance_sms_active
           recipients = []
           unless @config.config_value=="SubjectWise"
-            if @absentee.is_full_day
+            if @absentee.full_day?
               message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} #{@absentee.month_date}"
             elsif @absentee.forenoon == true and @absentee.afternoon == false
               message = "#{@student.first_name} #{@student.last_name} #{t('flash_msg7')} (forenoon) #{@absentee.month_date}"

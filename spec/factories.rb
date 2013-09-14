@@ -114,8 +114,8 @@ FactoryGirl.define do
     first_name              "John"
     employee_position_id    7
     employee_department_id  8
-    date_of_birth           Date.today - 18.years
-    joining_date            Date.today - 3.days
+    date_of_birth           { Date.today - 18.years }
+    joining_date            { Date.today - 3.days }
     nationality_id          9
   end
 
@@ -173,5 +173,12 @@ FactoryGirl.define do
   factory :employees_subject do
     employee
     subject
+  end
+  
+  factory :attendance do
+    sequence(:reason)   { |n| "reason#{n}" }
+    month_date          { Date.today }
+    batch
+    student             { Factory.create(:student, :batch => batch) }
   end
 end
