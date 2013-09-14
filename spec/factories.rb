@@ -150,4 +150,12 @@ FactoryGirl.define do
     sequence(:name)   { |n| "rank#{n}" }
     marks             90
   end
+
+  factory :fee_collection_discount do
+  end
+
+  factory :student_category do
+    name 'Category A'
+    is_deleted false
+  end
 end

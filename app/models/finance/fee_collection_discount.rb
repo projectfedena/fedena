@@ -15,17 +15,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class FeeCollectionDiscount < ActiveRecord::Base
 
   def category_name
-    c =StudentCategory.find(self.receiver_id)
-    c.name unless c.nil?
+    c = StudentCategory.find_by_id(self.receiver_id)
+    c.name if c
   end
 
   def student_name
-    s =Student.find(self.receiver_id)
-    "#{s.first_name} (#{s.admission_no})" unless s.nil?
+    s = Student.find_by_id(self.receiver_id)
+    "#{s.first_name} (#{s.admission_no})" if s
   end
 
 end
