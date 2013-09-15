@@ -460,19 +460,18 @@ class TimetableController < ApplicationController
     admin = EmployeeCategory.find_by_prefix('admin')
     admin_ids = []
     admin_ids << admin.id unless admin.nil?
-    @employees = Employee.all(:conditions=>["employee_category_id not in (?)",admin_ids],:include=>[:employee_grade,:employees_subjects])
+    @employees = Employee.all(:conditions => ['employee_category_id NOT IN (?)', admin_ids], :include => [:employee_grade, :employees_subjects])
     @emp_subs = []
-    @employees.map{|employee| (employee[:total_time] = ((employee.max_hours_week).to_i))}
+    @employees.map { |employee| (employee[:total_time] = ((employee.max_hours_week).to_i)) }
     if request.post?
       params[:employee_subjects].delete_blank
-      success,@error_obj = EmployeesSubject.allot_work(params[:employee_subjects])
-      if success
+      if EmployeesSubject.allot_work(params[:employee_subjects])
         flash[:notice] = t('work_allotment_success')
       else
         flash[:notice] = t('updated_with_errors')
       end
     end
-    @batches = Batch.active.scoped :include=>[{:subjects=>:employees},:course]
+    @batches = Batch.active.scoped(:include=>[{ :subjects => :employees }, :course])
     @subjects = @batches.collect(&:subjects).flatten
   end
   def timetable

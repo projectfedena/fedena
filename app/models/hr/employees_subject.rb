@@ -20,36 +20,41 @@ class EmployeesSubject < ActiveRecord::Base
   belongs_to :subject
   has_one :batch, :through => :subject
 
-  def self.allot_work(employee_subj_ids)
-    status,error_carrier = false, self.new
-    self.transaction do
-      emp_subjs = []
-      employee_subj_ids.each do |subj_id, emp_id|
-        a = self.find_or_create_by_subject_id(:subject_id => subj_id)
-        a.employee_id = emp_id
-        a.save
-        emp_subjs << a
-      end
+  def self.allot_work(subject_employee_ids)
+    status = true
+    employee_assignments = {}
 
-      employee_assignments = emp_subjs.group_by { |es| es.employee_id }
-      emp_assigned_hours = {}
-      employee_assignments.each do |emp_id,emp_subs|
-        emp_assigned_hours[emp_id] ||= {}
-        emp_assigned_hours[emp_id][:assigned] = emp_subs.sum{ |es| es.subject.max_weekly_classes } || 0
-        emp_assigned_hours[emp_id][:max]      = emp_subs.first.employee.max_hours_week || 0
-        emp_assigned_hours[emp_id][:emp_name] = emp_subs.first.employee.full_name
-      end
-      overloaded_emps = emp_assigned_hours.reject{ |emp_id, details| details[:assigned].to_i <= details[:max].to_i }
-      status = overloaded_emps.blank?
+    subject_employee_ids.each do |subject_id, employee_id|
+      employee_assignments[employee_id] ||= []
+      employee_assignments[employee_id] << subject_id
+    end
 
-      unless overloaded_emps.blank?
-        puts overloaded_emps.inspect
-        overloaded_emps.each do |emp_id, details|
-          error_carrier.errors.add_to_base("#{details[:emp_name]} has #{details[:assigned]-details[:max].to_i} extra periods assigned")
+    transaction do
+      employee_assignments.each do |employee_id, subject_ids|
+        if employee_overloaded?(employee_id, subject_ids)
+          status = false
+          raise ActiveRecord::Rollback
         end
-#        raise ActiveRecord::Rollback
+
+        subject_ids.each do |subject_id|
+          es = self.find_or_initialize_by_employee_id_and_subject_id(:subject_id => subject_id, :employee_id => employee_id)
+          if !es.save
+            status = false
+            raise ActiveRecord::Rollback
+          end
+        end
       end
     end
-    return [status, error_carrier]
+
+    status
+  end
+
+  def self.employee_overloaded?(employee_id, subject_ids)
+    employee = Employee.find(employee_id)
+    subjects = Subject.find(subject_ids)
+    assigned_hrs = subjects.sum { |s| s.max_weekly_classes } || 0
+    max_hrs      = employee.max_hours_per_week || 0
+
+    assigned_hrs > max_hrs
   end
 end
