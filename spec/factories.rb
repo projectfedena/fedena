@@ -51,6 +51,12 @@ FactoryGirl.define do
     batches { |batches| [batches.association(:batch)] }
   end
 
+  factory :class_timing do
+    sequence(:name) { |n| "Class Timing #{n}" }
+    start_time   { Time.current.change(hour: 5) }
+    end_time     { Time.current.change(hour: 10) }
+  end
+
   factory :batch do
     name       '2010/11'
     start_date { Date.today }
