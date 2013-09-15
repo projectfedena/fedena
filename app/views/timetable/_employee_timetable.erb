@@ -55,7 +55,7 @@
                           <% @timetable_entries[weekday.id][ct.id].each_pair do |k, tte| %>
                             <div class="sub_name">
                               <% if tte.subject.elective_group.nil? %>
-                                <%= formatted_timetable_cell(tte)  -%>
+                                <%= subject_code(tte)  -%>
                               <% else %>
                                 <%= @electives[tte.subject.elective_group_id].first.code %>
                               <% end %>
@@ -70,7 +70,7 @@
                       <% unless tte.blank? %>
                         <div class="sub_name">
                           <% if tte.last.subject.elective_group.nil? %>
-                            <%= formatted_timetable_cell(tte.last)  -%>
+                            <%= subject_code(tte.last)  -%>
                           <% else %>
                             <%= @electives[tte.last.subject.elective_group_id].first.code %>
                           <% end %>
@@ -85,7 +85,7 @@
                       <% unless tte.blank? %>
                         <% if tte.last.subject.elective_group.nil? %>
                           <div class="sub_name">
-                            <%= formatted_timetable_cell(tte.last)  -%>
+                            <%= subject_code(tte.last)  -%>
                           </div>
                         <% else %>
                           <div class="sub_name">

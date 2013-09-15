@@ -79,6 +79,7 @@ FactoryGirl.define do
     name               'Subject'
     code               'SUB'
     max_weekly_classes 8
+    batch
   end
 
   factory :exam do
@@ -157,5 +158,20 @@ FactoryGirl.define do
   factory :student_category do
     name 'Category A'
     is_deleted false
+  end
+
+  factory :timetable do
+    start_date { Time.now - 5.days }
+    end_date   { Time.now + 5.days }
+  end
+
+  factory :timetable_entry do
+    timetable
+    subject
+  end
+
+  factory :employees_subject do
+    employee
+    subject
   end
 end

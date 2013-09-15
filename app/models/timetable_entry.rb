@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class TimetableEntry < ActiveRecord::Base
   belongs_to :timetable
   belongs_to :batch
@@ -23,5 +22,5 @@ class TimetableEntry < ActiveRecord::Base
   belongs_to :subject
   belongs_to :employee
   belongs_to :weekday
-  delegate :day_of_week,:to=>:weekday
+  delegate :day_of_week, :to => :weekday
 end
