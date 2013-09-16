@@ -16,7 +16,7 @@ describe Attendance do
   end
 
   describe '.by_month' do
-    let(:attendance) { FactoryGirl.create(:attendance) }
+    let!(:attendance) { FactoryGirl.create(:attendance) }
 
     it 'returns all attendance by_month' do
       Attendance.by_month(Date.current).should == [attendance]
@@ -24,7 +24,7 @@ describe Attendance do
   end
 
   describe '.by_month_and_batch' do
-    let(:attendance) { FactoryGirl.create(:attendance) }
+    let!(:attendance) { FactoryGirl.create(:attendance) }
 
     it 'returns all attendance by_month_and_batch' do
       Attendance.by_month_and_batch(Date.current, attendance.batch_id).should == [attendance]
