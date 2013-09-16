@@ -79,6 +79,14 @@ Fedena is released under the Apache License 2.0.
 
 # Installation
 
+RubyGems has deprecated `Gem::SourceIndex#search` after 2011-11-01. Thus Slimgems should be installed instead to maintain compatability until the port to Rails 4 is finished.
+
+```
+gem install slimgems
+```
+
+Bootstraping with:
+
 ```
 bundle install
 bundle exec rake db:create db:migrate
