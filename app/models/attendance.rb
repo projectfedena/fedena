@@ -40,6 +40,6 @@ class Attendance < ActiveRecord::Base
     end
 
     def valid_month_date
-      errors.add("#{t('attendance_before_the_date_of_admission')}")  if month_date && student && month_date < student.admission_date
+      errors.add('month_date', "#{t('attendance_before_the_date_of_admission')}") if month_date && student && month_date < student.admission_date
     end
 end
