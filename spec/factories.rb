@@ -65,6 +65,12 @@ FactoryGirl.define do
 
   factory :batch_group do
     name       'batch'
+    course
+  end
+
+  factory :grouped_batch do
+    batch_group
+    batch
   end
 
   factory :exam_group do
@@ -188,14 +194,14 @@ FactoryGirl.define do
     employee
     subject
   end
-  
+
   factory :attendance do
     sequence(:reason)   { |n| "reason#{n}" }
     month_date          { Date.today }
     batch
     student             { Factory.create(:student, :batch => batch) }
   end
-  
+
   factory :event do
     sequence(:title)       { |n| "event_title #{n}" }
     sequence(:description) { |n| "event_description #{n}" }

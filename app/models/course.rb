@@ -56,7 +56,7 @@ class Course < ActiveRecord::Base
       return false
     else
       batch_groups.each do|b|
-        return true if b.has_active_batches
+        return true if b.has_active_batches?
       end
     end
     return false
