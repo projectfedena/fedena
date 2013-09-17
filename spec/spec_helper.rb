@@ -7,7 +7,6 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', 'config', 'envi
 require 'spec/autorun'
 require 'spec/rails'
 require 'database_cleaner'
-require 'rspec_candy/helpers'
 require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
@@ -60,6 +59,8 @@ Spec::Runner.configure do |config|
   # config.mock_with :flexmock
   # config.mock_with :rr
   #
+  config.mock_with MultiMock::Adapter.for(:rspec, :mocha)
+
   # == Notes
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner

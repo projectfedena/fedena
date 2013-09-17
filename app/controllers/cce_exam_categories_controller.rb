@@ -17,6 +17,7 @@
 # limitations under the License.
 class CceExamCategoriesController < ApplicationController
   before_filter :login_required
+  before_filter :find_category, :only => [:edit, :update, :destroy]
   filter_access_to :all
 
   def index
@@ -30,7 +31,7 @@ class CceExamCategoriesController < ApplicationController
   def create
     @category = CceExamCategory.new(params[:cce_exam_category])
     if @category.save
-      flash[:notice] = "Exam Category created successfully."
+      flash[:success] = "Exam Category created successfully."
       @categories = CceExamCategory.all
     else
       @error = true
@@ -38,15 +39,13 @@ class CceExamCategoriesController < ApplicationController
   end
 
   def edit
-    @category = CceExamCategory.find(params[:id])
   end
 
   def update
-    @category = CceExamCategory.find(params[:id])
     @category.name = params[:cce_exam_category][:name]
     @category.desc = params[:cce_exam_category][:desc]
     if @category.save
-      flash[:notice] = "Exam Category updated successfully."
+      flash[:success] = "Exam Category updated successfully."
       @categories = CceExamCategory.all
     else
       @error = true
@@ -54,12 +53,17 @@ class CceExamCategoriesController < ApplicationController
   end
 
   def destroy
-    @category = CceExamCategory.find(params[:id])
     if @category.destroy
-      flash[:notice] = "Exam Category Deleted"
+      flash[:success] = "Exam Category Deleted"
     else
-      flash[:notice] = "Exam category cannot be deleted"
+      flash[:error] = "Exam category cannot be deleted"
     end
-    redirect_to :action => "index"
+    redirect_to cce_exam_categories_path
+  end
+
+  private
+
+  def find_category
+    @category = CceExamCategory.find(params[:id])
   end
 end

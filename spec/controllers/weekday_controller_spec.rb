@@ -3,9 +3,8 @@ require 'spec_helper'
 describe WeekdayController do
   before do
     @user = FactoryGirl.create(:admin_user)
-
-    @weekday  = mock_model(Weekday)
-    @batch = mock_model(Batch)
+    @weekday  = Weekday.new
+    @batch = Batch.new
     Batch.stub(:find).with('1').and_return(@batch)
     @batch.stub(:is_deleted).and_return(false)
 

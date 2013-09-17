@@ -73,11 +73,27 @@ FactoryGirl.define do
     batch
   end
 
+  factory :fa_group do
+    name    'fa group name'
+    desc    'description'
+    cce_exam_category
+  end
+
+  factory :fa_criteria do
+    fa_name    'fa_criteria name'
+    desc    'description'
+  end
+
   factory :exam_group do
     sequence(:name) { |n| "Exam Group #{n}" }
     exam_date       { Date.today }
     exam_type       'grades'
-    sequence(:cce_exam_category_id) { |n| n }
+    cce_exam_category
+  end
+
+  factory :cce_exam_category do
+    name  'cat name'
+    desc  'description'
   end
 
   factory :grading_level do

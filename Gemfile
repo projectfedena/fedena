@@ -14,7 +14,6 @@ end
 
 group :test do
   gem 'codeclimate-test-reporter', :require => nil
-  gem 'rspec_candy'
   gem 'factory_girl'
   gem 'test-unit', '1.2.3'
   gem 'shoulda-matchers'
@@ -22,6 +21,8 @@ group :test do
   gem 'webrat'
   gem 'simplecov', :require => false
   gem 'debugger'
+  gem 'mocha', '0.12.8'
+  gem 'rspec-multi-mock', '0.1.0'
 end
 
 gem 'will_paginate', '2.3.12'

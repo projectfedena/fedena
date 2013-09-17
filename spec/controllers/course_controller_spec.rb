@@ -3,18 +3,13 @@ require 'spec_helper'
 describe CoursesController do
   before do
     @user       = Factory.create(:admin_user)
-
-    @course     = mock_model(Course)
-    @batch      = mock_model(Batch)
-
-    @course.stub(:batches).and_return(@batch)
-    @batch.stub(:active).and_return(@batch)
+    @course     = FactoryGirl.create(:course)
     sign_in(@user)
   end
 
   describe 'GET #index' do
     before do
-      Course.stub(:active).and_return(@course)
+      Course.expects(:active).returns(@course)
       get :index
     end
 
@@ -25,8 +20,7 @@ describe CoursesController do
 
   describe 'GET #show' do
     before do
-      Course.stub(:find).with('20').and_return(@course)
-      get :show, :id => '20'
+      get :show, :id => @course
     end
 
     it 'renders the show template' do
@@ -34,7 +28,7 @@ describe CoursesController do
     end
 
     it 'assigns the requested course as @course' do
-      assigns(:course).should equal(@course)
+      assigns(:course).should == @course
     end
   end
 
@@ -50,8 +44,7 @@ describe CoursesController do
 
   describe 'GET #edit' do
     before do
-      Course.stub(:find).with('20').and_return(@course)
-      get :edit, :id => '20'
+      get :edit, :id => @course
     end
 
     it 'renders the edit template' do
@@ -61,13 +54,12 @@ describe CoursesController do
 
   describe 'POST #create' do
     before do
-      @course = Course.new
       Course.stub(:new).with({ 'these' => 'params' }).and_return(@course)
     end
 
     context 'successful create' do
       before do
-        @course.stub(:save).and_return(true)
+        Course.any_instance.expects(:save).returns(true)
         post :create, :course => { 'these' => 'params' }
       end
 
@@ -76,13 +68,13 @@ describe CoursesController do
       end
 
       it 'redirects to the manage_course' do
-        response.should redirect_to(:controller=>"courses", :action=>"manage_course")
+        response.should redirect_to(:controller => "courses", :action => "manage_course")
       end
     end
 
     context 'failed create' do
       before do
-        @course.stub(:save).and_return(false)
+        Course.any_instance.expects(:save).returns(false)
         post :create, :course => { 'these' => 'params' }
       end
 
