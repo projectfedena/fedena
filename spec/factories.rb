@@ -24,7 +24,7 @@ FactoryGirl.define do
 
   factory :student do
     sequence(:admission_no) { |n| "#{n}" }
-    admission_date  Date.today
+    admission_date  Date.today - 10.days
     date_of_birth   Date.today - 5.years
     first_name      'John'
     middle_name     'K'
@@ -80,6 +80,14 @@ FactoryGirl.define do
     code               'SUB'
     max_weekly_classes 8
     batch
+  end
+
+  factory :subject_leave do
+    student   { FactoryGirl.create(:student) }
+    batch     { FactoryGirl.create(:batch) }
+    subject   { FactoryGirl.create(:general_subject) }
+    month_date              Date.current
+    sequence(:reason) { |n| "sample_reason#{n}" }
   end
 
   factory :exam do
