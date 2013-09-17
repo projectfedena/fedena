@@ -19,8 +19,6 @@ class ArchivedExamScore < ActiveRecord::Base
   belongs_to :student
   belongs_to :exam
   belongs_to :grading_level
-
-
   before_save :calculate_grade
 
   def calculate_percentage
@@ -54,7 +52,6 @@ class ArchivedExamScore < ActiveRecord::Base
     total_marks
   end
 
-
   def batch_wise_aggregate(student,batch)
     check = ExamGroup.find_all_by_batch_id(batch.id)
     var = []
@@ -84,10 +81,10 @@ class ArchivedExamScore < ActiveRecord::Base
     else
       aggr = 'nil'
     end
-
   end
 
   private
+
   def calculate_grade
     exam = self.exam
     exam_group = exam.exam_group
@@ -103,5 +100,4 @@ class ArchivedExamScore < ActiveRecord::Base
       end
     end
   end
-
 end
