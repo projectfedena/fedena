@@ -18,7 +18,7 @@
 class Weekday < ActiveRecord::Base
 
   WEEKDAYS = {
-    '0' => I18n.t('sunday')
+    '0' => I18n.t('sunday'),
     '1' => I18n.t('monday'),
     '2' => I18n.t('tuesday'),
     '3' => I18n.t('wednesday'),
