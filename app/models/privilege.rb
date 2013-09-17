@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class Privilege < ActiveRecord::Base
   has_and_belongs_to_many :users
   belongs_to :privilege_tag

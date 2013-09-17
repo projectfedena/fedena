@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class Exam < ActiveRecord::Base
   validates_presence_of :start_time, :end_time
   validates_numericality_of :maximum_marks, :minimum_marks, :allow_nil => true

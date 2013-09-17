@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class Liability < ActiveRecord::Base
   validates_presence_of :title, :amount
   validates_numericality_of :amount

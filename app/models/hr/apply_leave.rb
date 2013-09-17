@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class ApplyLeave < ActiveRecord::Base
   validates_presence_of :employee_leave_types_id, :start_date, :end_date, :reason
   belongs_to :employee

@@ -42,7 +42,7 @@
       <%= link_to_remote "#{t('remove_all')}",:url=>{:controller=>"student",:action=>"unassign_all_students",:id=>@batch.id,:id2=>@elective_subject.id} %></div>
     <% @students.each do |s| %>
       <li id="stud_<%=s.id%>" class="list<%=cycle('odd', 'even')%>">
-        <% stud_assigned = StudentsSubject.new() %>
+        <% stud_assigned = StudentsSubject.new %>
         <% assigned = stud_assigned.student_assigned(s.id,@elective_subject.id) %>
         <div class="category-name"> <%= s.full_name %></div>
         <% unless assigned.nil? %>

@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class StudentAdditionalDetail < ActiveRecord::Base
   belongs_to :student
   belongs_to :student_additional_field, :foreign_key=>'additional_field_id'

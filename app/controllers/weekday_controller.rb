@@ -15,13 +15,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class WeekdayController < ApplicationController
   before_filter :login_required
   filter_access_to :all
+
   def index
-    @batches = Batch.active
+    @batches  = Batch.active
     @weekdays = Weekday.default
+
     @day = ["#{t('sunday')}", "#{t('monday')}", "#{t('tuesday')}", "#{t('wednesday')}", "#{t('thursday')}", "#{t('friday')}", "#{t('saturday')}"]
     @days = ["0", "1", "2", "3", "4", "5", "6"]
   end
@@ -40,8 +41,6 @@ class WeekdayController < ApplicationController
       page.replace_html "weekdays", :partial => "weekdays"
     end
   end
-
-
 
   def create
     @day = ["#{t('sunday')}", "#{t('monday')}", "#{t('tuesday')}", "#{t('wednesday')}", "#{t('thursday')}", "#{t('friday')}", "#{t('saturday')}"]

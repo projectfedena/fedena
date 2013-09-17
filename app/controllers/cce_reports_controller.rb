@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class CceReportsController < ApplicationController
   before_filter :login_required
   #  before_filter :load_cce_report, :only=>[:show_student_wise_report]

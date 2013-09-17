@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class FinanceTransaction < ActiveRecord::Base
   belongs_to :category, :class_name => 'FinanceTransactionCategory', :foreign_key => 'category_id'
   belongs_to :student

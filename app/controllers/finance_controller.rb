@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class FinanceController < ApplicationController
   before_filter :login_required,:configuration_settings_for_finance
   filter_access_to :all
@@ -125,7 +124,7 @@ class FinanceController < ApplicationController
   end
 
   def income_create
-    @finance_transaction = FinanceTransaction.new()
+    @finance_transaction = FinanceTransaction.new
     @categories = FinanceTransactionCategory.income_categories
     if @categories.empty?
       flash[:notice] = "#{t('flash5')}"
@@ -703,7 +702,7 @@ class FinanceController < ApplicationController
       unless @batches.nil?
         unless @batches.empty?
           @batches.each do |b|
-            @finance_fee_category = FinanceFeeCategory.new()
+            @finance_fee_category = FinanceFeeCategory.new
             @finance_fee_category.name = params[:finance_fee_category][:name]
             @finance_fee_category.description = params[:finance_fee_category][:description]
             @finance_fee_category.batch_id = b
@@ -2051,7 +2050,7 @@ class FinanceController < ApplicationController
 
     largest_value += 500
 
-    bargraph = BarFilled.new()
+    bargraph = BarFilled.new
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 3;
@@ -2196,13 +2195,13 @@ class FinanceController < ApplicationController
 
     largest_value += 500
 
-    bargraph = BarFilled.new()
+    bargraph = BarFilled.new
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 3;
     bargraph.text = "#{t('for_the_period')} #{start_date}-#{end_date}"
     bargraph.values = data
-    bargraph2 = BarFilled.new()
+    bargraph2 = BarFilled.new
     bargraph2.width = 1;
     bargraph2.colour = '#000000';
     bargraph2.dot_size = 3;
@@ -2305,7 +2304,7 @@ class FinanceController < ApplicationController
 
     largest_value += 500
 
-    bargraph = BarFilled.new()
+    bargraph = BarFilled.new
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 3;

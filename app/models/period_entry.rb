@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class PeriodEntry < ActiveRecord::Base
   belongs_to :batch
   belongs_to :class_timing

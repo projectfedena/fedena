@@ -15,13 +15,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class SmsController < ApplicationController
   before_filter :login_required
   filter_access_to :all
 
   def index
-    @sms_setting = SmsSetting.new()
+    @sms_setting = SmsSetting.new
     @parents_sms_enabled = SmsSetting.find_by_settings_key("ParentSmsEnabled")
     @students_sms_enabled = SmsSetting.find_by_settings_key("StudentSmsEnabled")
     @employees_sms_enabled = SmsSetting.find_by_settings_key("EmployeeSmsEnabled")
@@ -64,7 +63,7 @@ class SmsController < ApplicationController
     if request.post?
       unless params[:send_sms][:student_ids].nil?
         student_ids = params[:send_sms][:student_ids]
-        sms_setting = SmsSetting.new()
+        sms_setting = SmsSetting.new
         @recipients=[]
         student_ids.each do |s_id|
           student = Student.find(s_id)
@@ -103,7 +102,7 @@ class SmsController < ApplicationController
     if request.post?
       unless params[:send_sms][:batch_ids].nil?
         batch_ids = params[:send_sms][:batch_ids]
-        sms_setting = SmsSetting.new()
+        sms_setting = SmsSetting.new
         @recipients = []
         batch_ids.each do |b_id|
           batch = Batch.find(b_id)
@@ -136,7 +135,7 @@ class SmsController < ApplicationController
 
   def sms_all
     batches = Batch.active
-    sms_setting = SmsSetting.new()
+    sms_setting = SmsSetting.new
     @recipients = []
     batches.each do |batch|
       batch_students = batch.students
@@ -178,7 +177,7 @@ class SmsController < ApplicationController
     if request.post?
       unless params[:send_sms][:employee_ids].nil?
         employee_ids = params[:send_sms][:employee_ids]
-        sms_setting = SmsSetting.new()
+        sms_setting = SmsSetting.new
         @recipients=[]
         employee_ids.each do |e_id|
           employee = Employee.find(e_id)
@@ -208,7 +207,7 @@ class SmsController < ApplicationController
     if request.post?
       unless params[:send_sms][:dept_ids].nil?
         dept_ids = params[:send_sms][:dept_ids]
-        sms_setting = SmsSetting.new()
+        sms_setting = SmsSetting.new
         @recipients = []
         dept_ids.each do |d_id|
           department = EmployeeDepartment.find(d_id)

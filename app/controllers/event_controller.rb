@@ -19,7 +19,7 @@
 class EventController < ApplicationController
   before_filter :login_required
   filter_access_to :all
-  
+
   def index
     @events = Event.new(params[:events])
     if params[:id].nil?
@@ -160,7 +160,7 @@ class EventController < ApplicationController
       end
       @users = User.active.find(:all)
       reminder_recipient_ids << @users.map(&:id)
-      sms_setting = SmsSetting.new()
+      sms_setting = SmsSetting.new
       if sms_setting.application_sms_active and sms_setting.event_news_sms_active
         recipients = []
         @users.each do |u|
@@ -193,7 +193,7 @@ class EventController < ApplicationController
       end
     else
       recipients = []
-      sms_setting = SmsSetting.new()
+      sms_setting = SmsSetting.new
       batch_event = BatchEvent.find_all_by_event_id(event.id)
       unless batch_event.empty?
         batch_event.each do |b|
@@ -255,7 +255,7 @@ class EventController < ApplicationController
     batch_event = BatchEvent.find(:all, :conditions=>"event_id = #{params[:id]}")
     dept_event = EmployeeDepartmentEvent.find(:all, :conditions=>"event_id = #{params[:id]}")
     event.destroy
-    
+
     batch_event.each { |x| x.destroy } unless batch_event.nil?
     dept_event.each { |x| x.destroy } unless dept_event.nil?
     flash[:notice] ="#{t('flash3')}"

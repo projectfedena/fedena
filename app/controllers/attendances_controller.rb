@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class AttendancesController < ApplicationController
   before_filter :login_required
   filter_access_to :all
@@ -205,7 +204,7 @@ class AttendancesController < ApplicationController
     end
     respond_to do |format|
       if @absentee.save
-        sms_setting = SmsSetting.new()
+        sms_setting = SmsSetting.new
         message = ""
         if sms_setting.application_sms_active and @student.is_sms_enabled and sms_setting.attendance_sms_active
           recipients = []

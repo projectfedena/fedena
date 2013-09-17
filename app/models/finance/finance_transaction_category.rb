@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class FinanceTransactionCategory < ActiveRecord::Base
   has_many :finance_transactions,:class_name => 'FinanceTransaction', :foreign_key => 'category_id'
   has_one  :trigger, :class_name => "FinanceTransactionTrigger", :foreign_key => "category_id"

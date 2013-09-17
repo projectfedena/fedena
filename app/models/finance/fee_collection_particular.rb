@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class FeeCollectionParticular < ActiveRecord::Base
   belongs_to :finance_fee_collection
   belongs_to :student_category

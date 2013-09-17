@@ -16,6 +16,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 class Weekday < ActiveRecord::Base
+
+  WEEKDAYS = {
+    '0' => I18n.t('sunday')
+    '1' => I18n.t('monday'),
+    '2' => I18n.t('tuesday'),
+    '3' => I18n.t('wednesday'),
+    '4' => I18n.t('thursday'),
+    '5' => I18n.t('friday'),
+    '6' => I18n.t('saturday')
+  }
+
   belongs_to :batch
   has_many :timetable_entries , :dependent => :destroy
 

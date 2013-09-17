@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class StudentPreviousSubjectMark < ActiveRecord::Base
   belongs_to :student
   validates_presence_of :subject, :mark

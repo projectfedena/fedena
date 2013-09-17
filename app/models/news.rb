@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class News < ActiveRecord::Base
   belongs_to :author, :class_name => 'User'
   has_many :comments, :class_name => 'NewsComment'

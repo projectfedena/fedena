@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class UserController < ApplicationController
   layout :choose_layout
   before_filter :login_required, :except => [:forgot_password, :login, :set_new_password, :reset_password,:first_login_change_password]

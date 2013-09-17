@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class EmployeeController < ApplicationController
   before_filter :login_required,:configuration_settings_for_hr
   filter_access_to :all
@@ -391,7 +390,7 @@ class EmployeeController < ApplicationController
     @employee = Employee.find(params[:id])
     @selected_value = Configuration.default_country
     if request.post? and @employee.update_attributes(params[:employee])
-      sms_setting = SmsSetting.new()
+      sms_setting = SmsSetting.new
       if sms_setting.application_sms_active and sms_setting.employee_sms_active
         recipient = ["#{@employee.mobile_phone}"]
         message = "#{t('joining_info')} #{@employee.first_name}. #{t('username')}: #{@employee.employee_number}, #{t('password')}: #{@employee.employee_number}123. #{t('change_password_after_login')}"

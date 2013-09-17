@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class Attendance < ActiveRecord::Base
   belongs_to :student
   belongs_to :batch
@@ -36,7 +35,7 @@ class Attendance < ActiveRecord::Base
 
   private
 
-    def student_current_batch 
+    def student_current_batch
       errors.add('batch_id', "attendance is not marked for present batch") if student && student.batch_id != batch_id
     end
 

@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class NewsController < ApplicationController
   before_filter :login_required
   filter_access_to :all
@@ -24,7 +23,7 @@ class NewsController < ApplicationController
     @news = News.new(params[:news])
     @news.author = current_user
     if request.post? and @news.save
-      sms_setting = SmsSetting.new()
+      sms_setting = SmsSetting.new
       if sms_setting.application_sms_active
         students = Student.find(:all,:select=>'phone2',:conditions=>'is_sms_enabled = true')
       end

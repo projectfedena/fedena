@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class StudentController < ApplicationController
   filter_access_to :all
   before_filter :login_required
@@ -60,7 +59,7 @@ class StudentController < ApplicationController
         @status = @student.save
       end
       if @status
-        sms_setting = SmsSetting.new()
+        sms_setting = SmsSetting.new
         if sms_setting.application_sms_active and @student.is_sms_enabled
           recipients = []
           message = "#{t('student_admission_done')} #{@student.admission_no} #{t('password_is')} #{@student.admission_no}123"
@@ -93,7 +92,7 @@ class StudentController < ApplicationController
     end
     return if params[:immediate_contact].nil?
     if request.post?
-      sms_setting = SmsSetting.new()
+      sms_setting = SmsSetting.new
       @student = Student.update(@student.id, :immediate_contact_id => params[:immediate_contact][:contact])
       if sms_setting.application_sms_active and sms_setting.student_admission_sms_active and @student.is_sms_enabled
         recipients = []
@@ -118,7 +117,7 @@ class StudentController < ApplicationController
     end
     return if params[:immediate_contact].nil?
     if request.post?
-      sms_setting = SmsSetting.new()
+      sms_setting = SmsSetting.new
       @student = Student.update(@student.id, :immediate_contact_id => params[:immediate_contact][:contact])
       if sms_setting.application_sms_active and sms_setting.student_admission_sms_active and @student.is_sms_enabled
         recipients = []
@@ -1201,7 +1200,7 @@ class StudentController < ApplicationController
   #      end
   #    end
   #
-  #    bargraph = BarFilled.new()
+  #    bargraph = BarFilled.new
   #    bargraph.width = 1;
   #    bargraph.colour = '#bb0000';
   #    bargraph.dot_size = 5;
@@ -1275,7 +1274,7 @@ class StudentController < ApplicationController
   #      data2 << class_avg
   #    end
   #
-  #    bargraph = BarFilled.new()
+  #    bargraph = BarFilled.new
   #    bargraph.width = 1;
   #    bargraph.colour = '#bb0000';
   #    bargraph.dot_size = 5;
@@ -1329,7 +1328,7 @@ class StudentController < ApplicationController
   #    data << student.annual_weighted_marks(student.course.academic_year_id)
   #    data2 << t
   #
-  #    bargraph = BarFilled.new()
+  #    bargraph = BarFilled.new
   #    bargraph.width = 1;
   #    bargraph.colour = '#bb0000';
   #    bargraph.dot_size = 5;

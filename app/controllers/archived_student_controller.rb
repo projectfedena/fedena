@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class ArchivedStudentController < ApplicationController
   filter_access_to :all
   before_filter :login_required
@@ -307,7 +306,7 @@ class ArchivedStudentController < ApplicationController
       end
     end
 
-    bargraph = BarFilled.new()
+    bargraph = BarFilled.new
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 5;
@@ -408,7 +407,7 @@ class ArchivedStudentController < ApplicationController
 
     student.all_batches.each do |b|
       x_labels << b.name
-      exam = ArchivedExamScore.new()
+      exam = ArchivedExamScore.new
       data << exam.batch_wise_aggregate(student,b)
     end
 

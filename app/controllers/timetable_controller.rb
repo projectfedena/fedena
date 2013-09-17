@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class TimetableController < ApplicationController
   before_filter :login_required
   before_filter :protect_other_student_data
@@ -23,7 +22,6 @@ class TimetableController < ApplicationController
   filter_access_to :all
 
   def new_timetable
-
     if request.post?
       @timetable=Timetable.new(params[:timetable])
       @error=false

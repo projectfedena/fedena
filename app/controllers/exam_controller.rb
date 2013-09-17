@@ -15,7 +15,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 class ExamController < ApplicationController
   before_filter :login_required
   before_filter :protect_other_student_data
@@ -82,7 +81,7 @@ class ExamController < ApplicationController
     unless @exams.empty?
       ExamGroup.update(@exam_group.id,:is_published=>true) if params[:status] == "schedule"
       ExamGroup.update(@exam_group.id,:result_published=>true) if params[:status] == "result"
-      sms_setting = SmsSetting.new()
+      sms_setting = SmsSetting.new
       if sms_setting.application_sms_active and sms_setting.exam_result_schedule_sms_active
         students = @batch.students
         students.each do |s|
@@ -1390,7 +1389,7 @@ class ExamController < ApplicationController
       end
     end
 
-    bargraph = BarFilled.new()
+    bargraph = BarFilled.new
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 5;
@@ -1489,7 +1488,7 @@ class ExamController < ApplicationController
 
     student.all_batches.each do |b|
       x_labels << b.name
-      exam = ExamScore.new()
+      exam = ExamScore.new
       data << exam.batch_wise_aggregate(student,b)
     end
 
