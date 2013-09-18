@@ -17,15 +17,14 @@
 # limitations under the License.
 class EmployeeAttendance < ActiveRecord::Base
   validates_presence_of :employee_leave_type_id, :reason
-  validates_uniqueness_of :employee_id, :scope=> :attendance_date
+  validates_uniqueness_of :employee_id, :scope => :attendance_date
   belongs_to :employee
   belongs_to :employee_leave_type
-  before_save :validate
+  validate :date_marked_is_earlier_than_joining_date
 
-  def validate
-     if self.attendance_date.to_date < self.employee.joining_date.to_date
-     errors.add(:employee_attendance,"#{t('date_marked_is_earlier_than_joining_date')}")
-    end
+  private
+  def date_marked_is_earlier_than_joining_date
+   errors.add(:employee_attendance,"#{t('date_marked_is_earlier_than_joining_date')}") if self.attendance_date && self.employee && self.employee.joining_date && self.attendance_date.to_date < self.employee.joining_date.to_date
   end
 
 end

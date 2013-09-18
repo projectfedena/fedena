@@ -84,6 +84,19 @@ FactoryGirl.define do
     desc    'description'
   end
 
+  factory :employee_leave_type do
+    name      'employ leave type name'
+    sequence(:code) { |n| "elt code#{n}" }
+    max_leave_count    50
+  end
+
+  factory :employee_attendance do
+    employee_leave_type { association(:employee_leave_type) }
+    employee            { association(:employee) }
+    reason    'reason'
+    attendance_date    { Date.current }
+  end
+
   factory :exam_group do
     sequence(:name) { |n| "Exam Group #{n}" }
     exam_date       { Date.today }
