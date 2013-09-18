@@ -28,7 +28,7 @@ class Weekday < ActiveRecord::Base
   }
 
   belongs_to :batch
-  has_many :timetable_entries , :dependent => :destroy
+  has_many :timetable_entries, :dependent => :destroy
 
   default_scope :order => 'weekday ASC'
   named_scope   :default, :conditions => { :batch_id => nil, :is_deleted => false }
