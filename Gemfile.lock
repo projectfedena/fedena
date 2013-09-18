@@ -13,6 +13,8 @@ GEM
     activesupport (2.3.18)
     calendar_date_select (1.16.1)
     chardet (0.9.0)
+    codeclimate-test-reporter (0.0.9)
+      simplecov (>= 0.7.1, < 1.0.0)
     columnize (0.3.6)
     daemons (1.0.10)
     database_cleaner (1.1.1)
@@ -88,6 +90,7 @@ PLATFORMS
 
 DEPENDENCIES
   calendar_date_select (= 1.16.1)
+  codeclimate-test-reporter
   database_cleaner
   debugger
   declarative_authorization

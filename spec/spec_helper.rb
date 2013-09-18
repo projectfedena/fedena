@@ -8,6 +8,8 @@ require 'spec/autorun'
 require 'spec/rails'
 require 'database_cleaner'
 require 'rspec_candy/helpers'
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
 
 # Uncomment the next line to use webrat's matchers
 #require 'webrat/integrations/rspec-rails'

@@ -13,6 +13,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'codeclimate-test-reporter', :require => nil
   gem 'rspec_candy'
   gem 'factory_girl'
   gem 'test-unit', '1.2.3'
