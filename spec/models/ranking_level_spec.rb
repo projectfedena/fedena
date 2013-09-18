@@ -14,6 +14,13 @@ describe RankingLevel do
   it { should validate_presence_of(:name) }
   it { should validate_numericality_of(:subject_count) }
 
-  xit { should validate_numericality_of(:gpa).with_message('is not a number') }
-  xit { should validate_numericality_of(:marks).with_message('is not a number') }
+  it do
+    pending 'TO FIX'
+    should validate_numericality_of(:gpa).with_message('is not a number')
+  end
+
+  it do
+    pending 'TO FIX'
+    should validate_numericality_of(:marks).with_message('is not a number')
+  end
 end
