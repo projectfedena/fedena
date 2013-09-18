@@ -13,43 +13,50 @@ describe Event do
 
   describe '.holidays' do
     context 'holidays event is found' do
-      let!(:holiday_event) { FactoryGirl.create(:event, :is_holiday => true) }
+      let!(:holiday_event1) { FactoryGirl.create(:event, :is_holiday => true) }
+      let!(:holiday_event2) { FactoryGirl.create(:event, :is_holiday => false) }
 
       it 'returns holiday event' do
-        Event.holidays.should == [holiday_event]
+        Event.holidays.should == [holiday_event1]
       end
     end
 
     context 'holidays event is not found' do
-      let!(:non_holiday_event) { FactoryGirl.create(:event, :is_holiday => false) }
+      let!(:non_holiday_event1) { FactoryGirl.create(:event, :is_holiday => true) }
+      let!(:non_holiday_event2) { FactoryGirl.create(:event, :is_holiday => false) }
 
       it 'returns no holiday event' do
-        Event.holidays.should_not == [non_holiday_event]
+        Event.holidays.should_not == [non_holiday_event2]
       end
     end
   end
 
   describe '.exams' do
     context 'exam event is found' do
-      let!(:exams_event) { FactoryGirl.create(:event, :is_exam => true) }
+      let!(:exams_event1) { FactoryGirl.create(:event, :is_exam => true) }
+      let!(:exams_event2) { FactoryGirl.create(:event, :is_exam => false) }
 
       it 'returns exam event' do
-        Event.exams.should == [exams_event]
+        Event.exams.should == [exams_event1]
       end
     end
 
     context 'exam event is not found' do
-      let!(:non_exams_event) { FactoryGirl.create(:event, :is_exam => false) }
+      let!(:non_exams_event1) { FactoryGirl.create(:event, :is_exam => false) }
+      let!(:non_exams_event2) { FactoryGirl.create(:event, :is_exam => true) }
 
       it 'returns no exam event' do
-        Event.exams.should_not == [non_exams_event]
+        Event.exams.should_not == [non_exams_event1]
       end
     end
   end
 
   describe '#valid_date' do
     context 'end_date is before start_date' do
-      let(:event) { FactoryGirl.build(:event, :start_date => Date.current, :end_date => 1.days.ago) }
+      let!(:event) { FactoryGirl.build(:event, 
+        :start_date => Date.current, 
+        :end_date   => Date.current - 2.days) 
+      }
 
       it 'returns validate error' do
         event.should be_invalid
@@ -61,7 +68,7 @@ describe Event do
   describe '#student_event?' do
     context 'student event is found through finance fee collection' do
       before do
-        @batch           = FactoryGirl.create(:batch, :course => @course)
+        @batch           = FactoryGirl.create(:batch)
         @student         = FactoryGirl.create(:student, :batch => @batch)
         @finance_fee_co  = FactoryGirl.create(:finance_fee_collection, :batch => @batch)
         @event           = FactoryGirl.create(:event, :origin => @finance_fee_co)
@@ -87,9 +94,9 @@ describe Event do
 
     context 'student event is not found through finance fee collection' do
       before do
-        @batch           = FactoryGirl.create(:batch, :course => @course)
+        @batch           = FactoryGirl.create(:batch)
         @student         = FactoryGirl.create(:student, :batch => @batch)
-        @finance_fee_co  = FactoryGirl.create(:finance_fee_collection, :batch => @batch)
+        @finance_fee_co  = FactoryGirl.create(:finance_fee_collection)
         @event           = FactoryGirl.create(:event, :origin => @finance_fee_co)
       end
 
@@ -125,7 +132,7 @@ describe Event do
 
     context 'employee event is not found' do
       before do
-        @event = FactoryGirl.create(:event)
+        @event          = FactoryGirl.create(:event)
         @employee_user  = FactoryGirl.create(:employee_user)
       end
 
@@ -137,24 +144,30 @@ describe Event do
 
   describe '#active_event?' do
     context 'active event is found' do
-      before do
-        @finance_fee_co  = FactoryGirl.create(:finance_fee_collection)
-        @event           = FactoryGirl.create(:event, :origin => @finance_fee_co)
+      context 'origin nil' do
+        let!(:event) { FactoryGirl.create(:event) }
+
+        it 'returns true' do
+          event.active_event?.should be_true
+        end
       end
 
-      it 'returns true' do
-        @event.active_event?.should be_true
+      context 'origin not nil' do
+        let(:finance_fee_co) { FactoryGirl.create(:finance_fee_collection) }
+        let(:event)          { FactoryGirl.create(:event, :origin => finance_fee_co) }
+
+        it 'returns true' do
+          event.active_event?.should be_true
+        end
       end
     end
 
     context 'active event is not found' do
-      before do
-        @finance_fee_co  = FactoryGirl.create(:finance_fee_collection, :is_deleted => true)
-        @event           = FactoryGirl.create(:event, :origin => @finance_fee_co)
-      end
+      let(:finance_fee_co) { FactoryGirl.create(:finance_fee_collection, :is_deleted => true) }
+      let(:event)          { FactoryGirl.create(:event, :origin => finance_fee_co) }
 
       it 'returns false' do
-        @event.active_event?.should be_false
+        event.active_event?.should be_false
       end
     end
   end
@@ -169,7 +182,11 @@ describe Event do
 
   describe '.a_holiday?' do
     context 'the day is a holiday' do
-      before { FactoryGirl.create(:event, :start_date => 1.days.ago, :is_holiday => true) }
+      before { FactoryGirl.create(:event, 
+        :start_date => Date.current - 2.days,
+        :end_date => Date.current + 7.days,
+        :is_holiday => true)
+      }
 
       it 'returns true' do
         Event.a_holiday?(Date.current).should be_true
@@ -177,7 +194,11 @@ describe Event do
     end
 
     context 'the day is not a holiday' do
-      before { FactoryGirl.create(:event, :is_holiday => false) }
+      before { FactoryGirl.create(:event, 
+        :start_date => Date.current + 1.days,
+        :end_date => Date.current + 7.days,
+        :is_holiday => true)
+      }
 
       it 'returns false' do
         Event.a_holiday?(Date.current).should be_false

@@ -35,7 +35,7 @@ class Event < ActiveRecord::Base
   end
 
   def active_event?
-    !!origin.nil? || (origin && origin.respond_to?('is_deleted') && !origin.is_deleted)
+    !!(origin.nil? || (origin && origin.respond_to?('is_deleted') && !origin.is_deleted))
   end
 
   def dates
@@ -44,7 +44,7 @@ class Event < ActiveRecord::Base
 
   class << self
     def a_holiday?(day)
-      Event.holidays.find(:all, :conditions => ["start_date <=? AND end_date >= ?", day.beginning_of_day, day.end_of_day]).any?
+      Event.holidays.find(:all, :conditions => ["start_date <= ? AND end_date >= ?", day.beginning_of_day, day.end_of_day]).any?
     end
   end
 
@@ -61,7 +61,7 @@ class Event < ActiveRecord::Base
     end
 
     def user_event?(student)
-      !!user_events && user_events.map{|x|x.user_id }.include?(student.user.id)
+      !!user_events && user_events.map{ |x|x.user_id }.include?(student.user.id)
     end
 
 end
