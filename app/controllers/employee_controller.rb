@@ -86,7 +86,7 @@ class EmployeeController < ApplicationController
   def edit_position
     @categories = EmployeeCategory.find(:all)
     @position = EmployeePosition.find(params[:id])
-    employees = Employee.find(:all ,:conditions=>"employee_position_id = #{params[:id]}")
+    employees = Employee.find(:all, :conditions => { :employee_position_id => params[:id] })
     if request.post?
       if (params[:position][:status] == 'false' and employees.blank?) or params[:position][:status] == 'true'
         if @position.update_attributes(params[:position])
@@ -100,9 +100,9 @@ class EmployeeController < ApplicationController
   end
 
   def delete_position
-    employees = Employee.find(:all ,:conditions=>"employee_position_id = #{params[:id]}")
+    employees = Employee.find(:all ,:conditions => { :employee_position_id => params[:id] })
     if employees.empty?
-      employees = ArchivedEmployee.find(:all ,:conditions=>"employee_position_id = #{params[:id]}")
+      employees = ArchivedEmployee.find(:all ,:conditions => { :employee_position_id => params[:id] })
     end
     if employees.empty?
       EmployeePosition.find(params[:id]).destroy
@@ -127,7 +127,7 @@ class EmployeeController < ApplicationController
 
   def edit_department
     @department = EmployeeDepartment.find(params[:id])
-    employees = Employee.find(:all ,:conditions=>"employee_department_id = #{params[:id]}")
+    employees = Employee.find(:all, :conditions => { :employee_department_id => params[:id] })
     if request.post?
       if (params[:department][:status] == 'false' and employees.blank?) or params[:department][:status] == 'true'
         if @department.update_attributes(params[:department])
@@ -140,9 +140,9 @@ class EmployeeController < ApplicationController
   end
 
   def delete_department
-    employees = Employee.find(:all ,:conditions=>"employee_department_id = #{params[:id]}")
+    employees = Employee.find(:all, :conditions => { :employee_department_id => params[:id] })
     if employees.empty?
-      employees = ArchivedEmployee.find(:all ,:conditions=>"employee_department_id = #{params[:id]}")
+      employees = ArchivedEmployee.find(:all, :conditions => { :employee_department_id => params[:id] })
     end
     if employees.empty?
       EmployeeDepartment.find(params[:id]).destroy

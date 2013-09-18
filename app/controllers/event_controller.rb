@@ -252,8 +252,8 @@ class EventController < ApplicationController
 
   def cancel_event
     event = Event.find(params[:id])
-    batch_event = BatchEvent.find(:all, :conditions=>"event_id = #{params[:id]}")
-    dept_event = EmployeeDepartmentEvent.find(:all, :conditions=>"event_id = #{params[:id]}")
+    batch_event = BatchEvent.find(:all, :conditions => { :event_id => params[:id] })
+    dept_event = EmployeeDepartmentEvent.find(:all, :conditions => { :event_id => params[:id] })
     event.destroy
 
     batch_event.each { |x| x.destroy } unless batch_event.nil?
