@@ -68,18 +68,14 @@ describe EmployeesSubject do
     context 'failed to save employees_subject record' do
       before do
         EmployeesSubject.stub(:employee_overloaded?).with(@employee.id, [@subject1.id, @subject2.id]).and_return(false)
-        # EmployeesSubject.any_instance.stub(:save).and_return(false)
+        EmployeesSubject.any_instance.expects(:save).returns(false)
       end
 
       it 'does not create employees_subject' do
-        pending 'TODO: re-enable when bump to rspec-mock 2'
-
         lambda { EmployeesSubject.allot_work(@hash) }.should change { EmployeesSubject.count }.by(0)
       end
 
       it 'returns false' do
-        pending 'TODO: re-enable when bump to rspec-mock 2'
-
         EmployeesSubject.allot_work(@hash).should be_false
       end
     end
