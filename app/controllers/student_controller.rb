@@ -1018,7 +1018,7 @@ class StudentController < ApplicationController
       @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
     end
 
-    @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted = false"])
+    @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => { :is_deleted => false })
     @fee_particulars = @fee_collection.fees_particulars(@student)
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
 

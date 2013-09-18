@@ -16,9 +16,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 class BatchesController < ApplicationController
-  before_filter :init_data,:except=>[:assign_tutor,:update_employees,:assign_employee,:remove_employee,:batches_ajax]
+  before_filter :init_data, :except => [:assign_tutor, :update_employees, :assign_employee, :remove_employee, :batches_ajax]
   filter_access_to :all
   before_filter :login_required
+
   def index
     @batches = @course.batches
   end
@@ -36,7 +37,8 @@ class BatchesController < ApplicationController
         msg = []
         msg << "<ol>"
         course_id = @batch.course_id
-        @previous_batch = Batch.find(:first,:order=>'id desc', :conditions=>"batches.id < '#{@batch.id }' AND batches.is_deleted = 0 AND course_id = ' #{course_id }'",:joins=>"INNER JOIN subjects ON subjects.batch_id = batches.id  AND subjects.is_deleted = 0")
+        @previous_batch = Batch.find(:first, :order => 'id DESC', :conditions => ["batches.id < ? AND batches.is_deleted = ? AND course_id = ?", @batch.id, false, course_id],
+          :joins => ["INNER JOIN subjects ON subjects.batch_id = batches.id AND subjects.is_deleted = ?", false])
         unless @previous_batch.blank?
           subjects = Subject.find_all_by_batch_id(@previous_batch.id,:conditions=>'is_deleted=false')
           subjects.each do |subject|
