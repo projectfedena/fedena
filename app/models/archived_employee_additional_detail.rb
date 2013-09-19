@@ -16,6 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 class ArchivedEmployeeAdditionalDetail < ActiveRecord::Base
-  belongs_to :archived_employee
+  belongs_to :archived_employee, :foreign_key => 'employee_id'
   belongs_to :additional_field
 end
