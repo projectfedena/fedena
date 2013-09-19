@@ -6,7 +6,7 @@ gem 'i18n'
 gem 'delayed_job', '2.0.8'
 gem 'mysql'
 gem 'in_place_editing'
-gem 'nokogiri', '~> 1.5.10'
+gem 'nokogiri'
 
 group :development, :test do
   gem 'rspec-rails', '1.3.4'
@@ -26,7 +26,7 @@ group :test do
 end
 
 gem 'will_paginate', '2.3.16'
-gem 'paperclip', '2.3.10'
+gem 'paperclip', '2.7.5'
 gem 'wicked_pdf', '0.7.0'
 gem 'xss_terminate'
 gem 'translator', '1.0.0'
