@@ -21,12 +21,12 @@ class ArchivedEmployee < ActiveRecord::Base
   belongs_to  :employee_grade
   belongs_to  :employee_department
   belongs_to  :nationality, :class_name => 'Country'
-  has_many    :archived_employee_bank_details
-  has_many    :archived_employee_additional_details
+  has_many    :archived_employee_bank_details, :foreign_key => 'employee_id'
+  has_many    :archived_employee_additional_details, :foreign_key => 'employee_id'
   before_save :set_status_false
 
   has_attached_file :photo,
-    :styles => { :thumb=> '100x100#', :small => '150x150>' },
+    :styles => { :thumb => '100x100#', :small => '150x150>' },
     :url    => '/system/:class/:attachment/:id/:style/:basename.:extension',
     :path   => ':rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension'
 
@@ -46,6 +46,5 @@ class ArchivedEmployee < ActiveRecord::Base
   def set_status_false
     self.status = false unless status?
   end
-
 
 end
