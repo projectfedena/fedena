@@ -22,7 +22,7 @@ class StudentAdditionalField < ActiveRecord::Base
 
   validates_presence_of   :name
   validates_uniqueness_of :name, :case_sensitive => false
-  validates_format_of     :name, :with => /^[^~`@%$*()\-\[\]{}"':;\/.,\\=+|]*$/i,
+  validates_format_of     :name, :with => /\A[^~`@%$*()\-\[\]{}"':;\/.,\\=+|]*\z/i,
     :message => "#{t('must_contain_only_letters_numbers_space')}"
   accepts_nested_attributes_for :student_additional_field_options, :allow_destroy => true
 end

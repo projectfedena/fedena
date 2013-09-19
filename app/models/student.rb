@@ -54,9 +54,9 @@ class Student < ActiveRecord::Base
   validates_presence_of :admission_no, :admission_date, :first_name, :batch_id, :date_of_birth
   validates_uniqueness_of :admission_no
   validates_presence_of :gender
-  validates_format_of     :email, :with => /^[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i,   :allow_blank=>true,
+  validates_format_of   :email, :with => /\A[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}\z/i,   :allow_blank=>true,
     :message => "#{t('must_be_a_valid_email_address')}"
-  validates_format_of     :admission_no, :with => /^[A-Z0-9_-]*$/i,
+  validates_format_of     :admission_no, :with => /\A[A-Z0-9_-]*\z/i,
     :message => "#{t('must_contain_only_letters')}"
 
   validates_associated :user

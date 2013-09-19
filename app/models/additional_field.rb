@@ -18,7 +18,7 @@
 class AdditionalField < ActiveRecord::Base
   has_many :additional_field_options, :dependent=>:destroy
   validates_presence_of :name
-  validates_format_of     :name, :with => /^[^~`@%$*()\-\[\]{}"':;\/.,\\=+|]*$/i,
+  validates_format_of   :name, :with => /\A[^~`@%$*()\-\[\]{}"':;\/.,\\=+|]*\z/i,
     :message => "#{t('must_contain_only_letters_numbers_space')}"
   validates_uniqueness_of :name,:case_sensitive => false
 
