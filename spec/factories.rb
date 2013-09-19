@@ -43,6 +43,12 @@ FactoryGirl.define do
     relation   'Parent'
   end
 
+  factory :fee_discount do
+    name    'fee discount name'
+    discount  15
+    type   'free'
+  end
+
   factory :course do
     course_name  '1'
     section_name 'A'
