@@ -25,7 +25,7 @@ group :test do
   gem 'rspec-multi-mock', '0.1.0'
 end
 
-gem 'will_paginate', '2.3.12'
+gem 'will_paginate', '2.3.16'
 gem 'paperclip', '2.3.10'
 gem 'wicked_pdf', '0.7.0'
 gem 'xss_terminate'

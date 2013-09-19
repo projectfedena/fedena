@@ -81,7 +81,7 @@ GEM
       rack (>= 1.0)
       rack-test (>= 0.5.3)
     wicked_pdf (0.7.0)
-    will_paginate (2.3.12)
+    will_paginate (2.3.16)
     xss_terminate (0.22)
       html5 (>= 0.10.0)
 
@@ -113,5 +113,5 @@ DEPENDENCIES
   translator (= 1.0.0)
   webrat
   wicked_pdf (= 0.7.0)
-  will_paginate (= 2.3.12)
+  will_paginate (= 2.3.16)
   xss_terminate
