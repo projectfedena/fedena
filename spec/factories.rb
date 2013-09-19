@@ -116,6 +116,11 @@ FactoryGirl.define do
     desc  'description'
   end
 
+  factory :finance_fee_category do
+    name  'ffcat name'
+    batch { association(:batch) }
+  end
+
   factory :grading_level do
     name      'A'
     min_score 85
