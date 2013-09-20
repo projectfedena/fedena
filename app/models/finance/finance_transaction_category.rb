@@ -16,54 +16,42 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 class FinanceTransactionCategory < ActiveRecord::Base
-  has_many :finance_transactions,:class_name => 'FinanceTransaction', :foreign_key => 'category_id'
-  has_one  :trigger, :class_name => "FinanceTransactionTrigger", :foreign_key => "category_id"
-
+  has_many :finance_transactions, :class_name => 'FinanceTransaction', :foreign_key => 'category_id'
+  has_one  :trigger, :class_name => "FinanceTransactionTrigger", :foreign_key => "finance_category_id"
 
   validates_presence_of :name
   validates_uniqueness_of  :name, :case_sensitive => false
 
   named_scope :expense_categories, :conditions => "is_income = false AND name NOT LIKE 'Salary'and deleted = 0"
-  # named_scope :income_categories, :conditions => "is_income = true AND name NOT IN ('Fee','Salary','Donation','Library','Hostel','Transport') and deleted = 0"
 
-  #  def self.expense_categories
-  #    FinanceTransactionCategory.all(:conditions => "is_income = false AND name NOT LIKE 'Salary'")
-  #  end
-  #
-  #  def self.income_categories
-  #    FinanceTransactionCategory.all(:conditions => "is_income = true AND name NOT LIKE 'Fee' AND name NOT LIKE 'Donation'")
-  #  end
+  def self.income_category_names
+    cat_names = ['Fee', 'Salary', 'Donation']
+    FedenaPlugin::FINANCE_CATEGORY.each do |category|
+      cat_names << "#{category[:category_name]}"
+    end
+    cat_names
+  end
+
+  INCOME_CATEGORY_NAMES = self.income_category_names
+  FIX_CATEGORY_NAMES = INCOME_CATEGORY_NAMES.map(&:downcase)
 
   def self.income_categories
-    cat_names = ["'Fee'","'Salary'","'Donation'"]
-    FedenaPlugin::FINANCE_CATEGORY.each do |category|
-      cat_names << "'#{category[:category_name]}'"
-    end
-    self.find(:all,:conditions=>"is_income = true AND name NOT IN (#{cat_names.join(',')}) and deleted = 0")
+    self.all(:conditions => ["is_income = true AND name NOT IN (?) and deleted = 0", INCOME_CATEGORY_NAMES])
   end
 
-  def is_fixed
-    cat_names = ['fee','salary','donation']
-    FedenaPlugin::FINANCE_CATEGORY.each do |category|
-      cat_names << "#{category[:category_name].downcase}"
-    end
-    return true if cat_names.include?(self.name.downcase)
-    return false
+  def fixed?
+    FIX_CATEGORY_NAMES.include?(self.name.downcase)
   end
 
-  def total_income(start_date,end_date)
-    if is_income
-      self.finance_transactions.find(:all,:conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}' and master_transaction_id=0"]).map{|ft| ft.amount}.sum
-    else
-      0
-    end
+  def total_income(start_date, end_date)
+    is_income ? self.finance_transactions.sum(:amount, :conditions => ["transaction_date BETWEEN ? AND ? and master_transaction_id = 0", start_date, end_date]) : 0
   end
 
   def total_expense(start_date,end_date)
     if is_income
-      self.finance_transactions.find(:all,:conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}' and master_transaction_id!=0"]).map{|ft| ft.amount}.sum
+      self.finance_transactions.sum(:amount, :conditions => ["transaction_date BETWEEN ? AND ? and master_transaction_id != 0", start_date, end_date])
     else
-      self.finance_transactions.find(:all,:conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'"]).map{|ft| ft.amount}.sum
+      self.finance_transactions.sum(:amount, :conditions => ["transaction_date BETWEEN ? AND ?", start_date, end_date])
     end
   end
 

@@ -29,7 +29,7 @@ class FinanceController < ApplicationController
       @cat_names << "'#{category[:category_name]}'"
     end
     @triggers = FinanceTransactionTrigger.all
-    @categories = FinanceTransactionCategory.find(:all, :conditions => ['name NOT IN (?) AND is_income = ? AND deleted = ?', @cat_names.join(','), true, false])
+    @categories = FinanceTransactionCategory.all(:conditions => ['name NOT IN (?) AND is_income = ? AND deleted = ?', @cat_names.join(','), true, false])
   end
 
   def donation
@@ -283,7 +283,7 @@ class FinanceController < ApplicationController
       @cat_names << "'#{category[:category_name]}'"
     end
     @transaction_trigger = FinanceTransactionTrigger.find(params[:id])
-    @categories = FinanceTransactionCategory.find(:all, :conditions => ["name NOT IN (?) AND is_income = ? AND deleted = ?", @cat_names.join(','), true, false])
+    @categories = FinanceTransactionCategory.all(:conditions => ["name NOT IN (?) AND is_income = ? AND deleted = ?", @cat_names.join(','), true, false])
   end
 
   def transaction_trigger_update
@@ -321,8 +321,8 @@ class FinanceController < ApplicationController
     @hr = Configuration.find_by_config_value("HR")
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
-    @transactions = FinanceTransaction.find(:all,
-      :order => 'transaction_date desc', :conditions => { :transaction_date => @start_date..@end_date })
+    @transactions = FinanceTransaction.all(:order => 'transaction_date desc',
+                                           :conditions => { :transaction_date => @start_date..@end_date })
     #@other_transactions = FinanceTransaction.report(@start_date,@end_date,params[:page])
     @other_transaction_categories = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
       :order => 'transaction_date').map{|ft| ft.category}.uniq
@@ -342,8 +342,8 @@ class FinanceController < ApplicationController
     @hr = Configuration.find_by_config_value("HR")
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
-    @transactions = FinanceTransaction.find(:all,
-      :order => 'transaction_date desc', :conditions => { :transaction_date => @start_date..@end_date })
+    @transactions = FinanceTransaction.all(:order => 'transaction_date desc',
+                                           :conditions => { :transaction_date => @start_date..@end_date })
     #@other_transactions = FinanceTransaction.report(@start_date,@end_date,params[:page])
     @other_transaction_categories = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
       :order => 'transaction_date').map{|ft| ft.category}.uniq
@@ -603,7 +603,7 @@ class FinanceController < ApplicationController
   def delete_liability
     @liability = Liability.find(params[:id])
     @liability.update_attributes(:is_deleted => true)
-    @liabilities = Liability.find(:all, :conditions => { :is_deleted => false })
+    @liabilities = Liability.all(:conditions => { :is_deleted => false })
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     render :update do |page|
       page.replace_html "liability_list", :partial => "liability_list"
@@ -864,7 +864,7 @@ class FinanceController < ApplicationController
       if @error.blank?
         flash[:notice] = t('particulars_created_successfully')
       else
-        @fees_categories = FinanceFeeCategory.find(:all, :conditions=> "is_deleted = 0 and is_master = 1")
+        @fees_categories = FinanceFeeCategory.all(:conditions=> "is_deleted = 0 and is_master = 1")
         @fees_categories.reject!{|f|f.batch.is_deleted or !f.batch.is_active }
         render :action => 'fees_particulars_new'
         return
@@ -1901,8 +1901,8 @@ class FinanceController < ApplicationController
     @end_date = (params[:end_date]).to_date
     @start_date2 = (params[:start_date2]).to_date
     @end_date2 = (params[:end_date2]).to_date
-    @transactions = FinanceTransaction.find(:all,
-      :order => 'transaction_date desc', :conditions => { :transaction_date => @start_date..@end_date })
+    @transactions = FinanceTransaction.all(:order => 'transaction_date desc',
+                                           :conditions => { :transaction_date => @start_date..@end_date })
     @transactions2 = FinanceTransaction.find(:all,
       :order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date2}' and transaction_date <= '#{@end_date2}'"])
     @other_transaction_categories = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
