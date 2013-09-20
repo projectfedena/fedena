@@ -31,8 +31,8 @@ class ClassTiming < ActiveRecord::Base
   private
 
   def overlap_condition(first_time, second_time)
-    self_check = new_record? ? '' : "id != #{self.id} AND "
-    self_batch_id = batch_id.nil? ? 'batch_id IS NULL' : 'batch_id = ' + batch_id.to_s
+    self_check = new_record? ? '' : "id != #{connection.quote(self.id)} AND "
+    self_batch_id = batch_id.nil? ? 'batch_id IS NULL' : 'batch_id = ' + connection.quote(batch_id.to_s)
     start_date_and_end_date_exists? && !!ClassTiming.find(:first, :conditions => [self_check + self_batch_id + " AND start_time < ? AND end_time > ? AND is_deleted = ?", first_time, second_time, false])
   end
 
