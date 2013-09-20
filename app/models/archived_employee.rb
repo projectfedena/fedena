@@ -45,6 +45,7 @@ class ArchivedEmployee < ActiveRecord::Base
 
   def set_status_false
     self.status = false unless status?
+    true
   end
 
 
