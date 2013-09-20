@@ -41,6 +41,7 @@ FactoryGirl.define do
     first_name 'Fname'
     last_name  'Lname'
     relation   'Parent'
+    ward       { association(:student) }
   end
 
   factory :fee_discount do

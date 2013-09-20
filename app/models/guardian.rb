@@ -20,14 +20,11 @@ class Guardian < ActiveRecord::Base
   belongs_to :ward, :class_name => 'Student'
   belongs_to :user
 
-  validates_presence_of :first_name, :relation,:ward_id
-  validates_format_of   :email, :with => /\A[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}\z/i,   :allow_blank=>true,
+  validates_presence_of :first_name, :relation, :ward_id
+  validates_format_of   :email, :with => /\A[A-Z0-9._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}\z/i, :allow_blank => true,
     :message => "#{t('must_be_a_valid_email_address')}"
   before_destroy :immediate_contact_nil
-
-  def validate
-    errors.add(:dob, "#{t('cant_be_a_future_date')}.") if self.dob > Date.today unless self.dob.nil?
-  end
+  validate :cant_be_a_future_date
 
   def immediate_contact?
     ward.immediate_contact_id == id
@@ -52,7 +49,7 @@ class Guardian < ActiveRecord::Base
     user = User.new do |u|
       u.first_name = self.first_name
       u.last_name = self.last_name
-      u.username = "p"+student.admission_no.to_s
+      u.username = "p" + student.admission_no.to_s
       u.password = "p#{student.admission_no.to_s}123"
       u.role = 'Parent'
       u.email = ( email == '' or User.active.find_by_email(self.email) ) ? "" :self.email.to_s
@@ -60,22 +57,24 @@ class Guardian < ActiveRecord::Base
     self.update_attributes(:user_id => user.id) if user.save
   end
 
-
-
   def self.shift_user(student)
     self.find_all_by_ward_id(student.id).each do |g|
       parent_user = g.user
-      parent_user.soft_delete if parent_user.present? and (parent_user.is_deleted==false)
+      parent_user.soft_delete if parent_user.present? && (parent_user.is_deleted == false)
     end
-    current_guardian =  student.immediate_contact
-    current_guardian.create_guardian_user(student) if  current_guardian.present?
+
+    current_guardian = student.immediate_contact
+    current_guardian.create_guardian_user(student) if current_guardian.present?
+  end
+
+  private
+  def cant_be_a_future_date
+    errors.add(:dob, "#{t('cant_be_a_future_date')}.") if self.dob && self.dob > Date.current
   end
 
   def immediate_contact_nil
-    student = self.ward
-    if student.present? and (student.immediate_contact_id==self.id)
-      student.update_attributes(:immediate_contact_id=>nil)
+    if ward.present? && is_immediate_contact?
+      ward.update_attributes(:immediate_contact_id => nil)
     end
   end
-
 end
