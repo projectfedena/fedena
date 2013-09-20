@@ -34,13 +34,27 @@ describe Subject do
 
     describe 'validate uniqueness of code' do
       context 'subject is deleted' do
-        before { @subject.stub(:is_deleted?).and_return(true) }
-        it { pending 'TO FIX'; should_not validate_uniqueness_of(:code).scoped_to(:batch_id,:is_deleted).with_message(/different value of is_deleted/) }
+        before { @subject.update_attributes(:is_deleted => true) }
+        it { should_not validate_uniqueness_of(:code).scoped_to(:batch_id,:is_deleted) }
       end
 
       context 'subject is active' do
-        before { @subject.stub(:is_deleted?).and_return(false) }
-        it { pending 'TO FIX'; should validate_uniqueness_of(:code).scoped_to(:batch_id,:is_deleted) }
+        before { @subject.update_attributes(:is_deleted => false) }
+        it { should validate_uniqueness_of(:code).scoped_to(:batch_id,:is_deleted) }
+      end
+    end
+  end
+
+  describe '#fa_group_valid' do
+    context 'have more than 2 fa group under a single exam category' do
+      before do
+        fa_group = FactoryGirl.create(:fa_group)
+        @subject.fa_groups = [fa_group, fa_group, fa_group]
+        @subject.save
+      end
+
+      it 'is invalid' do
+        @subject.should be_invalid
       end
     end
   end

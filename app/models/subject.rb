@@ -35,7 +35,7 @@ class Subject < ActiveRecord::Base
   named_scope :active, :conditions => { :is_deleted => false }
   named_scope :not_in_exam_group, lambda { |exam_group| { :conditions => ['id NOT IN (?)', exam_group.exams.map(&:subject_id)] } }
 
-  before_save :fa_group_valid
+  validate :fa_group_valid
 
   def check_grade_type
     batch && (batch.gpa_enabled? || batch.cwa_enabled?)
@@ -93,9 +93,8 @@ class Subject < ActiveRecord::Base
 
   def fa_group_valid
     fa_groups.group_by(&:cce_exam_category_id).values.each do |fg|
-      if fg.length > 2
+      if fg.count > 2
         errors.add(:fa_group, "cannot have more than 2 fa group under a single exam category")
-        return false
       end
     end
   end
