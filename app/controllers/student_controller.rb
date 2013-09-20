@@ -603,7 +603,7 @@ class StudentController < ApplicationController
   def del_guardian
     @guardian = Guardian.find(params[:id])
     @student = @guardian.ward
-    if @guardian.is_immediate_contact?
+    if @guardian.immediate_contact?
       if @guardian.destroy
         flash[:notice] = "#{t('flash6')}"
         redirect_to :controller => 'student', :action => 'admission3', :id => @student.id
