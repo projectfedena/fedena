@@ -37,14 +37,13 @@ class GradingLevel < ActiveRecord::Base
   def self.exists_for_batch?(batch_id)
     batch_grades = GradingLevel.find_all_by_batch_id(batch_id, :conditions => { :is_deleted => false })
     default_grade = GradingLevel.default
-    batch_grades.present? and default_grade.present?
+    batch_grades.present? && default_grade.present?
   end
 
   def self.percentage_to_grade(percent_score, batch_id)
     batch_grades = GradingLevel.for_batch(batch_id)
     if batch_grades.empty?
-      grade = GradingLevel.default.find(:first,
-        :conditions => [ 'min_score <= ?', percent_score.round ], :order => 'min_score DESC')
+      grade = GradingLevel.default.find(:first, :conditions => [ 'min_score <= ?', percent_score.round ], :order => 'min_score DESC')
     else
       grade = GradingLevel.for_batch(batch_id).find(:first,
         :conditions => [ 'min_score <= ?', percent_score.round ], :order => 'min_score DESC')
@@ -55,7 +54,7 @@ class GradingLevel < ActiveRecord::Base
   private
 
   def batch_has_gpa?
-    batch_id? and batch.gpa_enabled?
+    batch_id? && batch.gpa_enabled?
   end
 
 end
