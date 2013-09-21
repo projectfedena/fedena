@@ -32,8 +32,9 @@ describe SubjectLeave do
   end
 
   describe '.by_month_and_subject' do
-    let!(:subject_leave1) { FactoryGirl.create(:subject_leave, :subject_id => 10, :month_date => Date.new(2013,9,10)) }
-    let!(:subject_leave2) { FactoryGirl.create(:subject_leave, :subject_id => 11, :month_date => Date.new(2013,10,20)) }
+    let(:student) { FactoryGirl.create(:student, :admission_date => Date.new(2013,7,10)) }
+    let!(:subject_leave1) { FactoryGirl.create(:subject_leave, :subject_id => 10, :month_date => Date.new(2013,9,10), :student => student) }
+    let!(:subject_leave2) { FactoryGirl.create(:subject_leave, :subject_id => 11, :month_date => Date.new(2013,10,20), :student => student) }
 
     it 'returns SubjectLeave of month and subject_id' do
       SubjectLeave.by_month_and_subject(Date.new(2013,9,3), subject_leave1.subject_id).should == [subject_leave1]
@@ -41,8 +42,9 @@ describe SubjectLeave do
   end
 
   describe '.by_month_batch_subject' do
-    let!(:subject_leave1) { FactoryGirl.create(:subject_leave, :batch_id => 9, :subject_id => 10, :month_date => Date.new(2013,9,10)) }
-    let!(:subject_leave2) { FactoryGirl.create(:subject_leave, :batch_id => 11, :subject_id => 12, :month_date => Date.new(2013,10,20)) }
+    let(:student) { FactoryGirl.create(:student, :admission_date => Date.new(2013,7,10)) }
+    let!(:subject_leave1) { FactoryGirl.create(:subject_leave, :batch_id => 9, :subject_id => 10, :month_date => Date.new(2013,9,10), :student => student) }
+    let!(:subject_leave2) { FactoryGirl.create(:subject_leave, :batch_id => 11, :subject_id => 12, :month_date => Date.new(2013,10,20), :student => student) }
 
     it 'returns SubjectLeave of month, batch_id and subject_id' do
       SubjectLeave.by_month_batch_subject(Date.new(2013,10,3), subject_leave2.batch_id, subject_leave2.subject_id).should == [subject_leave2]
