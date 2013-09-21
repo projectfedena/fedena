@@ -22,13 +22,8 @@ class FinanceFee < ActiveRecord::Base
   has_many :components, :class_name => 'FinanceFeeComponent', :foreign_key => 'fee_id'
   belongs_to :student
 
-
   def check_transaction_done
-    unless self.transaction_id.nil?
-      return true
-    else
-      return false
-    end
+    self.transaction_id.present?
   end
 
   def former_student
