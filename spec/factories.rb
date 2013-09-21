@@ -268,6 +268,11 @@ FactoryGirl.define do
     is_deleted       false
   end
 
+  factory :finance_fee_particular do
+    sequence(:name)  { |n| "FFParticular #{n}" }
+    amount            20
+  end
+
   factory :batch_event do
     event    { Factory.create(:event) }
     batch    { Factory.create(:batch) }
