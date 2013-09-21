@@ -263,8 +263,8 @@ class CalendarController < ApplicationController
   def show_due_tooltip
     @user = current_user
     @date = params[:id].to_date
-    finance_due_check = Event.find_all_by_is_due(true, true, :conditions => "events.start_date >= '#{@date.beginning_of_day}' AND events.start_date <= '#{@date.end_of_day}'")
-    finance_due_check.reject! { |x| !x.active_event? }
+    finance_due_check = Event.find_all_by_is_due(true, true, :conditions => "events.start_date >= '#{@date.strftime("%Y-%m-%d 00:00:00")}' AND events.start_date <= '#{@date.strftime("%Y-%m-%d 23:59:59")}'")
+    finance_due_check.reject!{|x| !x.active_event? }
     if @user.student? || @user.parent?
       finance_due_check.reject! { |x| !x.student_event?(@user.student_record) } if @user.student
       finance_due_check.reject! { |x| !x.student_event?(@user.parent_record) } if @user.parent

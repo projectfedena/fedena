@@ -163,6 +163,11 @@ FactoryGirl.define do
     sequence(:code) { |n| "forad#{n}" }
   end
 
+  factory :employee_department_event do
+    event               { FactoryGirl.create(:event) }
+    employee_department { FactoryGirl.create(:employee_department) }
+  end
+
   factory :employee do
     employee_category_id    5
     sequence(:employee_number)   { |n| "#{n}" }
@@ -255,5 +260,10 @@ FactoryGirl.define do
     due_date         { Date.today + 2.days }
     fee_category_id  1
     is_deleted       false
+  end
+
+  factory :batch_event do
+    event    { Factory.create(:event) }
+    batch    { Factory.create(:batch) }
   end
 end
