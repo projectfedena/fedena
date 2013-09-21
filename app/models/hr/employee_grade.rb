@@ -22,10 +22,12 @@ class EmployeeGrade < ActiveRecord::Base
 
   has_many :employee
   named_scope :active, :conditions => {:status => true }
+  validate :max_hours_week_should_be_greater_than_max_hours_day
 
-  def validate
-    self.errors.add(:max_hours_week, "#{t('should_be_greater_than_max_period')}.") \
-      if self.max_hours_day > self.max_hours_week \
-      unless self.max_hours_day.nil? or self.max_hours_week.nil?
+  private
+  def max_hours_week_should_be_greater_than_max_hours_day
+    if self.max_hours_day && self.max_hours_week && self.max_hours_day > self.max_hours_week
+      self.errors.add(:max_hours_week, "#{t('should_be_greater_than_max_period')}.")
+    end
   end
 end
