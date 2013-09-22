@@ -201,6 +201,13 @@ FactoryGirl.define do
     sequence(:prefix) { |n| "forad#{n}" }
   end
 
+  factory :finance_donation do
+    donor               'Donor'
+    description         'Description'
+    amount              50
+    transaction_date    { Date.current }
+  end
+
   factory :general_emp_category, :class => 'EmployeeCategory' do
     name   'cat1'
     prefix 'forads'
