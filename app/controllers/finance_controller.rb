@@ -29,7 +29,7 @@ class FinanceController < ApplicationController
       @cat_names << "'#{category[:category_name]}'"
     end
     @triggers = FinanceTransactionTrigger.all
-    @categories = FinanceTransactionCategory.find(:all ,:conditions => ["name NOT IN (#{@cat_names.join(',')}) and is_income=1 and deleted=0 "])
+    @categories = FinanceTransactionCategory.find(:all, :conditions => ['name NOT IN (?) AND is_income = ? AND deleted = ?', @cat_names.join(','), true, false])
   end
 
   def donation
@@ -49,7 +49,11 @@ class FinanceController < ApplicationController
     @transaction = FinanceTransaction.find(@donation.transaction_id)
     if request.post? and @donation.update_attributes(params[:donation])
       donor = "#{t('flash15')} #{params[:donation][:donor]}"
-      FinanceTransaction.update(@transaction.id, :description => params[:donation][:description], :title=>donor, :amount=>params[:donation][:amount], :transaction_date=>@donation.transaction_date)
+      FinanceTransaction.update(@transaction.id,
+        :description      => params[:donation][:description],
+        :title            => donor,
+        :amount           => params[:donation][:amount],
+        :transaction_date => @donation.transaction_date)
       redirect_to :action => 'donors'
       flash[:notice] = "#{t('flash16')}"
     end
@@ -69,7 +73,6 @@ class FinanceController < ApplicationController
     @donation = FinanceDonation.find(params[:id])
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     render :pdf => 'donation_receipt_pdf'
-
   end
 
   def donors
@@ -95,7 +98,7 @@ class FinanceController < ApplicationController
 
   def expense_edit
     @transaction = FinanceTransaction.find(params[:id])
-    @categories = FinanceTransactionCategory.all(:conditions =>"name != 'Salary' and is_income = false" )
+    @categories = FinanceTransactionCategory.all(:conditions => ['name != ? AND is_income = ?', 'Salary', false])
     if request.post? and @transaction.update_attributes(params[:transaction])
       flash[:notice] = "#{t('flash4')}"
       redirect_to  :action=>:expense_list
@@ -133,15 +136,14 @@ class FinanceController < ApplicationController
       @finance_transaction = FinanceTransaction.new(params[:finance_transaction])
       if @finance_transaction.save
         flash[:notice] = "#{t('flash6')}"
-        redirect_to :action=>"income_create"
+        redirect_to :action => "income_create"
       else
-        render :action=>"income_create"
+        render :action => "income_create"
       end
     end
   end
 
   def monthly_income
-
   end
 
   def income_edit
@@ -150,10 +152,10 @@ class FinanceController < ApplicationController
       @cat_names << "'#{category[:category_name]}'"
     end
     @transaction = FinanceTransaction.find(params[:id])
-    @categories = FinanceTransactionCategory.all(:conditions => "is_income=true and name NOT IN (#{@cat_names.join(',')})")
+    @categories = FinanceTransactionCategory.all(:conditions => ["is_income = ? and name NOT IN (?)", true, @cat_names.join(',')])
     if request.post? and @transaction.update_attributes(params[:transaction])
       flash[:notice] = "#{t('flash7')}"
-      redirect_to :action=> 'income_list'
+      redirect_to :action => 'income_list'
     end
   end
 
@@ -174,21 +176,19 @@ class FinanceController < ApplicationController
     else
       redirect_to :action=>'expense_list'
     end
-
-
   end
 
   def income_list_update
     @start_date = (params[:start_date]).to_date
-    @end_date = (params[:end_date]).to_date
-    @incomes = FinanceTransaction.incomes(@start_date,@end_date)
+    @end_date   = (params[:end_date]).to_date
+    @incomes    = FinanceTransaction.incomes(@start_date, @end_date)
   end
 
   def income_details
     @start_date = params[:start].to_date
-    @end_date = params[:end].to_date
+    @end_date   = params[:end].to_date
     @income_category = FinanceTransactionCategory.find(params[:id])
-    @incomes = @income_category.finance_transactions.find(:all,:conditions => ["transaction_date >= ? AND transaction_date <= ?", @start_date, @end_date])
+    @incomes = @income_category.finance_transactions.find(:all, :conditions => { :transaction_date => @start_date..@end_date })
   end
 
   def income_list_pdf
@@ -196,21 +196,21 @@ class FinanceController < ApplicationController
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
     @incomes = FinanceTransaction.incomes(@start_date,@end_date)
-    render :pdf => 'income_list_pdf', :zoom=>0.68#, :show_as_html=>true
+    render :pdf => 'income_list_pdf', :zoom => 0.68#, :show_as_html=>true
   end
 
   def income_details_pdf
     @start_date = params[:start_date].to_date
     @end_date = params[:end_date].to_date
     @income_category = FinanceTransactionCategory.find(params[:id])
-    @incomes = @income_category.finance_transactions.find(:all,:conditions => ["transaction_date >= ? AND transaction_date <= ?", @start_date, @end_date])
+    @incomes = @income_category.finance_transactions.find(:all, :conditions => { :transaction_date => @start_date..@end_date })
     render :pdf => 'income_details_pdf'
   end
 
   def categories
-    @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false},:order=>'name asc')
-    @fixed_categories = @categories.reject{|c|!c.is_fixed}
-    @other_categories = @categories.reject{|c|c.is_fixed}
+    @categories = FinanceTransactionCategory.all(:conditions => { :deleted => false }, :order => 'name ASC')
+    @fixed_categories = @categories.reject { |c| !c.fixed? }
+    @other_categories = @categories.reject { |c| c.fixed? }
   end
 
   def category_new
@@ -222,8 +222,8 @@ class FinanceController < ApplicationController
     render :update do |page|
       if @finance_category.save
         @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false})
-        @fixed_categories = @categories.reject{|c|!c.is_fixed}
-        @other_categories = @categories.reject{|c|c.is_fixed}
+        @fixed_categories = @categories.reject { |c| !c.fixed? }
+        @other_categories = @categories.reject { |c| c.fixed? }
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'category-list', :partial => 'category_list'
@@ -240,8 +240,8 @@ class FinanceController < ApplicationController
     @finance_category = FinanceTransactionCategory.find(params[:id])
     @finance_category.update_attributes(:deleted => true)
     @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false})
-    @fixed_categories = @categories.reject{|c|!c.is_fixed}
-    @other_categories = @categories.reject{|c|c.is_fixed}
+    @fixed_categories = @categories.reject { |c| !c.fixed? }
+    @other_categories = @categories.reject { |c| c.fixed? }
   end
 
   def category_edit
@@ -253,8 +253,8 @@ class FinanceController < ApplicationController
     @finance_category = FinanceTransactionCategory.find(params[:id])
     @finance_category.update_attributes(params[:finance_category])
     @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false})
-    @fixed_categories = @categories.reject{|c|!c.is_fixed}
-    @other_categories = @categories.reject{|c|c.is_fixed}
+    @fixed_categories = @categories.reject { |c| !c.fixed? }
+    @other_categories = @categories.reject { |c| c.fixed? }
   end
 
   def transaction_trigger_create
@@ -283,7 +283,7 @@ class FinanceController < ApplicationController
       @cat_names << "'#{category[:category_name]}'"
     end
     @transaction_trigger = FinanceTransactionTrigger.find(params[:id])
-    @categories = FinanceTransactionCategory.find(:all ,:conditions => ["name NOT IN (#{@cat_names.join(',')}) and is_income=1 and deleted=0 "])
+    @categories = FinanceTransactionCategory.find(:all, :conditions => ["name NOT IN (?) AND is_income = ? AND deleted = ?", @cat_names.join(','), true, false])
   end
 
   def transaction_trigger_update
@@ -322,7 +322,7 @@ class FinanceController < ApplicationController
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
     @transactions = FinanceTransaction.find(:all,
-      :order => 'transaction_date desc', :conditions => ["transaction_date >= ? AND transaction_date <= ?", @start_date, @end_date])
+      :order => 'transaction_date desc', :conditions => { :transaction_date => @start_date..@end_date })
     #@other_transactions = FinanceTransaction.report(@start_date,@end_date,params[:page])
     @other_transaction_categories = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
       :order => 'transaction_date').map{|ft| ft.category}.uniq
@@ -343,7 +343,7 @@ class FinanceController < ApplicationController
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
     @transactions = FinanceTransaction.find(:all,
-      :order => 'transaction_date desc', :conditions => ["transaction_date >= ? AND transaction_date <= ?", @start_date, @end_date])
+      :order => 'transaction_date desc', :conditions => { :transaction_date => @start_date..@end_date })
     #@other_transactions = FinanceTransaction.report(@start_date,@end_date,params[:page])
     @other_transaction_categories = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
       :order => 'transaction_date').map{|ft| ft.category}.uniq
@@ -603,7 +603,7 @@ class FinanceController < ApplicationController
   def delete_liability
     @liability = Liability.find(params[:id])
     @liability.update_attributes(:is_deleted => true)
-    @liabilities = Liability.find(:all ,:conditions => { :is_deleted => false })
+    @liabilities = Liability.find(:all, :conditions => { :is_deleted => false })
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     render :update do |page|
       page.replace_html "liability_list", :partial => "liability_list"
@@ -864,7 +864,7 @@ class FinanceController < ApplicationController
       if @error.blank?
         flash[:notice] = t('particulars_created_successfully')
       else
-        @fees_categories = FinanceFeeCategory.find(:all ,:conditions=> "is_deleted = 0 and is_master = 1")
+        @fees_categories = FinanceFeeCategory.find(:all, :conditions=> "is_deleted = 0 and is_master = 1")
         @fees_categories.reject!{|f|f.batch.is_deleted or !f.batch.is_active }
         render :action => 'fees_particulars_new'
         return
@@ -1902,7 +1902,7 @@ class FinanceController < ApplicationController
     @start_date2 = (params[:start_date2]).to_date
     @end_date2 = (params[:end_date2]).to_date
     @transactions = FinanceTransaction.find(:all,
-      :order => 'transaction_date desc', :conditions => ["transaction_date >= ? AND transaction_date <= ?", @start_date, @end_date])
+      :order => 'transaction_date desc', :conditions => { :transaction_date => @start_date..@end_date })
     @transactions2 = FinanceTransaction.find(:all,
       :order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date2}' and transaction_date <= '#{@end_date2}'"])
     @other_transaction_categories = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
