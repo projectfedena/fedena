@@ -86,6 +86,12 @@ FactoryGirl.define do
     cce_exam_category
   end
 
+  factory :class_designation do
+    name    'Class Designation Name'
+    cgpa    10
+    marks   20
+  end
+
   factory :fa_criteria do
     fa_name    'fa_criteria name'
     desc    'description'
