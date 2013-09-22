@@ -19,10 +19,11 @@ class EmployeeBankDetail < ActiveRecord::Base
   belongs_to :employee
   belongs_to :bank_field
 
-  def archive_employee_bank_detail(archived_employee)
+  def archive_employee_bank_detail(archived_employee_id)
     bank_detail_attributes = self.attributes
     bank_detail_attributes.delete "id"
-    bank_detail_attributes["employee_id"] = archived_employee
-    self.delete if ArchivedEmployeeBankDetail.create(bank_detail_attributes)
+    bank_detail_attributes["employee_id"] = archived_employee_id
+    archive_employee_bank_detail = ArchivedEmployeeBankDetail.create(bank_detail_attributes)
+    self.delete if archive_employee_bank_detail.valid?
   end
 end
