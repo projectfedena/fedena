@@ -80,6 +80,18 @@ FactoryGirl.define do
     batch
   end
 
+  factory :cce_grade_set do
+    name    'Cce Grade Set Name'
+  end
+
+  factory :observation_group do
+    name               'Observation Group Name'
+    header_name        'Header Name'
+    observation_kind   'Kind'
+    cce_grade_set      { association(:cce_grade_set) }
+    desc               'Description'
+  end
+
   factory :fa_group do
     name    'fa group name'
     desc    'description'
