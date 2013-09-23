@@ -125,7 +125,7 @@ FactoryGirl.define do
   factory :exam_group do
     sequence(:name) { |n| "Exam Group #{n}" }
     exam_date       { Date.today }
-    exam_type       'grades'
+    exam_type       'Marks'
     cce_exam_category
   end
 

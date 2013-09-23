@@ -43,7 +43,6 @@ class Exam < ActiveRecord::Base
 
   def removable?
     self.exam_scores.reject{|es| es.marks.nil? and es.grading_level_id.nil?}.empty?
-
   end
 
   def score_for(student_id)
