@@ -24,7 +24,7 @@ describe Guardian do
     end
   end
 
-  describe '#is_immediate_contact?' do
+  describe '#immediate_contact?' do
     let(:guardian) { FactoryGirl.build(:guardian) }
 
     context 'ward.immediate_contact_id = id' do
@@ -34,7 +34,7 @@ describe Guardian do
       end
 
       it 'is true' do
-        guardian.is_immediate_contact?.should be_true
+        guardian.immediate_contact?.should be_true
       end
     end
 
@@ -45,7 +45,7 @@ describe Guardian do
       end
 
       it 'is false' do
-        guardian.is_immediate_contact?.should be_false
+        guardian.immediate_contact?.should be_false
       end
     end
   end

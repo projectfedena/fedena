@@ -73,7 +73,7 @@ class Guardian < ActiveRecord::Base
   end
 
   def immediate_contact_nil
-    if ward.present? && is_immediate_contact?
+    if ward.present? && immediate_contact?
       ward.update_attributes(:immediate_contact_id => nil)
     end
   end
