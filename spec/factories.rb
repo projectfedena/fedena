@@ -22,6 +22,12 @@ FactoryGirl.define do
     body      'Reminding'
   end
 
+  factory :student_fee_discount do
+    receiver { association(:student) }
+    sequence(:name) { |n| "name_#{n}" }
+    discount 44
+  end
+
   factory :student do
     sequence(:admission_no) { |n| "#{n}" }
     admission_date  Date.today - 10.days
@@ -54,7 +60,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "Batch fee discount #{n}" }
     discount        30
     type            'BatchFeeDiscount'
-    receiver_id     1
+    receiver  { association(:batch) }
   end
 
   factory :course do
@@ -297,7 +303,7 @@ FactoryGirl.define do
   end
 
   factory :employee_additional_detail do
-    employee_id 1 
+    employee_id 1
     additional_field_id 1
     sequence(:additional_info) { |n| "additional info #{n}" }
   end
