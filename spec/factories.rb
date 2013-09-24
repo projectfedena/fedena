@@ -50,6 +50,13 @@ FactoryGirl.define do
     type   'free'
   end
 
+  factory :batch_fee_discount do
+    sequence(:name) { |n| "Batch fee discount #{n}" }
+    discount        30
+    type            'BatchFeeDiscount'
+    receiver_id     1
+  end
+
   factory :course do
     course_name  '1'
     section_name 'A'
