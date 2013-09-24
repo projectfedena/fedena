@@ -23,12 +23,78 @@ class ExamScore < ActiveRecord::Base
   before_save :calculate_grade
   before_save :check_existing
 
-
+  validate :marks_cannot_be_greater_than_maximum_marks
   validates_presence_of :student_id
   validates_presence_of :exam_id,:message => "Name/Batch Name/Subject Code is invalid"
-  validates_numericality_of :marks,:allow_nil => true
+  validates_numericality_of :marks, :allow_nil => true
 
+  def calculate_percentage
+    percentage = self.marks.to_f * 100 / self.exam.maximum_marks.to_f
+  end
 
+  def grouped_exam_subject_total(subject, student, type, batch = "")
+    if batch.blank?
+      batch = student.batch_id
+    end
+    if type == 'grouped'
+      grouped_exams = GroupedExam.find_all_by_batch_id(batch)
+      exam_groups = []
+      grouped_exams.each do |x|
+        eg = ExamGroup.find(x.exam_group_id)
+        exam_groups << eg
+      end
+    else
+      exam_groups = ExamGroup.find_all_by_batch_id(batch)
+    end
+    total_marks = 0
+    exam_groups.each do |exam_group|
+      if exam_group.exam_type != 'Grades'
+        exam = Exam.find_by_subject_id_and_exam_group_id(subject.id, exam_group.id)
+        if exam.present?
+          exam_score = ExamScore.find_by_student_id(student.id, :conditions => { :exam_id=>exam.id })
+          marks = exam_score.nil? && exam_score.marks.nil? ? 0 : exam_score.marks
+          total_marks = total_marks + marks
+        end
+      end
+    end
+    total_marks.to_f
+  end
+
+  def batch_wise_aggregate(student,batch)
+    check = ExamGroup.find_all_by_batch_id(batch.id)
+    var = []
+    check.each { |x| var << 1 if x.exam_type == 'Grades' }
+    if var.empty?
+      grouped_exam = GroupedExam.find_all_by_batch_id(batch.id)
+      if grouped_exam.empty?
+        exam_groups = ExamGroup.find_all_by_batch_id(batch.id)
+      else
+        exam_groups = []
+        grouped_exam.each do |x|
+          exam_groups << ExamGroup.find(x.exam_group_id)
+        end
+      end
+      exam_groups.size
+      max_total = 0
+      marks_total = 0
+      exam_groups.each do |exam_group|
+        max_total = max_total + exam_group.total_marks(student)[1]
+        marks_total = marks_total + exam_group.total_marks(student)[0]
+      end
+      aggr = (marks_total * 100 / max_total) unless max_total==0
+    else
+      aggr = nil
+    end
+
+  end
+
+  private
+
+  def marks_cannot_be_greater_than_maximum_marks
+    if self.marks.present? && self.exam.present? &&self.exam.maximum_marks.to_f < self.marks.to_f
+      errors.add(:marks, 'cannot be greater than maximum marks')
+    end
+  end
 
   def check_existing
     exam_score = ExamScore.find(:first,:conditions => {:exam_id => self.exam_id,:student_id => self.student_id})
@@ -40,94 +106,12 @@ class ExamScore < ActiveRecord::Base
     return true
   end
 
-
-  def validate
-    unless self.marks.nil?
-      unless self.exam.nil?
-        if self.exam.maximum_marks.to_f < self.marks.to_f
-          errors.add('marks','cannot be greater than maximum marks')
-          return false
-        else
-          return true
-        end
-      end
-    end
-  end
-
-
-  def calculate_percentage
-    percentage = self.marks.to_f * 100 / self.exam.maximum_marks.to_f
-  end
-
-  def grouped_exam_subject_total(subject,student,type,batch = "")
-    if batch == ""
-      batch = student.batch.id
-    end
-    if type == 'grouped'
-      grouped_exams = GroupedExam.find_all_by_batch_id(batch)
-      exam_groups = []
-      grouped_exams.each do |x|
-        eg = ExamGroup.find(x.exam_group_id)
-        exam_groups.push ExamGroup.find(x.exam_group_id)
-      end
-    else
-      exam_groups = ExamGroup.find_all_by_batch_id(batch)
-    end
-    total_marks = 0
-    exam_groups.each do |exam_group|
-      unless exam_group.exam_type == 'Grades'
-        exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id)
-        unless exam.nil?
-          exam_score = ExamScore.find_by_student_id(student.id, :conditions=>{:exam_id=>exam.id})
-          marks = exam_score.nil? ? 0 : exam_score.marks.nil? ? 0 : exam_score.marks
-          total_marks = total_marks + marks unless exam_score.nil?
-        end
-      end
-    end
-    total_marks
-  end
-
-
-
-  def batch_wise_aggregate(student,batch)
-    check = ExamGroup.find_all_by_batch_id(batch.id)
-    var = []
-    check.each do |x|
-      if x.exam_type == 'Grades'
-        var << 1
-      end
-    end
-    if var.empty?
-      grouped_exam = GroupedExam.find_all_by_batch_id(batch.id)
-      if grouped_exam.empty?
-        exam_groups = ExamGroup.find_all_by_batch_id(batch.id)
-      else
-        exam_groups = []
-        grouped_exam.each do |x|
-          exam_groups.push ExamGroup.find(x.exam_group_id)
-        end
-      end
-      exam_groups.size
-      max_total = 0
-      marks_total = 0
-      exam_groups.each do |exam_group|
-        max_total = max_total + exam_group.total_marks(student)[1]
-        marks_total = marks_total + exam_group.total_marks(student)[0]
-      end
-      aggr = (marks_total*100/max_total) unless max_total==0
-    else
-      aggr = 'nil'
-    end
-
-  end
-
-  private
   def calculate_grade
     exam = self.exam
     exam_group = exam.exam_group
     exam_type = exam_group.exam_type
-    unless exam_type == 'Grades'
-      unless self.marks.nil?
+    if exam_type != 'Grades'
+      if self.marks.present?
         percent_score = self.marks.to_i * 100 / self.exam.maximum_marks
         grade = GradingLevel.percentage_to_grade(percent_score, self.exam.exam_group.batch_id)
         self.grading_level_id = grade.id if exam_type == 'MarksAndGrades'

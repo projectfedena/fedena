@@ -140,6 +140,10 @@ FactoryGirl.define do
     cce_exam_category
   end
 
+  factory :exam_score do
+    marks       20
+  end
+
   factory :cce_exam_category do
     name  'cat name'
     desc  'description'
@@ -178,6 +182,7 @@ FactoryGirl.define do
     maximum_marks 100
     minimum_marks 30
     weightage     50
+    exam_group    { association(:exam_group) }
   end
 
   factory :general_subject, :class => 'Subject' do
