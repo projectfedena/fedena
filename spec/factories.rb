@@ -58,6 +58,12 @@ FactoryGirl.define do
     batches { |batches| [batches.association(:batch)] }
   end
 
+  factory :cce_weightage do
+    weightage  20
+    criteria_type 'A'
+    cce_exam_category  { association(:cce_exam_category) }
+  end
+
   factory :class_timing do
     sequence(:name) { |n| "Class Timing #{n}" }
     start_time   { Time.current.change(hour: 5) }

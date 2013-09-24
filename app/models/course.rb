@@ -32,7 +32,7 @@ class Course < ActiveRecord::Base
   has_and_belongs_to_many :observation_groups
   has_and_belongs_to_many_with_deferred_save :cce_weightages
 
-  before_save :cce_weightage_valid
+  validate :cce_weightage_valid
 
   named_scope :active,  :conditions => { :is_deleted => false }, :order => 'course_name ASC'
   named_scope :deleted, :conditions => { :is_deleted => true },  :order => 'course_name ASC'
@@ -65,7 +65,6 @@ class Course < ActiveRecord::Base
   def find_course_rank(batch_ids, sort_order)
     batches   = Batch.find_all_by_id(batch_ids)
     @students = Student.find_all_by_batch_id(batches)
-    @grouped_exams  = GroupedExam.find_all_by_batch_id(batches)
     ordered_scores  = []
     student_scores  = []
     ranked_students = []
@@ -73,7 +72,7 @@ class Course < ActiveRecord::Base
     @students.each do |student|
       score = GroupedExamReport.find_by_student_id_and_batch_id_and_score_type(student.id, student.batch_id, 'c')
       marks = 0
-      marks = score.marks if !score.nil?
+      marks = score.marks if score.present?
       ordered_scores << marks
       student_scores << [student.id, marks]
     end
@@ -82,19 +81,19 @@ class Course < ActiveRecord::Base
 
     @students.each do |student|
       m = 0
-      student_scores.each do|student_score|
+      student_scores.each do |student_score|
         if student_score[0] == student.id
           m = student_score[1]
         end
       end
-      if sort_order == '' or sort_order == 'rank-ascend' or sort_order == 'rank-descend'
-        ranked_students << [(ordered_scores.index(m) + 1), m, student.id, student]
+      if sort_order == '' || sort_order == 'rank-ascend' || sort_order == 'rank-descend'
+        ranked_students << [(ordered_scores.index(m) + 1), m.to_f, student.id, student]
       else
-        ranked_students << [student.full_name, (ordered_scores.index(m) + 1), m, student.id, student]
+        ranked_students << [student.full_name, (ordered_scores.index(m) + 1), m.to_f, student.id, student]
       end
     end
 
-    if sort_order == '' or sort_order == 'rank-ascend' or sort_order == 'name-ascend'
+    if sort_order == '' || sort_order == 'rank-ascend'
       ranked_students = ranked_students.sort
     else
       ranked_students = ranked_students.sort.reverse
@@ -136,7 +135,7 @@ class Course < ActiveRecord::Base
   #  end
 
   def self.grading_types
-    hsh =  ActiveSupport::OrderedHash.new
+    hsh = {}
     hsh["0"] = "Normal"
     types = Configuration.get_grading_types
     types.each { |t| hsh[t] = GRADINGTYPES[t] }
@@ -158,13 +157,12 @@ class Course < ActiveRecord::Base
   end
 
   def cce_weightage_valid
+
     cce_weightages.group_by(&:criteria_type).values.each do |v|
-      unless v.collect(&:cce_exam_category_id).length == v.collect(&:cce_exam_category_id).uniq.length
-        errors.add(:cce_weightages,"can't assign more than one FA or SA under a single exam category.")
-        return false
+      if v.collect(&:cce_exam_category_id).count != v.collect(&:cce_exam_category_id).uniq.count
+        errors.add(:cce_weightages, "can't assign more than one FA or SA under a single exam category.")
       end
     end
-    true
   end
 
 end

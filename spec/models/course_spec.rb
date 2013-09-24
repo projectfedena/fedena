@@ -1,27 +1,40 @@
 require 'spec_helper'
 
 describe Course do
-  context 'validate course' do
-    it { should validate_presence_of(:course_name) }
-    it { should validate_presence_of(:code) }
-    it { should have_many(:batches) }
-    it { should have_many(:batch_groups) }
-    it { should have_many(:ranking_levels) }
-    it { should have_many(:class_designations) }
-    it { should have_many(:subject_amounts) }
-    it { should have_and_belong_to_many(:observation_groups) }
 
-    describe '#presence_of_initial_batch' do
-      context 'no batches on create' do
-        before do
-          @course = FactoryGirl.build(:course)
-          @course.stub_chain(:batches, :length).and_return(0)
-        end
+  it { should validate_presence_of(:course_name) }
+  it { should validate_presence_of(:code) }
+  it { should have_many(:batches) }
+  it { should have_many(:batch_groups) }
+  it { should have_many(:ranking_levels) }
+  it { should have_many(:class_designations) }
+  it { should have_many(:subject_amounts) }
+  it { should have_and_belong_to_many(:observation_groups) }
 
-        it 'adds error to base' do
-          @course.should be_invalid
-          @course.errors[:base].should == 'Should have an initial batch'
-        end
+  describe '#presence_of_initial_batch' do
+    context 'no batches on create' do
+      before do
+        @course = FactoryGirl.build(:course)
+        @course.stub_chain(:batches, :length).and_return(0)
+      end
+
+      it 'adds error to base' do
+        @course.should be_invalid
+        @course.errors[:base].should == 'Should have an initial batch'
+      end
+    end
+  end
+
+  describe '#cce_weightage_valid' do
+    let(:course) { FactoryGirl.create(:course) }
+
+    context 'assign more than one FA or SA under a single exam category' do
+      let(:cce_weightage1) { FactoryGirl.build(:cce_weightage) }
+      let(:cce_weightage2) { FactoryGirl.build(:cce_weightage, :cce_exam_category_id => cce_weightage1.cce_exam_category_id) }
+      before { course.cce_weightages = [cce_weightage1, cce_weightage2] }
+
+      it 'is invalid' do
+        course.should be_invalid
       end
     end
   end
@@ -169,6 +182,64 @@ describe Course do
 
       it 'returns true' do
         course.should be_normal_enabled
+      end
+    end
+  end
+
+  describe '#find_course_rank' do
+    let(:course) { FactoryGirl.build(:course) }
+    context 'found all Student with batch_id' do
+      let(:student) { FactoryGirl.create(:student) }
+      before { Student.stub(:find_all_by_batch_id).and_return([student]) }
+
+      context 'found GroupedExamReport with student_id, batch_id, score_type' do
+        let(:grouped_exam_report) { GroupedExamReport.new(:marks => 40) }
+        before { GroupedExamReport.stub(:find_by_student_id_and_batch_id_and_score_type).and_return(grouped_exam_report) }
+
+        context 'sort_order is (nil || rank-ascend || rank-descend)' do
+          it 'returns' do
+            course.find_course_rank(5, '').should == [[1, 40, student.id, student]]
+          end
+        end
+
+        context 'sort_order is not (nil || rank-ascend || rank-descend)' do
+          it 'returns' do
+            course.find_course_rank(5, 'sample').should == [[student.full_name, 1, 40, student.id, student]]
+          end
+        end
+      end
+    end
+  end
+
+  describe '#self.grading_types' do
+    context 'found Configuration grading types' do
+      before { Configuration.stub(:get_grading_types).and_return(['1', '2']) }
+
+      it 'returns Course grading types' do
+        Course.grading_types.should == {"0" => "Normal", "1" => "GPA", "2" => "CWA"}
+      end
+    end
+  end
+
+  describe '#self.grading_types_as_options' do
+    context 'found Course grading types' do
+      before { Course.stub(:grading_types).and_return({"0" => "Normal", "1" => "GPA", "2" => "CWA"}) }
+
+      it 'returns Course grading types' do
+        Course.grading_types_as_options.should == [["Normal", "0"], ["GPA", "1"], ["CWA", "2"]]
+      end
+    end
+  end
+
+  describe '#cce_weightages_for_exam_category' do
+    let(:cce_weightage) { CceWeightage.new }
+    let(:course) { FactoryGirl.build(:course, :cce_weightages => [cce_weightage]) }
+
+    context 'found cce_weightages for exam_category' do
+      before { course.cce_weightages.stub(:all).with(:conditions => { :cce_exam_category_id => 5 }).and_return([cce_weightage]) }
+
+      it 'returns all cce_weightages with exam_category_id = 5' do
+        course.cce_weightages_for_exam_category(5).should == [cce_weightage]
       end
     end
   end
