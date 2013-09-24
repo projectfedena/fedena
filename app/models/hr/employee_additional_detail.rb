@@ -18,6 +18,8 @@
 class EmployeeAdditionalDetail < ActiveRecord::Base
   belongs_to :employee
   belongs_to :additional_field
+  validates_presence_of :additional_info, :if => Proc.new { |ead| ead.additional_field && ead.additional_field.is_mandatory? }
+  validate :destroy_if_additional_info_is_blank
 
   def archive_employee_additional_detail(archived_employee)
     additional_detail_attributes = self.attributes
@@ -26,28 +28,11 @@ class EmployeeAdditionalDetail < ActiveRecord::Base
     self.delete if ArchivedEmployeeAdditionalDetail.create(additional_detail_attributes)
   end
 
-  def save
-    unless self.destroyed?
-      super
-    end
-    true
+  private
+
+  def destroy_if_additional_info_is_blank
+    self.destroy if additional_field && !additional_field.is_mandatory? && additional_info.blank?
+    return true
   end
 
-  def validate
-    if self.additional_field.is_mandatory == true
-      if self.additional_info.blank?
-        errors.add("additional_info","can't be blank")
-        return false
-      else
-        return true
-      end
-    else
-      if self.additional_info.blank?
-        self.destroy
-        return true
-      else
-        return true
-      end
-    end
-  end
 end

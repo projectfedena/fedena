@@ -277,6 +277,19 @@ FactoryGirl.define do
     subject
   end
 
+  factory :employee_additional_detail do
+    employee_id 1 
+    additional_field_id 1
+    sequence(:additional_info) { |n| "additional info #{n}" }
+  end
+
+  factory :additional_field do
+    sequence(:name) { |n| "name#{n}" }
+    status          true
+    input_type      'Default'
+    priority        30
+  end
+
   factory :attendance do
     sequence(:reason)   { |n| "reason#{n}" }
     month_date          { Date.today }
