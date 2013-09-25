@@ -39,7 +39,7 @@ class Employee < ActiveRecord::Base
     :message => "#{t('must_be_a_valid_email_address')}"
 
   validates_presence_of :employee_category_id, :employee_number, :first_name, :employee_position_id,
-    :employee_department_id,  :date_of_birth,:joining_date,:nationality_id
+    :employee_department_id,  :date_of_birth, :joining_date, :nationality_id
   validates_uniqueness_of  :employee_number
 
   validates_associated :user
@@ -58,9 +58,7 @@ class Employee < ActiveRecord::Base
     :message=>'must be less than 500 KB.',:if=> Proc.new { |p| p.photo_file_name_changed? }
 
   def status_true
-    unless self.status==1
-      self.status=1
-    end
+    self.status = true if self.status == false
   end
 
   def create_user_and_validate
@@ -77,9 +75,9 @@ class Employee < ActiveRecord::Base
       changes_to_be_checked = ['employee_number','first_name','last_name','email']
       check_changes = self.changed & changes_to_be_checked
       #      self.user.role ||= "Employee"
-      unless check_changes.blank?
+      if check_changes.any?
         emp_user = self.user
-        emp_user.username = self.employee_number if check_changes.include?('employee_number')
+        emp_user.username = self.employee_number.to_s if check_changes.include?('employee_number')
         emp_user.password = self.employee_number.to_s + "123" if check_changes.include?('employee_number')
         emp_user.first_name = self.first_name if check_changes.include?('first_name')
         emp_user.last_name = self.last_name if check_changes.include?('last_name')
@@ -91,14 +89,14 @@ class Employee < ActiveRecord::Base
 
   def check_user_errors(user)
     unless user.valid?
-      user.errors.each{|attr,msg| errors.add(attr.to_sym,"#{msg}")}
+      user.errors.each{ |attr,msg| errors.add(attr.to_sym,"#{msg}") }
     end
     user.errors.blank?
   end
 
   def employee_batches
-    batches_with_employees = Batch.active.reject{|b| b.employee_id.nil?}
-    assigned_batches = batches_with_employees.reject{|e| !e.employee_id.split(",").include?(self.id.to_s)}
+    batches_with_employees = Batch.active.reject{ |b| b.employee_id.nil? }
+    assigned_batches = batches_with_employees.reject{ |e| !e.employee_id.split(",").include?(self.id.to_s) }
     return assigned_batches
   end
 
@@ -120,39 +118,28 @@ class Employee < ActiveRecord::Base
   alias_method(:max_hours_week, :max_hours_per_week)
 
   def next_employee
-    next_st = self.employee_department.employees.first(:conditions => "id>#{self.id}",:order => "id ASC")
-    next_st ||= employee_department.employees.first(:order => "id ASC")
+    next_st = self.employee_department.employees.first(:conditions => ["id > ?", self.id], :order => "id ASC")
     next_st ||= self.employee_department.employees.first(:order => "id ASC")
   end
 
   def previous_employee
-    prev_st = self.employee_department.employees.first(:conditions => "id<#{self.id}",:order => "id DESC")
-    prev_st ||= employee_department.employees.first(:order => "id DESC")
-    prev_st ||= self.employee_department.empoyees.first(:order => "id DESC")
+    prev_st = self.employee_department.employees.first(:conditions => ["id < ?", self.id], :order => "id DESC")
+    prev_st ||= self.employee_department.employees.first(:order => "id DESC")
   end
 
   def full_name
     "#{first_name} #{middle_name} #{last_name}"
   end
 
-  def is_payslip_approved(date)
-    approve = MonthlyPayslip.find_all_by_salary_date_and_employee_id(date,self.id,:conditions => ["is_approved = true"])
-    if approve.empty?
-      return false
-    else
-      return true
-    end
-  end
-  def is_payslip_rejected(date)
-    approve = MonthlyPayslip.find_all_by_salary_date_and_employee_id(date,self.id,:conditions => ["is_rejected = true"])
-    if approve.empty?
-      return false
-    else
-      return true
-    end
+  def payslip_approved?(date)
+    MonthlyPayslip.find_all_by_salary_date_and_employee_id_and_is_approved(date, self.id, true).any?
   end
 
-  def self.total_employees_salary(employees,start_date,end_date)
+  def payslip_rejected?(date)
+    MonthlyPayslip.find_all_by_salary_date_and_employee_id_and_is_rejected(date, self.id, true).any?
+  end
+
+  def self.total_employees_salary(employees, start_date, end_date)
     salary = 0
     employees.each do |e|
       salary_dates = e.all_salaries(start_date,end_date)
@@ -164,54 +151,38 @@ class Employee < ActiveRecord::Base
   end
 
   def employee_salary(salary_date)
-
-    monthly_payslips = MonthlyPayslip.find(:all,
-      :order => 'salary_date desc',
-      :conditions => ["employee_id ='#{self.id}'and salary_date = '#{salary_date}' and is_approved = 1"])
-    individual_payslip_category = IndividualPayslipCategory.find(:all,
-      :order => 'salary_date desc',
-      :conditions => ["employee_id ='#{self.id}'and salary_date >= '#{salary_date}'"])
+    monthly_payslips = MonthlyPayslip.find(:all, :order => 'salary_date desc', :conditions => ["employee_id = ? AND salary_date = ? AND is_approved = ?", self.id, salary_date, true])
+    individual_payslip_category = IndividualPayslipCategory.find(:all, :order => 'salary_date desc', :conditions => ["employee_id = ? AND salary_date >= ?", self.id, salary_date])
     individual_category_non_deductionable = 0
     individual_category_deductionable = 0
     individual_payslip_category.each do |pc|
-      unless pc.is_deduction == true
-        individual_category_non_deductionable = individual_category_non_deductionable + pc.amount.to_f
-      end
-    end
-
-    individual_payslip_category.each do |pc|
-      unless pc.is_deduction == false
+      if pc.is_deduction?
         individual_category_deductionable = individual_category_deductionable + pc.amount.to_f
+      else
+        individual_category_non_deductionable = individual_category_non_deductionable + pc.amount.to_f
       end
     end
 
     non_deductionable_amount = 0
     deductionable_amount = 0
     monthly_payslips.each do |mp|
-      category1 = PayrollCategory.find(mp.payroll_category_id)
-      unless category1.is_deduction == true
+      category = PayrollCategory.find(mp.payroll_category_id)
+      if category.is_deduction?
+        deductionable_amount = deductionable_amount + mp.amount.to_f
+      else
         non_deductionable_amount = non_deductionable_amount + mp.amount.to_f
       end
     end
 
-    monthly_payslips.each do |mp|
-      category2 = PayrollCategory.find(mp.payroll_category_id)
-      unless category2.is_deduction == false
-        deductionable_amount = deductionable_amount + mp.amount.to_f
-      end
-    end
     net_non_deductionable_amount = individual_category_non_deductionable + non_deductionable_amount
     net_deductionable_amount = individual_category_deductionable + deductionable_amount
 
-    net_amount = net_non_deductionable_amount - net_deductionable_amount
-    return net_amount.to_f
+    net_non_deductionable_amount - net_deductionable_amount
   end
 
 
-  def salary(start_date,end_date)
-    MonthlyPayslip.find_by_employee_id(self.id,:order => 'salary_date desc',
-      :conditions => ["salary_date >= '#{start_date.to_date}' and salary_date <= '#{end_date.to_date}' and is_approved = 1"]).salary_date
-
+  def salary(start_date, end_date)
+    MonthlyPayslip.find_by_employee_id(self.id, :order => 'salary_date desc', :conditions => ["salary_date >= ? AND salary_date <= ? and is_approved = ?", start_date.to_date, end_date.to_date, true]).salary_date
   end
 
   def archive_employee(status)
@@ -221,7 +192,7 @@ class Employee < ActiveRecord::Base
     employee_attributes.delete "photo_file_size"
     employee_attributes.delete "photo_file_name"
     employee_attributes.delete "photo_content_type"
-    employee_attributes["former_id"]= self.id
+    employee_attributes["former_id"] = self.id
     archived_employee = ArchivedEmployee.new(employee_attributes)
     archived_employee.photo = self.photo
     if archived_employee.save
@@ -244,59 +215,50 @@ class Employee < ActiveRecord::Base
   end
 
 
-  def all_salaries(start_date,end_date)
-    MonthlyPayslip.find_all_by_employee_id(self.id,:select =>"distinct salary_date" ,:order => 'salary_date desc',
-      :conditions => ["salary_date >= '#{start_date.to_date}' and salary_date <= '#{end_date.to_date}' and is_approved = 1"])
+  def all_salaries(start_date, end_date)
+    MonthlyPayslip.find_all_by_employee_id(self.id, :select =>"distinct salary_date", :order => 'salary_date desc', :conditions => ["salary_date >= ? and salary_date <= ? and is_approved = ?", start_date.to_date, end_date.to_date, true])
   end
 
-  def self.calculate_salary(monthly_payslip,individual_payslip_category)
+  def self.calculate_salary(monthly_payslip, individual_payslip_category)
     individual_category_non_deductionable = 0
     individual_category_deductionable = 0
-    unless individual_payslip_category.blank?
-      individual_payslip_category.each do |pc|
-        if pc.is_deduction == true
-          individual_category_deductionable = individual_category_deductionable + pc.amount.to_f
-        else
-          individual_category_non_deductionable = individual_category_non_deductionable + pc.amount.to_f
-        end
+
+    individual_payslip_category.each do |pc|
+      if pc.is_deduction?
+        individual_category_deductionable = individual_category_deductionable + pc.amount.to_f
+      else
+        individual_category_non_deductionable = individual_category_non_deductionable + pc.amount.to_f
       end
     end
+
     non_deductionable_amount = 0
     deductionable_amount = 0
-    unless monthly_payslip.blank?
-      monthly_payslip.each do |mp|
-        unless mp.payroll_category.blank?
-          if mp.payroll_category.is_deduction == true
-            deductionable_amount = deductionable_amount + mp.amount.to_f
-          else
-            non_deductionable_amount = non_deductionable_amount + mp.amount.to_f
-          end
+
+    monthly_payslip.each do |mp|
+      if mp.payroll_category.present?
+        if mp.payroll_category.is_deduction?
+          deductionable_amount = deductionable_amount + mp.amount.to_f
+        else
+          non_deductionable_amount = non_deductionable_amount + mp.amount.to_f
         end
       end
     end
+
     net_non_deductionable_amount = individual_category_non_deductionable + non_deductionable_amount
     net_deductionable_amount = individual_category_deductionable + deductionable_amount
     net_amount = net_non_deductionable_amount - net_deductionable_amount
 
-    return_hash = {:net_amount=>net_amount,:net_deductionable_amount=>net_deductionable_amount,\
-        :net_non_deductionable_amount=>net_non_deductionable_amount }
-    return_hash
+    {:net_amount => net_amount, :net_deductionable_amount => net_deductionable_amount, :net_non_deductionable_amount => net_non_deductionable_amount }
   end
 
   def self.find_in_active_or_archived(id)
-    employee = Employee.find(:first,:conditions=>"id=#{id}")
-    if employee.blank?
-      return  ArchivedEmployee.find(:first,:conditions=>"former_id=#{id}")
-    else
-      return employee
-    end
+    Employee.find_by_id(id) || ArchivedEmployee.find_by_id(id)
   end
 
   def has_dependency
-    return true if self.monthly_payslips.present? or self.employee_salary_structures.present? or self.employees_subjects.present? \
-      or self.apply_leaves.present? or self.finance_transactions.present? or self.timetable_entries.present? or self.employee_attendances.present?
-    return true if FedenaPlugin.check_dependency(self,"permanant").present?
-    return false
+    self.monthly_payslips.present? || self.employee_salary_structures.present? || self.employees_subjects.present? \
+      || self.apply_leaves.present? || self.finance_transactions.present? || self.timetable_entries.present? \
+      || self.employee_attendances.present? || FedenaPlugin.check_dependency(self,"permanant").present?
   end
 
   def former_dependency

@@ -225,6 +225,30 @@ FactoryGirl.define do
     status              true
   end
 
+  factory :monthly_payslip do
+    salary_date     { Date.current }
+  end
+
+  factory :individual_payslip_category do
+    amount     50
+  end
+
+  factory :employee_salary_structure do; end
+
+  factory :employee_additional_detail do
+    additional_info     'Additional Info'
+    additional_field    { association(:additional_field) }
+  end
+
+  factory :additional_field do
+    sequence(:name)   { |n| "Additional Field #{n}" }
+    is_mandatory      true
+  end
+
+  factory :payroll_category do
+    sequence(:name)   { |n| "Payroll Cat #{n}" }
+  end
+
   factory :general_department, :class => 'EmployeeDepartment' do
     name 'Dep1'
     code 'forad'
