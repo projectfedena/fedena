@@ -104,6 +104,11 @@ FactoryGirl.define do
     cce_exam_category
   end
 
+  factory :monthly_payslip do
+    salary_date    { Date.current }
+    is_approved    false
+  end
+
   factory :class_designation do
     name    'Class Designation Name'
     cgpa    10
