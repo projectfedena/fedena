@@ -274,6 +274,13 @@ FactoryGirl.define do
     is_deleted false
   end
 
+  factory :student_category_fee_discount do
+    sequence(:name) { |n| "name #{n}" }
+    type "StudentCategoryFeeDiscount"
+    finance_fee_category_id 1
+    discount 20
+  end
+
   factory :timetable do
     start_date { Time.now - 5.days }
     end_date   { Time.now + 5.days }
