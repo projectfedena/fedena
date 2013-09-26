@@ -22,12 +22,6 @@ FactoryGirl.define do
     body      'Reminding'
   end
 
-  factory :student_fee_discount do
-    receiver { association(:student) }
-    sequence(:name) { |n| "name_#{n}" }
-    discount 44
-  end
-
   factory :student do
     sequence(:admission_no) { |n| "#{n}" }
     admission_date  Date.today - 10.days
@@ -35,8 +29,8 @@ FactoryGirl.define do
     first_name      'John'
     middle_name     'K'
     last_name       'Doe'
-    address_line1   ''
-    address_line2   ''
+    address_line1   'address_line1'
+    address_line2   'address_line2'
     batch_id        1
     gender          'm'
     country_id      76
@@ -54,13 +48,6 @@ FactoryGirl.define do
     name    'fee discount name'
     discount  15
     type   'free'
-  end
-
-  factory :batch_fee_discount do
-    sequence(:name) { |n| "Batch fee discount #{n}" }
-    discount        30
-    type            'BatchFeeDiscount'
-    receiver  { association(:batch) }
   end
 
   factory :course do
@@ -280,13 +267,6 @@ FactoryGirl.define do
     is_deleted false
   end
 
-  factory :student_category_fee_discount do
-    sequence(:name) { |n| "name #{n}" }
-    type "StudentCategoryFeeDiscount"
-    finance_fee_category_id 1
-    discount 20
-  end
-
   factory :timetable do
     start_date { Time.now - 5.days }
     end_date   { Time.now + 5.days }
@@ -331,13 +311,15 @@ FactoryGirl.define do
 
   factory :user_event do; end
 
-  factory :finance_fee do; end
+  factory :finance_fee do
+    is_paid false
+  end
 
   factory :finance_fee_collection do
     sequence(:name)  { |n| "FFC#{n}" }
     start_date       { Date.today }
     end_date         { Date.today + 1.days }
-    due_date         { Date.today + 2.days }
+    due_date         { Date.today + 7.days }
     fee_category_id  1
     is_deleted       false
   end
@@ -345,6 +327,13 @@ FactoryGirl.define do
   factory :finance_fee_particular do
     sequence(:name)  { |n| "FFParticular #{n}" }
     amount            20
+  end
+
+  factory :fee_collection_particular do
+    sequence(:name)  { |n| "FC particular #{n}" }
+    amount            20
+    description      'FCP description text'
+    is_deleted       false
   end
 
   factory :batch_event do
