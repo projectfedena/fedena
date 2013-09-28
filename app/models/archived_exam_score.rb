@@ -25,27 +25,28 @@ class ArchivedExamScore < ActiveRecord::Base
     percentage = self.marks.to_i * 100 / self.exam.maximum_marks
   end
 
-  def grouped_exam_subject_total(subject,student,type,batch = "")
-    if batch == ""
-      batch = student.batch.id
-    end
+  def grouped_exam_subject_total(subject ,student ,type ,batch = "")
+    batch = student.batch_id if batch.blank?
+
     if type == 'grouped'
       grouped_exams = GroupedExam.find_all_by_batch_id(batch)
       exam_groups = []
       grouped_exams.each do |x|
         eg = ExamGroup.find(x.exam_group_id)
-        exam_groups.push ExamGroup.find(x.exam_group_id)
+        exam_groups << eg if eg
       end
     else
       exam_groups = ExamGroup.find_all_by_batch_id(batch)
     end
+
     total_marks = 0
     exam_groups.each do |exam_group|
-      unless exam_group.exam_type == 'Grades'
+      if exam_group.exam_type != 'Grades'
         exam = Exam.find_by_subject_id_and_exam_group_id(subject.id,exam_group.id)
-        unless exam.nil?
-          exam_score = ArchivedExamScore.find_by_student_id(student.id, :conditions=>{:exam_id=>exam.id})
-          total_marks = total_marks+ (exam_score.marks || 0) unless exam_score.nil?
+        if exam.present?
+          exam_score = ArchivedExamScore.find_by_student_id(student.id, :conditions=>{:exam_id => exam.id})
+
+          total_marks = total_marks + (exam_score.marks || 0) unless exam_score.nil?
         end
       end
     end
@@ -55,20 +56,14 @@ class ArchivedExamScore < ActiveRecord::Base
   def batch_wise_aggregate(student,batch)
     check = ExamGroup.find_all_by_batch_id(batch.id)
     var = []
-    check.each do |x|
-      if x.exam_type == 'Grades'
-        var << 1
-      end
-    end
+    check.each {|x| var << 1 if x.exam_type == 'Grades' }
     if var.empty?
       grouped_exam = GroupedExam.find_all_by_batch_id(batch.id)
       if grouped_exam.empty?
         exam_groups = ExamGroup.find_all_by_batch_id(batch.id)
       else
         exam_groups = []
-        grouped_exam.each do |x|
-          exam_groups.push ExamGroup.find(x.exam_group_id)
-        end
+        grouped_exam.each {|x| exam_groups << ExamGroup.find(x.exam_group_id)}
       end
       exam_groups.size
       max_total = 0
@@ -77,9 +72,9 @@ class ArchivedExamScore < ActiveRecord::Base
         max_total = max_total + exam_group.archived_total_marks(student)[1]
         marks_total = marks_total + exam_group.archived_total_marks(student)[0]
       end
-      aggr = (marks_total*100/max_total) unless max_total ==0
+      aggr = (marks_total * 100 / max_total) unless max_total ==0
     else
-      aggr = 'nil'
+      aggr = nil
     end
   end
 
@@ -90,8 +85,8 @@ class ArchivedExamScore < ActiveRecord::Base
     exam_group = exam.exam_group
     exam_type = exam_group.exam_type
     student_batch = ArchivedStudent.find(self.student_id).batch_id
-    unless exam_type == 'Grades'
-      unless self.marks.nil?
+    if exam_type != 'Grades'
+      if self.marks.present?
         percent_score = self.marks.to_i * 100 / self.exam.maximum_marks
         grade = GradingLevel.percentage_to_grade(percent_score, student_batch)
         self.grading_level_id = grade.id if exam_type == 'MarksAndGrades'
