@@ -31,7 +31,7 @@ FactoryGirl.define do
     last_name       'Doe'
     address_line1   'address_line1'
     address_line2   'address_line2'
-    batch_id        1
+    batch           { association(:batch) }
     gender          'm'
     country_id      76
     nationality_id  76
@@ -313,7 +313,11 @@ FactoryGirl.define do
 
   factory :finance_fee do
     is_paid false
+    student  { association(:student) }
   end
+
+  factory :assessment_score do; end
+  factory :grouped_exam_report do; end
 
   factory :finance_fee_collection do
     sequence(:name)  { |n| "FFC#{n}" }
