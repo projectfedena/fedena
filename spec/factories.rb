@@ -140,10 +140,6 @@ FactoryGirl.define do
     cce_exam_category
   end
 
-  factory :exam_score do
-    marks       20
-  end
-
   factory :cce_exam_category do
     name  'cat name'
     desc  'description'
