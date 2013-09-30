@@ -9,6 +9,7 @@ gem 'in_place_editing'
 gem 'nokogiri'
 
 group :development, :test do
+  gem 'debugger'
   gem 'rspec-rails', '1.3.4'
 end
 
@@ -20,7 +21,6 @@ group :test do
   gem 'database_cleaner'
   gem 'webrat'
   gem 'simplecov', :require => false
-  gem 'debugger'
   gem 'mocha', '0.12.8'
   gem 'rspec-multi-mock', '0.1.0'
 end
