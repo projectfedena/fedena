@@ -225,10 +225,6 @@ FactoryGirl.define do
     status              true
   end
 
-  factory :monthly_payslip do
-    salary_date     { Date.current }
-  end
-
   factory :individual_payslip_category do
     amount     50
   end
@@ -236,13 +232,8 @@ FactoryGirl.define do
   factory :employee_salary_structure do; end
 
   factory :employee_additional_detail do
-    additional_info     'Additional Info'
+    sequence(:additional_info) { |n| "additional info #{n}" }
     additional_field    { association(:additional_field) }
-  end
-
-  factory :additional_field do
-    sequence(:name)   { |n| "Additional Field #{n}" }
-    is_mandatory      true
   end
 
   factory :payroll_category do
@@ -304,12 +295,6 @@ FactoryGirl.define do
   factory :employees_subject do
     employee
     subject
-  end
-
-  factory :employee_additional_detail do
-    employee_id 1
-    additional_field_id 1
-    sequence(:additional_info) { |n| "additional info #{n}" }
   end
 
   factory :additional_field do
