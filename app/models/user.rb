@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 
   def before_save
     self.salt = random_string(8) if self.salt.blank?
-    self.hashed_password = Digest::SHA1.hexdigest(self.salt + self.password) if self.password.blank?
+    self.hashed_password = Digest::SHA1.hexdigest(self.salt + self.password) if self.password.present?
     if self.new_record?
       self.admin    = self.role == 'Admin'
       self.student  = self.role == 'Student'

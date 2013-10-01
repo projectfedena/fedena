@@ -72,6 +72,10 @@ A demo website for Fedena has been set up at demo.projectfedena.org. You can log
     * As student -- username - 1, password - 1123
     * As employee -- username - E1, password - E1123
 
+On localhost, after running ```rake db:seed```, you can login as admin with:
+
+    * username - Admin, password - password
+
 # License
 
 Fedena LTS is released under the Apache License 2.0.
