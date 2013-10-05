@@ -65,5 +65,6 @@ Spec::Runner.configure do |config|
   #
   # For more information take a look at Spec::Runner::Configuration and Spec::Runner
   config.include SessionHelpers, :type => :controller
+  config.include FactoryGirl::Syntax::Methods
 
 end
