@@ -15,7 +15,7 @@ describe ExamGroup do
     end
 
     context 'cce_exam_category_id is not nil?' do
-      let!(:exam_group) { FactoryGirl.create(:exam_group, 
+      let!(:exam_group) { FactoryGirl.create(:exam_group,
         :cce_exam_category => FactoryGirl.create(:cce_exam_category)) }
 
       it { should validate_uniqueness_of(:cce_exam_category_id).with_message('already assigned for another Exam Group') }
@@ -34,7 +34,7 @@ describe ExamGroup do
   end
 
   describe '#set_exam_date' do
-    context 'exam_date is nil' do 
+    context 'exam_date is nil' do
       let!(:exam_group) { FactoryGirl.build(:exam_group, :exam_date => nil) }
 
       it 'save current date' do
@@ -43,7 +43,7 @@ describe ExamGroup do
       end
     end
 
-    context 'exam_date is not nil' do 
+    context 'exam_date is not nil' do
       let!(:exam_group) { FactoryGirl.build(:exam_group, :exam_date => Date.new(2013, 9, 21)) }
 
       it 'save exam date' do
@@ -54,30 +54,32 @@ describe ExamGroup do
   end
 
   describe '#removable?' do
-    let(:exam_score) { ExamScore.new }
-    let(:exam) { Exam.new(:exam_scores => [exam_score]) }
-    let(:exam_group) { ExamGroup.new(:exams => [exam]) }
+    let(:exam_1) { FactoryGirl.create(:exam) }
+    let(:exam_2) { FactoryGirl.create(:exam) }
+    subject { FactoryGirl.create(:exam_group) }
 
-    context 'exam is removable?' do
-      before do
-        exam_score.marks = 10
-        exam_score.grading_level_id = 99
-      end
-
-      it 'returns false' do
-        exam_group.should_not be_removable
-      end
+    before do
+      subject.expects(:exams).returns([exam_1, exam_2])
+      exam_1.stubs(:removable?).returns(removable_1)
+      exam_2.stubs(:removable?).returns(removable_2)
     end
 
-    context 'exam is not removable?' do
-      before do
-        exam_score.marks = nil
-        exam_score.grading_level_id = nil
-      end
+    context 'when all exams are removable' do
+      let(:removable_1) { true }
+      let(:removable_2) { true }
+      it { should be_removable }
+    end
 
-      it 'returns true' do
-        exam_group.should be_removable
-      end
+    context 'when one exam is not removable' do
+      let(:removable_1) { false }
+      let(:removable_2) { true }
+      it { should_not be_removable }
+    end
+
+    context 'when all exam is not removable' do
+      let(:removable_1) { false }
+      let(:removable_2) { false }
+      it { should_not be_removable }
     end
   end
 
@@ -100,7 +102,7 @@ describe ExamGroup do
       @subject = FactoryGirl.create(:subject, :batch => @batch)
       @exam1 = FactoryGirl.build(:exam, :subject => @subject)
       @exam2 = FactoryGirl.build(:exam, :subject => @subject)
-      @exam_group = FactoryGirl.create(:exam_group, 
+      @exam_group = FactoryGirl.create(:exam_group,
         :exams => [@exam1, @exam2],
         :batch => @batch)
     end
@@ -154,7 +156,7 @@ describe ExamGroup do
       @subject = FactoryGirl.create(:subject, :batch => @batch)
       @exam1 = FactoryGirl.build(:exam, :subject => @subject)
       @exam2 = FactoryGirl.build(:exam, :subject => @subject)
-      @exam_group = FactoryGirl.create(:exam_group, 
+      @exam_group = FactoryGirl.create(:exam_group,
         :exams => [@exam1, @exam2],
         :batch => @batch)
     end
@@ -183,7 +185,7 @@ describe ExamGroup do
     before do
       @student1 = FactoryGirl.create(:student)
       @student2 = FactoryGirl.create(:student)
-      @batch = FactoryGirl.create(:batch, 
+      @batch = FactoryGirl.create(:batch,
         :course => FactoryGirl.create(:course),
         :students => [@student1, @student2])
       @subject = FactoryGirl.create(:subject, :batch => @batch)
