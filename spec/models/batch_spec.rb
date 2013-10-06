@@ -41,4 +41,45 @@ describe Batch do
     end
 
   end
+
+  describe '.create_reports' do
+    let(:course) { create(:course) }
+    let(:batch) { course.batches.first }
+    let(:batch_ids) { [batch.id]}
+    let(:check_credit_points) { true }
+    subject { Batch.create_reports(batch_ids) }
+
+    before do
+      Batch.any_instance.expects(:check_credit_points).returns(check_credit_points)
+    end
+
+    context 'always' do
+      let(:notice) { 'notice' }
+      before { Batch.expects(:create_report_notice).returns(notice) }
+      its(:first) { should eql(notice) }
+    end
+
+    context 'when check credit points is false' do
+      let(:check_credit_points) { false }
+      its(:last) { should eql(["Incomplete grading level credit points for #{batch.full_name}, report generation failed."]) }
+    end
+
+    context 'when check credit points is true' do
+      before do
+        Delayed::Job.expects(:enqueue)
+        Batch.any_instance.expects(:delete_student_cce_report_cache)
+      end
+
+      its(:last) { should eql([]) }
+    end
+  end
+
+  describe '.create_report_notice' do
+    let(:batches) { create_list(:batch, 2) }
+    let(:full_name) { 'full_name' }
+    let(:full_names) { [full_name, full_name] }
+    before { batches.expects(:map).returns(full_names) }
+    subject { Batch.create_report_notice(batches) }
+    it { should eql("Report generation in queue for batches #{full_names.join(", ")}. <a href='/scheduled_jobs/Batch/3'>Click Here</a> to view the scheduled job.") }
+  end
 end

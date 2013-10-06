@@ -684,5 +684,23 @@ class Batch < ActiveRecord::Base
     employees.collect(&:user_id).include? u.id
   end
 
+  def self.create_reports(batch_ids)
+    errors = []
+    batches = self.find_all_by_id(batch_ids)
+    batches.each do |batch|
+      if batch.check_credit_points
+        batch.job_type = "3"
+        Delayed::Job.enqueue(batch)
+        batch.delete_student_cce_report_cache
+      else
+        errors += ["Incomplete grading level credit points for #{batch.full_name}, report generation failed."]
+      end
+    end
+    notice = self.create_report_notice(batches)
+    [notice, errors]
+  end
 
+  def self.create_report_notice(batches)
+    "Report generation in queue for batches #{batches.map(&:full_name).join(", ")}. <a href='/scheduled_jobs/Batch/3'>Click Here</a> to view the scheduled job."
+  end
 end
