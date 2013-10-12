@@ -148,7 +148,7 @@ gl: # locale
         title:  "Título"
 
       apply_leave:
-        employee_leave_types_id: "Tipos de ausencia dos/as empregados/as"
+        employee_leave_type_id: "Tipos de ausencia dos/as empregados/as"
         start_date: "Data de inicio"
         end_date: "Data de finalización"
         reason: "Causa"

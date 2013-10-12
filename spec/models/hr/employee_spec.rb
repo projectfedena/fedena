@@ -695,4 +695,35 @@ describe Employee do
       employee.former_dependency.should == []
     end
   end
+
+  describe '.search_employees' do
+    let(:params) { { query: query }.merge(additional_params) }
+    let(:additional_params) { {} }
+    let(:query) { '' }
+    subject { Employee.search_employees(params) }
+
+    Employee::EMPLOYEE_QUERY_VARIABLES.each do |key|
+      context "when #{key} is present" do
+        let(:var_id) { 1 }
+        let!(:data) { { key => create(:employee, key => var_id) } }
+        let(:additional_params) { { key => var_id } }
+
+        it { should include(data[key]) }
+      end
+    end
+
+    context 'when length query is equal or greater than 3' do
+      let(:employee_by_name) { create(:employee, first_name: first_name) }
+      let(:first_name) { 'first_name' }
+      let(:query) { first_name }
+      it { should include(employee_by_name) }
+    end
+
+    context 'when length query is not equal or greater than 3' do
+      let(:employee_by_number) { create(:employee, employee_number: employee_number.to_i) }
+      let(:employee_number) { '1' }
+      let(:query) { employee_number }
+      it { should include(employee_by_number) }
+    end
+  end
 end

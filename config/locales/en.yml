@@ -148,7 +148,7 @@ en: # locale
         title:  "Title"
 
       apply_leave:
-        employee_leave_types_id: "Employee Leave Types"
+        employee_leave_type_id: "Employee Leave Types"
         start_date: "Start Date"
         end_date: "End Date"
         reason: "Reason"

@@ -148,7 +148,7 @@ de: # locale
         title:  "Titel"
 
       apply_leave:
-        employee_leave_types_id: "Angestelltenabwesenehitsarten"
+        employee_leave_type_id: "Angestelltenabwesenehitsarten"
         start_date: "Startdatum"
         end_date: "Enddatum"
         reason: "Grund"

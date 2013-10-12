@@ -149,7 +149,7 @@ ar:
         title: "لقب"
 
       apply_leave:
-        employee_leave_types_id: "أنواع الموظف إجازة"
+        employee_leave_type_id: "أنواع الموظف إجازة"
         start_date: "تاريخ بدء"
         end_date: "نهاية التاريخ"
         reason: "سبب"

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130921021639) do
+ActiveRecord::Schema.define(:version => 20131020053811) do
 
   create_table "additional_exam_groups", :force => true do |t|
     t.string  "name"
@@ -64,13 +64,13 @@ ActiveRecord::Schema.define(:version => 20130921021639) do
 
   create_table "apply_leaves", :force => true do |t|
     t.integer "employee_id"
-    t.integer "employee_leave_types_id"
+    t.integer "employee_leave_type_id"
     t.boolean "is_half_day"
     t.date    "start_date"
     t.date    "end_date"
     t.string  "reason"
-    t.boolean "approved",                :default => false
-    t.boolean "viewed_by_manager",       :default => false
+    t.boolean "approved",               :default => false
+    t.boolean "viewed_by_manager",      :default => false
     t.string  "manager_remark"
   end
 

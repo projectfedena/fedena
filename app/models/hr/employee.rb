@@ -51,6 +51,12 @@ class Employee < ActiveRecord::Base
     :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension"
 
   VALID_IMAGE_TYPES = ['image/gif', 'image/png','image/jpeg', 'image/jpg']
+  EMPLOYEE_QUERY_VARIABLES = [
+    :employee_department_id,
+    :employee_category_id,
+    :employee_position_id,
+    :employee_grade_id
+  ]
 
   validates_attachment_content_type :photo, :content_type =>VALID_IMAGE_TYPES,
     :message=>'Image can only be GIF, PNG, JPG',:if=> Proc.new { |p| !p.photo_file_name.blank? }
@@ -265,4 +271,27 @@ class Employee < ActiveRecord::Base
     FedenaPlugin.check_dependency(self,"former")
   end
 
+  def self.search_employees(params)
+    if params[:query].length >= 3
+      conditions = "(first_name LIKE ? OR middle_name LIKE ? OR last_name LIKE ?" \
+                    " OR employee_number LIKE ? OR (concat(first_name, \" \", last_name) LIKE ?))"
+      query_values = ["#{params[:query]}%","#{params[:query]}%","#{params[:query]}%",
+                       params[:query], params[:query]]
+    elsif params[:query].present?
+      conditions = "employee_number = ? "
+      query_values = [params[:query]]
+    else
+      conditions = "1 = 1" # always true conditions to prevent wrong syntax error
+      query_values = []
+    end
+
+    EMPLOYEE_QUERY_VARIABLES.each do |key|
+      if params[key].present?
+        conditions << " AND #{key} = ?"
+        query_values << params[key]
+      end
+    end
+
+    Employee.all(conditions: [conditions] + query_values, order: "first_name asc")
+  end
 end

@@ -148,7 +148,7 @@ mr: # locale
         title:  "शीर्षक"
 
       apply_leave:
-        employee_leave_types_id: "कर्मचारी रजा प्रकार"
+        employee_leave_type_id: "कर्मचारी रजा प्रकार"
         start_date: "सुरुवात तारीख"
         end_date: "शेवट तारीख"
         reason: "कारण"
