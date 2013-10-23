@@ -148,7 +148,7 @@ ch: # locale
         title:  "標題"
 
       apply_leave:
-        employee_leave_types_id: "員工休假類型"
+        employee_leave_type_id: "員工休假類型"
         start_date: "開始日期"
         end_date: "結束日期"
         reason: "原因"

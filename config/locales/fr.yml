@@ -148,7 +148,7 @@ fr: # locale
         title:  "Titre"
 
       apply_leave:
-        employee_leave_types_id: "Types de permission de l’employé"
+        employee_leave_type_id: "Types de permission de l’employé"
         start_date: "Date butoire"
         end_date: "Date finale"
         reason: "Raison"

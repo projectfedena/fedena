@@ -148,7 +148,7 @@ ku: # locale
         title:  "ناونیشان"
 
       apply_leave:
-        employee_leave_types_id: "جۆری جێهێشتنی فەرمانبەر"
+        employee_leave_type_id: "جۆری جێهێشتنی فەرمانبەر"
         start_date: "ڕێکەوتی دەست پێکردن"
         end_date: "ڕێکەوتی کۆتایی پێهێنان"
         reason: "هۆکار"

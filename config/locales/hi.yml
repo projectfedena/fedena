@@ -141,7 +141,7 @@ hi:
         title: "शीर्षक"
 
       apply_leave:
-        employee_leave_types_id: "कर्मचारी छोड़ दो प्रकार"
+        employee_leave_type_id: "कर्मचारी छोड़ दो प्रकार"
         start_date: "प्रारंभ दिनांक"
         end_date: "अन्त तिथि"
         reason: "कारण"

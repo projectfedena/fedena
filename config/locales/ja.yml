@@ -148,7 +148,7 @@ ja: # locale
         title:  "名称"
 
       apply_leave:
-        employee_leave_types_id: "職員用欠勤種別ID"
+        employee_leave_type_id: "職員用欠勤種別ID"
         start_date: "開始日"
         end_date: "終了日"
         reason: "事由"

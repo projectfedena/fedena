@@ -50,7 +50,7 @@
       <% form_for :leave_apply do |l| %>
           <%= error_messages_for :leave_apply %>
           <%= l.hidden_field :employee_id, :value=>@employee.id %>
-        <%= t('leave_types') %>:<%= select :leave_apply, :employee_leave_types_id, @leave_types.map {|s| [s.name, s.id]},:prompt => "#{t('select')}" %><br/>
+        <%= t('leave_types') %>:<%= select :leave_apply, :employee_leave_type_id, @leave_types.map {|s| [s.name, s.id]},:prompt => "#{t('select')}" %><br/>
         <%= t('start_date') %>:<%= l.text_field :start_date %><br/>
         <%= t('end_date') %>:<%= l.text_field :end_date %><br/>
         <%= t('reason') %>:<%= l.text_field   :reason %>

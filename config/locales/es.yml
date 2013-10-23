@@ -147,7 +147,7 @@ es: # locale
         title:  "Título"
 
       apply_leave:
-        employee_leave_types_id: "Tipo de Licencia"
+        employee_leave_type_id: "Tipo de Licencia"
         start_date: "Fecha inicial"
         end_date: "Fecha final"
         reason: "Causa"

@@ -148,7 +148,7 @@ pt: # locale
         title:  "Título"
 
       apply_leave:
-        employee_leave_types_id: "Tipos das férias do Funcionario"
+        employee_leave_type_id: "Tipos das férias do Funcionario"
         start_date: "Data de Início"
         end_date: "Data de Fim"
         reason: "Motivos"

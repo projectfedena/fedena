@@ -76,7 +76,7 @@
         <%= l.hidden_field :employee_id, :value=>@employee.id %>
         <div class="label-field-pair">
           <label for="leave_type"><%= t('leave_type') %>:</label>
-          <div class="text-input-bg"><%= select :leave_apply, :employee_leave_types_id, @leave_types.map {|s| [s.name, s.id]},:prompt => "Select" %></div>
+          <div class="text-input-bg"><%= select :leave_apply, :employee_leave_type_id, @leave_types.map {|s| [s.name, s.id]},:prompt => "Select" %></div>
         </div>
         <div class="label-field-pair">
           <label for="create_user" id="create_user_option"><%= t('is_half_day') %></label>
