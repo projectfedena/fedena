@@ -16,17 +16,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 class EmployeeController < ApplicationController
-  before_filter :login_required,:configuration_settings_for_hr
+  before_filter :login_required, :configuration_settings_for_hr
   filter_access_to :all
   before_filter :protect_other_employee_data, :only => [:individual_payslip_pdf,:timetable,:timetable_pdf,:profile_payroll_details,\
       :view_payslip ]
   before_filter :limit_employee_profile_access , :only => [:profile,:profile_pdf]
 
   def add_category
-    @categories = EmployeeCategory.find(:all,:order => "name asc",:conditions=>'status = 1')
-    @inactive_categories = EmployeeCategory.find(:all,:conditions=>'status = 0')
+    @categories = EmployeeCategory.all(:order => "name asc", :conditions => {:status => true})
+    @inactive_categories = EmployeeCategory.all(:conditions => {:status => false})
     @category = EmployeeCategory.new(params[:category])
-    if request.post? and @category.save
+    if request.post? && @category.save
       flash[:notice] = t('flash1')
       redirect_to :controller => "employee", :action => "add_category"
     end
