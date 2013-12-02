@@ -37,7 +37,7 @@
   </tr>
 
   <tr class="tr-blank">
-    
+
   </tr>
 
   <% @employees.each do |e| %>
@@ -50,7 +50,7 @@
       <% @leave_types.each do |lt1| %>
         <% leave_count = EmployeeLeave.find_by_employee_leave_type_id_and_employee_id(lt1.id, e.id)%>
         <td class="col-5">
-          <%  unless leave_count.reset_date.nil? %>
+          <% if leave_count.present? && leave_count.reset_date.present? %>
           <% report = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(e.id, lt1.id, :conditions=> ["attendance_date >= '#{leave_count.reset_date}'"]) %>
           <% else %>
           <% report = EmployeeAttendance.find_all_by_employee_id_and_employee_leave_type_id(e.id, lt1.id) %>

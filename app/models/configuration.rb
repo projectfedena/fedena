@@ -1,21 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class Configuration < ActiveRecord::Base
 
   STUDENT_ATTENDANCE_TYPE_OPTIONS = [["#{t('daily_text')}", "Daily"], ["#{t('subject_wise_text')}", "SubjectWise"]]
@@ -47,7 +46,7 @@ class Configuration < ActiveRecord::Base
       c = find_by_config_key(key)
       c.nil? ? nil : c.config_value
     end
-  
+
     def save_institution_logo(upload)
       directory, filename = "#{RAILS_ROOT}/public/uploads/image", 'institute_logo.jpg'
       path = File.join(directory, filename) # create the file path
@@ -79,14 +78,14 @@ class Configuration < ActiveRecord::Base
     def get_grading_types
       grading_types = Course::GRADINGTYPES
       types= all(:conditions=>{:config_key=>grading_types.values, :config_value=>"1"},:group=>:config_key)
-      grading_types.keys.select{|k| types.collect(&:config_key).include? grading_types[k]}      
+      grading_types.keys.select{|k| types.collect(&:config_key).include? grading_types[k]}
     end
 
     def default_country
       default_country_value = self.find_by_config_key('DefaultCountry').config_value.to_i
       return default_country_value
     end
-    
+
     def set_grading_types(updates)
       #expects an array of integers types
       grading_types = Course::GRADINGTYPES
@@ -116,7 +115,7 @@ class Configuration < ActiveRecord::Base
       end
       return local_tzone_time
     end
-    
+
     def cce_enabled?
       get_config_value("CCE") == "1"
     end

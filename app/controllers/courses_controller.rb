@@ -1,33 +1,32 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class CoursesController < ApplicationController
   before_filter :login_required
   before_filter :find_course, :only => [:show, :edit, :update, :destroy]
   filter_access_to :all
-  
+
   def index
     @courses = Course.active
   end
 
   def new
     @course = Course.new
-    @grade_types=Course.grading_types_as_options
+    @grade_types = Course.grading_types_as_options
     #    gpa = Configuration.find_by_config_key("GPA").config_value
     #    if gpa == "1"
     #      @grade_types << "GPA"
@@ -43,9 +42,9 @@ class CoursesController < ApplicationController
   end
 
   def assign_subject_amount
-    @course = Course.active.find(params[:id])
+    @course   = Course.active.find(params[:id])
     @subjects = @course.batches.map(&:subjects).flatten.compact.map(&:code).compact.flatten.uniq
-    @subject_amount = @course.subject_amounts.build
+    @subject_amount  = @course.subject_amounts.build
     @subject_amounts = @course.subject_amounts.reject{|sa| sa.new_record?}
     if request.post?
       code = params[:subject_amount][:code]
@@ -252,7 +251,7 @@ class CoursesController < ApplicationController
       flash[:warn_notice]="<p>#{t('courses.flash4')}</p>"
       redirect_to :action=>'manage_course'
     end
-  
+
   end
 
   def show
@@ -260,6 +259,7 @@ class CoursesController < ApplicationController
   end
 
   private
+
   def find_course
     @course = Course.find params[:id]
   end

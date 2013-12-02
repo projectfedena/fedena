@@ -148,7 +148,7 @@ pt: # locale
         title:  "Título"
 
       apply_leave:
-        employee_leave_types_id: "Tipos das férias do Funcionario"
+        employee_leave_type_id: "Tipos das férias do Funcionario"
         start_date: "Data de Início"
         end_date: "Data de Fim"
         reason: "Motivos"
@@ -273,11 +273,54 @@ pt: # locale
       date_month: "%B %e"
 
 
-    day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
-    abbr_day_names: [Dom., Seg., Ter., Qua., Qui., Sex., Sáb.]
-    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
-    abbr_month_names: [~, Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez]
-    order: [ :dia, :mês, :ano ]
+    day_names:
+      - Domingo
+      - Segunda
+      - Terça
+      - Quarta
+      - Quinta
+      - Sexta
+      - Sábado
+    abbr_day_names:
+      - Dom.
+      - Seg.
+      - Ter.
+      - Qua.
+      - Qui.
+      - Sex.
+      - Sáb.
+    month_names:
+      - ~
+      - Janeiro
+      - Fevereiro
+      - Março
+      - Abril
+      - Maio
+      - Junho
+      - Julho
+      - Agosto
+      - Setembro
+      - Outubro
+      - Novembro
+      - Dezembro
+    abbr_month_names:
+      - ~
+      - Jan
+      - Fev
+      - Mar
+      - Abr
+      - Mai
+      - Jun
+      - Jul
+      - Ago
+      - Set
+      - Out
+      - Nov
+      - Dez
+    order:
+      - :dia
+      - :mês
+      - :ano
 
   time:
     formats:

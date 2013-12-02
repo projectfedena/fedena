@@ -1,21 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class AttendanceReportsController < ApplicationController
   before_filter :login_required
   filter_access_to :all
@@ -42,7 +41,7 @@ class AttendanceReportsController < ApplicationController
     if @current_user.employee? and @allow_access ==true
       role_symb = @current_user.role_symbols
       if role_symb.include?(:student_attendance_view) or role_symb.include?(:student_attendance_register)
-        @subjects= Subject.find(:all,:conditions=>"batch_id = '#{@batch.id}' ")
+        @subjects= Subject.find(:all,:conditions=>{:batch_id => @batch.id})
       else
         if @batch.employee_id.to_i==@current_user.employee_record.id
           @subjects= @batch.subjects
@@ -51,7 +50,7 @@ class AttendanceReportsController < ApplicationController
         end
       end
     else
-      @subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>'is_deleted = false')
+      @subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>{:is_deleted => false})
     end
 
     render :update do |page|
@@ -93,7 +92,7 @@ class AttendanceReportsController < ApplicationController
   end
   def show
     @batch = Batch.find params[:batch_id]
-    @start_date = @batch.start_date.to_date
+    @start_date = @batch.started_on
     @end_date = @local_tzone_time.to_date
     @leaves=Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
     @mode = params[:mode]
@@ -232,7 +231,7 @@ class AttendanceReportsController < ApplicationController
     @date = '01-'+@month+'-'+@year
     @start_date = @date.to_date
     @today = @local_tzone_time.to_date
-    if (@start_date<@batch.start_date.to_date.beginning_of_month || @start_date>@batch.end_date.to_date || @start_date>=@today.next_month.beginning_of_month)
+    if @start_date<@batch.started_on.beginning_of_month || @start_date>@batch.ended_on || @start_date>=@today.next_month.beginning_of_month
       render :update do |page|
         page.replace_html 'report', :text => t('no_reports')
       end
@@ -305,7 +304,7 @@ class AttendanceReportsController < ApplicationController
       @report = Attendance.find(:all,:conditions=>{:student_id=>@student.id,:batch_id=>@batch.id})
     else
       @report = SubjectLeave.find(:all,:conditions=>{:student_id=>@student.id,:batch_id=>@batch.id})
-      
+
     end
   end
 
@@ -469,7 +468,7 @@ class AttendanceReportsController < ApplicationController
       @report = ''
     end
     render :pdf => 'report_pdf'
-             
+
     #    render :layout=>'pdf'
     #    respond_to do |format|
     #      format.pdf { render :layout => false }
@@ -541,7 +540,7 @@ class AttendanceReportsController < ApplicationController
       end
     end
     render :pdf => 'filter_report_pdf'
-            
+
 
 
     #    respond_to do |format|

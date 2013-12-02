@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  
+
   map.resources :grading_levels
   map.resources :ranking_levels, :collection => {:create_ranking_level=>[:get,:post], :edit_ranking_level=>[:get,:post], :update_ranking_level=>[:get,:post], :delete_ranking_level=>[:get,:post], :ranking_level_cancel=>[:get,:post], :change_priority=>[:get,:post]}
   map.resources :class_designations
@@ -42,7 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :exam_groups do |exam_group|
-    exam_group.resources :exams, :member => { :save_scores => :post }
+    exam_group.resources :exams, :except => [:index], :member => { :save_scores => :post }
   end
 
   #  map.resources :additional_exam_groups do |additional_exam_group|
@@ -62,7 +62,7 @@ ActionController::Routing::Routes.draw do |map|
 
   #map.connect 'parts/:number', :controller => 'inventory', :action => 'sho
   map.connect ':controller/:action/:id'
-  map.connect ':controller/:action' 
+  map.connect ':controller/:action'
   map.connect ':controller/:action/:id/:id2'
   map.connect ':controller/:action/:id.:format'
 

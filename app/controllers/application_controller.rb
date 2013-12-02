@@ -1,27 +1,26 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class ApplicationController < ActionController::Base
   helper :all
   helper_method :can_access_request?
   protect_from_forgery # :secret => '434571160a81b5595319c859d32060c1'
   filter_parameter_logging :password
-  
+
   before_filter { |c| Authorization.current_user = c.current_user }
   before_filter :message_user
   before_filter :set_user_language
@@ -36,7 +35,7 @@ class ApplicationController < ActionController::Base
       unless (controller_name == "user") and ["first_login_change_password","login","logout","forgot_password"].include? action_name
         user = User.active.find(session[:user_id])
         setting = Configuration.get_config_value('FirstTimeLoginEnable')
-        if setting == "1" and user.is_first_login != false
+        if setting == "1" and user.is_first_login?
           flash[:notice] = "#{t('first_login_attempt')}"
           redirect_to :controller => "user",:action => "first_login_change_password",:id => user.username
         end
@@ -97,7 +96,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
- 
+
   def only_assigned_employee_allowed
     @privilege = @current_user.privileges.map{|p| p.name}
     if @current_user.employee?
@@ -134,7 +133,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
   def initialize
     @title = FedenaSetting.company_details[:company_name]
   end
@@ -147,7 +146,7 @@ class ApplicationController < ActionController::Base
     User.active.find(session[:user_id]) unless session[:user_id].nil?
   end
 
-  
+
   def find_finance_managers
     Privilege.find_by_name('FinanceControl').users
   end
@@ -156,7 +155,7 @@ class ApplicationController < ActionController::Base
     flash[:notice] = "#{t('flash_msg4')}"
     redirect_to :controller => 'user', :action => 'dashboard'
   end
-  
+
   protected
   def login_required
     unless session[:user_id]
@@ -179,7 +178,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  
+
 
   def configuration_settings_for_finance
     finance = Configuration.find_by_config_value("Finance")
@@ -213,7 +212,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-  
+
   def limit_employee_profile_access
     unless @current_user.employee
       unless params[:id] == @current_user.employee_record.id
@@ -229,7 +228,7 @@ class ApplicationController < ActionController::Base
   def protect_other_employee_data
     if current_user.employee?
       employee = current_user.employee_record
-      #    pri = Privilege.find(:all,:select => "privilege_id",:conditions=> 'privileges_users.user_id = ' + current_user.id.to_s, :joins =>'INNER JOIN `privileges_users` ON `privileges`.id = `privileges_users`.privilege_id' )
+      #    pri = Privilege.find(:all,:select => "privilege_id",:conditions=> 'privileges_users.user_id = ' + current_user.id.to_s, :joins =>'INNER JOIN privileges_users ON privileges.id = privileges_users.privilege_id' )
       #    privilege =[]
       #    pri.each do |p|
       #      privilege.push p.privilege_id
@@ -343,12 +342,13 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
   def set_user_language
     lan = Configuration.find_by_config_key("Locale")
     I18n.default_locale = :en
     Translator.fallback(true)
     if session[:language].nil?
-      I18n.locale = lan.config_value
+      I18n.locale = lan.config_value if lan
     else
       I18n.locale = session[:language]
     end

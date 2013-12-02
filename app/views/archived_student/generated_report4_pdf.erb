@@ -59,7 +59,7 @@
                 <td></td>
               <% end %>
           <% end %>
-          <% total_score = ArchivedExamScore.new() %>
+          <% total_score = ArchivedExamScore.new %>
           <% if @mmg == @g %>
             <td class="col-1"><%= total_score.grouped_exam_subject_total(subject,@student,@type) %></td>
           <% else %>

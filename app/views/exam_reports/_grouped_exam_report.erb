@@ -135,7 +135,7 @@
               <% end %>
             <% end %>
           </td>
-          <% total_score = ExamScore.new() %>
+          <% total_score = ExamScore.new %>
           <% if @mmg == @g %>
             <td class="col-1"><%= total_score.grouped_exam_subject_total(subject,@student,@type) %></td>
           <% else %>

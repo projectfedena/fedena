@@ -19,9 +19,9 @@
 class EmployeeAttendancesController < ApplicationController
   before_filter :login_required,:configuration_settings_for_hr
   filter_access_to :all
-  
+
   def index
-    @departments = EmployeeDepartment.find(:all, :conditions=>"status = true", :order=> "name ASC")
+    @departments = EmployeeDepartment.find(:all, :conditions=>{:status => true}, :order=> "name ASC")
   end
 
   def show
@@ -43,7 +43,7 @@ class EmployeeAttendancesController < ApplicationController
     @attendance = EmployeeAttendance.new
     @employee = Employee.find(params[:id2])
     @date = params[:id]
-    @leave_types = EmployeeLeaveType.find(:all, :conditions=>"status = true", :order=>"name ASC")
+    @leave_types = EmployeeLeaveType.find(:all, :conditions=>{:status => true}, :order=>"name ASC")
 
     respond_to do |format|
       format.js {render :action => 'new'}
@@ -54,7 +54,7 @@ class EmployeeAttendancesController < ApplicationController
     @attendance = EmployeeAttendance.new(params[:employee_attendance])
     @employee = Employee.find(params[:employee_attendance][:employee_id])
     @date = params[:employee_attendance][:attendance_date]
-    @reset_count = EmployeeLeave.find_by_employee_id(@attendance.employee_id, :conditions=> "employee_leave_type_id = '#{@attendance.employee_leave_type_id}'")
+    @reset_count = EmployeeLeave.find_by_employee_id(@attendance.employee_id, :conditions=> {:employee_leave_type_id => @attendance.employee_leave_type_id})
     if @attendance.save
       leaves_taken = @reset_count.leave_taken
       if @attendance.is_half_day
@@ -75,7 +75,7 @@ class EmployeeAttendancesController < ApplicationController
   def edit
     @attendance = EmployeeAttendance.find(params[:id])
     @employee = Employee.find(@attendance.employee_id)
-    @leave_types = EmployeeLeaveType.find(:all, :conditions=>"status = true", :order=>"name ASC")
+    @leave_types = EmployeeLeaveType.find(:all, :conditions=>{:status => true}, :order=>"name ASC")
     respond_to do |format|
       format.js {render :action => 'edit'}
     end
@@ -83,7 +83,7 @@ class EmployeeAttendancesController < ApplicationController
 
   def update
     @attendance = EmployeeAttendance.find params[:id]
-    @reset_count = EmployeeLeave.find_by_employee_id(@attendance.employee_id, :conditions=> "employee_leave_type_id = '#{@attendance.employee_leave_type_id}'")
+    @reset_count = EmployeeLeave.find_by_employee_id(@attendance.employee_id, :conditions=> {:employee_leave_type_id => @attendance.employee_leave_type_id})
     leaves_taken = @reset_count.leave_taken
     day_status = @attendance.is_half_day
     leave_type = EmployeeLeaveType.find_by_id(@attendance.employee_leave_type_id)
@@ -110,7 +110,7 @@ class EmployeeAttendancesController < ApplicationController
             leave = leaves_taken.to_f-(1.0)
           end
           @reset_count.update_attributes(:leave_taken => leave)
-          @new_reset_count = EmployeeLeave.find_by_employee_id(@attendance.employee_id, :conditions=> "employee_leave_type_id = '#{@attendance.employee_leave_type_id}'")
+          @new_reset_count = EmployeeLeave.find_by_employee_id(@attendance.employee_id, :conditions=> {:employee_leave_type_id => @attendance.employee_leave_type_id})
           leaves_taken = @new_reset_count.leave_taken
           if @attendance.is_half_day
             leave = leaves_taken.to_f+(0.5)
@@ -129,7 +129,7 @@ class EmployeeAttendancesController < ApplicationController
 
   def destroy
     @attendance = EmployeeAttendance.find(params[:id])
-    @reset_count = EmployeeLeave.find_by_employee_id(@attendance.employee_id, :conditions=> "employee_leave_type_id = '#{@attendance.employee_leave_type_id}'")
+    @reset_count = EmployeeLeave.find_by_employee_id(@attendance.employee_id, :conditions=> {:employee_leave_type_id => @attendance.employee_leave_type_id})
     leaves_taken = @reset_count.leave_taken
     if @attendance.is_half_day
       leave = leaves_taken.to_f-(0.5)

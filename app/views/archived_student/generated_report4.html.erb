@@ -34,7 +34,7 @@
   <% unless flash[:notice].nil? %>
     <p class="flash-msg"> <%= flash[:notice] %> </p>
   <% end %>
-    
+
   <div class="box">
     <h4 align="center"><%= @student.batch.name %> - <%= @student.batch.course.full_name %></h4>
     <h4><%= @student.full_name %></h4>
@@ -70,7 +70,7 @@
                 <td></td>
               <% end %>
           <% end %>
-          <% total_score = ArchivedExamScore.new() %>
+          <% total_score = ArchivedExamScore.new %>
           <% if @mmg == @g %>
             <td class="col-1"><%= total_score.grouped_exam_subject_total(subject,@student,@type) %></td>
           <% else %>

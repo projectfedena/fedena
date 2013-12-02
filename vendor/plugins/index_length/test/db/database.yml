@@ -1,6 +1,0 @@
-test:
-  adapter: mysql
-  host: localhost
-  username: root
-  password: 
-  database: mysql_index_length_plugin_test

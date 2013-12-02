@@ -1,38 +1,37 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class FinanceController < ApplicationController
   before_filter :login_required,:configuration_settings_for_finance
   filter_access_to :all
-  
+
   def index
     @hr = Configuration.find_by_config_value("HR")
   end
-  
+
   def automatic_transactions
     @cat_names = ["'Fee'","'Salary'"]
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
       @cat_names << "'#{category[:category_name]}'"
     end
     @triggers = FinanceTransactionTrigger.all
-    @categories = FinanceTransactionCategory.find(:all ,:conditions => ["name NOT IN (#{@cat_names.join(',')}) and is_income=1 and deleted=0 "])
+    @categories = FinanceTransactionCategory.all(:conditions => ['name NOT IN (?) AND is_income = ? AND deleted = ?', @cat_names.join(','), true, false])
   end
-  
+
   def donation
     @donation = FinanceDonation.new(params[:donation])
     if request.post? and @donation.save
@@ -50,12 +49,16 @@ class FinanceController < ApplicationController
     @transaction = FinanceTransaction.find(@donation.transaction_id)
     if request.post? and @donation.update_attributes(params[:donation])
       donor = "#{t('flash15')} #{params[:donation][:donor]}"
-      FinanceTransaction.update(@transaction.id, :description => params[:donation][:description], :title=>donor, :amount=>params[:donation][:amount], :transaction_date=>@donation.transaction_date)
+      FinanceTransaction.update(@transaction.id,
+        :description      => params[:donation][:description],
+        :title            => donor,
+        :amount           => params[:donation][:amount],
+        :transaction_date => @donation.transaction_date)
       redirect_to :action => 'donors'
       flash[:notice] = "#{t('flash16')}"
     end
   end
-  
+
   def donation_delete
     @donation = FinanceDonation.find(params[:id])
     @transaction = FinanceTransaction.find(@donation.transaction_id)
@@ -70,7 +73,6 @@ class FinanceController < ApplicationController
     @donation = FinanceDonation.find(params[:id])
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     render :pdf => 'donation_receipt_pdf'
-    
   end
 
   def donors
@@ -96,7 +98,7 @@ class FinanceController < ApplicationController
 
   def expense_edit
     @transaction = FinanceTransaction.find(params[:id])
-    @categories = FinanceTransactionCategory.all(:conditions =>"name != 'Salary' and is_income = false" )
+    @categories = FinanceTransactionCategory.all(:conditions => ['name != ? AND is_income = ?', 'Salary', false])
     if request.post? and @transaction.update_attributes(params[:transaction])
       flash[:notice] = "#{t('flash4')}"
       redirect_to  :action=>:expense_list
@@ -123,26 +125,25 @@ class FinanceController < ApplicationController
     @expenses = FinanceTransaction.expenses(@start_date,@end_date)
     render :pdf => 'expense_list_pdf'
   end
-  
+
   def income_create
-    @finance_transaction = FinanceTransaction.new()
+    @finance_transaction = FinanceTransaction.new
     @categories = FinanceTransactionCategory.income_categories
     if @categories.empty?
       flash[:notice] = "#{t('flash5')}"
     end
-    if request.post? 
+    if request.post?
       @finance_transaction = FinanceTransaction.new(params[:finance_transaction])
       if @finance_transaction.save
         flash[:notice] = "#{t('flash6')}"
-        redirect_to :action=>"income_create"
+        redirect_to :action => "income_create"
       else
-        render :action=>"income_create"
+        render :action => "income_create"
       end
     end
   end
 
   def monthly_income
-    
   end
 
   def income_edit
@@ -151,10 +152,10 @@ class FinanceController < ApplicationController
       @cat_names << "'#{category[:category_name]}'"
     end
     @transaction = FinanceTransaction.find(params[:id])
-    @categories = FinanceTransactionCategory.all(:conditions => "is_income=true and name NOT IN (#{@cat_names.join(',')})")
+    @categories = FinanceTransactionCategory.all(:conditions => ["is_income = ? and name NOT IN (?)", true, @cat_names.join(',')])
     if request.post? and @transaction.update_attributes(params[:transaction])
       flash[:notice] = "#{t('flash7')}"
-      redirect_to :action=> 'income_list'
+      redirect_to :action => 'income_list'
     end
   end
 
@@ -175,21 +176,19 @@ class FinanceController < ApplicationController
     else
       redirect_to :action=>'expense_list'
     end
-
-
   end
 
   def income_list_update
     @start_date = (params[:start_date]).to_date
-    @end_date = (params[:end_date]).to_date
-    @incomes = FinanceTransaction.incomes(@start_date,@end_date)
+    @end_date   = (params[:end_date]).to_date
+    @incomes    = FinanceTransaction.incomes(@start_date, @end_date)
   end
 
   def income_details
     @start_date = params[:start].to_date
-    @end_date = params[:end].to_date
+    @end_date   = params[:end].to_date
     @income_category = FinanceTransactionCategory.find(params[:id])
-    @incomes = @income_category.finance_transactions.find(:all,:conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'"])
+    @incomes = @income_category.finance_transactions.find(:all, :conditions => { :transaction_date => @start_date..@end_date })
   end
 
   def income_list_pdf
@@ -197,34 +196,34 @@ class FinanceController < ApplicationController
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
     @incomes = FinanceTransaction.incomes(@start_date,@end_date)
-    render :pdf => 'income_list_pdf', :zoom=>0.68#, :show_as_html=>true
+    render :pdf => 'income_list_pdf', :zoom => 0.68#, :show_as_html=>true
   end
 
   def income_details_pdf
     @start_date = params[:start_date].to_date
     @end_date = params[:end_date].to_date
     @income_category = FinanceTransactionCategory.find(params[:id])
-    @incomes = @income_category.finance_transactions.find(:all,:conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'"])
+    @incomes = @income_category.finance_transactions.find(:all, :conditions => { :transaction_date => @start_date..@end_date })
     render :pdf => 'income_details_pdf'
   end
 
   def categories
-    @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false},:order=>'name asc')
-    @fixed_categories = @categories.reject{|c|!c.is_fixed}
-    @other_categories = @categories.reject{|c|c.is_fixed}
+    @categories = FinanceTransactionCategory.all(:conditions => { :deleted => false }, :order => 'name ASC')
+    @fixed_categories = @categories.reject { |c| !c.fixed? }
+    @other_categories = @categories.reject { |c| c.fixed? }
   end
 
   def category_new
     @finance_transaction_category = FinanceTransactionCategory.new
   end
-  
+
   def category_create
     @finance_category = FinanceTransactionCategory.new(params[:finance_category])
     render :update do |page|
       if @finance_category.save
         @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false})
-        @fixed_categories = @categories.reject{|c|!c.is_fixed}
-        @other_categories = @categories.reject{|c|c.is_fixed}
+        @fixed_categories = @categories.reject { |c| !c.fixed? }
+        @other_categories = @categories.reject { |c| c.fixed? }
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'category-list', :partial => 'category_list'
@@ -241,8 +240,8 @@ class FinanceController < ApplicationController
     @finance_category = FinanceTransactionCategory.find(params[:id])
     @finance_category.update_attributes(:deleted => true)
     @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false})
-    @fixed_categories = @categories.reject{|c|!c.is_fixed}
-    @other_categories = @categories.reject{|c|c.is_fixed}
+    @fixed_categories = @categories.reject { |c| !c.fixed? }
+    @other_categories = @categories.reject { |c| c.fixed? }
   end
 
   def category_edit
@@ -254,12 +253,12 @@ class FinanceController < ApplicationController
     @finance_category = FinanceTransactionCategory.find(params[:id])
     @finance_category.update_attributes(params[:finance_category])
     @categories = FinanceTransactionCategory.all(:conditions => {:deleted => false})
-    @fixed_categories = @categories.reject{|c|!c.is_fixed}
-    @other_categories = @categories.reject{|c|c.is_fixed}
+    @fixed_categories = @categories.reject { |c| !c.fixed? }
+    @other_categories = @categories.reject { |c| c.fixed? }
   end
 
   def transaction_trigger_create
-    @trigger = FinanceTransactionTrigger.new(params[:transaction_trigger])    
+    @trigger = FinanceTransactionTrigger.new(params[:transaction_trigger])
     render :update do |page|
       if @trigger.save
         @triggers = FinanceTransactionTrigger.all
@@ -275,8 +274,8 @@ class FinanceController < ApplicationController
     end
   end
 
-                
-            
+
+
 
   def transaction_trigger_edit
     @cat_names = ["'Fee'","'Salary'"]
@@ -284,7 +283,7 @@ class FinanceController < ApplicationController
       @cat_names << "'#{category[:category_name]}'"
     end
     @transaction_trigger = FinanceTransactionTrigger.find(params[:id])
-    @categories = FinanceTransactionCategory.find(:all ,:conditions => ["name NOT IN (#{@cat_names.join(',')}) and is_income=1 and deleted=0 "])
+    @categories = FinanceTransactionCategory.all(:conditions => ["name NOT IN (?) AND is_income = ? AND deleted = ?", @cat_names.join(','), true, false])
   end
 
   def transaction_trigger_update
@@ -316,14 +315,14 @@ class FinanceController < ApplicationController
 
   #transaction-----------------------
 
-  
+
   def update_monthly_report
     fixed_category_name
     @hr = Configuration.find_by_config_value("HR")
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
-    @transactions = FinanceTransaction.find(:all,
-      :order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'"])
+    @transactions = FinanceTransaction.all(:order => 'transaction_date desc',
+                                           :conditions => { :transaction_date => @start_date..@end_date })
     #@other_transactions = FinanceTransaction.report(@start_date,@end_date,params[:page])
     @other_transaction_categories = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
       :order => 'transaction_date').map{|ft| ft.category}.uniq
@@ -337,14 +336,14 @@ class FinanceController < ApplicationController
     end
     @graph = open_flash_chart_object(960, 500, "graph_for_update_monthly_report?start_date=#{@start_date}&end_date=#{@end_date}")
   end
-  
+
   def transaction_pdf
     fixed_category_name
     @hr = Configuration.find_by_config_value("HR")
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
-    @transactions = FinanceTransaction.find(:all,
-      :order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'"])
+    @transactions = FinanceTransaction.all(:order => 'transaction_date desc',
+                                           :conditions => { :transaction_date => @start_date..@end_date })
     #@other_transactions = FinanceTransaction.report(@start_date,@end_date,params[:page])
     @other_transaction_categories = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
       :order => 'transaction_date').map{|ft| ft.category}.uniq
@@ -372,11 +371,11 @@ class FinanceController < ApplicationController
   end
 
   def employee_payslip_monthly_report
-    
+
     @salary_date = params[:id2]
     @employee = Employee.find_in_active_or_archived(params[:id])
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
-    
+
     if params[:salary_date] == ""
       render :update do |page|
         page.replace_html "payslip_view", :text => ""
@@ -386,21 +385,21 @@ class FinanceController < ApplicationController
     @monthly_payslips = MonthlyPayslip.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],@salary_date],:include=>:payroll_category)
     @individual_payslips =  IndividualPayslipCategory.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],@salary_date])
     @salary  = Employee.calculate_salary(@monthly_payslips, @individual_payslips)
-   
+
   end
 
   def donations_report
     month_date
     category_id = FinanceTransactionCategory.find_by_name("Donation").id
-    @donations = FinanceTransaction.find(:all,:order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id ='#{category_id}'"])
-    
+    @donations = FinanceTransaction.find(:all,:order => 'transaction_date desc', :conditions => ["transaction_date >= ? AND transaction_date <= ? AND category_id = ?", @start_date, @end_date, category_id])
+
   end
 
   def fees_report
     month_date
     fees_id = FinanceTransactionCategory.find_by_name('Fee').id
     @fee_collection = FinanceFeeCollection.find(:all,:joins=>"INNER JOIN finance_fees ON finance_fees.fee_collection_id = finance_fee_collections.id INNER JOIN finance_transactions ON finance_transactions.finance_id = finance_fees.id AND finance_transactions.transaction_date >= '#{@start_date}' AND finance_transactions.transaction_date <= '#{@end_date}' AND finance_transactions.category_id = #{fees_id}",:group=>"finance_fee_collections.id")
-    
+
   end
 
   def batch_fees_report
@@ -411,22 +410,22 @@ class FinanceController < ApplicationController
   end
 
   def student_fees_structure
-    
+
     month_date
     @student = Student.find(params[:id])
     @components = @student.get_fee_strucure_elements
-    
+
   end
 
   # approve montly payslip ----------------------
 
   def approve_monthly_payslip
     @salary_dates = MonthlyPayslip.find(:all, :select => "distinct salary_date")
-    
+
   end
 
   def one_click_approve
-    @dates = MonthlyPayslip.find_all_by_salary_date(params[:salary_date],:conditions => ["is_approved = false"])
+    @dates = MonthlyPayslip.find_all_by_salary_date(params[:salary_date],:conditions => { :is_approved => false })
     @salary_date = params[:salary_date]
     render :update do |page|
       page.replace_html "approve",:partial=> "one_click_approve"
@@ -434,7 +433,7 @@ class FinanceController < ApplicationController
   end
 
   def one_click_approve_submit
-    dates = MonthlyPayslip.find_all_by_salary_date(Date.parse(params[:date]), :conditions=>["is_rejected is false"])
+    dates = MonthlyPayslip.find_all_by_salary_date(Date.parse(params[:date]), :conditions => { :is_rejected => false })
 
     dates.each do |d|
       d.approve(current_user.id,"Approved")
@@ -449,7 +448,7 @@ class FinanceController < ApplicationController
     flash[:notice] = "#{t('flash8')}"
     redirect_to :action => "index"
 
-    
+
   end
 
   def employee_payslip_approve
@@ -504,9 +503,9 @@ class FinanceController < ApplicationController
 
   #view monthly payslip -------------------------------
   def view_monthly_payslip
-    
-    @departments = EmployeeDepartment.find(:all, :conditions=>"status = true", :order=> "name ASC")
-    @salary_dates = MonthlyPayslip.find(:all,:select => "distinct salary_date")
+
+    @departments = EmployeeDepartment.find(:all, :conditions => { :status => true }, :order => "name ASC")
+    @salary_dates = MonthlyPayslip.find(:all, :select => "distinct salary_date")
     if request.post?
       post_data = params[:payslip]
       unless post_data.blank?
@@ -524,13 +523,13 @@ class FinanceController < ApplicationController
   def view_employee_payslip
     @is_present_employee=true
     @is_present_employee=false if (Employee.find_by_id(params[:id]).nil?)
-    @monthly_payslips = MonthlyPayslip.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],params[:salary_date]],:include=>:payroll_category)
-    @individual_payslips =  IndividualPayslipCategory.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],params[:salary_date]])
+    @monthly_payslips = MonthlyPayslip.find(:all, :conditions => ["employee_id=? AND salary_date = ?", params[:id],params[:salary_date]],:include=>:payroll_category)
+    @individual_payslips =  IndividualPayslipCategory.find(:all, :conditions => ["employee_id=? AND salary_date = ?", params[:id],params[:salary_date]])
     @salary  = Employee.calculate_salary(@monthly_payslips, @individual_payslips)
     @currency_type= Configuration.find_by_config_key("CurrencyType").config_value
   end
- 
-  
+
+
   def search_ajax
     other_conditions = ""
     other_conditions += " AND employee_department_id = '#{params[:employee_department_id]}'" unless params[:employee_department_id] == ""
@@ -566,7 +565,7 @@ class FinanceController < ApplicationController
         page.visual_effect(:highlight, 'form-errors')
       end
     end
-    
+
   end
 
   def edit_liability
@@ -576,10 +575,10 @@ class FinanceController < ApplicationController
   def update_liability
     @liability = Liability.find(params[:id])
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
-    
+
     render :update do |page|
       if @liability.update_attributes(params[:liability])
-        @liabilities = Liability.find(:all,:conditions => 'is_deleted = 0')
+        @liabilities = Liability.find(:all, :conditions => { :is_deleted => false })
         page.replace_html "liability_list", :partial => "liability_list"
         page << "Modalbox.hide();"
         page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg24')}</p>"
@@ -591,12 +590,12 @@ class FinanceController < ApplicationController
   end
 
   def view_liability
-    @liabilities = Liability.find(:all,:conditions => 'is_deleted = 0')
+    @liabilities = Liability.find(:all,:conditions => { :is_deleted => false })
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
   end
-  
+
   def liability_pdf
-    @liabilities = Liability.find(:all,:conditions => 'is_deleted = 0')
+    @liabilities = Liability.find(:all,:conditions => { :is_deleted => false })
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     render :pdf => 'liability_report_pdf'
   end
@@ -604,7 +603,7 @@ class FinanceController < ApplicationController
   def delete_liability
     @liability = Liability.find(params[:id])
     @liability.update_attributes(:is_deleted => true)
-    @liabilities = Liability.find(:all ,:conditions => 'is_deleted = 0')
+    @liabilities = Liability.all(:conditions => { :is_deleted => false })
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     render :update do |page|
       page.replace_html "liability_list", :partial => "liability_list"
@@ -633,12 +632,12 @@ class FinanceController < ApplicationController
   end
 
   def view_asset
-    @assets = Asset.find(:all,:conditions => 'is_deleted = 0')
+    @assets = Asset.find(:all,:conditions => { :is_deleted => false })
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
   end
 
   def asset_pdf
-    @assets = Asset.find(:all,:conditions => 'is_deleted = 0')
+    @assets = Asset.find(:all,:conditions => { :is_deleted => false })
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     render :pdf => 'asset_report_pdf'
   end
@@ -650,10 +649,10 @@ class FinanceController < ApplicationController
   def update_asset
     @asset = Asset.find(params[:id])
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
-    
+
     render :update do |page|
       if @asset.update_attributes(params[:asset])
-        @assets = Asset.find(:all,:conditions => 'is_deleted = 0')
+        @assets = Asset.find(:all,:conditions => { :is_deleted => false })
         page.replace_html "asset_list", :partial => "asset_list"
         page << "Modalbox.hide();"
         page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg21')}</p>"
@@ -667,7 +666,7 @@ class FinanceController < ApplicationController
   def delete_asset
     @asset = Asset.find(params[:id])
     @asset.update_attributes(:is_deleted => true)
-    @assets = Asset.all(:conditions => 'is_deleted = 0')
+    @assets = Asset.all(:conditions => { :is_deleted => false })
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
     render :update do |page|
       page.replace_html "asset_list", :partial => "asset_list"
@@ -685,10 +684,10 @@ class FinanceController < ApplicationController
     @finance_fee_category = FinanceFeeCategory.new
     @finance_fee_particular = FinanceFeeParticular.new
     @batchs = Batch.active
-    @master_categories = FinanceFeeCategory.find(:all,:conditions=> ["is_deleted = '#{false}' and is_master = 1 and batch_id=?",params[:batch_id]]) unless params[:batch_id].blank?
+    @master_categories = FinanceFeeCategory.find(:all,:conditions => { :is_deleted => false, :is_master => true, :batch_id => params[:batch_id] }) unless params[:batch_id].blank?
     @student_categories = StudentCategory.active
   end
-  
+
   def master_category_new
     @finance_fee_category = FinanceFeeCategory.new
     @batches = Batch.active
@@ -703,7 +702,7 @@ class FinanceController < ApplicationController
       unless @batches.nil?
         unless @batches.empty?
           @batches.each do |b|
-            @finance_fee_category = FinanceFeeCategory.new()
+            @finance_fee_category = FinanceFeeCategory.new
             @finance_fee_category.name = params[:finance_fee_category][:name]
             @finance_fee_category.description = params[:finance_fee_category][:description]
             @finance_fee_category.batch_id = b
@@ -718,13 +717,13 @@ class FinanceController < ApplicationController
         @finance_fee_category.valid?
         @error = true
       end
-      @master_categories = FinanceFeeCategory.find(:all,:conditions=> ["is_deleted = '#{false}' and is_master = 1"])
+      @master_categories = FinanceFeeCategory.find(:all,:conditions=> { :is_deleted => false, :is_master => true })
       respond_to do |format|
         format.js { render :action => 'master_category_create' }
       end
     end
   end
- 
+
   def master_category_edit
     @finance_fee_category = FinanceFeeCategory.find(params[:id])
     respond_to do |format|
@@ -736,7 +735,7 @@ class FinanceController < ApplicationController
     @finance_fee_category = FinanceFeeCategory.find(params[:id])
     render :update do |page|
       if @finance_fee_category.update_attributes(params[:finance_fee_category])
-        @master_categories = FinanceFeeCategory.find(:all, :conditions =>["is_deleted = '#{false}' and is_master = 1 and batch_id = #{@finance_fee_category.batch_id}"])
+        @master_categories = FinanceFeeCategory.find(:all, :conditions => { :is_deleted => false, :is_master => true, :batch_id => @finance_fee_category.batch_id })
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'categories', :partial => 'master_category_list'
@@ -750,7 +749,7 @@ class FinanceController < ApplicationController
 
   def master_category_particulars
     @finance_fee_category = FinanceFeeCategory.find(params[:id])
-    @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
+    @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => { :is_deleted => false, :finance_fee_category_id => @finance_fee_category.id })
   end
   def master_category_particulars_edit
     @finance_fee_particular= FinanceFeeParticular.find(params[:id])
@@ -766,7 +765,7 @@ class FinanceController < ApplicationController
       params[:finance_fee_particular][:student_category_id]="" if params[:finance_fee_particular][:student_category_id].nil?
       if @feeparticulars.update_attributes(params[:finance_fee_particular])
         @finance_fee_category = FinanceFeeCategory.find(@feeparticulars.finance_fee_category_id)
-        @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
+        @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => { :is_deleted => false, :finance_fee_category_id => @finance_fee_category.id })
         page.replace_html 'form-errors', :text => ''
         page << "Modalbox.hide();"
         page.replace_html 'categories', :partial => 'master_particulars_list'
@@ -784,7 +783,7 @@ class FinanceController < ApplicationController
     @feeparticulars = FinanceFeeParticular.find( params[:id])
     @feeparticulars.update_attributes(:is_deleted => true )
     @finance_fee_category = FinanceFeeCategory.find(@feeparticulars.finance_fee_category_id)
-    @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => ["is_deleted = '#{false}' and finance_fee_category_id = '#{@finance_fee_category.id}' "])
+    @particulars = FinanceFeeParticular.paginate(:page => params[:page],:conditions => { :is_deleted => false, :finance_fee_category_id => @finance_fee_category.id })
     respond_to do |format|
       format.js { render :action => 'master_category_particulars' }
     end
@@ -793,7 +792,7 @@ class FinanceController < ApplicationController
     @finance_fee_category = FinanceFeeCategory.find(params[:id])
     @finance_fee_category.update_attributes(:is_deleted => true)
     @finance_fee_category.delete_particulars
-    @master_categories = FinanceFeeCategory.find(:all, :conditions =>["is_deleted = '#{false}' and is_master = 1 and batch_id = #{@finance_fee_category.batch_id}"])
+    @master_categories = FinanceFeeCategory.find(:all, :conditions => { :is_deleted => false, :is_master => true, :batch_id => @finance_fee_category.batch_id })
     respond_to do |format|
       format.js { render :action => 'master_category_delete' }
     end
@@ -804,7 +803,7 @@ class FinanceController < ApplicationController
       @finance_fee_category = FinanceFeeCategory.new
       @finance_fee_particular = FinanceFeeParticular.new
       @batches = Batch.find params[:id] unless params[:id] == ""
-      @master_categories = FinanceFeeCategory.find(:all,:conditions=> ["is_deleted = '#{false}' and is_master = 1 and batch_id=?",params[:id]])
+      @master_categories = FinanceFeeCategory.find(:all, :conditions => { :is_deleted => false, :is_master => true, :batch_id => params[:id] })
       @student_categories = StudentCategory.active
 
       render :update do |page|
@@ -814,7 +813,7 @@ class FinanceController < ApplicationController
   end
 
   def fees_particulars_new
-    @fees_categories = FinanceFeeCategory.find(:all ,:conditions=> "is_deleted = 0 and is_master = 1", :order=>"name ASC")
+    @fees_categories = FinanceFeeCategory.find(:all, :conditions => { :is_deleted => false, :is_master => true }, :order=>"name ASC")
     @fees_categories.reject!{|f|f.batch.is_deleted or !f.batch.is_active }
     @student_categories = StudentCategory.active
   end
@@ -861,11 +860,11 @@ class FinanceController < ApplicationController
           @error = true unless @finance_fee_particular.save
         end
       end
-      @particulars = FinanceFeeParticular.all(:conditions => {:is_deleted => false,:finance_fee_category_id => finance_fee_categories.map{|ffc| ffc.id}})
+      @particulars = FinanceFeeParticular.all(:conditions => { :is_deleted => false, :finance_fee_category_id => finance_fee_categories.map{|ffc| ffc.id}})
       if @error.blank?
         flash[:notice] = t('particulars_created_successfully')
       else
-        @fees_categories = FinanceFeeCategory.find(:all ,:conditions=> "is_deleted = 0 and is_master = 1")
+        @fees_categories = FinanceFeeCategory.all(:conditions=> "is_deleted = 0 and is_master = 1")
         @fees_categories.reject!{|f|f.batch.is_deleted or !f.batch.is_active }
         render :action => 'fees_particulars_new'
         return
@@ -925,7 +924,7 @@ class FinanceController < ApplicationController
         @error = true unless @finance_fee_particular.save
       end
     end
-    @particulars = FinanceFeeParticular.all(:conditions => {:is_deleted => false,:finance_fee_category_id => finance_fee_categories.map{|ffc| ffc.id}})
+    @particulars = FinanceFeeParticular.all(:conditions => { :is_deleted => false, :finance_fee_category_id => finance_fee_categories.map{|ffc| ffc.id}})
   end
 
 
@@ -933,7 +932,7 @@ class FinanceController < ApplicationController
     @batches = Batch.active
     @student_categories = StudentCategory.active
   end
-  
+
   def additional_fees_create
 
     batch = params[:additional_fees][:batch_id] unless params[:additional_fees][:batch_id].nil?
@@ -1010,7 +1009,7 @@ class FinanceController < ApplicationController
     if @finance_fee_category.update_attributes(:name =>params[:finance_fee_category][:name], :description =>params[:finance_fee_category][:description])
       if @collection_date.update_attributes(:start_date=>params[:additional_fees][:start_date], :end_date=>params[:additional_fees][:end_date],:due_date=>params[:additional_fees][:due_date])
         @collection_date.event.update_attributes(:start_date=>@collection_date.due_date.to_datetime, :end_date=>@collection_date.due_date.to_datetime)
-        @additional_categories = FinanceFeeCategory.find(:all, :conditions =>["is_deleted = '#{false}' and is_master = '#{false}' and batch_id = '#{@finance_fee_category.batch_id}'"])
+        @additional_categories = FinanceFeeCategory.find(:all, :conditions => { :is_deleted => false, :is_master => false, :batch_id => @finance_fee_category.batch_id })
         #        page.replace_html 'form-errors', :text => ''
         #        page << "Modalbox.hide();"
         #        page.replace_html 'particulars', :partial => 'additional_fees_list'
@@ -1106,7 +1105,7 @@ class FinanceController < ApplicationController
 
   def student_or_student_category
     @student_categories = StudentCategory.active
-    
+
     select_value = params[:select_value]
 
     if select_value == "category"
@@ -1145,7 +1144,7 @@ class FinanceController < ApplicationController
   def add_particulars_edit
     @finance_fee_particulars = FeeCollectionParticular.find(params[:id])
   end
-  
+
   def add_particulars_update
     @finance_fee_particulars = FeeCollectionParticular.find(params[:id])
     render :update do |page|
@@ -1284,7 +1283,7 @@ class FinanceController < ApplicationController
     @finance_fee_collection = FinanceFeeCollection.find params[:id]
   end
 
-  
+
   def fee_collection_update
     @user = current_user
     @finance_fee_collection = FinanceFeeCollection.find params[:id]
@@ -1311,7 +1310,7 @@ class FinanceController < ApplicationController
               :recipient_ids => recipient_ids,
               :subject=>subject,
               :body=>body ))
-          @finance_fee_collections = FinanceFeeCollection.all(:conditions => ["is_deleted = '#{false}' and batch_id = '#{@finance_fee_collection.batch_id}'"])
+          @finance_fee_collections = FinanceFeeCollection.all(:conditions => { :is_deleted => false, :batch_id => @finance_fee_collection.batch_id })
           page.replace_html 'form-errors', :text => ''
           page << "Modalbox.hide();"
           page.replace_html 'fee_collection_dates', :partial => 'fee_collection_list'
@@ -1323,16 +1322,16 @@ class FinanceController < ApplicationController
       else
         page.replace_html 'form-errors', :text => "<div id='error-box'><ul><li>#{t('flash_msg15')} .</li></ul></div>"
         flash[:notice]=""
-        
+
       end
     end
-    @finance_fee_collections = FinanceFeeCollection.all(:conditions => ["is_deleted = '#{false}' and batch_id = '#{@finance_fee_collection.batch_id}'"])
+    @finance_fee_collections = FinanceFeeCollection.all(:conditions => { :is_deleted => false, :batch_id => @finance_fee_collection.batch_id })
   end
 
   def fee_collection_delete
     @finance_fee_collection = FinanceFeeCollection.find params[:id]
     @finance_fee_collection.update_attributes(:is_deleted => true)
-    @finance_fee_collections = FinanceFeeCollection.all(:conditions => ["is_deleted = '#{false}' and batch_id = '#{@finance_fee_collection.batch_id}'"])
+    @finance_fee_collections = FinanceFeeCollection.all(:conditions => { :is_deleted => false, :batch_id => @finance_fee_collection.batch_id })
   end
 
   #fees_submission-----------------------------------
@@ -1343,9 +1342,9 @@ class FinanceController < ApplicationController
     @dates = []
 
   end
-    
+
   def update_fees_collection_dates
-    
+
     @batch = Batch.find(params[:batch_id])
     @dates = @batch.fee_collection_dates
 
@@ -1355,12 +1354,12 @@ class FinanceController < ApplicationController
   end
 
   def load_fees_submission_batch
-    
+
     @batch   = Batch.find(params[:batch_id])
     @dates   = FinanceFeeCollection.find(:all)
     @date    =  @fee_collection = FinanceFeeCollection.find(params[:date])
     @student = Student.find(params[:student]) if params[:student]
-    @fee = FinanceFee.first(:conditions=>"fee_collection_id = #{@date.id}" ,:joins=>'INNER JOIN students ON finance_fees.student_id = students.id')
+    @fee = FinanceFee.first(:conditions => { :fee_collection_id => @date.id },:joins=>'INNER JOIN students ON finance_fees.student_id = students.id')
     unless @fee.nil?
       @student ||= @fee.student
       @prev_student = @student.previous_fee_student(@date.id)
@@ -1370,7 +1369,7 @@ class FinanceController < ApplicationController
       unless @financefee.transaction_id.blank?
         @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
       end
-      @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted = false"])
+      @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => { :is_deleted => false })
       @fee_particulars = @date.fees_particulars(@student)
 
       @batch_discounts = BatchFeeCollectionDiscount.find_all_by_finance_fee_collection_id(@date.id)
@@ -1401,14 +1400,14 @@ class FinanceController < ApplicationController
     @dates = FinanceFeeCollection.find(:all)
     @date = @fee_collection = FinanceFeeCollection.find(params[:date])
     @student = Student.find(params[:student]) if params[:student]
-    @student ||= FinanceFee.first(:conditions=>"fee_collection_id = #{@date.id}",:joins=>'INNER JOIN students ON finance_fees.student_id = students.id').student
+    @student ||= FinanceFee.first(:conditions => { :fee_collection_id => @date.id },:joins=>'INNER JOIN students ON finance_fees.student_id = students.id').student
     @prev_student = @student.previous_fee_student(@date.id)
     @next_student = @student.next_fee_student(@date.id)
     @due_date = @fee_collection.due_date
     total_fees =0
 
     @financefee = @student.finance_fee_by_date @date
-   
+
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted IS NOT NULL"])
     @fee_particulars = @date.fees_particulars(@student)
 
@@ -1423,7 +1422,7 @@ class FinanceController < ApplicationController
       @total_discount = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.total_payable(@student) * s.discount(@student) / 100}.sum.to_f
     end
     @total_discount_percentage = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.discount(@student)}.sum
-    
+
     @fee_particulars.each do |p|
       total_fees += p.amount
     end
@@ -1454,7 +1453,7 @@ class FinanceController < ApplicationController
 
         is_paid = (params[:fees][:fees_paid].to_f == params[:total_fees].to_f) ? true : false
         @financefee.update_attributes(:transaction_id=>tid, :is_paid=>is_paid)
-    
+
         @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{tid}\")")
       else
         @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
@@ -1466,7 +1465,7 @@ class FinanceController < ApplicationController
     end
     render :update do |page|
       page.replace_html "student", :partial => "student_fees_submission"
-      
+
     end
 
   end
@@ -1476,11 +1475,11 @@ class FinanceController < ApplicationController
     @student = Student.find(params[:id])
     @financefee = @student.finance_fee_by_date @date
     @due_date = @fee_collection.due_date
-    
+
     unless @financefee.transaction_id.blank?
       @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
     end
-    @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted = false"])
+    @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => { :is_deleted => false })
     @fee_particulars = @date.fees_particulars(@student)
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
 
@@ -1495,9 +1494,9 @@ class FinanceController < ApplicationController
       @total_discount = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.total_payable(@student) * s.discount(@student) / 100}.sum.to_f
     end
     @total_discount_percentage = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.discount(@student)}.sum
-    
+
     render :pdf => 'fee_receipt_pdf'
-           
+
     #        respond_to do |format|
     #            format.pdf { render :layout => false }
     #        end
@@ -1510,10 +1509,10 @@ class FinanceController < ApplicationController
       @dates = FinanceFeeCollection.find(:all)
       @date = @fee_collection = FinanceFeeCollection.find(params[:fine][:date])
       @student = Student.find(params[:fine][:student]) if params[:fine][:student]
-      @student ||= FinanceFee.first(:conditions=>"fee_collection_id = #{@date.id}",:joins=>'INNER JOIN students ON finance_fees.student_id = students.id').student
+      @student ||= FinanceFee.first(:conditions => { :fee_collection_id => @date.id },:joins=>'INNER JOIN students ON finance_fees.student_id = students.id').student
       @prev_student = @student.previous_fee_student(@date.id)
       @next_student = @student.next_fee_student(@date.id)
-      
+
       @financefee = @student.finance_fee_by_date @date
       unless @financefee.transaction_id.blank?
         @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
@@ -1571,11 +1570,11 @@ class FinanceController < ApplicationController
   end
 
   def fees_submission_student
-    
+
     @student = Student.find(params[:id])
     @date = @fee_collection = FinanceFeeCollection.find(params[:date])
     @financefee = @student.finance_fee_by_date(@date)
-    
+
     @due_date = @fee_collection.due_date
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted IS NOT NULL"])
     @fee_particulars = @date.fees_particulars(@student)
@@ -1594,7 +1593,7 @@ class FinanceController < ApplicationController
       @total_discount = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.total_payable(@student) * s.discount(@student) / 100}.sum.to_f
     end
     @total_discount_percentage = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.discount(@student)}.sum
-    
+
     render :update do |page|
       page.replace_html "fee_submission", :partial => "fees_submission_form"
     end
@@ -1703,7 +1702,7 @@ class FinanceController < ApplicationController
 
 
   #fees structure ----------------------
-  
+
   def fees_student_structure_search_logic # student search fees structure
     query = params[:query]
     unless query.length < 3
@@ -1757,7 +1756,7 @@ class FinanceController < ApplicationController
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted IS NOT NULL"])
     @fee_particulars = @fee_collection.fees_particulars(@student)
   end
-  
+
 
   #fees defaulters-----------------------
 
@@ -1800,7 +1799,7 @@ class FinanceController < ApplicationController
     @date = FinanceFeeCollection.find(params[:date])
     @students = @date.students.reject{|s| s.batch_id != @batch.id}
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
-        
+
     render :pdf => 'fee_defaulters_pdf'
   end
 
@@ -1824,7 +1823,7 @@ class FinanceController < ApplicationController
       @total_discount = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.total_payable(@student) * s.discount(@student) / 100}.sum.to_f
     end
     @total_discount_percentage = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.discount(@student)}.sum
-    
+
     unless @financefee.transaction_id.blank?
       @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
     end
@@ -1866,7 +1865,7 @@ class FinanceController < ApplicationController
       else
         flash[:notice] = "#{t('flash23')}"
       end
-    
+
     end
   end
 
@@ -1892,7 +1891,7 @@ class FinanceController < ApplicationController
   end
 
   def compare_report
-    
+
   end
 
   def report_compare
@@ -1902,8 +1901,8 @@ class FinanceController < ApplicationController
     @end_date = (params[:end_date]).to_date
     @start_date2 = (params[:start_date2]).to_date
     @end_date2 = (params[:end_date2]).to_date
-    @transactions = FinanceTransaction.find(:all,
-      :order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'"])
+    @transactions = FinanceTransaction.all(:order => 'transaction_date desc',
+                                           :conditions => { :transaction_date => @start_date..@end_date })
     @transactions2 = FinanceTransaction.find(:all,
       :order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date2}' and transaction_date <= '#{@end_date2}'"])
     @other_transaction_categories = FinanceTransaction.find(:all,params[:page], :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id NOT IN (#{@fixed_cat_ids.join(",")})"],
@@ -1933,7 +1932,7 @@ class FinanceController < ApplicationController
     end
     @graph = open_flash_chart_object(960, 500, "graph_for_compare_monthly_report?start_date=#{@start_date}&end_date=#{@end_date}&start_date2=#{@start_date2}&end_date2=#{@end_date2}")
   end
- 
+
   def month_date
     @start_date = params[:start]
     @end_date  = params[:end]
@@ -1969,21 +1968,21 @@ class FinanceController < ApplicationController
       @total_discount = 100
     end
     render :pdf => 'pdf_fee_structure'
-           
+
     #        respond_to do |format|
     #            format.pdf { render :layout => false }
     #        end
   end
 
   #graph------------------------------------
- 
+
 
   def graph_for_update_monthly_report
-    
+
     start_date = (params[:start_date]).to_date
     end_date = (params[:end_date]).to_date
     employees = Employee.find(:all)
-    
+
     hr = Configuration.find_by_config_value("HR")
     donations_total = FinanceTransaction.donations_triggers(start_date,end_date)
     fees = FinanceTransaction.total_fees(start_date,end_date)
@@ -1991,12 +1990,12 @@ class FinanceController < ApplicationController
     expense = FinanceTransaction.total_other_trans(start_date,end_date)[1]
     #    other_transactions = FinanceTransaction.find(:all,
     #      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id !='#{3}' and category_id !='#{2}'and category_id !='#{1}'"])
-   
+
 
     x_labels = []
     data = []
     largest_value =0
-    
+
     unless hr.nil?
       salary = Employee.total_employees_salary(employees,start_date,end_date)
       unless salary <= 0
@@ -2010,7 +2009,7 @@ class FinanceController < ApplicationController
       data << donations_total
       largest_value = donations_total if largest_value < donations_total
     end
-     
+
     unless fees <= 0
       x_labels << "#{t('fees_text')}"
       data << fees
@@ -2038,7 +2037,7 @@ class FinanceController < ApplicationController
       largest_value = expense if largest_value < expense
     end
 
-    
+
     #    other_transactions.each do |trans|
     #      x_labels << trans.title
     #      if trans.category.is_income? and trans.master_transaction_id == 0
@@ -2051,7 +2050,7 @@ class FinanceController < ApplicationController
 
     largest_value += 500
 
-    bargraph = BarFilled.new()
+    bargraph = BarFilled.new
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 3;
@@ -2083,7 +2082,7 @@ class FinanceController < ApplicationController
 
 
     render :text => chart.render
- 
+
   end
   def graph_for_compare_monthly_report
 
@@ -2140,7 +2139,7 @@ class FinanceController < ApplicationController
       largest_value = fees if largest_value < fees
       largest_value = fees2 if largest_value < fees2
     end
-       
+
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
       transaction1 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)
       transaction2 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date2,end_date2)
@@ -2196,13 +2195,13 @@ class FinanceController < ApplicationController
 
     largest_value += 500
 
-    bargraph = BarFilled.new()
+    bargraph = BarFilled.new
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 3;
     bargraph.text = "#{t('for_the_period')} #{start_date}-#{end_date}"
     bargraph.values = data
-    bargraph2 = BarFilled.new()
+    bargraph2 = BarFilled.new
     bargraph2.width = 1;
     bargraph2.colour = '#000000';
     bargraph2.dot_size = 3;
@@ -2237,7 +2236,7 @@ class FinanceController < ApplicationController
     render :text => chart.render
 
   end
-  
+
   #ddnt complete this graph!
 
   def graph_for_transaction_comparison
@@ -2258,7 +2257,7 @@ class FinanceController < ApplicationController
     x_labels = []
     data1 = []
     data2 = []
-    
+
     largest_value =0
 
     unless hr.nil?
@@ -2286,13 +2285,13 @@ class FinanceController < ApplicationController
       data << income
       largest_value = income if largest_value < income
     end
-        
+
     unless expense <= 0
       x_labels << "#{t('other_expense')}"
       data << expense
       largest_value = expense if largest_value < expense
     end
-    
+
     #    other_transactions.each do |trans|
     #      x_labels << trans.title
     #      if trans.category.is_income? and trans.master_transaction_id == 0
@@ -2305,7 +2304,7 @@ class FinanceController < ApplicationController
 
     largest_value += 500
 
-    bargraph = BarFilled.new()
+    bargraph = BarFilled.new
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 3;
@@ -2337,8 +2336,8 @@ class FinanceController < ApplicationController
 
 
     render :text => chart.render
- 
-   
+
+
   end
   #fee Discount
   def fee_discounts
@@ -2471,7 +2470,7 @@ class FinanceController < ApplicationController
       @fee_discount.errors.add_to_base("#{t('fees_category_cant_blank')}")
     end
   end
-  
+
 
   def update_master_fee_category_list
     @batch = Batch.find(params[:id])

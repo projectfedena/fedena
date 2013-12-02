@@ -22,7 +22,7 @@
 </div>
 <% @students.each do |s| %>
   <li id="stud_<%=s.id%>" class="list<%=cycle('odd', 'even')%>">
-    <% stud_assigned = StudentsSubject.new() %>
+    <% stud_assigned = StudentsSubject.new %>
     <% assigned = stud_assigned.student_assigned(s.id,@elective_subject.id) %>
    <div class="category-name"> <%= s.full_name %></div>
     <% unless assigned.nil? %>

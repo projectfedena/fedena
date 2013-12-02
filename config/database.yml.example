@@ -21,5 +21,3 @@ production:
       port: 3306
       username: fedena
       password: fedena
-cucumber:
-  <<: *test

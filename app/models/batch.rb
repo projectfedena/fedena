@@ -1,23 +1,22 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class Batch < ActiveRecord::Base
-  GRADINGTYPES = {"1"=>"GPA","2"=>"CWA","3"=>"CCE"}
+  GRADINGTYPES = { '1' => 'GPA', '2' => 'CWA', '3' => 'CCE' }
 
   belongs_to :course
 
@@ -26,42 +25,41 @@ class Batch < ActiveRecord::Base
   has_many :grouped_batches
   has_many :archived_students
   has_many :grading_levels, :conditions => { :is_deleted => false }
-  has_many :subjects, :conditions => { :is_deleted => false }
-  has_many :employees_subjects, :through =>:subjects
+  has_many :subjects,       :conditions => { :is_deleted => false }
+  has_many :employees_subjects, :through => :subjects
   has_many :exam_groups
-  has_many :fee_category , :class_name => "FinanceFeeCategory"
+  has_many :fee_category, :class_name => 'FinanceFeeCategory'
   has_many :elective_groups
   has_many :finance_fee_collections
   has_many :finance_transactions, :through => :students
   has_many :batch_events
-  has_many :events , :through =>:batch_events
-  has_many :batch_fee_discounts , :foreign_key => 'receiver_id'
-  has_many :student_category_fee_discounts , :foreign_key => 'receiver_id'
+  has_many :events, :through => :batch_events
+  has_many :batch_fee_discounts, :foreign_key => 'receiver_id'
+  has_many :student_category_fee_discounts, :foreign_key => 'receiver_id'
   has_many :attendances
   has_many :subject_leaves
   has_many :timetable_entries
   has_many :cce_reports
   has_many :assessment_scores
 
-
   has_and_belongs_to_many :graduated_students, :class_name => 'Student', :join_table => 'batch_students'
 
   delegate :course_name,:section_name, :code, :to => :course
   delegate :grading_type, :cce_enabled?, :observation_groups, :cce_weightages, :to=>:course
 
-  validates_presence_of :name, :start_date, :end_date
+  validates_presence_of :name, :started_on, :ended_on
 
   attr_accessor :job_type
 
-  named_scope :active,{ :conditions => { :is_deleted => false, :is_active => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
-  named_scope :inactive,{ :conditions => { :is_deleted => false, :is_active => false },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
-  named_scope :deleted,{:conditions => { :is_deleted => true },:joins=>:course,:select=>"`batches`.*,CONCAT(courses.code,'-',batches.name) as course_full_name",:order=>"course_full_name"}
-  named_scope :cce, {:select => "batches.*",:joins => :course,:conditions=>["courses.grading_type = #{GRADINGTYPES.invert["CCE"]}"],:order=>:code}
+  named_scope :active,   { :conditions => { :is_deleted => false, :is_active => true },  :joins => :course, :select => 'batches.*, CONCAT(courses.code, "-", batches.name) AS course_full_name', :order => 'course_full_name' }
+  named_scope :inactive, { :conditions => { :is_deleted => false, :is_active => false }, :joins => :course, :select => 'batches.*, CONCAT(courses.code, "-", batches.name) AS course_full_name', :order => 'course_full_name' }
+  named_scope :deleted,  { :conditions => { :is_deleted => true }, :joins => :course, :select => 'batches.*, CONCAT(courses.code, "-", batches.name) AS course_full_name', :order => 'course_full_name' }
+  named_scope :cce, { :select => 'batches.*', :joins => :course, :conditions => ['courses.grading_type = ?', GRADINGTYPES.invert['CCE']], :order => :code }
 
   def validate
-    errors.add(:start_date, "#{t('should_be_before_end_date')}.") \
-      if self.start_date > self.end_date \
-      if self.start_date and self.end_date
+    if self.started_on && self.ended_on && self.started_on > self.ended_on
+      errors.add(:started_on, "#{t('should_be_before_end_date')}.")
+    end
   end
 
   def full_name
@@ -71,7 +69,7 @@ class Batch < ActiveRecord::Base
   def course_section_name
     "#{course_name} - #{section_name}"
   end
-  
+
   def inactivate
     update_attribute(:is_deleted, true)
     self.employees_subjects.destroy_all
@@ -83,7 +81,7 @@ class Batch < ActiveRecord::Base
   end
 
   def fee_collection_dates
-    FinanceFeeCollection.find_all_by_batch_id(self.id,:conditions => "is_deleted = false")
+    FinanceFeeCollection.find_all_by_batch_id(self.id, :conditions => { :is_deleted => false })
   end
 
   def all_students
@@ -91,19 +89,19 @@ class Batch < ActiveRecord::Base
   end
 
   def normal_batch_subject
-    Subject.find_all_by_batch_id(self.id,:conditions=>["elective_group_id IS NULL AND is_deleted = false"])
+    Subject.find_all_by_batch_id(self.id, :conditions => { :elective_group_id => nil, :is_deleted => false })
   end
-  
+
   def elective_batch_subject(elect_group)
     Subject.find_all_by_batch_id_and_elective_group_id(self.id,elect_group,:conditions=>["elective_group_id IS NOT NULL AND is_deleted = false"])
   end
 
   def all_elective_subjects
-    elective_groups.map(&:subjects).compact.flatten.select{|subject| subject.is_deleted == false}
+    elective_groups.map(&:subjects).compact.flatten.select { |subject| !subject.is_deleted? }
   end
 
   def has_own_weekday
-    Weekday.find_all_by_batch_id(self.id,:conditions=>{:is_deleted=>false}).present?
+    Weekday.find_all_by_batch_id(self.id, :conditions => { :is_deleted => false }).any?
   end
 
   def allow_exam_acess(user)
@@ -115,7 +113,7 @@ class Batch < ActiveRecord::Base
   end
 
   def is_a_holiday_for_batch?(day)
-    return true if Event.holidays.count(:all, :conditions => ["start_date <=? AND end_date >= ?", day, day] ) > 0
+    return true if Event.holidays.count(:all, :conditions => ["started_on <=? AND ended_on >= ?", day, day] ) > 0
     false
   end
 
@@ -129,12 +127,12 @@ class Batch < ActiveRecord::Base
     end
     return event_holidays #array of holiday event dates
   end
-  
-  def return_holidays(start_date,end_date)
+
+  def return_holidays(started_on,ended_on)
     @common_holidays ||= Event.holidays.is_common
     @batch_holidays=self.events(:all,:conditions=>{:is_holiday=>true})
     all_holiday_events = @batch_holidays+@common_holidays
-    all_holiday_events.reject!{|h| !(h.start_date>=start_date and h.end_date<=end_date)}
+    all_holiday_events.reject!{|h| !(h.started_on >= started_on && h.ended_on <= ended_on)}
     event_holidays = []
     all_holiday_events.each do |event|
       event_holidays+=event.dates
@@ -142,16 +140,16 @@ class Batch < ActiveRecord::Base
     return event_holidays #array of holiday event dates
   end
 
-  def find_working_days(start_date,end_date)
+  def find_working_days(started_on,ended_on)
     start=[]
-    start<<self.start_date.to_date
-    start<<start_date.to_date
+    start<<self.started_on
+    start<<started_on
     stop=[]
-    stop<<self.end_date.to_date
-    stop<<end_date.to_date
+    stop<<self.ended_on
+    stop<<ended_on
     all_days=start.max..stop.min
     weekdays=Weekday.weekday_by_day(self.id).keys
-    holidays=return_holidays(start_date,end_date)
+    holidays=return_holidays(started_on,ended_on)
     non_holidays=all_days.to_a-holidays
     range=non_holidays.select{|d| weekdays.include? d.wday}
     return range
@@ -160,10 +158,10 @@ class Batch < ActiveRecord::Base
 
   def working_days(date)
     start=[]
-    start<<self.start_date.to_date
+    start<<self.started_on
     start<<date.beginning_of_month.to_date
     stop=[]
-    stop<<self.end_date.to_date
+    stop<<self.ended_on
     stop<<date.end_of_month.to_date
     all_days=start.max..stop.min
     weekdays=Weekday.weekday_by_day(self.id).keys
@@ -173,7 +171,7 @@ class Batch < ActiveRecord::Base
   end
 
   def academic_days
-    all_days=start_date.to_date..Date.today
+    all_days=started_on..Date.today
     weekdays=Weekday.weekday_by_day(self.id).keys
     holidays=holiday_event_dates
     non_holidays=all_days.to_a-holidays
@@ -224,16 +222,16 @@ class Batch < ActiveRecord::Base
     ranked_students = ranked_students.sort
   end
 
-  def find_attendance_rank(start_date,end_date)
+  def find_attendance_rank(started_on,ended_on)
     @students = Student.find_all_by_batch_id(self.id)
     ranked_students=[]
     unless @students.empty?
-      working_days = self.find_working_days(start_date,end_date).count
+      working_days = self.find_working_days(started_on,ended_on).count
       unless working_days == 0
         ordered_percentages = []
         student_percentages = []
         @students.each do|student|
-          leaves = Attendance.find(:all,:conditions=>["student_id = ? and month_date >= ? and month_date <= ?",student.id,start_date,end_date])
+          leaves = Attendance.find(:all,:conditions=>["student_id = ? and month_date >= ? and month_date <= ?",student.id,started_on,ended_on])
           absents = 0
           unless leaves.empty?
             leaves.each do|leave|
@@ -557,7 +555,7 @@ class Batch < ActiveRecord::Base
     end
   end
 
-  
+
 
   def subject_hours(starting_date,ending_date,subject_id)
     unless subject_id == 0
@@ -565,10 +563,10 @@ class Batch < ActiveRecord::Base
       unless subject.elective_group.nil?
         subject=subject.elective_group.subjects.first
       end
-      #          Timetable.all(:conditions=>["('#{starting_date}' BETWEEN start_date AND end_date) OR ('#{ending_date}' BETWEEN start_date AND end_date) OR (start_date BETWEEN '#{starting_date}' AND #{ending_date}) OR (end_date BETWEEN '#{starting_date}' AND '#{ending_date}')"])
-      entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["((? BETWEEN start_date AND end_date) OR (? BETWEEN start_date AND end_date) OR (start_date BETWEEN ? AND ?) OR (end_date BETWEEN ? AND ?)) AND timetable_entries.subject_id = ? AND timetable_entries.batch_id = ?",starting_date,ending_date,starting_date,ending_date,starting_date,ending_date,subject.id,id]).group_by(&:timetable_id)
+      #          Timetable.all(:conditions=>["('#{starting_date}' BETWEEN started_on AND ended_on) OR ('#{ending_date}' BETWEEN started_on AND ended_on) OR (started_on BETWEEN '#{starting_date}' AND #{ending_date}) OR (ended_on BETWEEN '#{starting_date}' AND '#{ending_date}')"])
+      entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["((? BETWEEN started_on AND ended_on) OR (? BETWEEN started_on AND ended_on) OR (started_on BETWEEN ? AND ?) OR (ended_on BETWEEN ? AND ?)) AND timetable_entries.subject_id = ? AND timetable_entries.batch_id = ?",starting_date,ending_date,starting_date,ending_date,starting_date,ending_date,subject.id,id]).group_by(&:timetable_id)
     else
-      entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["((? BETWEEN start_date AND end_date) OR (? BETWEEN start_date AND end_date) OR (start_date BETWEEN ? AND ?) OR (end_date BETWEEN ? AND ?)) AND timetable_entries.batch_id = ?",starting_date,ending_date,starting_date,ending_date,starting_date,ending_date,id]).group_by(&:timetable_id)
+      entries = TimetableEntry.find(:all,:joins=>:timetable,:include=>:weekday,:conditions=>["((? BETWEEN started_on AND ended_on) OR (? BETWEEN started_on AND ended_on) OR (started_on BETWEEN ? AND ?) OR (ended_on BETWEEN ? AND ?)) AND timetable_entries.batch_id = ?",starting_date,ending_date,starting_date,ending_date,starting_date,ending_date,id]).group_by(&:timetable_id)
     end
     timetable_ids=entries.keys
     hsh2=Hash.new
@@ -580,7 +578,7 @@ class Batch < ActiveRecord::Base
         hsh[k]=val.group_by(&:day_of_week)
       end
       timetables.each do |tt|
-        ([starting_date,start_date.to_date,tt.start_date].max..[tt.end_date,end_date.to_date,ending_date,Configuration.default_time_zone_present_time.to_date].min).each do |d|
+        ([starting_date,started_on,tt.started_on].max..[tt.ended_on,ended_on,ending_date,Configuration.default_time_zone_present_time.to_date].min).each do |d|
           hsh2[d]=hsh[tt.id][d.wday]
         end
       end
@@ -612,7 +610,7 @@ class Batch < ActiveRecord::Base
   def fa_groups
     FaGroup.all(:joins=>:subjects, :conditions=>{:subjects=>{:batch_id=>id}}).uniq
   end
-  
+
   def create_scholastic_reports
     report_hash={}
     fa_groups.each do |fg|
@@ -656,7 +654,7 @@ class Batch < ActiveRecord::Base
 
   def perform
     #this is for cce_report_generation use flags if need job for other works
-    
+
     if job_type=="1"
       generate_batch_reports
     elsif job_type=="2"
@@ -685,6 +683,24 @@ class Batch < ActiveRecord::Base
   def user_is_authorized?(u)
     employees.collect(&:user_id).include? u.id
   end
-  
-  
+
+  def self.create_reports(batch_ids)
+    errors = []
+    batches = self.find_all_by_id(batch_ids)
+    batches.each do |batch|
+      if batch.check_credit_points
+        batch.job_type = "3"
+        Delayed::Job.enqueue(batch)
+        batch.delete_student_cce_report_cache
+      else
+        errors += ["Incomplete grading level credit points for #{batch.full_name}, report generation failed."]
+      end
+    end
+    notice = self.create_report_notice(batches)
+    [notice, errors]
+  end
+
+  def self.create_report_notice(batches)
+    "Report generation in queue for batches #{batches.map(&:full_name).join(", ")}. <a href='/scheduled_jobs/Batch/3'>Click Here</a> to view the scheduled job."
+  end
 end

@@ -1,21 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class TimetableController < ApplicationController
   before_filter :login_required
   before_filter :protect_other_student_data
@@ -23,7 +22,6 @@ class TimetableController < ApplicationController
   filter_access_to :all
 
   def new_timetable
-
     if request.post?
       @timetable=Timetable.new(params[:timetable])
       @error=false
@@ -460,19 +458,18 @@ class TimetableController < ApplicationController
     admin = EmployeeCategory.find_by_prefix('admin')
     admin_ids = []
     admin_ids << admin.id unless admin.nil?
-    @employees = Employee.all(:conditions=>["employee_category_id not in (?)",admin_ids],:include=>[:employee_grade,:employees_subjects])
+    @employees = Employee.all(:conditions => ['employee_category_id NOT IN (?)', admin_ids], :include => [:employee_grade, :employees_subjects])
     @emp_subs = []
-    @employees.map{|employee| (employee[:total_time] = ((employee.max_hours_week).to_i))}
+    @employees.map { |employee| (employee[:total_time] = ((employee.max_hours_week).to_i)) }
     if request.post?
       params[:employee_subjects].delete_blank
-      success,@error_obj = EmployeesSubject.allot_work(params[:employee_subjects])
-      if success
+      if EmployeesSubject.allot_work(params[:employee_subjects])
         flash[:notice] = t('work_allotment_success')
       else
         flash[:notice] = t('updated_with_errors')
       end
     end
-    @batches = Batch.active.scoped :include=>[{:subjects=>:employees},:course]
+    @batches = Batch.active.scoped(:include=>[{ :subjects => :employees }, :course])
     @subjects = @batches.collect(&:subjects).flatten
   end
   def timetable
@@ -487,7 +484,7 @@ class TimetableController < ApplicationController
       @today = @local_tzone_time.to_date
     end
   end
-  
+
 end
 class Hash
   def delete_blank

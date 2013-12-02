@@ -1,0 +1,6 @@
+test: &test
+  adapter: mysql
+  username: root
+  password:
+  database: fedena_test
+  pool: 5
