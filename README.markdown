@@ -48,22 +48,23 @@ With the commercial support plan, you would get:
 
 For more information, please contact our support at: trung.le@ruby-journal.com
 
-# Project Athena (Rails 4 port)
+# Project Athena
 
-Your investment to Fedena is very important to your business. We understand and believe that you should not throw away your codebase just because
-fedena becomes stagnated and obsolete with old Rails technology. We are in progress porting fedena to Rails 4 under Project Athena. By subscribing
-to our commercial support plan, you will automatically receive portage updates.
+Your investment to Fedena is very important to your business. We understand and believe that Fedena should not impede the growth of your business. Sadly the clunky and obsolete Fedena makes it hard us for us, developers and you to achieve that goal. Hence, we decided to take a bold decision by starting a new project from scratch. Learning from your valuable feedbacks and combining with the state of the art Lotus Framework, we are ambitious to bring you the best product of the industry.
 
-What would you expect with this port?
+What would you expect with this new product?
 
-* Rails 4 support
-* Ruby 1.9.x and 2.0.0 support
-* Support PostgresSQL, MySQL
-* ~60% performance increase
+* Lotus Framework based
+* 1st class microservice architecture
+* Ruby 2.0.0 or newer support
+* Support PostgresSQL, MySQL, Redis and MongoDB
+* ~300% performance increase
 * Cloud Deployment - Heroku, EngineYard, OpenShift
 * New plugin engine infrastructure
-* Extensive customer product support for upgrade from Fedena 2.3
+* Extensive customer product support for upgrade from Fedena 2.3 or Fedena LTS
 * Responsive CSS - support mobile, tablet and desktop
+
+Previously, we aimed to rewrite in Rails 4. After 6 months in development, we failed to achieve the objectives due to financial problems and technical shortages. It was a tough time for our company and we apologize to our customers who have been patiently waiting for the good news. In July 2014, we successfully secured a first round funding from a private investor, enough for us to restart the project. This time we'll take a new approach by moving away from Rails 4 and toward Lotus Frameowork. We truly believe the simplicty yet superiosity over Rails would be the game changer for your business. For more details, please do not hesitate to contact us.
 
 # Demo
 A demo website for Fedena has been set up at demo.projectfedena.org. You can log in with following usernames and passwords:
