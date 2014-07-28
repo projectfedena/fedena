@@ -64,7 +64,7 @@ What would you expect with this new product?
 * Extensive customer product support for upgrade from Fedena 2.3 or Fedena LTS
 * Responsive CSS - support mobile, tablet and desktop
 
-Previously, we aimed to rewrite in Rails 4. After 6 months in development, we failed to achieve the objectives due to financial problems and technical shortages. It was a tough time for our company and we apologize to our customers who have been patiently waiting for the good news. In July 2014, we successfully secured a first round funding from a private investor, enough for us to restart the project. This time we'll take a new approach by moving away from Rails 4 and toward Lotus Frameowork. We truly believe the simplicty yet superiosity over Rails would be the game changer for your business. For more details, please do not hesitate to contact us.
+Previously, we aimed to rewrite in Rails 4. After 6 months in development, we failed to achieve the objectives due to financial problems and technical shortages. It was a tough time for our company and we apologize to our customers who have been patiently waiting for the good news. In July 2014, we successfully secured a first round funding from a private investor, enough for us to restart the project. This time we'll take a new approach by moving away from Rails 4 and toward Lotus Framework. We truly believe the simplicty yet superiosity over Rails would be the game changer for your business. For more details, please do not hesitate to contact us.
 
 # Demo
 A demo website for Fedena has been set up at demo.projectfedena.org. You can log in with following usernames and passwords:
