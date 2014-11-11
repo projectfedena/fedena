@@ -1,47 +1,46 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class StudentController < ApplicationController
   filter_access_to :all
   before_filter :login_required
   before_filter :protect_other_student_data, :except =>[:show]
-    
+
   before_filter :find_student, :only => [
     :academic_report, :academic_report_all, :admission3, :change_to_former,
     :delete, :edit, :add_guardian, :email, :remove, :reports, :profile,
     :guardians, :academic_pdf,:show_previous_details,:fees,:fee_details
   ]
 
-  
+
   def academic_report_all
     @user = current_user
     @prev_student = @student.previous_student
     @next_student = @student.next_student
     @course = @student.course
     @examtypes = ExaminationType.find( ( @course.examinations.collect { |x| x.examination_type_id } ).uniq )
-    
+
     @graph = open_flash_chart_object(965, 350, "/student/graph_for_academic_report?course=#{@course.id}&student=#{@student.id}")
     @graph2 = open_flash_chart_object(965, 350, "/student/graph_for_annual_academic_report?course=#{@course.id}&student=#{@student.id}")
   end
 
   def admission1
     @student = Student.new(params[:student])
-    @selected_value = Configuration.default_country 
+    @selected_value = Configuration.default_country
     @application_sms_enabled = SmsSetting.find_by_settings_key("ApplicationEnabled")
     @last_admitted_student = Student.find(:last)
     @config = Configuration.find_by_config_key('AdmissionNumberAutoIncrement')
@@ -60,7 +59,7 @@ class StudentController < ApplicationController
         @status = @student.save
       end
       if @status
-        sms_setting = SmsSetting.new()
+        sms_setting = SmsSetting.new
         if sms_setting.application_sms_active and @student.is_sms_enabled
           recipients = []
           message = "#{t('student_admission_done')} #{@student.admission_no} #{t('password_is')} #{@student.admission_no}123"
@@ -93,7 +92,7 @@ class StudentController < ApplicationController
     end
     return if params[:immediate_contact].nil?
     if request.post?
-      sms_setting = SmsSetting.new()
+      sms_setting = SmsSetting.new
       @student = Student.update(@student.id, :immediate_contact_id => params[:immediate_contact][:contact])
       if sms_setting.application_sms_active and sms_setting.student_admission_sms_active and @student.is_sms_enabled
         recipients = []
@@ -118,7 +117,7 @@ class StudentController < ApplicationController
     end
     return if params[:immediate_contact].nil?
     if request.post?
-      sms_setting = SmsSetting.new()
+      sms_setting = SmsSetting.new
       @student = Student.update(@student.id, :immediate_contact_id => params[:immediate_contact][:contact])
       if sms_setting.application_sms_active and sms_setting.student_admission_sms_active and @student.is_sms_enabled
         recipients = []
@@ -228,12 +227,12 @@ class StudentController < ApplicationController
     @student = Student.find(params[:id])
     @additional_fields = StudentAdditionalField.find(:all, :conditions=> "status = true")
     @additional_details = StudentAdditionalDetail.find_all_by_student_id(@student)
-    
+
     if @additional_details.empty?
       redirect_to :controller => "student",:action => "admission4" , :id => @student.id
     end
     if request.post?
-   
+
       params[:student_additional_details].each_pair do |k, v|
         row_id=StudentAdditionalDetail.find_by_student_id_and_additional_field_id(@student.id,k)
         unless row_id.nil?
@@ -250,7 +249,7 @@ class StudentController < ApplicationController
   def add_additional_details
     @additional_details = StudentAdditionalField.find(:all, :conditions=>{:status=>true},:order=>"priority ASC")
     @inactive_additional_details = StudentAdditionalField.find(:all, :conditions=>{:status=>false},:order=>"priority ASC")
-    @additional_field = StudentAdditionalField.new    
+    @additional_field = StudentAdditionalField.new
     @student_additional_field_option = @additional_field.student_additional_field_options.build
     if request.post?
       priority = 1
@@ -304,7 +303,7 @@ class StudentController < ApplicationController
   end
 
   def delete_additional_details
-    students = StudentAdditionalDetail.find(:all ,:conditions=>"additional_field_id = #{params[:id]}")
+    students = StudentAdditionalDetail.find(:all, :conditions => { :additional_field_id => params[:id] })
     if students.blank?
       StudentAdditionalField.find(params[:id]).destroy
       @additional_details = StudentAdditionalField.find(:all, :conditions=>{:status=>true},:order=>"priority ASC")
@@ -342,7 +341,7 @@ class StudentController < ApplicationController
   def generate_all_tc_pdf
     @ids = params[:stud]
     @students = @ids.map { |st_id| ArchivedStudent.find(st_id) }
-    
+
     render :pdf=>'generate_all_tc_pdf'
   end
 
@@ -569,7 +568,7 @@ class StudentController < ApplicationController
     @immediate_contact = Guardian.find(@student.immediate_contact_id) \
       unless @student.immediate_contact_id.nil? or @student.immediate_contact_id == ''
   end
-  
+
   def profile_pdf
     @current_user = current_user
     @student = Student.find(params[:id])
@@ -580,7 +579,7 @@ class StudentController < ApplicationController
     @previous_data = StudentPreviousData.find_by_student_id(@student.id)
     @immediate_contact = Guardian.find(@student.immediate_contact_id) \
       unless @student.immediate_contact_id.nil? or @student.immediate_contact_id == ''
-        
+
     render :pdf=>'profile_pdf'
   end
 
@@ -588,7 +587,7 @@ class StudentController < ApplicationController
     @previous_data = StudentPreviousData.find_by_student_id(@student.id)
     @previous_subjects = StudentPreviousSubjectMark.find_all_by_student_id(@student.id)
   end
-  
+
   def show
     @student = Student.find_by_admission_no(params[:id])
     send_data(@student.photo_data,
@@ -604,7 +603,7 @@ class StudentController < ApplicationController
   def del_guardian
     @guardian = Guardian.find(params[:id])
     @student = @guardian.ward
-    if @guardian.is_immediate_contact?
+    if @guardian.immediate_contact?
       if @guardian.destroy
         flash[:notice] = "#{t('flash6')}"
         redirect_to :controller => 'student', :action => 'admission3', :id => @student.id
@@ -749,7 +748,7 @@ class StudentController < ApplicationController
     end
   end
 
-   
+
 
   #  def adv_search
   #    @batches = []
@@ -936,7 +935,7 @@ class StudentController < ApplicationController
       end
     end
     render :pdf=>'generate_tc_pdf'
-         
+
   end
 
   #  def new_adv
@@ -1019,7 +1018,7 @@ class StudentController < ApplicationController
       @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
     end
 
-    @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted = false"])
+    @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => { :is_deleted => false })
     @fee_particulars = @fee_collection.fees_particulars(@student)
     @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
 
@@ -1036,7 +1035,7 @@ class StudentController < ApplicationController
   end
 
 
-  
+
   #  # Graphs
   #
   #  def graph_for_previous_years_marks_overview
@@ -1201,7 +1200,7 @@ class StudentController < ApplicationController
   #      end
   #    end
   #
-  #    bargraph = BarFilled.new()
+  #    bargraph = BarFilled.new
   #    bargraph.width = 1;
   #    bargraph.colour = '#bb0000';
   #    bargraph.dot_size = 5;
@@ -1275,7 +1274,7 @@ class StudentController < ApplicationController
   #      data2 << class_avg
   #    end
   #
-  #    bargraph = BarFilled.new()
+  #    bargraph = BarFilled.new
   #    bargraph.width = 1;
   #    bargraph.colour = '#bb0000';
   #    bargraph.dot_size = 5;
@@ -1329,7 +1328,7 @@ class StudentController < ApplicationController
   #    data << student.annual_weighted_marks(student.course.academic_year_id)
   #    data2 << t
   #
-  #    bargraph = BarFilled.new()
+  #    bargraph = BarFilled.new
   #    bargraph.width = 1;
   #    bargraph.colour = '#bb0000';
   #    bargraph.dot_size = 5;

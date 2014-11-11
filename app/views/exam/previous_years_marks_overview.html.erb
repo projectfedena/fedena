@@ -75,7 +75,7 @@
       <div id="register">
         <div class="header2">
           <div class="month">
-            <% exam = ExamScore.new() %>
+            <% exam = ExamScore.new %>
             <% @aggr =  exam.batch_wise_aggregate(@student,b)  %>
             <%= b.name %> |<%= t('aggregate') %> : <%="%.2f" %@aggr.to_f unless @aggr== 'nil' or @aggr.nil? %>
           </div>
@@ -116,7 +116,7 @@
                   <td></td>
                 <% end %>
               <% end %>
-              <% total_score = ExamScore.new() %>
+              <% total_score = ExamScore.new %>
               <% if @mmg == @g %>
                 <td class="col-1"><%= total_score.grouped_exam_subject_total(subject,@student,@type,b) %></td>
               <% else %>

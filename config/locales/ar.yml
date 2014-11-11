@@ -149,7 +149,7 @@ ar:
         title: "لقب"
 
       apply_leave:
-        employee_leave_types_id: "أنواع الموظف إجازة"
+        employee_leave_type_id: "أنواع الموظف إجازة"
         start_date: "تاريخ بدء"
         end_date: "نهاية التاريخ"
         reason: "سبب"
@@ -274,11 +274,54 @@ ar:
       date_month: "%B %e"
 
 
-    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
-    abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]
-    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
-    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    order: [ :day, :month, :year ]
+    day_names:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    abbr_day_names:
+      - Sun
+      - Mon
+      - Tue
+      - Wed
+      - Thur
+      - Fri
+      - Sat
+    month_names:
+      - ~
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+    abbr_month_names:
+      - ~
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    order:
+      - :day
+      - :month
+      - :year
 
 
   time:
@@ -2227,7 +2270,7 @@ ar:
     flash26: "رسوم إضافية لتحديث بنجاح"
     flash27: "رسوم إضافية حذف بنجاح"
     flash28: "No batches found in selected category"
-    
+
 ## traslation for xml controller
   xml:
     flash1: "ضبط XML تحديثها بنجاح"
@@ -2303,7 +2346,7 @@ ar:
   exam_reports:
     flash1: "No Students in selected batch"
     flash2: "No student found in that exam group."
-    
+
   shared:
     user:
       key: "فو"

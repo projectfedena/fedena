@@ -16,27 +16,23 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
-
-
 <div id="weekday-form">
-  <p><%= @batch.full_name unless @batch.nil? %></p>
+  <p><%= @batch.full_name if @batch.present? %></p>
 
   <% form_remote_for @weekday do |f| %>
-
-    <% batch_id = (@batch.nil? ? nil : @batch.id) %>
+    <%- batch_id = (@batch.nil? ? nil : @batch.id) %>
     <%= f.hidden_field :batch_id, :value => batch_id %>
 
     <p>
       <%= f.label :select_weekday %>
-      <%= select :weekday, :weekday, { "#{t('monday')}"=>'1', "#{t('tuesday')}" => '2',"#{t('wedesday')}" =>'3',"#{t('thursday')}" =>'4',"#{t('friday')}" =>'5',"#{t('saturday')}"=>'6', "#{t('sunday')}"=>'0' }%>
+      <%= select :weekday, :weekday, Weekday::WEEKDAYS.invert %>
     </p>
     <%= f.check_box :is_break, :checked => false %> <%= t('check_if_this_is_a_break') %>
-<%= f.check_box :is_break, :checked => false %> <%= t('check_if_this_is_a_break') %>
+
     <p>
       <%= f.submit "#{t('submit')}" %>
     </p>
 
     <div id="form-errors"></div>
-
   <% end %>
 </div>

@@ -1,20 +1,20 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class Timetable < ActiveRecord::Base
   has_many :timetable_entries , :dependent=>:destroy
   validates_presence_of :start_date
@@ -102,11 +102,11 @@ class Timetable < ActiveRecord::Base
 
   def self.register_range(batch,date)
     start=[]
-    start<<batch.start_date.to_date
+    start<<batch.started_on
     start<<date.beginning_of_month.to_date
     start<<find(:first,:select=>:start_date,:order=>:start_date).start_date.to_date
     stop=[]
-    stop<<batch.end_date.to_date
+    stop<<batch.ended_on
     stop<<date.end_of_month.to_date
     stop<<find(:last,:select=>:end_date,:order=>:end_date).end_date.to_date
     range=(start.max..stop.min).to_a - batch.holiday_event_dates

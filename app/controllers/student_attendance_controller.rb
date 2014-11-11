@@ -1,27 +1,26 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class StudentAttendanceController < ApplicationController
   before_filter :login_required
   before_filter :only_assigned_employee_allowed
   before_filter :protect_other_student_data
   filter_access_to :all
- 
+
   def index
   end
 
@@ -37,7 +36,7 @@ class StudentAttendanceController < ApplicationController
     if request.post?
       @detail_report = []
       if params[:advance_search][:mode]== 'Overall'
-        @start_date = @batch.start_date.to_date
+        @start_date = @batch.started_on
         @end_date = Date.today
         unless @config.config_value == 'Daily'
           unless params[:advance_search][:subject_id].empty?
@@ -101,13 +100,13 @@ class StudentAttendanceController < ApplicationController
         end
         return
       end
-      
+
       render :update do |page|
         page.replace_html 'report', :partial => 'report'
         page.replace_html 'error-container', :text => ''
       end
     end
-    
+
   end
 
   def month
@@ -129,11 +128,11 @@ class StudentAttendanceController < ApplicationController
     @config = Configuration.find_by_config_key('StudentAttendanceType')
     @student = Student.find(params[:id])
     @batch = Batch.find(params[:year])
-    @start_date = @batch.start_date.to_date
-    @end_date =  @batch.end_date.to_date
+    @start_date = @batch.started_on
+    @end_date =  @batch.ended_on
     unless @config.config_value == 'Daily'
       @academic_days=@batch.subject_hours(@start_date, @end_date, 0).values.flatten.compact.count
-      @student_leaves = SubjectLeave.find(:all,  :conditions =>{:batch_id=>@batch.id,:student_id=>@student.id,:month_date => @start_date..@end_date})
+      @student_leaves = SubjectLeave.find(:all, :conditions => {:batch_id => @batch.id, :student_id => @student.id, :month_date => @start_date..@end_date})
       @leaves= @student_leaves.count
       @leaves||=0
       @attendance = (@academic_days - @leaves)

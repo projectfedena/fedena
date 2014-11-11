@@ -1,25 +1,24 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class ArchivedStudent < ActiveRecord::Base
 
   include CceReportMod
-  
+
   belongs_to :country
   belongs_to :batch
   belongs_to :student_category
@@ -29,14 +28,12 @@ class ArchivedStudent < ActiveRecord::Base
 
   has_many   :students_subjects, :primary_key=>:former_id, :foreign_key=>'student_id'
   has_many   :subjects ,:through => :students_subjects
-  
+
   has_many   :cce_reports, :primary_key=>:former_id, :foreign_key=>'student_id'
   has_many   :assessment_scores, :primary_key=>:former_id, :foreign_key=>'student_id'
   has_many   :exam_scores, :primary_key=>:former_id, :foreign_key=>'student_id'
 
-  before_save :is_active_false
-
-  #has_and_belongs_to_many :graduated_batches, :class_name => 'Batch', :join_table => 'batch_students',:foreign_key => 'student_id' ,:finder_sql =>'SELECT * FROM `batches`,`archived_students`  INNER JOIN `batch_students` ON `batches`.id = `batch_students`.batch_id WHERE (`batch_students`.student_id = `archived_students`.former_id )'
+  before_save :inactive_student
 
   has_attached_file :photo,
     :styles => {
@@ -45,10 +42,9 @@ class ArchivedStudent < ActiveRecord::Base
     :url => "/system/:class/:attachment/:id/:style/:basename.:extension",
     :path => ":rails_root/public/system/:class/:attachment/:id/:style/:basename.:extension"
 
-  def is_active_false
-    unless self.is_active==0
-      self.is_active=0
-    end
+  def inactive_student
+    self.is_active = false
+    true
   end
 
   def gender_as_text
@@ -64,23 +60,23 @@ class ArchivedStudent < ActiveRecord::Base
   end
 
   def immediate_contact
-    ArchivedGuardian.find(self.immediate_contact_id) unless self.immediate_contact_id.nil?
+    ArchivedGuardian.find(self.immediate_contact_id) if self.immediate_contact_id.present?
   end
 
   def all_batches
-    self.graduated_batches + self.batch.to_a
+    self.graduated_batches + [self.batch]
   end
 
   def graduated_batches
-    # SELECT * FROM `batches` INNER JOIN `batch_students` ON `batches`.id = `batch_students`.batch_id
-    Batch.find(:all,:conditions=> ["batch_students.student_id = #{former_id.to_i}"], :joins =>'INNER JOIN batch_students ON batches.id = batch_students.batch_id' )
+    # SELECT * FROM batches INNER JOIN batch_students ON batches.id = batch_students.batch_id
+    Batch.find(:all,:conditions=> ["batch_students.student_id = ?", former_id], :joins =>'INNER JOIN batch_students ON batches.id = batch_students.batch_id' )
   end
 
-  def additional_detail(additional_field)
-    StudentAdditionalDetail.find_by_additional_field_id_and_student_id(additional_field,self.former_id)
+  def additional_detail(additional_field_id)
+    StudentAdditionalDetail.find_by_additional_field_id_and_student_id(additional_field_id, self.former_id)
   end
 
-  def has_retaken_exam(subject_id)
+  def has_retaken_exam?(subject_id)
     retaken_exams = PreviousExamScore.find_all_by_student_id(self.former_id)
     if retaken_exams.empty?
       return false
@@ -91,7 +87,6 @@ class ArchivedStudent < ActiveRecord::Base
       end
       return false
     end
-
   end
 
 end

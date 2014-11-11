@@ -148,7 +148,7 @@ vi: # locale
         title:  "tên gọi"
 
       apply_leave:
-        employee_leave_types_id: "Hình thức nghỉ việc"
+        employee_leave_type_id: "Hình thức nghỉ việc"
         start_date: "Ngày bắt đầu"
         end_date: "Ngày kết thúc"
         reason: "Lý do"
@@ -273,11 +273,54 @@ vi: # locale
       date_month: "%B %e"
 
 
-    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
-    abbr_day_names: [Sun, Mon, Tue, Wed, Thur, Fri, Sat]
-    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
-    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    order: [ :day, :month, :year ]
+    day_names:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    abbr_day_names:
+      - Sun
+      - Mon
+      - Tue
+      - Wed
+      - Thur
+      - Fri
+      - Sat
+    month_names:
+      - ~
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+    abbr_month_names:
+      - ~
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    order:
+      - :day
+      - :month
+      - :year
 
   time:
     formats:

@@ -61,7 +61,7 @@
                         <div class="entries">
                           <% @timetable_entries[teacher.id][weekday.id][ct.id].each_pair do |k, entry| %>
                             <div class="sub_name">
-                              <%= formatted_timetable_cell_2(entry,teacher) unless entry.blank? -%>
+                              <%= elective_subject_code(entry,teacher) unless entry.blank? -%>
                             </div>
                             <div class="batch_code">
                               <%= timetable_batch (entry) unless entry.blank? -%>
@@ -72,7 +72,7 @@
                       </div>
                       <% entry = @timetable_entries[teacher.id][weekday.id][ct.id].first %>
                       <div class="sub_name">
-                        <%= formatted_timetable_cell_2(entry.last,teacher) unless entry.blank? -%>
+                        <%= elective_subject_code(entry.last,teacher) unless entry.blank? -%>
                       </div>
                       <div class="batch_code">
                         <%= timetable_batch (entry.last) unless entry.blank? -%>
@@ -81,7 +81,7 @@
                     <% else %>
                       <% entry = @timetable_entries[teacher.id][weekday.id][ct.id].first %>
                       <div class="sub_name">
-                        <%= formatted_timetable_cell_2(entry.last,teacher) unless entry.blank? -%>
+                        <%= elective_subject_code(entry.last,teacher) unless entry.blank? -%>
                       </div>
                       <div class="batch_code">
                         <%= timetable_batch (entry.last) unless entry.blank? -%>

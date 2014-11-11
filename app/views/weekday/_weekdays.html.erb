@@ -16,27 +16,19 @@
 #KIND, either express or implied.  See the License for the
 #specific language governing permissions and limitations
 #under the License. -%>
+<%- week = @weekdays.map(&:weekday) %>
 
-
-
-<% week =[] %>
-<% @weekdays.each do |dr| %>
-  <% week.push dr.weekday %>
-
-<% end %>
-<% form_for(:weekday, :url => {:action=> 'create'}) do |f| %>
+<% form_for(:weekday, :url => { :action=> 'create' }) do |f| %>
   <ul id="category-list">
     <% batch_id = (@b.nil? ? nil : @b.id) %>
     <%= f.hidden_field :batch_id, :value => batch_id %>
-    <% @days.each do |w| %>
+    <% Weekday::WEEKDAYS.each do |num, text| %>
       <li class="list<%=cycle('odd','even') %>">
-        <% q = w.to_i %>
-        <div class="category-name"><%= @day[q] %></div>
-        <div class="category-edit"><%= check_box_tag "weekdays[]", w,  week.include?(w)%></div>
+        <div class="category-name"><%= text %></div>
+        <div class="category-edit"><%= check_box_tag 'weekdays[]', num, week.include?(num) %></div>
       </li>
     <% end %>
-
   </ul>
-  <%= submit_tag "► #{t('save')}", :confirm=>"#{t('alter_message')}",:class=>'submit_button' %>
+  <%= submit_tag "► #{t('save')}", :confirm => "#{t('alter_message')}", :class => 'submit_button' %>
 <% end %>
 

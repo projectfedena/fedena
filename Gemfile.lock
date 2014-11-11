@@ -1,0 +1,123 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    actionmailer (2.3.18)
+      actionpack (= 2.3.18)
+    actionpack (2.3.18)
+      activesupport (= 2.3.18)
+      rack (~> 1.1.0)
+    activerecord (2.3.18)
+      activesupport (= 2.3.18)
+    activeresource (2.3.18)
+      activesupport (= 2.3.18)
+    activesupport (2.3.18)
+    calendar_date_select (1.16.1)
+    chardet (0.9.0)
+    cocaine (0.3.2)
+    codeclimate-test-reporter (0.0.9)
+      simplecov (>= 0.7.1, < 1.0.0)
+    columnize (0.3.6)
+    daemons (1.0.10)
+    database_cleaner (1.1.1)
+    debugger (1.6.1)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.3)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.3)
+    declarative_authorization (0.5.7)
+    delayed_job (2.0.8)
+      activesupport (~> 2.0)
+      daemons (= 1.0.10)
+    factory_girl (2.6.4)
+      activesupport (>= 2.3.9)
+    has_and_belongs_to_many_with_deferred_save (0.2.0)
+      activerecord
+    hoe (3.7.1)
+      rake (>= 0.8, < 11.0)
+    html5 (0.10.0)
+      chardet (>= 0.9.0)
+      hoe (>= 1.2.0)
+    i18n (0.6.5)
+    in_place_editing (1.2.0)
+    metaclass (0.0.1)
+    mime-types (1.25)
+    mini_portile (0.5.1)
+    mocha (0.12.8)
+      metaclass (~> 0.0.1)
+    multi_json (1.8.0)
+    mysql (2.9.1)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
+    paperclip (2.7.5)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (~> 0.3.0)
+      mime-types
+    rack (1.1.6)
+    rack-test (0.6.2)
+      rack (>= 1.0)
+    rails (2.3.18)
+      actionmailer (= 2.3.18)
+      actionpack (= 2.3.18)
+      activerecord (= 2.3.18)
+      activeresource (= 2.3.18)
+      activesupport (= 2.3.18)
+      rake (>= 0.8.3)
+    rake (10.1.0)
+    rspec (1.3.1)
+    rspec-multi-mock (0.1.0)
+      rspec (= 1.3.1)
+    rspec-rails (1.3.4)
+      rack (>= 1.0.0)
+      rspec (~> 1.3.1)
+    searchlogic (2.5.8)
+      activerecord (~> 2.3.12)
+      activerecord (~> 2.3.12)
+    shoulda-matchers (1.0.0)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
+    test-unit (1.2.3)
+      hoe (>= 1.5.1)
+    translator (1.0.0)
+    webrat (0.7.3)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
+    wicked_pdf (0.7.0)
+    will_paginate (2.3.16)
+    xss_terminate (0.22)
+      html5 (>= 0.10.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  calendar_date_select (= 1.16.1)
+  codeclimate-test-reporter
+  database_cleaner
+  debugger
+  declarative_authorization
+  delayed_job (= 2.0.8)
+  factory_girl
+  has_and_belongs_to_many_with_deferred_save (= 0.2.0)
+  i18n
+  in_place_editing
+  mocha (= 0.12.8)
+  mysql
+  nokogiri
+  paperclip (= 2.7.5)
+  rails (= 2.3.18)
+  rspec-multi-mock (= 0.1.0)
+  rspec-rails (= 1.3.4)
+  searchlogic (= 2.5.8)
+  shoulda-matchers
+  simplecov
+  test-unit (= 1.2.3)
+  translator (= 1.0.0)
+  webrat
+  wicked_pdf (= 0.7.0)
+  will_paginate (= 2.3.16)
+  xss_terminate

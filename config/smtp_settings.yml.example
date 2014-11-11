@@ -27,6 +27,3 @@ production:
       :password: password
       :authentication: plain
 #      :domain : something.com
-
-cucumber:
-  <<: *test

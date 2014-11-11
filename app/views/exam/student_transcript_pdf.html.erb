@@ -79,7 +79,7 @@
                     <% subject_average = GroupedExamReport.find_by_student_id_and_subject_id_and_score_type(@student.id,s.id,"s") %>
                     <% unless subject_average.nil? %>
                       <tr class="<%= cycle(c,(["odd","even"]-[c]).first) %>">
-                        <% if @student.has_retaken_exam(s.id) %>
+                        <% if @student.has_retaken_exam?(s.id) %>
                           <td class="col-pdf"> <%= s.code %> - <label class="infolbl"><%= t('retaken') %></label></td>
                         <% else %>
                           <td class="col-pdf"> <%= s.code %></td>

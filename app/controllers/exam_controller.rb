@@ -1,27 +1,26 @@
-#Fedena
-#Copyright 2011 Foradian Technologies Private Limited
+# Fedena
+# Copyright 2011 Foradian Technologies Private Limited
 #
-#This product includes software developed at
-#Project Fedena - http://www.projectfedena.org/
+# This product includes software developed at
+# Project Fedena - http://www.projectfedena.org/
 #
-#Licensed under the Apache License, Version 2.0 (the "License");
-#you may not use this file except in compliance with the License.
-#You may obtain a copy of the License at
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
 #
-#  http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
-#Unless required by applicable law or agreed to in writing, software
-#distributed under the License is distributed on an "AS IS" BASIS,
-#WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#See the License for the specific language governing permissions and
-#limitations under the License.
-
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 class ExamController < ApplicationController
   before_filter :login_required
   before_filter :protect_other_student_data
   before_filter :restrict_employees_from_exam
   filter_access_to :all
-  
+
   def index
   end
 
@@ -55,7 +54,7 @@ class ExamController < ApplicationController
           page.replace_html 'flash', :text=>''
         end
       end
-      
+
     else
       render(:update) do |page|
         page.replace_html 'flash', :text=>"<div class='errorExplanation'><p>#{t('flash_msg9')}</p></div>"
@@ -82,7 +81,7 @@ class ExamController < ApplicationController
     unless @exams.empty?
       ExamGroup.update(@exam_group.id,:is_published=>true) if params[:status] == "schedule"
       ExamGroup.update(@exam_group.id,:result_published=>true) if params[:status] == "result"
-      sms_setting = SmsSetting.new()
+      sms_setting = SmsSetting.new
       if sms_setting.application_sms_active and sms_setting.exam_result_schedule_sms_active
         students = @batch.students
         students.each do |s|
@@ -405,7 +404,7 @@ class ExamController < ApplicationController
     @students = @batch.students
     @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
     render :pdf => 'generated_report_pdf'
-    
+
     #        respond_to do |format|
     #            format.pdf { render :layout => false }
     #        end
@@ -430,7 +429,7 @@ class ExamController < ApplicationController
     @ranked_students = @batch.find_batch_rank
     render :pdf => "student_batch_rank_pdf"
   end
-  
+
   def course_rank
   end
 
@@ -978,8 +977,6 @@ class ExamController < ApplicationController
     render :pdf=>"student_combined_report_pdf"#, :show_as_html=>true
   end
 
-
-
   def select_report_type
     unless params[:batch_id].nil? or params[:batch_id]==""
       @batch = Batch.find(params[:batch_id])
@@ -1089,9 +1086,8 @@ class ExamController < ApplicationController
         @students = Student.find_all_by_id(params[:student])
       end
     end
-
-
   end
+
   def generated_report4_pdf
     #grouped-exam-report-for-batch
     if params[:student].nil?
@@ -1181,14 +1177,14 @@ class ExamController < ApplicationController
     end
 
   end
-  
+
   def previous_years_marks_overview_pdf
     @student = Student.find(params[:student])
     @all_batches = @student.all_batches
     render :pdf => 'previous_years_marks_overview_pdf',
       :orientation => 'Landscape'
-    
-    
+
+
   end
 
   def academic_report
@@ -1364,7 +1360,7 @@ class ExamController < ApplicationController
 
   end
 
-  
+
   #GRAPHS
 
   def graph_for_generated_report
@@ -1393,7 +1389,7 @@ class ExamController < ApplicationController
       end
     end
 
-    bargraph = BarFilled.new()
+    bargraph = BarFilled.new
     bargraph.width = 1;
     bargraph.colour = '#bb0000';
     bargraph.dot_size = 5;
@@ -1492,7 +1488,7 @@ class ExamController < ApplicationController
 
     student.all_batches.each do |b|
       x_labels << b.name
-      exam = ExamScore.new()
+      exam = ExamScore.new
       data << exam.batch_wise_aggregate(student,b)
     end
 

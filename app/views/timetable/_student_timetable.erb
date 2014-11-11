@@ -53,9 +53,9 @@
           <div class="drop">
             <div class="tt-subject">
               <div class="subject">
-                <%= formatted_timetable_cell (@timetable_entries[wk.id][ct.id]) unless @timetable_entries[wk.id][ct.id].blank? -%>
+                <%= subject_code(@timetable_entries[wk.id][ct.id]) unless @timetable_entries[wk.id][ct.id].blank? -%>
                 <% unless @timetable_entries[wk.id][ct.id].blank?   %>
-                 
+
                 <span>
                   <% @tte= @timetable_entries[wk.id][ct.id] %>
                         <% unless @tte.subject.elective_group_id.nil?   %>

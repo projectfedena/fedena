@@ -34,7 +34,7 @@
     <ul id="parents-list">
       <%- @parents.each do |p| -%>
         <li class="list<%=cycle('odd', 'even')%>">
-          <% if p.is_immediate_contact? %>
+          <% if p.immediate_contact? %>
             <%= f.radio_button "contact", p.id, :checked => 'checked' %> <%= p.full_name %>
           <% else %>
             <%= f.radio_button "contact",p.id %> <%= p.full_name %>
