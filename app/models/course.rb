@@ -19,7 +19,7 @@
 class Course < ActiveRecord::Base
 
   GRADINGTYPES = {"1"=>"GPA","2"=>"CWA","3"=>"CCE"}
-  
+
   validates_presence_of :course_name, :code
   validate :presence_of_initial_batch, :on => :create
 
@@ -31,12 +31,12 @@ class Course < ActiveRecord::Base
   accepts_nested_attributes_for :batches
   has_and_belongs_to_many :observation_groups
   has_and_belongs_to_many_with_deferred_save :cce_weightages
-  
+
   before_save :cce_weightage_valid
 
-  named_scope :active, :conditions => { :is_deleted => false }, :order => 'course_name asc'
-  named_scope :deleted, :conditions => { :is_deleted => true }, :order => 'course_name asc'
-  named_scope :cce, {:select => "courses.*",:conditions=>{:grading_type => GRADINGTYPES.invert["CCE"]}, :order => 'course_name asc'}
+  scope :active, :conditions => { :is_deleted => false }, :order => 'course_name asc'
+  scope :deleted, :conditions => { :is_deleted => true }, :order => 'course_name asc'
+  scope :cce, {:select => "courses.*",:conditions=>{:grading_type => GRADINGTYPES.invert["CCE"]}, :order => 'course_name asc'}
 
   def presence_of_initial_batch
     errors.add_to_base "#{t('should_have_an_initial_batch')}" if batches.length == 0
@@ -45,7 +45,7 @@ class Course < ActiveRecord::Base
   def inactivate
     update_attribute(:is_deleted, true)
   end
-  
+
   def full_name
     "#{course_name} #{section_name}"
   end

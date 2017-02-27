@@ -22,7 +22,7 @@ class ElectiveGroup < ActiveRecord::Base
 
   validates_presence_of :name,:batch_id
 
-  named_scope :for_batch, lambda { |b| { :conditions => { :batch_id => b, :is_deleted => false } } }
+  scope :for_batch, lambda { |b| { :conditions => { :batch_id => b, :is_deleted => false } } }
 
   def inactivate
     update_attribute(:is_deleted, true)

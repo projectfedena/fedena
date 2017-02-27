@@ -23,7 +23,7 @@ class FaCriteria < ActiveRecord::Base
   belongs_to :fa_group
 
   default_scope :order=>'sort_order ASC'
-  named_scope :active,:conditions=>{:is_deleted=>false}
+  scope :active,:conditions=>{:is_deleted=>false}
 
   validates_presence_of :fa_group_id
   def validate

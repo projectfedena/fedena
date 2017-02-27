@@ -6,7 +6,7 @@ class ElectiveGroupTest < ActiveSupport::TestCase
 
   should_validate_presence_of :name,:batch_id
 
-  should_have_named_scope :for_batch
+  should_have_scope :for_batch
 
   context "existing elective group" do
 
