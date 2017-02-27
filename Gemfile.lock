@@ -40,7 +40,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
-    mysql2 (0.4.5)
+    mysql (2.8.1)
     polyglot (0.3.5)
     rack (1.2.8)
     rack-mount (0.6.14)
@@ -71,5 +71,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  mysql2
+  delayed_job (= 3.0.0)
+  delayed_job_active_record
+  mysql (= 2.8.1)
   rails (= 3.0.0)
