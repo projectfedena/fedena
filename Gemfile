@@ -7,6 +7,8 @@ gem 'rake', '0.8.7'
 
 gem 'mysql', '2.8.1'
 
+gem 'nokogiri', '1.6.0'
+
 gem 'delayed_job', '3.0.0'
 gem 'delayed_job_active_record'
 gem 'will_paginate', '>=3.0.pre'
@@ -31,4 +33,7 @@ gem 'will_paginate', '>=3.0.pre'
 group :development, :test do
   gem 'test-unit', '1.2.3'
   gem 'rspec-rails', '1.3.3'
+  gem 'cucumber-rails', '0.3.1'
+  gem 'database_cleaner', '0.5.0'
+  gem 'webrat', '0.7.0'
 end
