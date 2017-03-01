@@ -1,9 +1,9 @@
-desc "Will generate Reek output for each Ruby file in RAILS_ROOT."
+desc "Will generate Reek output for each Ruby file in Rails.root."
 task(:reek) do
   require 'find'
   require 'fileutils'
   reek_dir_name = "reek"
-  reek_dir = "#{RAILS_ROOT}/public/#{reek_dir_name}"
+  reek_dir = "#{Rails.root}/public/#{reek_dir_name}"
   index_file = "#{reek_dir}/index.html"
   output_files = {}
 
@@ -11,7 +11,7 @@ task(:reek) do
     FileUtils.mkdir(reek_dir)
   end
 
-  Find.find(RAILS_ROOT) do |path|
+  Find.find(Rails.root) do |path|
     if path =~ /\.rb$/i
       output_file = "#{File.basename(path)}.txt"
       cmd = "reek #{path} > #{reek_dir}/#{output_file}"

@@ -19,8 +19,8 @@
 class Event < ActiveRecord::Base
   validates_presence_of :title, :description, :start_date, :end_date
 
-  named_scope :holidays, :conditions => {:is_holiday => true}
-  named_scope :exams, :conditions => {:is_exam => true}
+  scope :holidays, :conditions => {:is_holiday => true}
+  scope :exams, :conditions => {:is_exam => true}
   has_many :batch_events, :dependent => :destroy
   has_many :employee_department_events, :dependent => :destroy
   has_many :user_events, :dependent => :destroy
@@ -69,7 +69,7 @@ class Event < ActiveRecord::Base
         end
       else
         flag = true
-      end 
+      end
     else
       flag = true
     end
@@ -87,5 +87,5 @@ class Event < ActiveRecord::Base
     end
   end
 
-  
+
 end

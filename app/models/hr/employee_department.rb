@@ -22,7 +22,7 @@ class EmployeeDepartment < ActiveRecord::Base
   has_many :employees
   has_many  :employee_department_events
   has_many  :events,  :through=>:employee_department_events
-  named_scope :active, :conditions => {:status => true }
+  scope :active, :conditions => {:status => true }
 
 
   def department_total_salary(start_date,end_date)

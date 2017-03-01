@@ -88,7 +88,7 @@ module ApplicationHelper
   end
 
   def pdf_image_tag(image, options = {})
-    options[:src] = File.expand_path(RAILS_ROOT) + "/public/images"+ image
+    options[:src] = File.expand_path(Rails.root) + "/public/images"+ image
     tag(:img, options)
   end
 
@@ -158,7 +158,7 @@ module ApplicationHelper
         h[:description] = t(hook[:description])
         hooks << h
       end
-    end    
+    end
     return hooks.to_json
   end
 end
