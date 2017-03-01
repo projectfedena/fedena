@@ -37,3 +37,7 @@ group :development, :test do
   gem 'database_cleaner', '0.5.0'
   gem 'webrat', '0.7.0'
 end
+
+group :development do
+  gem 'rb-readline'
+end
