@@ -15,6 +15,7 @@ gem 'will_paginate', '>=3.0.pre'
 gem 'in_place_editing'
 
 gem "paperclip", "~> 2.3"
+gem 'wicked_pdf', '0.7.0'
 # Use unicorn as the web server
 # gem 'unicorn'
 
