@@ -22,8 +22,8 @@ class Configuration < ActiveRecord::Base
 
   NETWORK_STATES                   = [["#{t('online')}",'Online'],["#{t('offline')}",'Offline']]
   LOCALES = []
-  Dir.glob("#{RAILS_ROOT}/config/locales/*.yml").each do |file|
-    file.gsub!("#{RAILS_ROOT}/config/locales/", '')
+  Dir.glob("#{Rails.root}/config/locales/*.yml").each do |file|
+    file.gsub!("#{Rails.root}/config/locales/", '')
     file.gsub!(".yml", '')
     LOCALES << file
   end
@@ -47,9 +47,9 @@ class Configuration < ActiveRecord::Base
       c = find_by_config_key(key)
       c.nil? ? nil : c.config_value
     end
-  
+
     def save_institution_logo(upload)
-      directory, filename = "#{RAILS_ROOT}/public/uploads/image", 'institute_logo.jpg'
+      directory, filename = "#{Rails.root}/public/uploads/image", 'institute_logo.jpg'
       path = File.join(directory, filename) # create the file path
       File.open(path, "wb") { |f| f.write(upload['datafile'].read) } # write the file
     end
@@ -79,14 +79,14 @@ class Configuration < ActiveRecord::Base
     def get_grading_types
       grading_types = Course::GRADINGTYPES
       types= all(:conditions=>{:config_key=>grading_types.values, :config_value=>"1"},:group=>:config_key)
-      grading_types.keys.select{|k| types.collect(&:config_key).include? grading_types[k]}      
+      grading_types.keys.select{|k| types.collect(&:config_key).include? grading_types[k]}
     end
 
     def default_country
       default_country_value = self.find_by_config_key('DefaultCountry').config_value.to_i
       return default_country_value
     end
-    
+
     def set_grading_types(updates)
       #expects an array of integers types
       grading_types = Course::GRADINGTYPES
@@ -116,7 +116,7 @@ class Configuration < ActiveRecord::Base
       end
       return local_tzone_time
     end
-    
+
     def cce_enabled?
       get_config_value("CCE") == "1"
     end
