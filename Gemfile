@@ -12,6 +12,8 @@ gem 'nokogiri', '1.6.0'
 gem 'delayed_job', '3.0.0'
 gem 'delayed_job_active_record'
 gem 'will_paginate', '>=3.0.pre'
+gem 'in_place_editing'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

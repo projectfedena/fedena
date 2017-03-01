@@ -56,6 +56,7 @@ GEM
     hoe (3.16.0)
       rake (>= 0.8, < 13.0)
     i18n (0.8.1)
+    in_place_editing (1.2.0)
     journey (1.0.4)
     json (1.8.6)
     mail (2.5.4)
@@ -126,6 +127,7 @@ DEPENDENCIES
   database_cleaner (= 0.5.0)
   delayed_job (= 3.0.0)
   delayed_job_active_record
+  in_place_editing
   mysql (= 2.8.1)
   nokogiri (= 1.6.0)
   rails (= 3.2.22.4)
