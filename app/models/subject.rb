@@ -26,7 +26,7 @@ class Subject < ActiveRecord::Base
   has_many :students_subjects
   has_many :students, :through => :students_subjects
   has_many :grouped_exam_reports
-  has_and_belongs_to_many_with_deferred_save :fa_groups
+  has_and_belongs_to_many :fa_groups
   validates_presence_of :name, :max_weekly_classes, :code,:batch_id
   validates_presence_of :credit_hours, :if=>:check_grade_type
   validates_numericality_of :max_weekly_classes
