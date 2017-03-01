@@ -47,6 +47,7 @@ GEM
       cucumber (>= 0.7.2)
     cucumber-wire (0.0.1)
     database_cleaner (0.5.0)
+    declarative_authorization (0.5.7)
     delayed_job (3.0.0)
       activesupport (~> 3.0)
     delayed_job_active_record (4.1.1)
@@ -134,6 +135,7 @@ PLATFORMS
 DEPENDENCIES
   cucumber-rails (= 0.3.1)
   database_cleaner (= 0.5.0)
+  declarative_authorization
   delayed_job (= 3.0.0)
   delayed_job_active_record
   in_place_editing

@@ -16,6 +16,8 @@ gem 'in_place_editing'
 
 gem "paperclip", "~> 2.3"
 gem 'wicked_pdf', '0.7.0'
+
+gem 'declarative_authorization'
 # Use unicorn as the web server
 # gem 'unicorn'
 
