@@ -1,10 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + './../test_helper')
 
 class EmployeeDepartmentTest < ActiveSupport::TestCase
-  
+
  should_have_many :employees
- should_have_named_scope :active, :conditions => {:status => true }
- 
+ should_have_scope :active, :conditions => {:status => true }
+
 
   context 'a new department' do
     setup { @department = Factory.build(:employee_department) }

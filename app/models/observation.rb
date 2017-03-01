@@ -23,7 +23,7 @@ class Observation < ActiveRecord::Base
   has_many    :cce_reports, :as=>:observable
 
   default_scope :order=>'sort_order ASC'
-  named_scope :active,:conditions=>{:is_active=>true}
+  scope :active,:conditions=>{:is_active=>true}
 
   def next_record
     observation_group.observations.first(:conditions => ['order > ?',order])
@@ -34,6 +34,6 @@ class Observation < ActiveRecord::Base
 
   def validate
     errors.add_to_base("Name can't be blank") if self.name.blank?
-    errors.add_to_base("Description can't be blank") if self.desc.blank? 
+    errors.add_to_base("Description can't be blank") if self.desc.blank?
   end
 end

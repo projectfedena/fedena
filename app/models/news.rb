@@ -27,7 +27,6 @@ class News < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
 
   cattr_reader :per_page
-  xss_terminate :except => [:content]
   @@per_page = 12
 
   def self.get_latest
@@ -41,5 +40,5 @@ class News < ActiveRecord::Base
   def self.cache_fragment_name
     'News_latest_fragment'
   end
-  
+
 end

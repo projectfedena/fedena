@@ -39,7 +39,7 @@ class FedenaPlugin
           CSS_OVERRIDES["#{css[:controller]}_#{css[:action]}"] << plugin_details[:name]
         end
       end
-      Authorization::AUTH_DSL_FILES << "#{RAILS_ROOT}/vendor/plugins/#{plugin_details[:name]}/#{plugin_details[:auth_file]}" unless plugin_details[:auth_file].blank?
+      Authorization::AUTH_DSL_FILES << "#{Rails.root}/vendor/plugins/#{plugin_details[:name]}/#{plugin_details[:auth_file]}" unless plugin_details[:auth_file].blank?
       if defined? plugin_details[:name].camelize.constantize
         if plugin_details[:name].camelize.constantize.respond_to? "student_profile_hook"
           REGISTERED_HOOKS[:student_profile] << plugin_details[:name]
@@ -66,7 +66,7 @@ class FedenaPlugin
       modu = mod[:name].classify.constantize
       if modu.respond_to?("dependency_check")
         dependency << mod[:name] if modu.send("dependency_check",record,action)
-      end      
+      end
     end
     dependency
   end
@@ -83,5 +83,5 @@ class FedenaPlugin
     raise "No such hook registered." unless REGISTERED_HOOKS.keys.include? hook
     REGISTERED_HOOKS[hook].select{|p| p if can_access_plugin? p}
   end
-  
+
 end
