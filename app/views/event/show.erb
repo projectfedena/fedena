@@ -104,7 +104,7 @@
 
       <div><%= render :partial=>"event_batch" %></div>
 
-      <% @config = Configuration.available_modules%>
+      <% @config = FedenaConfiguration.available_modules%>
       <div id="select-option"></div>
       <% if @config.include?("HR") %>
         <div><%= render :partial=>"event_department" %></div>
@@ -126,4 +126,3 @@
     <% end %>
   </div>
 </div>
-

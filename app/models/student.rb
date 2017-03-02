@@ -19,7 +19,7 @@
 class Student < ActiveRecord::Base
 
   include CceReportMod
-    
+
   belongs_to :country
   belongs_to :batch
   belongs_to :student_category
@@ -44,13 +44,13 @@ class Student < ActiveRecord::Base
   has_many   :assessment_scores
   has_many   :exam_scores
   has_many   :previous_exam_scores
-  
 
-  named_scope :active, :conditions => { :is_active => true }
-  named_scope :with_full_name_only, :select=>"id, CONCAT_WS('',first_name,' ',last_name) AS name,first_name,last_name", :order=>:first_name
-  named_scope :with_name_admission_no_only, :select=>"id, CONCAT_WS('',first_name,' ',last_name,' - ',admission_no) AS name,first_name,last_name,admission_no", :order=>:first_name
 
-  named_scope :by_first_name, :order=>'first_name',:conditions => { :is_active => true }
+  scope :active, :conditions => { :is_active => true }
+  scope :with_full_name_only, :select=>"id, CONCAT_WS('',first_name,' ',last_name) AS name,first_name,last_name", :order=>:first_name
+  scope :with_name_admission_no_only, :select=>"id, CONCAT_WS('',first_name,' ',last_name,' - ',admission_no) AS name,first_name,last_name,admission_no", :order=>:first_name
+
+  scope :by_first_name, :order=>'first_name',:conditions => { :is_active => true }
 
   validates_presence_of :admission_no, :admission_date, :first_name, :batch_id, :date_of_birth
   validates_uniqueness_of :admission_no
@@ -76,7 +76,7 @@ class Student < ActiveRecord::Base
     :message=>'Image can only be GIF, PNG, JPG',:if=> Proc.new { |p| !p.photo_file_name.blank? }
   validates_attachment_size :photo, :less_than => 512000,\
     :message=>'must be less than 500 KB.',:if=> Proc.new { |p| p.photo_file_name_changed? }
-  
+
   def validate
     errors.add(:date_of_birth, "#{t('cant_be_a_future_date')}.") if self.date_of_birth >= Date.today \
       unless self.date_of_birth.nil?
@@ -84,7 +84,7 @@ class Student < ActiveRecord::Base
       unless self.gender.nil?
     errors.add(:admission_no, "#{t('model_errors.student.error3')}.") if self.admission_no=='0'
     errors.add(:admission_no, "#{t('should_not_be_admin')}") if self.admission_no.to_s.downcase== 'admin'
-    
+
   end
 
   def is_active_true
@@ -119,7 +119,7 @@ class Student < ActiveRecord::Base
       if check_changes.include?('immediate_contact_id') or check_changes.include?('admission_no')
         Guardian.shift_user(self)
       end
-      
+
     end
     self.email = "" if self.email.blank?
     return false unless errors.blank?
@@ -252,7 +252,7 @@ class Student < ActiveRecord::Base
   def self.next_admission_no
     '' #stub for logic to be added later.
   end
-  
+
   def get_fee_strucure_elements(date)
     elements = FinanceFeeStructureElement.get_student_fee_components(self,date)
     elements[:all] + elements[:by_batch] + elements[:by_category] + elements[:by_batch_and_category]
@@ -301,9 +301,9 @@ class Student < ActiveRecord::Base
       #      end
       #
     end
- 
+
   end
-  
+
   def check_dependency
     return true if self.finance_transactions.present? or self.graduated_batches.present? or self.attendances.present? or self.finance_fees.present?
     return true if FedenaPlugin.check_dependency(self,"permanant").present?
@@ -461,5 +461,5 @@ class Student < ActiveRecord::Base
     return false
   end
 
-  
+
 end

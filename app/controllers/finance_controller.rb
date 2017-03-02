@@ -19,11 +19,11 @@
 class FinanceController < ApplicationController
   before_filter :login_required,:configuration_settings_for_finance
   filter_access_to :all
-  
+
   def index
-    @hr = Configuration.find_by_config_value("HR")
+    @hr = FedenaConfiguration.find_by_config_value("HR")
   end
-  
+
   def automatic_transactions
     @cat_names = ["'Fee'","'Salary'"]
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
@@ -32,7 +32,7 @@ class FinanceController < ApplicationController
     @triggers = FinanceTransactionTrigger.all
     @categories = FinanceTransactionCategory.find(:all ,:conditions => ["name NOT IN (#{@cat_names.join(',')}) and is_income=1 and deleted=0 "])
   end
-  
+
   def donation
     @donation = FinanceDonation.new(params[:donation])
     if request.post? and @donation.save
@@ -55,7 +55,7 @@ class FinanceController < ApplicationController
       flash[:notice] = "#{t('flash16')}"
     end
   end
-  
+
   def donation_delete
     @donation = FinanceDonation.find(params[:id])
     @transaction = FinanceTransaction.find(@donation.transaction_id)
@@ -68,9 +68,9 @@ class FinanceController < ApplicationController
 
   def donation_receipt_pdf
     @donation = FinanceDonation.find(params[:id])
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     render :pdf => 'donation_receipt_pdf'
-    
+
   end
 
   def donors
@@ -117,20 +117,20 @@ class FinanceController < ApplicationController
   end
 
   def expense_list_pdf
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
     @expenses = FinanceTransaction.expenses(@start_date,@end_date)
     render :pdf => 'expense_list_pdf'
   end
-  
+
   def income_create
     @finance_transaction = FinanceTransaction.new()
     @categories = FinanceTransactionCategory.income_categories
     if @categories.empty?
       flash[:notice] = "#{t('flash5')}"
     end
-    if request.post? 
+    if request.post?
       @finance_transaction = FinanceTransaction.new(params[:finance_transaction])
       if @finance_transaction.save
         flash[:notice] = "#{t('flash6')}"
@@ -142,7 +142,7 @@ class FinanceController < ApplicationController
   end
 
   def monthly_income
-    
+
   end
 
   def income_edit
@@ -193,7 +193,7 @@ class FinanceController < ApplicationController
   end
 
   def income_list_pdf
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
     @incomes = FinanceTransaction.incomes(@start_date,@end_date)
@@ -217,7 +217,7 @@ class FinanceController < ApplicationController
   def category_new
     @finance_transaction_category = FinanceTransactionCategory.new
   end
-  
+
   def category_create
     @finance_category = FinanceTransactionCategory.new(params[:finance_category])
     render :update do |page|
@@ -259,7 +259,7 @@ class FinanceController < ApplicationController
   end
 
   def transaction_trigger_create
-    @trigger = FinanceTransactionTrigger.new(params[:transaction_trigger])    
+    @trigger = FinanceTransactionTrigger.new(params[:transaction_trigger])
     render :update do |page|
       if @trigger.save
         @triggers = FinanceTransactionTrigger.all
@@ -275,8 +275,8 @@ class FinanceController < ApplicationController
     end
   end
 
-                
-            
+
+
 
   def transaction_trigger_edit
     @cat_names = ["'Fee'","'Salary'"]
@@ -316,10 +316,10 @@ class FinanceController < ApplicationController
 
   #transaction-----------------------
 
-  
+
   def update_monthly_report
     fixed_category_name
-    @hr = Configuration.find_by_config_value("HR")
+    @hr = FedenaConfiguration.find_by_config_value("HR")
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
     @transactions = FinanceTransaction.find(:all,
@@ -337,10 +337,10 @@ class FinanceController < ApplicationController
     end
     @graph = open_flash_chart_object(960, 500, "graph_for_update_monthly_report?start_date=#{@start_date}&end_date=#{@end_date}")
   end
-  
+
   def transaction_pdf
     fixed_category_name
-    @hr = Configuration.find_by_config_value("HR")
+    @hr = FedenaConfiguration.find_by_config_value("HR")
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
     @transactions = FinanceTransaction.find(:all,
@@ -372,11 +372,11 @@ class FinanceController < ApplicationController
   end
 
   def employee_payslip_monthly_report
-    
+
     @salary_date = params[:id2]
     @employee = Employee.find_in_active_or_archived(params[:id])
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
-    
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
+
     if params[:salary_date] == ""
       render :update do |page|
         page.replace_html "payslip_view", :text => ""
@@ -386,21 +386,21 @@ class FinanceController < ApplicationController
     @monthly_payslips = MonthlyPayslip.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],@salary_date],:include=>:payroll_category)
     @individual_payslips =  IndividualPayslipCategory.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],@salary_date])
     @salary  = Employee.calculate_salary(@monthly_payslips, @individual_payslips)
-   
+
   end
 
   def donations_report
     month_date
     category_id = FinanceTransactionCategory.find_by_name("Donation").id
     @donations = FinanceTransaction.find(:all,:order => 'transaction_date desc', :conditions => ["transaction_date >= '#{@start_date}' and transaction_date <= '#{@end_date}'and category_id ='#{category_id}'"])
-    
+
   end
 
   def fees_report
     month_date
     fees_id = FinanceTransactionCategory.find_by_name('Fee').id
     @fee_collection = FinanceFeeCollection.find(:all,:joins=>"INNER JOIN finance_fees ON finance_fees.fee_collection_id = finance_fee_collections.id INNER JOIN finance_transactions ON finance_transactions.finance_id = finance_fees.id AND finance_transactions.transaction_date >= '#{@start_date}' AND finance_transactions.transaction_date <= '#{@end_date}' AND finance_transactions.category_id = #{fees_id}",:group=>"finance_fee_collections.id")
-    
+
   end
 
   def batch_fees_report
@@ -411,18 +411,18 @@ class FinanceController < ApplicationController
   end
 
   def student_fees_structure
-    
+
     month_date
     @student = Student.find(params[:id])
     @components = @student.get_fee_strucure_elements
-    
+
   end
 
   # approve montly payslip ----------------------
 
   def approve_monthly_payslip
     @salary_dates = MonthlyPayslip.find(:all, :select => "distinct salary_date")
-    
+
   end
 
   def one_click_approve
@@ -449,7 +449,7 @@ class FinanceController < ApplicationController
     flash[:notice] = "#{t('flash8')}"
     redirect_to :action => "index"
 
-    
+
   end
 
   def employee_payslip_approve
@@ -504,7 +504,7 @@ class FinanceController < ApplicationController
 
   #view monthly payslip -------------------------------
   def view_monthly_payslip
-    
+
     @departments = EmployeeDepartment.find(:all, :conditions=>"status = true", :order=> "name ASC")
     @salary_dates = MonthlyPayslip.find(:all,:select => "distinct salary_date")
     if request.post?
@@ -527,10 +527,10 @@ class FinanceController < ApplicationController
     @monthly_payslips = MonthlyPayslip.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],params[:salary_date]],:include=>:payroll_category)
     @individual_payslips =  IndividualPayslipCategory.find(:all,:conditions=>["employee_id=? AND salary_date = ?",params[:id],params[:salary_date]])
     @salary  = Employee.calculate_salary(@monthly_payslips, @individual_payslips)
-    @currency_type= Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type= FedenaConfiguration.find_by_config_key("CurrencyType").config_value
   end
- 
-  
+
+
   def search_ajax
     other_conditions = ""
     other_conditions += " AND employee_department_id = '#{params[:employee_department_id]}'" unless params[:employee_department_id] == ""
@@ -566,7 +566,7 @@ class FinanceController < ApplicationController
         page.visual_effect(:highlight, 'form-errors')
       end
     end
-    
+
   end
 
   def edit_liability
@@ -575,8 +575,8 @@ class FinanceController < ApplicationController
 
   def update_liability
     @liability = Liability.find(params[:id])
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
-    
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
+
     render :update do |page|
       if @liability.update_attributes(params[:liability])
         @liabilities = Liability.find(:all,:conditions => 'is_deleted = 0')
@@ -592,12 +592,12 @@ class FinanceController < ApplicationController
 
   def view_liability
     @liabilities = Liability.find(:all,:conditions => 'is_deleted = 0')
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
   end
-  
+
   def liability_pdf
     @liabilities = Liability.find(:all,:conditions => 'is_deleted = 0')
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     render :pdf => 'liability_report_pdf'
   end
 
@@ -605,7 +605,7 @@ class FinanceController < ApplicationController
     @liability = Liability.find(params[:id])
     @liability.update_attributes(:is_deleted => true)
     @liabilities = Liability.find(:all ,:conditions => 'is_deleted = 0')
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     render :update do |page|
       page.replace_html "liability_list", :partial => "liability_list"
       page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg25')}</p>"
@@ -614,7 +614,7 @@ class FinanceController < ApplicationController
 
   def each_liability_view
     @liability = Liability.find(params[:id])
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
   end
 
   def create_asset
@@ -634,12 +634,12 @@ class FinanceController < ApplicationController
 
   def view_asset
     @assets = Asset.find(:all,:conditions => 'is_deleted = 0')
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
   end
 
   def asset_pdf
     @assets = Asset.find(:all,:conditions => 'is_deleted = 0')
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     render :pdf => 'asset_report_pdf'
   end
 
@@ -649,8 +649,8 @@ class FinanceController < ApplicationController
 
   def update_asset
     @asset = Asset.find(params[:id])
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
-    
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
+
     render :update do |page|
       if @asset.update_attributes(params[:asset])
         @assets = Asset.find(:all,:conditions => 'is_deleted = 0')
@@ -668,7 +668,7 @@ class FinanceController < ApplicationController
     @asset = Asset.find(params[:id])
     @asset.update_attributes(:is_deleted => true)
     @assets = Asset.all(:conditions => 'is_deleted = 0')
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     render :update do |page|
       page.replace_html "asset_list", :partial => "asset_list"
       page.replace_html 'flash_box', :text => "<p class='flash-msg'>#{t('flash_msg22')}</p>"
@@ -677,7 +677,7 @@ class FinanceController < ApplicationController
 
   def each_asset_view
     @asset = Asset.find(params[:id])
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
   end
   #fees ----------------
 
@@ -688,7 +688,7 @@ class FinanceController < ApplicationController
     @master_categories = FinanceFeeCategory.find(:all,:conditions=> ["is_deleted = '#{false}' and is_master = 1 and batch_id=?",params[:batch_id]]) unless params[:batch_id].blank?
     @student_categories = StudentCategory.active
   end
-  
+
   def master_category_new
     @finance_fee_category = FinanceFeeCategory.new
     @batches = Batch.active
@@ -724,7 +724,7 @@ class FinanceController < ApplicationController
       end
     end
   end
- 
+
   def master_category_edit
     @finance_fee_category = FinanceFeeCategory.find(params[:id])
     respond_to do |format|
@@ -933,7 +933,7 @@ class FinanceController < ApplicationController
     @batches = Batch.active
     @student_categories = StudentCategory.active
   end
-  
+
   def additional_fees_create
 
     batch = params[:additional_fees][:batch_id] unless params[:additional_fees][:batch_id].nil?
@@ -1106,7 +1106,7 @@ class FinanceController < ApplicationController
 
   def student_or_student_category
     @student_categories = StudentCategory.active
-    
+
     select_value = params[:select_value]
 
     if select_value == "category"
@@ -1145,7 +1145,7 @@ class FinanceController < ApplicationController
   def add_particulars_edit
     @finance_fee_particulars = FeeCollectionParticular.find(params[:id])
   end
-  
+
   def add_particulars_update
     @finance_fee_particulars = FeeCollectionParticular.find(params[:id])
     render :update do |page|
@@ -1284,7 +1284,7 @@ class FinanceController < ApplicationController
     @finance_fee_collection = FinanceFeeCollection.find params[:id]
   end
 
-  
+
   def fee_collection_update
     @user = current_user
     @finance_fee_collection = FinanceFeeCollection.find params[:id]
@@ -1323,7 +1323,7 @@ class FinanceController < ApplicationController
       else
         page.replace_html 'form-errors', :text => "<div id='error-box'><ul><li>#{t('flash_msg15')} .</li></ul></div>"
         flash[:notice]=""
-        
+
       end
     end
     @finance_fee_collections = FinanceFeeCollection.all(:conditions => ["is_deleted = '#{false}' and batch_id = '#{@finance_fee_collection.batch_id}'"])
@@ -1343,9 +1343,9 @@ class FinanceController < ApplicationController
     @dates = []
 
   end
-    
+
   def update_fees_collection_dates
-    
+
     @batch = Batch.find(params[:batch_id])
     @dates = @batch.fee_collection_dates
 
@@ -1355,7 +1355,7 @@ class FinanceController < ApplicationController
   end
 
   def load_fees_submission_batch
-    
+
     @batch   = Batch.find(params[:batch_id])
     @dates   = FinanceFeeCollection.find(:all)
     @date    =  @fee_collection = FinanceFeeCollection.find(params[:date])
@@ -1408,7 +1408,7 @@ class FinanceController < ApplicationController
     total_fees =0
 
     @financefee = @student.finance_fee_by_date @date
-   
+
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted IS NOT NULL"])
     @fee_particulars = @date.fees_particulars(@student)
 
@@ -1423,7 +1423,7 @@ class FinanceController < ApplicationController
       @total_discount = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.total_payable(@student) * s.discount(@student) / 100}.sum.to_f
     end
     @total_discount_percentage = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.discount(@student)}.sum
-    
+
     @fee_particulars.each do |p|
       total_fees += p.amount
     end
@@ -1454,7 +1454,7 @@ class FinanceController < ApplicationController
 
         is_paid = (params[:fees][:fees_paid].to_f == params[:total_fees].to_f) ? true : false
         @financefee.update_attributes(:transaction_id=>tid, :is_paid=>is_paid)
-    
+
         @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{tid}\")")
       else
         @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")")
@@ -1466,7 +1466,7 @@ class FinanceController < ApplicationController
     end
     render :update do |page|
       page.replace_html "student", :partial => "student_fees_submission"
-      
+
     end
 
   end
@@ -1476,13 +1476,13 @@ class FinanceController < ApplicationController
     @student = Student.find(params[:id])
     @financefee = @student.finance_fee_by_date @date
     @due_date = @fee_collection.due_date
-    
+
     unless @financefee.transaction_id.blank?
       @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
     end
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted = false"])
     @fee_particulars = @date.fees_particulars(@student)
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
 
     @batch_discounts = BatchFeeCollectionDiscount.find_all_by_finance_fee_collection_id(@fee_collection.id)
     @student_discounts = StudentFeeCollectionDiscount.find_all_by_finance_fee_collection_id_and_receiver_id(@fee_collection.id,@student.id)
@@ -1495,9 +1495,9 @@ class FinanceController < ApplicationController
       @total_discount = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.total_payable(@student) * s.discount(@student) / 100}.sum.to_f
     end
     @total_discount_percentage = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.discount(@student)}.sum
-    
+
     render :pdf => 'fee_receipt_pdf'
-           
+
     #        respond_to do |format|
     #            format.pdf { render :layout => false }
     #        end
@@ -1513,7 +1513,7 @@ class FinanceController < ApplicationController
       @student ||= FinanceFee.first(:conditions=>"fee_collection_id = #{@date.id}",:joins=>'INNER JOIN students ON finance_fees.student_id = students.id').student
       @prev_student = @student.previous_fee_student(@date.id)
       @next_student = @student.next_fee_student(@date.id)
-      
+
       @financefee = @student.finance_fee_by_date @date
       unless @financefee.transaction_id.blank?
         @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
@@ -1571,11 +1571,11 @@ class FinanceController < ApplicationController
   end
 
   def fees_submission_student
-    
+
     @student = Student.find(params[:id])
     @date = @fee_collection = FinanceFeeCollection.find(params[:date])
     @financefee = @student.finance_fee_by_date(@date)
-    
+
     @due_date = @fee_collection.due_date
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted IS NOT NULL"])
     @fee_particulars = @date.fees_particulars(@student)
@@ -1594,7 +1594,7 @@ class FinanceController < ApplicationController
       @total_discount = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.total_payable(@student) * s.discount(@student) / 100}.sum.to_f
     end
     @total_discount_percentage = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.discount(@student)}.sum
-    
+
     render :update do |page|
       page.replace_html "fee_submission", :partial => "fees_submission_form"
     end
@@ -1703,7 +1703,7 @@ class FinanceController < ApplicationController
 
 
   #fees structure ----------------------
-  
+
   def fees_student_structure_search_logic # student search fees structure
     query = params[:query]
     unless query.length < 3
@@ -1757,7 +1757,7 @@ class FinanceController < ApplicationController
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted IS NOT NULL"])
     @fee_particulars = @fee_collection.fees_particulars(@student)
   end
-  
+
 
   #fees defaulters-----------------------
 
@@ -1799,8 +1799,8 @@ class FinanceController < ApplicationController
     @batch   = Batch.find(params[:batch_id])
     @date = FinanceFeeCollection.find(params[:date])
     @students = @date.students.reject{|s| s.batch_id != @batch.id}
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
-        
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
+
     render :pdf => 'fee_defaulters_pdf'
   end
 
@@ -1824,7 +1824,7 @@ class FinanceController < ApplicationController
       @total_discount = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.total_payable(@student) * s.discount(@student) / 100}.sum.to_f
     end
     @total_discount_percentage = [@batch_discounts,@student_discounts,@category_discounts].flatten.compact.map{|s| s.discount(@student)}.sum
-    
+
     unless @financefee.transaction_id.blank?
       @paid_fees = FinanceTransaction.find(:all,:conditions=>"FIND_IN_SET(id,\"#{@financefee.transaction_id}\")", :order=>"created_at ASC")
     end
@@ -1866,7 +1866,7 @@ class FinanceController < ApplicationController
       else
         flash[:notice] = "#{t('flash23')}"
       end
-    
+
     end
   end
 
@@ -1892,12 +1892,12 @@ class FinanceController < ApplicationController
   end
 
   def compare_report
-    
+
   end
 
   def report_compare
     fixed_category_name
-    @hr = Configuration.find_by_config_value("HR")
+    @hr = FedenaConfiguration.find_by_config_value("HR")
     @start_date = (params[:start_date]).to_date
     @end_date = (params[:end_date]).to_date
     @start_date2 = (params[:start_date2]).to_date
@@ -1933,7 +1933,7 @@ class FinanceController < ApplicationController
     end
     @graph = open_flash_chart_object(960, 500, "graph_for_compare_monthly_report?start_date=#{@start_date}&end_date=#{@end_date}&start_date2=#{@start_date2}&end_date2=#{@end_date2}")
   end
- 
+
   def month_date
     @start_date = params[:start]
     @end_date  = params[:end]
@@ -1950,10 +1950,10 @@ class FinanceController < ApplicationController
 
   def pdf_fee_structure
     @student = Student.find(params[:id])
-    @institution_name = Configuration.find_by_config_key("InstitutionName")
-    @institution_address = Configuration.find_by_config_key("InstitutionAddress")
-    @institution_phone_no = Configuration.find_by_config_key("InstitutionPhoneNo")
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @institution_name = FedenaConfiguration.find_by_config_key("InstitutionName")
+    @institution_address = FedenaConfiguration.find_by_config_key("InstitutionAddress")
+    @institution_phone_no = FedenaConfiguration.find_by_config_key("InstitutionPhoneNo")
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     @fee_collection = FinanceFeeCollection.find params[:id2]
     @fee_category = FinanceFeeCategory.find(@fee_collection.fee_category_id,:conditions => ["is_deleted IS NOT NULL"])
     @fee_particulars = @fee_collection.fees_particulars(@student)
@@ -1969,34 +1969,34 @@ class FinanceController < ApplicationController
       @total_discount = 100
     end
     render :pdf => 'pdf_fee_structure'
-           
+
     #        respond_to do |format|
     #            format.pdf { render :layout => false }
     #        end
   end
 
   #graph------------------------------------
- 
+
 
   def graph_for_update_monthly_report
-    
+
     start_date = (params[:start_date]).to_date
     end_date = (params[:end_date]).to_date
     employees = Employee.find(:all)
-    
-    hr = Configuration.find_by_config_value("HR")
+
+    hr = FedenaConfiguration.find_by_config_value("HR")
     donations_total = FinanceTransaction.donations_triggers(start_date,end_date)
     fees = FinanceTransaction.total_fees(start_date,end_date)
     income = FinanceTransaction.total_other_trans(start_date,end_date)[0]
     expense = FinanceTransaction.total_other_trans(start_date,end_date)[1]
     #    other_transactions = FinanceTransaction.find(:all,
     #      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id !='#{3}' and category_id !='#{2}'and category_id !='#{1}'"])
-   
+
 
     x_labels = []
     data = []
     largest_value =0
-    
+
     unless hr.nil?
       salary = Employee.total_employees_salary(employees,start_date,end_date)
       unless salary <= 0
@@ -2010,7 +2010,7 @@ class FinanceController < ApplicationController
       data << donations_total
       largest_value = donations_total if largest_value < donations_total
     end
-     
+
     unless fees <= 0
       x_labels << "#{t('fees_text')}"
       data << fees
@@ -2038,7 +2038,7 @@ class FinanceController < ApplicationController
       largest_value = expense if largest_value < expense
     end
 
-    
+
     #    other_transactions.each do |trans|
     #      x_labels << trans.title
     #      if trans.category.is_income? and trans.master_transaction_id == 0
@@ -2083,7 +2083,7 @@ class FinanceController < ApplicationController
 
 
     render :text => chart.render
- 
+
   end
   def graph_for_compare_monthly_report
 
@@ -2093,7 +2093,7 @@ class FinanceController < ApplicationController
     end_date2 = (params[:end_date2]).to_date
     employees = Employee.find(:all)
 
-    hr = Configuration.find_by_config_value("HR")
+    hr = FedenaConfiguration.find_by_config_value("HR")
     donations_total = FinanceTransaction.donations_triggers(start_date,end_date)
     donations_total2 = FinanceTransaction.donations_triggers(start_date2,end_date2)
     fees = FinanceTransaction.total_fees(start_date,end_date)
@@ -2140,7 +2140,7 @@ class FinanceController < ApplicationController
       largest_value = fees if largest_value < fees
       largest_value = fees2 if largest_value < fees2
     end
-       
+
     FedenaPlugin::FINANCE_CATEGORY.each do |category|
       transaction1 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date,end_date)
       transaction2 =   FinanceTransaction.total_transaction_amount(category[:category_name],start_date2,end_date2)
@@ -2237,7 +2237,7 @@ class FinanceController < ApplicationController
     render :text => chart.render
 
   end
-  
+
   #ddnt complete this graph!
 
   def graph_for_transaction_comparison
@@ -2246,7 +2246,7 @@ class FinanceController < ApplicationController
     end_date = (params[:end_date]).to_date
     employees = Employee.find(:all)
 
-    hr = Configuration.find_by_config_value("HR")
+    hr = FedenaConfiguration.find_by_config_value("HR")
     donations_total = FinanceTransaction.donations_triggers(start_date,end_date)
     fees = FinanceTransaction.total_fees(start_date,end_date)
     income = FinanceTransaction.total_other_trans(start_date,end_date)[0]
@@ -2258,7 +2258,7 @@ class FinanceController < ApplicationController
     x_labels = []
     data1 = []
     data2 = []
-    
+
     largest_value =0
 
     unless hr.nil?
@@ -2286,13 +2286,13 @@ class FinanceController < ApplicationController
       data << income
       largest_value = income if largest_value < income
     end
-        
+
     unless expense <= 0
       x_labels << "#{t('other_expense')}"
       data << expense
       largest_value = expense if largest_value < expense
     end
-    
+
     #    other_transactions.each do |trans|
     #      x_labels << trans.title
     #      if trans.category.is_income? and trans.master_transaction_id == 0
@@ -2337,8 +2337,8 @@ class FinanceController < ApplicationController
 
 
     render :text => chart.render
- 
-   
+
+
   end
   #fee Discount
   def fee_discounts
@@ -2471,7 +2471,7 @@ class FinanceController < ApplicationController
       @fee_discount.errors.add_to_base("#{t('fees_category_cant_blank')}")
     end
   end
-  
+
 
   def update_master_fee_category_list
     @batch = Batch.find(params[:id])

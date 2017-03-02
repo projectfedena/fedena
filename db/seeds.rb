@@ -20,14 +20,14 @@
   {"config_key" => "DefaultCountry"                  ,"config_value" => "76"},
   {"config_key" => "FirstTimeLoginEnable"            ,"config_value" => "0"}
 ].each do |param|
-  Configuration.find_or_create_by_config_key(param)
+  FedenaConfiguration.find_or_create_by_config_key(param)
 end
 
 [
   {"config_key" => "AvailableModules"                ,"config_value" => "HR"},
   {"config_key" => "AvailableModules"                ,"config_value" => "Finance"}
 ].each do |param|
-  Configuration.find_or_create_by_config_key_and_config_value(param)
+  FedenaConfiguration.find_or_create_by_config_key_and_config_value(param)
 end
 
 if GradingLevel.count == 0
@@ -181,7 +181,7 @@ Privilege.find_by_name('StudentAttendanceRegister').update_attributes(:privilege
 Privilege.find_by_name('StudentAttendanceView').update_attributes(:privilege_tag_id=>student_management_tag.id, :priority=>320 )
 
 #update gender as string
-Employee.all.each do |e|
+Hr::Employee.all.each do |e|
   if e.gender.to_s=="1"
     e.update_attributes(:gender=> "m")
   elsif e.gender.to_s=="0"

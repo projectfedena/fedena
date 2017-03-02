@@ -24,7 +24,7 @@
   <div class="extender"> </div>
   <div class="report">
     <div id ="main_info">
-      <h3 align="center"><%= t('overall_school_rankings') %> : <%= Configuration.find_by_config_key("InstitutionName").config_value.present? ? Configuration.find_by_config_key("InstitutionName").config_value : "-" %></h3>
+      <h3 align="center"><%= t('overall_school_rankings') %> : <%= FedenaConfiguration.find_by_config_key("InstitutionName").config_value.present? ? FedenaConfiguration.find_by_config_key("InstitutionName").config_value : "-" %></h3>
     </div>
     <div id="pdf-info" class="section">
       <% unless @courses.empty? %>

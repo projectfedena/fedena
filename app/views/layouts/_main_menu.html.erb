@@ -34,7 +34,7 @@
     <% @employee= @current_user.employee_record  %>
     <% @employee_subjects= @employee.subjects.collect(&:id)  %>
     <% @employee_batches=Batch.find_all_by_employee_id(@employee.id) %>
-    <% @attendance_type = Configuration.find_by_config_key('StudentAttendanceType') %>
+    <% @attendance_type = FedenaConfiguration.find_by_config_key('StudentAttendanceType') %>
     <% if @attendance_type.config_value == 'Daily' %>
       <% if permitted_to? :index, :student_attendance or @employee_batches.present? or @current_user.privileges.map{|p| p.name}.include?("StudentAttendanceView") or @current_user.privileges.map{|p| p.name}.include?("StudentAttendanceRegister") %>
         <li class="a"><%= link_to "#{t('attendance')} ▼", :controller => "student_attendance", :action => "index" %>
@@ -153,7 +153,7 @@
             <% elsif (@current_user.privileges.collect(&:name).include?('ViewResults') or (Batch.all.collect(&:employee_id).include?(@current_user.employee_record.id.to_s) if @current_user.employee?)) %>
               <li><%= link_to "Report Center" , :controller => "exam",:action=>'report_center' %></li>
             <% end %>
-            <%  if Configuration.cce_enabled? %>
+            <%  if FedenaConfiguration.cce_enabled? %>
               <%  if permitted_to? :index, :cce_reports  %>
                 <li><%= link_to "CCE Report" , :controller => "cce_reports" %>  </li>
               <% end %>

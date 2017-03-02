@@ -51,7 +51,7 @@
         <div class="link-descr"><%= t('manage_class_designations') %></div>
       </div>
     <% end %>
-    <%  if Configuration.cce_enabled? %>
+    <%  if FedenaConfiguration.cce_enabled? %>
       <%  if permitted_to? :index,:cce_settings %>
         <div class="link-box">
           <div class="link-heading"><%= link_to "#{t('cce_sttings')}" ,:controller=>'cce_settings',:action=>'index' %> </div>

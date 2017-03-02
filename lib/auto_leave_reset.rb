@@ -17,14 +17,14 @@
 #limitations under the License.
 
 class AutoLeaveReset
-    
+
   def auto_leave_reset
-    reset_status = Configuration.find_by_config_key("AutomaticLeaveReset")
-    last_reset = Configuration.find_by_config_key("LastAutoLeaveReset")
-    reset_period = Configuration.find_by_config_key("LeaveResetPeriod")
+    reset_status = FedenaConfiguration.find_by_config_key("AutomaticLeaveReset")
+    last_reset = FedenaConfiguration.find_by_config_key("LastAutoLeaveReset")
+    reset_period = FedenaConfiguration.find_by_config_key("LeaveResetPeriod")
     if reset_status.config_value == '1'
       if last_reset.config_value.nil?
-        start_date = Configuration.find_by_config_key("FinancialYearStartDate")
+        start_date = FedenaConfiguration.find_by_config_key("FinancialYearStartDate")
         reset_date = start_date.config_value.to_date + reset_period.config_value.to_i.months
         if reset_date <= Date.today.to_date
           leave_count = EmployeeLeave.all
@@ -40,18 +40,18 @@ class AutoLeaveReset
                   available_leave = balance_leave.to_f
                   available_leave += default_leave_count.to_f
                   leave_taken = 0
-            
+
                   e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
                 else
                   available_leave = default_leave_count.to_f
                   leave_taken = 0
-                          
+
                   e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
                 end
               else
                 available_leave = default_leave_count.to_f
                 leave_taken = 0
-             
+
                 e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
               end
             end
@@ -75,18 +75,18 @@ class AutoLeaveReset
                   available_leave = balance_leave.to_f
                   available_leave += default_leave_count.to_f
                   leave_taken = 0
-                          
+
                   e.update_attributes(:leave_taken => leave_taken,:leave_count => available_leave, :reset_date => Date.today)
                 else
                   available_leave = default_leave_count.to_f
                   leave_taken = 0
-       
+
                   e.update_attributes(:leave_taken => 0.0,:leave_count => available_leave, :reset_date => Date.today)
                 end
               else
                 available_leave = default_leave_count.to_f
                 leave_taken = 0
-                 
+
                 e.update_attributes(:leave_taken => 0.0,:leave_count => available_leave, :reset_date => Date.today)
               end
             end
@@ -98,4 +98,3 @@ class AutoLeaveReset
   end
 
 end
-

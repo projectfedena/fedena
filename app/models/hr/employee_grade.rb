@@ -22,7 +22,7 @@ class EmployeeGrade < ActiveRecord::Base
   validates_numericality_of :priority
 
   has_many :employee
-  named_scope :active, :conditions => {:status => true }
+  scope :active, :conditions => {:status => true }
 
   def validate
     self.errors.add(:max_hours_week, "#{t('should_be_greater_than_max_period')}.") \

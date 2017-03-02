@@ -17,7 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<% if Configuration.find_by_config_key('StudentAttendanceType').config_value=='Daily' %>
+<% if FedenaConfiguration.find_by_config_key('StudentAttendanceType').config_value=='Daily' %>
   <% @absent = Attendance.find_by_student_id_and_month_date(@student.id, @absentee.month_date) %>
   <% unless @absent.nil? %>
     <%#= link_to_remote('X', {:url => edit_attendance_path(@absent), :method => 'get'}, :class=> 'absent') %>

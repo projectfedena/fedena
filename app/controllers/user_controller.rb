@@ -29,11 +29,11 @@ class UserController < ApplicationController
     return 'dashboard' if action_name == 'dashboard'
     'application'
   end
-  
+
   def all
     @users = User.active.all
   end
-  
+
   def list_user
     if params[:user_type] == 'Admin'
       @users = User.active.find(:all, :conditions => {:admin => true}, :order => 'first_name ASC')
@@ -44,7 +44,7 @@ class UserController < ApplicationController
       end
     elsif params[:user_type] == 'Employee'
       render(:update) do |page|
-        hr = Configuration.find_by_config_value("HR")
+        hr = FedenaConfiguration.find_by_config_value("HR")
         unless hr.nil?
           page.replace_html 'employee_user', :partial=> 'employee_user'
           page.replace_html 'users', :text => ''
@@ -104,7 +104,7 @@ class UserController < ApplicationController
   end
 
   def change_password
-    
+
     if request.post?
       @user = current_user
       if User.authenticate?(@user.username, params[:user][:old_password])
@@ -145,23 +145,23 @@ class UserController < ApplicationController
         end
       end
 
-      
+
     end
   end
 
   def create
-    @config = Configuration.available_modules
+    @config = FedenaConfiguration.available_modules
 
     @user = User.new(params[:user])
     if request.post?
-          
+
       if @user.save
         flash[:notice] = "#{t('flash17')}"
         redirect_to :controller => 'user', :action => 'edit', :id => @user.username
       else
         flash[:notice] = "#{t('flash16')}"
       end
-           
+
     end
   end
 
@@ -174,10 +174,10 @@ class UserController < ApplicationController
     end
     redirect_to :controller => 'user'
   end
-  
+
   def dashboard
     @user = current_user
-    @config = Configuration.available_modules
+    @config = FedenaConfiguration.available_modules
     @employee = @user.employee_record if ["#{t('admin')}","#{t('employee_text')}"].include?(@user.role_name)
     if @user.student?
       @student = Student.find_by_admission_no(@user.username)
@@ -185,7 +185,7 @@ class UserController < ApplicationController
     if @user.parent?
       @student = Student.find_by_admission_no(@user.username[1..@user.username.length])
     end
-    @first_time_login = Configuration.get_config_value('FirstTimeLoginEnable')
+    @first_time_login = FedenaConfiguration.get_config_value('FirstTimeLoginEnable')
     if  session[:user_id].present? and @first_time_login == "1" and @user.is_first_login != false
       flash[:notice] = "#{t('first_login_attempt')}"
       redirect_to :controller => "user",:action => "first_login_change_password",:id => @user.username
@@ -205,7 +205,7 @@ class UserController < ApplicationController
   def forgot_password
     #    flash[:notice]="You do not have permission to access forgot password!"
     #    redirect_to :action=>"login"
-    @network_state = Configuration.find_by_config_key("NetworkState")
+    @network_state = FedenaConfiguration.find_by_config_key("NetworkState")
     if request.post? and params[:reset_password]
       if user = User.active.find_by_username(params[:reset_password][:username])
         unless user.email.blank?
@@ -229,7 +229,7 @@ class UserController < ApplicationController
 
 
   def login
-    @institute = Configuration.find_by_config_key("LogoName")
+    @institute = FedenaConfiguration.find_by_config_key("LogoName")
     available_login_authes = FedenaPlugin::AVAILABLE_MODULES.select{|m| m[:name].classify.constantize.respond_to?("login_hook")}
     selected_login_hook = available_login_authes.first if available_login_authes.count>=1
     if selected_login_hook
@@ -252,7 +252,7 @@ class UserController < ApplicationController
 
   def first_login_change_password
     @user = User.active.find_by_username(params[:id])
-    @setting = Configuration.get_config_value('FirstTimeLoginEnable')
+    @setting = FedenaConfiguration.get_config_value('FirstTimeLoginEnable')
     if @setting == "1" and @user.is_first_login != false
       if request.post?
         if params[:user][:new_password] == params[:user][:confirm_password]
@@ -289,7 +289,7 @@ class UserController < ApplicationController
   end
 
   def profile
-    @config = Configuration.available_modules
+    @config = FedenaConfiguration.available_modules
     @current_user = current_user
     @username = @current_user.username if session[:user_id]
     @user = User.active.find_by_username(params[:id])
@@ -364,9 +364,9 @@ class UserController < ApplicationController
 
   def edit_privilege
     @user = User.active.find_by_username(params[:id])
-    @finance = Configuration.find_by_config_value("Finance")
+    @finance = FedenaConfiguration.find_by_config_value("Finance")
     @sms_setting = SmsSetting.application_sms_status
-    @hr = Configuration.find_by_config_value("HR")
+    @hr = FedenaConfiguration.find_by_config_value("HR")
     @privilege_tags=PrivilegeTag.find(:all,:order=>"priority ASC")
     @user_privileges=@user.privileges
     if request.post?
@@ -382,7 +382,7 @@ class UserController < ApplicationController
   def header_link
     @user = current_user
     #@reminders = @users.check_reminders
-    @config = Configuration.available_modules
+    @config = FedenaConfiguration.available_modules
     @employee = Employee.find_by_employee_number(@user.username)
     @employee ||= Employee.first if current_user.admin?
     @student = Student.find_by_admission_no(@user.username)
@@ -397,4 +397,3 @@ class UserController < ApplicationController
     redirect_to session[:back_url] || {:controller => 'user', :action => 'dashboard'}
   end
 end
-

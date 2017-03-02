@@ -68,7 +68,7 @@ class SmsManager
             message_log.sms_logs.create(:mobile=>recipient,:gateway_response=>response.body)
             if @success_code.present?
               if response.body.to_s.include? @success_code
-                sms_count = Configuration.find_by_config_key("TotalSmsCount")
+                sms_count = FedenaConfiguration.find_by_config_key("TotalSmsCount")
                 new_count = sms_count.config_value.to_i + 1
                 sms_count.update_attributes(:config_value=>new_count)
               end

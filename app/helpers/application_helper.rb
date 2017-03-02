@@ -84,11 +84,11 @@ module ApplicationHelper
   end
 
   def currency
-    Configuration.find_by_config_key("CurrencyType").config_value
+    FedenaConfiguration.find_by_config_key("CurrencyType").config_value
   end
 
   def pdf_image_tag(image, options = {})
-    options[:src] = File.expand_path(RAILS_ROOT) + "/public/images"+ image
+    options[:src] = File.expand_path(Rails.root) + "/public/images"+ image
     tag(:img, options)
   end
 
@@ -116,7 +116,7 @@ module ApplicationHelper
 
   def current_school_name
     Rails.cache.fetch("current_school_name#{session[:user_id]}"){
-      Configuration.get_config_value('InstitutionName')
+      FedenaConfiguration.get_config_value('InstitutionName')
     }
   end
 
@@ -158,7 +158,7 @@ module ApplicationHelper
         h[:description] = t(hook[:description])
         hooks << h
       end
-    end    
+    end
     return hooks.to_json
   end
 end

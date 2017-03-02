@@ -17,7 +17,7 @@
 #specific language governing permissions and limitations
 #under the License. -%>
 
-<%  @config = Configuration.available_modules %>
+<%  @config = FedenaConfiguration.available_modules %>
 <% timing = ClassTiming.find(@period.class_timing_id) %>
 <% subject = Subject.find(@period.subject_id) unless @period.subject.nil? %>
  <div class="category-num"><%= timing.name %></div>

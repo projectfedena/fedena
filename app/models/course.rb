@@ -19,7 +19,7 @@
 class Course < ActiveRecord::Base
 
   GRADINGTYPES = {"1"=>"GPA","2"=>"CWA","3"=>"CCE"}
-  
+
   validates_presence_of :course_name, :code
   validate :presence_of_initial_batch, :on => :create
 
@@ -30,13 +30,13 @@ class Course < ActiveRecord::Base
   has_many :subject_amounts
   accepts_nested_attributes_for :batches
   has_and_belongs_to_many :observation_groups
-  has_and_belongs_to_many_with_deferred_save :cce_weightages
-  
+  has_and_belongs_to_many :cce_weightages
+
   before_save :cce_weightage_valid
 
-  named_scope :active, :conditions => { :is_deleted => false }, :order => 'course_name asc'
-  named_scope :deleted, :conditions => { :is_deleted => true }, :order => 'course_name asc'
-  named_scope :cce, {:select => "courses.*",:conditions=>{:grading_type => GRADINGTYPES.invert["CCE"]}, :order => 'course_name asc'}
+  scope :active, :conditions => { :is_deleted => false }, :order => 'course_name asc'
+  scope :deleted, :conditions => { :is_deleted => true }, :order => 'course_name asc'
+  scope :cce, {:select => "courses.*",:conditions=>{:grading_type => GRADINGTYPES.invert["CCE"]}, :order => 'course_name asc'}
 
   def presence_of_initial_batch
     errors.add_to_base "#{t('should_have_an_initial_batch')}" if batches.length == 0
@@ -45,7 +45,7 @@ class Course < ActiveRecord::Base
   def inactivate
     update_attribute(:is_deleted, true)
   end
-  
+
   def full_name
     "#{course_name} #{section_name}"
   end
@@ -104,15 +104,15 @@ class Course < ActiveRecord::Base
   end
 
   def cce_enabled?
-    Configuration.cce_enabled? and grading_type == "3"
+    FedenaConfiguration.cce_enabled? and grading_type == "3"
   end
 
   def gpa_enabled?
-    Configuration.has_gpa? and self.grading_type=="1"
+    FedenaConfiguration.has_gpa? and self.grading_type=="1"
   end
 
   def cwa_enabled?
-    Configuration.has_cwa? and self.grading_type=="2"
+    FedenaConfiguration.has_cwa? and self.grading_type=="2"
   end
 
   def normal_enabled?
@@ -139,7 +139,7 @@ class Course < ActiveRecord::Base
     def grading_types
       hsh =  ActiveSupport::OrderedHash.new
       hsh["0"]="Normal"
-      types = Configuration.get_grading_types
+      types = FedenaConfiguration.get_grading_types
       types.each{|t| hsh[t] = GRADINGTYPES[t]}
       hsh
     end

@@ -121,7 +121,7 @@
     <div id="form">
       <%= error_messages_for :reminder %>
       <%= hidden_field_tag :recipients, '' %>
-      <% @config = Configuration.available_modules  %>
+      <% @config = FedenaConfiguration.available_modules  %>
       <% if @config.include?('HR') %>
         <div class="to-options">
           <%= link_to_remote "#{t('reminder_to_staff')}", :url=>{:controller=>"reminder",:action=>"select_employee_department"},:update=>"select-employee-department", :html=>{:class=>"themed_text"} %>

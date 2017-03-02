@@ -59,7 +59,7 @@
         <% else %>
           <li><%= link_to "Transcript Report", { :controller=>'exam', :action => 'student_transcript',:transcript=>{:batch_id=>@student.batch_id},:student_id=>@student.former_id,:flag=>"1" } %></li>
         <% end %>
-        <% if Configuration.cce_enabled? %>
+        <% if FedenaConfiguration.cce_enabled? %>
           <li><%= link_to "CCE Transcript Report", { :controller => 'cce_reports', :action => 'student_transcript',:id=>@student.id, :type=>"former" }%></li>
         <% end %>
 

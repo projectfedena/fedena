@@ -16,5 +16,5 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 class Language < ActiveRecord::Base
- named_scope :translation_available, :conditions => { :code => Configuration::LOCALES }
+ scope :translation_available, :conditions => { :code => FedenaConfiguration::LOCALES }
 end

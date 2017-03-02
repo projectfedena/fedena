@@ -148,7 +148,7 @@
         <%= check_box :configuration, :admission_number_auto_increment, :checked => false %><%= t('student_admission_auto') %>
       <% end %>
       <br/>
-      <% if Configuration.available_modules.include?('HR') %>
+      <% if FedenaConfiguration.available_modules.include?('HR') %>
         <% if @config[:employee_number_auto_increment] == '1' %>
           <%= check_box :configuration, :employee_number_auto_increment, :checked => true %> <%= t('employee_admission_auto') %>
         <% else %>

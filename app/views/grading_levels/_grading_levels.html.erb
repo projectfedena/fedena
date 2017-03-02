@@ -24,7 +24,7 @@
 <% if @batch.present?
   @credit = @batch.gpa_enabled? || @batch.cce_enabled?
 else
-  @credit = Configuration.cce_enabled? || Configuration.get_config_value('CWA')=='1' || Configuration.get_config_value('GPA')=='1'
+  @credit = FedenaConfiguration.cce_enabled? || FedenaConfiguration.get_config_value('CWA')=='1' || FedenaConfiguration.get_config_value('GPA')=='1'
 end %>
 <%  unless @grading_levels.empty? %>
   <table id="listing" align="center" width="100%" cellpadding="1" cellspacing="1">

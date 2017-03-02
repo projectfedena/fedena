@@ -81,7 +81,7 @@
       <div class="link-heading"><%= link_to "#{t('combined_reports')}" , :controller=> "exam",:action=>'combined_report' %></div>
       <div class="link-descr"><%= t('generates_combined_student_report') %></div>
     </div>
-    <%  if Configuration.cce_enabled? and permitted_to? :index, :cce_reports %>
+    <%  if FedenaConfiguration.cce_enabled? and permitted_to? :index, :cce_reports %>
     <div class="link-box">
       <div class="link-heading"><%= link_to "#{t('cce_reports')}" , :controller=> "cce_reports",:action=>'index' %></div>
       <div class="link-descr"><%= t('generates_combined_student_report') %></div>
