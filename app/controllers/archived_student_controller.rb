@@ -98,7 +98,7 @@ class ArchivedStudentController < ApplicationController
   end
 
   def student_report
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     @student = ArchivedStudent.find(params[:id])
     @batch = Batch.find(params[:year])
     @start_date = @batch.start_date.to_date
@@ -171,7 +171,7 @@ class ArchivedStudentController < ApplicationController
   end
 
   def generated_report_pdf
-    @config = Configuration.get_config_value('InstitutionName')
+    @config = FedenaConfiguration.get_config_value('InstitutionName')
     @exam_group = ExamGroup.find(params[:exam_group])
     @student = ArchivedStudent.find_by_former_id(params[:student])
     @student.id = @student.former_id
@@ -189,7 +189,7 @@ class ArchivedStudentController < ApplicationController
       @exams.push exam unless exam.nil?
     end
     render :pdf => 'generated_report_pdf'
-          
+
     #    respond_to do |format|
     #      format.pdf { render :layout => false }
     #    end
@@ -243,7 +243,7 @@ class ArchivedStudentController < ApplicationController
 
   end
 
-    
+
   def generated_report4_pdf
 
     #grouped-exam-report-for-batch

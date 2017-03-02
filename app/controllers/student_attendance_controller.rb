@@ -21,12 +21,12 @@ class StudentAttendanceController < ApplicationController
   before_filter :only_assigned_employee_allowed
   before_filter :protect_other_student_data
   filter_access_to :all
- 
+
   def index
   end
 
   def student
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     @student = Student.find(params[:id])
     @batch = Batch.find(@student.batch_id)
     @subjects = Subject.find_all_by_batch_id(@batch.id,:conditions=>'is_deleted = false')
@@ -101,13 +101,13 @@ class StudentAttendanceController < ApplicationController
         end
         return
       end
-      
+
       render :update do |page|
         page.replace_html 'report', :partial => 'report'
         page.replace_html 'error-container', :text => ''
       end
     end
-    
+
   end
 
   def month
@@ -126,7 +126,7 @@ class StudentAttendanceController < ApplicationController
   end
 
   def student_report
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     @student = Student.find(params[:id])
     @batch = Batch.find(params[:year])
     @start_date = @batch.start_date.to_date

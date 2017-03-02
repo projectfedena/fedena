@@ -52,7 +52,7 @@
     <%  end%>
     <%if permitted_to? :new_timetable,:timetable%>
       <div class="link-box">
-        <% @config = Configuration.available_modules %>
+        <% @config = FedenaConfiguration.available_modules %>
         <% if @config.include?('HR') %>
           <div class="link-heading"><%= link_to "#{t('create_timetable')}", :action => "new_timetable" %></div>
         <% else %>
@@ -64,7 +64,7 @@
     <%  end%>
     <%if permitted_to? :edit_master,:timetable%>
       <div class="link-box">
-        <% @config = Configuration.available_modules %>
+        <% @config = FedenaConfiguration.available_modules %>
         <% if @config.include?('HR') %>
           <div class="link-heading"><%= link_to "#{t('edit_timetable')}", :action => "edit_master" %></div>
         <% else %>

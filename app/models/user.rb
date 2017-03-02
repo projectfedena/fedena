@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
       employee = employee_record
       unless employee.nil?
         if employee.subjects.present?
-          prv << :subject_attendance if Configuration.get_config_value('StudentAttendanceType') == 'SubjectWise'
+          prv << :subject_attendance if FedenaConfiguration.get_config_value('StudentAttendanceType') == 'SubjectWise'
           prv << :subject_exam
         end
         if Batch.active.collect(&:employee_id).include?(employee.id.to_s)

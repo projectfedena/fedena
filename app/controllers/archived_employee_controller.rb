@@ -22,7 +22,7 @@ class ArchivedEmployeeController < ApplicationController
   filter_access_to :all
 #  prawnto :prawn => {:left_margin => 25, :right_margin => 25}
 
-  
+
 
   def profile
     @current_user = current_user
@@ -95,7 +95,7 @@ class ArchivedEmployeeController < ApplicationController
 
 
   def profile_payroll_details
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     @employee = ArchivedEmployee.find(params[:id])
     @payroll_details = ArchivedEmployeeSalaryStructure.find_all_by_employee_id(@employee, :order=>"payroll_category_id ASC")
     render :partial => "payroll_details"
@@ -121,11 +121,11 @@ class ArchivedEmployeeController < ApplicationController
     @office_country = Country.find(@employee.office_country_id).name unless @employee.office_country_id.nil?
     @bank_details = ArchivedEmployeeBankDetail.find_all_by_employee_id(@employee.id)
     @additional_details = ArchivedEmployeeAdditionalDetail.find_all_by_employee_id(@employee.id)
-    
-      render :pdf => 'profile_pdf'
-            
 
-    
+      render :pdf => 'profile_pdf'
+
+
+
   end
 
   def show

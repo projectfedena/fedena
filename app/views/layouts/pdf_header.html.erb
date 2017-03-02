@@ -22,8 +22,8 @@
     <%= wicked_pdf_image_tag "/"+(current_school_detail.logo.path||"#{Rails.root}/public/images/application/app_fedena_logo.jpg") %>
   </div>
   <div class="header-content">
-    <p><%=Configuration.get_config_value('InstitutionName'); %></p>
-    <p><%=Configuration.get_config_value('InstitutionAddress'); %></p>
+    <p><%=FedenaConfiguration.get_config_value('InstitutionName'); %></p>
+    <p><%=FedenaConfiguration.get_config_value('InstitutionAddress'); %></p>
   </div>
 
 </div>

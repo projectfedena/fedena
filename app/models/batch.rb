@@ -267,11 +267,11 @@ class Batch < ActiveRecord::Base
   end
 
   def gpa_enabled?
-    Configuration.has_gpa? and self.grading_type=="1"
+    FedenaConfiguration.has_gpa? and self.grading_type=="1"
   end
 
   def cwa_enabled?
-    Configuration.has_cwa? and self.grading_type=="2"
+    FedenaConfiguration.has_cwa? and self.grading_type=="2"
   end
 
   def normal_enabled?
@@ -580,7 +580,7 @@ class Batch < ActiveRecord::Base
         hsh[k]=val.group_by(&:day_of_week)
       end
       timetables.each do |tt|
-        ([starting_date,start_date.to_date,tt.start_date].max..[tt.end_date,end_date.to_date,ending_date,Configuration.default_time_zone_present_time.to_date].min).each do |d|
+        ([starting_date,start_date.to_date,tt.start_date].max..[tt.end_date,end_date.to_date,ending_date,FedenaConfiguration.default_time_zone_present_time.to_date].min).each do |d|
           hsh2[d]=hsh[tt.id][d.wday]
         end
       end
@@ -664,11 +664,11 @@ class Batch < ActiveRecord::Base
     else
       generate_cce_reports
     end
-    prev_record = Configuration.find_by_config_key("job/Batch/#{self.job_type}")
+    prev_record = FedenaConfiguration.find_by_config_key("job/Batch/#{self.job_type}")
     if prev_record.present?
       prev_record.update_attributes(:config_value=>Time.now)
     else
-      Configuration.create(:config_key=>"job/Batch/#{self.job_type}", :config_value=>Time.now)
+      FedenaConfiguration.create(:config_key=>"job/Batch/#{self.job_type}", :config_value=>Time.now)
     end
   end
 

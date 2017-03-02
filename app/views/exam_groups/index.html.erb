@@ -61,7 +61,7 @@
               :style =>"display: none;" ) %></td>
         <% end %>
       </tr>
-      <% @config = Configuration.available_modules %>
+      <% @config = FedenaConfiguration.available_modules %>
       <% @exam_groups.each do |exam_group| %>
         <tr class="tr-<%= cycle('odd', 'even') %>">
           <td class="col-2">

@@ -32,13 +32,13 @@ class EmployeeController < ApplicationController
       redirect_to :controller => "employee", :action => "add_category"
     end
   end
-  
+
   def edit_category
     @category = EmployeeCategory.find(params[:id])
     employees = Employee.find(:all ,:conditions=>"employee_category_id = #{params[:id]}")
     if request.post?
       if (params[:category][:status] == 'false' and employees.blank?) or params[:category][:status] == 'true'
-        
+
         if @category.update_attributes(params[:category])
           unless @category.status
             position = EmployeePosition.find_all_by_employee_category_id(@category.id)
@@ -52,7 +52,7 @@ class EmployeeController < ApplicationController
       else
         flash[:warn_notice] = "<p>#{t('flash2')}</p>"
       end
-      
+
     end
   end
 
@@ -245,7 +245,7 @@ class EmployeeController < ApplicationController
       end
     end
   end
-  
+
   def change_field_priority
     @additional_field = AdditionalField.find(params[:id])
     priority = @additional_field.priority
@@ -310,9 +310,9 @@ class EmployeeController < ApplicationController
     @departments = EmployeeDepartment.find(:all,:order => "name asc",:conditions => "status = true")
     @nationalities = Country.all
     @employee = Employee.new(params[:employee])
-    @selected_value = Configuration.default_country
+    @selected_value = FedenaConfiguration.default_country
     @last_admitted_employee = Employee.find(:last,:conditions=>"employee_number != 'admin'")
-    @config = Configuration.find_by_config_key('EmployeeNumberAutoIncrement')
+    @config = FedenaConfiguration.find_by_config_key('EmployeeNumberAutoIncrement')
 
     if request.post?
 
@@ -389,7 +389,7 @@ class EmployeeController < ApplicationController
   def admission2
     @countries = Country.find(:all)
     @employee = Employee.find(params[:id])
-    @selected_value = Configuration.default_country
+    @selected_value = FedenaConfiguration.default_country
     if request.post? and @employee.update_attributes(params[:employee])
       sms_setting = SmsSetting.new()
       if sms_setting.application_sms_active and sms_setting.employee_sms_active
@@ -401,7 +401,7 @@ class EmployeeController < ApplicationController
       redirect_to :action => "admission3", :id => @employee.id
     end
   end
-  
+
   def edit2
     @employee = Employee.find(params[:id])
     @countries = Country.find(:all)
@@ -436,7 +436,7 @@ class EmployeeController < ApplicationController
       redirect_to :action => "admission3_1", :id => @employee.id
     end
   end
-  
+
   def edit3
     @employee = Employee.find(params[:id])
     @bank_fields = BankField.find(:all, :conditions=>"status = true")
@@ -526,9 +526,9 @@ class EmployeeController < ApplicationController
   def edit_privilege
     @user = User.active.find_by_username(params[:id])
     @employee = @user.employee_record
-    @finance = Configuration.find_by_config_value("Finance")
+    @finance = FedenaConfiguration.find_by_config_value("Finance")
     @sms_setting = SmsSetting.application_sms_status
-    @hr = Configuration.find_by_config_value("HR")
+    @hr = FedenaConfiguration.find_by_config_value("HR")
     @privilege_tags=PrivilegeTag.find(:all,:order=>"priority ASC")
     @user_privileges=@user.privileges
     if request.post?
@@ -538,7 +538,7 @@ class EmployeeController < ApplicationController
       redirect_to :action => 'admission4',:id => @employee.id
     end
   end
-  
+
   def edit3_1
     @employee = Employee.find(params[:id])
     @additional_fields = AdditionalField.find(:all, :conditions=>"status = true")
@@ -572,7 +572,7 @@ class EmployeeController < ApplicationController
       flash[:notice]=t('flash25')
       redirect_to :controller => "payroll", :action => "manage_payroll", :id=>@employee.id
     end
-  
+
   end
 
   def view_rep_manager
@@ -732,7 +732,7 @@ class EmployeeController < ApplicationController
 
 
   def profile_payroll_details
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     @employee = Employee.find(params[:id])
     @payroll_details = EmployeeSalaryStructure.find_all_by_employee_id(@employee, :order=>"payroll_category_id ASC")
     render :partial => "payroll_details"
@@ -764,8 +764,8 @@ class EmployeeController < ApplicationController
     @bank_details = EmployeeBankDetail.find_all_by_employee_id(@employee.id)
     @additional_details = EmployeeAdditionalDetail.find_all_by_employee_id(@employee.id)
     render :pdf => 'profile_pdf'
-          
-            
+
+
     #    respond_to do |format|
     #      format.pdf { render :layout => false }
     #    end
@@ -887,7 +887,7 @@ class EmployeeController < ApplicationController
         flash[:warn_notice] = "#{t('flash45')} #{params[:salary_date]}"
       end
     end
-    
+
   end
 
   def view_payslip
@@ -897,7 +897,7 @@ class EmployeeController < ApplicationController
   end
 
   def update_monthly_payslip
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     @salary_date = params[:salary_date]
     if params[:salary_date] == ""
       render :update do |page|
@@ -1134,7 +1134,7 @@ class EmployeeController < ApplicationController
     @employee_additional_categories = IndividualPayslipCategory.find_all_by_employee_id(@employee.id, :conditions=>"include_every_month = true")
     @new_payslip_category = IndividualPayslipCategory.find_all_by_employee_id_and_salary_date(@employee.id,nil)
     @user = current_user
-    
+
 
     if request.post?
       salary_date = Date.parse(params[:salary_date])
@@ -1145,7 +1145,7 @@ class EmployeeController < ApplicationController
       payslip_exists.each do |p|
         p.delete
       end
-      
+
       params[:manage_payroll].each_pair do |k, v|
         row_id = EmployeeSalaryStructure.find_by_employee_id_and_payroll_category_id(@employee, k)
         category_name = PayrollCategory.find(k).name
@@ -1171,13 +1171,13 @@ class EmployeeController < ApplicationController
           :body=>body ))
       flash[:notice] = "#{@employee.first_name} #{t('flash27')} #{params[:salary_date]}"
       redirect_to :controller => "employee", :action => "profile", :id=> @employee.id
-      
+
     end
   end
   def update_rejected_payslip
     @salary_date = params[:salary_date]
     @employee = Employee.find(params[:emp_id])
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
 
     if params[:salary_date] == ""
       render :update do |page|
@@ -1254,7 +1254,7 @@ class EmployeeController < ApplicationController
 
     @user = current_user
     finance_manager = find_finance_managers
-    finance = Configuration.find_by_config_value("Finance")
+    finance = FedenaConfiguration.find_by_config_value("Finance")
     subject = "#{t('payslip_generated')}"
     body = "#{t('message_body')}"
     salary_date = Date.parse(params[:salary_date])
@@ -1440,9 +1440,9 @@ class EmployeeController < ApplicationController
     @employees = Employee.find_all_by_employee_department_id(@department.id)
 
 
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     @salary_date = params[:salary_date] if params[:salary_date]
-   
+
     render :pdf => 'department_payslip_pdf',
       :margin => {    :top=> 10,
       :bottom => 10,
@@ -1457,7 +1457,7 @@ class EmployeeController < ApplicationController
   def individual_payslip_pdf
     @employee = Employee.find(params[:id])
     @department = EmployeeDepartment.find(@employee.employee_department_id).name
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     @category = EmployeeCategory.find(@employee.employee_category_id).name
     @grade = EmployeeGrade.find(@employee.employee_grade_id).name unless @employee.employee_grade_id.nil?
     @position = EmployeePosition.find(@employee.employee_position_id).name
@@ -1504,7 +1504,7 @@ class EmployeeController < ApplicationController
 
     @net_amount = @net_non_deductionable_amount - @net_deductionable_amount
     render :pdf => 'individual_payslip_pdf'
-    
+
 
     #    respond_to do |format|
     #      format.pdf { render :layout => false }
@@ -1519,7 +1519,7 @@ class EmployeeController < ApplicationController
     @bank_details = EmployeeBankDetail.find_all_by_employee_id(@employee.id)
     @employee ||= ArchivedEmployee.find(:first,:conditions=>"former_id=#{params[:id]}")
     @department = EmployeeDepartment.find(@employee.employee_department_id).name
-    @currency_type = Configuration.find_by_config_key("CurrencyType").config_value
+    @currency_type = FedenaConfiguration.find_by_config_key("CurrencyType").config_value
     @category = EmployeeCategory.find(@employee.employee_category_id).name
     @grade = EmployeeGrade.find(@employee.employee_grade_id).name unless @employee.employee_grade_id.nil?
     @position = EmployeePosition.find(@employee.employee_position_id).name
@@ -1565,7 +1565,7 @@ class EmployeeController < ApplicationController
     @net_deductionable_amount = @individual_category_deductionable + @deductionable_amount
 
     @net_amount = @net_non_deductionable_amount - @net_deductionable_amount
-    
+
     render :pdf => 'individual_payslip_pdf'
     #    respond_to do |format|
     #      format.pdf { render :layout => false }

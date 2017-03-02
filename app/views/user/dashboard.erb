@@ -200,7 +200,7 @@
           </div>
         <% end %>
       <% else %>
-        <% @attendance_type = Configuration.find_by_config_key('StudentAttendanceType') %>
+        <% @attendance_type = FedenaConfiguration.find_by_config_key('StudentAttendanceType') %>
         <% unless @attendance_type.config_value == 'Daily' %>
           <div class="button-box">
             <%= link_to "<div class ='button-label'><p>#{t('attendance')}</p></div>", {:controller => "student_attendance", :action => "index"},

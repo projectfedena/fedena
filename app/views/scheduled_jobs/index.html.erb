@@ -81,15 +81,15 @@
     <% end %>
     <% if @job_type.present? %>
       <% if params[:job_type].present? %>
-        <% last_completion_time_record = Configuration.find_by_config_key("job/#{@job_type}") %>
+        <% last_completion_time_record = FedenaConfiguration.find_by_config_key("job/#{@job_type}") %>
         <% if last_completion_time_record.present? %>
           <% last_completion_time = last_completion_time_record.config_value.to_time %>
         <% end %>
       <% else %>
-        <% last_completion_time = Configuration.find(:all, :conditions=>["config_key like ?","job/#{params[:job_object]}%"]).map{|t| t.config_value.to_time}.sort.last %>
+        <% last_completion_time = FedenaConfiguration.find(:all, :conditions=>["config_key like ?","job/#{params[:job_object]}%"]).map{|t| t.config_value.to_time}.sort.last %>
       <% end %>
     <% else %>
-      <% last_completion_time = Configuration.find(:all, :conditions=>["config_key like ?","job/%"]).map{|t| t.config_value.to_time}.sort.last %>
+      <% last_completion_time = FedenaConfiguration.find(:all, :conditions=>["config_key like ?","job/%"]).map{|t| t.config_value.to_time}.sort.last %>
     <% end %>
     <h5>Last Successful Completion Time : <%= last_completion_time.present? ? last_completion_time.strftime("%B %d, %Y  %r") : "-" %></h5>
     <div class="extender"></div>

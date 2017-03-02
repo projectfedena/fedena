@@ -72,7 +72,7 @@
       <div class="link-descr"><%= "#{t('view_department_wise_payslip')}" %></div>
     </div>
     <% end %>
-    <% finance = Configuration.available_modules %>
+    <% finance = FedenaConfiguration.available_modules %>
     <% unless finance.include?("Finance") %>
       <% if permitted_to? :payslip_approve, :employee %>
         <div class="link-box">
