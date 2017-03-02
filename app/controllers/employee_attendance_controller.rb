@@ -62,16 +62,16 @@ class EmployeeAttendanceController < ApplicationController
             flash[:notice] = "#{t('flash_msg12')}"
     end
     redirect_to :action => "add_leave_types"
-    
+
 
   end
 
   def leave_reset_settings
     #  @config = Configuration.get_multiple_configs_as_hash ['AutomaticLeaveReset', 'LeaveResetPeriod', 'LastAutoLeaveReset']
-    @auto_reset = Configuration.find_by_config_key('AutomaticLeaveReset')
-    @reset_period = Configuration.find_by_config_key('LeaveResetPeriod')
-    @last_reset = Configuration.find_by_config_key('LastAutoLeaveReset')
-    @fin_start_date = Configuration.find_by_config_key('FinancialYearStartDate')
+    @auto_reset = FedenaConfiguration.find_by_config_key('AutomaticLeaveReset')
+    @reset_period = FedenaConfiguration.find_by_config_key('LeaveResetPeriod')
+    @last_reset = FedenaConfiguration.find_by_config_key('LastAutoLeaveReset')
+    @fin_start_date = FedenaConfiguration.find_by_config_key('FinancialYearStartDate')
     if request.post?
       @auto_reset.update_attributes(:config_value=> params[:configuration][:automatic_leave_reset])
       @reset_period.update_attributes(:config_value=> params[:configuration][:leave_reset_period])
@@ -80,7 +80,7 @@ class EmployeeAttendanceController < ApplicationController
             flash[:notice] = t('flash_msg8')
         end
     end
- 
+
   def update_employee_leave_reset_all
     @leave_count = EmployeeLeave.all
     @leave_count.each do |e|
@@ -389,7 +389,7 @@ class EmployeeAttendanceController < ApplicationController
       start_date = @applied_leave.start_date
       end_date = @applied_leave.end_date
       (start_date..end_date).each do |d|
-      
+
         unless(d.strftime('%A') == "Sunday")
           EmployeeAttendance.create(:attendance_date=>d, :employee_id=>@applied_employee.id,:employee_leave_type_id=>@applied_leave.employee_leave_types_id, :reason => @applied_leave.reason, :is_half_day => @applied_leave.is_half_day)
           att = EmployeeAttendance.find_by_attendance_date(d)
@@ -406,7 +406,7 @@ class EmployeeAttendanceController < ApplicationController
         end
       end
     end
-    
+
         flash[:notice]="#{t('flash6')} #{@applied_employee.first_name} from #{@applied_leave.start_date} to #{@applied_leave.end_date}"
     redirect_to :controller=>"employee_attendance", :action=>"leaves", :id=>@manager
   end
@@ -496,7 +496,7 @@ class EmployeeAttendanceController < ApplicationController
       @total_leaves = @total_leaves + leave_count
     end
     render :pdf => 'employee_attendance_pdf'
-          
+
 
     #        respond_to do |format|
     #            format.pdf { render :layout => false }

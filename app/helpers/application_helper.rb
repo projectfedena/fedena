@@ -84,7 +84,7 @@ module ApplicationHelper
   end
 
   def currency
-    Configuration.find_by_config_key("CurrencyType").config_value
+    FedenaConfiguration.find_by_config_key("CurrencyType").config_value
   end
 
   def pdf_image_tag(image, options = {})
@@ -116,7 +116,7 @@ module ApplicationHelper
 
   def current_school_name
     Rails.cache.fetch("current_school_name#{session[:user_id]}"){
-      Configuration.get_config_value('InstitutionName')
+      FedenaConfiguration.get_config_value('InstitutionName')
     }
   end
 

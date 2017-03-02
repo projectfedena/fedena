@@ -38,7 +38,7 @@
           :action => "guardians", :id => @student.id %></li>
     <% end %>
     <% if permitted_to? :email,:student %>
-      <% @config = Configuration.find_by_config_key('NetworkState').config_value %>
+      <% @config = FedenaConfiguration.find_by_config_key('NetworkState').config_value %>
       <% if @config == 'Online'  %>
         <li><%= link_to "#{t('send_email')}", :controller => "student",
             :action => "email", :id => @student.id %></li>

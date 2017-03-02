@@ -33,7 +33,7 @@ class AttendanceReportsController < ApplicationController
       @batches+=@current_user.employee_record.subjects.collect{|b| b.batch}
       @batches=@batches.uniq unless @batches.empty?
     end
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
   end
 
   def subject
@@ -61,7 +61,7 @@ class AttendanceReportsController < ApplicationController
 
   def mode
     @batch = Batch.find params[:batch_id]
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     if @config.config_value == 'Daily'
       unless params[:subject_id] == ''
         @subject = params[:subject_id]
@@ -97,7 +97,7 @@ class AttendanceReportsController < ApplicationController
     @end_date = @local_tzone_time.to_date
     @leaves=Hash.new { |h, k| h[k] = Hash.new(&h.default_proc) }
     @mode = params[:mode]
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     unless @config.config_value == 'Daily'
       if @mode == 'Overall'
         #        @academic_days=@batch.academic_days.count
@@ -191,7 +191,7 @@ class AttendanceReportsController < ApplicationController
     @month = params[:month]
     @year = params[:year]
     @students = @batch.students.by_first_name
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     #    @date = "01-#{@month}-#{@year}"
     @date = '01-'+@month+'-'+@year
     @start_date = @date.to_date
@@ -227,7 +227,7 @@ class AttendanceReportsController < ApplicationController
     @month = params[:month]
     @year = params[:year]
     @students = @batch.students.by_first_name
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     #    @date = "01-#{@month}-#{@year}"
     @date = '01-'+@month+'-'+@year
     @start_date = @date.to_date
@@ -300,17 +300,17 @@ class AttendanceReportsController < ApplicationController
   def student_details
     @student = Student.find params[:id]
     @batch = @student.batch
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     if @config.config_value == 'Daily'
       @report = Attendance.find(:all,:conditions=>{:student_id=>@student.id,:batch_id=>@batch.id})
     else
       @report = SubjectLeave.find(:all,:conditions=>{:student_id=>@student.id,:batch_id=>@batch.id})
-      
+
     end
   end
 
   def filter
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     @batch = Batch.find(params[:filter][:batch])
     @students = @batch.students.by_first_name
     @start_date = (params[:filter][:start_date]).to_date
@@ -378,7 +378,7 @@ class AttendanceReportsController < ApplicationController
   end
 
   def filter2
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     @batch = Batch.find(params[:filter][:batch])
     @students = @batch.students.by_first_name
     @start_date = (params[:filter][:start_date]).to_date
@@ -406,7 +406,7 @@ class AttendanceReportsController < ApplicationController
   end
 
   def report_pdf
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     @batch = Batch.find(params[:filter][:batch])
     @students = @batch.students.by_first_name
     @start_date = (params[:filter][:start_date]).to_date
@@ -469,7 +469,7 @@ class AttendanceReportsController < ApplicationController
       @report = ''
     end
     render :pdf => 'report_pdf'
-             
+
     #    render :layout=>'pdf'
     #    respond_to do |format|
     #      format.pdf { render :layout => false }
@@ -477,7 +477,7 @@ class AttendanceReportsController < ApplicationController
   end
 
   def filter_report_pdf
-    @config = Configuration.find_by_config_key('StudentAttendanceType')
+    @config = FedenaConfiguration.find_by_config_key('StudentAttendanceType')
     @batch = Batch.find(params[:filter][:batch])
     @students = @batch.students.by_first_name
     @start_date = (params[:filter][:start_date]).to_date
@@ -541,7 +541,7 @@ class AttendanceReportsController < ApplicationController
       end
     end
     render :pdf => 'filter_report_pdf'
-            
+
 
 
     #    respond_to do |format|

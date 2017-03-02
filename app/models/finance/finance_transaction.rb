@@ -62,12 +62,12 @@ class FinanceTransaction < ActiveRecord::Base
     #    donations = FinanceTransaction.find(:all,
     #      :conditions => ["transaction_date >= '#{start_date}' and transaction_date <= '#{end_date}'and category_id ='#{donation_id}'"])
     trigger = FinanceTransactionTrigger.find(:all)
-    hr = Configuration.find_by_config_value("HR")
+    hr = FedenaConfiguration.find_by_config_value("HR")
     income_total = 0
     expenses_total = 0
     fees_total =0
     salary = 0
-     
+
     unless hr.nil?
       salary = MonthlyPayslip.total_employees_salary(start_date, end_date)
       expenses_total += salary[:total_salary].to_f
@@ -82,7 +82,7 @@ class FinanceTransaction < ActiveRecord::Base
       else
         expenses_total +=d.amount
       end
-      
+
     end
     transactions_fees.each do |fees|
       income_total +=fees.amount
@@ -104,7 +104,7 @@ class FinanceTransaction < ActiveRecord::Base
         end
       end
     end
-    
+
     other_transactions.each do |t|
       if t.category.is_income? and t.master_transaction_id == 0
         income_total +=t.amount
@@ -113,7 +113,7 @@ class FinanceTransaction < ActiveRecord::Base
       end
     end
     income_total-expenses_total
-    
+
   end
 
   def self.total_fees(start_date,end_date)
@@ -165,7 +165,7 @@ class FinanceTransaction < ActiveRecord::Base
       #end
     end
     donations_income-donations_expenses
-    
+
   end
 
 
@@ -228,7 +228,7 @@ class FinanceTransaction < ActiveRecord::Base
     transactions.each {|transaction| amount += transaction.amount}
     return {:amount=>amount,:category_type=>category_type}
   end
-  
+
   def add_voucher_or_receipt_number
     if self.category.is_income and self.master_transaction_id == 0
       last_transaction = FinanceTransaction.last(:conditions=>"receipt_no IS NOT NULL")

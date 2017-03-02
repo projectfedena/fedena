@@ -16,11 +16,12 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
-class Configuration < ActiveRecord::Base
+class FedenaConfiguration < ActiveRecord::Base
+  self.table_name = 'configurations'
 
-  STUDENT_ATTENDANCE_TYPE_OPTIONS = [["#{t('daily_text')}", "Daily"], ["#{t('subject_wise_text')}", "SubjectWise"]]
+  STUDENT_ATTENDANCE_TYPE_OPTIONS = [["#{I18n.t('daily_text')}", "Daily"], ["#{I18n.t('subject_wise_text')}", "SubjectWise"]]
 
-  NETWORK_STATES                   = [["#{t('online')}",'Online'],["#{t('offline')}",'Offline']]
+  NETWORK_STATES                   = [["#{I18n.t('online')}",'Online'],["#{I18n.t('offline')}",'Offline']]
   LOCALES = []
   Dir.glob("#{Rails.root}/config/locales/*.yml").each do |file|
     file.gsub!("#{Rails.root}/config/locales/", '')
@@ -30,7 +31,7 @@ class Configuration < ActiveRecord::Base
 
   def validate
     if self.config_key == "StudentAttendanceType"
-      errors.add_to_base("#{t('student_attendance_type_should_be_one')} #{STUDENT_ATTENDANCE_TYPE_OPTIONS}") unless Configuration::STUDENT_ATTENDANCE_TYPE_OPTIONS.collect{|d| d[1] == self.config_value}.include?(true)
+      errors.add_to_base("#{t('student_attendance_type_should_be_one')} #{STUDENT_ATTENDANCE_TYPE_OPTIONS}") unless FedenaConfiguration::STUDENT_ATTENDANCE_TYPE_OPTIONS.collect{|d| d[1] == self.config_value}.include?(true)
     end
     if self.config_key == "NetworkState"
       errors.add_to_base("#{t('network_state_should_be_one')} #{NETWORK_STATES}") unless NETWORK_STATES.collect{|d| d[1] == self.config_value}.include?(true)
@@ -66,7 +67,7 @@ class Configuration < ActiveRecord::Base
     def set_value(key, value)
       config = find_by_config_key(key)
       config.nil? ?
-        Configuration.create(:config_key => key, :config_value => value) :
+        FedenaConfiguration.create(:config_key => key, :config_value => value) :
         config.update_attribute(:config_value, value)
     end
 
@@ -103,7 +104,7 @@ class Configuration < ActiveRecord::Base
       server_time = Time.now
       server_time_to_gmt = server_time.getgm
       local_tzone_time = server_time
-      time_zone = Configuration.find_by_config_key("TimeZone")
+      time_zone = FedenaConfiguration.find_by_config_key("TimeZone")
       unless time_zone.nil?
         unless time_zone.config_value.nil?
           zone = TimeZone.find(time_zone.config_value)

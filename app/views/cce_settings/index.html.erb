@@ -38,7 +38,7 @@
 
   <div class="box">
 
-    <% if Configuration.find_by_config_key("CCE").config_value=="1" %>
+    <% if FedenaConfiguration.find_by_config_key("CCE").config_value=="1" %>
       <div class="link-box">
         <div class="link-heading"><%= link_to t("basic_settings"),:action=>'basic' %></div>
         <div class="link-descr"><%= t("basic_setting_descr") %></div>
@@ -55,4 +55,3 @@
     <div class="extender"></div>
   </div>
 </div>
-

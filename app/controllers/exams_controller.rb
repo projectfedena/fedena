@@ -115,7 +115,7 @@ class ExamsController < ApplicationController
         @students.push s[2]
       end
     end
-    @config = Configuration.get_config_value('ExamResultType') || 'Marks'
+    @config = FedenaConfiguration.get_config_value('ExamResultType') || 'Marks'
 
     @grades = @batch.grading_level_list
   end

@@ -21,7 +21,7 @@ class BatchesController < ApplicationController
   filter_access_to :all
   before_filter :login_required
   def index
-    @batches = @course.batches    
+    @batches = @course.batches
   end
 
   def new
@@ -126,15 +126,15 @@ class BatchesController < ApplicationController
       end
       flash[:warn_notice] =  err1 + err unless err.empty?
       flash[:fees_import] =  fee_msg unless fee_msg.nil?
-      
+
       redirect_to [@course, @batch]
     else
       @grade_types=[]
-      gpa = Configuration.find_by_config_key("GPA").config_value
+      gpa = FedenaConfiguration.find_by_config_key("GPA").config_value
       if gpa == "1"
         @grade_types << "GPA"
       end
-      cwa = Configuration.find_by_config_key("CWA").config_value
+      cwa = FedenaConfiguration.find_by_config_key("CWA").config_value
       if cwa == "1"
         @grade_types << "CWA"
       end

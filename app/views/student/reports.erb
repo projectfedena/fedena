@@ -63,7 +63,7 @@
   <%#= link_to "#{t('compare_past')}", { :controller => 'exam', :action => 'previous_years_marks_overview',:student=>@student.id }%>
 
         <% end %>
-        <% if Configuration.cce_enabled? %>
+        <% if FedenaConfiguration.cce_enabled? %>
           <li><%= link_to "CCE Transcript Report", { :controller => 'cce_reports', :action => 'student_transcript',:id=>@student.id }%></li>
         <% end %>
       </ul>

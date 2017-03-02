@@ -42,7 +42,7 @@
     <%= t('student_ranking_per_school') %>
   </div>
   <div class="box">
-    <h4><%= t('overall_school_rankings') %> : <%= Configuration.find_by_config_key("InstitutionName").config_value.present? ? Configuration.find_by_config_key("InstitutionName").config_value : "-" %></h4>
+    <h4><%= t('overall_school_rankings') %> : <%= FedenaConfiguration.find_by_config_key("InstitutionName").config_value.present? ? FedenaConfiguration.find_by_config_key("InstitutionName").config_value : "-" %></h4>
     <div id="score-table">
       <% unless @courses.empty? %>
         <% unless @students.empty? %>

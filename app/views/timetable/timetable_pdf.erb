@@ -53,7 +53,7 @@
                 <% else %>
                   <% period = tte.subject.nil?? " ":tte.subject.code %>
                 <% end %>
-                <% if Configuration.available_modules.include?('HR') %>
+                <% if FedenaConfiguration.available_modules.include?('HR') %>
                   <% teacher = "\n("+tte.employee.employee_number+")"    unless tte.employee.nil? %>
                   <td class="col-pdf"><%= period.upcase %><br/>
                     <% unless tte.subject.elective_group_id.present?   %>

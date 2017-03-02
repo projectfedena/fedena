@@ -21,7 +21,7 @@ class ExamController < ApplicationController
   before_filter :protect_other_student_data
   before_filter :restrict_employees_from_exam
   filter_access_to :all
-  
+
   def index
   end
 
@@ -55,7 +55,7 @@ class ExamController < ApplicationController
           page.replace_html 'flash', :text=>''
         end
       end
-      
+
     else
       render(:update) do |page|
         page.replace_html 'flash', :text=>"<div class='errorExplanation'><p>#{t('flash_msg9')}</p></div>"
@@ -312,7 +312,7 @@ class ExamController < ApplicationController
   end
 
   def generated_report_pdf
-    @config = Configuration.get_config_value('InstitutionName')
+    @config = FedenaConfiguration.get_config_value('InstitutionName')
     @exam_group = ExamGroup.find(params[:exam_group])
     @batch = Batch.find(params[:batch])
     @students = @batch.students.by_first_name
@@ -405,7 +405,7 @@ class ExamController < ApplicationController
     @students = @batch.students
     @exam_groups = ExamGroup.find(:all,:conditions=>{:batch_id=>@batch.id})
     render :pdf => 'generated_report_pdf'
-    
+
     #        respond_to do |format|
     #            format.pdf { render :layout => false }
     #        end
@@ -430,7 +430,7 @@ class ExamController < ApplicationController
     @ranked_students = @batch.find_batch_rank
     render :pdf => "student_batch_rank_pdf"
   end
-  
+
   def course_rank
   end
 
@@ -1181,14 +1181,14 @@ class ExamController < ApplicationController
     end
 
   end
-  
+
   def previous_years_marks_overview_pdf
     @student = Student.find(params[:student])
     @all_batches = @student.all_batches
     render :pdf => 'previous_years_marks_overview_pdf',
       :orientation => 'Landscape'
-    
-    
+
+
   end
 
   def academic_report
@@ -1293,7 +1293,7 @@ class ExamController < ApplicationController
     @ordered_students.each do|s|
       @students.push s[2]
     end
-    @config = Configuration.get_config_value('ExamResultType') || 'Marks'
+    @config = FedenaConfiguration.get_config_value('ExamResultType') || 'Marks'
 
     @grades = @batch.grading_level_list
   end
@@ -1364,7 +1364,7 @@ class ExamController < ApplicationController
 
   end
 
-  
+
   #GRAPHS
 
   def graph_for_generated_report
@@ -1529,4 +1529,3 @@ class ExamController < ApplicationController
   end
 
 end
-
