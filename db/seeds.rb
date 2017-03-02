@@ -181,7 +181,7 @@ Privilege.find_by_name('StudentAttendanceRegister').update_attributes(:privilege
 Privilege.find_by_name('StudentAttendanceView').update_attributes(:privilege_tag_id=>student_management_tag.id, :priority=>320 )
 
 #update gender as string
-Employee.all.each do |e|
+Hr::Employee.all.each do |e|
   if e.gender.to_s=="1"
     e.update_attributes(:gender=> "m")
   elsif e.gender.to_s=="0"
