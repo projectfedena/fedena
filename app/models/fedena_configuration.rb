@@ -16,11 +16,12 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
-class Configuration < ActiveRecord::Base
+class FedenaConfiguration < ActiveRecord::Base
+  self.table_name = 'configurations'
 
-  STUDENT_ATTENDANCE_TYPE_OPTIONS = [["#{t('daily_text')}", "Daily"], ["#{t('subject_wise_text')}", "SubjectWise"]]
+  STUDENT_ATTENDANCE_TYPE_OPTIONS = [["#{I18n.t('daily_text')}", "Daily"], ["#{I18n.t('subject_wise_text')}", "SubjectWise"]]
 
-  NETWORK_STATES                   = [["#{t('online')}",'Online'],["#{t('offline')}",'Offline']]
+  NETWORK_STATES                   = [["#{I18n.t('online')}",'Online'],["#{I18n.t('offline')}",'Offline']]
   LOCALES = []
   Dir.glob("#{Rails.root}/config/locales/*.yml").each do |file|
     file.gsub!("#{Rails.root}/config/locales/", '')
