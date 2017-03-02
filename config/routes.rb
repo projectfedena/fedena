@@ -60,8 +60,8 @@ Fedena::Application.routes.draw do
 
 
   #connect 'parts/:number', :controller => 'inventory', :action => 'sho
-  # connect ':controller/:action/:id'
-  # connect ':controller/:action'
-  # connect ':controller/:action/:id/:id2'
-  # connect ':controller/:action/:id.:format'
+  match ':controller/:action/:id'
+  match ':controller/:action'
+  match ':controller/:action/:id/:id2'
+  match ':controller/:action/:id.:format'
 end
