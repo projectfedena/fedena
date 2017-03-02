@@ -27,9 +27,10 @@ gem 'declarative_authorization'
 # To use debugger
 # gem 'ruby-debug'
 
+gem 'jquery-rails'
+
 # Bundle the extra gems:
 # gem 'bj'
-# gem 'nokogiri'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
@@ -42,6 +43,7 @@ group :development, :test do
   gem 'cucumber-rails', '0.3.1'
   gem 'database_cleaner', '0.5.0'
   gem 'webrat', '0.7.0'
+  gem 'byebug'
 end
 
 group :development do
