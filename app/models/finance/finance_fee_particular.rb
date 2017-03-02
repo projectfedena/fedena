@@ -23,10 +23,10 @@ class FinanceFeeParticular < ActiveRecord::Base
   validates_presence_of :name,:amount
   validates_numericality_of :amount, :greater_than_or_equal_to => 0, :message => "#{t('must_be_positive')}"
 
-  named_scope :active,{ :conditions => { :is_deleted => false}}
+  scope :active,{ :conditions => { :is_deleted => false}}
   cattr_reader :per_page
   @@per_page = 10
-  
+
   def deleted_category
     flag = false
     category = self.student_category

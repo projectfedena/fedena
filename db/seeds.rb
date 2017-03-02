@@ -20,14 +20,14 @@
   {"config_key" => "DefaultCountry"                  ,"config_value" => "76"},
   {"config_key" => "FirstTimeLoginEnable"            ,"config_value" => "0"}
 ].each do |param|
-  Configuration.find_or_create_by_config_key(param)
+  FedenaConfiguration.find_or_create_by_config_key(param)
 end
 
 [
   {"config_key" => "AvailableModules"                ,"config_value" => "HR"},
   {"config_key" => "AvailableModules"                ,"config_value" => "Finance"}
 ].each do |param|
-  Configuration.find_or_create_by_config_key_and_config_value(param)
+  FedenaConfiguration.find_or_create_by_config_key_and_config_value(param)
 end
 
 if GradingLevel.count == 0
